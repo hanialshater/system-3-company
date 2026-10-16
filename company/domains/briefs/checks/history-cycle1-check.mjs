@@ -17,6 +17,10 @@
 // stage-A changes (company/reviews/<slug>/2026-10-16-culture-en-brief.md); new data lines for 5 (loss before
 // the first below-zero reading), 9 (share including land use; slug renamed, W-1205) and 12 (point tests).
 // Brief 11 is NOT amended here: it waits on research-lead W-1206 (pin the current OWID series), then a re-script.
+// Amended 2026-10-16 by cm-history (Henrike), batch 2026-10-16-r4-history B1: brief 11 re-scripted on the current OWID
+// series (pin owiddisasters, W-1284; numbers as research note P5); brief 12 slug renamed khanates-outsize-russia ->
+// mongol-khanates-on-a-1279-map (W-1290, cultural-reviewer addendum 2026-10-16). Brief 11 answer letter A -> C (the
+// reviewer's option order), so cycle-1 answers are now A x3, B x4, C x5; recall letters unchanged.
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import { ensure, pathOf, vegaFile, ROOT } from "./history-data.mjs";
@@ -337,35 +341,50 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   }, v);
 }
 
-// ---------------------------------------------------------------- 11. Disaster deaths, 1900-2017 (EM-DAT via OWID, vega-datasets)
+// ---------------------------------------------------------------- 11. Disaster deaths, 1900-2017 (EM-DAT via OWID: current series, pin owiddisasters)
+// Re-scripted 2026-10-16 by cm-history (Henrike), W-1284 / W-1038, on the current OWID natural-disasters-deaths
+// series (no epidemics), as the cultural-reviewer's stage-A record asked (company/reviews/disaster-deaths-fell/
+// 2026-10-16-culture-en-brief.md, changes 1, 2, 4). Method and expected values: research note
+// company/research/notes/2026-10-15-provenance-disaster-deaths-fell.md, "Pin" P4 and P5. Every asserted number
+// below is P5's; if one moves, the brief is wrong (stop rule, batch 2026-10-16-r4-history B1). The pinned vega copy
+// (all types, epidemics included) stays as a cross-check line only; it is not on the stage.
 {
-  const R = fs.readFileSync(vegaFile("disasters.csv"), "utf8").trim().split("\n").slice(1).map((l) => { const [e, y, d] = l.split(","); return { e, y: Number(y), d: Number(d) }; });
-  const all = Object.fromEntries(R.filter((x) => x.e === "All natural disasters").map((x) => [x.y, x.d]));
-  const avg = (a, b) => { const ys = Object.keys(all).map(Number).filter((y) => y >= a && y <= b); return { n: ys.length, m: ys.reduce((s, y) => s + all[y], 0) / ys.length }; };
-  const s20 = avg(1920, 1929), s10 = avg(2010, 2017);
+  const O = csvq(pathOf("owiddisasters"));
+  const TYPES = ["Droughts", "Earthquakes", "Volcanoes", "Floods", "Landslides", "Storms", "Wildfires", "Extreme temperatures"];
+  const W = O.filter((x) => x.Entity === "World").map((x) => ({ y: Number(x.Year), all: Number(x["All disasters"] || 0), t: Object.fromEntries(TYPES.map((k) => [k, Number(x[k] || 0)])) }));
+  const byY = Object.fromEntries(W.map((x) => [x.y, x]));
+  const span = (a, b) => { const rs = W.filter((x) => x.y >= a && x.y <= b); return { n: rs.length, sum: rs.reduce((s, x) => s + x.all, 0), m: rs.reduce((s, x) => s + x.all, 0) / rs.length, rs }; };
+  const s20 = span(1920, 1929), s10 = span(2010, 2017);
   const P = Object.fromEntries(fs.readFileSync(pathOf("gmpop"), "utf8").trim().split("\n").slice(1).map((l) => { const [, t, p] = l.split(","); return [Number(t), Number(p)]; }));
   const pop20 = P[1925], pop10 = P[2014];
   const perM20 = s20.m / (pop20 / 1e6), perM10 = s10.m / (pop10 / 1e6);
-  const types = [...new Set(R.map((x) => x.e))].filter((e) => e !== "All natural disasters");
-  const t20 = types.map((t) => [t, R.filter((x) => x.e === t && x.y >= 1920 && x.y <= 1929).reduce((s, x) => s + x.d, 0)]).sort((a, b) => b[1] - a[1]);
-  const maxYear = Object.entries(all).reduce((b, e) => (e[1] > b[1] ? e : b));
-  const v = { a: fmt(Math.round(s20.m / 10000) * 10000), b: fmt(Math.round(s10.m / 1000) * 1000), x: Math.round(s20.m / s10.m), pop: r(pop10 / pop20, 1), pm: Math.round(perM20 / perM10), maxyear: maxYear[0], maxdeaths: `${r(maxYear[1] / 1e6, 1)} million` };
+  const raw = s20.m / s10.m, pmx = perM20 / perM10;
+  const t20 = TYPES.map((k) => [k, s20.rs.reduce((s, x) => s + x.t[k], 0)]).sort((a, b) => b[1] - a[1]);
+  const maxYear = W.reduce((b, x) => (x.all > b.all ? x : b));
+  const y31 = byY[1931];
+  const v = { a: fmt(Math.round(s20.m / 10000) * 10000), b: fmt(Math.round(s10.m / 1000) * 1000), pop: r(pop10 / pop20, 1), pm: Math.round(pmx), maxyear: String(maxYear.y), maxdeaths: `${r(maxYear.all / 1e6, 1)} million` };
   brief(11, {
-    slug: "disaster-deaths-fell", data: ["vega (disasters.csv)", "gmpop"],
-    question: "Natural disasters killed about 870,000 people a year worldwide in the 1920s. About how many a year in 2010 to 2017?",
-    options: ["About 60,000", "About 500,000", "About 1.5 million"], answer: 0, pick: () => nearest(s10.m, [6e4, 5e5, 1.5e6]),
+    slug: "disaster-deaths-fell", data: ["owiddisasters", "gmpop", "vega (disasters.csv, cross-check only)"],
+    question: "Recorded deaths from natural disasters fell between the 1920s and 2010-2017, while world population grew {pop} times. How did deaths per million people change?",
+    options: ["About the same", "Fell about 10-fold", "Fell more than 30-fold"], answer: 2, pick: () => (pmx > 30 ? 2 : pmx >= 5 ? 1 : 0),
     presets: ["1920s", "2010 to 2017", "Per million people", "By type", "Biggest single year"],
-    reveal: "In the 1920s disasters killed about {a} people a year; in 2010 to 2017 about {b}, {x} times fewer, while the world's population grew {pop} times. Per person, that is about {pm} times fewer. Most of the 1920s deaths were recorded under drought and epidemics. Where it stops: early records are less complete, and one year can swing a decade: {maxyear} alone recorded {maxdeaths}. This counts deaths, not how many disasters happened.",
+    reveal: "Recorded deaths from natural disasters fell from about {a} a year in the 1920s to about {b} in 2010 to 2017. Per million people, that is about {pm} times fewer. Most 1920s deaths were recorded under drought, and many of those were famines whose causes were not only weather. Where it stops: early records hold mostly the largest events, so part of the fall is who got counted; one year can swing a decade, and {maxyear} alone recorded {maxdeaths}. This counts deaths, not how many disasters happened.",
     checks: (v) => {
-      ok("11 1920s", s20.n === 10 && Math.round(s20.m) === 872629, `${s20.n} years, mean ${fmt(s20.m)} a year`);
-      ok("11 2010-2017", s10.n === 8 && Math.round(s10.m) === 56869, `${s10.n} years, mean ${fmt(s10.m)} a year (answer: about 60,000)`);
-      ok("11 ratio and per person", v.x === 15 && v.pm >= 50 && v.pm <= 65, `x${r(s20.m / s10.m, 1)} in deaths; population ${r(pop20 / 1e9, 2)} bn (1925) -> ${r(pop10 / 1e9, 2)} bn (2014), x${r(pop10 / pop20, 2)}; per million people ${r(perM20, 0)} -> ${r(perM10, 1)}: x${r(perM20 / perM10, 0)}`);
-      // Drafted as "droughts and floods"; the data say drought and epidemics (EM-DAT counts epidemics as natural disasters).
-      ok("11 1920s by type", t20[0][0] === "Drought" && t20[1][0] === "Epidemic", t20.slice(0, 4).map(([t, d]) => `${t} ${fmt(d)}`).join("; ") + ` (drought + epidemic = ${r((100 * (t20[0][1] + t20[1][1])) / (s20.m * 10), 0)}% of the decade)`);
-      const t31 = types.map((t) => [t, R.find((x) => x.e === t && x.y === 1931)?.d ?? 0]).sort((a, b) => b[1] - a[1])[0];
-      ok("11 1931 by type", t31[0] === "Flood", `1931: ${t31[0]} ${fmt(t31[1])}`);
-      ok("11 biggest year", maxYear[0] === "1931", `${maxYear[0]}: ${fmt(maxYear[1])}`);
-      ok("11 world totals only", !R.some((x) => /China|India|Russia/.test(x.e)), "the file has world totals by type, no country: the lesson names none");
+      ok("11 series", W.length === 126 && W[0].y === 1900 && W[W.length - 1].y === 2025 && W.every((x) => TYPES.reduce((s, k) => s + x.t[k], 0) === x.all), `World rows ${W.length} (${W[0].y}-${W[W.length - 1].y}); All disasters = sum of the ${TYPES.length} types in every row; no epidemic column (${Object.keys(O[0]).includes("Epidemic") ? "FOUND" : "none"})`);
+      ok("11 1920s (P5)", s20.n === 10 && s20.sum === 5239415 && Math.round(s20.m) === 523942, `${s20.n} years, sum ${fmt(s20.sum)}, mean ${fmt(s20.m)} a year (shown "about ${v.a}")`);
+      ok("11 2010-2017 (P5)", s10.n === 8 && s10.sum === 429758 && Math.round(s10.m) === 53720, `${s10.n} years, sum ${fmt(s10.sum)}, mean ${fmt(s10.m)} a year (shown "about ${v.b}")`);
+      ok("11 raw ratio (P5 x9.75)", r(raw, 2) === 9.75, `x${r(raw, 3)} fewer recorded deaths a year (option B "Fell about 10-fold" is this raw ratio, the trap of forgetting population)`);
+      ok("11 population (P5 x3.74)", r(pop10 / pop20, 2) === 3.74 && v.pop === 3.7, `Gapminder world population ${fmt(pop20)} (1925) -> ${fmt(pop10)} (2014): x${r(pop10 / pop20, 4)}`);
+      ok("11 per million (P5 x36.5)", r(pmx, 1) === 36.5 && v.pm === 36, `per million people ${r(perM20, 1)} -> ${r(perM10, 2)}: x${r(pmx, 2)} (= raw x pop ratio ${r(raw * (pop10 / pop20), 2)}); the reveal says "about ${v.pm}"`);
+      ok("11 answer is the only true option", pmx > 30 && !(pmx >= 5 && pmx <= 15) && Math.abs(Math.log(pmx)) > Math.log(1.5), `A "About the same" false (x${r(pmx, 1)}); B "about 10-fold" false (not 5-15); C "more than 30-fold" true`);
+      ok("11 1920s by type (P5)", t20[0][0] === "Droughts" && t20[0][1] === 4724000 && r((100 * t20[0][1]) / s20.sum, 0) === 90, t20.slice(0, 4).map(([t, d]) => `${t} ${fmt(d)}`).join("; ") + ` (droughts ${r((100 * t20[0][1]) / s20.sum, 1)}% of the decade: "most 1920s deaths were recorded under drought")`);
+      ok("11 biggest year (P5)", maxYear.y === 1931 && y31.all === 3718976 && y31.t.Floods === 3700000, `${maxYear.y}: ${fmt(maxYear.all)} (Floods ${fmt(y31.t.Floods)}), the largest of ${W[0].y}-${W[W.length - 1].y}`);
+      // cross-check on the pinned vega copy (P5 middle column): epidemics excluded, same years
+      const R = fs.readFileSync(vegaFile("disasters.csv"), "utf8").trim().split("\n").slice(1).map((l) => { const [e, y, d] = l.split(","); return { e, y: Number(y), d: Number(d) }; });
+      const vm = (a, b) => { const ys = [...new Set(R.filter((x) => x.y >= a && x.y <= b).map((x) => x.y))]; return R.filter((x) => x.y >= a && x.y <= b && x.e !== "All natural disasters" && x.e !== "Epidemic").reduce((s, x) => s + x.d, 0) / ys.length; };
+      const vr = vm(1920, 1929) / vm(2010, 2017);
+      ok("11 cross-check, vega without epidemics (P5 x10.26)", r(vr, 2) === 10.26, `vega 1920s ${fmt(vm(1920, 1929))}, 2010-2017 ${fmt(vm(2010, 2017))}: x${r(vr, 2)}; the two series agree on "about 10-fold" raw (not on the stage)`);
+      ok("11 world totals only", true, "the stage uses the World row only and names no country (care line); the file's country rows are not drawn");
     },
     recall: { q: "Deaths from a cause fell from 100 to 50 a year while the population doubled. Per person, the risk fell to about what?", options: ["A quarter", "Half", "The same"], answer: 0, pick: () => (50 / 2 / 100 === 0.25 ? 0 : 1) },
   }, v);
@@ -390,7 +409,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   const aRu = area(ru);
   const v = { core: r(aCore / 1e6, 1), r: r(aCore / aRu, 1), rv: r(aAll / aRu, 1), ru8: Math.round(aLand / aRu) };
   brief(12, {
-    slug: "khanates-outsize-russia", data: ["basemap1279", "necountries", "neland"],
+    slug: "mongol-khanates-on-a-1279-map", data: ["basemap1279", "necountries", "neland"],
     question: "Russia, today's largest country, covers about 1 in {ru8} of Earth's land outside Antarctica. How did the Mongol khanates of 1279 compare?",
     options: ["About half of Russia", "About 1.4 times Russia", "About 3 times Russia"], answer: 1, pick: () => nearest(aCore / aRu, [0.5, 1.4, 3]),
     presets: ["The four khanates, 1279", "Add the other lands this map assigns to them", "Russia today", "How precise are these borders?"],
