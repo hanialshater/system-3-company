@@ -3,6 +3,25 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · fact-checker (lane B, F-46 closeout) · NCM-13 re-check, c10b, draft claims
+
+**Changed:** 1 commit on `worktree-agent-af03a3aad9424d7e6` (claims and records; no code):
+- **NCM-13 (item 1):** at base cdee168c, the 13 NCM review lessons had no open claims (72 verified, all "Ready to publish"). I re-checked their current Demo.tsx against the claims for staleness after the later revisions (selfish v6, cluster v5, agenda v3, W-513). All still match, and I made no status changes. Record: company/reviews/ncm-review-13/2026-10-16-fact-check-laneB.md.
+- **schelling-on-new-york c10b (item 2):** still unverified, because Rothstein is unreachable on every host. I opened a replacement source, Swope et al. 2022, PMC9342590, and wrote the text/source fix (company/reviews/schelling-on-new-york/2026-10-16-fact-check.md). W-1517 (cm-geography).
+- **Item 3:** no review lesson outside lane A and books has an open claim. Among the drafts, I disputed clap-at-the-cliff recall, scale-on-a-slope alt1 and two-batteries alt1, each with a one-line fix (W-1518, demo-builder). literacy-split-france c4 and schooling-and-crime-1830s c1 are still held on "young men" (PMC search tried); the FC 58/59 rewording fix finishes them.
+
+**Believe:**
+- High: NCM-13 claims are current.
+- High: the three physics disputes are real and one-line fixes.
+- Medium: Swope 2022 carries c10b's card words. "Widening" is a judgement call, written in the record.
+
+**Next:**
+- cm-geography approves the source swap (W-1517), then demo-builder edits c10b and another fact-checker verifies it.
+- demo-builder W-1518, then fact-checker re-checks.
+- Release manager: the NCM-13 need no fact-checker action.
+
+**Blocked:** Rothstein book access (no proxy route).
+
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
 **Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
