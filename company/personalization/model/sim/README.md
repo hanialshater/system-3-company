@@ -7,7 +7,11 @@ Offline only. Nothing in `src/` imports this folder (`../self-check.mjs` fails i
 ```
 node company/personalization/model/sim/run.mjs                    # full: base table, sensitivity, traces (~4 min)
 node company/personalization/model/sim/run.mjs --seeds=5 --no-sens # quick smoke run
+node --test company/personalization/model/sim/privacy-n1-n3.test.mjs  # privacy N1 + N3 on the shipped composer (W-1526, <1 s)
+node company/personalization/model/sim/privacy-breaks.mjs           # shows each N1/N3 test fails on a deliberate break (~10 s)
 ```
+
+Run the privacy tests after any change to `composer.ts`, `../model.ts` (fingerprint, needs, `FORBIDDEN_INPUTS`) or `catalog.mjs`, alongside `node company/personalization/model/self-check.mjs` (which holds P1, P2 and N6; not repeated here).
 
 **Status of the numbers: UNSCORED.** There is no committed pass criterion (W-1496, analytics-steward). The runner prints numbers and draws no conclusion about which policy is better.
 
@@ -38,3 +42,18 @@ Since model-v0.2 (W-1512, decision record): compose ONE card (`COMPOSER.slotsAhe
 - Prerequisites outside the pilot (math:, economics:) are ignored for readiness and learning.
 - The catalog runs out: ~70 new cards in 7 days out of 230 lessons. Longer runs converge as every policy exhausts the pool.
 - `misconceptionStrength` is noise, so the surprise term ranks by noise; the learner does not read it.
+
+## Privacy tests N1 and N3 (W-1526; ruling company/reviews/_privacy/2026-10-16-personalization-model-inputs.md §3)
+
+`privacy-n1-n3.test.mjs` runs the served pipeline per card (`fingerprintFrom` → `detect` / `explainNeeds` → `composeExplained` with the sim's pilot set, and `gamCompose`, the `ComposeFn` contract, beside it), 10 cards per case, recomputing after each, over 8 synthetic histories on the real pilot catalog (cold start, misses, successes, one-domain, null predictions, stated subjects, "less of this", switched off). No learner data and no persona `latent`.
+
+- **N1 (computed, not stored).** Stubs every write and network path: `fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `navigator.sendBeacon`, `localStorage`, `sessionStorage`, `indexedDB`, `caches`, `document.cookie`; Node `fs` writes (sync, callback, promises, named imports via `syncBuiltinESMExports`), `http`/`https`/`net`/`tls`/`dgram`, `child_process`; `console.*` and `process.stdout/stderr.write` (a log is a write). Asserts zero writes and zero fetches, zero storage reads (the composer takes history as an argument), and no mutation of its deep-frozen input. A control asserts the stubs do record a write and a fetch.
+- **N3 (forbidden-input invariance).** Every `FORBIDDEN_INPUTS` entry, `ageBand` included, is set to two different values at four places a serving build could carry it (each history item, the fingerprint, `fingerprintFrom` opts, `ComposeInput`). Asserts the same order, and the stricter same composition (reasons, terms, scores, slot traces, need scores), and that no forbidden key is read by name (a `Proxy` records reads). The test fails if `FORBIDDEN_INPUTS` gains an entry it does not vary. Controls: the cases do move cards (16 of 80), and flipping one permitted input (the latest `predictedCorrectly`) does change the order.
+- **Deliberate breaks.** `privacy-breaks.mjs` copies this folder to a temp root, breaks the copy of `composer.ts` 12 ways (storage write, fetch, fs log, console, caching on the input, `ageBand` and `dwell` changing scores, a bare read of `device`), runs the tests from the copy, and checks each break is caught. The `-o` rows weaken the copy of the test to order-only, the ruling's literal check: a uniform `ageBand` shift passes it, which is why the composition and read checks exist.
+- **Limits.** The tests see what runs in this process: they cannot see a write made by code the composer does not call, and a forbidden value read through a renamed key (for example a field called `age`) is caught only if it changes the composition. Serving code (phase B) needs its own N1 test where it runs; this one covers the composer and the model functions it calls.
+- **Grep note for the privacy read (ruling §1).** These two files contain `fetch`, `localStorage`, `http` and `fs` writes as stub names and, in `privacy-breaks.mjs`, as break text written only to a temp copy. They are the only such hits in this folder besides `run.mjs` writing `out/`.
+
+## A2: no calibration on real data without a privacy read (to W-1497 and W-1513)
+
+Ruling A2 (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md §1): phase A stays seeded from invented personas and lesson data. Calibrating the simulated learner or its parameters (W-1497 evidence ranges, W-1513 learner adopt/replace) against real events, real progress rows, any learner's `s3c:progress:v1`, or **even aggregates** from W-706 is a new read: ask privacy-reviewer before any such number enters `learner.ts`, `BASE_PARAMS`, a persona or a curve. Aggregate-only calibration (counts, cells under 20 not used, no per-learner row, no session id) is expected to pass quickly; anything per-learner is expected to be refused.
+

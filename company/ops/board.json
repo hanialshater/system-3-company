@@ -17857,12 +17857,18 @@
       "id": "W-1526",
       "title": "Privacy ruling W-1495 section 8 item 2 (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md): in company/personalization/model/sim, add the N1 stubbed-IO test (compose with storage and network stubbed: zero writes, zero fetches) and the N3 forbidden-input invariance test against the composer (two histories equal in permitted inputs, different in every forbidden one incl. ageBand: same order); A2 note on W-1497/W-1513 (no real-data calibration without a read). Lane 14 batch 1 item B5 (company/personalization/batches/2026-10-16-batch-1.md)",
       "owner": "learner-model-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
-      ]
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/model/sim/privacy-n1-n3.test.mjs",
+        "company/personalization/model/sim/privacy-breaks.mjs",
+        "company/personalization/model/sim/README.md",
+        "company/reviews/_privacy/2026-10-16-personalization-model-inputs.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 to review: reviewer privacy-reviewer (ruling author; N1/N3 are her conditions). Built by learner-model-engineer (run lme-b5-w1526-1016): sim/privacy-n1-n3.test.mjs (N1 stubbed IO, N3 forbidden-input invariance incl. ageBand, with controls), sim/privacy-breaks.mjs (12 deliberate breaks on a temp copy, all caught), A2 note in sim/README.md to W-1497/W-1513. Run: node --test company/personalization/model/sim/privacy-n1-n3.test.mjs; node company/personalization/model/sim/privacy-breaks.mjs."
     },
     {
       "id": "W-1527",
