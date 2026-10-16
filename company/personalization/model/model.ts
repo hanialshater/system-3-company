@@ -525,9 +525,13 @@ export const OBJECTIVE = {
   passCriterion: "W-1496 (personalization org, pending role approval), written before the first run",
 } as const;
 
-/** Policies phase A compares (response §3); W-1494 implements them. */
+/** Policies phase A compares (response §3); W-1494 implements them. The first seven order new cards
+ *  (sim/simulate.mjs ALL_POLICIES). "review-timing" is criterion 2's review-timing candidate (W-1547): it decides
+ *  which completed lessons come back at a session start, not the order of new cards. Its code and version are in
+ *  sim/review-timing.ts (REVIEW_TIMING_POLICY); adding it changed no other policy (sim/policy-golden.json). */
 export const POLICIES = [
   "default-order", "draft-rules", "gam", "gam-no-surprise-novelty", "gam-no-breadth", "random", "epsilon-greedy",
+  "review-timing",
 ] as const;
 export type PolicyName = (typeof POLICIES)[number];
 

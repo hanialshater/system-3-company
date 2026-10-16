@@ -14,6 +14,9 @@
 //   and no forbidden key is ever read by name. Two controls keep it honest: the composer does move cards on
 //   these histories, and flipping one permitted input does change the order.
 //
+// W-1547: the review-timing candidate (review-timing.ts) gets the same N1 and N3 tests at the end of this file,
+//   on its own input (criterion 2 §I.3), including §I.4 rule 4: forbidden fields added to the input change nothing.
+//
 // Not here, on purpose: the P1 recall-only fallback and the P2 null-prediction tests (../self-check.mjs, W-1514).
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -28,6 +31,7 @@ import { syncBuiltinESMExports } from "node:module";
 import * as M from "../model.ts";
 import { composeExplained, gamCompose } from "./composer.ts";
 import { loadCatalog } from "./catalog.mjs";
+import { REVIEW_TIMING_POLICY } from "./review-timing.ts";
 
 const cat = loadCatalog();
 const NOW = Date.UTC(2026, 9, 16, 9);
@@ -238,4 +242,66 @@ test("N1 control: the stubs do record a write and a fetch when one happens", () 
     console.log("x");
   } finally { uninstall(); }
   assert.deepEqual(log.map((l) => l.split(":")[0]), ["write", "fetch", "write", "write"]);
+});
+
+// ----------------------------------------------------------------------------------------------------
+// The review-timing candidate (W-1547; criterion 2 §I.3, §I.4 rules 2 and 4). Its input is not ComposeInput:
+// { now, history, dims, slots, fixedDue }. Sessions are synthetic: one per day, outcomes hashed from the slug.
+// ----------------------------------------------------------------------------------------------------
+
+const RT_DAYS = 30;
+/** Session inputs over RT_DAYS days. `extra(level)` attaches forbidden fields to history items and the input. */
+function rtInputs({ extra = () => ({}), wrap = (o) => o, flipLatestRecall = false } = {}) {
+  const hist = [];
+  const out = [];
+  let next = 0;
+  for (let day = 0; day < RT_DAYS; day++) {
+    const now = NOW + day * DAY;
+    const items = hist.map((h, i) => {
+      const recalls = h.recalls.filter((r) => r.at >= now - 30 * DAY).map((r) => wrap({ ...r }));
+      if (flipLatestRecall && i === 0 && recalls.length) recalls[recalls.length - 1] = wrap({ ...recalls[recalls.length - 1], correct: !recalls[recalls.length - 1].correct });
+      return wrap({ ...h, recalls: wrap(recalls), ...extra("history") });
+    });
+    const fixedDue = items.filter((h) => { const ok = h.recalls.filter((r) => r.correct).length; if (ok >= 4) return false;
+      const last = h.recalls.length ? h.recalls[h.recalls.length - 1].at : h.completedAt; return now - last >= [1, 3, 7, 21][ok] * DAY; })
+      .sort((a, b) => (a.recalls.at?.(-1)?.at ?? a.completedAt) - (b.recalls.at?.(-1)?.at ?? b.completedAt) || (a.slug < b.slug ? -1 : 1)).map((h) => h.slug);
+    const input = wrap({ now, history: wrap(items), dims: cat.dims, slots: 3, fixedDue: wrap(fixedDue), ...extra("input") });
+    const decision = REVIEW_TIMING_POLICY.decide(input);
+    out.push(decision);
+    let t = now;
+    for (const r of decision.revisits) { t += 60_000; hist.find((h) => h.slug === r.slug).recalls.push({ at: t, correct: hash(`${r.slug}|${day}`) % 3 !== 0 }); }
+    for (let k = 0; k < 2; k++) { t += 120_000; const slug = cat.defaultOrder[next++]; hist.push({ slug, completedAt: t, predictedCorrectly: hash(slug) % 2 === 0, recalls: [] }); }
+  }
+  return out;
+}
+
+test("N3 (review-timing): forbidden fields on the input and on every history item change nothing, and are never read (§I.4 rule 4)", (t) => {
+  const reads = [];
+  const watch = (o) => new Proxy(o, { get(target, key, recv) {
+    if (typeof key === "string" && Object.hasOwn(FORBIDDEN_VALUES, key)) reads.push(key); // own keys: arrays read `constructor`
+    return Reflect.get(target, key, recv);
+  } });
+  const plain = rtInputs();
+  const a = rtInputs({ extra: () => forbiddenSet(0), wrap: watch });
+  const b = rtInputs({ extra: () => forbiddenSet(1), wrap: watch });
+  assert.equal(JSON.stringify(a), JSON.stringify(plain), "adding forbidden fields changed the decisions");
+  assert.equal(JSON.stringify(b), JSON.stringify(a), "decisions depend on a forbidden input's value");
+  assert.deepEqual([...new Set(reads)], [], `review-timing read forbidden inputs by name: ${[...new Set(reads)].join(", ")}`);
+  const served = plain.reduce((n, d) => n + d.revisits.length, 0);
+  assert.ok(served > 20, "control: too few revisits for the comparison to mean anything");
+  t.diagnostic(`${RT_DAYS} sessions, ${served} revisits; ${M.FORBIDDEN_INPUTS.length} forbidden inputs varied on the input and every history item; 0 forbidden reads`);
+});
+
+test("N3 control (review-timing): flipping one permitted input (the oldest lesson's latest recall result) does change a decision", () => {
+  assert.notEqual(JSON.stringify(rtInputs({ flipLatestRecall: true })), JSON.stringify(rtInputs()));
+});
+
+test("N1 (review-timing): deciding with storage and network stubbed makes zero writes, zero fetches, no input mutation", () => {
+  const log = [];
+  let out = null, thrown = null;
+  const uninstall = stubIO(log);
+  try { out = rtInputs({ wrap: (o) => deepFreeze(o) }); } catch (e) { thrown = e; } finally { uninstall(); }
+  if (thrown) throw thrown;
+  assert.deepEqual(log, [], `review-timing did I/O: ${log.join("; ")}`);
+  assert.equal(out.length, RT_DAYS);
 });
