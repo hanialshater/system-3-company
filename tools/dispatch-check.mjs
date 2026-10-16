@@ -142,10 +142,10 @@ else for (const f of sFails) warns.push(`${f} [S3_SLOTS=warn: not refused this r
 
 // ---- possibly finished (r5-tools B2 c): counted runs older than 2 h with no live slot and no spool activity. They stay
 // in the count (counting less is the unsafe direction); this names them and the command that closes each one.
-const maybeDone = possiblyFinished(flight.open, { now: Date.now(), minH: 2, staleH: STALE_H, slotsLive: ledger?.live ?? [], spoolEvents: spool.events, closes: flight.closes });
+const maybeDone = possiblyFinished(flight.open, { now: Date.now(), minH: 2, staleH: STALE_H, slotsLive: ledger?.live ?? [], spoolEvents: spool.events, closes: flight.closes, held: flight.held });
 if (maybeDone.length) {
   warns.push(`possibly finished: ${maybeDone.length} counted dispatch(es) older than 2 h with no live slot and no hook activity. First run \`node tools/events.mjs backfill\` with no --since (a backfill window that skipped their reports is the usual cause: 9 of the 11 closed by hand at 2026-10-16T13:08Z); then close any still listed that you know finished:`);
-  for (const p of maybeDone) warns.push(`possibly finished: ${p.run.label} (${ageText(p.ageMs)})${p.twin ? `; same batch item as open ${p.twin}` : ""}${p.twinReported ? `; same batch item as ${p.twinReported.label}, which reported at ${p.twinReported.ts} (${p.twinReported.id})` : ""}\n         ${p.command}`);
+  for (const p of maybeDone) warns.push(`possibly finished: ${p.run.label} (${ageText(p.ageMs)})${p.twin ? `; same batch item as open ${p.twin}` : ""}${p.twinReported ? `; same batch item as ${p.twinReported.label}, which reported at ${p.twinReported.ts} (${p.twinReported.id})` : ""}${p.heldReport ? `; a report naming this batch item (${p.heldReport.id}${p.heldReport.label ? `, "${p.heldReport.label}"` : ""}, ${p.heldReport.ts}) closed nothing because ${p.heldReport.runs.length} runs carry the item` : ""}\n         ${p.command}`);
 }
 
 // ---- C3 worktree

@@ -15,6 +15,11 @@
 //   3. batch key   the same batch item, `batch=<file>#B<n>`: the dispatch's `source`, else the first batch ref in its
 //                  summary, else in its body (the prompt); for a report, its `key`, else the first ref in its summary,
 //                  else the batch key of the latest dispatch with its label (the hand-dispatch twin's key).
+//                  Only when EXACTLY ONE run in the replay so far, open or already closed, carries that batch item
+//                  (PE-ops C1, 2026-10-16-inflight-key-match-approval.md ruling 1). With two runs of one item (a rerun,
+//                  or a hand twin plus a tx- dispatch) a batch-only report is unmatched: it closes nothing and is kept
+//                  in `held` as "possibly finished" evidence for the item's open runs. Otherwise one finished run
+//                  reported twice (hand report + its own tx- report) would close a run that is still working.
 // Nothing closes a dispatch without one of these matches, so the count never drops on a guess: a run that may be
 // finished but matches nothing is listed by dispatch-check as "possibly finished", never dropped.
 // As before, a second dispatch with an open label is the same run (SendMessage continuations), not a new one.
@@ -86,16 +91,19 @@ export function keyArg(run) {
 
 /**
  * Replay events (any order; sorted by ts here) and return the open runs.
- * Returns { open: Run[], closes: [{ event, run, rule }], unmatched: Event[], match(e) }.
+ * Returns { open: Run[], closes: [{ event, run, rule }], unmatched: Event[], held: [{ event, batch, runs }], match(e) }.
+ * held: the unmatched reports that named a batch item carried by more than one run (rule 3 refused to guess).
  * Run = { label, dispatch (latest dispatch event of the run), first (its first dispatch ts), keys }.
  * match(e) says which open run a new report/stopped event would close, without changing anything.
  */
 export function replay(events) {
   const sorted = events.filter((e) => typeof e?.ts === "string").sort((a, b) => a.ts.localeCompare(b.ts));
   const open = [];
+  const runs = []; // every run seen so far, open or closed (rule 3 needs exactly one carrier of the item)
   const lastByLabel = new Map(); // label -> keys of the latest dispatch with that label (open or closed)
   const closes = [];
   const unmatched = [];
+  const held = [];
 
   const pick = (e) => {
     const own = keysOf(e, { asReport: true });
@@ -107,8 +115,10 @@ export function replay(events) {
     run = e.agent ? open.find((r) => r.label === e.agent) : null;
     if (run) return { run, rule: "label" };
     const b = own.batch ?? inh?.batch ?? null;
-    run = b ? open.find((r) => sameBatch(r.keys.batch, b)) : null;
-    if (run) return { run, rule: "batch" };
+    if (!b) return null;
+    const carriers = runs.filter((r) => sameBatch(r.keys.batch, b));
+    if (carriers.length === 1 && open.includes(carriers[0])) return { run: carriers[0], rule: "batch" };
+    if (carriers.length > 1) return { run: null, rule: "batch-ambiguous", batch: b, carriers };
     return null;
   };
 
@@ -121,19 +131,27 @@ export function replay(events) {
         run.dispatch = e;
         for (const s of k.strong) run.keys.strong.add(s);
         run.keys.batch ??= k.batch;
-      } else open.push({ label: e.agent, dispatch: e, first: e.ts, keys: { strong: new Set(k.strong), batch: k.batch } });
+      } else {
+        const r = { label: e.agent, dispatch: e, first: e.ts, keys: { strong: new Set(k.strong), batch: k.batch } };
+        open.push(r);
+        runs.push(r);
+      }
       const prev = lastByLabel.get(e.agent);
       lastByLabel.set(e.agent, { strong: new Set([...(prev?.strong ?? []), ...k.strong]), batch: k.batch ?? prev?.batch ?? null });
     } else if (e.type === "report" || e.type === "stopped") {
       if (!e.agent && !e.key) continue;
       const m = pick(e);
-      if (m) {
+      if (m?.run) {
         open.splice(open.indexOf(m.run), 1);
         closes.push({ event: e, run: m.run, rule: m.rule });
-      } else unmatched.push(e);
+      } else {
+        unmatched.push(e);
+        if (m) held.push({ event: e, batch: m.batch, runs: m.carriers.map((r) => r.label) });
+      }
     }
   }
-  return { open, closes, unmatched, match: pick };
+  // match(e): the run a new report/stopped event would close ({ run, rule }), or null; never a "batch-ambiguous" hit.
+  return { open, closes, unmatched, held, match: (e) => { const m = pick(e); return m?.run ? m : null; } };
 }
 
 /** The open runs closest to a label (word overlap, then age): for "no open dispatch matches" warnings. */
@@ -163,7 +181,7 @@ export function stoppedCommand(run) {
  * activity after their dispatch. They stay in the count; this only lists them.
  * slotsLive: slot records ({agent, source}); spoolEvents: the hook spool's events.
  */
-export function possiblyFinished(open, { now = Date.now(), minH = 2, staleH = 6, slotsLive = [], spoolEvents = [], closes = [] } = {}) {
+export function possiblyFinished(open, { now = Date.now(), minH = 2, staleH = 6, slotsLive = [], spoolEvents = [], closes = [], held = [] } = {}) {
   const out = [];
   for (const r of open) {
     const age = now - Date.parse(r.dispatch.ts);
@@ -177,7 +195,9 @@ export function possiblyFinished(open, { now = Date.now(), minH = 2, staleH = 6,
     // another open dispatch of the same batch item, or one of the same item that has already reported.
     const twin = open.find((o) => o !== r && r.keys.batch && sameBatch(o.keys.batch, r.keys.batch));
     const done = r.keys.batch ? closes.filter((c) => c.run !== r && sameBatch(c.run.keys.batch, r.keys.batch) && c.event.ts > r.first).at(-1) : null;
-    out.push({ run: r, ageMs: age, twin: twin?.label ?? null, twinReported: done ? { label: done.run.label, ts: done.event.ts, id: done.event.id } : null, command: stoppedCommand(r) });
+    // A report for this item that rule 3 held back because two or more runs carry it (PE-ops C1): evidence only.
+    const heldFor = r.keys.batch ? held.filter((h) => sameBatch(h.batch, r.keys.batch) && h.event.ts > r.first).at(-1) : null;
+    out.push({ run: r, ageMs: age, twin: twin?.label ?? null, twinReported: done ? { label: done.run.label, ts: done.event.ts, id: done.event.id } : null, heldReport: heldFor ? { label: heldFor.event.agent ?? null, ts: heldFor.event.ts, id: heldFor.event.id, runs: heldFor.runs } : null, command: stoppedCommand(r) });
   }
   return out;
 }

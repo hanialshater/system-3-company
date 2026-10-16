@@ -91,7 +91,7 @@ beside the new one on the same copy.
   2. **label** (the old rule).
   3. **batch item**: `batch=<file>#B<n>` from the dispatch's `source`, else summary, else body (the prompt's first
      ref); for a report its `--key=batch=…`, else its summary's first ref, else the batch key of the latest dispatch
-     with its label (this closes the tx- twin when the hand report used the hand label). `…r3-tools.md` matches
+     with its label (before C1 this closed the tx- twin when the hand report used the hand label; after C1 only if that item has one run). `…r3-tools.md` matches
      `2026-10-16-r3-tools.md`; a short form must contain a "-".
   **Deviation from the brief's order**, which put the batch key before the label: an exact label is as specific as a
   key, and a batch item can have two live runs (a twin, a rerun), so label comes second. Net effect on the 13:08 log:
@@ -114,18 +114,39 @@ beside the new one on the same copy.
   than the newest tx- event in the log and names the count it skips. `selectBackfill` keeps one event per id.
 - **company/ops/events.md**: the `key` field and the two commands. No new type.
 
+## C1 (principal-engineer-ops merge condition, 2026-10-16-inflight-key-match-approval.md ruling 1), done on this branch
+
+PE-ops showed that rule 3 as first built could close a run that is still working: two live runs of one batch item
+(X ·1111, Y ·2222), Y finishes and is reported twice (a hand report naming the item, and Y's own tx- report by key);
+the hand report closed X by batch and the tx- report closed Y, so `open: []` while X was working. Fix in
+tools/lib/inflight.mjs: **rule 3 closes a run only when exactly one run seen so far in the replay, open or already
+closed, carries that batch item.** With two or more carriers the report is unmatched (written, and `events.mjs`
+warns as before), and it is kept in `replay().held` as evidence; `possiblyFinished` shows it on the item's open runs
+(`heldReport`), and dispatch-check prints it on the run's "possibly finished" line ("a report naming this batch item
+(…) closed nothing because N runs carry the item"). `match(e)` never returns an ambiguous hit.
+
+Effect on what this record measured: the hand-twin shape no longer closes by batch. Test "a hand twin…" (formerly
+"…closes the tx- twin (inherited key)") now asserts the tx- twin stays counted and is listed with the held report.
+*Believed, not re-measured:* on the 13:08 log copy the new-rule count in the first table row goes from 15 to 16 (the
+beacon twin, #1, has a hand dispatch and a tx- dispatch of one item, so two carriers), the same as the old rule; the
+9 backfill-gap runs with exactly one carrier still close by batch (the test's single-carrier assertion). New test
+"PE-ops C1: two live runs of one batch item…": PE-ops' fixture in both orders asserts X stays open, only Y closes (by
+key), the hand report is unmatched and held, and a third batch-only report would close nothing; plus a closed
+carrier still counts (X closed by key, then a rerun Z of the item is not closed by a batch-only report).
+
 ## The check
 
-1. **What can fail.** (i) A wrong close by batch key: two live runs of one batch item, and a hand report closes the
-   older instead of its own. The count is right, the identity is wrong; slot ledger S3 already refuses a second
-   dispatch of the same item without its own `--agent`. (ii) A wrong close by an explicit `--key=xxxx` that collides
+1. **What can fail.** (i) A wrong close by batch key: removed by C1 (above). With two runs of one item a batch-only
+   report closes nothing, so the residual failure is the safe direction: a finished twin or rerun stays counted
+   until closed by key or label (listed as "possibly finished" with the held report), which can block a dispatch
+   that C1 would have allowed. (ii) A wrong close by an explicit `--key=xxxx` that collides
    with another open run's suffix (1 in 65,536 per open run; the run with the same label is preferred). (iii) Worst:
    a bug that closes runs without evidence, so C1 lets a 15th agent start. Mitigation: closes only on a key, a label
    or a batch item; the count on today's log is equal or one lower than the old rule, never lower on a guess; the
    caller's `--running` still wins when larger. Who sees it: agents and the host, never learners.
 2. **How we would know.** The `in-flight matching:` line counts closes per rule on every run; a jump in `batch` closes
    is visible. The `possibly finished` list and the `hooks:` line are in every dispatch-check output. Tests:
-   tests/dispatch/inflight.test.mjs (11 cases) in `npm run test:dispatch`.
+   tests/dispatch/inflight.test.mjs (12 cases after C1) in `npm run test:dispatch`.
 3. **How to roll back.** `git revert <sha>` of this branch's commit; seconds; no data loss (the only new data is an
    optional `key` field on new events, which old readers ignore).
 4. **Capacity.** One replay over the merged log per dispatch-check (about 4,500 events: a few ms). `events.mjs report`

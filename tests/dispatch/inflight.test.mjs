@@ -67,14 +67,46 @@ test("a tx- dispatch is closed by an ev- report with a different label and the s
   assert.equal(realSize(), before, "the real log is untouched");
 });
 
-test("a report naming its batch item only through its own hand dispatch's label closes the tx- twin (inherited key)", () => {
+// PE-ops C1 changed this case: a hand dispatch and its tx- twin are two runs carrying one batch item, so the
+// batch-only report no longer closes the twin. It stays counted and is listed as possibly finished, with the report.
+test("a hand twin: the report naming the item only through its hand label closes nothing by batch; the tx- twin stays counted, the report is held as evidence", () => {
   const hand = { id: "ev-hand000001", ts: ago(3), type: "dispatch", room: "app-team", actor: "chief-of-staff", agent: "backend-engineer: beacon allow-list", summary: "batch=company/initiatives/first-light/dispatch/2026-10-16-round-2.md#B2 build" };
   const tx = txDispatch({ id: "tx-bbbb000002", agent: "[project:first-light] Backend: beacon allow-list C1/C2 ·9fd2", body: "batch=company/initiatives/first-light/dispatch/2026-10-16-round-2.md#B2" });
   const closeHand = { id: "ev-c1", ts: ago(2.5), type: "report", actor: "chief-of-staff", agent: "backend-engineer: beacon allow-list", summary: "label closed" };
   const real = { id: "ev-c2", ts: ago(2), type: "report", actor: "backend-engineer", agent: "backend-engineer: beacon allow-list", summary: "FL r2#B2 done (7e5207f)" };
   const flight = replay([hand, tx, closeHand, real]);
-  assert.equal(flight.open.length, 0);
-  assert.deepEqual(flight.closes.map((c) => c.rule).sort(), ["batch", "label"]);
+  assert.deepEqual(flight.open.map((r) => r.label), [tx.agent], "the tx- twin is still counted");
+  assert.deepEqual(flight.closes.map((c) => c.rule), ["label"]);
+  assert.deepEqual(flight.held.map((h) => h.event.id), ["ev-c2"]);
+  const [p] = possiblyFinished(flight.open, { held: flight.held });
+  assert.equal(p.run.label, tx.agent);
+  assert.equal(p.heldReport.id, "ev-c2");
+  assert.equal(p.heldReport.runs.length, 2);
+});
+
+// PE-ops C1 fixture (2026-10-16-inflight-key-match-approval.md ruling 1): two live runs of one batch item, X ·1111 and
+// Y ·2222. Y finishes and is reported twice: a hand report whose summary names the batch item, and Y's own tx- report
+// (key). In either order X, still working, must stay counted.
+test("PE-ops C1: two live runs of one batch item, the finished one reported twice (both orders): the still-working run stays open", () => {
+  const B = "batch=company/ops/dispatch-requests/2026-10-16-r5-tools.md#B2";
+  const X = { id: "tx-x", ts: ago(3), type: "dispatch", room: "tools", actor: "chief-of-staff", agent: "[project:maintenance] Tools r5 B2 ·1111", key: "toolu_X", summary: "Dispatch tools-lead", body: `Your brief is ${B}.` };
+  const Y = { ...X, id: "tx-y", ts: ago(2.9), agent: "[project:maintenance] Tools r5 B2 ·2222", key: "toolu_Y" };
+  const hand = (ts) => ({ id: "ev-hand", ts, type: "report", actor: "tools-lead", agent: "tools-lead: r5 B2", summary: `${B} done (abc1234)` });
+  const own = (ts) => ({ id: "tx-y-report", ts, type: "report", actor: "tools-lead", agent: Y.agent, key: "toolu_Y", summary: "done" });
+  for (const [name, evs] of [["hand first", [X, Y, hand(ago(1)), own(ago(0.9))]], ["tx- report first", [X, Y, own(ago(1)), hand(ago(0.9))]]]) {
+    const f = replay(evs);
+    assert.deepEqual(f.open.map((r) => r.label), [X.agent], `${name}: X stays open`);
+    assert.deepEqual(f.closes.map((c) => [c.run.label, c.rule]), [[Y.agent, "key"]], `${name}: only Y closes, by key`);
+    assert.deepEqual(f.unmatched.map((e) => e.id), ["ev-hand"], `${name}: the hand report is unmatched`);
+    assert.equal(f.held.length, 1, name);
+    assert.equal(f.match(hand(ago(0.5))), null, `${name}: a third report by batch would close nothing either`);
+  }
+  // With exactly one carrier of the item (the 9-of-11 backfill-gap shape), the batch rule still closes it.
+  assert.equal(replay([X, hand(ago(1))]).closes[0]?.rule, "batch");
+  // A closed carrier still counts: after X is closed by key, a rerun Z of the item is not closed by a batch-only report.
+  const Z = { ...X, id: "tx-z", ts: ago(0.8), agent: "[project:maintenance] Tools r5 B2 ·3333", key: "toolu_Z" };
+  const xr = { id: "tx-x-report", ts: ago(0.9), type: "report", actor: "tools-lead", agent: X.agent, key: "toolu_X", summary: "done" };
+  assert.deepEqual(replay([X, xr, Z, hand(ago(0.5))]).open.map((r) => r.label), [Z.agent]);
 });
 
 test("--key with the tool-use id or the ·xxxx suffix closes that dispatch; the backfill's key field joins its report", () => {
