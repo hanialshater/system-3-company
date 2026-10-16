@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · fact-checker · W-1589: draw-a-table-knot c1-c8
+
+**Changed:** draw-a-table-knot meta.json claims only (7 verified, c5 disputed); new `company/reviews/draw-a-table-knot/2026-10-16-fact-check.md` and its scripts in `fc-2026-10-16/`; board W-1589 done, W-1590 (demo-builder) added.
+**Believe:** sure of the knot facts (own Jones bracket, Gauss words, picture geometry, all 11 switches agree with the kit). c5 disputed for the generic sentence "A switch makes a new knot." (false for a nugatory crossing; fix "Your switch made a new knot."). c7's general clause rests on the kit table and naming sources, not on Rolfsen's opened pictures (hosts blocked): medium-high.
+**Next:** demo-builder applies W-1590 (cm-math-discrete owns the script wording); a fact-checker who did not draft the fix re-verifies c5. **Blocked:** nothing.
+
 ## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
 
 **Changed:** `company/design/specs/unknot-game.md` (U-1 selected chip = `.control.active` disabled, never greyed; U-2 rings only, pointer events only on the 44 px circle; tint confirmed W-1580 with a lesson-local `.knot-tint` until the platform rule lands). `company/design/specs/left-or-right.md` rewritten as a self-contained B2 build spec: L-1 ring 13 + ≥ 2.0-unit badge gap test (expected min 2.43 at 4_1 crossing 0, the right-hand beak; "right lens" wording fixed), L-2 dip (100 out / transform untransitioned / 100 in), L-3 marks timing with timer fallbacks and retargeting, L-4 no blanking, L-5 perspective ≥ 1200 px + 8 % vertical room (kit `.stage` is overflow auto), L-6 aria-pressed; W-1581 seen line "Trefoil: turned over −3 · mirror +3", no Reset, figure-eight fallback reveal default; A and B1 moved to an appendix. `knots-batch1-mockups.mjs` at ring 13 (prints gap 2.43 PASS, same as the design lead's probe), both SVGs regenerated (QA-path row, mid-dip frame, 4_1 rest states). Board W-1584 done.
