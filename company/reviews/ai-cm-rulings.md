@@ -4,6 +4,65 @@ This file records cm-ai's rulings on builder calls, departures and cut sentences
 
 Counting used throughout: `company/decisions/2026-10-16-stage-word-budget-counting.md`. A stage word is a token that contains a letter; numbers count 0; control labels count; text outside the stage does not. Reveal words are counted as `tools/reveal-fit.mjs` counts them (numerals included). The counts below were made in node from the strings in each Demo.tsx (2026-10-16), not from a rendered frame. Evaluators count from the artifact.
 
+## 2026-10-16 mailbox (W-1453): secret-in-the-counts v3 wording
+
+Asked by principal-pm-verticals (mail 20261016T152625111Z-principal-pm-verticals-bddc0bba). Inputs read: learner r11 (`company/reviews/secret-in-the-counts/2026-10-16-learner-adult-beginner-r11.md`, simulated, verdict revise, so it is a finding and not learning evidence), the v2 Demo.tsx and meta.json at HEAD 64519c5, and my r5 stage count (below). No claim status is changed by this section; only the fact-checker does that. Counts were made in node from the strings below (2026-10-16), under the counting rule at the top of this file.
+
+**Ruling: revise to v3. (a) The predict card is rewritten so it no longer names the context length. (b) The "Delete secret" step is cut, not explained. The reveal text is unchanged.** Lane 2 builds it. A builder applies exactly the strings below and does not reword them.
+
+### (a) Predict card: exact v3 strings
+
+```
+question: "A model learned these 7 sentences, one of them private. It picks each next word from counts of what followed. Prompted 'my pin is', can it write the pin back?"
+options:  ["No: one line in seven is too rare", "Yes: all four digits, in order", "Partly: some digits, then common words"]
+answer:   1
+```
+
+Why this wording:
+- **It does not answer itself.** v2 said "counts what follows each two-word context", so the stem defined the model and "pin is → 4" followed by reading. v3 states only what the learner boundary already knows (next word from counts) and leaves the context length out. To get option 2 the learner must hold the target belief: a context that occurs once makes its one continuation the likeliest one. That is the point the lesson teaches.
+- **The wrong option is the misconception, and it can now be reasoned into.** Option 1 is meta.json's misconception in a learner's words ("too rare"). With no context length given, a learner who thinks in plain tallies can reach it honestly: 'ready' follows 'is' 3 times and '4' follows it once. In v2 a learner who picked option 1 had misread the stem (r11 finding 2). In v3 that pick is the belief we want to break.
+- **The stem no longer prints the pin.** The corpus on the locked stage already shows it, and the stem says "these 7 sentences". This drops r11's "echo" note.
+- **The answer is true of the toy.** "Can it" is a question about what is possible, and the 2-word run outputs all four digits in order (c1). Option 3 is false in both runs: 2-word gives all four digits, 1-word gives no digits ('ready', c2).
+- **Same precision (pre-flight 2).** Each option has a label and a short gloss: 8, 6 and 6 words, none numbered. Pre-flight 1 still holds: the title "Prompt it with 'my pin is'" and the hook do not point at an option. Pre-flight 3: the locked stage shows the corpus with the secret line tagged "private". That line is the premise, not a hint at the answer, and it is unchanged from v2.
+- **Claim.** The stem's model sentence is a factual sentence the learner sees. Record it as a **new claim c5**, unverified: text "The predict stem describes the toy truly: 'A model learned these 7 sentences, one of them private. It picks each next word from counts of what followed.' generate() picks the most counted next word (with 2-word or 1-word context) from the 7-sentence CORPUS, and line 7 is the private one", support `derivation`, source "CORPUS and generate() in Demo.tsx (MODEL block)". c1 already supports the answer key, and c1 is not edited.
+
+### (b) "Delete secret": cut
+
+Remove the step entirely:
+- the `deleted` entry from `RUNS`;
+- the `drop` field and its filter in `runOf` (the corpus is always the full `CORPUS`);
+- the `s.gone` branch and the "deleted" badge text (the badge always reads "private"; `.gone` can leave styles.module.css);
+- the header comment's "Secret deleted ..." line.
+
+Explore hint, exact v3 string: `"Prompt with two words of context, then one."`
+
+Why cut rather than explain:
+1. **The objective never needed it.** The objective, the misconception and the reveal are all about 2-word against 1-word context, and the delete step paid off none of them (r11 finding 1). The milestone gate already unlocks without it (r11 note 1), so the panel was asking for a step the lesson does not use.
+2. **Explaining it costs more than it teaches.** To explain it, the lesson would have to teach a second idea, back-off, which is not in the objective, in at least one reveal sentence plus a stage note, inside a 60-second lesson. The obvious sentence, "deleting the line removes the leak", is true of a count model but is a general-sounding sentence about real models, where removing data from a trained model is not that simple. Under checklist line 3 (`company/domains/briefs/ai.ai-society.md`) it would need scoping and a source. Cutting it removes the problem rather than hedging it.
+3. **The budget gets easier.** Busiest frame (1-word run shown, both outputs seen, controls showing): corpus 28 (declared stimulus) + badge "private" 1 + output "1-word: my pin is ready" 5 + tally "after 'is': ready ×3, at ×1, …" 4 + "Seen: 2-word '4 7 1 9' · 1-word 'ready'" 4 + controls "Reset" / "2-word context" / "1-word context" 1 + 2 + 2 = **other 19, total 47** (v2: 21 and 49; limits 25 and 50). If the builder's recount from the built stage differs, it writes its count in build.md. If it goes over 21 other / 49 total, it stops for cm-ai.
+
+**Claim c2.** Its deletion clause leaves learner text. The builder edits c2's text to end at "...and the pin stayed hidden')", removing "; with the secret deleted, 'pin is' never occurred, the model backs off to 'is' and also outputs 'ready'". The edited claim goes back to the fact-checker under the usual rule; this ruling does not set any status. c1's source note about the deleted run can stay, since it records a builder run and the source sentence is not learner text.
+
+### Reveal: unchanged, exact v3 text
+
+Keep the v2 reveal JSX as it is, with its two dynamic values. As rendered on the required path it reads (77 tokens; limit 90):
+
+> The pin was in one sentence out of seven, yet the model wrote it back in full: '4 7 1 9'. After 'pin is', its counts held only one word, so the most common next word was the secret.
+>
+> With one word of context, 'is' was followed by 'ready' three times, and the pin stayed hidden. Longer contexts remember rarer text. Real language models have repeated phone numbers and addresses from their training data the same way.
+
+Its first sentence answers the new question directly ("wrote it back in full"), and its second sentence breaks option 1 ("only one word" after 'pin is', so being rare did not protect the pin). With the delete step gone, the question r11 says the reveal left open (finding 3) is no longer raised. No reveal claim (c1, c3, c4) changes its quoted text. The W-832 reset-to-1-word fallback stays as it is.
+
+### Not in this ruling
+
+- The `.secret` pastel ink (r6 ask A6) belongs to design-lead. It rides on the same v3 build only if design-lead has answered it by build time. I make no ruling on it.
+- meta.json `version` goes to 3. Objective, misconception, learner and recall are unchanged.
+
+### Objections
+
+1. **Against cutting (my own, raised in this ruling):** the delete step was the lesson's only causal check, showing that the leak comes from that one line. **What happened to it:** I weighed it and rejected it for this lesson. The 2-word against 1-word contrast already shows the source, because the tally chip prints "after 'pin is': 4 ×1". What deletion does and does not fix in a real model is a separate concept that needs its own sources. I have not added it to the curriculum in this run. It stays an open thread in my memory, for the next curriculum pass to decide.
+2. **Standing caveat:** r11 is a simulated learner. This revise answers its findings; neither r11 nor the v3 re-walk is evidence that a real learner learned anything.
+
 ## 2026-10-16 r6
 
 Batch: `company/ops/dispatch-requests/2026-10-16-r6-ai.md` item B1 (rulings made by cm-ai in that file's "since last round"; this section is their record). Inputs read for this record: asthma-looks-safe `build.md` "## v3"; calibrated-but-unequal-alarms FC pass 62 (`company/reviews/calibrated-but-unequal-alarms/2026-10-16-fact-check.md`), its v2 meta.json (claims and recall) and Demo.tsx (predict, reveal, trace). No claim status is changed by this section; only the fact-checker does that. Re-run in node for this record (2026-10-16): FC 62's counterexample (G1 base rate 47.5%, FPR 23.81%, FNR 21.05%; G2 60.8%, 23.81%, 21.05%), a grid over a, b, f of the two-level case (0 exceptions outside a = 1, b = 0), and c7's two examples (15.6% and 52.5%).
