@@ -28,28 +28,48 @@
       "text": "Each cell lifts charge through 1.5 V. Cell voltages in series add (two cells end to end give 3.0 V); identical cells in parallel keep one cell's voltage (side by side give 1.5 V) (stage: the arrow inside each cell, the first labelled 'lifts 1.5 V', and the voltmeter readout; reveal: 'Side by side, your voltmeter read 1.5 V, the same as one battery', 'End to end it read 3.0 V', 'Each battery lifts charge through 1.5 V. In a row the lifts add; side by side they share the work').",
       "support": "derivation",
       "source": "Kirchhoff's voltage law: around a loop the emfs in series add; ideal identical cells in parallel share both terminals, so the pair's voltage is one cell's emf. artifacts/scratch/cm-physics-r4/check.mjs (block '67 two-batteries-side-by-side', V = 1.5, 1.5, 3.0). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on circuits. Brief #64 claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Walkthrough read first (own next dev on :3644 from the main checkout, transcript to the appendix and screenshots). Numbers re-derived in own node (scratchpad fc-wj64/recompute.mjs, reproduced in the record). build.md and check.mjs not read. Own: series emfs add, 1.5+1.5 = 3.0 V; identical ideal cells in parallel share both terminals, 1.5 V. Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42357 (Electromotive Force: Terminal Voltage): 'When voltage sources are in series ... their emfs add algebraically'; 'two voltage sources with identical emfs in parallel ... the total emf is the same as the individual emfs'. Stage meter 1.5 / 3.0 / 1.5 V and reveal match. Source fix for the builder: replace the unopened Halliday citation with m42357."
     },
     {
       "id": "physics.two-batteries-side-by-side.c2",
       "text": "With a 5 Ω bulb: 0.3 A and 0.45 W at 1.5 V (one cell, or two side by side); 0.6 A and 1.8 W at 3.0 V (end to end), twice the current at twice the voltage and four times the power (stage: bulb glow, the same for one cell and side by side and larger end to end; reveal: 'The bulb glowed as brightly as with one', 'the bulb drew twice the current at twice the voltage, four times the power').",
       "support": "derivation",
       "source": "I = V/R, P = V I. artifacts/scratch/cm-physics-r4/check.mjs (block '67 two-batteries-side-by-side': I_A 0.3, 0.3, 0.6; P_W 0.45, 0.45, 1.8). Demo.tsx circuit(). Brief #64 claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: I = V/R: 1.5/5 = 0.30 A, 3.0/5 = 0.60 A; P = VI: 0.45 W, 1.80 W; ratio 2x current, 4x power. Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42714 (Electric Power and Energy): P = IV, P = V^2/R, and 'If the bulb's resistance remained constant' doubling voltage quadruples power. Stage glow: radius 20 px at 0.45 W, 40 px at 1.8 W (area 4x). Reveal sentence matches. See the separate alt-text item (.alt1): the stage's picture text says 'four times as bright', which is not what c2 claims."
     },
     {
       "id": "physics.two-batteries-side-by-side.c3",
       "text": "From 2,000 mAh per cell: one cell runs the bulb 6.7 h, two side by side 13.3 h, two end to end 3.3 h (stage caption 'Ideal cells, 2,000 mAh.', the run-time gauge fill and the Seen row 'side by side: 1.5 V, 13.3 h · end to end: 3.0 V, 3.3 h · one: 6.7 h'; reveal: 'for 13.3 hours instead of 6.7', 'lasted only 3.3 hours').",
       "support": "derivation",
       "source": "run time = capacity / current: 2,000 mAh / 300 mA = 6.7 h; 4,000 mAh / 300 mA = 13.3 h (the parallel pair's current is shared); 2,000 mAh / 600 mA = 3.3 h (series: the same current flows through both cells). artifacts/scratch/cm-physics-r4/check.mjs (runtime_h 6.7, 13.3, 3.3). Demo.tsx circuit(). Brief #64 claim 3. Idealisations: The 2,000 mAh capacity is illustrative and stated on the stage. A real AA cell's usable capacity falls at higher current, so the end-to-end run time would be shorter than 3.3 h in practice.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: run time = capacity / current per cell. One: 2000/300 = 6.67 -> 6.7 h. Side by side: by symmetry each identical cell carries 150 mA, 2000/150 = 13.33 -> 13.3 h (same as 4000/300). End to end: the 600 mA flows through both cells, 2000/600 = 3.33 -> 3.3 h. Seen row and reveal values match Demo.tsx circuit() and the walkthrough. Capacity is stipulated on the stage ('Ideal cells, 2,000 mAh.'); m42357 supports that parallel cells can 'deliver more current' (shared load). The rate-dependence caveat in the source is correct and not shown; acceptable as an idealisation."
     },
     {
       "id": "physics.two-batteries-side-by-side.c4",
       "text": "Idealisations: identical ideal cells with no internal resistance, and a bulb of constant 5 Ω resistance (a real filament's resistance rises as it heats). The glow size and the gauge fill are schematic: the glow grows with the power, the gauge fill is the run time over a 13.3 h full scale.",
       "support": "convention",
       "source": "Stated assumption, brief #64 claim 4. Demo.tsx: glow radius 14 + 9 px per W; gauge fill h / 13.3. Recorded here, not shown as a sentence on the stage (the caption 'Ideal cells, 2,000 mAh.' states the cells are ideal).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Claim text matches the code: glow grows with power (Demo.tsx glowR = 20*sqrt(P/0.45), area proportional to P), gauge fill = min(1, h/13.3); 13.33/13.3 caps at 1. Constant 5 ohm bulb idealisation: m42714 notes a real filament's resistance rises with temperature. Source fix for the builder: the source says 'glow radius 14 + 9 px per W', which is not the code; it should read 'glow radius 20*sqrt(P/0.45) px (area proportional to power)'."
+    },
+    {
+      "id": "physics.two-batteries-side-by-side.alt1",
+      "text": "End to end, the bulb glows four times as bright (stage picture text, aria-label, series state: 'The bulb glows four times as bright').",
+      "support": "derivation",
+      "source": "Recorded by the fact-checker (FC wj64, 2026-10-16) as an unrecorded learner-visible sentence from the walkthrough's picture text. Demo.tsx alt string.",
+      "status": "unverified",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): UNRECORDED CLAIM, recorded here by the fact-checker, so left unverified (a checker may not verify a claim it wrote). Finding: the lesson's own model gives four times the POWER (c2); brightness is not power (luminous output of a filament is not proportional to electrical power, and perceived brightness is not linear in light output), and c4 calls the glow schematic. Expected verdict as written: would not verify. Fix for the builder: change the alt string to 'The bulb glows brighter, at four times the power' (or 'four times the power'), then retire this claim or have it checked by another fact-checker."
     }
   ],
   "confidence": "",
