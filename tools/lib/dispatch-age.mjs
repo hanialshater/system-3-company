@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { mergeById, readJsonlFile, readSpool } from "./events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const STALE_DISPATCH_H = 6;
@@ -12,12 +13,18 @@ export const STALE_DISPATCH_H = 6;
 /** The event log path: S3_EVENTS if set (tests, fixtures), else company/ops/events.jsonl. */
 export const eventsPath = () => (process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl"));
 
-/** Parsed events from a JSONL file; unreadable lines are skipped. */
-export function readEvents(file = eventsPath()) {
-  if (!fs.existsSync(file)) return [];
-  return fs.readFileSync(file, "utf8").split("\n").filter(Boolean).flatMap((l) => {
-    try { return [JSON.parse(l)]; } catch { return []; }
-  });
+/**
+ * Parsed events from a JSONL file; unreadable lines are skipped. With the default file (the log), the hook
+ * spool is read too (ruling H2), deduped by id, so counts are right between folds. The array carries
+ * `skipped` (unreadable log lines, PE-ops H4) and `spool` ({ lines, skipped, oldest }) for metrics to print.
+ */
+export function readEvents(file = eventsPath(), { spool = file === eventsPath() } = {}) {
+  const log = readJsonlFile(file);
+  const sp = spool ? readSpool() : { events: [], skipped: 0, lines: 0, oldest: null };
+  const out = mergeById(log.events, sp.events);
+  out.skipped = log.bad.length;
+  out.spool = { lines: sp.lines, skipped: sp.skipped, oldest: sp.oldest };
+  return out;
 }
 
 /**

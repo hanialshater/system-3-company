@@ -55,7 +55,7 @@ const held = "With real payments, reversals are clearer for effort than for mone
 function reveal(f, n, withHeld = true) {
   const L = withHeld ? ` ${held}` : "";
   const lead = f === n ? `Both a year out and today you ${far[f]}.` : `A year out you ${far[f]}; today you ${far[n]}.`;
-  if (f === n) return `${lead} ${gapLine} One steady rate fits both of your choices. Switching to the $100 today would fit only a model that gives today extra weight, called present bias.${L} ${stops}`;
+  if (f === n) return `${lead} ${gapLine} One steady rate fits both of your choices. Waiting, then taking the $100 today, would fit only a model that gives today extra weight, called present bias.${L} ${stops}`;
   if (f === "wait") return `${lead} ${gapLine} No steady discount rate fits both of your choices. A model that gives today extra weight does: that departure is called present bias.${L} ${stops}`;
   return `${lead} ${gapLine} No steady discount rate fits both of your choices. Yours switched toward patience as the date came closer, the reverse of present bias.${L} ${stops}`;
 }

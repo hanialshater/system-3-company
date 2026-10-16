@@ -9,6 +9,7 @@ Source: company/decisions/2026-10-16-founder-org-and-dispatch-rule.md · lanes: 
 3. [ ] Dispatch only from a batch item (`company/ops/dispatch-requests/<date>-r<N>-<lane>.md`) or a valid standing order. Put `batch=<file>#B<n>` in the dispatch event. Check it, fit it to the caps, refuse in writing, and never rewrite an item.
 4. [ ] Results go back to the lane's POC at the next round, not straight into a follow-up dispatch.
 5. [ ] Do these alone, with no manager asked: merges, registry, check/verify, servers, the four single-writer files, emergencies (contain, then principal-engineer-ops), the rituals you already own, resumes.
+6. [ ] **Commits in the main checkout (pre-commit guard: approved by PE-ops 2026-10-16, **not yet installed**: setting core.hooksPath was refused by the session permission system as persistence, so it goes to the founder with F-31):** once installed, `git add X && git commit` (a bare commit), `-a`, `-i` and `--amend` are refused there. Commit with `git commit -m "…" -- <paths>` or `tools/commit-own.sh "<msg>" <paths>`; finish a merge with `tools/commit-own.sh` (merge paths count as allowed). Integrate in `/home/user/s3c-int`, a linked worktree, where the guard does not apply. Run `node tools/events.mjs fold` **only there** (PE-ops F3), before each events commit. Production builds (builders, QA, walkthrough-building checks) share the 3-builder cap (host OOM, 2026-10-16).
 
 ## Every wave
 1. [ ] Briefs ready for every builder (`company/domains/briefs/<d>.md` has ≥ 10 unbuilt briefs)

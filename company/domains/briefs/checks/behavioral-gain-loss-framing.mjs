@@ -80,6 +80,28 @@ for (const s of ["A", "B"]) for (const l of ["C", "D"]) worst = Math.max(worst, 
 console.log("\nHeld type (d) line: W-902 row 'Framing' (robust; varied across nations), Rachev et al. 2021, PMC8432807, opened by research-lead, not by the fact-checker");
 ok("reveal with the held line stays within 90 words", worst <= 90, `held: "${held}" (${words(held)} words); longest branch with it: ${worst} words. It goes before "Where it stops". Fallback when not checkable: cut; nothing replaces it`);
 
+// ---------- Stage word budget (head-of-product, company/decisions/2026-10-16-stage-word-budget-counting.md) ----------
+// A word is a whitespace token containing a letter ("1-in-3" is one word; "600" is none). Declared stimulus
+// (the wording the lesson manipulates) is exempt from the 25 but counts toward the 50. cm-behavioral, 2026-10-16.
+const sw = (s) => s.trim().split(/\s+/).filter((t) => /\p{L}/u.test(t)).length;
+// Declared stimulus, word for word: the four option texts, and the two restatements the toggle puts IN PLACE of C and D.
+const RESTATE = { C: OPT.A.text, D: OPT.B.text };
+// Non-stimulus stage text (counts toward the 25). No option letters, no wording headings; bar legends are numerals only.
+const OTHER = { caption: "An outbreak is expected to kill 600 people. Pick a programme.", toggle: "Say both in the same words", cover: "Answer the first wording", key: "■ = alive" };
+const frames = {
+  "locked (A, B shown; C, D under the cover)": { other: ["caption", "toggle", "cover", "key"], stim: [OPT.A.text, OPT.B.text] },
+  "both wordings shown, toggle off": { other: ["caption", "toggle", "key"], stim: [OPT.A.text, OPT.B.text, OPT.C.text, OPT.D.text] },
+  "toggle on (C, D re-labelled in place) and open reveal": { other: ["caption", "toggle", "key"], stim: [OPT.A.text, OPT.B.text, RESTATE.C, RESTATE.D] },
+};
+console.log("\nStage word budget (declared stimulus exempt from 25; all stage text <= 50)");
+for (const [k, s] of Object.entries(OPT)) console.log(`  stimulus ${k}: "${s.text}" (${sw(s.text)} words)`);
+for (const k of ["C", "D"]) console.log(`  stimulus ${k} restated (toggle on, in place of ${k}): "${RESTATE[k]}" (${sw(RESTATE[k])} words)`);
+for (const [name, f] of Object.entries(frames)) {
+  const o = f.other.reduce((n, k) => n + sw(OTHER[k]), 0), m = f.stim.reduce((n, t) => n + sw(t), 0);
+  ok(`stage at "${name}"`, o <= 25 && o + m <= 50, `stage ${o + m} words (stimulus ${m}, other ${o})`);
+}
+ok("restatements are option A's and B's texts word for word", RESTATE.C === OPT.A.text && RESTATE.D === OPT.B.text && same(OPT.C.out, OPT.A.out) && same(OPT.D.out, OPT.B.out), "so the two rows read the same with the toggle on");
+
 // ---------- Transfer recall ----------
 // "A treatment: 'a 90% survival rate' or 'a 10% death rate'. Same 1,000 patients: 900 live, 100 die in both."
 const surv = 1000 * 0.9, death = 1000 - 1000 * 0.1;

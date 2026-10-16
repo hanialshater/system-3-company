@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+// Git pre-commit guard: in the MAIN checkout, a commit may only contain the paths its author named.
+// Board W-1200 (retro 2026-10-16 H5/C6(a)); batch company/ops/dispatch-requests/2026-10-16-r2-tools.md#B3.
+// Why: merge 2e2ccd9 was committed with `git commit --no-edit` and swept in three files another role had
+// staged in the shared index. A bare commit commits the whole index; the shared index holds other agents' work.
+//
+// NOT INSTALLED. Install (integrator's step, after principal-engineer's check):  git config core.hooksPath tools/git-hooks
+// core.hooksPath lives in the common config, so linked worktrees run this too; they pass at once (own index).
+//
+// Rules (main checkout only; linked worktrees always pass):
+//   1. Partial commit (`git commit -m … -- <paths>`, git's --only): passes. Git builds a temporary index from
+//      HEAD plus exactly those paths, so nothing else can be swept. If S3_COMMIT_PATHS is set it must cover them.
+//   2. S3_COMMIT_PATHS set (by tools/commit-own.sh, newline-separated pathspecs): every staged path must match
+//      it (or, during a merge, be changed on the incoming side).
+//   3. Merge commit (MERGE_HEAD exists, e.g. `git commit --no-edit` after a conflict): every staged path must be
+//      changed on the incoming side (HEAD...MERGE_HEAD) or listed in S3_COMMIT_PATHS. Anything else is a foreign
+//      index: refused.
+//   4. Any other commit with staged paths (bare `git commit`, `-a`, `-i`) and no S3_COMMIT_PATHS: refused.
+//   An empty commit (--allow-empty, nothing staged) passes.
+// On an internal error it warns and passes: a broken guard must not stop every commit in the shared repo.
+
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+
+const git = (...args) =>
+  execFileSync("git", ["-c", "core.quotePath=false", ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+const lines = (s) => s.split("\n").filter(Boolean);
+
+function refuse(why, paths) {
+  const list = paths.length ? "\n" + paths.slice(0, 30).map((p) => `    ${p}`).join("\n") + (paths.length > 30 ? `\n    … and ${paths.length - 30} more` : "") : "";
+  process.stderr.write(
+    `pre-commit (tools/git-hooks/pre-commit): refused. ${why}${list}\n` +
+      `  This is the main checkout; its index is shared with other agents. Commit only your own paths:\n` +
+      `    tools/commit-own.sh "<message>" <path> [<path> ...]     or     git commit -m "<message>" -- <path> ...\n` +
+      `  Do not unstage paths you did not stage: they are someone else's work in flight.\n`,
+  );
+  process.exit(1);
+}
+
+try {
+  const gitDir = path.resolve(git("rev-parse", "--absolute-git-dir").trim());
+  const common = path.resolve(git("rev-parse", "--git-common-dir").trim());
+  if (gitDir !== common) process.exit(0); // linked worktree: its own index
+
+  const staged = lines(git("diff", "--cached", "--name-only", "--no-renames"));
+  if (staged.length === 0) process.exit(0);
+
+  const indexFile = process.env.GIT_INDEX_FILE || "";
+  const partial = /^next-index-.*\.lock$/.test(path.basename(indexFile));
+  const merging = fs.existsSync(path.join(gitDir, "MERGE_HEAD"));
+  const listedSpec = process.env.S3_COMMIT_PATHS;
+  const specs = listedSpec === undefined ? null : lines(listedSpec);
+
+  const matching = (pathspecs) =>
+    pathspecs.length ? new Set(lines(git("diff", "--cached", "--name-only", "--no-renames", "--", ...pathspecs))) : new Set();
+  const listed = specs ? matching(specs) : new Set();
+  const incoming = merging ? new Set(lines(git("diff", "--name-only", "--no-renames", "HEAD...MERGE_HEAD"))) : new Set();
+
+  if (partial && !specs) process.exit(0); // rule 1
+  if (!specs && !merging)
+    refuse("A bare commit (or -a / -i) in the main checkout commits every staged path, including these:", staged); // rule 4
+
+  const foreign = staged.filter((p) => !listed.has(p) && !incoming.has(p));
+  if (foreign.length) {
+    const why = merging
+      ? "The merge commit would include staged paths that the merged branch did not change" +
+        (specs ? " and that S3_COMMIT_PATHS does not list:" : " (a foreign index):")
+      : "Staged paths outside S3_COMMIT_PATHS:";
+    refuse(why, foreign); // rules 2 and 3
+  }
+  process.exit(0);
+} catch (e) {
+  process.stderr.write(`pre-commit guard: internal error, passing (report it to tools-lead): ${e.message}\n`);
+  process.exit(0);
+}

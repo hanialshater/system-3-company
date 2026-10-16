@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 (11:30Z): chief-of-staff — round 2 through managers; cap 14; QA independence finding
+- **Changed:** founder's cap 14 agents / 3 builders (decision + dispatch-check); round 2 asked all 8 active lanes for batches and dispatched ~30 items from them; integration now happens in /home/user/s3c-int (a detached worktree), never in the shared main checkout. Merged: rome v4 checks, Wave J flip 15, Life Hacks W3 (11 lessons, readiness approved with conditions; W4 not cleared), agent-events hook (unwired). System 3 Meta founder brief with the value proposition (section 0: the philosophy of science as a harness for fallible agents, robots and humans).
+- **Results worth knowing:** accounts can merge with accounts off (privacy re-read), A-5/A-6/F-f closed on `accounts`; PE objections reopen PR1 items (F-34); QA authorship audit: 197 of 217 "ready to publish" lessons rest on non-independent QA (mostly my own integration run) → re-QA under SO-10-1, AMD-010 proposed; W3: 67/75 claims verified, QA 8/11, learner 2 launch / 6 revise; Wave J SO-10-3 6/8 launch; physics and history open claims cleared (FC 55, 56).
+- **Believe (medium-high):** the managers-batch protocol works when every lane is asked each round; the real limits are host memory (concurrent next-build OOM → production builds share the 3-builder cap, SEV3 logged) and integration time.
+- **Running:** backend beacon (FL B2), behavioral brief 3, History brief 23 (builders); PE-ops (guards + ledger readiness), tools-lead (E1/N1 + H2 spool).
+- **Next:** rebase `accounts` onto main + verify (mine); founder F-27..F-35; next SO runs one tag at a time as build slots free; founder digest due ~20:00Z.
+- **Blocked on founder:** F-31 hooks (after E1/N1), F-34 PR1 reopened items, F-35 esbuild, F-17/18/20 ads, F-23 domain, F-25/F-26, r8 deploy.
+
 ## 2026-10-16 (late morning): chief-of-staff — System 3 Meta brief; marketing packet in
 - **Changed:** company/sibling/system3-meta/founder-brief.md (founder's mission and onboarding context for the System 3 Meta VP: generate whole companies per use case; higher-risk companies with real infra; usable by others; model/vendor choice; humans and tools as members; what this company proves and where it is thin; constraints; 8 open questions; reading list). Linked from the 10-16 sibling decision. Still parked until after First Light; Leonie designs, founder approves (W-1182).
 - **vp-marketing (2ee1428):** F-23 domain shortlist (pick Guess First, guessfirst.app/.com; **no price or availability verified**, proxy blocked every lookup) and the F-17/F-18/F-20 ads packet (stage 1 house cards only, $0 revenue, ~1.9M tokens cost). Follow-ups W-1193/W-1194.

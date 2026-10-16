@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Agent-tool hook: writes `dispatch` and `report` events at the moment they happen, through
-// `node tools/events.mjs add`, so the event log no longer depends on someone running the backfill
+// `node tools/events.mjs add --spool`, so the event log no longer depends on someone running the backfill
 // (W-716, W-1195; retro company/rituals/records/2026-10-16-retro-delegation.md H3, C1).
 //
 // It only records. It never blocks the tool call: on any error it logs to .serve/agent-events.log and exits 0.
@@ -17,13 +17,15 @@
 //                               agentId -> label in .serve/agent-events/, so the dispatch stays open.
 //   SubagentStop             -> report for a remembered async agent (agent_id in the payload).
 //
-// Env: S3_EVENTS (event log, passed through to events.mjs), S3_HOOK_LOG (error log), S3_HOOK_STATE (state dir),
+// Writes go to the spool (ruling H2), one per repository via the git common dir: <main checkout>/company/ops/events-spool/.
+// Env: S3_SPOOL (spool dir) or S3_EVENTS (spool = <its dir>/events-spool/; passed through to events.mjs),
+//      S3_HOOK_LOG (error log), S3_HOOK_STATE (state dir),
 //      S3_ROLE (the dispatcher's role id; default chief-of-staff).
 
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -79,11 +81,16 @@ function roomFor(role) {
   return import(path.join(ROOT, "tools/events.mjs")).then((m) => m.roomFor(role)).catch(() => "chief-of-staff");
 }
 
+// Ruling H2 (company/decisions/2026-10-16-cos-ruling-h2-hook-spool.md): the hook writes only to the spool
+// (`add --spool`, tools/lib/events-spool.mjs), never to company/ops/events.jsonl. The chief of staff folds it in.
 function add(fields, body) {
-  const args = [path.join(ROOT, "tools/events.mjs"), "add"];
+  const args = [path.join(ROOT, "tools/events.mjs"), "add", "--spool"];
   for (const [k, v] of Object.entries(fields)) if (v !== undefined && v !== null && v !== "") args.push(`--${k}=${v}`);
   if (body !== undefined) args.push("--body-file=-");
-  execFileSync(process.execPath, args, { input: body ?? "", env: process.env, stdio: ["pipe", "ignore", "pipe"], timeout: 10_000 });
+  const r = spawnSync(process.execPath, args, { input: body ?? "", env: process.env, stdio: ["pipe", "ignore", "pipe"], timeout: 10_000, encoding: "utf8" });
+  const err = String(r.stderr ?? "").trim();
+  if (r.error || r.status !== 0) throw Object.assign(new Error(`events.mjs add failed (${r.error?.code ?? `exit ${r.status}`})`), { stderr: err });
+  if (err) logError(`events.mjs add ${fields.id}: ${err.slice(0, 300)}`); // e.g. E1's "N unreadable line(s) skipped"
 }
 
 const responseText = (r) => {

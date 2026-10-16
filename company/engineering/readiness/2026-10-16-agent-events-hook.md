@@ -141,10 +141,33 @@ the report comes from the backfill as today, under the hook's label.
   transcript's `toolUseResult`. The first wired dispatch is the test.
 - That the tool is named `Agent` (as in the transcripts) and not `Task`. The matcher covers both.
 
+## Change notes since 864dab5 (tools-lead, 2026-10-16, W-1260: E1 and ruling H2; still NOT wired)
+
+For PE-ops: the approval covered the hook "as long as the hook code is still the code at 864dab5". It is not,
+so this needs your look before wiring. Diff: `git diff 864dab5 tools-e1n1 -- .claude/hooks/agent-events.mjs tools/events.mjs tools/lib/events-spool.mjs tools/lib/dispatch-age.mjs tools/dispatch-check.mjs tools/metrics.mjs tests/dispatch/agent-events.test.mjs .gitignore company/ops/events.md`.
+
+| Change | Why | Effect on the check above |
+|---|---|---|
+| `tools/events.mjs` `readLog`/`append` skip and count unparseable lines (stderr `events: N unreadable line(s) skipped in <file>`), never throw | E1 (review 08ee578): one `<<<<<<<` line stopped every hook write | 1(a): a conflicted log no longer drops events |
+| Hook calls `events.mjs add --spool`; it writes `company/ops/events-spool/<UTC date>.jsonl` only, never events.jsonl | Ruling H2 (company/decisions/2026-10-16-cos-ruling-h2-hook-spool.md); answers your H2 | 6 (Data): the hook's write target is the spool, not the log. The autostash collision the review describes cannot involve events.jsonl, because the spool is untracked |
+| One spool per repository: `tools/lib/events-spool.mjs` finds the main checkout through `.git` → `commondir` (no git spawn); `S3_SPOOL` overrides; with only `S3_EVENTS` set the spool is `<its dir>/events-spool/` | The ruling's open objection (several checkouts, several spools). I chose one spool. | A hook firing in a worktree session writes the main checkout's spool. That is an untracked file, so no merge conflict |
+| `add --spool` dedupes against the spool only and does not read events.jsonl | Cost: the hook no longer grows with the log | 4 (Capacity): 200 ms per hook run, averaged over 10 runs with a 4.58 MB log copy present (load 7.1). The review measured 307 ms at load 4.4. E2's growth driver is gone for the hook; `fold` still reads the log (179 ms for 10 events on the same copy) |
+| Hook uses `spawnSync` and logs events.mjs stderr to `.serve/agent-events.log` even when the add succeeds | E1: "print the count to stderr, which the hook log then captures" | 2: skipped-line counts show in the hook log |
+| `node tools/events.mjs fold [--dry]` (new): each spool file is renamed to `*.folding-<pid>` first, then events are appended in ts order (id dedupe against the log), unparseable spool lines go to `events-spool/unparsed-*.txt`, and the folded files are removed. A `*.folding-*` left by a dead fold is folded on the next run | Ruling H2: the chief of staff folds before an events commit | Rollback adds one step: if unwired, run `fold` once so spooled events reach the log |
+| `dispatch-check` and `dispatch-age.readEvents` (metrics) read the log plus the spool, deduped by id (the log copy wins). dispatch-check warns on unreadable lines and prints `hook spool: N unfolded event(s), oldest …`. metrics prints `events.jsonl: N unreadable line(s)` and `events spool: N unfolded event(s)` | Ruling H2 (caps right between folds); your H4 | H3 is unchanged in kind: spool dispatches with no report still count for up to 6 h |
+| Tests: tests/dispatch/agent-events.test.mjs, 9 → 15. Hook tests read the spool and assert the log is never created. New: E1 on the log (a conflict line, append-only kept, dedupe past it), E1 on the spool (hook log shows the count), main-checkout resolution from a real linked worktree, dispatch-check over log + spool, fold (order, dedupe, dead-fold file, unparsed kept, no-op second run), metrics counts | | `npm run test:dispatch` 55/55 |
+
+Believed, not checked: (1) a hook append that opened the spool file just before `fold` renamed it lands in the
+renamed file after `fold` read it, and that event is lost from the fold. The window is one `appendFileSync`, and the
+event is still in the transcript for the backfill. I did not reproduce it. (2) `company status` showing unfolded spool lines and their age
+(ruling, C5/W-1199) is in tools/company.mjs (protected). Not done here. Metrics and dispatch-check show it now.
+(3) `tools/lib/ledger.mjs` `readEvents` reads only events.jsonl. Usage events come from the backfill, not the hook,
+so I left it.
+
 ## Approval (tier 2; written by principal-engineer-ops)
 - Decision: **approved with conditions to merge unwired at 864dab5** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Authority and conditions H1-H6: `company/engineering/readiness/2026-10-16-agent-events-hook-approval.md` (fee2b05). Wiring needs founder F-31 plus H1 and H2.
 
-- Decision:
+- Decision (E1 + H2 spool, 6ad43ee): **approved with conditions to merge unwired** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Wiring additionally needs F1 (fold takes an exclusive lock; two simultaneous folds duplicated 8,158 lines in her test). Authority: `company/engineering/readiness/2026-10-16-e1n1-approval.md` (e1c9162).
 - Conditions, each with a board id:
 - What would make me revoke it:
 - Objections raised, and what happened to each:
