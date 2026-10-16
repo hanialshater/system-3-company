@@ -136,6 +136,15 @@ const recall = {
 const surv = 1000 * 0.9, death = 1000 - 1000 * 0.1;
 ok("recall: 90% survive and 10% die describe the same outcome", surv === death, `${surv} of 1,000 live in both wordings. Answer: "${recall.options[recall.answer]}"; "only taking it both times" is false (refusing both times also fits)`);
 ok("recall question <= 30 words; right option not the middle one, no number in it", words(recall.q) <= 30 && recall.answer !== 1 && !/\d/.test(recall.options[recall.answer]), `${words(recall.q)} words: "${recall.q}"`);
+// The recall "why" (added r5, cm-behavioral, 2026-10-16): the r4 builder wrote it because the script printed none;
+// accepted as written (brief 4, "Decision (r5)", ruling 1). Printed here so every number the learner sees is in the script.
+// It must equal src/demos/behavioral/saved-or-die-same-600/meta.json recall.why (claim c9) character for character.
+const recallWhy = "Out of 1,000 patients, 900 live and 100 die under both descriptions. A model that judges outcomes can take it both times or refuse it both times, but cannot prefer to take it one way and refuse it the other.";
+const dead = 1000 * 0.1;
+ok("recall why: its 900 live and 100 die of 1,000 match the recall check", recallWhy.startsWith(`Out of 1,000 patients, ${surv} live and ${dead} die under both descriptions.`) && death === surv && surv + dead === 1000,
+  `${surv} live and ${dead} die of 1,000 in both wordings: "${recallWhy}"`);
+ok("recall why: strict 'prefer', and both consistent answers named", /\bcannot prefer\b/.test(recallWhy) && /take it both times/.test(recallWhy) && /refuse it both times/.test(recallWhy),
+  "'prefer' keeps it true for an indifferent chooser (as c2/c3); taking both times and refusing both times each fit");
 
 console.log(`\n${fail ? `${fail} check(s) FAILED` : "all checks pass"}`);
 process.exit(fail ? 1 : 0);
