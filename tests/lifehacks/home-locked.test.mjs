@@ -112,6 +112,23 @@ test('W-1299 group-cables-with-ends, locked: the loose ends are not drawn as hig
   assert.match(picture(spec, stage(spec, { locked: false, mode: 'a' })).svg, /class="target"/, 'mode A still marks the ends');
 });
 
+/* ------------------------------------------------------------------ E1: tote lever arm */
+
+test('E1 tote-balance-sides: the rotated balance-point dot hangs on the dashed vertical under the pivot (±1 unit)', () => {
+  // Dispatch 2026-10-16-r5-lifehacks.md D4 row E1 (FC54 note): the bag turns about (150, 20) until the dot is under it.
+  const spec = bySlug('tote-balance-sides');
+  for (const p of [3, 5]) for (const [locked, mode] of [[false, 'a'], [true, null]]) {
+    const { svg } = picture(spec, stage(spec, { locked, mode, p }));
+    const [, deg, px, py] = svg.match(/<g transform="rotate\(([-\d.e]+),([\d.]+),([\d.]+)\)">/).map(Number);
+    const dot = svg.match(/<circle cx="([-\d.e]+)" cy="([-\d.e]+)" r="6" class="target"/);
+    assert.ok(dot, `p=${p}: the balance-point dot is drawn`);
+    const [dx, dy] = [Number(dot[1]) - px, Number(dot[2]) - py], t = deg * Math.PI / 180;
+    const x = px + dx * Math.cos(t) - dy * Math.sin(t);
+    assert.ok(Math.abs(x - px) <= 1, `p=${p} ${mode ?? 'locked'}: rotated dot at x=${x.toFixed(2)}, pivot at ${px}`);
+    assert.ok(Math.abs(deg) > 1, `p=${p}: the bag is drawn tilted (${deg.toFixed(2)} degrees), so the check is not vacuous`);
+  }
+});
+
 /* ------------------------------------------------------------------ W-1241: cord press order */
 
 const cord = bySlug('long-cord-knots-itself');

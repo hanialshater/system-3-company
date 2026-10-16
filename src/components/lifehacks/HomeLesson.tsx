@@ -272,7 +272,8 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
       // turns until the balance point is under it: a straight bag means a centred balance point.
       const k=2.5,[right=1,pos=20]=v,left=b?(p+right)/2:p,rightKg=b?(p+right)/2:right;
       const centre=(-pos*left+pos*rightKg)/(left+rightKg),hL=14*left,hR=14*rightKg;
-      const turn=Math.atan2(centre*k,150)*180/Math.PI;
+      // E1 (FC54 note, W-1300): the lever arm is the dot's distance below the pivot (208 − 20 = 188), so the dot lands on the vertical.
+      const turn=Math.atan2(centre*k,188)*180/Math.PI;
       return <><path d="M150,14V236" stroke="var(--line)" strokeDasharray="4 5"/>
         <g transform={`rotate(${turn},150,20)`}>
           <path d="M108,82Q108,20 150,20Q192,20 192,82" className={s.line}/>
