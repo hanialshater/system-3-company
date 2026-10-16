@@ -17,3 +17,11 @@ Input: transcript cut at "## Appendix: trust sheet" (sed, r2 R1) plus sheet.png.
 5. **Small visual.** In 01-predict a white pill-shaped element is cut off at the bottom edge of the stage, under the preset buttons (likely the readout before it has a value). The step 4 readout is drawn as a larger left-aligned box, unlike the centred pills in the other steps. Neither blocks understanding.
 
 Verdict reason: no finding blocks a first-time learner; the 6x jump is predicted, explored and revealed with a baseline. Notes 1 and 4 (christening ratio without a comparator; 1666 dip left unexplained) are the ones worth fixing next.
+
+## After reading meta.json (build.md not read)
+
+- Intent and experience agree on the core: the objective (about six times the year before, mostly plague, fell back next year) is what the walk delivers, and the prediction targets the stated misconception ("somewhat more deaths than usual") directly with a 2x / 6x / 20x choice.
+- The objective includes "fell back the next year" as a thing the learner can say; the walk shows it but never says whether it is surprising or why (finding 4). The lesson treats it as a fact to state, while the learner experiences it as a puzzle.
+- c1 names Arbuthnot (1710) as the source of the christenings, but the learner-facing "Where it stops" line names only Creighton and Campbell, so on screen the christening figure reads as theirs. That is a source-attribution question for the fact-checker, not a learner block.
+- Every on-screen figure I saw (1629-1710 range, 15,453, 97,306, 68,596, 12,738, 9,972, 1636's 10,400 of 23,359) is inside c1-c4. I found no unrecorded claim.
+- The slug says "buried", the lesson says "deaths". The learner never sees the slug, so this costs nothing.

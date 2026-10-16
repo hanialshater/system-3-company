@@ -17,3 +17,10 @@ Input: transcript cut at "## Appendix: trust sheet" (sed, r2 R1) plus sheet.png.
 5. **Layout.** In 01-predict the readout row (North and east / South, west, centre / All 86) is cut off at the bottom of the stage. The same clipping appears in schooling-and-crime-1830s, so it may be shared. Footer: "Why trust this? (0/3 claims checked)".
 
 Verdict reason: no finding blocks a first-time learner; the split is shown on the map and stated in the reveal. Finding 3 (options that do not match the lesson's split, with a compound-option cue) is the one worth fixing next; finding 2 turns into revise if QA measures labels under the 10 px floor.
+
+## After reading meta.json (build.md not read)
+
+- Intent vs experience: the objective is that "the 39% average across departments described neither half". The reveal says this ("hid two very different Frances"), but the prediction asks "which part was most literate?", which is a geography guess. It does not ask whether the average describes the country, which is the stated misconception ("a national average describes most of the country"). This confirms finding 3: the prediction tests a different belief from the one the lesson is built to change.
+- c1 says Guerry gives a region for each department, "Corse has none". So the options "south" and "west" are Guerry's own regions, which the lesson then merges into "south, west and centre". The options come from the source's categories, not from the lesson's split. That explains the mismatch but does not remove it.
+- c3 covers Seine 71%. The learner sees the Seine preset and its number, but the objective never uses it (finding 4). It is a recorded claim with no job in the lesson as walked.
+- All 3 claims are `unverified`, matching the "0/3 claims checked" footer. Fact-checking is SO-10-2's job; I make no judgement on the numbers.

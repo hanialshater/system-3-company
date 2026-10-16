@@ -18,3 +18,11 @@ Input: transcript cut at "## Appendix: trust sheet" (sed, r2 R1) plus sheet.png.
 6. **Layout.** In 01-predict the second row of preset buttons is cut by the bottom of the stage ("Crimes against / persons" clipped). Seen in literacy-split-france too, so possibly shared, not lesson-specific. The footer shows "Why trust this? (0/7 claims checked)" on every frame: a learner who taps it is told nothing has been checked yet.
 
 Verdict reason: no finding blocks a first-time learner; the direction surprise is set up and resolved by the bars. Finding 1 (unkeyed scatter, r = 0.37) and finding 2 (conscript basis arrives last) are the ones worth fixing next.
+
+## After reading meta.json (build.md not read)
+
+- Intent and experience agree: the objective (1.7x, 18.9 vs 11.3, persons equal at 5.9, departments not people, no cause) is what the bars and the reveal deliver, and the prediction targets the stated misconception head on.
+- The objective does not need the scatter or r = 0.37 (c5). The step where this learner got lost (finding 1) carries the one claim the objective does not use. Keying the dots, or replacing "r = 0.37" with words, would cost the objective nothing.
+- c1 says the literacy figure is "percent of military conscripts who can read and write". The bars label it only "% literate" (finding 2). The meta knows the basis; the first screens do not show it.
+- All 7 claims are `unverified`, which matches the "0/7 claims checked" the learner sees. Fact-checking is SO-10-2's job (queued); I make no judgement on the numbers.
+- The hook's "France, 1825-30" and the reveal's dates are inside c7. The title's "1830s" is not a separate claim; it is probably the publication date (Guerry 1833 is cited in the sister lesson's c1). The mismatch in finding 3 still stands for the learner.
