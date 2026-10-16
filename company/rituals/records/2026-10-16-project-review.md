@@ -30,6 +30,11 @@ Held with the founder (chair) and the chief of staff (presenting). The other mem
 
 **Total approved: about 21.4M tokens** (asked 30.87M). Second review (by 2026-10-21): big-ideas, multi-card-sequence, ncm-course.
 
+## Written positions (24 h round, by 2026-10-17 23:59 UTC)
+| Member | Filed | Position file | Summary |
+|---|---|---|---|
+| principal-engineer | 2026-10-16 | [2026-10-16-project-review-positions-principal-engineer.md](2026-10-16-project-review-positions-principal-engineer.md) | go: 0b, 0d, 8, 1, 6, 2, 3 · go with changes: 0a, 0c · go on T1 with a PE evidence objection on T2: 7 · go with changes plus a PE feasibility objection: 5 (owner; re-size to 1.89M) · object (evidence): 4 |
+
 ## Objections
 | Objection | Raised by | Status |
 |---|---|---|
@@ -41,6 +46,9 @@ Held with the founder (chair) and the chief of staff (presenting). The other mem
 | Marketing adds coordination load, not capacity, and has no learner data to cite. | principal-pm-verticals, analytics-steward | **Accepted with the 7-day pause rule**; nothing external without the founder. |
 | Books cannot publish before F1/F2. | cm-books, portfolio-manager | **Accepted**: item returned. |
 | Life Hacks engine v2 started before the a11y items (W-608). | lifehacks safety / a11y | **Superseded**: TP-1 and the a11y ruling W-1111 are done or routed (W-1114/W-1128). |
+| Item 7: the T2 figure (8.17M) and the stop-rule ceiling (10.2M) are below the full-scope re-estimate: engineering T2 about 8.5M, all of T2 about 19.2M (16.3M at the quality minimum). Tranche 1 is not contested. (Written positions, principal-engineer.) | principal-engineer, 2026-10-16 | **Open: PE evidence (cost). Reopens item 7's T2 and stop rule only.** For the forum to answer by the 10-23 checkpoint. |
+| Item 5: two of the four A2 return lines (build ≤ 5 min, `/` ≤ 10 stylesheets) are already met after A1, and the warm-frame fallback trigger cannot be measured on this host (no real device, W-085). Replacement lines are proposed, and the tranche is re-sized to 1.89M. (Written positions.) | principal-engineer (owner), 2026-10-16 | **Open: PE evidence (feasibility). Reopens item 5's return measure and checkpoint.** |
+| Item 4: the 3.0M figure for the rebased scope (fix waves W1 to W9) cannot be reproduced from the agenda or the ledger, and the line's spend is unreadable (usage ends 10-15 09:02Z). (Written positions.) | principal-engineer, 2026-10-16 | **Open: PE evidence (cost). Reopens item 4.** Needs a per-wave cost and the backfilled spend. |
 
 ## What would make this record wrong
 - A member's written position raises a PE evidence objection on cost or feasibility (that item reopens).
