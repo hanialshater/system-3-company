@@ -17930,11 +17930,12 @@
         "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
         "company/personalization/batches/2026-10-16-batch-2.md",
         "tests/hq/personalization-privacy.test.mjs",
-        "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md"
+        "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md",
+        "company/reviews/hq/2026-10-16-d2-review.md"
       ],
-      "note": "2026-10-16 to review (run pe-d2-1016, branch perso-d2): tests/hq/personalization-privacy.test.mjs, own-route fetch exception only in the ruled form (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md lines 36, 39 = L1); 35 in-test breaks + 36/36 temp-copy breaks caught, clean control passes. hq-engineer: code review (tests/hq). privacy-reviewer: confirm L1 is met, and L5 needs her to read the rendered lab page before it is called privacy-done.",
+      "note": "2026-10-16 to review (run pe-d2-1016, branch perso-d2): tests/hq/personalization-privacy.test.mjs, own-route fetch exception only in the ruled form (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md lines 36, 39 = L1); 35 in-test breaks + 36/36 temp-copy breaks caught, clean control passes. hq-engineer: code review (tests/hq). privacy-reviewer: confirm L1 is met, and L5 needs her to read the rendered lab page before it is called privacy-done. | 2026-10-16 hq-engineer: code review approve with nits (company/reviews/hq/2026-10-16-d2-review.md); stays in review until privacy-reviewer reads the rendered page (L5).",
       "updated": "2026-10-16",
-      "reviewer": "hq-engineer, privacy-reviewer"
+      "reviewer": "privacy-reviewer"
     },
     {
       "id": "W-1530",
@@ -18050,13 +18051,14 @@
       "id": "W-1539",
       "title": "HQ lab D1 review nits (company/reviews/hq/2026-10-16-d1-review.md): N1 meta cache miss bypasses the run lock or retries once; N2 busy flag on the result instead of string compare, plus Retry-After on 429; N3 test that the lock is released after a failed run",
       "owner": "personalization-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/reviews/hq/2026-10-16-d1-review.md",
         "src/lib/hq-personalization-server.ts",
-        "tests/hq/personalization.test.mjs"
+        "tests/hq/personalization.test.mjs",
+        "company/reviews/hq/2026-10-16-d2-review.md"
       ],
       "updated": "2026-10-16",
       "reviewer": "hq-engineer",
