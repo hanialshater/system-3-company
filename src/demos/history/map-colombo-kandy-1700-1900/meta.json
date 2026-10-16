@@ -1,0 +1,114 @@
+{
+  "slug": "map-colombo-kandy-1700-1900",
+  "title": "Colombo / Kandy",
+  "hook": "1700 → 1900. Two fixed dots; compare the reconstruction's labels.",
+  "domain": "history",
+  "concept": "border-precision-over-time",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "codex-history-maps"
+  },
+  "learner": {
+    "knows": [
+      "two points can be located on a map"
+    ],
+    "doesNotKnow": [
+      "how this reconstruction classifies Colombo / Kandy in 1700 and 1900, and what that comparison cannot establish"
+    ]
+  },
+  "misconception": "A historical map's region labels directly establish exact borders, continuous control and the history of everyone inside.",
+  "objective": "Compare the source's labels at two fixed points in 1700 and 1900; distinguish the observed map pattern from claims about its cause or legitimacy.",
+  "claims": [
+    {
+      "id": "history.map-colombo-kandy-1700-1900.positions",
+      "text": "Colombo area anchor: 79.916985, 6.986569 (8.9 km from the nominal location); Kandy area anchor: 80.63, 7.29 (0 km from the nominal location). Modern place names orient the fixed comparison points, not historical settlement names or exact city centres.",
+      "support": "convention",
+      "source": "tools/history-maps/cases.mjs: nominal WGS84 longitude/latitude points; generate.mjs areaAnchor prefers the nearest point covered by both snapshots within 75 km, without selecting for an answer. map.json records nominal and actual coordinates and the offset. A place name is not an ancient-settlement claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.map-colombo-kandy-1700-1900.maps",
+      "text": "The 1700 and 1900 stages are clipped Mercator paths from these GeoJSON snapshots, with all matched NAME labels retained: [[[\"Ceylon (Dutch)\"],[\"Kandy\"]],[[\"Ceylon\"],[\"Ceylon\"]]]. Map key and SVG titles use these labels; NAME is not SUBJECTO.",
+      "support": "source",
+      "source": "Ring directions normalised for d3 spherical exteriors/holes; coordinates and feature order retained. https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/geojson/world_1700.geojson (SHA-256 eb73d6b00e98205fb2082de050c35e4d698224b17849628d82584610186b88a4); GeoJSON features [[307],[306]]; https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/geojson/world_1900.geojson (SHA-256 9c9221c851eaba4948e11b2a0b078e89239231f8c74df0dc321750ae234f10b5); GeoJSON features [[10],[10]]",
+      "status": "unverified"
+    },
+    {
+      "id": "history.map-colombo-kandy-1700-1900.comparison",
+      "text": "At the two points, 1700 has different labels and 1900 has same label. This supports the prediction answer and first reveal sentence.",
+      "support": "derivation",
+      "source": "tools/history-maps/generate.mjs: geoContains on every feature; sorted unique NAME sets, exact set equality; missing sets stay unlabelled. https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/geojson/world_1700.geojson (SHA-256 eb73d6b00e98205fb2082de050c35e4d698224b17849628d82584610186b88a4); GeoJSON features [[307],[306]]; https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/geojson/world_1900.geojson (SHA-256 9c9221c851eaba4948e11b2a0b078e89239231f8c74df0dc321750ae234f10b5); GeoJSON features [[10],[10]]",
+      "status": "unverified"
+    },
+    {
+      "id": "history.map-colombo-kandy-1700-1900.limits",
+      "text": "The maps are approximate reconstructions. Two snapshots do not date a transition, establish continuity, explain causes, or settle present-day claims; an unlabelled dot does not prove empty land.",
+      "support": "source",
+      "source": "https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/README.md, sections Conceptual limitations and disputed territories / Polygons; two-endpoint inference limit. Stage caption, reveal, hook 'reconstruction', and prediction wording are covered here. Cultural and research reviews remain required.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.map-colombo-kandy-1700-1900.recall",
+      "text": "Two reconstructed areas overlap at one point. How should an explorer report that? Answer: Keep both labels and expose the overlap Keeping all matching labels preserves the source's ambiguity. A draw order is not a historical verdict.",
+      "support": "derivation",
+      "source": "https://github.com/aourednik/historical-basemaps/blob/da7a4b735ecef70aebdc9c73e409d8a2500d50f3/README.md (source limitations); tools/history-maps/generate.mjs recalls[6]. Interpret the dataset fields and projection, not historical causes.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two reconstructed areas overlap at one point. How should an explorer report that?",
+    "options": [
+      "Keep both labels and expose the overlap",
+      "Silently choose the first polygon",
+      "Delete both regions"
+    ],
+    "answer": 0,
+    "why": "Keeping all matching labels preserves the source's ambiguity. A draw order is not a historical verdict."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:border-precision-over-time",
+    "also": [
+      "history:border-precision"
+    ],
+    "prerequisites": [
+      "geography:latitude-longitude"
+    ],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [],
+    "tags": [
+      "history maps",
+      "south asia",
+      "source comparison",
+      "approximate borders"
+    ]
+  },
+  "format": "map-explorer",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ],
+  "reviewRoute": "sensitive",
+  "careLine": "Source NAME labels are classifications, not statements of legitimate sovereignty, ethnicity, religion, language or absence of people. Modern place names are orientation aids only. Retain missing coverage and overlapping labels.",
+  "reviewRequirements": [
+    "cm-history approval of the 100-case practice-set scope",
+    "research-lead provenance review",
+    "cultural-reviewer stage-A brief and stage-B walkthrough",
+    "independent fact-check",
+    "independent learner review",
+    "History domain launch review"
+  ],
+  "productionSet": "history-maps-100",
+  "internalNotes": "Fact-checker to confirm every claim independently; builder checks are not verification. Company handoff: company/reviews/history-maps-100/build.md. Prototype only: no launch verdict or cultural approval is claimed."
+}
