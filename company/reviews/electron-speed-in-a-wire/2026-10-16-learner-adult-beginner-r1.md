@@ -21,3 +21,10 @@ Notes (not blocking):
 - No dead end under R4: every control changes the stage; "Show me why" unlocked after "Wait 1 h".
 
 Verdict reason: launch. No finding blocks a first-time learner; the instant bulb against the crawling dot answers the hook, and the reveal answers the follow-up question.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read: out of scope for this role. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** The objective (each electron drifts well under a millimetre a second, hours to cross 2 m; the lamp lights at once because the wire is already full of electrons that move together) matches what this mind took from the walk. The misconception (electrons rush at near light speed) is the one the hook invites.
+- c2 says the faint dots stand for the free electrons and are drawn far sparser than real; c5 says every faint dot shifts with the tinted one. My note that the dots barely read as dots at phone size stands: c5's "every faint dot shifts" is evidence the learner may not notice.
+- c3 cites the Seen row for the drift numbers; the Seen row has no 1 s slot, as noted, but the '+0.07 mm' marker covers it at the time. No change to the verdict.

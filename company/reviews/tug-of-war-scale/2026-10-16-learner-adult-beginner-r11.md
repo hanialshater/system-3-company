@@ -20,3 +20,9 @@ Notes (not blocking):
 - No dead end under R4: all three controls change the stage; "Show me why" unlocked after the third control.
 
 Verdict reason: revise. The reveal answers the 200 N picker ("not 200") but never tells the 0 N picker why "the pulls cancel" does not give a reading of 0.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** The misconception field names both wrong answers: "make the scale in the middle read 200 N (**or 0 N, because the pulls cancel**)". So the 0 N picker is an intended target, and the reveal answers only the 200 N half. The blocking finding stands as written.
+- c1's quoted reveal sentence ("at rest it is stretched only when both ends are pulled equally") is the sentence this mind found hard to parse. The claim's physics ("a massless spring scale at rest has equal pulls on its two ends and reads that one common tension") is clearer than the learner-facing wording. Whether the wording still supports the claim is the fact-checker's call; for the learner it reads as "equal pulls are what stretch it", which is not what c1 says.

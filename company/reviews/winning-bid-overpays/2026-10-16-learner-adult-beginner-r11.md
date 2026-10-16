@@ -22,3 +22,10 @@ Notes (not blocking):
 - No dead end under R4: every control changes the stage; "Show me why" unlocked after "2 bidders".
 
 Verdict reason: launch. No finding blocks a first-time learner; the chart shows centred guesses and high winners before the reveal names why. The constant AVG GUESS tile is a note to check, not a block.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only, plus Demo.tsx.)
+- **Intent vs experience.** Objective and misconception ("If everyone's guess is right on average, the winning bid is right on average too") match the walk; the stem sets up the misconception honestly.
+- **The constant AVG GUESS hypothesis is withdrawn.** Demo.tsx recomputes the tile per bidder count (`stats(n, k)`, line ~38, `RUNS` for 2, 10, 20). Recomputing with the same mulberry32(1) draws gives 99.15 (2 bidders), 99.17 (10) and 99.20 (20), which all round to "$99.2". The tile updates; the coincidence of rounding makes it look stuck. A learner may still read it as stuck; showing the value to the cent, or not, is the CM's call. Not a defect.
+- c2 records "12 of 20 overpaid" with 2 bidders. That count is not on the stage (the log line shows only "2 bidders: winners $105.4"); the hollow green rings are presumably the 8 that did not. The ring legend note stands.

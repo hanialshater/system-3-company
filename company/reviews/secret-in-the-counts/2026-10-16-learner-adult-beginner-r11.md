@@ -25,3 +25,10 @@ Notes (not blocking):
 - No dead end under R4: every control changes the stage.
 
 Verdict reason: revise. The predict card's own wording ("counts what follows each two-word context") gives the answer away, and the delete step the panel asks for ends on an unexplained 2-word output that the reveal never mentions.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** The objective is about 2-word vs 1-word context only; it does not mention the delete step. The misconception ("a model ... cannot repeat one private sentence it saw once") is a belief about models, but the predict card can be answered from the stem's description of the counting rule without holding or dropping that belief. Finding (a) stands.
+- c2 records the intended behaviour after deletion: "'pin is' never occurred, the model backs off to 'is' and also outputs 'ready'". So the 2-word output after deletion is by design, but the backoff is in the claim and not on the screen or in the reveal. Finding (b) stands: the learner is asked to delete and is not told what it shows.
+- The learner boundary says this mind already knows "that longer context gives sharper predictions". That makes the predict card even easier for the intended learner.

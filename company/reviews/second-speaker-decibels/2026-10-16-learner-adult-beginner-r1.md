@@ -19,3 +19,9 @@ Notes (not blocking):
 - No dead end under R4: all three controls change the stage; "Show me why" unlocked after "10 speakers".
 
 Verdict reason: launch. No finding blocks a first-time learner; the linear power bar against the slow meter carries the idea without the unit.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** Objective and misconception ("Two 60 dB speakers together make 120 dB") match the walk; the reveal's last sentence aims straight at it.
+- c5 records that the stage assumes uncorrelated sound (in-phase identical tones could add up to 6 dB) and that this is "not on the stage". The caption says only "Identical speakers, same distance, no echoes." A learner who knows a little about interference could read "identical" as "same signal". Not blocking for this boundary; the CM may want "playing different music" or similar in the caption. That is a note for the CM and fact-checker, not a dispute of the claim.

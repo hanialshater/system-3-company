@@ -22,3 +22,9 @@ Notes (not blocking):
 - No dead end under R4: every control changes the stage; "Show me why" unlocked after the third surface.
 
 Verdict reason: launch. No finding blocks a first-time learner; the frictionless step answers the engine picker, and the slip thread survives in the stage, though the Seen row alone does not carry it.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** The objective (engine only turns the wheels; the road's grip on the tyres speeds the car; no grip, no motion however hard the wheels spin) is what this mind took from the walk. The misconception also includes "friction only ever slows things down"; the dry/ice contrast addresses that implicitly, and the reveal's "the road's 2,400 N grip" names grip as the forward force.
+- c4 cites the Seen row as "ice: 1,177 N" and the stage readout as "1,177 N max · 0.98 m/s² · slipping": the claim itself places "slipping" on the stage, not the row. That matches my answer to the brief's question: the row carries forces only, and the slip thread lives in the stage caption and spin marks of the step on screen. c3/c4 also give the 2,400 N "asked for", which the learner never sees stated; my note on "max" stands.

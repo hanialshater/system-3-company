@@ -21,3 +21,9 @@ Notes (not blocking):
 - No dead end under R4: every control changes the stage; "Show me why" unlocked after "Colour land by its sea".
 
 Verdict reason: launch. No finding blocks a first-time learner; the three steps show the divide doing what the reveal says.
+
+## After reading build.md / meta.json
+
+(Written after the findings above were committed in 5246021. build.md not read. meta.json read at HEAD 74a730e, committed content only.)
+- **Intent vs experience.** Objective (rain follows the slope to the sea on its side of the divide; a divide near the west coast sends about four fifths east) and misconception ("flows to the nearest sea") match the walk exactly. The blank predict map is how the misconception is drawn out; it works for this boundary.
+- c1-c4 match what the stage showed. c5 is a recall item not seen in the walkthrough (the walk ends at the reveal); not judged here.
