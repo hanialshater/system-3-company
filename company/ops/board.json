@@ -13134,10 +13134,11 @@
       "id": "W-1093",
       "title": "Life Hacks per-wave follow-through (r11 fix plan): after each builder wave merges, QA the wave, re-verify reset claims (close W-1078 rows), then r12 learner walk",
       "owner": "qa-tester",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1094",
@@ -14075,7 +14076,7 @@
       "id": "W-1195",
       "title": "Dispatch/report events written by an Agent-tool hook (not backfill); status+metrics show last-dispatch age, metrics marks never-dispatched STALE >6h; merge W-1175 into W-716 (retro 2026-10-16 C1; hook needs founder D-3)",
       "owner": "tools-lead",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14280,10 +14281,11 @@
       "id": "W-1217",
       "title": "Accounts readiness additions (privacy re-read 62020cf): Production Postgres >= 16 (IS JSON CHECK); named owner for db-deletion-check --oldest-expired; PUBLISHED_POLICY_VERSIONS holds the real policy before any learner email; run 3 skipped built-routes tests + browser-cookie.mjs on the release SHA",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1218",
@@ -14542,6 +14544,51 @@
       "id": "W-1246",
       "title": "PR1 item 5: carry 'release 1.2M of the 1.89M ceiling' and 'pilot-migrated' wording into the register and the forum line (PE revision 617dfdb) portfolio-manager",
       "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1247",
+      "title": "Home engine: add an answer-in-range test (a 2-option lesson with answer 2 passed 120/120) and W3 in the every-step ratchet; W4 is not cleared until this lands (PE-ops W3 condition 1)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1248",
+      "title": "Confirm or object to two predict options in Home v2 (design spec §8 still says three); due before any two-option lesson publishes (PE-ops W3 condition 2)",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1249",
+      "title": "readEvents must report the lines it skips (it now drops unreadable lines silently) (PE-ops hook condition H4)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1250",
+      "title": "Before asking the founder to wire the hook (F-31): rule H2 (hook writes events.jsonl in the dispatching checkout; single writer) and run the one-time W-716 backfill (H5)",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1251",
+      "title": "laundry-sort-before-walk needs its own readiness record (PE-ops W3 condition 5)",
+      "owner": "cm-lifehacks",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
