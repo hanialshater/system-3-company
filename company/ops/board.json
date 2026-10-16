@@ -18066,15 +18066,19 @@
       "id": "W-1538",
       "title": "Settings API read by privacy-reviewer: conditions B1-B4 (catalog-membership drop test, only PUT /api/settings writes, deletion/export patches, no body logging) per company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3",
       "owner": "learner-data-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-3.md",
         "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md",
-        "company/personalization/data/2026-10-16-settings-schema-note.md"
+        "company/personalization/data/2026-10-16-settings-schema-note.md",
+        "company/personalization/data/2026-10-16-settings-api-note.md",
+        "src/app/api/settings/route.ts",
+        "src/lib/server/personalization/settings-handler.ts",
+        "tests/settings/settings-only-put-writes.test.mjs"
       ],
-      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U2 (wave 1): write the settings API on a branch per privacy B1-B4 and D1-D3. Code does not wait; applying the table waits on backend-engineer order review (W-1522 / W-1521 note), privacy-reviewer API read and accounts-tip re-read (E7); deploy needs the founder.",
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U2 (wave 1): write the settings API on a branch per privacy B1-B4 and D1-D3. Code does not wait; applying the table waits on backend-engineer order review (W-1522 / W-1521 note), privacy-reviewer API read and accounts-tip re-read (E7); deploy needs the founder. | 2026-10-16 learner-data-engineer (lde-u2-1016, branch perso-u2): settings API written, not wired (route 404 until backend-engineer supplies session/db/flag), nothing applied. npm run test:settings 25/25. REVIEW: privacy-reviewer (B1-B4 read; D1-D3, G1-G4; note §3), backend-engineer (B3 patches note §5; unverified items note §4 incl. ADR-008 cookie Path=/api/account means /api/settings never gets the session: recommend /api/account/settings; order review), principal-engineer (tier 2: location src/app/api/settings + src/lib/server/personalization, package.json test:settings + verify line, table name). Not merged to main until those reads exist.",
       "updated": "2026-10-16"
     },
     {

@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-data-engineer (Solenne) · U2 / W-1538: settings API on a branch, not wired, nothing applied (run lde-u2-1016, branch perso-u2)
+
+**Changed:** new src/app/api/settings/route.ts (GET, PUT only; 404 while unwired), src/lib/server/personalization/{settings,settings-store,settings-handler,settings-wiring}.ts, tests/settings/ (25 tests), package.json `test:settings` (also in `verify`, not `check`), design note company/personalization/data/2026-10-16-settings-api-note.md (API surface, B1-B4/D1-D3/G1-G4 map, B3 patches, unverified list). Board W-1538 → review. No database touched, no migration moved or applied, no dependency.
+**Tests:** `npm run test:settings` 25/25 (B1 incl. real-catalog drop test; B2 repo-wide write/import scan with planted-break control; B4 sentinel through 11 paths incl. pg-style error detail, with capture control; D1-D3; G2-G3); typecheck clean; build passes (`ƒ /api/settings`); test:platform 30/30; `npm run check` passes.
+**Believe:** the code meets B1, B2 (as a grep), B4, D1-D3, G2-G3 (high). **It cannot work at /api/settings as mounted:** ADR-008 scopes the session cookie to `Path=/api/account`, so this path never receives a session. I recommend mounting at /api/account/settings (one path change + one test constant); principal-engineer (location) and backend-engineer (namespace) decide, and privacy-reviewer's B2 wording follows. Unverified against the accounts branch: session helper, db query shape, flag, FK/table name, migration number, file tracing (note §4).
+**Next:** privacy-reviewer reads B1-B4; backend-engineer: B3 patches (note §5) + order review + wiring; principal-engineer: tier 2 location and package.json. **Blocked:** wiring and any apply on the accounts branch (not in this clone); deploy on the founder.
+
 ## 2026-10-16 · vp-personalization (Mateo) · lane 14 batch 3: criterion 2, headroom first, plus review timing (run vp-batch3-1016)
 
 **Changed:** new company/personalization/batches/2026-10-16-batch-3.md (10 items, 5 waves, paste-ready briefs). Board: new W-1544 (E1 evidence, learning-scientist-personalization), W-1545 (K1 criterion 2 draft + harness, personalization-eval), W-1546 (P1 review-timing numbers, applied-scientist-personalization), W-1547 (P2 review-timing code, learner-model-engineer), W-1548 (F1 fidelity), W-1549 (K2 freeze + readout 2), W-1550 (R2 repro), W-1551 (V, mine); W-1540 and W-1538 → next with batch notes. No model, criterion, curve or src change.
