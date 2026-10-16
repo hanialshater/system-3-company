@@ -53,16 +53,16 @@
         "idea.modelBoundary",
         "recall"
       ],
-      "text": "The stipulated three-quarter exponent gives {A}; exponent one gives {B}. Four repeated size doublings magnify their disagreement from the common starting value.",
+      "text": "The three-quarter exponent, rounded to 68.18% per doubling, gives {A}; exponent one gives {B}. Four repeated size doublings magnify their disagreement from the common starting value.",
       "status": "unverified",
-      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,68.1792830507429,4,0],[1,100,4,0]],\"outputs\":[7.999999999999998,16]}",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,68.18,4,0],[1,100,4,0]],\"outputs\":[8.000136417057536,16],\"note\":\"68.18% is 2^(3/4)-1 rounded to 2 dp (implied exponent 0.750006); A displays as 8 at the 2-dp readout\"}",
       "support": "derivation"
     },
     {
       "id": "books.bk-scale-exponent-boundary.world",
       "kind": "world-evidence-boundary",
       "address": "idea.doesItHoldUp",
-      "text": "Does it hold up? These power-law calculations are exact. No exponent was fitted here, and extrapolation does not verify a biological or urban law.",
+      "text": "Does it hold up? Only as power-law arithmetic. No exponent was fitted here, and extrapolation does not verify a biological or urban law.",
       "status": "unverified",
       "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
       "support": "convention"

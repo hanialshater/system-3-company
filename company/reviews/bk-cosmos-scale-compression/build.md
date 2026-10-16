@@ -21,3 +21,10 @@ The shared model validator accepted the payload. Direct calculation: "Six scale 
 ## Handoff
 
 Root owns integrated check/typecheck/build and registration. Independent QA owns every route and Reset-last result. Learning/design/accessibility reviewers own representative and bounded-group review. Fact-checker owns all claim verification. No publication or deploy.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F8: predict options now use the stage's number format (formatBookValue: no trailing zeros, ASCII hyphen-minus, no plus sign, thousands commas). Before ["6 units","100000 units","1000000 units"]; after ["6 units","100,000 units","1,000,000 units"]. Answer index 2 unchanged and equals a computed scenario output. Distractors normalised too, so format cannot single out the answer.
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.

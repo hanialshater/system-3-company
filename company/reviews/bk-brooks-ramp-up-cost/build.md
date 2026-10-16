@@ -21,3 +21,11 @@ The shared model validator accepted the payload. Direct calculation: "Original t
 ## Handoff
 
 Root owns integrated check/typecheck/build and registration. Independent QA owns every route and Reset-last result. Learning/design/accessibility reviewers own representative and bounded-group review. Fact-checker owns all claim verification. No publication or deploy.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F8: predict options now use the stage's number format (formatBookValue: no trailing zeros, ASCII hyphen-minus, no plus sign, thousands commas). Before ["50.00","40.00","60.00","90.00"]; after ["50","40","60","90"]. Answer index 1 unchanged and equals a computed scenario output. Distractors normalised too, so format cannot single out the answer.
+- meta.json: the .toy claim's "Prediction correct option" token updated to match; claim stays unverified.
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.

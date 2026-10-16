@@ -39,3 +39,10 @@ Only this lesson's title/hook and their addressed unverified toy-claim record ch
 ### Final prepared v2 wording
 
 The header-only candidate above was not served or declared passing. To leave room for the adaptive picture to return toward its natural height, the same unserved v2 also shortens the model explanation from33 to23 words; full reveal body71→61 words. Final text: "Two rounds reach {A}, below requirement 12; four reach {B}, above it. The fixed 30% rate and requirement are invented, not technology forecasts.". It preserves both captured results, both sides of requirement12, the fixed30% rate and invented/nonforecast boundary. The book attribution, prediction and all numbers remain unchanged. The toy claim is updated and stays unverified. Fresh phone measurement and actual viewing remain pending.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F8: predict options now use the stage's number format (formatBookValue: no trailing zeros, ASCII hyphen-minus, no plus sign, thousands commas). Before ["14.28","6.50","11.00","20.00"]; after ["14.28","6.5","11","20"]. Answer index 0 unchanged and equals a computed scenario output. Distractors normalised too, so format cannot single out the answer.
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.
