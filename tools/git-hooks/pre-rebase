@@ -1,0 +1,101 @@
+#!/usr/bin/env node
+// Git pre-rebase guard: in the MAIN checkout every rebase is refused, and an autostash git already made is put back.
+// Board W-1337 (13:06 wipe in the shared checkout; W-1338 lost two files); batch
+// company/ops/dispatch-requests/2026-10-16-r5-tools.md#B1. Readiness (tier 2):
+// company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md (awaiting principal-engineer-ops).
+//
+// Why a plain refusal is not enough (objection (1) of that batch; reproduced on git 2.43.0):
+//   with --autostash (or rebase.autoStash / pull --rebase + rebase.autoStash) git FIRST stashes the work tree
+//   (`git stash create`, then a hard reset) and writes the stash sha to $GIT_DIR/rebase-merge/autostash, and only
+//   THEN runs pre-rebase. When the hook exits non-zero, git stops and leaves that file behind: the edits are not
+//   on `git stash list`, the work tree is clean, and `git rebase --abort` fails ("no rebase in progress").
+//   In a checkout shared by many agents, those edits are other agents' work in flight.
+// So, before refusing, this hook:
+//   1. `git stash store -m "pre-rebase guard: autostash kept <ISO time>" <sha>`: the autostash becomes a listed
+//      stash entry (a backup that survives whatever happens next);
+//   2. `git stash apply --index <sha>` (staged edits come back staged), falling back to a plain `git stash apply
+//      <sha>` (all edits come back, unstaged);
+//   3. removes the rebase-merge/ (or rebase-apply/) state dir, so the checkout is not left "mid-rebase".
+//   It prints what it restored, the stash ref, and where to integrate instead.
+// On an internal error it still refuses, and prints the autostash sha so nobody loses it.
+//
+// Linked worktrees (their own index and work tree) always pass: rebasing a branch there is the sanctioned way.
+// Main vs linked: `--absolute-git-dir` equals `--git-common-dir` only in the main checkout (as in pre-commit).
+// Installed by core.hooksPath = tools/git-hooks (already set in the main checkout's config, so merging this file
+// installs it). Depends on git creating the autostash before pre-rebase: true on 2.43.0; tests/dispatch/
+// guards.test.mjs fails first if a git upgrade changes that.
+
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+
+const git = (...args) =>
+  execFileSync("git", ["-c", "core.quotePath=false", ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+const say = (s) => process.stderr.write(s.endsWith("\n") ? s : s + "\n");
+const WHERE =
+  "  Integrate in your own worktree (e.g. /home/user/s3c-int), not in the main checkout:\n" +
+  "    git worktree add /home/user/s3c-<tag> -b <branch>   then rebase or merge there.\n" +
+  "  In the main checkout use only `git pull --ff-only`, and commit by path (tools/commit-own.sh).";
+
+let autostash = null;
+try {
+  const gitDir = path.resolve(git("rev-parse", "--absolute-git-dir").trim());
+  const common = path.resolve(git("rev-parse", "--git-common-dir").trim());
+  if (gitDir !== common) process.exit(0); // linked worktree
+
+  say("pre-rebase (tools/git-hooks/pre-rebase): refused. This is the main checkout, shared by every agent; it is never rebased.");
+  for (const state of ["rebase-merge", "rebase-apply"]) {
+    const dir = path.join(gitDir, state);
+    const f = path.join(dir, "autostash");
+    if (!fs.existsSync(f)) continue;
+    autostash = fs.readFileSync(f, "utf8").trim();
+    if (!/^[0-9a-f]{7,64}$/.test(autostash)) throw new Error(`unreadable autostash in ${state}/autostash`);
+    // A stash is a merge commit (parent 1 = HEAD, parent 2 = the index); list what differs from HEAD, staged or not.
+    // (Rebase's autostash never holds untracked files: git leaves those in the work tree.)
+    const files = git("diff", "--name-only", "--no-renames", `${autostash}^1`, autostash).split("\n").filter(Boolean);
+    const untracked = [];
+    git("stash", "store", "-m", `pre-rebase guard: autostash kept ${new Date().toISOString()}`, autostash);
+    let how = "with the index (staged edits are staged again)";
+    try {
+      git("stash", "apply", "--index", autostash);
+    } catch (e1) {
+      try {
+        git("stash", "apply", autostash);
+        how = "WITHOUT the index: every edit is back, but previously staged edits are now unstaged";
+      } catch (e2) {
+        how = null;
+        say(`  Could not re-apply the autostash (${String(e2.stderr || e2.message).trim().split("\n")[0]}).`);
+      }
+    }
+    fs.rmSync(dir, { recursive: true, force: true });
+    const ref = (() => {
+      try {
+        const l = git("stash", "list", "--format=%gd %H").split("\n").find((x) => x.endsWith(" " + autostash) || x.includes(autostash));
+        return l ? l.split(" ")[0] : "stash@{0}";
+      } catch { return "stash@{0}"; }
+    })();
+    const all = [...new Set([...files, ...untracked])];
+    if (how) say(`  git had already autostashed the work tree; restored it ${how}:`);
+    else say("  git had already autostashed the work tree; it is NOT re-applied, but it is kept:");
+    for (const p of all.slice(0, 30)) say(`    ${p}`);
+    if (all.length > 30) say(`    … and ${all.length - 30} more`);
+    say(`  Backup kept as ${ref} (${autostash}), message "pre-rebase guard: autostash kept …". Do not drop or pop it;`);
+    say(`  inspect with \`git stash show -p ${autostash}\`. Removed .git/${state}/, so no rebase is in progress.`);
+  }
+  say(WHERE);
+  process.exit(1);
+} catch (e) {
+  say(`pre-rebase guard: internal error, refusing anyway (report it to tools-lead): ${e.message}`);
+  if (autostash) say(`  The autostash git made is ${autostash}. Keep it: git stash store -m "autostash ${autostash}" ${autostash}`);
+  else {
+    for (const state of ["rebase-merge", "rebase-apply"]) {
+      try {
+        const gd = execFileSync("git", ["rev-parse", "--absolute-git-dir"], { encoding: "utf8" }).trim();
+        const f = path.join(gd, state, "autostash");
+        if (fs.existsSync(f)) say(`  The autostash git made is ${fs.readFileSync(f, "utf8").trim()} (${f}). Keep it: git stash store <sha>`);
+      } catch {}
+    }
+  }
+  say(WHERE);
+  process.exit(1);
+}

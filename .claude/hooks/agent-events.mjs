@@ -17,10 +17,18 @@
 //                               agentId -> label in .serve/agent-events/, so the dispatch stays open.
 //   SubagentStop             -> report for a remembered async agent (agent_id in the payload).
 //
+//   Git state of the main checkout (W-1337; batch 2026-10-16-r5-tools.md#B1): at SubagentStop (and at a foreground
+//   PostToolUse report) it reads the main checkout's .git from the filesystem (no git process). If it has
+//   rebase-merge/ or rebase-apply/ (a stuck rebase: its autostash holds other agents' edits), it writes one
+//   `incident` event; if it has only MERGE_HEAD, or has gained stash entries since the agent's dispatch (baseline
+//   taken at PreToolUse from .git/logs/refs/stash), it writes one `note` in room `incident`. Both name the agent
+//   label and the state. The id is a hash of the state, so one state is reported once, by the first stop that sees it.
+//   An error here is logged and never stops the report event or the tool call.
 // Writes go to the spool (ruling H2), one per repository via the git common dir: <main checkout>/company/ops/events-spool/.
 // Env: S3_SPOOL (spool dir) or S3_EVENTS (spool = <its dir>/events-spool/; passed through to events.mjs),
 //      S3_HOOK_LOG (error log), S3_HOOK_STATE (state dir),
-//      S3_ROLE (the dispatcher's role id; default chief-of-staff).
+//      S3_ROLE (the dispatcher's role id; default chief-of-staff),
+//      S3_MAIN_CHECKOUT (the main checkout whose .git is read for the git-state check; tests point it at a tmp repo).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -104,6 +112,84 @@ const isAsyncLaunch = (r) => r?.status === "async_launched" || r?.isAsync === tr
 const agentIdOf = (r) => r?.agentId ?? responseText(r).match(/agentId: (a[0-9a-f]{8,})/)?.[1];
 const labelFor = (input, toolUseId) => `${input?.description ?? "agent"} ·${hash(toolUseId, 4)}`;
 
+// ---- main-checkout git state (W-1337)
+/** The main checkout of the repo holding `root` (`.git` dir = main; `.git` file -> gitdir -> commondir). */
+function mainCheckoutOf(root = ROOT) {
+  try {
+    const dotgit = path.join(root, ".git");
+    if (fs.statSync(dotgit).isDirectory()) return root;
+    const gitdir = path.resolve(root, fs.readFileSync(dotgit, "utf8").match(/^gitdir:\s*(.+)$/m)[1].trim());
+    const common = path.resolve(gitdir, fs.readFileSync(path.join(gitdir, "commondir"), "utf8").trim());
+    if (path.basename(common) === ".git") return path.dirname(common);
+  } catch {}
+  return null;
+}
+const mainDir = () => (process.env.S3_MAIN_CHECKOUT ? path.resolve(process.env.S3_MAIN_CHECKOUT) : mainCheckoutOf());
+const readTrim = (f) => { try { return fs.readFileSync(f, "utf8").trim(); } catch { return ""; } };
+
+/** What the main checkout's .git holds now: in-progress states and the stash entries (newest first, as `stash list`). */
+export function mainGitState(main = mainDir()) {
+  const gd = main && path.join(main, ".git");
+  if (!gd || !fs.existsSync(gd) || !fs.statSync(gd).isDirectory()) return null;
+  const states = [];
+  for (const d of ["rebase-merge", "rebase-apply"]) {
+    if (!fs.existsSync(path.join(gd, d))) continue;
+    const auto = readTrim(path.join(gd, d, "autostash"));
+    const head = readTrim(path.join(gd, d, "head-name")).replace(/^refs\/heads\//, "");
+    states.push({ kind: d, autostash: auto || null, head: head || null });
+  }
+  if (fs.existsSync(path.join(gd, "MERGE_HEAD"))) states.push({ kind: "MERGE_HEAD", sha: readTrim(path.join(gd, "MERGE_HEAD")).split("\n")[0] });
+  const stash = readTrim(path.join(gd, "logs/refs/stash")).split("\n").filter(Boolean).map((l) => {
+    const [, sha, msg] = l.match(/^[0-9a-f]+ ([0-9a-f]+) .*?\t(.*)$/) ?? [];
+    return sha ? { sha, msg } : null;
+  }).filter(Boolean).reverse();
+  return { main, states, stash };
+}
+
+const stashShas = () => { try { return (mainGitState()?.stash ?? []).map((x) => x.sha); } catch { return null; } };
+
+/** One event when the main checkout is mid-rebase / mid-merge or gained stash entries since `baseline` (sha list). */
+async function checkMainGit({ label, role, baseline, when }) {
+  try {
+    const g = mainGitState();
+    if (!g) return "no-main";
+    const known = baseline ? new Set(baseline) : null;
+    const gained = known ? g.stash.filter((x) => !known.has(x.sha)) : [];
+    if (!g.states.length && !gained.length) return "clean";
+    const rebasing = g.states.filter((x) => x.kind !== "MERGE_HEAD");
+    const parts = [
+      ...g.states.map((x) => x.kind === "MERGE_HEAD" ? `MERGE_HEAD (${x.sha.slice(0, 9)})` : `${x.kind}/ (${x.head ?? "?"}${x.autostash ? `, autostash ${x.autostash.slice(0, 9)}` : ", no autostash"})`),
+      ...(gained.length ? [`${gained.length} new stash entr${gained.length === 1 ? "y" : "ies"} since dispatch (${gained.map((x) => `"${x.msg.slice(0, 50)}"`).join(", ")})`] : []),
+    ];
+    const summary = `Main checkout git state when ${label} ${when}: ${parts.join(" · ")}`;
+    const body = [
+      `Seen by .claude/hooks/agent-events.mjs (W-1337) in ${g.main}/.git when ${label} (${role}) ${when}.`,
+      "",
+      ...g.states.map((x) => `- ${x.kind}${x.head ? ` on ${x.head}` : ""}${x.autostash ? `; autostash ${x.autostash}: other agents' edits may be ONLY there. Keep it: \`git stash store -m "autostash ${x.autostash}" ${x.autostash}\` (from the main checkout, by the chief of staff), then \`git stash show -p ${x.autostash}\`.` : ""}${x.sha ? ` ${x.sha}` : ""}`),
+      ...gained.map((x) => `- new stash entry ${x.sha} "${x.msg}"`),
+      "",
+      "Nobody should rebase, pull --rebase, stash or reset in the main checkout; integrate in a worktree (e.g. /home/user/s3c-int).",
+      "Readiness: company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md",
+    ].join("\n");
+    const fp = JSON.stringify({ s: g.states, n: gained.map((x) => x.sha) });
+    add({ id: `hk-gs-${hash(fp)}`, ts: new Date().toISOString(), type: rebasing.length ? "incident" : "note", room: "incident", actor: role || "chief-of-staff", agent: label, subjects: ["W-1337", role].filter(Boolean).join(","), summary: summary.length > 300 ? summary.slice(0, 299) + "…" : summary, refs: "company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md" }, body);
+    return rebasing.length ? "incident" : "note";
+  } catch (e) {
+    logError(`git-state check: ${e?.message ?? e} | stderr: ${String(e?.stderr ?? "").trim().slice(0, 300)}`);
+    return "error";
+  }
+}
+
+/** The stash shas taken at this tool call's PreToolUse (null when none was taken); the file is consumed. */
+function readBaseline(toolUseId) {
+  const f = path.join(STATE, `pre-${hash(toolUseId)}.json`);
+  try {
+    const b = JSON.parse(fs.readFileSync(f, "utf8")).stash;
+    fs.rmSync(f, { force: true });
+    return Array.isArray(b) ? b : null;
+  } catch { return null; }
+}
+
 export async function handle(payload) {
   const ev = payload?.hook_event_name;
   const dispatcher = process.env.S3_ROLE || "chief-of-staff";
@@ -117,6 +203,16 @@ export async function handle(payload) {
     const src = parseSource(input.prompt);
     const chooser = parseChooser(input.prompt, src, dispatcher);
     const summary = `Dispatch ${role}${input.model ? ` (${input.model})` : ""}: ${oneLine(input.description || "agent", 100)} · ${src.source === "none" ? "source=none" : src.source} chooser=${chooser}`;
+    try {
+      // The stash baseline for this run (W-1337): per tool call, and the latest dispatch's for runs the hook cannot join.
+      const shas = stashShas();
+      if (shas) {
+        fs.mkdirSync(STATE, { recursive: true });
+        const b = JSON.stringify({ stash: shas, ts: now, toolUseId });
+        fs.writeFileSync(path.join(STATE, `pre-${hash(toolUseId)}.json`), b);
+        fs.writeFileSync(path.join(STATE, "stash-last.json"), b);
+      }
+    } catch (e) { logError(`stash baseline: ${e?.message ?? e}`); }
     add({ id: `hk-${hash(toolUseId + "dispatch")}`, ts: now, type: "dispatch", room: await roomFor(role), actor: dispatcher, agent: labelFor(input, toolUseId), subjects: role, summary, state: "working", source: src.source, chooser, "tool-use-id": toolUseId }, String(input.prompt ?? ""));
     return "dispatch";
   }
@@ -126,17 +222,26 @@ export async function handle(payload) {
       const id = agentIdOf(r);
       if (!id) return "async-no-id";
       fs.mkdirSync(STATE, { recursive: true });
-      fs.writeFileSync(path.join(STATE, `${id}.json`), JSON.stringify({ toolUseId, label: labelFor(input, toolUseId), role, ts: now }));
+      const pre = readBaseline(toolUseId);
+      fs.writeFileSync(path.join(STATE, `${id}.json`), JSON.stringify({ toolUseId, label: labelFor(input, toolUseId), role, ts: now, stash: pre }));
       return "async";
     }
     const body = responseText(r);
+    const baseline = readBaseline(toolUseId);
     add({ id: `hk-${hash(toolUseId + "report")}`, ts: now, type: "report", room: await roomFor(role), actor: role, agent: labelFor(input, toolUseId), subjects: role, summary: `${oneLine(input.description || "agent", 60)}: ${oneLine(body, 110) || "(no report text)"}`, state: "done", "tool-use-id": toolUseId }, body);
+    await checkMainGit({ label: labelFor(input, toolUseId), role, baseline, when: "reported" });
     return "report";
   }
   if (ev === "SubagentStop") {
     const id = payload.agent_id;
     const f = id && path.join(STATE, `${path.basename(String(id))}.json`);
-    if (!f || !fs.existsSync(f)) return "unknown-agent";
+    if (!f || !fs.existsSync(f)) {
+      // Not a run this hook launched async (or no id): still check the main checkout, against the latest dispatch.
+      let last = null;
+      try { last = JSON.parse(fs.readFileSync(path.join(STATE, "stash-last.json"), "utf8")).stash; } catch {}
+      await checkMainGit({ label: id ? `agent ${String(id).slice(0, 40)}` : `a ${payload.agent_type || "subagent"} run`, role: payload.agent_type || "", baseline: last, when: "stopped" });
+      return "unknown-agent";
+    }
     const s = JSON.parse(fs.readFileSync(f, "utf8"));
     let body = "";
     try {
@@ -149,6 +254,7 @@ export async function handle(payload) {
     } catch {}
     add({ id: `hk-${hash(s.toolUseId + "report")}`, ts: now, type: "report", room: await roomFor(s.role), actor: s.role, agent: s.label, subjects: s.role, summary: `${s.label.split(" ·")[0].slice(0, 60)}: ${oneLine(body, 110) || "finished (SubagentStop)"}`, state: "done", "tool-use-id": s.toolUseId }, body.slice(0, 50_000));
     fs.rmSync(f, { force: true });
+    await checkMainGit({ label: s.label, role: s.role, baseline: s.stash ?? null, when: "stopped" });
     return "report";
   }
   return "ignored";

@@ -206,8 +206,10 @@ test("pre-commit passes a bare commit in a linked worktree and an empty commit i
 
 // ---------- no-pkill.mjs ----------
 
-const hook = (payload) => {
-  const r = spawnSync("node", [NO_PKILL], { input: typeof payload === "string" ? payload : JSON.stringify(payload), encoding: "utf8" });
+// S3_GUARD_MAIN: the main-checkout git rules (W-1337) judge against a path that is no checkout, so these cases
+// mean the same wherever the suite runs (also from the main checkout itself). The W-1337 tests set their own.
+const hook = (payload, env = { S3_GUARD_MAIN: path.join(os.tmpdir(), "s3-no-main-checkout") }) => {
+  const r = spawnSync("node", [NO_PKILL], { input: typeof payload === "string" ? payload : JSON.stringify(payload), encoding: "utf8", env: { ...process.env, ...env } });
   return { code: r.status, err: r.stderr };
 };
 const bash = (command) => hook({ tool_name: "Bash", tool_input: { command } });
@@ -341,4 +343,154 @@ test("M2: plain kill <pid>, port lookups and serve.sh stop pass", () => {
     "kill $(cat .serve/3591.pid)", "grep -n \"fuser -k\" tools/serve.sh", "echo 'kill $(lsof -t -i:3591)'",
   ]) assert.equal(verdict(c), null, `should pass: ${c}`);
   for (const c of ["kill 1234", "lsof -i:3591", "tools/serve.sh stop 3591"]) assert.equal(bash(c).code, 0, c);
+});
+
+// ---------- W-1337 (batch company/ops/dispatch-requests/2026-10-16-r5-tools.md#B1): shared-checkout git guard ----------
+// A tmp "main" checkout with branch `side` one commit off `main`, plus a linked worktree; core.hooksPath = tools/git-hooks
+// is set after the commits (so pre-commit's main-checkout rules do not get in the way of the setup).
+function rebaseRepo() {
+  const d = repo();
+  git(d, "checkout", "-q", "-b", "side");
+  write(d, "side.txt", "s\n");
+  git(d, "add", "side.txt");
+  git(d, "commit", "-q", "-m", "side");
+  git(d, "checkout", "-q", "main");
+  write(d, "upstream.txt", "u\n");
+  git(d, "add", "upstream.txt");
+  git(d, "commit", "-q", "-m", "upstream");
+  git(d, "checkout", "-q", "side");
+  git(d, "config", "core.hooksPath", HOOKS);
+  return d;
+}
+// Another agent's work in flight: one staged edit, one unstaged edit, one staged new file.
+function workInFlight(d) {
+  write(d, "mine.txt", "staged edit\n");
+  write(d, "added.txt", "staged new file\n");
+  git(d, "add", "mine.txt", "added.txt");
+  write(d, "theirs.txt", "unstaged edit\n");
+}
+function assertWorkInPlace(d) {
+  assert.equal(fs.readFileSync(path.join(d, "mine.txt"), "utf8"), "staged edit\n");
+  assert.equal(fs.readFileSync(path.join(d, "theirs.txt"), "utf8"), "unstaged edit\n");
+  assert.equal(fs.readFileSync(path.join(d, "added.txt"), "utf8"), "staged new file\n");
+  assert.deepEqual(staged(d), ["added.txt", "mine.txt"], "staged edits are staged again");
+  assert.deepEqual(git(d, "diff", "--name-only").split("\n").filter(Boolean), ["theirs.txt"], "the unstaged edit is unstaged");
+}
+const stashList = (d) => git(d, "stash", "list", "--format=%gs").split("\n").filter(Boolean);
+const noRebaseState = (d) => {
+  for (const s of ["rebase-merge", "rebase-apply"]) assert.ok(!fs.existsSync(path.join(d, ".git", s)), `.git/${s} removed`);
+};
+
+test("W-1337 pre-rebase: `rebase --autostash` in the main checkout is refused; staged + unstaged edits stay, one listed stash kept", () => {
+  const d = rebaseRepo();
+  const head = git(d, "rev-parse", "HEAD");
+  workInFlight(d);
+  const r = run(d, "git", ["rebase", "--autostash", "main"]);
+  assert.notEqual(r.code, 0, "refused");
+  assert.match(r.err, /pre-rebase \(tools\/git-hooks\/pre-rebase\): refused/);
+  assert.match(r.err, /restored it with the index/);
+  assert.match(r.err, /integrate in your own worktree \(e\.g\. \/home\/user\/s3c-int\)/i);
+  assert.equal(git(d, "rev-parse", "HEAD"), head, "not rebased");
+  assertWorkInPlace(d);
+  const list = stashList(d);
+  assert.equal(list.length, 1, list.join("\n"));
+  assert.match(list[0], /^pre-rebase guard: autostash kept \d{4}-\d\d-\d\dT/);
+  assert.match(r.err, /stash@\{0\}/);
+  noRebaseState(d);
+  assert.match(git(d, "status"), /On branch side/, "not mid-rebase");
+});
+
+test("W-1337 pre-rebase: the same rebase in a linked worktree proceeds", () => {
+  const d = rebaseRepo();
+  const wt = path.join(mkTemp("guards-wt-"), "wt");
+  git(d, "worktree", "add", "-q", "-b", "wtb", wt, "side");
+  workInFlight(wt);
+  const r = run(wt, "git", ["rebase", "--autostash", "main"]);
+  assert.equal(r.code, 0, r.err);
+  assert.equal(git(wt, "rev-parse", "HEAD~1"), git(d, "rev-parse", "main"), "rebased onto main");
+  assert.equal(fs.readFileSync(path.join(wt, "theirs.txt"), "utf8"), "unstaged edit\n");
+  assert.equal(fs.readFileSync(path.join(wt, "mine.txt"), "utf8"), "staged edit\n");
+  assert.equal(stashList(d).length, 0, "the autostash was applied and dropped by git, as usual");
+});
+
+test("W-1337 pre-rebase: `pull --rebase` with rebase.autoStash=true in the main checkout behaves the same", () => {
+  const d = rebaseRepo();
+  git(d, "remote", "add", "o", d); // pull from itself: o/main is local main
+  git(d, "config", "rebase.autoStash", "true");
+  const head = git(d, "rev-parse", "HEAD");
+  workInFlight(d);
+  const r = run(d, "git", ["pull", "--rebase", "o", "main"]);
+  assert.notEqual(r.code, 0, "refused");
+  assert.match(r.err, /pre-rebase \(tools\/git-hooks\/pre-rebase\): refused/);
+  assert.equal(git(d, "rev-parse", "HEAD"), head);
+  assertWorkInPlace(d);
+  assert.equal(stashList(d).length, 1);
+  noRebaseState(d);
+});
+
+test("W-1337 pre-rebase: a clean-tree rebase in the main checkout is refused and adds no stash", () => {
+  const d = rebaseRepo();
+  const head = git(d, "rev-parse", "HEAD");
+  const r = run(d, "git", ["rebase", "main"]);
+  assert.notEqual(r.code, 0);
+  assert.match(r.err, /refused/);
+  assert.equal(git(d, "rev-parse", "HEAD"), head);
+  assert.equal(stashList(d).length, 0);
+  noRebaseState(d);
+});
+
+// (b): the Bash PreToolUse rules, judged against a real tmp main checkout and a real linked worktree.
+function mainAndWorktree() {
+  const main = repo();
+  fs.mkdirSync(path.join(main, "sub"));
+  const wt = path.join(mkTemp("guards-wt-"), "wt");
+  git(main, "worktree", "add", "-q", "-b", "wtb", wt);
+  return { main, wt };
+}
+const REFUSED_IN_MAIN = [
+  "git rebase main", "git rebase --autostash -i HEAD~1", "git rebase --abort", "git pull --rebase", "git pull -r origin main",
+  "git pull --rebase=merges", "git pull --autostash --ff-only", "git -c pull.rebase=true pull --ff-only", "git pull",
+  "git stash push -m tag", "git stash apply 3f2a9c1", "git stash drop stash@{1}", "git stash -m tag", "git reset --hard",
+  "git reset --hard HEAD~1", "git checkout -- .", "git checkout HEAD -- .", "git checkout .", "git checkout -f main",
+  "git restore .", "git restore --staged :/", "git clean -f", "git clean -fdx", "git clean --force -d",
+];
+const PASS_IN_MAIN = [
+  "git pull --ff-only", "git pull --ff-only origin main", "git status", "git log --oneline -3", "git stash list",
+  "git stash list --format='%H %gs'", "git stash show -p 3f2a9c1", "git reset --soft HEAD~1", "git checkout -- src/a.ts",
+  "git restore src/a.ts", "git clean -n", "git commit -m x -- a.txt",
+];
+
+test("W-1337 no-pkill: each listed git form is refused in the main checkout, naming the worktree alternative", () => {
+  const { main } = mainAndWorktree();
+  for (const c of REFUSED_IN_MAIN) {
+    const v = verdict(c, 0, { cwd: main, main });
+    assert.ok(v, `should refuse in main: ${c}`);
+    assert.match(v, /s3c-int/, `names the worktree: ${c}`);
+  }
+  // judged from a subdirectory, from cd, from -C and from --git-dir
+  for (const [c, cwd] of [["git rebase main", path.join(main, "sub")], [`cd ${main} && git stash push -m t`, "/"],
+    [`git -C ${main} reset --hard`, "/"], ["git -C sub clean -f", main], [`git --git-dir=${main}/.git rebase main`, "/"]])
+    assert.ok(verdict(c, 0, { cwd, main }), `should refuse: ${c} (cwd ${cwd})`);
+});
+
+test("W-1337 no-pkill: the pass forms pass in the main checkout, and everything passes in a linked worktree", () => {
+  const { main, wt } = mainAndWorktree();
+  for (const c of PASS_IN_MAIN) assert.equal(verdict(c, 0, { cwd: main, main }), null, `should pass in main: ${c}`);
+  // Everything that is not refused everywhere (bare stash, pop: the older rules) passes in the worktree.
+  for (const c of REFUSED_IN_MAIN) assert.equal(verdict(c, 0, { cwd: wt, main }), null, `should pass in worktree: ${c}`);
+  for (const c of [`git -C ${wt} rebase main`, `cd ${wt} && git reset --hard`]) assert.equal(verdict(c, 0, { cwd: main, main }), null, c);
+  // Another repo's main checkout (a scratch repro) is not the shared one.
+  const other = repo();
+  assert.equal(verdict("git rebase main", 0, { cwd: other, main }), null);
+});
+
+test("W-1337 no-pkill hook process: payload cwd in the main checkout is refused (exit 2), in the worktree it passes", () => {
+  const { main, wt } = mainAndWorktree();
+  const env = { S3_GUARD_MAIN: main };
+  const r = hook({ tool_name: "Bash", cwd: main, tool_input: { command: "git rebase --autostash main" } }, env);
+  assert.equal(r.code, 2);
+  assert.match(r.err, /git rebase/);
+  assert.match(r.err, /s3c-int/);
+  assert.equal(hook({ tool_name: "Bash", cwd: wt, tool_input: { command: "git rebase --autostash main" } }, env).code, 0);
+  assert.equal(hook({ tool_name: "Bash", cwd: main, tool_input: { command: "git pull --ff-only" } }, env).code, 0);
 });
