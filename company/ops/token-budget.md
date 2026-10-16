@@ -113,29 +113,7 @@ approved project's budget. Untagged work is treated as small and is never gated.
 **The bite** is a mechanism, not a reminder:
 
 - `node tools/ledger.mjs gate --project=<id>` exits 1 for a major project that is proposed, returned, paused, killed, legacy, past its grace period, or at 100% of budget. The dispatch preflight being built by chief-of-staff-ceo-office calls it (board item; I did not edit her files).
-- `node tools/ledger.mjs check` exits 1 if any **tagged** ledger line after `enforceFrom` (2026-10-14 19:00 UTC) went to a project the gate refused at that moment; if an approved major project has no approval record on disk, no budget, or was approved by its own proposer; or if its approval record has no `## 9. Initiative proposals carry the budget line first (added 2026-10-15, W-905)
-
-**Why.** First Light, the first public release, reached the founder with no token budget and no money line, and the portfolio manager had not seen it (founder correction in company/decisions/2026-10-15-founder-first-light.md). The founder decided the program and left its spend "pending Project Review 1". A decision without a cost is a decision on half the facts.
-
-**The rule.** Any **initiative proposal** that reaches the founder carries a portfolio-manager **budget line** before it does. That covers a founder-inbox item, a decision ask in a conversation, or a proposal document. An initiative is anything that would be a major project under section 6, or that asks for money. This applies to every proposer, not only the chief of staff. The budget line holds:
-
-1. **tokens per tranche**, from measured per-run or per-lesson unit costs, naming the measurement, and saying which units are proxies or extrapolations;
-2. **money** where there is real spend, each line marked verified (a quote or a price page opened) or unverified;
-3. a **return measure**, and a **stop rule** for each tranche;
-4. **what it displaces**: review capacity, named roles, founder decisions and lesson-equivalents at the current cost per published lesson;
-5. a **register entry**: the project in projects.json as `proposed`, with its `premortem`.
-
-**How it runs.**
-- The proposer asks the portfolio manager for the line. A board item to portfolio-manager is enough. The portfolio manager writes it within one operating loop, into projects.json and the proposal (a "Budget line (portfolio-manager)" section), or says in writing why the item is not an initiative.
-- The chief of staff and the CEO office, who write the founder inbox, do not file an initiative item without a link to the budget line (the `budget` field on the inbox item, pointing at the projects.json id). An item without one goes back to its proposer, not to the founder.
-- If the founder decides before a line exists (as with First Light), the decision record says "budget pending", the project is registered as `proposed`, and the gate refuses tagged dispatch until the forum or the founder sets the budget.
-- The portfolio manager writes the line but does not approve it (the authority rule). The forum or the founder approves it.
-
-**Mechanism, not only a rule.** This text is a rule until a tool checks it. The proposed check is for `node tools/ledger.mjs check` to warn on an open founder-inbox item in category `decision` that links a file under `company/initiatives/` or a major projects.json id and has no `budget` field. It is routed as a board item to the chief of staff and the tools lead (founder-inbox.json has one writer). Until it lands, the CEO office checks by hand at each founder digest.
-
-**Would be wrong if:** within two weeks, more than one initiative reaches the founder without a line, or the line delays founder decisions by more than one operating loop (median, measured from the board item to the line).
-
-## Objections` section or answers an objection with "noted". Wiring `check` into `npm run check` needs a change to `tools/company.mjs`, which is protected. That is routed for an amendment and not done here.
+- `node tools/ledger.mjs check` exits 1 if any **tagged** ledger line after `enforceFrom` (2026-10-14 19:00 UTC) went to a project the gate refused at that moment; if an approved major project has no approval record on disk, no budget, or was approved by its own proposer; or if its approval record has no `## Objections` section or answers an objection with "noted". Wiring `check` into `npm run check` needs a change to `tools/company.mjs`, which is protected. That is routed for an amendment and not done here.
 - **Grace period.** Projects started before the forum existed are `in-flight` and pass with a warning until 2026-10-16 23:59 UTC (wave J, Life Hacks v2, Books decks, History, Marketing), or until 2026-10-21 (Big Ideas, multi-card, NCM). After that the gate fails until the forum rules.
 
 ## 7. Today's backfill (labelled)
@@ -163,6 +141,49 @@ ledger:** about 64 runs after 15:20 (missing item 1), the 32 stopped runs, and t
 | EDD-003 stage 1 | kit and deploy path, a new bundler | trigger fired; waits on the bundler decision | no |
 | EDD-004 knots kit | kit | approved with conditions | engineering review; no budget |
 | EDD-006 multi-card sequence | kit | on a branch, awaiting review | engineering review; no budget |
+
+## 9. Initiative proposals carry the budget line first (added 2026-10-15, W-905)
+
+**Why.** First Light, the first public release, reached the founder with no token budget and no money line, and the portfolio manager had not seen it (founder correction in company/decisions/2026-10-15-founder-first-light.md). The founder decided the program and left its spend "pending Project Review 1". A decision without a cost is a decision on half the facts.
+
+**The rule.** Any **initiative proposal** that reaches the founder carries a portfolio-manager **budget line** before it does. That covers a founder-inbox item, a decision ask in a conversation, or a proposal document. An initiative is anything that would be a major project under section 6, or that asks for money. This applies to every proposer, not only the chief of staff. The budget line holds:
+
+1. **tokens per tranche**, from measured per-run or per-lesson unit costs, naming the measurement, and saying which units are proxies or extrapolations;
+2. **money** where there is real spend, each line marked verified (a quote or a price page opened) or unverified;
+3. a **return measure**, and a **stop rule** for each tranche;
+4. **what it displaces**: review capacity, named roles, founder decisions and lesson-equivalents at the current cost per published lesson;
+5. a **register entry**: the project in projects.json as `proposed`, with its `premortem`.
+
+**How it runs.**
+- The proposer asks the portfolio manager for the line. A board item to portfolio-manager is enough. The portfolio manager writes it within one operating loop, into projects.json and the proposal (a "Budget line (portfolio-manager)" section), or says in writing why the item is not an initiative.
+- The chief of staff and the CEO office, who write the founder inbox, do not file an initiative item without a link to the budget line (the `budget` field on the inbox item, pointing at the projects.json id). An item without one goes back to its proposer, not to the founder.
+- If the founder decides before a line exists (as with First Light), the decision record says "budget pending", the project is registered as `proposed`, and the gate refuses tagged dispatch until the forum or the founder sets the budget.
+- The portfolio manager writes the line but does not approve it (the authority rule). The forum or the founder approves it.
+
+**Mechanism, not only a rule.** This text is a rule until a tool checks it. The proposed check is for `node tools/ledger.mjs check` to warn on an open founder-inbox item in category `decision` that links a file under `company/initiatives/` or a major projects.json id and has no `budget` field. It is routed as a board item to the chief of staff and the tools lead (founder-inbox.json has one writer). Until it lands, the CEO office checks by hand at each founder digest.
+
+**Would be wrong if:** within two weeks, more than one initiative reaches the founder without a line, or the line delays founder decisions by more than one operating loop (median, measured from the board item to the line).
+
+## 10. First Light tranche 2 re-based on the full-scope estimate (2026-10-16, W-1191, W-1219)
+
+portfolio-manager (secretary of Project Review 1), 2026-10-16. **A proposal for the forum and the founder, not a decision**: I wrote the First Light budget line, so I may not approve its re-base. Lane 18 (chief-of-staff-ceo-office) checks this section.
+
+**Source.** principal-engineer's full-scope re-estimate, [company/engineering/notes/2026-10-16-first-light-reestimate-full-scope.md](../engineering/notes/2026-10-16-first-light-reestimate-full-scope.md), short answer 6 and section 2 (Kenji's estimate, not a measurement; run counts carry his 1.25x to 1.5x error), and his PR1 position item 7 ([2026-10-16-project-review-positions-principal-engineer.md](../rituals/records/2026-10-16-project-review-positions-principal-engineer.md)).
+
+| | Tokens | From |
+|---|---|---|
+| T2 as registered and approved | 8.17M | projects.json `first-light` workstreams' t2, summed: 1,729k + 1,144k + 1,221k + 823k + 530k + 287k + 950k + 0 + 1,485k = 8,169k |
+| T2 stop rule (release ceiling) | 10.2M | 1.25 x 8.17M, projects.json `first-light.kill` |
+| Engineering T2, full scope | about 8.5M (8.2M to 8.6M) | Kenji, note section 2 |
+| + cadence | 1.49M | Kenji; the register's war-room line is 1,485k, so cadence is already in the 8.17M |
+| + quality line (evaluation steward, quality-bar section 3) | about 9.2M at full scope, 6.3M minimum | Kenji; **not** in the 8.17M (the register has no T2 quality workstream; surface-value-amendment t2 is 0) |
+| **T2 re-based** | **about 19.2M** (16.3M at the quality minimum) | 8.5 + 1.49 + 9.2 = 19.19; 8.5 + 1.49 + 6.3 = 16.29 |
+
+**What it means.** Both figures are over the 10.2M ceiling (19.2M is 1.9x it; 16.3M is 1.6x). **On these figures the stop rule trips at the 10-23 checkpoint whatever week 1 shows.** Kenji's "would be wrong if the 8.17M already contains the quality line" does not hold: it contains cadence but not quality, so the gap stands as he stated it. Taking the cut order does not get under 10.2M either (my arithmetic on his figures, not his): without the swap, about 7.2 + 1.49 + 7.8 = 16.5M; without the swap and the ad slot, about 6.7 + 1.49 + 6.4 = 14.6M.
+
+**Proposed for the 10-23 checkpoint (the forum, with the founder: T2 is over 3M and touches the deploy path, so the 0a delegation does not cover it).** First Light comes back to the forum on 10-23 with one of: (a) T2 re-based to 19.2M with the ceiling at 1.25x (24.0M; 20.4M if the quality line is set at its minimum), program about 22.8M (3.59M + 19.2M) against 11.76M today; or (b) cuts in the note's section 5 order, each priced with the figures above. The W-908 week-1 re-estimate replaces these numbers if it differs. Tranche 1 (3.59M) is not contested and keeps running. Tokens still do not bind: review capacity and the privacy reviewer do (PR1 0d), so whichever option is taken states its review draw.
+
+**Would be wrong if:** the W-908 re-estimate on 10-23 puts T2 at or under 10.2M, or the forum records that the quality line is funded outside First Light (then T2 is about 10.0M and the rule may pass).
 
 ## Objections
 
