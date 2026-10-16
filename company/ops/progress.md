@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #6 M7 readiness draft (W-1576)
+
+**Changed:** rewrote `company/engineering/readiness/2026-10-16-algorithms-200.md` as a tier-2 readiness draft, prepared by community-engineer for chief-of-staff. It holds the M1–M6 evidence, M5 numbers, the final commit list, the grouped revert and a blank approval section; the first tier-1 version is kept as history. prs/6.md §10.
+
+**Believe (high):** every PR #6 merge condition except M7 approval is recorded. The qa-tester commits only add records and `evidence.qa` links. Gap, stated in the record: the 4 built-output tests (`VERCEL=1`) did not run on this head.
+
+**Next:** principal-engineer-ops approves or refuses W-1576. Then community-engineer fetches and pushes `codex/algorithms-200` without force.
+
+**Blocked:** the push, on M7 approval.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #6 second integration: review/fix branches and base af8e4021 merged, not pushed
 
 **Changed:** on `pr/6-algorithms-200`, merged `pr6/pe` (PE review, approve with conditions M1–M7), `pr6/platform` (M1/M2, cm-cs M6 decision, W-1578 catalog) and `pr6/build` (M3, W-1569) with merge commits. Base moved to `af8e4021` and took W-1517..W-1561, so all 18 PR #6 ids moved +45 to W-1562..W-1579 (`64359bc7`; map in `company/engineering/community/prs/6.md` §9.2), then merged base (`02707ebb`). Engineer read of the W-1578 catalog diff: no finding (§9.4). W-1569, W-1572..W-1574, W-1578 moved to review.
