@@ -77,7 +77,6 @@ Workflow: `.github/workflows/deploy.yml` (**Deploy to Vercel**).
 
 | Trigger | Target | Source |
 |---|---|---|
-| Successful `ci` workflow on the repository's default branch | preview | Exact commit that passed CI |
 | Actions → Deploy to Vercel → Run workflow → target=preview | preview | Selected default-branch commit |
 | Actions → Deploy to Vercel → Run workflow → target=production | production | Selected default-branch commit |
 
@@ -95,7 +94,7 @@ One-time setup in GitHub **Settings → Environments**:
    Vercel project. These IDs come from your local `.vercel/project.json` after linking.
 3. In each environment, add the secret `VERCEL_TOKEN` directly in GitHub. Do not put it in a
    repository file, workflow input or chat. Give it access only to the intended Vercel team.
-4. Merge this workflow into the default branch. GitHub discovers `workflow_run` and manual
+4. Merge this workflow into the default branch. GitHub discovers manual
    dispatch workflows there. The pipeline fails clearly before installation if configuration
    is missing; it does not create a Vercel project or invent credentials.
 

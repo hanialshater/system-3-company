@@ -1,9 +1,8 @@
 name: Deploy to Vercel
 
 on:
-  workflow_run:
-    workflows: [ci]
-    types: [completed]
+  # Manual only (founder decision 2026-10-16): no automatic deploy after CI. Every deploy,
+  # preview included, needs the founder's approval of that deploy (CLAUDE.md).
   workflow_dispatch:
     inputs:
       target:
@@ -22,20 +21,15 @@ concurrency:
 
 jobs:
   deploy:
-    # Only the default branch can receive deployment credentials. workflow_run deploys
-    # the exact successful CI commit; manual production runs must select the default branch.
-    if: >-
-      (github.event_name == 'workflow_dispatch' && github.ref_name == github.event.repository.default_branch) ||
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_branch == github.event.repository.default_branch &&
-       github.event.workflow_run.head_repository.full_name == github.repository)
+    # Only the default branch can receive deployment credentials; manual runs must select it.
+    if: github.event_name == 'workflow_dispatch' && github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     timeout-minutes: 45
     environment: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'production' && 'production' || 'preview-deploy' }}
     env:
       CI: "1"
       DEPLOY_TARGET: ${{ github.event_name == 'workflow_dispatch' && inputs.target || 'preview' }}
-      RELEASE_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+      RELEASE_SHA: ${{ github.sha }}
       VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
       VERCEL_TELEMETRY_DISABLED: "1"
