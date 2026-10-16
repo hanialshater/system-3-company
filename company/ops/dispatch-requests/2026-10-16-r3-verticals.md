@@ -66,3 +66,6 @@ stop if: cm-physics rules that number and unit tokens count and a stage cannot g
 
 ## What next round looks like
 If B1/B2 land and their r15 walks pass, flip the 6 back to `review` as a batch item. B3 follows the cm-physics ruling. If A2's launch review publishes the 20, A6 gives a measured k/pub, and A3 is ruled, then the hold lifts and the first item is the physics #64-68 build.
+
+## Dispatched
+- B3 (physics #61-63 wording) **queued, condition met**: cm-physics' rulings R1-R5 (r3-physics.md) answer ask A3. Waits for a builder slot and host load ≤ 8; queue order for the next free slot: behavioral r4 B2, then this B3. SO-10-3 wave-j run (~13:12Z) found nothing else due; the three physics lessons re-enter reviews after B3 is merged and on the server (A1(d): SO-10-2, then SO-10-1, then SO-10-3).
