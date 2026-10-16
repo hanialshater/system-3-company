@@ -14677,10 +14677,11 @@
       "id": "W-1260",
       "title": "Hook fixes blocking F-31 (PE review 08ee578): E1 events.mjs skips unreadable lines, still appends, reports skipped count (+ conflict-marker test); N1 no-pkill treats heredoc bodies as data (+ 2 must-pass tests, decide cat<<EOF|sh); H2 spool: hook appends to an untracked spool (company/ops/events-spool/, gitignored), never to events.jsonl; chief of staff folds it in at commit",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1261",
@@ -14749,6 +14750,15 @@
       "id": "W-1268",
       "title": "SO-10 text: walkthrough-building checks reuse one shared production build per main SHA (chief of staff runs it, port + dist in the brief); QA defaults to 2 workers on this host (retro 2026-10-16 build OOM)",
       "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1269",
+      "title": "company status: show unfolded spool lines and age (H2 ruling / C5 W-1199) — tools/company.mjs is protected, so this needs an amendment evaluation-steward",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
