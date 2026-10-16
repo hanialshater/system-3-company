@@ -36,3 +36,20 @@ None. I compared every sentence in the transcript (hook, predict, options, panel
 
 - c6 → verified: a dated W-975 (d) statement that covers this line, a W-1059 ruling that accepts this second-hand route, and the gap named in the c6 row closed by an opened source.
 - Any verified claim → disputed: a change to Demo.tsx reveal text, cards or stage labels after 2026-10-16. Re-check on any version bump.
+
+
+## FC pass 63 (SO-10-2, trigger b: text changed by behavioral r4 B2, 267277a)
+
+fact-checker · 2026-10-16 · target: http://localhost:3591 · mode: external (shared review server) · built from: 6838dbac0613a3d1f2f5353e83b27d5c0dbf4f2c (read at start and end) · R3a scope check: pass · [project:behavioral-econ]
+
+Method: walkthrough on :3591 written to my scratchpad (not artifacts/), read cut at the appendix before any note; then every reveal branch driven with Playwright (Pixel 7) and the visible page text searched for the held strings before the trust sheet; then the check script run; then my own node re-derivation with no repo imports; then sources opened via PMC OAI-PMH where the claim is a term. Verdicts are in each claim's `note` (prefix "FC pass 63").
+
+Result: **2 verified, 0 disputed, 1 held** (c6).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | All four branches driven; matched 'one utility function fits both' and 'The sure $1M, then the 10% chance, would fit none'; mixed unchanged. Own node: both pair differences = -0.01 u(0) + 0.11 u(1M) - 0.10 u(5M); thresholds 10/11 and 1.1. |
+| c5 | verified | 'would fit none: the certainty effect' (matched), mixed names unchanged. PMC2891015 re-opened, section 'Certainty Effect' ("preference for security in the neighborhood of certainty"). |
+| c6 | **held** | Renders nowhere on this build: HELD_LINE = false; '4,098' / '19 countries' absent in all four branches and the transcript; 1B+2A shows the unheld sentence. Pass 54b's "line IS rendered" is superseded on 6838dbac. Source gap from 54b stands. |
+
+Unrecorded claims: none in the changed matched-branch text.

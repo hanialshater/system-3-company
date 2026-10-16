@@ -27,32 +27,40 @@
       "text": "The stage's options and their bars (600 cells each, filled = alive; stage key '■ = alive · □ = die'): saved wording '200 people will be saved' (200 live, 400 die, for sure) and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is'; die wording '400 people will die' (the same outcome as the first) and 'a 1-in-3 chance nobody dies, a 2-in-3 chance all 600 die' (the same as the second). With the toggle 'Say both in the same words' on, the die options read '200 people will be saved' and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is' in place. Reveal, every branch: 'In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.'",
       "support": "derivation",
       "source": "Brief 4 claim (1) and its declared stimulus (company/domains/briefs/behavioral.md §4); node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks 'option A-D text matches its outcomes', '(a) C has exactly A's outcomes', '(a) D has exactly B's outcomes', 'restatements are option A's and B's texts word for word'. Demo.tsx TEXT, RESTATE and BARS hold the same strings and outcomes. Builder statement, not self-verified.",
-      "status": "unverified",
-      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the only change is the key, now '■ = alive · □ = die' (decision 4): filled cells are lives, grey cells deaths."
+      "status": "verified",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): VERIFIED. All six declared strings render as exact whole lines (cut walkthrough transcript and my four driven branches); with the toggle on, row 2 reads A's and B's texts in place, not beside. Key renders '■ = alive · □ = die'. Bars: 600 cells (60 x 10), filled = alive; Demo.tsx BARS give A = C = 200 live sure, B = D = 600 live at 1/3, 0 at 2/3 (own node: C == A, D == B as lotteries). The SAME reveal sentence appears in all four branches. Prior: r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the only change is the key, now '■ = alive · □ = die' (decision 4): filled cells are lives, grey cells deaths.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c2",
       "text": "Any rule that ranks options by their outcomes and strictly prefers one option to the other picks the sure option in both wordings or the chance in both (C has A's outcomes and D has B's), so someone who prefers the sure 200 saved, then the 1-in-3 chance nobody dies, fits no such model: predict 'Someone prefers the sure 200 saved, then, in the 'die' wording, the 1-in-3 chance nobody dies. Can one model that judges outcomes fit both?', answer 'No: same programmes, two wordings'. Only a rule that ranks the two as a toss-up (expected value, 200 = 200) fits a mixed pair, and it is excluded by 'prefers'. A sure-sure or chance-chance pair fits some strict rule, so 'No: only the sure option both times fits' is false.",
       "support": "derivation",
       "source": "Brief 4 claim (2) and Decisions (r4) 1-2; node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks '(a) every outcome-based rule tried' (31 rules), '(a) mixed pairs fit only rules that rank the two programmes as a toss-up', '(a) both matched pairs fit some strict rule' and 'predict answer follows from the derivation'. Builder statement, not self-verified.",
-      "status": "unverified",
-      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: the equal-EV tie); the predict now says 'prefers' (strict) and this text carries the strict qualifier."
+      "status": "verified",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): VERIFIED (the FC pass 57 dispute is resolved). Own node, 312 outcome-only rules (u = x^a, a = 0.01-3.00; exponential utility; TK probability weighting with u = x; worst; best): A-vs-B equals C-vs-D for every rule; no strict rule fits A+D or B+C; the only tie is u = x^1 (EV 200 = 200); A+C fits a strict rule (x^0.5) and B+D fits one (x^2, best case), so option 2 is false. Predict on :3591 says 'prefers' and answer 'No: same programmes, two wordings'. Note: '(expected value, 200 = 200)' is an example of a toss-up rule, not the only possible one; the claim's 'only a rule that ranks the two as a toss-up' is what is true. Prior: r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: the equal-EV tie); the predict now says 'prefers' (strict) and this text carries the strict qualifier.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c3",
       "text": "The learner's own screen, conditional on the two choices: sure-then-chance or chance-then-sure: 'Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices: the wording moved you'; sure-sure or chance-chance: 'Same offer, same answer twice: a model that judges outcomes fits both.' Each branch opens 'You chose {first}, then {second}.' with the learner's two marked options.",
       "support": "derivation",
       "source": "Brief 4 claim (3); all four branches print in node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs ('Reveal branches') and Demo.tsx copies them (revealParas). The choices quoted are the ones still marked on the stage at the reveal (fixed once the toggle is first turned on). Builder statement, not self-verified.",
-      "status": "unverified",
-      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: false for an indifferent chooser); the mixed branches now open with the toss-up qualifier and the matched branches are reworded (decisions 1 and 3)."
+      "status": "verified",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): VERIFIED. Drove all four combinations on :3591 (A+C, A+D, B+C, B+D): each reveal opens 'You chose {first}, then {second}.' with the two options still marked; A+D and B+C carry 'Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices: the wording moved you'; A+C and B+D carry 'Same offer, same answer twice: a model that judges outcomes fits both.' True under strict preference (c2 derivation). Choices fix at the first toggle-on: picked A, C, then B, toggled on and off, all four options disabled, reveal quoted B then C. Prior: r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: false for an indifferent chooser); the mixed branches now open with the toss-up qualifier and the matched branches are reworded (decisions 1 and 3).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c4",
       "text": "Names: 'Sure for gains, gamble for losses: that pattern is called a framing effect' (sure-then-chance branch); 'the reverse of the pattern called a framing effect' (chance-then-sure branch); 'Preferring the sure 200 saved, then the chance nobody dies, would fit none: that is called a framing effect' (sure-sure and chance-chance branches).",
       "support": "convention",
       "source": "Brief 4 claim (4) (convention: the name of the pattern). Builder statement, not self-verified.",
-      "status": "unverified",
-      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57, term checked in Rachev et al. 2021, PMC8432807); the matched branches now name the framing effect too (decision 3). 'Would fit none' rests on c2's strict preference."
+      "status": "verified",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): VERIFIED. All three names render in their branches as quoted. Source opened first-hand this pass (PMC OAI-PMH, PMC8432807, Rachev et al. 2021): 'In the risky-choice framing effect, different wording of the same options leads to predictably different choices' and 'people tend to be risk-averse when presented with potential gains but tend to be risk-seeking when the same options are presented as potential losses'. So A-then-D is the named pattern and B-then-C its reverse. 'Would fit none' holds under the strict 'Preferring' (c2). Prior: r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57, term checked in Rachev et al. 2021, PMC8432807); the matched branches now name the framing effect too (decision 3). 'Would fit none' rests on c2's strict preference.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c5",
@@ -60,7 +68,7 @@
       "support": "source",
       "source": "W-902 row 'Framing' (robust; 'varied substantially across nations'; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Rachev et al. 2021, PLoS ONE, PMC8432807, opened in full by research-lead, not by the builder or the fact-checker. Tversky & Kahneman 1981 and Many Labs 1 (d = 0.60) only as reported by Rachev et al. 2021. Brief file rule 6: ships cut until a dated type (d) statement covers it, the fact-checker verifies it against the opened source, and the measured reveal recounts at 90 or less (with it the longest branch is 90 by script, over 90 with the kit's verdict). Fallback: cut; nothing replaces it.",
       "status": "unverified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): HELD (type (d); stays held). Renders nowhere: absent from the walkthrough transcript cut at the appendix and from all four reveal branches I drove on :3591; it appears only in the trust-sheet claim list. Not verified because the W-975 statement still covers (a)-(c) only, so (d) is held by default (SO-10-2 stop-if). For the future (d) statement: I opened PMC8432807 itself (first-hand, not via W-902): its abstract reports a survey 'from March to May 2020 and including 88,181 participants from 47 countries' and that 'the proportion of risky choices and the framing effect varied substantially across nations'. The OAI record also carries a 2024 correction notice (PLOS ONE e0315440, PMC11620341), which I did not read; whoever writes the (d) line should.",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): HELD (unverified, type (d)). Renders nowhere: absent from the cut transcript, from the body text before predict and at the reveal on all four branches; it appears only in the trust-sheet claim list (labelled HELD) and in the page's data payload. Not verified: the W-975 statement still covers (a)-(c) only and W-1059 (second-hand attributions) is unruled. I did not verify it from W-902's account. For W-1316: I opened the 2024 correction (PMC11620341) first-hand. It changes only the author-contribution note (co-first and co-second authors) and the capitalisation of two headings. It does not touch 88,181, 47 countries or 'varied substantially across nations'. Prior: FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): HELD (type (d); stays held). Renders nowhere: absent from the walkthrough transcript cut at the appendix and from all four reveal branches I drove on :3591; it appears only in the trust-sheet claim list. Not verified because the W-975 statement still covers (a)-(c) only, so (d) is held by default (SO-10-2 stop-if). For the future (d) statement: I opened PMC8432807 itself (first-hand, not via W-902): its abstract reports a survey 'from March to May 2020 and including 88,181 participants from 47 countries' and that 'the proportion of risky choices and the framing effect varied substantially across nations'. The OAI record also carries a 2024 correction notice (PLOS ONE e0315440, PMC11620341), which I did not read; whoever writes the (d) line should.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-16"
     },
@@ -99,8 +107,10 @@
       "text": "Recall: 'Someone prefers to take a treatment described as '90% survive', and to refuse it described as '10% die'. Can one model that judges outcomes fit both?' Answer 'No: same outcome, two descriptions': '90% survive' and '10% die' describe the same outcome (900 of 1,000 live in both), so a model that judges outcomes can take it both times or refuse it both times, but cannot prefer to take it one way and refuse it the other; 'No: only taking it both times fits' is false because refusing both times also fits.",
       "support": "derivation",
       "source": "1,000 × 0.9 = 1,000 − 1,000 × 0.1 = 900 (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, recall checks; brief 4 transfer recall, reworked r4). Builder statement, not self-verified.",
-      "status": "unverified",
-      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the recall question, options and answer are rebuilt (W-1306), and the 'why' is the builder's wording."
+      "status": "verified",
+      "note": "FC pass 63 (fact-checker, 2026-10-16, SO-10-2, server 6838dbac :3591): VERIFIED. meta.json recall.why equals the brief-4 script's recallWhy (fcd3e95, written by cm-behavioral) character for character, and equals the meta.json at server 6838dbac; question and options match the script too. Own node: 90% survive of 1,000 = 900 live; 10% die of 1,000 = 100 die, 900 live, so the same outcome. 'Cannot prefer to take it one way and refuse it the other' is true under strict preference; taking and refusing both times each fit some outcome model, so option 2 is false. Answer index 2. I did not drive the revisit card in a browser: Feed.tsx renders meta.recall verbatim. Prior: r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the recall question, options and answer are rebuilt (W-1306), and the 'why' is the builder's wording.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
@@ -117,7 +127,8 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/saved-or-die-same-600/2026-10-16-learner-adult-beginner-r1.md"
+      "company/reviews/saved-or-die-same-600/2026-10-16-learner-adult-beginner-r1.md",
+      "company/reviews/saved-or-die-same-600/2026-10-16-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

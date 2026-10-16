@@ -40,3 +40,22 @@ None. I compared every sentence in the transcript (hook, predict and options, pa
 
 - c6 → verified: a dated W-975 (d) statement that covers it and an opened source (PMC5303671 is reachable from this host), plus the reveal recount at 90 or less. Until then it stays cut.
 - Any verified claim → re-check: a change to Demo.tsx text, seed, rule or reveal after bc0edc0.
+
+
+## FC pass 63 (SO-10-2, trigger b: text changed by behavioral r4 B2, 267277a)
+
+fact-checker · 2026-10-16 · target: http://localhost:3591 · mode: external (shared review server) · built from: 6838dbac0613a3d1f2f5353e83b27d5c0dbf4f2c (read at start and end) · R3a scope check: pass · [project:behavioral-econ]
+
+Method: walkthrough on :3591 written to my scratchpad (not artifacts/), read cut at the appendix before any note; then every reveal branch driven with Playwright (Pixel 7) and the visible page text searched for the held strings before the trust sheet; then the check script run; then my own node re-derivation with no repo imports; then sources opened via PMC OAI-PMH where the claim is a term. Verdicts are in each claim's `note` (prefix "FC pass 63").
+
+Result: **4 verified, 0 disputed, 1 held** (c6 stays cut).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Rule line and new predict wording seen; avg = (S + g)/101; own node S = 3,463, g = 52 gives 34.8 / 23.2 / 28.8 / 86 as on screen. |
+| c2 | verified | g* = 2S/301 = 23.010; 0 misses by 22.9 (84 closer), 23 by 0.0 (none closer), 35 by 11.9. Options '0' / 'About 35' / 'About 23', answer index 2, no gloss. Both reveal sentences seen (g = 0; g = 23, 52, 100). |
+| c5 | verified | 'equilibrium' now in the predict question; links to /d/two-thirds-of-the-average (200). PMC5303671 re-opened: "the Nash equilibrium of zero". Finding carried: footnote i, all-1 is also an equilibrium with integer guesses (cm-behavioral's call; not a dispute). |
+| c6 | **held** | Renders nowhere: HELD_LINE = false; '250 real players' / '36.4' absent from the transcript and from the visible page at g = 0, 23, 52, 100. |
+| c10 | verified | Recall: 0 misses by 29.7, 30 by 0.15, 60 by 30.0; best 29.85; answer index 2. |
+
+Unrecorded claims: none in the changed text ('0 is this game'"'"'s equilibrium guess.' in predict and '0 is the equilibrium guess.' in recall are c5/c10).
