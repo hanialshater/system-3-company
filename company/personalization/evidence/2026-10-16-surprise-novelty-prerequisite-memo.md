@@ -190,3 +190,10 @@ The original text and table above are unchanged. Full reasoning: company/persona
 - **New row: `learnRate`** (P(encode | concept unknown) from one lesson): low 0.35, from Fazio et al. 2010 Table 2 [F] ((.48 − .21)/(1 − .21) ≈ 0.34, one untested read, per fact), high 0.70 (the provisional learner's guess, unsourced), no base, low confidence. Review F2.
 - **`forgetRate` high under a whole-probability form with a `max` guess floor:** the sourced equivalent of 0.20 is 0.12–0.13. Review F1.
 Still a research record, not a learner-facing claim.
+
+## Revision 2026-10-16 (run ls-e1-1016, W-1544): criterion 2 ranges
+
+The original text and the tables above are unchanged. Criterion 2's world takes its forgetting, review-timing, prior-knowledge and learnRate ranges from company/personalization/evidence/2026-10-16-criterion-2-ranges.md, not from this memo.
+- **Moved there, with sources:** `forgetRate` base 0.10 → 0.08 (McGillivray et al. 2015 [F]); high 0.19 (Fazio et al. 2010 [F]); a forgetting-shape row for 7–30 days. `learnRate` now has a base, 0.65 everything included or 0.60 before the 1.10 prediction boost (guess-then-answer studies [F]). `priorKnowledge` mean high 0.50 → 0.45. New rows: `revisitStrengthen`, `relearn`, learner × lesson spread of k, between-lesson prior spread, and `guessRecall` from the 3-option revisit format.
+- **Citation fixes:** Fazio & Marsh (2009) is *Psychonomic Bulletin & Review* 16(1), 88–92 ([A], was [R]). Settles & Meeder (2016) is pages 1848–1858 ([A], was [R]).
+Still a research record, not a learner-facing claim.
