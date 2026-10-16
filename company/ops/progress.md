@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · design-lead · W-1568 spec review (unknot-game, left-or-right) and W-1583 arc sets
+
+**Changed:** new `company/design/reviews/2026-10-16-knots-specs-review.md` (+ `badge-probe.mjs`); board W-1584 (interaction-designer), W-1585 (demo-builder).
+**Believe:** both specs approved with changes. unknot-game: U-1 selected chip looks selected not greyed, U-2 crossing buttons never filled. left-or-right B2: L-1 badge ring 13 units (spec's 10 leaves 2.9 px at 4_1's beak; 13 gives 6.1 px) with a 2.0-unit floor test; L-2 Mirror is an opacity dip, never a cross-fade (two outlines superimposed = false crossings); L-3 marks timing; L-4 readout never blanks; L-5 perspective >= 1200 px, no clipping; L-6 Turn over aria-pressed. Mid-flip on 4_1 accepted (53 ms in the touch band at 300 ms ease-in-out). Dropping Reset accepted. W-1583: tricolour-check takes the visual designer's sets plus A/B/C letter rings (replaces arc numbers). Sure on the measures; fairly sure on readability (mockups, not a device).
+**Next:** builders apply the conditions now (W-1585), even before the spec text is updated (W-1584); design-lead reviews built sheets (S4). **Blocked:** nothing.
+
 ## 2026-10-16 · cm-math-discrete · W-1581: rulings on the unknot-game and left-or-right specs
 
 **Changed:** math.discrete.md Knots batch 1 briefs 3 and 4 ("Spec rulings (W-1581)"), knots-check.mjs (new K20 tint facts 7 of 7, K21 B2 four rest states), brief-skips.json (both lines removed).
