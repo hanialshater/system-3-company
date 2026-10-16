@@ -1,4 +1,5 @@
-// Mockup renderer for company/design/specs/unknot-game.md and company/design/specs/left-or-right.md (W-1568).
+// Mockup renderer for company/design/specs/unknot-game.md and company/design/specs/left-or-right.md (W-1568; design-review
+// changes U-1, U-2, L-1 to L-6 folded in by W-1584: company/design/reviews/2026-10-16-knots-specs-review.md).
 // Run from the repo root: node company/design/specs/knots-batch1-mockups.mjs
 // Writes unknot-game.svg and left-or-right.svg beside this file, and prints the facts the specs quote.
 // Mockup only, not lesson code. Every knot picture is the shipped kit's draw() of a table knot, its mirror, or a
@@ -74,10 +75,15 @@ function tallyRow(x, y, label, filled, total, th) {
   }
   return s + text(x + 96 + 4 * 18 + 4, y, `${filled.length} of ${total}`, { size: 12, fill: th.fg, weight: 700 })
 }
+// U-1: the current chip is disabled (QA and keyboard) but drawn selected (kit .control.active, opacity 1), never greyed.
+// Only a disabled control that is not selected (Reset with nothing switched, everything during predict) is greyed.
 function button(x, y, w, label, th, { kind = 'control', on = false, disabled = false } = {}) {
-  const fill = kind === 'chip' && on ? th.domain : th.bg2
-  const ink = kind === 'chip' && on ? th.chipInk : th.fg
-  return `<rect x="${x}" y="${y}" width="${w}" height="44" rx="22" fill="${fill}" stroke="${th.line}" ${disabled ? 'opacity="0.55"' : ''}/>` +
+  const sel = kind === 'chip' && on
+  const active = kind === 'control' && on // a pressed toggle: kit .control.active (domain border, 25 % domain fill)
+  const mix = (a, b, t) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * t + parseInt(b.slice(i, i + 2), 16) * (1 - t)).toString(16).padStart(2, '0')).join('')
+  const fill = sel ? th.domain : active ? mix(th.domain, th.bg2, 0.25) : th.bg2
+  const ink = sel ? th.chipInk : th.fg
+  return `<rect x="${x}" y="${y}" width="${w}" height="44" rx="22" fill="${fill}" stroke="${active ? th.domain : th.line}" ${disabled && !sel ? 'opacity="0.55"' : ''}/>` +
     text(x + w / 2, y + 27, label, { size: 13, fill: ink, anchor: 'middle', weight: kind === 'chip' && on ? 700 : 400 })
 }
 
@@ -134,35 +140,37 @@ function unknotFrame({ ox, oy, title, note, n, switched, tally, th, locked = fal
 }
 
 // ---------- left-or-right ----------
-// Marks are drawn outside the transformed picture, at the on-screen position of their crossing: on a ring of radius 10
-// around it (just outside the 44 px hit circle at 290 px), at the angle where the badge is farthest from every strand,
-// inside the padded view box. Placement is computed on screen coordinates, so it is redone for each rest state.
+// Marks are drawn outside the transformed picture, at the on-screen position of their crossing: on a ring of radius 13
+// around it (L-1; was 10), at the angle where the badge is farthest from every strand (32 angles, ties to the lowest),
+// centre inside -3..103. Placement is computed on screen coordinates, so it is redone for each rest state.
+// Gap printed = badge-centre clearance - badge radius 4.6 - badge ring half-width 0.25 - strand half-width 1; floor 2.0.
+const RING_R = 13, BADGE_R = 4.6, BADGE_RING = 0.5, GAP_FLOOR = 2.0
 const sampleEdge = (d) => {
   const n = d.match(/-?\d+(\.\d+)?/g).map(Number) // "Mx yCx1 y1 x2 y2 x y": one cubic per edge
   const [x0, y0, x1, y1, x2, y2, x3, y3] = n, pts = []
-  for (let i = 0; i <= 40; i++) {
-    const t = i / 40, u = 1 - t
+  for (let i = 0; i <= 200; i++) {
+    const t = i / 200, u = 1 - t
     pts.push([u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3, u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3])
   }
   return pts
 }
 const markClear = []
-function marks(cr, signsArr, mapX, mapY, th, edges) {
+function marks(cr, signsArr, mapX, mapY, th, edges, where) {
   const strand = edges.flatMap((e) => sampleEdge(e.d)).map(([x, y]) => [mapX(x, y), mapY(x, y)])
   let s = ''
   cr.forEach((c, k) => {
     const X = mapX(c.x, c.y), Y = mapY(c.x, c.y)
     let best = null
     for (let a = 0; a < 32; a++) {
-      const bx = X + 10 * Math.cos(a * Math.PI / 16), by = Y + 10 * Math.sin(a * Math.PI / 16)
+      const bx = X + RING_R * Math.cos(a * Math.PI / 16), by = Y + RING_R * Math.sin(a * Math.PI / 16)
       if (bx < -3 || bx > 103 || by < -3 || by > 103) continue
       const clear = Math.min(...strand.map(([x, y]) => Math.hypot(x - bx, y - by)))
       if (!best || clear > best.clear) best = { bx, by, clear }
     }
     const { bx, by } = best
-    markClear.push(best.clear)
+    markClear.push({ gap: best.clear - BADGE_R - BADGE_RING / 2 - STROKE / 2, where: `${where} crossing ${k} at (${X.toFixed(1)}, ${Y.toFixed(1)})` })
     const plus = signsArr[k] > 0
-    s += `<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="4.6" fill="${th.bg2}" stroke="${th.fg}" stroke-width="0.5"/>`
+    s += `<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${BADGE_R}" fill="${th.bg2}" stroke="${th.fg}" stroke-width="${BADGE_RING}"/>`
     s += `<text x="${bx.toFixed(1)}" y="${(by + 2.4).toFixed(1)}" font-size="7" font-weight="700" text-anchor="middle" fill="${th.fg}">${plus ? '+' : '−'}</text>`
   })
   return s
@@ -170,7 +178,7 @@ function marks(cr, signsArr, mapX, mapY, th, edges) {
 // one picture: face content (front = draw(pd or mirror), back = draw(mirror of the front content) authored reflected),
 // at card angle theta (degrees, orthographic squeeze), optional in-plane rotation (version A "Turn it round") and
 // optional outer scaleX(-1) (version B2 Mirror).
-function lrPicture({ x, y, w, n, mirrored = false, theta = 0, rot = 0, outerMirror = false, th, showMarks = true }) {
+function lrPicture({ x, y, w, n, mirrored = false, theta = 0, rot = 0, outerMirror = false, th, showMarks = true, opacity = 1 }) {
   const { pd, L } = entries[n]
   const frontPd = mirrored ? K.mirror(pd) : pd
   const backPd = K.mirror(frontPd) // the back face content: the front's mirror, authored reflected (C1)
@@ -188,13 +196,13 @@ function lrPicture({ x, y, w, n, mirrored = false, theta = 0, rot = 0, outerMirr
   const sq = Math.max(Math.abs(c), 0.001)
   const tCard = `translate(50 0) scale(${sq.toFixed(4)} 1) translate(-50 0)`
   const tBack = back ? 'translate(100 0) scale(-1 1)' : ''
-  let s = `<svg x="${x}" y="${y}" width="${w}" height="${w}" viewBox="${VB.join(' ')}"><g transform="${tRot} ${tOut} ${tCard} ${tBack}">`
+  let s = `<svg x="${x}" y="${y}" width="${w}" height="${w}" viewBox="${VB.join(' ')}"><g opacity="${opacity}" transform="${tRot} ${tOut} ${tCard} ${tBack}">`
   for (const e of d.edges) s += `<path d="${e.d}" fill="none" stroke="${th.fg}" stroke-width="${STROKE}" stroke-linecap="butt"/>`
   s += '</g>'
   // logical diagram on screen (C2): front: frontPd; turned: turnOver(frontPd); outer mirror reflects again (signs negate)
   let sg = back ? K.signs(K.turnOver(frontPd)) : K.signs(frontPd)
   if (outerMirror) sg = sg.map((v) => -v)
-  if (showMarks && (theta === 0 || theta === 180)) s += marks(d.crossings, sg, mapX, mapY, th, d.edges)
+  if (showMarks && (theta === 0 || theta === 180)) s += marks(d.crossings, sg, mapX, mapY, th, d.edges, `${n}${mirrored ? ' B1-mirrored' : ''}${outerMirror ? ' mirrored' : ''}${theta === 180 ? ' turned' : ' front'}${rot ? ' rotated' : ''}`)
   return { svg: s + '</svg>', signs: sg, sum: sg.reduce((a, b) => a + b, 0) }
 }
 // C1 check in numbers: after the flip, an off-centre crossing's x equals 100 - its front x (view-box units).
@@ -206,24 +214,28 @@ for (const n of ['3_1', '4_1']) {
   facts.push(`left-or-right ${n} signs: front ${JSON.stringify(K.signs(pd))} turnOver ${JSON.stringify(K.signs(K.turnOver(pd)))} mirror ${JSON.stringify(K.signs(K.mirror(pd)))} turnOver(mirror) ${JSON.stringify(K.signs(K.turnOver(K.mirror(pd))))}`)
 }
 
-function lrCard({ ox, oy, title, note, n, th, version, mirrored = false, theta = 0, rot = 0, outerMirror = false, caption = null, seen = null, flipLabel }) {
+function lrCard({ ox, oy, title, note, n, th, version, mirrored = false, theta = 0, rot = 0, outerMirror = false, caption = null, seen = null, flipLabel, turnedOn = false, mirrorOn = false, dip = 1, keepSum = null }) {
   const W = 390, H = 600
-  const p = lrPicture({ x: 35, y: 84, w: 320, n, mirrored, theta, rot, outerMirror, th })
+  const p = lrPicture({ x: 35, y: 84, w: 320, n, mirrored, theta, rot, outerMirror, th, opacity: dip, showMarks: dip === 1 })
   let s = `<g transform="translate(${ox},${oy})">`
   s += text(0, -26, title, { size: 14, fill: '#141824', weight: 700 }) + text(0, -10, note, { size: 11, fill: '#5d6578' })
   s += `<rect x="0" y="0" width="${W}" height="${H}" rx="18" fill="${th.bg3}" stroke="${th.line}"/>`
-  const midFlip = !(theta === 0 || theta === 180)
-  const sumTxt = midFlip ? '' : `Sum ${p.sum > 0 ? '+' : p.sum < 0 ? '−' : ''}${Math.abs(p.sum)}`
-  const hand = midFlip ? '' : p.sum < 0 ? 'Left-handed' : p.sum > 0 ? 'Right-handed' : ''
+  // L-4: the readout never blanks. Mid-flip it keeps the last rest value (for Turn over it is the same value, K4),
+  // so the sum shown mid-flip is the front's, which p.sum equals at every angle.
+  const sum = keepSum ?? p.sum // mid-dip the readout keeps the last rest value (L-4)
+  const sumTxt = `Sum ${sum > 0 ? '+' : sum < 0 ? '−' : ''}${Math.abs(sum)}`
+  const hand = sum < 0 ? 'Left-handed' : sum > 0 ? 'Right-handed' : ''
   s += text(16, 34, sumTxt, { size: 15, fill: th.fg, weight: 700 }) + text(110, 34, hand, { size: 15, fill: th.fg })
   if (seen) s += text(16, 58, seen, { size: 12, fill: th.muted })
   s += p.svg
   if (caption) s += text(16, 452, caption, { size: 13, fill: th.fg })
-  const labels = version === 'A' ? ['Turned over?', 'Turn it round', 'Mirror'] : [flipLabel || 'Turn over', 'Mirror']
+  // L-6: Turn over and Mirror are toggles with aria-pressed; drawn in the kit's active style while pressed
+  const labels = version === 'A' ? ['Turned over?', 'Mirror'] : [flipLabel || 'Turn over', 'Mirror']
+  const pressed = version === 'A' ? [!!caption, mirrored] : [turnedOn, mirrorOn]
   let bx = 16
-  const bw = version === 'A' ? [118, 122, 94] : [150, 150]
-  labels.forEach((l, k) => { s += button(bx, 480, bw[k], l, th); bx += bw[k] + 8 })
-  s += button(16, 536, 170, 'Trefoil', th, { kind: 'chip', on: n === '3_1' }) + button(194, 536, 180, 'Figure-eight', th, { kind: 'chip', on: n === '4_1' })
+  const bw = [150, 150]
+  labels.forEach((l, k) => { s += button(bx, 480, bw[k], l, th, { on: pressed[k] }); bx += bw[k] + 8 })
+  s += button(16, 536, 170, 'Trefoil', th, { kind: 'chip', on: n === '3_1', disabled: n === '3_1' }) + button(194, 536, 180, 'Figure-eight', th, { kind: 'chip', on: n === '4_1', disabled: n === '4_1' })
   return s + '</g>'
 }
 
@@ -234,38 +246,45 @@ function lrCard({ ox, oy, title, note, n, th, version, mirrored = false, theta =
     cards.forEach((c, j) => { body += lrCard({ ...c, ox: j * 420, oy: y, th }) })
     y += 690
   }
-  const capA = 'Turned over in your hands: same knot, same marks.'
+  const capA = 'Turned over in your hands: same knot, same marks.' // version A only (fallback, W-1581 ruling 5)
+  const S1 = 'Trefoil: turned over −3', S2 = 'Trefoil: turned over −3 · mirror +3' // seen line, W-1581 ruling 4
   for (const tn of ['dark', 'light']) {
     const th = T[tn]
-    row(`Version A (mirror only, caption-only turned-over chip, optional Turn it round) · ${tn}`, [
-      { title: 'A1. Trefoil, start', note: 'marks outside the picture; sum and hand', n: '3_1', version: 'A' },
-      { title: 'A2. Flip it over', note: 'picture unchanged; caption; marks unchanged (turnOver signs)', n: '3_1', version: 'A', caption: capA, seen: 'Turned over −3' },
-      { title: 'A3. Turn it round (optional)', note: 'CSS rotate(180deg) in the plane; marks ride along', n: '3_1', version: 'A', rot: 180, caption: capA, seen: 'Turned over −3' },
-      { title: 'A4. Mirror', note: 'every gap moves to the other strand; curve fixed', n: '3_1', version: 'A', mirrored: true, rot: 180, seen: 'Turned over −3 · Mirror +3' },
-      { title: 'A5. Figure-eight (end of QA path)', note: 'chip resets the picture; seen line kept', n: '4_1', version: 'A', seen: 'Turned over −3 · Mirror +3' },
+    row(`B2 (the build): the QA path, each control once · ${tn}`, [
+      { title: '1. Trefoil, after predict', note: 'front; seen line empty (space reserved)', n: '3_1', version: 'B' },
+      { title: '2. Turn over, at rest', note: 'turned: marks −,−,−, unchanged; seen line written', n: '3_1', version: 'B', theta: 180, seen: S1, turnedOn: true },
+      { title: '3. Mirror, mid-dip (100 ms)', note: 'L-2: wrapper at opacity 0, transform set now; readout kept (L-4)', n: '3_1', version: 'B', theta: 180, seen: S1, turnedOn: true, mirrorOn: true, dip: 0, keepSum: -3 },
+      { title: '4. Mirror, at rest', note: 'mirrored + turned: marks +,+,+; seen line extended', n: '3_1', version: 'B', theta: 180, outerMirror: true, seen: S2, turnedOn: true, mirrorOn: true },
+      { title: '5. Figure-eight chip (reveal opens)', note: 'front, unmirrored, Sum 0, no name; seen line kept', n: '4_1', version: 'B', seen: S2 },
     ], th)
-  }
-  for (const tn of ['dark', 'light']) {
-    const th = T[tn]
     for (const n of ['3_1', '4_1']) {
-      row(`Version B (two-sided card), ${n === '3_1' ? 'trefoil' : 'figure-eight'}, Turn over frames · ${tn}`, [
-        { title: 'B 0° front', note: 'draw(pd), stored layout', n, version: 'B' },
-        { title: 'B 60°', note: 'marks hidden mid-flip', n, version: 'B', theta: 60 },
-        { title: 'B 90° (edge-on)', note: 'a line; no diagram', n, version: 'B', theta: 89.5 },
-        { title: 'B 120°', note: 'back face, authored reflected (C1)', n, version: 'B', theta: 120 },
-        { title: 'B 180° turned over', note: 'reflected mirror drawing = turned over; marks = signs(turnOver)', n, version: 'B', theta: 180, seen: n === '3_1' ? 'Turned over −3' : null },
+      row(`B2 Turn over frames, ${n === '3_1' ? 'trefoil' : 'figure-eight'} (orthographic; marks hidden mid-flip, readout kept) · ${tn}`, [
+        { title: 'B 0° front', note: 'draw(pd), stored layout', n, version: 'B', seen: n === '3_1' ? null : S2 },
+        { title: 'B 60°', note: 'marks hidden (L-3); readout kept (L-4)', n, version: 'B', theta: 60, turnedOn: true, seen: n === '3_1' ? null : S2 },
+        { title: 'B 90° (edge-on)', note: 'a line; no diagram', n, version: 'B', theta: 89.5, turnedOn: true, seen: n === '3_1' ? null : S2 },
+        { title: 'B 120°', note: 'back face, authored reflected (PE-C1)', n, version: 'B', theta: 120, turnedOn: true, seen: n === '3_1' ? null : S2 },
+        { title: 'B 180° turned over', note: 'reflected mirror drawing = turned over; marks = signs(turnOver)', n, version: 'B', theta: 180, seen: n === '3_1' ? S1 : S2, turnedOn: true },
       ], th)
     }
-    row(`Version B, Mirror end states (trefoil) · ${tn}`, [
-      { title: 'B1 Mirror in place, front', note: 'faces swap together; curve fixed', n: '3_1', version: 'B', mirrored: true, seen: 'Turned over −3 · Mirror +3' },
-      { title: 'B1 Mirror in place, turned over', note: 'turnOver(mirror(pd)) on screen: signs +', n: '3_1', version: 'B', mirrored: true, theta: 180, seen: 'Turned over −3 · Mirror +3' },
-      { title: 'B2 Mirror = scaleX(-1), front', note: 'C4; same outline as B 180°, every crossing other way', n: '3_1', version: 'B', outerMirror: true, seen: 'Turned over −3 · Mirror +3' },
-      { title: 'B2 scaleX(-1) + turned over', note: 'shows draw(mirror(pd)) unreflected: mirror knot, signs +', n: '3_1', version: 'B', outerMirror: true, theta: 180, seen: 'Turned over −3 · Mirror +3' },
+    row(`B2 figure-eight, all four rest states (badge ring 13; tightest badge is crossing 0, the right-hand beak) · ${tn}`, [
+      { title: 'front', note: 'signs −,+,−,+', n: '4_1', version: 'B', seen: S2 },
+      { title: 'turned', note: 'beak at x 3.6', n: '4_1', version: 'B', theta: 180, seen: S2, turnedOn: true },
+      { title: 'mirrored (eightMirror)', note: 'signs +,−,+,−; Sum 0', n: '4_1', version: 'B', outerMirror: true, seen: S2, mirrorOn: true },
+      { title: 'mirrored + turned', note: 'beak at x 96.4; gap 2.43 units (floor 2.0)', n: '4_1', version: 'B', theta: 180, outerMirror: true, seen: S2, turnedOn: true, mirrorOn: true },
+    ], th)
+    row(`Not the build: fallbacks and the forbidden frame · ${tn}`, [
+      { title: 'B1 fallback: Mirror in place, front', note: 'faces swap content; only if the B2 wrapper check fails', n: '3_1', version: 'B', mirrored: true, seen: S2, mirrorOn: true },
+      { title: 'B1 fallback: in place, turned over', note: 'turnOver(mirror(pd)) on screen: signs +', n: '3_1', version: 'B', mirrored: true, theta: 180, seen: S2, turnedOn: true, mirrorOn: true },
+      { title: 'A fallback: Turned over?', note: 'caption only; picture and marks unchanged', n: '3_1', version: 'A', caption: capA, seen: S1 },
+      { title: 'A fallback: Mirror', note: 'every gap moves to the other strand; curve fixed', n: '3_1', version: 'A', mirrored: true, seen: S2 },
       { title: 'NEVER: back face counter-rotated', note: 'draw(mirror(pd)) as authored = mirror knot labelled turned over (K17 false)', n: '3_1', version: 'B', mirrored: true, seen: 'WRONG: this is the mirror' },
     ], th)
   }
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -10 2140 ${y}" font-family="system-ui, sans-serif"><rect x="-20" y="-10" width="2140" height="${y + 10}" fill="#fff"/><!-- Mockup for company/design/specs/left-or-right.md. Rendered by knots-batch1-mockups.mjs with the shipped kit. Not a visual design. -->${body}</svg>`
   writeFileSync(join(here, 'left-or-right.svg'), svg)
 }
-facts.push(`left-or-right marks: smallest badge-centre to strand-centre distance over all drawn rest states = ${Math.min(...markClear).toFixed(1)} units (badge radius 4.6)`)
+{
+  const worst = markClear.reduce((a, b) => (b.gap < a.gap ? b : a))
+  facts.push(`left-or-right marks (ring radius ${RING_R}): smallest badge-edge to strand-edge gap over all drawn rest states = ${worst.gap.toFixed(2)} units = ${(worst.gap * 290 / 116).toFixed(1)} px at 290, ${(worst.gap * 260 / 116).toFixed(1)} px at 260 (${worst.where}); floor ${GAP_FLOOR}: ${worst.gap >= GAP_FLOOR ? 'PASS' : 'FAIL'}`)
+}
 for (const f of facts) console.log(f)
