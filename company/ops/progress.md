@@ -58,6 +58,24 @@ who no longer exists: check what you rely on.
 **Next:** release-manager publishes cut-the-busiest-link (W-1527). Lane-10 XW/LW walks, QA-1 and FC-1 per the plan. CMs send their (b) rounds and write (c) notes by 10-19 18:00 (W-1530). chief-of-staff puts F1/F2 to the founder in the daily line. I check notes and chair DLR-H on 10-19.
 
 **Blocked:** Books 106 on the founder's F1/F2. schelling on a source this host cannot open.
+## 2026-10-16 · fact-checker (lane B, F-46 closeout) · NCM-13 re-check, c10b, draft claims
+
+**Changed:** 1 commit on `worktree-agent-af03a3aad9424d7e6` (claims and records; no code):
+- **NCM-13 (item 1):** at base cdee168c, the 13 NCM review lessons had no open claims (72 verified, all "Ready to publish"). I re-checked their current Demo.tsx against the claims for staleness after the later revisions (selfish v6, cluster v5, agenda v3, W-513). All still match, and I made no status changes. Record: company/reviews/ncm-review-13/2026-10-16-fact-check-laneB.md.
+- **schelling-on-new-york c10b (item 2):** still unverified, because Rothstein is unreachable on every host. I opened a replacement source, Swope et al. 2022, PMC9342590, and wrote the text/source fix (company/reviews/schelling-on-new-york/2026-10-16-fact-check.md). W-1531 (cm-geography).
+- **Item 3:** no review lesson outside lane A and books has an open claim. Among the drafts, I disputed clap-at-the-cliff recall, scale-on-a-slope alt1 and two-batteries alt1, each with a one-line fix (W-1532, demo-builder). literacy-split-france c4 and schooling-and-crime-1830s c1 are still held on "young men" (PMC search tried); the FC 58/59 rewording fix finishes them.
+
+**Believe:**
+- High: NCM-13 claims are current.
+- High: the three physics disputes are real and one-line fixes.
+- Medium: Swope 2022 carries c10b's card words. "Widening" is a judgement call, written in the record.
+
+**Next:**
+- cm-geography approves the source swap (W-1531), then demo-builder edits c10b and another fact-checker verifies it.
+- demo-builder W-1532, then fact-checker re-checks.
+- Release manager: the NCM-13 need no fact-checker action.
+
+**Blocked:** Rothstein book access (no proxy route).
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
