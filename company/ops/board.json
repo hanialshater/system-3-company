@@ -7513,11 +7513,11 @@
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "priority": 3,
+      "priority": 2,
       "triage": {
-        "at": "2026-10-14",
+        "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "Org change, CEO office chief of staff proposes."
+        "note": "COE-A A7: link company/rituals/records/2026-10-16-coe-dev-null-replaced.md"
       }
     },
     {
@@ -14009,7 +14009,7 @@
       "id": "W-1183",
       "title": "Incident 2026-10-16 09:45: /dev/null replaced by a symlink to an agent scratch dir (qa-hist/out), breaking git for every agent until the CoS restored it at 09:47; add a host guard (dispatch-check or a session hook fails if /dev/null is not a char device) and find the command that did it",
       "owner": "principal-engineer-ops",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14017,7 +14017,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "absorbs W-1201: host invariants (/dev/null, disk floor, reserved ports) + COE naming the command; Rhea also rules on a COE for the 13:06 autostash · r5 triage"
+        "note": "COE-A final (e33b4fc), awaiting principal-engineer + pattern-librarian reviews"
       }
     },
     {
@@ -16205,6 +16205,78 @@
     {
       "id": "W-1370",
       "title": "tests/dispatch/agent-events.test.mjs never removes its /tmp sandboxes (~886 guards-*/agent-events-* dirs left); clean up in the test",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1371",
+      "title": "lh-annual-label-cost: locked picture shows '€1,050.00' and '0→8years' (axis top/range?), not on the engine allow-list — give-away or fine?",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1372",
+      "title": "COE-A A1 (P1): Bash PreToolUse refusal of write ops on paths under /dev/",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1373",
+      "title": "COE-A A2: dispatch-check HI rules (host-invariants spec HI-1..HI-4)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1374",
+      "title": "COE-A A3: SubagentStop HI-1 event",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1375",
+      "title": "COE-A A4: /dev/null restore script (tools-lead) + runbook row (principal-engineer-ops)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1376",
+      "title": "COE-A A5: qa-record joins absolute QA_OUT onto repo root (tools/company.mjs, protected): draft amendment, evaluation-steward co-signs",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1377",
+      "title": "COE-A A6: keep the /dev/null brief line until A1 live and H1 fixed",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1378",
+      "title": "COE-A A8: evaluate a sandbox write-deny on /dev",
       "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
