@@ -55,3 +55,6 @@ stop if: either check script fails; a measured reveal branch is over 90; the cha
 - **Lane 1, other POCs:** cm-economics on W-1060. cm-books on W-1061, reading brief 4's **r4** predict.
 - **Lane 7 (tools):** `tools/reveal-fit.mjs` measures only the verdict the QA path produces. A measured count with the longer "Not quite: it was …" verdict (or a flag for it) would catch what this round found by hand in brief 1. This joins the r3 ask for a stage word count.
 - **Chief of staff (board):** W-1293 → done (decision: neither returns; briefs 1-2). W-1304 → done (charter recount; floor 14 on sourcing). W-1315 → done as decisions (build is B1). W-1306 → done as decisions (builds are B1 and B2; zero-loses version 2: yes). W-1321 → done as decision (objective change in B2; the c3 re-check is lane 10 ask 2).
+
+## Dispatched
+- B1 → demo-builder (saved-or-die v2), worktree /home/user/s3c-beh1 branch beh-r4-b1, 2026-10-16 ~13:12Z, dispatch-check passed at load 8.0. B2 waits for a free builder slot and disk (11.2 GB free; guard 10 GB).
