@@ -7,7 +7,23 @@ recorded by: chief-of-staff · status: brief; nothing exists yet (company/decisi
 ## 1. In the founder's words
 - "Create a new floor, new VP of system 3 meta: it is a meta company with mandate to create whole company for specific use-case. I am seeing a leap from lovable/replit style platforms and probably this is a big idea for AI or a killer app. To keep us focused lets do that after first light. The new VP is running independently and it is a sibling company."
 - "When I started this it was a choice to go with demos: they are kind of independent but need collective work to scale. We need to try other kind of companies, higher risk, real infra, and also make it work for others. I have few people who want to try and build their own stuff. Also we need to decouple from Claude and allow for more choices, we need to integrate humans, tools."
+- "It is System 3; we call it science." We are replicating the philosophy of science, the invention that made human civilisation work. (founder, 2026-10-16)
 - "Same model, different rules is fine; summary through off-boarding [and] mechanisms is very beneficial so each role gets the needed context. We started all of this to test System 3 book ideas, especially the philosophy of science, aka how to make fallible agents work together, [and] I added my experience from Amazon and Zalando on how to run orgs at scale."
+
+## 1a. The thesis: System 3 is science, applied to an organisation of fallible agents
+Science works without trusting any one scientist: claims are public, criticism is open, results must survive independent checks, and errors are corrected by the institution rather than by better individuals. System 3 copies that machinery so that fallible agents (and people) can produce reliable work together. Every generated company must carry it; it is the product, not overhead.
+
+| Institution of science | Its form in this company | Where |
+|---|---|---|
+| Public, citable claims | Every learner-facing sentence is a claim with support and a source | lesson `meta.json`, `company claims` |
+| Peer review | Builders never verify their own claims; evaluators see the artifact before the account | CLAUDE.md, company/reviews/ |
+| Falsification (Popper) | Reviewers plant bugs to test the test; "what would make this record wrong" in every decision | readiness records, decision records |
+| Open criticism | Objections travel with decisions; "noted" is not an answer | `## Objections` in every record |
+| The literature | The disk is the memory: decisions, handoffs, the progress log | company/decisions/, company/ops/progress.md |
+| Replication and error correction | COEs fix mechanisms, not people; retros check whether the last changes worked | company/rituals/records/ |
+| Independence of observers | Separate roles and contexts today; separate models next (section 2, item 3) | this brief |
+
+The test for any new mechanism, role or generated company: does it make errors easier to find and cheaper to correct, without relying on anyone being right?
 
 ## 2. The mission (what the VP owns)
 Build the capability to **generate and run a whole company of agents (and humans) for a stated use case**, then prove it on companies harder than this one. App builders generate an app; System 3 Meta generates the organisation that builds, checks, ships and runs it.
