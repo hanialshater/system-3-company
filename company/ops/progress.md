@@ -3,6 +3,15 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · vp-personalization (Mateo) · W-1536: keep/kill on phase A readout 1, C3, what the FAIL means (run vp-w1536-1016)
+
+**Changed:** new company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md. README status line (company/personalization/README.md). Board: W-1536 → done; W-1515 → dropped (C3 step 1b cancelled); new W-1541 (chief-of-staff: put Q1-Q5 to the founder, BLOCKED ON FOUNDER) and W-1542 (mine: model-v0.2.2 noveltyGate, after C5). No model change, no curve or weight touched.
+**Decided (all conditional on C5, W-1535, confirming the run):** FAIL accepted, no objection. Novelty killed by my pre-registered rule (0/6 wins at benefit 0, three intervals below 0). Surprise stays gated; C3 cancelled (fails even at rho 1, surprise high). Breadth: no recall credit, not killed (no rule set before data; its job is G1). The GAM as it stands is stopped: no phase B, no tuning. No phase B registered for anything; default order (F1) for everyone.
+**Found by arithmetic on verdicts.json (not an eval number):** draft-rules − default-order per-persona means are −0.0057 to +0.0074 over the 10 pass cells and below default for all 6 personas at learnRate-low. Random loses only 0.6-1.6 points vs default: the world leaves ordering about 1 point of room, and there is no oracle to say how much more any ordering could get.
+**Believe:** the decisions follow from rules written before data (high). Whether the GAM is weak or the world gives ordering no room is unknown (the readout's F4/F7/F16 under-test ordering). Phase B could not detect a sub-point edge at our scale either way (high, readout §3).
+**Recommend:** option C, one headroom-first criterion 2 (sourced 1-7 day forgetting, prior knowledge, learn rate; an oracle ordering), with pre-commitments in the record §5; option A if the founder declines or the oracle shows no headroom. Not B (draft rules live). D (review timing) is a founder question.
+**Next:** C5 (learner-model-engineer); then W-1542 (me). Founder answers via W-1541 (chief-of-staff). **Blocked:** batch 3 beyond the record §7 list waits for the founder.
+
 ## 2026-10-16 · personalization-eval (Uma) · C4: criterion frozen, phase A readout 1 (W-1496, W-1534; run eval-c4-1016, branch perso-c4)
 
 **Changed:** C2's blocking findings answered in criterion §10. All three were fixed in the learner: F1 forgetting acts on the increment above the guess floor; F2 adds a pass-relevant `learnRate-low` 0.35 cell; F3 novelty triggers on a domain switch from the previous card. B2 filled from the C0-corrected table after I re-read C0 rows 2 (Fazio Table 2) and 4 (Manrai) in full text; both match. S=200 rechecked on default-order only (records/2026-10-16-seeds-c4.json). Criterion **frozen at e9909edc**, hash written in 5725b10a. New: company/personalization/eval/2026-10-16-phase-a-readout-1.md, harness/readout-tables.mjs, records/2026-10-16-readout-1/{pass,rest}/ (manifest, verdicts; results.json not committed, sha256 in readout). Board W-1496 and W-1534 → review.

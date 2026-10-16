@@ -17749,17 +17749,18 @@
       "id": "W-1515",
       "title": "misconceptionStrength pilot ratings (230 probability + cs lessons) per company/personalization/2026-10-16-misconception-strength-ratings-plan.md: final rubric, 12 anchors, ratings with strengthSource dims-owner, eval blind 20% second rating. Held by personalization-lead for lesson-dims-owner once the founder approves card N4 (W-1512 finding 3)",
       "owner": "lesson-dims-owner",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/dims/2026-10-16-misconception-strength-rubric.md",
         "company/personalization/dims/2026-10-16-misconception-strength-anchors.json",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → lesson-dims-owner (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 step 1 DONE (run dims-b3-1016): final rubric msr-v1 + 12 anchors (4 per level, reasons published) in company/personalization/dims/2026-10-16-misconception-strength-rubric.md and the anchors JSON beside it. No other lesson rated. Step 1b (rate the remaining pilot lessons) WAITS for batch-1 C3 condition (vp-personalization reads the B2 memo §1c split: hypercorrection vs the surprise term). Eval: draw the blind 20% sample from non-anchor lessons. | 2026-10-16 vp-personalization (vp-cgate-1016): step 1b (C3) HELD: C3 condition means memo §1c (selection for surprise, low), not 1b. Trigger: C4 readout shows gam-surprise-on passing the per-term rule at rho <= 0.5 in the surprise-high cell or better. company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §2."
+      "note": "2026-10-16 re-owned personalization-lead → lesson-dims-owner (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 step 1 DONE (run dims-b3-1016): final rubric msr-v1 + 12 anchors (4 per level, reasons published) in company/personalization/dims/2026-10-16-misconception-strength-rubric.md and the anchors JSON beside it. No other lesson rated. Step 1b (rate the remaining pilot lessons) WAITS for batch-1 C3 condition (vp-personalization reads the B2 memo §1c split: hypercorrection vs the surprise term). Eval: draw the blind 20% sample from non-anchor lessons. | 2026-10-16 vp-personalization (vp-cgate-1016): step 1b (C3) HELD: C3 condition means memo §1c (selection for surprise, low), not 1b. Trigger: C4 readout shows gam-surprise-on passing the per-term rule at rho <= 0.5 in the surprise-high cell or better. company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §2. | 2026-10-16 vp-personalization (vp-w1536-1016): step 1b (rate the remaining ~218 pilot lessons) CANCELLED, not held: the C3 trigger was not met in readout 1, gam-surprise-on fails the per-term rule even at rho 1, surprise high. Rubric msr-v1 and the 12 anchors are kept. Reopens only as a new item on a trigger written before a future criterion run."
     },
     {
       "id": "W-1516",
@@ -18031,13 +18032,16 @@
       "id": "W-1536",
       "title": "Keep or kill per term on the C4 readout: novelty by the kill rule in company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §3; C3 trigger (§2); phase A decision record; batch 3",
       "owner": "vp-personalization",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-2.md",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
-      ]
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-w1536-1016): decided, conditional on C5 (W-1535): phase A FAIL accepted, no objection; novelty KILLED (0/6 wins at benefit 0; gate-off is W-1542 after C5); surprise stays gated, C3 CANCELLED; breadth no recall credit, not killed; GAM as it stands stopped, no phase B registered for anything. Options A-D with costs, recommendation C (headroom-first criterion 2) with pre-commitments; founder questions Q1-Q5 routed as W-1541. Batch 3 waits for the founder except items in §7.",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1537",
@@ -18089,6 +18093,31 @@
       "domain": null,
       "created": "2026-10-16",
       "links": []
+    },
+    {
+      "id": "W-1541",
+      "title": "Put vp-personalization's 5 founder questions (Q1-Q5, company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md §6) to the founder after phase A readout 1 FAILED: stop the GAM recommender; surprise/novelty as learner-chosen mode or off; approve one headroom-first offline study (criterion 2); re-aim at review timing; First Light rule-based personalization off/on-in-experiment/dropped. BLOCKED ON FOUNDER (answers)",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+        "company/personalization/eval/2026-10-16-phase-a-readout-1.md"
+      ]
+    },
+    {
+      "id": "W-1542",
+      "title": "model-v0.2.2: add noveltyGate (inactive) so gam composes without novelty (kill rule, company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md §2); version bump, change-log line with privacy: in company/decisions/2026-10-16-personalization-model-v0.md, self-check passing. Only after C5 (W-1535) confirms readout 1",
+      "owner": "vp-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+        "company/decisions/2026-10-16-personalization-model-v0.md",
+        "company/personalization/model/model.ts"
+      ]
     }
   ]
 }

@@ -16,6 +16,8 @@ owner: vp-personalization (Mateo, VP of Personalization; the id was personalizat
 ## Next
 Phase A (offline simulator, no learner data, nothing in `src/`): see response §3 and board W-1493 to W-1499.
 
+**2026-10-16, phase A readout 1: FAIL** (company/personalization/eval/2026-10-16-phase-a-readout-1.md). The GAM beats neither the default order nor the draft rules; nothing is harmed. Decisions (conditional on the C5 reproduction, W-1535): novelty killed, surprise stays off, C3 cancelled, the GAM as it stands stopped, no phase B registered; everyone keeps the default order (AMD-008 F1). Options and five founder questions: company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md (board W-1541).
+
 ## Earlier open questions (2026-10-13), now answered or carried
 1. What adapts: the next cards' order, by a GAM-style composer (founder's brief §1); variants and difficulty are founder question 2 in the response.
 2. Which signals: completions, predictions, recall, stated choices, the curriculum graph (response §2.1).
