@@ -1,0 +1,132 @@
+{
+  "slug": "bk-knowledge-missing-mechanism",
+  "title": "Who supplies the missing step?",
+  "hook": "A toy team can fetch parts and check assemblies, but an intermediate skill may be absent.",
+  "domain": "books",
+  "concept": "book-knowledge-missing-mechanism",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to distinguish access to a whole process from personally supplying its missing operation"
+    ]
+  },
+  "misconception": "Recognizing the inputs and outputs of a system establishes the ability to supply every intermediate step.",
+  "objective": "Distinguish access to a whole process from personally supplying its missing operation.",
+  "claims": [
+    {
+      "id": "books.bk-knowledge-missing-mechanism.bibliography",
+      "text": "The Knowledge Illusion; Steven Sloman and Philip Fernbach; 2017.",
+      "support": "source",
+      "source": "Candidate bibliographic record for knowledge-missing-2017; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-knowledge-missing-mechanism.book",
+      "text": "The Knowledge Illusion describes understanding as supported by knowledge distributed beyond the individual.",
+      "support": "source",
+      "source": "The Knowledge Illusion (2017), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-knowledge-missing-mechanism.model",
+      "text": "Original stipulated toy: Three serial capabilities; missing capability has zero throughput; work is indivisible and requires all stages; no actual people tested. Exact flow inputs [{\"label\": \"Assembly absent\", \"values\": [5, 0, 5]}, {\"label\": \"Assembly supplied\", \"values\": [5, 3, 5]}]; second author arithmetic check A=0, B=3. Without assembly the team completes {A}; with it {B}. Knowing the surrounding steps does not execute the missing transformation.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-knowledge-missing-mechanism.world",
+      "text": "Does it hold up? Team throughput is not an assessment of anyone’s understanding or awareness of ignorance.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-knowledge-missing-mechanism.recall",
+      "text": "{\"question\": \"A toy chain has capacities6,0,8. Can improving the last stage alone produce completed output?\", \"options\": [\"Yes, eight outputs\", \"Yes, six outputs\", \"No, the missing intermediate step still blocks it\"], \"answer\": 2, \"why\": \"The serial minimum remains zero; this is a specified process dependency, not a test of human self-knowledge.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy chain has capacities6,0,8. Can improving the last stage alone produce completed output?",
+    "options": [
+      "Yes, eight outputs",
+      "Yes, six outputs",
+      "No, the missing intermediate step still blocks it"
+    ],
+    "answer": 2,
+    "why": "The serial minimum remains zero; this is a specified process dependency, not a test of human self-knowledge."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-knowledge-missing-mechanism/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-knowledge-missing-mechanism/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-knowledge-missing-mechanism",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "knowledge-missing-2017",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "flow",
+      "distributed-knowledge"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

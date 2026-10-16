@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Algorithms to Live By",
+    "author": "Brian Christian and Tom Griffiths",
+    "year": 2016,
+    "work": "algorithms-cache-2016"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Budget 30; batches use 10 work plus 5 switching. How much useful work completes?",
+    "options": [
+      "10 work",
+      "15 work",
+      "20 work"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Short batches",
+      "values": [
+        30,
+        5,
+        5
+      ]
+    },
+    {
+      "label": "Long batches",
+      "values": [
+        30,
+        10,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Switch"
+  ],
+  "unit": "work",
+  "bookIdea": "Scheduling choices trade switching overhead against other performance goals.",
+  "modelBoundary": "Short batches complete {A}; long batches complete {B}. Fewer batches pay fewer switches, increasing useful work in this fixed budget.",
+  "doesItHoldUp": "Does it hold up? This accounts for setup only. Waiting time, fairness, concentration and the best real scheduling policy remain unmodeled."
+}

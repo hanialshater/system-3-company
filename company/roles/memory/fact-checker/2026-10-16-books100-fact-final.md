@@ -1,0 +1,5 @@
+### 2026-10-16 · books100-fact-final · fact-checker
+- did: Audited 100 final Books idea/metadata pairs and 467 claims against the immutable candidate payloads and runtime freeze, preserving all claim statuses (company/reviews/books-100/2026-10-16-final-fact-alignment.md)
+- learned: Keep raw metadata hashes separate from canonical claim/idea hashes when later QA adds evidence.qa links; compare all other metadata to the frozen commit (company/reviews/books-100/2026-10-16-final-fact-alignment.md)
+- know: The independent arithmetic oracle is exact-rational Python with closed forms, production is comparison only; reproducible checker code and held source inventory are under the Books100 checks folder (company/reviews/books-100/checks/final_alignment.py)
+- open: All100 bibliography/book/world source sets remain unverified; rendered checks and the seven-lesson learner pilot belong to their own role records, and source owners need actual editions/chapters/evidence before launch (company/reviews/books-100/2026-10-16-final-fact-alignment.md)

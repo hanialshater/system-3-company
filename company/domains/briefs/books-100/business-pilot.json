@@ -1,0 +1,2549 @@
+{
+  "owner": "cm-books-business",
+  "strand": "business",
+  "date": "2026-10-16",
+  "briefs": [
+    {
+      "slug": "bk-checklist-series-reliability",
+      "concept": "book-checklist-series-reliability",
+      "title": "Three checks, one complete job",
+      "hook": "Each checkpoint can miss a step. What survives three independent checks?",
+      "work": "gawande-checklist-manifesto-2009",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Compute serial completion from independently stipulated checkpoint reliability, and identify independence as the boundary."
+        ]
+      },
+      "misconception": "A 5% miss rate at each of three checkpoints means only 5% can fail overall.",
+      "objective": "Compute serial completion from independently stipulated checkpoint reliability, and identify independence as the boundary.",
+      "recall": {
+        "question": "A toy parcel has two independent 80% completion checks. What percentage completes both?",
+        "options": [
+          "80.00",
+          "64.00",
+          "60.00",
+          "40.00"
+        ],
+        "answer": 1,
+        "why": "The retained share is 100 × 0.8 × 0.8 = 64%; adding the two pass rates is invalid."
+      },
+      "nearest": {
+        "lesson": "books/one-percent-a-day",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "Decay of a joint completion probability, not accumulating a personal improvement rate; decide whether per-check reliability describes the full process."
+      },
+      "format": "single-card",
+      "mechanism": "compound",
+      "idea": {
+        "book": {
+          "title": "The Checklist Manifesto",
+          "author": "Atul Gawande",
+          "year": 2009,
+          "work": "gawande-checklist-manifesto-2009"
+        },
+        "family": "compound",
+        "predict": {
+          "question": "Three checkpoints each retain 95% of complete jobs. What percentage survives all three?",
+          "options": [
+            "95.00",
+            "85.00",
+            "90.00",
+            "85.74"
+          ],
+          "answer": 3
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Miss 10%",
+            "values": [
+              100,
+              -10,
+              3,
+              0
+            ]
+          },
+          {
+            "label": "Miss 5%",
+            "values": [
+              100,
+              -5,
+              3,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "Rounds"
+        ],
+        "unit": "%",
+        "bookIdea": "Checklists help teams remember critical steps when routine competence is not enough.",
+        "modelBoundary": "Retaining 90% at each checkpoint leaves {A}%; retaining 95% leaves {B}%. Each checkpoint multiplies what remains. Independent misses are stipulated; these are not measured checklist effects.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-checklist-series-reliability.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Checklist Manifesto, by Atul Gawande, candidate publication year 2009.",
+          "support": "source",
+          "source": "Atul Gawande, The Checklist Manifesto (2009); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-checklist-series-reliability.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "Checklists help teams remember critical steps when routine competence is not enough.",
+          "support": "source",
+          "source": "Atul Gawande, The Checklist Manifesto (2009); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-checklist-series-reliability.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated compound model: A inputs [100, -10, 3, 0] yield 72.9; B inputs [100, -5, 3, 0] yield 85.7375. Prediction correct option 85.74. Retaining 90% at each checkpoint leaves {A}%; retaining 95% leaves {B}%. Each checkpoint multiplies what remains. Independent misses are stipulated; these are not measured checklist effects. Prediction explicitly asks the three-checkpoint 95%-retention case: 100 × 0.95³ = 85.7375%, displayed as 85.74%.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-checklist-series-reliability.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy parcel has two independent 80% completion checks. What percentage completes both? The retained share is 100 × 0.8 × 0.8 = 64%; adding the two pass rates is invalid.",
+          "support": "derivation",
+          "source": "Original transfer toy, compound, inputs [100, -20, 2, 0], output 64; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-checklist-series-reliability.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "gawande-checklist-manifesto-2009",
+          "note": "Atul Gawande, The Checklist Manifesto, 2009 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "compound",
+        "checklist-series-reliability"
+      ],
+      "also": [
+        "books:habits-one-percent"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Miss 10%",
+          "savedOutput": 72.9
+        },
+        {
+          "id": "case-B",
+          "condition": "Miss 5%",
+          "savedOutput": 85.7375
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "compound",
+        "A": 72.9,
+        "B": 85.7375,
+        "correct": "85.74",
+        "recall": {
+          "family": "compound",
+          "inputs": [
+            100,
+            -20,
+            2,
+            0
+          ],
+          "result": 64.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route."
+    },
+    {
+      "slug": "bk-bets-process-versus-outcome",
+      "concept": "book-bets-process-versus-outcome",
+      "title": "The win counter",
+      "hook": "Two toy policies win at different rates. Is the more frequent winner better on average?",
+      "work": "duke-thinking-in-bets-2018",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Compare expected net payoff rather than win frequency alone."
+        ]
+      },
+      "misconception": "The policy that wins most often must have the greatest expected net payoff.",
+      "objective": "Compare expected net payoff rather than win frequency alone.",
+      "recall": {
+        "question": "A toy policy wins 10 credits with 25% probability and loses 2 otherwise. Expected net?",
+        "options": [
+          "2.50",
+          "1.00",
+          "-1.00",
+          "8.00"
+        ],
+        "answer": 1,
+        "why": "0.25 × 10 + 0.75 × (−2) = 1 credit; the win rate alone is insufficient."
+      },
+      "nearest": {
+        "lesson": "economics/accurate-bettor-takes-the-pot",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "The comparison ranks decision policies by both outcome sizes, not forecasting odds or one realised success."
+      },
+      "format": "single-card",
+      "mechanism": "payoff",
+      "idea": {
+        "book": {
+          "title": "Thinking in Bets",
+          "author": "Annie Duke",
+          "year": 2018,
+          "work": "duke-thinking-in-bets-2018"
+        },
+        "family": "payoff",
+        "predict": {
+          "question": "B wins 20 with 40% probability and otherwise loses 5. What is B’s toy result?",
+          "options": [
+            "20.00",
+            "0.00",
+            "5.00",
+            "8.00"
+          ],
+          "answer": 2
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Frequent wins",
+            "values": [
+              80,
+              5,
+              -20
+            ]
+          },
+          {
+            "label": "Larger payoff",
+            "values": [
+              40,
+              20,
+              -5
+            ]
+          }
+        ],
+        "labels": [
+          "Win net",
+          "Lose net"
+        ],
+        "unit": "credits",
+        "bookIdea": "Thinking in Bets separates the quality of a decision process from the outcome of one attempt.",
+        "modelBoundary": "A averages {A} credits; B averages {B}. B wins less often, but its weighted gains exceed its weighted losses. Outcomes and probabilities are stipulated, not advice about real bets.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-bets-process-versus-outcome.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is Thinking in Bets, by Annie Duke, candidate publication year 2018.",
+          "support": "source",
+          "source": "Annie Duke, Thinking in Bets (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-bets-process-versus-outcome.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "Thinking in Bets separates the quality of a decision process from the outcome of one attempt.",
+          "support": "source",
+          "source": "Annie Duke, Thinking in Bets (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-bets-process-versus-outcome.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated payoff model: A inputs [80, 5, -20] yield 8.8817842e-16; B inputs [40, 20, -5] yield 5. Prediction correct option 5.00. A averages {A} credits; B averages {B}. B wins less often, but its weighted gains exceed its weighted losses. Outcomes and probabilities are stipulated, not advice about real bets.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-bets-process-versus-outcome.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy policy wins 10 credits with 25% probability and loses 2 otherwise. Expected net? 0.25 × 10 + 0.75 × (−2) = 1 credit; the win rate alone is insufficient.",
+          "support": "derivation",
+          "source": "Original transfer toy, payoff, inputs [25, 10, -2], output 1; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-bets-process-versus-outcome.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "duke-thinking-in-bets-2018",
+          "note": "Annie Duke, Thinking in Bets, 2018 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "payoff",
+        "bets-process-versus-outcome"
+      ],
+      "also": [
+        "economics:market-selection-wealth"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Frequent wins",
+          "savedOutput": 0.0
+        },
+        {
+          "id": "case-B",
+          "condition": "Larger payoff",
+          "savedOutput": 5.0
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "payoff",
+        "A": 8.881784197001252e-16,
+        "B": 5.0,
+        "correct": "5.00",
+        "recall": {
+          "family": "payoff",
+          "inputs": [
+            25,
+            10,
+            -2
+          ],
+          "result": 1.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route."
+    },
+    {
+      "slug": "bk-brooks-ramp-up-cost",
+      "concept": "book-brooks-ramp-up-cost",
+      "title": "The added team",
+      "hook": "A larger toy team adds work hours and coordination. How much complete work fits?",
+      "work": "brooks-mythical-man-month-1975",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Calculate when added per-task coordination exceeds the benefit of extra available hours."
+        ]
+      },
+      "misconception": "Adding available person-hours necessarily increases finished project work.",
+      "objective": "Calculate when added per-task coordination exceeds the benefit of extra available hours.",
+      "recall": {
+        "question": "A toy team has 100 hours; each complete task needs 20 work plus 10 coordination hours. Finished work hours?",
+        "options": [
+          "100.00",
+          "60.00",
+          "80.00",
+          "70.00"
+        ],
+        "answer": 1,
+        "why": "Only floor(100/30) = 3 complete tasks fit; they contain 60 work hours."
+      },
+      "nearest": {
+        "lesson": "lifehacks/count-setup-in-the-block",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "Both available capacity and overhead rise; decide whether the added team can finish more, rather than merely subtracting a fixed meeting."
+      },
+      "format": "single-card",
+      "mechanism": "intervals",
+      "idea": {
+        "book": {
+          "title": "The Mythical Man-Month",
+          "author": "Frederick P. Brooks Jr.",
+          "year": 1975,
+          "work": "brooks-mythical-man-month-1975"
+        },
+        "family": "intervals",
+        "predict": {
+          "question": "B has 90 hours; each task requires 20 work plus 20 coordination hours. What is B’s toy result?",
+          "options": [
+            "50.00",
+            "40.00",
+            "60.00",
+            "90.00"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Original team",
+            "values": [
+              60,
+              20,
+              0
+            ]
+          },
+          {
+            "label": "Added onboarding",
+            "values": [
+              90,
+              20,
+              20
+            ]
+          }
+        ],
+        "labels": [
+          "Chunk",
+          "Overhead"
+        ],
+        "unit": "work hours",
+        "bookIdea": "The Mythical Man-Month warns that adding people can impose training and communication costs.",
+        "modelBoundary": "A finishes {A} work hours; B finishes {B}. B has more total hours, but each complete 20-hour task now also costs 20 coordination hours. Person-hours and indivisible tasks are invented; no staffing effect is estimated.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-brooks-ramp-up-cost.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Mythical Man-Month, by Frederick P. Brooks Jr., candidate publication year 1975.",
+          "support": "source",
+          "source": "Frederick P. Brooks Jr., The Mythical Man-Month (1975); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-brooks-ramp-up-cost.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The Mythical Man-Month warns that adding people can impose training and communication costs.",
+          "support": "source",
+          "source": "Frederick P. Brooks Jr., The Mythical Man-Month (1975); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-brooks-ramp-up-cost.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated intervals model: A inputs [60, 20, 0] yield 60; B inputs [90, 20, 20] yield 40. Prediction correct option 40.00. A finishes {A} work hours; B finishes {B}. B has more total hours, but each complete 20-hour task now also costs 20 coordination hours. Person-hours and indivisible tasks are invented; no staffing effect is estimated.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-brooks-ramp-up-cost.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy team has 100 hours; each complete task needs 20 work plus 10 coordination hours. Finished work hours? Only floor(100/30) = 3 complete tasks fit; they contain 60 work hours.",
+          "support": "derivation",
+          "source": "Original transfer toy, intervals, inputs [100, 20, 10], output 60; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-brooks-ramp-up-cost.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "brooks-mythical-man-month-1975",
+          "note": "Frederick P. Brooks Jr., The Mythical Man-Month, 1975 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "intervals",
+        "brooks-ramp-up-cost"
+      ],
+      "also": [
+        "lifehacks:book-setup-and-prep"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Original team",
+          "savedOutput": 60
+        },
+        {
+          "id": "case-B",
+          "condition": "Added onboarding",
+          "savedOutput": 40
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "intervals",
+        "A": 60,
+        "B": 40,
+        "correct": "40.00",
+        "recall": {
+          "family": "intervals",
+          "inputs": [
+            100,
+            20,
+            10
+          ],
+          "result": 60
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route."
+    },
+    {
+      "slug": "bk-innovator-demand-crossing",
+      "concept": "book-innovator-demand-crossing",
+      "title": "When enough becomes enough",
+      "hook": "A toy design improves by 30% per round. Does its later performance clear a requirement?",
+      "work": "christensen-innovators-dilemma-1997",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Check a growing design against a fixed good-enough threshold at two horizons."
+        ]
+      },
+      "misconception": "A design below a customer requirement today will always remain irrelevant.",
+      "objective": "Check a growing design against a fixed good-enough threshold at two horizons.",
+      "recall": {
+        "question": "A toy design starts at 4 and doubles each round. What capability does it have after two rounds?",
+        "options": [
+          "8.00",
+          "16.00",
+          "12.00",
+          "20.00"
+        ],
+        "answer": 1,
+        "why": "4 × 2 × 2 = 16; compare that capability with any separately stated requirement."
+      },
+      "nearest": {
+        "lesson": "books/one-percent-a-day",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "A threshold crossing over time changes eligibility; no claim that percentage improvement alone measures commercial value."
+      },
+      "format": "single-card",
+      "mechanism": "compound",
+      "idea": {
+        "book": {
+          "title": "The Innovator's Dilemma",
+          "author": "Clayton M. Christensen",
+          "year": 1997,
+          "work": "christensen-innovators-dilemma-1997"
+        },
+        "family": "compound",
+        "predict": {
+          "question": "B starts at 5 and grows 30% for four rounds; requirement 12. What is B’s toy result?",
+          "options": [
+            "14.28",
+            "6.50",
+            "11.00",
+            "20.00"
+          ],
+          "answer": 0
+        },
+        "exploreHint": "Toy requirement: 12. Run both cases.",
+        "scenarios": [
+          {
+            "label": "Two rounds",
+            "values": [
+              5,
+              30,
+              2,
+              0
+            ]
+          },
+          {
+            "label": "Four rounds",
+            "values": [
+              5,
+              30,
+              4,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "Rounds"
+        ],
+        "unit": "capability",
+        "bookIdea": "The Innovator’s Dilemma considers technologies whose performance eventually becomes sufficient for customers previously served differently.",
+        "modelBoundary": "A reaches {A}; B reaches {B}. Four repeated 30% increases cross the stated requirement of 12, although two rounds do not. Fixed improvement and requirement 12 are invented; no technology trajectory is predicted.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-innovator-demand-crossing.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Innovator's Dilemma, by Clayton M. Christensen, candidate publication year 1997.",
+          "support": "source",
+          "source": "Clayton M. Christensen, The Innovator's Dilemma (1997); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-innovator-demand-crossing.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The Innovator’s Dilemma considers technologies whose performance eventually becomes sufficient for customers previously served differently.",
+          "support": "source",
+          "source": "Clayton M. Christensen, The Innovator's Dilemma (1997); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-innovator-demand-crossing.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated compound model: A inputs [5, 30, 2, 0] yield 8.45; B inputs [5, 30, 4, 0] yield 14.2805. Prediction correct option 14.28. A reaches {A}; B reaches {B}. Four repeated 30% increases cross the stated requirement of 12, although two rounds do not. Fixed improvement and requirement 12 are invented; no technology trajectory is predicted.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-innovator-demand-crossing.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy design starts at 4 and doubles each round. What capability does it have after two rounds? 4 × 2 × 2 = 16; compare that capability with any separately stated requirement.",
+          "support": "derivation",
+          "source": "Original transfer toy, compound, inputs [4, 100, 2, 0], output 16; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-innovator-demand-crossing.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "christensen-innovators-dilemma-1997",
+          "note": "Clayton M. Christensen, The Innovator's Dilemma, 1997 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "compound",
+        "innovator-demand-crossing"
+      ],
+      "also": [
+        "books:habits-one-percent"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Two rounds",
+          "savedOutput": 8.45
+        },
+        {
+          "id": "case-B",
+          "condition": "Four rounds",
+          "savedOutput": 14.2805
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "compound",
+        "A": 8.450000000000001,
+        "B": 14.280500000000002,
+        "correct": "14.28",
+        "recall": {
+          "family": "compound",
+          "inputs": [
+            4,
+            100,
+            2,
+            0
+          ],
+          "result": 16.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Narrowed from a moving-demand crossing to a fixed disclosed requirement; the engine cannot model a changing demand curve."
+    },
+    {
+      "slug": "bk-grove-leverage-hours",
+      "concept": "book-grove-leverage-hours",
+      "title": "Teach the next teacher",
+      "hook": "A toy training tree has one manager. What changes when trained people also teach?",
+      "work": "grove-leverage-1983",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Count indirect reach while distinguishing people reached from people who learned."
+        ]
+      },
+      "misconception": "Only the manager’s direct trainees can benefit from a training activity.",
+      "objective": "Count indirect reach while distinguishing people reached from people who learned.",
+      "recall": {
+        "question": "In a toy tree, one trainer teaches three people, then each teaches three new people. Total reached including the original?",
+        "options": [
+          "9.00",
+          "13.00",
+          "12.00",
+          "16.00"
+        ],
+        "answer": 1,
+        "why": "The levels contain 1 + 3 + 9 = 13 different people; no overlaps or learning effects are assumed."
+      },
+      "nearest": {
+        "lesson": "cs/queue-or-stack-same-search",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "Reach follows a training tree and includes indirect recipients; the decision is whether to train trainers, not search traversal order."
+      },
+      "format": "single-card",
+      "mechanism": "network",
+      "idea": {
+        "book": {
+          "title": "High Output Management",
+          "author": "Andrew S. Grove",
+          "year": 1983,
+          "work": "grove-leverage-1983"
+        },
+        "family": "network",
+        "predict": {
+          "question": "In B, two new people per trainer, three rounds, capped at 12 people including the original. What is B’s toy result?",
+          "options": [
+            "8.00",
+            "12.00",
+            "3.00",
+            "7.00"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "One round",
+            "values": [
+              12,
+              2,
+              1
+            ]
+          },
+          {
+            "label": "Three rounds",
+            "values": [
+              12,
+              2,
+              3
+            ]
+          }
+        ],
+        "labels": [
+          "Rounds"
+        ],
+        "unit": "people",
+        "bookIdea": "High Output Management treats training as a managerial activity with leverage beyond the manager’s own direct work.",
+        "modelBoundary": "A reaches {A} people; B reaches {B}. Newly trained people each teach two more, so new layers add 2, 4, then 5 before the 12-person cap. A collision-free teaching tree is stipulated; reach is not learning or workplace performance.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-grove-leverage-hours.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is High Output Management, by Andrew S. Grove, candidate publication year 1983.",
+          "support": "source",
+          "source": "Andrew S. Grove, High Output Management (1983); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-grove-leverage-hours.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "High Output Management treats training as a managerial activity with leverage beyond the manager’s own direct work.",
+          "support": "source",
+          "source": "Andrew S. Grove, High Output Management (1983); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-grove-leverage-hours.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated network model: A inputs [12, 2, 1] yield 3; B inputs [12, 2, 3] yield 12. Prediction correct option 12.00. A reaches {A} people; B reaches {B}. Newly trained people each teach two more, so new layers add 2, 4, then 5 before the 12-person cap. A collision-free teaching tree is stipulated; reach is not learning or workplace performance.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-grove-leverage-hours.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "In a toy tree, one trainer teaches three people, then each teaches three new people. Total reached including the original? The levels contain 1 + 3 + 9 = 13 different people; no overlaps or learning effects are assumed.",
+          "support": "derivation",
+          "source": "Original transfer toy, network, inputs [20, 3, 2], output 13; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-grove-leverage-hours.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "grove-leverage-1983",
+          "note": "Andrew S. Grove, High Output Management, 1983 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "network",
+        "grove-leverage-hours"
+      ],
+      "also": [
+        "cs:bfs-vs-dfs-frontier"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "One round",
+          "savedOutput": 3
+        },
+        {
+          "id": "case-B",
+          "condition": "Three rounds",
+          "savedOutput": 12
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "network",
+        "A": 3,
+        "B": 12,
+        "correct": "12.00",
+        "recall": {
+          "family": "network",
+          "inputs": [
+            20,
+            3,
+            2
+          ],
+          "result": 13
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Narrowed from managerial output multipliers to stipulated training reach; output and learning are explicitly not inferred."
+    },
+    {
+      "slug": "bk-personal-mba-break-even",
+      "concept": "book-personal-mba-break-even",
+      "title": "A sale and a standing fee",
+      "hook": "A toy business pays a fixed fee even when no sale arrives. Where does that cost belong?",
+      "work": "personal-mba-break-2010",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Include fixed costs in every outcome before computing expected net."
+        ]
+      },
+      "misconception": "A fixed operating cost should be subtracted only when a sale occurs.",
+      "objective": "Include fixed costs in every outcome before computing expected net.",
+      "recall": {
+        "question": "A toy stall receives 80 credits with 25% probability and pays a 10-credit fee regardless. Expected net?",
+        "options": [
+          "20.00",
+          "10.00",
+          "17.50",
+          "-10.00"
+        ],
+        "answer": 1,
+        "why": "The sale net is 70 and no-sale net is −10; 0.25 × 70 + 0.75 × (−10) = 10."
+      },
+      "nearest": {
+        "lesson": "economics/sunk-cost-exit",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "This is an avoidable future fee in both outcome branches, not an already sunk cost; decide how to model the no-sale branch."
+      },
+      "format": "single-card",
+      "mechanism": "payoff",
+      "idea": {
+        "book": {
+          "title": "The Personal MBA",
+          "author": "Josh Kaufman",
+          "year": 2010,
+          "work": "personal-mba-break-2010"
+        },
+        "family": "payoff",
+        "predict": {
+          "question": "B sells for 100 with 50% probability and always pays a 70-credit fee. What is B’s toy result?",
+          "options": [
+            "15.00",
+            "30.00",
+            "0.00",
+            "-20.00"
+          ],
+          "answer": 3
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Fee 40",
+            "values": [
+              50,
+              60,
+              -40
+            ]
+          },
+          {
+            "label": "Fee 70",
+            "values": [
+              50,
+              30,
+              -70
+            ]
+          }
+        ],
+        "labels": [
+          "Sale net",
+          "No-sale net"
+        ],
+        "unit": "credits",
+        "bookIdea": "The Personal MBA distinguishes sales revenue from the costs needed to create and deliver value.",
+        "modelBoundary": "A averages {A}; B averages {B}. A sale brings 100 credits, but the fixed fee is paid in both the sale and no-sale branches. Fees, one-sale probability and revenue are invented; this is not business or investment advice.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-personal-mba-break-even.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Personal MBA, by Josh Kaufman, candidate publication year 2010.",
+          "support": "source",
+          "source": "Josh Kaufman, The Personal MBA (2010); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-personal-mba-break-even.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The Personal MBA distinguishes sales revenue from the costs needed to create and deliver value.",
+          "support": "source",
+          "source": "Josh Kaufman, The Personal MBA (2010); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-personal-mba-break-even.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated payoff model: A inputs [50, 60, -40] yield 10; B inputs [50, 30, -70] yield -20. Prediction correct option -20.00. A averages {A}; B averages {B}. A sale brings 100 credits, but the fixed fee is paid in both the sale and no-sale branches. Fees, one-sale probability and revenue are invented; this is not business or investment advice.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-personal-mba-break-even.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy stall receives 80 credits with 25% probability and pays a 10-credit fee regardless. Expected net? The sale net is 70 and no-sale net is −10; 0.25 × 70 + 0.75 × (−10) = 10.",
+          "support": "derivation",
+          "source": "Original transfer toy, payoff, inputs [25, 70, -10], output 10; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-personal-mba-break-even.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "personal-mba-break-2010",
+          "note": "Josh Kaufman, The Personal MBA, 2010 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "payoff",
+        "personal-mba-break-even"
+      ],
+      "also": [
+        "economics:sunk-cost"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Fee 40",
+          "savedOutput": 10.0
+        },
+        {
+          "id": "case-B",
+          "condition": "Fee 70",
+          "savedOutput": -20.0
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "payoff",
+        "A": 10.0,
+        "B": -20.0,
+        "correct": "-20.00",
+        "recall": {
+          "family": "payoff",
+          "inputs": [
+            25,
+            70,
+            -10
+          ],
+          "result": 10.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Narrowed from deterministic break-even to its one-sale uncertain analogue; no unit-demand forecast or break-even curve is shown."
+    },
+    {
+      "slug": "bk-great-selected-winners",
+      "concept": "book-great-selected-winners",
+      "title": "Who entered the comparison?",
+      "hook": "A toy company sample starts with winners. What changes when the omitted firms return?",
+      "work": "great-selected-2001",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Identify the omitted denominator before treating winner-only evidence as a general success rate."
+        ]
+      },
+      "misconception": "A rule found only among selected past winners already explains success in the full population.",
+      "objective": "Identify the omitted denominator before treating winner-only evidence as a general success rate.",
+      "recall": {
+        "question": "A toy showcase has 8 successful firms. The omitted 32 firms were unsuccessful. Success percentage in all 40?",
+        "options": [
+          "100.00",
+          "20.00",
+          "25.00",
+          "80.00"
+        ],
+        "answer": 1,
+        "why": "The numerator stays 8; the denominator is 40, so the full toy rate is 20%."
+      },
+      "nearest": {
+        "lesson": "probability/base-rates",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "The sample was selected by past outcome; decide which omitted observations a company-success claim needs, rather than updating a diagnostic probability."
+      },
+      "format": "single-card",
+      "mechanism": "selection",
+      "idea": {
+        "book": {
+          "title": "Good to Great",
+          "author": "Jim Collins",
+          "year": 2001,
+          "work": "great-selected-2001"
+        },
+        "family": "selection",
+        "predict": {
+          "question": "B contains 10 winners plus 90 other firms, whose toy winner rate is zero. What is B’s toy result?",
+          "options": [
+            "10.00",
+            "100.00",
+            "90.00",
+            "50.00"
+          ],
+          "answer": 0
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Selected winners",
+            "values": [
+              10,
+              100,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "Full toy sample",
+            "values": [
+              10,
+              100,
+              90,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "Winners",
+          "Others"
+        ],
+        "unit": "%",
+        "bookIdea": "Good to Great searches for distinguishing patterns in selected companies with unusually strong prior performance.",
+        "modelBoundary": "A reports {A}%; B reports {B}%. Adding 90 omitted non-winners changes the denominator from 10 to 100 without changing any firm’s result. These are invented groups; neither a causal explanation nor a replication of the book is supplied.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-great-selected-winners.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is Good to Great, by Jim Collins, candidate publication year 2001.",
+          "support": "source",
+          "source": "Jim Collins, Good to Great (2001); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-great-selected-winners.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "Good to Great searches for distinguishing patterns in selected companies with unusually strong prior performance.",
+          "support": "source",
+          "source": "Jim Collins, Good to Great (2001); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-great-selected-winners.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated selection model: A inputs [10, 100, 0, 0] yield 100; B inputs [10, 100, 90, 0] yield 10. Prediction correct option 10.00. A reports {A}%; B reports {B}%. Adding 90 omitted non-winners changes the denominator from 10 to 100 without changing any firm’s result. These are invented groups; neither a causal explanation nor a replication of the book is supplied.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-great-selected-winners.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy showcase has 8 successful firms. The omitted 32 firms were unsuccessful. Success percentage in all 40? The numerator stays 8; the denominator is 40, so the full toy rate is 20%.",
+          "support": "derivation",
+          "source": "Original transfer toy, selection, inputs [8, 100, 32, 0], output 20; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-great-selected-winners.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "great-selected-2001",
+          "note": "Jim Collins, Good to Great, 2001 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "selection",
+        "great-selected-winners"
+      ],
+      "also": [
+        "probability:base-rates"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Selected winners",
+          "savedOutput": 100.0
+        },
+        {
+          "id": "case-B",
+          "condition": "Full toy sample",
+          "savedOutput": 10.0
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "selection",
+        "A": 100.0,
+        "B": 10.0,
+        "correct": "10.00",
+        "recall": {
+          "family": "selection",
+          "inputs": [
+            8,
+            100,
+            32,
+            0
+          ],
+          "result": 20.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "The lesson interrogates selection in the book’s comparison method; it does not attribute a winner-only causal inference to the author."
+    },
+    {
+      "slug": "bk-zero-tail-concentration",
+      "concept": "book-zero-tail-concentration",
+      "title": "The rare return branch",
+      "hook": "Most toy ventures lose one credit. How much can a rare large return change the average?",
+      "work": "thiel-zero-to-one-2014",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Locate the rare branch whose weighted magnitude changes the expected net despite unchanged failure frequency."
+        ]
+      },
+      "misconception": "If most ventures fail, the rare successful outcomes cannot determine the portfolio average.",
+      "objective": "Locate the rare branch whose weighted magnitude changes the expected net despite unchanged failure frequency.",
+      "recall": {
+        "question": "A toy venture pays net 39 with 10% probability and net −1 otherwise. Expected net?",
+        "options": [
+          "39.00",
+          "3.00",
+          "3.90",
+          "-1.00"
+        ],
+        "answer": 1,
+        "why": "0.1 × 39 + 0.9 × (−1) = 3; the rare gain contributes 3.9 while the common loss contributes −0.9."
+      },
+      "nearest": {
+        "lesson": "probability/same-average-different-ride",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "Hold success frequency fixed and change the rare return’s magnitude; decide which branch dominates a portfolio expectation rather than comparing mean versus risk."
+      },
+      "format": "single-card",
+      "mechanism": "payoff",
+      "idea": {
+        "book": {
+          "title": "Zero to One",
+          "author": "Peter Thiel and Blake Masters",
+          "year": 2014,
+          "work": "thiel-zero-to-one-2014"
+        },
+        "family": "payoff",
+        "predict": {
+          "question": "B pays net nineteen with 5% probability and loses one otherwise. What is B’s toy result?",
+          "options": [
+            "19.00",
+            "4.00",
+            "-1.00",
+            "0.00"
+          ],
+          "answer": 3
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Rare return 99",
+            "values": [
+              5,
+              99,
+              -1
+            ]
+          },
+          {
+            "label": "Rare return 19",
+            "values": [
+              5,
+              19,
+              -1
+            ]
+          }
+        ],
+        "labels": [
+          "Rare return",
+          "Other net"
+        ],
+        "unit": "credits",
+        "bookIdea": "Zero to One emphasizes that a few exceptional outcomes can dominate venture returns.",
+        "modelBoundary": "A averages {A}; B {B}. Both lose one credit in 95% of cases; the 5% return branch changes enough to move the whole average. Both distributions are invented; no venture return law or investment recommendation is established.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-zero-tail-concentration.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is Zero to One, by Peter Thiel and Blake Masters, candidate publication year 2014.",
+          "support": "source",
+          "source": "Peter Thiel and Blake Masters, Zero to One (2014); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-zero-tail-concentration.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "Zero to One emphasizes that a few exceptional outcomes can dominate venture returns.",
+          "support": "source",
+          "source": "Peter Thiel and Blake Masters, Zero to One (2014); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-zero-tail-concentration.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated payoff model: A inputs [5, 99, -1] yield 4; B inputs [5, 19, -1] yield 1.110223e-16. Prediction correct option 0.00. A averages {A}; B {B}. Both lose one credit in 95% of cases; the 5% return branch changes enough to move the whole average. Both distributions are invented; no venture return law or investment recommendation is established.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-zero-tail-concentration.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy venture pays net 39 with 10% probability and net −1 otherwise. Expected net? 0.1 × 39 + 0.9 × (−1) = 3; the rare gain contributes 3.9 while the common loss contributes −0.9.",
+          "support": "derivation",
+          "source": "Original transfer toy, payoff, inputs [10, 39, -1], output 3; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-zero-tail-concentration.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "thiel-zero-to-one-2014",
+          "note": "Peter Thiel and Blake Masters, Zero to One, 2014 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "payoff",
+        "zero-tail-concentration"
+      ],
+      "also": [
+        "probability:variance-risk"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Rare return 99",
+          "savedOutput": 4.0
+        },
+        {
+          "id": "case-B",
+          "condition": "Rare return 19",
+          "savedOutput": 0.0
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "payoff",
+        "A": 4.0,
+        "B": 1.1102230246251565e-16,
+        "correct": "0.00",
+        "recall": {
+          "family": "payoff",
+          "inputs": [
+            10,
+            39,
+            -1
+          ],
+          "result": 3.0000000000000004
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route."
+    },
+    {
+      "slug": "bk-yes-trade-different-values",
+      "concept": "book-yes-trade-different-values",
+      "title": "An offer and a fallback",
+      "hook": "A toy agreement has two possible outcomes. Compare it with a certain outside option.",
+      "work": "fisher-ury-getting-to-yes-1981",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Compare the entire proposed agreement with a specified outside option."
+        ]
+      },
+      "misconception": "A deal with an attractive best outcome must beat walking away.",
+      "objective": "Compare the entire proposed agreement with a specified outside option.",
+      "recall": {
+        "question": "A toy offer pays 18 with 50% probability and 0 otherwise. What is its expected payoff before comparison with a sure fallback?",
+        "options": [
+          "18.00",
+          "9.00",
+          "0.00",
+          "12.00"
+        ],
+        "answer": 1,
+        "why": "0.5 × 18 + 0.5 × 0 = 9; a sure fallback above 9 has the larger monetary expectation."
+      },
+      "nearest": {
+        "lesson": "economics/outside-option-sets-the-split",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "The fallback benchmarks uncertain net outcomes rather than determining a bargaining split; decide whether the offer clears that benchmark."
+      },
+      "format": "single-card",
+      "mechanism": "payoff",
+      "idea": {
+        "book": {
+          "title": "Getting to Yes",
+          "author": "Roger Fisher and William Ury",
+          "year": 1981,
+          "work": "fisher-ury-getting-to-yes-1981"
+        },
+        "family": "payoff",
+        "predict": {
+          "question": "B pays twenty with 70% probability and loses ten otherwise; A is a sure twelve. What is B’s toy result?",
+          "options": [
+            "20.00",
+            "14.00",
+            "11.00",
+            "12.00"
+          ],
+          "answer": 2
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Certain fallback",
+            "values": [
+              100,
+              12,
+              12
+            ]
+          },
+          {
+            "label": "Uncertain agreement",
+            "values": [
+              70,
+              20,
+              -10
+            ]
+          }
+        ],
+        "labels": [
+          "Win",
+          "Loss"
+        ],
+        "unit": "credits",
+        "bookIdea": "Getting to Yes uses the best alternative to an agreement as a benchmark for evaluating a proposed deal.",
+        "modelBoundary": "A gives {A}; B averages {B}. An attractive 20-credit agreement outcome does not by itself beat the certain 12-credit fallback. Probabilities and net values are stipulated; expected value is not a complete negotiation criterion.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-yes-trade-different-values.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is Getting to Yes, by Roger Fisher and William Ury, candidate publication year 1981.",
+          "support": "source",
+          "source": "Roger Fisher and William Ury, Getting to Yes (1981); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-yes-trade-different-values.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "Getting to Yes uses the best alternative to an agreement as a benchmark for evaluating a proposed deal.",
+          "support": "source",
+          "source": "Roger Fisher and William Ury, Getting to Yes (1981); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-yes-trade-different-values.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated payoff model: A inputs [100, 12, 12] yield 12; B inputs [70, 20, -10] yield 11. Prediction correct option 11.00. A gives {A}; B averages {B}. An attractive 20-credit agreement outcome does not by itself beat the certain 12-credit fallback. Probabilities and net values are stipulated; expected value is not a complete negotiation criterion.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-yes-trade-different-values.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy offer pays 18 with 50% probability and 0 otherwise. What is its expected payoff before comparison with a sure fallback? 0.5 × 18 + 0.5 × 0 = 9; a sure fallback above 9 has the larger monetary expectation.",
+          "support": "derivation",
+          "source": "Original transfer toy, payoff, inputs [50, 18, 0], output 9; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-yes-trade-different-values.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "fisher-ury-getting-to-yes-1981",
+          "note": "Roger Fisher and William Ury, Getting to Yes, 1981 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "payoff",
+        "yes-trade-different-values"
+      ],
+      "also": [
+        "economics:nash-bargaining"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Certain fallback",
+          "savedOutput": 12.0
+        },
+        {
+          "id": "case-B",
+          "condition": "Uncertain agreement",
+          "savedOutput": 11.0
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "payoff",
+        "A": 12.0,
+        "B": 11.0,
+        "correct": "11.00",
+        "recall": {
+          "family": "payoff",
+          "inputs": [
+            50,
+            18,
+            0
+          ],
+          "result": 9.0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Replaced unsupported two-issue preference trades with the book’s outside-option benchmark; no preference exchange or bargaining equilibrium is simulated."
+    },
+    {
+      "slug": "bk-drucker-time-fragments",
+      "concept": "book-drucker-time-fragments",
+      "title": "The almost-complete hour",
+      "hook": "A toy task cannot be split. What changes between 39 and 40 available minutes?",
+      "work": "drucker-time-1967",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Recognize the discrete completion threshold when a finite time budget must fit indivisible tasks."
+        ]
+      },
+      "misconception": "An extra minute can add at most one minute of completed work.",
+      "objective": "Recognize the discrete completion threshold when a finite time budget must fit indivisible tasks.",
+      "recall": {
+        "question": "A toy session has 59 minutes and indivisible 20-minute tasks with no overhead. Completed work minutes?",
+        "options": [
+          "59.00",
+          "40.00",
+          "60.00",
+          "20.00"
+        ],
+        "answer": 1,
+        "why": "Only two complete tasks fit in 59 minutes, yielding 40 completed work minutes and 19 unused minutes."
+      },
+      "nearest": {
+        "lesson": "lifehacks/fragmented-time-does-not-fit",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "The budget is contiguous in both cases; a one-minute threshold changes complete-task count, rather than joining separated calendar fragments."
+      },
+      "format": "single-card",
+      "mechanism": "intervals",
+      "idea": {
+        "book": {
+          "title": "The Effective Executive",
+          "author": "Peter F. Drucker",
+          "year": 1967,
+          "work": "drucker-time-1967"
+        },
+        "family": "intervals",
+        "predict": {
+          "question": "B provides forty minutes for indivisible twenty-minute tasks with no overhead. What is B’s toy result?",
+          "options": [
+            "40.00",
+            "20.00",
+            "39.00",
+            "19.00"
+          ],
+          "answer": 0
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "39 minutes",
+            "values": [
+              39,
+              20,
+              0
+            ]
+          },
+          {
+            "label": "40 minutes",
+            "values": [
+              40,
+              20,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "Work",
+          "Overhead"
+        ],
+        "unit": "work minutes",
+        "bookIdea": "The Effective Executive treats recording and consolidating time as a prerequisite for choosing what deserves it.",
+        "modelBoundary": "A completes {A} work minutes; B completes {B}. One extra available minute makes a second whole 20-minute task fit instead of leaving 19 unusable minutes. Indivisible toy tasks only; unfinished chunks contribute no output and concentration is not modeled.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-drucker-time-fragments.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Effective Executive, by Peter F. Drucker, candidate publication year 1967.",
+          "support": "source",
+          "source": "Peter F. Drucker, The Effective Executive (1967); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-drucker-time-fragments.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The Effective Executive treats recording and consolidating time as a prerequisite for choosing what deserves it.",
+          "support": "source",
+          "source": "Peter F. Drucker, The Effective Executive (1967); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-drucker-time-fragments.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated intervals model: A inputs [39, 20, 0] yield 20; B inputs [40, 20, 0] yield 40. Prediction correct option 40.00. A completes {A} work minutes; B completes {B}. One extra available minute makes a second whole 20-minute task fit instead of leaving 19 unusable minutes. Indivisible toy tasks only; unfinished chunks contribute no output and concentration is not modeled.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-drucker-time-fragments.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy session has 59 minutes and indivisible 20-minute tasks with no overhead. Completed work minutes? Only two complete tasks fit in 59 minutes, yielding 40 completed work minutes and 19 unused minutes.",
+          "support": "derivation",
+          "source": "Original transfer toy, intervals, inputs [59, 20, 0], output 40; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-drucker-time-fragments.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "drucker-time-1967",
+          "note": "Peter F. Drucker, The Effective Executive, 1967 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "intervals",
+        "drucker-time-fragments"
+      ],
+      "also": [
+        "lifehacks:pieces-are-not-one-whole"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "39 minutes",
+          "savedOutput": 20
+        },
+        {
+          "id": "case-B",
+          "condition": "40 minutes",
+          "savedOutput": 40
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "intervals",
+        "A": 20,
+        "B": 40,
+        "correct": "40.00",
+        "recall": {
+          "family": "intervals",
+          "inputs": [
+            59,
+            20,
+            0
+          ],
+          "result": 40
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "The original fragmented-window example is replaced by a complete-task threshold; no arbitrary calendar interval or cognitive focus mechanism is implied."
+    },
+    {
+      "slug": "bk-emyth-owner-bottleneck",
+      "concept": "book-emyth-owner-bottleneck",
+      "title": "Who handles the repeat job?",
+      "hook": "A toy owner delegates repeated work. What happens to the new handoff station?",
+      "work": "emyth-owner-1995",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Calculate the new constraint after work is redistributed away from an owner."
+        ]
+      },
+      "misconception": "Removing owner work guarantees that the delegated step has unlimited capacity.",
+      "objective": "Calculate the new constraint after work is redistributed away from an owner.",
+      "recall": {
+        "question": "A toy owner handles 8 jobs/hour, the delegated handoff handles 6, and finishing handles 12. Steady output?",
+        "options": [
+          "8.00",
+          "6.00",
+          "12.00",
+          "26.00"
+        ],
+        "answer": 1,
+        "why": "Every completed job needs the handoff, so min(8,6,12) = 6 jobs/hour."
+      },
+      "nearest": {
+        "lesson": "books/slowest-station-sets-pace",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "Delegation changes two capacities in opposite directions; decide whether the receiving process can absorb transferred work."
+      },
+      "format": "single-card",
+      "mechanism": "flow",
+      "idea": {
+        "book": {
+          "title": "The E-Myth Revisited",
+          "author": "Michael E. Gerber",
+          "year": 1995,
+          "work": "emyth-owner-1995"
+        },
+        "family": "flow",
+        "predict": {
+          "question": "B has capacities 6, 5 and 10 jobs/hour in sequence. What is B’s toy result?",
+          "options": [
+            "6.00",
+            "10.00",
+            "5.00",
+            "3.00"
+          ],
+          "answer": 2
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Owner does repeats",
+            "values": [
+              3,
+              10,
+              10
+            ]
+          },
+          {
+            "label": "Delegated repeats",
+            "values": [
+              6,
+              5,
+              10
+            ]
+          }
+        ],
+        "labels": [
+          "Owner",
+          "Handoff",
+          "Finish"
+        ],
+        "unit": "jobs/hour",
+        "bookIdea": "The E-Myth Revisited distinguishes building repeatable operating systems from relying on the owner to do every job.",
+        "modelBoundary": "A completes {A} jobs/hour; B completes {B}. Delegation raises owner capacity from 3 to 6, but creates a handoff limited to 5. Serial steady flow only; delegation quality and real business outcomes are not estimated.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-emyth-owner-bottleneck.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The E-Myth Revisited, by Michael E. Gerber, candidate publication year 1995.",
+          "support": "source",
+          "source": "Michael E. Gerber, The E-Myth Revisited (1995); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-emyth-owner-bottleneck.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The E-Myth Revisited distinguishes building repeatable operating systems from relying on the owner to do every job.",
+          "support": "source",
+          "source": "Michael E. Gerber, The E-Myth Revisited (1995); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-emyth-owner-bottleneck.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated flow model: A inputs [3, 10, 10] yield 3; B inputs [6, 5, 10] yield 5. Prediction correct option 5.00. A completes {A} jobs/hour; B completes {B}. Delegation raises owner capacity from 3 to 6, but creates a handoff limited to 5. Serial steady flow only; delegation quality and real business outcomes are not estimated.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-emyth-owner-bottleneck.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy owner handles 8 jobs/hour, the delegated handoff handles 6, and finishing handles 12. Steady output? Every completed job needs the handoff, so min(8,6,12) = 6 jobs/hour.",
+          "support": "derivation",
+          "source": "Original transfer toy, flow, inputs [8, 6, 12], output 6; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-emyth-owner-bottleneck.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "emyth-owner-1995",
+          "note": "Michael E. Gerber, The E-Myth Revisited, 1995 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "flow",
+        "emyth-owner-bottleneck"
+      ],
+      "also": [
+        "books:goal-bottleneck-sets-pace"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Owner does repeats",
+          "savedOutput": 3
+        },
+        {
+          "id": "case-B",
+          "condition": "Delegated repeats",
+          "savedOutput": 5
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "flow",
+        "A": 3,
+        "B": 5,
+        "correct": "5.00",
+        "recall": {
+          "family": "flow",
+          "inputs": [
+            8,
+            6,
+            12
+          ],
+          "result": 6
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Owner-bottleneck routing is narrowed to disclosed capacity redistribution, without claiming the handoff teaches or automates itself."
+    },
+    {
+      "slug": "bk-fifth-upstream-orders",
+      "concept": "book-fifth-upstream-orders",
+      "title": "When a stock runs empty",
+      "hook": "A toy stock loses more than it gains. Can repeated subtraction make the stock negative?",
+      "work": "fifth-upstream-1990",
+      "learner": {
+        "knows": [
+          "basic arithmetic and the meaning of a percentage"
+        ],
+        "doesNotKnow": [
+          "Distinguish depleted stock from an unmet request when a fixed-flow calculation reaches its zero boundary."
+        ]
+      },
+      "misconception": "A fixed outflow can keep reducing a physical stock below zero.",
+      "objective": "Distinguish depleted stock from an unmet request when a fixed-flow calculation reaches its zero boundary.",
+      "recall": {
+        "question": "A toy stock starts at 5, gains 1 and is asked to release 4 per round for three rounds. Physical stock remaining?",
+        "options": [
+          "2.00",
+          "0.00",
+          "-4.00",
+          "3.00"
+        ],
+        "answer": 1,
+        "why": "The rule max(0, stock + 1 − 4) reaches zero and stays there; unmet requests are not negative physical stock."
+      },
+      "nearest": {
+        "lesson": "life/falling-yet-adding",
+        "shared": "The listed lesson shares part of this arithmetic.",
+        "distinctness": "The zero-stock floor becomes active; decide whether a request can be satisfied after physical stock is exhausted, not whether net flow accumulates."
+      },
+      "format": "single-card",
+      "mechanism": "feedback",
+      "idea": {
+        "book": {
+          "title": "The Fifth Discipline",
+          "author": "Peter M. Senge",
+          "year": 1990,
+          "work": "fifth-upstream-1990"
+        },
+        "family": "feedback",
+        "predict": {
+          "question": "B starts at ten, gains two and releases four each round for three rounds. What is B’s toy result?",
+          "options": [
+            "10.00",
+            "4.00",
+            "0.00",
+            "6.00"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Run both cases; compare the changed input.",
+        "scenarios": [
+          {
+            "label": "Drain four",
+            "values": [
+              10,
+              2,
+              6,
+              3
+            ]
+          },
+          {
+            "label": "Drain two",
+            "values": [
+              10,
+              2,
+              4,
+              3
+            ]
+          }
+        ],
+        "labels": [
+          "In",
+          "Out",
+          "steps"
+        ],
+        "unit": "units",
+        "bookIdea": "The Fifth Discipline asks managers to examine systems and interdependencies rather than isolated events.",
+        "modelBoundary": "A ends at {A}; B at {B}. A would subtract twelve from ten, but the stock floor clips the final step at zero; B removes only six. Fixed flows with a zero floor only; unmet outflow is not recorded as negative physical stock.",
+        "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+      },
+      "claims": [
+        {
+          "id": "books.bk-fifth-upstream-orders.bibliography",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ],
+          "text": "The named work is The Fifth Discipline, by Peter M. Senge, candidate publication year 1990.",
+          "support": "source",
+          "source": "Peter M. Senge, The Fifth Discipline (1990); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-fifth-upstream-orders.book",
+          "addresses": [
+            "idea.bookIdea"
+          ],
+          "text": "The Fifth Discipline asks managers to examine systems and interdependencies rather than isolated events.",
+          "support": "source",
+          "source": "Peter M. Senge, The Fifth Discipline (1990); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-fifth-upstream-orders.toy",
+          "addresses": [
+            "hook",
+            "idea.predict",
+            "idea.exploreHint",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary"
+          ],
+          "text": "Original stipulated feedback model: A inputs [10, 2, 6, 3] yield 0; B inputs [10, 2, 4, 3] yield 4. Prediction correct option 4.00. A ends at {A}; B at {B}. A would subtract twelve from ten, but the stock floor clips the final step at zero; B removes only six. Fixed flows with a zero floor only; unmet outflow is not recorded as negative physical stock.",
+          "support": "derivation",
+          "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-fifth-upstream-orders.recall",
+          "addresses": [
+            "recall.question",
+            "recall.options",
+            "recall.why"
+          ],
+          "text": "A toy stock starts at 5, gains 1 and is asked to release 4 per round for three rounds. Physical stock remaining? The rule max(0, stock + 1 − 4) reaches zero and stays there; unmet requests are not negative physical stock.",
+          "support": "derivation",
+          "source": "Original transfer toy, feedback, inputs [5, 1, 4, 3], output 0; independent Python recomputation.",
+          "status": "unverified"
+        },
+        {
+          "id": "books.bk-fifth-upstream-orders.world",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ],
+          "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+          "support": "convention",
+          "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+          "status": "unverified"
+        }
+      ],
+      "references": [
+        {
+          "work": "fifth-upstream-1990",
+          "note": "Peter M. Senge, The Fifth Discipline, 1990 edition; chapter (unconfirmed). No source copy was opened for this brief."
+        }
+      ],
+      "tags": [
+        "books",
+        "business",
+        "feedback",
+        "fifth-upstream-orders"
+      ],
+      "also": [
+        "life:reading-case-curves"
+      ],
+      "prerequisites": [],
+      "level": "intro",
+      "strand": "business",
+      "requiredMilestones": [
+        {
+          "id": "case-A",
+          "condition": "Drain four",
+          "savedOutput": 0
+        },
+        {
+          "id": "case-B",
+          "condition": "Drain two",
+          "savedOutput": 4
+        }
+      ],
+      "reset": "Return active stage to its initial state; retain both case-labelled saved outputs and milestones.",
+      "answerCheck": {
+        "formula": "feedback",
+        "A": 0,
+        "B": 4,
+        "correct": "4.00",
+        "recall": {
+          "family": "feedback",
+          "inputs": [
+            5,
+            1,
+            4,
+            3
+          ],
+          "result": 0
+        }
+      },
+      "sourceState": "bibliography and attribution unverified; chapter (unconfirmed); no research verdict",
+      "futureDeck": "One parked prototype; future production grouping requires the ordinary 3–4-idea book-deck route.",
+      "candidateIdeaDisposition": "Supplier-buffer amplification required endogenous orders; replaced by the physical-stock zero boundary in a fixed-flow systems toy."
+    }
+  ],
+  "works": [
+    {
+      "id": "grove-leverage-1983",
+      "title": "High Output Management",
+      "authors": [
+        "Andrew S. Grove"
+      ],
+      "year": 1983,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "personal-mba-break-2010",
+      "title": "The Personal MBA",
+      "authors": [
+        "Josh Kaufman"
+      ],
+      "year": 2010,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "great-selected-2001",
+      "title": "Good to Great",
+      "authors": [
+        "Jim Collins"
+      ],
+      "year": 2001,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "drucker-time-1967",
+      "title": "The Effective Executive",
+      "authors": [
+        "Peter F. Drucker"
+      ],
+      "year": 1967,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "emyth-owner-1995",
+      "title": "The E-Myth Revisited",
+      "authors": [
+        "Michael E. Gerber"
+      ],
+      "year": 1995,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "fifth-upstream-1990",
+      "title": "The Fifth Discipline",
+      "authors": [
+        "Peter M. Senge"
+      ],
+      "year": 1990,
+      "category": "books",
+      "chapters": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "book-checklist-series-reliability",
+      "name": "Three checks, one complete job",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "gawande-checklist-manifesto-2009"
+    },
+    {
+      "id": "book-bets-process-versus-outcome",
+      "name": "The win counter",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "duke-thinking-in-bets-2018"
+    },
+    {
+      "id": "book-brooks-ramp-up-cost",
+      "name": "The added team",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "brooks-mythical-man-month-1975"
+    },
+    {
+      "id": "book-innovator-demand-crossing",
+      "name": "When enough becomes enough",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "christensen-innovators-dilemma-1997"
+    },
+    {
+      "id": "book-grove-leverage-hours",
+      "name": "Teach the next teacher",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "grove-leverage-1983"
+    },
+    {
+      "id": "book-personal-mba-break-even",
+      "name": "A sale and a standing fee",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "personal-mba-break-2010"
+    },
+    {
+      "id": "book-great-selected-winners",
+      "name": "Who entered the comparison?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "great-selected-2001"
+    },
+    {
+      "id": "book-zero-tail-concentration",
+      "name": "The rare return branch",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "thiel-zero-to-one-2014"
+    },
+    {
+      "id": "book-yes-trade-different-values",
+      "name": "An offer and a fallback",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "fisher-ury-getting-to-yes-1981"
+    },
+    {
+      "id": "book-drucker-time-fragments",
+      "name": "The almost-complete hour",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "drucker-time-1967"
+    },
+    {
+      "id": "book-emyth-owner-bottleneck",
+      "name": "Who handles the repeat job?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "emyth-owner-1995"
+    },
+    {
+      "id": "book-fifth-upstream-orders",
+      "name": "When a stock runs empty",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "fifth-upstream-1990"
+    }
+  ],
+  "holds": [
+    {
+      "id": "F1",
+      "scope": "All book attributions and bibliographies",
+      "reason": "No edition was opened; chapter (unconfirmed). Independent source verification required before publication."
+    },
+    {
+      "id": "world-evidence",
+      "scope": "All wider applicability claims",
+      "reason": "Only the bounded original mathematical models are supplied; no empirical effectiveness or research verdict is claimed."
+    },
+    {
+      "id": "F2",
+      "scope": "Publication",
+      "reason": "Independent copyright/legal and normal publication gates remain open."
+    }
+  ],
+  "substitutions": [
+    {
+      "slug": "bk-innovator-demand-crossing",
+      "type": "candidate-idea-narrowing",
+      "reason": "Narrowed from a moving-demand crossing to a fixed disclosed requirement; the engine cannot model a changing demand curve."
+    },
+    {
+      "slug": "bk-grove-leverage-hours",
+      "type": "candidate-idea-narrowing",
+      "reason": "Narrowed from managerial output multipliers to stipulated training reach; output and learning are explicitly not inferred."
+    },
+    {
+      "slug": "bk-personal-mba-break-even",
+      "type": "candidate-idea-narrowing",
+      "reason": "Narrowed from deterministic break-even to its one-sale uncertain analogue; no unit-demand forecast or break-even curve is shown."
+    },
+    {
+      "slug": "bk-great-selected-winners",
+      "type": "candidate-idea-narrowing",
+      "reason": "The lesson interrogates selection in the book’s comparison method; it does not attribute a winner-only causal inference to the author."
+    },
+    {
+      "slug": "bk-yes-trade-different-values",
+      "type": "candidate-idea-narrowing",
+      "reason": "Replaced unsupported two-issue preference trades with the book’s outside-option benchmark; no preference exchange or bargaining equilibrium is simulated."
+    },
+    {
+      "slug": "bk-drucker-time-fragments",
+      "type": "candidate-idea-narrowing",
+      "reason": "The original fragmented-window example is replaced by a complete-task threshold; no arbitrary calendar interval or cognitive focus mechanism is implied."
+    },
+    {
+      "slug": "bk-emyth-owner-bottleneck",
+      "type": "candidate-idea-narrowing",
+      "reason": "Owner-bottleneck routing is narrowed to disclosed capacity redistribution, without claiming the handoff teaches or automates itself."
+    },
+    {
+      "slug": "bk-fifth-upstream-orders",
+      "type": "candidate-idea-narrowing",
+      "reason": "Supplier-buffer amplification required endogenous orders; replaced by the physical-stock zero boundary in a fixed-flow systems toy."
+    }
+  ]
+}

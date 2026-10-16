@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Predictably Irrational",
+    "author": "Dan Ariely",
+    "year": 2008,
+    "work": "ariely-predictably-irrational-2008"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "Free entry has a 20% chance of +12 points and an 80% chance of -3. Over many entries under these rules, what is the mean net points per entry?",
+    "options": [
+      "0 points",
+      "3 points",
+      "12 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Free entry",
+      "values": [
+        20,
+        12,
+        -3
+      ]
+    },
+    {
+      "label": "Paid entry",
+      "values": [
+        80,
+        5,
+        -5
+      ]
+    }
+  ],
+  "labels": [
+    "Win",
+    "Lose"
+  ],
+  "unit": "net points",
+  "bookIdea": "Predictably Irrational questions whether the attraction of free options supports good comparisons.",
+  "modelBoundary": "Free entry averages {A}; paid entry {B}. Net outcomes include entry fees; different chances and consequences outweigh the free label.",
+  "doesItHoldUp": "Does it hold up? This invented game cannot establish a psychological zero-price effect."
+}

@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "year": 2006,
+    "work": "dweck-mindset-2006"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Toy accuracy is 100% on easy tasks and 50% on hard tasks. For two easy and eight hard tasks, expected score?",
+    "options": [
+      "50%",
+      "60%",
+      "90%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Mostly easy",
+      "values": [
+        8,
+        100,
+        2,
+        50
+      ]
+    },
+    {
+      "label": "Mostly hard",
+      "values": [
+        2,
+        100,
+        8,
+        50
+      ]
+    }
+  ],
+  "labels": [
+    "Easy",
+    "Hard"
+  ],
+  "unit": "% correct",
+  "bookIdea": "Mindset challenges treating present performance as a fixed limit on what someone can learn.",
+  "modelBoundary": "Mostly easy yields {A}%; mostly hard {B}%. Only task weights change; neither group’s assumed accuracy changes.",
+  "doesItHoldUp": "Does it hold up? These invented scores measure no mindset intervention or future learning capacity."
+}

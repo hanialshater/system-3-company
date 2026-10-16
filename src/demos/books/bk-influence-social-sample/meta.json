@@ -1,0 +1,134 @@
+{
+  "slug": "bk-influence-social-sample",
+  "title": "Many copies, how many sources?",
+  "hook": "Compare two message trees whose endorsements all originate from one source.",
+  "domain": "books",
+  "concept": "book-influence-social-sample",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to distinguish message reach from the number of independent information origins"
+    ]
+  },
+  "misconception": "A dozen repeated endorsements necessarily represent a dozen independent observations.",
+  "objective": "Distinguish message reach from the number of independent information origins.",
+  "claims": [
+    {
+      "id": "books.bk-influence-social-sample.bibliography",
+      "text": "Influence; Robert B. Cialdini; 1984.",
+      "support": "source",
+      "source": "Candidate bibliographic record for cialdini-influence-1984; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-influence-social-sample.book",
+      "text": "Influence discusses using other people’s behavior as a guide to choice.",
+      "support": "source",
+      "source": "Influence (1984), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-influence-social-sample.model",
+      "text": "Original stipulated tree model: Source at round 0. In each following round, each newly reached node sends to two previously unused nodes. The first case uses one recipient instead. Count the source and all descendants once; cap total at twelve. No overlaps, credibility, persuasion or behavior model. Scenario A (one recipient) reaches 1+1+1+1=4 nodes; scenario B (two recipients) reaches min(12,1+2+4+8)=12 nodes. Prediction premise: Starting with one source at round 0, each newly reached node sends to two unused nodes next round. After three rounds, including the source and capped at 12, how many nodes? One-recipient forwarding reaches {A}; two-recipient forwarding {B}. Extra branches multiply copies, while the original source remains one.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-influence-social-sample.world",
+      "text": "Does it hold up? Reach is not independent evidence or a measured persuasion effect.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-influence-social-sample.recall",
+      "text": "{\"question\": \"Eight reposts all copy one original observation. How many independent origins are established?\", \"options\": [\"One origin\", \"Eight origins\", \"Nine origins\"], \"answer\": 0, \"why\": \"The copying rule supplies one origin; repeated messages add reach without independent observations.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Eight reposts all copy one original observation. How many independent origins are established?",
+    "options": [
+      "One origin",
+      "Eight origins",
+      "Nine origins"
+    ],
+    "answer": 0,
+    "why": "The copying rule supplies one origin; repeated messages add reach without independent observations."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-influence-social-sample/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-influence-social-sample/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/bk-influence-social-sample/2026-10-16-learner-beginner-v4.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "books:book-influence-social-sample",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "cialdini-influence-1984",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "network",
+      "social-proof"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Turn the Ship Around!",
+    "author": "L. David Marquet",
+    "year": 2012,
+    "work": "ship-distributed-2012"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Each decision needs Prepare, Approve and Act. B handles 6, 8 and 6 decisions/hour at those steps. How many completed decisions per hour can B sustain?",
+    "options": [
+      "8",
+      "12",
+      "6",
+      "2"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Central approval",
+      "values": [
+        12,
+        2,
+        12
+      ]
+    },
+    {
+      "label": "Distributed authority",
+      "values": [
+        6,
+        8,
+        6
+      ]
+    }
+  ],
+  "labels": [
+    "Prepare",
+    "Approve",
+    "Act"
+  ],
+  "unit": "decisions/hour",
+  "bookIdea": "Turn the Ship Around! describes moving authority toward people able to act on local knowledge.",
+  "modelBoundary": "Every decision needs all three steps. A completes {A} decisions/hour; B completes {B}. B’s approval handles eight, but preparation and action each cap completions at six. Knowledge quality, military operations and leadership outcomes are not modeled.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

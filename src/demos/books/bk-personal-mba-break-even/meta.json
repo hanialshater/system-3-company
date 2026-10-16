@@ -1,0 +1,134 @@
+{
+  "slug": "bk-personal-mba-break-even",
+  "title": "A sale and a standing fee",
+  "hook": "A toy business pays a fixed fee even when no sale arrives. Where does that cost belong?",
+  "domain": "books",
+  "concept": "book-personal-mba-break-even",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Include fixed costs in every outcome before computing expected net."
+    ]
+  },
+  "misconception": "A fixed operating cost should be subtracted only when a sale occurs.",
+  "objective": "Include fixed costs in every outcome before computing expected net.",
+  "claims": [
+    {
+      "id": "books.bk-personal-mba-break-even.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Personal MBA, by Josh Kaufman, candidate publication year 2010.",
+      "support": "source",
+      "source": "Josh Kaufman, The Personal MBA (2010); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-personal-mba-break-even.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Personal MBA distinguishes sales revenue from the costs needed to create and deliver value.",
+      "support": "source",
+      "source": "Josh Kaufman, The Personal MBA (2010); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-personal-mba-break-even.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [50, 60, -40] yield 10; B inputs [50, 30, -70] yield -20. Prediction correct option -20. A averages {A}; B averages {B}. A sale brings 100 credits, but the fixed fee is paid in both the sale and no-sale branches. Fees, one-sale probability and revenue are invented; this is not business or investment advice.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-personal-mba-break-even.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy stall receives 80 credits with 25% probability and pays a 10-credit fee regardless. Expected net? The sale net is 70 and no-sale net is −10; 0.25 × 70 + 0.75 × (−10) = 10.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [25, 70, -10], output 10; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-personal-mba-break-even.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy stall receives 80 credits with 25% probability and pays a 10-credit fee regardless. Expected net?",
+    "options": [
+      "20.00",
+      "10.00",
+      "17.50",
+      "-10.00"
+    ],
+    "answer": 1,
+    "why": "The sale net is 70 and no-sale net is −10; 0.25 × 70 + 0.75 × (−10) = 10."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-personal-mba-break-even/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-personal-mba-break-even/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-personal-mba-break-even",
+    "also": [
+      "economics:sunk-cost"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "personal-mba-break-2010",
+        "note": "Josh Kaufman, The Personal MBA, 2010 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "personal-mba-break-even"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

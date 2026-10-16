@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Theory of Island Biogeography",
+    "author": "Robert H. MacArthur and Edward O. Wilson",
+    "year": 1967,
+    "work": "island-arrival-loss-1967"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "Start at 20; 3 arrive and 3 leave each step. What remains after four steps?",
+    "options": [
+      "20 species",
+      "24 species",
+      "32 species"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Smaller stock",
+      "values": [
+        20,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "Larger stock",
+      "values": [
+        40,
+        3,
+        3,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "Arrive",
+    "Leave",
+    "steps"
+  ],
+  "unit": "species",
+  "bookIdea": "Island species numbers reflect both immigration and extinction.",
+  "modelBoundary": "Balanced flows retain {A} and {B}. Equal arrivals and losses stop net change at either stock; fixed flows do not select a unique equilibrium.",
+  "doesItHoldUp": "Does it hold up? Counts and rates are stipulated. Species-dependent curves and empirical island predictions are not modeled."
+}

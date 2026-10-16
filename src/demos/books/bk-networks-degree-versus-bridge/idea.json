@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "Networks",
+    "author": "Mark E. J. Newman",
+    "year": 2010,
+    "work": "networks-degree-versus-2010"
+  },
+  "family": "network",
+  "predict": {
+    "question": "A binary tree has a maximum of 7 nodes. What count follows four outward rounds?",
+    "options": [
+      "7 nodes",
+      "8 nodes",
+      "15 nodes"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Three rounds",
+      "values": [
+        7,
+        2,
+        3
+      ]
+    },
+    {
+      "label": "Four rounds",
+      "values": [
+        7,
+        2,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "rounds"
+  ],
+  "unit": "nodes",
+  "bookIdea": "Network size and structure constrain the reach of expanding paths.",
+  "modelBoundary": "Three rounds reach {A}; four still reach {B}. After the supplied finite cap is reached, another round cannot create additional allowed nodes.",
+  "doesItHoldUp": "Does it hold up? This bounds a capped tree, not general-network distances, hubs or bridges. Collisions are absent before the cap."
+}

@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Range",
+    "author": "David Epstein",
+    "year": 2019,
+    "work": "range-transfer-2019"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "In an invented unfamiliar-task test, four narrow examples transfer at0% and six broad examples at50%. Expected transfer share?",
+    "options": [
+      "0%",
+      "30%",
+      "50%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Narrow portfolio",
+      "values": [
+        10,
+        0,
+        0,
+        50
+      ]
+    },
+    {
+      "label": "Mixed portfolio",
+      "values": [
+        4,
+        0,
+        6,
+        50
+      ]
+    }
+  ],
+  "labels": [
+    "Narrow",
+    "Broad"
+  ],
+  "unit": "% successful transfer",
+  "bookIdea": "Range argues broad experience can help with transfer when problems are unfamiliar.",
+  "modelBoundary": "The narrow portfolio transfers {A}%; mixed portfolio {B}%. The difference follows from assigned transfer rates and example weights.",
+  "doesItHoldUp": "Does it hold up? Breadth’s advantage is an input here, not demonstrated evidence that generalists outperform specialists."
+}

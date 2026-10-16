@@ -1,0 +1,532 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 build
+> npm run registry && next build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 registry
+> node tools/company.mjs registry
+
+registry: up to date
+▲ Next.js 16.4.0 (Turbopack)
+✓ Running next.config.mjs took 12ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 18.6s
+  Running TypeScript ...
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+    - include was updated to add '.next-books100-completion-v4/types/**/*.ts'
+    - include was updated to add '.next-books100-completion-v4/dev/types/**/*.ts'
+
+  Finished TypeScript in 31.3s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/2225) ...
+  Generating static pages using 8 workers (556/2225)
+  Generating static pages using 8 workers (1112/2225)
+  Generating static pages using 8 workers (1668/2225)
+✓ Generating static pages using 8 workers (2225/2225) in 3.9s
+Turbopack build encountered 15 warnings:
+./src/lib/hq-whiteboard-server.ts:12:12
+Warning: The file pattern ('/ROOT/' <dynamic> '/' <dynamic> | '/ROOT' <dynamic> '/' <dynamic>) matches 63467 files in [project]/
+  [90m10 |[0m [36mexport[0m [36mfunction[0m listSketches(board: string): string[] {
+  [90m11 |[0m   [36mtry[0m {
+[33m[1m>[0m [90m12 |[0m     [36mreturn[0m fs.readdirSync(abs([32m`[0m${[33mWB_ROOT[0m[32m}/[0m${board[32m}`[0m)).filter(isSketchFile).sort().reverse();
+  [90m   |[0m            [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m   } [36mcatch[0m {
+  [90m14 |[0m     [36mreturn[0m [];
+  [90m15 |[0m   }
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:8:30
+Warning: The file pattern ('/ROOT/' <dynamic> | '/ROOT' <dynamic>) matches 31738 files in [project]/
+  [90m 6 |[0m
+  [90m 7 |[0m [36mexport[0m [36mconst[0m boardIds = () => [33mROOMS[0m.filter((r) => r.kind === [32m"meeting"[0m).map((r) => r.id);
+[33m[1m>[0m [90m 8 |[0m [36mconst[0m abs = (rel: string) => path.join(process.cwd(), rel);
+  [90m   |[0m                              [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 9 |[0m
+  [90m10 |[0m [36mexport[0m [36mfunction[0m listSketches(board: string): string[] {
+  [90m11 |[0m   [36mtry[0m {
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:35:16
+Warning: The file pattern ('/ROOT/' <dynamic> | '/ROOT' <dynamic>) matches 31738 files in [project]/
+  [90m33 |[0m   [36mconst[0m rel = sketchRelPath(s.board, file, boardIds());
+  [90m34 |[0m   [36mif[0m (!rel) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"file must be <yyyy-mm-dd>-<slug>.json"[0m };
+[33m[1m>[0m [90m35 |[0m   [36mconst[0m root = path.resolve(abs([33mWB_ROOT[0m));
+  [90m   |[0m                [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m   [36mconst[0m target = path.resolve(abs(rel));
+  [90m37 |[0m   [36mif[0m (!target.startsWith(root + path.sep)) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"path outside whiteb...[0m
+  [90m38 |[0m   fs.mkdirSync(path.dirname(target), { recursive: [36mtrue[0m });
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:36:18
+Warning: The file pattern ('/ROOT/' <dynamic> | '/ROOT' <dynamic>) matches 31738 files in [project]/
+  [90m34 |[0m   [36mif[0m (!rel) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"file must be <yyyy-mm-dd>-<slug>.json"[0m };
+  [90m35 |[0m   [36mconst[0m root = path.resolve(abs([33mWB_ROOT[0m));
+[33m[1m>[0m [90m36 |[0m   [36mconst[0m target = path.resolve(abs(rel));
+  [90m   |[0m                  [33m[1m^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m   [36mif[0m (!target.startsWith(root + path.sep)) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"path outside whiteb...[0m
+  [90m38 |[0m   fs.mkdirSync(path.dirname(target), { recursive: [36mtrue[0m });
+  [90m39 |[0m   fs.writeFileSync(target, [33mJSON[0m.stringify(s, [36mnull[0m, [35m1[0m) + [32m"\n"[0m);
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq.ts:208:41
+Warning: The file pattern ('/ROOT/' <dynamic> | '/ROOT' <dynamic>) matches 31738 files in [project]/
+  [90m206 |[0m   [36mconst[0m read = (f: string) => {
+  [90m207 |[0m     [36mtry[0m {
+[33m[1m>[0m [90m208 |[0m       [36mreturn[0m [33mJSON[0m.parse(fs.readFileSync(path.join(process.cwd(), f), [32m"utf8"[0m));
+  [90m    |[0m                                         [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m209 |[0m     } [36mcatch[0m {
+  [90m210 |[0m       [36mreturn[0m [36mnull[0m;
+  [90m211 |[0m     }
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq.ts
+    ./src/app/api/hq/review/[slug]/[file]/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq.ts
+    ./src/app/hq/whiteboard/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-library.ts:65:53
+Warning: The file pattern (<dynamic> '/company' | '/ROOT//company' | <dynamic> 'company' | '/ROOT/company') matches 22436 files in [project]/
+  [90m63 |[0m ...
+  [90m64 |[0m ...[90mctory. */[0m
+[33m[1m>[0m [90m65 |[0m ...oot = (cwd = process.cwd()) => path.join(cwd, [32m"company"[0m);
+  [90m   |[0m                                   [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m66 |[0m ...
+  [90m67 |[0m ...[90mns the absolute file path for a library path, or null. Never leaves <root>/company, nev...[0m
+  [90m68 |[0m ...ocPath(rel: string, root = companyRoot()): string | [36mnull[0m {
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-library.ts
+    ./src/app/hq/library/[[...path]]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-library.ts:79:26
+Warning: The file pattern (<dynamic> | <dynamic> '/company' | '/ROOT//company' | <dynamic> 'company' | '/ROOT/company') matches 15869 files in [project]/
+  [90m77 |[0m   [36mtry[0m {
+  [90m78 |[0m     [36mconst[0m real = fs.realpathSync(abs); [90m// a symlink must not lead out[0m
+[33m[1m>[0m [90m79 |[0m     [36mif[0m (!real.startsWith(fs.realpathSync(root) + path.sep) || !fs.statSync(real).isFile()).[36m..[0m
+  [90m   |[0m                          [33m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m80 |[0m   } [36mcatch[0m {
+  [90m81 |[0m     [36mreturn[0m [36mnull[0m;
+  [90m82 |[0m   }
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-library.ts
+    ./src/app/hq/library/[[...path]]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-library.ts:76:23
+Warning: The file pattern (<dynamic> | <dynamic> '/company' | '/ROOT//company' | <dynamic> 'company' | '/ROOT/company') matches 30825 files in [project]/
+  [90m74 |[0m   [36mif[0m (isDenied(file) || !file.endsWith([32m".md"[0m)) [36mreturn[0m [36mnull[0m;
+  [90m75 |[0m   [36mconst[0m abs = path.resolve(root, file);
+[33m[1m>[0m [90m76 |[0m   [36mif[0m (!abs.startsWith(path.resolve(root) + path.sep)) [36mreturn[0m [36mnull[0m;
+  [90m   |[0m                       [33m[1m^^^^^^^^^^^^^^^^^^[0m
+  [90m77 |[0m   [36mtry[0m {
+  [90m78 |[0m     [36mconst[0m real = fs.realpathSync(abs); [90m// a symlink must not lead out[0m
+  [90m79 |[0m     [36mif[0m (!real.startsWith(fs.realpathSync(root) + path.sep) || !fs.statSync(real).isFile())...
+
+Overly broad patterns can lead to build performance issues and over bundling.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-library.ts
+    ./src/app/hq/library/[[...path]]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-library.ts:79:26
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m77 |[0m   [36mtry[0m {
+  [90m78 |[0m     [36mconst[0m real = fs.realpathSync(abs); [90m// a symlink must not lead out[0m
+[33m[1m>[0m [90m79 |[0m     [36mif[0m (!real.startsWith(fs.realpathSync(root) + path.sep) || !fs.statSync(real).isFile()).[36m..[0m
+  [90m   |[0m                          [33m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m80 |[0m   } [36mcatch[0m {
+  [90m81 |[0m     [36mreturn[0m [36mnull[0m;
+  [90m82 |[0m   }
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.realpathSync(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-library.ts
+    ./src/app/hq/library/[[...path]]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-library.ts:76:23
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m74 |[0m   [36mif[0m (isDenied(file) || !file.endsWith([32m".md"[0m)) [36mreturn[0m [36mnull[0m;
+  [90m75 |[0m   [36mconst[0m abs = path.resolve(root, file);
+[33m[1m>[0m [90m76 |[0m   [36mif[0m (!abs.startsWith(path.resolve(root) + path.sep)) [36mreturn[0m [36mnull[0m;
+  [90m   |[0m                       [33m[1m^^^^^^^^^^^^^^^^^^[0m
+  [90m77 |[0m   [36mtry[0m {
+  [90m78 |[0m     [36mconst[0m real = fs.realpathSync(abs); [90m// a symlink must not lead out[0m
+  [90m79 |[0m     [36mif[0m (!real.startsWith(fs.realpathSync(root) + path.sep) || !fs.statSync(real).isFile())...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-library.ts
+    ./src/app/hq/library/[[...path]]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-library.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:12:12
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m10 |[0m [36mexport[0m [36mfunction[0m listSketches(board: string): string[] {
+  [90m11 |[0m   [36mtry[0m {
+[33m[1m>[0m [90m12 |[0m     [36mreturn[0m fs.readdirSync(abs([32m`[0m${[33mWB_ROOT[0m[32m}/[0m${board[32m}`[0m)).filter(isSketchFile).sort().reverse();
+  [90m   |[0m            [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m   } [36mcatch[0m {
+  [90m14 |[0m     [36mreturn[0m [];
+  [90m15 |[0m   }
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.readdir(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:8:30
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m 6 |[0m
+  [90m 7 |[0m [36mexport[0m [36mconst[0m boardIds = () => [33mROOMS[0m.filter((r) => r.kind === [32m"meeting"[0m).map((r) => r.id);
+[33m[1m>[0m [90m 8 |[0m [36mconst[0m abs = (rel: string) => path.join(process.cwd(), rel);
+  [90m   |[0m                              [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 9 |[0m
+  [90m10 |[0m [36mexport[0m [36mfunction[0m listSketches(board: string): string[] {
+  [90m11 |[0m   [36mtry[0m {
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.join(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:35:16
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m33 |[0m   [36mconst[0m rel = sketchRelPath(s.board, file, boardIds());
+  [90m34 |[0m   [36mif[0m (!rel) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"file must be <yyyy-mm-dd>-<slug>.json"[0m };
+[33m[1m>[0m [90m35 |[0m   [36mconst[0m root = path.resolve(abs([33mWB_ROOT[0m));
+  [90m   |[0m                [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m   [36mconst[0m target = path.resolve(abs(rel));
+  [90m37 |[0m   [36mif[0m (!target.startsWith(root + path.sep)) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"path outside whiteb...[0m
+  [90m38 |[0m   fs.mkdirSync(path.dirname(target), { recursive: [36mtrue[0m });
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq-whiteboard-server.ts:36:18
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m34 |[0m   [36mif[0m (!rel) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"file must be <yyyy-mm-dd>-<slug>.json"[0m };
+  [90m35 |[0m   [36mconst[0m root = path.resolve(abs([33mWB_ROOT[0m));
+[33m[1m>[0m [90m36 |[0m   [36mconst[0m target = path.resolve(abs(rel));
+  [90m   |[0m                  [33m[1m^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m   [36mif[0m (!target.startsWith(root + path.sep)) [36mreturn[0m { ok: [36mfalse[0m, error: [32m"path outside whiteb...[0m
+  [90m38 |[0m   fs.mkdirSync(path.dirname(target), { recursive: [36mtrue[0m });
+  [90m39 |[0m   fs.writeFileSync(target, [33mJSON[0m.stringify(s, [36mnull[0m, [35m1[0m) + [32m"\n"[0m);
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/api/whiteboard/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/app/hq/whiteboard/[board]/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq-whiteboard-server.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+./src/lib/hq.ts:208:41
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m206 |[0m   [36mconst[0m read = (f: string) => {
+  [90m207 |[0m     [36mtry[0m {
+[33m[1m>[0m [90m208 |[0m       [36mreturn[0m [33mJSON[0m.parse(fs.readFileSync(path.join(process.cwd(), f), [32m"utf8"[0m));
+  [90m    |[0m                                         [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m209 |[0m     } [36mcatch[0m {
+  [90m210 |[0m       [36mreturn[0m [36mnull[0m;
+  [90m211 |[0m     }
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.join(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/hq.ts
+    ./src/app/api/hq/review/[slug]/[file]/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/hq.ts
+    ./src/app/hq/whiteboard/page.tsx
+
+  #3 [App Route]:
+    ./src/lib/hq.ts
+    ./src/lib/hq.ts
+    ./src/app/api/hq/library/doc/route.ts
+
+
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/events
+├   /api/feed/[filter]/[page]
+│ ├ ● /api/feed/all/0
+│ ├ ● /api/feed/all/1
+│ ├ ● /api/feed/all/2
+│ └ ● [+69 more paths]
+├ ƒ /api/hq/curriculum/concept/[key]
+├ ƒ /api/hq/design/concept/[id]
+├ ƒ /api/hq/event/[id]
+├ ƒ /api/hq/kudos
+├ ƒ /api/hq/library
+├ ƒ /api/hq/library/doc
+├ ƒ /api/hq/review/[slug]/[file]
+├ ƒ /api/hq/sheet/[slug]
+├   /api/meta/[slug]
+│ ├ ● /api/meta/asthma-looks-safe
+│ ├ ● /api/meta/attention-shares-one
+│ ├ ● /api/meta/background-shortcut
+│ └ ● [+1071 more paths]
+├ ƒ /api/whiteboard
+├ ○ /catalog
+├   /d/[slug]
+│ ├ ● /d/asthma-looks-safe
+│ ├ ● /d/attention-shares-one
+│ ├ ● /d/background-shortcut
+│ └ ● [+1071 more paths]
+├ ƒ /hq
+├ ƒ /hq/curriculum
+├ ƒ /hq/design
+├ ƒ /hq/first-light
+├ ƒ /hq/kudos
+├ ƒ /hq/library/[[...path]]
+├ ƒ /hq/releases
+├ ƒ /hq/whiteboard
+├ ƒ /hq/whiteboard/[board]
+└ ƒ /spike
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

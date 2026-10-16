@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Art of Choosing",
+    "author": "Sheena Iyengar",
+    "year": 2010,
+    "work": "art-choosing-information-2010"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "In 30 minutes, each option takes four minutes to inspect plus one minute setup. Count complete options only. Total inspection time?",
+    "options": [
+      "20 minutes",
+      "24 minutes",
+      "30 minutes"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Two-minute look",
+      "values": [
+        30,
+        2,
+        1
+      ]
+    },
+    {
+      "label": "Four-minute look",
+      "values": [
+        30,
+        4,
+        1
+      ]
+    }
+  ],
+  "labels": [
+    "Inspection",
+    "Setup"
+  ],
+  "unit": "inspection min",
+  "bookIdea": "The Art of Choosing examines how options and decision contexts shape choosing.",
+  "modelBoundary": "Short looks use {A} inspecting; longer looks {B}. Longer chunks repeat the setup less often, within the same budget.",
+  "doesItHoldUp": "Does it hold up? More inspection time need not produce a better real choice."
+}

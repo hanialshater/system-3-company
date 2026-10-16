@@ -1,0 +1,25 @@
+.wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; min-width: 0; }
+.model { margin: 0; color: var(--muted); text-align: center; font-size: 12px; font-weight: 650; }
+.wrap :global(.row) { margin-top: 0; gap: 5px; flex-wrap: nowrap; }
+.wrap :global(.control) { min-height: 44px; flex: 1 1 0; padding: 6px; line-height: 1.15; min-width: 0; font-size: 12px; overflow-wrap: anywhere; }
+.wrap :global(.control):last-child { flex: 0 0 60px; min-width: 60px; }
+.wrap :global(.control):focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.wrap :global(.control.active):disabled { opacity: 1; border: 2px solid var(--fg); }
+.picture { flex: none; max-height: none; overflow: visible; }
+.picture text { fill: var(--fg); font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.picture .number { font-size: 16px; font-weight: 800; }
+.picture .answer { font-size: 16px; font-weight: 800; }
+.box { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.constraint { fill: var(--bg-2); stroke: var(--fg); stroke-width: 3.5; }
+.connector { fill: none; stroke: var(--muted); stroke-width: 2; }
+.axis { fill: none; stroke: var(--muted); stroke-width: 1; }
+.highlight { fill: none; stroke: var(--fg); stroke-width: 2.5; }
+.solid { fill: var(--fg); }
+.node { fill: var(--bg-2); stroke: var(--fg); stroke-width: 3; }
+.tank { fill: none; stroke: var(--fg); stroke-width: 3; }
+.water { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }
+.overhead { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1; stroke-dasharray: 3 2; }
+.work { fill: var(--fg); stroke: var(--bg-2); stroke-width: 1; }
+.seen { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 10px; font-size: 11px; line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--fg); }
+.seenLabel { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .wrap * { transition: none; } }

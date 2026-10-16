@@ -1,0 +1,134 @@
+{
+  "slug": "bk-ship-distributed-information",
+  "title": "The approval desk",
+  "hook": "Toy decisions pass through one approval desk. What if capacity is redistributed?",
+  "domain": "books",
+  "concept": "book-ship-distributed-information",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Recompute the complete decision chain after authority and processing capacity are redistributed."
+    ]
+  },
+  "misconception": "Removing central approval means the resulting decision process has no remaining constraints.",
+  "objective": "Recompute the complete decision chain after authority and processing capacity are redistributed.",
+  "claims": [
+    {
+      "id": "books.bk-ship-distributed-information.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Turn the Ship Around!, by L. David Marquet, candidate publication year 2012.",
+      "support": "source",
+      "source": "L. David Marquet, Turn the Ship Around! (2012); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-ship-distributed-information.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Turn the Ship Around! describes moving authority toward people able to act on local knowledge.",
+      "support": "source",
+      "source": "L. David Marquet, Turn the Ship Around! (2012); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-ship-distributed-information.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated flow model: A inputs [12, 2, 12] yield 2; B inputs [6, 8, 6] yield 6. Prediction correct option 6. Every decision needs all three steps. A completes {A} decisions/hour; B completes {B}. B’s approval handles eight, but preparation and action each cap completions at six. Knowledge quality, military operations and leadership outcomes are not modeled. Question premise: Each decision needs Prepare, Approve and Act. B handles 6, 8 and 6 decisions/hour at those steps. How many completed decisions per hour can B sustain?",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response. Plain all-stages/completed-output clarification follows the independent E-Myth learner finding, 2026-10-16-learner-seven-v3.md; identical mathematical assumptions and outputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-ship-distributed-information.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy decision chain prepares 9, approves 12 and acts on 5 decisions/hour. Completed decisions/hour? Every completed decision needs all three steps, so min(9,12,5) = 5.",
+      "support": "derivation",
+      "source": "Original transfer toy, flow, inputs [9, 12, 5], output 5; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-ship-distributed-information.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision chain prepares 9, approves 12 and acts on 5 decisions/hour. Completed decisions/hour?",
+    "options": [
+      "9.00",
+      "5.00",
+      "12.00",
+      "26.00"
+    ],
+    "answer": 1,
+    "why": "Every completed decision needs all three steps, so min(9,12,5) = 5."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-ship-distributed-information/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-ship-distributed-information/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "books:book-ship-distributed-information",
+    "also": [
+      "lifehacks:office-owner-and-status"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "ship-distributed-2012",
+        "note": "L. David Marquet, Turn the Ship Around!, 2012 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "flow",
+      "ship-distributed-information"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

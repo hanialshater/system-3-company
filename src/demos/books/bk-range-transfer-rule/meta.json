@@ -1,0 +1,132 @@
+{
+  "slug": "bk-range-transfer-rule",
+  "title": "Does the skill travel to new tasks?",
+  "hook": "Two toy training portfolios face unfamiliar tasks under explicitly assumed transfer rates.",
+  "domain": "books",
+  "concept": "book-range-transfer-rule",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to locate the assumed breadth advantage instead of treating it as an empirical finding"
+    ]
+  },
+  "misconception": "Assigning broad experience a larger transfer rate in a toy proves breadth causes better real transfer.",
+  "objective": "Locate the assumed breadth advantage instead of treating it as an empirical finding.",
+  "claims": [
+    {
+      "id": "books.bk-range-transfer-rule.bibliography",
+      "text": "Range; David Epstein; 2019.",
+      "support": "source",
+      "source": "Candidate bibliographic record for range-transfer-2019; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-range-transfer-rule.book",
+      "text": "Range argues broad experience can help with transfer when problems are unfamiliar.",
+      "support": "source",
+      "source": "Range (2019), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-range-transfer-rule.model",
+      "text": "Original stipulated toy: Invented transfer rates apply only to unfamiliar tasks; counts are expected trials, not study participants; no training or selection effects estimated. Exact selection inputs [{\"label\": \"Narrow portfolio\", \"values\": [10, 0, 0, 50]}, {\"label\": \"Mixed portfolio\", \"values\": [4, 0, 6, 50]}]; second author arithmetic check A=0, B=30. The narrow portfolio transfers {A}%; mixed portfolio {B}%. The difference follows from assigned transfer rates and example weights.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-range-transfer-rule.world",
+      "text": "Does it hold up? Breadth’s advantage is an input here, not demonstrated evidence that generalists outperform specialists.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-range-transfer-rule.recall",
+      "text": "{\"question\": \"Another toy assigns transfer rates20% to narrow training and80% to broad training. Which conclusion is warranted?\", \"options\": [\"The mix can raise its computed mean under those assumed rates\", \"The mix has been shown to cause better real learning\", \"The mix guarantees success on the next unfamiliar task\"], \"answer\": 0, \"why\": \"The calculated mixture follows the assigned rates; it supplies neither real intervention evidence nor guaranteed individual outcomes.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Another toy assigns transfer rates20% to narrow training and80% to broad training. Which conclusion is warranted?",
+    "options": [
+      "The mix can raise its computed mean under those assumed rates",
+      "The mix has been shown to cause better real learning",
+      "The mix guarantees success on the next unfamiliar task"
+    ],
+    "answer": 0,
+    "why": "The calculated mixture follows the assigned rates; it supplies neither real intervention evidence nor guaranteed individual outcomes."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-range-transfer-rule/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-range-transfer-rule/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-range-transfer-rule",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "range-transfer-2019",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "transfer-assumptions"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

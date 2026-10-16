@@ -1,0 +1,49 @@
+{
+  "book": {
+    "title": "The Fifth Discipline",
+    "author": "Peter M. Senge",
+    "year": 1990,
+    "work": "fifth-upstream-1990"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "B starts at ten, gains two and releases four each round for three rounds. What is B’s toy result?",
+    "options": [
+      "10",
+      "4",
+      "0",
+      "6"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Drain four",
+      "values": [
+        10,
+        2,
+        6,
+        3
+      ]
+    },
+    {
+      "label": "Drain two",
+      "values": [
+        10,
+        2,
+        4,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "The Fifth Discipline asks managers to examine systems and interdependencies rather than isolated events.",
+  "modelBoundary": "A ends at {A}; B at {B}. A would subtract twelve from ten, but the stock floor clips the final step at zero; B removes only six. Fixed flows with a zero floor only; unmet outflow is not recorded as negative physical stock.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Information",
+    "author": "James Gleick",
+    "year": 2011,
+    "work": "information-repeated-2011"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Budget 40 bytes; frames contain 6 payload plus 4 extra. How much payload fits?",
+    "options": [
+      "24 bytes",
+      "30 bytes",
+      "40 bytes"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Less redundancy",
+      "values": [
+        40,
+        6,
+        2
+      ]
+    },
+    {
+      "label": "More redundancy",
+      "values": [
+        40,
+        6,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "Payload",
+    "Extra"
+  ],
+  "unit": "bytes",
+  "bookIdea": "Redundancy trades transmission capacity for protection against communication errors.",
+  "modelBoundary": "Less redundancy carries {A}; more carries {B}. Every frame spends more of its fixed budget on extra bytes, leaving fewer payload bytes.",
+  "doesItHoldUp": "Does it hold up? This shows capacity cost only. It supplies no error channel, decoder or evidence that these extra bytes correct errors."
+}

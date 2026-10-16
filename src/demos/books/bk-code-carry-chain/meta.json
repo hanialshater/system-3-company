@@ -1,0 +1,118 @@
+{
+  "slug": "bk-code-carry-chain",
+  "title": "One more bit",
+  "hook": "Count full fixed-length bit strings, not hardware parts.",
+  "domain": "books",
+  "concept": "book-code-carry-chain",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Count full representations by multiplying independent binary choices."
+    ]
+  },
+  "misconception": "One additional bit adds only one more pattern.",
+  "objective": "Count full representations by multiplying independent binary choices.",
+  "claims": [
+    {
+      "id": "books.bk-code-carry-chain.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Binary representation combines two possibilities per position.",
+      "status": "unverified",
+      "source": "{\"work\":\"code-carry-1999\",\"edition\":1999,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-code-carry-chain.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Charles Petzold, Code (1999)",
+      "status": "unverified",
+      "source": "{\"work\":\"code-carry-1999\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-code-carry-chain.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Four bits permit {A}; five permit {B}. Each existing pattern receives two distinct extensions, so one extra position doubles the count.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,100,4,0],[1,100,5,0]],\"outputs\":[16,32]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-code-carry-chain.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This exact count assumes two usable states per position. Carries, circuit speed and storage reliability are not modeled.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Adding two binary positions multiplies the number of full strings by what?",
+    "options": [
+      "2",
+      "4",
+      "5"
+    ],
+    "answer": 1,
+    "why": "Each doubles the count, so the multiplier is 2×2=4."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-code-carry-chain/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-code-carry-chain/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "books:book-code-carry-chain",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "code-carry-1999",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

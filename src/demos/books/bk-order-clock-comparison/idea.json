@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Order of Time",
+    "author": "Carlo Rovelli",
+    "year": 2018,
+    "work": "order-clock-2018"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "At 1.2 reading ticks per reference step, what accumulates in 10 steps?",
+    "options": [
+      "10 ticks",
+      "11.2 ticks",
+      "12 ticks"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Rate one",
+      "values": [
+        0,
+        1,
+        0,
+        10
+      ]
+    },
+    {
+      "label": "Rate one-point-two",
+      "values": [
+        0,
+        1.2,
+        0,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Rate",
+    "Out",
+    "steps"
+  ],
+  "unit": "ticks",
+  "bookIdea": "Elapsed time can differ between clocks in different physical conditions.",
+  "modelBoundary": "The prescribed rates give {A} and {B}. Matching initial readings do not prevent an accumulating gap when rates differ.",
+  "doesItHoldUp": "Does it hold up? This integrates prescribed readings only. No relativity equation, gravitational effect or clock measurement is supplied."
+}

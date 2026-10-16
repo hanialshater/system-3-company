@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Invisible Gorilla",
+    "author": "Christopher Chabris and Daniel Simons",
+    "year": 2010,
+    "work": "gorilla-selection-2010"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Eight class-A events are not targets; two class-B events are targets. When both classes are included, what share are targets?",
+    "options": [
+      "0%",
+      "20%",
+      "80%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Class A only",
+      "values": [
+        8,
+        0,
+        0,
+        100
+      ]
+    },
+    {
+      "label": "Both classes",
+      "values": [
+        8,
+        0,
+        2,
+        100
+      ]
+    }
+  ],
+  "labels": [
+    "Class A",
+    "Targets B"
+  ],
+  "unit": "% targets",
+  "bookIdea": "The Invisible Gorilla discusses limits on awareness when attention is directed toward another task.",
+  "modelBoundary": "Counting A alone includes {A}% targets; counting both includes {B}%. Adding class B changes both target count and denominator.",
+  "doesItHoldUp": "Does it hold up? This selection rule is not a human attention experiment or an estimate of inattentional blindness."
+}

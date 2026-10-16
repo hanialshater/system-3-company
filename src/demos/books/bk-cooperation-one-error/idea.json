@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Evolution of Cooperation",
+    "author": "Robert Axelrod",
+    "year": 1984,
+    "work": "axelrod-evolution-of-cooperation-1984"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "With 90% at +4 and 10% at −1, what is the mean?",
+    "options": [
+      "3 points",
+      "3.5 points",
+      "3.9 points"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "No repair",
+      "values": [
+        90,
+        4,
+        -6
+      ]
+    },
+    {
+      "label": "Repair available",
+      "values": [
+        90,
+        4,
+        -1
+      ]
+    }
+  ],
+  "labels": [
+    "Cooperate",
+    "Mistake"
+  ],
+  "unit": "points",
+  "bookIdea": "Cooperation depends on how strategies handle errors as well as successful exchanges.",
+  "modelBoundary": "Without repair the mean is {A}; reducing the error loss raises it to {B}. The cooperation probability does not change.",
+  "doesItHoldUp": "Does it hold up? This is one stipulated encounter. It does not simulate repeated strategies, retaliation or the book’s tournament."
+}

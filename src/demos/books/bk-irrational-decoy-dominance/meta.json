@@ -1,0 +1,134 @@
+{
+  "slug": "bk-irrational-decoy-dominance",
+  "title": "Free entry, uncertain payoff",
+  "hook": "A free entry and a paid entry use different stipulated win and loss rules.",
+  "domain": "books",
+  "concept": "book-irrational-decoy-dominance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to compare complete future outcomes rather than the free label"
+    ]
+  },
+  "misconception": "A zero entry price guarantees the highest overall expected return.",
+  "objective": "Compare complete future outcomes rather than the free label.",
+  "claims": [
+    {
+      "id": "books.bk-irrational-decoy-dominance.bibliography",
+      "text": "Predictably Irrational; Dan Ariely; 2008.",
+      "support": "source",
+      "source": "Candidate bibliographic record for ariely-predictably-irrational-2008; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-irrational-decoy-dominance.book",
+      "text": "Predictably Irrational questions whether the attraction of free options supports good comparisons.",
+      "support": "source",
+      "source": "Predictably Irrational (2008), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-irrational-decoy-dominance.model",
+      "text": "Original stipulated toy: Win and loss are net of every cost; points are fictional; repeated-trial average is not a single-trial guarantee. Paid-entry net outcomes already include its entry fee; no extra subtraction is due. Exact payoff inputs [{\"label\": \"Free entry\", \"values\": [20, 12, -3]}, {\"label\": \"Paid entry\", \"values\": [80, 5, -5]}]; second author arithmetic check A=0, B=3. Free entry averages {A}; paid entry {B}. Net outcomes include entry fees; different chances and consequences outweigh the free label. Plain-language prediction premise: Free entry has a 20% chance of +12 points and an 80% chance of -3. Over many entries under these rules, what is the mean net points per entry? The mean is probability-weighted: 0.2*12+0.8*(-3)=0 points per entry; this is not a guarantee for a single entry.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-irrational-decoy-dominance.world",
+      "text": "Does it hold up? This invented game cannot establish a psychological zero-price effect.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-irrational-decoy-dominance.recall",
+      "text": "{\"question\": \"A free game gives +8 with probability 25% and -4 otherwise. Expected net points?\", \"options\": [\"-1 point\", \"2 points\", \"4 points\"], \"answer\": 0, \"why\": \"0.25*8+0.75*(-4)=-1; entry price alone omits the loss branch.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A free game gives +8 with probability 25% and -4 otherwise. Expected net points?",
+    "options": [
+      "-1 point",
+      "2 points",
+      "4 points"
+    ],
+    "answer": 0,
+    "why": "0.25*8+0.75*(-4)=-1; entry price alone omits the loss branch."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-irrational-decoy-dominance/2026-10-16-qa.md",
+      "company/reviews/bk-irrational-decoy-dominance/2026-10-16-qa-pr5.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/bk-irrational-decoy-dominance/2026-10-16-learner-beginner-v3.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "books:book-irrational-decoy-dominance",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "ariely-predictably-irrational-2008",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "payoff",
+      "zero-price"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

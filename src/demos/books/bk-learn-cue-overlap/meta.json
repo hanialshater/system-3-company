@@ -1,0 +1,132 @@
+{
+  "slug": "bk-learn-cue-overlap",
+  "title": "Will the cue still be there?",
+  "hook": "A toy answer works only on tasks whose context cue matches the stored cue.",
+  "domain": "books",
+  "concept": "book-learn-cue-overlap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to identify the assumed cue dependence instead of treating the toy as a measured memory effect"
+    ]
+  },
+  "misconception": "Successful retrieval under one cue arrangement establishes the same retrieval after context changes.",
+  "objective": "Identify the assumed cue dependence instead of treating the toy as a measured memory effect.",
+  "claims": [
+    {
+      "id": "books.bk-learn-cue-overlap.bibliography",
+      "text": "How We Learn; Benedict Carey; 2014.",
+      "support": "source",
+      "source": "Candidate bibliographic record for learn-cue-2014; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-learn-cue-overlap.book",
+      "text": "How We Learn discusses learning conditions and the cues available during later retrieval.",
+      "support": "source",
+      "source": "How We Learn (2014), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-learn-cue-overlap.model",
+      "text": "Original stipulated toy: Each item has one cue; exact match succeeds with certainty; mismatch fails; context counts are invented; no decay or similarity grading. Exact selection inputs [{\"label\": \"Familiar context\", \"values\": [8, 100, 2, 0]}, {\"label\": \"Changed context\", \"values\": [3, 100, 7, 0]}]; second author arithmetic check A=80, B=30. Familiar context retrieves {A}%; changed context {B}%. The matching share shrinks under an exact-match rule.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-learn-cue-overlap.world",
+      "text": "Does it hold up? Human memory is not an exact-match lookup; these are invented cue counts.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-learn-cue-overlap.recall",
+      "text": "{\"question\": \"An exact-match toy has six matching cues among ten items. How much is retrieved?\", \"options\": [\"40%\", \"60%\", \"100%\"], \"answer\": 1, \"why\": \"Six successful exact matches out of ten give 60%; the rule is stipulated, not empirical.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An exact-match toy has six matching cues among ten items. How much is retrieved?",
+    "options": [
+      "40%",
+      "60%",
+      "100%"
+    ],
+    "answer": 1,
+    "why": "Six successful exact matches out of ten give 60%; the rule is stipulated, not empirical."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-learn-cue-overlap/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-learn-cue-overlap/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-learn-cue-overlap",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "learn-cue-2014",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "context-cues"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -3,6 +3,28 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
+
+**Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
+
+**Believe (high):** no protected paths, no dependencies, 467/467 claims unverified, 100/100 draft, check and build pass. **Merge is blocked:** `npm run test:books` fails 4 subtests (2 lessons) on the merged tree because the M2 payload test and the F8 reformatting disagree (W-1508); the QA contract (W-1505) has not landed; full verify (PE M3) is not run.
+
+**Next:** platform-engineer/demo-builder fix W-1508; qa-tester lands `review/pr5-qa`; then merge it, run full verify (M3), push `feat/books-100-demos` (merge commits only) and report ready to merge. Release manager only after publish gates.
+
+**Blocked:** push. Update after M3: M3 is met (qa 2158/2158, build 116 s, .next 570 MB, company/reviews/books-100/2026-10-16-pr5-m3-verify.md), so every merge gate is recorded. Follow-ups: W-1513 (evaluation-steward, built-output tests before publish), W-1514 (tools-lead, shallow-clone hq tests). But origin/feat/books-100-demos is now at 3fc72dbe, a second integration of the PR that diverges from ours (101 conflicts, 96 bk- metas), and base moved to 207e8010 (conflicts in board.json and index.generated.ts). No push and no force-push. The founder's session or chief-of-staff must choose which integration wins (company/engineering/community/prs/5.md §9).
+
+**Update (both integrations merged):** following the founder's decision, origin 3fc72dbe and base 207e8010 are merged in with merge commits, and nothing is discarded. Evidence is the union of both sides. The PR's W-1492 is now W-1515 because it collided with base's W-1492. check, typecheck, test:books, test:platform and test:hq pass, except the known shallow-clone #42/#48/#49; the bk- QA contract is 200/200. Pushed without force: ready to merge (company/engineering/community/prs/5.md §9).
+
+## 2026-10-16 17:11Z · chief-of-staff — Books100 draft PR
+
+**Changed:** [PR #5](https://github.com/hanialshater/system-3-company/pull/5) adds exactly100 distinct-book idea demos (34business/33psychology/33science-history), shared bounded Books models/renderer, curriculum/works and independent evidence. All100 remain draft and all467 claims unverified. The six originals are unchanged. Current default a4cc732b is integrated; board task identities are remapped without rewriting history. Four reviewed historical HQ room aliases repair ten clerk labels; all original event lines are byte-identical and ten correction notes use canonical homes.
+
+**Believe (high for recorded functional scope):** actual finalv2 QA passed200 contracts,100 strict390×844 fits and100 explorations;12 model tests and200 independent scenario calculations agree. Current integrated feed10/10, seven reverse paths and HQ65/65 pass. Check/typecheck/build pass on3155e779; fullverify remains red only on inherited Git2.51.1 C2 fixture. Design covers30 bounded cases/70unseen; simulated learner review covers7 distinct pilots/93unreviewed. These are not source or measured-learning approval. See company/reviews/books-100/2026-10-16-final-integration.md and its exact identities/results.
+
+**Next:** review the requested draft PR and grouped rollback, preserving all holds. Existing owners retain source/chapter work W-1499, short-phone crop repair W-1501, artifact provenance tooling W-1502 and inherited dispatch fixture W-1503. Final publication uses byte-identical Git-tree comparison because CLI push lacks credentials; local/public phase IDs are mapped in publication-provenance.json.
+
+**Blocked before launch/merge:** source/attribution/empirical/legal gates, short-viewport completeness and required CI resolution; no merge, lesson publication or deployment performed. No founder gate or protected judge was bypassed.
+
 ## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
 **Changed:** published 675 → 709 today (+34; 15 Wave J by W-843 ruling + launch review 7ab3934, 6 Life Hacks slate 00b4b1e, first in category; 4 physics/Wave J f9265aa). Nothing deployed. Founder decisions: F-39 agent memory (merged; every agent reads onboarding + `node tools/memory.mjs read <role>`, ends with an offboarding entry; 50 KB threshold), F-40 floor reseat (merged; 52 moves + Leonie's R1), F-42 mailbox dispatch (tier 1 merged; pilot on verticals, day 1: two builds started by mail, c5b4 physics #64-68 in /home/user/s3c-wj64, 213a Wave J revisions in /home/user/s3c-wjrev6), F-43 First Light T1 +1M (6.59M), History and behavioral no top-up (STOP after 23:59Z). F-41 throughput plan, F-44 First Light cuts C1–C4, F-45 fra1 are open with the founder. Retro and WBR-4 held.

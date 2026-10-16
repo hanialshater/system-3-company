@@ -1,0 +1,118 @@
+{
+  "slug": "bk-origin-selection-frequencies",
+  "title": "Equal means can hide different bets",
+  "hook": "Compare a variable payoff with a certain payoff having the same mean.",
+  "domain": "books",
+  "concept": "book-origin-selection-frequencies",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Recognize that equal means do not imply identical distributions."
+    ]
+  },
+  "misconception": "Equal means make two choices identical in every respect.",
+  "objective": "Recognize that equal means do not imply identical distributions.",
+  "claims": [
+    {
+      "id": "books.bk-origin-selection-frequencies.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Expected value summarizes a distribution without determining every outcome.",
+      "status": "unverified",
+      "source": "{\"work\":\"blitzstein-hwang-introduction-probability-2014\",\"edition\":2014,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-origin-selection-frequencies.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Joseph K. Blitzstein and Jessica Hwang, Introduction to Probability (2014)",
+      "status": "unverified",
+      "source": "{\"work\":\"blitzstein-hwang-introduction-probability-2014\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-origin-selection-frequencies.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The two means are {A} and {B}. One case can give zero or eight; the other always gives four. Equal means discard this difference.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[50,8,0],[100,4,0]],\"outputs\":[4,4]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-origin-selection-frequencies.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? The means are exact. This does not measure risk preference or recommend either option.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A coin gives 0 or 10 equally; another option gives 5 certainly. What matches?",
+    "options": [
+      "All outcomes",
+      "Their means only",
+      "Their uncertainty"
+    ],
+    "answer": 1,
+    "why": "Both means are 5; only the coin varies."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-origin-selection-frequencies/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-origin-selection-frequencies/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-origin-selection-frequencies",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "blitzstein-hwang-introduction-probability-2014",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

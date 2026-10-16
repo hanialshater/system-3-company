@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Limits to Growth",
+    "author": "Donella H. Meadows, Dennis L. Meadows, Jørgen Randers and William W. Behrens III",
+    "year": 1972,
+    "work": "meadows-limits-growth-1972"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "Start at 50; add 2 and request 7 each step. What remains after ten updates?",
+    "options": [
+      "0 units",
+      "20 units",
+      "50 units"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Partial replacement",
+      "values": [
+        50,
+        2,
+        7,
+        10
+      ]
+    },
+    {
+      "label": "Full replacement",
+      "values": [
+        50,
+        7,
+        7,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Replace",
+    "Remove",
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Finite resource stocks constrain indefinitely maintained material throughput.",
+  "modelBoundary": "Partial replacement leaves {A}; full replacement leaves {B}. The first path loses five units per step until it reaches the nonnegative floor.",
+  "doesItHoldUp": "Does it hold up? This is stock accounting, not World3. It predicts no discoveries, substitution, prices or collapse date."
+}

@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Good to Great",
+    "author": "Jim Collins",
+    "year": 2001,
+    "work": "great-selected-2001"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "B contains 10 winners plus 90 other firms, whose toy winner rate is zero. What is B’s toy result?",
+    "options": [
+      "10",
+      "100",
+      "90",
+      "50"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Selected winners",
+      "values": [
+        10,
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "Full toy sample",
+      "values": [
+        10,
+        100,
+        90,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Winners",
+    "Others"
+  ],
+  "unit": "%",
+  "bookIdea": "Good to Great searches for distinguishing patterns in selected companies with unusually strong prior performance.",
+  "modelBoundary": "A reports {A}%; B reports {B}%. Adding 90 omitted non-winners changes the denominator from 10 to 100 without changing any firm’s result. These are invented groups; neither a causal explanation nor a replication of the book is supplied.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

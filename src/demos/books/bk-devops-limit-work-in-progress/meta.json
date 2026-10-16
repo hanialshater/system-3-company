@@ -1,0 +1,134 @@
+{
+  "slug": "bk-devops-limit-work-in-progress",
+  "title": "The release queue",
+  "hook": "A toy service finishes five releases per round. What if admissions match that rate?",
+  "domain": "books",
+  "concept": "book-devops-limit-work-in-progress",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Distinguish admitted work from completed work and calculate the resulting queue stock."
+    ]
+  },
+  "misconception": "Starting more jobs necessarily increases the number the service can finish each round.",
+  "objective": "Distinguish admitted work from completed work and calculate the resulting queue stock.",
+  "claims": [
+    {
+      "id": "books.bk-devops-limit-work-in-progress.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The DevOps Handbook, by Gene Kim, Jez Humble, Patrick Debois and John Willis, candidate publication year 2016.",
+      "support": "source",
+      "source": "Gene Kim, Jez Humble, Patrick Debois and John Willis, The DevOps Handbook (2016); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-devops-limit-work-in-progress.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The DevOps Handbook describes limiting work in progress and making delivery flow visible.",
+      "support": "source",
+      "source": "Gene Kim, Jez Humble, Patrick Debois and John Willis, The DevOps Handbook (2016); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-devops-limit-work-in-progress.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated feedback model: A inputs [0, 8, 5, 4] yield 12; B inputs [0, 5, 5, 4] yield 0. Prediction correct option 0. A accumulates {A} waiting jobs; B has {B}. Admitting three more than finish adds three jobs each round; matching admissions avoids that accumulation. Deterministic fixed rates only; latency, randomness and real deployment reliability are not estimated.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-devops-limit-work-in-progress.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy queue starts with 2 jobs, admits 6 and finishes 4 per round for three rounds. Waiting jobs? Net inflow is two jobs per round; 2 + 3 × 2 = 8 waiting jobs.",
+      "support": "derivation",
+      "source": "Original transfer toy, feedback, inputs [2, 6, 4, 3], output 8; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-devops-limit-work-in-progress.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy queue starts with 2 jobs, admits 6 and finishes 4 per round for three rounds. Waiting jobs?",
+    "options": [
+      "6.00",
+      "8.00",
+      "12.00",
+      "2.00"
+    ],
+    "answer": 1,
+    "why": "Net inflow is two jobs per round; 2 + 3 × 2 = 8 waiting jobs."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-devops-limit-work-in-progress/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-devops-limit-work-in-progress/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-devops-limit-work-in-progress",
+    "also": [
+      "lifehacks:limit-work-in-progress"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "devops-limit-work-in-2016",
+        "note": "Gene Kim, Jez Humble, Patrick Debois and John Willis, The DevOps Handbook, 2016 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "feedback",
+      "devops-limit-work-in-progress"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

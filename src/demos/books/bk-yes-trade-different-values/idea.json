@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Getting to Yes",
+    "author": "Roger Fisher and William Ury",
+    "year": 1981,
+    "work": "fisher-ury-getting-to-yes-1981"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B pays twenty with 70% probability and loses ten otherwise; A is a sure twelve. What is B’s toy result?",
+    "options": [
+      "20",
+      "14",
+      "11",
+      "12"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Certain fallback",
+      "values": [
+        100,
+        12,
+        12
+      ]
+    },
+    {
+      "label": "Uncertain agreement",
+      "values": [
+        70,
+        20,
+        -10
+      ]
+    }
+  ],
+  "labels": [
+    "Win",
+    "Loss"
+  ],
+  "unit": "credits",
+  "bookIdea": "Getting to Yes uses the best alternative to an agreement as a benchmark for evaluating a proposed deal.",
+  "modelBoundary": "A gives {A}; B averages {B}. An attractive 20-credit agreement outcome does not by itself beat the certain 12-credit fallback. Probabilities and net values are stipulated; expected value is not a complete negotiation criterion.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

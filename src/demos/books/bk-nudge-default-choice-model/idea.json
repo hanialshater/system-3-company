@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Nudge",
+    "author": "Richard H. Thaler and Cass R. Sunstein",
+    "year": 2008,
+    "work": "thaler-sunstein-nudge-2008"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Six toy users follow the default. Four choose X with 50% probability. What expected share chooses X when X is the default?",
+    "options": [
+      "20%",
+      "50%",
+      "80%"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Default X",
+      "values": [
+        6,
+        100,
+        4,
+        50
+      ]
+    },
+    {
+      "label": "Default Y",
+      "values": [
+        6,
+        0,
+        4,
+        50
+      ]
+    }
+  ],
+  "labels": [
+    "Followers",
+    "Choosers"
+  ],
+  "unit": "% choose X",
+  "bookIdea": "Nudge argues defaults can influence choices while alternatives remain available.",
+  "modelBoundary": "Default X gives {A}%; default Y gives {B}%: only the six followers change. Following is assumed, not measured.",
+  "doesItHoldUp": "Does it hold up? The arithmetic cannot estimate how many real people follow a default."
+}

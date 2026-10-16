@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "The Sciences of the Artificial",
+    "author": "Herbert A. Simon",
+    "year": 1969,
+    "work": "simon-sciences-artificial-1969"
+  },
+  "family": "network",
+  "predict": {
+    "question": "A binary design tree has a root and two outward rounds. How many nodes total?",
+    "options": [
+      "3 nodes",
+      "4 nodes",
+      "7 nodes"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "One option",
+      "values": [
+        1000,
+        1,
+        2
+      ]
+    },
+    {
+      "label": "Two options",
+      "values": [
+        1000,
+        2,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "rounds"
+  ],
+  "unit": "nodes",
+  "bookIdea": "Design involves searching alternatives under constraints on computation and attention.",
+  "modelBoundary": "One option per stage creates {A} nodes; two create {B}. Extra local choices multiply later alternatives in this collision-free tree.",
+  "doesItHoldUp": "Does it hold up? This counts enumerated candidates only. It does not measure quality, attention, partial-design reuse or search-heuristic performance."
+}

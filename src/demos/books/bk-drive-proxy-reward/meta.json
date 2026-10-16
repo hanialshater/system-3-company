@@ -1,0 +1,132 @@
+{
+  "slug": "bk-drive-proxy-reward",
+  "title": "What does the bigger bonus pay?",
+  "hook": "Compare unconditional points with a larger bonus earned only after a successful attempt.",
+  "domain": "books",
+  "concept": "book-drive-proxy-reward",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to separate reward schedule arithmetic from a causal claim about motivation"
+    ]
+  },
+  "misconception": "A larger headline bonus must mean a larger expected reward or an improved task outcome.",
+  "objective": "Separate reward schedule arithmetic from a causal claim about motivation.",
+  "claims": [
+    {
+      "id": "books.bk-drive-proxy-reward.bibliography",
+      "text": "Drive; Daniel H. Pink; 2009.",
+      "support": "source",
+      "source": "Candidate bibliographic record for drive-proxy-2009; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-drive-proxy-reward.book",
+      "text": "Drive questions whether contingent rewards are suitable for every kind of task.",
+      "support": "source",
+      "source": "Drive (2009), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-drive-proxy-reward.model",
+      "text": "Original stipulated toy: Success probability fixed across cases; points are fictional; reward does not change behavior; win and lose are full net point amounts. Exact payoff inputs [{\"label\": \"Twenty either way\", \"values\": [20, 20, 20]}, {\"label\": \"Fifty on success\", \"values\": [20, 50, 0]}]; second author arithmetic check A=20, B=10. Unconditional rewards average {A}; success-only bonuses {B}. The larger headline payment applies to fewer outcomes.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-drive-proxy-reward.world",
+      "text": "Does it hold up? Motivation, enjoyment and performance responses to rewards are not modeled.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-drive-proxy-reward.recall",
+      "text": "{\"question\": \"A reward gives 30 points on 40% of attempts, zero otherwise. Expected reward?\", \"options\": [\"12 points\", \"18 points\", \"30 points\"], \"answer\": 0, \"why\": \"0.4*30+0.6*0=12; behavior and success probability are fixed assumptions here.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A reward gives 30 points on 40% of attempts, zero otherwise. Expected reward?",
+    "options": [
+      "12 points",
+      "18 points",
+      "30 points"
+    ],
+    "answer": 0,
+    "why": "0.4*30+0.6*0=12; behavior and success probability are fixed assumptions here."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-drive-proxy-reward/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-drive-proxy-reward/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-drive-proxy-reward",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "drive-proxy-2009",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "payoff",
+      "contingent-rewards"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}
