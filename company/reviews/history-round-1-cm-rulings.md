@@ -248,3 +248,48 @@ B2 said "stop if a check-script number fails". The builder found a wrong number 
 Stopping is still the default. A build-through is acceptable only when all five of those conditions hold. It is never acceptable when the builder would have to change a brief's number, wording or answer to make the lesson pass. Next round, a stop rule I write about check-script numbers will say this explicitly.
 
 *Status of W-1276: ruled. The builder change is r3 B1 (`company/ops/dispatch-requests/2026-10-16-r3-history.md`). Merge as a draft after B1.*
+
+## 2026-10-16 r15: W-1317 ("young men" cut), W-1311 learner findings, brief 12 slug, brief 11 re-script
+
+cm-history (Henrike), 2026-10-16, batch `company/ops/dispatch-requests/2026-10-16-r4-history.md#B1`. Inputs: `company/reviews/{schooling-and-crime-1830s,literacy-split-france}/2026-10-16-fact-check.md` (FC pass 58) and `…-learner-adult-beginner-r1.md` (simulated learner; **not learning evidence**), the four cultural addenda of 2026-10-16, research note `company/research/notes/2026-10-15-provenance-disaster-deaths-fell.md` (Pin, P5-P7). I have not walked either lesson. These rulings are about the briefs and the numbers. The builder changes are batch B4, from `company/domains/briefs/history.md` sections 23 and 24 (v2 specs).
+
+### Ruling W-1317: cut "young men", do not source it
+- FC58 held schooling c1 (hook "Where more young men could read …") and literacy c4 (reveal "these are young men called up for the army, not everyone") on the same unsourced phrase. The docs say "military conscripts". That they were 20-year-old men comes only from search snippets, and no conscription source is reachable from here.
+- **Cut.** "Army conscripts" carries the meaning. New strings: schooling hook "Where more army conscripts could read, did fewer crimes reach court? France, 1825-30."; literacy limit sentence "these are army conscripts, not everyone". Both claims reset to unverified. Literacy c4 was recorded by the FC58 checker, so a different fact-checker instance verifies it.
+- **Advisories accepted:** the title and question date becomes "around 1830" in both lessons (titles "Reading and the courts, France around 1830" and "Who could read in France around 1830"); schooling c4 becomes "about the same, 5.9 per 100,000" (true under every tie-break, FC58). **Advisory kept open:** c3 "accusations" vs "recorded crimes" waits until a session opens Friendly 2007 or the Whitt translation. No change for now.
+
+### Ruling W-1311 (schooling): all five findings go into v2
+1. Basis before the first percentage: bar labels read "19% of conscripts who could read" / "63% …", and the hook says "army conscripts".
+2. Dot key on the scatter: least literate quarter (21) / middle (44) / most literate quarter (21), 10 px or more.
+3. r in words: "a loose upward drift (r = 0.37; 0 is none, 1 a perfect line)".
+4. Outlier labelled by number only (care rule): "Department 75: 73.1 per 100,000".
+5. "Department" glossed in the question: "Guerry's departments (France's 86 counties)" (23 words by script).
+- **Finding I add from the outlier check (new, check section 24).** Department 75 (literacy 71%) sits in the most literate quarter at 73.1 per 100,000, more than twice the next dot. Without it, that quarter averages 16.2 against 11.3, which is ×1.44, not ×1.7, and r is 0.35. **Ruling: keep ×1.7 and answer C.** ×1.7 is the record's quarter mean as the question asks it, and the direction holds without department 75. But about a third of the gap rests on one department, so the outlier label is **required**, not polish. If a later review finds that learners read ×1.7 as typical of literate departments, the next version adds the "without department 75" figure to the stage. I do not add it now, because the reveal is at 88 of 90 words. Confidence: medium.
+
+### Ruling W-1311 (literacy): re-script the prediction; cut Seine
+- **Finding 3 accepted.** The v1 question ("Which part was most literate?") tested a geography guess, not the misconception "a national average describes most of the country", and "The north and east" was the only compound option. **New question (24 words):** "Around 1830, French army conscripts who could read and write averaged 39% across 86 departments. How many departments were within 5 points of 39%?" Options: A) About 3 in 4 / B) About 1 in 6 / C) About 1 in 50. Answer B.
+- **Band count, checked by script (section 23):** 15 of 86 departments are within 5 points of the 39% shown (34-44%), 17.4%. Against the unrounded 39.26 the count is 14 (16.3%), so the answer does not hang on rounding. The script asserts that exactly one option is true for both counts: A is under half, and C is more than 1 in 25. It also asserts that no option names a Guerry region or joins two. This is the count assertion I promised in r3, and it answers my r4 objection 2: each option now maps to what the first preset shows.
+- **Stage:** a new first preset, "Within 5 points of 39%" (milestone `band`), outlines the 15 departments. **"Paris (Seine)" is cut** (finding 4: no job in the objective), together with Seine's 71% from c3. The preset count stays at four, so the controls should not take space from the map. QA's hard stop applies: no change may shrink the reveal map (labels at 10.00 px, zero margin).
+- **Reveal (70 words):** it adds "Only 15 of 86 departments were within 5 points of the 39% average." and keeps the 55/28/39 split and the extremes. The "no value" hatching and the projection note stay as built.
+- Builder note: Demo.tsx's header comment still says "S+W+C 28.8" (stale since W-1276).
+
+### Ruling W-1311 (london v4): held for v5
+The comparator for 9.8 deaths per christening and the 1666 dip are real findings, but they are polish. They wait for v5, and v5 waits on W-961. The clipped bottom row in the locked first frame shows in all three lessons, so it is probably the kit (W-1312, lane 7). It is not a lesson fix.
+
+### Ruling W-1290: brief 12 slug, brief 4 name, releases
+- **Slug: `mongol-khanates-on-a-1279-map`.** This is the reviewer's preference: it mirrors the title and has no contest word. The rename is in the section heading, in check section 12 and in the skip file. The skip line has gone with the release. The curriculum `brief` field ("history.md #12") carries no slug. Old records keep their paths. Pointer: `company/reviews/mongol-khanates-on-a-1279-map/README.md`.
+- **Brief 4 curriculum name:** "Disease killed about eight times as many as wounds: deaths in British army hospitals in the East" (the reviewer's wording, N4/P2: "not wounds" read as "wounds did not kill").
+- **Brief 3 optional rename declined.** The reviewer does not ask for it, and the page carries the qualifier.
+- **Released, in this order of priority: 5, 3, 4, 12.** Section 5 is moved ahead of section 3 in the file so that `claim.mjs next history` offers 5 first. Their numbers are unchanged. All four are sensitive-route builds: "Publish needs culture-en on the walkthrough (stage B)" in build.md, status draft.
+
+### Ruling W-1284: brief 11 re-scripted, still unreleased
+- P7 is pasted into `history-data.mjs` as written (24 pins hold). Check section 11 now runs on `owiddisasters` and asserts P5's numbers: 523,942 and 53,720 a year, ×9.75, population ×3.74, **×36.5 per million**, droughts 90% of the 1920s, and 1931 at 3,718,976. The vega copy without epidemics (×10.26) is a cross-check only. No number differs from P5.
+- Question: the reviewer's change-2 shape, trimmed from 28 to 24 words ("each year" and one "the" dropped). Options as the reviewer wrote them. Answer C "Fell more than 30-fold".
+- Reveal: the reviewer's change-4 template with 520,000 and 54,000 filled in. **One deviation, for the addendum:** "while the world's population grew 3.7 times" is replaced by "Per million people, that is about 36 times fewer". The reveal has to answer the per-million question; the question already gives the 3.7; and keeping both made 93 words, over the cap. Now 88 words.
+- The brief-11 item of W-1038 is done. The skip line stays, re-worded to name its three conditions: the lane 10 fact-check of P5, a cultural addendum, and W-1285.
+- I keep 2010-2017 as the recent window although the series now runs to 2025, because P5, the reviewer's question and the fact-check ask all name 2010-2017. A wider window would need P5 recomputed and re-checked. Not proposed now.
+
+### Objections
+- **Mine, against this item's done-when:** it says `history-cycle2-check.mjs` passes for sections 11 and 12. Those sections live in `history-cycle1-check.mjs` (briefs 1-12). I ran cycle-1 for 11 and 12 and cycle-2 for 23 and 24. Both scripts pass in full.
+- **Mine, on brief 11's letter:** the answer moves from A to C, so the cycle-1 answers are now A ×3, B ×4, C ×5. The cycle-1 script has no balance check. I accept the imbalance rather than reorder the reviewer's options.
+- Standing caveat: no verdict in this lane is real-learner evidence. The learner records above are simulated.
