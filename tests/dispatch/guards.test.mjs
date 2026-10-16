@@ -30,6 +30,9 @@ after(() => {
 // A clean env: no inherited S3_COMMIT_PATHS, git identity fixed, no global hooks path.
 const ENV = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith("S3_") && !k.startsWith("GIT_")));
 Object.assign(ENV, { GIT_AUTHOR_NAME: "test", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "test", GIT_COMMITTER_EMAIL: "t@t" });
+// G5-d (2026-10-16-r5-tools.md#B3): the host's global config signs every commit (commit.gpgsign=true, an external
+// gpg.ssh.program), ~0.9 s each, and this file makes ~40 throwaway commits. Tmp-repo commits are never signed.
+Object.assign(ENV, { GIT_CONFIG_COUNT: "1", GIT_CONFIG_KEY_0: "commit.gpgsign", GIT_CONFIG_VALUE_0: "false" });
 
 const run = (cwd, cmd, args, extraEnv = {}) => {
   const r = spawnSync(cmd, args, { cwd, encoding: "utf8", env: { ...ENV, ...extraEnv } });

@@ -164,3 +164,58 @@ What the numbers say: tools-f5 adds nothing to the default suite's time. The fou
 - No other objections are on record.
 
 Risk: no re-score. R-017 waits for the hook to be wired, as before.
+
+## Addendum 2026-10-16 (tools-lead, Sora): G5-d re-time (batch 2026-10-16-r5-tools.md#B3, board W-1310; branch tools-r5-b3)
+
+Append-only; nothing above is changed. Base: main at 3adad93 (tools-f5 eb50a4f is already in main, so `test:dispatch:slow` and the fixed fold-lock test are in the base). For principal-engineer-ops to read before the next ops review; principal-engineer (lane 7) reads the test diff. Tier 1 (tests only: no tool, hook or gate file changed).
+
+### Measured first (base 3adad93, before any change; host has 4 CPUs)
+
+| what | time | load1 |
+|---|---|---|
+| `npm run test:dispatch`, whole default suite | 175.0 s | 6.1 at start (15-min 10.0) |
+| `slots.test.mjs` alone | 146.2 s, 21/21 | 5.5 at start |
+| `guards.test.mjs` alone | 74.9 s, 24/24 | 8.7 |
+| `r2-coe.test.mjs` / `agent-events.test.mjs` / `fold-lock.test.mjs` alone | 15.7 s / 13.3 s / 6.5 s | 8 to 9 |
+| one `dispatch-check --kind=other --json` spawn | 2.83 s | ~5 |
+
+slots.test.mjs per test (s): done-when 2.9, --no-claim 2.8, S1 warn/enforce 10.0, S1 source none 2.8, S1 malformed (7 spawns) 18.2, S1 SO 0.0, S2 11.4, S3 cap 8.3, S3 builders 0.0, S3 stale 2.7, S3 double-claim 0.2, S3 same item 10.7, release on report 8.7, S4 17.7, checker roles 0.0, F1/F4/F7/F8 hook fixture 17.8, F1 negatives 0.0, F2/L1 5.8, F3/L2 2.9, F5 11.8, F6/Q1 11.3. Each test costs ~2.8 s times its number of dispatch-check spawns (38 `run(` calls).
+
+Where one spawn's 2.83 s goes (in-process timing of the same phases, two runs): node start ~30 ms; imports of slots, events-spool and coe-coverage 77 to 89 ms; reading the log and spool 0 to 1 ms; `slots.evaluate` (batch file, agents, poc-map) 29 to 33 ms; `slots.inFlight` 0 ms; **`import("./rituals-due.mjs")` 2,707 to 2,789 ms**; `due()` 14 to 20 ms; `coeCoverage` 3 to 4 ms. rituals-due.mjs runs one `git log -1 --format=%cI -- <file>` per ritual record (company/rituals/records and company/engineering/operations, 53 dated files) when it is imported, ~50 ms each. Your "dispatch-check start-up and its reads of the repository" was right. The reads are git calls made by R1.
+
+guards.test.mjs was the second cause, and not one anyone had named: the host's global git config has `commit.gpgsign=true` with an external `gpg.ssh.program`, so every throwaway commit in a tmp repo was signed. That costs 1.05 s per commit, against 0.017 s unsigned (same tmp repo). The file makes ~40 commits.
+
+### What changed (tests only)
+
+1. `tests/dispatch/git-stub.mjs` (new helper, not a `*.test.mjs`): a PATH whose first `git` is `#!/bin/sh exit 128`. The tmp dir is removed in `after`.
+2. `tests/dispatch/slots.test.mjs`: `run()` spawns dispatch-check with that PATH, so R1's per-record git calls fail at once and rituals-due's own `catch` skips them. No test in the file reads R1 or C3 (the only git callers in dispatch-check), and every run is `--kind=other`. It spawns `process.execPath` instead of `node` from PATH. **Fixture fix (release on report):** the reports were dated `now + 1 s`, which held only while a spawn took over 1 s. With a 0.3 s spawn the re-dispatch's new slot fell inside that second and was released too, so prune said 2, not 1. Now the reports are dated when the first two claims have returned. The assertions are unchanged, and the test now holds on a fast host as well as a slow one. **New slow-only test:** "G5-d cross-check": four S1/S2/S3/C1 cases run with the stub and with the real git must give the same exit code, the same S/C rule ids, and identical `fails`.
+3. `tests/dispatch/r2-coe.test.mjs`: `runCheck` uses the stub PATH. Every assertion there filters to `R2` lines, and R2 reads COE files, not git. **New slow-only test:** wave and build give the same R2 lines with the real git as with the stub.
+4. `tests/dispatch/guards.test.mjs`: one ENV line, `GIT_CONFIG_COUNT=1 commit.gpgsign=false`, for every git and commit-own.sh call it makes in its tmp repos. As a side effect, test commits no longer go to the host's signing program.
+
+**Moved behind `S3_SLOW_TESTS=1`: no case.** None needed moving once spawns were cheap. **Deleted: none. Assertions removed: none.** Two slow-only cross-checks were added. Every rule family keeps its CLI spawns in the default suite: S1, S2, S3, S4, C1, R2. (C2, the builder cap, had no CLI test before this change and has none after. It is recorded here as a gap; not fixed here.)
+
+### Re-time after the change (branch tools-r5-b3)
+
+| run | wall | load1 before to after (1/5/15 before) | result |
+|---|---|---|---|
+| intermediate (slots + guards fixed, r2-coe not yet), default 1 | 73.6 s | 15.0 to 13.0 | 86 pass, 2 skipped, 0 fail |
+| intermediate, default 2 | 44.8 s | 13.0 to 11.2 | same |
+| intermediate, default 3 | 32.4 s | 11.2 to 9.2 | same |
+| intermediate, slow | 44.1 s | 9.2 to 7.0 | 88/88 |
+| **final, default 1** | 25.9 s | 2.6 to 3.7 (2.62 6.95 8.59) | 86 pass, 3 skipped, 0 fail |
+| **final, default 2** | 27.9 s | 3.7 to 4.1 | same |
+| **final, default 3** | 27.7 s | 4.1 to 3.1 | same |
+| **final, slow** | 41.8 s | 3.1 to 3.0 | 89/89, 0 fail |
+
+The intermediate row 1 is why r2-coe was changed too. At load 15 its four R2 tests (21.1, 13.8 and 11.6 s) were the long pole once slots and guards were fast. After the stub, r2-coe alone is 2.1 s (slow 7.4 s), slots alone 18.3 s (slow 29.1 s), and guards alone ~14 s summed at load 14.
+
+LOADED-RUNS-PLACEHOLDER
+
+### The lasting fix (a note, not shipped: tools-lead, next round, tier 1)
+
+The stub fixes the tests, not the tool: every real `dispatch-check` and `company status` still pays ~2.7 to 4.6 s for R1's per-file git log. Patch for tools/rituals-due.mjs `recordEvents()` (not dispatch-check.mjs, which B2 owns this round): one pass, `git log --format=@%cI --name-only --no-renames -- company/rituals/records company/engineering/operations`, taking the first time seen per path (newest first) and keeping only files that still exist. Checked read-only on this worktree: for all 52 committed dated records it gives the same time as the per-file call, in 0.15 s against 4.6 s. The single pass also lists one path that no longer exists, so the existence filter is needed. It changes R1's input path for every caller, so it needs its own tier-1 note and a test that compares it with the per-file result.
+
+### Believed, not checked
+
+- The stub cannot hide an S/C/R2 difference: the slow cross-checks compare a sample (four S/C cases, two R2 kinds), not every case.
+- Load: see the loaded-runs section. The final low-load runs alone do not meet "load 10 or more".
