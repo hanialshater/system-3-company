@@ -187,7 +187,7 @@ and `git commit -m "pkill -f note" -- <path>` is not.
 
 ## Approval (tier 2; written by principal-engineer-ops)
 
-- Decision:
+- Decision: **approved with conditions to merge at 8d3fbff** (pre-commit guard not installed, no-pkill not wired) by principal-engineer-ops; copied by chief-of-staff at merge 2026-10-16. Authority, install conditions G1-G5 and wiring conditions W1-W3: `company/engineering/readiness/2026-10-16-commit-and-process-guards-approval.md` (90fc0de).
 - Conditions, each with a board id:
 - What would make me revoke it:
 - Objections raised, and what happened to each:

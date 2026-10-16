@@ -15,7 +15,7 @@ Anyone, the founder above all, can see what the company is doing now and what it
 
 - company/ops/events.jsonl and tools/events.mjs (append, backfill, query)
 - HQ: src/app/hq/** (floor plan, timeline, replay, meeting pages)
-- tools/metrics.mjs, tools/publish-ready.mjs, tools/snapshot.sh
+- tools/metrics.mjs, tools/publish-ready.mjs, tools/commit-own.sh, tools/git-hooks/
 - Event-driven ritual triggers (company/rituals/triggers.json) and their proposal into the gate CLI
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
