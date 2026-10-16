@@ -1,0 +1,21 @@
+# Fact-check: breeze-is-not-extra-surface
+
+Independent claim checks for src/demos/lifehacks/breeze-is-not-extra-surface. Newest pass at the bottom.
+
+## Pass 52 (2026-10-16, Home W2)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record any of the claims checked here. Scope: Home wave W2 (r11 fix plan): the claims demo-builder reset when the lesson moved to engine 2. Method: I read the rendering code first (HomeLesson.tsx StageV2 / BowStage, src/lib/lifehacks/engine-v2.ts, home-models.ts and this lesson's home-lessons.ts spec), then ran copies in node (scratchpad fc52/scripts/home.mts) to print both Seen columns and the reveal's first sentence at the slider's start and both ends, and read meta.recall as the Feed renders it. Sources opened this pass: OpenStax College Physics 2e §13.6 and §14.6 (CNXML from the publisher's GitHub repository) and Daily-Diamond et al. 2017 (PMC OAI API). I read build.md only after the verdicts were written. No build, server or screenshot.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts). Case 'flux': rate = area × flux, flux 1 (still) or 2 (breeze), area = the slider in both columns, so area never changes with the air. Physical basis: OpenStax College Physics 2e §14.6 Convection (module m42229, same repository, sha256 8d5d1f356fe4…): 'without air flow, the air becomes saturated and evaporation stops. Air flow caused by convection replaces the saturated air by dry air and evaporation continues.' Note for demo-builder: §13.6 alone does not support the airflow part; cite §14.6. |
+| c2 | verified | Limit line as rendered in the reveal, right after the 2× sentence. Consistent with the model's arbitrary flux 1 → 2. |
+| c3 | verified | Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at area 1: still 1, breeze 2; at 3: 3 and 6. Ratio 2 at every slider value. |
+| c4 | disputed | The keyed option states a size the world does not fix. Question: 'Same towel, same cool air. Does a breeze make it dry sooner?' Key: 'Yes, about 2× sooner'. The direction is supported (OpenStax §14.6: air flow replaces saturated air and evaporation continues). The '2×' is not a property of breezes: it is the card's own setting (flux 2 against 1, home-lessons.ts values [2,1]), the same at every slider value, and c2 says it is 'an illustrative setting, not a measured benefit from any fan'. The question does not say 'in this model', so the learner is marked right for a number nothing measures. Real gains depend on air speed and on how wet the cloth still is. Fix (demo-builder, with cm-lifehacks for the prediction line): scope the question to the model, e.g. 'In this model a breeze sets the air to 2, still air to 1. Same towel: does it dry sooner?', or make the key 'Yes, sooner' with the 2× shown only on the stage. Re-check after the change. |
+| c5 | verified | Transfer prompt (spec.recall). Still not rendered: HomeLesson.tsx never reads spec.recall, and the Feed recall card uses meta.recall. Its presupposition matches the model. |
+| recall | verified | Recall card: area stays 1.5 m², rate doubles; keyed option 1 is the only right one. Matches the model and keeps the 'illustrative' caveat. 1.5 m² is on the stage's slider (1–3). |
+| seen | verified | Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at p = 1 the reveal's first sentence is exactly the claim text. In the reveal it sits between the model's own setup and the limit line ('an illustrative setting'), so the 2× is scoped there (contrast c4). Wording note: '2× sooner' means half the time. |
+
+**Trust-sheet check (W-1078 pattern, for this wave):** recall works 1.5 m², which is on the slider (1–3); no mismatch of fixture.
+
+**Result (Pass 52):** 6 verified, 1 disputed, 0 held unverified, 0 withdrawn.

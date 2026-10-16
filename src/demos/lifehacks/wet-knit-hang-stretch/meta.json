@@ -25,50 +25,62 @@
       "id": "lifehacks.wet-knit-hang-stretch.c1",
       "text": "In an ideal equal-share model, more support points reduce the load assigned to each. A care label can require flat drying; this drawing shows load sharing, not fabric stretch.",
       "support": "source",
-      "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): HELD UNVERIFIED. The first sentence is the model (load = p/2 or p/6, own run 0.3 / 0.1 kg at 0.6) and holds. The second, 'A care label can require flat drying', is a fact about care labelling that rests on GINETEX (ginetex.net), which this host cannot open (proxy 403); ftc.gov, ecfr.gov and govinfo.gov (the US Care Labeling Rule) are blocked too. Not verified from memory or search snippets. Needs a web-capable fact-check, or a source on an allowed host.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.c2",
       "text": "Real knit deformation is not calculated. Follow the garment’s drying instructions.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Load per point=water-plus-garment mass/2 or /6 g-equivalent; equal sharing assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Load per point=water-plus-garment mass/2 or /6 g-equivalent; equal sharing assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Limit line as rendered. Note for demo-builder: the source field still says 'g-equivalent'; the stage shows kg (resultUnit).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.c3",
       "text": "Load per peg=wet mass/2 or /6 kg; equal sharing assumed.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): case 'support-load': load = p / 2 or p / 6; at 0.6 kg: 0.3 and 0.1 kg.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.c4",
       "text": "Title: Hang the jumper or lay it flat? Hook: A wet jumper holds about 0.6 kg. Pegged at two points, how much does each point carry? Options: 0.3 kg / 0.1 kg / Almost nothing: it's soft. Correct option: 0.3 kg.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'support-load' at the starting input 0.6; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'support-load' at the starting input 0.6; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches the spec: title, hook (= question), options '0.3 kg' / '0.1 kg' / 'Almost nothing: it's soft', answer 0. Own run: 0.6 / 2 = 0.3 kg. Wording note for demo-builder: 'holds about 0.6 kg' can be read as the water alone; the model divides the whole wet mass, so 'weighs about 0.6 kg wet' is exact.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.c5",
       "text": "Why should a flat-dry instruction take priority over a convenient hanger?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Transfer prompt (spec.recall). Still not rendered: HomeLesson.tsx never reads spec.recall, and the Feed recall card uses meta.recall. Its presupposition matches the model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.recall",
       "text": "Equal sharing divides the load: 900 ÷ 2 = 450 g, and 900 ÷ 6 = 150 g. The model does not predict stretch; if the label says dry flat, follow the label.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card: 900 ÷ 2 = 450 g, 900 ÷ 6 = 150 g; keyed option 0 is the only right one. 0.9 kg is the slider's maximum on the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.wet-knit-hang-stretch.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Two pegs: each peg carries 0.3 kg. Six pegs: 0.1 kg each. Pegs gather the weight onto a few points; if the label says dry flat, lay the jumper flat.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at p = 0.6 the reveal's first sentence is exactly the claim text. 'If the label says dry flat, lay the jumper flat' is a conditional instruction, not a fact claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

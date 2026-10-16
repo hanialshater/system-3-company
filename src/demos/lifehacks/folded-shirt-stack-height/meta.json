@@ -25,50 +25,64 @@
       "id": "lifehacks.folded-shirt-stack-height.c1",
       "text": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts). Case 'layers': height = N × 0.4 × layers, layers 2 → 4; the w2 picture halves the stack's width. Same sheets, half the footprint, twice the height: volume conserved.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.c2",
       "text": "Real fabrics compress and trap air; these are sheet-model dimensions.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Limit line as rendered.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.c3",
       "text": "Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at N = 5: 5 × 0.4 × 2 = 4 cm, 5 × 0.4 × 4 = 8 cm.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.c4",
       "text": "Title: Half the footprint, twice the stack Hook: What changes when you halve the footprint again? Question: Five shirts folded once stack 4 cm high. Fold each once more. How tall now? Options: 8 cm / 4 cm / 2 cm: smaller shirts. Correct option: 8 cm.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'layers' at the starting input 5; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'layers' at the starting input 5; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches the spec: title, hook, question, options '8 cm' / '4 cm' / '2 cm: smaller shirts', answer 0. Own run: 8 cm.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.c5",
       "text": "Why can smaller folded shirts make a drawer too shallow?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; no component renders it (only meta.json recall is shown), so it does not reach the learner. Presupposition (smaller folds give a taller stack) matches the 'layers' model: height = N × 0.4 × layers. Convention. Owner may withdraw it as unrendered. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; no component renders it (only meta.json recall is shown), so it does not reach the learner. Presupposition (smaller folds give a taller stack) matches the 'layers' model: height = N × 0.4 × layers. Convention. Owner may withdraw it as unrendered. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Transfer prompt (spec.recall). Still not rendered: HomeLesson.tsx never reads spec.recall, and the Feed recall card uses meta.recall. Its presupposition matches the model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.recall",
       "text": "Halving the footprint doubles the layers, which doubles the height: 5 × 0.4 × 4 = 8 cm. The material volume is unchanged; it moved upward. Real fabric compresses and traps air.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own arithmetic: 5 × 0.4 × 2 = 4 cm (the stated stack), 5 × 0.4 × 4 = 8 cm; doubling layers halves the footprint and doubles height in the ideal sheet model. Keyed '8 cm' is the only correct option; the compression caveat matches the limit line. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own arithmetic: 5 × 0.4 × 2 = 4 cm (the stated stack), 5 × 0.4 × 4 = 8 cm; doubling layers halves the footprint and doubles height in the ideal sheet model. Keyed '8 cm' is the only correct option; the compression caveat matches the limit line. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card: 5 × 0.4 × 4 = 8 cm; keyed option 2 is the only right one. Same numbers as the stage's start.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.folded-shirt-stack-height.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Folded once: 2 layers per shirt, stack 4 cm. Folded twice: 4 layers, stack 8 cm: half the footprint, 2 times the height.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at p = 5 the reveal's first sentence is exactly the claim text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

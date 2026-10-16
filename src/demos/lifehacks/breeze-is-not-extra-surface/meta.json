@@ -25,50 +25,64 @@
       "id": "lifehacks.breeze-is-not-extra-surface.c1",
       "text": "The model keeps the cloth area fixed and changes only how fast the moving air takes water away. Area and air movement multiply; changing one does not secretly change the other.",
       "support": "source",
-      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts). Case 'flux': rate = area × flux, flux 1 (still) or 2 (breeze), area = the slider in both columns, so area never changes with the air. Physical basis: OpenStax College Physics 2e §14.6 Convection (module m42229, same repository, sha256 8d5d1f356fe4…): 'without air flow, the air becomes saturated and evaporation stops. Air flow caused by convection replaces the saturated air by dry air and evaporation continues.' Note for demo-builder: §13.6 alone does not support the airflow part; cite §14.6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c2",
       "text": "The doubled speed is an illustrative setting, not a measured benefit from any fan.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Rate=exposed area×chosen flux; area=input m²; still flux=1, moving flux=2 arbitrary water units/(m²·step). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Rate=exposed area×chosen flux; area=input m²; still flux=1, moving flux=2 arbitrary water units/(m²·step). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Limit line as rendered in the reveal, right after the 2× sentence. Consistent with the model's arbitrary flux 1 → 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c3",
       "text": "Drying speed=cloth area×air setting; area=input m²; still air=1, breeze=2 arbitrary model units.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at area 1: still 1, breeze 2; at 3: 3 and 6. Ratio 2 at every slider value.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c4",
       "text": "Title: Airflow and surface are different Hook: Same towel, same cool air. Does a breeze make it dry sooner? Options: No: only warm air helps / Yes, about 2× sooner / Only if the breeze spreads it. Correct option: Yes, about 2× sooner.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'flux' at the starting input 1; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'flux' at the starting input 1; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed option states a size the world does not fix. Question: 'Same towel, same cool air. Does a breeze make it dry sooner?' Key: 'Yes, about 2× sooner'. The direction is supported (OpenStax §14.6: air flow replaces saturated air and evaporation continues). The '2×' is not a property of breezes: it is the card's own setting (flux 2 against 1, home-lessons.ts values [2,1]), the same at every slider value, and c2 says it is 'an illustrative setting, not a measured benefit from any fan'. The question does not say 'in this model', so the learner is marked right for a number nothing measures. Real gains depend on air speed and on how wet the cloth still is. Fix (demo-builder, with cm-lifehacks for the prediction line): scope the question to the model, e.g. 'In this model a breeze sets the air to 2, still air to 1. Same towel: does it dry sooner?', or make the key 'Yes, sooner' with the 2× shown only on the stage. Re-check after the change.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c5",
       "text": "Does improving airflow expose an inner towel face that is still folded shut?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt). The text is spec.recall in home-lessons.ts. HomeLesson.tsx never renders spec.recall; the Feed recall card uses meta.recall, a different question. So this prompt is not learner-visible as written. Its presupposition matches the model: 'flux' changes only the flux (rate 1.5 → 3 at area 1.5 in an own run), never the area, so a folded face stays folded. Nothing false is implied. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt). The text is spec.recall in home-lessons.ts. HomeLesson.tsx never renders spec.recall; the Feed recall card uses meta.recall, a different question. So this prompt is not learner-visible as written. Its presupposition matches the model: 'flux' changes only the flux (rate 1.5 → 3 at area 1.5 in an own run), never the area, so a folded face stays folded. Nothing false is implied. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Transfer prompt (spec.recall). Still not rendered: HomeLesson.tsx never reads spec.recall, and the Feed recall card uses meta.recall. Its presupposition matches the model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.recall",
       "text": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Rate = area × flux; flux ×2 → rate ×2, area fixed 1.5 m² (node). Matches c1/c3; doubling flagged illustrative, as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Rate = area × flux; flux ×2 → rate ×2, area fixed 1.5 m² (node). Matches c1/c3; doubling flagged illustrative, as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card: area stays 1.5 m², rate doubles; keyed option 1 is the only right one. Matches the model and keeps the 'illustrative' caveat. 1.5 m² is on the stage's slider (1–3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Still air: 1 m² of cloth open, drying speed 1. Breeze: the same 1 m², speed 2: 2× sooner, with no extra cloth open.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read HomeLesson.tsx StageV2 and src/lib/lifehacks/engine-v2.ts (homeColumn, homeRevealLine) first; own run of evaluateHome/homeColumn/homeRevealLine on the home-lessons.ts spec (scratchpad fc52/home.mts): at p = 1 the reveal's first sentence is exactly the claim text. In the reveal it sits between the model's own setup and the limit line ('an illustrative setting'), so the 2× is scoped there (contrast c4). Wording note: '2× sooner' means half the time.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
