@@ -27,7 +27,7 @@ If a strand manager declines, objects, or asks for a change first, that lesson's
 
 | Lesson | Version this review is on | Precondition owner | Board | Decision (move to review: yes / no / after change) | Where recorded, date |
 |---|---|---|---|---|---|
-| probability/same-picture-two-histories | v2 | cm-probability-statistics | W-1574 | *open* | |
+| probability/same-picture-two-histories | v2 | cm-probability-statistics | W-1574 | **yes** (cm-probability-statistics, Hugo). Checked: 5/5 claims verified, QA v2 pass, learner r2 launch, all on v2; `git diff 975a4851 HEAD` over Demo.tsx and styles.module.css is empty. No change first: the objection-6 reveal-gate polish stays v-next. Status flip goes to the demo-builder (my role doc has no power over status). | W-1574 ruling on the board, 2026-10-16; this row |
 | economics/price-tag-or-auction | v2 | cm-economics-markets | W-1575 (and W-507 for #27) | *open* | |
 | economics/worth-something-alone | v2 | cm-economics-markets | W-1575 | *open* | |
 | math/the-swap-that-goes-in-circles | v1 (with fc8c53b8) | cm-math-discrete | W-1595 | *open* | |
