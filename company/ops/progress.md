@@ -3,6 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer (Kenji) · W-1537 check wiring review + W-1498 tier review (run pe-w1537-review-1016, branch perso-w1537)
+
+**Changed:** review record company/engineering/reviews/2026-10-16-w1537-check-wiring.md; board W-1537 → doing (conditions), W-1498 note. No code changed.
+**Believe:** W-1537 approve with conditions (tier 1): check is the right place because CI runs check, not the verify test:* scripts (high, read ci.yml). Node floor is the real risk: engines says >=20, no .nvmrc, check now needs 22.18 (high). Measured: check 1.46 s vs 0.31 s without; check passes with no node_modules. W-1498 "where the model lives": tier 1, approved; phase B serving is tier 2; the lesson-dims half of W-1498 is not covered (high).
+**Next:** learner-model-engineer: C1 Node guard, C2 engines >=22.18, C3 why-check-not-verify note, then privacy-reviewer T1 read. W-1498 lesson-dims part waits on founder Q2; meta.json fields would need an EDD.
 ## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1537 privacy T1: personalization tests wired into check (run lme-w1537-1016, branch perso-w1537)
 
 **Changed:** package.json only for wiring (no dependency): new script `test:personalization` = `node company/personalization/model/self-check.mjs && node --test company/personalization/model/sim/privacy-n1-n3.test.mjs`; `check` now ends `&& npm run test:personalization`. So `npm run verify` and the CI verify job (it runs `npm run check`) run them with no ci.yml change. privacy-breaks.mjs (~10 s) deliberately not wired. Notes in company/personalization/model/README.md and sim/README.md. W-1537 → review.
