@@ -1,0 +1,139 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.gloss {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+/* A card is a choice button. The picture must stay readable on the locked stage, so it is not dimmed. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  min-width: 0;
+  min-height: 44px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.card.card:disabled {
+  opacity: 1;
+}
+
+.chosen {
+  box-shadow: 0 0 0 1px var(--domain);
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.cardId {
+  font-weight: 800;
+}
+
+.tick {
+  color: var(--domain);
+  font-weight: 800;
+  min-width: 1em;
+  text-align: right;
+}
+
+.cardBody {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.grid {
+  width: 56.8px;
+  height: 56.8px;
+  flex: none;
+  display: block;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  min-width: 0;
+}
+
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.legShared {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.cell5,
+.sw5 {
+  fill: var(--warn);
+  background: var(--warn);
+}
+
+.cell1,
+.sw1 {
+  fill: var(--domain);
+  background: var(--domain);
+}
+
+.cell0 {
+  fill: var(--bg-3);
+  stroke: var(--muted);
+  stroke-width: 0.6;
+}
+
+.sw0 {
+  background: var(--bg-3);
+  border: 1px solid var(--muted);
+  box-sizing: border-box;
+}
+
+.cellShared {
+  fill: color-mix(in srgb, var(--muted) 22%, transparent);
+}
+
+.swShared {
+  background: color-mix(in srgb, var(--muted) 22%, transparent);
+}
+
+.toggle {
+  min-height: 44px;
+  width: 100%;
+}
