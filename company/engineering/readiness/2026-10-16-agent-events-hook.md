@@ -167,7 +167,7 @@ so I left it.
 ## Approval (tier 2; written by principal-engineer-ops)
 - Decision: **approved with conditions to merge unwired at 864dab5** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Authority and conditions H1-H6: `company/engineering/readiness/2026-10-16-agent-events-hook-approval.md` (fee2b05). Wiring needs founder F-31 plus H1 and H2.
 
-- Decision:
+- Decision (E1 + H2 spool, 6ad43ee): **approved with conditions to merge unwired** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Wiring additionally needs F1 (fold takes an exclusive lock; two simultaneous folds duplicated 8,158 lines in her test). Authority: `company/engineering/readiness/2026-10-16-e1n1-approval.md` (e1c9162).
 - Conditions, each with a board id:
 - What would make me revoke it:
 - Objections raised, and what happened to each:

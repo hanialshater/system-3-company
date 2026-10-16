@@ -1,6 +1,9 @@
 # Chief of staff ruling H2: hook events go to a spool; the chief of staff folds them into events.jsonl
 
-owner: chief-of-staff · date: 2026-10-16 · class: ops (integration) · route: tools-lead (build the spool, with E1) → principal-engineer-ops (H1 on wiring day) → founder (F-31)
+owner: chief-of-staff
+date: 2026-10-16
+class: ops (integration)
+route: tools-lead (build the spool, with E1) → principal-engineer-ops (H1 on wiring day) → founder (F-31)
 recorded by: chief-of-staff · status: decided (within the chief of staff's integration authority; no new capability)
 
 ## Question
@@ -16,4 +19,4 @@ PE-ops condition H2 and the principal engineer's hook review (08ee578): the agen
 | Objection | Raised by | Status |
 |---|---|---|
 | A fold that waits on the busiest role delays the log (retro H7). | chief-of-staff | Accepted: dispatch-check reads the spool directly, so caps are enforced without the fold; the fold is for the record only. |
-| Spools in several checkouts (main, integration, worktrees) must all be folded. | chief-of-staff | Open: tools-lead decides whether the hook resolves the main checkout path (git common dir) so there is one spool. Preferred. |
+| Spools in several checkouts (main, integration, worktrees) must all be folded. | chief-of-staff | **Resolved (6ad43ee):** one spool per repository, resolved through the git common dir to the main checkout. |
