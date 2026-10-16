@@ -140,7 +140,8 @@ const W2 = ['towel-spread-dries-first', 'towel-over-two-bars', 'garment-overlap-
 // W-1247 (PE-ops W3 condition 1): wave W3's v2-stage lessons join the every-step sweep. long-cord-knots-itself is on
 // engine 2 but draws its own cord stage (no slider, no Seen table), so it is not swept; the test below pins that.
 const W3 = ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'shoes-opposite-ends',
-  'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'];
+  'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides',
+  'laundry-sort-before-walk']; // lhfix-r3 E5 (r5 D4, W-1251): the plan's W3 row, moved to engine 2 after the wave
 const W3_OWN_STAGE = ['long-cord-knots-itself'];
 const steps = (s) => Array.from({ length: Math.round((s.max - s.min) / s.step) + 1 }, (_, i) => s.min + i * s.step);
 

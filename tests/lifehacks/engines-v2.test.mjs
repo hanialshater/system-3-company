@@ -23,7 +23,9 @@ const R11_WAVES_HOME = {
     'care-label-first-choice', 'towel-thickness-hidden-volume',
     // lhfix-r3 (2026-10-16, content-patch-2026-10-16-r3.md D1): the third, on engine 2 with the rail varied instead of the count
     'laundry-gap-air-path'],
-  W3: ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'long-cord-knots-itself', 'shoes-opposite-ends', 'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'],
+  W3: ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'long-cord-knots-itself', 'shoes-opposite-ends', 'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides',
+    // lhfix-r3 E5 (2026-10-16, dispatch 2026-10-16-r5-lifehacks.md D4, W-1251): the W3 row left on engine 1 by lhw3
+    'laundry-sort-before-walk'],
 };
 const V2_HOME = [...BATCH_D_HOME, ...Object.values(R11_WAVES_HOME).flat()].sort();
 const planWaveSlugs = wave => {

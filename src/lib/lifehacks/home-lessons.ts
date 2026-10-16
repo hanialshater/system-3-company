@@ -1674,31 +1674,45 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "laundry-sort-before-walk",
-    "title": "Carry once, sort at the start",
+    "title": "Ten trips to the machine?",
     "model": "trips",
     "view": "route",
-    "initial": 8,
+    "initial": 10,
     "min": 4,
     "max": 12,
     "step": 1,
     "values": [
-      4
+      8
     ],
     "choices": [
       "One-item trips",
       "Grouped trip"
     ],
-    "question": "Which plan travels less in the pictured route?",
+    "question": "The machine is 8 m away. Ten items one at a time, there and back. How far do you walk?",
     "idea": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
     "limit": "Capacity and urgency may rule out batching; the result is route arithmetic, not measured chore time.",
-    "formula": "Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+    "formula": "Round trip distance=2×8m; total=16m×item count, or 16m for one batch.",
     "recall": "What assumption can make one large batch infeasible?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "laundry-sort-before-walk",
     "unit": "items",
     "inputLabel": "Count",
-    "hook": "Which plan travels less in the pictured route?"
+    "hook": "Ten items to the machine, one at a time. How far is that?",
+    "engine": 2,
+    "options": [
+      "16 m",
+      "80 m",
+      "160 m"
+    ],
+    "amounts": [
+      {
+        "label": "Trips",
+        "unit": "",
+        "a": "p",
+        "b": 1
+      }
+    ]
   },
   {
     "slug": "small-items-in-mesh",

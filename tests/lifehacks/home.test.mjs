@@ -60,7 +60,11 @@ test('access, grouping and repeated routes have concrete counts',()=>{
  assert.equal(value('suitcase-layer-access',6,false),5);assert.equal(value('suitcase-layer-access',6,true),0);
  assert.equal(value('pillowcase-set-kit',4,false),3);assert.equal(value('pillowcase-set-kit',4,true),1);
  assert.equal(value('sock-pairs-not-all-combinations',6,false),15);assert.equal(value('sock-pairs-not-all-combinations',6,true),3);
- assert.equal(value('laundry-sort-before-walk',8,false),64);assert.equal(value('laundry-sort-before-walk',8,true),8);
+ // Re-pinned under quality ruling R2 (a)-(c) (company/ops/dispatch-requests/2026-10-16-r2-quality.md): the r11 fix plan W3 row
+ // (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120) puts the machine 8 m away, so ten items one at a time is
+ // 2 × 8 × 10 = 160 m, eight items 2 × 8 × 8 = 128 m, and one batched trip 2 × 8 = 16 m. Was 64 and 8 at the old 4 m.
+ assert.equal(value('laundry-sort-before-walk',10,false),160);assert.equal(value('laundry-sort-before-walk',10,true),16);
+ assert.equal(value('laundry-sort-before-walk',8,false),128);assert.equal(value('laundry-sort-before-walk',8,true),16);
  assert.equal(value('seasonal-bin-rotation',8,false),28);assert.equal(value('seasonal-bin-rotation',8,true),7);
 });
 test('geometry checks dimensions, conservative bounds and an actual origin',()=>{
