@@ -1,7 +1,7 @@
 {
   "slug": "fit-before-fixed-slot",
-  "title": "Fit around the fixed slot",
-  "hook": "A 25-minute task and a call at 20 to 30. Free until 60.",
+  "title": "Where do the 25 minutes go?",
+  "hook": "A 25-minute task, a fixed call at 20, and an hour free. Where does it go?",
   "domain": "lifehacks",
   "concept": "fit-around-fixed-slots",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Place flexible work around a fixed calendar interval.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A 25-minute task and a call at 20 to 30. Free until 60. A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit? Correct option: From 30. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A 25-minute task, a fixed call at 20, and an hour free. Where does it go? A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit? Options: From 0, across the call / From 30 / Anywhere. Correct option: From 30. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question 'A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?', options 'From 0, across the call' / 'From 30' / 'Anywhere', answer 'From 30'. Own run: 30–55 has no overlap and ends before 60.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question 'A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?', options 'From 0, across the call' / 'From 30' / 'Anywhere', answer 'From 30'. Own run: 30–55 has no overlap and ends before 60. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"fit-before-fixed-slot\"). Not checked by the builder.",
       "id": "lifehacks.fit-before-fixed-slot.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals.",

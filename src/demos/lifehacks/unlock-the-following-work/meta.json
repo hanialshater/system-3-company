@@ -1,7 +1,7 @@
 {
   "slug": "unlock-the-following-work",
-  "title": "Start the blocking input",
-  "hook": "A 2-minute input unlocks a 30-minute build.",
+  "title": "What holds up the build?",
+  "hook": "A 2-minute input unlocks a 30-minute build. What should you do first?",
   "domain": "lifehacks",
   "concept": "do-the-blocking-task-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Identify the work that releases a blocked successor.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A 2-minute input unlocks a 30-minute build. A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish? Correct option: 10 minutes later with polish first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A 2-minute input unlocks a 30-minute build. What should you do first? Polish (10 min), then the input, then the build: the build is done at minute 42. Input, then build, then polish: when is the build done? Options: Minute 42: same jobs, same finish / Minute 32. Correct option: Minute 32. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed answer is true only for one reading of 'input first'. Question: 'Polish (10 min) first or input first: when does the build finish?' Key: '10 minutes later with polish first'. On this stage, 'Swap first' turns polish→input→build into input→polish→build, which is input first, and the build is still done at minute 42, the same as polish first (own run of queueResult; the 'Build done' chip shows 42 both times). Only input→build→polish ('Try target') gives 32. A learner who swaps sees the distractor 'Same either way' come true. Fix (demo-builder, claim text and studyCatalog together): ask about the order that is meant, e.g. 'Polish (10 min) first, or input and then the build: when does the build finish?', or make 'Swap first' not produce input→polish→build. Re-check after the change.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed answer is true only for one reading of 'input first'. Question: 'Polish (10 min) first or input first: when does the build finish?' Key: '10 minutes later with polish first'. On this stage, 'Swap first' turns polish→input→build into input→polish→build, which is input first, and the build is still done at minute 42, the same as polish first (own run of queueResult; the 'Build done' chip shows 42 both times). Only input→build→polish ('Try target') gives 32. A learner who swaps sees the distractor 'Same either way' come true. Fix (demo-builder, claim text and studyCatalog together): ask about the order that is meant, e.g. 'Polish (10 min) first, or input and then the build: when does the build finish?', or make 'Swap first' not produce input→polish→build. Re-check after the change. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"unlock-the-following-work\"). Not checked by the builder.",
       "id": "lifehacks.unlock-the-following-work.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",

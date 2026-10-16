@@ -1,7 +1,7 @@
 {
   "slug": "do-not-starve-the-long-job",
-  "title": "The short-job trade-off",
-  "hook": "Clearing tiny tasks first can delay the long task’s own deadline.",
+  "title": "Short jobs first?",
+  "hook": "Short jobs first means the least waiting. Is it always the right order?",
   "domain": "lifehacks",
   "concept": "queue-shortest-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Compare waiting and lateness when their objectives conflict.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Clearing tiny tasks first can delay the long task’s own deadline. For this long job due at minute 25, which order meets its deadline? Correct option: Long job first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Short jobs first means the least waiting. Is it always the right order? Two 5-minute jobs, and a 25-minute job due at minute 25. Do the short ones first: is the long job on time? Options: Yes: least waiting, so nothing waits too long / No: it finishes late. Correct option: No: it finishes late. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"do-not-starve-the-long-job\"). Not checked by the builder.",
       "id": "lifehacks.do-not-starve-the-long-job.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",

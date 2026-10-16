@@ -1,7 +1,7 @@
 {
   "slug": "earliest-deadline-first",
-  "title": "Read the due dates",
-  "hook": "Short job (5 min, due 30) or urgent job (10 min, due 10).",
+  "title": "Quick job or urgent job?",
+  "hook": "Do the quickest job first. Does anything end up late?",
   "domain": "lifehacks",
   "concept": "homework-deadline-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Compare deadline misses instead of only completion count.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Short job (5 min, due 30) or urgent job (10 min, due 10). Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late? Correct option: Yes, the urgent one. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Do the quickest job first. Does anything end up late? Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late? Options: Yes, the urgent one / No. Correct option: Yes, the urgent one. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog hook, question, options ('Yes, the urgent one' / 'No') and answer 0. Own run: quickest first ends urgent at 15 > due 10, so it is late; the key is right.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog hook, question, options ('Yes, the urgent one' / 'No') and answer 0. Own run: quickest first ends urgent at 15 > due 10, so it is late; the key is right. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"earliest-deadline-first\"). Not checked by the builder.",
       "id": "lifehacks.earliest-deadline-first.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "The red deadline markers compare completion with due time. This exercise rewards meeting due dates, rather than minimising average waiting.",

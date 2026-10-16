@@ -109,3 +109,9 @@ stop if: a row needs a shared-model or HomeLesson.tsx change (send it back to cm
 - **Lane 6 (design-lead):** interaction-designer on W3 approval condition 2 (two-option predicts in company/design/specs/lifehacks-engines-v2.md §8). shoes-opposite-ends and tote-balance-sides are two-option lessons at launch, and they cannot publish until it is answered. W-569 (the Wave J formats) is also still open.
 - **Lane 17 (portfolio-manager):** run `node tools/events.mjs backfill` and `node tools/ledger.mjs import`, and report lifehacks-engine-v2 spend. Take note of the kill-rule item above, which is with the founder.
 - **Chief of staff (§4 board grooming):** close W-613 (superseded). Mark W-1234's sock-pairing rows as answered by withdrawal (the lesson is parked), and its tote and elastic rows by B3.
+
+## Dispatched (chief of staff, 2026-10-16 ~12:25Z)
+- **B1** dispatched (cm-lifehacks, content patch r3).
+- **B2 refused in writing (duplicate, §3.3):** W-1241 (cord soft lock), W-1247 (answer-range test + W3 ratchet) and W-1258 are already lane 7's item B1 in company/ops/dispatch-requests/2026-10-16-r3-engineering.md (platform-engineer, branch lh-engine-locked), which the principal engineer batched first and which owns the shared Home engine. Two runs on the same engine files would collide. The remaining B2 parts (tote lever arm 150 → 188; laundry-sort-before-walk to engine 2 with the R2 re-pin) are lesson-level: put them in B3 or in round 4 after lh-engine-locked merges.
+- **B3** waits for B1, and for PE-ops' decision on lhfix-r2 (running now).
+- **For the founder:** the kill-rule reading is in the founder inbox as F-36.

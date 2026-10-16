@@ -39,6 +39,7 @@ if [ -n "$foreign" ]; then
     printf '%s\n' "$foreign" | sed 's/^/    /'
     if [ $merging -eq 1 ]; then
       echo "  They are not changes from the merged branch either, so the merge commit would sweep them in (as 2e2ccd9 did)."
+      echo "  Do not unstage them. Wait for the owner of the listed paths, then run this again (a merge cannot be a partial commit)."
     else
       echo "  They are someone else's work in flight in the shared index. Do not unstage them."
       echo "  Wait for their owner, or (outside a merge) \`git commit -m \"<msg>\" -- <paths>\` commits only your paths."

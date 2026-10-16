@@ -228,6 +228,6 @@ function FeedbackStage({ r, st, setSt, locked, interact }: { r: FeedbackRetrieva
         <span className={s.slotCue}>{r.label} {i + 1}</span><strong>{r.choices[i][c]}</strong></StageControl>)}
       <StageControl locked={locked} inactive={open || st.attempt.every((c, i) => c === st.tried[i])} onClick={retry}>{r.retryButton}</StageControl>
     </div>
-    <Chips locked={locked} items={[["Count only", !locked && st.seen.count ? `${r.tries} tries` : "?"], ["Marked", !locked && st.seen.marks ? `${markAttempt(r, r.attempt).filter((m) => !m).length} wrong` : "?"]]} />
+    <Chips locked={locked} items={[["First try, count only", !locked && st.seen.count ? `${r.tries} tries` : "?"], ["First try, marked", !locked && st.seen.marks ? `${markAttempt(r, r.attempt).filter((m) => !m).length} wrong` : "?"]]} />
   </div>;
 }

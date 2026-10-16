@@ -1,7 +1,7 @@
 {
   "slug": "work-back-from-a-deadline",
   "title": "Plan backwards",
-  "hook": "Three tasks (10, 15 and 20 min) in a row, due at minute 60.",
+  "hook": "Three tasks in a row, one deadline. When must the first one start?",
   "domain": "lifehacks",
   "concept": "work-back-from-deadline",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Compute a latest start from duration and deadline.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Three tasks (10, 15 and 20 min) in a row, due at minute 60. Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first? Correct option: Minute 15: all three. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three tasks in a row, one deadline. When must the first one start? Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first? Options: Minute 50: its own length / Minute 40: the longest / Minute 15: all three. Correct option: Minute 15: all three. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question, options 'Minute 50: its own length' / 'Minute 40: the longest' / 'Minute 15: all three', answer 2. 60 − 20 − 15 − 10 = 15.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question, options 'Minute 50: its own length' / 'Minute 40: the longest' / 'Minute 15: all three', answer 2. 60 − 20 − 15 − 10 = 15. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"work-back-from-a-deadline\"). Not checked by the builder.",
       "id": "lifehacks.work-back-from-a-deadline.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "Work back from the deadline through the whole chain: 60 minus 20, minus 15, minus 10 is minute 15. Starting the first task any later makes the last one late.",

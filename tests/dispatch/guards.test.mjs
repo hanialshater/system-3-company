@@ -289,3 +289,56 @@ test("N1: the shell still runs what follows a heredoc, and substitutions in an u
     "cat <<< 'pkill x'", // a here-string is a word, not a command
   ]) assert.equal(verdict(c), null, `should pass: ${JSON.stringify(c)}`);
 });
+
+// ---------- r3 B1 (company/ops/dispatch-requests/2026-10-16-r3-tools.md#B1): PE-ops follow-ups M1 and M2 ----------
+// M1: during a merge git refuses a partial commit, so the pre-commit hint must not offer `git commit -m … -- <path>`.
+test("M1: the merge-time refusal names only commit-own.sh and waiting for the owner of the listed paths", () => {
+  const d = conflictedMerge();
+  write(d, "theirs.txt", "staged by another agent\n");
+  git(d, "add", "theirs.txt");
+  const r = run(d, "git", ["commit", "-q", "--no-edit"]);
+  assert.equal(r.code, 1);
+  assert.match(r.err, /theirs\.txt/);
+  assert.match(r.err, /tools\/commit-own\.sh/);
+  assert.match(r.err, /wait for the owner of the listed paths/);
+  assert.doesNotMatch(r.err, /git commit -m "<message>" -- /, "git refuses a partial commit during a merge");
+  const own = run(d, COMMIT_OWN, ["Merge side", "mine.txt"]);
+  assert.equal(own.code, 1);
+  assert.match(own.err, /Wait for the owner of the listed paths/);
+  assert.doesNotMatch(own.err, /git commit -m/);
+});
+
+test("M1: outside a merge the refusal still offers both commit-own.sh and an explicit-path commit", () => {
+  const d = repo({ hooks: true });
+  write(d, "mine.txt", "2\n");
+  write(d, "theirs.txt", "2\n");
+  git(d, "add", "mine.txt", "theirs.txt");
+  const r = run(d, "git", ["commit", "-q", "-m", "bare"]);
+  assert.equal(r.code, 1);
+  assert.match(r.err, /tools\/commit-own\.sh/);
+  assert.match(r.err, /git commit -m "<message>" -- <path>/);
+});
+
+// M2 (answer on W-529): port kills are refused and pointed at serve.sh stop; lookups and pid kills pass.
+test("M2: port kills are refused and name tools/serve.sh stop <port>", () => {
+  for (const c of [
+    "kill $(lsof -t -i:3591)", "kill -9 $(lsof -t -i:3591)", "kill -9 `lsof -ti tcp:3591`", "kill $(fuser 3591/tcp 2>/dev/null)",
+    "fuser -k 3591/tcp", "fuser -km 3591/tcp", "sudo fuser --kill 3591/tcp", "lsof -t -i | xargs kill",
+    "lsof -t -i:3591 | xargs kill", "lsof -ti:3591 | xargs -r kill -9", "cd /x && kill -9 $(lsof -t -i:3000)",
+  ]) {
+    const v = verdict(c);
+    assert.ok(v, `should refuse: ${c}`);
+    assert.match(v, /tools\/serve\.sh stop <port>/, `names serve.sh stop: ${c}`);
+  }
+  const r = bash("kill $(lsof -t -i:3591)");
+  assert.equal(r.code, 2);
+  assert.match(r.err, /tools\/serve\.sh stop <port>/);
+});
+
+test("M2: plain kill <pid>, port lookups and serve.sh stop pass", () => {
+  for (const c of [
+    "kill 1234", "kill -9 1234", "lsof -i:3591", "lsof -t -i:3591", "fuser 3591/tcp", "tools/serve.sh stop 3591",
+    "kill $(cat .serve/3591.pid)", "grep -n \"fuser -k\" tools/serve.sh", "echo 'kill $(lsof -t -i:3591)'",
+  ]) assert.equal(verdict(c), null, `should pass: ${c}`);
+  for (const c of ["kill 1234", "lsof -i:3591", "tools/serve.sh stop 3591"]) assert.equal(bash(c).code, 0, c);
+});

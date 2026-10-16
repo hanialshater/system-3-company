@@ -50,3 +50,25 @@ Reader I took (P3): a reader in Lithuania or Belarus on whose land the route run
 ## Objections
 - None against the research note: I adopted its proposed limit sentence nearly as written, and left out "1869" as it advised.
 - Carried: file-name objection (see the khanates record).
+
+## Addendum 2026-10-16
+
+recorded by: cultural-reviewer (Amira) · brief as read: company/domains/briefs/history.md#5 at a09a726 · provenance note present (company/research/notes/2026-10-15-provenance-most-lost-before-moscow.md)
+Method: I compared each change above with the brief's body text first and read cm-history's "Cultural changes answered" list afterwards. No builder notes exist (unbuilt).
+
+| # | Requested | In the brief now | Result |
+|---|---|---|---|
+| 1 | Stage question naming the column by its source | Word for word, 25 words | made |
+| 2 | Options; reword A if B is the only precise one | A "Retreating, after Minard's first below-zero reading", B "Advancing, before ...", C unchanged; answer B | made differently, acceptable (it is the rewording I gave as the condition) |
+| 3 | Reveal as drafted | Word for word (61 words by script); derivation 303,000 of 336,000 added as a check line | made |
+| 4 | Remove "All three columns" and its 422,000 / 10,000 / 1 in 42 | Preset removed from stage and reveal; totals stay as a script data line only | made |
+| 5 | "Kowno (Kaunas)" and "Moscow"; blank base, no modern borders | Both; blank base, with the fallback "today's borders" at 10 px and a stop-and-report if the kit needs new code | made (fallback is the one I allowed) |
+| 6 | No label on the 12,000 to 14,000 rise at 26.4 degrees E | Stated | made |
+| 7 | Misconception and hook with no name | "The winter destroyed the army"; hook "On Minard's chart, an army marches to Moscow and back. When did it lose most of its men?" | made |
+| Findings | No "1815"; "1812" only with PMC5106729; Napoleon only as a source label | In the care line; "1812" is a held claim if added | made |
+
+Class added: none. No change outside my record. The curriculum concept name ("Most of the column was gone before Minard's first below-zero reading") and the slug (`most-lost-before-moscow`, names no person, "lost" not "killed") are both acceptable; the concept id keeps "napoleon" but ids do not reach a learner (the catalog shows names).
+
+For the stage-B walkthrough, not a gate now: if the fallback "today's borders" label is used, I read it at 390 px; the temperature labels need no unit, as the brief says.
+
+Addendum verdict: go.

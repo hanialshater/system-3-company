@@ -30,7 +30,7 @@
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c2",
-      "text": "Against this crowd the best guess is 2S/301 = 23.01 (S = 3,463), so 23 wins and 0 misses by 22.9 and is beaten by 84 simulated guesses; predict answer B 'About 23' (played: 0 misses by 22.9, 23 by 0.0, 35 by 11.9). Reveal at g = 0: '0 is the equilibrium guess, and it missed by 22.9; 84 simulated guesses were closer.' Every other g: 'Had you guessed 0, the equilibrium, you would have missed by 22.9.'",
+      "text": "Against this crowd the best guess is 2S/301 = 23.01 (S = 3,463), so 23 wins and 0 misses by 22.9 and is beaten by 84 simulated guesses; predict answer B 'About 23, between the other two' (played: 0 misses by 22.9, 23 by 0.0, 35 by 11.9). Reveal at g = 0: '0 is the equilibrium guess, and it missed by 22.9; 84 simulated guesses were closer.' Every other g: 'Had you guessed 0, the equilibrium, you would have missed by 22.9.'",
       "support": "derivation",
       "source": "g* solves g = (2/3)(S + g)/101, so g* = 2S/301 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, checks '(a) best guess', '(a) 0 loses', 'predict answer'; brief 3 claim 2). Demo.tsx computes miss(0) and closer(0) from the seeded crowd. Builder statement, not self-verified.",
       "status": "unverified"
@@ -58,7 +58,7 @@
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c6",
-      "text": "HELD (the one type (d) line, every branch, before 'Where it stops'): 'In one online sample of 250 real players, first guesses averaged 36.4, far above 0.'",
+      "text": "HELD, CUT (renders nowhere: HELD_LINE = false, brief rule 6, W-1267; if it returns, it goes in every branch before 'Where it stops'): 'In one online sample of 250 real players, first guesses averaged 36.4, far above 0.'",
       "support": "source",
       "source": "W-902 row 'Beauty contest / level-k' (robust; means vary with population and group size, so a sample is quoted; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Pantelis & Kennedy 2017, Cognition, PMC5303671 (opened by research-lead, not by the builder or the fact-checker). Fallback (brief 3): cut, nothing replaces it; set HELD_LINE = false in Demo.tsx (reveals 67-74 words). The Nagel 1995 first-round line is not used and stays held (E8 condition 4). Not published until the fact-checker opens it.",
       "status": "unverified"
@@ -86,7 +86,7 @@
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c10",
-      "text": "Recall answer: a simulated crowd of 100 averages 60 and the target is half the average, your guess included; 'About 30' lands closest (0 misses by 29.7, 30 by 0.1, 60 by 30.0).",
+      "text": "Recall answer: a simulated crowd of 100 averages 60 and the target is half the average, your guess included; 'About 30, between the other two' lands closest (0 misses by 29.7, 30 by 0.1, 60 by 30.0).",
       "support": "derivation",
       "source": "Target(g) = (6000 + g)/101/2 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, recall check; brief 3 transfer recall). Builder statement, not self-verified.",
       "status": "unverified"
@@ -97,7 +97,7 @@
     "question": "A simulated crowd of 100 averages 60. The target is half the average, your guess included. Which guess lands closest?",
     "options": [
       "0, the equilibrium guess",
-      "About 30",
+      "About 30, between the other two",
       "About 60, the crowd's average"
     ],
     "answer": 1,
@@ -105,7 +105,9 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/zero-loses-to-this-crowd/2026-10-16-learner-adult-beginner-r1.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
