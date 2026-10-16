@@ -17539,14 +17539,16 @@
       "id": "W-1496",
       "title": "Personalization phase A: write the simulator pass criterion BEFORE it runs (recall over all lessons, breadth, sensitivity), and a first minimum-detectable-effect estimate for the phase B holdout at plausible traffic (company/personalization/2026-10-16-brief-response.md §3, O2, O3)",
       "owner": "personalization-eval",
-      "state": "next",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze."
     },
     {
       "id": "W-1497",
@@ -17649,14 +17651,16 @@
       "id": "W-1513",
       "title": "Replace or adopt the PROVISIONAL simulated learner and scorer (company/personalization/model/sim/learner.ts SimLearner, score.ts) per the independence rule (company/ceo-office/2026-10-16-personalization-org-proposal.md §2); until then sim results are smoke tests. Owner: personalization-eval once the founder approves the role; held by personalization-lead meanwhile",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): decided in company/personalization/eval/2026-10-16-learner-scorer-decision.md: learner REPLACE (same SimLearner interface; hidden per-lesson pull, split prereq penalty, common random numbers), scorer ADOPT A COPY with additions, persona latents copied. Build is C1. Open question for vp-personalization on the rating-fidelity mechanism (decision file, Open)."
     },
     {
       "id": "W-1505",
@@ -17751,14 +17755,16 @@
       "id": "W-1516",
       "title": "For personalization-eval with W-1513 (held by personalization-lead until card N1 is approved): (a) sweep the learner's prerequisite penalty as a dimension of the W-1496 criterion, since the GAM's simulated edge reverses at penalty 0 (W-1512 finding 4); (b) measure model-v0.2 breadth guardrails: top-domain share of completed new cards and distinct concepts vs default-order; (c) before surprise is tested, a hidden per-lesson misconception pull the ratings only approximate (the judge must not read the ratings); (d) math latents if the pilot widens (v0.3 candidate). Decision record: company/decisions/2026-10-16-personalization-model-v0.md",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): (a) prereq penalty is a sweep dimension with B2 placeholders, rule for including 0 set before data (criterion §4); (b) G1/G2 in criterion §3; (c) hidden per-lesson pull in decision file finding 1 and criterion T5/T6. (d) waits for VP pilot-widening decision."
     },
     {
       "id": "W-1517",
@@ -17920,6 +17926,18 @@
       "links": [
         "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
         "company/reviews/hq/2026-10-16-w1503-review.md"
+      ]
+    },
+    {
+      "id": "W-1531",
+      "title": "Before C1 freezes W-1496: answer personalization-eval's rating-fidelity question (simulated ratings from the hidden pull at swept rho, or real ratings with independent pull, rho=0 only; company/personalization/eval/2026-10-16-learner-scorer-decision.md Open) and contest any bar in company/personalization/eval/2026-10-16-phase-a-criterion.md in writing in that file",
+      "owner": "vp-personalization",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md"
       ]
     }
   ]
