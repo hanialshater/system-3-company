@@ -6,10 +6,12 @@
 // A model fitted to those records scores asthma 4% < 8%: the lowest-risk group. If its ranking decides
 // care, asthma patients go to the ward: 10 of 50 die (20%), others unchanged, total 22.
 // Exact expected counts (no sampling); which dots die is a fixed list. Deterministic.
+// v3: the ward-risk line shows in every unlocked state; the rule controls head the two died rows,
+// so the stage stays within 25 words (2026-10-16 counting rule).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -32,6 +34,7 @@ const MODEL = outcome("model");
 // MODEL END
 
 const pc = (n: number, d: number) => `${Math.round((100 * n) / d)}%`;
+const pct = (r: number) => `${Math.round(r * 100)}%`;
 const MILESTONES = ["model-view", "model-decides"] as const;
 const P = 14.4;
 const X0 = 20;
@@ -48,18 +51,19 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In past records every asthma patient went to intensive care. Now the model sends low-risk patients to the ward. Asthma patients' death rate becomes:",
-        options: ["About 4%, as before", "About 8%, like others", "About 20%"],
-        answer: 2,
+          "In past records every asthma patient went to intensive care, and 4% of them died. Now the model sends low-risk patients to the ward. Asthma patients' death rate:",
+        options: ["Stays about 4%, as before", "Rises above 4%", "Falls below 4%"],
+        answer: 1,
       }}
       exploreHint="Open the model's view, then let the model decide care."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            The records were right: asthma patients died less, {OLD.asthma} of {ASTHMA} against {OLD.others} of {OTHERS}. But they
-            died less because every one of them went to intensive care. The model saw the outcome, not the reason, and ranked asthma as the safest group. When its ranking chose the care,
-            asthma patients went to the ward and {MODEL.asthma} of {ASTHMA} died.
+            The records were right: asthma patients died less, {OLD.asthma} of {ASTHMA} against {OLD.others} of {OTHERS}, because
+            every one of them went to intensive care. On the ward their toy risk is {pct(RISK.asthmaWard)}, against{" "}
+            {pct(RISK.othersWard)} for others: the care was hiding a higher risk. The model saw the outcome, not the reason, and
+            ranked asthma safest. When its ranking chose the care, {MODEL.asthma} of {ASTHMA} died.
           </p>
           <p>
             A model that predicts well answers &lsquo;who did badly before?&rsquo;, not &lsquo;what happens if we change what we
@@ -73,15 +77,9 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
           {(reach) => {
             const icu = !locked && rule === "old";
             const showDeaths = !locked;
-            const msg = locked
-              ? "Make a prediction to start."
-              : view
-                ? `Model's view of the old records: asthma ${pc(OLD.asthma, ASTHMA)} risk, others ${pc(OLD.others, OTHERS)}. Safest: asthma.`
-                : `Ward risk: asthma ${RISK.asthmaWard * 100}%, others ${RISK.othersWard * 100}%. Intensive care: asthma ${RISK.asthmaIcu * 100}%.`;
             return (
               <div className={s.wrap}>
                 <div className={s.top}>
-                  <span className={`tag ${s.model}`}>Toy pneumonia patients</span>
                   <Control
                     className={view ? "active" : ""}
                     disabled={locked || view}
@@ -92,8 +90,15 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
                   >
                     Model&apos;s view
                   </Control>
+                  <span className={s.view}>
+                    {view ? `Safest: asthma ${pc(OLD.asthma, ASTHMA)}, others ${pc(OLD.others, OTHERS)}` : ""}
+                  </span>
                 </div>
-                <p className={s.msg}>{msg}</p>
+                <p className={s.msg}>
+                  {locked
+                    ? "Make a prediction to start."
+                    : `Ward risk: asthma ${pct(RISK.asthmaWard)}, others ${pct(RISK.othersWard)}. Intensive care: asthma ${pct(RISK.asthmaIcu)}.`}
+                </p>
                 <svg
                   viewBox="0 0 340 176"
                   className={`stage-svg ${s.svg}`}
@@ -116,10 +121,13 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
                     <>
                       <rect x={X0 - 6} y={Y0 - 6} width={20 * P + 12} height={10 * P + 12} rx={6} className={s.wardBox} />
                       <text x={X0 - 4} y={Y0 - 10} className={s.label} fill={locked ? "var(--muted)" : "var(--fg)"}>
-                        {locked ? "Care: ?" : "Ward: all · intensive care: none"}
+                        {locked ? "Care: ?" : "Ward: all"}
                       </text>
                     </>
                   )}
+                  <text x={X0 + 20 * P + 6} y={Y0 - 10} textAnchor="end" className={s.toy}>
+                    Toy pneumonia patients
+                  </text>
                   {Array.from({ length: ASTHMA }, (_, a) => {
                     const cx = X0 + Math.floor(a / 10) * P + P / 2;
                     const cy = Y0 + (a % 10) * P + P / 2;
@@ -132,27 +140,26 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
                     const dead = showDeaths && OTHERS_DIE.has(o);
                     return <circle key={`o${o}`} cx={cx} cy={cy} r={5.2} className={dead ? s.dead : s.other} />;
                   })}
-                  <circle cx={238} cy={Y0 - 14} r={4.5} className={s.asthma} />
-                  <text x={245} y={Y0 - 10} className={s.small} fill="var(--fg)">
-                    asthma
-                  </text>
-                  <circle cx={294} cy={Y0 - 14} r={4.5} className={s.dead} />
-                  <text x={301} y={Y0 - 10} className={s.small} fill="var(--fg)">
-                    died
-                  </text>
                 </svg>
-                <div className={s.rows}>
-                  <p className={`${s.line} ${!locked && rule === "old" ? s.now : s.faint}`}>
-                    Old rule · died: asthma {locked ? "–" : `${OLD.asthma} of ${ASTHMA}`}, others {locked ? "–" : `${OLD.others} of ${OTHERS}`}
-                  </p>
-                  <p className={`${s.line} ${!locked && rule === "model" ? s.now : s.faint}`}>
-                    Model · died: asthma {seenModel ? `${MODEL.asthma} of ${ASTHMA}` : "–"}, others {seenModel ? `${MODEL.others} of ${OTHERS}` : "–"}
-                  </p>
-                </div>
-                <Row>
+                {/* The two died rows, headed by the rule controls. The header dots are the picture's legend. */}
+                <div className={s.grid}>
+                  <span className={s.head}>
+                    <Dot cls={s.dotDead} />
+                    Died:
+                  </span>
+                  <span className={s.head}>
+                    <Dot cls={s.dotAsthma} />
+                    asthma
+                  </span>
+                  <span className={s.head}>
+                    <Dot cls={s.dotOther} />
+                    others
+                  </span>
                   <Control className={rule === "old" ? "active" : ""} disabled={locked || rule === "old"} onClick={() => setRule("old")}>
                     Old rule
                   </Control>
+                  <span className={`${s.cell} ${!locked && rule === "old" ? s.now : s.faint}`}>{locked ? "–" : `${OLD.asthma}/${ASTHMA}`}</span>
+                  <span className={`${s.cell} ${!locked && rule === "old" ? s.now : s.faint}`}>{locked ? "–" : `${OLD.others}/${OTHERS}`}</span>
                   <Control
                     className={rule === "model" ? "active" : ""}
                     disabled={locked || rule === "model"}
@@ -162,9 +169,11 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
                       reach("model-decides");
                     }}
                   >
-                    Model decides care
+                    Model decides
                   </Control>
-                </Row>
+                  <span className={`${s.cell} ${!locked && rule === "model" ? s.now : s.faint}`}>{seenModel ? `${MODEL.asthma}/${ASTHMA}` : "–"}</span>
+                  <span className={`${s.cell} ${!locked && rule === "model" ? s.now : s.faint}`}>{seenModel ? `${MODEL.others}/${OTHERS}` : "–"}</span>
+                </div>
               </div>
             );
           }}
@@ -172,4 +181,9 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
       )}
     </Lesson>
   );
+}
+
+// Legend dot (decoration, no words; a span, not an svg, so it is never taken for the picture).
+function Dot({ cls }: { cls: string }) {
+  return <span aria-hidden="true" className={`${s.dot} ${cls}`} />;
 }

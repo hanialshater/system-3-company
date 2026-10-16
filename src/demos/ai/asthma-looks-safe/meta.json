@@ -11,7 +11,7 @@
     "toggle-before-after",
     "locked-readouts"
   ],
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-ai",
@@ -30,30 +30,24 @@
   "claims": [
     {
       "id": "ai.asthma-looks-safe.c1",
-      "text": "Under the old rule (every asthma patient to intensive care), 2 of 50 asthma patients (4%) and 12 of 150 others (8%) die; the toy risks are stated on the stage: ward 20% for asthma and 8% for others, intensive care cuts asthma's to 4%.",
+      "text": "Under the old rule (every asthma patient to intensive care), 2 of 50 asthma patients (4%) and 12 of 150 others (8%) die (stage row: \"Old rule 2/50 12/150\"; the predict card's \"4% of them died\"); the toy risks are stated on the stage in every unlocked state: \"Ward risk: asthma 20%, others 8%. Intensive care: asthma 4%.\"",
       "support": "derivation",
-      "source": "50 x 0.04 = 2, 150 x 0.08 = 12 (exact expected counts, no sampling); outcome('old') in Demo.tsx. Brief 57, company/domains/briefs/ai.ai-society.md. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: ASTHMA_DIE_ICU has 2 of 50 (pc 4%), OTHERS_DIE (o mod 25 in {3,16}) has 12 of 150 (8%), total 14. Stage message before 'Model's view': 'Ward risk: asthma 20%, others 8%. Intensive care: asthma 4%.' (0.2*100, 0.08*100, 0.04*100 print as 20, 8, 4 exactly). Counts are exact expected deaths: 0.04*50 = 2, 0.08*150 = 12.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "50 x 0.04 = 2, 150 x 0.08 = 12 (exact expected counts, no sampling); outcome('old') in Demo.tsx. Brief 57, company/domains/briefs/ai.ai-society.md. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: ASTHMA_DIE_ICU has 2 of 50 (pc 4%), OTHERS_DIE (o mod 25 in {3,16}) has 12 of 150 (8%), total 14. Stage message before 'Model's view': 'Ward risk: asthma 20%, others 8%. Intensive care: asthma 4%.' (0.2*100, 0.08*100, 0.04*100 print as 20, 8, 4 exactly). Counts are exact expected deaths: 0.04*50 = 2, 0.08*150 = 12. | v3 builder (2026-10-16, r5-ai B1, W-1329/W-1330): the ward-risk line is no longer replaced by the model's view: Demo.tsx prints it in its own line whenever the stage is unlocked (not behind `view ?`), so it is on screen before and after \"Model's view\" and at the reveal. The died rows are now a grid headed by the rule controls (\"Died: asthma others\" / \"Old rule 2/50 12/150\" / \"Model decides 10/50 12/150\"). The predict card now states \"4% of them died\", which is this 2 of 50. Reset to unverified; needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.asthma-looks-safe.c2",
-      "text": "A model fitted to those records ranks asthma as the lowest-risk group (stage: \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\").",
+      "text": "A model fitted to those records ranks asthma as the lowest-risk group (stage, beside the \"Model's view\" control once tapped: \"Safest: asthma 4%, others 8%\"; reveal: \"ranked asthma safest\").",
       "support": "derivation",
-      "source": "The toy model is the group death rate in the old records: 2/50 = 4% < 12/150 = 8%. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Substance right: the stage's view of the old records gives asthma 4% < others 8%, and the reveal says the model 'ranked asthma as the safest group'. DISPUTED on the quote: the claim text quotes 'Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.', which is not on the stage. Demo.tsx v1 prints \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" The ledger, which the learner reads under 'Why trust this?', quotes a sentence that does not exist. Fix (builder): make the quoted string match the stage, or drop the quote. | Builder fix v2 (2026-10-14, W-512): the quoted stage line now matches what Demo.tsx prints after 'Model’s view' (pc(2,50) = 4%, pc(12,150) = 8%); FC pass 35 found the old quote was not on the stage. Substance unchanged. Needs a fresh fact-check. | FC pass 36 (fact-checker, fresh instance, 2026-10-14, W-637): VERIFIED (v2). Demo.tsx v2 prints, after 'Model's view', `Model's view of the old records: asthma ${pc(2,50)} risk, others ${pc(12,150)}. Safest: asthma.`; own node renders it as \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" and the claim text contains that string exactly (ASCII apostrophe). 2/50 = 4% < 12/150 = 8% (OTHERS_DIE: o mod 25 in {3,16}, 12 dots), so the group-rate model ranks asthma lowest; reveal says 'ranked asthma as the safest group'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The toy model is the group death rate in the old records: 2/50 = 4% < 12/150 = 8%. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Substance right: the stage's view of the old records gives asthma 4% < others 8%, and the reveal says the model 'ranked asthma as the safest group'. DISPUTED on the quote: the claim text quotes 'Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.', which is not on the stage. Demo.tsx v1 prints \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" The ledger, which the learner reads under 'Why trust this?', quotes a sentence that does not exist. Fix (builder): make the quoted string match the stage, or drop the quote. | Builder fix v2 (2026-10-14, W-512): the quoted stage line now matches what Demo.tsx prints after 'Model’s view' (pc(2,50) = 4%, pc(12,150) = 8%); FC pass 35 found the old quote was not on the stage. Substance unchanged. Needs a fresh fact-check. | FC pass 36 (fact-checker, fresh instance, 2026-10-14, W-637): VERIFIED (v2). Demo.tsx v2 prints, after 'Model's view', `Model's view of the old records: asthma ${pc(2,50)} risk, others ${pc(12,150)}. Safest: asthma.`; own node renders it as \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" and the claim text contains that string exactly (ASCII apostrophe). 2/50 = 4% < 12/150 = 8% (OTHERS_DIE: o mod 25 in {3,16}, 12 dots), so the group-rate model ranks asthma lowest; reveal says 'ranked asthma as the safest group'. | v3 builder (2026-10-16, r5-ai B1, W-1329/W-1330): stage-word budget compression (pre-approved by cm-ai, batch item 4): the model's-view line is now \"Safest: asthma 4%, others 8%\" (pc(2,50), pc(12,150)), shown beside the \"Model's view\" control, alongside the ward-risk line rather than in its place. Reveal wording is now \"ranked asthma safest\" (was \"ranked asthma as the safest group\"). Substance unchanged. Reset to unverified; needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.asthma-looks-safe.c3",
-      "text": "When the model's ranking sends asthma patients to the ward, 10 of 50 (20%) die; the others stay at 12 of 150.",
+      "text": "When the model's ranking sends asthma patients to the ward (stage box \"Ward: all\"), 10 of 50 (20%) die; the others stay at 12 of 150 (stage row: \"Model decides 10/50 12/150\").",
       "support": "derivation",
-      "source": "50 x 0.20 = 10; outcome('model') in Demo.tsx (ASTHMA_DIE_WARD has 10 entries, OTHERS_DIE 12). Total deaths rise from 14 to 22 (not in learner text). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: under 'Model decides care' the asthma deaths are ASTHMA_DIE_WARD, 10 of 50 = 20% (0.2*50 = 10); OTHERS_DIE is the same set under both rules, 12 of 150. Reveal prints MODEL.asthma = 10 of 50. The 2 ICU deaths (dots 7, 32) are inside the 10, so no dot switches from dead to alive.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "50 x 0.20 = 10; outcome('model') in Demo.tsx (ASTHMA_DIE_WARD has 10 entries, OTHERS_DIE 12). Total deaths rise from 14 to 22 (not in learner text). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: under 'Model decides care' the asthma deaths are ASTHMA_DIE_WARD, 10 of 50 = 20% (0.2*50 = 10); OTHERS_DIE is the same set under both rules, 12 of 150. Reveal prints MODEL.asthma = 10 of 50. The 2 ICU deaths (dots 7, 32) are inside the 10, so no dot switches from dead to alive. | v3 builder (2026-10-16, r5-ai B1, W-1329/W-1330): row and box labels reworded for the stage budget (\"Ward: all\", \"Model decides 10/50 12/150\"); numbers unchanged (node, 2026-10-16: ASTHMA_DIE_WARD 10 entries, ASTHMA_DIE_ICU 2 entries both inside it, OTHERS_DIE 12). Reset to unverified; needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.asthma-looks-safe.c4",
@@ -81,6 +75,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "ai.asthma-looks-safe.c7",
+      "text": "Reveal: \"On the ward their toy risk is 20%, against 8% for others: the care was hiding a higher risk.\" (In the toy, asthma patients' ward risk is 20% against 8% for others, and intensive care brings asthma's to 4%; the records' 4% came from the care, not from a low risk.)",
+      "support": "derivation",
+      "source": "Toy constants RISK = { asthmaWard: 0.2, asthmaIcu: 0.04, othersWard: 0.08 } in Demo.tsx, printed on the stage's ward-risk line in every unlocked state and in this reveal sentence via pct() (20%, 8%). 20% > 8% > 4%: under the old rule every asthma patient had intensive care, so the records show 4% (2 of 50), below the others' 8%, while their risk without that care is 20%. New in v3 (cm-ai spec, r5-ai B1; answers learner r1's 8%-picker finding). Toy only: no real-world medical claim. Unverified; needs the fact-checker.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -105,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:prediction-not-intervention",
     "also": [
