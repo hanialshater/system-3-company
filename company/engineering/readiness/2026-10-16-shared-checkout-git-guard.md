@@ -52,6 +52,37 @@ does clean-up after a refused hook (e.g. applies the autostash itself), the hook
 double-apply; the tests (`W-1337 pre-rebase: …` in tests/dispatch/guards.test.mjs, which assert the exact work
 tree, index and one stash entry) go red first. **Re-run `npm run test:dispatch` after any git upgrade on the host.**
 
+**What pre-rebase does not cover (PE-ops C1, added 2026-10-16 after the approval).** The restore path above
+covers **only the path on which git runs the hook.** principal-engineer-ops reproduced (approval §0; COE-B a3c1445,
+action 2) at least two other exits, and on both of them pre-rebase never runs:
+- **Dirty tree during the rebase:** git autostashes (`Created autostash: …`), resets, then fails with
+  `error: cannot rebase: You have unstaged changes.` (a writer touched a tracked file in between) **before** the
+  hook runs. The edits are gone from the tree and sit only in `rebase-merge/autostash`.
+- **Failed reset:** the same, ending `fatal: could not reset --hard`, also after the autostash and also without the hook.
+- **`git rebase --no-verify`** skips pre-rebase altogether.
+
+These are the paths that match the 10:50 and 13:06 wipes. On them, **prevention is only the Bash layer**
+(`verdict()` in .claude/hooks/no-pkill.mjs refuses `git rebase` with any flags, and the exact 13:06 brief command, in
+the main checkout) and **detection is only the SubagentStop detector** (.claude/hooks/agent-events.mjs reads the
+state, `rebase-merge/` with an autostash, not the path, so it catches all three). **Both are Claude Code hooks, and
+neither is live while H1 (W-1280) is open.** Until H1 is resolved, nothing live prevents, restores or detects the
+path that caused both incidents; the only control is the commit-only line in every brief (R3 of the ops batch).
+Merging this branch does not change that.
+
+**C2 (PE-ops follow-up, done on this branch in the same commit as C1).** Test `W-1337 C2: dirty tree during
+\`rebase --autostash\` …` in tests/dispatch/guards.test.mjs. The background writer is made deterministic rather
+than raced: a `post-index-change` hook in the test's own hooks dir (with a copy of pre-rebase) appends to a tracked
+file once, only while `rebase-merge/autostash` exists. git then reaches `cannot rebase: You have unstaged changes`
+on every run (passed 3 of 3 runs in a row). The test asserts that pre-rebase printed nothing, the work is off the
+tree, the index and `git stash list` and held only in `rebase-merge/autostash`, (i) the SubagentStop handler pointed
+at that repo writes exactly one `incident` naming the autostash, and (ii) `verdict()` refuses the command, the
+13:06 brief command and `--no-verify` with that repo as the main checkout. **Investigation (report only, nothing
+built):** `post-index-change` does fire on this path, after the autostash reset and before git's clean-tree check,
+with `rebase-merge/autostash` already on disk. So a git hook *can* see the stranding moment, unlike pre-rebase.
+Building a restore on it would need a new readiness record. Open questions: it fires on every index write
+(cheap gating needed), and git has not yet failed when it fires, so a restore there would itself dirty the tree
+and *cause* the failure.
+
 ## 1. What can fail
 
 - **The restore applies onto a changed tree.** It cannot here: after git's hard reset the tree equals HEAD, and
@@ -73,6 +104,9 @@ tree, index and one stash entry) go red first. **Re-run `npm run test:dispatch` 
 - **agent-events writes noise.** A MERGE_HEAD while the chief of staff is mid-merge in the main checkout when a
   subagent stops gives one `note` (not an incident). The event id is a hash of the state, so one state is written
   once, however many agents stop while it lasts.
+- **The rebase exits before pre-rebase runs** (dirty tree during the rebase, failed reset, or `--no-verify`; see
+  the C1 paragraph at the end of §0). The work is stranded in `rebase-merge/autostash` and the hook cannot help.
+  Only the Bash layer (prevention) and the SubagentStop detector (detection) cover it, and both are inert until H1.
 - **Worst case:** the pre-rebase hook throws before the apply. It still refuses, and prints the autostash sha and
   the `git stash store` line to keep it. The work is no worse off than without the hook, and the sha is on screen.
 
@@ -95,7 +129,8 @@ tree, index and one stash entry) go red first. **Re-run `npm run test:dispatch` 
   checkout. Stash gains and MERGE_HEAD are `note`s so a routine merge cannot trigger a retro.
 - **Liveness caveat (H1, W-1280):** (b) and (c) only act if the Claude Code hooks actually run in the session
   tree. The batch reports they did not at 13:25Z in the CoS session tree. **(a) does not depend on that:** it is
-  a git hook, live in every checkout of this repository as soon as it is merged.
+  a git hook, live in every checkout of this repository as soon as it is merged. But (a) covers only the hook
+  path; the dirty-tree, failed-reset and `--no-verify` paths (§0, C1 paragraph) rest on (b) and (c) alone.
 
 ## 3. How to roll back
 

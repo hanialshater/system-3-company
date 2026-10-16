@@ -494,3 +494,56 @@ test("W-1337 no-pkill hook process: payload cwd in the main checkout is refused 
   assert.equal(hook({ tool_name: "Bash", cwd: wt, tool_input: { command: "git rebase --autostash main" } }, env).code, 0);
   assert.equal(hook({ tool_name: "Bash", cwd: main, tool_input: { command: "git pull --ff-only" } }, env).code, 0);
 });
+
+// ---- W-1337 C2 (PE-ops approval 2026-10-16-shared-checkout-git-guard-approval.md; COE-B action 2): the dirty-tree
+// autostash exit, on which pre-rebase never runs. The "background writer" is made deterministic: a post-index-change
+// hook (it fires inside the window, after git's autostash reset) appends to a tracked file once, so git reaches
+// "cannot rebase: You have unstaged changes" on every run instead of by race. The writer is installed only in this
+// test's own hooks dir (a copy of tools/git-hooks/pre-rebase plus the writer); tools/git-hooks/ is not changed.
+const AGENT_EVENTS = path.join(ROOT, ".claude/hooks/agent-events.mjs");
+test("W-1337 C2: dirty tree during `rebase --autostash` in main skips pre-rebase; the detector writes one incident and verdict() refuses the command", () => {
+  const d = rebaseRepo();
+  const hooks = mkTemp("guards-c2-hooks-");
+  fs.copyFileSync(path.join(HOOKS, "pre-rebase"), path.join(hooks, "pre-rebase"));
+  fs.writeFileSync(path.join(hooks, "post-index-change"), [
+    "#!/bin/sh",
+    "[ -f .git/rebase-merge/autostash ] || [ -f .git/rebase-apply/autostash ] || exit 0",
+    "[ -f .git/c2-wrote ] && exit 0",
+    "touch .git/c2-wrote; echo background-writer >> theirs.txt",
+    "",
+  ].join("\n"));
+  for (const f of ["pre-rebase", "post-index-change"]) fs.chmodSync(path.join(hooks, f), 0o755);
+  git(d, "config", "core.hooksPath", hooks);
+  workInFlight(d);
+  const cmd = "git rebase --autostash main";
+  const r = run(d, "git", ["rebase", "--autostash", "main"]);
+  assert.notEqual(r.code, 0);
+  assert.match(r.out + r.err, /Created autostash: [0-9a-f]+/);
+  assert.match(r.err, /cannot rebase: You have unstaged changes/);
+  assert.doesNotMatch(r.out + r.err, /pre-rebase \(tools\/git-hooks\/pre-rebase\)/, "the hook never ran on this path");
+  assert.ok(fs.existsSync(path.join(d, ".git/c2-wrote")), "the writer fired inside the window");
+  // The work is stranded: the staged edits are off the tree and the index, kept only in rebase-merge/autostash.
+  assert.deepEqual(staged(d), [], "the staged edits are gone from the index");
+  assert.ok(!fs.existsSync(path.join(d, "added.txt")), "the staged new file is gone from the tree");
+  assert.deepEqual(stashList(d), [], "nothing on git stash list");
+  const auto = fs.readFileSync(path.join(d, ".git/rebase-merge/autostash"), "utf8").trim();
+  assert.match(auto, /^[0-9a-f]{40}$/);
+  // (i) Detection: the SubagentStop handler, pointed at this repo as the main checkout, writes one incident naming it.
+  const sb = mkTemp("guards-c2-sb-");
+  const spool = path.join(sb, "spool");
+  const h = spawnSync("node", [AGENT_EVENTS], {
+    input: JSON.stringify({ hook_event_name: "SubagentStop", agent_id: "ac2fixture0000000" }), encoding: "utf8",
+    env: { ...ENV, S3_EVENTS: path.join(sb, "events.jsonl"), S3_SPOOL: spool, S3_HOOK_LOG: path.join(sb, "hook.log"), S3_HOOK_STATE: path.join(sb, "state"), S3_MAIN_CHECKOUT: d },
+  });
+  assert.equal(h.status, 0, h.stderr);
+  assert.ok(!fs.existsSync(path.join(sb, "events.jsonl")), "the hook writes only the spool");
+  const evs = fs.readdirSync(spool).flatMap((f) => fs.readFileSync(path.join(spool, f), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)));
+  const gs = evs.filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs.length, 1, JSON.stringify(evs));
+  assert.equal(gs[0].type, "incident");
+  assert.match(gs[0].summary, new RegExp(`rebase-merge/ \\([^,]*, autostash ${auto.slice(0, 9)}`));
+  // (ii) Prevention: verdict() refuses the same command, and the 13:06 brief command, with this repo as the main checkout.
+  assert.ok(verdict(cmd, 0, { cwd: d, main: d }), "refused in main");
+  assert.ok(verdict("git fetch && git rebase -q --autostash origin/main && git push", 0, { cwd: d, main: d }));
+  assert.ok(verdict("git rebase --no-verify --autostash main", 0, { cwd: d, main: d }), "--no-verify skips pre-rebase; only the Bash layer catches it");
+});
