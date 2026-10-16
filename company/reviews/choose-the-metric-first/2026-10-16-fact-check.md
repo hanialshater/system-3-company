@@ -12,3 +12,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c2 | verified | Principle text matches studyCatalog. Own run: the target order lowers late jobs (1 → 0) and raises waiting (25 → 35), so the two readouts rank the orders differently; an objective is needed to prefer one. Exercise-only. |
 
 **Result (Pass 52):** 2 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.choose-the-metric-first.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/choose-the-metric-first/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

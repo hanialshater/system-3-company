@@ -11,3 +11,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c3 | verified | Read StudyLesson.tsx (order stage) and queueObservation in src/lib/lifehacks/studyStages.ts first; own run of queueResult/queueObservation (scratchpad fc52/sim.mts): A1→B1→A2 waiting 21, 2 switches; A1→A2→B1 (target) waiting 17, 1 switch; chips Total waiting / Late jobs / Switches all from queueResult on the current order. The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit. |
 
 **Result (Pass 52):** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.batch-by-setup.c1: disputed
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/batch-by-setup/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

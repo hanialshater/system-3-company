@@ -19,3 +19,10 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 **Trust-sheet check (W-1078 pattern, for this wave):** recall works 6 towels × 300 g; the stage uses 250 g per shirt. c3 also names a 30 m³ room that the stage does not show (disputed above).
 
 **Result (Pass 52):** 5 verified, 1 disputed, 1 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.drying-room-water-load.c3: verified
+- lifehacks.drying-room-water-load.c6: unverified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/drying-room-water-load/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

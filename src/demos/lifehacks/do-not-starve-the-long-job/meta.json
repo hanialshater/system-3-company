@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: Short jobs first means the least waiting. Is it always the right order? Two 5-minute jobs, and a 25-minute job due at minute 25. Do the short ones first: is the long job on time? Options: Yes: least waiting, so nothing waits too long / No: it finishes late. Correct option: No: it finishes late. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"do-not-starve-the-long-job\"). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"do-not-starve-the-long-job\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): VERIFIED. Matches studyCatalog and the page. Own run (queueResult): small→tiny→long waits 15 min, long ends at 35 > due 25, 1 late; long first waits 55, 0 late. So 'No: it finishes late' is right, and the hook's 'least waiting' is true of short-first. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
       "id": "lifehacks.do-not-starve-the-long-job.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",

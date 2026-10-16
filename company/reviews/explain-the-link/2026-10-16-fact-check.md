@@ -14,3 +14,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c4 | verified | Own run matches: first choices What turns rell? → tav (wrong, bix), What turns bix? → tav (right) = Links 1 of 2; chip 'Words listed 3/3'. 'Both links came back…' shows only when both are right. |
 
 **Result (Pass 52):** 4 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.explain-the-link.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/explain-the-link/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

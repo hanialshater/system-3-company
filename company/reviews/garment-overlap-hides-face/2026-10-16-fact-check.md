@@ -19,3 +19,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 **Trust-sheet check (W-1078 pattern, for this wave):** recall works a 20 cm overlap; the stage starts at 30 cm (20 is on the slider).
 
 **Result (Pass 52):** 7 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.garment-overlap-hides-face.c4: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/garment-overlap-hides-face/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

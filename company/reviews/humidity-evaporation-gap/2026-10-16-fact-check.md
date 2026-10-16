@@ -19,3 +19,10 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 **Trust-sheet check (W-1078 pattern, for this wave):** recall uses the stage's own 40% / 80%: matches.
 
 **Result (Pass 52):** 7 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.humidity-evaporation-gap.c4: verified
+- lifehacks.humidity-evaporation-gap.recall: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/humidity-evaporation-gap/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

@@ -13,3 +13,11 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c3 | disputed | Not every displayed result follows the visible state. After 'Try again', the caption, cards and feedback line show the new try (e.g. '4 tries · open · ✓ ✓ ✓'), but the two chips stay on the stipulated first try: 'Count only' prints r.tries (always '3 tries') and 'Marked' prints markAttempt(r, r.attempt) (always '1 wrong') (RetrievalLesson.tsx FeedbackStage, Chips). So the stage shows '3 tries' and '4 tries · open' at once. Fix (demo-builder): label the chips as the first try ('First try: 3 tries', 'First try: 1 wrong'), or compute them from st.tries / st.tried. Re-check after the change. |
 
 **Result (Pass 52):** 2 verified, 1 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.keep-the-error-feedback.c1: verified
+- lifehacks.keep-the-error-feedback.c3: disputed
+- lifehacks.keep-the-error-feedback.c4: disputed
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/keep-the-error-feedback/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: One order waits less, the other is late less. Which one is better? What is required before calling an order better? Options: Count visible movement / Choose the objective. Correct option: Choose the objective. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"choose-the-metric-first\"). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"choose-the-metric-first\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): VERIFIED. Matches studyCatalog and the page. The new hook is true of the fixture (own run, queueResult): short→urgent→long waits 25 min with 1 late job; urgent→short→long waits 35 with 0 late. One waits less, the other is late less. Options and answer 1 unchanged. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
       "id": "lifehacks.choose-the-metric-first.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The displayed waiting and late counts measure different things. A preference requires an explicit objective.",
