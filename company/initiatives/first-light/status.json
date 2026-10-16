@@ -4,13 +4,13 @@
   "owner": "head-of-strategic-initiatives",
   "owner_interim": "head-of-strategic-initiatives",
   "tech_lead": "principal-engineer",
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "decision": "company/decisions/2026-10-15-founder-first-light.md",
   "charter": "company/initiatives/first-light/charter.md",
   "dates": {
     "go_no_go": "2026-11-23",
     "launch": "2026-11-30",
-    "note": "Unchanged, and not yet re-planned. On the tech lead's W-908 figures (company/engineering/notes/2026-10-15-first-light-reestimate.md) the dates hold at about 25% at full scope (about 60% only with the cut the founder overruled). The founder accepted that cost; the tech lead re-estimates at full scope (W-1121) and head-of-strategic-initiatives then brings the founder a date and cut-order proposal (W-1122). Slip rule (tech lead's proposal): if F-01 with a sign-in method and its account is not decided by 10-23, or EDD-008 is not approved by 10-28, go/no-go moves by the same number of days and the quality dates move with it (quality-bar.md section 2.1)."
+    "note": "Unchanged, and not yet re-planned. On the tech lead's W-908 figures (company/engineering/notes/2026-10-15-first-light-reestimate.md) the dates hold at about 25% at full scope. The founder accepted that cost; the tech lead re-estimates at full scope (W-1121, round 1 run 2 in dispatch/2026-10-16-round-1.md) and head-of-strategic-initiatives then brings the founder a date and cut-order proposal (W-1122). Slip rule (tech lead's proposal): F-01 was decided on 2026-10-15, so that half is met; if EDD-008 is not approved by 10-28, go/no-go moves by the same number of days and the quality dates move with it (quality-bar.md section 2.1)."
   },
   "whiteboard": "first-light",
   "workstreams": [
@@ -36,12 +36,16 @@
         "W-706",
         "W-908",
         "W-1008",
-        "W-964"
+        "W-964",
+        "W-1135",
+        "W-1148",
+        "W-1164",
+        "W-1165"
       ],
-      "next": "Founder decides F-01 (sign-in, database, plus the email-sender account) and F-24 (age policy) by 10-23, from f01-options.md. Tech lead's dates: auth spike and EDD-008 draft 10-22 (W-1008), EDD-008 approved 10-28, then privacy data-model review (W-965) and readiness (W-966) before code; feature-complete on a preview 11-06. These are the cut-scope figures; W-1121 re-estimates at full scope.",
+      "next": "F-01 and F-24 decided 2026-10-15 (company/decisions/2026-10-15-founder-f01-accounts.md). SPIKE-002 local part ran on branch accounts (2f5c500): R1 fra1 needs deploy config, R2 feed first-load JS +445 B gzip (PE rules, W-1148), R3 kill switch = set variable and redeploy (W-1150). Privacy review of EDD-008: conditional pass (company/reviews/_privacy/2026-10-16-edd-008-accounts.md): merge with accounts off after M1-M6 (W-1164); no real learner email until G1-G6 (W-1165). Round 1 (dispatch/2026-10-16-round-1.md): backend-engineer M1-M6, PE rulings and full-scope re-estimate, PE-ops readiness first pass. Tech lead's dates: EDD-008 approved 10-28; feature-complete on a preview 11-06.",
       "override": {
-        "status": "not started",
-        "note": "Derived shows 'in progress' only because W-908 (the tech lead's re-estimate, shared with infra) is in review. No auth or progress build work exists: W-1008 (spike and EDD-008) and W-964 (EDD) are backlog, and nothing tagged runs before Project Review 1 (10-16). F-01 is open since 10-13; the backend engineer's options sheet is on disk (company/initiatives/first-light/f01-options.md, commit 4b22afc: recommends Better Auth magic link, Neon via the Vercel Marketplace in the EU, age option A). Remove this override when W-1008 moves."
+        "status": "in progress",
+        "note": "Real work exists but the board has not caught up: SPIKE-002 ran on branch accounts (W-1135 still backlog), EDD-008 is drafted (proposed) and its privacy review is written (W-1139 still backlog). Derived shows 'in progress' only through W-908 (review). Remove this override when W-1135 or W-1164 moves."
       }
     },
     {
@@ -58,17 +62,21 @@
       "id": "mastery",
       "name": "Mastery state and challenges",
       "owner": "learner-model-engineer",
-      "board": [],
-      "next": "Owners per W-967 ruling: mastery state learner-model-engineer (EDD-009, never cut); challenges growth-designer (spec from existing lessons, no kit change). Pre-declared cut: challenges not feature-complete on a preview by 2026-11-06 move to release 2, mastery stays. No board item for either yet (scope record asks 3 and 4)."
+      "board": [
+        "W-1132",
+        "W-1133"
+      ],
+      "next": "Mastery state: learner-model-engineer drafts EDD-009 with the M1 definition table (W-1132, round 1 run 5); tech lead's date EDD-009 approved 10-30. Challenges: PRD-004 written and proposed (company/product/prds/PRD-004-first-light-challenges.md; W-1133 done), no new stored data, no kit change; category managers pick lessons by 11-04 after the catalog plan (W-931); experiment registered first. Pre-declared cut: challenges not feature-complete on a preview by 2026-11-06 move to release 2, mastery stays."
     },
     {
       "id": "social",
       "name": "Social (light, beyond share links; release 1)",
       "owner": "growth-designer",
       "board": [
-        "W-1127"
+        "W-1127",
+        "W-1131"
       ],
-      "next": "Back in release 1 by the founder (10-15). Ships only with: a founder-named moderator and cover (F-26, due 10-30), the 5.3 minimums evidenced, its own tier-2 EDD (no board item yet), growth-designer's PRD with a prediction about learning (W-1127), P2.3 unchanged (no social for 13-15). Without F-26 by the privacy rulings (11-09), social beyond share links is absent from the release build, by the gate. Share-a-lesson (P4.2) stays in either case."
+      "next": "PRD-003 (the prediction swap) is written and proposed (company/product/prds/PRD-003-first-light-social-prediction-swap.md; W-1127 done). It ships only with: F-26 moderator and cover by 10-30, its tier-2 EDD (W-1131) approved, the experiment registered, feature-complete on a preview by 11-06 (proposed cut), P4.3 passing at the 11-09 rulings. Otherwise release 1 ships share links only (P4.2), which ship in every case. Founder question at the 10-23 review: is the swap what 'light social' meant? The EDD, the full privacy read and the M5 reading are not run in round 1 (dispatch/2026-10-16-round-1.md, 'Not running')."
     },
     {
       "id": "ads",
@@ -96,9 +104,12 @@
         "W-932",
         "W-965",
         "W-1000",
-        "W-1123"
+        "W-1123",
+        "W-1139",
+        "W-1166",
+        "W-1167"
       ],
-      "next": "privacy-reviewer: the gate is proposed (privacy-gate.md, 2026-10-15; objections close 10-22, W-932); re-plan the runs for social and the ad slot back in scope (W-1123: about 3 more privacy runs for social); P4.3 needs F-26. Founder: F-24 age policy by 10-23; F-25 lawyer by 10-30 (P7 needs a lawyer-reviewed policy at RC1, 11-13); user-content duties now apply since social is back. Rulings on social, the ad slot and the age gate by 11-09. R-007: no legal read exists."
+      "next": "Privacy review of EDD-008 written 10-16: conditional pass; P1.7 (processors) fails until counsel reads the Vercel, Neon and Resend DPAs (G1, F-25). privacy-reviewer: data inventory (W-1166) and one ruling on the shared experiment beacon event (round 1 run 3). Founder: the P1.8 idle-notice amendment at the 10-23 review (W-1167); F-25 lawyer by 10-30 (P7 needs a lawyer-reviewed policy at RC1, 11-13; Art. 8 answer by 11-09); F-26 for P4.3. The gate itself is proposed (privacy-gate.md), objections close 10-22 (W-932). R-007: no legal read exists."
     },
     {
       "id": "infra",
@@ -114,9 +125,11 @@
         "W-727",
         "W-480",
         "W-884",
-        "W-878"
+        "W-878",
+        "W-1149",
+        "W-1150"
       ],
-      "next": "W-930 answered yes (re-estimate section 1): A1 joins the critical path. Founder signed AMD-001 (c2)+R1 on 10-15. The split is built on branch amd001-c2; principal-engineer approved with changes (C1, C2 done in aebe19a); C3, full npm run verify on the integrated tree, is reported running and its summary is not yet in the readiness record. Then: principal-engineer-ops approves the readiness record (blank), chief-of-staff makes the single applying commit, evaluation-steward audits, founder approves the deploy separately. Tech lead's target: A1 merged by 10-30. Open: F-18 (Vercel Pro, unverified), W-1117 (/hq chunk), W-1116 (CI does not run test:platform)."
+      "next": "A1: AMD-001 (c2)+R1 applied in 0d76ae1 (status 1c96049); evaluation-steward's audit W-1152 is done. A deploy of it is a separate founder approval and is not recorded here. Accounts infra: fra1 region needs deploy config (SPIKE-002 R1; W-1149 after the PE's C6 ruling, founder approval); the kill switch is a redeploy (R3; W-1150 runbook); production database is a separate Neon project created at go-live (W-1142). Open: F-18 (Vercel Pro, unverified), W-1117 (/hq chunk), W-1116 (CI does not run test:platform)."
     },
     {
       "id": "surface-value",
@@ -150,10 +163,10 @@
         "W-1032",
         "W-1125"
       ],
-      "next": "Project Review 1 on 10-16 (W-730): tranche 1 3.59M and the quality line (W-929). T2 must be re-based at full scope (W-1125): it was already 14.5M-17.4M with the quality line against the 10.2M stop rule, before ads and social came back.",
+      "next": "Project Review 1 (2026-10-16, company/rituals/records/2026-10-16-project-review.md): approved, tranche 1 3.59M; T2 8.17M released only at the checkpoint. Members' written positions due 10-17 23:59 UTC (a PE evidence objection reopens the item). T2 must be re-based at full scope (W-1125), with the quality line (W-929).",
       "override": {
         "status": "in progress",
-        "note": "The budget pack is written (company/ceo-office/2026-10-14-project-review-1-agenda.md, Addendum 2026-10-15) but W-905 is still backlog on the board. The founder rules at Project Review 1 on 10-16. Remove this override when W-905 moves."
+        "note": "Tranche 1 approved at Project Review 1 on 10-16, but W-905 is still backlog on the board. Remove this override when W-905 moves."
       }
     },
     {
@@ -192,19 +205,19 @@
   "founder_decisions": [
     {
       "id": "F-15",
-      "why": "Project Review 1 on 10-16: First Light tranche 1, the quality line and the T2 re-base; nothing tagged runs before it"
+      "why": "Decided 2026-10-16 at Project Review 1: tranche 1 approved (3.59M), full scope; positions due 10-17"
     },
     {
       "id": "F-01",
-      "why": "Auth provider, database host, plus the sign-in method and its outside account (tech lead) by 10-23, the tranche-2 condition and the head of the critical path. The backend engineer's options sheet (f01-options.md) is in preparation"
+      "why": "Decided 2026-10-15: Better Auth magic link, Neon via Vercel (EU), 13+ with teen mode (company/decisions/2026-10-15-founder-f01-accounts.md); its objections stay open (spike, prices, counsel, DPAs)"
     },
     {
       "id": "F-24",
-      "why": "Age policy (13+ with teen mode, no under-13 accounts) by 10-23: it blocks the auth EDD and privacy gate P2, and settles F-01's age floor"
+      "why": "Decided 2026-10-15 with F-01: 13+ accounts with teen mode, no under-13 accounts; fallback 16+ if counsel reads Art. 8 strictly (F-25)"
     },
     {
       "id": "F-17",
-      "why": "Whether to pursue ads, on these terms. Back on the release-1 path (founder, 10-15); proposed by 10-23 so the slot's reviews can start"
+      "why": "Whether to pursue ads, on these terms. Proposed by 10-23 so W-893/W-894 can start; vp-marketing brings F-17, F-18, F-20 as one packet (round 1 run 6)"
     },
     {
       "id": "F-25",
@@ -216,11 +229,11 @@
     },
     {
       "id": "F-26",
-      "why": "Name a human moderator and a cover (act within 24 hours) by 10-30; without them social beyond share links is absent from release 1 (privacy gate P4.3)"
+      "why": "Name a human moderator and a cover (act within 24 hours) by 10-30; without them release 1 ships share links only and PRD-003's swap waits for release 2 (privacy gate P4.3)"
     },
     {
       "id": "F-23",
-      "why": "The public domain and brand name (W-916 brings the shortlist); bought and pointed by about 11-06"
+      "why": "The public domain and brand name; W-916 brings 3-5 names with quotes (round 1 run 6). Proposed by 10-30; bought and pointed by about 11-06; production sign-in mail needs it"
     },
     {
       "id": "F-18",
@@ -239,6 +252,18 @@
       "title": "Which domain name to buy",
       "status": "open",
       "why": "Now in the founder inbox as F-23; the purchase waits for W-916's priced quotes and the name."
+    },
+    {
+      "id": "P1.8-notice",
+      "title": "Privacy gate P1.8 amendment: one untracked notice before an idle-account deletion",
+      "status": "open",
+      "why": "Founder review 10-23, with the privacy gate (privacy review O4; W-1167). Not needed before about 2028-12; if no, accounts are deleted without notice and the policy says so"
+    },
+    {
+      "id": "light-social",
+      "title": "PRD-003: is the prediction swap what 'light social' meant?",
+      "status": "open",
+      "why": "Ask at the 10-23 review, answer by 10-30 with F-26. Richer social (friends, profiles, lists) is outside the privacy gate and AMD-008 in release 1 and needs a new PRD and estimate"
     }
   ],
   "risks": [
@@ -313,7 +338,7 @@
       "likelihood": 4,
       "impact": 3,
       "owner": "principal-engineer",
-      "why": "The ad slot is back in release 1, so a commercial surface reaches production. W-893 and W-908 must confirm the Pro requirement; the terms are unread from this host (F-18)."
+      "why": "The ad slot is back in release 1, so a commercial surface reaches production. W-893 and W-908 must confirm the Pro requirement; the terms are unread from this host (F-18). SPIKE-002 R1 (10-16): preferredRegion does not place Node functions, so fra1 also needs deploy config (W-1149)."
     },
     {
       "id": "FL-06",
@@ -341,6 +366,15 @@
       "impact": 3,
       "owner": "privacy-reviewer",
       "why": "Founder ask F-26 (due 10-30). Without a moderator and cover, P4.3 fails and social beyond share links is absent from the release build (founder record 10-15, objection 2). Its tier-2 EDD has no board item yet."
+    },
+    {
+      "id": "FL-09",
+      "status": "proposed",
+      "title": "The accounts kill switch is a redeploy, not instant",
+      "likelihood": 3,
+      "impact": 3,
+      "owner": "release-manager",
+      "why": "SPIKE-002 R3 (2026-10-16): Vercel applies a changed ACCOUNTS_ENABLED only to new deployments, so turning accounts off takes minutes and a founder-approved deploy. The runbook must say so (W-1150)."
     }
   ],
   "jour_fixe": [
