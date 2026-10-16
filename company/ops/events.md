@@ -46,15 +46,19 @@ ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `r
 | `qa-lab` | QA runs and records |
 | `launch-room` | Launch reviews, publishes, unpublishes |
 | `engineering` | Principal engineer, platform, eng reviews, EDDs, ADRs |
-| `backend` | Backend engineer, privacy reviewer |
+| `backend` | Backend engineer (floor 5) |
+| `privacy-review` | Privacy reviewer (floor 6, Quality) |
+| `review-room` | Review records and gate reviews (floor 6) |
+| `ops-room` | Ops and readiness: principal engineer (ops), readiness records (floor 5) |
 | `growth` | Growth designer, experiments |
 | `tools` | Company tools: the event log, HQ, metrics |
 | `meeting-wbr`, `meeting-retro`, `meeting-crit`, `meeting-planning` | Ritual meetings |
 | `incident` | COEs and incidents |
 | `boardroom` | Project review: major-project proposals and approvals (company/rituals/templates/project-review.md) |
 | `constitution` | Amendments and constitutional reviews |
-| `ceo-office` | Chief of staff (CEO office), portfolio manager, principal engineers, VP R&D, head of strategic initiatives |
+| `ceo-office` | Chief of staff (CEO office), portfolio manager, head of strategic initiatives. The principal engineer sits in `engineering`, the ops engineer in `ops-room`, the VP R&D in `rnd-office` (F-40 reseat). |
 | `first-light` | War room for First Light, the first public release (temporary, beside the CEO office; page `/hq/first-light`; company/decisions/2026-10-15-founder-first-light.md). Events about the program go here; a role's own work stays in its own room. |
+| `research-room` | Old id, drawn as `research-lab` (read-time alias in `loadEvents`; stored events keep it) |
 | `cm-<domain>` | Category managers' offices |
 
 **Floor 8, System 3 Press**, is a sibling company, not part of this one. Its rooms (`press-*`) are drawn

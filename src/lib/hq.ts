@@ -3,8 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 export { teamColor } from "./hq-colors";
-import type { Floor } from "./hq-floors";
-export { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "./hq-floors";
+import { ROOM_ALIASES, type Floor } from "./hq-floors";
+export { FLOORS, FLOOR_NAMES, ROOM_ALIASES, stairsTo, type Floor } from "./hq-floors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
 import { roles } from "../../tools/org/roles.mjs";
 import { pressRooms, type PressSnapshot } from "./hq-press";
@@ -33,97 +33,114 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks, Behavioral Economics), 7 = Marketing. */
+  /** Building floor (see FLOOR_NAMES): 1 = lobby, leadership and operations, 2 = Product, 3 = Categories (science and technology), 4 = Categories (society, money and ideas), 5 = Engineering and R&D, 6 = Quality, 7 = Marketing, 8 = Press. */
   floor?: Floor;
 }
 
-const DOMAINS: [string, string, string][] = [
+// Category offices, split 7/7 by neighbourhood (F-40, company/ceo-office/2026-10-16-floor-reseat-proposal.md §2.2).
+// Floor 3: science and technology. Floor 4: society, money and ideas. Colours match src/lib/hq-colors.ts and content/domains.json.
+const FLOOR3_CATEGORIES: [string, string, string][] = [
+  ["probability", "Probability", "#f6c453"],
   ["math", "Math", "#7c9cff"],
   ["cs", "CS", "#4fd1a5"],
-  ["probability", "Probability", "#f6c453"],
-  ["physics", "Physics", "#ff8a65"],
   ["ai", "AI", "#c792ea"],
-  ["economics", "Money", "#80cbc4"],
+  ["physics", "Physics", "#ff8a65"],
+];
+const FLOOR3_ROW2: [string, string, string][] = [
   ["life", "Life", "#a5d66f"],
   ["chemistry", "Chem", "#f48fb1"],
-  ["geography", "Geo", "#64b5f6"],
 ];
-
-// Categories that are not school subjects (floor 6). Colours match src/lib/hq-colors.ts and content/domains.json.
-const NEW_CATEGORIES: [string, string, string][] = [
+const FLOOR4_CATEGORIES: [string, string, string][] = [
+  ["lifehacks", "Life Hacks", "#ffb74d"],
+  ["economics", "Money", "#80cbc4"],
+  ["behavioral", "Behavioral Econ", "#e48fd6"],
+  ["geography", "Geo", "#64b5f6"],
+  ["history", "History", "#d9b26f"],
+];
+const FLOOR4_ROW2: [string, string, string][] = [
   ["books", "Book Summaries", "#bcaaa4"],
   ["big-ideas", "Big Ideas", "#4dd0e1"],
-  ["history", "History", "#d9b26f"],
-  ["lifehacks", "Life Hacks", "#ffb74d"],
 ];
+const office = (id: string, name: string, color: string, x: number, y: number, floor: Floor): Room => ({ id: `cm-${id}`, name, x, y, w: 186, h: 236, kind: "office", color, floor });
 
-// The floor plan, in SVG units (1000 × 660). Offices around the edge, the work floor in the middle.
+// The floor plan, in SVG units (1000 x 660). F-40 reseat: one floor per org (floor 9 is reserved for System 3 Meta, a note only, not drawn).
 export const ROOMS: Room[] = [
-  // Floor 1 top row: Product, and the stairs to the Categories floor.
-  { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 250, h: 84, kind: "office" },
-  { id: "to-floor-3", name: "↑ Floors 3 & 6 · Categories", x: 280, y: 16, w: 220, h: 84, kind: "lobby" },
-  { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 510, y: 16, w: 240, h: 84, kind: "lobby" },
+  // Floor 1 · Lobby, leadership & operations. Stairs row.
+  { id: "to-floor-2", name: "↑ Floor 2 · Product", x: 20, y: 16, w: 150, h: 84, kind: "lobby" },
+  { id: "to-floor-3", name: "↑ Floors 3–4 · Categories", x: 178, y: 16, w: 150, h: 84, kind: "lobby" },
+  { id: "to-floor-5", name: "↑ Floor 5 · Engineering & R&D", x: 336, y: 16, w: 150, h: 84, kind: "lobby" },
+  { id: "to-floor-6", name: "↑ Floor 6 · Quality", x: 494, y: 16, w: 150, h: 84, kind: "lobby" },
+  { id: "to-floor-7", name: "↑ Floor 7 · Marketing", x: 652, y: 16, w: 150, h: 84, kind: "lobby" },
   // Stairs to floor 8: System 3 Press, the founder's sibling company (company/sibling/press/).
-  { id: "to-floor-8", name: "↑ Floor 8 · System 3 Press", x: 760, y: 16, w: 220, h: 84, kind: "lobby", color: "#c8553d" },
-  // Floor 3 (re-cut 2026-10-14): the nine subject categories, each a full office for its lead and 3 strand managers;
-  // stairs up to floor 6; strategy, Courses and portfolio review along the bottom.
-  ...DOMAINS.map(([id, name, color], i) => ({
-    id: `cm-${id}`, name, x: 20 + (i % 5) * 194, y: 16 + Math.floor(i / 5) * 246, w: 186, h: 236, kind: "office" as const, color, floor: 3 as const,
-  })),
-  { id: "to-floor-6", name: "↑ Floor 6", x: 796, y: 262, w: 186, h: 236, kind: "lobby", floor: 3 },
-  { id: "strategy", name: "Strategy · Verticals", x: 20, y: 508, w: 313, h: 130, kind: "office", floor: 3 },
-  { id: "courses", name: "Courses · Books", x: 342, y: 508, w: 313, h: 130, kind: "office", color: "#90a4ae", floor: 3 },
-  { id: "portfolio-review", name: "Portfolio review", x: 664, y: 508, w: 316, h: 130, kind: "meeting", floor: 3 },
-  // Floor 6 (2026-10-14, founder: "put these into the right floor"): the categories that are not school subjects.
-  // Same office size and kind as floor 3, so each lead and their strand managers sit at desks; Life Hacks keeps its safety desk beside it.
-  ...NEW_CATEGORIES.map(([id, name, color], i) => ({
-    id: `cm-${id}`, name, x: 20 + i * 194, y: 16, w: 186, h: 236, kind: "office" as const, color, floor: 6 as const,
-  })),
-  { id: "lifehacks-safety", name: "Hacks safety desk", x: 796, y: 16, w: 184, h: 236, kind: "floor", floor: 6 },
-  { id: "to-floor-3-from-6", name: "↓ Floor 3 · Categories · subjects", x: 20, y: 262, w: 380, h: 120, kind: "lobby", floor: 6 },
-  // Row 2 (W-981 with W-900, company/decisions/2026-10-15-behavioral-economics-org.md): Behavioral Economics, one CM and no strands,
-  // in the free space right of the stairs down. Same size and kind as the row-1 offices. Colour matches hq-colors.ts and content/domains.json.
-  { id: "cm-behavioral", name: "Behavioral Econ", x: 410, y: 262, w: 186, h: 236, kind: "office", color: "#e48fd6", floor: 6 },
-  { id: "meeting-wbr", name: "WBR room", x: 20, y: 116, w: 150, h: 110, kind: "meeting" },
-  { id: "meeting-retro", name: "Retro room", x: 20, y: 236, w: 150, h: 110, kind: "meeting" },
-  { id: "meeting-crit", name: "Demo Crit", x: 20, y: 356, w: 150, h: 110, kind: "meeting" },
-  { id: "meeting-planning", name: "Planning room", x: 20, y: 476, w: 150, h: 76, kind: "meeting" },
-  { id: "to-floor-5", name: "↑ Floor 5 · Engineering", x: 830, y: 116, w: 150, h: 230, kind: "lobby" },
-  { id: "growth", name: "Growth", x: 830, y: 356, w: 150, h: 110, kind: "office" },
-  { id: "tools", name: "Company Tools", x: 830, y: 476, w: 150, h: 76, kind: "office" },
-  { id: "build-floor", name: "Build floor", x: 186, y: 116, w: 400, h: 230, kind: "floor" },
-  { id: "fact-check", name: "Fact-check desk", x: 598, y: 116, w: 216, h: 110, kind: "floor" },
-  { id: "learner-review", name: "Learner review", x: 598, y: 236, w: 216, h: 110, kind: "floor" },
-  { id: "qa-lab", name: "QA lab", x: 186, y: 356, w: 196, h: 110, kind: "floor" },
-  { id: "launch-room", name: "Launch room", x: 392, y: 356, w: 194, h: 110, kind: "meeting" },
-  { id: "constitution", name: "Constitution", x: 598, y: 356, w: 216, h: 110, kind: "meeting" },
-  { id: "chief-of-staff", name: "Chief of Staff", x: 186, y: 476, w: 190, h: 76, kind: "office" },
-  { id: "studio", name: "Studio", x: 386, y: 476, w: 200, h: 76, kind: "office" },
-  { id: "incident", name: "Incident & ops review", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
-  { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 220, h: 76, kind: "lobby" },
+  { id: "to-floor-8", name: "↑ Floor 8 · System 3 Press", x: 810, y: 16, w: 170, h: 84, kind: "lobby", color: "#c8553d" },
+  { id: "chief-of-staff", name: "Chief of Staff · dispatched agents", x: 20, y: 116, w: 300, h: 230, kind: "office" },
+  { id: "tools", name: "Company tools", x: 330, y: 116, w: 250, h: 110, kind: "office" },
+  { id: "boardroom", name: "Boardroom · project review", x: 330, y: 236, w: 250, h: 110, kind: "meeting" },
+  { id: "ceo-office", name: "CEO office · company health", x: 590, y: 116, w: 390, h: 110, kind: "office", color: "#ffd54f" },
   // First Light war room (W-907, company/decisions/2026-10-15-founder-first-light.md): temporary, beside the CEO office. Page: /hq/first-light.
-  { id: "first-light", name: "War room: First Light", x: 530, y: 568, w: 170, h: 76, kind: "meeting" },
-  { id: "ceo-office", name: "CEO office · company health", x: 710, y: 568, w: 270, h: 76, kind: "office", color: "#ffd54f" },
-  // Stairs to floor 7 (Marketing) sit beside the Lobby: the VP of Marketing reports to the founder.
-  { id: "to-floor-7", name: "↑ Floor 7 · Marketing", x: 20, y: 568, w: 270, h: 76, kind: "lobby" },
-  // Floor 2 (2026-10-13): Life Hacks, Personalization, International.
-  { id: "personalization", name: "Personalization", x: 20, y: 16, w: 300, h: 370, kind: "office", color: "#c792ea", floor: 2 },
-  { id: "model-lab", name: "Learner model lab", x: 330, y: 16, w: 190, h: 370, kind: "floor", floor: 2 },
-  { id: "international", name: "International", x: 540, y: 16, w: 440, h: 150, kind: "office", color: "#4fd1a5", floor: 2 },
-  { id: "locale-desks", name: "Locale desks", x: 540, y: 186, w: 440, h: 200, kind: "floor", floor: 2 },
-  { id: "culture-review", name: "Culture review", x: 540, y: 406, w: 440, h: 130, kind: "meeting", floor: 2 },
-  { id: "design-studio", name: "Design studio", x: 20, y: 406, w: 500, h: 130, kind: "office", color: "#f48fb1", floor: 2 },
-  // Floor 4 (2026-10-13): R&D and Research, reporting to the VP of R&D in the CEO office.
-  { id: "rnd-lab", name: "R&D lab · libraries & engines", x: 20, y: 16, w: 470, h: 330, kind: "floor", color: "#64b5f6", floor: 4 },
-  { id: "research-lab", name: "Research lab · learning & domain science", x: 510, y: 16, w: 470, h: 330, kind: "floor", color: "#81c784", floor: 4 },
-  { id: "rnd-office", name: "R&D leads", x: 20, y: 366, w: 470, h: 130, kind: "office", color: "#64b5f6", floor: 4 },
-  { id: "research-office", name: "Research leads", x: 510, y: 366, w: 470, h: 130, kind: "office", color: "#81c784", floor: 4 },
-  { id: "seminar", name: "Seminar room · R&D review", x: 20, y: 516, w: 960, h: 124, kind: "meeting", floor: 4 },
-  // Floor 5 (2026-10-14): Engineering. The app team (app shell, feed, kit, backend) moved up from floor 1.
-  { id: "app-team", name: "App team · app shell, feed, kit, backend", x: 20, y: 16, w: 620, h: 330, kind: "floor", color: "#4fc3f7", floor: 5 },
-  { id: "backend", name: "Data & privacy", x: 660, y: 16, w: 320, h: 330, kind: "office", color: "#4fc3f7", floor: 5 },
-  { id: "engineering", name: "Engineering review room", x: 20, y: 366, w: 620, h: 150, kind: "meeting", floor: 5 },
-  { id: "deploy", name: "Release & deploy", x: 660, y: 366, w: 320, h: 150, kind: "office", floor: 5 },
+  { id: "first-light", name: "War room: First Light", x: 590, y: 236, w: 390, h: 110, kind: "meeting" },
+  { id: "meeting-wbr", name: "WBR room", x: 20, y: 356, w: 230, h: 110, kind: "meeting" },
+  { id: "meeting-retro", name: "Retro room", x: 260, y: 356, w: 230, h: 110, kind: "meeting" },
+  { id: "meeting-crit", name: "Demo Crit", x: 500, y: 356, w: 230, h: 110, kind: "meeting" },
+  { id: "meeting-planning", name: "Planning room", x: 740, y: 356, w: 240, h: 110, kind: "meeting" },
+  { id: "lobby", name: "Lobby · Founder", x: 20, y: 476, w: 470, h: 168, kind: "lobby" },
+  { id: "incident", name: "Incident & ops review", x: 500, y: 476, w: 480, h: 168, kind: "meeting" },
+
+  // Floor 2 · Product: strategy, studio, build, design, launch, personalization, international.
+  { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 230, h: 150, kind: "office", floor: 2 },
+  { id: "strategy", name: "Strategy · Verticals", x: 258, y: 16, w: 230, h: 150, kind: "office", floor: 2 },
+  { id: "courses", name: "Courses · Books", x: 496, y: 16, w: 230, h: 150, kind: "office", color: "#90a4ae", floor: 2 },
+  { id: "growth", name: "Growth & insight", x: 734, y: 16, w: 246, h: 150, kind: "office", floor: 2 },
+  { id: "studio", name: "Learning studio", x: 20, y: 176, w: 180, h: 230, kind: "office", floor: 2 },
+  // build-floor keeps 400 x 230: Office.tsx's 18 desks fit that size.
+  { id: "build-floor", name: "Build floor", x: 208, y: 176, w: 400, h: 230, kind: "floor", floor: 2 },
+  { id: "design-studio", name: "Design studio", x: 616, y: 176, w: 364, h: 230, kind: "office", color: "#f48fb1", floor: 2 },
+  { id: "launch-room", name: "Launch room", x: 20, y: 416, w: 300, h: 110, kind: "meeting", floor: 2 },
+  { id: "personalization", name: "Personalization", x: 330, y: 416, w: 150, h: 110, kind: "office", color: "#c792ea", floor: 2 },
+  { id: "model-lab", name: "Learner model lab", x: 490, y: 416, w: 150, h: 110, kind: "floor", floor: 2 },
+  { id: "international", name: "International", x: 650, y: 416, w: 160, h: 110, kind: "office", color: "#4fd1a5", floor: 2 },
+  { id: "locale-desks", name: "Locale desks", x: 820, y: 416, w: 160, h: 110, kind: "floor", floor: 2 },
+  { id: "to-floor-1-from-2", name: "↓ Floor 1 · Lobby", x: 20, y: 536, w: 470, h: 100, kind: "lobby", floor: 2 },
+  { id: "to-floor-6-from-2", name: "↑ Floor 6 · Quality: where your build is checked", x: 500, y: 536, w: 480, h: 100, kind: "lobby", floor: 2 },
+
+  // Floor 3 · Categories: science & technology. Each lead and their strand managers share one full office.
+  ...FLOOR3_CATEGORIES.map(([id, name, color], i) => office(id, name, color, 20 + i * 194, 16, 3)),
+  { id: "to-floor-4", name: "↑ Floor 4 · Categories: society, money & ideas", x: 20, y: 262, w: 186, h: 236, kind: "lobby", floor: 3 },
+  { id: "portfolio-review", name: "Portfolio review", x: 214, y: 262, w: 380, h: 236, kind: "meeting", floor: 3 },
+  ...FLOOR3_ROW2.map(([id, name, color], i) => office(id, name, color, 602 + i * 194, 262, 3)),
+  { id: "to-floor-1-from-3", name: "↓ Floor 1 · Lobby", x: 20, y: 508, w: 380, h: 130, kind: "lobby", floor: 3 },
+
+  // Floor 4 · Categories: society, money & ideas. Economics beside behavioral, geography beside history. Free space 214 to 594 on row 2.
+  ...FLOOR4_CATEGORIES.map(([id, name, color], i) => office(id, name, color, 20 + i * 194, 16, 4)),
+  { id: "to-floor-3-from-4", name: "↓ Floor 3 · Categories: science & technology", x: 20, y: 262, w: 186, h: 236, kind: "lobby", floor: 4 },
+  ...FLOOR4_ROW2.map(([id, name, color], i) => office(id, name, color, 602 + i * 194, 262, 4)),
+  { id: "to-floor-1-from-4", name: "↓ Floor 1 · Lobby", x: 20, y: 508, w: 380, h: 130, kind: "lobby", floor: 4 },
+
+  // Floor 5 · Engineering & R&D.
+  { id: "app-team", name: "App team · app shell, feed, kit", x: 20, y: 16, w: 470, h: 230, kind: "floor", color: "#4fc3f7", floor: 5 },
+  { id: "backend", name: "Backend · data", x: 498, y: 16, w: 230, h: 230, kind: "office", color: "#4fc3f7", floor: 5 },
+  { id: "engineering", name: "Engineering review room", x: 736, y: 16, w: 244, h: 230, kind: "meeting", floor: 5 },
+  { id: "ops-room", name: "Ops & readiness", x: 20, y: 256, w: 230, h: 150, kind: "office", floor: 5 },
+  { id: "deploy", name: "Release & deploy", x: 258, y: 256, w: 230, h: 150, kind: "office", floor: 5 },
+  { id: "rnd-office", name: "R&D leads · VP of R&D", x: 496, y: 256, w: 230, h: 150, kind: "office", color: "#64b5f6", floor: 5 },
+  { id: "research-office", name: "Research leads", x: 734, y: 256, w: 246, h: 150, kind: "office", color: "#81c784", floor: 5 },
+  { id: "rnd-lab", name: "R&D lab · libraries & engines", x: 20, y: 416, w: 470, h: 110, kind: "floor", color: "#64b5f6", floor: 5 },
+  { id: "research-lab", name: "Research lab · learning & domain science", x: 498, y: 416, w: 482, h: 110, kind: "floor", color: "#81c784", floor: 5 },
+  { id: "seminar", name: "Seminar room · R&D review", x: 20, y: 536, w: 580, h: 100, kind: "meeting", floor: 5 },
+  { id: "to-floor-1-from-5", name: "↓ Floor 1 · Lobby", x: 610, y: 536, w: 370, h: 100, kind: "lobby", floor: 5 },
+
+  // Floor 6 · Quality: gates & reviews (evaluation-steward's org, plus privacy and cultural review by lane; conditional on F-28).
+  { id: "fact-check", name: "Fact-check desk", x: 20, y: 16, w: 310, h: 230, kind: "floor", floor: 6 },
+  { id: "learner-review", name: "Learner review", x: 338, y: 16, w: 310, h: 230, kind: "floor", floor: 6 },
+  { id: "qa-lab", name: "QA lab", x: 656, y: 16, w: 324, h: 230, kind: "floor", floor: 6 },
+  { id: "constitution", name: "Constitution", x: 20, y: 256, w: 310, h: 150, kind: "meeting", floor: 6 },
+  { id: "review-room", name: "Review room", x: 338, y: 256, w: 310, h: 150, kind: "meeting", floor: 6 },
+  { id: "lifehacks-safety", name: "Hacks safety desk", x: 656, y: 256, w: 160, h: 150, kind: "floor", floor: 6 },
+  { id: "privacy-review", name: "Privacy review", x: 824, y: 256, w: 156, h: 150, kind: "floor", floor: 6 },
+  { id: "culture-review", name: "Culture review", x: 20, y: 416, w: 310, h: 110, kind: "meeting", floor: 6 },
+  { id: "to-floor-1-from-6", name: "↓ Floor 1 · Lobby", x: 20, y: 536, w: 470, h: 100, kind: "lobby", floor: 6 },
+  { id: "to-floor-2-from-6", name: "↓ Floor 2 · the build floor", x: 500, y: 536, w: 480, h: 100, kind: "lobby", floor: 6 },
+
   // Floor 7 (2026-10-14, founder: "a new floor for marketing. With VP of marketing reporting to me"; company/decisions/2026-10-14-marketing-org.md).
   // One office for the VP and a meeting room; the open floor stays empty until a first report is justified.
   { id: "marketing", name: "Marketing · VP of Marketing", x: 20, y: 16, w: 470, h: 236, kind: "office", color: "#ff7eb6", floor: 7 },
@@ -163,7 +180,7 @@ function readAll(): (HqEvent & { body?: string })[] {
 
 /** Events without their bodies: bodies are fetched one at a time from /api/hq/event/<id>. */
 export function loadEvents(): HqEvent[] {
-  return readAll().map(({ body, ...e }) => ({ ...e, hasBody: Boolean(body) }));
+  return readAll().map(({ body, ...e }) => ({ ...e, room: ROOM_ALIASES[e.room] ?? e.room, hasBody: Boolean(body) }));
 }
 
 export function loadEvent(id: string): (HqEvent & { body?: string }) | undefined {
