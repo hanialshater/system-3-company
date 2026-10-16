@@ -20,7 +20,8 @@
       "principal-pm-verticals"
     ],
     "secretary": "portfolio-manager",
-    "note": "vp-marketing is the id assumed for the VP of Marketing that chief-of-staff-ceo-office is creating (2026-10-14-founder-durable-ops-and-marketing.md); correct it here when the role lands."
+    "note": "vp-marketing is the id assumed for the VP of Marketing that chief-of-staff-ceo-office is creating (2026-10-14-founder-durable-ops-and-marketing.md); correct it here when the role lands.",
+    "delegation": "from Project Review 2: tranches <=3M with no org, kit, contract or deploy-path change and no open objection, founder 24h veto (PR1 item 0a)"
   },
   "roleDefaults": {
     "catalog": [
@@ -72,16 +73,17 @@
         "over 20 agent runs"
       ],
       "owner": "chief-of-staff",
-      "status": "in-flight",
-      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 7500000,
         "proposed": 15000000,
         "basis": "set at the first project review from the measured cost per published lesson (token-budget.md section 3)",
         "topUps": []
       },
       "approval": {
-        "record": null
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "wave": "J",
@@ -110,7 +112,8 @@
         "date": "2026-10-14",
         "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
       },
-      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+      "note2": "half of 15M; second half when draft+review queue < 160 (W-556)"
     },
     {
       "id": "lifehacks-engine-v2",
@@ -122,16 +125,17 @@
         "follows a 0-of-200-publishable investment"
       ],
       "owner": "cm-lifehacks",
-      "status": "in-flight",
-      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 3000000,
         "proposed": 3000000,
         "basis": "set at the first project review",
         "topUps": []
       },
       "approval": {
-        "record": null
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "domains": [
@@ -139,7 +143,7 @@
         ],
         "headline": "Life Hacks lessons that pass learner review and publish on v2"
       },
-      "kill": null,
+      "kill": "kill if fewer than half of a wave reaches launch after one review round, or 3M spent before waves W1-W9 are reviewed",
       "match": [
         "engines? v2",
         "v2 engine",
@@ -176,8 +180,7 @@
         "new lesson format"
       ],
       "owner": "cm-books",
-      "status": "in-flight",
-      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "status": "returned",
       "budget": {
         "tokens": null,
         "proposed": 1500000,
@@ -185,7 +188,10 @@
         "topUps": []
       },
       "approval": {
-        "record": null
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "decidedBy": "founder",
+        "date": "2026-10-16",
+        "decision": "returned until F1 and F2"
       },
       "returns": {
         "domains": [
@@ -231,17 +237,17 @@
         "new org"
       ],
       "owner": "principal-pm-verticals",
-      "status": "in-flight",
-      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 2500000,
         "proposed": 2500000,
         "basis": "set at the first project review",
         "topUps": []
       },
       "approval": {
-        "record": "company/decisions/2026-10-14-founder-history-category.md",
-        "note": "founder decided to create the category; the forum sets budget, return and kill criteria"
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "domains": [
@@ -249,7 +255,7 @@
         ],
         "headline": "published History lessons; held-claim rate in the pilot"
       },
-      "kill": null,
+      "kill": "stop at the DLR five if more than 40% of claims are held or fewer than 3 of 5 reach launch",
       "match": [
         "\\bhistory\\b",
         "cm-history"
@@ -295,22 +301,22 @@
         "new org"
       ],
       "owner": "chief-of-staff-ceo-office",
-      "status": "in-flight",
-      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 1000000,
         "proposed": 1000000,
         "basis": "set at the first project review",
         "topUps": []
       },
       "approval": {
-        "record": "company/decisions/2026-10-14-founder-durable-ops-and-marketing.md",
-        "note": "founder decided to create the org; the forum sets budget, return and kill criteria"
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "notLessons": "no lesson return; nothing is deployed to learners yet (EXP-002 has not run), so the return measure must be defined at the forum (analytics-steward objection)"
       },
-      "kill": null,
+      "kill": "pause if no accepted return measure within 7 days; nothing external without the founder",
       "match": [
         "marketing",
         "vp-marketing"
@@ -342,20 +348,22 @@
         "new dependency (bundler) needs a decision record"
       ],
       "owner": "principal-engineer",
-      "status": "proposed",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 2450000,
         "proposed": 2450000,
         "basis": "set at the first project review",
         "topUps": []
       },
       "approval": {
-        "record": null
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "notLessons": "engineering return: next build time, full QA time and shared lesson JS against the EDD-003 stage-1 triggers (build > 10 min, QA > 2 h, lesson JS > 200 KB gz)"
       },
-      "kill": null,
+      "kill": "at the 1.2M checkpoint fall back to same-origin import() (A2-a) if warm frame stays over 300 ms after preloading; abandon A2 if build or QA time has not fallen by a third",
       "match": [
         "stage[ -]?1\\b",
         "runtime bundle",
@@ -391,7 +399,8 @@
           "tokens": null,
           "estimate": "3-4M (extrapolated) to migrate the other ~910 lessons; a later review on the pilot's measures"
         }
-      ]
+      ],
+      "note2": "rebased: A1 applied 0d76ae1; tranche funds A2 pilot, checkpoint 1.2M"
     },
     {
       "id": "big-ideas",
@@ -515,9 +524,9 @@
         "more than 7 days"
       ],
       "owner": "head-of-strategic-initiatives (chief-of-staff until the role exists, W-904)",
-      "status": "proposed",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 3590000,
         "proposed": 3590000,
         "basis": "tranche 1 only (design, EDDs, spikes, amendment, org role, week-1 re-estimate, to 2026-10-23); tranche 2 (8.17M) is released on the tranche-1 checkpoint. measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
         "topUps": []
@@ -619,13 +628,14 @@
         "rangeMonthlyUSD": "~21 (free tiers) to ~100 (paid tiers)"
       },
       "approval": {
-        "record": "company/decisions/2026-10-15-founder-first-light.md",
-        "note": "founder decided the program, scope and dates; spend waits for this forum (budget pending Project Review 1)"
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "notLessons": "release return: go at the 2026-11-23 go/no-go with every tier-2 path carrying an approved EDD-007 record and no open SEV1/SEV2; launch metrics set by analytics-steward before launch (first real-learner data, R-011): accounts created, anonymous history kept at sign-up (100% in QA), 7-day return rate; money: hosting cost per month against ad revenue (house cards only at launch, so $0 revenue is expected)"
       },
-      "kill": null,
+      "kill": "T2 only if the W-908 re-estimate keeps T2 <= 10.2M and F-01 decided by 10-23 (done); a second no-go returns to the forum; stop at 11.76M without a go",
       "match": [
         "first[ -]?light"
       ],
@@ -663,9 +673,9 @@
         "new org (cm-behavioral, later strand managers)"
       ],
       "owner": "principal-pm-verticals (cm-behavioral once created, W-899)",
-      "status": "proposed",
+      "status": "approved",
       "budget": {
-        "tokens": null,
+        "tokens": 1830000,
         "proposed": 1830000,
         "basis": "tranche 1 (category variant, pilot of 5). measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
         "topUps": []
@@ -684,13 +694,14 @@
         }
       ],
       "approval": {
-        "record": "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
-        "note": "founder decided the category (F-21); slots (F-22) are still the founder's; the forum sets budget, return and stop rule"
+        "record": "company/rituals/records/2026-10-16-project-review.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16"
       },
       "returns": {
         "notLessons": "published lessons in the new category once its DomainId exists (W-897, W-899), held-claim rate in the pilot, and the 'Why we decide badly' path's commit and 7-day recall against the feed median; not measured until the DomainId exists"
       },
-      "kill": null,
+      "kill": "pause if 3 of the DLR five are rejected as duplicates, held claims pass 40%, or 1.83M is spent before the five are reviewed; fold below 12 counted concepts",
       "match": [
         "behavio(u)?ral[ -]?econ",
         "cm-behavioral",
