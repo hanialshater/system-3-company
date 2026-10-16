@@ -25,8 +25,10 @@
       "id": "lifehacks.laundry-sort-before-walk.c1",
       "text": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Round trip distance=2×4m; total=8×item count or 8m for one batch. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): text unchanged; reset because the stage it describes changed (moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251)). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Round trip distance=2×4m; total=8×item count or 8m for one batch. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): text unchanged; reset because the stage it describes changed (moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251)). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. Model 'trips': travel = 2 × 8 × trips; one batch = 16 m regardless of count (node 4-12 items: 64-192 m vs 16 m). The unlimited-capacity assumption is stated; the limit line names capacity. Record: company/reviews/laundry-sort-before-walk/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-sort-before-walk.c2",
@@ -41,15 +43,19 @@
       "id": "lifehacks.laundry-sort-before-walk.c3",
       "text": "Round trip distance=2×8m; total=16m×item count, or 16m for one batch.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula follows the plan's 8 m (was 4 m): moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula follows the plan's 8 m (was 4 m): moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. Formula = spec, values [8]: 2 × 8 = 16 m per round trip; 16 × count, or 16 for one batch. Command: node -e \"console.log(10*2*8, 2*8*1)\" → 160 16. Record: company/reviews/laundry-sort-before-walk/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-sort-before-walk.c4",
       "text": "Title: Ten trips to the machine? Hook: Ten items to the machine, one at a time. How far is that? Question: The machine is 8 m away. Ten items one at a time, there and back. How far do you walk? Options: 16 m / 80 m / 160 m. Correct option: 160 m.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook, question, options and answer replaced: moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook, question, options and answer replaced: moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. Title/hook = meta.json; question, options, answer 2 = spec. Ten one-item round trips to a machine 8 m away: 10 × 2 × 8 = 160 m (node -e \"console.log(10*2*8)\" → 160). 16 m is one round trip, 80 m is one-way only. Key unique. Record: company/reviews/laundry-sort-before-walk/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-sort-before-walk.recall",
@@ -64,8 +70,10 @@
       "id": "lifehacks.laundry-sort-before-walk.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: One-item trips: trips 10; travel 160 m. Grouped trip: trips 1; travel 16 m.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251)). Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 with the r11 fix plan W3 line (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md line 120: machine 8 m away, ten items) and the patch r2 §2 last-row title and hook (dispatch 2026-10-16-r5-lifehacks.md D4 row E5, W-1300, W-1251)). Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. homeRevealLine at start 10 = 'One-item trips: trips 10; travel 160 m. Grouped trip: trips 1; travel 16 m.' exactly. Record: company/reviews/laundry-sort-before-walk/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

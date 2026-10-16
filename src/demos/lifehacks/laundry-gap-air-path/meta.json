@@ -25,8 +25,10 @@
       "id": "lifehacks.laundry-gap-air-path.c1",
       "text": "Five shirts always take 40 cm of rail. Only the rail left over is shared out as gaps, so a shorter rail shrinks every gap, even with the same five shirts. At 0 cm, neighbours touch and no open path is left between them.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): idea replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): idea replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. 5 × 8 = 40 cm of shirts; gap = (rail − 40)/4, so it falls with the rail at fixed shirts (node 45-80 cm: 1.25-10 cm); pushed together gives 0 cm. Matches the stage at every value. Record: company/reviews/laundry-gap-air-path/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c2",
@@ -41,15 +43,19 @@
       "id": "lifehacks.laundry-gap-air-path.c3",
       "text": "Gap=(rail width−5×8)/4 cm; shirts 8 cm wide. Channels count only when the gap is above 0.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. Formula = spec; model 'gaps' value = max(0,(p − 5×8)/(5−1)), channels = 4 only when the gap > 0 (home-models.ts). Node: 60 → 5 cm, 48 → 2 cm. Record: company/reviews/laundry-gap-air-path/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c4",
       "text": "Title: Room between the shirts Hook: Same five shirts, shorter rail. What happens to the space between them? Question: Five shirts on a 60 cm rail have 5 cm between neighbours. Move them to a 48 cm rail: how much gap is left? Options: None: they touch / 2 cm / 5 cm: same five shirts. Correct option: 2 cm.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook, question and options replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook, question and options replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. Title/hook = meta.json; question, options, answer 1 = spec. Node: (60 − 40)/4 = 5 cm (the premise), (48 − 40)/4 = 2 cm (the key). '5 cm: same five shirts' and 'None: they touch' are wrong in the model. Key unique. Record: company/reviews/laundry-gap-air-path/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c5",
@@ -73,8 +79,10 @@
       "id": "lifehacks.laundry-gap-air-path.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Spread evenly: five 8 cm shirts use 40 cm of the 48 cm rail. The 8 cm left is shared by 4 gaps: 2 cm each. Pushed together: 0 cm between neighbours, so no gap is open.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2, content-patch-2026-10-16-r3.md D1). Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2, content-patch-2026-10-16-r3.md D1). Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder. | FC 88f0 (fact-checker, F-42 mail 20261016T154559826Z-evaluation-steward-697388f0, W-1477, 2026-10-16, main at bf6fde8 containing lhfix-r3 merge 8ea7077; rendering code read first, numbers re-run in node via tsx from the engine on main; build.md and the lhfix-r3 readiness record not read): VERIFIED. homeRevealLine at start 48 = 'Spread evenly: five 8 cm shirts use 40 cm of the 48 cm rail. The 8 cm left is shared by 4 gaps: 2 cm each. Pushed together: 0 cm between neighbours, so no gap is open.' exactly. Record: company/reviews/laundry-gap-air-path/2026-10-16-fact-check-lhfix-r3.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
