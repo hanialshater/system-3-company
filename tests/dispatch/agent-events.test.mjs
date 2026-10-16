@@ -25,7 +25,8 @@ function runHook(sb, payload, extraEnv = {}) {
   const input = typeof payload === "string" ? payload : JSON.stringify(payload);
   const r = (() => {
     try {
-      execFileSync("node", [HOOK], { input, env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool, S3_HOOK_LOG: sb.log, S3_HOOK_STATE: sb.state, ...extraEnv }, encoding: "utf8" });
+      // S3_MAIN_CHECKOUT: the git-state check (W-1337) reads a sandbox dir, never the real main checkout's .git.
+      execFileSync("node", [HOOK], { input, env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool, S3_HOOK_LOG: sb.log, S3_HOOK_STATE: sb.state, S3_MAIN_CHECKOUT: path.join(sb.dir, "no-main"), ...extraEnv }, encoding: "utf8" });
       return 0;
     } catch (e) { return e.status; }
   })();
@@ -286,4 +287,85 @@ test("H2/H4: metrics read the spool beside a fixture log and print unreadable an
   const out = execFileSync("node", [path.join(ROOT, "tools/metrics.mjs")], { env, encoding: "utf8" });
   assert.match(out, /events\.jsonl: 1 unreadable line\(s\)/);
   assert.match(out, /events spool: 1 unfolded event\(s\)/);
+});
+
+// ---- W-1337 (batch 2026-10-16-r5-tools.md#B1): the main checkout's git state at SubagentStop / foreground report.
+// The "main checkout" is a fake .git dir in the sandbox (files only: the hook reads .git, it never runs git).
+function fakeMain(sb) {
+  const m = path.join(sb.dir, "main");
+  fs.mkdirSync(path.join(m, ".git/logs/refs"), { recursive: true });
+  return m;
+}
+const stashLine = (sha, msg) => `${"0".repeat(40)} ${sha} t <t@t> 1760000000 +0000\t${msg}\n`;
+const asyncRun = (sb, env, agentId = "a0123456789abcdef") => {
+  runHook(sb, pre("batch=company/ops/dispatch-requests/2026-10-16-r5-tools.md#B1"), env);
+  runHook(sb, { hook_event_name: "PostToolUse", tool_name: "Agent", tool_use_id: "toolu_fixture_1", tool_input: pre("").tool_input, tool_response: { isAsync: true, status: "async_launched", agentId } }, env);
+};
+
+test("W-1337: SubagentStop with rebase-merge/ in the main checkout writes one incident naming the agent and the autostash", () => {
+  const sb = sandbox();
+  const main = fakeMain(sb);
+  const env = { S3_MAIN_CHECKOUT: main };
+  asyncRun(sb, env);
+  fs.mkdirSync(path.join(main, ".git/rebase-merge"));
+  fs.writeFileSync(path.join(main, ".git/rebase-merge/autostash"), "3dd7009b5a85680437dc07862d4f0fa4864b2b37\n");
+  fs.writeFileSync(path.join(main, ".git/rebase-merge/head-name"), "refs/heads/main\n");
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, env), 0);
+  const evs = spooled(sb);
+  const gs = evs.filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs.length, 1, JSON.stringify(evs.map((e) => e.type)));
+  assert.equal(evs.length, 3, "dispatch, report, one git-state event");
+  const [e] = gs;
+  assert.equal(e.type, "incident");
+  assert.equal(e.room, "incident");
+  assert.equal(e.agent, evs[0].agent, "names the agent label");
+  assert.match(e.summary, /rebase-merge\/ \(main, autostash 3dd7009b5/);
+  assert.match(e.body, /git stash store -m "autostash 3dd7009b5a85680437dc07862d4f0fa4864b2b37"/);
+  assert.deepEqual(e.refs, ["company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md"]);
+  // The same state seen at the next stop is not written twice.
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "aother000000000" }, env), 0);
+  assert.equal(spooled(sb).filter((x) => x.id.startsWith("hk-gs-")).length, 1);
+});
+
+test("W-1337: a stash entry gained since dispatch is a note in room incident; a clean main checkout writes nothing extra", () => {
+  const sb = sandbox();
+  const main = fakeMain(sb);
+  const env = { S3_MAIN_CHECKOUT: main };
+  fs.writeFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("1".repeat(40), "On main: older"));
+  asyncRun(sb, env);
+  fs.appendFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("2".repeat(40), "autostash"));
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, env), 0);
+  const gs = spooled(sb).filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs.length, 1);
+  assert.equal(gs[0].type, "note");
+  assert.equal(gs[0].room, "incident");
+  assert.match(gs[0].summary, /1 new stash entry since dispatch \("autostash"\)/);
+  assert.doesNotMatch(gs[0].summary, /older/, "the entry that was there at dispatch is not counted");
+
+  const sb2 = sandbox();
+  const main2 = fakeMain(sb2);
+  fs.writeFileSync(path.join(main2, ".git/logs/refs/stash"), stashLine("1".repeat(40), "On main: older"));
+  asyncRun(sb2, { S3_MAIN_CHECKOUT: main2 });
+  assert.equal(runHook(sb2, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, { S3_MAIN_CHECKOUT: main2 }), 0);
+  assert.equal(spooled(sb2).length, 2, "dispatch and report only");
+});
+
+test("W-1337: MERGE_HEAD alone is a note; an unreadable .git still exits 0 and the report is still written", () => {
+  const sb = sandbox();
+  const main = fakeMain(sb);
+  asyncRun(sb, { S3_MAIN_CHECKOUT: main });
+  fs.writeFileSync(path.join(main, ".git/MERGE_HEAD"), "abcdef0123456789abcdef0123456789abcdef01\n");
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, { S3_MAIN_CHECKOUT: main }), 0);
+  const gs = spooled(sb).filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs.length, 1);
+  assert.equal(gs[0].type, "note");
+  assert.match(gs[0].summary, /MERGE_HEAD \(abcdef012\)/);
+
+  const sb2 = sandbox();
+  const bad = path.join(sb2.dir, "main");
+  fs.mkdirSync(bad);
+  fs.writeFileSync(path.join(bad, ".git"), "not a gitdir line\n"); // a file where a dir is expected
+  asyncRun(sb2, { S3_MAIN_CHECKOUT: bad });
+  assert.equal(runHook(sb2, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, { S3_MAIN_CHECKOUT: bad }), 0);
+  assert.deepEqual(spooled(sb2).map((e) => e.type), ["dispatch", "report"]);
 });

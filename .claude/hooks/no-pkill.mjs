@@ -15,6 +15,14 @@
 //   `git stash pop`, `git stash apply|drop|branch` with no explicit ref, `git stash clear`.
 //     The stash stack lives in the common git dir, so the main checkout and every worktree share it. A bare
 //     pop or apply takes whatever is on top, which may be another session's work (B2's run, 2026-10-16).
+//   In the MAIN checkout only (W-1337; batch company/ops/dispatch-requests/2026-10-16-r5-tools.md#B1): `git rebase`
+//   (any flags), `git pull` unless it is `--ff-only` (or `--no-rebase`) with no `--rebase`/`-r`/`--autostash`,
+//   `git stash` other than `list`/`show`, `git reset --hard`, `git checkout -f` or `git checkout [<rev>] -- .`
+//   (also `:/`, `*`, `./`), `git restore` of the whole tree, `git clean` with -f. The main checkout's work tree and
+//   index hold every agent's work in flight; each of these can wipe or bury it (the 13:06 autostash wipe).
+//   Which checkout: the payload's `cwd`, moved by `cd`/`pushd` earlier in the command, then by `git -C <dir>` or
+//   `--git-dir`. A dir is the main checkout when the nearest `.git` above it is a directory and that dir is the main
+//   checkout of this repo (S3_GUARD_MAIN overrides it, for tests). Linked worktrees (`.git` is a file) all pass.
 //
 // Only the command position of each simple command is read (after `;`, `&&`, `||`, `|`, `$(`, backticks,
 // `bash -c`), so `git commit -m "add pkill -f hook"` or `grep "pkill -f" file` pass. Heredoc bodies are data
@@ -23,7 +31,9 @@
 // Hook I/O follows .claude/hooks/protect-constitution.mjs: JSON on stdin, exit 2 + stderr to refuse.
 // It fails open: unreadable input or an internal error exits 0. It is a guard, not the only line of defence.
 
-import { pathToFileURL } from "node:url";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const STOP_HINT =
   "Stop a server you started with `tools/serve.sh stop <port>`, or a process by exact pid with `kill <pid>` " +
@@ -36,6 +46,85 @@ const STASH_HINT =
   "The stash stack is shared by the main checkout and every worktree. Prefer a temporary WIP commit. If you must stash: " +
   '`git stash push -u -m "<unique-tag>"`, capture the SHA with `git stash list --format=\'%H %gs\'`, restore with ' +
   "`git stash apply <sha>`, then drop your own entry by its re-found `stash@{n}`.";
+
+const MAIN_HINT =
+  "The main checkout is shared by every agent: its work tree and index hold their work in flight. Integrate in your own " +
+  "worktree (e.g. /home/user/s3c-int, or `git worktree add /home/user/s3c-<tag> -b <branch>`) and rebase, stash or reset " +
+  "there. In the main checkout use only `git pull --ff-only`, `git status`, `git log`, `git stash list|show`, and commit by " +
+  "path (`tools/commit-own.sh` or `git commit -m … -- <paths>`).";
+
+// ---- main checkout or linked worktree (W-1337), from the filesystem only: no git process per Bash call.
+const HOOK_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+/** The main checkout of the repo holding `root`: `.git` dir = main; `.git` file -> gitdir -> commondir. */
+export function mainCheckoutOf(root = HOOK_ROOT) {
+  try {
+    const dotgit = path.join(root, ".git");
+    if (fs.statSync(dotgit).isDirectory()) return root;
+    const gitdir = path.resolve(root, fs.readFileSync(dotgit, "utf8").match(/^gitdir:\s*(.+)$/m)[1].trim());
+    const common = path.resolve(gitdir, fs.readFileSync(path.join(gitdir, "commondir"), "utf8").trim());
+    if (path.basename(common) === ".git") return path.dirname(common);
+  } catch {}
+  return null;
+}
+/** True when `dir` lies in the work tree of `main` itself (not in a linked worktree, not in another repo). */
+export function inMainCheckout(dir, main) {
+  if (!dir || !main) return false;
+  let d = path.resolve(dir);
+  for (let i = 0; i < 64; i++) {
+    const g = path.join(d, ".git");
+    try {
+      const st = fs.statSync(g);
+      return st.isDirectory() && path.resolve(d) === path.resolve(main);
+    } catch {}
+    // inside the main .git dir itself (e.g. cwd .git/): judge by the dir above it
+    if (path.basename(d) === ".git") return path.resolve(path.dirname(d)) === path.resolve(main);
+    const up = path.dirname(d);
+    if (up === d) return false;
+    d = up;
+  }
+  return false;
+}
+const isMainGitDir = (gd, main) => !!main && path.resolve(gd) === path.join(path.resolve(main), ".git");
+
+// Main-checkout git rules. `sub` is the subcommand, `rest` its args. Returns a reason or null.
+function mainGitRule(sub, rest, conf) {
+  const has = (...f) => rest.some((a) => f.includes(a) || f.some((x) => x.startsWith("--") && a.startsWith(x + "=")));
+  const pathsAfterDashDash = () => { const k = rest.indexOf("--"); return k === -1 ? [] : rest.slice(k + 1); };
+  const wholeTree = (ps) => ps.some((p) => [".", "./", ":/", ":/.", "*", ":(top)", ":(glob)*"].includes(p) || p === path.sep);
+  if (sub === "rebase")
+    return `\`git rebase\` in the main checkout. With an autostash it resets the shared work tree first (the 13:06 wipe, W-1337); ` +
+      `if a rebase is already stuck here, do not --abort or --continue it: report it to the chief of staff (its autostash sha is in .git/rebase-merge/autostash). ${MAIN_HINT}`;
+  if (sub === "pull") {
+    const rebaseFlag = has("--rebase", "--autostash") || hasShortFlag(rest.filter((a) => !a.startsWith("--")), "r");
+    const rebaseConf = conf.some((c) => /^(pull\.rebase|rebase\.autostash|branch\..*\.rebase)=(?!false$)/i.test(c));
+    if (rebaseFlag || rebaseConf)
+      return `\`git pull\` with a rebase or an autostash in the main checkout can reset the shared work tree (W-1337). ${MAIN_HINT}`;
+    if (!has("--ff-only", "--no-rebase") && !rest.includes("--help"))
+      return `plain \`git pull\` in the main checkout rebases when pull.rebase is set; say \`git pull --ff-only\`. ${MAIN_HINT}`;
+    return null;
+  }
+  if (sub === "stash") {
+    const action = rest.length && !rest[0].startsWith("-") ? rest[0] : "push";
+    if (action === "list" || action === "show") return null;
+    return `\`git stash ${action}\` in the main checkout moves or rewrites other agents' uncommitted work (the stash stack and the work tree are shared). ${MAIN_HINT}`;
+  }
+  if (sub === "reset" && has("--hard", "--merge", "--keep"))
+    return `\`git reset ${rest.find((a) => ["--hard", "--merge", "--keep"].includes(a))}\` in the main checkout discards other agents' edits. ${MAIN_HINT}`;
+  if (sub === "checkout") {
+    const opts = rest.includes("--") ? rest.slice(0, rest.indexOf("--")) : rest;
+    if (opts.includes("--force") || hasShortFlag(opts.filter((a) => !a.startsWith("--")), "f"))
+      return `\`git checkout -f\` in the main checkout throws away other agents' edits. ${MAIN_HINT}`;
+    const ps = rest.includes("--") ? pathsAfterDashDash() : rest.filter((a) => !a.startsWith("-"));
+    if (wholeTree(ps)) return `\`git checkout ${rest.join(" ")}\` in the main checkout reverts every agent's edits in that tree. ${MAIN_HINT}`;
+  }
+  if (sub === "restore") {
+    const ps = rest.includes("--") ? pathsAfterDashDash() : rest.filter((a) => !a.startsWith("-"));
+    if (wholeTree(ps)) return `\`git restore ${rest.join(" ")}\` in the main checkout reverts or unstages every agent's work in that tree. ${MAIN_HINT}`;
+  }
+  if (sub === "clean" && (has("--force") || hasShortFlag(rest.filter((a) => !a.startsWith("--")), "f")))
+    return `\`git clean -f\` in the main checkout deletes other agents' new, uncommitted files. ${MAIN_HINT}`;
+  return null;
+}
 
 // Heredocs (N1, company/engineering/reviews/2026-10-16-agent-hooks-wiring-review.md): `<<WORD`, `<<-WORD`,
 // `<<'WORD'`, `<<"WORD"`, `<<\WORD`. Returns { delim, strip, quoted, end } or null when s[i] does not start one.
@@ -302,7 +391,7 @@ function unwrap(tokens) {
 
 const hasShortFlag = (args, letter) => args.some((a) => /^-[A-Za-z]+$/.test(a) && a.slice(1).includes(letter));
 
-function checkSimple(tokens, raw, depth) {
+function checkSimple(tokens, raw, depth, ctx = {}) {
   const { argv, via } = unwrap(tokens);
   if (!argv.length) return null;
   const cmd = base(argv[0]);
@@ -310,12 +399,12 @@ function checkSimple(tokens, raw, depth) {
 
   if (["bash", "sh", "zsh", "dash", "ksh"].includes(cmd) && depth < 4) {
     const ci = args.findIndex((a) => /^-[A-Za-z]*c[A-Za-z]*$/.test(a));
-    if (ci !== -1 && args[ci + 1] !== undefined) return verdict(args[ci + 1], depth + 1);
+    if (ci !== -1 && args[ci + 1] !== undefined) return verdict(args[ci + 1], depth + 1, ctx);
     // No -c and no script file: the shell reads commands from stdin, here a heredoc (`sh <<EOF`) or a piped one
     // (`cat <<EOF | sh`). Its body is commands, not data.
     if (args.every((a) => a.startsWith("-"))) {
       const body = tokens.heredoc ?? tokens.pipedFrom?.heredoc;
-      if (body) return verdict(body, depth + 1);
+      if (body) return verdict(body, depth + 1, ctx);
     }
     return null;
   }
@@ -352,12 +441,32 @@ function checkSimple(tokens, raw, depth) {
   }
   if (cmd === "git") {
     let i = 0;
+    let dir = ctx.cwd ?? null; // where git will run: the shell's cwd, moved by each -C
+    let gitDir = null;
+    const conf = [];
     while (i < args.length && args[i].startsWith("-")) {
       const o = args[i++];
+      if (o === "-C" && args[i] !== undefined) {
+        const d = args[i];
+        if (path.isAbsolute(d)) dir = path.resolve(d);
+        else dir = dir ? path.resolve(dir, d) : null; // relative to an unknown cwd: unknown
+      }
+      if (o === "-c" && args[i] !== undefined) conf.push(args[i]);
+      if (o === "--git-dir" && args[i] !== undefined) gitDir = args[i];
+      if (o.startsWith("--git-dir=")) gitDir = o.slice("--git-dir=".length);
       if (["-C", "-c", "--git-dir", "--work-tree", "--namespace"].includes(o)) i++;
     }
-    if (args[i] !== "stash") return null;
+    const sub = args[i];
     const rest = args.slice(i + 1);
+    if (ctx.main && sub) {
+      const resolvedGitDir = gitDir && (path.isAbsolute(gitDir) ? gitDir : dir ? path.resolve(dir, gitDir) : null);
+      const inMain = resolvedGitDir ? isMainGitDir(resolvedGitDir, ctx.main) : inMainCheckout(dir, ctx.main);
+      if (inMain) {
+        const r = mainGitRule(sub, rest, conf);
+        if (r) return r;
+      }
+    }
+    if (sub !== "stash") return null;
     const action = rest.length && !rest[0].startsWith("-") ? rest[0] : "push";
     const opts = action === "push" && (rest[0] === undefined || rest[0].startsWith("-")) ? rest : rest.slice(1);
     const refs = opts.filter((a) => !a.startsWith("-"));
@@ -376,12 +485,23 @@ function checkSimple(tokens, raw, depth) {
 }
 
 // Returns a refusal reason (string) or null when the command may run.
-export function verdict(command, depth = 0) {
+// ctx: { cwd, main }. cwd is the shell's working dir (the hook payload's `cwd`); main is the main checkout's path.
+// With no ctx (the old call form) the main-checkout rules are off, unless a command names an absolute -C / cd and
+// ctx.main is given. `cd`/`pushd` move ctx.cwd for the commands after them (a subshell's cd is not scoped: approximate).
+export function verdict(command, depth = 0, ctx = {}) {
   if (typeof command !== "string" || !command.trim()) return null;
   // `kill $(pgrep …)` / `kill $(pidof …)` is checked on the kill command's own tokens (checkSimple), so a heredoc
   // body that only mentions it is data.
   for (const tokens of simpleCommands(command)) {
-    const r = checkSimple(tokens, command, depth);
+    const { argv } = unwrap(tokens);
+    if (argv.length && ["cd", "pushd"].includes(base(argv[0]))) {
+      const d = argv.slice(1).find((a) => !a.startsWith("-") || a === "-");
+      if (d === undefined || d === "~") ctx.cwd = process.env.HOME || ctx.cwd;
+      else if (d === "-" || d.includes("$") || d.startsWith("~")) ctx.cwd = d.startsWith("~/") && process.env.HOME ? path.join(process.env.HOME, d.slice(2)) : null;
+      else ctx.cwd = path.isAbsolute(d) ? path.resolve(d) : ctx.cwd ? path.resolve(ctx.cwd, d) : null;
+      continue;
+    }
+    const r = checkSimple(tokens, command, depth, ctx);
     if (r) return r;
   }
   return null;
@@ -394,7 +514,9 @@ function main() {
     try {
       const event = JSON.parse(input);
       if (event.tool_name !== "Bash") process.exit(0);
-      const reason = verdict(event.tool_input?.command);
+      let main = null;
+      try { main = process.env.S3_GUARD_MAIN ? path.resolve(process.env.S3_GUARD_MAIN) : mainCheckoutOf(); } catch {}
+      const reason = verdict(event.tool_input?.command, 0, { cwd: event.cwd || process.cwd(), main });
       if (reason) {
         process.stderr.write(`Blocked by .claude/hooks/no-pkill.mjs: ${reason}`);
         process.exit(2);
