@@ -20,6 +20,7 @@ node company/personalization/model/sim/run.mjs --seeds=5 --no-sens # quick smoke
 | `simulate.mjs` | One episode: pre-history drawn from jittered fingerprint means, daily sessions, due first revisits first, recompute after every card; the trace | learner-model-engineer |
 | `learner.ts` | **PROVISIONAL** simulated learner (`SimLearner`) from the persona's latent block | personalization-eval (pending) |
 | `score.ts` | **PROVISIONAL** episode metrics: recall over all lessons, breadth, prerequisite-first share, reveal proxy, gain | personalization-eval (pending) |
+| `hq-cli.mjs` | JSON CLI for the HQ lab `/hq/personalization` (W-1503): `meta`, `run`, `compare`, `saved`; the only way the app reaches the simulator (W-1498, ../README.md) | learner-model-engineer |
 | `run.mjs` | Runner: replay test, base table, per-persona table, sensitivity table, writes `out/` (gitignored) | learner-model-engineer |
 
 ## Composer (port of edp-engine.js compose())
