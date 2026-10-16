@@ -77,3 +77,7 @@ W-1527 is in review with privacy-reviewer named (company/ops/board.json).
 
 - The rendered page in a browser (D2 and D3 are judged from JSX).
 - Whether a future accounts module will be named in a way the import grep catches. The pattern covers `account|auth|session|events-intake|progress`. F2 should list the real module path once one exists (company/engineering/data-inventory.md).
+
+## 6. Privacy-reviewer status (2026-10-16, run pr-l5-t1-1016)
+
+**Privacy status: PRIVACY-DONE for phase A (met with conditions).** Basis: ruling L5 in company/reviews/_privacy/2026-10-16-personalization-batch-reads.md, closed in company/reviews/_privacy/2026-10-16-l5-t1-closeout.md. D1 to D5 met (D2 and D3 read in the rendered page; D5 as "passes under `npm run verify` (test:hq)", not "enforced in check", per hq-engineer M5). D6 stays "not present". Conditions that stay open: L2, L3, M1 trust-list note, phase B re-read. Lapses if the route or CLI reads any learner data source (L2).

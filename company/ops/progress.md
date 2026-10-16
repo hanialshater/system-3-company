@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · privacy-reviewer (Elif) · L5 lab rendered page and T1 check wiring closed (run pr-l5-t1-1016)
+
+**Changed:** new company/reviews/_privacy/2026-10-16-l5-t1-closeout.md; status section 6 in company/personalization/lab/2026-10-16-lab-privacy-dod.md; board W-1529 and W-1537 → done.
+**Ruled:** L5 met with conditions (lab privacy-done for phase A): both screenshots carry "Simulated" on persona heading, fingerprint caption and legend; privacy test 2/2 pass. T1 met: I ran `npm run check` (exit 0, N1/N3 5/5).
+**Believe:** high on both. Caveats: render showed Curious newcomer, not struggling-repeater (same template); I did not run a browser; privacy test runs under verify, not check or CI (M5), so wording must say "passes under verify".
+**Open for phase B:** T2/T3, settings API read (B1-B4), accounts-tip re-read, D4 minors (lawyer), M1 trust-list sentence, L2/L3.
+
 ## 2026-10-16 · learning-scientist-personalization (Oskar) · C0 full-text check of the B2 range numbers, W-1532 (run ls-c0-1016)
 
 **Changed:** new company/personalization/evidence/2026-10-16-ranges-fulltext-check.md. It has one row per number (before, after, quote, location, URL, mark) and the full list of hosts tried. A dated revision section is appended to company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md; the original table is unchanged. W-1532 → review, reader personalization-eval.
