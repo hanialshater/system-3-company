@@ -21,6 +21,16 @@ The founder approved a production deploy of the lessons published in the repo (7
 5. **New lesson building pauses** until the closeout is done. Exception: the builds already running (physics #64-68, mail c5b4) finish and enter the closeout under the same rule. First Light continues on its own track.
 6. Gates are unchanged. The rule limits the number of rounds, not the checks.
 
+## Retirement notes (founder, 2026-10-16: "I want you to put good feedback for retiered so we can fix it later")
+7. **No lesson is retired without a retirement note** at `company/reviews/<slug>/retirement.md`, written by the category manager who retires it (head-of-product checks it). The note must let a future builder fix the lesson without re-discovering anything:
+   - **What the lesson teaches** (idea, misconception, predict answer) and its current version.
+   - **Why it was retired:** each blocking finding, quoted, with the record that raised it (file path and reviewer role).
+   - **What was tried:** each version and fix round, with commits, and why each fell short.
+   - **The fix it needs:** the specific change (wording, stage, interaction, claim or source) as precisely as the CM can state it, or the open question that has to be answered first.
+   - **Evidence to reuse:** verified claims and sources, QA and learner records still valid, assets.
+   - **Estimated cost** to bring it back (tokens, roles) and a **suggested priority**.
+8. Retired lessons are listed in `company/product/retired-lessons.md` (slug, domain, one-line reason, the fix in one line, cost, link to the note), so the backlog of comebacks can be planned later. A retired lesson keeps its files.
+
 ## Objections
 | Objection | Raised by | Status |
 |---|---|---|
