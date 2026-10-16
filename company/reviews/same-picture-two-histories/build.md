@@ -38,3 +38,5 @@ Counted from the rendered stage by a builder probe at 390×844 (text nodes insid
 ## Local contract QA (the builder's pass, not the qa-tester's record)
 
 Own production build (`NEXT_DIST_DIR=.next-ncmgap4 npx next build`, Turbopack, exit 0), served with `tools/serve.sh start 3731 .next-ncmgap4`. `QA_BASE_URL=http://localhost:3731 QA_ONLY=same-picture-two-histories,price-tag-or-auction QA_OUT=artifacts/qa-ncmgap4-a npx playwright test tests/qa/contract.spec.ts --workers=2`, unmodified spec: **4 passed** (phone and desktop). Phone predict, explore and reveal screenshots viewed, plus the probe's per-press frames (Town 1 step 0 with its 3 red crossing links; Town 2 step 0 with persons 3 and 7 in the wrong colour). `npx tsc --noEmit` exit 0; `npm run check` passed. The qa-tester's run is still owed.
+
+Re-run on the final build with all four lessons: `QA_OUT=artifacts/qa-ncmgap4-c`, 8 passed; reveal-fit `artifacts/reveal-fit/ncmgap4-c.json`: fit, crop 0, phoneFit true.

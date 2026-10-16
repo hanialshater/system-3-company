@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.card { fill: var(--bg-2); stroke: var(--line); stroke-width: 1.5; }
+.cardHeld { fill: var(--bg-2); stroke: var(--domain); stroke-width: 3.5; }
+.cardLab { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.arrow { stroke: var(--fg); stroke-width: 2; }
+.refused { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.head { fill: var(--fg); }
+.cost { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.refusedLab { fill: var(--bad); font-size: 10px; font-weight: 700; }
+.legend { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.apple { fill: #dc2626; stroke: var(--fg); stroke-width: 0.6; }
+.banana { fill: #facc15; stroke: var(--fg); stroke-width: 0.6; }
+.cherry { fill: #9f1239; stroke: var(--fg); stroke-width: 0.6; }
+.stem { fill: none; stroke: #65a30d; stroke-width: 1.4; }
+.leaf { fill: #65a30d; }
+.now { margin: 0; text-align: center; font-weight: 700; font-size: 0.95rem; }
+.stripArrow { fill: var(--muted); font-size: 14px; font-weight: 700; }
+.seen { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 600; min-height: 1.4em; }
+.seenOn { color: var(--domain); }
+.inline { width: 1.1em; height: 1.1em; vertical-align: -0.2em; display: inline-block; }

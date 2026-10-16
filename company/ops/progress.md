@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder (demo-builder-ncm-gap4) · the 4 NCM gap lessons built, draft
+
+**Changed:** built `probability/same-picture-two-histories` (4.2, W-1522), `economics/price-tag-or-auction` (9.2, W-1523), `economics/worth-something-alone` (17.6, W-1524), `math/the-swap-that-goes-in-circles` (23.2, W-1525) from the strand briefs, numbers re-run with `company/courses/ncm/checks/rejudged-four.mjs`. All draft, all 23 claims unverified (kit support types). Build notes with pre-flight and stage word counts in `company/reviews/<slug>/build.md`. Board W-1522..W-1525 → review; added W-1562 (fact-checker) and W-1563 (qa-tester). Claims taken by slug and still held (not merged).
+**Believe (high):** local contract QA 8/8 (phone + desktop, unmodified spec) on my own Turbopack build; reveal-fit (tool clean) fit, crop 0, phoneFit true for all four; stage words ≤ 21 strict; typecheck and check pass. Every phone screenshot viewed. These are builder runs, not QA records. **Departure to check:** price-tag-or-auction uses exact cents ($38.49, $47.25, $33.33) where the brief wrote one-decimal roundings as cents ($38.50, $47.20, $33.30).
+**Next:** fact-checker W-1562, qa-tester W-1563, then borrowed-mind walks. cm-economics-markets W-507 is still open: an objection there sends price-tag-or-auction / worth-something-alone back (none recorded on 2026-10-16).
+**Blocked:** nothing. Section coverage reaches 110/110 only once these merge.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 
 **Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.

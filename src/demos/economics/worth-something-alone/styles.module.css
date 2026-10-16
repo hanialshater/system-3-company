@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.seen { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 600; min-height: 1.3em; }
+.axisLine { stroke: var(--line); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.price { stroke: var(--bad); stroke-width: 2; stroke-dasharray: 6 4; }
+.priceLab { fill: var(--bad); font-size: 10px; font-weight: 700; }
+.curve { fill: none; stroke: var(--domain); stroke-width: 2.5; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1.4; opacity: 0.7; }
+.ghostLab { fill: var(--muted); font-size: 10px; font-weight: 700; }
+.ghostDot { fill: var(--muted); }
+.fan { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.fanLab { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.tip { fill: var(--bg); stroke: var(--fg); stroke-width: 2; }
+.rest { fill: var(--fg); }
+.tipLab { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.trailDot { fill: var(--good); stroke: var(--fg); stroke-width: 0.8; }
+.leader { stroke: var(--fg); stroke-width: 0.8; stroke-dasharray: 2 2; opacity: 0.7; }

@@ -31,3 +31,5 @@ Builder probe at 390×844, strict count (tokens with a letter). Busiest frame (a
 ## Local contract QA (the builder's pass, not the qa-tester's record)
 
 Same build and command as same-picture-two-histories (`QA_OUT=artifacts/qa-ncmgap4-a`): **phone and desktop passed**. Phone predict, explore and reveal screenshots viewed; fixed before this run: legend overlapping the axis caption, the $0.00 label on the tick "1", and pale teal value text (now mixed toward --fg). `npx tsc --noEmit` exit 0; `npm run check` passed. The qa-tester's run is still owed.
+
+Re-run on the final build with all four lessons: `QA_OUT=artifacts/qa-ncmgap4-c`, 8 passed; reveal-fit `artifacts/reveal-fit/ncmgap4-c.json`: fit, crop 0, phoneFit true.
