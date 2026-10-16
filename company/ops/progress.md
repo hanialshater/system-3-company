@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
+
+**Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
+**Believe:** sure the flips match the r7 preconditions table (all four rows "yes", `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md`). `npm run check` passes (3 unrelated lifehacks warnings). `node tools/publish-ready.mjs`: candidates include same-picture-two-histories, price-tag-or-auction, worth-something-alone; the-swap-that-goes-in-circles is in "held (verdict revise)" because `decide()` picks r1 (`2026-10-16-learner-knows-preference.md`, revise) over r2 (launch) by the mtime tie (W-1596). Not worked around.
+**Next:** release-manager runs W-1594 for the three candidates under the record's lapse conditions; swap waits on tools-lead W-1596 (or the chair's ruling 2 applied by the release-manager). No deploy without the founder. **Blocked:** swap publish on W-1596.
+
 ## 2026-10-16 · head-of-product · Launch review r7 (NCM gap four): 4 go, each held open on the strand manager's draft->review call
 
 **Changed:** new `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` covering same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2 and the-swap-that-goes-in-circles v1 (with fc8c53b8).
