@@ -1,9 +1,12 @@
 .wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
 .fit { flex: 1 1 0; min-height: 150px; max-height: 34dvh; }
 .wrap :global(.row) { margin-top: 2px; gap: 6px; }
-.presets :global(.row) > :global(.control) { flex: 1 1 18%; min-width: 0; white-space: nowrap; padding: 6px 4px; min-height: 44px; }
-.presets :global(.row) > :global(.control).wide { flex: 1 1 100%; }
+/* v3: the five presets share one row (the tonnes label wraps to two lines) so the reveal fits at 390x844. */
+.presets :global(.row) { flex-wrap: nowrap; }
+.presets :global(.row) > :global(.control) { flex: 1 1 0; min-width: 44px; white-space: nowrap; padding: 6px 4px; min-height: 44px; }
+.presets :global(.row) > :global(.control).wide { flex: 1.9 1 0; white-space: normal; line-height: 1.15; }
 .wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.wrap :global(.readout):last-child { flex: 1.35 1 0; white-space: nowrap; }
 .grid { stroke: var(--line); stroke-width: 1; }
 .axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
 .tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
@@ -18,3 +21,4 @@
 .leader { stroke: var(--muted); stroke-width: 0.8; }
 .label { fill: var(--fg); font-size: 11px; font-variant-numeric: tabular-nums; }
 .labelUk { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.gloss { fill: var(--muted); font-size: 11px; }

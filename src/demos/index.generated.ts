@@ -457,7 +457,7 @@ import m450 from "./geography/web-map-cut-off-latitude/meta.json";
 import m451 from "./geography/which-sea-gets-the-rain/meta.json";
 import m452 from "./geography/which-way-the-water-goes/meta.json";
 import m453 from "./geography/why-the-poles-get-less-sun/meta.json";
-import m454 from "./history/britain-made-most-co2-in-1850/meta.json";
+import m454 from "./history/britain-made-most-fossil-co2-in-1850/meta.json";
 import m455 from "./history/children-dying-before-five/meta.json";
 import m456 from "./history/cholera-fell-with-height/meta.json";
 import m457 from "./history/coal-came-back/meta.json";

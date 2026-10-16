@@ -1,6 +1,6 @@
 "use client";
 
-// Who made the world's CO2 in 1850? Brief: company/domains/briefs/history.md #9 (check section 9,
+// Where the fossil-fuel CO2 came from in 1850 (v3). Brief: company/domains/briefs/history.md #9 (check section 9,
 // company/domains/briefs/checks/history-cycle1-check.mjs). Data: OWID CO2 data (history-data.mjs: co2,
 // owid-co2-data.csv, column co2, million tonnes of fossil CO2), every year 1750-1950 for World, United
 // Kingdom, United States, Germany and France, rounded to 0.1 Mt. A country with no row yet (US before 1800,
@@ -9,12 +9,17 @@
 // Presets in DOM order (each sets the whole view; no Reset):
 //   "1800", "1850", "1900", "1950"  shares (100% stacked), the record drawn from 1750 up to that year only,
 //                                    with each band's share at that year labelled at the right edge.
-//                                    "1850" is milestone `y1850` (records Britain's share), "1900" `y1900`.
+//                                    "1850" is milestone `y1850` (records the UK's share), "1900" `y1900`.
 //   "Tonnes, not shares"             the same five bands stacked in million tonnes, 1750-1950; milestone
 //                                    `tonnes` records world growth 1850 -> 1900.
 // The locked frame shows empty axes: no band is drawn before the commit, so no share is visible.
 // The reveal is gated on all three milestones (the brief gated on y1850 and tonnes; the reveal also quotes
 // the 1900 share, so y1900 is gated too; it is press 3 of 5 on the QA path).
+// v3 (W-1038, W-1205): the data's entity is "United Kingdom". The question and reveal say "the United
+// Kingdom"; the stage labels and readouts say "UK", glossed once on the stage ("UK = United Kingdom"),
+// because "United Kingdom" does not fit at 11 px in the label column at 390 wide (brief 9, "Labels").
+// The reveal's limit sentence is told, not shown (no land-use toggle, brief care line): history-data.mjs:
+// co2, column co2_including_luc, 1850: UK 131.8 of World 2,910.9 Mt = 4.5%, "under 5%" (check section 9).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -29,7 +34,7 @@ const RAW = {"World":"9.3,9.4,9.5,9.6,9.7,9.8,9.9,10.1,10.2,10.3,10.5,10.7,11,11
 const ser = (k: string) => RAW[k].split(",").map(Number);
 const WORLD = ser("World");
 const BANDS = [
-  { key: "uk", name: "Britain", v: ser("United Kingdom"), cls: s.uk },
+  { key: "uk", name: "UK", v: ser("United Kingdom"), cls: s.uk },
   { key: "us", name: "US", v: ser("United States"), cls: s.us },
   { key: "de", name: "Germany", v: ser("Germany"), cls: s.de },
   { key: "fr", name: "France", v: ser("France"), cls: s.fr },
@@ -51,7 +56,7 @@ const B = 164;
 const X = (y: number) => L + ((y - Y0) / (Y1 - Y0)) * (R - L);
 const TMAX = 6000;
 
-export default function BritainMadeMostCo2In1850({ slug }: { slug: string }) {
+export default function BritainMadeMostFossilCo2In1850({ slug }: { slug: string }) {
   const [view, setView] = useState<View>("none");
   const [uk1850, setUk1850] = useState<number | null>(null);
   const [uk1900, setUk1900] = useState<number | null>(null);
@@ -61,7 +66,7 @@ export default function BritainMadeMostCo2In1850({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In 1850, what share of the world's carbon dioxide from burning fossil fuels came from Britain?",
+        question: "In 1850, what share of the world's carbon dioxide from burning fossil fuels came from the United Kingdom?",
         options: ["About 5%", "About 25%", "About 60%"],
         answer: 2,
       }}
@@ -70,14 +75,14 @@ export default function BritainMadeMostCo2In1850({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In 1850 Britain produced <strong>{uk1850 !== null ? pct(uk1850) : "?"}</strong> of the world&apos;s
+            In 1850 the United Kingdom produced <strong>{uk1850 !== null ? pct(uk1850) : "?"}</strong> of the world&apos;s
             fossil-fuel CO2. By 1900 its share had fallen to <strong>{uk1900 !== null ? pct(uk1900) : "?"}</strong> as
             the United States, Germany and others burned more coal, and world emissions had grown{" "}
             {growth !== null ? growth : "?"} times. A falling share can hide a rising total.
           </p>
           <p>
-            Where it stops: these figures are rebuilt from records of coal and other fuels, and early years are the
-            roughest.
+            Where it stops: this counts fuel burned in each country, not land clearing; counting land cleared for
+            farms too, the United Kingdom&apos;s 1850 share was under 5%.
           </p>
         </>
       )}
@@ -159,7 +164,7 @@ function Stage({
   }
 
   // End labels at the cut year: band middles, spread at least 12 units apart.
-  const labels: { name: string; y: number; mid: number; text: string }[] = [];
+  const labels: { key: string; name: string; y: number; mid: number; text: string }[] = [];
   if (cut !== null) {
     let acc = 0;
     const i = cut - Y0;
@@ -167,7 +172,7 @@ function Stage({
       const val = tonnes ? b.v[i] : (100 * b.v[i]) / WORLD[i];
       const mid = yv(acc + val / 2);
       acc += val;
-      labels.push({ name: b.name, y: mid, mid, text: tonnes ? b.name : `${b.name} ${pct(val)}` });
+      labels.push({ key: b.key, name: b.name, y: mid, mid, text: tonnes ? b.name : `${b.name} ${pct(val)}` });
     });
     const GAP = 12.5;
     labels.sort((a, b) => b.mid - a.mid);
@@ -179,7 +184,7 @@ function Stage({
     if (over > 0) for (let k = labels.length - 1; k >= 0; k--) labels[k].y = Math.max(labels[k].y, T + 4 + (labels.length - 1 - k) * GAP);
   }
 
-  const title = tonnes ? "Fossil CO2 by country, million tonnes a year" : "Share of the world's fossil CO2, by country";
+  const title = tonnes ? "Fossil CO2, million tonnes a year" : "Share of world fossil CO2";
   const presets: [View, string][] = [
     [1800, "1800"],
     [1850, "1850"],
@@ -198,6 +203,9 @@ function Stage({
       >
         <text x={4} y={11} className={s.title}>
           {title}
+        </text>
+        <text x={W - 2} y={11} textAnchor="end" className={s.gloss}>
+          UK = United Kingdom
         </text>
         {ticks.map((t) => (
           <g key={t}>
@@ -224,9 +232,9 @@ function Stage({
         <line x1={L} x2={R} y1={B} y2={B} className={s.axis} />
         {cut !== null &&
           labels.map((l) => (
-            <g key={l.name}>
+            <g key={l.key}>
               <line x1={X(cut) + 1} x2={X(cut) + 6} y1={l.mid} y2={l.y - 3.5} className={s.leader} />
-              <text x={X(cut) + 8} y={l.y} className={l.name.startsWith("Britain") ? s.labelUk : s.label}>
+              <text x={X(cut) + 8} y={l.y} className={l.key === "uk" ? s.labelUk : s.label}>
                 {l.text}
               </text>
             </g>
@@ -248,8 +256,8 @@ function Stage({
         </Row>
       </div>
       <Row>
-        <Readout label="Britain, 1850" value={uk1850 !== null ? pct(uk1850) : "–"} />
-        <Readout label="Britain, 1900" value={uk1900 !== null ? pct(uk1900) : "–"} />
+        <Readout label="UK, 1850" value={uk1850 !== null ? pct(uk1850) : "–"} />
+        <Readout label="UK, 1900" value={uk1900 !== null ? pct(uk1900) : "–"} />
         <Readout label="1850 to 1900" value={growth !== null ? `World ×${growth}` : "–"} />
       </Row>
     </div>
