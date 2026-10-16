@@ -1,7 +1,7 @@
 {
   "slug": "jacket-last-first",
   "title": "Pack the return order backwards",
-  "hook": "Which stack lets you unpack in the requested order?",
+  "hook": "Jacket needed first, sweater next, shoes last. Which goes into the bag first?",
   "domain": "lifehacks",
   "concept": "pack-in-reverse-order",
   "status": "review",
@@ -19,61 +19,56 @@
     ]
   },
   "misconception": "Pack things in the order you will use them, first-needed first.",
-  "objective": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible.",
+  "objective": "A bag that opens at the top gives back the last thing packed first. So pack in reverse: what you need last goes in first, and the jacket you need first goes in last, on top.",
   "claims": [
     {
       "id": "lifehacks.jacket-last-first.c1",
-      "text": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible.",
+      "text": "A bag that opens at the top gives back the last thing packed first. So pack in reverse: what you need last goes in first, and the jacket you need first goes in last, on top.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.c2",
-      "text": "Only this stack is modelled; side-opening bags behave differently.",
+      "text": "Only a top-opening bag is modelled; side pockets and cases that open flat behave differently.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.c3",
-      "text": "For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0.",
+      "text": "Packed in use order 1..N, the first-needed item is under N−1 others; packed in reverse, N..1, it is under 0.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.c4",
-      "text": "Which stack lets you unpack in the requested order?",
+      "text": "Title: Pack the return order backwards Hook: Jacket needed first, sweater next, shoes last. Which goes into the bag first? Question: You need the jacket first, the sweater next, the shoes last. Which goes into the bag first? Options: The shoes / The jacket / Order doesn't matter. Correct option: The shoes.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'reverse-order' at the starting input 3; correct option moved from 2nd to 1st for TP-8. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.c5",
       "text": "Why is the last thing packed sometimes the right first thing to use?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; not rendered anywhere. Its presupposition (last in is first out of a top-access stack) matches the lesson's access model. Convention. Owner may withdraw it as unrendered.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; not rendered anywhere. Its presupposition (last in is first out of a top-access stack) matches the lesson's access model. Convention. Owner may withdraw it as unrendered. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.recall",
       "text": "A top-access stack is last in, first out. Packing in reverse use order puts the jacket in last, so it is on top when you need it first.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. LIFO: pack scarf, sweater, jacket → unpack jacket, sweater, scarf. Matches c1/c3. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. LIFO: pack scarf, sweater, jacket → unpack jacket, sweater, scarf. Matches c1/c3. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: In use order: the jacket goes in first and ends up under 2 items. Reversed: the shoes go in first and the jacket last, so 0 items sit on it.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:pack-in-reverse-order",
     "prerequisites": [],

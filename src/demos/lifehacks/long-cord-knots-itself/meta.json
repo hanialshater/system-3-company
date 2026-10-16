@@ -1,7 +1,7 @@
 {
   "slug": "long-cord-knots-itself",
-  "title": "Long cord, more loops",
-  "hook": "In the paper’s setup, which length knotted more often?",
+  "title": "Do long cords knot themselves?",
+  "hook": "Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted?",
   "domain": "lifehacks",
   "concept": "cord-tangle-length",
   "status": "review",
@@ -19,53 +19,57 @@
     ]
   },
   "misconception": "A cord only gets knotted if someone ties it, so a long cord stored loose stays untangled.",
-  "objective": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17.",
+  "objective": "Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, turning once a second for ten seconds. No 0.3 m string came out knotted; 3 m strings came out knotted in 55% of trials. A longer string gives its free end more loops to weave through.",
   "claims": [
     {
       "id": "lifehacks.long-cord-knots-itself.c1",
-      "text": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17.",
+      "text": "Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, turning once a second for ten seconds. No 0.3 m string came out knotted; 3 m strings came out knotted in 55% of trials. A longer string gives its free end more loops to weave through.",
       "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.long-cord-knots-itself.c2",
-      "text": "These are study-conditioned model draws, not household knot odds. Plain cord; storage only.",
+      "text": "The 55% belongs to that box and that motion, not to your drawer. Plain cord; storage only.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; 20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; 20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.long-cord-knots-itself.c3",
-      "text": "20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities.",
+      "text": "20 simulated strings per length, each knotted with the study's observed frequency (0 for 0.3 m, 0.55 for 3 m), drawn from one fixed sequence so every learner sees the same 20; shown count = knotted strings out of 20.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.long-cord-knots-itself.c4",
-      "text": "In the paper’s setup, which length knotted more often?",
+      "text": "Title: Do long cords knot themselves? Hook: Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted? Question: Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted? Options: Almost never: nobody tied them / About half the time / Every time. Correct option: About half the time.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'cord' at the starting input 30; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.long-cord-knots-itself.recall",
       "text": "55% is the frequency observed in a 30 cm box turning once a second for 10 seconds. A drawer is a different box, string and motion, so that number does not transfer to it as a probability.",
       "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Key unique; matches c1/c2 (setup-specific frequency, not household odds). Source Raymer & Smith 2007 (mit.edu PDF) NOT OPENED (proxy 403). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The 55% and the 30 cm box / 1 rev/s / 10 s setup rest on Raymer & Smith (2007), PNAS, which could not be opened (mit.edu and doi hosts blocked). The stage's sourceConditionedCordTrials(0.55) is a stand-in, not evidence. Left unverified, as in LH-3A. | FC pass 38 (fact-checker, 2026-10-14): HELD. The 55% and the 0.30 m box / 1 rev/s / 10 s setup rest on Raymer and Smith 2007 (PNAS; mit.edu PDF: proxy 403). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Key unique; matches c1/c2 (setup-specific frequency, not household odds). Source Raymer & Smith 2007 (mit.edu PDF) NOT OPENED (proxy 403). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The 55% and the 30 cm box / 1 rev/s / 10 s setup rest on Raymer & Smith (2007), PNAS, which could not be opened (mit.edu and doi hosts blocked). The stage's sourceConditionedCordTrials(0.55) is a stand-in, not evidence. Left unverified, as in LH-3A. | FC pass 38 (fact-checker, 2026-10-14): HELD. The 55% and the 0.30 m box / 1 rev/s / 10 s setup rest on Raymer and Smith 2007 (PNAS; mit.edu PDF: proxy 403). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified",
       "note": "FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Opened the cited paper on PMC: Raymer and Smith (2007), 'Spontaneous knotting of an agitated string', PNAS 104(42): 16432-16437 (PMC2034230). Results: '0.30 x 0.30 x 0.30-m box rotated at one revolution per second for 10 sec'. Table 1, '3-m length of #4 string, tumbled at one revolution per second for 10 sec': 26%, 50%, 55% for box widths 0.1, 0.15, 0.3 m. So 55% is the 30 cm box at 1 rev/s for 10 s, as the why says. The same table shows the frequency moving with box width (26-55%), tumbling rate (20% at 3 rev/s), time (63% at 30 s) and string stiffness (20-85%). That supports 'that number does not transfer to [a drawer] as a probability'. The keyed option is unique (pass LH-3A)."
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: In this simulation, 0 of 20 short strings and 13 of 20 long ones came out knotted. The study's 55% is about 11 in 20.",
+      "support": "derivation",
+      "source": "Computed by the cord stage in src/components/lifehacks/HomeLesson.tsx (sourceConditionedCordTrials in home-models.ts: 20 fixed-sequence draws at 0 and at 0.55). The 55% is the study figure of claim c1. Wave W3, demo-builder 2026-10-16.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.stage",
+      "text": "Stage text: Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, one turn a second, for 10 seconds. Each drawing is a simulated string at the study's rate. Plain cord; storage only. Labels: 0.3 m strings, 3 m strings, n of 20 knotted.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, PNAS 104(42):16432-16437, doi:10.1073/pnas.0611320104 (PMC2034230; setup and Table 1 as quoted in FC pass 41 on the recall claim). Stage text in src/components/lifehacks/HomeLesson.tsx (CordStage), wave W3, demo-builder 2026-10-16.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +93,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:cord-tangle-length",
     "prerequisites": [],

@@ -1,7 +1,7 @@
 {
   "slug": "sock-pairing-by-pattern",
   "title": "Match a pattern before searching",
-  "hook": "Which search pool contains fewer candidate socks?",
+  "hook": "Twelve socks, three patterns, one pile. To find one sock's partner, how many do you check?",
   "domain": "lifehacks",
   "concept": "sock-matching-by-pattern",
   "status": "review",
@@ -19,61 +19,56 @@
     ]
   },
   "misconception": "Sorting socks into piles first is extra work and doesn't speed up pairing.",
-  "objective": "Sorting the pictured socks by pattern shrinks the candidate pool for a match. The model counts candidates; it does not claim a measured time saving or guarantee that both socks are present.",
+  "objective": "In a pile you pick socks up one at a time, so the partner can be the last one you check. Sorted by pattern first, you only check the socks in that pattern's bin.",
   "claims": [
     {
       "id": "lifehacks.sock-pairing-by-pattern.c1",
-      "text": "Sorting the pictured socks by pattern shrinks the candidate pool for a match. The model counts candidates; it does not claim a measured time saving or guarantee that both socks are present.",
+      "text": "In a pile you pick socks up one at a time, so the partner can be the last one you check. Sorted by pattern first, you only check the socks in that pattern's bin.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c2",
-      "text": "Extra bins add setup work; sorting only helps if the labels match the question.",
+      "text": "Sorting takes its own time, and this counts the worst case: the partner turns up last.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c3",
-      "text": "Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups.",
+      "text": "Socks to check at most=N−1 in one mixed pile, N/3−1 in one of three equal pattern bins; N is a multiple of 6.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c4",
-      "text": "Which search pool contains fewer candidate socks?",
+      "text": "Title: Match a pattern before searching Hook: Twelve socks, three patterns, one pile. To find one sock's partner, how many do you check? Question: Twelve socks of three patterns in one pile. To find one sock's partner, how many socks do you check? Options: 11 / 3. Correct option: 11.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'pair-search' at the starting input 12; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c5",
       "text": "What makes a sorting rule useful for finding a matching sock?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.recall",
       "text": "In a mixed pile every other sock is a candidate: 10 − 1 = 9. In its pattern bin of 5, only 4 remain. The model counts candidates, not seconds, and assumes both socks are there.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.sock-pairing-by-pattern.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: One mixed pile: the partner could be any of the other 11 socks. Pattern bins: sorted first, it is one of 3 in its pattern's bin.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:sock-matching-by-pattern",
     "prerequisites": [],
