@@ -196,3 +196,39 @@ for (const n of ['3_1', '4_1']) {
   }
   say('K15', n, 'single switches=' + c, 'with at least one R2=' + withR2, 'R2 offered per switch=' + JSON.stringify(counts), 'first R2 edges join one pair of crossings=' + bigonOk + ' of ' + withR2, 'unchanged diagram R2 count=' + K.moves(pd).filter((m) => m.type === 'R2').length)
 }
+
+// K20 (W-1581, unknot-game tint spec): in every single-switch state of 3_1 and 4_1 (7 states), the FIRST R2 in moves() contains the
+// tapped crossing, and of its two edges exactly one is over at both of the R2's crossings (PD slot index 1 or 3, the over slots) and
+// the other is under at both. That edge is the one strand the lesson tints. Read only: apply is never called.
+{
+  let states = 0, hasTapped = 0, oneOO = 0, oneUU = 0
+  for (const n of ['3_1', '4_1']) {
+    const pd = K.knot(n).pd
+    for (let i = 0; i < K.crossingCount(pd); i++) {
+      const q = K.crossingChange(pd, i), m = K.moves(q).filter((x) => x.type === 'R2')[0]
+      states++
+      if (!m) continue
+      const role = (e) => m.crossings.map((c) => { const k = q[c].indexOf(e); return k === 1 || k === 3 ? 'O' : 'U' }).join('')
+      if (m.crossings.includes(i)) hasTapped++
+      if (m.edges.filter((e) => role(e) === 'OO').length === 1) oneOO++
+      if (m.edges.filter((e) => role(e) === 'UU').length === 1) oneUU++
+    }
+  }
+  say('K20', 'single-switch states=' + states, 'first R2 contains the tapped crossing=' + hasTapped + ' of ' + states, 'exactly one edge over at both ends=' + oneOO + ' of ' + states, 'exactly one edge under at both ends=' + oneUU + ' of ' + states)
+}
+
+// K21 (W-1581, left-or-right B2, Mirror as scaleX(-1) on a wrapper round the card): the four rest states. On screen each geometric sign is
+// the sign of the drawing shown, negated once per reflection. front = draw(pd); turned = reflect(draw(mirror)) [card, authored reflected];
+// mirrored = wrapper(draw(pd)) = reflect(draw(pd)); mirrored+turned = wrapper(reflect(draw(mirror))) = draw(mirror) [two reflections cancel].
+// Each must equal the readout signs(...) of the logical diagram, and turned/mirrored must share one outline (a reflected curve) while
+// differing at every crossing (the lesson's point).
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), eq = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+  const geo = (q) => K.draw(q, { layout: L }).crossings.map((c) => c.sign), neg = (a) => a.map((s) => -s)
+  const mi = K.mirror(pd), rows = [
+    ['front', geo(pd), K.signs(pd)],
+    ['turned', neg(geo(mi)), K.signs(K.turnOver(pd))],
+    ['mirrored (B2)', neg(geo(pd)), K.signs(mi)],
+    ['mirrored+turned (B2)', geo(mi), K.signs(K.turnOver(mi))]]
+  say('K21', n, rows.map(([lab, g, r]) => lab + ': screen ' + JSON.stringify(g) + (eq(g, r) ? ' = ' : ' != ') + 'readout ' + JSON.stringify(r)).join(' | '))
+}
