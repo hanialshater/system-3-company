@@ -63,3 +63,17 @@ c1 crossing number definition (source: Rolfsen); c2 kit drawings have 6 and 5 cr
 
 ## Local QA (the builder's pass, not the qa-tester's record)
 Build `NEXT_DIST_DIR=.next-w1539`, served on 3539. `tests/qa/contract.spec.ts` with QA_ONLY=draw-a-table-knot, QA_OUT=artifacts/qa-w1539: **phone and desktop passed** (2/2). Screens viewed: phone 2-explore, 3-reveal; my own probe at 360×740 and 390×844 (locked, 6₁ switched at crossing 1 and 2, 5₂ switched, reveal). The crossings read as crossings at both widths: gaps clearly wider than the stroke, no beak. No console or page errors. `npx tsc --noEmit` exit 0; `npm run check` passed.
+
+## Fix round W-1591 / W-1592 (2026-10-16, demo-builder run w1591-92-knot)
+**W-1591 (fact-check c5 disputed on wording).** Reveal first sentence "A switch makes a new knot." → "Your switch made a new knot." exactly as the fact-check record gives it (`company/reviews/draw-a-table-knot/2026-10-16-fact-check.md`, c5); 6 words for 6, so the word count is unchanged (reveal-fit 80 words with the verdict line). c5's quote in meta.json updated to match; c5 reset to `unverified` (checkedBy/checkedOn removed, note keeps the dispute history). Only the claims array was touched; evidence was not.
+**W-1592 (design-lead S4 D1–D3, `company/design/reviews/2026-10-16-draw-a-table-knot-s4.md`).** All in `styles.module.css`, as written:
+- D1: light mode `.ring { stroke: color-mix(in srgb, var(--domain) 80%, #000); }`.
+- D2: light mode `.seen { color: color-mix(in srgb, var(--domain) 45%, #000); }` (size and weight unchanged).
+- D3: `.board` width `min(100%, clamp(206px, calc((100dvh - 525px) * 103 / 105), 284px))`; `.atReveal .board` width `min(100%, 231px, clamp(…same…))`.
+**Measurements** (build `NEXT_DIST_DIR=.next-w1592`, served on 3592):
+- `fit-probe.mjs` explore (0₁ readout, 3 options): 390×844 board 284, overflow 0; **360×740 board 211, overflow 0, chip row hidden 0** (was 31–51); 360×640 board 206, overflow 74–94 (accepted in S4). hitsOverText 0 everywhere.
+- `fit-probe.mjs` reveal at 390×844: picture 231, stage-top crop 0 in all 6 variants, slack 27–68 px, 70–81 words (unchanged). At 360×740: picture 211, stage-top crop 21–82 px (was 21–102).
+- `reveal-fit --strict` 390×844: fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, pass 1, 80 words, 10 lines (tool clean).
+- Walkthrough (phone, option 1): sheet viewed; ring and Seen line now read clearly darker in light mode; reveal shows "Your switch made a new knot."
+- Local QA contract.spec, QA_ONLY=draw-a-table-knot, QA_PORT 3593: phone and desktop passed (2/2). `npm run typecheck` and `npm run check` passed.
+Owed: fact-checker re-verification of c5 by someone who did not draft the wording (W-1591).
