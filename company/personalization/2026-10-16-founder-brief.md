@@ -56,3 +56,10 @@ A response to this brief (`2026-10-16-brief-response.md`): the vocabulary (perso
 
 - **Q1, Q2, Q4, Q5, Q6: ratified as written** in company/personalization/2026-10-16-brief-response.md §6a. Engagement is a guardrail only (no AMD-008 X1 change); dims are data the composer reads plus `misconceptionStrength` on the probability + cs pilot; hand edits checked against aggregate data until phase C; badges and points only for verified recall and mastery after phase C, no streaks; phase A starts now offline, phase B after the accounts milestone and W-706.
 - **Q3: ratified with a change.** The curves live **in code** (a typed module, like `edp-engine.js`'s shapes), not a JSON file. What stays from the guess: the team edits them, every change carries a written reason (a commit message plus a decision-record line), and there is no curve-editing tool. Where the module lives is W-1498 (principal-engineer); until then it is written under company/personalization/model/ and nothing imports it from src/.
+
+## 7. Founder ask: the simulation in HQ (2026-10-16)
+
+> "I also want simulation in HQ to select persona and debug/inspect"  (founder, conversation)
+
+An HQ page (owner hq-engineer, through tools-lead) where you pick a simulated persona, run the phase A simulation, and inspect it: the fingerprint, each need's shape curve with the persona's point on it, every composed slot with its score terms (need coverage, surprise, novelty, guardrail floor, position, repeat), the rejected candidates, and the policy comparison on simulated recall. Read-only: curves are edited in code (§6 Q3), so the page shows them and their reasons and does not change them. Depends on W-1493 (model module) and W-1494 (simulator), which must emit a per-step trace the page can render. Where the model code lives so HQ may import it is W-1498 (principal-engineer).
+Board: W-1503 (hq-engineer, the page), W-1504 (learner-model-engineer, the trace).
