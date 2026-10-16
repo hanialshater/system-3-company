@@ -1,6 +1,6 @@
 {
   "note": "Risk register (founder decision company/decisions/2026-10-14-founder-risk-in-ops-review.md). Owner: principal-engineer-ops. Format: company/ops/risks.md. Re-scored at every Operational Health Review (company/rituals/templates/ops-review.md, section 7). Check: node tools/risks.mjs report.",
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "risks": [
     {
       "id": "R-001",
@@ -583,21 +583,23 @@
     {
       "id": "R-021",
       "title": "Scale-stage-1 work (the all-metas fix, A1) is pulled onto First Light's critical path",
-      "description": "Proposed as FL-07, merged with FL-01 (two big migrations at once). Measured (quality-bar.md Q5): first-load JS is 2.32 MB gz against a 500 KB bar (Q5.3), and the feed is usable at 16.7 s against 3.0 s at 4x throttle (Q5.4). W-946 found the 5.3 MB client chunk that carries all 960 metas. The fix (EDD-001 option 4 / EDD-003 A1) needs AMD-001 (c2) (F-03, open since 10-12) and sits in scale-stage-1, which the founder kept off the critical path. If Q5 holds, First Light and stage 1 change the kit and deploy path at the same time, which is FL-01's concern. The host half of FL-01 is in R-001.",
+      "description": "Proposed as FL-07, merged with FL-01 (two big migrations at once). Measured (quality-bar.md Q5): first-load JS is 2.32 MB gz against a 500 KB bar (Q5.3), and the feed is usable at 16.7 s against 3.0 s at 4x throttle (Q5.4). W-946 found the 5.3 MB client chunk that carries all 960 metas. The fix (EDD-001 option 4 / EDD-003 A1) needs AMD-001 (c2) (F-03, open since 10-12) and sits in scale-stage-1, which the founder kept off the critical path. If Q5 holds, First Light and stage 1 change the kit and deploy path at the same time, which is FL-01's concern. The host half of FL-01 is in R-001. 2026-10-16 (W-1134, FL-07 re-score proposed L2 I4): the fix is on main. AMD-001's status line reads '(c2)+R1 applied, 0d76ae1', and src/demos/index.generated.ts and loaders.generated.ts are on disk. principal-engineer approved it with changes, and principal-engineer-ops approved readiness with conditions A1 to A6 on 10-16 (2026-10-15-amd001-c2-split.md). What is left: the founder-approved deploy, the steward's audit, and the Q5.3 and Q5.4 re-measure on production (W-607, W-669). Re-scored L4 to L2 by principal-engineer-ops outside an ops review (not the owner's area, and the mechanism is in code). The next ops review confirms or reverts it. Signal for going back to L4: the post-deploy re-measure misses Q5.3 or Q5.4, so more stage-1 work comes onto the path. Accounts and A1 now meet only on the deploy path, which is R-003.",
       "category": "operational",
-      "likelihood": 4,
+      "likelihood": 2,
       "impact": 4,
       "owner": "principal-engineer",
       "mitigation": {
         "summary": "principal-engineer answers by 10-22 whether Q5 is reachable and, if so, moves A1 onto the path with its own readiness record (W-930). Emit lesson loaders from a module with no meta imports (W-946, needs an amendment). Stage 1 otherwise runs only as the 50-lesson pilot off the path, and the scale stop rule stops any stage-1 work that blocks a go/no-go item.",
         "board": [
           "W-930",
-          "W-946"
+          "W-946",
+          "W-607",
+          "W-669"
         ],
-        "reality": "paper",
-        "paperOnly": "W-930 and W-946 are backlog. AMD-001 (c2) is not ratified. The stop rule is a decision-record rule, and no tool checks it."
+        "reality": "partial",
+        "paperOnly": "The split is merged on main but not deployed. Q5.3 and Q5.4 are not re-measured on production. The scale stop rule is a decision-record rule, and no tool checks it."
       },
-      "status": "open",
+      "status": "mitigating",
       "projects": [
         "first-light",
         "scale-stage-1"
@@ -606,7 +608,8 @@
         "company/initiatives/first-light/charter.md",
         "company/initiatives/first-light/risk-rescore.md",
         "company/initiatives/first-light/quality-bar.md",
-        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+        "company/engineering/readiness/2026-10-15-amd001-c2-split.md"
       ],
       "opened": "2026-10-15",
       "lastReviewed": "2026-10-15"
@@ -725,6 +728,91 @@
       ],
       "opened": "2026-10-15",
       "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-026",
+      "title": "Release 1 misses its dates at full scope",
+      "description": "Proposed as FL-02 (status.json, L4 I4). The 10-15 ruling did not enter it, because it was then uncertainty in an estimate that did not yet exist. That has changed. The W-908 re-estimate is on disk (company/engineering/notes/2026-10-15-first-light-reestimate.md) and puts the dates at about 25% at full scope, which the founder restored the same day. The slip rule moves go/no-go day for day if EDD-008 misses 10-28 (F-01 met 10-23 on 10-15). A measured 75% chance of a miss is an event, not just an estimate, so it is entered. Impact is 3 and not the proposed 4. A date slip delays one release, and the company keeps shipping (the impact-4 line is 'can't ship for a day or a gate is bypassed'). The impact-5 way this fails under date pressure (a thin or skipped privacy or readiness review) is already R-020 and is not counted twice. Re-score on W-1121, the full-scope re-estimate with odds and a cut order.",
+      "category": "strategic",
+      "likelihood": 4,
+      "impact": 3,
+      "owner": "principal-engineer",
+      "mitigation": {
+        "summary": "Full-scope re-estimate with odds and a cut order (W-1121), the dates and cut-order proposal to the founder (W-1122), the slip rule, and the pre-declared cuts (challenges at 11-06, the swap only with F-26 by 10-30).",
+        "board": [
+          "W-1121",
+          "W-1122"
+        ],
+        "reality": "paper",
+        "paperOnly": "W-1121 and W-1122 are backlog. The cut order is not decided, and no tool checks the slip rule."
+      },
+      "status": "open",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/engineering/notes/2026-10-15-first-light-reestimate.md",
+        "company/initiatives/first-light/status.json"
+      ],
+      "opened": "2026-10-16",
+      "lastReviewed": "2026-10-16"
+    },
+    {
+      "id": "R-027",
+      "title": "A social surface reaches learners without a named human moderator",
+      "description": "Proposed as FL-08 (status.json, L4 I3, 'social has no named human moderator'), re-framed. The 4x3 reading is scope loss: with no moderator, privacy gate P4.3 fails and the prediction swap is absent from release 1. That is a founder decision with a due date and an if-it-slips line (F-26, 10-30; founder record 2026-10-15, objection 2). It stays in status.json and the founder inbox, not here. What the register carries is the harm side: a swap or any social path (one learner shown a friend's sealed prediction, a friend link between a stranger and a 13 to 15 year old) is built and reaches learners with nobody to act on a report within 24 hours (1 hour for a child in danger). Likelihood is 2. P4.3 and the founder record both keep it out of the build, but both are paper, and nothing in the build or the deploy gate refuses a social route. Impact is 5 (learners harmed). Share links S1 to S5 carry no learner content and are not in scope here.",
+      "category": "ux",
+      "likelihood": 2,
+      "impact": 5,
+      "owner": "privacy-reviewer",
+      "mitigation": {
+        "summary": "F-26 (a human moderator and a cover, due 10-30). P4.3 ruled by 11-09. PRD-003 starts no work before F-26 beyond an EDD draft (W-1131). The swap's tier-2 readiness record must show the report path and its owner before approval.",
+        "board": [
+          "W-1131"
+        ],
+        "reality": "paper",
+        "paperOnly": "F-26 is open. P4.3 is a gate document. No check in the build, the readiness tool or the deploy refuses a social route without a moderator."
+      },
+      "status": "open",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/product/prds/PRD-003-first-light-social-prediction-swap.md",
+        "company/initiatives/first-light/privacy-gate.md",
+        "company/decisions/2026-10-15-founder-first-light-ads-social-back.md"
+      ],
+      "opened": "2026-10-16",
+      "lastReviewed": "2026-10-16"
+    },
+    {
+      "id": "R-028",
+      "title": "The accounts kill switch is a founder-approved redeploy, not instant",
+      "description": "Proposed as FL-09 (status.json, L3 I3). SPIKE-002 R3 (accounts branch, 2f5c500): the code reads ACCOUNTS_ENABLED per request, but Vercel applies a changed variable only to new deployments. So 'off' means setting the variable and then a redeploy, and every deploy needs the founder's approval (CLAUDE.md). Time to off is therefore founder availability (R-013) plus a build, not seconds. Likelihood is 2 today. Previews run on the test database with staff addresses only and behind Deployment Protection, and production has no accounts variables, so an accounts fault now harms nobody. It goes to 3 at go-live (W-1142). Impact is 4, not the proposed 3. When it matters, a fault in a learner-data route (for example a log or response leaking an email; readiness gap A-6) stays live for the whole approval-plus-build window, which keeps a gate (P1) bypassed longer. Readiness record: company/engineering/readiness/2026-10-16-accounts.md, gap A-3.",
+      "category": "data",
+      "likelihood": 2,
+      "impact": 4,
+      "owner": "release-manager",
+      "mitigation": {
+        "summary": "The runbook states 'set the variable, redeploy' with a measured time to off (W-1150). platform-engineer proposes a control that needs no deploy: a Vercel Firewall rule denying /api/account/*, or Instant Rollback to a pre-on deployment, or Edge Config (which needs a decision record). The founder decides whether a kill-switch action is pre-approved. The accounts readiness approval requires A-3.",
+        "board": [
+          "W-1150",
+          "W-966"
+        ],
+        "reality": "paper",
+        "paperOnly": "No runbook line, no measured time to off, no control that works without a deploy, and no founder pre-approval."
+      },
+      "status": "open",
+      "tier": "auth-and-progress-db (T1)",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/engineering/readiness/2026-10-16-accounts.md",
+        "company/decisions/2026-10-15-founder-f01-accounts.md"
+      ],
+      "opened": "2026-10-16",
+      "lastReviewed": "2026-10-16"
     }
   ]
 }

@@ -51,6 +51,19 @@ Score honestly. A risk is not lower because a board item exists. Only a working 
 
 On 2026-10-14 hq-engineer, design-engineer and rnd-engineer own no entry. That is a statement about today's evidence, not a clean bill. Their first tier-1 or tier-2 readiness record says whether they carry one.
 
+## Ruling on First Light's FL-02, FL-07, FL-08 and FL-09 (2026-10-16; W-1134, batch first-light/2026-10-16-round-1#4)
+
+ruled by: principal-engineer-ops · inputs: company/initiatives/first-light/status.json (`risks`), SPIKE-002 R3 (branch `accounts`, 2f5c500), AMD-001's status line, company/engineering/readiness/2026-10-15-amd001-c2-split.md, company/engineering/notes/2026-10-15-first-light-reestimate.md
+
+| Proposed | Ruling | Register | Score | Why |
+|---|---|---|---|---|
+| FL-02, dates 4x4 | **Entered, re-scored** | R-026 (new) | L4 **I3** = 12 | On 10-15 this was uncertainty in an estimate that did not exist yet. Now the re-estimate is on disk and gives about 25% at full scope, which is a measured likely miss, so it is entered. Impact stays at 3. A slip delays one release, and the company keeps shipping. The impact-5 way date pressure fails, a thin or skipped review, is R-020, and I do not count it twice. Re-score on W-1121. |
+| FL-07, A1 2x4 | **Accepted** | R-021 | **L2** I4 = 8 (was L4) | The mechanism is in code: (c2)+R1 is applied on main (0d76ae1 per AMD-001's status line, and the split files are on disk). Only the deploy, the audit and the Q5 re-measure remain. R-021 is principal-engineer's area, not mine, so I may lower it. The next ops review confirms or reverts the re-score. It goes back to L4 if the post-deploy re-measure misses Q5.3 or Q5.4. |
+| FL-08, social without moderator 4x3 | **Re-framed** | R-027 (new) | L2 I5 = 10 | The 4x3 reading is scope loss (no moderator means no swap). That is founder decision F-26 with its own if-it-slips line, so it stays in status.json and the inbox. The register carries the harm: a social path reaches learners with nobody to act on a report. The guards (P4.3, the founder record) are paper. Proposer may contest at the ops review. |
+| FL-09, kill switch needs a redeploy (3x3) | **Entered, re-scored** | R-028 (new) | L2 **I4** = 8 | SPIKE-002 R3 plus the founder-approval rule: time to off is founder availability plus a build. L2 because nothing real is behind accounts today, and it rises to L3 at go-live (W-1142). I4 because a learner-data fault stays live for that whole window. It is a readiness gap (A-3) in 2026-10-16-accounts.md. |
+
+In status.json, head-of-strategic-initiatives replaces FL-02, FL-08 and FL-09 with R-026, R-027 and R-028 (her file; I did not edit it). `lastReviewed` on the three new entries is their opening date. R-021's stays 2026-10-15 until an ops review.
+
 ## Ruling on First Light's proposed risks and the 10-15 pre-mortems (2026-10-15; W-918, W-923)
 
 ruled by: principal-engineer-ops · inputs: company/initiatives/first-light/status.json (`risks`, FL-01 to FL-07), company/initiatives/first-light/risk-rescore.md (2026-10-15), company/ceo-office/2026-10-14-project-review-1-premortems.md (first-light, behavioral-econ)
