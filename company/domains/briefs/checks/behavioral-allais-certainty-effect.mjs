@@ -82,7 +82,7 @@ function reveal(p1, p2, withHeld = false) {
   const lead = name[p1] === name[p2] ? `You took ${name[p1]} both times.` : `You took ${name[p1]}, then ${name[p2]}.`;
   if (p1[1] === p2[1]) {
     const fit = p1 === "1A" ? "a cautious one, for which $1M is worth more than 10/11 of $5M" : "a bolder one, for which $5M is worth more than 1.1 times $1M";
-    return `${lead} ${common} You answered it the same way both times, so one utility function fits your two choices: ${fit}. The sure $1M, then the 10% chance of $5M, would fit none: that is the certainty effect. ${stops}`;
+    return `${lead} ${common} You answered it the same way both times, so one utility function fits both: ${fit}. The sure $1M, then the 10% chance, would fit none: the certainty effect. ${stops}`;
   }
   // The held type (d) line goes in the mixed branches only (one held sentence per reveal; G1 condition 2).
   const label = p1 === "1A"
@@ -94,7 +94,10 @@ console.log("\nReveal branches (every combination the controls allow)");
 for (const p1 of ["1A", "1B"]) for (const p2 of ["2A", "2B"]) {
   const t = reveal(p1, p2);
   const consistentByModel = p1[1] === p2[1]; // same letter in both pairs: the sweep above found a u for both such pairs and none for a mixed pair
-  ok(`reveal ${p1}+${p2} <= 90 words, verdict matches the derivation`, words(t) <= 90 && (/no utility function fits/i.test(t) === !consistentByModel), `${words(t)} words: "${t}"`);
+  // Rule 7 (cm-behavioral, 2026-10-16 r4): the 90 includes the kit verdict; the longer one is 'Not quite: it was "<answer>".'
+  // The matched branches measured 95 and 93 with it, so their naming sentence was shortened (brief 1, r4 decision).
+  const VERDICT = Math.max(words("Your prediction held."), words(`Not quite: it was "${predict.options[predict.answer]}".`));
+  ok(`reveal ${p1}+${p2}: measured <= 90 with the kit verdict (${VERDICT} words), verdict matches the derivation`, words(t) + VERDICT <= 90 && (/no utility function fits/i.test(t) === !consistentByModel), `${words(t)} words: "${t}"`);
 }
 
 // ---------- Held type (d) line (one only; D4 / G1); declared above the reveal function's use ----------

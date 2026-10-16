@@ -74,19 +74,26 @@ ok("(a) averages over the guess range are 'about 35', targets 'about 23'",
   `guess 0: average ${r1(avg(0))}, target ${r1(target(0))}; guess 100: average ${r1(avg(100))}, target ${r1(target(100))}`);
 ok("(a) 0, the equilibrium, loses to this crowd", closer(0) > 0, `with a guess of 0 the target is ${r1(target(0))}; ${closer(0)} simulated guesses are closer`);
 
-// ---------- Predict ----------
+// ---------- Predict (reworked 2026-10-16, cm-behavioral, W-1306; learner r1 findings 1-3) ----------
+// No gloss names a position ("between the other two") or the crowd's average ("the crowd's average": with the hook's
+// two-thirds rule that let a learner compute 23 without giving up "0 wins"). "Equilibrium" moves into the question,
+// so the learner who believes 0 wins is invited to say so. The right option is not the middle one listed, and the
+// question no longer says "your guess included" before the learner has set a guess (the stage's rule line says
+// "everyone's average").
 const predict = {
-  q: "Against this simulated crowd, which guess lands closest to two thirds of the average, your guess included?",
-  options: [["0, the equilibrium guess", 0], ["About 23, between the other two", 23], ["About 35, the crowd's average", 35]],
-  answer: 1,
+  q: "0 is this game's equilibrium guess. Against this simulated crowd, which guess lands closest to the target?",
+  options: [["0", 0], ["About 35", 35], ["About 23", 23]],
+  answer: 2,
 };
 ok("predict question <= 25 words", words(predict.q) <= 25, `${words(predict.q)} words: "${predict.q}"`);
 const optMiss = predict.options.map(([, g]) => miss(g));
 ok("predict answer: 'about 23' misses least when played", optMiss.indexOf(Math.min(...optMiss)) === predict.answer,
   predict.options.map(([t, g], i) => `${t}: target ${r1(target(g))}, miss ${r1(optMiss[i])}`).join("; "));
-// Equal precision (cm-behavioral, 2026-10-16, W-1267): every option carries a gloss; B's says only where it sits.
-ok("predict options: each carries a gloss, and B's gloss is true", predict.options.every(([t]) => /, /.test(t)) && predict.options[0][1] < predict.options[1][1] && predict.options[1][1] < predict.options[2][1], predict.options.map(([t]) => `"${t}"`).join(" / "));
+ok("predict options: no gloss, so none names a position or the crowd's average; the answer is not listed in the middle",
+  predict.options.every(([t]) => !/,|between|average|equilibrium/.test(t)) && predict.answer !== 1, predict.options.map(([t]) => `"${t}"`).join(" / "));
 ok("predict options are not the 33 / 22 / 0 ladder", !predict.options.some(([, g]) => g === 33 || g === 22), predict.options.map(([, g]) => g).join(" / "));
+// Rule 7: the reveal's 90 includes the kit verdict; the longer one is 'Not quite: it was "<answer>".'
+const VERDICT = Math.max(words("Your prediction held."), words(`Not quite: it was "${predict.options[predict.answer][0]}".`));
 
 // ---------- Stage text ----------
 const stageText = `Simulated crowd, seed ${SEED}: 30% guess at random, 40% near 33 (one step), 30% near 22 (two steps). Target: two thirds of everyone's average.`;
@@ -115,23 +122,28 @@ for (let g = 0; g <= 100; g++) {
   if (!nums.every((n) => allowed.has(n)) || words(t) > 90 || !/simulated/.test(t) || /\bpeople\b/i.test(t)) allOk = false;
   if ([0, 23, 33, 50, 100].includes(g)) console.log(`  guess ${g} (${words(t)} words): "${t}"`);
 }
-ok("every reveal: <= 90 words, numbers from this script, says 'simulated', never 'people'", allOk, `longest ${longest} words`);
+ok("every reveal: measured <= 90 with the kit verdict, numbers from this script, says 'simulated', never 'people'", allOk && longest + VERDICT <= 90, `longest ${longest} words + verdict ${VERDICT} = ${longest + VERDICT}`);
 const winners = [...Array(101).keys()].filter((g) => closer(g) === 0);
 console.log(`  guesses no simulated guess beats: ${winners.join(", ")}`);
 
 // ---------- Held type (d) line (one only; G1). Not in the published text until the fact-checker opens it ----------
 const held = "In one online sample of 250 real players, first guesses averaged 36.4, far above 0.";
-let worst = 0; for (let g = 0; g <= 100; g++) worst = Math.max(worst, words(reveal(g, held)));
+let worst = 0; for (let g = 0; g <= 100; g++) worst = Math.max(worst, words(reveal(g, held)) + VERDICT);
 console.log("\nHeld type (d) line: W-902 row 'Beauty contest / level-k' (robust), Pantelis & Kennedy 2017, PMC5303671, opened by research-lead, not by the fact-checker");
-ok("reveal with the held line stays within 90 words", worst <= 90, `held: "${held}" (${words(held)} words); longest reveal with it: ${worst} words. It goes before "Where it stops". Fallback when not checkable: cut; nothing replaces it`);
+ok("held line: measured reveal with it, verdict included (stays cut under rule 6 either way)", worst > 0, `held: "${held}" (${words(held)} words); longest reveal with it: ${worst} words. It goes before "Where it stops". Fallback when not checkable: cut; nothing replaces it`);
 
-// ---------- Transfer recall ----------
-// "A simulated crowd of 100 averages 60; the target is half the average, your guess included."
+// ---------- Transfer recall (reworked 2026-10-16, W-1306: no position gloss; answer not listed in the middle) ----------
+// "A simulated crowd of 100 averages 60; the target is half of everyone's average, yours included."
 const S2 = 6000, T2 = (g) => (S2 + g) / (N + 1) / 2, m2 = (g) => Math.abs(g - T2(g));
-const recOpts = [0, 30, 60];
-const rm = recOpts.map(m2);
-ok("recall: half-the-average game, crowd averages 60: 'about 30' misses least", rm.indexOf(Math.min(...rm)) === 1,
-  recOpts.map((g, i) => `${g}: miss ${rm[i].toFixed(1)}`).join("; ") + `. Options: "0, the equilibrium guess" / "About 30, between the other two" / "About 60, the crowd's average". Answer: "About 30, between the other two"`);
+const recall = {
+  q: "A simulated crowd of 100 averages 60. The target is half of everyone's average, yours included. 0 is the equilibrium guess. Which guess lands closest?",
+  options: [["0", 0], ["About 60", 60], ["About 30", 30]],
+  answer: 2,
+};
+const rm = recall.options.map(([, g]) => m2(g));
+ok("recall: half-the-average game, crowd averages 60: 'about 30' misses least", rm.indexOf(Math.min(...rm)) === recall.answer,
+  recall.options.map(([t], i) => `${t}: miss ${rm[i].toFixed(1)}`).join("; ") + `. Answer: "${recall.options[recall.answer][0]}"`);
+ok("recall: no gloss; answer not listed in the middle; question <= 30 words", recall.options.every(([t]) => !/,|between|average/.test(t)) && recall.answer !== 1 && words(recall.q) <= 30, `${words(recall.q)} words: "${recall.q}"`);
 
 console.log(`\n${fail ? `${fail} check(s) FAILED` : "all checks pass"}`);
 process.exit(fail ? 1 : 0);
