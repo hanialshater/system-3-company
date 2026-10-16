@@ -4,8 +4,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { ROOMS, FLOORS, stairsTo } from "../../src/lib/hq.ts";
-import { SUBAREAS } from "../../tools/org/roles.mjs";
+import { ROOMS, FLOORS, ROOM_ALIASES, stairsTo } from "../../src/lib/hq.ts";
+import { HOME } from "../../src/app/hq/people.ts";
+import { ROOM_BY_ROLE, roomFor } from "../../tools/events.mjs";
+import { MANY } from "../../tools/org/people.mjs";
+import { SUBAREAS, roles } from "../../tools/org/roles.mjs";
 
 const byId = new Map(ROOMS.map((r) => [r.id, r]));
 const floorOf = (r) => r.floor ?? 1;
@@ -35,17 +38,29 @@ test("every category in content/domains.json has a full office, the same size an
     assert.equal(o.kind, "office", o.id);
     assert.deepEqual([o.w, o.h], [186, 236], `${o.id} is ${o.w}x${o.h}`);
   }
-  for (const d of ["books", "big-ideas", "history", "lifehacks", "behavioral"]) assert.equal(floorOf(byId.get(`cm-${d}`)), 6, `cm-${d} is not on floor 6`);
-  for (const d of domains.filter((d) => !["books", "big-ideas", "history", "lifehacks", "behavioral"].includes(d))) assert.equal(floorOf(byId.get(`cm-${d}`)), 3, `cm-${d} is not on floor 3`);
+  // F-40: seven categories on each of floors 3 and 4, split by neighbourhood.
+  const FLOOR4 = ["lifehacks", "economics", "behavioral", "geography", "history", "books", "big-ideas"];
+  for (const d of FLOOR4) assert.equal(floorOf(byId.get(`cm-${d}`)), 4, `cm-${d} is not on floor 4`);
+  for (const d of domains.filter((d) => !FLOOR4.includes(d))) assert.equal(floorOf(byId.get(`cm-${d}`)), 3, `cm-${d} is not on floor 3`);
 });
 
-test("stairs lead to a floor that exists, and floors 3 and 6 link both ways", () => {
+test("stairs lead to a floor that exists, floors 3 and 4 link both ways, and every floor 2 to 7 has stairs down to floor 1", () => {
   for (const r of ROOMS.filter((r) => r.id.startsWith("to-floor-"))) assert.ok(stairsTo(r.id), `${r.id} leads nowhere`);
+  assert.equal(stairsTo("to-floor-4"), 4);
+  assert.equal(floorOf(byId.get("to-floor-4")), 3);
+  assert.equal(stairsTo("to-floor-3-from-4"), 3);
+  assert.equal(floorOf(byId.get("to-floor-3-from-4")), 4);
   assert.equal(stairsTo("to-floor-6"), 6);
-  assert.equal(floorOf(byId.get("to-floor-6")), 3);
-  assert.equal(stairsTo("to-floor-3-from-6"), 3);
-  assert.equal(floorOf(byId.get("to-floor-3-from-6")), 6);
+  assert.equal(floorOf(byId.get("to-floor-6")), 1);
+  assert.equal(stairsTo("to-floor-6-from-2"), 6);
+  assert.equal(stairsTo("to-floor-2-from-6"), 2);
+  assert.ok(!byId.has("to-floor-3-from-6"), "to-floor-3-from-6 is retired");
+  for (const n of [2, 3, 4, 5, 6, 7]) {
+    const down = ROOMS.find((r) => floorOf(r) === n && stairsTo(r.id) === 1);
+    assert.ok(down, `floor ${n} has no stairs to floor 1`);
+  }
   assert.equal(stairsTo("cm-history"), undefined);
+  assert.ok(!FLOORS.includes(9), "floor 9 (System 3 Meta) is a note only, not drawn");
 });
 
 test("every category lead and strand manager has a home room that exists (people.ts and the event log agree)", async () => {
@@ -78,4 +93,39 @@ test("Marketing has floor 7: the VP's office is there, floors 1 and 7 link both 
   const people = fs.readFileSync(new URL("../../src/app/hq/people.ts", import.meta.url), "utf8");
   assert.ok(/"vp-marketing": "marketing"/.test(src), "tools/events.mjs has no room for vp-marketing");
   assert.ok(/"vp-marketing": "marketing"/.test(people), "people.ts has no home for vp-marketing");
+});
+
+// Seats, as Office.tsx draws them: 9 desks in a category office, 18 on the build floor, otherwise the standing grid.
+const seatsOf = (r) => (r.kind === "office" && r.id.startsWith("cm-") && r.h >= 200 ? 9 : r.id === "build-floor" ? 18 : Math.max(1, Math.floor((r.w - 10) / 52)) * Math.max(1, Math.floor((r.h - 28) / 46)));
+// The founder is not a dispatched role: the lobby is theirs.
+const seated = roles.filter((r) => r.id !== "founder");
+
+test("HOME (people.ts) and ROOM_BY_ROLE (tools/events.mjs) agree for every role in roles.mjs, and the room is drawn", () => {
+  for (const { id } of seated) {
+    const room = roomFor(id);
+    assert.ok(byId.has(room), `${id}: room ${room} is not drawn`);
+    if (HOME[id]) assert.equal(HOME[id], room, `${id}: HOME says ${HOME[id]}, ROOM_BY_ROLE says ${room}`);
+    else assert.ok(MANY.has(id), `${id} is a resident role with no HOME seat`);
+    assert.ok(ROOM_BY_ROLE[id] || id.startsWith("cm-"), `${id} falls to the chief-of-staff default`);
+  }
+  for (const id of Object.keys(HOME)) assert.ok(roles.some((r) => r.id === id), `HOME has unknown role ${id}`);
+});
+
+test("no room has more resident roles than drawn seats, and no floor holds more than 30 roles", () => {
+  const here = new Map();
+  const perFloor = new Map();
+  for (const { id } of seated) {
+    const room = HOME[id] ?? roomFor(id);
+    here.set(room, (here.get(room) ?? 0) + 1);
+    const f = floorOf(byId.get(room));
+    perFloor.set(f, (perFloor.get(f) ?? 0) + 1);
+  }
+  for (const [room, n] of here) assert.ok(n <= seatsOf(byId.get(room)), `${room} has ${n} residents for ${seatsOf(byId.get(room))} seats`);
+  for (const [f, n] of perFloor) assert.ok(n <= 30, `floor ${f} holds ${n} roles`);
+});
+
+test("every room id in the event log is drawn or aliased, and no alias points at a missing room", () => {
+  const log = fs.readFileSync(new URL("../../company/ops/events.jsonl", import.meta.url), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l).room);
+  for (const room of new Set(log)) assert.ok(byId.has(room) || byId.has(ROOM_ALIASES[room]), `events.jsonl room ${room} is on no floor`);
+  for (const target of Object.values(ROOM_ALIASES)) assert.ok(byId.has(target), `alias target ${target} is not drawn`);
 });
