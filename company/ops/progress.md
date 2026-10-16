@@ -8,6 +8,12 @@ who no longer exists: check what you rely on.
 **Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).
 **Believe:** high that the brief draws only allowed pictures and its answer (B) is true; medium that "Flip it over" reads well with no picture change (a design-review question). Citations stay unverified.
 **Next:** design-lead contact sheet for the mirror pictures; demo-builder W-1542 may start. **Blocked:** nothing.
+## 2026-10-16 · learner-evaluator (ncm-final-four) · borrowed-mind walks of the 4 NCM gap lessons
+
+**Changed:** walked same-picture-two-histories, price-tag-or-auction, worth-something-alone and the-swap-that-goes-in-circles (all v1, draft) from their meta.json learner boundaries, on a private build of 236737ff. Four records, each linked in its meta.json evidence.simulatedLearner (nothing else in meta.json touched): `company/reviews/<slug>/2026-10-16-learner-knows-*.md`. Verdicts: launch, launch, launch, revise.
+**Believe:** medium. The-swap-that-goes-in-circles: the reveal's takeaway ("choice models assume preferences are transitive") never says what transitive means; the objective and recall already gloss it as "ranked (transitive)", so the fix is text-only. The other three carry non-blocking notes (unkeyed red/green links and a giveaway option in same-picture; the "tag:" row label in price-tag; overlapping curve labels in worth-something-alone). Simulated learner only: not evidence that anyone learned.
+**Next:** demo-builder glosses "transitive" in the swap reveal (and decides on the group-majority sentence), then learner-evaluator re-walks it. cm-probability / cm-economics decide on moving the other three to review.
+**Blocked:** nothing.
 
 ## 2026-10-16 · chief-of-staff-ceo-office · W-1538 approval of the PM-authored knot items
 
