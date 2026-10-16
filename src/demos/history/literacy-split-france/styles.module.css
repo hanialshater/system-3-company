@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; gap: 6px; flex-wrap: nowrap; }
+.wrap :global(.readout) { min-width: 0; flex: 1 1 0; align-items: center; padding: 3px 6px; }
+.wrap :global(.readout-label) { text-align: center; text-transform: none; letter-spacing: 0; font-size: 0.72rem; white-space: nowrap; }
+.pic { flex-shrink: 0; }
+.pic :global(svg) { display: block; width: 100%; }
+.dept { stroke: var(--bg-2); stroke-width: 0.5; stroke-linejoin: round; }
+.region { fill: none; stroke: var(--fg); stroke-width: 1.8; stroke-linejoin: round; }
+.pick { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-linejoin: round; }
+.leader { stroke: var(--fg); stroke-width: 1; }
+.hatchLine { stroke: var(--muted); stroke-width: 1.2; }
+.swatch { stroke: var(--line); stroke-width: 0.6; }
+.legend { font-size: 12px; fill: var(--fg); }
+.legendTitle { font-size: 12px; font-weight: 700; fill: var(--fg); }
+.name { font-size: 12px; font-weight: 800; fill: var(--fg); }
+.halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.proj { font-size: 12px; fill: var(--muted); }
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+.presets :global(.control) { padding: 6px 4px; line-height: 1.2; }
+.tap { min-height: 44px; }

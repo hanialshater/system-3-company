@@ -1,7 +1,7 @@
 {
   "slug": "breeze-is-not-extra-surface",
-  "title": "Airflow and surface are different",
-  "hook": "Same towel, same cool air. Does a breeze make it dry sooner?",
+  "title": "Does a breeze help a towel dry?",
+  "hook": "Cool day, wet towel on the line. Is a breeze any help?",
   "domain": "lifehacks",
   "concept": "drying-airflow",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c4",
-      "text": "Title: Airflow and surface are different Hook: Same towel, same cool air. Does a breeze make it dry sooner? Options: No: only warm air helps / Yes, about 2× sooner / Only if the breeze spreads it. Correct option: Yes, about 2× sooner.",
+      "text": "Title: Does a breeze help a towel dry? Hook: Cool day, wet towel on the line. Is a breeze any help? Question: Same towel, same cool air. Does a breeze make it dry sooner? Options: No: only warm air helps / Yes: moving air carries the damp away / Only if the breeze spreads it out. Correct option: Yes: moving air carries the damp away.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'flux' at the starting input 1; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed option states a size the world does not fix. Question: 'Same towel, same cool air. Does a breeze make it dry sooner?' Key: 'Yes, about 2× sooner'. The direction is supported (OpenStax §14.6: air flow replaces saturated air and evaporation continues). The '2×' is not a property of breezes: it is the card's own setting (flux 2 against 1, home-lessons.ts values [2,1]), the same at every slider value, and c2 says it is 'an illustrative setting, not a measured benefit from any fan'. The question does not say 'in this model', so the learner is marked right for a number nothing measures. Real gains depend on air speed and on how wet the cloth still is. Fix (demo-builder, with cm-lifehacks for the prediction line): scope the question to the model, e.g. 'In this model a breeze sets the air to 2, still air to 1. Same towel: does it dry sooner?', or make the key 'Yes, sooner' with the 2× shown only on the stage. Re-check after the change.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'flux' at the starting input 1; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed option states a size the world does not fix. Question: 'Same towel, same cool air. Does a breeze make it dry sooner?' Key: 'Yes, about 2× sooner'. The direction is supported (OpenStax §14.6: air flow replaces saturated air and evaporation continues). The '2×' is not a property of breezes: it is the card's own setting (flux 2 against 1, home-lessons.ts values [2,1]), the same at every slider value, and c2 says it is 'an illustrative setting, not a measured benefit from any fan'. The question does not say 'in this model', so the learner is marked right for a number nothing measures. Real gains depend on air speed and on how wet the cloth still is. Fix (demo-builder, with cm-lifehacks for the prediction line): scope the question to the model, e.g. 'In this model a breeze sets the air to 2, still air to 1. Same towel: does it dry sooner?', or make the key 'Yes, sooner' with the 2× shown only on the stage. Re-check after the change. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, options, answer replaced (row \"breeze-is-not-extra-surface\"). Not checked by the builder. | Source added by demo-builder 2026-10-16 (B4): OpenStax College Physics 2e §14.6 (air flow replaces the saturated air by dry air and evaporation continues), the support for the keyed outcome.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.c5",
@@ -68,12 +66,10 @@
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.recall",
-      "text": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement.",
+      "text": "Drying speed = open area × air setting. The fan changes the air setting, not the area, so the speed doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is the card's setting, not a fan measurement.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Rate = area × flux; flux ×2 → rate ×2, area fixed 1.5 m² (node). Matches c1/c3; doubling flagged illustrative, as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card: area stays 1.5 m², rate doubles; keyed option 1 is the only right one. Matches the model and keeps the 'illustrative' caveat. 1.5 m² is on the stage's slider (1–3).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Rate = area × flux; flux ×2 → rate ×2, area fixed 1.5 m² (node). Matches c1/c3; doubling flagged illustrative, as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card: area stays 1.5 m², rate doubles; keyed option 1 is the only right one. Matches the model and keeps the 'illustrative' caveat. 1.5 m² is on the stage's slider (1–3). | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): recall question, options and why reworded without 'flux' / 'normalised gap' (W-1109). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.seen",
@@ -87,14 +83,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A towel exposes 1.5 m² in still air. A fan doubles the model flux. What happens in the model?",
+    "question": "A towel has 1.5 m² open to still air. A fan doubles the model's air setting. What happens in the model?",
     "options": [
-      "Area becomes 3 m² and the rate doubles",
-      "Area stays 1.5 m² and the rate doubles",
-      "Area stays 1.5 m² and the rate is unchanged"
+      "Area becomes 3 m² and the drying speed doubles",
+      "Area stays 1.5 m² and the drying speed doubles",
+      "Area stays 1.5 m² and the drying speed is unchanged"
     ],
     "answer": 1,
-    "why": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement."
+    "why": "Drying speed = open area × air setting. The fan changes the air setting, not the area, so the speed doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is the card's setting, not a fan measurement."
   },
   "evidence": {
     "qa": [

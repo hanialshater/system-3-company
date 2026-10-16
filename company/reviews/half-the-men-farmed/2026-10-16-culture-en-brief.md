@@ -49,3 +49,27 @@ Reader I took (P3): a descendant of enslaved Americans; a Native American reader
 ## Objections
 - Disagreement with the brief's own "true 1850 farm share was higher": it is the note's low-confidence inference, and I will not pass an unmeasured direction as the lesson's last word. Recorded for cm-history to answer in the brief.
 - Carried: file-name objection (see the khanates record).
+
+## Addendum 2026-10-16
+
+recorded by: cultural-reviewer (Amira) · brief as read: company/domains/briefs/history.md#3 at a09a726 · provenance note present (company/research/notes/2026-10-15-provenance-half-the-men-farmed.md)
+Method: I compared each change above with the brief's body text first and read cm-history's "Cultural changes answered" list afterwards, for the objection answer. No builder notes exist (unbuilt).
+
+| # | Requested | In the brief now | Result |
+|---|---|---|---|
+| 1 | Title and hook carry "with a recorded job" | Title "Half of the men with recorded jobs farmed" (mine had "Half of the men with recorded jobs farmed."); hook carries it | made |
+| 2 | 1850 readout "1850: 51% of men with a recorded job (free men)", 11 px or more | Stated, with the size | made |
+| 3 | Reveal as drafted | Word for word (84 words by script; my "about 83" was an estimate, inside the 90 cap) | made |
+| 4 | Drop "(52,043 women)" from the reveal; keep as a data claim | Dropped; claim (2), "not quoted" | made. The women finding is carried by "recorded jobs almost only for free men"; acceptable, one limit sentence. |
+| 5 | Claim 4 from held to sourced; "most of whom worked on farms" and "the true share was higher" cut | Claim (4) sourced to PMC13166968 and PMC12629631, with fallbacks; both phrases cut | made |
+| 6 | Recall item kept | Unchanged | made |
+| Objection | Against "the true 1850 farm share was higher" | Accepted; the clause is cut and can return only as a new claim through me | answered |
+| N2 | "Indians not taxed" named as a second omission | In the reveal and claim (4) with its own fallback | made |
+
+Class added: none. No change outside my record.
+
+Slug question (cm-history left it open to me): **no rename required.** The slug is in the URL (see the khanates addendum), so I applied the same test: does it carry a word my record bars, or a claim the page then contradicts? `half-the-men-farmed` drops "with a recorded job", which I did require in the title; but it is not a judgment word, the page it opens states the qualifier in its title, hook, readout and reveal, and a slug is a label, not a sentence. If a rename is free before release, `half-of-men-with-jobs-farmed-1850` or similar is better but I do not ask for it.
+
+Stage-B watch (not a gate now): the "Count farmers, not the share" preset switches bars to millions of men. The 1850 bar in that view is free men with a recorded job too; its readout must keep "(free men)" and no bar or icon may count enslaved people. I read this on the walkthrough.
+
+Addendum verdict: go.

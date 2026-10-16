@@ -1,0 +1,128 @@
+{
+  "slug": "saved-or-die-same-600",
+  "title": "Saved or die: two wordings",
+  "hook": "Pick a programme to fight an outbreak, then pick again when it is said in deaths.",
+  "domain": "behavioral",
+  "concept": "gain-loss-framing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a sure thing and a 1-in-3 chance are",
+      "optionally, that losses can feel larger than gains (books:tfs-loss-aversion, a prerequisite only, not re-taught)"
+    ],
+    "doesNotKnow": [
+      "that \"200 will be saved\" and \"400 will die\" out of 600 are the same outcome, so any rule that judges outcomes must answer both wordings the same way"
+    ]
+  },
+  "misconception": "A sure 200 saved and a sure 400 dead are different offers, so taking the sure thing in one wording and the gamble in the other is consistent.",
+  "objective": "The learner can explain that the saved and die wordings describe the same outcomes (200 live and 400 die for sure; 1 in 3 all 600 live, 2 in 3 all die), so a rule that judges outcomes picks the sure option in both or the chance in both, and sure-for-gains with gamble-for-losses fits no such rule.",
+  "claims": [
+    {
+      "id": "behavioral.saved-or-die-same-600.c1",
+      "text": "The stage's options and their bars (600 cells each, filled = alive): saved wording '200 people will be saved' (200 live, 400 die, for sure) and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is'; die wording '400 people will die' (the same outcome as the first) and 'a 1-in-3 chance nobody dies, a 2-in-3 chance all 600 die' (the same as the second). With the toggle 'Say both in the same words' on, the die options read '200 people will be saved' and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is' in place. Reveal, every branch: 'In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.'",
+      "support": "derivation",
+      "source": "Brief 4 claim (1) and its declared stimulus (company/domains/briefs/behavioral.md §4); node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks 'option A-D text matches its outcomes', '(a) C has exactly A's outcomes', '(a) D has exactly B's outcomes', 'restatements are option A's and B's texts word for word'. Demo.tsx TEXT, RESTATE and BARS hold the same strings and outcomes. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c2",
+      "text": "Any rule that ranks options by their outcomes picks the sure option in both wordings or the chance in both, so someone judging by outcomes who picks the sure 200 saved must pick 'The sure 400 die' (predict answer).",
+      "support": "derivation",
+      "source": "Brief 4 claim (2): C has A's outcomes and D has B's, so any function of the outcome lists ranks A vs B as C vs D; the script also tries 31 outcome-based rules (u = x^a for a = 0.1-3.0, worst case, best case) and none picks A with D or B with C (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, checks '(a) every outcome-based rule tried' and 'predict answer follows from the derivation'). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c3",
+      "text": "The learner's own screen, conditional on the two choices: sure-then-chance or chance-then-sure: 'No model that judges only outcomes fits both of your choices: the wording moved you'; sure-sure or chance-chance: 'You answered the same offer the same way twice: a model that judges outcomes fits both of your choices.' Each branch opens 'You chose {first}, then {second}.' with the learner's two marked options.",
+      "support": "derivation",
+      "source": "Brief 4 claim (3); all four branches print in node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs ('Reveal branches') and Demo.tsx copies them (revealParas). The choices quoted are the ones still marked on the stage at the reveal (fixed once the toggle is first turned on). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c4",
+      "text": "Names: 'Sure for gains, gamble for losses: that pattern is called a framing effect' (sure-then-chance branch); 'the reverse of the pattern called a framing effect' (chance-then-sure branch).",
+      "support": "convention",
+      "source": "Brief 4 claim (4) (convention: the name of the pattern). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c5",
+      "text": "HELD (the one type (d) line; not rendered, HELD_LINE = false): 'Re-run in 2020 with 88,181 people in 47 countries, the wording shifted choices; how much varied by country.' It would go before 'Where it stops'.",
+      "support": "source",
+      "source": "W-902 row 'Framing' (robust; 'varied substantially across nations'; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Rachev et al. 2021, PLoS ONE, PMC8432807, opened in full by research-lead, not by the builder or the fact-checker. Tversky & Kahneman 1981 and Many Labs 1 (d = 0.60) only as reported by Rachev et al. 2021. Brief file rule 6: ships cut until a dated type (d) statement covers it, the fact-checker verifies it against the opened source, and the measured reveal recounts at 90 or less (with it the longest branch is 90 by script, over 90 with the kit's verdict). Fallback: cut; nothing replaces it.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c6",
+      "text": "Reveal, every branch: 'Where it stops: you saw both wordings back to back.'",
+      "support": "convention",
+      "source": "About this stage, not a claim that seeing both wordings weakens framing in other people (no source for that, W-902; charter rule 5). Brief 4 reveal text. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c7",
+      "text": "Stage caption: 'An outbreak is expected to kill 600 people. Pick a programme.' The outbreak is hypothetical and unnamed (no real disease, place or group).",
+      "support": "convention",
+      "source": "Brief 4, 'What the stage shows' and review route (standard: hypothetical, unnamed). The setting, not a fact about the world. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c8",
+      "text": "Title 'Saved or die: two wordings' and hook 'Pick a programme to fight an outbreak, then pick again when it is said in deaths.'",
+      "support": "convention",
+      "source": "Describes the stage's two rows (saved wording, then die wording). Builder's wording (the brief gives no title or hook); it pairs no option with another and names no answer. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.saved-or-die-same-600.c9",
+      "text": "Recall answer: '90% survive' and '10% die' describe the same outcome (900 of 1,000 live in both).",
+      "support": "derivation",
+      "source": "1,000 × 0.9 = 1,000 − 1,000 × 0.1 = 900 (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, recall check; brief 4 transfer recall). Builder statement, not self-verified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A treatment is described as '90% survive' or as '10% die'. Judged by outcomes, the two descriptions:",
+    "options": [
+      "Describe the same outcome",
+      "Differ: '10% die' is the worse one",
+      "Depend on the patient"
+    ],
+    "answer": 0,
+    "why": "Out of 1,000 patients, 900 live and 100 die under both descriptions. Judged by outcomes, a different wording of the same outcome cannot make one worse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:gain-loss-framing",
+    "also": [],
+    "prerequisites": [
+      "behavioral:reflection-effect",
+      "books:tfs-loss-aversion"
+    ],
+    "level": "intro",
+    "references": [],
+    "tags": [
+      "framing",
+      "reference dependence",
+      "choice under risk"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

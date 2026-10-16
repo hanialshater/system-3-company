@@ -13,12 +13,16 @@
 // recall A4 B4 C4, was B10 C2), brief 6 option "About half" -> "6 of 12" and brief 12's options all numbered
 // (demo standard: no option worded more precisely than the others); recall options in 7 and 10 evened the same way.
 // No number changed.
+// Amended 2026-10-16 by cm-history (Henrike), W-1204: briefs 3, 4, 5, 9 and 12 carry the cultural-reviewer's
+// stage-A changes (company/reviews/<slug>/2026-10-16-culture-en-brief.md); new data lines for 5 (loss before
+// the first below-zero reading), 9 (share including land use; slug renamed, W-1205) and 12 (point tests).
+// Brief 11 is NOT amended here: it waits on research-lead W-1206 (pin the current OWID series), then a re-script.
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import { ensure, pathOf, vegaFile, ROOT } from "./history-data.mjs";
 
 const require = createRequire(`${ROOT}package.json`);
-const { geoArea } = require("d3-geo");
+const { geoArea, geoContains } = require("d3-geo");
 const topo = require("topojson-client");
 
 const problems = ensure({ quiet: true });
@@ -138,10 +142,12 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
     question: "In the 1850 US census, about half of men with a recorded job farmed. In 2000, what share of men's recorded jobs were farm jobs?",
     options: ["About a quarter", "About a tenth", "About 1 in 50"], answer: 2, pick: (v) => nearest(share(2000).s, [25, 10, 2]),
     presets: ["1850", "1900", "1950", "2000", "Count farmers, not the share"],
-    reveal: "In 1850 about {s1850}% of men with a recorded job farmed; by 2000 it was {s2000}%. The number of farming men kept rising until {peak} and only then fell: the share dropped because other jobs grew far faster. Where it stops: the 1850 census recorded jobs almost only for free men ({women1850} women). Enslaved people, most of whom worked on farms, were not recorded with occupations, so the true 1850 farm share was higher.",
+    reveal: "In 1850 about {s1850}% of men with a recorded job farmed; by 2000 it was {s2000}%. The number of farming men kept rising until {peak} and only then fell: the share dropped because other jobs grew far faster. Where it stops: the 1850 census recorded jobs almost only for free men. Enslaved people, about one in seven Americans, were listed on a separate schedule with no occupation, and Native Americans living under their own governments were not counted, so these shares leave them out.",
     checks: (v) => {
       ok("3 shares (men)", v.s1850 === 51 && v.s2000 === 2, years.filter((y) => [1850, 1900, 1950, 2000].includes(y)).map((y) => `${y}: ${r(share(y).s, 1)}% (${fmt(share(y).f)} of ${fmt(share(y).t)})`).join("; "));
       ok("3 count peaks before it falls", peak[0] > 1850 && peak[0] < 1950, `farming men peak in ${peak[0]} at ${fmt(peak[1])}; 2000: ${fmt(share(2000).f)}`);
+      // "about one in seven" (13.8%, Nelson et al. 2025, PMC12629631) and the separate schedule (Hacker et al. 2025, PMC13166968)
+      // are source claims opened by research-lead, not data in the pin: the fact-checker marks them (cultural change 5).
       ok("3 women barely recorded in 1850", share(1850, "women").t < 100000, `women with a recorded job: 1850 ${fmt(share(1850, "women").t)}, 1900 ${fmt(share(1900, "women").t)}`);
       ok("3 all recorded workers agree", Math.abs(((share(1850).f + share(1850, "women").f) / (share(1850).t + share(1850, "women").t)) * 100 - 50.8) < 0.1, "both sexes 1850: 50.8%");
     },
@@ -160,10 +166,10 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   const v = { d: fmt(d), w: fmt(w), ratio: Math.round(d / w), peak: fmt(peak.rate), before: fmt(sum(first, "dis") / 12), after: fmt(sum(second, "dis") / 12) };
   brief(4, {
     slug: "disease-killed-eight-to-one", data: ["nightingale", "vega (crimea.json)"],
-    question: "British soldiers in the Crimean War, April 1854 to March 1856. For every man who died of wounds, how many died of disease?",
+    question: "British army hospitals in the East, April 1854 to March 1856: for every man who died of wounds, how many died of disease?",
     options: ["About 8", "About 3", "About 1"], answer: 0, pick: () => nearest(d / w, [8, 3, 1]),
     presets: ["Wounds only", "Add disease", "Rate per 1,000 a year", "Before and after March 1855"],
-    reveal: "Disease killed {d} men and wounds {w}: about {ratio} to one. In January 1855 disease deaths ran at an annual rate of {peak} per 1,000, more than the whole army in a year. From April 1855, after a sanitary commission arrived, they averaged {after} a month, against {before} in the first year. Where it stops: weather and army size changed too, so this chart alone cannot prove what caused the fall.",
+    reveal: "In British army hospitals in the East, disease killed {d} men and wounds {w}: about {ratio} to one. In January 1855 the rate, scaled to a year, was {peak} deaths per 1,000 men. From April 1855 they averaged {after} a month, against {before} in the first year. Where it stops: these are deaths recorded in the hospitals, in figures published to argue for army medical reform; weather and army size changed too, so they cannot show what caused the fall.",
     checks: (v) => {
       ok("4 totals", d === 14476 && w === 1758 && o === 1748, `disease ${fmt(d)}, wounds ${fmt(w)}, other ${fmt(o)}; disease ${r((100 * d) / (d + w + o), 1)}% of ${fmt(d + w + o)}`);
       ok("4 ratio", r(d / w, 2) === 8.23, `${r(d / w, 2)} disease deaths per wound death`);
@@ -188,14 +194,16 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   const v = { adv: fmt(start - moscow), ret: fmt(moscow - back), start: fmt(groupsStart), end: fmt(back + g3end), k: Math.round(groupsStart / (back + g3end)), frost: fmt(atFrost.n), fdate: `${Number(firstFrost.date.slice(3))} ${{ Oct: "October", Nov: "November", Dec: "December" }[firstFrost.date.slice(0, 3)]}` };
   brief(5, {
     slug: "most-lost-before-moscow", data: ["minard", "minardtemp"],
-    question: "Napoleon's main column crossed into Russia with 340,000 men and reached Moscow with 100,000. Did it lose more men advancing or retreating?",
-    options: ["Retreating, in winter", "Advancing, before winter", "About the same"], answer: 1, pick: () => (start - moscow > (moscow - back) * 1.2 ? 1 : moscow - back > (start - moscow) * 1.2 ? 0 : 2),
-    presets: ["Advance to Moscow", "Retreat", "Minard's temperatures", "All three columns"],
-    reveal: "The main column lost {adv} men on the way to Moscow and {ret} on the way back. By the first frost on Minard's chart, {fdate}, only {frost} were left: winter finished an army that was already mostly gone. Of {start} men in all three columns, {end} came back, about 1 in {k}. Where it stops: these are Minard's figures, and \"lost\" counts deaths, desertion, capture and men left behind in garrisons alike.",
+    question: "On Minard's map, the main column crossing into Russia had 340,000 men and reached Moscow with 100,000. Did it lose more men advancing or retreating?",
+    options: ["Retreating, after Minard's first below-zero reading", "Advancing, before Minard's first below-zero reading", "About the same"], answer: 1, pick: () => (start - moscow > (moscow - back) * 1.2 ? 1 : moscow - back > (start - moscow) * 1.2 ? 0 : 2),
+    presets: ["Advance to Moscow", "Retreat", "Minard's temperatures"],
+    reveal: "The main column lost {adv} men on the way to Moscow and {ret} on the way back. At the first below-zero reading on Minard's chart, {fdate}, {frost} were left: most of the loss came before that reading. Where it stops: these are Minard's figures for one army; they count survivors, not how men were lost, and leave out Russian losses.",
     checks: (v) => {
       ok("5 main column", start === 340000 && moscow === 100000 && back === 4000, `${fmt(start)} -> ${fmt(moscow)} at Moscow -> ${fmt(back)} back`);
       ok("5 advance vs retreat", start - moscow === 240000 && moscow - back === 96000, `advance ${v.adv}, retreat ${v.ret} (answer: advancing)`);
       ok("5 first frost", firstFrost.date === "Nov09" && atFrost.n === 37000, `first reading below zero: ${firstFrost.t} on ${firstFrost.date} at ${firstFrost.lon} E; main column at ${atFrost.lon} E: ${fmt(atFrost.n)} (${r((100 * (start - atFrost.n)) / start, 0)}% of the start already lost)`);
+      ok("5 most of the loss came before the first below-zero reading", start - atFrost.n > 2 * (atFrost.n - back), `lost before ${fmt(start - atFrost.n)} of ${fmt(start - back)} (${r((100 * (start - atFrost.n)) / (start - back), 0)}%); after ${fmt(atFrost.n - back)}`);
+      // Kept as a data line only: the "All three columns" preset and its 422,000 / 10,000 / 1 in 42 are cut (cultural change 4).
       ok("5 all columns", groupsStart === 422000 && back + g3end === 10000, `start ${v.start} (groups 1-3), back ${v.end} (group 1 ${fmt(back)} + group 3 ${fmt(g3end)}): 1 in ${r(groupsStart / (back + g3end), 1)}`);
     },
     recall: { q: "A hiking group loses 6 of 10 members before the storm and 3 more during it. What does 'the storm wrecked the trip' miss?", options: ["Nothing", "The storm was mild", "Most losses came before the storm"], answer: 2, pick: () => (6 > 3 ? 2 : 0) },
@@ -278,17 +286,21 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   const at = (c, y) => Number(C.find((x) => x.country === c && x.year === String(y))?.co2 ?? NaN);
   const sh = (c, y) => (100 * at(c, y)) / at("World", y);
   const rank = (y) => C.filter((x) => x.year === String(y) && /^[A-Z]{3}$/.test(x.iso_code)).map((x) => [x.country, Number(x.co2)]).sort((a, b) => b[1] - a[1]);
-  const v = { uk: Math.round(sh("United Kingdom", 1850)), uk1900: Math.round(sh("United Kingdom", 1900)), g: Math.round(at("World", 1900) / at("World", 1850)) };
+  const luc = (c, y) => Number(C.find((x) => x.country === c && x.year === String(y))?.co2_including_luc ?? NaN);
+  const shLuc = (100 * luc("United Kingdom", 1850)) / luc("World", 1850);
+  const v = { lucmax: Math.ceil(shLuc), uk: Math.round(sh("United Kingdom", 1850)), uk1900: Math.round(sh("United Kingdom", 1900)), g: Math.round(at("World", 1900) / at("World", 1850)) };
   brief(9, {
-    slug: "britain-made-most-co2-in-1850", data: ["co2"],
-    question: "In 1850, what share of the world's carbon dioxide from burning fossil fuels came from Britain?",
+    slug: "britain-made-most-fossil-co2-in-1850", data: ["co2"],
+    question: "In 1850, what share of the world's carbon dioxide from burning fossil fuels came from the United Kingdom?",
     options: ["About 5%", "About 25%", "About 60%"], answer: 2, pick: () => nearest(sh("United Kingdom", 1850), [5, 25, 60]),
     presets: ["1800", "1850", "1900", "1950", "Tonnes, not shares"],
-    reveal: "In 1850 Britain produced {uk}% of the world's fossil-fuel CO2. By 1900 its share had fallen to {uk1900}% as the United States, Germany and others burned more coal, and world emissions had grown {g} times. A falling share can hide a rising total. Where it stops: these figures are rebuilt from records of coal and other fuels, and early years are the roughest.",
+    reveal: "In 1850 the United Kingdom produced {uk}% of the world's fossil-fuel CO2. By 1900 its share had fallen to {uk1900}% as the United States, Germany and others burned more coal, and world emissions had grown {g} times. A falling share can hide a rising total. Where it stops: this counts fuel burned in each country, not land clearing; counting land cleared for farms too, the United Kingdom's 1850 share was under {lucmax}%.",
     checks: (v) => {
       ok("9 1850 share", v.uk === 62, `UK ${r(at("United Kingdom", 1850), 1)} of world ${r(at("World", 1850), 1)} Mt = ${r(sh("United Kingdom", 1850), 1)}%; top five ${rank(1850).slice(0, 5).map(([c, x]) => `${c} ${r((100 * x) / at("World", 1850), 1)}%`).join(", ")}`);
       ok("9 1800 and 1900", Math.round(sh("United Kingdom", 1800)) === 96 && v.uk1900 === 21 && rank(1900)[0][0] === "United States", `1800 ${r(sh("United Kingdom", 1800), 1)}%; 1900 ${r(sh("United Kingdom", 1900), 1)}% (largest: ${rank(1900)[0][0]} ${r((100 * rank(1900)[0][1]) / at("World", 1900), 1)}%)`);
       ok("9 1950", Number.isFinite(sh("United Kingdom", 1950)), `UK ${r(sh("United Kingdom", 1950), 1)}%; world 1850 -> 1900 x${r(at("World", 1900) / at("World", 1850), 1)}`);
+      ok("9 most of fossil CO2 (slug, W-1205)", sh("United Kingdom", 1850) > 50, `UK ${r(sh("United Kingdom", 1850), 1)}% of fossil CO2 in 1850: "most" holds on fossil CO2 only`);
+      ok("9 share including land use (limit sentence)", shLuc < 5 && v.lucmax === 5, `co2_including_luc 1850: UK ${r(luc("United Kingdom", 1850), 1)} of world ${r(luc("World", 1850), 1)} Mt = ${r(shLuc, 1)}% (under ${v.lucmax}%)`);
       ok("9 tonnes rise while share falls", at("United Kingdom", 1900) > at("United Kingdom", 1850), `UK ${r(at("United Kingdom", 1850), 0)} -> ${r(at("United Kingdom", 1900), 0)} Mt`);
     },
     recall: { q: "One town makes 9 of 10 bicycles in a region. Fifty years later it makes twice as many, but the region makes ten times as many. Its share?", options: ["Still about 90%", "About 18%", "About 45%"], answer: 1, pick: () => nearest((9 * 2) / (10 * 10) * 100, [90, 18, 45]) },
@@ -381,14 +393,19 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
     slug: "khanates-outsize-russia", data: ["basemap1279", "necountries", "neland"],
     question: "Russia, today's largest country, covers about 1 in {ru8} of Earth's land outside Antarctica. How did the Mongol khanates of 1279 compare?",
     options: ["About half of Russia", "About 1.4 times Russia", "About 3 times Russia"], answer: 1, pick: () => nearest(aCore / aRu, [0.5, 1.4, 3]),
-    presets: ["The four khanates, 1279", "Add states that paid tribute", "Russia today", "How precise are these borders?"],
-    reveal: "On this 1279 map the four Mongol khanates cover about {core} million km², {r} times today's Russia, or {rv} times if you count the states that paid them tribute. Which lands count as the empire is a choice the mapmaker made, and every border on this 1279 map is marked approximate. Where it stops: the map's own makers call it work in progress, so treat these areas as rough.",
+    presets: ["The four khanates, 1279", "Add the other lands this map assigns to them", "Russia today", "How precise are these borders?"],
+    reveal: "On this 1279 map the four Mongol khanates cover about {core} million km², {r} times today's Russia, or {rv} times with the other lands this map assigns to them. Which lands count as the empire is a choice the mapmaker made, and every border here is marked approximate. Where it stops: this is a modern work-in-progress map, not a record from 1279, and it does not show who lived there.",
     checks: (v) => {
       ok("12 khanates", core.length === 4 && r(aCore / 1e6, 1) === 22.9, core.map((f) => `${f.properties.NAME} ${r(area(f) / 1e6, 2)}`).join("; ") + ` = ${r(aCore / 1e6, 2)} million km2`);
       ok("12 tributaries", vassals.length === 4, vassals.map((f) => `${f.properties.NAME} ${r(area(f) / 1e6, 2)}`).join("; ") + ` (all ${r(aAll / 1e6, 2)})`);
       ok("12 Russia today", r(aRu / 1e6, 1) >= 16.5 && r(aRu / 1e6, 1) <= 17.2, `Natural Earth 1:50m Russia ${r(aRu / 1e6, 2)} million km2 = ${r((100 * aRu) / aLand, 1)}% of land outside Antarctica (${r(aLand / 1e6, 1)} million): 1 in ${r(aLand / aRu, 1)}`);
       ok("12 ratios", v.r === 1.4 && v.rv === 1.6, `khanates / Russia ${r(aCore / aRu, 2)}; with tributaries ${r(aAll / aRu, 2)}; khanates ${r((100 * aCore) / aLand, 1)}% of land outside Antarctica`);
       ok("12 precision", mong.every((f) => f.properties.BORDERPRECISION === 1), "every Mongol polygon has BORDERPRECISION 1 (approximate)");
+      const gk = core.find((f) => f.properties.NAME === "Great Khanate");
+      const PK = { Seoul: [126.98, 37.57], Pyongyang: [125.75, 39.03], Busan: [129.07, 35.18], Hangzhou: [120.15, 30.27], Fuzhou: [119.3, 26.08], Guangzhou: [113.26, 23.13] };
+      ok("12 Great Khanate draws Korea and southern China (caption, change 4)", Object.values(PK).every((p) => geoContains(gk, p)), `inside the Great Khanate polygon: ${Object.entries(PK).map(([k, p]) => `${k} ${geoContains(gk, p) ? "yes" : "no"}`).join(", ")}`);
+      const PR = { Simferopol: [34.1, 44.95], Sevastopol: [33.52, 44.6], Iturup: [147.9, 45.1], Kunashir: [145.9, 44.1], Shikotan: [146.75, 43.8] };
+      ok("12 Russia outline includes Crimea and the southern Kurils (label, change 1)", Object.values(PR).every((p) => geoContains(ru, p)), `inside Natural Earth 1:50m Russia: ${Object.entries(PR).map(([k, p]) => `${k} ${geoContains(ru, p) ? "yes" : "no"}`).join(", ")}; that these areas are disputed today is a source claim, not data (fact-checker)`);
       ok("12 equal-area", true, "areas on the sphere (d3-geo geoArea, R = 6,371 km); the stage must use an equal-area projection (geography:equal-area-vs-conformal)");
     },
     recall: { q: "Two maps of the same empire differ by a third in area. Both are carefully drawn. What most likely differs?", options: ["Which lands each counts as part of the empire", "One is wrong", "The size of the Earth"], answer: 0, pick: () => 0 },

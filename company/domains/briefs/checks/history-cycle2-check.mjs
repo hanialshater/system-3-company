@@ -331,7 +331,11 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
 // ---------------------------------------------------------------- 23. Literacy across France in the 1830s (Guerry; today's outlines)
 {
   const avg = (rs) => mean(rs.map((x) => x.lit));
-  const ne = G.filter((x) => x.reg === "N" || x.reg === "E"), swc = G.filter((x) => "SWC".includes(x.reg));
+  // Fixed 2026-10-16 by cm-history (W-1276): was "SWC".includes(x.reg), which also matched Corse's empty Region
+  // ("SWC".includes("") is true), giving 52 departments at 28.8%. Guerry assigns Corse no region: it is in neither
+  // group, and only in the mean of 86. Found by demo-builder-h23 (company/reviews/literacy-split-france/build.md).
+  const ne = G.filter((x) => ["N", "E"].includes(x.reg)), swc = G.filter((x) => ["S", "W", "C"].includes(x.reg));
+  const noReg = G.filter((x) => !["N", "E", "S", "W", "C"].includes(x.reg));
   const byReg = Object.fromEntries("NESWC".split("").map((k) => [k, r(avg(G.filter((x) => x.reg === k)), 1)]));
   const hi = G.reduce((a, x) => (x.lit > a.lit ? x : a)), lo = G.reduce((a, x) => (x.lit < a.lit ? x : a));
   const seine = G.find((x) => x.name === "Seine");
@@ -350,7 +354,8 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
     presets: ["North and east", "South, west and centre", "Paris (Seine)", "Most and least literate"],
     reveal: "In Guerry's north and east, departments averaged {ne}% of conscripts who could read and write; in the south, west and centre, {swc}%. The extremes were {hi}, {hiL}%, and {lo}, {loL}%. An average of {all}% across departments hid two very different Frances. Where it stops: these are young men called up for the army, not everyone, and today's department outlines stand in for those of the 1830s.",
     checks: (v) => {
-      ok("23 regions", v.ne === 55 && v.swc === 29, `Guerry regions: ${Object.entries(byReg).map(([k, x]) => `${k} ${x}%`).join(", ")} (17 departments each); N+E ${r(avg(ne), 1)}%, S+W+C ${r(avg(swc), 1)}%`);
+      ok("23 regions", v.ne === 55 && v.swc === 28 && ne.length === 34 && swc.length === 51, `Guerry regions: ${Object.entries(byReg).map(([k, x]) => `${k} ${x}%`).join(", ")} (17 departments each); N+E ${r(avg(ne), 1)}% (${ne.length} departments), S+W+C ${r(avg(swc), 1)}% (${swc.length} departments)`);
+      ok("23 no region", noReg.length === 1 && noReg[0].name === "Corse", `departments with no Guerry region: ${noReg.map((x) => `${x.name} ${x.lit}%`).join(", ")} (in neither group; in the mean of 86 only)`);
       ok("23 average", v.all === 39 && G.length === 86, `mean across ${G.length} departments ${r(avg(G), 2)}% (an unweighted mean of departments, said so on the stage)`);
       ok("23 extremes", hi.lit === 74 && lo.lit === 12, `highest ${hi.name} ${hi.lit}%, lowest ${lo.name} ${lo.lit}%; Seine (Paris) ${seine.lit}%`);
       ok("23 outlines", unmatched.length === 0, `all 86 departments matched to today's codes (Seine -> 75, 92, 93, 94; Seine-et-Oise -> 78, 91, 95; Haut-Rhin -> 68, 90; Corse -> 2A, 2B); outlines with no 1830s value: ${noData.join(", ")} (drawn hatched, labelled "no value in Guerry's table")`);
@@ -362,6 +367,7 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
 }
 
 // ---------------------------------------------------------------- 24. Schooling and recorded crime in Guerry's France
+// Amended 2026-10-16 by cm-history, W-1204: the cultural-reviewer's two wording edits (company/reviews/schooling-and-crime-1830s/2026-10-16-culture-en-brief.md).
 {
   const srt = [...G].sort((a, b) => a.lit - b.lit), q = Math.floor(G.length / 4);
   const lo = srt.slice(0, q), hi = srt.slice(-q);
@@ -372,7 +378,7 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
     question: "Compare the most literate quarter of Guerry's French departments with the least literate. Where were recorded property crimes per person higher?",
     options: ["In the least literate, about 1.7 times as high", "About equal", "In the most literate, about 1.7 times as high"], answer: 2, pick: () => (v.x > 1.3 ? 2 : v.x < 0.77 ? 0 : 1),
     presets: ["Least literate quarter", "Most literate quarter", "Crimes against persons", "All 86 departments"],
-    reveal: "The most literate quarter of departments recorded {hiP} property crimes per 100,000 people, against {loP} in the least literate: {x} times as many. Crimes against persons were the same, {hiQ} per 100,000 in both. In this record, more schooling did not go with less crime. Where it stops: these are crimes brought to court in 1825-1830, and two numbers moving together say nothing, alone, about what caused what.",
+    reveal: "The most literate quarter of departments recorded {hiP} property crimes per 100,000 people, against {loP} in the least literate: {x} times as many. Crimes against persons were the same, {hiQ} per 100,000 in both. In this record, the more literate departments did not have fewer cases brought to court. Where it stops: these are cases brought to court in 1825 to 1830, which depend on policing as well as crime; they compare departments, not people, and two numbers moving together say nothing, alone, about what caused what.",
     checks: (v) => {
       ok("24 quarters", q === 21, `${q} departments in each quarter; literacy ${r(m(lo, "lit"), 1)}% vs ${r(m(hi, "lit"), 1)}%`);
       ok("24 property crime", v.x === 1.7, `crimes against property per 100,000 (100,000 / Crime_prop): least literate ${v.loP}, most literate ${v.hiP}; x${v.x}`);

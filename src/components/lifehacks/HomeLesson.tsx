@@ -189,10 +189,131 @@ function w2Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
   }
 }
 
+/** A small sock (about 20 × 32 units) at (x, y), turned by `turn` degrees; pattern 0 striped, 1 dotted, 2 plain. */
+function sock(x:number,y:number,turn:number,pattern:number,cls:string,key:string|number) {
+  return <g key={key} transform={`translate(${x},${y}) rotate(${turn})`}>
+    <path d="M-8,-16h12v16l8,6q3,5 -2,10h-12q-6,0 -6,-6z" className={cls}/>
+    {pattern===0&&<path d="M-8,-10h12M-8,-4h12" className={s.line} strokeWidth={1.5}/>}
+    {pattern===1&&<><circle cx="-2" cy="-10" r="2" fill="var(--fg)"/><circle cx="-2" cy="-2" r="2" fill="var(--fg)"/></>}
+  </g>;
+}
+/** The use order in jacket-last-first: the jacket first, the sweater next, the shoes last; extra items sit between. */
+const useOrder=(n:number)=>['Jacket','Sweater',...['T-shirt','Towel','Book','Hat'].slice(0,Math.max(0,n-3)),'Shoes'].slice(0,Math.max(2,n));
+
+/**
+ * Wave W3 pictures (r11 fix plan, cords, socks and travel): each draws what the lesson asks about, to the model's
+ * numbers: the hair tie on the cord, the mixed pile and the pattern bins, every pairing, the nested corners, the
+ * two shoes touching without overlap, the tote hanging from its handle, and stacks with the item you need marked.
+ * `mode` null (neutral start) draws A's arrangement.
+ */
+function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
+  const v=spec.values,b=mode==='b';
+  switch(spec.model) {
+    case 'loop-release': {
+      // The hair tie is a closed elastic loop twisted round the cord (one crossing); B slides it, unstretched, off the free end.
+      const fig8='M161,140C141,108 119,112 119,140C119,168 141,172 161,140C181,108 203,112 203,140C203,168 181,172 161,140Z';
+      return <>
+        <rect x="6" y="118" width="16" height="44" rx="3" className={s.outline}/>
+        <g style={{transform:`translateX(${b?92:0}px)`,transition:'transform .7s ease-out'}}>
+          {b?<ellipse cx="180" cy="140" rx="12" ry="26" fill="none" stroke="var(--warn)" strokeWidth="4"/>:<path d={fig8} fill="none" stroke="var(--warn)" strokeWidth="4" strokeOpacity=".55"/>}
+        </g>
+        <path d="M22,140H232" stroke="var(--fg)" strokeWidth="6" strokeLinecap="round"/>
+        {!b&&<><path d="M161,140C181,108 203,112 203,140M119,140C119,168 141,172 161,140" fill="none" stroke="var(--warn)" strokeWidth="4"/><circle cx="161" cy="140" r="6" className={s.target}/></>}
+        {b&&<path d="M150,182H246m-8,-5l8,5l-8,5" className={s.air}/>}
+        <text x={b?250:161} y="94" textAnchor="middle">hair tie</text>
+        <text x="200" y="214" textAnchor="middle">free end</text>
+      </>;
+    }
+    case 'pair-search': {
+      const n=Math.max(3,Math.round(p));
+      // A heap: socks on a golden-angle spiral, patterns interleaved, so no pattern sits in its own corner.
+      if(!b) return <>{Array.from({length:n},(_,i)=>{ const t=i*2.39996,r=22*Math.sqrt(i+0.5); return sock(150+r*Math.cos(t)*1.2,122+r*Math.sin(t),(i*67)%360-180,i%3,i===0?s.target:s.object,i); })}</>;
+      return <>{[0,1,2].map(k=><rect key={`bin${k}`} x={8+k*96} y="40" width="88" height="186" rx="6" className={k===0?s.outline:s.hidden}/>)}
+        {Array.from({length:n},(_,i)=>{ const k=i%3,j=Math.floor(i/3),col=j%2,row=Math.floor(j/2);
+          return sock(36+k*96+col*36,76+row*58,0,k,i===0?s.target:k===0?s.object:s.hidden,i); })}</>;
+    }
+    case 'combinations': {
+      const n=2*Math.floor(p/2),cx=150,cy=122,r=88;
+      const at=(i:number)=>({x:cx+r*Math.sin(2*Math.PI*i/n),y:cy-r*Math.cos(2*Math.PI*i/n)});
+      const lines:ReactNode[]=[];
+      if(!b) for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) { const P=at(i),Q=at(j); lines.push(<line key={`${i}-${j}`} x1={P.x} y1={P.y} x2={Q.x} y2={Q.y} className={s.line} strokeWidth={1} strokeOpacity={.55}/>); }
+      else for(let k=0;k<n/2;k++) { const P=at(2*k),Q=at(2*k+1); lines.push(<line key={k} x1={P.x} y1={P.y} x2={Q.x} y2={Q.y} className={s.air} strokeWidth={4}/>); }
+      return <>{lines}{Array.from({length:n},(_,i)=>{ const P=at(i),inner={x:cx+(r-34)*Math.sin(2*Math.PI*i/n),y:cy-(r-34)*Math.cos(2*Math.PI*i/n)};
+        return <g key={`s${i}`}>{sock(P.x,P.y,0,2,s.object,i)}{b&&<text x={inner.x} y={inner.y+7} textAnchor="middle">{Math.floor(i/2)+1}</text>}</g>; })}</>;
+    }
+    case 'nest': {
+      // 5.5 units per cm: an 8 cm corner is 44 units deep; nested, each extra corner adds 2 cm (11 units).
+      const k=5.5,n=Math.round(p),depth=v[0]*k,layer=v[1]*k,floor=226,total=b?depth+(n-1)*layer:n*depth;
+      const cup=(bottom:number,i:number)=><path key={i} d={`M100,${bottom-depth}L112,${bottom}H208L220,${bottom-depth}`} className={s.object}/>;
+      return <>{Array.from({length:n},(_,i)=>cup(floor-i*(b?layer:depth),i))}
+        <path d={`M246,${floor}V${floor-total}M240,${floor}h12M240,${floor-total}h12`} className={s.line}/>
+        <text x="246" y={floor-total-8} textAnchor="middle">{fmt(total/k)} cm</text></>;
+    }
+    case 'pairpack': {
+      // 7 units per cm, top view, toes up: each shoe narrows evenly from a 12 cm toe to a 6 cm heel over 24 cm.
+      const k=7,toe=v[0]*k,heel=v[1]*k,top=52,bottom=52+24*k,bag=p*k,L=150-bag/2,x0=L+2,width=b?toe+heel:2*toe;
+      // Rounded toe and heel caps beyond y1 and y2; between them the reversed shoe's edge lies on the first one's, so they touch without overlap.
+      const y1=top+12,y2=bottom-12,cap=(xa:number,xb:number,y:number,d:number)=>`Q${(xa+xb)/2},${y+d} ${xb},${y}`;
+      const one=`M${x0},${y1}${cap(x0,x0+toe,y1,-24)}L${x0+heel},${y2}${cap(x0+heel,x0,y2,24)}Z`;
+      const two=b?`M${x0+toe},${y1}${cap(x0+toe,x0+toe+heel,y1,-24)}V${y2}${cap(x0+toe+heel,x0+heel,y2,24)}Z`
+        :`M${x0+toe},${y1}${cap(x0+toe,x0+2*toe,y1,-24)}V${y2}${cap(x0+2*toe,x0+2*toe-heel,y2,24)}Z`;
+      return <><rect x={L} y="44" width={bag} height={bottom-36} rx="4" className={s.outline}/>
+        <path d={one} className={s.object} strokeLinejoin="round"/><path d={two} className={s.target} strokeLinejoin="round"/>
+        <path d={`M${x0},32H${x0+width}M${x0},25v14M${x0+width},25v14`} className={s.line}/>
+        <text x={x0+width/2} y="22" textAnchor="middle">{fmt(width/k)} cm</text></>;
+    }
+    case 'balance': {
+      // 3 units per cm; the two loads sit 20 cm either side of the handle. The bag hangs from the handle top, so it
+      // turns until the balance point is under it: a straight bag means a centred balance point.
+      const k=2.5,[right=1,pos=20]=v,left=b?(p+right)/2:p,rightKg=b?(p+right)/2:right;
+      const centre=(-pos*left+pos*rightKg)/(left+rightKg),hL=14*left,hR=14*rightKg;
+      const turn=Math.atan2(centre*k,150)*180/Math.PI;
+      return <><path d="M150,14V236" stroke="var(--line)" strokeDasharray="4 5"/>
+        <g transform={`rotate(${turn},150,20)`}>
+          <path d="M108,82Q108,20 150,20Q192,20 192,82" className={s.line}/>
+          <path d="M58,82H242L232,200H68Z" className={s.outline}/>
+          <rect x={150-pos*k-25} y={196-hL} width="50" height={hL} rx="3" className={s.object}/>
+          <rect x={150+pos*k-25} y={196-hR} width="50" height={hR} rx="3" className={s.object}/>
+          <text x={150-pos*k} y={190-hL} textAnchor="middle">{fmt(left)} kg</text>
+          <text x={150+pos*k} y={190-hR} textAnchor="middle">{fmt(rightKg)} kg</text>
+          <circle cx={150+centre*k} cy="208" r="6" className={s.target}/>
+        </g>
+        <circle cx="150" cy="20" r="5" fill="var(--fg)"/></>;
+    }
+    case 'reverse-order': {
+      const n=Math.round(p),names=useOrder(n),stack=b?[...names].reverse():names,h=Math.min(40,190/n);
+      return <><path d="M70,28V226H230V28" className={s.line}/>
+        {stack.map((name,j)=>{ const y=224-(j+1)*h,jacket=name==='Jacket';
+          return <g key={name}><rect x="76" y={y+1} width="148" height={h-3} rx="3" className={jacket?s.target:s.object}/>
+            <text x="150" y={y+h/2+6} textAnchor="middle">{name}</text></g>; })}
+        {stack.slice(stack.indexOf('Jacket')+1).map((_,i)=>{ const y=224-(stack.indexOf('Jacket')+2+i)*h+h/2;
+          return <path key={i} d={`M250,${y+8}v-16m-5,5l5,-5l5,5`} className={s.air}/>; })}</>;
+    }
+    case 'access': {
+      const n=Math.round(p),h=Math.min(30,180/n),jacketAt=b?n-1:0;
+      return <><rect x="40" y="26" width="168" height="202" rx="10" className={s.line}/>
+        {Array.from({length:n},(_,j)=>{ const y=222-(j+1)*h; return <rect key={j} x="48" y={y+1} width="152" height={h-3} rx="3" className={j===jacketAt?s.target:s.object}/>; })}
+        <text x="212" y={222-(jacketAt+0.5)*h+7}>jacket</text>
+        {Array.from({length:n-1-jacketAt},(_,i)=>{ const y=222-(jacketAt+1.5+i)*h; return <path key={i} d={`M26,${y+7}v-14m-5,5l5,-5l5,5`} className={s.air}/>; })}</>;
+    }
+    case 'hollow': {
+      // Areas stand for volumes (6.5 square units per cm³): the hollow ellipse is the shoe's 600 cm³ of empty space.
+      const [hollow=600]=v,inside=b?Math.min(p,hollow):0,outside=b?Math.max(0,p-hollow):p,side=(x:number)=>Math.sqrt(x*6.5);
+      const rx=50,ry=25,f=Math.sqrt(inside/hollow);
+      return <><path d="M20,120Q20,95 45,95H95Q120,95 135,120L185,150Q200,160 200,180V205H20Z" className={s.outline}/>
+        <ellipse cx="80" cy="150" rx={rx} ry={ry} fill="none" stroke="var(--line)" strokeDasharray="5 4"/>
+        {inside>0&&<ellipse cx="80" cy="150" rx={rx*f} ry={ry*f} className={s.target}/>}
+        {outside>0&&<rect x={b?60:206} y={(b?95:205)-side(outside)} width={side(outside)} height={side(outside)} rx="4" className={s.target}/>}
+        <text x="80" y="60" textAnchor="middle">{fmt(hollow)} cm³ empty</text></>;
+    }
+    default: return null;
+  }
+}
+
 /** v2 picture marks (spec section 3): a to-scale fit drawing with a dimension line, or a radius stripe per disc. */
 function v2Marks(spec:HomeSpec,p:number,mode:Mode|null):SceneV2Props {
   const v=spec.values;
-  const w2=w2Picture(spec,p,mode);
+  const w2=w2Picture(spec,p,mode)??w3Picture(spec,p,mode);
   if(w2) return {override:w2};
   if(spec.pictureMark==='dimension'&&spec.model==='clearance') {
     // 4 px per cm, centred: opening, body and both handles share one scale, so the outermost points can be judged by eye.
@@ -310,23 +431,29 @@ function BowStage({spec,steps,setSteps,locked,interact}:{spec:HomeSpec;steps:num
   </div>;
 }
 
+/**
+ * W3 / TP-2(d) (long-cord-knots-itself): the experiment is named in plain words on the stage, and the 20 strings
+ * per length are said to be a simulation of its rates. No seed, "p=" or "model draws" on screen.
+ */
+const CORD_RATES={short:0,long:0.55};
+const cordCounts=()=>({short:sourceConditionedCordTrials(CORD_RATES.short).filter(Boolean).length,long:sourceConditionedCordTrials(CORD_RATES.long).filter(Boolean).length});
 function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number)=>void;locked:boolean;interact:()=>void}) {
   const {reach}=useMilestones(interact,['short','long']);
-  const short=sourceConditionedCordTrials(0),long=sourceConditionedCordTrials(0.55);
+  const short=sourceConditionedCordTrials(CORD_RATES.short),long=sourceConditionedCordTrials(CORD_RATES.long);
   return <div className={s.stage}>
-    <svg viewBox="0 0 300 230" className={s.scene} role="img" aria-label="Twenty seeded model draws at each source-conditioned string length">
+    <svg viewBox="0 0 300 230" className={s.scene} role="img" aria-label="Twenty simulated strings at each length, knotted or not">
       <rect x="25" y="20" width="250" height="178" className={s.outline}/>
-      <text x="38" y="40">0.3m</text><text x="170" y="40">3m</text>
+      <text x="38" y="40">0.3 m strings</text><text x="170" y="40">3 m strings</text>
       {[short,long].map((outcomes,group)=>outcomes.map((k,i)=>{
        const shown=runs>=(group===0?1:2),x=38+group*132+(i%4)*25,y=57+Math.floor(i/4)*25;
        return <g key={`${group}-${i}`}><path d={shown&&k?`M${x},${y+12}c-8,-18 26,-20 15,0c-10,18 -15,-10 5,-10`:`M${x},${y}q8,15 17,0`} className={shown?(k?s.target:s.air):s.hidden}/></g>;
       }))}
-      <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length}/20`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length}/20`:'?'}</text>
+      <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length} of 20 knotted`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length} of 20 knotted`:'?'}</text>
     </svg>
-    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Test 0.3m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('long');}}>Test 3m</HomeMode></div>
-    <p className={s.inputs}>30cm box · 1rev/s · 10s · seed17{runs===2?' · p=0/0.55':''}</p>
-    <p className={s.caption}>Study model; plain cord storage</p>
-    <StageStatus locked={locked} text={runs<1?'':`0.3m: ${short.filter(Boolean).length}/20${runs>=2?`; 3m: ${long.filter(Boolean).length}/20`:''}`}/>
+    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Tumble 0.3 m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('long');}}>Tumble 3 m</HomeMode></div>
+    <p className={s.inputs}>Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, one turn a second, for 10 seconds.</p>
+    <p className={s.caption}>Each drawing is a simulated string at the study&apos;s rate. Plain cord; storage only.</p>
+    <StageStatus locked={locked} text={runs<1?'':`0.3 m: ${short.filter(Boolean).length} of 20 knotted${runs>=2?`; 3 m: ${long.filter(Boolean).length} of 20 knotted`:''}`}/>
   </div>;
 }
 
@@ -349,6 +476,13 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
     // R6: the first sentence quotes both Seen columns; the kit already prints the verdict line, so it is not repeated.
     reveal:()=><div className={s.reveal}><p>{homeRevealLine(spec,p)}</p><p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}</div>
   }};
+  if(spec.model==='cord'&&spec.engine===2) { const n=cordCounts();
+    return {stage,lessonProps:{
+      slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
+      exploreHint:'Tumble both lengths, then compare.',minInteractions:2,
+      // TP-2(b, e): the reveal compares both simulated lengths with the study's rate; the kit prints the only verdict line.
+      reveal:()=><div className={s.reveal}><p>{`This simulation knotted ${n.short} of 20 short strings and ${n.long} of 20 long ones; the study's 55% is about 11 in 20.`}</p><p>{spec.idea}</p><p>{spec.limit}</p></div>
+    }}; }
   if(spec.model==='bow') { const {twisted,flat}=bowLoops(p,spec), mm=(x:number)=>x<=0?'undone (0 mm)':`${fmt(x)} mm`;
     return {stage,lessonProps:{
       slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},

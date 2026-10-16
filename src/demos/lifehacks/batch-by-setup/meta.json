@@ -1,7 +1,7 @@
 {
   "slug": "batch-by-setup",
-  "title": "Batch the shared setup",
-  "hook": "Changing contexts costs two minutes here. Count the changes.",
+  "title": "Same tasks, different order",
+  "hook": "Three short tasks, two kinds. Does the order change how long they take?",
   "domain": "lifehacks",
   "concept": "batch-shared-overhead",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Compare setup overhead under an explicit switching cost.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Changing contexts costs two minutes here. Count the changes. Which order needs fewer setup switches? Correct option: Group equal tags. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three short tasks, two kinds. Does the order change how long they take? Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how many minutes does that save? Options: 2 minutes / 0: same three tasks / 4 minutes. Correct option: 2 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"batch-by-setup\"). Not checked by the builder.",
       "id": "lifehacks.batch-by-setup.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",

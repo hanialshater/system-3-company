@@ -31,7 +31,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "surface-area-drying",
     "unit": "cm",
     "inputLabel": "Towel width",
-    "hook": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
+    "hook": "Fold it or spread it: does that change how long a towel takes to dry?",
     "engine": 2,
     "modeLabels": [
       "Folded in four",
@@ -122,8 +122,8 @@ export const homeLessons: HomeSpec[] = [
       "Matching wraps",
       "Opposing wraps"
     ],
-    "question": "Two bows tied in the same laces: one lies across the shoe, one twists toe-to-heel. Which comes undone first?",
-    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat across the shoe. To read your own: loops across the shoe are flat, loops pointing toe-to-heel are twisted.",
+    "question": "Two bows tied in the same laces: one lies flat, one twists out of line. Which comes undone first?",
+    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat. To read your own: a flat bow lies flat, a twisted bow twists out of line.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
     "recall": "A bow twists out of line. Which knot step could you reverse?",
@@ -155,7 +155,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "long-cord-knots-itself",
-    "title": "Long cord, more loops",
+    "title": "Do long cords knot themselves?",
     "model": "cord",
     "view": "cord",
     "initial": 30,
@@ -169,17 +169,36 @@ export const homeLessons: HomeSpec[] = [
       "0.3m string",
       "3m string"
     ],
-    "question": "In the paper’s setup, which length knotted more often?",
-    "idea": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17.",
-    "limit": "These are study-conditioned model draws, not household knot odds. Plain cord; storage only.",
-    "formula": "20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities.",
+    "question": "Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted?",
+    "idea": "Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, turning once a second for ten seconds. No 0.3 m string came out knotted; 3 m strings came out knotted in 55% of trials. A longer string gives its free end more loops to weave through.",
+    "limit": "The 55% belongs to that box and that motion, not to your drawer. Plain cord; storage only.",
+    "formula": "20 simulated strings per length, each knotted with the study's observed frequency (0 for 0.3 m, 0.55 for 3 m), drawn from one fixed sequence so every learner sees the same 20; shown count = knotted strings out of 20.",
     "recall": "Why should a tumbling-box knot frequency not be treated as your drawer’s knot probability?",
     "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
     "answer": 1,
     "concept": "cord-tangle-length",
     "unit": "cm",
     "inputLabel": "Length",
-    "hook": "In the paper’s setup, which length knotted more often?"
+    "hook": "Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted?",
+    "engine": 2,
+    "modeLabels": [
+      "Tumble 0.3 m",
+      "Tumble 3 m"
+    ],
+    "options": [
+      "Almost never: nobody tied them",
+      "About half the time",
+      "Every time"
+    ],
+    "amounts": [
+      {
+        "label": "Strings simulated",
+        "unit": "",
+        "a": 20,
+        "b": 20
+      }
+    ],
+    "resultLabel": "Knotted"
   },
   {
     "slug": "door-swing-clearance",
@@ -405,17 +424,44 @@ export const homeLessons: HomeSpec[] = [
       "Toes together",
       "Toe-to-heel"
     ],
-    "question": "Which pair uses a narrower envelope?",
-    "idea": "These simplified shoes have wide toes and narrow heels. Reversing one matches a wide section with a narrow section, reducing the maximum pair width without shrinking either shoe.",
-    "limit": "Actual shoe contours and cleanliness matter; the shapes are illustrative.",
-    "formula": "Pair envelope is 2×toe width or toe+heel width; toe=12, heel=6 cm. Bag width input; margin=bag−envelope.",
+    "question": "Two shoes, 12 cm wide at the toe and 6 cm at the heel. How wide is the pair packed toe-to-heel?",
+    "idea": "A shoe is wide at the toe and narrow at the heel. Turn one round and each wide part sits beside a narrow one, so the pair is 6 cm narrower and neither shoe is squashed.",
+    "limit": "Real shoe outlines vary; these simplified shapes narrow evenly from toe to heel.",
+    "formula": "Pair width=2×12=24cm toes together, 12+6=18cm toe-to-heel; room left in the bag=bag width−pair width.",
     "recall": "When can reversing an irregular object help two fit together?",
     "source": null,
-    "answer": 1,
+    "answer": 0,
     "concept": "shoes-opposite-ends",
     "unit": "cm",
     "inputLabel": "Bag width",
-    "hook": "Which pair uses a narrower envelope?"
+    "hook": "Shoes 12 cm wide at the toe, 6 cm at the heel. How wide is the pair packed toe-to-heel?",
+    "engine": 2,
+    "modeLabels": [
+      "Toes together",
+      "Toe-to-heel"
+    ],
+    "options": [
+      "18 cm",
+      "24 cm: same shoes"
+    ],
+    "amounts": [
+      {
+        "label": "Pair width",
+        "unit": "cm",
+        "a": [
+          "*",
+          2,
+          "a"
+        ],
+        "b": [
+          "+",
+          "a",
+          "b"
+        ]
+      }
+    ],
+    "resultLabel": "Room left in the bag",
+    "revealLine": "{A}: the pair is {amountA0} wide, leaving {resultA} of the bag. {B}: {amountB0} wide, leaving {resultB}."
   },
   {
     "slug": "socks-use-shoe-space",
@@ -424,8 +470,8 @@ export const homeLessons: HomeSpec[] = [
     "view": "volume",
     "initial": 200,
     "min": 100,
-    "max": 400,
-    "step": 10,
+    "max": 800,
+    "step": 50,
     "values": [
       600,
       800
@@ -434,17 +480,44 @@ export const homeLessons: HomeSpec[] = [
       "Beside shoe",
       "Inside hollow"
     ],
-    "question": "Where do these socks add less outer volume?",
-    "idea": "The shoe envelope already contains a hollow. Filling that empty region with compatible soft socks can use space that would otherwise remain empty instead of adding another outside bundle.",
+    "question": "Socks beside the shoe or inside it. How much packed volume do they add inside?",
+    "idea": "A shoe is hollow: in this model it has 600 cm³ of empty space inside. Socks that fit in that space add nothing to what you pack. Only socks bigger than the space spill over and add volume.",
     "limit": "Use clean, dry items; do not force or deform footwear. This is an ideal hollow-volume model.",
-    "formula": "Outer added volume=sock volume, or max(0,socks−600); shoe envelope=800cm³.",
+    "formula": "Shoe=800cm³ with a 600cm³ hollow. Socks add their own volume beside the shoe, or max(0, socks−600) inside it; packed total=800+added.",
     "recall": "Why can filling a hollow use less bag space than adding a separate bundle?",
     "source": null,
-    "answer": 1,
+    "answer": 0,
     "concept": "socks-use-shoe-space",
     "unit": "cm³",
     "inputLabel": "Sock volume",
-    "hook": "Where do these socks add less outer volume?"
+    "hook": "Socks beside the shoe or inside it. How much packed volume do they add inside?",
+    "engine": 2,
+    "modeLabels": [
+      "Beside the shoe",
+      "Inside the shoe"
+    ],
+    "options": [
+      "None",
+      "Same as beside"
+    ],
+    "amounts": [
+      {
+        "label": "Volume the socks add",
+        "unit": "cm³",
+        "a": "p",
+        "b": [
+          "max",
+          0,
+          [
+            "-",
+            "p",
+            "a"
+          ]
+        ]
+      }
+    ],
+    "resultLabel": "Shoe and socks",
+    "revealLine": "{A}: the socks add {amountA0}, {resultA} in all. {B}: they fill the shoe's empty space and add {amountB0}; {resultB} in all."
   },
   {
     "slug": "packing-cube-walls",
@@ -508,7 +581,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "folded-shirt-stack-height",
-    "title": "Half the footprint, twice the stack",
+    "title": "Fold the shirts once more",
     "model": "layers",
     "view": "cloth",
     "initial": 5,
@@ -533,7 +606,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "folded-shirt-stack-height",
     "unit": "shirts",
     "inputLabel": "Shirts",
-    "hook": "What changes when you halve the footprint again?",
+    "hook": "Fold a stack of shirts smaller. What happens to its height?",
     "engine": 2,
     "modeLabels": [
       "Folded once",
@@ -604,24 +677,44 @@ export const homeLessons: HomeSpec[] = [
       "Target at bottom",
       "Target at top"
     ],
-    "question": "Which layout needs fewer removals for the orange item?",
-    "idea": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves.",
-    "limit": "The model counts removals, not travel time; pockets and side access change the result.",
-    "formula": "Removals=N−1 at bottom or 0 at top; one target and N−1 other layers.",
+    "question": "The rain jacket is under five items. How many do you lift to reach it?",
+    "idea": "Every item above the one you need has to come out first. With the jacket on top, nothing is in the way, so the thing you need first is best packed last.",
+    "limit": "This counts items lifted, not time; pockets and side openings change it.",
+    "formula": "Items to lift=N−1 with the jacket at the bottom of N items, 0 with it on top.",
     "recall": "Which packing question should you ask after checking that everything fits?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "suitcase-layer-access",
-    "unit": "layers",
-    "inputLabel": "Layers",
-    "hook": "Which layout needs fewer removals for the orange item?"
+    "unit": "items",
+    "inputLabel": "Items in the case",
+    "hook": "The rain jacket is under five items. How many do you lift to reach it?",
+    "engine": 2,
+    "modeLabels": [
+      "Jacket at bottom",
+      "Jacket on top"
+    ],
+    "options": [
+      "0: it's in the bag",
+      "1",
+      "5"
+    ],
+    "amounts": [
+      {
+        "label": "Items in the case",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Items to lift",
+    "revealLine": "{A}: you lift {resultA} items to reach the jacket. {B}: you lift {resultB}."
   },
   {
     "slug": "jacket-last-first",
     "title": "Pack the return order backwards",
     "model": "reverse-order",
     "view": "order",
-    "initial": 4,
+    "initial": 3,
     "min": 3,
     "max": 7,
     "step": 1,
@@ -632,17 +725,38 @@ export const homeLessons: HomeSpec[] = [
       "Use order",
       "Reverse use order"
     ],
-    "question": "Which stack lets you unpack in the requested order?",
-    "idea": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible.",
-    "limit": "Only this stack is modelled; side-opening bags behave differently.",
-    "formula": "For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0.",
+    "question": "You need the jacket first, the sweater next, the shoes last. Which goes into the bag first?",
+    "idea": "A bag that opens at the top gives back the last thing packed first. So pack in reverse: what you need last goes in first, and the jacket you need first goes in last, on top.",
+    "limit": "Only a top-opening bag is modelled; side pockets and cases that open flat behave differently.",
+    "formula": "Packed in use order 1..N, the first-needed item is under N−1 others; packed in reverse, N..1, it is under 0.",
     "recall": "Why is the last thing packed sometimes the right first thing to use?",
     "source": null,
-    "answer": 1,
+    "answer": 0,
     "concept": "jacket-last-first",
     "unit": "items",
-    "inputLabel": "Count",
-    "hook": "Which stack lets you unpack in the requested order?"
+    "inputLabel": "Items packed",
+    "hook": "Jacket needed first, sweater next, shoes last. Which goes into the bag first?",
+    "engine": 2,
+    "modeLabels": [
+      "In use order",
+      "Reversed"
+    ],
+    "options": [
+      "The shoes",
+      "The jacket",
+      "Order doesn't matter"
+    ],
+    "amounts": [
+      {
+        "label": "Items packed",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "On top of the jacket",
+    "resultUnit": "items",
+    "revealLine": "{A}: the jacket goes in first and ends up under {resultA}. {B}: the shoes go in first and the jacket last, so {resultB} sit on it."
   },
   {
     "slug": "heavy-book-close-to-back",
@@ -679,9 +793,9 @@ export const homeLessons: HomeSpec[] = [
     "model": "balance",
     "view": "mechanics",
     "initial": 3,
-    "min": 2,
-    "max": 6,
-    "step": 0.1,
+    "min": 1,
+    "max": 5,
+    "step": 2,
     "values": [
       1,
       20
@@ -690,17 +804,62 @@ export const homeLessons: HomeSpec[] = [
       "Unequal sides",
       "Balance sides"
     ],
-    "question": "Which layout centres the shown load?",
-    "idea": "The load’s centre is a mass-weighted average of positions. Moving some of the load to the other side can put that average under the handle while leaving total mass unchanged.",
+    "question": "3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
+    "idea": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
     "limit": "A centred drawing does not certify a bag’s strength or make a heavy load safe.",
-    "formula": "Initial masses=m and 1kg at x=−20,+20cm; after each side=(m+1)/2. Centre=sum(mx)/sum(m).",
+    "formula": "As packed: m kg left and 1 kg right, at −20 and +20 cm from the handle; evened out, each side=(m+1)/2 kg. Balance point=sum(mass×position)/total mass.",
     "recall": "Why is the total weight insufficient to describe balance?",
     "source": "REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction.",
     "answer": 1,
     "concept": "tote-balance-sides",
     "unit": "kg",
-    "inputLabel": "Left mass",
-    "hook": "Which layout centres the shown load?"
+    "inputLabel": "Left side, as packed",
+    "hook": "3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
+    "engine": 2,
+    "modeLabels": [
+      "As packed",
+      "Evened out"
+    ],
+    "options": [
+      "No: the total didn't change",
+      "Yes"
+    ],
+    "amounts": [
+      {
+        "label": "Left side",
+        "unit": "kg",
+        "a": "p",
+        "b": [
+          "/",
+          [
+            "+",
+            "p",
+            "a"
+          ],
+          2
+        ]
+      },
+      {
+        "label": "Right side",
+        "unit": "kg",
+        "a": "a",
+        "b": [
+          "/",
+          [
+            "+",
+            "p",
+            "a"
+          ],
+          2
+        ]
+      }
+    ],
+    "resultLabel": "Balance point",
+    "verdict": {
+      "below": "left of the handle",
+      "zero": "under the handle"
+    },
+    "revealLine": "{A}: {amountA0} left, {amountA1} right; balance point {resultA}. {B}: {amountB0} each side; balance point {resultB}, same total."
   },
   {
     "slug": "bag-weight-before-volume",
@@ -769,7 +928,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "towel-over-two-bars",
-    "title": "Give both towel faces air",
+    "title": "One bar or two?",
     "model": "exposed",
     "view": "cloth",
     "initial": 70,
@@ -794,7 +953,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "towel-over-two-bars",
     "unit": "cm",
     "inputLabel": "Towel width",
-    "hook": "Which arrangement exposes more of the chosen faces?",
+    "hook": "A towel over one bar, or across two. Is more of it open to the air?",
     "engine": 2,
     "modeLabels": [
       "One bar",
@@ -865,7 +1024,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "garment-overlap-hides-face",
-    "title": "Overlap can hide a drying face",
+    "title": "Two shirts, one overlap",
     "model": "overlap",
     "view": "cloth",
     "initial": 30,
@@ -890,7 +1049,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "garment-overlap-hides-face",
     "unit": "cm",
     "inputLabel": "Overlap",
-    "hook": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
+    "hook": "Two wet shirts overlap on the line. Does that hide any cloth from the air?",
     "engine": 2,
     "modeLabels": [
       "Overlapping",
@@ -948,7 +1107,7 @@ export const homeLessons: HomeSpec[] = [
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
     "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
     "warning": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
-    "formula": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
+    "formula": "Water=250g for one item or count×250g; hypothetical complete drying.",
     "recall": "Why should you count the whole wet load rather than one garment?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
     "answer": 2,
@@ -979,7 +1138,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "humidity-evaporation-gap",
-    "title": "Humid air narrows the gap",
+    "title": "Damp room, dry room",
     "model": "humidity",
     "view": "cloth",
     "initial": 80,
@@ -1033,7 +1192,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "breeze-is-not-extra-surface",
-    "title": "Airflow and surface are different",
+    "title": "Does a breeze help a towel dry?",
     "model": "flux",
     "view": "cloth",
     "initial": 1,
@@ -1053,12 +1212,12 @@ export const homeLessons: HomeSpec[] = [
     "limit": "The doubled speed is an illustrative setting, not a measured benefit from any fan.",
     "formula": "Drying speed=cloth area×air setting; area=input m²; still air=1, breeze=2 arbitrary model units.",
     "recall": "Does improving airflow expose an inner towel face that is still folded shut?",
-    "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+    "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. OpenStax College Physics 2e §14.6 (air flow replaces the saturated air by dry air and evaporation continues), the support for the keyed outcome.",
     "answer": 1,
     "concept": "breeze-is-not-extra-surface",
     "unit": "m²",
     "inputLabel": "Cloth area",
-    "hook": "Same towel, same cool air. Does a breeze make it dry sooner?",
+    "hook": "Cool day, wet towel on the line. Is a breeze any help?",
     "engine": 2,
     "modeLabels": [
       "Still air",
@@ -1066,8 +1225,8 @@ export const homeLessons: HomeSpec[] = [
     ],
     "options": [
       "No: only warm air helps",
-      "Yes, about 2× sooner",
-      "Only if the breeze spreads it"
+      "Yes: moving air carries the damp away",
+      "Only if the breeze spreads it out"
     ],
     "plainNumbers": true,
     "amounts": [
@@ -1112,7 +1271,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "half-size-two-towels",
-    "title": "Cut size, keep area",
+    "title": "Cut the towel in half?",
     "model": "split-area",
     "view": "cloth",
     "initial": 80,
@@ -1136,7 +1295,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "half-size-two-towels",
     "unit": "cm",
     "inputLabel": "Width",
-    "hook": "Does splitting this fully exposed sheet add face area?",
+    "hook": "Two half towels hung flat, or one whole one. Which has more face to dry?",
     "engine": 2,
     "modeLabels": [
       "One towel",
@@ -1211,7 +1370,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "towel-thickness-hidden-volume",
-    "title": "Thicker cloth, less face per volume",
+    "title": "A towel twice as thick",
     "model": "area-volume",
     "view": "cloth",
     "initial": 2,
@@ -1226,17 +1385,74 @@ export const homeLessons: HomeSpec[] = [
       "Thin sheet",
       "Double thickness"
     ],
-    "question": "Which sheet has less face area per material volume?",
+    "question": "Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now?",
     "idea": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
     "limit": "This geometric ratio alone does not determine a fabric’s drying time.",
     "formula": "Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
     "recall": "What happens to face-area-to-volume ratio when thickness doubles?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "towel-thickness-hidden-volume",
     "unit": "mm",
     "inputLabel": "Thickness",
-    "hook": "Which sheet has less face area per material volume?"
+    "hook": "Same size, twice as thick, twice the water. Does it get more face to dry from?",
+    "options": [
+      "The same: same size towel",
+      "Twice as much",
+      "Half as much"
+    ],
+    "engine": 2,
+    "modeLabels": [
+      "Single thickness",
+      "Twice as thick"
+    ],
+    "amounts": [
+      {
+        "label": "Open face",
+        "unit": "cm²",
+        "a": [
+          "*",
+          2,
+          "a",
+          "b"
+        ],
+        "b": [
+          "*",
+          2,
+          "a",
+          "b"
+        ]
+      },
+      {
+        "label": "Cloth volume",
+        "unit": "cm³",
+        "a": [
+          "/",
+          [
+            "*",
+            "a",
+            "b",
+            "p"
+          ],
+          10
+        ],
+        "b": [
+          "/",
+          [
+            "*",
+            "a",
+            "b",
+            2,
+            "p"
+          ],
+          10
+        ]
+      }
+    ],
+    "resultLabel": "Open face per cm³ of cloth",
+    "resultUnit": "cm²",
+    "plainNumbers": true,
+    "revealLine": "{A}: {amountA0} of open face on {amountA1} of cloth, {resultA} per cm³. {B}: the same {amountB0} on {amountB1}, {resultB} per cm³: half as much."
   },
   {
     "slug": "fitted-sheet-corners-nest",
@@ -1244,8 +1460,8 @@ export const homeLessons: HomeSpec[] = [
     "model": "nest",
     "view": "cloth",
     "initial": 4,
-    "min": 3,
-    "max": 7,
+    "min": 4,
+    "max": 4,
     "step": 1,
     "values": [
       8,
@@ -1255,17 +1471,36 @@ export const homeLessons: HomeSpec[] = [
       "Separate pockets",
       "Nested pockets"
     ],
-    "question": "Which ideal arrangement uses less pocket envelope?",
-    "idea": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner.",
-    "limit": "Real elastic and seams change the envelope; this is a nesting model, not a complete folding tutorial.",
-    "formula": "Separate height=count×8cm; nested height=8+(count−1)×2cm.",
+    "question": "Fold a fitted sheet with its corners tucked into each other, or not. How much flatter is it?",
+    "idea": "Each elastic corner is a cup of cloth. Kept apart, four cups stack as four full depths. Tucked inside one another, they share one hollow, and each extra corner adds only a thin layer of cloth.",
+    "limit": "Real elastic and seams change the numbers; this counts the corners, not every fold of the sheet.",
+    "formula": "Folded thickness=4×8cm with the corners apart; nested=8+(4−1)×2cm (8 cm corner depth, 2 cm per extra layer of cloth).",
     "recall": "Why can nesting hollow shapes save envelope space without removing material?",
     "source": null,
     "answer": 1,
     "concept": "fitted-sheet-corners-nest",
     "unit": "corners",
     "inputLabel": "Count",
-    "hook": "Which ideal arrangement uses less pocket envelope?"
+    "hook": "Fold a fitted sheet with its corners tucked into each other. How much flatter is it?",
+    "engine": 2,
+    "modeLabels": [
+      "Corners apart",
+      "Corners nested"
+    ],
+    "options": [
+      "Not at all: elastic always lumps",
+      "18 cm flatter"
+    ],
+    "amounts": [
+      {
+        "label": "Corners",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Folded thickness",
+    "revealLine": "{A}: four 8 cm corners stacked, {resultA} thick. {B}: tucked inside each other, {resultB}: {diff} flatter."
   },
   {
     "slug": "pillowcase-set-kit",
@@ -1300,28 +1535,51 @@ export const homeLessons: HomeSpec[] = [
     "title": "Match a pattern before searching",
     "model": "pair-search",
     "view": "order",
-    "initial": 6,
-    "min": 4,
-    "max": 10,
-    "step": 2,
+    "initial": 12,
+    "min": 6,
+    "max": 18,
+    "step": 6,
     "values": [
-      2
+      3
     ],
     "choices": [
       "One mixed pile",
-      "Two pattern bins"
+      "Three pattern bins"
     ],
-    "question": "Which search pool contains fewer candidate socks?",
-    "idea": "Sorting the pictured socks by pattern shrinks the candidate pool for a match. The model counts candidates; it does not claim a measured time saving or guarantee that both socks are present.",
-    "limit": "Extra bins add setup work; sorting only helps if the labels match the question.",
-    "formula": "Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups.",
+    "question": "Twelve socks of three patterns in one pile. To find one sock's partner, how many socks do you check?",
+    "idea": "In a pile you pick socks up one at a time, so the partner can be the last one you check. Sorted by pattern first, you only check the socks in that pattern's bin.",
+    "limit": "Sorting takes its own time, and this counts the worst case: the partner turns up last.",
+    "formula": "Socks to check at most=N−1 in one mixed pile, N/3−1 in one of three equal pattern bins; N is a multiple of 6.",
     "recall": "What makes a sorting rule useful for finding a matching sock?",
     "source": null,
-    "answer": 1,
+    "answer": 0,
     "concept": "sock-pairing-by-pattern",
     "unit": "socks",
     "inputLabel": "Socks",
-    "hook": "Which search pool contains fewer candidate socks?"
+    "hook": "Twelve socks, three patterns, one pile. To find one sock's partner, how many do you check?",
+    "engine": 2,
+    "modeLabels": [
+      "One mixed pile",
+      "Pattern bins"
+    ],
+    "options": [
+      "11",
+      "3"
+    ],
+    "amounts": [
+      {
+        "label": "Socks in the search",
+        "unit": "",
+        "a": "p",
+        "b": [
+          "/",
+          "p",
+          "a"
+        ]
+      }
+    ],
+    "resultLabel": "Socks to check, at most",
+    "revealLine": "{A}: the partner could be any of the other {resultA} socks. {B}: sorted first, it is one of the other {resultB} in its pattern's bin."
   },
   {
     "slug": "sock-pairs-not-all-combinations",
@@ -1339,17 +1597,37 @@ export const homeLessons: HomeSpec[] = [
       "All possible pairs",
       "Marked partners"
     ],
-    "question": "Which method checks fewer pairs in this matching puzzle?",
-    "idea": "Without partner marks, every unordered pair is a candidate. Unique partner marks reduce the pictured task to one match per marked pair. The combinatorial growth explains the appeal of distinctive patterns.",
-    "limit": "Real socks may have multiple identical partners; unique marks are an assumption here.",
+    "question": "Six plain socks, three pairs, no marks. How many different two-sock pairings could you try?",
+    "idea": "Each sock can go with any of the others, so six socks give 15 pairings: 5 + 4 + 3 + 2 + 1. The pairings grow much faster than the socks: ten socks give 45. A mark on each pair leaves one pairing per pair.",
+    "limit": "This assumes pairs that look alike but are not interchangeable; identical pairs would need fewer tries.",
     "formula": "Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down.",
     "recall": "Why can a unique partner mark change a matching task more than a tidy pile?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "sock-pairs-not-all-combinations",
     "unit": "socks",
     "inputLabel": "Count",
-    "hook": "Which method checks fewer pairs in this matching puzzle?"
+    "hook": "Six plain socks, three pairs, no marks. How many two-sock pairings could you try?",
+    "engine": 2,
+    "modeLabels": [
+      "No marks",
+      "Marked partners"
+    ],
+    "options": [
+      "3",
+      "6",
+      "15"
+    ],
+    "amounts": [
+      {
+        "label": "Socks",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Pairings to try",
+    "revealLine": "{A}: {amountA0} socks give {resultA} pairings to try. {B}: only {resultB}, one per pair."
   },
   {
     "slug": "laundry-sort-before-walk",
@@ -1409,7 +1687,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "care-label-first-choice",
-    "title": "The label beats the fastest layout",
+    "title": "What does 'dry flat' allow?",
     "model": "label-rule",
     "view": "cloth",
     "initial": 3,
@@ -1423,17 +1701,37 @@ export const homeLessons: HomeSpec[] = [
       "Hang every item",
       "Respect flat-dry text"
     ],
-    "question": "Which layout follows the shown flat-dry instruction?",
+    "question": "Three jumpers say 'dry flat'. You hang them on the line with the rest. How many are dried the way the label says?",
     "idea": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space.",
     "limit": "Read the real label; different garments permit different processes. No care-symbol artwork is reproduced.",
     "formula": "Compatible items=0 if all chosen garments hang, or N when placed flat, given the stated flat-dry instruction.",
     "recall": "Which information should you check before applying a generic drying hack?",
     "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
-    "answer": 1,
+    "answer": 0,
     "concept": "care-label-first-choice",
     "unit": "items",
     "inputLabel": "Count",
-    "hook": "Which layout follows the shown flat-dry instruction?"
+    "hook": "The label says 'dry flat', and the line has room. Does it matter?",
+    "options": [
+      "None",
+      "All 3: dry is dry"
+    ],
+    "engine": 2,
+    "modeLabels": [
+      "Hung on the line",
+      "Laid flat"
+    ],
+    "amounts": [
+      {
+        "label": "Jumpers marked 'dry flat'",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Dried the way the label says",
+    "plainNumbers": true,
+    "revealLine": "{A}: {amountA0} jumpers, {resultA} dried the way the label says. {B}: {resultB} of {amountB0}."
   },
   {
     "slug": "shelf-front-labels",
@@ -1496,7 +1794,7 @@ export const homeLessons: HomeSpec[] = [
     "title": "A bundle still has loose ends",
     "model": "end-paths",
     "view": "cord",
-    "initial": 4,
+    "initial": 3,
     "min": 2,
     "max": 8,
     "step": 1,
@@ -1507,17 +1805,37 @@ export const homeLessons: HomeSpec[] = [
       "Loose ends",
       "Secure bundle ends"
     ],
-    "question": "Which layout removes the depicted free-end paths?",
-    "idea": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
+    "question": "Three cords tied together in the middle, or with their ends tucked. Which tangles less in a drawer?",
+    "idea": "A tie round the middle holds the cords together, but every end stays free. A tangle starts when a free end weaves through a loop, so tucking the ends away takes away that start. The drawing counts loose ends; it does not simulate tangling.",
     "limit": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
-    "formula": "Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
+    "formula": "Loose ends=2×cord count with a middle tie, 0 with the ends tucked into end ties; tangling itself is not simulated.",
     "recall": "Why might a tie around the middle leave an end-related tangle pathway?",
     "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
-    "answer": 1,
+    "answer": 0,
     "concept": "group-cables-with-ends",
     "unit": "cords",
     "inputLabel": "Count",
-    "hook": "Which layout removes the depicted free-end paths?"
+    "hook": "Three cords tied in the middle, or with their ends tucked. Which tangles less in a drawer?",
+    "engine": 2,
+    "modeLabels": [
+      "Tie the middle",
+      "Tuck the ends"
+    ],
+    "options": [
+      "Ends tucked",
+      "Middle tie: it holds them together",
+      "Same"
+    ],
+    "amounts": [
+      {
+        "label": "Cords",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Loose ends",
+    "revealLine": "{A}: {amountA0} cords, {resultA} loose ends free to weave through loops. {B}: {resultB} loose ends."
   },
   {
     "slug": "elastic-loop-release",
@@ -1535,17 +1853,41 @@ export const homeLessons: HomeSpec[] = [
       "End through loop",
       "Slide loop off"
     ],
-    "question": "Which manipulation removes the drawn crossing?",
-    "idea": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
+    "question": "A hair tie is looped round a cord's end, and it looks knotted. What frees it?",
+    "idea": "A hair tie round a cord is a closed loop, not a knot, so there is nothing to pick apart. While the cord's end is free, the loop slides along the cord and off the end, and the cord lies straight again.",
     "limit": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
-    "formula": "Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
+    "formula": "Crossings=1 while the hair tie is on the cord, 0 once it has slid off the free end; nothing is cut and the elastic is not stretched.",
     "recall": "Why does the position of a free end matter when judging a tangle?",
     "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
     "answer": 1,
     "concept": "elastic-loop-release",
     "unit": "cm",
     "inputLabel": "Free end",
-    "hook": "Which manipulation removes the drawn crossing?"
+    "hook": "A hair tie is looped round a cord's end, and it looks knotted. What frees it?",
+    "engine": 2,
+    "modeLabels": [
+      "Pick at it",
+      "Slide it off"
+    ],
+    "options": [
+      "Picking the knot apart",
+      "Sliding it off the end",
+      "Cutting it"
+    ],
+    "amounts": [
+      {
+        "label": "Hair tie",
+        "unit": "",
+        "a": "on the cord",
+        "b": "off the end"
+      }
+    ],
+    "resultLabel": "Crossings",
+    "verdictByMode": {
+      "a": "still looped",
+      "b": "free"
+    },
+    "revealLine": "{A}: the hair tie stays {amountA0}, crossings {resultA}. {B}: it comes {amountB0}, crossings {resultB}, and nothing is cut."
   },
   {
     "slug": "coiled-cord-bend-radius",

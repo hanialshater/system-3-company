@@ -423,14 +423,17 @@
     },
     {
       "id": "F-31",
-      "title": "Allow a tools-lead hook on the Agent tool in .claude/settings.json that writes dispatch/report events (retro D-3, C1)",
+      "title": "Wire the agent hooks and install the commit guard: (1) .claude/settings.json gets agent-events (Pre/PostToolUse, SubagentStop) and no-pkill/stash (Bash PreToolUse), after tools-lead's E1/N1/spool fixes; (2) the main checkout gets `git config core.hooksPath tools/git-hooks` (pre-commit guard). Both are persistent session/repo settings the permission system will not let the chief of staff apply.",
       "category": "decision",
       "priority": 2,
-      "recommendation": "yes: config change only, adds a record, no capability",
+      "recommendation": "yes, after E1/N1 land; install the pre-commit guard now (PE-ops approved 90fc0de; one-line undo: git config --unset core.hooksPath)",
       "links": [
-        "company/rituals/records/2026-10-16-retro-delegation.md"
+        "company/rituals/records/2026-10-16-retro-delegation.md",
+        "company/engineering/readiness/2026-10-16-agent-events-hook.md (branch tools-events, after PE-ops approval)",
+        "company/engineering/readiness/2026-10-16-commit-and-process-guards.md (tools-guards; combined settings.json snippet for agent-events + no-pkill/stash guard)"
       ],
-      "status": "open"
+      "status": "decided",
+      "decision": "yes, all three (2026-10-16); company/decisions/2026-10-16-founder-f31-hooks-and-guard.md"
     },
     {
       "id": "F-32",
@@ -451,6 +454,54 @@
       "recommendation": "yes: reversible, creates nothing",
       "links": [
         "company/rituals/records/2026-10-16-retro-delegation.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-34",
+      "title": "Project Review 1: three items reopened by principal-engineer evidence objections (first-light tranche 2 vs stop rule; lifehacks-engine-v2 cost unreadable; scale-stage-1 re-size to 1.89M)",
+      "category": "decision",
+      "priority": 2,
+      "recommendation": "keep tranche 1 decisions; portfolio-manager re-bases T2 and item 4 figures for the 10-23 checkpoint; accept the scale re-size; scale-stage-1 now: release 1.2M of a 1.89M ceiling (PE revision 617dfdb)",
+      "links": [
+        "company/rituals/records/2026-10-16-project-review-positions-principal-engineer.md",
+        "company/rituals/records/2026-10-16-project-review.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-35",
+      "title": "Dependency: esbuild 0.27.0 as a devDependency for the scale-stage-1 lesson bundler (W-485; ADR-010). Already in the tree via vercel; pinning it adds 0 lockfile entries, MIT",
+      "category": "decision",
+      "priority": 3,
+      "recommendation": "approve: principal-engineer passed ADR-010 and acknowledged the dependency record (617dfdb); lands after accounts merges (G3) and PE-ops R2",
+      "links": [
+        "company/engineering/adr/ADR-010-lesson-bundler-esbuild.md",
+        "company/decisions/2026-10-16-dep-esbuild.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-36",
+      "title": "Life Hacks engine v2 kill rule: W3 has 2 of 8 walked lessons at launch (at most 5 of 11 can), so 'fewer than half of a wave reaches launch after one review round' reads true. Plain reading closes the line; alternative: revise once, re-walk, then count",
+      "category": "decision",
+      "priority": 1,
+      "recommendation": "revise once, then count (cm-lifehacks; 5 of 6 revise findings share one engine defect W-1258, fixed in one place by engineering r3 B1); no new waves until the re-walk",
+      "links": [
+        "company/ops/dispatch-requests/2026-10-16-r3-lifehacks.md",
+        "company/rituals/records/2026-10-16-project-review.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-37",
+      "title": "Sources the sandbox cannot reach (optional; nothing is blocked without it): either (a) put PDFs in the repo \u2014 Friendly, Valero-Mora & Ib\u00e1\u00f1ez Ulargui 2010 (Am Stat 64:174-184) and the 1644 Verdadera translation; Ruggeri et al. 2020 (Nat Hum Behav 4:622-633) with its supplementary item table; Augenblick, Niederle & Sprenger 2015 \u2014 or (b) allow-list tandfonline.com, www.tandfonline.com, datavis.ca, www.datavis.ca, idp.nature.com, academic.oup.com, files.osf.io, cdn.ncbi.nlm.nih.gov",
+      "category": "decision",
+      "priority": 3,
+      "recommendation": "(a) if you have the PDFs; otherwise leave it: the rome lesson already says 'this record does not say why', and both behavioral held lines ship cut",
+      "links": [
+        "company/research/notes/2026-10-16-rome-why-east-routes.md",
+        "company/research/notes/2026-10-16-w902-item-level-sources.md"
       ],
       "status": "open"
     }

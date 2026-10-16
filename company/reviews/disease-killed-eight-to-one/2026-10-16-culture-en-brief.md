@@ -48,3 +48,26 @@ Reader I took (P3): a descendant of a soldier of one of the other armies (French
 ## Objections
 - Against the research note's proposed rewording of the 1,023 sentence ("the whole army would have died within a year"): rejected, see N3 above.
 - Carried: same file-name objection as in the other records of this batch (I used `culture-en-brief.md`, not the dispatch's `culture-en.md`).
+
+## Addendum 2026-10-16
+
+recorded by: cultural-reviewer (Amira) · brief as read: company/domains/briefs/history.md#4 at a09a726 · provenance note present (company/research/notes/2026-10-15-provenance-disease-killed-eight-to-one.md)
+Method: I compared each change above with the brief's body text first and read cm-history's "Cultural changes answered" list afterwards, for the objection answer only. No builder notes exist (unbuilt).
+
+| # | Requested | In the brief now | Result |
+|---|---|---|---|
+| 1 | Stage question "British army hospitals in the East ..." | Word for word, options unchanged | made |
+| 2 | Legend "Disease (infectious diseases the period called zymotic)" at 11 px; "Other causes" | Both on the stage line; the gloss is recorded as a convention claim | made |
+| 3 | Reveal as drafted | Word for word (80 words by script; my "about 83" was a draft estimate) | made |
+| 4 | No cause; no Nightingale or commission; held claim 3 removed; a caption naming the record is fine | Claim removed, not held; optional caption names the table and its compiler only | made |
+| 5 | "published to argue for army medical reform" as a claim with fallback | Claim (4) with the cut-the-clause fallback | made |
+| 6 | Recall item kept | Unchanged | made |
+| Objection | Research note's "the whole army would have died within a year" rejected | Agreed; used nowhere | answered |
+
+Class added: none. No change outside my record in the brief.
+
+One new finding, outside the brief text, learner-visible, and on the minimising reading my P2 finding names: the curriculum concept name in content/curriculum/history.json, which the catalog shows (src/app/catalog/page.tsx line 52), reads "Disease, not wounds: deaths in British army hospitals in the Crimean War". "Not wounds" says wounds did not kill; 1,758 men died of them. It also puts "the Crimean War" where the hospital-and-British qualifier has to carry the claim, though the qualifier is present. Change (cm-history owns the curriculum): a name that keeps the comparison, for example "Disease killed about eight times as many as wounds: deaths in British army hospitals in the East". Checklist item N4/P2 (a death comparison that can read as "battle hardly killed anyone").
+
+Not asked, for the stage-B walkthrough: the dashed line at March 1855 must carry the date only, no event label (a sanitary commission arrived that month; the line must not tell the story the reveal declines to tell). The slug `disease-killed-eight-to-one` needs no rename: it names the comparison and no cause.
+
+Addendum verdict: go with changes (one change: the catalog name; the brief itself is accepted as written).

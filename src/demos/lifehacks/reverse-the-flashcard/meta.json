@@ -1,7 +1,7 @@
 {
   "slug": "reverse-the-flashcard",
-  "title": "Test the other direction",
-  "hook": "Shown 'dog', can you give 'perro'?",
+  "title": "Perro to dog, dog to perro",
+  "hook": "You always get 'perro → dog' right. Does it work the other way round?",
   "domain": "lifehacks",
   "concept": "test-both-directions",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Shown 'dog', can you give 'perro'? You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'? Correct option: Not tested yet. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: You always get 'perro → dog' right. Does it work the other way round? You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'? Options: Not tested yet / Yes: same card. Correct option: Not tested yet. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Shown 'dog', can you give 'perro'?', question, answer 'Not tested yet'.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Shown 'dog', can you give 'perro'?', question, answer 'Not tested yet'. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"reverse-the-flashcard\"). Not checked by the builder.",
       "id": "lifehacks.reverse-the-flashcard.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "Reverse the cue and answer to check the opposite mapping. A result in one direction is not a test of the other.",

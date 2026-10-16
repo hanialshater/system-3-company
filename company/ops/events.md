@@ -23,6 +23,9 @@ place a fact lives. The disk is still the memory, and the log is its index in ti
 | `refs` | no | File paths or commit hashes. |
 | `state` | no | For agents: `working`, `done`, `failed` or `stopped` (a usage limit or an interruption). |
 | `corrects` | no | The id of an earlier event this one corrects. |
+| `source` | no | On a `dispatch`: what the run was chosen from, `batch=<file>#B<n>`, `batch=SO-<lane>-<n>`, `§4:<reason>` or `none` (company/ceo-office/dispatch-requests.md §2.3, §3.4, §4). |
+| `chooser` | no | On a `dispatch`: the role that chose the run (`chooser=` in the prompt, else the batch file's `poc:`, else the dispatcher; `unknown` when a batch or SO is cited but its owner cannot be read). |
+| `toolUseId` | no | The Agent tool call's id, on events the Agent-tool hook writes. The backfill uses it so a hooked run is not written twice. |
 
 ## Types
 
@@ -66,6 +69,28 @@ node tools/events.mjs add --type=dispatch --room=build-floor --actor=chief-of-st
 node tools/events.mjs backfill   # git history + session transcripts (idempotent)
 node tools/events.mjs tail 20
 ```
+
+**At dispatch time (W-1195, retro 2026-10-16 C1):** `.claude/hooks/agent-events.mjs` writes `dispatch`
+(PreToolUse on the Agent tool) and `report` (a foreground PostToolUse, or SubagentStop for a background agent)
+through `events.mjs add`, with ids `hk-…`. It is **not wired** until the founder approves the
+`.claude/settings.json` change (F-31) and its tier-2 readiness record is approved
+(company/engineering/readiness/2026-10-16-agent-events-hook.md). Until then the backfill below is the only path,
+and `npm run metrics` prints `last dispatch event: N h ago` so a dark log shows. `S3_EVENTS=<file>` points
+`events.mjs`, `metrics.mjs`, `dispatch-check.mjs` and the hook at another log (tests).
+
+**The hook writes a spool, not this log (ruling H2, company/decisions/2026-10-16-cos-ruling-h2-hook-spool.md).**
+The hook calls `events.mjs add --spool`, which appends to `company/ops/events-spool/<UTC date>.jsonl`
+(gitignored) in the **main checkout**, found through the git common dir, so every worktree shares one spool.
+`dispatch-check` and `metrics` read this log plus the spool (deduped by id), so in-flight counts are right between
+folds. The chief of staff, the single writer of this log, runs `node tools/events.mjs fold` (`--dry` to count)
+before an events commit: spool events not already here are appended in ts order and the spool is emptied;
+unparseable spool lines are kept in `events-spool/unparsed-*.txt`. One fold at a time: `fold` holds
+`events-spool/fold.lock` (its pid) and exits 2 with the holder's pid when a live fold has it; a lock or a
+`*.folding-<pid>` file of a dead pid is taken over (F1, e1c9162). Appends that land in a file the fold has
+renamed are re-read before the file is removed (F2). `S3_SPOOL=<dir>` overrides the spool
+(tests); with only `S3_EVENTS=<file>` set, the spool is `<that file's dir>/events-spool/`.
+Unparseable lines here or in the spool are skipped and counted, never thrown (E1): `add` prints the count to
+stderr, metrics prints `events.jsonl: N unreadable line(s)`, dispatch-check warns.
 
 Session transcripts are imported from `~/.claude/projects/**/*.jsonl` (dispatches, reports and
 stop notices). Internal agent ids are reduced to a short hash; prompts and reports are stored as written.

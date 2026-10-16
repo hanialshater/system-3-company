@@ -539,7 +539,7 @@ export const roles = [
     inScope: [
       "company/ops/events.jsonl and tools/events.mjs (append, backfill, query)",
       "HQ: src/app/hq/** (floor plan, timeline, replay, meeting pages)",
-      "tools/metrics.mjs, tools/publish-ready.mjs, tools/snapshot.sh",
+      "tools/metrics.mjs, tools/publish-ready.mjs, tools/commit-own.sh, tools/git-hooks/",
       "Event-driven ritual triggers (company/rituals/triggers.json) and their proposal into the gate CLI",
     ],
     outOfScope: ["Gates (evaluation steward; tools/company.mjs is constitutional)", "Lesson content", "The learner app (platform engineer)"],

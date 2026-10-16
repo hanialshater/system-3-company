@@ -1762,8 +1762,8 @@
   },
   {
     "slug": "lh-fixed-energy-charge",
-    "title": "The fixed charge changes the bill",
-    "hook": "Halve your usage. Does the bill halve?",
+    "title": "Half the energy, half the bill?",
+    "hook": "Your bill has a €10 fixed charge. Halve your usage: does the bill halve?",
     "concept": "lh-fixed-energy-charge",
     "family": "energy",
     "aLabel": "Low-rate+fee",
@@ -1791,12 +1791,13 @@
       "step": 10
     },
     "unit": "€",
-    "question": "Halve your usage. Does the bill halve?",
+    "question": "The bill with the €10 fixed charge is €18 at 40 kWh. Cut usage to 20 kWh: what is that bill now?",
     "options": [
-      "No: the fixed charge stays",
-      "Yes"
+      "€9",
+      "€10",
+      "€14"
     ],
-    "answer": 0,
+    "answer": 2,
     "assumptions": "Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
     "details": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
     "principle": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",

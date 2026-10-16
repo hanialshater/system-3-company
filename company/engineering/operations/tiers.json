@@ -92,6 +92,13 @@
       "note": "tools/claim.mjs"
     },
     {
+      "id": "dispatch-control",
+      "tier": "T2",
+      "owner": "tools-lead",
+      "status": "degraded",
+      "note": "tools/dispatch-check.mjs (caps C1-C4, R1, R2, I1) and, once tools-ledger merges, the slot ledger tools/lib/slots.mjs (S1-S4). Every production dispatch goes through it; a false refusal freezes the company for up to 6 h, so it is T2 though no learner sees it. Degraded: it counts in-flight agents from events.jsonl, which has had no dispatch/report events since 2026-10-14 (W-716, R-010), so C1 can overcount or undercount. Classified 2026-10-16 by principal-engineer-ops (company/engineering/readiness/2026-10-16-slot-ledger-tier-confirmation.md). Change tier of the code stays 1 by paths.json; the checker for its rules is lane 10."
+    },
+    {
       "id": "lesson-storage-at-scale",
       "tier": "T2",
       "owner": "principal-engineer",

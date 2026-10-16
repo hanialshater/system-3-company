@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.presets :global(.row) { margin-top: 2px; gap: 6px; }
+.presets :global(.row) > :global(.control) { flex: 1 1 40%; min-width: 0; padding: 6px 4px; min-height: 44px; }
+.title { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.head { fill: var(--fg); font-size: 11px; font-weight: 600; }
+.headOn { fill: var(--fg); font-size: 11px; font-weight: 800; text-decoration: underline; }
+.sub { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.prop { fill: var(--domain); }
+.pers { fill: color-mix(in srgb, var(--fg) 55%, var(--bg-2)); }
+.empty { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3; }
+.val { fill: var(--fg); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.q { fill: var(--muted); font-size: 12px; font-weight: 700; }
+.ref { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.ratio { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.dotLo { fill: var(--fg); opacity: 0.85; }
+.dotHi { fill: var(--domain); }
+.dotMid { fill: none; stroke: var(--muted); stroke-width: 1; }
+.meanLo { stroke: var(--fg); stroke-width: 2.5; }
+.meanHi { stroke: var(--domain); stroke-width: 2.5; filter: brightness(0.85); }

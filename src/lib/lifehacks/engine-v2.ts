@@ -71,7 +71,8 @@ export interface HomeVerdict { below?: string; above?: string; zero?: string; at
 export interface HomeV2Fields {
   engine?: 2;
   modeLabels?: [string, string];
-  options?: [string, string, string];
+  /** Predict options: three (A wins, B wins, same) or, from wave W3, two where the fix plan's line has two. */
+  options?: [string, string] | [string, string, string];
   amounts?: HomeAmount[];
   resultLabel?: string;
   /** Unit text for the result cell when the model's unit is not plain words (cm⁻¹ → "per cm"). */
@@ -163,7 +164,7 @@ export function homeSliderMatters(spec: HomeSpec): boolean {
 export function homeV2Problems(spec: HomeSpec): string[] {
   if (spec.engine !== 2) return [];
   const out: string[] = [];
-  if (!spec.options || spec.options.length !== 3) out.push("options");
+  if (!spec.options || (spec.options.length !== 2 && spec.options.length !== 3)) out.push("options");
   if (!spec.amounts || spec.amounts.length < 1 || spec.amounts.length > 2) out.push("amounts");
   const labels = homeModeLabels(spec);
   if (labels.some((l) => l.length > 16)) out.push("modeLabels > 16 chars");

@@ -53,6 +53,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { coeCoverage } from "./lib/coe-coverage.mjs";
 import * as slots from "./lib/slots.mjs";
+import { mergeById, readJsonlFile, readSpool } from "./lib/events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -68,9 +69,11 @@ const fails = [], warns = [], info = [];
 
 // ---- in flight: event log (dispatch without report/stopped in the last STALE_H hours) vs the caller's count
 const evPath = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl");
-const events = fs.existsSync(evPath)
-  ? fs.readFileSync(evPath, "utf8").split("\n").filter(Boolean).flatMap((l) => { try { return [JSON.parse(l)]; } catch { return []; } }).sort((a, b) => a.ts.localeCompare(b.ts))
-  : [];
+// The log plus the hook spool (ruling H2, tools/lib/events-spool.mjs): the hook writes only the spool, so in-flight
+// counts must read it between the chief of staff's folds. Deduped by id; unreadable lines are skipped and counted.
+const logRead = readJsonlFile(evPath);
+const spool = readSpool();
+const events = mergeById(logRead.events, spool.events).filter((e) => typeof e?.ts === "string").sort((a, b) => a.ts.localeCompare(b.ts));
 const open = new Map();
 for (const e of events) {
   if (!e.agent) continue;
@@ -84,6 +87,8 @@ const lastDispatch = events.filter((e) => e.type === "dispatch").at(-1)?.ts;
 if (opt.running === undefined) warns.push("no --running count given: only the event log was read, and it misses unlogged agents");
 const running = Math.max(logAgents, Number(opt.running ?? 0));
 const builders = Math.max(logBuilders, Number(opt.builders ?? 0));
+if (logRead.bad.length || spool.skipped) warns.push(`event log has ${logRead.bad.length + spool.skipped} unreadable line(s) (log ${logRead.bad.length}, spool ${spool.skipped}): they are skipped, so in-flight may be undercounted; pass --running`);
+if (spool.lines) info.push(`hook spool: ${spool.lines} unfolded event(s), oldest ${spool.oldest ?? "?"} (node tools/events.mjs fold)`);
 info.push(`in flight: ${running} agents, ${builders} builders (event log ${logAgents}/${logBuilders}, caller ${opt.running ?? "-"}/${opt.builders ?? "-"}; last logged dispatch ${lastDispatch ?? "never"})`);
 if (lastDispatch && Date.now() - Date.parse(lastDispatch) > 3 * 3.6e6 && opt.running === undefined) warns.push("no dispatch logged for 3 h or more: the event log may have stopped recording (pass --running)");
 

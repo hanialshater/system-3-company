@@ -7,10 +7,13 @@
 
 import fs from "node:fs";
 import { dedupeUsage } from "./lib/usage.mjs";
+import { readJsonlFile } from "./lib/events-spool.mjs";
 
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 const H = Number(opt.hours ?? 24);
-const events = fs.readFileSync("company/ops/events.jsonl", "utf8").trim().split("\n").map((l) => JSON.parse(l));
+// E1 / S2 (W-1272): an unreadable line (conflict marker, torn write) is skipped and counted, never thrown.
+const { events, bad: badLines } = readJsonlFile("company/ops/events.jsonl");
+if (badLines.length) process.stderr.write(`ops-health: ${badLines.length} unreadable line(s) skipped in company/ops/events.jsonl\n`);
 const now = Date.now();
 const within = (e, h) => now - Date.parse(e.ts) <= h * 3600_000;
 const tiers = JSON.parse(fs.readFileSync("company/engineering/operations/tiers.json", "utf8"));

@@ -6,12 +6,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { computeDue } from "./lib/rituals.mjs";
+import { readJsonlFile } from "./lib/events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const triggers = JSON.parse(fs.readFileSync(path.join(ROOT, "company/rituals/triggers.json"), "utf8")).triggers;
-const events = fs.existsSync(path.join(ROOT, "company/ops/events.jsonl"))
-  ? fs.readFileSync(path.join(ROOT, "company/ops/events.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)).sort((a, b) => a.ts.localeCompare(b.ts))
-  : [];
+// E1 / S2 (W-1272): an unreadable line is skipped and counted on stderr, never thrown (readJsonlFile: [] if no log).
+const { events: logEvents, bad: badLines } = readJsonlFile(path.join(ROOT, "company/ops/events.jsonl"));
+if (badLines.length) process.stderr.write(`rituals-due: ${badLines.length} unreadable line(s) skipped in company/ops/events.jsonl\n`);
+const events = logEvents.filter((e) => e && typeof e.ts === "string").sort((a, b) => a.ts.localeCompare(b.ts));
 // A ritual record on disk also counts as "held" (2026-10-14 operating audit): the event log stopped
 // recording dispatches and rituals after 16:00 that day, so rituals that were held looked overdue.
 // Records: company/rituals/records/<date>-<ritual>*.md and company/engineering/operations/<date>-ops-review*.md.

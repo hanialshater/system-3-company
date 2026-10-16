@@ -28,42 +28,60 @@
       "text": "The drift speed of the electrons in a wire is v = I / (n A e): current divided by (free electrons per cubic metre × cross-section × electron charge).",
       "support": "derivation",
       "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on current and resistance (current density J = n e v_d). artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '56 electron-speed-in-a-wire'. Demo.tsx V_DRIFT. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 2 module m58730 'Model of Conduction in Metals': 'I = nqAv_d ... where v_d is the drift velocity, n is the free charge density, A is the cross-sectional area'. Own node: 1/(8.5e28 x 1e-6 x 1.602e-19) = 7.343e-5 m/s, as Demo.tsx V_DRIFT. The Halliday citation was not opened (book not reachable); verified on the opened source.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.electron-speed-in-a-wire.c2",
       "text": "Copper has about 8.5×10²⁸ free electrons per cubic metre (one per atom: 8,960 kg/m³ ÷ 0.06355 kg/mol × 6.022×10²³ = 8.49×10²⁸); the stage's faint dots stand for these electrons, already in the wire before the switch closes (dots drawn far sparser than real).",
       "support": "derivation",
       "source": "check.mjs block 56 (nCu = 8.491e28). Demo.tsx N_CU. Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Own node: 8960 / 0.063546 x 6.02214e23 = 8.491e28 per m3. Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58730: copper has 'one free electron per copper atom'; its exercises use 8.96 g/cm3, 63.5 g/mol and n = 8.48e28 electrons/m3. Stage seen (walkthrough 2026-10-16T11:19Z): faint dots on the loop before 'Switch on'; 44 dots, so 'far sparser than real' holds.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.electron-speed-in-a-wire.c3",
       "text": "At 1 A in 1 mm² copper the drift is 0.073 mm/s: the tinted electron moves 0.07 mm in 1 s, 4.4 mm in 1 min and 26 cm in 1 h, and the 2 m trip from switch to bulb takes 7.6 h (stage marker labels '+0.07 mm', '+4.4 mm', '+26 cm'; label '2 m trip: 7.6 h'; Seen row '1 min: 4.4 mm · 1 h: 26 cm · trip: 7.6 h'; reveal: 'crept only 4.4 mm in a minute and 26 cm in an hour: the 2 m trip takes 7.6 h', 'about 0.07 mm a second').",
       "support": "derivation",
       "source": "v = 1 / (8.5e28 × 1e-6 × 1.602e-19) = 7.34e-5 m/s; ×60 = 4.41 mm; ×3600 = 26.4 cm; 2 / v = 27,240 s = 7.57 h. check.mjs block 56. Demo.tsx computes every label from V_DRIFT. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Own node: v = 7.343e-5 m/s; 1 s 0.0734 mm, 1 min 4.406 mm, 1 h 26.43 cm, 2 m / v = 7.566 h (7.558 h with n = 8.491e28). Every label read on the walkthrough: '+0.07 mm', '+4.4 mm', '+26 cm', '2 m trip: 7.6 h', Seen row and both reveal sentences match after Demo.tsx rounding (fmtDist, toFixed).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.electron-speed-in-a-wire.c4",
       "text": "The lamp lights the moment the switch closes: the push (the electric field) travels along the wire at a large fraction of light speed, about 10 ns (10 billionths of a second) for 2 m here, taking about 2×10⁸ m/s as an illustrative value (hook 'A lamp lights the moment you flip its switch'; stage label 'lit after ~10 ns'; Seen row 'lit: ~10 ns'; reveal 'Your bulb lit about 10 ns (10 billionths of a second) after the switch').",
       "support": "source",
       "source": "Purcell and Morin, Electricity and Magnetism, on fields in conductors and transmission lines (signal speed set by the wire's surroundings, typically 0.5 to 0.9 c). check.mjs block 56 (2 / 2e8 = 10 ns, illustrative). Brief claim 4: 'about' is stated.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58730: 'Lights come on as soon as a light switch is moved to the on position. Most electrical signals carried by currents travel at speeds on the order of 10^8 m/s, a significant fraction of the speed of light' and the signal is 'a rapidly propagating change in the electrical field'. Own node: 2 m takes 6.7 ns at c, 10.1 ns at 0.66 c, 13.3 ns at 0.5 c, so 'about 10 ns' with 2e8 m/s stated as illustrative is fair. Stage 'lit after ~10 ns', Seen 'lit: ~10 ns', reveal seen. Purcell and Morin not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.electron-speed-in-a-wire.c5",
       "text": "The wire is already full of free electrons, and closing the switch pushes on all of them at once, so the ones inside the bulb start moving straight away; all of them drift together at the same speed (stage: every faint dot shifts by the same distance as the tinted one; reveal: 'The faint dots are the wire's free electrons, there all along. Closing the switch pushed on all of them at once, so the ones in the bulb moved straight away').",
       "support": "source",
       "source": "Halliday, Resnick and Walker, chapter on current and resistance (the same current, so the same drift speed, in every part of a uniform series loop; current-same-around-loop). Demo.tsx moves every dot by the same displacement.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08): m58730 ('as one charge enters, another leaves almost immediately, carrying the signal rapidly forward'; v_d inversely proportional to A at fixed n) and vol 2 m58454 'Resistors in Series and Parallel' ('the current is the same through each resistor' in series). Same I, n and A give the same v_d. Demo.tsx shifts every dot by the same distance (shiftPx). Scope note, not a dispute: this holds in the uniform copper wire the stage models; a real filament (thinner, tungsten) carries the same current at a different drift speed. The reveal says 'the wire's free electrons', which is true as worded.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.electron-speed-in-a-wire.c6",
       "text": "Idealisations: a steady 1 A DC current from a battery in 1 mm² copper wire, with the 2 m route from switch to bulb drawn shorter than real and the first 30 cm of it drawn as a ruler under the circuit (stage caption '1 A in 1 mm² copper wire. Tinted dot: one electron.'; ruler labelled 0 and 30 cm). Electrons leave the battery's negative terminal, so they drift from the switch towards the bulb. Not on the stage: on AC mains the electrons only jiggle back and forth and never make the trip.",
       "support": "convention",
       "source": "Brief claim 5. Demo.tsx PX_M (100 px per m on the circuit) and RX_CM (9.33 px per cm on the ruler).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 55 (fact-checker, 2026-10-16): Stage seen: caption '1 A in 1 mm2 copper wire. Tinted dot: one electron.', ruler '0' and '30 cm', '2 m' dimension. Demo.tsx: PX_M = 200/2 = 100 px/m, RX_CM = 280/30 = 9.33 px/cm; battery short plate (negative) on top and the loop runs clockwise from it, so the tinted dot drifts from the switch towards the bulb (screenshot 05-step-4). Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58730: electrons 'travel from the negative terminal to the positive terminal'. AC line, own derivation: 1 A rms at 50 Hz gives peak drift 1.04e-4 m/s and a displacement amplitude v/(2 pi f) = 0.33 um, so they never make the 2 m trip.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

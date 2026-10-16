@@ -1,7 +1,7 @@
 {
   "slug": "group-cables-with-ends",
   "title": "A bundle still has loose ends",
-  "hook": "Which layout removes the depicted free-end paths?",
+  "hook": "Three cords tied in the middle, or with their ends tucked. Which tangles less in a drawer?",
   "domain": "lifehacks",
   "concept": "cord-tangle-length",
   "status": "review",
@@ -19,52 +19,61 @@
     ]
   },
   "misconception": "Tying a bundle of cords in the middle stops them tangling.",
-  "objective": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
+  "objective": "A tie round the middle holds the cords together, but every end stays free. A tangle starts when a free end weaves through a loop, so tucking the ends away takes away that start. The drawing counts loose ends; it does not simulate tangling.",
   "claims": [
     {
       "id": "lifehacks.group-cables-with-ends.c1",
-      "text": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
+      "text": "A tie round the middle holds the cords together, but every end stays free. A tangle starts when a free end weaves through a loop, so tucking the ends away takes away that start. The drawing counts loose ends; it does not simulate tangling.",
       "support": "derivation",
-      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, p.16435, which could not be opened from this host) to derivation, as FC LH-2 asked. Argument: if both ends of a cord are held, the cord is a fixed arc and no motion of its middle can change its knot type, so a new knot needs a free end to pass through a loop. A tie around the middle leaves every end free; ties that also secure the ends leave none. On the stage this is the drawing: one middle tie and 2N orange end dots, against ties at both ends and the middle with 0 end dots, for N=2..8 (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation checked; Raymer and Smith not opened and not needed. Argument: a cord whose ends are both held (by hands, or by ties that also hold the ends) forms, with the holder, a closed loop, so moving the middle cannot change its knot type; a new knot needs a free end to pass through a loop (the classic fact that you cannot tie an overhand knot without letting go of an end). A tie around the middle restricts nothing at the ends. Stage: evaluateHome end-paths gives Accessible ends = 2 × cords before, 0 after; homeCordScene draws one middle tie and 2N end dots (\"N loose ends\") before, and ties at x = 50, 150, 250 with no end dots (\"Ends tucked into end ties\") after, for every slider value 2-8. The claim says the drawing distinguishes the two; it does, and it does not claim a tangle probability.",
+      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, p.16435, which could not be opened from this host) to derivation, as FC LH-2 asked. Argument: if both ends of a cord are held, the cord is a fixed arc and no motion of its middle can change its knot type, so a new knot needs a free end to pass through a loop. A tie around the middle leaves every end free; ties that also secure the ends leave none. On the stage this is the drawing: one middle tie and 2N orange end dots, against ties at both ends and the middle with 0 end dots, for N=2..8 (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation checked; Raymer and Smith not opened and not needed. Argument: a cord whose ends are both held (by hands, or by ties that also hold the ends) forms, with the holder, a closed loop, so moving the middle cannot change its knot type; a new knot needs a free end to pass through a loop (the classic fact that you cannot tie an overhand knot without letting go of an end). A tie around the middle restricts nothing at the ends. Stage: evaluateHome end-paths gives Accessible ends = 2 × cords before, 0 after; homeCordScene draws one middle tie and 2N end dots (\"N loose ends\") before, and ties at x = 50, 150, 250 with no end dots (\"Ends tucked into end ties\") after, for every slider value 2-8. The claim says the drawing distinguishes the two; it does, and it does not claim a tangle probability. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Derivation re-checked: a cord whose ends are both held cannot change knot type, so a new knot needs a free end to pass through a loop; a middle tie leaves every end free. Now also opened Raymer and Smith 2007 on PMC (PMC2034230, pmc.ncbi.nlm.nih.gov reachable this session): \"we propose a simple model to describe the knot formation based on random braid moves of the string end\", supporting \"a tangle starts when a free end weaves through a loop\". Text scopes the drawing (\"does not simulate tangling\"). Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c2",
       "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: caption \"Plain cord; storage only\" and reveal limit present; drawing is strands, ties and end dots only.",
+      "source": "Scope limits and illustrative assumptions of this card; Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: caption \"Plain cord; storage only\" and reveal limit present; drawing is strands, ties and end dots only. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Caption \"Plain cord; storage only\" and reveal limit rendered; drawing is strands, ties and end dots only. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c3",
-      "text": "Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
+      "text": "Loose ends=2×cord count with a middle tie, 0 with the ends tucked into end ties; tangling itself is not simulated.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for N=2..8, both states: readout = drawn end dots = strands×2 before, 0 after (0 mismatches); stage readout \"Ncords · two ends each\"; nothing simulates knots.",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for N=2..8, both states: readout = drawn end dots = strands×2 before, 0 after (0 mismatches); stage readout \"Ncords · two ends each\"; nothing simulates knots. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. evaluateHome end-paths: 2N before, 0 after for N=2..8 (node); walkthrough at N=3 shows 6/0, at N=5 10/0. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c4",
-      "text": "Which layout removes the depicted free-end paths?",
+      "text": "Title: A bundle still has loose ends Hook: Three cords tied in the middle, or with their ends tucked. Which tangles less in a drawer? Question: Three cords tied together in the middle, or with their ends tucked. Which tangles less in a drawer? Options: Ends tucked / Middle tie: it holds them together / Same. Correct option: Ends tucked.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: rendered question; key = 1 \"Secure bundle ends\", the only layout with 0 drawn ends.",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'end-paths' at the starting input 3; correct option moved from 2nd to 1st for TP-8. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered question and options match the plan W3 row (correct option moved first for TP-8). \"Ends tucked\" is keyed and supported by c1; the relative claim \"tangles less\" rests on removing the free-end route, not on a probability. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.group-cables-with-ends.recall",
       "text": "Bundling the middle keeps the strands together but leaves the ends free, and free ends weaving through loops are the tangle path. Securing the ends removes that path in the drawing.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: with both ends held, an arc cannot change knot type (isotopy fixing the ends), so knotting needs an end to pass through a loop; a middle tie leaves the ends free. Keyed option 1 matches; \"in the drawing\" scopes the last sentence.",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: with both ends held, an arc cannot change knot type (isotopy fixing the ends), so knotting needs an end to pass through a loop; a middle tie leaves the ends free. Keyed option 1 matches; \"in the drawing\" scopes the last sentence. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Same derivation as c1; \"in the drawing\" scopes the last sentence. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
+    },
+    {
+      "id": "lifehacks.group-cables-with-ends.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Tie the middle: 3 cords, 6 loose ends free to weave through loops. Tuck the ends: 0 loose ends.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16). | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. homeRevealLine at p=3 reproduces the text exactly; rendered reveal recomputes at the learner's value (5 cords, 10 loose ends), consistent. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
@@ -88,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:cord-tangle-length",
     "prerequisites": [],

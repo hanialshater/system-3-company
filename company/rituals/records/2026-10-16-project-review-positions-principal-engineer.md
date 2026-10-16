@@ -49,3 +49,11 @@ So, as written, the checkpoint cannot tell whether A2 worked. Two lines pass wha
 - A backfilled ledger shows lifehacks-engine-v2's spend and a per-wave cost on disk that reproduces 3.0M. Then item 4 becomes a go.
 - The portfolio-manager shows that the 8.17M T2 already contains the quality line. Then item 7's gap is about 8.5M + 1.49M against 8.17M, which is smaller but still over.
 - A real phone becomes available to this host, or a founder-approved preview can be read from one. Then line (d) is measured directly.
+
+## Revision 2026-10-16 (item 5, after the A2 pilot design review)
+
+Source: [company/engineering/reviews/2026-10-16-edd-003-a2-pilot-review.md](../../engineering/reviews/2026-10-16-edd-003-a2-pilot-review.md), "F1 and my Project Review 1 item-5 position". Platform-engineer's finding F1 (EDD-003 addendum §10) says the build trigger (10 min) and the QA trigger (2 h) for stage 1 no longer fire after A1. The direction of my item-5 position does not change: it is still a reduction and still "go with changes". Three parts of it do change:
+- **Release 1.2M now, with 1.89M as the ceiling.** The remaining 0.69M is held until both the R9 checkpoint record and a real-device warm read (W-085) exist, and it is not released on a date.
+- **The checkpoint is 1.2M**, which is the costed run plan R0 to R9. This replaces my uncosted 1.0M.
+- **The case for stage 1 now rests on** the full re-QA after a kit change (55 min) and on the 1,000-lesson trigger. Line (b) must therefore report the kit-change re-QA scope (review condition P-1). Line (d): I accept holding at the checkpoint without a phone read, in place of reading the emulated proxy there.
+The item-5 objection (feasibility) stays open until the forum takes these lines.

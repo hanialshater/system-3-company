@@ -1,6 +1,8 @@
 # Behavioral economics and irrational behavior: case, size, form and checkability
 
 owner: principal-pm-verticals (Selin) · date: 2026-10-15 · status: **proposed** (step 1 of `category-onboarding-playbook.md`). The founder decides the form (category, strand or course) and the slot budget (founder inbox F-21, F-22). head-of-product decides the slot line and the boundary rulings. The domain scout writes the DLR proposal.
+
+**Status, 2026-10-16:** the founder chose a **category** (F-21), and head-of-product's decision (`company/decisions/2026-10-15-behavioral-economics-dlr-decision.md`) supersedes §4 (form), §5 (splits: now the signed boundary table) and §7 (size: a ceiling of 18, not 40; recommendation F-22). §6 now carries the W-902 sourced verdicts. Sections 4, 5 and 7 are kept as the case that was made, not as the plan.
 inputs read: the founder's ask (via the chief of staff, 2026-10-15); `plan-to-2000.md` (third pass); `2026-10-14-history-and-next-categories.md`; `company/domains/proposals/2026-10-14-next-categories.md` §1.2 (psychology: "wait"); `content/curriculum/{economics,probability,books,big-ideas}.json`; `company/domains/{economics,books,big-ideas,big-ideas-strategy,books-strategy}.md`; `src/demos/*/*/meta.json` (concept search); `company/ops/token-budget.md` §6; `tools/org/roles.mjs` (SUBAREAS); `src/lib/hq.ts`; `2026-10-15-founder-sensitive-route-and-history-tranches.md`.
 evidence status: **no demand evidence.** Release 2026.10.15.1 went out today, but no commit or recall data exists yet. CM demand ratings are estimates. I use no borrowed-mind review as market evidence. Every replication verdict in §6 is my prior, written from memory. **No source was opened from this host.** The fact-checker must source each one before it becomes a claim.
 
@@ -64,7 +66,7 @@ Out of scope: mental health, diagnosis, personality typing (the psychology refus
 
 Claim types, in order of preference: **(a) derivation** (an expected value, a utility consistency check, a discount-curve reversal, an iterated best response, a winner's-curse simulation); **(b) the learner's own screen** ("your two answers cannot both maximise expected utility"); **(c) a disclosed, seeded simulation** of a crowd. It is labelled a simulation and never presented as "people chose". **(d) A source plus a replication status**, using Big Ideas' shared verdict words (holds up · holds with limits · mixed or contested · untested · did not replicate). Any sentence like "most people choose A" is a type (d) claim, with its sample. I expect a held-claim rate of **30-40%** until a web-capable fact-check runs on every wave, the same as Big Ideas. **Within-learner designs have a cost:** seeing both frames weakens a framing effect. The reveal says so.
 
-Verdicts below are **priors from memory, to be sourced**. Pointers are for the fact-checker only.
+Verdicts in the first table are **priors from memory**. Pointers are for the fact-checker only. **The sourced verdicts are in the second table (W-902, 2026-10-15), and where the two differ, the W-902 verdict governs.** Neither table marks any claim verified; the fact-checker opens each source.
 
 | Effect | Prior verdict | Teach as | Pointer to check |
 |---|---|---|---|
@@ -89,7 +91,31 @@ Verdicts below are **priors from memory, to be sourced**. Pointers are for the f
 | Ego depletion | did not replicate | never as a claim. Failure lesson only (Big Ideas first) | Hagger et al. 2016; Vohs et al. 2021 |
 | Power posing, honesty pledge at the top of a form | did not replicate / retracted | never | Ranehill et al. 2015; Shu et al. 2012, retracted 2021 |
 
-**Charter rule (for cm-economics):** no finding whose verdict is "mixed" or worse appears in a predict answer. A retracted or fabricated study is a dispute, and the lesson becomes about the correction or is withdrawn (Books rule 6).
+**Charter rule** (now in `company/domains/behavioral.md`, not Economics' charter: decision objection 3): no finding whose verdict is "mixed" or worse appears in a predict answer. A retracted or fabricated study is a dispute, and the lesson becomes about the correction or is withdrawn (Books rule 6).
+
+### Sourced verdicts (W-902, research-lead, 2026-10-15), added 2026-10-16 (W-1041)
+
+Source: `company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md`. "Opened" = fetched from PMC (OAI-PMH endpoint) and read; "secondary" = reported by an opened paper. **None of the five headline replication reports is in PMC** (Many Labs 1, Hagger et al. 2016, Ruggeri et al. 2020, DellaVigna & Linos 2022, Nagel 1995); three are citable at second hand, always as "as reported by <opened paper>".
+
+| Effect | Prior (table above) | W-902 verdict | Opened source (PMC) | What changes for the portfolio |
+|---|---|---|---|---|
+| Allais / certainty effect, reflection | holds up | **robust**, attenuated against 1979; experts violate less; reflection "largely lost" in crisis samples | PMC9337702 (Ruggeri 2020 secondary), PMC545552, PMC13576738 | none for pilot 1 (`sure-million-or-long-shot`, c6 cites this row). Reflection, the pilot-4 fallback, carries a population limit |
+| Framing (risky choice) | holds up | **robust**: d = 0.69, 88,181 people in 47 countries; varies by nation | PMC8432807 (Many Labs 1 d = 0.60 secondary) | pilot 4 may source its framing line here, as cm-books B1 asks (research, not a book) |
+| Endowment effect | with limits | **with limits**: shrinks or vanishes when choice uncertainty is reduced; absent in one baseline and one cultural setting | PMC9200560, PMC6956941, PMC8822236 | the scope debate must be in the reveal (B2 condition 2); it is sourced now |
+| Present bias | with limits (effort > money) | **with limits**: money-based reversals much weaker; 61 countries, 54% show an anomaly | PMC10489299, PMC9584811 | none for pilot 2 (`same-week-a-year-apart`, c6 cites this row); the reversal stays a derivation |
+| Mental accounting | with limits | **with limits, problem-specific**: 11 of 17 Thaler problems replicated; theatre ticket yes, jacket-calculator no | PMC12445221 | pilot 5 may cite only replicated problems; its stage is the learner's own pair (E6) |
+| Beauty contest / level-k | holds up | **robust**: first-round means 36.4 and 39.0-44.6 in two opened samples | PMC5303671, PMC4446529, PMC2685737 | pilot 3 may quote a sample mean as type (d); Nagel 1995 stays held (E8) |
+| Overconfidence, 90% intervals | holds up | **robust, format-dependent**: 73.8% hit in one sample; SPIES removed it | PMC5386407, PMC5978695 | #11 teaches from the learner's own ranges (P3); any "most people" line stays held |
+| Money illusion | with limits | **with limits, thinly sourced**: two small lab studies, no replication project | PMC2664018, PMC3559431 | moot: #12 dropped on E9; the thin evidence is a second reason |
+| Dictator giving | holds up in labs | **with limits**: ~28% given (Engel 2011, secondary), Western undergraduate labs; stakes matter in some populations | PMC11819478, PMC3741194 | "in labs" and "varies across populations" in the same reveal (unchanged) |
+| Social and money priming | did not replicate | **failed** for the iconic studies; the field as a whole **contested** (two meta-analyses d ≈ 0.35-0.37) | PMC3261136, PMC4831299, PMC5783538, PMC12421318, PMC8522447 | stays Big Ideas' first refusal (G0(4)); a failure lesson must say "contested" of the field and "did not replicate" of the named studies |
+| Ego depletion | did not replicate | **failed**: d = 0.06 in 36 labs (N = 3,531) | PMC12422598, PMC6124090, PMC4971805 | unchanged: never taught here |
+| Power posing | did not replicate | **failed** (hormones, felt power) | PMC6585898, PMC11619626 | unchanged: never taught here |
+| Nudges at scale | mixed | **with limits (small at scale)**: 1.9 pp, 13% over a 15% base, 73 trials; the journal comparison not opened, so "contested" stays for the comparison | PMC11449432 | the G2 reserve's predict answer (the gap) is still unsourced; it stays unbriefed (G2 condition 3) |
+
+**Not sourced in this pass** (priors only, every line held): anchoring, sunk cost, defaults, loss-aversion size, commitment devices and automatic escalation, decoy, choice overload, scarcity, the honesty-pledge retraction. Two of these are in the fold floor (`commitment-devices`, `automatic-escalation`) with type (d) only claims, so they wait on a second W-902 pass and the fact-checker's (d) statement (decision Amendment 1, A1.1 dated check).
+
+**What I now believe (and how sure).** The pilot's checkable core holds: the five pilot effects each have an opened PMC source with a verdict at "with limits" or better (fairly sure; the fact-checker has not opened them). The risk has moved from the pilot to the floor: four of the 14 floor concepts are type (d) only, and two of those are unsourced (about 70% that a second pass sources at least one; a guess).
 
 ## 7. Size inside plan-to-2000, and where the slots come from
 

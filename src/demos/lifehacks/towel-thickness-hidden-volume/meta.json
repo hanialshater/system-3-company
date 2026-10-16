@@ -1,7 +1,7 @@
 {
   "slug": "towel-thickness-hidden-volume",
-  "title": "Thicker cloth, less face per volume",
-  "hook": "Which sheet has less face area per material volume?",
+  "title": "A towel twice as thick",
+  "hook": "Same size, twice as thick, twice the water. Does it get more face to dry from?",
   "domain": "lifehacks",
   "concept": "drying-water-load",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c4",
-      "text": "Which sheet has less face area per material volume?",
+      "text": "Title: A towel twice as thick Hook: Same size, twice as thick, twice the water. Does it get more face to dry from? Question: Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now? Options: The same: same size towel / Twice as much / Half as much. Correct option: Half as much.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, question, options, answer replaced (row \"towel-thickness-hidden-volume\"). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c5",
@@ -74,6 +72,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Single thickness: 10,000 cm² of open face on 1,000 cm³ of cloth, 10 cm² per cm³. Twice as thick: the same 10,000 cm² on 2,000 cm³, 5 cm² per cm³: half as much.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 by demo-builder 2026-10-16, batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1D). Added unverified. Not checked by the builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:drying-water-load",
     "prerequisites": [

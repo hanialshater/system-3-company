@@ -1262,7 +1262,7 @@
       "id": "W-088",
       "title": "SPIKE-001 follow-up: bundler decision record (spike used Next's internal webpack/terser copies)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-13",
       "links": [],
@@ -1271,7 +1271,8 @@
         "at": "2026-10-13",
         "by": "portfolio-manager",
         "note": "Still real: no ADR for the bundler (ADR-001, ADR-002 only)."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-089",
@@ -6815,7 +6816,7 @@
       "id": "W-488",
       "title": "Build chemistry Wave J briefs #5-#19 (15 slugs) via claim queue: briefs in company/domains/briefs/chemistry.{energy-rates,matter-reactions,solutions-acids}.md under 'Wave J round'; re-run each Check in node; claims stay unverified for fact-checker",
       "owner": "demo-builder",
-      "state": "doing",
+      "state": "backlog",
       "domain": "chemistry",
       "created": "2026-10-14",
       "links": [],
@@ -6825,7 +6826,7 @@
         "by": "portfolio-manager",
         "note": "Chemistry Wave J builds; gated by W-556."
       },
-      "updated": "2026-10-14"
+      "updated": "2026-10-16"
     },
     {
       "id": "W-489",
@@ -6876,7 +6877,7 @@
       "id": "W-492",
       "title": "Wave J geography: 15 new briefs ready in company/domains/briefs/geography.{earth-climate,maps-projections,people-places}.md; take them with node tools/claim.mjs next geography; numbers re-run from company/domains/briefs/checks/geography-wave-j.mjs",
       "owner": "demo-builder",
-      "state": "doing",
+      "state": "backlog",
       "domain": "geography",
       "created": "2026-10-14",
       "links": [],
@@ -6886,7 +6887,7 @@
         "by": "portfolio-manager",
         "note": "Moved back from next: Wave J builds wait on W-556 gating (review queue ~457 vs 2-wave limit ~330, plan-to-2000 section 4)."
       },
-      "updated": "2026-10-14"
+      "updated": "2026-10-16"
     },
     {
       "id": "W-493",
@@ -7444,7 +7445,7 @@
       "id": "W-529",
       "title": "P2 Process safety: ban pkill -f / pgrep -f patterns in briefs and checklists (two coordinator shells killed 10-14 despite W-072); all long-running processes via tools/serve.sh-style pid files; extend that wrapper to detach background walkthrough loops (setsid + pid file + log) so they survive the parent shell. See company/engineering/operations/2026-10-14-ops-review.md",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7453,7 +7454,9 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Process safety in briefs."
-      }
+      },
+      "updated": "2026-10-16",
+      "note": "M2 answered as refuse (tools-guardfix f0651da)."
     },
     {
       "id": "W-530",
@@ -8518,10 +8521,11 @@
       "id": "W-613",
       "title": "Write v2 predict options, neutral titles/hooks and recall fixes for the ~186 unreviewed Life Hacks lessons in batches of 20 (est. 165-170 predict leaks, 55-75 recall leaks; sample in company/reviews/lifehacks-200/content-patch-r9-batch-d.md). Do not auto-generate options in W-608",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-614",
@@ -9154,11 +9158,11 @@
       "id": "W-676",
       "title": "Withdraw or source the citation-only claims significant-but-false c5 (Ioannidis 2005) and ten-thousand-replies-still-wrong c5 (Literary Digest 1936). Both are held unverified because no source could be opened, and they block publishing. Records: company/reviews/<slug>/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "probability",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-16"
     },
     {
       "id": "W-677",
@@ -9965,10 +9969,11 @@
       "id": "W-755",
       "title": "check-confidence-with-output .recall: reword 'one attempt does not predict later recall' (no openable source); suggestion is in the claim note",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-756",
@@ -10953,10 +10958,11 @@
       "id": "W-861",
       "title": "Merge W-770 into W-745; give W-622, W-745 and W-810 done-by dates (R&D review 2026-10-14, company/rituals/records/2026-10-14-rnd-review.md)",
       "owner": "research-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-862",
@@ -11347,7 +11353,8 @@
       "domain": null,
       "created": "2026-10-15",
       "links": [],
-      "updated": "2026-10-15"
+      "updated": "2026-10-15",
+      "note": "Blocked on founder ask F-37 (optional)."
     },
     {
       "id": "W-903",
@@ -11533,10 +11540,11 @@
       "id": "W-922",
       "title": "Reconcile W-723 History proposal with the portfolio-manager's check figures; confirm or re-score the behavioral-econ pre-mortem (agenda addendum 2026-10-15)",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-923",
@@ -12040,10 +12048,11 @@
       "id": "W-976",
       "title": "Sign off behavioral economics boundary rows: #4 framing and the endowment-effect exception (books); #11 overconfidence (probability); nudges at scale reserve (big-ideas); #10 ladder link, #7-#9, #12 (economics) (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md)",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-977",
@@ -12474,10 +12483,11 @@
       "id": "W-1022",
       "title": "Re-check london-buried-six-times-more c1 and c4 (v4: 'later compilations (Creighton; Campbell)')",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1023",
@@ -12514,7 +12524,8 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "note": "2026-10-16: research r3 B3 (a078e55) tried 31 routes, nothing reachable says why all 12 estimates ran east; blocked on a founder source ask (F-37); c11 is honest as it stands. Blocked on founder ask F-37 (optional)."
     },
     {
       "id": "W-1027",
@@ -12650,10 +12661,11 @@
       "id": "W-1041",
       "title": "Update behavioral vertical §6 and DLR Checkability section with W-902 replication verdicts (money illusion empirical lines stay held; priming/ego depletion/power posing failed)",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1042",
@@ -12690,7 +12702,8 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "note": "2026-10-16: research r3 B3 (a078e55) tried 31 routes, nothing reachable says why all 12 estimates ran east; blocked on a founder source ask (F-37); c11 is honest as it stands. Blocked on founder ask F-37 (optional)."
     },
     {
       "id": "W-1046",
@@ -13083,10 +13096,11 @@
       "id": "W-1088",
       "title": "Life Hacks brief 2 (spaced-beats-cram) still says each Plan B session starts with recall: the confound v2 removed; amend the brief",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1089",
@@ -13128,10 +13142,11 @@
       "id": "W-1093",
       "title": "Life Hacks per-wave follow-through (r11 fix plan): after each builder wave merges, QA the wave, re-verify reset claims (close W-1078 rows), then r12 learner walk",
       "owner": "qa-tester",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1094",
@@ -13247,10 +13262,11 @@
       "id": "W-1106",
       "title": "lh-fixed-energy-charge c8 DISPUTED: question 'Halve your usage. Does the bill halve?' doesn't name the fixed-charge bill (card B 'No fee' halves exactly); reword prediction, then builder applies, then re-verify",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1107",
@@ -13274,10 +13290,11 @@
       "id": "W-1109",
       "title": "Home W2 lines that didn't fit (lh-home): laundry-gap-air-path (asks drying order, model gives gaps), towel-thickness-hidden-volume (asks drying time, model gives ratio), care-label-first-choice (no drying times in model); garment-overlap slider works in A only; titles that hint the answer (folded-shirt-stack-height, half-size-two-towels, humidity-evaporation-gap); write hooks for W2; recall text still says 'flux'/'normalised gap' (towel-spread, breeze, humidity)",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1110",
@@ -13358,10 +13375,11 @@
       "id": "W-1118",
       "title": "Study W1/W9 (lh-study): write hooks for W1 recall + W9 (provisional builder hooks from your lines), rename answer-pointing titles (note-gap-check, one-question-one-card, reverse-the-flashcard, separate-confusable-pairs, explain-the-link, meeting-and-preparation, estimate-a-range, choose-the-metric-first, dependency-before-priority, unlock-the-following-work), check-confidence-with-output hook lists the studied order; lines that didn't fit: batch-by-setup, do-not-starve-the-long-job (no verbatim line), reserve-an-unassigned-slot; record route-table row 2 answers (TP-3/4/5/8 accepted, objections 1-3, 7)",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1119",
@@ -13449,10 +13467,11 @@
       "id": "W-1128",
       "title": "Draft an amendment to protected tests/qa/contract.spec.ts rule 3: skip controls with [aria-pressed=\"true\"] (a pressed mode button is a deliberate no-op); W-1114 a11y fix is blocked until ratified (evidence: lh-tests probe, packing-cube-walls/shelf-front-labels/wobbly fail without aria-disabled)",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1129",
@@ -13726,10 +13745,11 @@
       "id": "W-1158",
       "title": "PR1 written position by 2026-10-17 23:59 UTC: go / go with changes / object (evidence or purpose) per item in company/rituals/records/2026-10-16-project-review.md; a PE evidence objection reopens its item",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1159",
@@ -13744,10 +13764,11 @@
       "id": "W-1160",
       "title": "PR1 written position by 2026-10-17 23:59 UTC: go / go with changes / object (evidence or purpose) per item in company/rituals/records/2026-10-16-project-review.md; a PE evidence objection reopens its item",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1161",
@@ -13781,7 +13802,7 @@
       "id": "W-1164",
       "title": "Privacy review of EDD-008 (company/reviews/_privacy/2026-10-16-edd-008-accounts.md): merge conditions M1-M6 for the accounts branch (name hook/CHECK in auth_verification, idle clock keyed on last activity, purge timing, anonymous /me sets no cookie, re-run IP/UA test on every Better Auth bump, hashed limiter keys, server-side policyVersion); route via the First Light POC",
       "owner": "backend-engineer",
-      "state": "done",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -13919,10 +13940,11 @@
       "id": "W-1179",
       "title": "FC52 disputes (4, block publishing): unlock-the-following-work c1, keep-the-error-feedback c3, breeze-is-not-extra-surface c4 (prediction line), drying-room-water-load c3; square-bow c1/c4 reword; as Life Hacks POC batch the fixes",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1180",
@@ -13937,10 +13959,11 @@
       "id": "W-1181",
       "title": "Beacon ruling (company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md) conditions C1-C9 and data-inventory gaps: route via First Light round 2 (backend route.ts C1/C2 allow-list for all events; analytics registration answering C3; PE C9 kit boundary; growth-designer C4 + R12 fix)",
       "owner": "head-of-strategic-initiatives",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1182",
@@ -14063,19 +14086,21 @@
       "id": "W-1195",
       "title": "Dispatch/report events written by an Agent-tool hook (not backfill); status+metrics show last-dispatch age, metrics marks never-dispatched STALE >6h; merge W-1175 into W-716 (retro 2026-10-16 C1; hook needs founder D-3)",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1196",
       "title": "W-1173 slot ledger: each slot records role, lane, batch=/SO-/§4 reason and chooser; dispatch-check refuses no-source slots, general-purpose outside §4, and checker roles from non-quality batches (retro 2026-10-16 C2)",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1197",
@@ -14108,10 +14133,11 @@
       "id": "W-1200",
       "title": "CoS integration guards: own worktree for every agent writing in the main checkout; integrator commits only via git commit -- <paths>/commit-own.sh (never bare commit or merge --no-edit with a foreign index; 2e2ccd9 and the 10-15 sweep); explicit-path pre-commit, pkill -f hook (W-529), serve.sh build-to-new-dir-then-swap with evaluator notice; CoS answers in writing (retro 2026-10-16 C6)",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1201",
@@ -14126,10 +14152,11 @@
       "id": "W-1202",
       "title": "Per-role git author on every dispatched run; warn on author Claude for review/QA-record commits; integrator verify runs labelled integration not qa-tester; steward audits QA-record authorship (retro 2026-10-16 C8)",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1203",
@@ -14144,28 +14171,31 @@
       "id": "W-1204",
       "title": "Apply cultural pre-build changes to History briefs 12, 4, 5, 3, 11, 9, 24 (company/reviews/history-cultural/2026-10-16-briefs.md, 0241bb9); answer each in the brief; brief 12 disputed-area label and brief 3 enslaved-people sentence are refuse items if skipped; brief 11 not buildable until amended; answer 'true share was higher' with a source",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1205",
       "title": "Brief 9 slug britain-made-most-co2-in-1850 is false on all CO2 (UK 4.5% incl. land use): decide rename to a fossil-fuel slug before build (cultural review 0241bb9)",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1206",
       "title": "Pin the current OWID disaster-deaths series for brief 11 (epidemics dropped, ~x10 not x15/x57); W-1038 is specified word for word in the cultural review",
       "owner": "research-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1207",
@@ -14190,19 +14220,21 @@
       "id": "W-1209",
       "title": "Rome v4: 10/10 claims verified (pass 53) and learner r13 launch; needs a qa-tester release QA record on a production build, then draft->review (W-996). Optional source-string fixes: c11 lists 5 of 10 columns; c7 pages 174-184 per Crossref",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1210",
       "title": "Wave J: flip 15 gate-clean drafts draft->review (verticals r2 B1, dispatched) demo-builder",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1211",
@@ -14217,10 +14249,11 @@
       "id": "W-1212",
       "title": "Confirm or amend cm-behavioral's stage word-budget ruling (company/domains/briefs/behavioral.md 'Ruling: how the stage word budget counts'); if amounts count, briefs 1-2 go to learning-designer for re-layout",
       "owner": "head-of-product",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1213",
@@ -14244,6 +14277,779 @@
       "id": "W-1215",
       "title": "Confirm the growth designer's reading of C4 device markers and the exp definition in PRD-003/004 §9 (828d12e)",
       "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1216",
+      "title": "Accounts before go-live (privacy re-read 62020cf): R-M2a export key/policy say 'last sign-in or signed-in use' (rename lastSignInAt→lastActiveAt); R-M2b extend test 27 scan so last_sign_in_at feeds only idle clock + export",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1217",
+      "title": "Accounts readiness additions (privacy re-read 62020cf): Production Postgres >= 16 (IS JSON CHECK); named owner for db-deletion-check --oldest-expired; PUBLISHED_POLICY_VERSIONS holds the real policy before any learner email; run 3 skipped built-routes tests + browser-cookie.mjs on the release SHA",
+      "owner": "principal-engineer-ops",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1218",
+      "title": "Write company/engineering/data-inventory.md entry for last_sign_in_at as 'last signed-in use, to the day'",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1219",
+      "title": "PR1 reopened items (PE evidence objections, 462bb26): re-base first-light tranche 2 (eng T2 ~8.5M vs 8.17M for all of T2; stop rule trips at 10-23 on these figures); per-wave cost + backfilled ledger for lifehacks-engine-v2 (item 4); scale-stage-1 re-size to 1.89M, checkpoint ~1.0M, replacement return lines",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1220",
+      "title": "Propose a tier-2 rule for src/lib/learner/** in readiness/paths.json before personalization code exists (EDD-009 review A-1)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1221",
+      "title": "EDD-009: add conditions M-1..M-4 (tie rule: wrong wins; tests run in verify not CI; build-time env flag; types-only kit import) and the two-part route text (company/engineering/reviews/2026-10-16-edd-009-mastery-review.md)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1222",
+      "title": "PRD-003/004: exp spacedDays must be the schedule step (1/3/7/21), not Math.round elapsed days (Feed.tsx:257) (EDD-009 review)",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1223",
+      "title": "Accounts: C2 test with a day-5 revisit; EDD-008 Q4 sort recalls in the merge (EDD-009 review)",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1224",
+      "title": "Confirm EDD-009 §5 (no new field/read); decide whether a founder-approved deploy is an acceptable early stop for the exp kill switch (C8)",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1225",
+      "title": "Remove the britain-made-most-fossil-co2-in-1850 skip line in brief-skips.json after the B4 directory move lands",
+      "owner": "cm-history",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1226",
+      "title": "Rome v5 (ruling R13 (e)): 15 deg per hour on card or aligned recall, stale Middle label, evidence.simulatedLearner; after v4 launch review is chaired",
+      "owner": "cm-history",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1227",
+      "title": "Cultural addenda on History briefs 12, 4, 5, 3 (stage A answers in history.md, a09a726); answer whether 'outsize' in the brief 12 slug is learner-visible",
+      "owner": "cultural-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1228",
+      "title": "Life Hacks content patch r2: safety re-look of W3 cord rows + tote-balance-sides (W-1094) before they are final",
+      "owner": "lifehacks-safety-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1229",
+      "title": "Life Hacks fix plan route row 2 (W-1118): demo-builder's objections 1-3 and 7 have no text on disk; builder to restate them",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1230",
+      "title": "PR1 forum: answer principal-pm-verticals' go-with-changes on item 6 (Wave J cost half needs measured k/pub after W-1172/W-585/backfill; new Wave J builds held until then) and 0d (tranche review-draw table)",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1231",
+      "title": "Repair the event log and ledger after the hook lands: events.mjs backfill 10-15..10-16 (check dispatch-check in-flight count does not gain ghosts), then ledger.mjs import (W-585); needed for PR1 kill rules",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1232",
+      "title": "Behavioral: dated type (d) statement now that W-902 exists (W-975)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1233",
+      "title": "Launch review + publish for the 15 Wave J lessons now in review and gate-clean (e7f2904); release QA records first (SO-10-1); deploy only with founder approval head-of-product",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1234",
+      "title": "Life Hacks W3 FC pass 54 (lhw3 4251146): answer 7 disputes — sock-pairing-by-pattern (one-partner premise vs 11/3) and elastic-loop-release 'Crossings' row; tote c1 retype to derivation; record caption 'Model; no safe load limit' as a claim; non-blocking tilt lever arm 150 vs 188, fitted-sheet c5 'envelope' cm-lifehacks",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1235",
+      "title": "SO-10-1 trigger (b): re-QA the P1 (197 ready-to-publish) then P2 (32) lessons listed in company/reviews/org/2026-10-16-qa-record-authorship-audit.md, one tag per run, excluding the 11 W3 lessons; until then no publish pass rests on integration-only QA",
+      "owner": "qa-tester",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1236",
+      "title": "Constitutional review agenda: AMD-010 QA harness stamp (recorder from GIT_AUTHOR_NAME, integration runs labelled and not linked in evidence.qa, launchGates line); steward may not approve; qa-tester, CoS and release-manager may not be deciding approver of part 3",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1237",
+      "title": "Decide: publish passes do not rely on integration-only QA (steward recommendation, audit 2026-10-16); applies to the 15 Wave J lessons and the 7 History lessons too",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1238",
+      "title": "Tier-2 review of EDD-003 A2 addendum + ADR-010 (run R1); answer §9 Q1 (pilot builds before W-085 phone?) and Q2 (does 'migrated' mean built+QA'd on pilot path); acknowledge dep record 2026-10-16-dep-esbuild",
+      "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1239",
+      "title": "Risk register: 33 pre-existing npm audit advisories (1 critical, 24 high) in the vercel CLI dev tree (A2 addendum F4); readiness for the esbuild package.json change at R2, after accounts merges",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1240",
+      "title": "Check tools-ledger c73ddb9 (slot ledger, dispatch-check S1-S4) and rule on its readiness record's 3 questions (§4:ritual with S4; §4:integration only reason for general-purpose; lane membership warn-only); also a fixture joining B1's hook report events to slot release evaluation-steward",
+      "owner": "evaluation-steward",
+      "state": "doing",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1241",
+      "title": "Fix long-cord-knots-itself soft lock: tapping 'Tumble 3 m' first sets runs=2 but only reach('long'); reveal never unlocks (HomeLesson.tsx ~453, shared Home engine); then qa-tester re-runs it + elastic-loop-release + fitted-sheet-corners-nest on a quiet host",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked)."
+    },
+    {
+      "id": "W-1242",
+      "title": "QA contract gap: add a check that clicks stage controls in reverse/random order (missed the long-cord soft lock); and feed.spec 'subject chips' fails under QA_ONLY",
+      "owner": "evaluation-steward",
+      "state": "doing",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1243",
+      "title": "After lhw3 merges: run company qa-record for the 8 passing W3 lessons so evidence.qa links land",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1244",
+      "title": "Behavioral pilot held c6 lines (FC 54b): same-week c6 'with real payments' not in source; sure-million c6 overclaims Ruggeri 2020 (not certainty effect specifically); set HELD_LINE=false (fallback text) or bring a reachable source; non-blocking take/take sentence + alt text '$100 at today' cm-behavioral",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1245",
+      "title": "EDD-003 A2 addendum: write P-1 (lesson hash separate from kit hash; checkpoint reports re-QA count on kit change), P-2, P-5 ('pilot-migrated (not served)') to clear G1; then R2 readiness record for the esbuild package.json change platform-engineer — G1 met (965256f); await G2-G5",
+      "owner": "chief-of-staff",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1246",
+      "title": "PR1 item 5: carry 'release 1.2M of the 1.89M ceiling' and 'pilot-migrated' wording into the register and the forum line (PE revision 617dfdb) portfolio-manager",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1247",
+      "title": "Home engine: add an answer-in-range test (a 2-option lesson with answer 2 passed 120/120) and W3 in the every-step ratchet; W4 is not cleared until this lands (PE-ops W3 condition 1)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked). Gates any further Home engine-2 move, not only W4 (PE-ops 3523e83)."
+    },
+    {
+      "id": "W-1248",
+      "title": "Confirm or object to two predict options in Home v2 (design spec §8 still says three); due before any two-option lesson publishes (PE-ops W3 condition 2)",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "note": "Also care-label-first-choice (new two-option Home lesson, lhfix-r2)."
+    },
+    {
+      "id": "W-1249",
+      "title": "readEvents must report the lines it skips (it now drops unreadable lines silently) (PE-ops hook condition H4)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1250",
+      "title": "Before asking the founder to wire the hook (F-31): rule H2 (hook writes events.jsonl in the dispatching checkout; single writer) and run the one-time W-716 backfill (H5)",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1251",
+      "title": "laundry-sort-before-walk needs its own readiness record (PE-ops W3 condition 5)",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1252",
+      "title": "Tier-2 approval of company/engineering/readiness/2026-10-16-commit-and-process-guards.md (tools-guards ba0af0d/8d3fbff: commit-own.sh, pre-commit guard, no-pkill + stash hook); and of the slot ledger record on tools-ledger if tier 2",
+      "owner": "principal-engineer-ops",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1253",
+      "title": "Check tools-guards B3 code (commit-own.sh, git-hooks/pre-commit, .claude/hooks/no-pkill.mjs) before install/wiring (engineering B5)",
+      "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1254",
+      "title": "Add test:dispatch to npm run verify (tier 2: package.json)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1255",
+      "title": "Rule on tools/snapshot.sh (whole-tree bare commit; refused once the pre-commit guard is installed): retire or rewrite",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1256",
+      "title": "Physics wording fixes from FC 55: second-speaker-decibels 'a million times one speaker's power'; electron-speed c5/c6 filament idealisation (optional); what-pushes-the-car alt 'a ice road'; cite OpenStax modules in sources cm-physics",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1257",
+      "title": "Answer 6 W3 r14 revise findings (group-cables, jacket-last-first, sock-pairing, sock-pairs-not-all-combinations, socks-use-shoe-space, suitcase-layer-access): titles/questions/locked stages that give the answer; suitcase and jacket teach the same idea",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1258",
+      "title": "Home engine 2: the locked stage draws option A with its caption/result before commit, giving away the answer across lessons (W3 r14); decide whether to change it (shared engine, tier 2)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1259",
+      "title": "Link the 8 W3 r14 learner records into each lesson's evidence.simulatedLearner (and the 8 QA records via company qa-record)",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1260",
+      "title": "Hook fixes blocking F-31 (PE review 08ee578): E1 events.mjs skips unreadable lines, still appends, reports skipped count (+ conflict-marker test); N1 no-pkill treats heredoc bodies as data (+ 2 must-pass tests, decide cat<<EOF|sh); H2 spool: hook appends to an untracked spool (company/ops/events-spool/, gitignored), never to events.jsonl; chief of staff folds it in at commit",
+      "owner": "tools-lead",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1261",
+      "title": "E2 standing check: re-measure agent-events hook cost once events.jsonl passes 20 MB",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1262",
+      "title": "dispatch-check: count every run that does a production next build (QA, walkthrough-building checks) against the 3-builder cap, or add a build-slot guard (host OOM-kills concurrent next-builds, 2026-10-16); and decide whether QA_ONLY runs skip/adapt feed specs",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1263",
+      "title": "'Why trust this?' button is 231x23 px at phone width, 1 px under the 24 px target (shared shell; contract does not flag it)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1264",
+      "title": "QA_ONLY: feed specs 'subject chips filter the feed' and 'finished lesson comes back as a spaced revisit' fail because lessons()[0] is a draft; decide skip or adapt (protected tests/qa: amendment)",
+      "owner": "evaluation-steward",
+      "state": "doing",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1265",
+      "title": "Wave J revise (SO-10-3 r14): calibrated-but-unequal-alarms (slider 'Ringed in B' also moves B's base rate; no threshold on screen); cut-the-busiest-link (unexplained 12.5/7.5 path counts, unnumbered nodes, 'list goes stale' told not shown); batch builder revisions principal-pm-verticals",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1266",
+      "title": "Guard/ledger follow-ups (PE-ops 90fc0de): M1 merge refusal hint suggests a command git refuses mid-merge; M2 port kills get through (kill $(lsof -t -i:PORT), fuser -k); G5 add test:dispatch to verify/CI (tier 2); L1 wrap slot checks in try/catch (ENOTDIR refuses even in warn); L2 corrupt slot file never goes stale (use mtime) tools-lead",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1267",
+      "title": "zero-loses-to-this-crowd (merged, review): decide the 95-word reveal, option B's missing gloss, slug rename; head-of-product word-count reading; design-lead: agent-based format? 3 px dots",
+      "owner": "cm-behavioral",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1268",
+      "title": "SO-10 text: walkthrough-building checks reuse one shared production build per main SHA (chief of staff runs it, port + dist in the brief); QA defaults to 2 workers on this host (retro 2026-10-16 build OOM)",
+      "owner": "evaluation-steward",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1269",
+      "title": "company status: show unfolded spool lines and age (H2 ruling / C5 W-1199) — tools/company.mjs is protected, so this needs an amendment evaluation-steward",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1270",
+      "title": "Behavioral brief 4 saved-or-die-same-600 stopped: stage 40 words > 25 under the B1 ruling (fdc1ec3 build.md); add a brief-skips hold; if head-of-product counts frame text, re-lay out with learning-designer (one wording at a time); render all five controls from the start (QA counts controls once) cm-behavioral",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1271",
+      "title": "Urgent for behavioral builds: rule whether the stage word budget counts numbers and the frame text a lesson manipulates (W-1212); brief 4 is stopped on it, brief 3 sits exactly at 25 head-of-product",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1272",
+      "title": "Spool follow-ups (PE 4be84f6): S2 move tools/ops-health.mjs and tools/rituals-due.mjs onto readJsonlFile (they read only events.jsonl and throw on a bad line); S1 re-read each .folding-* file just before deleting it (fold race) tools-lead",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1273",
+      "title": "Brief 4 saved-or-die-same-600: list its four option texts (and toggle restatements) word for word as manipulated text in behavioral.md, mark the category ruling confirmed (9b8bce0), then ask for brief 4's build in the next batch",
+      "owner": "cm-behavioral",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1274",
+      "title": "tools/reveal-fit.mjs: add a stage word count under the 2026-10-16 counting rule, reporting manipulated text and the rest separately",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "note": "Checker: evaluation-steward."
+    },
+    {
+      "id": "W-1275",
+      "title": "F1 (gates wiring): events.mjs fold takes an exclusive lock and only takes over a *.folding-<pid> file when that pid is dead, + a two-simultaneous-folds no-duplicate test; F2: close the fold race (re-read the renamed file before removing). One diff to tools/events.mjs, back to PE-ops as a diff only (e1c9162) tools-lead",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1276",
+      "title": "Brief 23 literacy-split-france (hist-b23, not merged): rule S+W+C — (a) fix history-cycle2-check.mjs §23 filter (\"SWC\".includes(\"\") admits Corse) and brief 29%→28%, or (b) Corse counts as south; confirm the added 'ext' milestone, three-cell readout, title/hook; note the builder built through B2's stop rule (disclosed) cm-history",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1277",
+      "title": "History r3 B1 (2026-10-16-r3-history.md): hist-b23 meta.json objective 'about 29%' → 28% and drop the c3 discrepancy note; then merge brief 23 as draft (branch updated to main d2b314b) demo-builder",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1278",
+      "title": "F5 (not gating): events.mjs fold and events-spool readSpool crash 'Maximum call stack size exceeded' above ~120k events per spool file (push(...spread) at events.mjs 194/195/218, events-spool.mjs 75); replace spreads with loops + 200k-line test; send commit to PE-ops tools-lead",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1279",
+      "title": "Life Hacks content patch r2 (lhfix-r2): not applied rows need decisions — laundry-gap-air-path count model (home-models.ts change, lane-8 note), garment-overlap slider (test vs model), drying-room plural, reserve slot label; care-label misconception not among new options; towel-thickness 'ratio' in idea/recall",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1280",
+      "title": "F-31 H1 open: verify agent-events hook fires (hk- dispatch + report in company/ops/events-spool/) in a session whose project dir is /home/user/system-3-company; this CoS session (project dir /home/user) does not load the repo's hooks principal-engineer-ops",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1281",
+      "title": "Launch review for the 20 Wave J launch candidates (15 flipped + 5 r14 launches) once independent QA exists; read the newest learner verdict, not only the gate list (verticals r3 A2, objection b); exclude calibrated-but-unequal-alarms and cut-the-busiest-link head-of-product",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1282",
+      "title": "Ledger import each round: events.mjs fold && backfill && ledger.mjs import (tools r3 B3 makes per-project cost measurable; W-1249 ledger half) chief-of-staff",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1283",
+      "title": "exp.spacedDays is always 1 as specified (event sent only on first revisit); keep or drop the field under C3 (growth 1c2f243); and register both experiments (W-1214) analytics-steward",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1284",
+      "title": "Brief 11 disaster-deaths-fell: paste the owiddisasters SOURCES entry (research note P7, 3de062e), re-script §11 on the current series (×9.75 recorded, ×36.5 per million; option C 'Fell more than 30-fold'), finish W-1038 brief-11 item, then ask the cultural reviewer's addendum; fact-check of P5 first (lane 10)",
+      "owner": "cm-history",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1285",
+      "title": "EM-DAT licence: OWID disasters data is 'License: UCLouvain 2026' (not CC BY); confirm a public lesson may show the numbers before brief 11 publishes (terms page 403 here)",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1286",
+      "title": "Fact-check the 42 reset Life Hacks claims from content patch r2 (merged), incl. keep-the-error-feedback c3; before any of the 33 lessons publishes (SO-10-2 trigger d)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1287",
+      "title": "tests/dispatch/r2-coe.test.mjs reads the real events.jsonl and fails verify for everyone on a new SEV1/2 or a torn line; make it skip bad lines and stop being a hard check (matters once G5 puts test:dispatch in verify)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1288",
+      "title": "Review tools-guardfix f0651da (M1 merge-time hint, M2 port-kill refusals) and approve G5 e692f83 (test:dispatch in verify); re-time test:dispatch after B2's 200k test",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1289",
+      "title": "measure.mjs (A2 pilot R5): a kit major and any unmatched diff select every lesson; print the rule that fired per lesson; (b) includes the per-domain extra lessons (PE G1 re-read 965256f) platform-engineer",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1290",
+      "title": "History: brief 12 rename slug (mongol-khanates-vs-russia-1279 or -on-a-1279-map) + pointers, brief 4 curriculum concept name ('Disease killed about eight times as many as wounds…'), then release lines for 12, 4, 5, 3 (cultural addenda 6d65dc3) cm-history",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1291",
+      "title": "EDD-009: apply pedagogy rulings (company/reviews/_pedagogy/2026-10-16-edd-009-q1-q3.md): replace §3.3 held row, fixtures Q1-a and Q3-a, answer F1 ('Recalled N days later' counts from first play after a wrong) and F2 (a late wrong caps at recalled; changing revisitDue needs an amendment, protected) learner-model-engineer",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1292",
+      "title": "Accept or reject the W-902 note's section 3: narrow the certainty-effect verdict to 'common-ratio form: with limits; common-consequence pair: we don't know' (07e7303)",
+      "owner": "research-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1293",
+      "title": "Behavioral: decide under brief rule 6 whether either held c6 line returns in another form (e.g. 'real effort' for present bias), given W-902 (07e7303)",
+      "owner": "cm-behavioral",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1294",
+      "title": "A6-1: run the two A-6 log tests on the rebased accounts tip against a real Postgres; attach output to the readiness record (A-1, A-6 stay open until then)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1295",
+      "title": "Accounts: answer the C8 early-stop line with privacy (E1-E4, 350d2db); add assertion A6-2 (expired link / bad token still redirects, not a 500 through failed())",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1296",
+      "title": "PRD-004 line 39: 'derived from server-side progress' must mean computed in the browser after the merge (privacy S2, 350d2db)",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1297",
+      "title": "EDD-009: write privacy S1 (state never written or sent) and S3 (§8 offline check on real account data needs its own privacy read) into the EDD",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1298",
+      "title": "Slot ledger (tools-ledger) r3 B6: answer F1-F9 (company/reviews/org/2026-10-16-slot-ledger-check.md). Before merge: F2/L1, F3/L2, F5, F7 (resolve conflicts with main, keep spool events in slots.inFlight, re-test merge result). Before any enforce date: F1 (hook report labels '<desc> ·<hash>' never release slots), F4, F6, F8 + the hook-report fixture tools-lead",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

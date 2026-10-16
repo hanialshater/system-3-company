@@ -1,7 +1,7 @@
 {
   "slug": "dependency-before-priority",
-  "title": "Priority cannot bypass input",
-  "hook": "Which runs first?",
+  "title": "High priority, missing input",
+  "hook": "One job is tagged high priority. Does that decide what runs first?",
   "domain": "lifehacks",
   "concept": "do-the-blocking-task-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Distinguish task priority from prerequisite readiness.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Which runs first? Which runs first? Correct option: The draft it needs. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: One job is tagged high priority. Does that decide what runs first? The review is tagged high priority, and it works from the draft. Which runs first? Options: The draft it needs / The high-priority review. Correct option: The draft it needs. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question are both 'Which runs first?'; options 'The draft it needs' / 'The high-priority review', answer 0. The locked stage already shows 'review 10 min · due 60 · needs draft · high priority'. Note for demo-builder (not a fact issue): hook and question are the same sentence.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook and question are both 'Which runs first?'; options 'The draft it needs' / 'The high-priority review', answer 0. The locked stage already shows 'review 10 min · due 60 · needs draft · high priority'. Note for demo-builder (not a fact issue): hook and question are the same sentence. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question replaced (row \"dependency-before-priority\"). Not checked by the builder.",
       "id": "lifehacks.dependency-before-priority.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",

@@ -1,5 +1,17 @@
 # Build note: group-cables-with-ends
 
+
+## Revision v2 → v3 (r11 fix plan wave W3, TP-1/TP-2/TP-8, 2026-10-16, demo-builder)
+
+- engine: 2. Question and options from the plan; options are beliefs ("Middle tie: it holds them together"), the buttons are "Tie the middle" / "Tuck the ends" (r11 findings 1-2). Starting count 3 cords, as the question says.
+- Seen table: Cords and Loose ends for both layouts; the Count slider now visibly moves the middle-tie column (6, 8, … 16 loose ends) (finding 3).
+- Reveal: "Tie the middle: 3 cords, 6 loose ends free to weave through loops. Tuck the ends: 0 loose ends." Idea in plain words; it still says the drawing does not simulate tangling (claim c3 is honest about that, finding 4).
+- Safety: caption "Plain cord; storage only" and limit line kept verbatim (safety record).
+- Risk for fact-checker: the question asks "which tangles less"; the stage counts loose ends and the reveal links them to tangling through the end-weaving mechanism (Raymer and Smith p.16435). If that link is judged too strong, the line goes back to cm-lifehacks.
+- Claims: every claim reset to unverified (checkedBy/checkedOn removed, reset note in each source); new `.seen` claim for the first reveal sentence. Nothing marked verified. Version bumped.
+- Correct option: Ends tucked, moved from 2nd to 1st (TP-8).
+- Reveal: 90 words or fewer (counted on the built reveal at the starting value).
+- QA contract on a production build (`next build`, NEXT_DIST_DIR=.next-lhw3, QA_PORT=3811, harness stamp clean, contract commit 3b97991): phone and desktop passed.
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-358.
