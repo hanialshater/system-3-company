@@ -57,6 +57,17 @@ const curvePts = (a: number) => Array.from({ length: 101 }, (_, i) => `${px(i / 
 
 type Run = { a: number; end: number };
 
+/** Each curve's name, written on the curve at its peak (share (1 - a)/2) over a halo, so it cannot be read
+ *  as the name of the curve above or below. Peaks are at least 18 px apart for a = 0, 10¢, 20¢. */
+function CurveName({ a, className }: { a: number; className: string }) {
+  const z = (1 - a) / 2;
+  return (
+    <text x={px(z)} y={py(value(a, z)) + 3.5} textAnchor="middle" className={className}>
+      {cents(a)} alone
+    </text>
+  );
+}
+
 function Stage({ ctx, runs, onRun }: { ctx: StageContext; runs: Run[]; onRun: (r: Run) => void }) {
   const { locked } = ctx;
   const { reach } = useMilestones(ctx.interact, ["stuck", "climbs", "no-alone"]);
@@ -117,13 +128,11 @@ function Stage({ ctx, runs, onRun }: { ctx: StageContext; runs: Run[]; onRun: (r
             return (
               <g key={g}>
                 <polyline points={curvePts(g)} className={s.ghost} />
-                <text x={px((1 - g) / 2)} y={py(value(g, (1 - g) / 2)) - 5} textAnchor="middle" className={s.ghostLab}>
-                  {cents(g)} alone
-                </text>
+                <CurveName a={g} className={s.ghostName} />
                 {t !== null && (
                   <>
                     <circle cx={px(t)} cy={py(PRICE)} r={3.5} className={s.ghostDot} />
-                    <text x={px(t)} y={py(PRICE) - 7} textAnchor="middle" className={s.ghostLab}>
+                    <text x={px(t) + 6} y={py(PRICE) + 14} className={s.ghostLab}>
                       {pct1(t)}
                     </text>
                   </>
@@ -139,6 +148,7 @@ function Stage({ ctx, runs, onRun }: { ctx: StageContext; runs: Run[]; onRun: (r
         {!locked && (
           <>
             <polyline points={curvePts(a)} className={s.curve} />
+            <CurveName a={a} className={s.curveName} />
             <circle cx={px(0)} cy={py(a)} r={5} className={s.fan} />
             <line x1={px(0) + 4} y1={py(a) + 3} x2={L + 26} y2={BOT - 17} className={s.leader} />
             <text x={L + 28} y={BOT - 9} className={s.fanLab}>
@@ -148,7 +158,7 @@ function Stage({ ctx, runs, onRun }: { ctx: StageContext; runs: Run[]; onRun: (r
               <circle key={z} cx={px(z)} cy={py(PRICE)} r={5} className={z === tip ? s.tip : s.rest} />
             ))}
             {tip !== null && (
-              <text x={px(tip) + 6} y={py(PRICE) + 14} className={s.tipLab}>
+              <text x={px(tip) + 7} y={py(PRICE) + 14} className={s.tipLab}>
                 {pct1(tip)}
               </text>
             )}

@@ -91,11 +91,15 @@
       "id": "economics.worth-something-alone.c7",
       "text": "On the chart, the curve is the value of the keenest person not yet using the app at each share; where it is above the price line the share grows, where it is below it shrinks, and the crossings are the shares where a round changes nothing.",
       "support": "derivation",
-      "source": "At share z the users are x < z, so the keenest non-user is x = z, valuing it (1 - z)(a + z). Next share > z exactly when 1 - 0.16/(a + z) > z, i.e. (1 - z)(a + z) > 0.16 (for a + z > 0). Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c7."
+      "source": "At share z the users are x < z, so the keenest non-user is x = z, valuing it (1 - z)(a + z). Next share > z exactly when 1 - 0.16/(a + z) > z, i.e. (1 - z)(a + z) > 0.16 (for a + z > 0). Builder-written; unverified. W-1573 fix round (demo-builder, 2026-10-16): each curve on the chart, including the highlighted current one, is now named on the curve at its peak ('10¢ alone'), and earlier tipping-point labels sit below the price line; the chart's learner-visible labels changed, so status reset. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.worth-something-alone.c8",
+      "text": "On the chart each curve is named by its stand-alone value ('0¢ alone', '10¢ alone', '20¢ alone'); the coloured curve is the value now chosen and the grey curves are values launched earlier.",
+      "support": "convention",
+      "source": "Drawing rules of the stage: Demo.tsx CurveName() writes cents(a) + ' alone' at the curve's peak, share (1 - a)/2, height (1 - z)(a + z); the current a is drawn with class curve/curveName, earlier launches (runs) with ghost/ghostName. Added in the W-1573 fix round (demo-builder, 2026-10-16). Builder-written; unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -119,7 +123,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:standalone-value-network",
     "also": [],
