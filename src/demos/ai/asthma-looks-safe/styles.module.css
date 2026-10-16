@@ -1,18 +1,23 @@
-.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
-.wrap :global(.row) { margin-top: 2px; }
+/* v3: margin-bottom auto keeps the card top-aligned in every step (the kit stage centres its content). */
+.wrap { display: flex; flex-direction: column; gap: 3px; flex: 0 1 auto; min-height: 0; overflow-y: auto; margin-bottom: auto; }
 .svg { flex-shrink: 0; width: 100%; max-height: 34dvh; }
-.model { align-self: flex-start; font-size: 0.72rem; background: var(--bg-2); }
-.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.8rem; font-weight: 600; }
-.rows { display: flex; flex-direction: column; gap: 1px; }
-.line { margin: 0; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.top { display: flex; align-items: center; gap: 10px; }
+.view { font-size: 0.8rem; font-weight: 700; }
+.msg { margin: 0; min-height: 1.3em; font-size: 0.8rem; font-weight: 600; }
+.grid { display: grid; grid-template-columns: auto 1fr 1fr; gap: 2px 10px; align-items: center; }
+.head { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 700; color: var(--fg); }
+.dot { flex-shrink: 0; display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+.dotDead { background: var(--fg); }
+.dotAsthma { background: var(--domain); }
+.dotOther { background: var(--muted); opacity: 0.6; }
+.cell { font-size: 0.85rem; font-variant-numeric: tabular-nums; }
 .now { font-weight: 800; color: var(--fg); }
 .faint { color: var(--muted); }
 .label { font-size: 11px; font-weight: 800; }
-.small { font-size: 11px; font-weight: 700; }
+.toy { font-size: 11px; font-weight: 700; fill: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .asthma { fill: var(--domain); }
 .asthmaDead { fill: var(--fg); stroke: var(--domain); stroke-width: 2; }
 .other { fill: var(--muted); opacity: 0.4; }
 .dead { fill: var(--fg); }
 .icuBox { fill: none; stroke: var(--domain); stroke-width: 2; }
 .wardBox { fill: none; stroke: var(--line); stroke-width: 1.5; }
-.top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
