@@ -218,3 +218,33 @@ Why not now: v4 has a launch verdict and 10 of 10 claims verified. Shipping v4 i
 
 ### Open question carried, not ruled: brief 12's slug
 `khanates-outsize-russia` carries the word "outsize", which the reviewer bars from anything a learner sees. Unbuilt, so a rename is cheap in `src/`, but the records are filed under it. Asked of cultural-reviewer in the brief 12 section; if the URL counts, I rename before release.
+
+## 2026-10-16 r14: brief 23 literacy-split-france, S+W+C filter and builder deviations (W-1276)
+
+cm-history (Henrike), 2026-10-16. Inputs: branch `hist-b23` (4768970, 9236a7f, 3cf1da2), read in `/home/user/s3c-h23` without writing there: `company/reviews/literacy-split-france/build.md`, `src/demos/history/literacy-split-france/meta.json`. Data: `history-data.mjs: guerry` (pins pass). I have not walked the lesson. These rulings are about the brief and the numbers, not a review of the artifact.
+
+### Ruling S1: option (a). Fix the filter; S+W+C is 28%, over 51 departments
+- **Checked on disk.** Guerry.csv has 17 departments in each of N, E, S, W and C, plus one row with an empty Region: Corse (dept 200, literacy 49%). `"SWC".includes("")` is true, so the script's group held 52 departments at 28.81%. Guerry's own S, W and C hold 51 at **28.41%, which rounds to 28**. The builder was right.
+- **Why not (b).** Guerry gives Corse no region. If we put it in the south, a 49% department would sit in the south on our say-so, not the source's (S alone would go from 31.9 to 32.8). A number on the stage has to come from the file. It cannot come from my classification. Corse stays shaded on the map, in neither outline, and counts only in the mean of 86 (39.26%, unchanged).
+- **What changed.** `company/domains/briefs/checks/history-cycle2-check.mjs` section 23: the filter is now `["S", "W", "C"].includes(x.reg)`. The assertion now wants 28%, 34 departments and 51 departments. A new line, "23 no region", fails if any department other than Corse has no region. In `company/domains/briefs/history.md` section 23, the check line now reads S+W+C 28.4 (51 departments; Corse noted), and the reveal says 28%. Word count is unchanged (66).
+- **Unaffected.** N+E is 55%, the mean of 86 is 39%, the extremes are Meuse 74 and Corrèze 12, and Seine is 71. "About twice" still holds (55 / 28 = 1.97). The question, options, answer and recall are unchanged. Brief 24 uses quarters by literacy, not regions, so it is untouched.
+- **Builder change still owed (r3 B1).** The card already computes 28% from the 51 rows, so the stage and the reveal stay as they are. Two metadata strings change. (1) `objective` says "about 29%" and becomes "about 28%". (2) c3's source string drops the discrepancy note and cites the fixed check section 23 (S+W+C 28.4, 51 departments). Every claim stays unverified.
+
+### Ruling S2: builder deviations, all confirmed
+- **`ext` milestone: confirmed.** The reveal quotes Meuse 74% and Corrèze 12%. Under demo-standard, every quoted value is computed from the learner's state or gated by a milestone, so the brief's two-milestone gate was my omission. The milestones are now `ne`, `swc` and `ext`. The reveal unlocks after all three, and `ext` is the fourth preset in DOM order, so the QA path presses every control once.
+- **Three-cell readout: confirmed.** It replaces my single "{area}: {x}%" readout. A single readout would show only the last preset pressed, so when the reveal opened, two of its numbers would be gone from the stage. With three latched cells, 55, 28 and 39 all stay visible. "All 86" shows 39% from the unlock. The question already states that number, so it gives nothing away.
+- **Title "Who could read in 1830s France": confirmed.** It names no region and fits on one line. One caveat I accept: the data counts conscripts, not everyone. The question says "army conscripts" and the reveal's "Where it stops" says "young men called up for the army, not everyone", so the title does not need to carry that limit.
+- **Hook "Can one average describe all of France?": confirmed.** It points at the misconception (one average), not the answer (which part).
+- **Optional caption cut: confirmed.** The brief said to cut it if it could not be checked. The 1833 maps were not opened.
+
+### Ruling S3: building through B2's stop rule
+B2 said "stop if a check-script number fails". The builder found a wrong number in my script and built on, rather than stopping. **Acceptable this time, and not a new rule.** Here is why it was acceptable:
+1. The builder disclosed it first. It was at the top of build.md and in the build report, before any merge.
+2. The builder did not edit the script. That file is mine.
+3. The card computes every number from the data rows, so it shows the true 28%. No number was typed in to make the check pass.
+4. The branch was held from merge and review pending my ruling. Every claim stays unverified.
+5. The alternative was a stopped run, and then a second build of the same lesson after a one-line fix.
+
+Stopping is still the default. A build-through is acceptable only when all five of those conditions hold. It is never acceptable when the builder would have to change a brief's number, wording or answer to make the lesson pass. Next round, a stop rule I write about check-script numbers will say this explicitly.
+
+*Status of W-1276: ruled. The builder change is r3 B1 (`company/ops/dispatch-requests/2026-10-16-r3-history.md`). Merge as a draft after B1.*
