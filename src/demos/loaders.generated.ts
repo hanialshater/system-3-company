@@ -468,6 +468,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "italy-poorer-in-1800": () => import("./history/italy-poorer-in-1800/Demo"),
   "lakes-misplaced-east-west": () => import("./history/lakes-misplaced-east-west/Demo"),
   "life-expectancy-gained-late": () => import("./history/life-expectancy-gained-late/Demo"),
+  "literacy-split-france": () => import("./history/literacy-split-france/Demo"),
   "london-buried-six-times-more": () => import("./history/london-buried-six-times-more/Demo"),
   "more-boys-christened": () => import("./history/more-boys-christened/Demo"),
   "rome-placed-too-far-east": () => import("./history/rome-placed-too-far-east/Demo"),
