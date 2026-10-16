@@ -18072,6 +18072,15 @@
       "updated": "2026-10-16",
       "reviewer": "hq-engineer",
       "note": "2026-10-16 to review (run pe-d2-1016, branch perso-d2): N1 meta never takes the run lock (own join on cache miss); N2 SimResult busy:true, route 429 on busy with Retry-After: 5; N3 test of release after a failed run. N1 test fails on the pre-change server file; N3 already held (regression test). N4/N5 not done (review said note only)."
+    },
+    {
+      "id": "W-1540",
+      "title": "HQ lab D2 review nits (company/reviews/hq/2026-10-16-d2-review.md): M1 say the import allowlist is a trust list; M3 flag external url() in CSS; M5 DoD says the test runs in verify, not check; M6 test that two cold meta misses share one process",
+      "owner": "personalization-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }
