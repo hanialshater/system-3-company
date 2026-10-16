@@ -14,6 +14,18 @@ export function frameTexts(frame) {
     ...(frame.nodes ?? []).map((n) => n.label), ...(frame.edges ?? []).map((e) => e.label ?? ''),
     ...(frame.metrics ?? []).flatMap((m) => [m.label, m.value])];
 }
+/** The learner-visible part of a frame: caption, rows, nodes, edges and metrics as AlgorithmFrameView renders them. */
+export function visibleFrameKey(frame) {
+  if (!frame) return 'null';
+  return JSON.stringify({
+    caption: frame.caption ?? '',
+    rows: (frame.rows ?? []).map((r) => ({ label: r.label, cells: r.cells.map((c) => ({ text: c.text, tone: c.tone ?? 'plain' })) })),
+    nodes: (frame.nodes ?? []).map((n) => ({ id: n.id, label: n.label, x: n.x, y: n.y, tone: n.tone ?? 'plain' })),
+    edges: (frame.edges ?? []).map((e) => ({ from: e.from, to: e.to, label: e.label ?? '', directed: !!e.directed, tone: e.tone ?? 'plain' })),
+    metrics: (frame.metrics ?? []).map((m) => ({ label: m.label, value: m.value })),
+  });
+}
+export const wrapperSpecImport = (source) => [...String(source).matchAll(/^import \{ ([A-Za-z0-9_$]+) as spec \} from "([^"\n]+)";$/gm)].map((m) => ({ exportName: m[1], specifier: m[2] }));
 export function validateAlgorithmSpec(spec) {
   const errors = [];
   const add = (message) => errors.push(`${spec.slug ?? '?'}: ${message}`);
@@ -50,8 +62,8 @@ export function validateAlgorithmSpec(spec) {
     } catch (error) { add(`case ${caseIndex}: ${error.message}`); }
   }
   if (runs.length >= 2) {
-    const signature = (run) => JSON.stringify({ result: run.result, rows: run.frames.at(-1)?.rows, nodes: run.frames.at(-1)?.nodes, edges: run.frames.at(-1)?.edges, metrics: run.frames.at(-1)?.metrics });
-    if (signature(runs[0]) === signature(runs[1])) add('second case has identical result and final algorithm state');
+    // Compare only what the stage renders (AlgorithmFrameView); `result` is never shown (PR #6 review F13).
+    if (visibleFrameKey(runs[0].frames?.at(-1)) === visibleFrameKey(runs[1].frames?.at(-1))) add('second case has an identical visible final frame');
     for (const run of runs) for (const [i, frame] of run.frames.entries()) {
       const count = stageWords([...frameTexts(frame), 'Run example Step Try another Reset Seen', runs[0].proof].join(' '));
       if (count > 25) add(`stage frame ${i}: ${count} words exceeds 25 including retained proof/controls`);
@@ -86,7 +98,8 @@ export async function checkAlgorithms({ root = process.cwd(), manifest = 'compan
       const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
       if (meta.slug !== lesson.slug || meta.domain !== 'cs' || meta.objective !== lesson.objective) errors.push(`${lesson.slug}: metadata differs from manifest`);
       const source = fs.readFileSync(path.join(path.dirname(metaPath), 'Demo.tsx'), 'utf8');
-      if (!source.includes(lesson.specExport) || !source.includes(lesson.module.replace(/^src\//, '@/').replace(/\.ts$/, ''))) errors.push(`${lesson.slug}: wrapper imports wrong model`);
+      const imported = wrapperSpecImport(source);
+      if (imported.length !== 1 || imported[0].exportName !== lesson.specExport || imported[0].specifier !== lesson.module.replace(/^src\//, '@/').replace(/\.ts$/, '')) errors.push(`${lesson.slug}: wrapper imports wrong model`);
       const ledger = normalize((meta.claims ?? []).map((c) => c.text).join(' '));
       const learnerSentences = [meta.hook, spec.predict.question, ...checked.runs.flatMap((r) => [r.proof, ...spec.reveal(r), ...r.frames.flatMap(frameTexts)])].filter((s) => stageWords(s) > 0);
       const missing = [...new Set(learnerSentences)].filter((sentence) => !ledger.includes(normalize(sentence)));

@@ -17865,10 +17865,11 @@
       "id": "W-1530",
       "title": "PR #6 merge gate M6: decide whether production /catalog may show the 200 planned algorithm titles (byte-equal to draft lesson titles) and '200 planned lessons across 20 topics', or have platform-engineer render the section only when an algorithm lesson is visible. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F4",
       "owner": "cm-cs",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1531",
@@ -17883,6 +17884,24 @@
       "id": "W-1532",
       "title": "paths.json shared-engine rules (tier 2) for src/components/algorithms/**, src/lib/algorithms/**, src/components/books/**, src/lib/books/**; principal-engineer-ops proposes, principal-engineer accepts; tools/readiness.mjs still absent. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F6",
       "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1533",
+      "title": "PR #6 M6 (decided by cm-cs): /catalog Algorithms section renders only visible algorithm lessons; no section when none visible; per-topic and per-row filtering; remove all planned-count and 'not yet visible' copy; update tests/algorithms/catalog.test.mjs. Exact requirement R1-R6 in company/decisions/2026-10-16-pr6-catalog-algorithms-section.md",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1534",
+      "title": "Give the 200 algo-* concepts in content/curriculum/cs.json lesson-independent label names (not lesson titles or assertions), then reconsider listing them as 'not yet taught' on /catalog. After the F-46 closeout. See company/decisions/2026-10-16-pr6-catalog-algorithms-section.md F1",
+      "owner": "cm-cs",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

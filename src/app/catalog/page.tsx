@@ -49,32 +49,38 @@ export default function Catalog() {
                 <span className="tag domain">{d.short}</span> {d.name}
                 {d.status !== "active" && <span className="tag status">{d.status}</span>}
               </h2>
-              {d.id === "cs" && <section id="algorithms" className="algorithm-topics" aria-labelledby="algorithms-heading">
-                <h3 id="algorithms-heading">Algorithms</h3>
-                <p className="muted small">200 planned lessons across 20 topics. Links appear as lessons become visible.</p>
-                <nav className="algorithm-topic-index" aria-label="Algorithm topics">
-                  {topics.map((topic) => <a key={topic.id} href={`#algorithm-topic-${topic.id}`}>{topic.name}</a>)}
-                </nav>
-                {topics.map((topic) => {
-                  const topicLessons = lessons.filter((lesson) => topic.slugs.includes(lesson.slug));
-                  return <section key={topic.id} id={`algorithm-topic-${topic.id}`} className="algorithm-topic" aria-labelledby={`algorithm-heading-${topic.id}`}>
+              {/* Algorithms (decision company/decisions/2026-10-16-pr6-catalog-algorithms-section.md R1-R5):
+                  only visible lessons; no planned titles or counts; nothing when none is visible. */}
+              {d.id === "cs" && (() => {
+                const shown = topics
+                  .map((topic) => {
+                    const topicLessons = lessons.filter((lesson) => topic.slugs.includes(lesson.slug));
+                    const rows = topic.concepts
+                      .map((concept) => ({ concept, matching: topicLessons.filter((lesson) => lesson.concept === concept.id) }))
+                      .filter((row) => row.matching.length);
+                    return { topic, rows };
+                  })
+                  .filter((entry) => entry.rows.length);
+                if (!shown.length) return null;
+                return <section id="algorithms" className="algorithm-topics" aria-labelledby="algorithms-heading">
+                  <h3 id="algorithms-heading">Algorithms</h3>
+                  <p className="muted small">Grouped by topic.</p>
+                  <nav className="algorithm-topic-index" aria-label="Algorithm topics">
+                    {shown.map(({ topic }) => <a key={topic.id} href={`#algorithm-topic-${topic.id}`}>{topic.name}</a>)}
+                  </nav>
+                  {shown.map(({ topic, rows }) => <section key={topic.id} id={`algorithm-topic-${topic.id}`} className="algorithm-topic" aria-labelledby={`algorithm-heading-${topic.id}`}>
                     <h4 id={`algorithm-heading-${topic.id}`}>{topic.name}</h4>
-                    <p className="muted small">{topicLessons.length} visible · {topic.slugs.length} planned</p>
-                    {!topicLessons.length && <p className="muted small">Not yet visible</p>}
                     <ul className="concepts">
-                      {topic.concepts.map((concept) => {
-                        const matching = topicLessons.filter((lesson) => lesson.concept === concept.id);
-                        return <li key={concept.id} className={matching.length ? "has" : "unmet"}>
-                          <span className="concept-name">{concept.name}</span>
-                          {matching.length ? matching.map((lesson) => <Link key={lesson.slug} href={`/d/${lesson.slug}`} className="concept-lesson">
-                            {lesson.title}{lesson.status !== "published" && <span className="muted tiny"> · in review</span>}
-                          </Link>) : <span className="muted tiny">not yet visible</span>}
-                        </li>;
-                      })}
+                      {rows.map(({ concept, matching }) => <li key={concept.id} className="has">
+                        <span className="concept-name">{concept.name}</span>
+                        {matching.map((lesson) => <Link key={lesson.slug} href={`/d/${lesson.slug}`} className="concept-lesson">
+                          {lesson.title}{lesson.status !== "published" && <span className="muted tiny"> · in review</span>}
+                        </Link>)}
+                      </li>)}
                     </ul>
-                  </section>;
-                })}
-              </section>}
+                  </section>)}
+                </section>;
+              })()}
               <ul className="concepts">
                 {concepts.filter((c) => d.id !== "cs" || !groupedConcepts.has(c.id)).map((c) => {
                   const ls = lessons.filter((l) => l.concept === c.id && (d.id !== "cs" || !groupedSlugs.has(l.slug)));
