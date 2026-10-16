@@ -17550,7 +17550,7 @@
         "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze. | 2026-10-16 vp-personalization (vp-cgate-1016): VP response before freeze in criterion §8 (one contest: delta_harm .01; one request: novelty-benefit sweep). Freeze moves to batch 2 C4, after C0 full-text check (W-1532) and C2 fidelity review (W-1533). company/personalization/batches/2026-10-16-batch-2.md"
+      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze. | 2026-10-16 vp-personalization (vp-cgate-1016): VP response before freeze in criterion §8 (one contest: delta_harm .01; one request: novelty-benefit sweep). Freeze moves to batch 2 C4, after C0 full-text check (W-1532) and C2 fidelity review (W-1533). company/personalization/batches/2026-10-16-batch-2.md | 2026-10-16 personalization-eval (eval-c1-1016, C1): still draft (unfrozen). S = 200 (default-order arm only, sd_R 0.0315, floor binds) and the episode definition written into §1; VP §8 ruled row by row (delta_harm 0.01 accepted; novelty request accepted; gam-surprise-on pair = vs gam); C1 text changes listed in §9. Freeze is C4 (W-1534) after C0 and C2."
     },
     {
       "id": "W-1497",
@@ -17656,16 +17656,17 @@
       "id": "W-1513",
       "title": "Replace or adopt the PROVISIONAL simulated learner and scorer (company/personalization/model/sim/learner.ts SimLearner, score.ts) per the independence rule (company/ceo-office/2026-10-16-personalization-org-proposal.md §2); until then sim results are smoke tests. Owner: personalization-eval once the founder approves the role; held by personalization-lead meanwhile",
       "owner": "personalization-eval",
-      "state": "doing",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
-        "company/personalization/eval/2026-10-16-phase-a-criterion.md"
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+        "company/personalization/eval/harness/README.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): decided in company/personalization/eval/2026-10-16-learner-scorer-decision.md: learner REPLACE (same SimLearner interface; hidden per-lesson pull, split prereq penalty, common random numbers), scorer ADOPT A COPY with additions, persona latents copied. Build is C1. Open question for vp-personalization on the rating-fidelity mechanism (decision file, Open)."
+      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): decided in company/personalization/eval/2026-10-16-learner-scorer-decision.md: learner REPLACE (same SimLearner interface; hidden per-lesson pull, split prereq penalty, common random numbers), scorer ADOPT A COPY with additions, persona latents copied. Build is C1. Open question for vp-personalization on the rating-fidelity mechanism (decision file, Open). | 2026-10-16 to review: reviewer learning-scientist-personalization (C2, W-1533: fidelity of the learner and scorer against the B2 ranges as corrected by C0). Built by personalization-eval (eval-c1-1016, lane 14 batch 2 C1): company/personalization/eval/harness/ (learner.mjs, scorer.mjs, world-inputs.mjs, personas.copy.mjs; harness, checks, run). Tests: NODE_NO_WARNINGS=1 node --test company/personalization/eval/harness/tests.test.mjs (18 pass; T5-T7 pass; T1-T4 shown able to fail on fixtures, run on default-order only). Reproduction instructions for learner-model-engineer (C5) in harness/README.md. No policy scored (freeze lock)."
     },
     {
       "id": "W-1505",
@@ -17770,10 +17771,11 @@
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/eval/2026-10-16-phase-a-criterion.md",
         "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/personalization/eval/harness/README.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): (a) prereq penalty is a sweep dimension with B2 placeholders, rule for including 0 set before data (criterion §4); (b) G1/G2 in criterion §3; (c) hidden per-lesson pull in decision file finding 1 and criterion T5/T6. (d) waits for VP pilot-widening decision. | 2026-10-16 vp-personalization (vp-cgate-1016): (d) pilot not widened for batch 2 (probability + cs). company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1."
+      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): (a) prereq penalty is a sweep dimension with B2 placeholders, rule for including 0 set before data (criterion §4); (b) G1/G2 in criterion §3; (c) hidden per-lesson pull in decision file finding 1 and criterion T5/T6. (d) waits for VP pilot-widening decision. | 2026-10-16 vp-personalization (vp-cgate-1016): (d) pilot not widened for batch 2 (probability + cs). company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1. | 2026-10-16 personalization-eval (eval-c1-1016, C1): (a) prerequisite penalty swept 0/0.15/0.40 as a pass dimension (criterion §4; 0 kept by the B2 rule); (b) G1 top-domain share and G2 distinct concepts measured in harness/scorer.mjs; (c) hidden per-lesson pull drawn from the eval seed, composer ratings generated from it at swept rho, judge never reads ratings (T5, T6 pass). (d) math latents still waiting (VP decision §1: pilot not widened)."
     },
     {
       "id": "W-1517",

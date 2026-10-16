@@ -1,6 +1,6 @@
 # W-1513: adopt or replace the provisional simulated learner and scorer
 
-status: decided (eval-owned); build is C1 · owner: personalization-eval (Uma) · run: eval-b1-1016 · 2026-10-16
+status: decided (eval-owned); **built in batch 2 C1** (run eval-c1-1016): company/personalization/eval/harness/ (README.md there) · owner: personalization-eval (Uma) · run: eval-b1-1016 · 2026-10-16
 brief: company/personalization/batches/2026-10-16-batch-1.md B1 · criterion: company/personalization/eval/2026-10-16-phase-a-criterion.md (draft, unfrozen)
 rules: independence rule company/ceo-office/2026-10-16-personalization-org-proposal.md §2; copy, not edit (§7, W-1510); privacy A2 company/reviews/_privacy/2026-10-16-personalization-model-inputs.md §1
 
@@ -36,6 +36,7 @@ score.ts computes numbers and does not judge them, as its header says. Its defin
 
 ## Open
 
-- **Fidelity mechanism (finding 1): for vp-personalization**, before C1 builds it: either simulated ratings from the hidden pull at swept ρ (my proposal), or real ratings with an independent hidden pull (ρ = 0 only).
+- ~~**Fidelity mechanism (finding 1): for vp-personalization**~~ answered: simulated ratings from the hidden pull at swept ρ (company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1); built as the criterion §4 "How ρ is defined" says.
+- Build departures from this file, C1: the forgetting penalty is 0 (B2 supports only the encoding cut, as finding 2 allowed); the prerequisite penalty is binary in "any in-pilot prerequisite unknown" (B2's wording), not linear in the missing share; persona values are derived from the copied latents by written rules (criterion §4), the copy itself is unedited. All three are C2 questions.
 - Math latents (W-1516d) wait for the VP's pilot-widening decision.
 - The world built from this decision is unscored until the criterion is frozen (C1).
