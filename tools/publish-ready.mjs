@@ -3,10 +3,14 @@
 // on every publish. This script adds the check the gate lacks until AMD-001(d) is ratified: the most
 // recent learner review must say "Verdict: launch" AND name the lesson's current version.
 //
-//   node tools/publish-ready.mjs              list candidates and why others are held
-//   node tools/publish-ready.mjs --publish    also run `company publish` for each candidate
+//   node tools/publish-ready.mjs              list candidates and why others are held (read-only)
+//   node tools/publish-ready.mjs --link       also link learner-review files into meta.json
+//   node tools/publish-ready.mjs --publish    link, then run `company publish` for each candidate
+//   node tools/publish-ready.mjs --help | -h  usage
 //
-// It also links learner-review files into meta.evidence.simulatedLearner (W-063 until a command exists).
+// Linking writes learner-review files into meta.evidence.simulatedLearner (W-063 until a command
+// exists). W-1319: it happens only on --link or --publish; a plain list run, --help and any unknown
+// flag write nothing. Unknown flags and positionals print usage and exit 2 before any file is read.
 //
 // Verdict wording (W-843, evaluation-steward ruling, company/reviews/_template-learner-review.md):
 // the vocabulary is exactly launch | revise | fatal, on a line that starts with "Verdict:", plus a
@@ -61,10 +65,37 @@ export function decide(reviews, metaVersion = 1) {
   return { ready: true, reason: null, latest };
 }
 
+export const USAGE = `usage: node tools/publish-ready.mjs [--link | --publish | --help]
+  (no flag)   list publish candidates and why others are held; writes nothing
+  --link      also link learner-review files into meta.evidence.simulatedLearner (writes meta.json)
+  --publish   link, then run \`company publish\` for each candidate (the gates still run)
+  --help, -h  print this and exit`;
+
+const FLAGS = new Set(["--link", "--publish", "--help", "-h"]);
+
+// W-1319: know every flag. Returns { help, link, publish } or { error }.
+export function parseArgs(argv) {
+  const bad = argv.filter((a) => !FLAGS.has(a));
+  if (bad.length) return { error: `unknown argument${bad.length > 1 ? "s" : ""}: ${bad.join(" ")}` };
+  const help = argv.includes("--help") || argv.includes("-h");
+  const publish = argv.includes("--publish");
+  return { help, publish, link: publish || argv.includes("--link") };
+}
+
 function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.error) {
+    console.error(`publish-ready: ${args.error}\n${USAGE}`);
+    process.exit(2);
+  }
+  if (args.help) {
+    console.log(USAGE);
+    process.exit(0);
+  }
   const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
   const rel = (...p) => path.join(ROOT, ...p);
-  const doPublish = process.argv.includes("--publish");
+  const doPublish = args.publish;
+  const doLink = args.link;
   const holds = fs.existsSync(rel("company/ops/publish-holds.json"))
     ? JSON.parse(fs.readFileSync(rel("company/ops/publish-holds.json"), "utf8")).holds
     : {};
@@ -81,13 +112,13 @@ function main() {
       const meta = JSON.parse(fs.readFileSync(mp, "utf8"));
       const rd = rel("company/reviews", slug);
       const files = fs.existsSync(rd) ? fs.readdirSync(rd).filter((f) => f.includes("learner")).sort() : [];
-      meta.evidence.simulatedLearner ??= [];
-      let changed = false;
-      for (const f of files) {
-        const p = `company/reviews/${slug}/${f}`;
-        if (!meta.evidence.simulatedLearner.includes(p)) (meta.evidence.simulatedLearner.push(p), (changed = true), linked++);
+      const have = meta.evidence?.simulatedLearner ?? [];
+      const add = files.map((f) => `company/reviews/${slug}/${f}`).filter((p) => !have.includes(p));
+      linked += add.length;
+      if (doLink && add.length) {
+        meta.evidence.simulatedLearner = [...have, ...add];
+        fs.writeFileSync(mp, JSON.stringify(meta, null, 2) + "\n");
       }
-      if (changed) fs.writeFileSync(mp, JSON.stringify(meta, null, 2) + "\n");
       if (meta.status !== "review") continue;
       const why = (r) => (held[r] ??= []).push(slug);
       if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
@@ -98,7 +129,8 @@ function main() {
     }
   }
 
-  console.log(`linked ${linked} review file(s) as evidence`);
+  if (doLink) console.log(`linked ${linked} review file(s) as evidence`);
+  else console.log(`${linked} review file(s) not yet linked as evidence (read-only run; --link writes them)`);
   for (const [r, s] of Object.entries(held)) console.log(`held (${r}): ${s.length}${s.length <= 12 ? "  " + s.join(", ") : ""}`);
   console.log(`candidates: ${ready.length}  ${ready.join(", ")}`);
   if (doPublish)
