@@ -4,6 +4,25 @@ builder: demo-builder (builder-beh) · 2026-10-16 · brief: `company/domains/bri
 
 *Kept from evaluators until they have written their findings (demo-standard: artifact before account).*
 
+## Revision build (2026-10-16, B3, W-1244)
+
+builder: demo-builder (B3 of `company/ops/dispatch-requests/2026-10-16-r3-behavioral.md`) · brief §2 "Decision ... W-1244" and "Revision-build changes (W-1244)", rule 6
+
+What changed (the three changes, in one build):
+1. `Demo.tsx`: `HELD_LINE = false`. L ("With real payments, ...") is cut from every branch; branches now 79 / 77 / 77 / 76 words.
+2. Matched branches (wait/wait, take/take): "Switching to the $100 today would fit only ..." became the script's "Waiting, then taking the $100 today, would fit only a model that gives today extra weight, called present bias." Claim c3's text changed with it, so c3 is set back to `unverified` (checkedBy/checkedOn removed; the prior fact-check note kept after a builder line). The builder does not re-verify it.
+3. The timeline's alt text at the today stop reads "Timeline from today to week 53. The pair: $100 today, $110 in a week." (was "The pair: $100 at today, $110 one week later."). Week 52 and week 13 keep "The pair: $100 at week t, $110 one week later."
+- `meta.json`: c6 stays, `unverified`, with a builder line at the head of its note saying it renders nowhere. No claim other than c3 changed status.
+
+Left open for cm-behavioral: the meta.json `objective` still ends "They can also say that with real payments this switch is clearer for effort than for money." With L cut the lesson no longer teaches that. Not changed here (the item named no objective change); the brief owner decides whether to drop it.
+
+Checked:
+- Check script: `node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs` → `all checks pass`, exit 0.
+- Build: `NEXT_DIST_DIR=.next-beh12 NODE_OPTIONS=--max-old-space-size=3072 npx next build` → exit 0 (tsconfig.json edit by next reverted); `npm run typecheck` → exit 0.
+- QA: `QA_BASE_URL=http://localhost:4101 QA_ONLY=sure-million-or-long-shot,same-week-a-year-apart npx playwright test --workers=2` → contract passes for both lessons on phone and desktop; `feed.spec.ts` "subject chips filter the feed" fails only under QA_ONLY (its allowed set is filtered to the two slugs while the feed shows the whole domain); the feed spec unfiltered → 10 passed.
+- Every reveal branch on screen: a scratch Playwright driver (390x844) drove all four branches of both lessons on the 4101 build and compared the reveal body (after the kit's verdict line) with the script's fallback text → 8/8 MATCH.
+- `node tools/reveal-fit.mjs --url http://localhost:4101 sure-million-or-long-shot same-week-a-year-apart` → fit 2, pass 2.
+
 ## What was built
 - One timeline, today to week 53, with the pair drawn as a fixed-size callout: a $100 coin and a $110 coin under a "1 week, +$10" gap bracket, with dashed leader lines down to weeks t and t + 1 on the axis. The bracket is drawn identically at every stop (designer's addition); at 390 px it renders at about 12 px, above the 10 px floor, also at the today stop (designer's open question 4).
 - Controls in DOM order: far choice "$100 at week 52" | "$110 at week 53" (milestone `far`; enabled only with the pair at week 52), the slider "Pair starts" (ruling 3: three stops, 52, 13, 0; the value is closeness, so ArrowRight moves the pair toward today and the QA path's two presses land on today; milestone `slide` at today; enabled once the far choice is made), near choice "$100 today" | "$110 in a week" (milestone `near`; enabled only at today). `minInteractions` 3.
