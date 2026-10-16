@@ -68,8 +68,10 @@
       "text": "Flat ground: the person's weight arrow splits into a part into the ramp and a part along the ramp (stage picture text, aria-label, flat state after 'Back to flat').",
       "support": "derivation",
       "source": "Recorded by the fact-checker (FC wj64, 2026-10-16) from the walkthrough step 3 picture text. Demo.tsx alt string (the same sentence for every angle).",
-      "status": "unverified",
-      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): UNRECORDED CLAIM, recorded here by the fact-checker, so left unverified. Finding: on flat ground there is no ramp and the along-slope part is mg sin 0 = 0; the stage itself draws only one arrow then. As written the sentence is false for theta = 0. Fix for the builder: for th === 0 use 'Flat ground. The person's whole weight presses into the scale.' Then retire this claim."
+      "status": "disputed",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): UNRECORDED CLAIM, recorded here by the fact-checker, so left unverified. Finding: on flat ground there is no ramp and the along-slope part is mg sin 0 = 0; the stage itself draws only one arrow then. As written the sentence is false for theta = 0. Fix for the builder: for th === 0 use 'Flat ground. The person's whole weight presses into the scale.' Then retire this claim. | FC laneB (fact-checker, 2026-10-16, lane B of the F-46 closeout, worktree base cdee168c; Demo.tsx read first, own derivation; this instance recorded none of these claims): DISPUTED (blocks). Demo.tsx line 109 uses one sentence for every angle. At th = 0 the stage draws no along-the-ramp arrow (line 157: th !== 0) and there is no ramp; the along component W sin 0 = 0. So a screen-reader learner is told the weight splits in two on flat ground, which the sighted stage does not show and which is false. FIX (demo-builder, Demo.tsx alt): for th === 0 write 'Flat ground. The person's whole weight presses straight down into the scale. The scale reads 70.0 kilograms.' and keep the current sentence for 30 and 60 degrees. Advisory (same fix round): the visible label 'into the ramp' is also drawn at 0 degrees, where there is no ramp; 'into the scale' at 0 degrees would match. Then reset to unverified. Record: company/reviews/scale-on-a-slope/2026-10-16-fact-check-laneB.md.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
