@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.status { margin: 0; text-align: center; font-weight: 700; font-size: 0.8rem; }
+.sim { margin: 0; text-align: center; font-size: 0.8rem; color: var(--fg); min-height: 1.3em; }
+.lab { fill: var(--fg); font-size: 11px; font-weight: 600; }
+.tick { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.tickOn { fill: var(--fg); font-size: 11px; font-weight: 800; }
+.price { fill: color-mix(in srgb, var(--domain) 65%, var(--fg)); font-size: 10px; font-weight: 700; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.tagDot { fill: var(--domain); }
+.aucDot { fill: var(--fg); }
+.tagLine { fill: none; stroke: var(--domain); stroke-width: 2; }
+.aucLine { fill: none; stroke: var(--fg); stroke-width: 2; stroke-dasharray: 5 3; }
+.valTag { fill: color-mix(in srgb, var(--domain) 65%, var(--fg)); font-size: 10px; font-weight: 700; }
+.valAuc { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.simTag { fill: none; stroke: var(--domain); stroke-width: 2; }
+.simAuc { fill: none; stroke: var(--fg); stroke-width: 2; }

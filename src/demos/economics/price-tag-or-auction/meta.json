@@ -1,0 +1,114 @@
+{
+  "slug": "price-tag-or-auction",
+  "title": "Price tag or auction?",
+  "hook": "Auctions make buyers compete. Do they always beat a well-chosen price tag?",
+  "domain": "economics",
+  "concept": "auction-vs-posted-price",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "simulation-run",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "second-price auctions (bid-what-its-worth)"
+    ],
+    "doesNotKnow": [
+      "that a seller who knows only the range of values earns more from the best fixed price with one or two bidders, but from an auction once there are three"
+    ]
+  },
+  "misconception": "An auction always earns more than a fixed price, because buyers compete.",
+  "objective": "The learner can explain that with values spread evenly from $0 to $100, the best price tag out-earns a second-price auction with 1 or 2 bidders and the auction wins from 3 bidders on, because the auction's price is set by the second-highest bidder and rises with every rival, while a tag is a guess.",
+  "claims": [
+    {
+      "id": "economics.price-tag-or-auction.c1",
+      "text": "With n bidders whose values are random and evenly spread from $0 to $100, the best price tag sells when any bidder values the item at the tag or more; it is $50.00, $57.74, $63.00 and $66.87 for 1 to 4 bidders and earns $25.00, $38.49, $47.25 and $53.50 on average.",
+      "support": "derivation",
+      "source": "Revenue of a tag p (as a share of $100) is p(1 - p^n), maximised at p = (1/(n + 1))^(1/n). tagPrice() rounds to the cent, tagRevenue() in src/demos/economics/price-tag-or-auction/model.ts; builder's node run: 50, 57.74, 63, 66.87 and 25.00, 38.49, 47.247, 53.499. Brief check J12 (node company/courses/ncm/checks/rejudged-four.mjs) gives the same to one decimal (38.5, 47.2, 53.5). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c2",
+      "text": "A second-price auction with no reserve price earns the second-highest value, on average 100(n - 1)/(n + 1) dollars: $0.00, $33.33, $50.00 and $60.00 for 1 to 4 bidders, so it first earns more than the best tag at 3 bidders.",
+      "support": "derivation",
+      "source": "Expected second-highest of n uniform values on [0, 100] is 100(n - 1)/(n + 1). auctionRevenue() in model.ts. Comparison with c1: 0 < 25, 33.33 < 38.49, 50.00 > 47.25, 60.00 > 53.50 (and the auction stays ahead: n = 5 gives 66.67 against 58.24 in the builder's node run). J12 auctionFirstWinsAt 3. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c3",
+      "text": "The stage's 1,000 simulated sales (seed 7) land near these averages, and 100,000 simulated sales land within $0.20 of each.",
+      "support": "simulation",
+      "source": "simulate() in model.ts with the kit's mulberry32(7), not chosen for its result. Builder's run (scratch script loading model.ts with the kit's random.ts): 1,000 sales, tag / auction: n=1 $27.00 / $0.00; n=2 $38.74 / $33.04; n=3 $45.93 / $50.30; n=4 $52.69 / $59.33. 100,000 sales: n=1 $25.03 / $0.00; n=2 $38.50 / $33.27; n=3 $47.20 / $49.95; n=4 $53.49 / $60.00 (largest gap $0.065). Builder-recorded run; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c4",
+      "text": "A tag is a guess: too high and nobody buys, too low and money is left on the table. An auction lets the second-highest bidder set the price, and that gets better with every rival.",
+      "support": "derivation",
+      "source": "Tag revenue p(1 - p^n): at a high p the chance of no sale (p^n) is large, at a low p the seller gets p even when buyers would pay more (c1). The second-price auction's price is the second-highest value, whose average 100(n - 1)/(n + 1) rises with n (c2). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c5",
+      "text": "Auctions are most useful when the seller does not know what buyers will pay.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 9 (section 9.2 unconfirmed: when are auctions appropriate). Carried by the lesson's setup (the seller knows only the $0 to $100 range) and the objective; not a sentence on the card. Attribution: fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c6",
+      "text": "Auctions make buyers compete (hook): in a second-price auction the winner pays what the strongest rival bid.",
+      "support": "convention",
+      "source": "The second-price rule as defined in the prerequisite lesson economics/bid-what-its-worth: the highest bidder wins and pays the second-highest bid. Builder-written; unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You sell one concert ticket. You know only that buyers value it somewhere from $0 to $100, and two people are interested. Which tends to earn more?",
+    "options": [
+      "A well-chosen fixed price",
+      "A second-price auction",
+      "They earn exactly the same"
+    ],
+    "answer": 0,
+    "why": "With only two bidders the second-highest value is often low, so the auction earns about $33 on average, while a tag near $58 earns about $38. From three bidders on, the auction wins."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:auction-vs-posted-price",
+    "also": [
+      "economics:monopoly-pricing"
+    ],
+    "prerequisites": [
+      "economics:second-price-auction"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 9,
+        "section_unconfirmed": "9.2"
+      }
+    ],
+    "tags": [
+      "auctions",
+      "pricing"
+    ]
+  }
+}

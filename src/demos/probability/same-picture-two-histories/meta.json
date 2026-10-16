@@ -1,0 +1,102 @@
+{
+  "slug": "same-picture-two-histories",
+  "title": "Why are these friends alike?",
+  "hook": "Every friendship here joins two people of the same colour. How did it get that way?",
+  "domain": "probability",
+  "concept": "selection-vs-influence",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "friends tend to be alike (friends-split-more-than-chance)"
+    ],
+    "doesNotKnow": [
+      "that 'people choose similar friends' and 'friends make each other similar' can leave the identical snapshot, so a snapshot cannot say which happened"
+    ]
+  },
+  "misconception": "If friends are alike, they must have chosen each other for it.",
+  "objective": "The learner can explain that a picking history (links change, colours fixed) and a copying history (colours change, links fixed) can end in the identical picture, so one snapshot cannot separate selection from influence, and that telling them apart needs data over time.",
+  "claims": [
+    {
+      "id": "probability.same-picture-two-histories.c1",
+      "text": "The two histories on the stage end in the same picture: the same 12 friendships (each group of 4 fully linked) and the same colours, so all 12 friendships join same colours.",
+      "support": "derivation",
+      "source": "town1(3) and town2(2) in src/demos/probability/same-picture-two-histories/Demo.tsx both equal FINAL_LINKS (two 4-cliques, 6 + 6 = 12) with colours 0000 1111; the stage tests sameFrame() and shows '= final'. Brief check: node company/courses/ncm/checks/rejudged-four.mjs, J9 {\"links\":12,\"identicalFinal\":true}. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.same-picture-two-histories.c2",
+      "text": "Town 1 changes 3 friendships and no colours (it starts with 3 friendships joining different colours and swaps one per step for a same-colour friendship); Town 2 changes 2 colours and no friendships (person 3, then person 7, takes their friends' colour).",
+      "support": "derivation",
+      "source": "Demo.tsx SWAPS (0-4 to 0-1, 3-6 to 2-3, 1-5 to 5-6) and SWITCHES (3, 7). Town 1 start: 12 links, 3 crossing. Town 2 start colours 1110 0001 in the brief's notation (person 3 orange, person 7 blue); each switch is to the majority colour of the person's 3 friends (all 3 the other colour). One switch per step (all at once would flip both in 1 round; cm-probability-statistics re-check 2026-10-16, company/domains/briefs/probability.statistics.md #72). J9 {\"town1Start\":{\"links\":12,\"cross\":3},\"town1Swaps\":3,\"town2Switches\":2,\"town2Final\":\"11110000\"}. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.same-picture-two-histories.c3",
+      "text": "So a single snapshot cannot separate choosing similar friends from becoming like your friends; telling them apart needs data over time: who changed first, the link or the person.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 4 (section 4.2 unconfirmed: selection and social influence both produce homophily, and separating them needs longitudinal data). Aral, Muchnik and Sundararajan (2009), 'Distinguishing influence-based contagion from homophily-driven diffusion in dynamic networks', PNAS 106(51): 21544-21549, for the identification problem. Shown on the stage by c1 and c2. Attribution: fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.same-picture-two-histories.c4",
+      "text": "The towns are invented for the lesson: in Town 1 (picking) colours never change and friendships are swapped; in Town 2 (copying) friendships never change and people take their friends' colour.",
+      "support": "convention",
+      "source": "Model rules stated by the lesson (stage caption 'Town 1 (picking)' / 'Town 2 (copying)', question options). Demo.tsx town1()/town2(). No real town is described.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A one-time survey of a school finds that runners' friends are mostly runners. What can that survey alone tell you?",
+    "options": [
+      "Runners pick other runners as friends",
+      "Friends got each other running",
+      "Not which: picking friends and copying friends can both leave this pattern"
+    ],
+    "answer": 2,
+    "why": "Choosing similar friends and becoming like your friends can end in the identical snapshot. Telling them apart needs data over time: whether the friendship or the running came first."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:selection-vs-influence",
+    "also": [
+      "probability:confounding"
+    ],
+    "prerequisites": [
+      "probability:homophily-test",
+      "probability:confounding"
+    ],
+    "level": "core",
+    "strand": "statistics",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4,
+        "section_unconfirmed": "4.2"
+      }
+    ],
+    "tags": [
+      "homophily",
+      "causation",
+      "networks"
+    ]
+  }
+}
