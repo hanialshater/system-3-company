@@ -80,6 +80,7 @@ test("preview verifies and smoke-tests, records its URL, and never promotes", (t
   const args = f.calls.find((c) => c.args[3] === "deploy").args;
   assert(args.includes("SHOW_REVIEW=on"));
   assert(!args.includes("--prod"));
+  assert(!args.some((a) => a.startsWith("--archive")), "source deploys keep per-file upload");
   assert.equal(f.record().commit, "1234567890abcdef");
   assert(!JSON.stringify(f.record()).includes("test-token"));
 });
@@ -149,6 +150,7 @@ for (const target of ["preview", "production"]) {
     assert.deepEqual(result.steps.slice(0, 4), ["verify", "pull", "build", "upload"]);
     const args = f.calls.find((c) => c.args[3] === "deploy").args;
     assert(args.includes("--prebuilt"));
+    assert(args.includes("--archive=tgz"), "prebuilt output uploads as an archive, not file by file");
     assert(!args.includes("--build-env"));
     assert(fs.readFileSync(path.join(f.root, `.vercel/.env.${target}.local`), "utf8").includes("OTHER_VALUE=unchanged"));
   });

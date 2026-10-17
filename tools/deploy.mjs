@@ -154,7 +154,9 @@ export function deploy({ target = "preview", dryRun = false, prebuilt = false, r
     }
     record.url = deploymentUrl(step("upload", () => vc([
       "deploy", "--yes", "--no-wait", "--format", "json",
-      ...(prebuilt ? ["--prebuilt"] : ["--build-env", `SHOW_REVIEW=${showReview}`]),
+      // --archive=tgz: upload the prebuilt output as a few tarball parts, not ~14,000 files (Vercel file-count and
+      // upload-rate limits; company/engineering/reviews/2026-10-17-deploy-upload-failure.md, principal-engineer ruling).
+      ...(prebuilt ? ["--prebuilt", "--archive=tgz"] : ["--build-env", `SHOW_REVIEW=${showReview}`]),
       "--env", `SHOW_REVIEW=${showReview}`,
       "--meta", `s3Commit=${commit}`, "--meta", `s3Target=${target}`,
       ...(production ? ["--prod", "--skip-domain"] : []),
