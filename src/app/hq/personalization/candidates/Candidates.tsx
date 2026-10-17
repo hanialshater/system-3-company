@@ -1,6 +1,6 @@
 // HQ Personalization Lab: the frozen candidates reachable-v2 and reachable-v3, read-only, on the six simulated
 // personas, next to the default order (W-1648; batch 5 §20.2, company/personalization/batches/2026-10-17-batch-5.md).
-// Server-rendered from committed precomputed documents (src/data/hq-personalization/candidates/); no fetch, no state.
+// Server-rendered from committed precomputed documents (src/data/hq-personalization/candidates/); no network request, no state.
 // Shows: rank's order and its reason codes (v2, v3); for v3, `moves`' key, direction and named lesson, and the RC
 // line the key would render, as draft lines. Never: rank's numeric fields, harness output, K6/K7/R4/R5 numbers,
 // learner data, simulated scores. Showing a candidate here decides nothing.

@@ -28,11 +28,23 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import * as L from "../src/lib/hq-personalization-candidates.ts";
+import * as M from "../company/personalization/model/model.ts";
+import { PERSONAS } from "../company/personalization/model/personas.ts";
+import * as S from "../company/personalization/model/sim/simulate.mjs";
+import * as Lr from "../company/personalization/model/sim/learner.ts";
+import * as Sc from "../company/personalization/model/sim/score.ts";
+import * as C from "../company/personalization/model/sim/composer.ts";
+import { loadCatalog } from "../company/personalization/model/sim/catalog.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SIM = "company/personalization/model/sim";
-const L = await import(pathToFileURL(path.join(ROOT, "src/lib/hq-personalization-candidates.ts")).href);
+// Literal imports only (the lab privacy test refuses a computed import). Each runs after the hash check.
+const IMPORT = {
+  "reachable-v2": () => import("../company/personalization/policies/reachable-v2.ts"),
+  "reachable-v3": () => import("../company/personalization/policies/reachable-v3.ts"),
+};
 export const { CANDIDATES, CANDIDATE_LABEL } = L;
 export const SEED = 1;
 export const DAYS = 7;
@@ -49,7 +61,8 @@ export async function loadCandidate(name, root = ROOT) {
   const hash = () => { try { return sha(readFileSync(abs)); } catch { return "missing"; } };
   const before = hash();
   if (before !== c.sha256) throw new CandidateRefused(`${c.file} sha256 ${before} is not the frozen ${c.sha256}; refusing, nothing written`);
-  const mod = await import(pathToFileURL(abs).href);
+  if (path.resolve(root) !== ROOT) throw new CandidateRefused(`imports only from this repository's ${c.file}`);
+  const mod = await IMPORT[name]();
   const after = hash();
   if (after !== c.sha256) throw new CandidateRefused(`${c.file} changed while it was imported (${after}); refusing, nothing written`);
   const api = mod[name === "reachable-v2" ? "REACHABLE_V2" : "REACHABLE_V3"];
@@ -72,10 +85,8 @@ export function ruleOrder(dims) {
 // Same as simulate.mjs's private fnv (seed derivation); the parity test fails if they ever differ.
 const fnv = (s) => { let h = 0x811c9dc5; for (const ch of s) { h ^= ch.charCodeAt(0); h = Math.imul(h, 0x01000193) >>> 0; } return h; };
 
-export async function simulator(root = ROOT) {
-  const imp = (f) => import(pathToFileURL(path.join(root, SIM, f)).href);
-  const [M, S, Lr, Sc, C, Cat, P] = await Promise.all([imp("../model.ts"), imp("simulate.mjs"), imp("learner.ts"), imp("score.ts"), imp("composer.ts"), imp("catalog.mjs"), imp("../personas.ts")]);
-  return { M, S, Lr, Sc, C, cat: Cat.loadCatalog(root), PERSONAS: P.PERSONAS };
+export function simulator(root = ROOT) {
+  return { M, S, Lr, Sc, C, cat: loadCatalog(root), PERSONAS };
 }
 
 /**
@@ -163,7 +174,7 @@ function storedMove(m, title, line) {
 export async function candidateDocs(root = ROOT) {
   const apis = {};
   for (const name of Object.keys(CANDIDATES)) apis[name] = await loadCandidate(name, root); // refuses before any run
-  const sim = await simulator(root);
+  const sim = simulator(root);
   const { cat } = sim;
   const rule = ruleOrder(cat.dims);
   if (rule.length !== cat.defaultOrder.length || rule.some((s, i) => s !== cat.defaultOrder[i]))
