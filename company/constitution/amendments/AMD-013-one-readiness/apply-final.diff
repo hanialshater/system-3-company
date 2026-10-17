@@ -39,10 +39,10 @@ index 7bc3497f3..1a691f1c3 100644
    const meta = JSON.parse(fs.readFileSync(path.join(LESSON, "meta.json"), "utf8"));
 diff --git a/tests/publish/readiness.test.mjs b/tests/publish/readiness.test.mjs
 new file mode 100644
-index 000000000..0e7d14268
+index 000000000..284c790c0
 --- /dev/null
 +++ b/tests/publish/readiness.test.mjs
-@@ -0,0 +1,273 @@
+@@ -0,0 +1,274 @@
 +// AMD-013 (proposed): one readiness policy. Destination on ratification: tests/publish/readiness.test.mjs
 +// (picked up by `npm run test:publish`, which part (b) puts in CI). Runs from the companion directory too:
 +//   node --test company/constitution/amendments/AMD-013-one-readiness/tests/readiness.test.mjs
@@ -66,7 +66,8 @@ index 000000000..0e7d14268
 +}
 +// The lib: the companion copy while proposed, tools/lib/readiness.mjs once applied.
 +const COMPANION = path.join(ROOT, "company/constitution/amendments/AMD-013-one-readiness");
-+const LIB = fs.existsSync(path.join(COMPANION, "tools/lib/readiness.mjs")) ? path.join(COMPANION, "tools/lib/readiness.mjs") : path.join(ROOT, "tools/lib/readiness.mjs");
++// After apply the installed lib is the one under test; the companion copy is the draft it came from.
++const LIB = fs.existsSync(path.join(ROOT, "tools/lib/readiness.mjs")) ? path.join(ROOT, "tools/lib/readiness.mjs") : path.join(COMPANION, "tools/lib/readiness.mjs");
 +const lib = await import(pathToFileURL(LIB).href);
 +const { readiness, loadContext, loadHolds, gitAncestry, decide, readQa } = lib;
 +

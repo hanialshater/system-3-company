@@ -229,5 +229,6 @@ review lesson.
   - C3a: `QA_VERSION` accepts `lesson version: 3` as well as `v3`.
   - C4: `test:metrics` added to the `ci.yml` list.
   - Two new tests: a `loadHolds -> {}` lib cannot release held lessons; a malformed hold file closes gates with a message.
-- Measured in a throwaway worktree: publish tests 31 pass, 1 fail. The one failure is `check` erroring on `left-or-right` (unstamped QA record), which waits on C3b, the qa-tester's stamped record.
+- C3b done: qa-tester filed a stamped v3 QA record for `left-or-right` (pass, phone and desktop; WebKit still owed, W-1661). The companion test now loads the installed lib after apply.
+- Measured in a throwaway worktree on the applying parent: `check` passes (1,283 lessons, 268 grandfathered), publish tests 32/32, typecheck clean, `company status` lists only `zero-loses-to-this-crowd` as ready.
 - Not yet applied to the repo: the session's permission policy refused the protected edit. Applying needs the founder's go-ahead in a session allowed to edit protected paths (`S3_AMENDMENT=AMD-013`), then `git apply` this file, commit with `Amendment: AMD-013`, and run verify (A4).
