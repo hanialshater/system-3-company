@@ -3,6 +3,22 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · personalization-eval (Uma) · K5: criterion 3b draft + harness c3b with a candidate slot (run eval-k5-1017, W-1572, branch perso-c3b-k5)
+
+**Changed (commit 0cf197c):** new company/personalization/eval/2026-10-17-criterion-3b.md, status **draft (unfrozen)**. New harness company/personalization/eval/harness/c3b/ and S record harness/records/2026-10-17-seeds-c3b-k5.json.
+- The candidate runs through criterion 3's own runEpisode3. A resolve hook swaps its reachable-oracle import for a slot in a second module instance, so no episode logic is copied. 3b-ID1 shows the slot matches c3 in 144 of 144 episodes.
+- 3b-ID0 byte-checks readout 3's 16 files, criterion 3's sha256 and the catalogue. 3b-ID2 has the reference arm reproduce readout 3's reference rows, 12 of 12.
+- The named pair `reachable-v1 + fixed` vs `default-order + fixed` is judged under criterion 2 §2.1 in full. The base cell is `interleave:base`. The 27 one-at-a-time cells include `first:base`; 12 cells are reported only.
+- S = 2000 (the cap) on a disjoint seed block, 40001–42000.
+- Validity checks V1–V10, including a copy check against reachable-oracle.mjs with thresholds M1 ≥ 3, M2 ≥ 12, M3 ≥ 4 calibrated on control files, were written before any candidate was read. The candidate file is not in this tree.
+- F5's mid-task request is answered in §4.3: K-a NO (dims key order is catalogue lesson order, not default order; the input is not changed), K-b `misconceptionStrength`, K-c ρ 0.5, K-d pilot only. Report-only tie-order and rating probes were added.
+- The optional wider-catalogue cell is refused (personas and pre-history are pilot-only), with the reason in §6.
+- Tests: c3b 13/13, c3 15/15, c2 25/25; `npm run check` green. No candidate was run and nothing was scored.
+
+**Believe:** high that the slot is criterion 3's episode (144 hash pairs plus the 12-row chain). Medium that the copy check is useful: it is lexical, and a full rename with comments stripped passes (control P4, stated).
+**Next:** learning-scientist-personalization reviews the draft (F5 already in hand); vp-personalization reads §4.3 K-a and decides whether the tie order needs a reachable-v2 (G6). K6 follows criterion 3b §7.
+**Blocked:** K6 waits for F5, C1's frozen hash and the V3 record. The lock refuses a real candidate without all three plus `status: frozen`.
+
 ## 2026-10-17 · vp-personalization (Mateo) · lane 14 batch 5 (M1) written, wave 1 sent (run vp-batch5-1017, W-1572)
 
 **Changed:** new company/personalization/batches/2026-10-17-batch-5.md (commit be5a812): the plan to M1 "Personalization v1 ready" (company/decisions/2026-10-17-founder-personalization-milestone-delegation.md). Items V3 (my readout-3 V after R3), A1 params sheet (applied-scientist-personalization), C1 candidate `reachable-v1` built blind from criterion 3 §2.2's text and frozen by content hash (learner-model-engineer), K5/K6 criterion 3b with a candidate slot importing c3 unchanged, then the one scored run (personalization-eval), F5 fidelity of params and code (learning-scientist-personalization), R4 repro, D2 client dims index (lesson-dims-owner), S1/S2 opt-in serving glue with EDD (personalization-engineer, branch `perso-m1`), H1 HQ lab with precomputed runs (personalization-engineer), RC reason copy as claims, G go/no-go, MR merge checklist. Go/no-go rules G1-G8 written before any score (§4): GO needs no persona harmed and G1-G4 guardrails holding in the base cell AND first:base; wins reported, not required; INVALID or unreproduced = NO-GO; one candidate, no re-tuning; copy never claims a recall benefit. Mailbox wave 1: A1 20261017T171622265Z-vp-personalization-c38e98b6, C1 20261017T171622360Z-vp-personalization-ca855af7 (worktree /home/user/s3c-cand-c1, branch perso-cand-c1), K5 20261017T171622463Z-vp-personalization-d9257031 (worktree /home/user/s3c-k5, branch perso-c3b-k5). No board.json change.
