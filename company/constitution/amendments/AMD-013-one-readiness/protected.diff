@@ -1,0 +1,235 @@
+diff --git a/tools/company.mjs b/tools/company.mjs
+--- a/tools/company.mjs
++++ b/tools/company.mjs
+@@ -22,6 +22,7 @@
+ import path from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { registryFiles } from "./registry.mjs";
++import { readiness, loadContext, loadHolds, gitAncestry } from "./lib/readiness.mjs";
+ 
+ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+ const rel = (...p) => path.join(ROOT, ...p);
+@@ -135,8 +136,156 @@
+   return Array.isArray(v) ? "array" : v === null ? "null" : typeof v;
+ }
+ 
+-/** Gates a lesson must pass to be published. Returns a list of failures. */
++// ---------------------------------------------------------------- readiness (AMD-013)
++// One readiness policy for status, publish, batch publish (tools/publish-ready.mjs) and check. The mechanics of
++// reading verdicts, versions, holds and review order live in tools/lib/readiness.mjs (ordinary surface, tunable
++// without an amendment). What judges that lib stays here: the strictness parameters below, a known-answer canary
++// it must pass before launchGates trusts it, an active-hold floor that does not depend on it, and the rule that
++// launchGates calls it. A lib that throws, answers malformed, or fails the canary blocks every gate (fail closed).
++
++// QA records dated on or after this day must carry `lesson version: vN` (qa-record writes it from AMD-013 on).
++// The applying commit sets this to the ratification date (AMD-013 apply step A2; the steward's audit checks it).
++const READINESS_SINCE = null;
++// AMD-010 part 3 step 10, folded in here rather than as a second gate line: when that part is ratified, set this to
++// its ratification date and a newest QA record from that date on must read `recorded by: qa-tester` and
++// `kind: independent`. null = not ratified, no recorder rule.
++const QA_INDEPENDENT_SINCE = null;
++// Published before AMD-013 and failing it when measured (AMD-013-one-readiness/measure.mjs at c31c1fab; 268 of 720,
++// 219 of them only because an unstamped QA record shares a day with an older-version review). check warns for
++// these and errors for any other published lesson that fails readiness. Changes only by amendment; never grows.
++const READINESS_GRANDFATHERED = new Set([
++  "a-star-heads-for-goal", "accurate-bettor-takes-the-pot", "all-lines-meet-in-one-mother",
++  "antibiotic-already-there", "atlantic-to-pacific-heading", "attention-shares-one", "average-that-never-settles",
++  "back-button-stack", "background-shortcut", "bad-hash-one-bucket", "bad-start-kmeans", "ball-at-the-top",
++  "bank-lends-it-again", "bearing-spiral-to-the-pole", "below-critical-mass", "below-the-threshold-crash",
++  "bending-frontier", "bet-too-much-and-go-broke", "better-in-every-group-worse-overall", "bid-what-its-worth",
++  "bigger-beetles-everyone-loses", "binary-fingers", "binary-numbers", "birthday-paradox", "bisect-the-bad-commit",
++  "boyer-moore-skips-ahead", "bridge-parity", "build-a-balanced-mobile", "capped-doubling-game",
++  "centre-moves-the-gap", "cheapest-is-not-shortest", "circle-slices-to-rectangle", "city-poll-nation-poll",
++  "clear-the-lowest-one", "closer-in-winter", "coaster-track-shape", "coin-gap-keeps-growing", "coin-greedy-trap",
++  "collect-all-six-faces", "common-letters-in-order", "compound-interest", "confident-and-wrong",
++  "contact-order-matters", "copy-of-a-copy", "count-the-bread-once", "count-the-out-of-order-pairs",
++  "count-the-thunder", "crumple-zone-stopping-time", "cut-the-cube-surface", "dakar-nearer-brazil",
++  "dam-depth-not-width", "deleted-key-breaks-search", "diagonal-escapes-the-list", "digits-are-logs",
++  "dilute-until-none-left", "direction-not-distance", "dish-runs-out", "dog-bites-man-twice",
++  "double-after-every-loss", "doubling-finds-the-edge", "doubling-speed-braking", "draw-the-xor-lines",
++  "drift-of-a-straight-throw", "drop-the-losing-start", "dropped-vs-fired-ball", "drunk-walk-distance",
++  "each-element-pops-once", "earth-flattening", "equinox-twelve-everywhere", "eratosthenes-shadow",
++  "every-base-fools-fermat", "every-scale-equally-likely", "every-second-seat-out", "exchange-round-trip",
++  "exterior-turns", "fee-on-two-week-loan", "fenwick-hops-by-lowest-bit", "fib-call-explosion", "fifty-hour-monday",
++  "filament-vs-led-heat", "fingernail-ocean", "flaw-to-lawn", "flip-and-add-one", "four-in-a-row-two-thirds",
++  "four-queens-pruning", "free-rider-pot", "friends-have-more-friends", "friends-split-more-than-chance",
++  "gauss-staircase", "gradient-descent", "greedy-slot-machine", "groups-where-everyone-reaches-everyone",
++  "half-adder-wiring", "half-of-humanity", "halve-the-margin-cost", "hanoi-tower-doubles", "hash-bucket-pileup",
++  "hawks-never-take-over", "heap-bubble-up", "heavy-but-floats", "herd-immunity", "hidden-carriers",
++  "hidden-third-cause", "high-satellite-view", "honolulu-overhead", "horizon-ruler", "huffman-by-merging",
++  "income-in-dollars", "insert-at-front-cost", "insertion-by-hand", "insurance-fair-price",
++  "iss-gravity-still-there", "keep-one-of-a-stream", "keeping-the-bad-gene", "king-queen-arrow", "kitchen-crowding",
++  "kmp-never-steps-back", "land-hemisphere", "lap-at-89-north", "last-digit-first", "list-doubling-copies",
++  "loaf-with-smoke", "london-december-noon-sun", "london-la-over-greenland", "lower-bid-takes-the-top-ad",
++  "lru-eviction-order", "maze-depth-first", "meaning-without-the-word", "median-without-sorting",
++  "memorise-coin-flips", "mercator-greenland", "merge-sort-payoff", "middle-of-three-takes-all", "midnight-sun-line",
++  "mild-preferences-sharp-divides", "monty-hall-100-doors", "more-copying-bigger-stars", "most-cases-vaccinated",
++  "natural-selection", "near-and-far-links-find-the-way", "near-the-wall", "negative-edge-fools-dijkstra",
++  "never-flag-99", "new-server-moves-few-keys", "newton-doubles-the-digits", "next-word-tally", "nines-without-end",
++  "north-is-up-convention", "odds-average-the-bettors", "one-boss-moves-the-mean", "one-crowded-bucket",
++  "one-in-four-sprouts", "one-nudge-per-mistake", "one-odd-loop-blocks-two-camps", "one-recipe-for-sixty",
++  "pairs-cancel-under-xor", "palindromes-grow-from-centres", "paths-by-adding", "patience-piles",
++  "pay-first-then-profit", "pcr-not-quite-doubling", "pendulum-period", "pennies-dont-add-up", "pesticide-paradox",
++  "plus-fifty-minus-forty", "point-one-is-26-percent", "potassium-battery", "price-tag-or-auction",
++  "prices-sort-the-buyers", "probing-clusters-grow", "product-plus-one", "projectile-angle",
++  "proposers-get-the-best", "puck-on-ice-no-push", "purging-slows-down", "queue-or-stack-same-search",
++  "ramp-same-work", "random-surfer-finds-the-rank", "ray-counts-crossings", "real-rate-illusion",
++  "rising-price-stops-at-second", "rolling-hash-window", "rotation-untangles-the-chain", "route-explosion",
++  "rsa-lock-with-public-key", "ruler-on-mercator", "running-median-two-heaps", "same-picture-two-histories",
++  "same-push-twice-the-mass", "same-revenue-any-rule", "same-sugar-more-water", "saturated-enzyme",
++  "seattle-moscow-heading", "second-trader-pays-the-seller", "seesaw-sit-closer", "seventy-two-doubling",
++  "shoelace-order-matters", "shortest-job-first-wait", "shrink-toward-zero", "shrinking-degree",
++  "side-of-the-square", "skydiver-speed-limit", "split-the-sum", "spreaders-are-rare", "square-a-plus-b",
++  "square-root-wealth", "stag-needs-three-in-four", "steeper-is-not-taller", "stop-at-epoch-sixty",
++  "strategy-builder", "sum-seven-ignores-first-die", "summit-kettle", "tear-the-corners", "temperature-reshapes",
++  "ten-to-one-buffer", "ternary-asks-more", "thales-corner", "the-bar-nobody-can-forecast", "the-contrary-program",
++  "the-fast-ones-leave", "the-grid-takes-up-to-three-eighths", "the-loser-flips-the-winner",
++  "the-middle-voter-decides", "the-pivotal-juror-convicts", "the-slowing-half-life", "the-tagged-molecule",
++  "the-tail-that-reacts", "thirteen-pigeons", "three-cards-one-red-face", "three-giants-in-africa",
++  "tic-tac-toe-is-a-draw", "ties-keep-their-order", "tissot-circles", "torch-underwater-tilt", "tortoise-meets-hare",
++  "tournament-second-best", "tree-count-explodes", "triangle-three-right-angles", "twenty-dollar-basket",
++  "twenty-then-ten-off", "twice-as-hot-not-twice-as-fast", "two-bulges", "two-flips-slip-by",
++  "two-locks-wait-forever", "two-pointers-meet", "two-ripples-cancel", "two-said-blue", "two-squares-become-one",
++  "two-stacks-make-a-queue", "two-tugs-right-angle", "two-writers-one-counter", "undo-a-bad-push",
++  "undo-a-multiplication-mod-n", "union-find-shortcut", "unknot-game", "waves-return", "ways-to-make-ten",
++  "web-map-cut-off-latitude", "wheel-needs-four-colours", "wheel-of-negatives", "when-the-water-is-full",
++  "where-the-dew-forms", "which-answer-wins", "who-grabs-the-electrons", "whose-cutoff-wins", "window-forgets-start",
++  "word-in-pieces", "worth-something-alone"
++]);
++
++function qaRecorderRule(rec) {
++  if (!QA_INDEPENDENT_SINCE || rec.d < QA_INDEPENDENT_SINCE) return null;
++  return /recorded by:[ \t]*qa-tester\b/.test(rec.t) && /kind:[ \t]*independent\b/.test(rec.t) ? null : `evidence.qa ${rec.f} is not an independent QA record`;
++}
++
++let readinessOptsCache = null;
++function readinessOpts() {
++  return (readinessOptsCache ??= { holds: loadHolds(ROOT), isAncestor: gitAncestry(ROOT), versionSince: READINESS_SINCE, recorder: qaRecorderRule });
++}
++
++// Known answers the lib must give before any gate trusts it. Synthetic records, no disk.
++let canaryResult;
++function readinessCanary() {
++  if (canaryResult !== undefined) return canaryResult;
++  const learner = (verdict, v) => ({ f: "2026-01-02-learner-canary.md", t: `lesson version: v${v}\nVerdict: ${verdict}\n` });
++  const qa = (result, v) => ({ f: "2026-01-02-qa.md", t: `date: 2026-01-02 · lesson version: v${v} · result: **${result}**\n`, linked: true });
++  const meta = { slug: "canary", version: 2 };
++  const cases = [
++    ["launch on the current version, QA pass", { learner: [learner("launch", 2)], qa: [qa("pass", 2)], hold: null }, true],
++    ["learner revise", { learner: [learner("revise", 2)], qa: [qa("pass", 2)], hold: null }, false],
++    ["learner launch for an older version", { learner: [learner("launch", 1)], qa: [qa("pass", 2)], hold: null }, false],
++    ["QA fail", { learner: [learner("launch", 2)], qa: [qa("fail", 2)], hold: null }, false],
++    ["QA for an older version", { learner: [learner("launch", 2)], qa: [qa("pass", 1)], hold: null }, false],
++    ["active hold", { learner: [learner("launch", 2)], qa: [qa("pass", 2)], hold: "canary hold" }, false],
++    ["same-day tie of launch and revise", { learner: [learner("launch", 2), { f: "2026-01-02-learner-other.md", t: "lesson version: v2\nVerdict: revise\n" }], qa: [qa("pass", 2)], hold: null }, false],
++  ];
++  canaryResult = null;
++  for (const [name, ctx, want] of cases) {
++    let got;
++    try {
++      got = readiness(meta, ctx)?.ready;
++    } catch (e) {
++      got = `threw ${e.message}`;
++    }
++    if (got !== want) {
++      canaryResult = `readiness lib failed its known-answer canary (${name}: expected ${want}, got ${got}); every gate is closed until it passes (AMD-013)`;
++      break;
++    }
++  }
++  return canaryResult;
++}
++
++/** Readiness gates (AMD-013): verdicts, versions, holds, review order. Returns a list of failures. */
++function readinessGates(meta) {
++  const canary = readinessCanary();
++  if (canary) return [canary];
++  const fails = [];
++  const opts = readinessOpts();
++  let r;
++  try {
++    r = readiness(meta, loadContext(ROOT, meta, opts));
++  } catch (e) {
++    return [`readiness check failed to run: ${e.message}`];
++  }
++  if (!r || typeof r.ready !== "boolean" || !Array.isArray(r.reasons)) return ["readiness returned a malformed answer"];
++  if (!r.ready) fails.push(...(r.reasons.length ? r.reasons : ["not ready (readiness gave no reason)"]));
++  if (opts.holds[meta.slug] && !fails.some((f) => f.startsWith("active publish hold"))) fails.push(`active publish hold: ${opts.holds[meta.slug]}`);
++  return fails;
++}
++
++/** Gates a lesson must pass to be published: the claim/evidence floor plus readiness. Returns a list of failures. */
+ function launchGates(meta) {
++  return [...claimGates(meta), ...readinessGates(meta)];
++}
++
++/** The claim and evidence floor, unchanged by AMD-013. Returns a list of failures. */
++function claimGates(meta) {
+   const fails = [];
+   const open = meta.claims.filter((c) => c.status !== "verified" && c.status !== "withdrawn");
+   if (meta.claims.length === 0) fails.push("no claims recorded: every lesson asserts something; write it down");
+@@ -158,6 +307,7 @@
+ function cmdCheck() {
+   const errors = [];
+   const warnings = [];
++  const grandfathered = []; // AMD-013: published before the policy and still failing it
+   const err = (where, msg) => errors.push(`${where}: ${msg}`);
+   const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
+ 
+@@ -232,7 +382,12 @@
+       if (/localStorage|sessionStorage/.test(src)) err(where, "demos must not touch storage directly; progress lives in the kit");
+       if (/fetch\(|https?:\/\//.test(src.replace(/\/\/.*$/gm, ""))) warn(where, "network or URL in Demo.tsx: lessons should work offline");
+     }
+-    if (m.status === "published") for (const f of launchGates(m)) err(where, `published but fails gate: ${f}`);
++    if (m.status === "published") {
++      for (const f of claimGates(m)) err(where, `published but fails gate: ${f}`);
++      const rg = readinessGates(m);
++      if (rg.length && READINESS_GRANDFATHERED.has(m.slug)) grandfathered.push(m.slug);
++      else for (const f of rg) err(where, `published but fails gate: ${f}`);
++    }
+     if (m.status === "review" && m.claims.some((c) => c.status === "disputed")) warn(where, "in review with a disputed claim");
+   }
+ 
+@@ -313,6 +468,10 @@
+     if (!it.owner) err("company/ops/board.json", `${it.id} has no owner`);
+   }
+ 
++  if (grandfathered.length)
++    warn("readiness (AMD-013)", `${grandfathered.length} grandfathered published lesson(s) still fail readiness: ${grandfathered.slice(0, 6).join(", ")}${grandfathered.length > 6 ? ", …" : ""} (measure.mjs in company/constitution/amendments/AMD-013-one-readiness/ lists why)`);
++  const nowPass = [...READINESS_GRANDFATHERED].filter((slug) => !grandfathered.includes(slug) && demos.some((d) => d.meta?.slug === slug && d.meta.status === "published"));
++  if (nowPass.length) warn("readiness (AMD-013)", `${nowPass.length} grandfathered lesson(s) now pass readiness; drop them from READINESS_GRANDFATHERED at the next amendment: ${nowPass.slice(0, 6).join(", ")}`);
+   for (const w of warnings) console.log(color.yellow("warn  ") + w);
+   for (const e of errors) console.log(color.red("error ") + e);
+   console.log(
+@@ -628,7 +787,7 @@
+     const body = [
+       `# Computer-use QA: ${slug}`,
+       "",
+-      `date: ${today()} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) · result: **${passed ? "pass" : "fail"}**`,
++      `date: ${today()} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) · lesson version: v${d.meta.version ?? 1} · result: **${passed ? "pass" : "fail"}**`,
+       "",
+       "| Viewport | Result | Retries | First error |",
+       "|---|---|---|---|",
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -48,6 +48,20 @@
+       - uses: actions/setup-node@v4
+         with: { node-version: 22, cache: npm }
+       - run: npm ci
++      # AMD-013 part (b): the harness Node suites that `npm run verify` runs, in verify's order. They run
++      # before the build so a broken gate, dispatch, memory, mailbox or publish tool fails fast (about 60 s
++      # in total on 2026-10-17; the three S3_SLOW_TESTS dispatch cases stay skipped, as in verify).
++      - run: npm run test:deploy
++      - run: npm run test:publish
++      - run: npm run test:lifehacks
++      - run: npm run test:books
++      - run: npm run test:algorithms
++      - run: npm run test:kit
++      - run: npm run test:hq
++      - run: npm run test:platform
++      - run: npm run test:dispatch
++      - run: npm run test:mailbox
++      - run: npm run test:memory
+       - run: npm run check
+       - run: npm run typecheck
+       - run: npm run build
