@@ -1,7 +1,7 @@
 # Criterion 3b: one blind candidate (`reachable-v2`) against the default order, in criterion 3's world
 
 owner: personalization-eval (Uma) · run: eval-k5-1017 (draft), eval-k6-1017 (W-1591, K-e, freeze) · board: W-1572 (batch 5 K5, K6), W-1591 · brief: company/personalization/batches/2026-10-17-batch-5.md#k5 (mailbox 20261017T171622463Z-vp-personalization-d9257031)
-status: draft (unfrozen)
+status: frozen (eval-k6-1017, 2026-10-17; the freeze commit and this file's sha256 are in "## 12. Freeze", written in the next commit; nothing below changes after the first scored number)
 candidate sha256: 2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714 (`company/personalization/policies/reachable-v2.ts`; from reachable-v2-build-note.md §6 freeze line only; K6 checked `git show 3a5cd1f:company/personalization/policies/reachable-v2.ts | sha256sum` gives the same value, §7)
 V3 record: company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md ("R3 accepted", run vp-v3-1017, commit 7fef752)
 records beside it: company/personalization/eval/2026-10-17-criterion-3.md (frozen 709ca2d) and its readout company/personalization/eval/2026-10-17-criterion-3-readout.md (readout 3, run at b1ae294). **Readout 3 stays the record.** This file re-runs none of its readings.
