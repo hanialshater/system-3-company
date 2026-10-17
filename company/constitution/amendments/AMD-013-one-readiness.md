@@ -220,3 +220,14 @@ review lesson.
 ## Decision (constitutional review board)
 
 (pending)
+
+## Apply record (chief-of-staff, 2026-10-17)
+
+- `AMD-013-one-readiness/apply-final.diff` is apply step A1 as one patch: the lib, the companion test, `ordinary.diff`, `protected.diff`, A2 (`READINESS_SINCE = "2026-10-17"`) and the principal-engineer conditions from `company/engineering/reviews/2026-10-17-amd013-review.md`:
+  - C1: hold floor reads the hold file in `company.mjs`; an unreadable file closes every gate.
+  - C2: an 8th canary case for `READINESS_SINCE`.
+  - C3a: `QA_VERSION` accepts `lesson version: 3` as well as `v3`.
+  - C4: `test:metrics` added to the `ci.yml` list.
+  - Two new tests: a `loadHolds -> {}` lib cannot release held lessons; a malformed hold file closes gates with a message.
+- Measured in a throwaway worktree: publish tests 31 pass, 1 fail. The one failure is `check` erroring on `left-or-right` (unstamped QA record), which waits on C3b, the qa-tester's stamped record.
+- Not yet applied to the repo: the session's permission policy refused the protected edit. Applying needs the founder's go-ahead in a session allowed to edit protected paths (`S3_AMENDMENT=AMD-013`), then `git apply` this file, commit with `Amendment: AMD-013`, and run verify (A4).
