@@ -166,8 +166,11 @@ function Stage({
     setRest(st);
     setMarksHidden(false);
     const sum = model[x.chip].states[st.name].sum;
-    if (x.chip === "3_1" && st.turned && !st.mirrored) {
-      record("turned", sum);
+    // W-1606: 'turned' fires on any turn-over of the trefoil (Mirror then Turn over counts: the learner did turn
+    // it over). The seen line's "turned over" segment is written only from the plain turned state, so it always
+    // quotes the turned-over table trefoil (−3) that the reveal names, never the mirrored one.
+    if (x.chip === "3_1" && st.turned) {
+      if (!st.mirrored) record("turned", sum);
       reach("turned");
     }
     if (x.chip === "3_1" && st.mirrored) {
@@ -322,14 +325,21 @@ function Stage({
           </div>
         </div>
       </div>
-      <Row>
-        <Control className={turned ? "active" : ""} aria-pressed={turned} disabled={locked} onClick={turnOver_}>
-          Turn over
-        </Control>
-        <Control className={mirrorOn ? "active" : ""} aria-pressed={mirrorOn} disabled={locked} onClick={mirror_}>
-          Mirror
-        </Control>
-      </Row>
+      {/* Design-lead S4 D2: at the reveal the Turn over · Mirror row steps aside (precedent: tricolour-check,
+          enemy-of-my-enemy W-574), so the figure-eight branch fits at 390x844. The reveal quotes the toggles'
+          results, which stay on the seen line and the badges; no reveal sentence asks for a press. Unmounted
+          rather than display:none, as in the precedents (company/reviews/left-or-right/build.md, v2). The chip row
+          stays: it carries the names the reveal uses. */}
+      {ctx.phase !== "reveal" && (
+        <Row>
+          <Control className={turned ? "active" : ""} aria-pressed={turned} disabled={locked} onClick={turnOver_}>
+            Turn over
+          </Control>
+          <Control className={mirrorOn ? "active" : ""} aria-pressed={mirrorOn} disabled={locked} onClick={mirror_}>
+            Mirror
+          </Control>
+        </Row>
+      )}
       <Row>
         {CHIPS.map((c) => (
           <Control
