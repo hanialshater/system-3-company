@@ -62,7 +62,7 @@ export function isDenied(rel: string): boolean {
 }
 
 /** The company/ directory. */
-export const companyRoot = (cwd = process.cwd()) => path.join(cwd, "company");
+export const companyRoot = (cwd = process.cwd()) => path.join(/*turbopackIgnore: true*/ cwd, "company");
 
 /** Path guard. Returns the absolute file path for a library path, or null. Never leaves <root>/company, never serves non-.md. */
 export function safeDocPath(rel: string, root = companyRoot()): string | null {
@@ -72,11 +72,11 @@ export function safeDocPath(rel: string, root = companyRoot()): string | null {
   const segs = file.split("/");
   if (segs.some((s) => s === "" || s === "." || s === "..")) return null;
   if (isDenied(file) || !file.endsWith(".md")) return null;
-  const abs = path.resolve(root, file);
-  if (!abs.startsWith(path.resolve(root) + path.sep)) return null;
+  const abs = path.resolve(/*turbopackIgnore: true*/ root, file);
+  if (!abs.startsWith(path.resolve(/*turbopackIgnore: true*/ root) + path.sep)) return null;
   try {
-    const real = fs.realpathSync(abs); // a symlink must not lead out
-    if (!real.startsWith(fs.realpathSync(root) + path.sep) || !fs.statSync(real).isFile()) return null;
+    const real = fs.realpathSync(/*turbopackIgnore: true*/ abs); // a symlink must not lead out
+    if (!real.startsWith(fs.realpathSync(/*turbopackIgnore: true*/ root) + path.sep) || !fs.statSync(real).isFile()) return null;
   } catch {
     return null;
   }
