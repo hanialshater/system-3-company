@@ -34,7 +34,10 @@ test("T6 judge isolation, dynamic: permuted ratings leave the hidden world and t
 });
 test("T7a forgetting 0: a learned concept recalls with P 1 and the final-test read counts it as 1", () => assert.ok(K.t7aForgetting0().ok));
 test("T7b prerequisite penalty 0: order of a prerequisite pair leaves the final-test read unchanged; 0.4 does not", () => { const r = K.t7bPrereq0(); assert.ok(r.ok, JSON.stringify(r)); });
-test("T7c lag form: a revisit before any forgetting strengthens nothing; one at r = e^-2 multiplies the rate by S^(1-r)", () => { const r = K.t7cLag(); assert.ok(r.ok, JSON.stringify(r)); });
+test("T7c lag form (K2): a retrieval at r = 1 multiplies the rate by s1; one at r = e^-2 by s1^r s0^(1-r)", () => { const r = K.t7cLag(); assert.ok(r.ok, JSON.stringify(r)); });
+test("T7f forgetting shape after day 7 and the learner x lesson spread of k (K2, F1 B1, B3)", () => { const r = K.t7fShapeSpread(); assert.ok(r.ok, JSON.stringify(r)); });
+test("T7g a right guess on a known concept does not strengthen (K2, F1 N5)", () => { const r = K.t7gGuessNoStrengthen(); assert.ok(r.ok, JSON.stringify(r)); });
+test("T7h pre-history follows the episode's law: a right recall can be a guess (K2, F1 B5)", () => { const r = K.t7hPrehistoryLaw(); assert.ok(r.ok, JSON.stringify(r)); });
 test("T7d reading is pure: the final-test read, recall and oracle reads change no state", () => assert.ok(K.t7dReadPure().ok));
 test("T7e a lucky guess on an unknown concept does not make it known (relearn 0)", () => assert.ok(K.t7eLuckyGuess().ok));
 test("T8 the review input carries exactly the interface fields (nothing about the read times)", () => {
@@ -97,11 +100,13 @@ test("R1-R4: the fixed-schedule copy and the every-session fixture pass; each br
 
 // ---------------- the freeze lock ----------------
 test("freeze lock: while criterion 2 is a draft, only the reference arm and fixtures run; frozen allows all", () => {
-  assert.match(criterionStatus2(), /^draft/);
-  assert.doesNotThrow(() => assertScoringAllowed2(["default-order+fixed", "default-order+fixture-review-early"]));
-  for (const a of ["gam+fixed", "draft-rules+fixed", "random+fixed", "oracle-order+fixed", "default-order+oracle-review@0.5", "default-order+candidate", "default-order+none"]) assert.throws(() => assertScoringAllowed2([a]), /freeze lock/, a);
+  // K2: the real file is frozen from the freeze commit on; both states are tested on temporary copies.
+  assert.match(criterionStatus2(), /^frozen/);
   const dir = mkdtempSync(join(tmpdir(), "c2lock-"));
   const f = join(dir, "c.md");
+  writeFileSync(f, "# x\nstatus: draft (unfrozen)\n");
+  assert.doesNotThrow(() => assertScoringAllowed2(["default-order+fixed", "default-order+fixture-review-early"], f));
+  for (const a of ["gam+fixed", "draft-rules+fixed", "random+fixed", "oracle-order+fixed", "default-order+oracle-review@0.5", "default-order+candidate", "default-order+none"]) assert.throws(() => assertScoringAllowed2([a], f), /freeze lock/, a);
   writeFileSync(f, "# x\nstatus: frozen\n");
   assert.doesNotThrow(() => assertScoringAllowed2(["gam+fixed", "default-order+candidate"], f));
   writeFileSync(f, "# x\nstatus: draft (unfrozen)\n");
@@ -116,10 +121,12 @@ test("the GAM is model-v0.2.2 as frozen: version, gates and fingerprint pinned",
   assert.equal(M.COMPOSER.surpriseGate.active, false);
   assert.equal(gamFingerprint(), readFileSync(join(HERE, "gam-v0.2.2.sha256"), "utf8").trim());
 });
-test("cells: base, 14 one-at-a-time (every swept row at E1 low and high, revisit stop at 0.5), 8 corners", () => {
+test("cells: base, 19 one-at-a-time (every swept row at E1 low and high, revisit stop at 0.5), 8 corners", () => {
   const c = cells2();
   assert.equal(c.filter((x) => x.kind === "base").length, 1);
-  assert.equal(c.filter((x) => x.kind === "one-at-a-time").length, 14);
+  assert.equal(c.filter((x) => x.kind === "one-at-a-time").length, 19);
+  assert.equal(c.find((x) => x.name === "base").world.revisitStrengthen, "lag");
+  assert.ok(c.find((x) => x.name === "learnRate-high").world.learnRate === 0.8);
   assert.equal(c.filter((x) => x.kind === "corner").length, 8);
   assert.ok(c.find((x) => x.name === "priorKnowledgeMean-low").world.priorKnowledgeMean === E1.priorKnowledgeMean.low);
 });
@@ -140,8 +147,8 @@ test("the rule: wins need lo > 0 and mean >= δ_min; a harm blocks; headroom rea
   assert.deepEqual(outcome2({ invalid: false, baseBeats: true, oatBeats: { x: true, y: false } }), { verdict: "FAIL-SENSITIVE", cells: ["y"] });
   assert.equal(seedsFromSd(0.0648443696598731, 0.01, 200, 2000), 660);
 });
-test("S record: computed from the reference arm alone at the E1 placeholder block", () => {
-  const rec = JSON.parse(readFileSync(join(HERE, "..", "records", "2026-10-16-seeds-c2-k1.json"), "utf8"));
+test("S record: computed from the reference arm alone at the E1 block as filled in K2", () => {
+  const rec = JSON.parse(readFileSync(join(HERE, "..", "records", "2026-10-16-seeds-c2-k2.json"), "utf8"));
   assert.equal(rec.inputsHash, createHash("sha256").update(JSON.stringify(E1)).digest("hex"));
   assert.equal(rec.S, seedsFromSd(rec.sdMax, CRITERION2.deltaMin, CRITERION2.seeds.floor, CRITERION2.seeds.cap));
   assert.ok(!JSON.stringify(rec).match(/"mean"|gam|draft|oracle|candidate/), "the S record holds SDs only, of the reference arm");

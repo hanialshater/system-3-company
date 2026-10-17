@@ -8,10 +8,10 @@
 // Order: T5-T9 (judge; any failure stops the run) -> oracle-review threshold chosen per (persona, cell) on the tuning
 // seeds (criterion 2 §2.4) -> episodes for every unit (cell x arm x persona, S seeds each, in worker threads; results do
 // not depend on jobs) -> T1-T4 / R1-R4 per arm under test (a failure makes it INVALID) -> the criterion rule ->
-// <out>/results.json, <out>/verdicts.json, <out>/manifest.json. It writes no prose; the readout is written from verdicts.
+// <out>/results.ndjson (K2: one line per unit), <out>/verdicts.json, <out>/manifest.json. It writes no prose; the readout is written from verdicts.
 import { Worker } from "node:worker_threads";
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, openSync, writeSync, closeSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,7 +19,7 @@ import * as M from "../../../model/model.ts";
 import { PERSONAS } from "../personas.copy.mjs";
 import { CRITERION2, EPISODE2, cells2 } from "./world2.mjs";
 import { assertScoringAllowed2, criterionStatus2, loadInputs2, CRITERION2_FILE, cellByName2, parseArm, REFERENCE_ARM, gamFingerprint, GAM_FROZEN_VERSION, loadCandidate } from "./harness2.mjs";
-import { t1Replay2, pickChecks2, reviewChecks, t5Static2, t6Dynamic2, t7aForgetting0, t7bPrereq0, t7cLag, t7dReadPure, t7eLuckyGuess, t8InputShape, t9FixedCopy } from "./checks2.mjs";
+import { t1Replay2, pickChecks2, reviewChecks, t5Static2, t6Dynamic2, t7aForgetting0, t7bPrereq0, t7cLag, t7dReadPure, t7eLuckyGuess, t7fShapeSpread, t7gGuessNoStrengthen, t7hPrehistoryLaw, t8InputShape, t9FixedCopy } from "./checks2.mjs";
 import { judgePair2, outcome2, headroom, interval, mean } from "./scorer2.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -89,7 +89,7 @@ async function main() {
   // Judge tests (T5-T9). A failure stops the run: the eval's defect.
   const base = cellByName2("base", e1);
   const judge = { t5: t5Static2(), t6: PERSONAS.map((p) => t6Dynamic2({ persona: p, seed: seeds[0], cellWorld: base })),
-    t7: { a: t7aForgetting0(), b: t7bPrereq0(), c: t7cLag(), d: t7dReadPure(), e: t7eLuckyGuess() },
+    t7: { a: t7aForgetting0(), b: t7bPrereq0(), c: t7cLag(), d: t7dReadPure(), e: t7eLuckyGuess(), f: t7fShapeSpread(), g: t7gGuessNoStrengthen(), h: t7hPrehistoryLaw() },
     t8: t8InputShape({ persona: PERSONAS[0], seed: seeds[0], cellWorld: base }),
     t9: PERSONAS.map((p) => t9FixedCopy({ persona: p, seed: seeds[0], cellWorld: base })) };
   const judgeOk = judge.t5.ok && judge.t6.every((x) => x.ok) && Object.values(judge.t7).every((x) => x.ok) && judge.t8.ok && judge.t9.every((x) => x.ok);
@@ -191,9 +191,13 @@ async function main() {
     candidate: candidate ? { path: candidate, sha256: sha(readFileSync(candidate)) } : null,
     fileSha256: Object.fromEntries(files.map((f) => [f, sha(readFileSync(join(HERE, f)))])), errors, seconds: (Date.now() - t0) / 1000 };
   writeFileSync(join(out, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
-  writeFileSync(join(out, "results.json"), JSON.stringify(R) + "\n");
+  // K2: results as one JSON line per unit (cell, arm, persona) in run order. At S = 2000 a single JSON string of every
+  // score exceeds V8's string limit; the line form holds the same numbers and is byte-comparable (R2).
+  const fd = openSync(join(out, "results.ndjson"), "w");
+  for (const u of runList) { const sc = R[u.cell]?.[u.arm]?.[u.persona]; if (sc) writeSync(fd, JSON.stringify({ cell: u.cell, arm: u.arm, implArm: u.implArm, persona: u.persona, scores: sc }) + "\n"); }
+  closeSync(fd);
   writeFileSync(join(out, "verdicts.json"), JSON.stringify({ judge, validity, ...verdicts, descriptive }, null, 2) + "\n");
-  console.log(`done in ${manifest.seconds}s; wrote ${out}/{manifest,results,verdicts}.json`);
+  console.log(`done in ${manifest.seconds}s; wrote ${out}/manifest.json, results.ndjson, verdicts.json`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
