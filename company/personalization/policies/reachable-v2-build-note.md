@@ -67,4 +67,4 @@ New (8 tests):
 
 Frozen content: `company/personalization/policies/reachable-v2.ts` as committed in the first commit on perso-cand-c2. After the hash below is written, the file never changes, and a change would be reachable-v3 (batch 5 §4 G6).
 
-sha256 of `company/personalization/policies/reachable-v2.ts`: FROZEN-HASH-PENDING
+sha256 of `company/personalization/policies/reachable-v2.ts` (file content, as `sha256sum` and `git show 3a5cd1f:<path> | sha256sum` both give): **2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714**, committed in 3a5cd1f on branch perso-cand-c2.
