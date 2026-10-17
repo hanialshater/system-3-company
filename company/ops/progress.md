@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo) · lane 14 batch 4 written, wave 1 sent (run vp-batch4-1017)
+
+**Changed:** new company/personalization/batches/2026-10-17-batch-4.md: criterion 3, measure only, no candidate builder (founder Q2/Q3, company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md "Founder answers"). Pre-commitments 1–6 of the readout-2 record §5 carried verbatim. Items: E3 evidence rows (learning-scientist-personalization: revisit price and placement, N7 refresh value), K3 criterion 3 draft + harness c3 reusing c2 (personalization-eval: O1 split, reachable-signal oracle on criterion 2 §I.3 inputs only, Feed.tsx `i % 3 === 1` interleave cell), F3 fidelity review, K4 freeze + readout 3, R3 reproduction (learner-model-engineer), V mine. Wave 1 sent by mailbox: E3 20261017T081220705Z-vp-personalization-d2e06513, K3 20261017T081220833Z-vp-personalization-ef1dfce1 (worktree /home/user/s3c-k3, branch perso-c3-k3). No board.json change this turn; no privacy pre-read requested (the oracle reads only inputs already ruled in company/reviews/_privacy/2026-10-16-personalization-model-inputs.md).
+**Believe:** high that the batch follows the approved pre-commitments and stays measure-only. Low that the reachable-signal oracle clears δ_min in 4 of 6 (readout 2's corners point to the hidden k spread, which it cannot see). Stated before data: the base cell for rule 3 is the eval's to name; if the eval declines the oracle, rule 3 cannot fire and I recommend option A.
+**Next:** chief-of-staff drains the two requests and files six board items from the batch table (E3, K3, F3, K4, R3, V; owners as listed), writing the ids into the wave-1 notes. Wave 2 (F3) after E3 and K3 report to my mailbox. **Blocked:** nothing.
+
 ## 2026-10-17 · vp-personalization (Mateo) · V on criterion 2 readout 2 (run vp-v-1017, W-1551)
 
 **Changed:** new company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md: pre-commitments 1–5 and V1–V5 applied as written. R2 (W-1550) byte-identical, accepted; W-1549, W-1550, W-1551 → done. Board: W-1560 (chief-of-staff: founder Q1–Q4), W-1561 (head-of-product: revisit volume/placement, input only), W-1562 (evaluation-steward: AMD-008 F2 input, no text proposed). No model, harness, `src/` or experiment change.
