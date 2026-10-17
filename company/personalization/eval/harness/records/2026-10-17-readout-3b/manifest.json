@@ -1,0 +1,84 @@
+{
+  "plumbing": false,
+  "criterion3bStatus": "frozen (eval-k6-1017, 2026-10-17; the freeze commit and this file's sha256 are in \"## 12. Freeze\", written in the next commit; nothing below changes after the first scored number)",
+  "criterion3bSha256": "c42411f1a844bbce9b0efeb84a769bef84281d4f70219dbd0e86353f97f1bf6a",
+  "v3Record": "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md",
+  "candidate": {
+    "path": "company/personalization/policies/reachable-v2.ts",
+    "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714",
+    "expectedSha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714",
+    "fixture": false
+  },
+  "criterion3Sha256": "78e2b5131ed8024a7e81fcb2b463157ba6f7edb3b94a6a38ce04771f366927e4",
+  "e1Sha256": "c8c09eac7613720c7d1499958d5c416b57ed7d614e7e68eb8a132068f7482840",
+  "e3Sha256": "0e120add6ada34da159d77bc7d994f092318b4bba802941f4477a4273fc1927a",
+  "catalogSha256": "27b535dada5d1f21a51f8d7a8be12da3324c60fa69a21ff8f822db30e5dc7872",
+  "catalogExpected": "27b535dada5d1f21a51f8d7a8be12da3324c60fa69a21ff8f822db30e5dc7872",
+  "commit": "f4f2fbfdef809f172330814230e022d936b6cf6c",
+  "node": "v22.22.0",
+  "S": 2000,
+  "seedList": "40001..42000",
+  "placements": [
+    "interleave",
+    "first"
+  ],
+  "copyThresholds": {
+    "m1": 3,
+    "m2": 12,
+    "m3": 4,
+    "shingle": 6,
+    "minName": 4
+  },
+  "corpusExtra": [
+    {
+      "commit": "48218b3",
+      "path": "company/personalization/policies/reachable-v1-params.md"
+    },
+    {
+      "commit": "b4bad91",
+      "path": "company/personalization/policies/default-order-rule.md"
+    }
+  ],
+  "modelVersion": "model-v0.2.2",
+  "fileSha256": {
+    "harness3b.mjs": "5ff1137a568f524cdb8be061eac17e0c7955a4f33183f2cf068b928dab113527",
+    "slot.mjs": "556e2d00c2c9edbe98a73c4c49e04ad8e897ad9fe660af52788a179351bb3178",
+    "slot-shim.mjs": "f3cde91c4ea9aaa406ac625e71bc1c2e7e57d82460917881ce3b87570eeeee40",
+    "checks3b.mjs": "3a18559c00dc561b93e06ed2f1f3f420fd01ab358a021d9aa4339c5c11376595",
+    "copy-check.mjs": "e830c2e00862aecbb31ab37f9c621ac88eb7239fedbf4620baa017b8de6be318",
+    "run3b.mjs": "07353ee97ca44bc50f7f3e3d2cef4a32494e7ac73afa2c4bd8f964330ec4a7ba",
+    "run3b-worker.mjs": "74b6c95be209954e8689979e436c70d8e79b11bfa664460610bcbe4186fd8758",
+    "replay-child.mjs": "13a062db6723cd4e6b1e2d06fce7870ec3600b805399d94797dabb8b0af260c6",
+    "fixtures/fixture-default-order.ts": "b7b24239e82c4b01c339fe1cf3804377f2c9de7ddd50a15649635991f02ddb97",
+    "../c3/harness3.mjs": "fc9a98ca7138a7e4a88ed05146c052c839f0d093020b968c1b4b278d9d95fa51",
+    "../c3/learner3.mjs": "90925edaff5830f06ccba7a8a6940614ce29c1ebeed82564f28bf8d39af629e9",
+    "../c3/world3.mjs": "0f0d3dbfd4983e56fcffca3252a243ac6819b5d4fb2201a95162918c8094175f",
+    "../c3/reachable-oracle.mjs": "b20c11cad1894925239f031ecd9b5d88ddadf8a9f85e98da3d9d78634249b8ef",
+    "../c3/checks3.mjs": "872c469a6d71995d893750bb6f108851bb94b58527e91b8ac1434a9c5050aa71",
+    "../c2/harness2.mjs": "4cd6ca8ed399f0969f32c57cd0ced9b2bf147a6f9d34c02a1068c4ff5ecdfbee",
+    "../c2/learner2.mjs": "36b4839ca97d9da8f9ebba3356d450d9256a7e4ef716af490a4b3d12a2ffdc6e",
+    "../c2/scorer2.mjs": "2518ae27f4b442f9101e5c492182f1961199cc9a86064b3250abcc1b694f075d",
+    "../c2/world2.mjs": "876aa1b875ae8d60a15bb05de8a38f72750dca291ee8fe597ca183872418650c",
+    "../harness.mjs": "458f3dc19b1048f2110573b4befb17dd0b8f74ac9ac0fa7a58428057f74b1864",
+    "../personas.copy.mjs": "9cb7a911a5aa03a4537b0dabc7383c3a87faf91fa05b1792009abee0c9d18770",
+    "../../../model/model.ts": "af6545119749ff8b65a533bc9291aede4aeca57173c2ed97f51a0931890c731b",
+    "../../../model/sim/composer.ts": "a092c3b9b52411add0e61851753e29a760d8c4527699f2d7f2a73c7e72801141",
+    "../../../model/sim/catalog.mjs": "877b0807cdd77a1ad9e11457524eae23b5a352c56f3b7c8dcd00b556413effc9"
+  },
+  "errors": {},
+  "timing": {
+    "default-order+fixed": {
+      "unitMeanMs": 31474.197421558354,
+      "perEpisodeMs": 15.737098710779177
+    },
+    "candidate+fixed": {
+      "unitMeanMs": 134261.54063931244,
+      "perEpisodeMs": 67.13077031965622
+    },
+    "reachable+fixed": {
+      "unitMeanMs": 119980.70218966684,
+      "perEpisodeMs": 59.99035109483342
+    }
+  },
+  "seconds": 10596.133
+}
