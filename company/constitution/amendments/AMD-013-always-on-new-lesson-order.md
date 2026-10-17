@@ -1,6 +1,6 @@
 # AMD-013: Always-on personalised new-lesson order on the All feed, behind the company flag; its cold start; and a pre-approved flag-off withdrawal
 
-status: drafted, awaiting founder confirmation of wording
+status: ratified 2026-10-17 by the founder ("Ratify both", then "Confirm AMD-013"; company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md). Rollback (`vercel rollback`) is not pre-approved: the founder did not add it (open question Q1).
 date: 2026-10-17
 board: W-1585 (with W-1603 and W-1634)
 proposed_by: founder. The substance is ratified in company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md ("Ratify both", then "Amendment + flag-off"). The founder clarified "always on, no switch" in company/decisions/2026-10-17-founder-personalization-milestone-delegation.md.
@@ -230,5 +230,5 @@ The founder confirms the wording. Seats: head-of-product, privacy-reviewer (A5, 
 
 | Part | Decision | By | Date |
 |---|---|---|---|
-| A (surface-value, AMD-008 riders, QA intent) | | | |
-| B (pre-approved flag-off withdrawal; CLAUDE.md and runbook lines) | | | |
+| A (surface-value, AMD-008 riders, QA intent) | ratified ("Confirm AMD-013") | founder | 2026-10-17 |
+| B (pre-approved flag-off withdrawal; CLAUDE.md and runbook lines) | ratified ("Confirm AMD-013") | founder | 2026-10-17 |
