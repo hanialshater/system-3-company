@@ -71,4 +71,4 @@ No imports, no `Date`, no `Math.random`, no `process`/I/O (checked on the source
 ## 6. Freeze
 Frozen content: `company/personalization/policies/reachable-v1.ts` as committed with this note. After the hash below is written, the file never changes; a change is reachable-v2.
 
-sha256: (written in the second commit)
+sha256 of `company/personalization/policies/reachable-v1.ts` (file content, as `sha256sum` and `git show 96c2a40:<path> | sha256sum` both give): **da8b7e4c721b75b8502c2d768676d02910505421100495044e6947c34e4c5876**, committed in 96c2a40 on branch perso-cand-c1.
