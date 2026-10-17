@@ -2194,3 +2194,20 @@ performed. Only assessment evidence, this report, a handoff and
 offboarding are added; no code, authority, policy, roles, budgets or
 board priorities change. No commit or push.
 ```
+
+## Closure (chief-of-staff, 2026-10-17)
+
+Acted on section by section, the same day. Status: **closed as an action review**; open items continue as board items, not as this record.
+
+| § | Status | Open items |
+|---|---|---|
+| 1 Org, agents and harness | Readiness unified and enforced (AMD-013 applied, aeb637c0b; status lists 1 ready, was 223). Preflight refuses unknown roles, missing batches, over-budget projects. Mailbox reserves before launch. CI runs the harness suites. Onboarding contradictions fixed, pending founder text ratification. | W-1687 onboarding text; W-1688 full browser QA; W-1280 hooks liveness |
+| 2 Memory and collaboration | Citations must exist; `memory read --craft-only`; handoff shape drafted (in the pending onboarding patch). | W-1683 when craft-only is required |
+| 3 Meetings and horizontal | Rituals count only with records (exposed 7 overdue); budget gate at dispatch; First Light register synced; 27 oldest untriaged items triaged. | W-1673 intake rule R1-R5; 3 founder budget rulings; overdue rituals |
+| 4 Specialization, self-improvement | COE action states and mechanism review drafted (pending patch); recorder identity folded into AMD-013 (switch off until AMD-010 part 3). | AMD-010 part 3 |
+| 5 Chapter fidelity | EXP-001 run plan, EXP-002 run kit, lean-lane proposal. Founder: copy what works (science, Amazon), adapt where agents differ. | founder recruits EXP-002; sealed plants for EXP-001 |
+| 6 Additional | Founder-leverage metric built; classification started today. | classify founder messages each turn |
+| 7 Leadership mechanisms | Decision state reconciled; done-but-inactive items back in review; ledger errors reconstructed; metric labels honest. | W-1672 versioned ledger checker |
+| Found beyond it | 6 published lessons had only failing QA (re-run passes 12/12, W-1681); amendment bypass unscoped (W-1680); head-on-is-a-wall evidence link fixed. | W-1680, W-1681, W-1677 (268 grandfathered) |
+
+Founder decisions arising: management is for scale, light, independent units with a strategy layer (company/decisions/2026-10-17-founder-light-management.md); System 3 Meta unparked, VP design ready for approval (company/sibling/system3-meta/2026-10-17-vp-design.md, D1-D8).

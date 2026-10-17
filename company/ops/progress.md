@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 (close) · chief-of-staff · external assessment closed; AMD-013 applied; Meta VP design ready
+
+**Changed:** AMD-013 ratified by the founder and applied (aeb637c0b, `Amendment: AMD-013`), with principal-engineer conditions C1-C4; status `applied` so it no longer licenses protected edits. left-or-right has a stamped v3 QA record. Founder decisions recorded: light management with a strategy layer (W-1685, W-1686); System 3 Meta unparked, VP design written and consulted (principal-engineer, evaluation-steward, portfolio-manager: agree with changes), awaiting founder D1-D8. Assessment closure table: company/reviews/org/2026-10-17-external-assessment.md. Pending work saved as patches in company/ops/pending-patches/ (onboarding text W-1687; verify scripts W-1682).
+**Verified:** verify on aeb637c0b: 12 Node suites green, check, typecheck, build green; browser contract 819 of 2,576 passed with none failed when the session closed (W-1688 confirms the rest).
+**Believe:** sure the gate now reads verdicts, versions and holds (status lists 1 ready). Medium that the full browser run passes (no lesson code changed).
+**Next:** founder: Meta D1-D8; onboarding text (W-1687); 3 budget rulings; EXP-002 recruiting; EXP-001 plants; mark AMD-002/AMD-012 applied (W-1680). Owners: W-1677 head-of-product, W-1681/W-1688 qa-tester, W-1682 PE-ops, W-1672 tools-lead. Overdue rituals: wbr, demo-crit, design, ops, vertical, rnd, project review.
+**Blocked:** this session could not cherry-pick or log some events (permission classifier); nothing deployed; no deploy tag in any commit.
+
 ## 2026-10-17 (evening) · chief-of-staff · external org assessment: five workstreams merged
 
 **Changed:** filed the founder-shared assessment (company/reviews/org/2026-10-17-external-assessment.md) and dispatched evaluation-steward, tools-lead, chief-of-staff-ceo-office, portfolio-manager and analytics-steward in worktrees. Merged four: tools-lead tier 1 (c6c088681; tier-2 package.json commit 9824b61bc held for PE-ops, W-1682), analytics-steward, portfolio-manager, evaluation-steward (drafts only; nothing protected applied). **Not merged:** CEO-office onboarding branch worktree-agent-af3f82ee838c3affc, because it changes CLAUDE.md and working-agreement text the founder ratifies first. Applied 27 of 30 portfolio triage calls; W-1337/W-1349/W-408 back to review; head-on-is-a-wall links its r2 learner review. Board W-1671..W-1684. Founder digest: company/rituals/records/2026-10-17-founder-digest.md.

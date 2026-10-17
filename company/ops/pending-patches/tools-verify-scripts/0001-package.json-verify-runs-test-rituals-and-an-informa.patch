@@ -1,0 +1,124 @@
+From 9824b61bcf3342844ff688d846f0b75b782a95c6 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 17 Oct 2026 21:11:22 +0000
+Subject: [PATCH] package.json: verify runs test:rituals and an informational
+ ledger summary
+
+Tier 2 (package.json), awaiting principal-engineer-ops:
+company/engineering/readiness/2026-10-17-assessment-verify-scripts.md
+Held in its own commit so the tier-1 tool commit can merge without it.
+
+- test:rituals (node --test tests/rituals/*.test.mjs) in verify.
+- ledger:info = node tools/ledger.mjs check --summary in verify: prints
+  error counts by project and always exits 0 (informational; it never
+  fails verify). npm run check (protected CI) is unchanged.
+- tests/dispatch/verify-scripts.test.mjs asserts the wiring.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01N7n6X4Qs7ukdnrrqNLZsmD
+---
+ .../2026-10-17-assessment-verify-scripts.md   | 40 +++++++++++++++++++
+ package.json                                  |  6 ++-
+ tests/dispatch/verify-scripts.test.mjs        | 19 +++++++++
+ 3 files changed, 63 insertions(+), 2 deletions(-)
+ create mode 100644 company/engineering/readiness/2026-10-17-assessment-verify-scripts.md
+ create mode 100644 tests/dispatch/verify-scripts.test.mjs
+
+diff --git a/company/engineering/readiness/2026-10-17-assessment-verify-scripts.md b/company/engineering/readiness/2026-10-17-assessment-verify-scripts.md
+new file mode 100644
+index 000000000..0a30b7d95
+--- /dev/null
++++ b/company/engineering/readiness/2026-10-17-assessment-verify-scripts.md
+@@ -0,0 +1,40 @@
++# Operational readiness: npm run verify runs the rituals suite and prints the ledger check summary (informational)
++
++```
++change: package.json adds test:rituals and ledger:info (node tools/ledger.mjs check --summary, always exit 0) and runs both in verify before check; check is unchanged
++change-tier: 2
++paths: package.json, tests/dispatch/verify-scripts.test.mjs, company/engineering/readiness/2026-10-17-assessment-verify-scripts.md
++author: tools-lead
++board: none yet (chief of staff to file; source: company/reviews/org/2026-10-17-external-assessment.md §3 and Appendix B "Budgeting")
++risks: none added or closed
++links: company/engineering/readiness/2026-10-17-assessment-tooling-fixes.md (the tier-1 tool changes this wires up); company/ops/token-budget.md section 6
++```
++
++Status: **awaiting principal-engineer-ops**. Tier 2 because `package.json` is tier 2 in company/engineering/readiness/paths.json ("scripts and dependencies"). The author does not approve it. It is held in its own commit, so the tier-1 commit can merge without it.
++
++## 1. What can fail
++- **The new step fails verify.** It cannot: `--summary` exits 0 in every case, including 45 ledger errors (tests/dispatch/hard-budget.test.mjs asserts this). The only way it fails is if `tools/ledger.mjs` throws while it imports the register, for example on an unreadable projects.json. The full check fails in that case too.
++- **People read "verify passed" as "the budget is fine".** The line says "informational, never fails verify" and gives the error count, which was 45 on 2026-10-17 (history 33, behavioral-econ 11, lifehacks-engine-v2 1, matching the assessment). `npm run check` (protected CI) still does not include the ledger. Wiring it there needs an amendment to tools/company.mjs.
++- **test:rituals fails.** It reads the real records through git. CI has git, and a checkout without git history only loses records, which the test tolerates.
++
++## 2. How we would know
++The verify log prints the line. CI does not run verify (assessment finding 5), so this is local only.
++
++## 3. How to roll back
++`git revert <sha>`. No data.
++
++## 4. Capacity
++About 0.5 s added to verify, and no build.
++
++## 5. Security / 6. Data
++None.
++
++## 7. Risks
++None.
++
++## Approval (tier 2; written by principal-engineer-ops)
++
++- Decision:
++- Conditions, each with a board id:
++- What would make me revoke it:
++- Objections raised, and what happened to each:
+diff --git a/package.json b/package.json
+index d5291b04e..0fe8ade47 100644
+--- a/package.json
++++ b/package.json
+@@ -13,7 +13,7 @@
+     "check": "node tools/company.mjs check && node tools/memory.mjs check",
+     "qa": "playwright test",
+     "walkthrough": "node tools/walkthrough.mjs",
+-    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run check && npm run typecheck && npm run build && npm run qa",
++    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run test:rituals && npm run ledger:info && npm run check && npm run typecheck && npm run build && npm run qa",
+     "metrics": "node tools/metrics.mjs",
+     "deploy": "node tools/deploy.mjs",
+     "test:deploy": "node --test tests/deploy/*.test.mjs",
+@@ -28,7 +28,9 @@
+     "test:algorithms": "node --import ./tests/lifehacks/register.mjs --test tests/algorithms/*.test.mjs",
+     "test:spike": "node --import ./tests/lifehacks/register.mjs --test tests/spike/*.test.mjs",
+     "test:platform": "node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs",
+-    "test:mailbox": "node --test tests/mailbox/*.test.mjs"
++    "test:mailbox": "node --test tests/mailbox/*.test.mjs",
++    "test:rituals": "node --test tests/rituals/*.test.mjs",
++    "ledger:info": "node tools/ledger.mjs check --summary"
+   },
+   "dependencies": {
+     "d3-geo": "^3.1.1",
+diff --git a/tests/dispatch/verify-scripts.test.mjs b/tests/dispatch/verify-scripts.test.mjs
+new file mode 100644
+index 000000000..d806e2fb2
+--- /dev/null
++++ b/tests/dispatch/verify-scripts.test.mjs
+@@ -0,0 +1,19 @@
++// package.json wiring for the external assessment 2026-10-17 follow-ups (tier 2: package.json; readiness record
++// company/engineering/readiness/2026-10-17-assessment-verify-scripts.md). `npm run verify` runs the rituals suite and
++// prints the ledger check summary as an informational step; `npm run check` (protected CI) is unchanged.
++// Run: npm run test:dispatch
++import { test } from "node:test";
++import assert from "node:assert/strict";
++import fs from "node:fs";
++import path from "node:path";
++import { fileURLToPath } from "node:url";
++
++const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
++const scripts = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8")).scripts;
++
++test("verify runs test:rituals and the informational ledger:info step; check does not include the ledger", () => {
++  assert.equal(scripts["ledger:info"], "node tools/ledger.mjs check --summary", "--summary always exits 0 (tests/dispatch/hard-budget.test.mjs)");
++  assert.equal(scripts["test:rituals"], "node --test tests/rituals/*.test.mjs");
++  assert.match(scripts.verify, /npm run test:rituals && npm run ledger:info && npm run check && /);
++  assert.doesNotMatch(scripts.check, /ledger/, "npm run check (protected CI) is unchanged");
++});
+-- 
+2.43.0
+

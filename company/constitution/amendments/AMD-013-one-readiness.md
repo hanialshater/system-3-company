@@ -1,6 +1,6 @@
 # AMD-013: One readiness policy
 
-status: ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen). Founder, in session: "Ratify AMD-013". Open objections O1-O5 travel with it.
+status: applied (aeb637c0b, 2026-10-17). Ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen); principal-engineer conditions C1-C4 folded in. Open objections O1-O5 travel with it.
 date: 2026-10-17
 proposed_by: evaluation-steward (route from the external assessment, `company/reviews/org/2026-10-17-external-assessment.md` §1 findings 1 and 5, Appendix A ch.4 and ch.8; founder asked us to act on it)
 prepared_by: evaluation-steward
@@ -232,3 +232,5 @@ review lesson.
 - C3b done: qa-tester filed a stamped v3 QA record for `left-or-right` (pass, phone and desktop; WebKit still owed, W-1661). The companion test now loads the installed lib after apply.
 - Measured in a throwaway worktree on the applying parent: `check` passes (1,283 lessons, 268 grandfathered), publish tests 32/32, typecheck clean, `company status` lists only `zero-loses-to-this-crowd` as ready.
 - Not yet applied to the repo: the session's permission policy refused the protected edit. Applying needs the founder's go-ahead in a session allowed to edit protected paths (`S3_AMENDMENT=AMD-013`), then `git apply` this file, commit with `Amendment: AMD-013`, and run verify (A4).
+
+- A4 (2026-10-17, chief-of-staff): applied as aeb637c0b with `Amendment: AMD-013`. `npm run verify` on that tree: all 12 Node suites green (1,361 tests), `check` passed (1,283 lessons, 268 grandfathered), typecheck and production build green; the browser contract (2,576 tests) was still running at session close with no failure in the first 819. Status set to applied now so this file stops licensing protected edits (W-1680); if the remaining browser QA fails, the fix needs a new amendment number (Rollback section). W-1688 tracks the full browser QA result.
