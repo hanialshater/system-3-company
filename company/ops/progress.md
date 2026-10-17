@@ -3,19 +3,19 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
-## 2026-10-17 · chief-of-staff · knots pipeline: 3 lessons published (repo), left-or-right in review; PR #6 merged; board/disk incidents
+## 2026-10-17 · chief-of-staff · knots pipeline: 4 lessons published (repo, not deployed); PR #6 merged; board/disk incidents
 
 **Changed:**
 - **Published in repo, NOT deployed** (launch review r8, `company/rituals/records/2026-10-17-launch-review-knots-r8.md`): math/draw-a-table-knot v3, math/tricolour-check v2, math/unknot-game v2. Every claim verified; QA filed via `company qa-record`; learner walks launch; accessibility pass-with-conditions; predictions EXP-007 (+Amendment 1).
-- **math/left-or-right v3 in review** (launch review r9, go): 8/8 claims verified, QA v3, learner walk launch, a11y pass-with-conditions, EXP-008. Release-manager run for its publish (W-1660) and the r8 build/QA verify is in flight. **r9 ruling 2:** no production deploy may carry left-or-right as published until a WebKit/iOS Safari check passes (W-1607/W-1615/W-1661); this container has Chromium only and cannot download WebKit (W-1662, put to the founder).
+- **math/left-or-right v3 in review** (launch review r9, go): 8/8 claims verified, QA v3, learner walk launch, a11y pass-with-conditions, EXP-008. Published in repo by release-manager (0b4e2e0a, W-1660). Post-publish verify: check, typecheck, production build, QA contract 2/2 for all four knot slugs pass (feed spec and test:* suites not run). **r9 ruling 2:** no production deploy may carry left-or-right as published until a WebKit/iOS Safari check passes (W-1607/W-1615/W-1661); this container has Chromium only and cannot download WebKit (W-1662, put to the founder).
 - **PR #6 merged** (200 algorithm demos, all draft, unverified) as a553596a; PR board ids renumbered W-1626..W-1646. C2 built-output tests before any deploy: W-1645 (release-manager).
 - **Incidents:** (1) a lane branch carrying duplicate ids overwrote W-1600 (privacy-reviewer first-time marker question) and W-1601 in a merge; restored 88a7f1ea, branch items moved to W-1615/W-1616; the integrator now treats a same-id item with a different owner/created as a collision. (2) I ran `company publish tricolour-check --dry-run` thinking it was a dry run: it has no dry-run flag and flipped status; reverted before commit, never pushed. (3) Disk filled (ENOSPC) and killed a QA run; 91 merged worktrees removed, 20G free. (4) Commit 54aa64e3 has the literal deploy tag in its body; nothing deployed (git deployments off, never a pushed head); guard proposal W-1654 (evaluation-steward).
 
-**Believe:** sure the three r8 lessons met every r8 precondition on disk (checked by release-manager and me); `check`, typecheck, platform tests pass on main. Not yet shown: a production build + QA contract after the r8 publish (in flight). Everything rests on simulated walks and Chromium; nothing shows anyone learned.
+**Believe:** sure the three r8 lessons met every r8 precondition on disk (checked by release-manager and me); `check`, typecheck, platform tests pass on main. Build + QA contract after publish passed for all four. Everything rests on simulated walks and Chromium; nothing shows anyone learned.
 
-**Next:** merge the release-manager's r9 publish + verify; next-version fixes queued for the four knot lessons (W-1614, W-1617, W-1625, W-1647/8, W-1652/3, W-1656/7); kit items W-1618, W-1649, W-1650, W-1658 (protected kit → evaluation-steward route); privacy W-1600, W-1655; tools W-1654; R&D doc fix W-1609. 200 algorithm drafts need a fact-check/QA plan before any can publish.
+**Next:** next-version fixes queued for the four knot lessons (W-1614, W-1617, W-1625, W-1647/8, W-1652/3, W-1656/7); kit items W-1618, W-1649, W-1650, W-1658 (protected kit → evaluation-steward route); privacy W-1600, W-1655; tools W-1654; R&D doc fix W-1609. 200 algorithm drafts need a fact-check/QA plan before any can publish.
 
-**Blocked on founder:** deploy approval (5 earlier + 3 r8 lessons; left-or-right also needs W-1662); Books F1/F2 (due 10-19 18:00); knots budget F-49; PR #4 held (GPL).
+**Blocked on founder:** deploy approval (5 earlier + 4 knot lessons; left-or-right may not ship until a WebKit/iOS Safari check passes, W-1661/W-1662, or its publish is reverted first); Books F1/F2 (due 10-19 18:00); knots budget F-49; PR #4 held (GPL).
 
 ## 2026-10-16 · demo-builder (w1542) · left-or-right built as B2 (two-sided card), draft
 
