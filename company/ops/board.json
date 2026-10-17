@@ -18803,7 +18803,7 @@
     },
     {
       "id": "W-1613",
-      "title": "tricolour-check: disabled 0x0 data-qa=control buttons stay in the DOM (1 unlabelled on trefoil, 3 on plain loop); remove or label (QA v2 finding 3, low)",
+      "title": "tricolour-check: disabled 0x0 data-qa=control buttons stay in the DOM (1 unlabelled on trefoil, 3 on plain loop); remove or label (QA v2 finding 3, low) | a11y review 2026-10-17: not an accessibility finding (spare slot is display:none, absent from a11y tree); cosmetic only",
       "owner": "demo-builder",
       "state": "backlog",
       "domain": null,
@@ -18880,10 +18880,11 @@
       "id": "W-1620",
       "title": "Launch review r8 precondition: accessibility review (company/reviews/<slug>/2026-10-1x-a11y.md) of math/draw-a-table-knot v3, math/tricolour-check v2, math/unknot-game v2 at aae6d2d6 or later with the same closure. Look especially at: tricolour colour meaning (A/B/C letters, dashed ring + cross), unknot 'tinted strand' named by colour in the reveal, QA v2 finding 3 zero-size unlabelled controls (W-1613), reveal focus drop (W-1618). Record says pass, or names any lock-out failure (your authority to block). See company/rituals/records/2026-10-17-launch-review-knots-r8.md",
       "owner": "accessibility-reviewer",
-      "state": "next",
+      "state": "done",
       "domain": "math",
       "created": "2026-10-17",
-      "links": []
+      "links": [],
+      "updated": "2026-10-17"
     },
     {
       "id": "W-1621",
@@ -19128,6 +19129,42 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1647",
+      "title": "unknot-game a11y U1: reveal points at 'the tinted strand' but the caption naming it is display:none at reveal, so a screen-reader learner cannot perceive it; give the stage an accessible description of the tinted strand at reveal. company/reviews/unknot-game/2026-10-17-accessibility.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1648",
+      "title": "Knot lessons a11y: chips, Reset and Check all disable themselves when pressed and drop focus to body (tricolour-check, draw-a-table-knot; inferred unknot-game); draw-a-table-knot chips '5_2'/'6_1' named only by subscript glyphs, no aria-pressed. company/reviews/*/2026-10-17-accessibility.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1649",
+      "title": "Light-theme focus ring: --accent has no light override, ring is 2.26:1 on --bg-3 (1.99:1 on a blue arc ring); affects every lesson. From r8 a11y review",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1650",
+      "title": "App/kit target sizes under 24px floor: 'Why trust this?' 23px, Map link 17px; kit chips and Reset 35px tall in knot lessons. From r8 a11y review company/roles/memory/accessibility-reviewer/2026-10-17-r8-knots-a11y.md",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
       "links": []
     }
   ]
