@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-17: platform-engineer output file tracing excludes (deploy run 39032703960; tier 2, awaiting principal-engineer-ops: company/engineering/readiness/2026-10-17-trace-excludes.md; note company/engineering/reviews/2026-10-17-trace-excludes.md)
+- `next.config.mjs`: `outputFileTracingExcludes` `"*"` now covers artifacts/**, test-results/**, test-results-*/**, playwright-report/**, .next-*/**, .claude/** and company/ops/deployments/**. HQ's `process.cwd()` readers had pulled the QA screenshots written by verify into function traces, and Vercel failed the deploy because those files are `.vercelignore`d. In a worktree build with dummy artifacts, 18 nft files referenced artifacts/ before the change and 0 after. `.vercelignore` is unchanged. Not deployed.
+
 ## 2026-10-17: tools-lead git-state detector for git >= 2.47 (W-1337; tier 2, awaiting principal-engineer-ops: company/engineering/readiness/2026-10-17-git-guard-git247-autostash.md)
 - git >= 2.47 (RelNotes 2.47.0, pw/rebase-autostash-fix) stores a failed rebase autostash as stash entry "autostash" and removes rebase-merge/. `.claude/hooks/agent-events.mjs` now writes an `incident` for such an entry (new since baseline, or any with no baseline); before, it wrote nothing on that path. guards.test.mjs C2 asserts the real end state per git version (fixes the F-47 verify failure on CI's git 2.55.0); agent-events tests cover the new case.
 
