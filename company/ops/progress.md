@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 (evening) · chief-of-staff · external org assessment: five workstreams merged
+
+**Changed:** filed the founder-shared assessment (company/reviews/org/2026-10-17-external-assessment.md) and dispatched evaluation-steward, tools-lead, chief-of-staff-ceo-office, portfolio-manager and analytics-steward in worktrees. Merged four: tools-lead tier 1 (c6c088681; tier-2 package.json commit 9824b61bc held for PE-ops, W-1682), analytics-steward, portfolio-manager, evaluation-steward (drafts only; nothing protected applied). **Not merged:** CEO-office onboarding branch worktree-agent-af3f82ee838c3affc, because it changes CLAUDE.md and working-agreement text the founder ratifies first. Applied 27 of 30 portfolio triage calls; W-1337/W-1349/W-408 back to review; head-on-is-a-wall links its r2 learner review. Board W-1671..W-1684. Founder digest: company/rituals/records/2026-10-17-founder-digest.md.
+**Verified on the merged tree:** check, typecheck, next build, test:deploy/publish/lifehacks/books/algorithms/kit/platform/dispatch/mailbox/memory/metrics/hq and rituals all pass; feed spec 10/10; contract QA 12/12 for the six published lessons whose newest QA record was a 10-14 fail (company/reviews/org/2026-10-17-failing-qa-published-recheck.md). Full contract QA over all lessons not run (no lesson code changed).
+**Believe:** sure the old launch gate calls 223 review lessons ready where one policy calls 1 ready (AMD-013 measure). Medium: dispatch rule B1 now refuses History, behavioral-econ and Life Hacks v2 batches; correct for behavioral-econ, but History may be within budget if its 2.5M counts from approval (founder question).
+**Next:** founder decisions in the digest; PE review of AMD-013 (W-1676); W-1681 attested QA; head-of-product on the 268 grandfathered lessons (W-1677); lean-lane step 1 after the F-42 pilot (~10-19).
+**Blocked on founder:** the six digest decisions. Nothing deployed; no commit carries the deploy tag.
+
 ## 2026-10-17 (later) · chief-of-staff · release r9 LIVE
 
 **Changed:** production deploy r9 is live at https://system-3-company.vercel.app, from commit 8c753ada (deploy tag), built by Vercel's git integration after the founder said "add one with deploy tag" and "Go" (company/decisions/2026-10-17-founder-git-deploy-r9.md; reverses F-48: `vercel.json` `git.deploymentEnabled` is now true). The Deploy to Vercel workflow failed three times (1037: traced artifacts vs .vercelignore, fixed 52db8a0a; 1038: upload failed with the error hidden, fixed by stdout diagnostics + HQ turbopackIgnore + `--archive=tgz` at 05238276, never re-run).
