@@ -100,11 +100,13 @@ test("R1-R4: the fixed-schedule copy and the every-session fixture pass; each br
 
 // ---------------- the freeze lock ----------------
 test("freeze lock: while criterion 2 is a draft, only the reference arm and fixtures run; frozen allows all", () => {
-  assert.match(criterionStatus2(), /^draft/);
-  assert.doesNotThrow(() => assertScoringAllowed2(["default-order+fixed", "default-order+fixture-review-early"]));
-  for (const a of ["gam+fixed", "draft-rules+fixed", "random+fixed", "oracle-order+fixed", "default-order+oracle-review@0.5", "default-order+candidate", "default-order+none"]) assert.throws(() => assertScoringAllowed2([a]), /freeze lock/, a);
+  // K2: the real file is frozen from the freeze commit on; both states are tested on temporary copies.
+  assert.match(criterionStatus2(), /^frozen/);
   const dir = mkdtempSync(join(tmpdir(), "c2lock-"));
   const f = join(dir, "c.md");
+  writeFileSync(f, "# x\nstatus: draft (unfrozen)\n");
+  assert.doesNotThrow(() => assertScoringAllowed2(["default-order+fixed", "default-order+fixture-review-early"], f));
+  for (const a of ["gam+fixed", "draft-rules+fixed", "random+fixed", "oracle-order+fixed", "default-order+oracle-review@0.5", "default-order+candidate", "default-order+none"]) assert.throws(() => assertScoringAllowed2([a], f), /freeze lock/, a);
   writeFileSync(f, "# x\nstatus: frozen\n");
   assert.doesNotThrow(() => assertScoringAllowed2(["gam+fixed", "default-order+candidate"], f));
   writeFileSync(f, "# x\nstatus: draft (unfrozen)\n");
