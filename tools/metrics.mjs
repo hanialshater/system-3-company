@@ -16,6 +16,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rel = (...p) => path.join(ROOT, ...p);
 const ls = (d) => (fs.existsSync(d) ? fs.readdirSync(d) : []);
+// Review folders can hold subfolders (screenshots, per-pass fact-check folders): read only files from them.
+const lsFiles = (d) => ls(d).filter((f) => fs.statSync(path.join(d, f)).isFile());
 const md = process.argv.includes("--md");
 const today = new Date().toISOString().slice(0, 10);
 
@@ -41,7 +43,7 @@ function reviewVerdicts(slug, version = 1) {
   // and the review does not mention that version.
   const build = fs.existsSync(path.join(dir, "build.md")) ? fs.readFileSync(path.join(dir, "build.md"), "utf8") : "";
   const revisedTo = version > 1 && new RegExp(`##\\s*v${version}\\b`).test(build);
-  for (const f of ls(dir)) {
+  for (const f of lsFiles(dir)) {
     const t = fs.readFileSync(path.join(dir, f), "utf8");
     if (f.includes("learner")) {
       const v = t.match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase();
@@ -145,7 +147,7 @@ const stopRate = (() => {
 // Rework and the EXP-003 split: first learner verdict per lesson, by builder model (build.md says "sonnet build").
 const firstVerdict = (slug) => {
   const dir = rel("company/reviews", slug);
-  const f = ls(dir).filter((x) => x.includes("learner")).sort()[0];
+  const f = lsFiles(dir).filter((x) => x.includes("learner")).sort()[0];
   return f ? fs.readFileSync(path.join(dir, f), "utf8").match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase() : null;
 };
 const byModel = { sonnet: { n: 0, reviewed: 0, launch: 0 }, opus: { n: 0, reviewed: 0, launch: 0 } };
