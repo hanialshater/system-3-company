@@ -44,4 +44,11 @@ status: decided
 
 > "No opt in or out"  (founder, conversation)
 
-- Recorded verbatim; the chief of staff has asked the founder which reading he means before changing M1 (see conversation). M1's website part stays as written until then.
+- Clarified by the founder (chief of staff's question, three readings offered): **"Always on, no switch"** — every learner gets the personalised order and there is no switch at all.
+- **M1's website part changes accordingly:** personalised new-lesson order for every learner, no opt-in and no opt-out control; revisits as today; a true reason line on moved cards stays (G7). The no-harm gate (batch 5 §4 G1) is unchanged and matters more, since nobody can switch it off.
+- **What this needs before the website part can ship** (none of it is within the chief of staff's delegation):
+  1. A ratified amendment: protected company/product/surface-value.md says the feed "is not personalised and it says so", and AMD-008 (proposed) requires an off switch (P4). evaluation-steward drafts; the founder ratifies.
+  2. A privacy re-ruling: the rulings require an off switch that always wins (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md D2, G3) and treat anonymous computation as local only. privacy-reviewer re-reads for always-on.
+  3. Counsel (F-25): personalising 13–15 year olds with no way to turn it off, and whether data-protection law requires an objection right for this kind of automated ordering. Not the chief of staff's or privacy-reviewer's to answer.
+- The settings API's `personalization_on` column loses its purpose for now; it stays unbuilt-on, not deleted.
+- The HQ part of M1 is unaffected.
