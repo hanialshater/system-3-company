@@ -525,12 +525,32 @@ test("W-1337 C2: dirty tree during `rebase --autostash` in main skips pre-rebase
   assert.match(r.err, /cannot rebase: You have unstaged changes/);
   assert.doesNotMatch(r.out + r.err, /pre-rebase \(tools\/git-hooks\/pre-rebase\)/, "the hook never ran on this path");
   assert.ok(fs.existsSync(path.join(d, ".git/c2-wrote")), "the writer fired inside the window");
-  // The work is stranded: the staged edits are off the tree and the index, kept only in rebase-merge/autostash.
+  // The work is stranded: the staged edits are off the tree and the index, kept only in the autostash commit.
   assert.deepEqual(staged(d), [], "the staged edits are gone from the index");
   assert.ok(!fs.existsSync(path.join(d, "added.txt")), "the staged new file is gone from the tree");
-  assert.deepEqual(stashList(d), [], "nothing on git stash list");
-  const auto = fs.readFileSync(path.join(d, ".git/rebase-merge/autostash"), "utf8").trim();
+  assert.equal(fs.readFileSync(path.join(d, "mine.txt"), "utf8"), "1\n", "the staged edit is gone from the tree");
+  // Where git keeps it depends on the version. git <= 2.46 leaves it only in rebase-merge/autostash, unlisted. git >= 2.47
+  // (RelNotes 2.47.0, pw/rebase-autostash-fix) re-applies it, hits the background writer's conflict on theirs.txt, stores it
+  // as stash entry "autostash" and removes rebase-merge/ ("Applying autostash resulted in conflicts").
+  const [maj, min] = git(d, "version").match(/(\d+)\.(\d+)/).slice(1).map(Number);
+  const stored = maj > 2 || (maj === 2 && min >= 47);
+  let auto, where;
+  if (stored) {
+    assert.ok(!fs.existsSync(path.join(d, ".git/rebase-merge")), "git >= 2.47 removes rebase-merge/");
+    assert.deepEqual(stashList(d), ["autostash"], "git >= 2.47 stores the autostash on the stash list, once");
+    auto = git(d, "rev-parse", "stash@{0}").trim();
+    where = new RegExp(`stash@\\{0\\} "autostash" \\(${auto.slice(0, 9)}`);
+  } else {
+    assert.deepEqual(stashList(d), [], "nothing on git stash list");
+    auto = fs.readFileSync(path.join(d, ".git/rebase-merge/autostash"), "utf8").trim();
+    where = new RegExp(`rebase-merge/ \\([^,]*, autostash ${auto.slice(0, 9)}`);
+  }
   assert.match(auto, /^[0-9a-f]{40}$/);
+  // Either way that commit is the only copy of the staged work.
+  const names = (a, b) => git(d, "diff", "--name-only", a, b).split("\n").filter(Boolean);
+  assert.deepEqual(names(`${auto}^1`, `${auto}^2`), ["added.txt", "mine.txt"], "its index commit holds the staged edits");
+  assert.deepEqual(names(`${auto}^1`, auto), ["added.txt", "mine.txt", "theirs.txt"], "its tree holds the unstaged edit too");
+  assert.equal(git(d, "show", `${auto}^2:mine.txt`), "staged edit\n");
   // (i) Detection: the SubagentStop handler, pointed at this repo as the main checkout, writes one incident naming it.
   const sb = mkTemp("guards-c2-sb-");
   const spool = path.join(sb, "spool");
@@ -544,7 +564,7 @@ test("W-1337 C2: dirty tree during `rebase --autostash` in main skips pre-rebase
   const gs = evs.filter((e) => e.id.startsWith("hk-gs-"));
   assert.equal(gs.length, 1, JSON.stringify(evs));
   assert.equal(gs[0].type, "incident");
-  assert.match(gs[0].summary, new RegExp(`rebase-merge/ \\([^,]*, autostash ${auto.slice(0, 9)}`));
+  assert.match(gs[0].summary, where);
   // (ii) Prevention: verdict() refuses the same command, and the 13:06 brief command, with this repo as the main checkout.
   assert.ok(verdict(cmd, 0, { cwd: d, main: d }), "refused in main");
   assert.ok(verdict("git fetch && git rebase -q --autostash origin/main && git push", 0, { cwd: d, main: d }));

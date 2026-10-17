@@ -333,13 +333,13 @@ test("W-1337: a stash entry gained since dispatch is a note in room incident; a 
   const env = { S3_MAIN_CHECKOUT: main };
   fs.writeFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("1".repeat(40), "On main: older"));
   asyncRun(sb, env);
-  fs.appendFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("2".repeat(40), "autostash"));
+  fs.appendFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("2".repeat(40), "On main: wip"));
   assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, env), 0);
   const gs = spooled(sb).filter((e) => e.id.startsWith("hk-gs-"));
   assert.equal(gs.length, 1);
   assert.equal(gs[0].type, "note");
   assert.equal(gs[0].room, "incident");
-  assert.match(gs[0].summary, /1 new stash entry since dispatch \("autostash"\)/);
+  assert.match(gs[0].summary, /1 new stash entry since dispatch \("On main: wip"\)/);
   assert.doesNotMatch(gs[0].summary, /older/, "the entry that was there at dispatch is not counted");
 
   const sb2 = sandbox();
@@ -348,6 +348,46 @@ test("W-1337: a stash entry gained since dispatch is a note in room incident; a 
   asyncRun(sb2, { S3_MAIN_CHECKOUT: main2 });
   assert.equal(runHook(sb2, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, { S3_MAIN_CHECKOUT: main2 }), 0);
   assert.equal(spooled(sb2).length, 2, "dispatch and report only");
+});
+
+// git >= 2.47 (RelNotes 2.47.0, pw/rebase-autostash-fix): a rebase that fails to start re-applies its autostash and, on a
+// conflict, stores it as a stash entry named exactly "autostash" and removes rebase-merge/. That is the same stranding.
+test("W-1337: a stash entry named \"autostash\" (git >= 2.47's failed autostash re-apply) is an incident, with or without a baseline", () => {
+  const sb = sandbox();
+  const main = fakeMain(sb);
+  const env = { S3_MAIN_CHECKOUT: main };
+  fs.writeFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("1".repeat(40), "On main: older"));
+  asyncRun(sb, env);
+  fs.appendFileSync(path.join(main, ".git/logs/refs/stash"), stashLine("2".repeat(40), "autostash"));
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, env), 0);
+  const gs = spooled(sb).filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs.length, 1);
+  assert.equal(gs[0].type, "incident");
+  assert.match(gs[0].summary, /stash@\{0\} "autostash" \(222222222, a failed autostash re-apply\)/);
+  assert.doesNotMatch(gs[0].summary, /new stash entr/, "listed once, as the incident");
+  assert.match(gs[0].body, /git stash show -p --include-untracked 2{40}/);
+  // Seen again at the next stop: not written twice.
+  assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "aother000000000" }, env), 0);
+  assert.equal(spooled(sb).filter((x) => x.id.startsWith("hk-gs-")).length, 1);
+
+  // No baseline at all (a run the hook did not launch, no stash-last.json): an "autostash" entry is still an incident,
+  // while an ordinary entry is not counted.
+  const sb2 = sandbox();
+  const main2 = fakeMain(sb2);
+  fs.writeFileSync(path.join(main2, ".git/logs/refs/stash"), stashLine("1".repeat(40), "On main: older") + stashLine("3".repeat(40), "autostash"));
+  assert.equal(runHook(sb2, { hook_event_name: "SubagentStop", agent_id: "aunknown0000000" }, { S3_MAIN_CHECKOUT: main2 }), 0);
+  const gs2 = spooled(sb2).filter((e) => e.id.startsWith("hk-gs-"));
+  assert.equal(gs2.length, 1);
+  assert.equal(gs2[0].type, "incident");
+  assert.match(gs2[0].summary, /stash@\{0\} "autostash" \(333333333/);
+
+  // An "autostash" entry that was already there at dispatch is not new.
+  const sb3 = sandbox();
+  const main3 = fakeMain(sb3);
+  fs.writeFileSync(path.join(main3, ".git/logs/refs/stash"), stashLine("4".repeat(40), "autostash"));
+  asyncRun(sb3, { S3_MAIN_CHECKOUT: main3 });
+  assert.equal(runHook(sb3, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef" }, { S3_MAIN_CHECKOUT: main3 }), 0);
+  assert.equal(spooled(sb3).length, 2, "dispatch and report only");
 });
 
 test("W-1337: MERGE_HEAD alone is a note; an unreadable .git still exits 0 and the report is still written", () => {
