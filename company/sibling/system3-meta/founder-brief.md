@@ -21,6 +21,10 @@ recorded by: chief-of-staff · status: brief; nothing exists yet (company/decisi
 - "It is System 3; we call it science." We are replicating the philosophy of science, the invention that made human civilisation work. (founder, 2026-10-16)
 - "Same model, different rules is fine; summary through off-boarding [and] mechanisms is very beneficial so each role gets the needed context. We started all of this to test System 3 book ideas, especially the philosophy of science, aka how to make fallible agents work together, [and] I added my experience from Amazon and Zalando on how to run orgs at scale."
 
+- (2026-10-17, after the external org assessment) The startup direction: "now seeing it, in think I want to make it a startup to allow people manage hybrid human and ai companies." "What we do is copy what already works amazingly good philosophy of science or science and management of company like amzon." The kernel map (what is generic in this company's operating system, what is lesson-specific, what a second company needs) belongs to System 3 Meta: "that is in the meta comany, talk to the vp."
+- (2026-10-17) "In the future we will have some human vps." So the VP role, and every head role, must be holdable by a person or an agent on the same terms (section 2, item 4).
+- (2026-10-17) Hierarchy exists because agents have limited memory and attention, not to simulate a company: heads hold the big picture and strategy in compressed form (company/decisions/2026-10-17-founder-light-management.md).
+
 ## 1a. The thesis: System 3 is science, applied to an organisation of fallible agents
 Science works without trusting any one scientist: claims are public, criticism is open, results must survive independent checks, and errors are corrected by the institution rather than by better individuals. System 3 copies that machinery so that fallible agents (and people) can produce reliable work together. Every generated company must carry it; it is the product, not overhead.
 
