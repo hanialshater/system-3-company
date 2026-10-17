@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-17: platform-engineer deploy upload diagnostics and HQ trace scoping (deploy run 39042065255; tier 2, awaiting principal-engineer-ops: company/engineering/readiness/2026-10-17-deploy-upload-failure.md; note company/engineering/reviews/2026-10-17-deploy-upload-failure.md)
+- `tools/deploy.mjs`: a failed command now prints its stdout as well as its stderr to the live log, with VERCEL_TOKEN redacted from both. `vercel deploy --format json` reports errors on stdout, and run 39042065255 lost them. The release record still stores only `failedStep`. Tests are in tests/deploy/deploy.test.mjs.
+- `src/lib/hq.ts`, `hq-library.ts`, `hq-whiteboard-server.ts`: `/*turbopackIgnore: true*/` on the dynamic `process.cwd()` reads. Each of the 18 HQ functions had traced the whole repo (12,260 files, 84.9 MB) and now traces 118 to 121 files. Distinct traced files across all functions went from 12,260 to 137. Non-HQ traces are identical. HQ still works locally. Not deployed.
+
 ## 2026-10-17: platform-engineer output file tracing excludes (deploy run 39032703960; tier 2, awaiting principal-engineer-ops: company/engineering/readiness/2026-10-17-trace-excludes.md; note company/engineering/reviews/2026-10-17-trace-excludes.md)
 - `next.config.mjs`: `outputFileTracingExcludes` `"*"` now covers artifacts/**, test-results/**, test-results-*/**, playwright-report/**, .next-*/**, .claude/** and company/ops/deployments/**. HQ's `process.cwd()` readers had pulled the QA screenshots written by verify into function traces, and Vercel failed the deploy because those files are `.vercelignore`d. In a worktree build with dummy artifacts, 18 nft files referenced artifacts/ before the change and 0 after. `.vercelignore` is unchanged. Not deployed.
 
