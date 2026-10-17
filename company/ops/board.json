@@ -19201,7 +19201,7 @@
     },
     {
       "id": "W-1654",
-      "title": "Commit 54aa64e3 (analytics-steward, EXP-007 Amendment 1) carries the literal deploy tag in its message body ('no [deploy] since'). It never was a pushed branch head and git deployments are off (F-48), so nothing deployed, but if deploymentEnabled is switched back on, any push whose HEAD message mentions the tag deploys. Propose a guard: a commit-msg check that rejects the literal tag unless the founder approved, and a dispatch rule to write 'deploy tag' instead. History is not rewritten.",
+      "title": "URGENT now that git deployments are on again (8c753ada): Commit 54aa64e3 (analytics-steward, EXP-007 Amendment 1) carries the literal deploy tag in its message body ('no [deploy] since'). It never was a pushed branch head and git deployments are off (F-48), so nothing deployed, but if deploymentEnabled is switched back on, any push whose HEAD message mentions the tag deploys. Propose a guard: a commit-msg check that rejects the literal tag unless the founder approved, and a dispatch rule to write 'deploy tag' instead. History is not rewritten.",
       "owner": "evaluation-steward",
       "state": "backlog",
       "domain": null,
@@ -19342,6 +19342,15 @@
     {
       "id": "W-1669",
       "title": "Upload-limit risk (deploy-upload-failure C4): next production deploy must report Vercel's actual upload result line (or 'succeeded'); record whether --archive=tgz resolved run 39042065255's unconfirmed failure. Register risk via tools/risks.mjs. Also C1: release record names the deployed SHA. C5: HQ_PUBLIC / WHITEBOARD_WRITE must not be set in any Vercel env without its own readiness record. company/engineering/readiness/2026-10-17-deploy-upload-failure.md",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1670",
+      "title": "r9 is live via Vercel git integration from commit 8c753ada (founder 'Go', company/decisions/2026-10-17-founder-git-deploy-r9.md). Amend the r9 entry in company/ops/releases.json: deployed commit 8c753ada (entry says 2821160c), deploy path = git integration (not the workflow), smoke done by chief-of-staff by curl 2026-10-17: 9 new lessons 200, feed intro renders, catalog 14 domain blocks, 0 algo- links, draft algo-adaptive-simpson 404. Then npm run test:hq. Decide with the founder whether to restore F-48 (deploymentEnabled false) now.",
       "owner": "release-manager",
       "state": "backlog",
       "domain": null,

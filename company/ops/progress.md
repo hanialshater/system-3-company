@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 (later) · chief-of-staff · release r9 LIVE
+
+**Changed:** production deploy r9 is live at https://system-3-company.vercel.app, from commit 8c753ada (deploy tag), built by Vercel's git integration after the founder said "add one with deploy tag" and "Go" (company/decisions/2026-10-17-founder-git-deploy-r9.md; reverses F-48: `vercel.json` `git.deploymentEnabled` is now true). The Deploy to Vercel workflow failed three times (1037: traced artifacts vs .vercelignore, fixed 52db8a0a; 1038: upload failed with the error hidden, fixed by stdout diagnostics + HQ turbopackIgnore + `--archive=tgz` at 05238276, never re-run).
+**Smoke (curl, chief-of-staff):** the 9 newly published lessons return 200 (four knot lessons, four NCM gap lessons, cut-the-busiest-link); feed intro card renders; /catalog has 14 domain blocks and no algo- links; draft /d/algo-adaptive-simpson is 404. Not checked: Safari for left-or-right (founder waived), the full feed spec in production.
+**Believe:** sure r9 is serving (new slugs answer 200 within ~4 min of the push). Releases.json r9 still names 2821160c: W-1670 (release-manager) amends it.
+**Next:** W-1654 guard is urgent (any pushed head whose message carries the deploy tag now deploys); decide with the founder whether to switch git deployments back off; W-1666/W-1669 (workflow upload proof) stay open until the workflow succeeds once.
+
 ## 2026-10-17 · chief-of-staff · knots pipeline: 4 lessons published (repo, not deployed); PR #6 merged; board/disk incidents
 
 **Changed:**
