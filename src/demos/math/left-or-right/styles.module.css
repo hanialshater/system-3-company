@@ -1,6 +1,10 @@
 /* Fills the kit's stage, so the picture can take whatever height the text and controls leave. */
 .wrapAll { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 2px; overflow: visible; }
 .wrapAll > :global(.row) { margin-top: 4px; justify-content: center; flex-wrap: wrap; }
+/* Design-lead D3 (company/design/reviews/2026-10-17-left-or-right-v2-departures.md): no margin above the
+   Turn over · Mirror row (the row right after the picture), so readout and both toggles share the stage window at
+   360x640 (need 278, window 279). The chip row keeps its 4 px. */
+.wrapAll > .picArea + :global(.row) { margin-top: 0; }
 .wrapAll :global(.control) { min-height: 44px; min-width: 44px; }
 
 /* Readout and seen line: outside every transformed element, space always reserved (L-4). Two equal

@@ -357,11 +357,17 @@ function Stage({
   );
 }
 
-function Reveal({ eightMirror }: { eightMirror: boolean }) {
+// cm-math-discrete ruling 2026-10-17 (company/domains/briefs/rulings/2026-10-17-left-or-right-opener.md, W-1619):
+// `turned` can fire from mirrored-and-turned alone, and then the seen line has no "turned over" segment. That learner
+// never saw the plain turned −3, so the opener names what they did see: the mirrored trefoil turned over stayed +,+,+.
+function Reveal({ eightMirror, seen }: { eightMirror: boolean; seen: Seen }) {
   return (
     <>
       <p>
-        Turning the trefoil over left every mark minus: turning over is a way of moving it, so its hand stayed left. Mirroring
+        {seen.turned === undefined
+          ? "Turning the mirrored trefoil over left every mark plus: turning over is a way of moving it, so its hand stayed right."
+          : "Turning the trefoil over left every mark minus: turning over is a way of moving it, so its hand stayed left."}{" "}
+        Mirroring
         turned every mark plus, and no wiggling gets back: the trefoil is not its own mirror image, as Max Dehn proved in 1914.
       </p>
       <p>
@@ -390,7 +396,7 @@ export default function LeftOrRight({ slug }: { slug: string }) {
       }}
       exploreHint="Turn the card over, then mirror it. Watch the marks at each crossing."
       minInteractions={2}
-      reveal={() => <Reveal eightMirror={eightMirror} />}
+      reveal={() => <Reveal eightMirror={eightMirror} seen={seen} />}
     >
       {(ctx) => <Stage ctx={ctx} seen={seen} record={record} onEightMirror={() => setEightMirror(true)} />}
     </Lesson>
