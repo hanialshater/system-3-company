@@ -190,6 +190,10 @@ Preview only, behind a flag (off by default) until the privacy gate passes P4.3.
 7. **head-of-strategic-initiatives:** add the swap's dates and the 11-06 line to D-23, and the 10-30 F-26 dependency.
 8. **platform-engineer:** the share-link spec (S1 to S5) is ready to build now; it does not depend on F-26.
 
+## Addendum (2026-10-17): likes and saves are specified in PRD-005
+
+The founder decided on 2026-10-17 (`company/decisions/2026-10-17-founder-accounts-likes-saves.md`) that accounts, server progress, likes with a public count and private saves come first. They are specified in `company/product/prds/PRD-005-likes-and-saves.md` (proposed), not here. Nothing in this PRD changes. The swap still shows no counts, and its non-goals stand for the swap. Note the tension that PRD-005 carries openly: option B in section 4 rejected a fixed-list reaction for the swap because it had no plausible recall effect. PRD-005 does not claim one for likes either. Its committed prediction is "no harm to learning, and popularity is not recall", and it keeps counts out of every ranking path, with a test.
+
 ## Objections
 
 | # | Objection | Raised by | Status |
