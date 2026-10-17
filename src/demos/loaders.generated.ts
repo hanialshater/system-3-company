@@ -881,6 +881,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "halving-powers": () => import("./math/halving-powers/Demo"),
   "handshakes-halve": () => import("./math/handshakes-halve/Demo"),
   "infinite-hotel": () => import("./math/infinite-hotel/Demo"),
+  "left-or-right": () => import("./math/left-or-right/Demo"),
   "minus-one-flips-the-order": () => import("./math/minus-one-flips-the-order/Demo"),
   "minus-times-minus": () => import("./math/minus-times-minus/Demo"),
   "more-digits-not-bigger": () => import("./math/more-digits-not-bigger/Demo"),
