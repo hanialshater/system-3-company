@@ -5,6 +5,9 @@
 //
 // Local only: the simulator is never run in production, not even with HQ_PUBLIC=1 (it spawns a process and
 // its files are not part of the deployed bundle). Simulated personas only; no learner data is read.
+// Production mode (W-1572 H1): when simLocal() is false, runSim answers from the committed precomputed runs
+// (./hq-personalization-precomputed, src/data/hq-personalization/) before any process code is reached. Set
+// HQ_LAB_PRECOMPUTED=1 to preview that mode locally; production can never switch back to live.
 //
 // Hardening (W-1530; company/reviews/hq/2026-10-16-w1503-review.md findings 3 and 5):
 // - one simulator process in flight per module instance (Next bundles the page and the API route separately,
@@ -21,11 +24,14 @@ import { execFile } from "node:child_process";
 import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { cliArgs, type SimRequest } from "./hq-personalization";
+import { readPrecomputed } from "./hq-personalization-precomputed";
 
 export const SIM_CLI = "company/personalization/model/sim/hq-cli.mjs";
 const MODEL_DIR = "company/personalization/model";
 const TRACES_DIR = "company/personalization/model/sim/out/traces";
-export const simLocal = () => process.env.NODE_ENV !== "production";
+/** Live simulator runs: never in production; locally unless HQ_LAB_PRECOMPUTED=1 previews the released lab. */
+export const simLocal = (env: Readonly<Record<string, string | undefined>> = process.env) =>
+  env.NODE_ENV !== "production" && env.HQ_LAB_PRECOMPUTED !== "1";
 
 export type SimResult<T> = { ok: true; data: T } | { ok: false; error: string; busy?: true };
 export const BUSY = "Another simulation is still running in this server; wait for it to finish, then try again.";
@@ -78,7 +84,7 @@ function spawnSim<T>(req: SimRequest, root: string, timeoutMs: number): Promise<
 
 /** Run one CLI command. Arguments come only from a parsed SimRequest; no shell is used. */
 export function runSim<T>(req: SimRequest, root = process.cwd(), timeoutMs = 90_000): Promise<SimResult<T>> {
-  if (!simLocal()) return Promise.resolve({ ok: false, error: "The simulation lab runs locally only (npm run dev)." });
+  if (!simLocal()) return Promise.resolve(readPrecomputed<T>(req, root)); // production: committed files only, no process
   const key = JSON.stringify([root, cliArgs(req)]);
   if (req.op === "meta") {
     const stamp = modelStamp(root);

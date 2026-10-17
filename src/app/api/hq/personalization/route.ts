@@ -1,6 +1,7 @@
 // HQ simulation lab API (W-1503): GET /api/hq/personalization?op=run|saved|compare|meta&…
-// Read-only. Runs the offline simulator (simulated personas only) through its JSON CLI; never imports it
-// (W-1498). 404 when HQ is off; an error (never a run) in production, even with HQ_PUBLIC=1.
+// Read-only. Locally it runs the offline simulator (simulated personas only) through its JSON CLI; never imports
+// it (W-1498). 404 when HQ is off. In production (HQ_PUBLIC=1) it serves only the committed precomputed runs and
+// never runs anything (W-1572 H1; src/lib/hq-personalization-precomputed.ts); missing data is an error, not a run.
 import { hqEnabled } from "@/lib/hq";
 import { parseSimRequest } from "@/lib/hq-personalization";
 import { runSim } from "@/lib/hq-personalization-server";
