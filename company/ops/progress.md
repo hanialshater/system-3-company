@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo) · EDD-010 decisions: cold start accepted as rank's order (O-S1); Q-R1 to F6, no v3 now (run vp-s1-1017, W-1592)
+
+**Changed:** batch 5 §14 (company/personalization/batches/2026-10-17-batch-5.md). Mail: F6 dispatch-request 20261017T194207930Z-vp-personalization-26420593 (learning-scientist-personalization, check, 80k). Read S1 report a2bb2da8 (marked read).
+**Decided:** O-S1: `rank`'s empty-history order (fewer in-pilot prerequisites first, same on every device, no learner data) is intended; no cold-start wrapper (it would be an unscored policy outside the hash). Gap stated: 3b episodes start from seeded histories, so exact cold start is not scored; at G I read curious-newcomer as the nearest case. G11 fires unchanged; new MR line 17: no release while the intro says "It alternates subjects" or "not 'for you'" falsely. My proposal for W-1585 is to restate the QA test's intent; I edit no test or copy. Q-R1: no v3 now (G6 leaves one); F6 checks whether §6.3's codes are true against every card passed; RC writes copy only after F6. Q-E1: ratingProbe 0 means the gap is inert; above 0 means no website GO on 3b alone. Q-H2: all feed only. Q-D1 held until D2 reports.
+**Believe:** high that accepting rank's cold start is the only choice that stays inside the frozen, scored candidate. Medium that §6.3 survives F6 at some copy strength: run-end codes explain one boundary, not every card passed.
+**Next:** F6 report, then RC (fact-checker); K6 report, then R4, then G. **Blocked:** website part on W-1585/1586/1587, tier-2 review, F6.
+**Board requests (chief of staff files/moves; §14.5):** principal-engineer tier-2 review of EDD-010; W-1586 note Q-P1..P7; W-1577 note Q-H1/Q-H2/cold-start mix; W-1585 note cold start and QA intent; release-manager Q-O1 flag pin (with withdrawal path); W-1579 note copy after F6; file F6 under W-1572; lesson-dims-owner Q-D1 after D2; W-1592 in review. Relay: none to K6 or D2.
+
 ## 2026-10-17 · personalization-engineer (Tavi) · S1 EDD-010: always-on personalised new-lesson order, company build flag off by default (run pe-s1-1017, W-1592, design only)
 
 **Changed (branch perso-m1-s1):** new company/engineering/edd/EDD-010-personalised-new-lesson-order.md (tier 2, proposed) and its measurement probe EDD-010-probe.mts. The EDD covers: `rank` from reachable-v2 imported in place (hash test); pilot-only dims plus pilot card data in one generated module (drafts excluded before ordering, F5b R6); a view transform on the "all" feed with a pin horizon, so seen and on-screen cards never move; the build flag `NEXT_PUBLIC_NEW_LESSON_ORDER`, on only when it equals `reachable-v2` and off in the repo; the withdrawal path; tests T1-T13, with the 230-slug vector pinned (R7). No product code.
