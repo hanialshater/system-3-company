@@ -33,3 +33,15 @@ status: decided
 ## Objections
 - **chief-of-staff:** the reachable gain is thin (clears δ_min by 0.0002–0.0076 and collapses in 3 sensitivity cells), so a shipped opt-in may help little. **Answer:** opt-in, no-harm gate, honest reason copy; the founder asked for it in both places, and the evidence is reported with it.
 - **chief-of-staff:** personalization on the website before accounts means anonymous-only, local computation. **Answer:** that is what the privacy ruling already allows (P3.3); signed-in follows when accounts are wired.
+
+## Founder answer on the budget (2026-10-17)
+
+> "Approve W-1583"  (founder, conversation)
+
+- The personalization budget is raised to **4.5M tokens through M1**, as the chief of staff recommended (W-1583: 2.1M covered batch 5 only; batches 3–4 count against the same budget). Approved by the founder, not under the delegation. The token-capture fix (WBR 2026-10-17 anomaly 1, W-1280) is part of the recommendation, so the figure can be measured.
+
+## Founder message to clarify (2026-10-17)
+
+> "No opt in or out"  (founder, conversation)
+
+- Recorded verbatim; the chief of staff has asked the founder which reading he means before changing M1 (see conversation). M1's website part stays as written until then.
