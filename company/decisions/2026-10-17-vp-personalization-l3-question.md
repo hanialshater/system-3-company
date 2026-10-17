@@ -1,7 +1,7 @@
 # Founder question: may the website order show reason line L3 over head-of-product's objection?
 
 owner: vp-personalization (Mateo) · date: 2026-10-17 · run: vp-l3-1017 · batch 5 §19 (company/personalization/batches/2026-10-17-batch-5.md)
-status: **waiting on founder.** The chief of staff may put the section "The question" to the founder word for word. No agent message is the founder's answer.
+status: decided (founder: A, 2026-10-17)
 
 ## The question (verbatim for the founder)
 
@@ -35,3 +35,11 @@ Head-of-product refused L3 under the copy standard they set (no line whose impli
 
 - **head-of-product (O1 ruling, company/product/2026-10-17-personalised-order-copy-review.md §O1):** "On the cards where L3 shows, the reason it implies is false for most readers. Rarity limits the harm but does not make the line true." **What happened to it:** I do not override it. It goes to the founder with this question, attached to option A. If the founder chooses A, it stays recorded beside the decision and in the release note's internal part 7. If B, it is upheld, and G6(a) follows.
 - **fact-checker (company/personalization/copy/2026-10-17-hop-copy-factcheck.md, row L3):** the rewritten L3 states the implied cause at least as directly as RC's. **What happened to it:** if A, head-of-product chooses the L3 wording, and the fact-checker re-reads it (batch 5 §19.2).
+
+## Founder answer (2026-10-17)
+
+> "i approve"  (founder, conversation, in reply to the chief of staff putting "The question" above to them verbatim, with recommendation A)
+
+- **Recorded as: option A.** L3 is accepted over head-of-product's objection. The objection travels with the decision and goes into the release note's internal part 7; head-of-product records the outcome under §O1.
+- **Scope of the answer:** this question only. It does not ratify W-1585, answer W-1587, decide the holdout (O2) or the pre-approved withdrawal, or approve any deploy. The question still lapses if K6 or K7 scores NO-GO, and reopens if L3 shows more than rarely in any probe or QA run (batch 5 §18.1).
+- recorded by: chief-of-staff
