@@ -118,3 +118,14 @@ Not asked, because it does not change: First Light ships personalization off wit
 | corners (readout §A, reported only) | The candidate wins 4 of 6 in corner HLL | **Not used.** Corners are reported only and V3 forbids re-tuning; recorded in §2 as a design fact, not a reprieve |
 | my own pre-data note (memory vp-inbox-k2-1016; criterion 2 §8) | "A gain bought with extra load is not a pass for me" | **Kept.** LOAD held 6 of 6, but there was no gain; NEW failed 4 of 6 |
 | founder's brief (company/personalization/2026-10-16-founder-brief.md) | He asked for a GAM recommender | **Not overridden.** He already stopped it (Q1); this record closes the approach by pre-commitment 4, which he approved (Q3). Anything further is a question (§6) |
+
+## Founder answers (2026-10-17)
+
+> "Approve the recommendations"  (founder, conversation, answering the chief of staff's summary of Q1–Q4 with Mateo's recommendations, and the open budget questions W-1553)
+
+- **Q1 Revisit volume and placement to head-of-product (and evaluation-steward for AMD-008 F2) as input:** yes. No product change from this alone (W-1561, W-1562).
+- **Q2 One last measure-only offline study (criterion 3, no new recommender):** approved, with the pre-commitments in §5 (reachable-signal oracle below δ_min in 4 of 6 closes personalised ordering for recall).
+- **Q3 Third candidate now:** no; asked again only if criterion 3 finds a reachable gain of at least 1 point.
+- **Q4 Pause personalization research if criterion 3 finds nothing reachable (or it is declined):** yes; upkeep only (off switch, privacy work, lab); default order for everyone.
+- **Budget (W-1553):** the portfolio-manager's 2.0M token figure for project `personalization` is approved as recommended. Recorded by the chief of staff; portfolio-manager updates company/ops/projects.json.
+- **Settings API charging (W-1553 second part):** no recommendation was put to the founder, so nothing was decided; it stays charged to `personalization` as filed. Open if the founder wants it moved to First Light.
