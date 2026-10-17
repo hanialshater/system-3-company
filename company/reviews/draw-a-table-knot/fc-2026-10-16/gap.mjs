@@ -1,0 +1,3 @@
+import * as K from '/home/user/system-3-company/.claude/worktrees/agent-a77f3f66da74f6b40/src/kit/knots/index.mjs';
+const end=(d)=>{const n=d.match(/-?[0-9.]+/g).map(Number);return [[n[0],n[1]],[n[n.length-2],n[n.length-1]]];};
+for (const nm of ['6_1','5_2']) { const pd=K.knot(nm).pd; const L=K.layout(pd); const cut=(q,i)=>{const d=K.draw(q,{layout:L,gap:0.5}); const c=d.crossings[i]; const r=[]; d.edges.forEach(e=>{for(const p of end(e.d)){const dist=Math.hypot(p[0]-c.x,p[1]-c.y); if(dist<20) r.push(e.label+':'+dist.toFixed(1));}}); return r.join(' ');}; for(let i=0;i<pd.length;i++){ console.log(nm,i,'base under-label',pd[i][0],'|',cut(pd,i),'|| switched under-label',K.crossingChange(pd,i)[i][0],'|',cut(K.crossingChange(pd,i),i)); } }

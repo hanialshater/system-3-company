@@ -167,7 +167,7 @@ function Reveal({ seen }: { seen: Seen | null }) {
   return (
     <>
       <p>
-        A switch makes a new knot. Yours still had {r.drawn} crossings drawn, but its name became {pretty(r.name)}
+        Your switch made a new knot. Yours still had {r.drawn} crossings drawn, but its name became {pretty(r.name)}
         {loop ? ", a plain loop" : ""}.
       </p>
       <p>
