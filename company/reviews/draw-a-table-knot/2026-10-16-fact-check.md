@@ -64,3 +64,25 @@ Kit table: all 21 entries have crossingCount(pd) equal to their tabulated c (0_1
 ## After reading build.md and the brief
 
 Read after the verdicts above were written. build.md's reveal text from its QA run is the pre-W-1586 script (it still has "So the first number in a name is not what one drawing shows"); the current Demo.tsx is the 67-word one I checked. The brief (company/domains/briefs/math.discrete.md, Knots batch 1 #1) fixes "A switch makes a new knot." as script; the fix above is wording for cm-math-discrete to accept and demo-builder to make. Nothing in either changes a verdict. The builder's node re-run of the switches agrees with mine index by index.
+
+## W-1591 re-verify of c5 (2026-10-16, second fact-checker)
+
+Checker: fact-checker, a different instance from the one above. I did not write c5 and did not draft "Your switch made a new knot."; the lane rule (company/qa/fact-check-lanes.md, fresh checker for drafted wording) puts the re-verify here. Base: main ccr-4c6c7654-ew9ko1 at 5c5c719e. Lane: this claim only, plus tricolour-check (its own record).
+
+What changed (git show 67207577): Demo.tsx Reveal first sentence "A switch makes a new knot." became "Your switch made a new knot."; c5's quote updated to match; nothing else in the claim or the stage logic.
+
+What the sentence now claims: the particular switch the learner made produced a knot different from the one drawn. I checked it against every state that can reach the reveal, not only the quoted example.
+
+- Reachable states (Demo.tsx): the reveal unlocks only after milestone "switched" (minInteractions 1, the only interact call is reach("switched") in tap). tap() calls record() before reach(), and does nothing while locked, so seen is set whenever the reveal opens; the fallback {6_1, 6, 4_1} is unreachable. Only one crossing is ever switched: crossingChange(base, i) is always applied to the unswitched base. The recorded switch is the last one tapped, even if the learner later switched it back or pressed Reset, so "Your switch" always names a switch the learner made. So the set of reveal states is exactly the 11 single switches of 6_1 (6) and 5_2 (5).
+- Own check with no kit code (company/reviews/tricolour-check/fc-2026-10-16/own.py on the kit PD codes dumped to pds.json): own arcs, colouring-matrix determinant (any first minor) and Kauffman bracket span.
+
+| drawing | det | Jones span | switches (index: det, span) |
+|---|---|---|---|
+| 6_1 | 9 | 6 | 0: 5, 4; 1: 1, 0; 2: 5, 4; 3: 5, 4; 4: 1, 0; 5: 5, 4 |
+| 5_2 | 7 | 5 | 0: 3, 3; 1: 1, 0; 2: 3, 3; 3: 1, 0; 4: 3, 3 |
+
+All switched diagrams are one component with 6 (or 5) crossings. The determinant is a knot invariant (PMC12398458, Kılıç et al. 2025: "By taking any (n-1)-minor of the Alexander matrix, we get another knot invariant", the Fox colouring matrix at t = -1), and every switched determinant (5, 1 or 3, 1) differs from the original (9 or 7). So each of the 11 switches makes a different knot: the sentence is true in every reachable state, independently of how the results are named. The names (4_1, 3_1, 0_1) agree with the first check's argument (span = crossing number for knots of at most 6 crossings, all alternating) and with det 5, 3, 1.
+- "A new knot" for the 0_1 cases: the reveal then says "its name became 0₁, a plain loop"; the trivial knot is a knot in the table's sense (PMC5582600: "A trivial knot has no crossings ... the unknot, denoted 0_1"), so "new knot" is not false there.
+- The general-case objection that disputed the old wording (nugatory crossings, cosmetic crossing conjecture) no longer applies: the sentence is past tense about the learner's own switch on a reduced alternating drawing, which has no nugatory crossing.
+
+Verdict: c5 **verified**. Confidence high. Read build.md's W-1591 section only after this was written; it says the same change was made and nothing else, which matches git.
