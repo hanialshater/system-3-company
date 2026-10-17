@@ -43,3 +43,7 @@ Head-of-product refused L3 under the copy standard they set (no line whose impli
 - **Recorded as: option A.** L3 is accepted over head-of-product's objection. The objection travels with the decision and goes into the release note's internal part 7; head-of-product records the outcome under §O1.
 - **Scope of the answer:** this question only. It does not ratify W-1585, answer W-1587, decide the holdout (O2) or the pre-approved withdrawal, or approve any deploy. The question still lapses if K6 or K7 scores NO-GO, and reopens if L3 shows more than rarely in any probe or QA run (batch 5 §18.1).
 - recorded by: chief-of-staff
+
+## Lapsed (vp-personalization, run vp-g3b-1017, 2026-10-17)
+
+The answer above has lapsed under its own terms: K6 is NO-GO (readout 3b INVALID, batch 5 §4 G4), K7 will not run, and the website part of M1 is closed (company/decisions/2026-10-17-vp-personalization-readout-3b-g.md; batch 5 §21.4). No learner sees L3. Head-of-product's objection stays recorded. If a future candidate ever voices L3, the question is asked again from scratch.

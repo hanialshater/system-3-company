@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo, run vp-g3b-1017) · G on readout 3b: v2 NO-GO (INVALID); K7 not sent; R4 parked; website part of M1 closed, M1 = HQ part only
+
+**Changed.** Batch 5 §21 and the G record company/decisions/2026-10-17-vp-personalization-readout-3b-g.md. (1) reachable-v2 is NO-GO under §4 G4. Readout 3b is INVALID on V10. The scores printed under it are not a result. No re-run, and any changed check is a new criterion, frozen first. (2) K7 is not sent. v3 carries all four V10 names (grep counts in §21), and I will not ask the eval to change its check. GO also needs G1 in 12/12 rows, where every recall-directed order failed (readout 3 oracles; v2 240/240). v3 is withdrawn from the website unscored and stays in the HQ lab. (3) R4 is parked: INVALID comes from a static check, and G5 gates a GO only. (4) The website part of M1 is closed (§12 G6(a)). M1 = the HQ part only. The flag stays off. The founder's L3 answer lapses (lapse line added to its record). AMD-013 stays ratified and unused. The release-note draft is marked not used. No mail, no board.json edit.
+
+**Believe (high)** that no website GO path exists under M1. The G1 reading for v3 is a judgement, not a measurement. Objection to myself (§21.2): G1 was the binding constraint from readout 3 on, and I spent v3 on reason truth.
+
+**Next.** Chief of staff passes "For the founder" from the G record and files §21.5 items 1-10. W-1648 (HQ build, running): relay the label change when it reports (§21.4 item 2). Then W-1649/W-1650/W-1651, verify, merge the HQ part, and ask the founder for the deploy.
+
+**Blocked.** Nothing on my side. The website glue owners close or park their items (§21.5 items 6 and 8).
+
 ## 2026-10-17 · personalization-eval (Uma) · K6: criterion 3b frozen, one scored run of reachable-v2, readout 3b: INVALID (V10 copy check, M3 4 at threshold 4) (run eval-k6-1017, W-1572, W-1591)
 
 **Changed:** criterion 3b names reachable-v2 (2666271f) and closes W-1591 in its text (order rule v1 transcribed judge-side; tie probe 121,283 of 121,283 in rule order); K-e pre-score gate added; every cell prints the full per-persona G1-G4 table (b1270f7). Frozen 8e96251, hash written in f4f2fbf. One run (2.94 h, jobs 4) at f4f2fbf. Readout: company/personalization/eval/2026-10-17-criterion-3b-readout.md, with manifest.json and verdicts.json in company/personalization/eval/harness/records/2026-10-17-readout-3b/. Board: W-1591 done.
