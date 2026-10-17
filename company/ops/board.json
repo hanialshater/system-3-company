@@ -19310,6 +19310,33 @@
       "domain": null,
       "created": "2026-10-17",
       "links": []
+    },
+    {
+      "id": "W-1666",
+      "title": "Trace-excludes C1/C3: the next founder-approved production deploy must pass the Vercel step with no 'matched .vercelignore' error, smoke + promote pass, and its record cites commit 52db8a0a. If it fails again with a .vercelignore collision (e.g. .git/** in CI), classify before re-running. company/engineering/readiness/2026-10-17-trace-excludes.md",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1667",
+      "title": "Trace-excludes C2 (follow-up): test in tests/platform that fails when a .vercelignore line is missing from next.config outputFileTracingExcludes['*'] (except .git/**, node_modules/**, .next/**, .env*.local). Risk: exclude list drifts from .vercelignore (L2/I2).",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1668",
+      "title": "Trace-excludes C4 (follow-up): consider making HQ process.cwd() readers untraceable so the exclude list need not mirror .vercelignore by hand; note C3 constraint (HQ_PUBLIC=1 in production would 404 sheet/review routes). Also: production smoke does not call /api/events.",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
     }
   ]
 }
