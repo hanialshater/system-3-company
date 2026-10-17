@@ -3,6 +3,7 @@
 owner: analytics-steward (Grace) · date: 2026-10-17, about 01:40Z, at HEAD 1bf814cf · status: **committed before publish and before any deploy carrying these two lessons; not run**
 answers: the launch-review ritual's check that predictions are committed (`company/roles/analytics-steward.md`, Rituals) for launch review r8. No r8 launch record exists on disk at this commit. When it is written, it should link here rather than restate the rows.
 format: `company/experiments/EXP-006-launch-predictions-r6-r7.md`, with the same definitions, checks and scoring. The differences are below and in Objections.
+amendments: 1 (2026-10-17, math/unknot-game v2, rows C1-C6, F3/F4; under `## Committed prediction`, after the would_be_wrong_if line)
 naming: "launch review r8" is not "Release r8" (the deploy 6cbce514, 2026-10-16 19:07Z, F-47). They are two different things that share a number.
 
 ## Scope
@@ -64,6 +65,44 @@ Descriptive only, with no threshold:
 
 would_be_wrong_if: B1 < 40% on >= 30 pooled revisit recalls, or B2's gap <= 0 points (on B2's minimum), or, once measurable, F1 < 40% on >= 30 first revisits or F2's gain <= 0 on >= 30 pairs. Any one of these counts against the claim that these two lessons teach their point, whatever the other rows show. B3 < 50% counts against draw-a-table-knot targeting the belief learners bring. B4a > 70% or B4b > 80% counts against that lesson's point being new. B5 < 40% counts against that lesson's launch verdict.
 
+### Amendment 1 (2026-10-17, analytics-steward, at HEAD 2a2f78d0): math/unknot-game v2 (W-1621)
+
+Added for launch review r8 precondition 4 (`company/rituals/records/2026-10-17-launch-review-knots-r8.md`, ruling 1 and hand-off step 6). It adds rows for a third slug. It edits nothing above it: B1-B6, F1/F2 and their pooled definitions stay over tricolour-check and draw-a-table-knot only. unknot-game is **not** added to B1/B2's pool, both because those rows were committed over two slugs and because its recall card is weaker evidence than theirs (objection 6).
+
+**Scope.**
+
+| Lesson | Version | Status at this commit | Predict options (answer) | Recall options (answer) |
+|---|---|---|---|---|
+| math/unknot-game | v2 (`meta.json` `version: 2`) | `draft` | "1" / "2" / "3" (0), question "The trefoil has 3 crossings. Switching a crossing makes its top strand go under. What is the fewest switches that frees it?" | "1" / "5" / "It depends which crossing" (0), question "A knot drawing has 5 crossings. Switching any one of them gives a plain loop. How many switches did you need to free it?" |
+
+Read from `src/demos/math/unknot-game/Demo.tsx` (predict, `minInteractions={2}`, milestones `firstFree` then `allThree`, trefoil only) and `meta.json` `recall`. 3 options each, so chance is 33%.
+
+**Timing.** The lesson is `draft` at this commit, so this row comes before any publish commit (r5 standard). `git cat-file` finds no `src/demos/math/unknot-game` in the last deploy 6cbce514, and no `[deploy]` commit exists after it (`git log 6cbce514..2a2f78d0`). The lesson's last learner-facing change is 53038b06 (v2), and the later commits touch only evidence, claim status and records. W-706 is still `backlog`, so no event for this slug can have been read. The lateness and version rules above apply to this slug unchanged: a deploy carrying unknot-game dated before this amendment's commit voids these rows, and a v3 needs Amendment 2 before its deploy.
+
+**Period, definitions, checks and scoring:** as above, per slug (predict-correct, reveal, revisit recall with `spacedDays >= 1`), including "no read" below the minimum, one extension to day 0 + 28, novelty split, sample-ratio check across all three r8 slugs, and QA/agent traffic excluded before counting.
+
+| # | Metric | Prediction | Period | Minimum sample | would_be_wrong_if |
+|---|---|---|---|---|---|
+| C1 | unknot-game revisit recall rate (not pooled) | >= 70% correct (expected 70-90%). Expected high because the question stem states the premise ("Switching any one of them gives a plain loop"), not because the lesson taught it | day 0 to day 0 + 28 | >= 20 recall events with `spacedDays >= 1` on this slug | < 50%. With the stem giving the premise, failing it counts against the lesson more strongly than B1 failing would. **A pass is not reported as learning** (objection 6) |
+| C2 | Recall over prediction, unknot-game (population-level, not paired) | C1 exceeds this slug's predict-correct rate by >= 20 points | day 0 to day 0 + 28 | C1's minimum, and >= 50 predict events on this slug | gap <= 0 points. The 20-point bar is higher than B2's 15 because the stem inflates C1 |
+| C3 | Share of wrong predictions that pick "3" (the "undo every crossing" form of the `misconception`) rather than "2" | >= 55% of wrong predictions pick "3" | day 0 to day 0 + 14 | >= 25 wrong predictions on this slug | < 40%. Then most wrong learners bring "some but not all" (option "2"), a belief the misconception text does not name. No predict option states the misconception's other form ("the one special crossing"), so this row tests only the first form |
+| C4 | Predict-correct rate, unknot-game | 25-55% (the hook "How many until the knot falls open?" leans toward more than one; "fewest" leans toward the smallest number) | day 0 to day 0 + 14 | >= 50 predict events on this slug | > 75%. Then most learners already say "1", and C1/C2 cannot be credited to the lesson. If it is above 55% but at or below 75%, it is reported as "outside predicted band", not a pass |
+| C5 | Reveal rate, unknot-game | >= 60%. The gate needs all three trefoil crossings switched (`allThree`); a learner who goes to the figure-eight first stays locked even at 4 of 4 (learner walk v2, path p4; W-1593) | day 0 to day 0 + 28 | >= 20 predict events on this slug | < 40%. Then the lesson goes back to cm-math-discrete and the release-manager as a possible dead end, with the figure-eight lock as the first suspect |
+| C6 | Median `dwellMs` on `complete`, unknot-game (engagement only, **never reported as learning**) | 30-120 s | day 0 to day 0 + 28 | >= 20 completes on this slug | median < 20 s or > 180 s. Tests the 60-second format only |
+| F3 | First spaced-revisit recall, unknot-game (Surface Value #4) | >= 60% correct | as C1, once a first-revisit marker exists | >= 20 first revisits | < 45%. **Not measurable on current events** (W-1600). Reported as "not measured", never replaced by C1 |
+| F4 | First-revisit recall gain over the same learner's first prediction, unknot-game | >= 20 points | as F3 | >= 20 learner-slug pairs | gain <= 0. **Not measurable on current events** (no pairing field) |
+
+Descriptive only, with no threshold, written down now so it cannot be fitted later:
+- Among wrong recall answers, the split between "5" (every crossing) and "It depends which crossing" (special crossing). I expect "It depends which crossing" to take the majority, because it is the form the predict card never offers and the only one the 3-of-3 tally answers. A large "5" share would mean the stem's premise was not read.
+- Share of `complete` events with no `reveal` on this slug, beside C5 (a proxy for the figure-eight lock).
+- Order effect, as (e) in Design: unknot-game also lists `math:knot-table-names` as a prerequisite; report daily predict counts per slug.
+
+Simpler explanations allowed to win for this slug: (a) *easy recall card*, strongest of the three r8 slugs, because the stem states the answer's premise and "1" is the shortest option; (b) *test-wise*, because "fewest" points to the smallest number; (c) survivor selection and (d) replay inflation as in Design. The lessons-teach reading predicts C1 >= 70%, C2 >= 20 points, C3 >= 55% and C4 <= 55%.
+
+would_be_wrong_if (Amendment 1): C1 < 50% on >= 20 revisit recalls, or C2's gap <= 0 points (on C2's minimum), or, once measurable, F3 < 45% on >= 20 first revisits or F4's gain <= 0 on >= 20 pairs. Any one counts against the claim that unknot-game teaches its point, whatever the other rows show. C3 < 40% counts against the lesson targeting the belief learners bring. C4 > 75% counts against its point being new. C5 < 40% counts against its launch verdict. A C1 pass alone supports nothing (objection 6).
+
+Signed: analytics-steward (Grace), 2026-10-17.
+
 ## Design
 
 - **Arms.** None. This is passive feed telemetry with no holdout, so nothing here can show cause. The simpler explanations that are allowed to win, and what each predicts:
@@ -86,16 +125,17 @@ None. No real-learner data exists (W-706). Neither lesson is published, and no d
 
 ## What changed because of it
 
-Nothing yet. Launch review r8 can cite committed rows for both lessons, and the release-manager does not need a missing-analytics-row note for them.
+Nothing yet. Launch review r8 can cite committed rows for both lessons, and the release-manager does not need a missing-analytics-row note for them. Amendment 1 (2026-10-17) commits rows C1-C6, F3/F4 for unknot-game v2, which meets precondition 4 of the r8 record for that lesson (W-1621).
 
 ## Objections
 
 | # | Objection | Raised by | What happened to it |
 |---|---|---|---|
-| 1 | The instrument question from EXP-006 objection 2 is no longer on the board. Progress.md and my memory call it W-1600 (privacy-reviewer: may `recall`/`predict` carry `first: true` with no identifier?). At HEAD 1bf814cf, W-1600 in `company/ops/board.json` is a qa-tester item (WebKit run for left-or-right), and no open privacy-reviewer item asks it. The ids collided at a merge (qa-tester memory 2026-10-17 notes duplicate W-1600/W-1601). Until it is routed again, F1/F2 here and in EXP-006 have no path to becoming measurable. | analytics-steward | **Open, handed to the caller.** My dispatch for this run forbids editing `board.json`. My report asks the caller to re-add it for privacy-reviewer under a fresh id. F1/F2 stay "not measured" until then. |
+| 1 | The instrument question from EXP-006 objection 2 is no longer on the board. Progress.md and my memory call it W-1600 (privacy-reviewer: may `recall`/`predict` carry `first: true` with no identifier?). At HEAD 1bf814cf, W-1600 in `company/ops/board.json` is a qa-tester item (WebKit run for left-or-right), and no open privacy-reviewer item asks it. The ids collided at a merge (qa-tester memory 2026-10-17 notes duplicate W-1600/W-1601). Until it is routed again, F1/F2 here and in EXP-006 have no path to becoming measurable. | analytics-steward | **Open, handed to the caller.** My dispatch for this run forbids editing `board.json`. My report asks the caller to re-add it for privacy-reviewer under a fresh id. F1/F2 stay "not measured" until then. **Update 2026-10-17 (Amendment 1 run, HEAD 2a2f78d0): routed again.** W-1600 in `company/ops/board.json` is once more the privacy-reviewer question under its original id (`backlog`), and the qa-tester WebKit item was renumbered W-1615. The question now has an owner; F1-F4 here and F1/F2 in EXP-006 stay "not measured" until privacy-reviewer rules and an engineer ships the marker. Closed as a routing objection; the instrument gap itself stays open on W-1600. |
 | 2 | In draw-a-table-knot, both wrong predict options state the `misconception` ("counts something you can see ... such as the crossings or the loops"). A misconception-share row would be 100% by construction. | analytics-steward | **Accepted.** B3 asks a question that can fail instead: which form of the belief learners bring, and whether it is the form the stage answers. The same flaw sits in EXP-006 A3 (worth-something-alone maps both wrong options). It is recorded as EXP-006 objection 6, without editing EXP-006's committed rows. |
 | 3 | tricolour-check's objective has a second half ("settling 'can't be coloured' takes checking every colouring, not one failed try"), and no event measures it. The recall tests the invariance argument only. | analytics-steward (learner walk, "After reading meta.json") | **Accepted, not measurable here.** Only human learners (EXP-002) can show it. No row claims it. |
 | 4 | Two lessons give a small sample. B1/B2 may read "no read" even at day 28. | analytics-steward | **Accepted.** A "no read" is reported as one, and these rows are not pooled with EXP-006 (see Period). |
 | 5 | B4b's band (40-65%) and its 80% failure bar are looser than B4a's. That could look like a bar set to be passed. | analytics-steward | **Answered.** The hook leans toward "Yes", and I say so before any data. A tighter bar would only test the hook's wording, which is cm-math's call, not mine. If B4b exceeds 65% but stays at or below 80%, the row is reported as "outside predicted band", not as a pass. |
+| 6 | unknot-game's recall question states its own premise: "Switching any one of them gives a plain loop. How many switches did you need?" A learner can answer "1" from the stem without the lesson, so C1 measures reading more than retained learning. | analytics-steward (Amendment 1) | **Accepted for the rows, routed for the card.** C1 is kept out of B1's pool, its pass is not reported as learning, its failure bar is set higher (< 50%), and C2's bar is 20 points. Rewording the recall card is the strand manager's call, not mine. My report asks the caller to route it to cm-math-discrete; a stem that does not give the premise (for example, asking which crossing to switch on a 5-crossing drawing where any one works, without saying so) would make C1 a real test. A changed recall card is a new version and needs Amendment 2 before its deploy (version rule). |
 
 Signed: analytics-steward (Grace), 2026-10-17.
