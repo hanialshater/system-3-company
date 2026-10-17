@@ -14,7 +14,9 @@
 //   the viewBox "-8 -8 116 116" and CSS;
 // - only table knots and their single crossing changes are drawn; identify() is read, never drawn.
 // Milestone "switched": any switch (every single switch on both knots changes the name, K14). The last
-// switch is recorded ({chip, drawn, name}) and survives Reset and chip changes (Seen line, reveal).
+// switch is recorded ({chip, i, drawn, name}) and survives Reset and chip changes (Seen line, reveal).
+// W-1602: when the reveal opens, the stage returns to that last switched drawing, so the picture and the
+// bold readout show what the reveal names (learner walk finding 4, company/reviews/draw-a-table-knot/).
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
@@ -37,7 +39,7 @@ function pretty(name: string): string {
   return n + [...(k ?? "")].map((d) => SUB[Number(d)] ?? d).join("");
 }
 
-type Seen = { chip: Chip; drawn: number; name: string };
+type Seen = { chip: Chip; i: number; drawn: number; name: string };
 
 function tableName(pd: PD): string {
   const hits = identify(pd);
@@ -95,7 +97,7 @@ function Stage({ ctx, seen, record }: { ctx: StageContext; seen: Seen | null; re
       return;
     }
     const next = crossingChange(base, i); // one switch at a time: the previous one is restored
-    record({ chip, drawn: crossingCount(next), name: nameOf(chip, i, next) });
+    record({ chip, i, drawn: crossingCount(next), name: nameOf(chip, i, next) });
     setSw(i);
     reach("switched");
   };
@@ -108,6 +110,13 @@ function Stage({ ctx, seen, record }: { ctx: StageContext; seen: Seen | null; re
     if (locked) return;
     setSw(null);
   };
+
+  // W-1602: at the reveal, show the last switched drawing (the one the reveal text names).
+  useEffect(() => {
+    if (phase !== "reveal" || !seen) return;
+    setChip(seen.chip);
+    setSw(seen.i);
+  }, [phase]); // only on entering the reveal; seen is fixed by then
 
   const at = sw === null ? null : pic.crossings.find((c) => c.i === sw);
 
@@ -161,7 +170,7 @@ function Stage({ ctx, seen, record }: { ctx: StageContext; seen: Seen | null; re
 }
 
 function Reveal({ seen }: { seen: Seen | null }) {
-  const r = seen ?? { chip: "6_1" as Chip, drawn: 6, name: "4_1" };
+  const r = seen ?? { chip: "6_1" as Chip, i: 0, drawn: 6, name: "4_1" };
   const loop = r.name === "0_1";
   const k = Number(r.name.split("_")[0]);
   return (

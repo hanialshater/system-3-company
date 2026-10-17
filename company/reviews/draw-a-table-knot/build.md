@@ -77,3 +77,12 @@ Build `NEXT_DIST_DIR=.next-w1539`, served on 3539. `tests/qa/contract.spec.ts` w
 - Walkthrough (phone, option 1): sheet viewed; ring and Seen line now read clearly darker in light mode; reveal shows "Your switch made a new knot."
 - Local QA contract.spec, QA_ONLY=draw-a-table-knot, QA_PORT 3593: phone and desktop passed (2/2). `npm run typecheck` and `npm run check` passed.
 Owed: fact-checker re-verification of c5 by someone who did not draft the wording (W-1591).
+
+## Fix round W-1602 (2026-10-17, demo-builder run w1602-knot-reveal), version 2 → 3
+**Problem (learner walk finding 4, `2026-10-16-learner-knows-drawings-not-names.md`).** On the QA path the stage ended on 5₂ unswitched ("Crossings drawn: 5 · Name: 5₂", bold) while the reveal named the last switch (6₁ → 4₁); only the small Seen line bridged them, and the last on-screen evidence agreed with the wrong option.
+**Change (Demo.tsx only, plus `version` 3).** The milestone record now also keeps the switched crossing index (`{chip, i, drawn, name}`). When the phase becomes `reveal`, the stage sets its chip and switch to that record, so the picture (with the ring on the switched crossing), the bold readout ("Crossings drawn: 6 · Name: 4₁") and the active chip all show the knot the reveal names. No text was added or changed: stage words, reveal text and every claim's text and address are as before; the Seen line stays and now agrees with the readout above it. The chips and Reset stay usable at the reveal, as before. No claim touched, none reset.
+**Measurements** (build `NEXT_DIST_DIR=.next-w1602`, served on 3602; reveal-fit tool bc747077, clean):
+- `reveal-fit --strict` 390×844: fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, pass 1, 81 words, 10 lines, picture 235 px. Screenshot viewed (stage shows 6₁ with crossing 1 ringed, readout 6 · 4₁).
+- `reveal-fit` 360×740: text fit, stage-top crop 62 px, phoneFit false, 81 words. Inside the 21–82 px range the S4 record measured for this size after D3 (the picture is the same size for either chip); not a new regression, not fixed here.
+- Local QA `tests/qa/contract.spec.ts`, QA_ONLY=draw-a-table-knot: phone and desktop passed (2/2); phone-3-reveal viewed: stage on 6₁ switched, "Crossings drawn: 6 · Name: 4₁", Seen line "Seen on 6₁: 6 drawn, name 4₁", 6₁ chip active. `npx tsc --noEmit` exit 0.
+Owed: a learner re-walk on v3 (finding 4 is the learner's to close) and a qa-tester record on v3.
