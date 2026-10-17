@@ -191,3 +191,22 @@ My 2026-10-12 decision record ("The feed is honest at cold start: round-robin, n
 5. **personalization-engineer (S1, EDD §12):** `IntroCard` takes the filter; the "How your progress is used" link and data text exist in the flag-on build only; reason-line rendering rule (quoted title last, no double punctuation, never truncated); the T23 deny-list scans the template, not real titles.
 6. **vp-personalization:** A3-2 choice (§4); fold §5's residual paragraph into the release note.
 7. **head-of-product (me, W-1577):** the T10 check when the test exists; the rule-list record for reachable-v3.
+
+---
+
+## §O1. Ruling on objection O1 (L3 `earlier:concept-known`) against my C3 standard (head-of-product, W-1638, 2026-10-17)
+
+Inputs read: O1 in company/personalization/copy/2026-10-17-reason-lines-fc2.md (§5, §6); vp-personalization's §18.1 in company/personalization/batches/2026-10-17-batch-5.md; my C3 in §4 above.
+
+**Ruling: refused. L3 does not meet C3.** On this record, L3 fails G7 for the `earlier:concept-known` key. The next step is vp-personalization's, under §18.1: the founder's desk with this objection attached, or G6(a).
+
+Why:
+1. **C3 is about what the reader infers, not what the words say.** In §4 I accepted C3 because the "partly why" a reader takes from the line was true. I used RC §6's some-pair contribution as evidence of that. fc2 §5 shows that, for L3, the evidence and the inference come apart. The line is literally true, and the fact contributes on some pair. But in 94% of the constructed instances, the finished lesson the line names pulls the card *back*: without it, x would be further ahead. A 13-year-old who reads "moved ahead … shares an idea with a lesson you've finished, “X”" and concludes "because I finished X" is wrong on most of the cards where L3 shows. That is a false implied cause, and in §4 I said I would not accept one. I will not change the standard now that a result has arrived (fitting the test to the result).
+2. **Rarity does not change the answer.** "0 in 3.24M natural cards" says how few learners would be misled. It does not say the inference is true. The state that reaches L3 is a device with 2-11 unshown cards left: a learner who has finished or seen nearly all 230 pilot lessons. That is our most engaged reader, and the one most likely to read the line. A natural-history probe of 78,000 histories is not evidence that such devices never exist.
+3. **The cause is placement, not wording.** I agree with §18.1 that (iii) states the same fact, so no copy inside v3 fixes it. The true cause with a holding counterfactual is passed-known (L7), which loses only on CODE_ORDER's strict tie rule. That is a candidate defect, not a reading-level defect, and only option (ii) cures it.
+
+What this ruling does not do: it does not withdraw C3's acceptance for L1, L2 and L4-L7, which stands as written in §4. It does not ask for glue to swap in L7 (that would be glue choosing a reason, §17.1). It does not relax G7.
+
+If this goes to the founder: my objection, to travel with the decision as written: *"On the cards where L3 shows, the reason it implies is false for most readers. Rarity limits the harm but does not make the line true."* The founder may accept the website part over it. That is the founder's call, not mine, and I would record the outcome here.
+
+What would change this ruling: (a) any later candidate that adopts fc2's option (ii) (prefer passed-known on an equal decisive count in the earlier direction), followed by a fact-check showing the cf holds on L3's remaining instances; or (b) a fact-check showing that the cf holds on most L3 instances in reachable states. §18.1's guard (2) and (3) still apply whichever way the founder decides.
