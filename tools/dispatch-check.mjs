@@ -4,7 +4,7 @@
 // It turns the operating loop's rules into a check that fails loudly instead of a rule someone remembers.
 //
 //   node tools/dispatch-check.mjs --kind=<kind> --role=<subagent_type> --source=<source> [--chooser=<role>]
-//                                 [--agent=<label>] [--running=N] [--builders=N] [--worktree=PATH] [--no-claim] [--json]
+//                                 [--agent=<label>] [--run=<mail run id>] [--running=N] [--builders=N] [--worktree=PATH] [--no-claim] [--json]
 //
 // kind:  build    new lesson builds or revisions (anything that edits src/ and runs a dev server or QA)
 //        wave     a batch of new work: builds, new briefs, new categories
@@ -50,8 +50,15 @@
 //   S4  checkers through quality: a lane-10 checker role whose source is not a lane-10 batch or standing order,
 //       nor `§4:ritual: <id>` with <id> in that role's rituals: in tools/org/roles.mjs (W-1240 Q1).
 //       Built but OFF until founder F-28 is answered: --s4 or S3_SLOTS_S4=on turns it on.
-//   M1  mailbox (F-42): with --source=mail:<id>, the message must be an unclaimed, not-done dispatch-request in the
-//       dispatcher mailbox naming --role, and it must pass the lane rule again (tools/lib/mailbox.mjs laneCheck:
+//   B1  budget: when --source names a project (a batch item's or header's `project: [project:<id>]`, a standing
+//       order's batch header, or a mail request's project:), `ledger.mjs gate` must pass for it (tools/lib/ledger.mjs
+//       gate, token-budget.md sections 4 and 6: lines never block, grace periods pass with a warning, an approved
+//       major project fails at 100%). B1 always FAILs, in warn mode too. S3_LEDGER / S3_PROJECTS override (tests).
+//   Hard S1/S2 (assessment 2026-10-17 finding 2): a --role that is neither in tools/org/roles.mjs nor has an agent
+//       file, and a batch= source whose file does not exist, FAIL in every slot mode. The other S rules follow it.
+//   M1  mailbox (F-42): with --source=mail:<id>, the message must be a not-done dispatch-request in the dispatcher
+//       mailbox naming --role, reserved by the drain for --run=<run> with a live lease and not yet launched
+//       (reserve before launch, assessment 2026-10-17 finding 3; tools/lib/mailbox.mjs reserve), and it must pass the lane rule again (tools/lib/mailbox.mjs laneCheck:
 //       sender is its lane's POC on poc-map.md, role listed in that lane, checkers only from lane 10, never
 //       release-manager or anything naming deploy). M1 always FAILs, in warn mode too: S3_SLOTS does not soften it.
 import fs from "node:fs";
@@ -127,10 +134,14 @@ const ledgerFailed = (where, e) => {
   if (slotMode === "enforce") fails.push(ledgerError);
   else warns.push(`${ledgerError} [S3_SLOTS=warn: not refused; no slot claimed]`);
 };
-let slotDraft = null, holder = null, ledger = null;
+let slotDraft = null, holder = null, ledger = null, sourceSrc = null;
 try {
   const ev = slots.evaluate({ role: opt.role, source: opt.source, chooser: opt.chooser, kind, agent: opt.agent, s4: s4On, root: ROOT });
-  for (const f of ev.fails) sFails.push(`${f.rule} ${f.msg}`);
+  for (const f of ev.fails) {
+    if (f.hard) fails.push(`${f.rule} ${f.msg} [refused in every slot mode]`);
+    else sFails.push(`${f.rule} ${f.msg}`);
+  }
+  sourceSrc = ev.src;
   for (const w of ev.warns) warns.push(`S2 ${w}`);
   ledger = slots.inFlight({ events });
   const byRule = ledger.released.reduce((m, s) => ((m[s.releasedRule] = (m[s.releasedRule] ?? 0) + 1), m), {});
@@ -154,8 +165,17 @@ if (typeof opt.source === "string" && opt.source.startsWith("mail:")) {
     else if (m.fm.kind !== "dispatch-request") fails.push(`M1 mailbox: ${id} is a ${m.fm.kind}, not a dispatch-request`);
     else if (m.role !== mailbox.DISPATCHER) fails.push(`M1 mailbox: ${id} is in the ${m.role} mailbox, not the dispatcher's`);
     else {
-      if (m.claimed) fails.push(`M1 mailbox: ${id} is already claimed (${m.claimed.ts ?? "?"}, agent ${m.claimed.agent ?? "?"}): it was dispatched once`);
+      // Reserve before launch (assessment 2026-10-17 finding 3): the drain reserved the request for one run; this
+      // check passes only for that run (--run), while its lease is live and before it is launched.
+      const r = mailbox.reservation(m);
+      const run = opt.run === true ? undefined : opt.run;
       if (m.done) fails.push(`M1 mailbox: ${id} is already done`);
+      else if (!r) fails.push(`M1 mailbox: ${id} is not reserved: run \`node tools/mailbox.mjs drain dispatcher\` first (it reserves the request before launch and prints --run)`);
+      else if (r.state === "launched") fails.push(`M1 mailbox: ${id} is already claimed (launched by run ${r.run ?? "?"} at ${r.launchedAt ?? r.ts ?? "?"}, agent ${r.agent ?? "?"}): it was dispatched once`);
+      else if (mailbox.leaseExpired(r)) fails.push(`M1 mailbox: ${id}'s reservation (run ${r.run}) expired at ${r.leaseUntil}: drain again`);
+      else if (!run) fails.push(`M1 mailbox: ${id} is reserved by run ${r.run}: pass --run=${r.run} (the drain printed it)`);
+      else if (run !== r.run) fails.push(`M1 mailbox: ${id} is reserved by run ${r.run}, not ${run}: another drain holds it`);
+      else info.push(`mailbox: ${id} reserved by run ${r.run} until ${r.leaseUntil}; after the agent starts: node tools/mailbox.mjs launched ${id} --run=${r.run}`);
       if (opt.role !== m.fm.role) fails.push(`M1 mailbox: ${id} requests role ${m.fm.role}, not ${opt.role}`);
       if (opt.chooser && opt.chooser !== true && opt.chooser !== m.fm.from) fails.push(`M1 mailbox: --chooser=${opt.chooser} but ${id} is from ${m.fm.from}`);
       const text = [m.fm.title, m.fm.budget, m.fm["done-when"], m.fm["stop-if"], m.fm.project, m.fm.role, m.body].filter(Boolean).join("\n");
@@ -165,6 +185,29 @@ if (typeof opt.source === "string" && opt.source.startsWith("mail:")) {
       info.push(`mailbox: ${id} from ${m.fm.from}, lane ${m.fm.lane}, role ${m.fm.role}, project ${m.fm.project}; brief ${m.file}`);
     }
   } catch (e) { fails.push(`M1 mailbox: ${e.message}`); }
+}
+
+// ---- B1 budget (assessment 2026-10-17 §3; token-budget.md sections 4 and 6): a source that names a project
+// ([project:<id>] on the batch item or header, or the mail request's project:) must pass `ledger.mjs gate` for it.
+// The gate keeps the handbook's grace rules: lines never block, in-flight projects pass with a warning until their
+// grandfatheredUntil, and an approved project fails only at 100% of budget (plus approved top-ups). A gate refusal
+// FAILs in every slot mode; an exception reading the ledger or register is an S3 ledger error (follows the mode).
+if (typeof opt.source === "string") {
+  try {
+    const sp = slots.sourceProjects(opt.source, { root: ROOT });
+    if (sp.projects.length) {
+      const L = await import("./lib/ledger.mjs");
+      const reg = L.readRegister();
+      const ledgerLines = L.readLedger();
+      for (const id of sp.projects) {
+        const g = L.gate(reg, id, { ledger: ledgerLines });
+        const head = `B1 budget ${id}${g.budget != null ? ` (${L.fmt(g.spent)} of ${L.fmt(g.budget)})` : ""}`;
+        if (!g.pass) fails.push(`${head}: ${g.reasons.join("; ")} (node tools/ledger.mjs gate --project=${id})`);
+        else for (const r of g.reasons) warns.push(`${head}: ${r}`);
+        if (g.pass) info.push(`budget: ${id} ${g.level}${g.budget != null ? ` (${L.fmt(g.spent)} of ${L.fmt(g.budget)})` : ""}, project named by the ${sp.from}`);
+      }
+    }
+  } catch (e) { ledgerFailed("reading the token ledger for B1", e); }
 }
 
 // ---- possibly finished (r5-tools B2 c): counted runs older than 2 h with no live slot and no spool activity. They stay

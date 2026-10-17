@@ -1,5 +1,5 @@
 {
-  "note": "Event-driven ritual cadence (2026-10-13). Agents work in minutes, so most rituals fire on events, not on the calendar. `node tools/rituals-due.mjs` reads this file and company/ops/events.jsonl. The calendar table in tools/company.mjs (constitutional) stays as the upper bound until an amendment replaces it.",
+  "note": "Event-driven ritual cadence (2026-10-13). Agents work in minutes, so most rituals fire on events, not on the calendar. `node tools/rituals-due.mjs` reads this file and company/ops/events.jsonl. The calendar table in tools/company.mjs (constitutional) stays as the upper bound until an amendment replaces it. Held (2026-10-17, external assessment §3): a ritual counts as held only when its committed record exists (company/rituals/records/<date>-<ritual>*.md, or company/engineering/operations/<date>-ops-review*.md), timed by its last commit; events in the room only feed the counters. `heldByEvents` names the event types that also count as held for one trigger, used only where the design relies on it (launch-review: a publish is the publish loop running).",
   "triggers": [
     {
       "ritual": "retro",
@@ -32,6 +32,9 @@
     {
       "ritual": "launch-review",
       "room": "launch-room",
+      "heldByEvents": [
+        "publish"
+      ],
       "every": {
         "review": 1,
         "verify": 1

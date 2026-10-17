@@ -115,7 +115,7 @@ export function resolveSource(raw, { root = ROOT, role } = {}) {
   }
   if (src.type === "batch") {
     const abs = path.resolve(root, src.file);
-    if (!fs.existsSync(abs)) { out.problems.push(`batch file ${src.file} does not exist`); return out; }
+    if (!fs.existsSync(abs)) { out.problems.push(`batch file ${src.file} does not exist`); out.missingFile = true; return out; }
     out.file = path.relative(root, abs);
     const text = fs.readFileSync(abs, "utf8");
     const h = batchHeader(text);
@@ -137,6 +137,39 @@ export function resolveSource(raw, { root = ROOT, role } = {}) {
   out.lane = h.lane; out.chooser = h.poc;
   if (!h.poc) out.problems.push(`${out.file} (which issued ${src.so}) has no "poc:" line`);
   return out;
+}
+
+// Project tags a source names (assessment 2026-10-17 §3, ledger gate): mail -> the message's project: field; a batch
+// item -> the [project:<id>] tags on its own `project:` line, else on the batch header's; a standing order -> the
+// header of the batch that issued it; §4 -> none (untagged work is small work, token-budget.md section 6).
+// A bare `project: <id>` (one word, no brackets) counts too. Returns { projects: string[], from: string|null }.
+export function sourceProjects(raw, { root = ROOT } = {}) {
+  const src = parseSource(raw);
+  const tags = (line) => {
+    if (!line) return [];
+    const t = [...line.matchAll(/\[project:([a-z0-9-]+)\]/gi)].map((m) => m[1]);
+    if (t.length) return [...new Set(t)];
+    const bare = /^\s*([a-z0-9][a-z0-9-]*)\s*$/i.exec(line)?.[1]; // only a whole one-word value, never prose
+    return bare ? [bare] : [];
+  };
+  const projLine = (text) => /^project:\s*(.+)$/m.exec(text ?? "")?.[1] ?? null;
+  if (src.type === "mail") {
+    let msg = null;
+    try { msg = mailbox.find(src.mail); } catch { return { projects: [], from: null }; }
+    return { projects: msg?.fm?.project ? [msg.fm.project] : [], from: msg ? "mail" : null };
+  }
+  let file = null, item = null;
+  if (src.type === "batch") { file = path.resolve(root, src.file); item = src.item; }
+  else if (src.type === "so") file = findStandingOrder(src.so, root);
+  if (!file || !fs.existsSync(file)) return { projects: [], from: null };
+  const text = fs.readFileSync(file, "utf8");
+  if (item != null) {
+    const part = text.split(/^(?=## )/m).find((p) => new RegExp(`^## B${item}\\b`).test(p));
+    const own = tags(projLine(part));
+    if (own.length) return { projects: own, from: "item" };
+  }
+  const head = tags(projLine(text.split(/^## /m)[0]));
+  return { projects: head, from: head.length ? "header" : null };
 }
 
 // ---- roles and lanes
@@ -174,7 +207,9 @@ export function evaluate({ role, source, chooser, kind, agent, s4 = false, root 
   const fails = [], warns = [];
   const roleId = role === true ? undefined : role;
   const src = resolveSource(source, { root, role: roleId });
-  for (const p of src.problems) fails.push({ rule: "S1", msg: p });
+  // hard: refused in every slot mode (assessment 2026-10-17 finding 2): a batch file that is not on disk names no
+  // decision at all, so warn mode must not wave it through. Other S1 problems follow the mode (F-28 rollout).
+  for (const p of src.problems) fails.push({ rule: "S1", msg: p, ...(src.missingFile ? { hard: true } : {}) });
   if (!roleId) fails.push({ rule: "S1", msg: "no --role: the slot cannot say who runs" });
   const ch = chooser === true ? undefined : chooser;
   if (!ch && !src.chooser) fails.push({ rule: "S1", msg: "no --chooser, and the source names none" });
@@ -183,7 +218,12 @@ export function evaluate({ role, source, chooser, kind, agent, s4 = false, root 
   if (roleId === "general-purpose") {
     if (src.type !== "s4") fails.push({ rule: "S2", msg: "general-purpose runs only for a §4 integration task (source §4:integration: …); a missing role is never run as general-purpose (poc-map rule 4)" });
     else if (!/^integration:\s*\S/i.test(src.reason ?? "")) fails.push({ rule: "S2", msg: `general-purpose with §4 reason "${src.reason}": only §4:integration: <what> allows it` });
-  } else if (roleId && !agentRoles(root).has(roleId)) fails.push({ rule: "S2", msg: `role ${roleId} has no .claude/agents/${roleId}.md` });
+  } else if (roleId && !agentRoles(root).has(roleId)) {
+    // A role the org does not define (not in tools/org/roles.mjs) is refused in every slot mode (hard); a defined
+    // role with no agent file (founder) stays an S2 failure that follows the mode.
+    const defined = (ROLES ?? []).some((x) => x.id === roleId);
+    fails.push({ rule: "S2", msg: `role ${roleId} has no .claude/agents/${roleId}.md${defined ? "" : " and is not a role in tools/org/roles.mjs"}`, ...(defined ? {} : { hard: true }) });
+  }
   else if (roleId && src.lane && lanes.size && src.type !== "s4" && !lanes.get(src.lane)?.roles.has(roleId)) {
     const in_ = lanesOf(roleId, lanes);
     warns.push(`role ${roleId} is not listed in lane ${src.lane} of poc-map.md${in_.length ? ` (it is in lane ${in_.join(", ")})` : ""}`);

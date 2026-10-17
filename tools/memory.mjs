@@ -7,10 +7,14 @@
 //   <role>/<date>-<runkey>.md      one offboarding entry per run, created with O_EXCL: parallel runs never write the same file
 //   <role>.archive-<date>.md       what compaction moved out (narrative, closed items). Nothing is deleted.
 //
-//   node tools/memory.mjs read <role> [--no-compact]       the memory plus unmerged run entries (compacts first past the threshold)
+//   node tools/memory.mjs read <role> [--no-compact] [--craft-only]   the memory plus unmerged run entries (compacts first
+//        past the threshold). --craft-only leaves out lines naming a lesson slug, a lesson's src/demos or company/reviews
+//        folder, or a prior verdict/ruling: for an evaluator starting a fresh review (when it is required is the
+//        evaluation-steward's ruling; this is only the option).
 //   node tools/memory.mjs add <role> --run=<runkey> [--by=<label>] --did=… --learned=… --mistake=… --know=… --open=… --closed=…
 //        (each flag repeatable; or --text="did: …\nlearned: …" or the lines on stdin with --stdin). ≤ 12 lines.
-//        learned/mistake/know/open lines must cite a file (a path, W-n board id or commit sha).
+//        learned/mistake/know/open lines must cite a file: a path that exists in this checkout (repo-relative), a W-n
+//        board id (a warning if it is not on the board) or a commit sha (not looked up).
 //   node tools/memory.mjs compact <role>|--all [--force]    merge run entries; past the threshold archive oldest entries to the target
 //        (--force: archive every entry, lifting its lessons, mistakes, standing context and open threads)
 //   node tools/memory.mjs check                            warnings only, exit 0: missing memory files, files over the threshold
@@ -29,7 +33,6 @@ const today = () => process.env.S3_MEMORY_DATE || new Date().toISOString().slice
 const KEPT = ["Lessons", "Mistakes not to repeat", "Standing context", "Open threads"];
 const FIELD_SECTION = { learned: "Lessons", mistake: "Mistakes not to repeat", know: "Standing context", open: "Open threads" };
 const FIELDS = ["did", "learned", "mistake", "know", "open", "closed"];
-const CITE = /([\w.-]+\/[\w./#:-]+|\b[\w-]+\.(md|mjs|js|json|jsonl|ts|tsx|txt|sh|yml)\b|\bW-\d+\b|\b[0-9a-f]{7,40}\b)/;
 const LOCK_STALE_MS = 10 * 60 * 1000;
 
 let ROLES = null;
@@ -138,15 +141,58 @@ export function entryLines(opts) {
   return lines;
 }
 
-export function validateEntry(lines) {
-  const errs = [];
-  if (!lines.length) errs.push("empty entry: give at least --did, --learned, --know or --open");
-  if (lines.length > P.entryMaxLines) errs.push(`entry has ${lines.length} lines; the cap is ${P.entryMaxLines} (F-39 point 3)`);
+// ---------------------------------------------------------------- citations (assessment 2026-10-17 §2)
+
+// The tokens in a line that cite something: { paths, boards, shas }. A path is a token under a policy top-level folder
+// (company/…, tools/…) or a bare file name with a policy extension; "and/or" and other slash prose are not paths.
+// Anchors (#…), line suffixes (:12, :12-30) and trailing punctuation are stripped before the lookup.
+export function citations(line) {
+  const roots = new Set(P.citeRoots);
+  const ext = new RegExp(`\\.(${P.citeExts.join("|")})$`);
+  const paths = [];
+  for (const m of String(line).matchAll(/(?<![\w./-])([\w.-][\w.@#:/-]*)/g)) {
+    const t = m[1].replace(/#.*$/, "").replace(/[.,;:)]+$/, "").replace(/:\d+(-\d+)?$/, "");
+    if (!t) continue;
+    if (t.includes("/") ? roots.has(t.split("/")[0]) : ext.test(t)) paths.push(t);
+  }
+  const boards = [...String(line).matchAll(/\bW-\d+\b/g)].map((m) => m[0]);
+  const shas = [...String(line).matchAll(/\b[0-9a-f]{7,40}\b/g)].map((m) => m[0]);
+  return { paths: [...new Set(paths)], boards: [...new Set(boards)], shas: [...new Set(shas)] };
+}
+
+const boardCache = new Map();
+function loadBoardIds(root) {
+  if (!boardCache.has(root)) {
+    let ids = null; // no readable board: board ids are not checked (never an error)
+    try { ids = new Set((JSON.parse(fs.readFileSync(path.join(root, "company/ops/board.json"), "utf8")).items ?? []).map((i) => i.id)); } catch {}
+    boardCache.set(root, ids);
+  }
+  return boardCache.get(root);
+}
+
+// Full validation: { errors, warnings }. Errors refuse the entry; warnings are printed and the entry is written.
+//   root: the checkout that paths resolve against (default: this tool's repo); board: a Set of ids (default: board.json).
+// A path citation must exist (file or folder); a W-n not on the board is a warning; a commit sha is accepted as is.
+export function checkEntry(lines, { root = ROOT, board } = {}) {
+  const errors = [], warnings = [];
+  if (!lines.length) errors.push("empty entry: give at least --did, --learned, --know or --open");
+  if (lines.length > P.entryMaxLines) errors.push(`entry has ${lines.length} lines; the cap is ${P.entryMaxLines} (F-39 point 3)`);
+  const ids = board !== undefined ? board : loadBoardIds(root);
   for (const l of lines) {
     const f = l.match(/^- (\w+):/)?.[1];
-    if (f && FIELD_SECTION[f] && !CITE.test(l)) errs.push(`"${l.slice(0, 70)}" must cite a file (a path, W-n or a commit sha)`);
+    if (!f || !FIELD_SECTION[f]) continue;
+    const c = citations(l);
+    const missing = c.paths.filter((p) => !fs.existsSync(path.resolve(root, p)));
+    for (const p of missing) errors.push(`"${l.slice(0, 70)}" cites ${p}, which does not exist in this checkout: cite an existing repo-relative path`);
+    if (!c.paths.length && !c.boards.length && !c.shas.length) errors.push(`"${l.slice(0, 70)}" must cite a file (a path, W-n or a commit sha)`);
+    if (ids) for (const b of c.boards) if (!ids.has(b)) warnings.push(`"${l.slice(0, 50)}" cites ${b}, which is not on company/ops/board.json`);
   }
-  return errs;
+  return { errors, warnings };
+}
+
+// Errors only (the original contract): [] when the entry may be written.
+export function validateEntry(lines, opts) {
+  return checkEntry(lines, opts).errors;
 }
 
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "run";
@@ -285,8 +331,9 @@ export function compact(id, { force = false, quiet = false } = {}) {
 
 export function add(id, lines, { run, by, noCompact = false } = {}) {
   if (!run) throw new Error("--run=<runkey> is required (a short label unique to this run, e.g. the Agent call's description)");
-  const errs = validateEntry(lines);
+  const { errors: errs, warnings } = checkEntry(lines);
   if (errs.length) throw new Error(errs.join("\n"));
+  for (const w of warnings) console.error(`warn: memory: ${w}`);
   if (!fs.existsSync(memoryPath(id))) throw new Error(`no memory file for ${id}: run \`node tools/memory.mjs init ${id}\``);
   const date = today();
   const key = slug(run);
@@ -311,7 +358,62 @@ export function add(id, lines, { run, by, noCompact = false } = {}) {
   }
 }
 
-export function read(id, { noCompact = false } = {}) {
+// ---------------------------------------------------------------- read --craft-only (assessment 2026-10-17 §2)
+
+// Lesson slugs: folders src/demos/<domain>/<slug>/ holding a meta.json. Only hyphenated slugs are matched as words
+// in prose (a one-word slug would match ordinary words); review and lesson paths are matched for every slug.
+export function lessonSlugs(root = ROOT) {
+  const out = new Set();
+  const base = path.join(root, "src/demos");
+  if (!fs.existsSync(base)) return out;
+  for (const d of fs.readdirSync(base, { withFileTypes: true })) {
+    if (!d.isDirectory()) continue;
+    for (const s of fs.readdirSync(path.join(base, d.name), { withFileTypes: true }))
+      if (s.isDirectory() && fs.existsSync(path.join(base, d.name, s.name, "meta.json"))) out.add(s.name);
+  }
+  return out;
+}
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Why a line is tied to a specific lesson or a prior verdict (null = craft, kept).
+export function tiedReason(line, slugRe) {
+  if (/\bsrc\/demos\/|\bcompany\/reviews\/(?!org\/|README)[\w.-]+\//.test(line)) return "a lesson's files or review records";
+  if (P.verdictWords.test(line)) return "a verdict or ruling";
+  if (slugRe && slugRe.test(line)) return "a lesson slug";
+  return null;
+}
+// Pure: the memory text with every tied bullet line left out (an entry heading goes when nothing of its body is left).
+// The header (before the first `## `) and section headings stay. Returns { text, omitted }.
+export function craftOnlyText(text, slugs = new Set()) {
+  const hy = [...slugs].filter((s) => s.includes("-")).sort((a, b) => b.length - a.length);
+  const slugRe = hy.length ? new RegExp(`(?<![a-z0-9-])(${hy.map(esc).join("|")})(?![a-z0-9-])`, "i") : null;
+  const out = [];
+  let omitted = 0, inBody = false, entry = null;
+  const flush = () => {
+    if (!entry) return;
+    if (entry.kept || !entry.had) out.push(entry.head, ...entry.lines);
+    entry = null;
+  };
+  for (const l of text.split("\n")) {
+    if (/^## /.test(l)) { flush(); inBody = true; out.push(l); continue; }
+    if (inBody && /^### /.test(l)) { flush(); entry = { head: l, lines: [], had: false, kept: false }; continue; }
+    const bullet = inBody && /^\s*- /.test(l);
+    const drop = bullet && tiedReason(l, slugRe);
+    if (drop) omitted++;
+    if (entry) {
+      if (bullet) entry.had = true;
+      if (!drop) { entry.lines.push(l); if (bullet) entry.kept = true; }
+    } else if (!drop) out.push(l);
+  }
+  flush();
+  return { text: out.join("\n").replace(/\n{3,}/g, "\n\n"), omitted };
+}
+
+export function read(id, { noCompact = false, craftOnly = false } = {}) {
+  if (craftOnly) {
+    const full = read(id, { noCompact });
+    const r = craftOnlyText(full, lessonSlugs());
+    return `${r.text.trimEnd()}\n\n(read --craft-only: ${r.omitted} line(s) naming a lesson slug, a lesson's review records or a prior verdict were left out. Read without --craft-only once your initial findings are written.)\n`;
+  }
   if (!fs.existsSync(memoryPath(id))) return `(no memory file for ${id} yet: ${path.relative(ROOT, memoryPath(id))})\n`;
   if (effectiveBytes(id) > P.maxBytes) {
     if (noCompact) console.error(`warn: ${id}'s memory is past ${kb(P.maxBytes)}; compact it before relying on it`);
@@ -382,7 +484,7 @@ async function main() {
   try {
     if (cmd === "read") {
       await roleOf(id);
-      process.stdout.write(read(id, { noCompact: !!o["no-compact"] }));
+      process.stdout.write(read(id, { noCompact: !!o["no-compact"], craftOnly: !!o["craft-only"] }));
     } else if (cmd === "add") {
       await roleOf(id);
       if (o.stdin) o.text = fs.readFileSync(0, "utf8");
