@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo), run vp-qa1-1017 · Q-A1 and V3 G1 decided (batch 5 §16)
+
+- **Changed:** batch 5 §16 (company/personalization/batches/2026-10-17-batch-5.md). Q-A1: option (i): v3's `moves` takes optional `shown` and states moved/direction/code among the unshown cards; `rank` never reads it (order, K7 object unchanged); G7's "moved" after a pin is stated as "placed differently among cards still to be shown". G1: new earlier-only code `passed-known` (passed lessons sit on ideas the learner finished), lowest tie priority; (a) as worded, (b), (c), (d) refused with reasons. Q-A3: concept slot empty until lesson-dims-owner names + fact-checker checks. Read W-1615 report b464a43c and V3 report b5ed775d.
+- **Believe:** (i) removes the A4 pin-mismatch class by construction (moderate-high); `passed-known` is true by its eligibility rule but its copy is a lesson-to-lesson comparison and waits on privacy Q-P5 (moderate). If privacy refuses it, T6 fails and the website part closes for M1; G7 not relaxed.
+- **Next:** chief of staff relays §16.5 to a fresh learner-model-engineer run (rebuild in /home/user/s3c-cand-c3, then freeze); files §16.4 board items (Q-A2 privacy, Q-A4 principal-engineer, Q-A3 lesson-dims-owner + fact-checker, F7 scope). EDD-010 A3/T6 wording to follow §16.1 (personalization-engineer).
+- **Blocked:** v3 freeze on the rebuild; F7 on freeze; `passed-known` copy on privacy Q-P5 and RC.
+
 ## 2026-10-17 · personalization-engineer (Tavi), run pe-w1615-1017 · W-1615 EDD-010 draft 2 addendum (design only)
 
 - **Changed:** EDD-010 is now draft 2. §12 (A1-A6) answers the review's C1 and C3-C12, D1 (no runtime time trip) and D2 (byte copy accepted). It carries privacy E1-E14 into tests, each marked check or verify, and applies batch 5 §15: §6.3 deleted, the glue shows v3's emitted reason with a direction assertion, lines are pinned, C1/T5/the flag move to reachable-v3 at freeze, a flag-on build refuses v2, and the E10 whitelist is title, count from progress and concept name. The probe gains a §5.4 display walk, a `refresh` history and a deep pin. Files: company/engineering/edd/EDD-010-personalised-new-lesson-order.md, company/engineering/edd/EDD-010-probe.mts. W-1615 to review (vp-personalization).
