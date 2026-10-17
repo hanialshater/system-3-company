@@ -147,6 +147,7 @@ test("validateEntry: a path citation must exist; commit shas pass as they are; W
     "- open: board item W-1",
   ]) assert.deepEqual(m.checkEntry([ok], { board }), { errors: [], warnings: [] }, ok);
   assert.match(m.validateEntry(["- learned: bare name only (memory.mjs)"], { board }).join("\n"), /cites memory\.mjs, which does not exist/, "a bare file name resolves at the repo root");
+  assert.deepEqual(m.validateEntry(["- open: the hq.ts import is untested (src/lib/hq.ts)"], { board }), [], "a bare name beside a real citation is prose");
   assert.match(m.validateEntry(["- learned: and/or is prose, not a path"], { board }).join("\n"), /must cite a file/);
   assert.deepEqual(m.validateEntry(["- did: did lines need no citation"], { board }), []);
   const w = m.checkEntry(["- open: board item W-999999 (tools/memory.mjs)"], { board });

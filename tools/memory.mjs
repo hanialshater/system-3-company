@@ -182,7 +182,11 @@ export function checkEntry(lines, { root = ROOT, board } = {}) {
     const f = l.match(/^- (\w+):/)?.[1];
     if (!f || !FIELD_SECTION[f]) continue;
     const c = citations(l);
-    const missing = c.paths.filter((p) => !fs.existsSync(path.resolve(root, p)));
+    const exists = (p) => fs.existsSync(path.resolve(root, p));
+    const good = c.paths.filter(exists).length + c.boards.length + c.shas.length;
+    // A path with a folder (company/…) must exist. A bare file name that is not at the repo root ("hq.ts") is prose
+    // when the line cites something real, and an error only when it is the line's only citation.
+    const missing = c.paths.filter((p) => !exists(p) && (p.includes("/") || !good));
     for (const p of missing) errors.push(`"${l.slice(0, 70)}" cites ${p}, which does not exist in this checkout: cite an existing repo-relative path`);
     if (!c.paths.length && !c.boards.length && !c.shas.length) errors.push(`"${l.slice(0, 70)}" must cite a file (a path, W-n or a commit sha)`);
     if (ids) for (const b of c.boards) if (!ids.has(b)) warnings.push(`"${l.slice(0, 50)}" cites ${b}, which is not on company/ops/board.json`);
