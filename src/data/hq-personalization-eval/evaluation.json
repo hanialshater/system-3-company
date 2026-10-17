@@ -165,15 +165,119 @@
   },
   {
    "id": "criterion-3b",
-   "name": "Criterion 3b (K6, reachable candidate)",
-   "pending": "pending: K6's readout is not committed",
-   "criterionStatus": {
-    "kind": "text",
+   "name": "Criterion 3b (readout 3b, K6: reachable-v2)",
+   "criterion": {
     "path": "company/personalization/eval/2026-10-17-criterion-3b.md",
-    "line": 4,
-    "quote": "status: draft (unfrozen)"
+    "freezeCommit": "8e96251bb652cff5d093bede0d324601fb7c624c",
+    "sha256": "3a919fc3eaab6d217f97c3c49cd604030106aa82948ef69085ebc52ecdf944e5",
+    "hashChecked": "sha256(git show 8e96251:company/personalization/eval/2026-10-17-criterion-3b.md) = 3a919fc3eaab6d217f97c3c49cd604030106aa82948ef69085ebc52ecdf944e5",
+    "freezeLine": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-17-criterion-3b.md",
+     "line": 328,
+     "quote": "frozen: run eval-k6-1017 (batch 5 K6, board W-1572, W-1591), before the candidate was run in any episode and before any number. **Freeze commit: 8e96251bb652cff5d093bede0d324601fb7c624c** (sha256 of this file at that commit: 3a919fc3eaab6d217f97c3c49cd604030106aa82948ef69085ebc52ecdf944e5, `git show 8e96251:company/personalization/eval/2026-10-17-criterion-3b.md | sha256sum`). The criterion is this file's text at that commit; this section was added in the next commit and changes no rule. Any change after the first scored number is a new criterion, and the old result stands."
+    }
    },
-   "criterionPath": "company/personalization/eval/2026-10-17-criterion-3b.md"
+   "readout": {
+    "path": "company/personalization/eval/2026-10-17-criterion-3b-readout.md",
+    "verdicts": [
+     {
+      "kind": "text",
+      "path": "company/personalization/eval/2026-10-17-criterion-3b-readout.md",
+      "line": 23,
+      "quote": "**`verdicts.pair.outcome`: INVALID.** One validity check failed: **V10, the copy check against `harness/c3/reachable-oracle.mjs`**. Its M3 measure (identifiers of 4 or more characters in both files' code, absent from the permitted corpus) counted **4 shared names, at a threshold of 4**: `kappa`, `post`, `prereqs`, `refreshPrior`. M1 (shared comment shingles) was **0** (threshold 3). M2 (longest shared run of names) was **6** (threshold 12): `Math log h predictedCorrectly pr pr`. The only shared long number is `86400000` (one day in ms, reported only)."
+     },
+     {
+      "kind": "text",
+      "path": "company/personalization/eval/2026-10-17-criterion-3b-readout.md",
+      "line": 145,
+      "quote": "## Outcome: candidate+fixed vs default-order+fixed: **INVALID**"
+     }
+    ]
+   },
+   "printedLabel": "printed under INVALID; no rule reads them",
+   "printedRule": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 608,
+    "quote": "The HQ Evaluation view shows INVALID first, then the printed rows labelled \"printed under INVALID; no rule reads them\" (§20.3 quoting rule)."
+   },
+   "printed": [
+    {
+     "kind": "table",
+     "path": "company/personalization/eval/2026-10-17-criterion-3b-readout.md",
+     "line": 150,
+     "quote": "| persona | Δ R₇ | 95% interval | win | harm | G1 Δ top-domain share (interval) · hi ≤ +0.05 | G2 Δ concepts (interval) · lo/ref ≥ −0.05 | G3 Δ prereq-first share (interval) · hi ≤ +0.02 | G4 Δ gain (interval) · lo/ref ≥ −0.05 | G1 | G2 | G3 | G4 |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| curious-newcomer | +0.0165 | +0.0150 to +0.0181 | win |  | +0.4183 (+0.4137 to +0.4229) · +0.4229 | +1.1135 (+1.0907 to +1.1363) · +0.0146 | -0.5463 (-0.5478 to -0.5448) · -0.5448 | +2.6980 (+2.4747 to +2.9213) · +0.0560 | **fails** | holds | holds | holds |\n| single-subject-crammer | +0.0187 | +0.0175 to +0.0199 | win |  | +0.2728 (+0.2651 to +0.2805) · +0.2805 | +0.1845 (-0.0560 to +0.4250) · -0.0007 | -0.4880 (-0.4895 to -0.4866) · -0.4866 | +5.1655 (+4.8975 to +5.4335) · +0.1079 | **fails** | holds | holds | holds |\n| struggling-repeater | +0.0131 | +0.0119 to +0.0143 | win |  | +0.4238 (+0.4195 to +0.4281) · +0.4281 | +1.1655 (+1.0570 to +1.2740) · +0.0166 | -0.5355 (-0.5375 to -0.5336) · -0.5336 | +2.9795 (+2.7698 to +3.1892) · +0.0731 | **fails** | holds | holds | holds |\n| returning-expert | +0.0106 | +0.0096 to +0.0116 | win |  | +0.1430 (+0.1379 to +0.1482) · +0.1482 | +2.8235 (+2.7784 to +2.8686) · +0.0304 | -0.4458 (-0.4475 to -0.4441) · -0.4441 | +2.2390 (+2.0380 to +2.4400) · +0.0628 | **fails** | holds | holds | holds |\n| wanderer | +0.0142 | +0.0131 to +0.0153 | win |  | +0.2973 (+0.2906 to +0.3039) · +0.3039 | +1.4725 (+1.4355 to +1.5095) · +0.0189 | -0.5123 (-0.5140 to -0.5106) · -0.5106 | +3.0355 (+2.8291 to +3.2419) · +0.0719 | **fails** | holds | holds | holds |\n| lapsed-returner | +0.0104 | +0.0092 to +0.0115 | win |  | +0.2785 (+0.2714 to +0.2856) · +0.2856 | +0.9410 (+0.8232 to +1.0588) · +0.0136 | -0.5448 (-0.5468 to -0.5428) · -0.5428 | +2.1445 (+1.9396 to +2.3494) · +0.0662 | **fails** | holds | holds | holds |"
+    },
+    {
+     "kind": "table",
+     "path": "company/personalization/eval/2026-10-17-criterion-3b-readout.md",
+     "line": 160,
+     "quote": "| persona | Δ R₇ | 95% interval | win | harm | G1 Δ top-domain share (interval) · hi ≤ +0.05 | G2 Δ concepts (interval) · lo/ref ≥ −0.05 | G3 Δ prereq-first share (interval) · hi ≤ +0.02 | G4 Δ gain (interval) · lo/ref ≥ −0.05 | G1 | G2 | G3 | G4 |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| curious-newcomer | +0.0225 | +0.0203 to +0.0248 | win |  | +0.4401 (+0.4357 to +0.4445) · +0.4445 | +0.9930 (+0.9489 to +1.0371) · +0.0215 | -0.5975 (-0.5987 to -0.5962) · -0.5962 | +1.7850 (+1.6188 to +1.9512) · +0.0494 | **fails** | holds | holds | holds |\n| single-subject-crammer | +0.0200 | +0.0183 to +0.0218 | win |  | +0.3097 (+0.3032 to +0.3162) · +0.3162 | -0.6760 (-0.9602 to -0.3918) · -0.0187 | -0.5629 (-0.5647 to -0.5612) · -0.5612 | +2.8730 (+2.6338 to +3.1122) · +0.0778 | **fails** | holds | holds | holds |\n| struggling-repeater | +0.0163 | +0.0145 to +0.0182 | win |  | +0.4510 (+0.4474 to +0.4545) · +0.4545 | +1.0730 (+0.9787 to +1.1673) · +0.0350 | -0.5530 (-0.5554 to -0.5506) · -0.5506 | +1.5780 (+1.4356 to +1.7204) · +0.0639 | **fails** | holds | holds | holds |\n| returning-expert | +0.0092 | +0.0077 to +0.0107 |  |  | +0.1984 (+0.1921 to +0.2046) · +0.2046 | +0.8785 (+0.8594 to +0.8976) · +0.0147 | -0.5134 (-0.5155 to -0.5112) · -0.5112 | +1.2515 (+1.0521 to +1.4509) · +0.0424 | **fails** | holds | holds | holds |\n| wanderer | +0.0153 | +0.0135 to +0.0170 | win |  | +0.3772 (+0.3708 to +0.3836) · +0.3836 | +0.9465 (+0.9226 to +0.9704) · +0.0235 | -0.5710 (-0.5729 to -0.5692) · -0.5692 | +1.5875 (+1.4206 to +1.7544) · +0.0539 | **fails** | holds | holds | holds |\n| lapsed-returner | +0.0083 | +0.0067 to +0.0100 |  |  | +0.3560 (+0.3492 to +0.3627) · +0.3627 | +0.7470 (+0.6551 to +0.8389) · +0.0283 | -0.5695 (-0.5726 to -0.5664) · -0.5664 | +0.8435 (+0.7051 to +0.9819) · +0.0453 | **fails** | holds | holds | holds |"
+    }
+   ],
+   "repro": {
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+    "status": {
+     "kind": "text",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+     "line": 13,
+     "quote": "| 3 | **R4 not needed now. It is parked.** INVALID comes from a static check of two files, not from the run, and G5 gates a GO only. R4 runs first if any later decision reads 3b's printed numbers. | §4 G5 |"
+    }
+   },
+   "decision": {
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+    "status": {
+     "kind": "text",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+     "line": 1,
+     "quote": "# G on readout 3b: reachable-v2 NO-GO (INVALID); website part of M1 closed"
+    },
+    "glance": {
+     "kind": "table",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+     "line": 9,
+     "quote": "| # | Decision | Rule |\n|---|---|---|\n| 1 | **reachable-v2 (2666271f…6714): NO-GO.** Readout 3b is INVALID: copy check V10 gave M3 = 4 at threshold 4. The numbers printed under INVALID are not a result. 3b is not re-run, and any changed copy check is a new criterion, frozen first. | §4 G4, G6 |\n| 2 | **K7 not sent.** reachable-v3 (53981ab0…c195) stays frozen and in the HQ lab, labelled. It is withdrawn from the website unscored. It carries all four V10 names, so 3b's frozen check would very likely print INVALID. I will not ask the eval to change its check after the fact. And GO needs G1 to hold in 12 of 12 rows, where every order built toward recall in this world failed: the reference arm, oracle-order and oracle-new in readout 3, and v2 in 240/240 rows. | §4 G4, §12 G1(c), G6 |\n| 3 | **R4 not needed now. It is parked.** INVALID comes from a static check of two files, not from the run, and G5 gates a GO only. R4 runs first if any later decision reads 3b's printed numbers. | §4 G5 |\n| 4 | **The website part of M1 is closed. M1 = the HQ part only.** Everyone gets the default order. The flag stays off. The founder's L3 answer lapses. AMD-013 stays ratified and unused. | §12 G6(a) |"
+    }
+   },
+   "standings": [
+    {
+     "candidate": "reachable-v2",
+     "quote": {
+      "kind": "text",
+      "path": "company/personalization/batches/2026-10-17-batch-5.md",
+      "line": 608,
+      "quote": "Record: \"reachable-v2, readout 3b: INVALID (copy check V10, M3 4 of 4). NO-GO.\""
+     }
+    },
+    {
+     "candidate": "reachable-v3",
+     "quote": {
+      "kind": "text",
+      "path": "company/personalization/batches/2026-10-17-batch-5.md",
+      "line": 647,
+      "quote": "\"not scored under M1; withdrawn from the website\""
+     }
+    },
+    {
+     "candidate": "reachable-v3",
+     "quote": {
+      "kind": "text",
+      "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+      "line": 12,
+      "quote": "| 2 | **K7 not sent.** reachable-v3 (53981ab0…c195) stays frozen and in the HQ lab, labelled. It is withdrawn from the website unscored. It carries all four V10 names, so 3b's frozen check would very likely print INVALID. I will not ask the eval to change its check after the fact. And GO needs G1 to hold in 12 of 12 rows, where every order built toward recall in this world failed: the reference arm, oracle-order and oracle-new in readout 3, and v2 in 240/240 rows. | §4 G4, §12 G1(c), G6 |"
+     }
+    },
+    {
+     "candidate": "R4 (reproduction of readout 3b)",
+     "quote": {
+      "kind": "text",
+      "path": "company/personalization/batches/2026-10-17-batch-5.md",
+      "line": 624,
+      "quote": "- **R4 is parked, not cancelled.** If any later decision or design reads readout 3b's printed numbers (for example \"G1 fails 240/240\" as evidence for a post-M1 design), R4 runs first, as readout §7 describes. Until then the HQ Evaluation view shows readout 3b as \"not reproduced (R4 parked: batch 5 §21.3)\"."
+     }
+    }
+   ]
   }
  ],
  "reviews": [
@@ -533,6 +637,26 @@
     "path": "company/personalization/batches/2026-10-17-batch-5.md",
     "line": 562,
     "quote": "## 20. Amendment to the lab exclusion: frozen candidates and the eval record in HQ (vp-personalization, run vp-hq-1017, 2026-10-17; W-1648)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §21",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 601,
+    "quote": "## 21. G on readout 3b: v2 NO-GO (INVALID); K7 not sent; R4 not needed now; the website part of M1 is closed (vp-personalization, run vp-g3b-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "G on readout 3b",
+   "quote": {
+    "kind": "text",
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md",
+    "line": 1,
+    "quote": "# G on readout 3b: reachable-v2 NO-GO (INVALID); website part of M1 closed"
    }
   },
   {
