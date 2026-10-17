@@ -3,7 +3,7 @@
 // Every validity check below was written, and every threshold set, BEFORE the candidate file was read (§4.0). In K5 they
 // run on fixtures only (tests3b.test.mjs); K6 runs them on the candidate inside run3b.mjs, after the freeze.
 import { spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync, readdirSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
@@ -194,6 +194,8 @@ export { COPY };
 // are recorded before any score and make nothing INVALID. The probes look at the candidate's behaviour only, never at its source.
 import { CRITERION2 } from "../c2/world2.mjs";
 import { catalog } from "../c3/harness3.mjs";
+import { poolFor } from "../harness.mjs";
+import { E1 } from "../c2/world2.mjs";
 import { defaultOrderFromDims } from "../c3/reachable-oracle.mjs";
 export const RATING_FIELD = "misconceptionStrength"; // the dims field the world fills with the simulated rating (harness.mjs poolFor)
 export function inputFacts(input, cat = catalog()) {
@@ -208,14 +210,65 @@ export function inputFacts(input, cat = catalog()) {
     Kc_rho: CRITERION2.rho.value,
     Kd_pilotOnly: keys.length === cat.lessons.length && keys.every((k) => cat.dims[k]) && [...new Set(Object.values(input.dims).map((d) => d.domain))].sort().join(",") === "cs,probability",
     Kd_lessons: keys.length,
+    // K-e (K6, F5b R6): no draft or retired lesson in dims (statuses as dims carries them; keGate also reads meta.json)
+    Ke_statuses: [...new Set(Object.values(input.dims).map((d) => d.status))].sort(), Ke_noDraftOrRetired: Object.values(input.dims).every((d) => VISIBLE_STATUSES.has(d.status)),
+    // W-1591 (K6): order rule v1 (default-order-rule.md), transcribed judge-side from its text, against the reference arm's order
+    Kf_orderRuleEqualsReferenceOrder: J(orderRuleV1(input.dims)) === J(cat.defaultOrder), Kf_orderRuleSha256: sha(orderRuleV1(input.dims).join("\n")),
   };
+}
+
+// ---------------- K6 additions (written before the freeze and before any candidate number) ----------------
+/** Statuses the product lists (src/lib/visibility.ts: published always, review shown tagged; draft and retired never in production). */
+export const VISIBLE_STATUSES = new Set(["published", "review"]);
+/** The 230-slug vector default-order-rule.md records for the pilot (sha256 of the slugs joined by "\n"). */
+export const ORDER_RULE_PILOT_SHA256 = "04bf48f41a703b88be6973717e209b4e39a3a0abaa283879725a5cfd16233853";
+/**
+ * Order rule v1 (company/personalization/policies/default-order-rule.md, steps 1 to 4), transcribed by the judge from the
+ * rule's text alone. Reads slug, domain and status only; never key order (the sort is total on slug).
+ */
+export function orderRuleV1(dims) {
+  const rank = (e) => (e.status === undefined || e.status === "published" ? 0 : 1);
+  const sorted = Object.values(dims).slice().sort((a, b) => rank(a) - rank(b) || (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0));
+  const groups = new Map();
+  for (const e of sorted) { if (!groups.has(e.domain)) groups.set(e.domain, []); groups.get(e.domain).push(e.slug); }
+  const qs = [...groups.values()], out = [];
+  while (qs.some((q) => q.length)) for (const q of qs) if (q.length) out.push(q.shift());
+  return out;
+}
+/**
+ * K-e gate (K6, before the first score; batch 5 §13 R6): the dims every arm receives hold no draft or retired lesson.
+ * dims = poolFor(cat, seed, ...) maps cat.lessons at every seed and every cell (harness.mjs poolFor; harness3.mjs runEpisode3),
+ * so the gate builds it at every seed of the block and reads (a) each entry's status and (b) the lesson's own meta.json
+ * status on disk; it also lists every pilot-domain lesson on disk whose status is not visible, and whether dims holds it.
+ */
+export function keGate(seeds, cat = catalog()) {
+  const problems = [], slugSets = new Set();
+  for (const s of seeds) {
+    const pool = poolFor(cat, s, CRITERION2.rho.value, { b2: E1 });
+    slugSets.add(pool.map((d) => d.slug).join(","));
+    for (const d of pool) if (!VISIBLE_STATUSES.has(d.status)) problems.push(`seed ${s}: ${d.slug} status ${d.status}`);
+  }
+  const inDims = new Set(cat.lessons.map((l) => l.slug)), meta = {}, hidden = [];
+  for (const dom of ["probability", "cs"]) for (const slug of readdirSync(join(ROOT, "src", "demos", dom))) {
+    const f = join(ROOT, "src", "demos", dom, slug, "meta.json"); if (!existsSync(f)) continue;
+    const st = JSON.parse(readFileSync(f, "utf8")).status; meta[slug] = st;
+    if (!VISIBLE_STATUSES.has(st)) hidden.push({ slug: `${dom}/${slug}`, status: st, inDims: inDims.has(slug) });
+  }
+  for (const l of cat.lessons) { if (meta[l.slug] === undefined) problems.push(`${l.slug}: no meta.json in the pilot domains`); else if (meta[l.slug] !== l.status) problems.push(`${l.slug}: dims status ${l.status} but meta.json ${meta[l.slug]}`); if (!VISIBLE_STATUSES.has(meta[l.slug])) problems.push(`${l.slug}: meta.json status ${meta[l.slug]}`); }
+  for (const h of hidden) if (h.inDims) problems.push(`${h.slug} (${h.status}) is in dims`);
+  const statusCounts = {}; for (const l of cat.lessons) statusCounts[l.status] = (statusCounts[l.status] || 0) + 1;
+  const rule = orderRuleV1(cat.dims);
+  return { ok: problems.length === 0 && slugSets.size === 1, seeds: `${seeds[0]}..${seeds.at(-1)} (${seeds.length})`, lessons: cat.lessons.length, distinctLessonSetsAcrossSeeds: slugSets.size,
+    statusCounts, hiddenPilotLessonsOnDisk: hidden, problems: problems.slice(0, 20),
+    orderRule: { equalsReferenceOrder: J(rule) === J(cat.defaultOrder), sha256: sha(rule.join("\n")), matchesRuleFileVector: sha(rule.join("\n")) === ORDER_RULE_PILOT_SHA256 } };
 }
 /** Probe (report only): among rank items of exactly equal value, the share of adjacent pairs in default order. */
 export function tieOrderProbe(cand, input, cat = catalog()) {
   const pos = new Map(cat.defaultOrder.map((s, i) => [s, i]));
-  const r = cand.rank(input); let pairs = 0, agree = 0;
-  for (let i = 1; i < r.length; i++) if (r[i].value === r[i - 1].value) { pairs++; if (pos.get(r[i - 1].slug) < pos.get(r[i].slug)) agree++; }
-  return { tiedPairs: pairs, inDefaultOrder: agree };
+  const rule = new Map(orderRuleV1(input.dims).map((s, i) => [s, i]));
+  const r = cand.rank(input); let pairs = 0, agree = 0, agreeRule = 0;
+  for (let i = 1; i < r.length; i++) if (r[i].value === r[i - 1].value) { pairs++; if (pos.get(r[i - 1].slug) < pos.get(r[i].slug)) agree++; if (rule.get(r[i - 1].slug) < rule.get(r[i].slug)) agreeRule++; }
+  return { tiedPairs: pairs, inDefaultOrder: agree, inOrderRule: agreeRule };
 }
 /** Probe (report only): permute the rating field across lessons (fixed rotation); does rank change? */
 export function ratingProbe(cand, input) {

@@ -27,8 +27,8 @@ node company/personalization/eval/harness/c3b/harness3b.mjs seeds --pilot=500 --
 node company/personalization/eval/harness/c3b/run3b.mjs --plumbing --seeds=3 --jobs=4 [--chain] --out=/tmp/c3b-plumbing   # fixture; readings meaningless
 # K6 only, after `status: frozen`, the candidate hash and the V3 record are in the criterion (the lock refuses otherwise):
 NODE_OPTIONS=--max-old-space-size=8192 node company/personalization/eval/harness/c3b/run3b.mjs \
-  --candidate=company/personalization/policies/reachable-v1.ts --seeds=2000 --jobs=4 \
-  --corpus-extra=<A1 commit>:company/personalization/policies/reachable-v1-params.md --out=<dir>
+  --candidate=company/personalization/policies/reachable-v2.ts --seeds=2000 --jobs=4 \
+  --corpus-extra=48218b3:company/personalization/policies/reachable-v1-params.md,b4bad91:company/personalization/policies/default-order-rule.md --out=<dir>
 node company/personalization/eval/harness/c3b/readout3b-tables.mjs --dir=<dir>
 ```
 

@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // The criterion 3b run (K6): one candidate vs default-order + fixed in criterion 3's world.
 //   NODE_NO_WARNINGS=1 NODE_OPTIONS=--max-old-space-size=8192 node company/personalization/eval/harness/c3b/run3b.mjs \
-//       --candidate=company/personalization/policies/reachable-v1.ts --seeds=<S> [--jobs=4] [--placements=interleave,first] --out=<dir>
+//       --candidate=company/personalization/policies/reachable-v2.ts --seeds=<S> [--jobs=4] [--placements=interleave,first] --out=<dir>
 //   Plumbing (any time; the fixture in the slot, the oracle row replaced by the reference arm; readings meaningless):
 //   node company/personalization/eval/harness/c3b/run3b.mjs --plumbing --seeds=3 [--chain] --out=<dir>
 // owner: personalization-eval (Uma) · run: eval-k5-1017 · criterion 3b §2 to §8
 //
-// Order: lock -> 3b-ID0, 3b-ID1, T5c (any failure stops the run: an eval defect) -> 3b-ID2 (reference arm at readout 3's
+// Order: lock -> 3b-ID0, 3b-ID1, T5c (any failure stops the run: an eval defect) -> K-e gate (K6: a draft or retired
+// lesson in dims stops the run before any score, batch 5 §13 R6) -> 3b-ID2 (reference arm at readout 3's
 // seeds equals readout 3's reference rows; stops on failure) -> every unit in worker threads -> candidate validity V1-V10
 // (any failure, or any candidate unit error, makes the candidate INVALID) -> the rule per cell, the outcome over the sweep,
 // the reported rows -> <out>/results.ndjson, verdicts.json, manifest.json. It writes no prose.
@@ -25,7 +26,7 @@ import { E3 } from "../c3/world3.mjs";
 import { t5Static3 } from "../c3/checks3.mjs";
 import { cells3b, seedList3b, header3b, assertCandidateAllowed, assertOracleAllowed, candidateRunner, CRITERION3B_FILE, FIXTURE, CANDIDATE_ARM, ORACLE_ARM,
   BASE_CELL_3B, CATALOG_SHA256_C3, catalogSha, ROOT } from "./harness3b.mjs";
-import { identityFiles3b, identitySlot, chainReadout3, READOUT3_SEEDS, v1Static, callChecks, v3CrossProcess, v3Episode, v9Hash, v10Copy, COPY, inputFacts, tieOrderProbe, ratingProbe } from "./checks3b.mjs";
+import { identityFiles3b, identitySlot, chainReadout3, READOUT3_SEEDS, v1Static, callChecks, v3CrossProcess, v3Episode, v9Hash, v10Copy, COPY, inputFacts, tieOrderProbe, ratingProbe, keGate } from "./checks3b.mjs";
 import { loadCandidate } from "./slot.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -63,7 +64,7 @@ async function validity(candidatePath, cells, s0, expectedSha) {
       const ins = byPersona[p.id];
       if (ins.length) v.inputFacts.push({ cell: c.name, persona: p.id, ...inputFacts(ins[0]) });
       const tie = ins.map((x) => tieOrderProbe(cand, x)), rat = ins.map((x) => ratingProbe(cand, x));
-      v.probes.push({ cell: c.name, persona: p.id, inputs: ins.length, tiedPairs: tie.reduce((a, x) => a + x.tiedPairs, 0), tiedInDefaultOrder: tie.reduce((a, x) => a + x.inDefaultOrder, 0), ratingPermutationChangesRank: rat.filter((x) => x.changes).length });
+      v.probes.push({ cell: c.name, persona: p.id, inputs: ins.length, tiedPairs: tie.reduce((a, x) => a + x.tiedPairs, 0), tiedInDefaultOrder: tie.reduce((a, x) => a + x.inDefaultOrder, 0), tiedInOrderRule: tie.reduce((a, x) => a + x.inOrderRule, 0), ratingPermutationChangesRank: rat.filter((x) => x.changes).length });
     }
     for (const p of PERSONAS) {
       const ins = byPersona[p.id], other = byPersona[PERSONAS[(PERSONAS.indexOf(p) + 1) % PERSONAS.length].id];
@@ -96,6 +97,10 @@ async function main() {
   const judge = { id0: identityFiles3b(), id1: await identitySlot({ fixturePath: FIXTURE, ...(PLUMBING ? { cells: ["interleave:base", "first:base"], seeds: [1001] } : {}) }), t5c: t5Static3() };
   if (!(judge.id0.ok && judge.id1.ok && judge.t5c.ok)) { writeFileSync(join(out, "judge-tests.json"), JSON.stringify(judge, null, 2)); throw new Error("3b-ID0/ID1/T5c failed: run stopped (eval defect)"); }
   const cells = cells3b(E1, E3).filter((c) => placements.includes(c.placement));
+
+  // K-e (K6, batch 5 §13 R6): before the first score, dims holds no draft or retired lesson; else stop and score nothing
+  judge.ke = keGate(seeds);
+  if (!judge.ke.ok) { writeFileSync(join(out, "judge-tests.json"), JSON.stringify(judge, null, 2)); throw new Error("K-e failed: dims holds a draft or retired lesson; run stopped before any score (report to vp-personalization)"); }
 
   // 3b-ID2: the reference arm at readout 3's seeds reproduces readout 3's reference rows (base cells of the placements run)
   let chain = { skipped: true };
