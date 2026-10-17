@@ -32,6 +32,17 @@ export type SimMeta = {
   policies: { model: string[]; all: string[]; ablations: Record<string, string[]> };
   sim: Record<string, unknown> & { defaultDays: number };
   saved: string[];
+  /** Present only when the server serves committed precomputed runs (production, or HQ_LAB_PRECOMPUTED=1). */
+  precomputed?: PrecomputedInfo;
+};
+
+/** What a precomputed lab can serve (src/data/hq-personalization/manifest.json minus the file hashes). */
+export type PrecomputedInfo = {
+  schema: "personalization-hq-precomputed-v1";
+  inputsCommit: string; inputsCommitDate: string; command: string;
+  modelVersion: string; personasVersion: string;
+  personas: string[]; policies: string[]; seeds: number[]; days: number;
+  compare: { seeds: number; days: number; sets: ("main" | "all")[]; scopes: string[] };
 };
 
 export type ScoreTerm = { name: string; value: number };
@@ -150,6 +161,16 @@ export function policyGroups(p: SimMeta["policies"]): { label: string; items: st
     ...(rest.length ? [{ label: "Other", items: rest }] : []),
   ];
 }
+
+/** The selector groups, limited to what a precomputed lab can serve (empty groups dropped). Live: unchanged. */
+export function servableGroups(p: SimMeta["policies"], pre: PrecomputedInfo | undefined): { label: string; items: string[] }[] {
+  const g = policyGroups(p);
+  return pre ? g.map((x) => ({ ...x, items: x.items.filter((i) => pre.policies.includes(i)) })).filter((x) => x.items.length) : g;
+}
+
+/** One line naming where precomputed results came from (shown on the page and as a trace's run.source). */
+export const precomputedLine = (pre: PrecomputedInfo): string =>
+  `precomputed from inputs commit ${pre.inputsCommit} (${pre.inputsCommitDate.slice(0, 10)}, ${pre.modelVersion}), seed ${pre.seeds.join(", ")}, ${pre.days} days`;
 
 /** One-line summary of a timeline step. */
 export function stepLine(s: Step): string {

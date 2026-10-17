@@ -9,7 +9,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { HqTop } from "../HqTop";
 import hq from "../hq.module.css";
 import {
-  NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, policyGroups, pwlAt, stepLine, yesNo,
+  NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, precomputedLine, pwlAt, servableGroups, stepLine, yesNo,
   type CurveView, type NeedExplanation, type NewStep, type PersonaView, type SimCompare, type SimMeta, type SimTrace, type SlotTrace, type Step,
 } from "@/lib/hq-personalization";
 import s from "./personalization.module.css";
@@ -168,10 +168,15 @@ function StepView({ step, trace, onGo }: { step: Step; trace: SimTrace; onGo: (i
   );
 }
 
-function Compare({ meta, persona, days }: { meta: SimMeta; persona: string; days: number }) {
+function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: string; days: number }) {
+  // Precomputed (released HQ): only the stored comparisons can be served, so seeds and days are fixed and only
+  // the stored policy sets are offered (W-1572 H1).
+  const pre = meta.precomputed?.compare;
+  const days = pre ? pre.days : liveDays;
   const [scope, setScope] = useState<"persona" | "all">("persona");
-  const [seeds, setSeeds] = useState(5);
-  const [set, setSet] = useState<"main" | "all">("main");
+  const [seedsLive, setSeeds] = useState(5);
+  const seeds = pre ? pre.seeds : seedsLive;
+  const [set, setSet] = useState<"main" | "all">(pre && !pre.sets.includes("main") ? pre.sets[0] : "main");
   const [res, setRes] = useState<SimCompare | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -202,23 +207,27 @@ function Compare({ meta, persona, days }: { meta: SimMeta; persona: string; days
             <option value="all">all six simulated personas</option>
           </select>
         </label>
-        <label>Seeds
-          <input type="number" min={1} max={10} value={seeds} onChange={(e) => setSeeds(Math.max(1, Math.min(10, Number(e.target.value) || 1)))} />
-        </label>
+        {pre ? (
+          <p className={s.fixed}>Seeds {pre.seeds} · {pre.days} days <span className={s.muted}>(precomputed)</span></p>
+        ) : (
+          <label>Seeds
+            <input type="number" min={1} max={10} value={seeds} onChange={(e) => setSeeds(Math.max(1, Math.min(10, Number(e.target.value) || 1)))} />
+          </label>
+        )}
         <label>Policies
           <select value={set} onChange={(e) => setSet(e.target.value as "main" | "all")}>
-            <option value="main">model policies ({meta.policies.model.length})</option>
-            <option value="all">with ablations ({meta.policies.all.length})</option>
+            {(!pre || pre.sets.includes("main")) && <option value="main">model policies ({meta.policies.model.filter((p) => meta.policies.all.includes(p)).length})</option>}
+            {(!pre || pre.sets.includes("all")) && <option value="all">with ablations ({meta.policies.all.length})</option>}
           </select>
         </label>
-        <button type="submit" className={hq.btn} disabled={busy}>{busy ? "Running…" : "Run comparison"}</button>
+        <button type="submit" className={hq.btn} disabled={busy}>{busy ? (pre ? "Loading…" : "Running…") : pre ? "Show comparison" : "Run comparison"}</button>
       </form>
       {err && <p role="alert" className={s.error}>{err}</p>}
       {res && (
         <div className={s.scroll} tabIndex={0} role="region" aria-label="Policy comparison table">
           <table className={s.table}>
             <caption className={s.cap}>
-              {UNSCORED_LABEL}. {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({(res.ms / 1000).toFixed(1)} s, {res.modelVersion})
+              {UNSCORED_LABEL}. {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({meta.precomputed ? precomputedLine(meta.precomputed).replace(/, seed .*$/, "") : `${(res.ms / 1000).toFixed(1)} s, ${res.modelVersion}`})
             </caption>
             <thead><tr><th scope="col">policy</th><th scope="col">episodes</th>{cols.map(([k, l]) => <th key={k} scope="col" title={res.columns[k as string]}>{l}</th>)}</tr></thead>
             <tbody>
@@ -264,11 +273,14 @@ function FingerprintTable({ persona, trace, step, meta }: { persona: PersonaView
 }
 
 export default function Personalization({ meta, error, initial }: { meta: SimMeta | null; error: string | null; initial: Initial }) {
-  const personaIds = meta?.personas.map((p) => p.id) ?? [];
+  // Precomputed (released HQ, W-1572 H1): only stored runs can be served, so the choices are limited to them.
+  const pre = meta?.precomputed;
+  const personaIds = (meta?.personas.map((p) => p.id) ?? []).filter((id) => !pre || pre.personas.includes(id));
+  const policyIds = pre ? pre.policies : meta?.policies.all ?? [];
   const [personaId, setPersonaId] = useState(initial.persona && personaIds.includes(initial.persona) ? initial.persona : personaIds[0] ?? "");
-  const [policy, setPolicy] = useState(initial.policy && meta?.policies.all.includes(initial.policy) ? initial.policy : "gam");
-  const [seed, setSeed] = useState(initial.seed && initial.seed >= 1 ? initial.seed : 1);
-  const [days, setDays] = useState(initial.days && initial.days >= 1 && initial.days <= 14 ? initial.days : meta?.sim.defaultDays ?? 7);
+  const [policy, setPolicy] = useState(initial.policy && policyIds.includes(initial.policy) ? initial.policy : policyIds.includes("gam") ? "gam" : policyIds[0] ?? "gam");
+  const [seed, setSeed] = useState(pre ? (initial.seed && pre.seeds.includes(initial.seed) ? initial.seed : pre.seeds[0]) : initial.seed && initial.seed >= 1 ? initial.seed : 1);
+  const [days, setDays] = useState(pre ? pre.days : initial.days && initial.days >= 1 && initial.days <= 14 ? initial.days : meta?.sim.defaultDays ?? 7);
   const [trace, setTrace] = useState<SimTrace | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -299,7 +311,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
 
   // Keep the URL shareable.
   useEffect(() => {
-    if (!trace || trace.run.source !== "live") return;
+    if (!trace || trace.run.source.startsWith("saved")) return;
     const q = new URLSearchParams({ persona: trace.run.persona, policy: trace.run.policy, seed: String(trace.run.seed), days: String(trace.run.days ?? days) });
     if (stepNo !== null) q.set("step", String(stepNo));
     window.history.replaceState(null, "", `/hq/personalization?${q}`);
@@ -331,7 +343,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
   const personaFp = persona.fingerprintMeans;
   const stepFp = newStep ? newStep.fingerprint : null;
   const damp = curvesFor("dampener")[0];
-  const groups = policyGroups(meta.policies);
+  const groups = servableGroups(meta.policies, pre);
 
   return (
     <div className={hq.hq}>
@@ -352,14 +364,21 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
             <Link href="/hq/library/personalization/model/README.md">change rule</Link>).
           </p>
           <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
+          {pre && (
+            <p className={s.precomputed} role="note">
+              Precomputed: this lab runs nothing. It shows simulator runs {precomputedLine(pre)}, generated locally with <code>{pre.command}</code>{" "}
+              for {pre.personas.length} simulated personas × {pre.policies.length} policies, and comparisons at {pre.compare.seeds} seeds.
+              Other seeds, days, ablation runs and saved traces need a local lab (npm run dev).
+            </p>
+          )}
         </header>
 
         <section className={s.panel} aria-labelledby="run-h">
-          <h2 id="run-h">Run or load a simulation</h2>
+          <h2 id="run-h">{pre ? "Load a precomputed simulation" : "Run or load a simulation"}</h2>
           <form className={s.controls} onSubmit={(e) => { e.preventDefault(); runLive(); }}>
             <label>Simulated persona
               <select value={personaId} onChange={(e) => setPersonaId(e.target.value)}>
-                {meta.personas.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+                {meta.personas.filter((p) => personaIds.includes(p.id)).map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
               </select>
             </label>
             <label>Policy
@@ -371,13 +390,28 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
                 ))}
               </select>
             </label>
-            <label>Seed
-              <input type="number" min={1} max={999} value={seed} onChange={(e) => setSeed(Math.max(1, Math.min(999, Number(e.target.value) || 1)))} />
-            </label>
-            <label>Days
-              <input type="number" min={1} max={14} value={days} onChange={(e) => setDays(Math.max(1, Math.min(14, Number(e.target.value) || 1)))} />
-            </label>
-            <button type="submit" className={hq.btn} disabled={busy}>{busy ? "Running…" : "Run"}</button>
+            {pre ? (
+              <>
+                {pre.seeds.length > 1 ? (
+                  <label>Seed
+                    <select value={seed} onChange={(e) => setSeed(Number(e.target.value))}>
+                      {pre.seeds.map((k) => <option key={k} value={k}>{k}</option>)}
+                    </select>
+                  </label>
+                ) : null}
+                <p className={s.fixed}>{pre.seeds.length > 1 ? "" : `Seed ${pre.seeds[0]} · `}{pre.days} days <span className={s.muted}>(precomputed)</span></p>
+              </>
+            ) : (
+              <>
+                <label>Seed
+                  <input type="number" min={1} max={999} value={seed} onChange={(e) => setSeed(Math.max(1, Math.min(999, Number(e.target.value) || 1)))} />
+                </label>
+                <label>Days
+                  <input type="number" min={1} max={14} value={days} onChange={(e) => setDays(Math.max(1, Math.min(14, Number(e.target.value) || 1)))} />
+                </label>
+              </>
+            )}
+            <button type="submit" className={hq.btn} disabled={busy}>{busy ? (pre ? "Loading…" : "Running…") : pre ? "Show" : "Run"}</button>
           </form>
           {meta.saved.length > 0 && (
             <form className={s.controls} onSubmit={(e) => { e.preventDefault(); if (savedFile) load(new URLSearchParams({ op: "saved", file: savedFile })); }}>

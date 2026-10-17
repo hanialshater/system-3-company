@@ -24,14 +24,19 @@
 // The import allowlist is a trust list, not a scan: the modules on IMPORT_ALLOW (for example @/lib/hq, ../HqTop,
 // ../model.ts, ./simulate.mjs) are trusted by name and their own contents are not scanned here. A change to any
 // allowlisted file is re-read by hq-engineer under ruling L2 (company/reviews/hq/2026-10-16-d2-review.md M1).
+// Precomputed mode (W-1572 H1): the reader module, the generator (tools/hq-lab-precompute.mjs) and the committed
+// data folder are in scope; .gz files are decompressed before the scan. Data files (.json, .gz, .md) get every rule
+// except the import rules, which apply to code files only (a JSON key "from" is not an import).
 // CSS: any url() with a scheme (https:, http:, data: and the rest) or a protocol-relative "//" fails, so a style
 // cannot load from outside the lab (D2 review M3). Lab styles need no images today.
+// W-1552 (company/reviews/hq/2026-10-16-u1-review.md): `@import` and `image-set(` fail too, since neither needs `url(`.
 //
 // The second test proves the scanner is not blind: each forbidden pattern is planted in a temp copy and must fail.
 // Run: npm run test:hq. It is enforced by `npm run verify` (which runs test:hq), not by `npm run check` (D2 review M5).
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import zlib from "node:zlib";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -44,6 +49,9 @@ export const SCOPE = [
   "src/app/api/hq/personalization",
   "src/lib/hq-personalization.ts",
   "src/lib/hq-personalization-server.ts",
+  "src/lib/hq-personalization-precomputed.ts",
+  "src/data/hq-personalization",
+  "tools/hq-lab-precompute.mjs",
   "company/personalization/model/sim/hq-cli.mjs",
 ];
 /** Must exist (a rename or move fails the test instead of silently shrinking the scan). */
@@ -53,14 +61,18 @@ const REQUIRED = [
   "src/app/api/hq/personalization/route.ts",
   "src/lib/hq-personalization.ts",
   "src/lib/hq-personalization-server.ts",
+  "src/lib/hq-personalization-precomputed.ts",
+  "src/data/hq-personalization/manifest.json",
+  "src/data/hq-personalization/meta.json",
+  "tools/hq-lab-precompute.mjs",
   "company/personalization/model/sim/hq-cli.mjs",
 ];
 
 /** Modules the lab files may import. Adding one is a read: check it touches no learner data first. */
 const IMPORT_ALLOW = new Set([
   "react", "next/link", "next/navigation",
-  "node:child_process", "node:fs", "node:path", "node:url",
-  "@/lib/hq", "@/lib/hq-personalization", "@/lib/hq-personalization-server",
+  "node:child_process", "node:fs", "node:path", "node:url", "node:crypto", "node:zlib",
+  "@/lib/hq", "@/lib/hq-personalization", "@/lib/hq-personalization-server", "./hq-personalization-precomputed",
   "./hq-personalization", "./Personalization", "./personalization.module.css", "../HqTop", "../hq.module.css",
   // hq-cli.mjs → the model and simulator (learner-model-engineer's files; data inputs listed in DoD D1)
   "../model.ts", "../personas.ts", "./catalog.mjs", "./simulate.mjs", "./learner.ts", "./score.ts",
@@ -90,6 +102,9 @@ const FORBIDDEN = [
   ["EventSource", /EventSource/],
   // D2 review M3: a url() that names a scheme or a host (protocol-relative) in any lab file, CSS included.
   ["url() with a scheme or host", /\burl\(\s*["']?\s*(?:[a-z][a-z0-9+.-]*:|\/\/)/i],
+  // W-1552: CSS loads that need no url(): @import "…" and image-set("…") (also -webkit-image-set).
+  ["@import", /@import\b/i],
+  ["image-set()", /\bimage-set\s*\(/i],
 ];
 
 function listFiles(root) {
@@ -114,7 +129,10 @@ export function scanLab(root = REPO) {
   for (const rel of REQUIRED) if (!fs.existsSync(path.join(root, rel))) findings.push({ file: rel, line: 0, rule: "missing scoped file", text: "" });
   const files = listFiles(root);
   for (const file of files) {
-    const text = fs.readFileSync(path.join(root, file), "utf8");
+    const raw = fs.readFileSync(path.join(root, file));
+    let text;
+    try { text = file.endsWith(".gz") ? zlib.gunzipSync(raw).toString("utf8") : raw.toString("utf8"); }
+    catch { findings.push({ file, line: 0, rule: "unreadable .gz", text: "" }); continue; }
     const hit = (i, rule) => findings.push({ file, line: lineOf(text, i), rule, text: text.split("\n")[lineOf(text, i) - 1].trim().slice(0, 160) });
     for (const [rule, re] of FORBIDDEN) for (const m of text.matchAll(new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g"))) hit(m.index, rule);
     // fetch: every mention must be the allowed literal call (an alias such as `const f = fetch` is a finding).
@@ -126,7 +144,9 @@ export function scanLab(root = REPO) {
     for (const m of text.matchAll(/\/api\b/g)) {
       if (!/^\/api\/hq\/personalization(?![\w/$.-])/.test(text.slice(m.index))) hit(m.index, "other /api/ path");
     }
-    // imports: static (`from "x"`), side-effect (`import "x"`), dynamic (`import(x)`) and require(x).
+    // imports: static (`from "x"`), side-effect (`import "x"`), dynamic (`import(x)`) and require(x). Code files only:
+    // in stored JSON a key such as "from":"phase-B" is data, not an import (data files get every other rule).
+    if (!/\.(?:[cm]?[jt]sx?|css)$/.test(file)) continue;
     const checkSpec = (i, spec) => {
       if (FORBIDDEN_MODULE.test(spec)) hit(i, "forbidden module import");
       else if (!IMPORT_ALLOW.has(spec)) hit(i, "import not on the allowlist");
@@ -194,6 +214,16 @@ export const BREAKS = [
   ["import not on the allowlist", PX, 'import { trusted } from "@/lib/trust";', "import not on the allowlist"],
   ["next/headers", RT, 'import { cookies as c } from "next/headers";', "import not on the allowlist"],
   ["new file in the lab folder", "src/app/hq/personalization/Extra.tsx", 'export const v = () => localStorage.getItem("s3c:x");', "localStorage"],
+  // W-1552 (company/reviews/hq/2026-10-16-u1-review.md)
+  ["@import of an external stylesheet", "src/app/hq/personalization/personalization.module.css", '@import "https://example.com/x.css";', "@import"],
+  ["image-set() with an external image", "src/app/hq/personalization/personalization.module.css", '.x { background-image: image-set("https://example.com/p.png" 1x); }', "image-set()"],
+  ["-webkit-image-set()", "src/app/hq/personalization/personalization.module.css", ".x { background-image: -webkit-image-set('//example.com/p.png' 1x); }", "image-set()"],
+  // W-1572 H1: the precomputed reader, the generator and the committed data are scanned too.
+  ["precomputed reader fetch", "src/lib/hq-personalization-precomputed.ts", 'const r0 = await fetch("/api/events");', "fetch other than the literal lab route"],
+  ["precomputed reader import", "src/lib/hq-personalization-precomputed.ts", 'import { me } from "@/lib/accounts";', "forbidden module import"],
+  ["generator reads storage keys", "tools/hq-lab-precompute.mjs", 'const k0 = "s3c:progress:v1";', "s3c:"],
+  ["stored meta names a storage key", "src/data/hq-personalization/meta.json", '{"from":"localStorage"}', "localStorage"],
+  ["stored trace (gz) names a storage key", "src/data/hq-personalization/runs/x.gam.seed1.days7.json.gz", '{"key":"s3c:progress:v1"}', "s3c:"],
 ];
 
 function copyLab(dest) {
@@ -214,7 +244,8 @@ test("break check: every forbidden pattern planted in a temp copy fails the scan
       copyLab(dir);
       const abs = path.join(dir, file);
       fs.mkdirSync(path.dirname(abs), { recursive: true });
-      fs.appendFileSync(abs, `\n${code}\n`);
+      if (file.endsWith(".gz")) fs.writeFileSync(abs, zlib.gzipSync(Buffer.from(code))); // scanned decompressed
+      else fs.appendFileSync(abs, `\n${code}\n`);
       const { findings } = scanLab(dir);
       assert.ok(findings.some((f) => f.file === file && f.rule === rule), `break "${name}" not caught as [${rule}]; got:\n${fmt(findings) || "(no findings)"}`);
     });
