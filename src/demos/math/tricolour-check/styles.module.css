@@ -19,7 +19,8 @@
 /* Fixed square so the HTML tap targets sit exactly on the SVG labels (viewBox -8 -8 116 116). */
 .board {
   position: relative;
-  width: min(100%, 40dvh);
+  /* S4 D2: height-aware, floored where 4.6-unit stage text is 10 px (4.6 x 254 / 116). */
+  width: min(100%, clamp(254px, calc(100dvh - 458px), 320px));
   aspect-ratio: 1;
   margin: 0 auto;
 }
@@ -145,7 +146,8 @@
 .wrap .controls {
   margin-top: 4px;
   justify-content: center;
-  gap: 6px;
+  /* S4 D1: one line at 360 wide (285 of 290 px). */
+  gap: 4px;
 }
 
 .chip {
@@ -157,6 +159,8 @@
 
 .btn {
   min-height: 44px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .sr {

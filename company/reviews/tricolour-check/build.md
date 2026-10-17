@@ -46,3 +46,19 @@ Busiest frame, 3₁ after `trefoil3` and Check all: counter 3 (Crossings, OK, of
 - Fact-check of c1 to c8, all unverified (fact-checker). c5 is the proof: if it is held, the brief says cut the sentence and tell cm-math-discrete the lesson has lost its proof.
 - Design review of the walkthrough against S1 to S4, T3-letters and the reveal-time row hide (design-lead, S4).
 - QA record (qa-tester), simulated learner walk (learner roles).
+
+## 2026-10-17 · S4 D1 and D2 applied (v2)
+Source: `company/design/reviews/2026-10-16-tricolour-check-s4.md`, changes D1 and D2, copied as written into `styles.module.css`. No text, claim or Demo.tsx change.
+- D1: `.wrap .controls` gap 6px → 4px (margin-top 4px, justify-content center, flex-wrap kept); `.btn` gains `padding-left: 8px; padding-right: 8px` (min-height 44px kept). Chips and font sizes unchanged.
+- D2: `.board` width `min(100%, 40dvh)` → `min(100%, clamp(254px, calc(100dvh - 458px), 320px))` (position, aspect-ratio 1, margin kept).
+- **Version 1 → 2.** demo-standard "The lesson version" bumps on "any other learner-visible change"; the board size and the row's line count change what a learner sees at 360 wide (390×844 is unchanged). Records stamped v1 now count as for an older version.
+
+Re-checks on a fresh build of this worktree (head 1885929e + these edits), own dist dir and port:
+- `fit-probe.mjs`, light and dark, all 3 options. Explore: 390×844 board 320, 1 line, overflow 0, row hidden 0, min text 12.7 px. 360×740 board 282, 1 line, **overflow 0, row hidden 0**, min text 11.2 px. 360×640 board 254, 1 line, overflow 67, row hidden 57, min text 10.1 px. Reveal: 390×844 crop 0, 37 px spare, 320 px picture, 87/89/89 words; 360×740 crop 77; 360×640 crop 149. Every number matches the record's D1+D2 table.
+- `geom-probe.mjs`: unchanged in viewBox units (4₁ tightest label 17.0 from a crossing, ring clearance 1.7, closest labels 27.8; stage text strand/label/glyph hits 0 on both knots).
+- `node tools/reveal-fit.mjs --strict --width 390 --height 844`: fit, crop 0, phoneFit true, hiddenBelow 0, namedHidden 0, 87 words, picture 320 px at scale 1, pass 1 (tool commit bc747077, clean). Screenshot viewed.
+- Walkthrough (`--url`, phone): 9 frames and sheet viewed; row on one line in every frame, reveal unchanged. Also viewed the 360×740 explore shot: whole row on screen.
+- QA: `tests/qa/contract.spec.ts`, QA_ONLY=tricolour-check, own NEXT_DIST_DIR/QA_PORT/QA_OUT: 2 passed (phone, desktop). Builder run, not a QA record.
+- `npm run check` passed; `npm run typecheck` passed.
+
+Owed (not mine): qa-tester record and learner walk on v2 (v1 records are now for an older version); cm-math-discrete on `loopOne` (decision 1).
