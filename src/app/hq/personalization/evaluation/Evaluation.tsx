@@ -11,11 +11,14 @@ import hq from "../../hq.module.css";
 import s from "../personalization.module.css";
 
 export type Quote = { kind: "text" | "table"; path: string; line: number; quote: string };
-type Study =
-  | { id: string; name: string; pending?: undefined;
-      criterion: { path: string; freezeCommit: string; sha256: string; hashChecked: string; freezeLine: Quote };
-      readout: { path: string; verdicts: Quote[] }; repro: { path: string; status: Quote }; decision: { path: string; status: Quote; glance: Quote } }
-  | { id: string; name: string; pending: string; criterionStatus: Quote; criterionPath: string };
+type Study = {
+  id: string; name: string;
+  criterion: { path: string; freezeCommit: string; sha256: string; hashChecked: string; freezeLine: Quote };
+  readout: { path: string; verdicts: Quote[] }; repro: { path: string; status: Quote }; decision: { path: string; status: Quote; glance: Quote };
+  /** Readout 3b only: rows printed under INVALID, shown after the verdict under printedLabel (batch 5 §21.1). */
+  printedLabel?: string; printedRule?: Quote; printed?: Quote[];
+  standings?: { candidate: string; quote: Quote }[];
+};
 export type EvalIndex = {
   schema: string; rule: string; note: string; command: string;
   studies: Study[];
@@ -90,19 +93,28 @@ export default function Evaluation({ index }: { index: EvalIndex }) {
           {index.studies.map((st) => (
             <article key={st.id} className={s.study} aria-labelledby={`st-${st.id}`}>
               <h3 id={`st-${st.id}`}>{st.name}</h3>
-              {st.pending !== undefined ? (
-                <>
-                  <p className={s.pending}>{st.pending}</p>
-                  <p>Criterion <Link href={lib(st.criterionPath)}>{st.criterionPath}</Link>:</p>
-                  <QuoteView q={st.criterionStatus} />
-                </>
-              ) : (
+              {(
                 <>
                   <p>Criterion <Link href={lib(st.criterion.path)}>{st.criterion.path}</Link>, frozen at <code>{st.criterion.freezeCommit}</code>, sha256{" "}
                     <code className={s.mono}>{st.criterion.sha256}</code> <span className={s.cite}>(checked: {st.criterion.hashChecked})</span></p>
                   <QuoteView q={st.criterion.freezeLine} />
                   <h4>Verdicts (<Link href={lib(st.readout.path)}>readout</Link>)</h4>
                   {st.readout.verdicts.map((q, i) => <QuoteView key={i} q={q} />)}
+                  {st.standings && (
+                    <>
+                      <h4>Standing of the candidates and of R4</h4>
+                      {st.standings.map((x, i) => <div key={i}><p className={s.muted}>{x.candidate}:</p><QuoteView q={x.quote} /></div>)}
+                    </>
+                  )}
+                  {st.printed && st.printedLabel && (
+                    <details data-printed-under-invalid="">
+                      <summary className={s.pending}>{st.printedLabel}</summary>
+                      {st.printedRule && <QuoteView q={st.printedRule} />}
+                      {st.printed.map((q, i) => (
+                        <div key={i}><p className={s.pending}>{st.printedLabel}</p><QuoteView q={q} /></div>
+                      ))}
+                    </details>
+                  )}
                   <h4>Reproduction (<Link href={lib(st.repro.path)}>record</Link>)</h4>
                   <QuoteView q={st.repro.status} />
                   <h4>Decision record (<Link href={lib(st.decision.path)}>{st.decision.path}</Link>)</h4>

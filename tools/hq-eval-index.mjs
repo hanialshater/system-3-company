@@ -11,11 +11,13 @@
 // verbatim: a quote is either an exact substring, a whole line, or a markdown table's lines taken as they stand;
 // the script fails if a quote is not found, and tests/hq/personalization-evaluation.test.mjs re-checks every quote
 // against its file and every criterion hash against `git show <freeze commit>:<criterion>`.
-// Criterion 3b shows "pending" until K6's readout is committed; the script fails if a 3b readout file appears, so
-// the index cannot silently keep saying "pending" (a person transcribes it, and personalization-eval checks it, W-1651).
+// Criterion 3b (K6, readout 3b) is INVALID: the view shows INVALID first, and any rows printed under INVALID carry
+// "printed under INVALID; no rule reads them" (batch 5 §21.1). The candidates' standing (v2 NO-GO, v3 not scored and
+// withdrawn from the website, R4 parked) is quoted from the G record and batch 5 §21 (personalization-eval checks the
+// transcription, W-1651).
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -62,8 +64,8 @@ function criterion(rel, commit, sha256) {
 
 export function buildIndex() {
   text.clear();
-  const pendingK6 = readdirSync(path.join(ROOT, EVAL)).filter((f) => /criterion-3b.*readout/.test(f));
-  if (pendingK6.length) fail(`K6's readout is committed (${pendingK6.join(", ")}): transcribe criterion 3b into this script's spec before regenerating`);
+  const r3b = `${EVAL}/2026-10-17-criterion-3b-readout.md`;
+  const g = "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md";
   const dec1 = "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md";
   const dec2 = "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md";
   const dec3 = "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md";
@@ -83,8 +85,20 @@ export function buildIndex() {
       readout: { path: `${EVAL}/2026-10-17-criterion-3-readout.md`, verdicts: [line(`${EVAL}/2026-10-17-criterion-3-readout.md`, "**`verdicts.rule3`"), line(`${EVAL}/2026-10-17-criterion-3-readout.md`, "**The placements agree on the reading.**")] },
       repro: { path: `${EVAL}/2026-10-17-criterion-3-readout-repro.md`, status: line(`${EVAL}/2026-10-17-criterion-3-readout-repro.md`, "**Byte-identical.**") },
       decision: { path: dec3, status: line(dec3, "status:"), glance: table(dec3, "## 0. Decisions at a glance") } },
-    { id: "criterion-3b", name: "Criterion 3b (K6, reachable candidate)", pending: "pending: K6's readout is not committed",
-      criterionStatus: line(`${EVAL}/2026-10-17-criterion-3b.md`, "status:"), criterionPath: `${EVAL}/2026-10-17-criterion-3b.md` },
+    { id: "criterion-3b", name: "Criterion 3b (readout 3b, K6: reachable-v2)",
+      criterion: criterion(`${EVAL}/2026-10-17-criterion-3b.md`, "8e96251bb652cff5d093bede0d324601fb7c624c", "3a919fc3eaab6d217f97c3c49cd604030106aa82948ef69085ebc52ecdf944e5"),
+      readout: { path: r3b, verdicts: [line(r3b, "**`verdicts.pair.outcome`: INVALID.**"), line(r3b, "## Outcome: candidate+fixed vs default-order+fixed: **INVALID**")] },
+      printedLabel: sub(B5, "printed under INVALID; no rule reads them").quote,
+      printedRule: sub(B5, 'The HQ Evaluation view shows INVALID first, then the printed rows labelled "printed under INVALID; no rule reads them" (§20.3 quoting rule).'),
+      printed: [table(r3b, "### interleave:base (base)"), table(r3b, "### first:base (one-at-a-time)")],
+      repro: { path: g, status: line(g, "| 3 | **R4 not needed now. It is parked.**") },
+      decision: { path: g, status: line(g, "# G on readout 3b"), glance: table(g, "## Decisions") },
+      standings: [
+        { candidate: "reachable-v2", quote: sub(B5, 'Record: "reachable-v2, readout 3b: INVALID (copy check V10, M3 4 of 4). NO-GO."') },
+        { candidate: "reachable-v3", quote: sub(B5, '"not scored under M1; withdrawn from the website"') },
+        { candidate: "reachable-v3", quote: line(g, "| 2 | **K7 not sent.**") },
+        { candidate: "R4 (reproduction of readout 3b)", quote: line(B5, "- **R4 is parked, not cancelled.**") },
+      ] },
   ];
   const ev = "company/personalization/evidence";
   const cp = "company/personalization/copy";
@@ -114,6 +128,7 @@ export function buildIndex() {
     { date: "2026-10-17", what: "Readout 2 decisions", quote: line(dec2, "# ") },
     { date: "2026-10-17", what: "Readout 3 decisions", quote: line(dec3, "# ") },
     ...sections.map((l) => ({ date: "2026-10-17", what: `Batch 5 §${/^## (\d+)\./.exec(l)[1]}`, quote: sub(B5, l) })),
+    { date: "2026-10-17", what: "G on readout 3b", quote: line(g, "# ") },
     { date: "2026-10-17", what: "reachable-v1 (timeline only, batch 5 §20.1 (e))", quote: line(B5, "- **`reachable-v1` is retired, unscored**") },
   ];
   if (sections.length < 20) fail(`batch 5 has ${sections.length} numbered sections from §1; expected at least 20`);

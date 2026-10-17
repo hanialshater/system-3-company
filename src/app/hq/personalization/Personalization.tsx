@@ -365,7 +365,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
           </p>
           <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
           <p className={s.muted}>
-            Also here, read-only: the <Link href="/hq/personalization/candidates">frozen candidates</Link> (reachable-v2, reachable-v3; not live, go/no-go pending)
+            Also here, read-only: the <Link href="/hq/personalization/candidates">frozen candidates</Link> (reachable-v2, reachable-v3; not live, website NO-GO)
             and the <Link href="/hq/personalization/evaluation">Evaluation record</Link> (studies, reviews, decisions).
           </p>
           {pre && (

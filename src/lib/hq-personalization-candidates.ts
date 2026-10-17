@@ -6,8 +6,9 @@
 // SIMULATED PERSONAS ONLY. Nothing here reaches the website feed. Showing a candidate in HQ decides nothing.
 // Never stored or shown: rank's numeric reason fields (§17.1, §20.2), any eval harness output, any K6/K7/R4/R5 number.
 
-/** §20.2, verbatim: on every candidate view and in the manifest. */
-export const CANDIDATE_LABEL = "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world.";
+/** §20.2 as changed at G (§21.4 item 2), verbatim: on every candidate view and in the manifest. */
+export const CANDIDATE_LABEL = "Not live. Website go/no-go: NO-GO (company/decisions/2026-10-17-vp-personalization-readout-3b-g.md). Simulated personas only. Lab simulator, not the eval's scored world.";
+export const G_RECORD = "company/decisions/2026-10-17-vp-personalization-readout-3b-g.md";
 /** §20.1 (b), verbatim. */
 export const DRAFT_LINES_LABEL = "draft reason lines, not shown to any learner";
 /** §20.1 (b): L3's wording is still open. */

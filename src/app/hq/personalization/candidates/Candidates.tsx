@@ -8,7 +8,7 @@ import Link from "next/link";
 import { HqTop } from "../../HqTop";
 import hq from "../../hq.module.css";
 import {
-  CANDIDATE_LABEL, CANDIDATE_NAMES, DRAFT_LINES_LABEL, L3_PENDING, RC_LINES, RC_RECORD, renderLine,
+  CANDIDATE_LABEL, CANDIDATE_NAMES, DRAFT_LINES_LABEL, G_RECORD, L3_PENDING, RC_LINES, RC_RECORD, renderLine,
   type CandidateDoc, type StoredMove,
 } from "@/lib/hq-personalization-candidates";
 import s from "../personalization.module.css";
@@ -65,7 +65,7 @@ export default function Candidates({ doc, error, personas, persona, policy, all 
           </p>
           <p className={s.muted}>
             reachable-v2 and reachable-v3, imported unchanged and only when their bytes match the frozen sha256, run on the lab simulator
-            (not criterion 3b&apos;s world) for the six simulated personas, seed 1, 7 days. Their lab results are not scores and are never a go/no-go input
+            (not criterion 3b&apos;s world) for the six simulated personas, seed 1, 7 days. Their lab results are not scores and were never a go/no-go input; the website go/no-go is NO-GO (<Link href={`/hq/library/${G_RECORD.replace(/^company\//, "")}`}>G record</Link>)
             (<Link href="/hq/library/personalization/batches/2026-10-17-batch-5.md">batch 5 §20</Link>). Verdicts live in the{" "}
             <Link href="/hq/personalization/evaluation">Evaluation view</Link>. Back to the <Link href="/hq/personalization">lab</Link>.
           </p>
