@@ -19333,6 +19333,16 @@
       "id": "W-1668",
       "title": "Trace-excludes C4 (follow-up): consider making HQ process.cwd() readers untraceable so the exclude list need not mirror .vercelignore by hand; note C3 constraint (HQ_PUBLIC=1 in production would 404 sheet/review routes). Also: production smoke does not call /api/events.",
       "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": [],
+      "updated": "2026-10-17"
+    },
+    {
+      "id": "W-1669",
+      "title": "Upload-limit risk (deploy-upload-failure C4): next production deploy must report Vercel's actual upload result line (or 'succeeded'); record whether --archive=tgz resolved run 39042065255's unconfirmed failure. Register risk via tools/risks.mjs. Also C1: release record names the deployed SHA. C5: HQ_PUBLIC / WHITEBOARD_WRITE must not be set in any Vercel env without its own readiness record. company/engineering/readiness/2026-10-17-deploy-upload-failure.md",
+      "owner": "release-manager",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-17",
