@@ -1,6 +1,6 @@
 # AMD-013: One readiness policy
 
-status: proposed
+status: ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen). Founder, in session: "Ratify AMD-013". Open objections O1-O5 travel with it.
 date: 2026-10-17
 proposed_by: evaluation-steward (route from the external assessment, `company/reviews/org/2026-10-17-external-assessment.md` §1 findings 1 and 5, Appendix A ch.4 and ch.8; founder asked us to act on it)
 prepared_by: evaluation-steward
