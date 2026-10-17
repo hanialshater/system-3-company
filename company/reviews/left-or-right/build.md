@@ -58,3 +58,32 @@ c1 trefoil chiral, Dehn 1914; c2 figure-eight amphichiral; c3 trefoil marks per 
 - WebKit run of `c1-check.mjs` (blocked here by the proxy): qa-tester, or anyone with WebKit.
 - Design lead S4: built sheet, mid-flip on 4₁, the 277 px explore picture (spec 320), the perspective on the wrapper, and the reveal without room.
 - Fact-check c1 to c8.
+
+## v2 fix round (2026-10-17): S4 D1-D2, W-1606, W-1608
+
+Builder: demo-builder (run lor-v2-fix). Inputs: `company/design/reviews/2026-10-17-left-or-right-s4.md` (D1, D2), QA record `2026-10-16-qa.md` (findings 1, 2 = W-1606), fact-check `2026-10-17-fact-check.md` (c5 = W-1608). `meta.version` 1 → 2 (layout, stage controls at the reveal and the unlock path changed what a learner sees). Status stays draft.
+
+### Changes
+- **D1** (`styles.module.css`): `.room` padding 0; `.picArea` min-height 190px; `.pic` width `max(190px, min(100cqw, 320px, 100cqh))`; the now-empty `.atReveal .room` rule removed. Floor, `perspective: 1200px` and every `overflow: visible` kept.
+- **D2** (`Demo.tsx`): the Turn over · Mirror row is **not rendered** at the reveal (`ctx.phase !== "reveal"`); the chip row stays. **Departure from D2's letter:** D2 named a CSS rule (`display: none`). With that rule applied, `reveal-fit --strict` at 390×844 failed phoneFit with `namedHidden 1, off screen: mirror`: its named-label heuristic matched the hidden Mirror button's text to the reveal's word "mirror" (from "mirror image"). The learner sees the same thing either way (display:none also removes the button from the accessibility tree), and unmounting is the precedent D2 itself cites (tricolour-check, enemy-of-my-enemy W-574). So I unmounted the row; strict then passes. Design lead: say if you want the CSS form back; the measure would then need a ruling on the heuristic.
+- **W-1606 (2)** (`Demo.tsx` `settle()`): milestone `turned` now fires on any trefoil rest state with the card turned over (plain turned or mirrored-and-turned). The seen line's "turned over" segment is still written only from the plain turned state, so it never quotes a −3 the learner did not see. `keyState` in meta.json updated to say so.
+- **W-1608** (`meta.json`): c5's rule sentence now reads "a crossing mark is plus (right-handed) when the over-strand passes from left to right as seen travelling along the under-strand"; source re-pointed to PMC2853108 / PMC5582600 (the kit README's reversed sentence is named as off-lane). c1 source → PMC5582600 + PMC9948535 (+ Dehn 1914); c6 source → PMC5582600 (+ PMC8199745). **c1, c5, c6 reset to unverified** (checkedBy/checkedOn removed, a note records the earlier status). No learner-visible word changed. c2, c3, c4, c7, c8 untouched (still verified).
+
+### Measurements (build `.next-lor2`, Chromium, served on 3631)
+- `node tools/reveal-fit.mjs --strict` (records beside this note):
+  - 390×844: **fit, crop 0, namedHidden 0, phoneFit true**, 79 words, picture 240 px (`reveal-fit-2026-10-17-v2-390x844.json`).
+  - 360×740: fit, **crop 96**, namedHidden 0, phoneFit false, 79 words (`reveal-fit-2026-10-17-v2-360x740.json`). Exactly what S4 predicted after D2 (was 140); S4 accepted short phones.
+- Design lead's `fit-probe.mjs`, no override, 3 options: explore 390×844 **picture 320 px** (2.76 px/unit), overflow 0, second row hidden 0; 360×740 217 px, overflow 0; 360×640 190 px, overflow 63, last row 50 px below. Reveal 390×844: QA path and stay-on-trefoil crop 0, 56 px spare; **mirrored figure-eight branch crop 0, 35 px spare**, 81-84 words; 360×740 crop 96 on all endings; 360×640 crop 196. Every number equals the S4 record's D1/D2 table.
+- `c1-check.mjs` (ENGINE=chromium, BASE=…:3631): **0 failures, 61 checks** on the 320 px card. Crossing 0 screen x: 3₁ turned 71.7 = 320.0 − 248.3; 4₁ turned 32.0 = 320.0 − 288.0; face colour counts, dip, flip, paused-frame clipping and fallbacks all pass (Turn over fallback back at 510 ms against 500, Mirror 409 against 400: one frame, as in v1). Record: `c1-chromium-2026-10-17-v2.json`.
+- `node --test src/demos/math/left-or-right/card.test.mjs`: 5/5 (geometry is in view-box units, unchanged by the card size).
+- `v2-w1606-probe.mjs` (log `v2-w1606-probe.log`):
+  - **W-1606 (1), readout and Turn over/Mirror on screen together:** 390×844 yes (span 434 px in a 504 px window); 360×740 yes (309 in 379). **360×640 still no, by 3 px**: readout top to control bottom is 282 px, the stage window 279 px. Fresh: readout on, controls 13 px below. After the tap scrolls the stage 13 px: controls on, readout top at 171 against the window top 174. D1 cut the shortfall from 43 px (QA) to 3 px but did not remove it. Not changed here (the design lead accepted this size); a 4 px cut of the row's `margin-top` would close it, a layout call for the design lead.
+  - **W-1606 (2):** Mirror then Turn over → "Show me why", enabled, seen "Trefoil: mirror +3", readout "Sum +3 Right-handed". Contract order → enabled, seen "Trefoil: turned over −3 · mirror +3". Turn over alone or Mirror alone → still "Try it first" (two milestones needed).
+- QA contract (`QA_BASE_URL=http://localhost:3631 QA_ONLY=left-or-right npx playwright test tests/qa/contract.spec.ts`): **2/2** (phone, desktop). Screenshots viewed: explore 390×844 (320 px card, both rows) and the mirrored-figure-eight reveal at 390×844 (stage top, chip row and last reveal line all on screen).
+- `npm run check` passed; `npx tsc --noEmit` exit 0; `npm run build` exit 0 (tsconfig.json rewrite by `next build` reverted).
+
+### Open (for other roles)
+- **cm-math-discrete:** on the new Mirror-then-Turn-over path the learner unlocks the reveal having seen the trefoil turned over only while mirrored (+3 stays +3), never the plain turned −3. Reveal paragraph 1 still opens "Turning the trefoil over left every mark minus", which is true of the table trefoil but not what that learner saw, and the seen line then shows only "mirror +3". The words are yours: keep, or add a branch such as "Turning it over kept every mark" when the plain turned state was never reached. Builder can wire a flag if asked.
+- **fact-checker:** re-verify c5 (new rule sentence), c1 and c6 (new source fields).
+- **design-lead:** the D2 departure above (unmount instead of display:none), and the 3 px at 360×640.
+- **qa-tester:** a record on v2; WebKit `c1-check.mjs` still open.
