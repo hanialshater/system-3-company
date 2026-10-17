@@ -18745,12 +18745,13 @@
     },
     {
       "id": "W-1607",
-      "title": "left-or-right: WebKit/Safari and Firefox run of the 3D card (backface-visibility, preserve-3d, perspective) before launch review; the proxy blocked the WebKit download in QA 2026-10-16 | 2026-10-17 QA v3: WebKit binary not installed in this container (/opt/pw-browsers has Chromium only) and download is blocked; needs a host with WebKit or a real iPhone. Founder/environment decision.",
+      "title": "left-or-right: WebKit/Safari and Firefox run of the 3D card (backface-visibility, preserve-3d, perspective) before launch review; the proxy blocked the WebKit download in QA 2026-10-16 | 2026-10-17 QA v3: WebKit binary not installed in this container (/opt/pw-browsers has Chromium only) and download is blocked; needs a host with WebKit or a real iPhone. Founder/environment decision. | 2026-10-17 launch review r9 ruling 2: a deploy-time precondition for left-or-right, not a publish hold (company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md; W-1661 release-manager, W-1662 founder question)",
       "owner": "qa-tester",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-17",
-      "links": []
+      "links": [],
+      "updated": "2026-10-17"
     },
     {
       "id": "W-1608",
@@ -18821,12 +18822,13 @@
     },
     {
       "id": "W-1615",
-      "title": "Run company/reviews/left-or-right/c1-check.mjs with ENGINE=webkit (PE-C1/C3, spec obligation 4) on branch worktree-agent-ac7db687eb5b771c8 and add the QA record: WebKit download is blocked by the egress proxy on the builder host (company/reviews/left-or-right/build.md) | renumbered from W-1600 after a merge collision 2026-10-17; same work as W-1607 | 2026-10-17 QA v3: WebKit binary not installed in this container (/opt/pw-browsers has Chromium only) and download is blocked; needs a host with WebKit or a real iPhone. Founder/environment decision.",
+      "title": "Run company/reviews/left-or-right/c1-check.mjs with ENGINE=webkit (PE-C1/C3, spec obligation 4) on branch worktree-agent-ac7db687eb5b771c8 and add the QA record: WebKit download is blocked by the egress proxy on the builder host (company/reviews/left-or-right/build.md) | renumbered from W-1600 after a merge collision 2026-10-17; same work as W-1607 | 2026-10-17 QA v3: WebKit binary not installed in this container (/opt/pw-browsers has Chromium only) and download is blocked; needs a host with WebKit or a real iPhone. Founder/environment decision. | 2026-10-17 launch review r9 ruling 2: a deploy-time precondition for left-or-right, not a publish hold (company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md; W-1661 release-manager, W-1662 founder question)",
       "owner": "qa-tester",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-17"
     },
     {
       "id": "W-1616",
@@ -19217,6 +19219,60 @@
       "id": "W-1656",
       "title": "left-or-right recall card: correct option repeats the question's word 'right-handed' (EXP-008 caveat). Reword or keep; a changed card needs an EXP-008 amendment before its deploy.",
       "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1657",
+      "title": "r9 precondition 1: left-or-right v3 move-to-review decision (yes / no / after change, where, date) in the r9 preconditions table or as a ruling file. company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1658",
+      "title": "r9 precondition 3: accessibility record company/reviews/left-or-right/<date>-a11y.md on code identical to v3 (r9 same-code closure); name any lock-out. Flip-card turned state carried by badges and the picture label. company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "accessibility-reviewer",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1659",
+      "title": "r9 precondition 2: after cm-math-discrete says yes, set left-or-right meta.json status to review at version 3 (no other change). company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1660",
+      "title": "r9 publish: publish math/left-or-right v3 per the r9 release steps, only when preconditions 1-4 are met; no deploy. company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1661",
+      "title": "r9 ruling 2 (deploy-time precondition): no production deploy may carry left-or-right as published until a qa-tester WebKit/Safari record of c1-check.mjs (or a real iOS Safari check) exists with 0 failures; if a deploy is wanted first, revert the left-or-right publish commit before it. Put this line in the release checklist and the deploy request. company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1662",
+      "title": "Put to the founder: WebKit/Safari check for left-or-right's 3D card (W-1607/W-1615) cannot run in this container (no WebKit, download blocked). Options: allow a Playwright WebKit download through the proxy, a host with WebKit, or the founder opens the lesson on an iPhone (preview deploy needs its own approval). Blocks only deploys carrying left-or-right (r9 ruling 2). company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-17",
