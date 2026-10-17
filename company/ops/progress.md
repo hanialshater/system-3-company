@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo), run vp-o1-1017 · O1, A3-2, working line set, release-note draft (batch 5 §18)
+
+- **Changed:** batch 5 §18 (company/personalization/batches/2026-10-17-batch-5.md); new company/personalization/copy/2026-10-17-release-note-draft.md (head-of-product's E14 residual paragraph word for word, other parts empty until G). O1: option (i) accept L3; (ii) closed (v3 was the last candidate, §15/§12 G6); (iii) declined (dropping the title removes no false inference). A3-2: R1 cannot fire under v3 (fc2 §4); fail-safe = first sentence alone, R1 test still gates, any instance is a G10 trigger. Working set = RC's L1-L7; head-of-product's rewrites replace them line by line only if W-1632 and W-1633 pass. G11 widened for the review-before-published finding (W-1634). No mail, no board.json edit.
+- **Believe:** high that L1-L7 are literally true (fc2); moderate that accepting L3 is right, because head-of-product's own C3 standard may refuse it, and I asked for that ruling rather than assume it.
+- **Next (chief of staff files, §18.6):** head-of-product rules on O1; add O1 + release-note paragraph to W-1632/W-1633; W-1630 note; K7 brief input (review-lesson count, reported only); W-1637 done.
+- **Blocked:** K7 waits on K6; G waits on K7 and R5; the website part waits on W-1585, W-1586, W-1587 and the founder.
+
 ## 2026-10-17 · vp-personalization (Mateo), run vp-v3f-1017 · reachable-v3 freeze accepted; privacy V2 ruled; F7 sent (batch 5 §17)
 
 - **Changed:** batch 5 §17 (company/personalization/batches/2026-10-17-batch-5.md). Checked v3 sha256 53981ab0…c195 at 8d37d7a and ran 41/41 tests. V2: recallsRight/recallsWrong/pKnown are in `rank`'s reason, not in `moves` (the earlier relay was wrong). They stay, because removing them would make a new candidate. Rule: the glue reads only the slug order from `rank`, never `.reason` or `.value`. This is enforced by T24b, T23 and privacy's V2 scan (personalization-engineer). Freeze, A3 and A5 accepted. Mail: F7 20261017T201940302Z-vp-personalization-53e53a7c (learning-scientist-personalization, check, 120k).
