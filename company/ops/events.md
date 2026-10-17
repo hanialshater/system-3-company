@@ -27,6 +27,9 @@ place a fact lives. The disk is still the memory, and the log is its index in ti
 | `chooser` | no | On a `dispatch`: the role that chose the run (`chooser=` in the prompt, else the batch file's `poc:`, else the dispatcher; `unknown` when a batch or SO is cited but its owner cannot be read). |
 | `toolUseId` | no | The Agent tool call's id, on events the Agent-tool hook writes. The backfill uses it so a hooked run is not written twice. |
 | `key` | no | The run key (r5-tools B2): on tx- events the Agent call's tool_use id (the backfill writes it on every event of the run); on hand events whatever `--key` names: a tool_use id, the `·xxxx` suffix of the run's label, or `batch=<file>#B<n>`. A `report`/`stopped` closes the open dispatch with the same key, else the same `agent` label, else the same batch item (tools/lib/inflight.mjs). |
+| `class` | no | On a `founder` event: `decision` (a purposeful founder decision: direction, approval, priority), `correction` (avoidable clarification or correction: the company misread, forgot or overreached), `routing` (recovery or routing work the founder did that the company should have done: chasing, re-dispatching, untangling). A founder message is classified by a later `founder` event from the chief of staff with `corrects: <message id>` and `class` (company/ops/metrics.md §C). |
+| `minutes` | no | On a `founder` event: the founder's own estimate of minutes spent, only when the founder gives it. Never estimated by an agent. |
+| `accepted` | no | `library` (a library improvement adopted in an active run) or `opfix` (an operational fix shown active, not just merged). Written by the role that accepted it, never the one that made it (company/ops/metrics.md §C). |
 
 ## Types
 
