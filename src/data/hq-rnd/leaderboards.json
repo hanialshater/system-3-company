@@ -1,0 +1,204 @@
+{
+  "schema": "hq-rnd-leaderboards-v1",
+  "generatedBy": "node tools/hq-rnd-precompute.mjs",
+  "projects": [
+    {
+      "name": "knots",
+      "archive": "company/rnd/evolution/knots.jsonl",
+      "command": "node tools/evolve.mjs board knots",
+      "records": 69,
+      "weights": {
+        "tests": 100,
+        "size": -0.002,
+        "bench": 1
+      },
+      "warning": "warning: these candidates were scored with different bench seeds (275312650, 243182556, 1297401554, 16841215); re-score them in one run before selecting",
+      "lines": [
+        "warning: these candidates were scored with different bench seeds (275312650, 243182556, 1297401554, 16841215); re-score them in one run before selecting",
+        " 1. gen2-force-smooth         10653.75  tests 103/103  8418 B  seed 275312650  parents: gen1-force",
+        " 2. fix1-bigon                10644.18  tests 103/103  8634 B  seed 275312650  parents: gen2-force-smooth",
+        " 3. gen0-baseline             10491.71  tests 102/102  8036 B  seed 243182556  parents: -",
+        " 4. gen1-tutte                       0  tests 101/102  8846 B  seed 1297401554  parents: gen0-baseline",
+        " 5. gen1-force                       0  tests 102/103  9147 B  seed 16841215  parents: gen0-baseline",
+        " 6. gen1-ortho                       0  tests 101/102  7861 B  seed 1297401554  parents: gen0-baseline",
+        " 7. gen2-ortho-force                 0  tests 102/103  8587 B  seed 16841215  parents: gen1-ortho,gen1-force",
+        " 8. gen2-ortho-round                 0  tests 102/103  8800 B  seed 16841215  parents: gen1-ortho"
+      ],
+      "rows": [
+        {
+          "rank": 1,
+          "id": "gen2-force-smooth",
+          "score": 10653.75,
+          "pass": 103,
+          "fail": 0,
+          "gzBytes": 8418,
+          "seed": 275312650,
+          "parents": [
+            "gen1-force"
+          ],
+          "gated": true,
+          "problems": [],
+          "ts": "2026-10-14T10:12:34.530Z",
+          "kit": false
+        },
+        {
+          "rank": 2,
+          "id": "fix1-bigon",
+          "score": 10644.18,
+          "pass": 103,
+          "fail": 0,
+          "gzBytes": 8634,
+          "seed": 275312650,
+          "parents": [
+            "gen2-force-smooth"
+          ],
+          "gated": true,
+          "problems": [],
+          "ts": "2026-10-14T10:12:26.869Z",
+          "kit": true
+        },
+        {
+          "rank": 3,
+          "id": "gen0-baseline",
+          "score": 10491.71,
+          "pass": 102,
+          "fail": 0,
+          "gzBytes": 8036,
+          "seed": 243182556,
+          "parents": [],
+          "gated": true,
+          "problems": [],
+          "ts": "2026-10-14T09:01:02.589Z",
+          "kit": false
+        },
+        {
+          "rank": 4,
+          "id": "gen1-tutte",
+          "score": 0,
+          "pass": 101,
+          "fail": 1,
+          "gzBytes": 8846,
+          "seed": 1297401554,
+          "parents": [
+            "gen0-baseline"
+          ],
+          "gated": false,
+          "problems": [],
+          "ts": "2026-10-14T03:06:19.939Z",
+          "kit": false
+        },
+        {
+          "rank": 5,
+          "id": "gen1-force",
+          "score": 0,
+          "pass": 102,
+          "fail": 1,
+          "gzBytes": 9147,
+          "seed": 16841215,
+          "parents": [
+            "gen0-baseline"
+          ],
+          "gated": false,
+          "problems": [],
+          "ts": "2026-10-14T09:19:16.678Z",
+          "kit": false
+        },
+        {
+          "rank": 6,
+          "id": "gen1-ortho",
+          "score": 0,
+          "pass": 101,
+          "fail": 1,
+          "gzBytes": 7861,
+          "seed": 1297401554,
+          "parents": [
+            "gen0-baseline"
+          ],
+          "gated": false,
+          "problems": [],
+          "ts": "2026-10-14T03:07:06.875Z",
+          "kit": false
+        },
+        {
+          "rank": 7,
+          "id": "gen2-ortho-force",
+          "score": 0,
+          "pass": 102,
+          "fail": 1,
+          "gzBytes": 8587,
+          "seed": 16841215,
+          "parents": [
+            "gen1-ortho",
+            "gen1-force"
+          ],
+          "gated": false,
+          "problems": [],
+          "ts": "2026-10-14T09:19:21.611Z",
+          "kit": false
+        },
+        {
+          "rank": 8,
+          "id": "gen2-ortho-round",
+          "score": 0,
+          "pass": 102,
+          "fail": 1,
+          "gzBytes": 8800,
+          "seed": 16841215,
+          "parents": [
+            "gen1-ortho"
+          ],
+          "gated": false,
+          "problems": [],
+          "ts": "2026-10-14T09:19:27.163Z",
+          "kit": false
+        }
+      ],
+      "kit": {
+        "dir": "src/kit/knots",
+        "ids": [
+          "fix1-bigon"
+        ],
+        "how": "draw.mjs in src/kit/knots/draw.mjs is byte-identical to the candidate's draw.mjs"
+      },
+      "notes": [
+        {
+          "path": "rnd/evolution/knots-fix1.md",
+          "name": "knots-fix1.md",
+          "title": "knots fix1-bigon: registration, re-score and widths (follow-up, not a generation)"
+        },
+        {
+          "path": "rnd/evolution/knots-gen0.md",
+          "name": "knots-gen0.md",
+          "title": "Knots, generation 0 record: the baseline and the evaluator fix"
+        },
+        {
+          "path": "rnd/evolution/knots-gen1-brief.md",
+          "name": "knots-gen1-brief.md",
+          "title": "Knots, generation 1 brief: layout of arbitrary PD diagrams"
+        },
+        {
+          "path": "rnd/evolution/knots-gen1.md",
+          "name": "knots-gen1.md",
+          "title": "Knots, generation 1 record: layout of arbitrary PD diagrams"
+        },
+        {
+          "path": "rnd/evolution/knots-gen2-brief.md",
+          "name": "knots-gen2-brief.md",
+          "title": "Knots, generation 2 brief: layout, round where it matters and even everywhere"
+        },
+        {
+          "path": "rnd/evolution/knots-gen2.md",
+          "name": "knots-gen2.md",
+          "title": "Knots, generation 2 record: layout, round where it matters and even everywhere"
+        }
+      ],
+      "edds": [
+        {
+          "path": "engineering/edd/EDD-004-knots-kit.md",
+          "name": "EDD-004-knots-kit.md",
+          "title": "EDD-004: Promote the knots library (gen2-force-smooth) from src/lab/knots to the kit"
+        }
+      ]
+    }
+  ]
+}
