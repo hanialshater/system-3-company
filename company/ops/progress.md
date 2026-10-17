@@ -13,6 +13,33 @@ who no longer exists: check what you rely on.
 **Blocked:** WebKit was not run, because the proxy refuses the Playwright WebKit download.
 **Next:** W-1600, W-1601, W-1602.
 
+## 2026-10-16 · tools-lead · W-1596: publish-ready tie-break without mtime; reveal text bumps the version
+
+**Changed:** `tools/publish-ready.mjs` `decide()` orders same-version same-day learner records by built-from git ancestry, then a `supersedes:` line, then `-rN` within one name stem; an unordered tie keeps the most severe verdict; mtime is no longer read. New `tests/publish/publish-ready-tiebreak.test.mjs` (5 tests; `npm run test:publish` 18/18). `company/product/demo-standard.md`: section "The lesson version" (a change to reveal text bumps `meta.version`, Head of Product's rule). Readiness: `company/engineering/readiness/2026-10-16-publish-ready-tiebreak.md` (tier 1 self-check). Changelog line.
+**Believe:** sure the swap fix holds: read-only publish-ready now lists math/the-swap-that-goes-in-circles as a candidate (r2 launch v1; e092f6c3 descends from 236737ff), and a before/after run shows no other lesson's result changed. `npm run check` passes (3 unrelated lifehacks warnings).
+**Next:** release-manager: W-1594 can include the swap without applying ruling 2 by hand (lapse conditions in the r7 record still apply). Demo-builder lane: follow the new version rule. No deploy without the founder. **Blocked:** nothing.
+## 2026-10-16 · analytics-steward · EXP-006: launch predictions for cut-the-busiest-link and the NCM gap four (W-1529 done)
+
+**Changed:** new `company/experiments/EXP-006-launch-predictions-r6-r7.md` (index row in `company/experiments/README.md`); a pointer paragraph under "Committed predictions" in the r6 and r7 launch records. Board: W-1529 done; W-1600 added (privacy-reviewer: may recall/predict events carry a first-time marker with no identifier?).
+**Believe:** sure the rows are committed before any deploy that carries the five (last `[deploy]` is 6cbce514, before publishes f6b2a22e and c97973e7), and sure they are later than the publish commits (stated in EXP-006 "Timing"). Fairly sure the current events cannot compute first-revisit recall or learner pairing (`src/lib/events-intake.ts`, `src/components/Feed.tsx`); so EXP-006 commits measurable aggregate rows A1-A6 plus F1/F2 marked "not measured" until W-1600. That gap also touches the r5 P1/P2 and Life Hacks L1/L2 definitions.
+**Next:** a deploy carrying these five needs no missing-row note from the release-manager. privacy-reviewer rules W-1600. Scoring at the first WBR after day 0 + 14 (analytics-steward). **Blocked:** any read, on W-706 (backend-engineer) and a founder-approved deploy.
+## 2026-10-16 · learner-evaluator · draw-a-table-knot v1 walked: revise
+
+**Changed:** new `company/reviews/draw-a-table-knot/2026-10-16-learner-knows-drawings-not-names.md` (lesson version: v1, Verdict: revise, built from 5c5c719e); linked in meta.json evidence.simulatedLearner only.
+**Believe:** first break is the first tap ("6 drawn, name 4₁"): it needs "one knot has many drawings", which the boundary lacks; "fewest" is told in the reveal, not shown. On the QA path (ends on 5₂) the reveal's "Yours still had 6 crossings drawn" sits under a stage reading "5 · 5₂", which also agrees with the wrong answer; only the small "Seen on 6₁" line bridges them. Moderately sure most learners still connect it from memory; the on-screen contradiction is the revise reason.
+**Next:** demo-builder / design-lead decide how the reveal or reveal-time stage names 6₁ on the 5₂ path; then a learner re-walk. c5 unverified is the fact-checker's. **Blocked:** nothing.
+## 2026-10-16 · design-lead · S4 check of tricolour-check: pass with changes D1, D2 (W-1601)
+
+**Changed:** new `company/design/reviews/2026-10-16-tricolour-check-s4.md` with probes in `2026-10-16-tricolour-check-s4/` (fit-probe, row-probe, geom-probe). Board W-1601 (demo-builder): D1 explore row on one line at 360 wide (`.wrap .controls` gap 4px, `.btn` padding-inline 8px); D2 `.board { width: min(100%, clamp(254px, calc(100dvh - 458px), 320px)); }`. Accepted the builder's choices: loopOne on opening ○ (no design objection; sufficiency is cm-math-discrete's), the row hidden at the reveal, label placement (T3a min 17 units), the crossing-mark rings.
+**Believe:** sure at 390x844 the lesson meets S1-S3, T1, T3a, W-1583 and the reveal fits (crop 0, 37 px spare, all 3 options); sure D1+D2 make 360x740 overflow 0 at no cost to 390x844 (tested as override); sure 360x640 cannot lose its scroll without going under the 10 px text floor (67 px left, accepted, as for draw-a-table-knot).
+**Next:** demo-builder applies W-1601 and re-runs walkthrough, reveal-fit --strict, fit-probe. Learner review: grey C in light, 360x640 row discovery. S4 still due on unknot-game and left-or-right (W-1578). **Blocked:** nothing.
+
+## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
+
+**Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
+**Believe:** sure the flips match the r7 preconditions table (all four rows "yes", `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md`). `npm run check` passes (3 unrelated lifehacks warnings). `node tools/publish-ready.mjs`: candidates include same-picture-two-histories, price-tag-or-auction, worth-something-alone; the-swap-that-goes-in-circles is in "held (verdict revise)" because `decide()` picks r1 (`2026-10-16-learner-knows-preference.md`, revise) over r2 (launch) by the mtime tie (W-1596). Not worked around.
+**Next:** release-manager runs W-1594 for the three candidates under the record's lapse conditions; swap waits on tools-lead W-1596 (or the chair's ruling 2 applied by the release-manager). No deploy without the founder. **Blocked:** swap publish on W-1596.
+
 ## 2026-10-16 · head-of-product · Launch review r7 (NCM gap four): 4 go, each held open on the strand manager's draft->review call
 
 **Changed:** new `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` covering same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2 and the-swap-that-goes-in-circles v1 (with fc8c53b8).
@@ -27,6 +54,11 @@ who no longer exists: check what you rely on.
 
 **Next:** the three strand managers fill the record's preconditions table. Then release-manager runs W-1594 under the record's lapse conditions. No deploy without the founder. **Blocked:** on the three strand-manager decisions.
 
+## 2026-10-16 · demo-builder · W-1540 tricolour-check built (draft)
+
+**Changed:** new lesson `src/demos/math/tricolour-check/` (draft, 8 claims, all unverified), build note `company/reviews/tricolour-check/build.md`, registry regenerated; board W-1540 → review. Follows S1 to S4, T1, T3a, the ticks rule and W-1583 (A/B/C letter rings, arc sets in one constant). W-1583's tricolour part of W-1585 is done here; W-1585 stays open for unknot-game and left-or-right.
+**Believe:** local contract QA passes on phone and desktop; reveal-fit at 390x844 is fit, crop 0, 87 words; check and typecheck pass. Fairly sure on the picture (viewed both themes at 390x844); untested with learners. Two calls for others: `loopOne` fires on opening ○ (the only way the QA path reaches it), and the control row hides at the reveal (crop was 22 px without it). Both are in build.md "Decisions".
+**Next:** fact-checker c1 to c8 (c5 is the proof); design-lead S4 review of the walkthrough; qa-tester record; learner walk. **Blocked:** nothing.
 ## 2026-10-16 · platform-engineer · W-1587 EDD-004 C4 ruled met; W-1582 `.knot-tint` added
 
 **Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.

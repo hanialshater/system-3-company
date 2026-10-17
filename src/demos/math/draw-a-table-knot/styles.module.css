@@ -8,11 +8,12 @@
    (260 px / 116, the smallest scale the design-lead measured for S3), so the stage top stays on screen. */
 .board {
   position: relative;
-  width: min(100%, 284px, calc(36dvh * 103 / 105));
+  width: min(100%, clamp(206px, calc((100dvh - 525px) * 103 / 105), 284px));
   aspect-ratio: 103 / 105;
   margin: 0 auto;
 }
-.atReveal .board { width: min(100%, 231px); }
+/* S4 D3: height-aware width; the reveal picture is capped at it. */
+.atReveal .board { width: min(100%, 231px, clamp(206px, calc((100dvh - 525px) * 103 / 105), 284px)); }
 .board .svg {
   position: absolute;
   inset: 0;
@@ -24,6 +25,8 @@
 /* S2: stroke 2 viewBox units, butt caps. */
 .strand { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: butt; stroke-linejoin: round; }
 .ring { fill: none; stroke: var(--domain); stroke-width: 1.2; }
+/* S4 D1: ring colour in light mode (3.42:1 on --bg-3). */
+@media (prefers-color-scheme: light) { .ring { stroke: color-mix(in srgb, var(--domain) 80%, #000); } }
 
 /* S3: a 44 px hit circle per crossing. */
 .hit {
@@ -43,5 +46,7 @@
 
 .now { margin: 0; text-align: center; font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
 .seen { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 600; line-height: 1.3; min-height: 1.3em; color: var(--domain); }
+/* S4 D2: Seen line colour in light mode (7.96:1). */
+@media (prefers-color-scheme: light) { .seen { color: color-mix(in srgb, var(--domain) 45%, #000); } }
 /* Phone fit at the reveal: tighter spacing only; no text or tap target is made smaller. */
 .wrap.atReveal { gap: 1px; }

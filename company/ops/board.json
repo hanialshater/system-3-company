@@ -17930,7 +17930,7 @@
       "id": "W-1529",
       "title": "Commit a launch prediction row for cut-the-busiest-link in company/rituals/records/2026-10-16-launch-review.md before the next deploy that includes it (r6 objection 2)",
       "owner": "analytics-steward",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -17939,7 +17939,8 @@
         "at": "2026-10-16",
         "by": "portfolio-manager",
         "note": "Small and it gates the next deploy that carries cut-the-busiest-link (W-1527); r6 objection 2. Not a dup of W-1463 (Life Hacks prediction rename)."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1530",
@@ -18047,7 +18048,7 @@
       "id": "W-1540",
       "title": "Build tricolour-check (Knots batch 1 brief 2, company/domains/briefs/math.discrete.md; concept knot-tricolouring; two chips). Start only after W-407 closes, W-1521 is approved and C3 (W-408) is met. Untagged, catalog line: do NOT tag [project:rnd-knots]. Block (b) lifts in this lesson's design review (3_1/4_1 bigons).",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "math",
       "created": "2026-10-16",
       "links": [],
@@ -18056,7 +18057,8 @@
         "at": "2026-10-16",
         "by": "chief-of-staff-ceo-office",
         "note": "APPROVED with change by chief-of-staff-ceo-office (W-1538; company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md#approval). Gates as W-1539. Change: brief U1 padding must use the SVG viewBox, never draw size/margin (draw(4_1,{size:360}) puts a false crossing on the figure-eight: company/engineering/reviews/2026-10-16-knots-w407-reread.md F2; brief fix W-1550). Block (b) lifts in its design review. C4 if first to ship. Untagged, catalog line."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1541",
@@ -18587,19 +18589,21 @@
       "id": "W-1591",
       "title": "draw-a-table-knot c5 disputed: Reveal first sentence 'A switch makes a new knot.' -> 'Your switch made a new knot.' (same 6 words) and update c5 text quote; then a fresh fact-checker re-verifies. See company/reviews/draw-a-table-knot/2026-10-16-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1592",
       "title": "draw-a-table-knot: apply design-lead S4 changes D1 (ring light-mode color-mix 80%), D2 (Seen line light-mode ink mix 45%), D3 (height-aware board width clamp, reveal capped); re-run walkthrough, reveal-fit --strict 390x844, fit-probe 0 overflow at 360x740 (company/design/reviews/2026-10-16-draw-a-table-knot-s4.md)",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1595",
@@ -18615,10 +18619,11 @@
       "id": "W-1596",
       "title": "publish-ready decide(): a same-version same-day tie is broken by file mtime, which a fresh checkout does not keep; '-r2.md' sorts before '.md', so the older record wins (reproduced on the-swap-that-goes-in-circles r1 revise vs r2 launch at ed992963). Question: break ties by 'built from' ancestry or the -rN suffix, never mtime. Also demo-builder lane: a learner-visible reveal-text change bumps meta.version (fc8c53b8 did not). company/rituals/records/2026-10-16-launch-review-ncm-gap4.md ruling 2, objection 3",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1593",
@@ -18633,32 +18638,54 @@
       "id": "W-1594",
       "title": "Publish from launch review r7 ONLY lessons whose precondition row is filled 'yes' and status is review: same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2, the-swap-that-goes-in-circles v1 (swap: publish-ready will say 'held (verdict revise)', use the record's step 4 instead). Lapse conditions in 'For the release-manager'. No deploy. company/rituals/records/2026-10-16-launch-review-ncm-gap4.md",
       "owner": "release-manager",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1597",
       "title": "Set meta.json status draft -> review for probability/same-picture-two-histories (v2). cm-probability-statistics decided YES on W-1574 (row in company/rituals/records/2026-10-16-launch-review-ncm-gap4.md). Do not change version or claims; then release-manager may follow the r7 hand-off.",
       "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1598",
+      "title": "Set meta.json status draft -> review for economics/price-tag-or-auction (v2) and economics/worth-something-alone (v2): cm-economics-markets said yes on both (W-1575; table in company/rituals/records/2026-10-16-launch-review-ncm-gap4.md). Change status only; no version or claim edits; then the release-manager run (W-1594) can start.",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": "economics",
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1599",
+      "title": "Set status draft -> review on math/the-swap-that-goes-in-circles at v1 (no version bump, no claim edit). cm-math-discrete decided YES on W-1595 in launch review r7 preconditions table. Then release-manager may run r7 steps",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1600",
+      "title": "Question (EXP-006 objection 2): ordinary recall/predict events carry no first-time marker or pairing (src/lib/events-intake.ts, src/components/Feed.tsx), so Surface Value #4 first-revisit recall and the r5 P1/P2, Life Hacks L1/L2, EXP-006 F1/F2 rows cannot be computed even after W-706. May the client add first:true to the first recall and first predict per slug, computed from local progress, with no identifier? Rule; build goes to the engineer you name",
+      "owner": "privacy-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
       "links": []
     },
     {
-      "id": "W-1598",
-      "title": "Set meta.json status draft -> review for economics/price-tag-or-auction (v2) and economics/worth-something-alone (v2): cm-economics-markets said yes on both (W-1575; table in company/rituals/records/2026-10-16-launch-review-ncm-gap4.md). Change status only; no version or claim edits; then the release-manager run (W-1594) can start.",
-      "owner": "demo-builder",
-      "state": "backlog",
-      "domain": "economics",
-      "created": "2026-10-16",
-      "links": []
-    },
-    {
-      "id": "W-1599",
-      "title": "Set status draft -> review on math/the-swap-that-goes-in-circles at v1 (no version bump, no claim edit). cm-math-discrete decided YES on W-1595 in launch review r7 preconditions table. Then release-manager may run r7 steps",
+      "id": "W-1601",
+      "title": "tricolour-check: apply design-lead S4 changes D1 (row gap 4px, .btn padding-inline 8px) and D2 (.board width min(100%, clamp(254px, calc(100dvh - 458px), 320px))), re-run walkthrough, reveal-fit --strict, fit-probe (company/design/reviews/2026-10-16-tricolour-check-s4.md)",
       "owner": "demo-builder",
       "state": "backlog",
       "domain": null,
