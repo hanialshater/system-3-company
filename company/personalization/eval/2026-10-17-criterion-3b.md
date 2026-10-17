@@ -1,14 +1,14 @@
-# Criterion 3b: one blind candidate (`reachable-v1`) against the default order, in criterion 3's world
+# Criterion 3b: one blind candidate (`reachable-v2`) against the default order, in criterion 3's world
 
-owner: personalization-eval (Uma) · run: eval-k5-1017 (draft) · board: W-1572 (batch 5 K5) · brief: company/personalization/batches/2026-10-17-batch-5.md#k5 (mailbox 20261017T171622463Z-vp-personalization-d9257031)
+owner: personalization-eval (Uma) · run: eval-k5-1017 (draft), eval-k6-1017 (W-1591, K-e, freeze) · board: W-1572 (batch 5 K5, K6), W-1591 · brief: company/personalization/batches/2026-10-17-batch-5.md#k5 (mailbox 20261017T171622463Z-vp-personalization-d9257031)
 status: draft (unfrozen)
-candidate sha256: (empty until the freeze; K6 fills it from C1's build note and checks it against the file at C1's freeze commit, §7)
-V3 record: (empty until the freeze; K6 names here the vp-personalization record that accepts R3, §7)
+candidate sha256: 2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714 (`company/personalization/policies/reachable-v2.ts`; from reachable-v2-build-note.md §6 freeze line only; K6 checked `git show 3a5cd1f:company/personalization/policies/reachable-v2.ts | sha256sum` gives the same value, §7)
+V3 record: company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md ("R3 accepted", run vp-v3-1017, commit 7fef752)
 records beside it: company/personalization/eval/2026-10-17-criterion-3.md (frozen 709ca2d) and its readout company/personalization/eval/2026-10-17-criterion-3-readout.md (readout 3, run at b1ae294). **Readout 3 stays the record.** This file re-runs none of its readings.
 harness: company/personalization/eval/harness/c3b/ (README.md there: how to run and reproduce) · S record: company/personalization/eval/harness/records/2026-10-17-seeds-c3b-k5.json
-branch: perso-c3b-k5 (worktree /home/user/s3c-k5)
+branch: perso-c3b-k5 (worktree /home/user/s3c-k5) for the draft; perso-c3b-k6 (worktree /home/user/s3c-k6) for K6
 
-This criterion judges **one candidate**, `reachable-v1` (batch 5 C1), against `default-order + fixed` in criterion 3's world, which it imports unchanged. It measures and reports. It contains no keep or kill text. vp-personalization's go/no-go rules (batch 5 §4) read its output. They are not part of it, and nothing here was written to fit them.
+This criterion judges **one candidate**, `reachable-v2` (batch 5 C2; it replaces `reachable-v1`, retired unscored, batch 5 §11.1), against `default-order + fixed` in criterion 3's world, which it imports unchanged. It measures and reports. It contains no keep or kill text. vp-personalization's go/no-go rules (batch 5 §4) read its output. They are not part of it, and nothing here was written to fit them.
 
 ## 0. What I read, what I ran, and what I did not read
 
@@ -26,11 +26,13 @@ This criterion judges **one candidate**, `reachable-v1` (batch 5 C1), against `d
 
 **No candidate was run, and nothing was scored.**
 
+**K6 (eval-k6-1017), before the freeze.** Read: the K6 brief (mailbox 20261017T193416066Z-vp-personalization-bd7b2f8d); batch 5 §0, §3, §4, §6 K6 and R4, §11, §12, §13; `company/personalization/policies/default-order-rule.md` in full (it is now in the builder's permitted set and it is what W-1591 asks the probe to be read against); the V3 record's header and R3 line; `src/lib/visibility.ts`'s header (for K-e). From the candidate side, only: its sha256 at 3a5cd1f; its `export` lines (by `grep`, for §7 step 3); the module's export names when loaded (no call, no episode); and from its build note the §6 freeze line, plus one line (§1, "four hunks … byte-identical to v1") that a `grep` for the freeze line printed. I did not read the candidate's code body, its tests, the rest of its build note, F5 or F5b. Every check and threshold in §4 still predates any reading of the candidate's behaviour; the K6 additions (§4.3 K-e and the order rule, §11) touch the judge's side only.
+
 ## I. The candidate interface the harness enforces
 
 C1 builds from batch 5 §6 C1's text and need not read this section. It records what the slot does with the file, so K6 can find a mismatch before any number exists (§I.5).
 
-**I.1 File.** `company/personalization/policies/reachable-v1.ts`: one TypeScript file with erasable syntax only (Node's type stripping: no `enum`, `namespace` or parameter properties), and no imports. The freeze is that file's content sha256, written into the `candidate sha256:` line above at K6.
+**I.1 File.** `company/personalization/policies/reachable-v2.ts` (K6; was `reachable-v1.ts`, retired unscored): one TypeScript file with erasable syntax only (Node's type stripping: no `enum`, `namespace` or parameter properties), and no imports. The freeze is that file's content sha256, written into the `candidate sha256:` line above at K6.
 
 **I.2 Exports and output.** Named exports `decide` and `rank`, or exactly one exported object holding both as functions (slot.mjs `loadCandidate`).
 - `rank(input)` returns an array that lists **every eligible lesson exactly once**, best first. A lesson is eligible if it is a key of `input.dims` and not a `slug` in `input.history`. Each item has `slug` (string) and `value` (a finite number). Any other fields, such as a reason code and its facts, are the builder's. They are kept in no score.
@@ -40,6 +42,8 @@ C1 builds from batch 5 §6 C1's text and need not read this section. It records 
 **I.3 Input.** It is exactly the object criterion 3's oracle received (harness3.mjs `reachableInput`): `now`, `history` (`slug`, `completedAt`, `predictedCorrectly` true, false, null or absent, and `recalls` `{at, correct}` cut to the last 30 days), `dims` (the world's lesson pool: `slug`, `domain`, `concept`, `level`, `prerequisites`, `successors`, `status` and the simulated `misconceptionStrength`) and `slots`. There is no `fixedDue`. It is built fresh at every new-card pick and deep-frozen.
 
 **I.4 Constraints:** no clock, randomness, environment, I/O or state between calls (V1, V2, V3, V7). It must not mutate its input (V4) and must read no field outside I.3 (V5).
+
+**I.4a What K6 found (§7 step 3, exports only, no call).** The module exports `rank`, `decide`, `REACHABLE_V2` (an object holding `name`, `version`, `rank`, `decide`) and `internals`. `slot.mjs loadCandidate` takes the named `decide` and `rank` first, so the export's rename from `REACHABLE_V1` to `REACHABLE_V2` needs no change to the harness: no harness file imports either object by name. Its declared item type is `{ slug, value, reason }`, as I.2. Its declared `decide` type is `RankedLesson | undefined`; the checks already read `decide(x) ?? null` and the episode loop reads a falsy pick as none, so `undefined` where nothing is eligible is the same answer as `null`. No §I.5 adapter was needed.
 
 **I.5 A mismatch found at K6.** If the file's exports or item fields are named differently from I.2 (for example `lesson` for `slug`), K6 records it before the freeze. The record goes in §11 and in the readout, and vp-personalization is told. K6 then writes a field-name adapter that changes no pick. This is a change to the draft made before any number, not a re-tuning. A behaviour that breaks I.2 to I.4 is not adapted: it fails its check (§4).
 
@@ -80,7 +84,7 @@ Reasons, written before any candidate exists in this tree:
 **Which way it leans.** In readout 3 the oracle did best here: 6 of 6 wins, against 5 of 6 in `first:base`. So this is the cell more favourable to the design. I keep it for reasons 1 to 3. **To offset that, `first:base` enters the outcome** (§2.2): a candidate that does not beat the reference in `first:base` cannot PASS.
 
 ### 2.2 The pair, the rule and the outcome
-**The named pair:** `reachable-v1 + fixed` (label `candidate+fixed`) vs `default-order + fixed`. The review schedule is fixed for both, in Feed.tsx's queue order within the interleave (criterion 3 §1.1).
+**The named pair:** `reachable-v2 + fixed` (label `candidate+fixed`) vs `default-order + fixed`. The review schedule is fixed for both, in Feed.tsx's queue order within the interleave (criterion 3 §1.1).
 
 **The rule in one cell:** criterion 2 §2.1 in full, unchanged (scorer2.mjs `judgePair2`, guardrails `ordering`). The candidate **beats** the reference when all three hold:
 1. It wins in at least 4 of 6 personas. A win has the lower end of the 95% t interval of Δ_p above 0, and Δ_p ≥ δ_min = 0.01.
@@ -159,9 +163,10 @@ K6 runs every check inside run3b.mjs, after the freeze, on the candidate's **own
 **The corpus** is batch 5 §3's "C1 reads only" list, read as git objects:
 - criterion 3, criterion 2, E1 (`evidence/2026-10-16-criterion-2-ranges.md`), E3 (`evidence/2026-10-17-criterion-3-ranges.md`), model.ts and src/kit/progress.ts, all at 709ca2d;
 - batch 5 at be5a812;
-- **at K6, A1's sheet** (`company/personalization/policies/reachable-v1-params.md`), at its commit, through `--corpus-extra=<commit>:<path>`.
+- **at K6, A1's sheet** (`company/personalization/policies/reachable-v1-params.md`), at its commit, through `--corpus-extra=<commit>:<path>`. **K6: at 48218b3** (its last commit; the file at HEAD is identical).
+- **at K6, the order rule** (`company/personalization/policies/default-order-rule.md`) **at b4bad91**, the text batch 5 §11.1 added to the builder's permitted set for v2 (K6-5, §11).
 
-Nothing else may be added to the corpus.
+Nothing else may be added to the corpus. **Not added, on purpose:** `reachable-v1.ts` and its build note. C2 rebuilt from them, but v1 is the candidate's own earlier version and was never copy-checked against the oracle; putting it in the corpus would hide any text v2 inherited from v1 that v1 had taken from the oracle. `src/lib/feed-index.ts` is named by the rule as a source a builder may read, but it is not in C2's list (batch 5 §11.1), so it stays out.
 
 **The measures and thresholds.** Any one reaching its threshold is a **copy finding → INVALID**:
 
@@ -200,12 +205,14 @@ learning-scientist-personalization (F5, company/personalization/evidence/2026-10
 | K-b | Does the rating field's name match what the candidate reads? | The harness gives **`misconceptionStrength`** on every lesson, as an integer 1, 2 or 3 (the simulated rating). Whether the candidate reads that name I cannot say without reading the candidate. That comparison is F5's. The behaviour probe below shows, at K6, whether rank responds to the field at all. | `inputFacts`, `ratingProbe` |
 | K-c | Are the ratings drawn at ρ 0.5? | **YES.** `poolFor(cat, seed, CRITERION2.rho.value)` with ρ = 0.5 (world2.mjs `CRITERION2.rho`). | `inputFacts` |
 | K-d | Does `dims` hold the pilot catalogue only? | **YES.** 230 lessons, domains `probability` and `cs`, the same set as the catalogue's lessons. | `inputFacts` |
+| K-e (K6; F5b R6, batch 5 §13) | Does `dims` hold any lesson with status draft or retired? | **NO** (K6, before the freeze, judge side only). At every seed 40001–42000, `dims` holds the same 230 lessons, 222 published and 8 review. Each entry's `status` equals its own `src/demos/<domain>/<slug>/meta.json` status. The pilot's one draft on disk, `probability/small-gap-big-extremes`, is not in `dims` (sim/catalog.mjs lists published and review only, as src/lib/visibility.ts serves them). No pilot lesson on disk is retired. | checks3b.mjs `keGate` (pre-score gate in run3b.mjs: a failure stops the run before any score); `inputFacts` `Ke_*` on the candidate's own inputs |
+| W-1591 (K6) | Does order rule v1 (`default-order-rule.md`) give the reference arm's default order on `dims`? | **YES.** The judge's transcription of the rule's steps 1–4 (`orderRuleV1`, written from the rule's text) equals `cat.defaultOrder`, the order the reference arm serves, and its 230-slug vector has the rule file's sha256 04bf48f4…. It does not change when the key order of `dims` is reversed. So the tie-order probe's "in default order" count is also the count in the rule's order; the probe prints both. | `orderRuleV1`, `inputFacts` `Kf_*`, `tieOrderProbe` `inOrderRule`; tests3b |
 
-**What I did and did not do with K-a.** I did **not** change the input. The object is built by criterion 3's `runEpisode3`, which must not change (batch 5 §0), and the reference arm, the oracle and the candidate must see the same object. Neither criterion 2 §I.3 nor batch 5's C1 brief makes key order part of the interface. The brief says the default order is "derived from `dims` by the catalogue's rule". (A note for S1, not for this criterion: the product's client index, D2, will have a key order of its own.) If the candidate breaks ties by key order, its tied picks differ from the default order. §1.2 already treats that as part of what the candidate does, not as a validity failure. Whether that calls for a `reachable-v2` before scoring is vp-personalization's decision (batch 5 G6). I do not read F5 or the candidate to judge it.
+**What I did and did not do with K-a.** I did **not** change the input. The object is built by criterion 3's `runEpisode3`, which must not change (batch 5 §0), and the reference arm, the oracle and the candidate must see the same object. Neither criterion 2 §I.3 nor batch 5's C1 brief makes key order part of the interface. The brief says the default order is "derived from `dims` by the catalogue's rule". (A note for S1, not for this criterion: the product's client index, D2, will have a key order of its own.) If the candidate breaks ties by key order, its tied picks differ from the default order. §1.2 already treats that as part of what the candidate does, not as a validity failure. Whether that calls for a `reachable-v2` before scoring is vp-personalization's decision (batch 5 G6). *(Decided in batch 5 §11.1: yes; v1 retired unscored, v2 built from order rule v1. K6 reads the probe against that rule, W-1591 row below.)* I do not read F5 or the candidate to judge it.
 
 **Built into the run, recorded before any score, never INVALID** (run3b.mjs `validity`; verdicts.json `validity.inputFacts`, `validity.probes`; printed by readout3b-tables.mjs):
 - the facts K-a to K-d on the first input of each persona in both base cells;
-- **tie-order probe:** across every input of the candidate's own validity episodes, the number of adjacent `rank` items with exactly equal `value`, and how many of those pairs follow the default order;
+- **tie-order probe:** across every input of the candidate's own validity episodes, the number of adjacent `rank` items with exactly equal `value`, and how many of those pairs follow the default order and (K6, W-1591) order rule v1's order;
 - **rating probe:** the number of inputs where rotating the rating field across lessons changes `rank`.
 
 Neither probe reads the candidate's source. Tests pin K-a = no, K-c = 0.5 and K-d = yes, and pin the fixture's probes (all ties in default order, no response to ratings).
@@ -251,11 +258,13 @@ No requirement needs a change to criterion 3 or its harness.
 - The reference arm runs at any time.
 
 **K6, in order:**
-1. Answer every F5 row that touches the judge. A row that touches the candidate is the VP's (batch 5 G6).
-2. Take the candidate's hash from C1's build note, from its freeze line only, and check it: `git show <C1 freeze commit>:company/personalization/policies/reachable-v1.ts | sha256sum` must give the same value. The rest of the build note is read only after the readout's findings are written (evaluators see the artifact before the account).
-3. Load the file and check its exports against §I.2. Do not run an episode. Any field-name mismatch goes through §I.5.
-4. Write the hash into `candidate sha256:` and the V3 record's path into `V3 record:`.
-5. Add A1's sheet at its commit to the copy check's corpus (`--corpus-extra`), as §4.2 says.
+**K6 record (eval-k6-1017).** Steps 1–6 done before any number; each line says how.
+
+1. Answer every F5 row that touches the judge. A row that touches the candidate is the VP's (batch 5 G6). *K6: F5 and F5b were decided by vp-personalization (batch 5 §11.1, §13); the only rows sent to the judge are F5b R6 (K-e, answered in §4.3 and gated in run3b) and W-1591 (the order rule, §4.3). I did not read F5 or F5b.*
+2. Take the candidate's hash from C1's build note, from its freeze line only, and check it: `git show <C1 freeze commit>:company/personalization/policies/reachable-v1.ts | sha256sum` must give the same value. The rest of the build note is read only after the readout's findings are written (evaluators see the artifact before the account). *K6: v2's build note §6 freeze line gives 2666271f…6714 at 3a5cd1f; `git show 3a5cd1f:company/personalization/policies/reachable-v2.ts | sha256sum` and the file in this tree give the same value.*
+3. Load the file and check its exports against §I.2. Do not run an episode. Any field-name mismatch goes through §I.5. *K6: §I.4a; no mismatch.*
+4. Write the hash into `candidate sha256:` and the V3 record's path into `V3 record:`. *K6: done (header).*
+5. Add A1's sheet at its commit to the copy check's corpus (`--corpus-extra`), as §4.2 says. *K6: 48218b3, and the order rule at b4bad91 (§4.2, K6-5).*
 6. Set `status: frozen` and commit. Write the freeze commit's hash in a second commit.
 7. Run the one scored run (§8). After the first number, nothing in this file changes. Any change is a new criterion, and the old result stands.
 
@@ -266,8 +275,8 @@ No requirement needs a change to criterion 3 or its harness.
 **The run (K6, after the freeze), one part covering both placements, so the outcome is complete:**
 ```sh
 NODE_NO_WARNINGS=1 NODE_OPTIONS=--max-old-space-size=8192 node company/personalization/eval/harness/c3b/run3b.mjs \
-  --candidate=company/personalization/policies/reachable-v1.ts --seeds=2000 --jobs=4 \
-  --corpus-extra=<A1 commit>:company/personalization/policies/reachable-v1-params.md --out=<dir>
+  --candidate=company/personalization/policies/reachable-v2.ts --seeds=2000 --jobs=4 \
+  --corpus-extra=48218b3:company/personalization/policies/reachable-v1-params.md,b4bad91:company/personalization/policies/default-order-rule.md --out=<dir>
 node company/personalization/eval/harness/c3b/readout3b-tables.mjs --dir=<dir>    # markdown, unedited into the readout
 ```
 **Outputs:**
@@ -298,6 +307,8 @@ harness/c3b/README.md has the details. Every random draw is a hash of a string k
 - C1's frozen hash and the V3 record (§7).
 - A1's sheet's commit, for the copy check's corpus (§4.2).
 
+*K6: all three closed (§7 record). Nothing is open before the freeze.*
+
 ## 11. Changes after this draft
 
 Every change before the freeze, with its run and reason. No change is made after the first scored number.
@@ -305,3 +316,9 @@ Every change before the freeze, with its run and reason. No change is made after
 | # | Run | Where | Change | Reason |
 |---|---|---|---|---|
 | K5-1 | eval-k5-1017 | §4.3, checks3b.mjs, run3b.mjs, readout3b-tables.mjs | input facts K-a to K-d and two report-only probes added to the pre-score set (no input changed; nothing made INVALID) | F5 request relayed by the dispatcher during K5 (74fdb37 §4) |
+| K6-1 | eval-k6-1017 | title, header, §I.1, §2.2, §7, §8, harness3b.mjs `CANDIDATE_PATH`, README, run3b.mjs usage line | the candidate is `reachable-v2` (sha256 2666271f…6714, 3a5cd1f), not `reachable-v1` | W-1591; batch 5 §11.1 (v1 retired unscored, G6) |
+| K6-2 | eval-k6-1017 | §I.4a | the export rename `REACHABLE_V1` → `REACHABLE_V2` needs no harness change (the loader takes the named `rank` and `decide`; nothing imports the object by name) | K6 brief step 2; F5b R2 |
+| K6-3 | eval-k6-1017 | §4.3 K-e, checks3b.mjs `keGate`, `inputFacts` `Ke_*`, run3b.mjs | K-e: a pre-score gate that stops the run, before any score, if `dims` holds a draft or retired lesson (every seed; statuses read from `dims` and from each lesson's meta.json); recorded again on the candidate's own inputs | batch 5 §13 (F5b R6); K6 brief step 4 |
+| K6-4 | eval-k6-1017 | §4.3 W-1591 row, checks3b.mjs `orderRuleV1`, `inputFacts` `Kf_*`, `tieOrderProbe` `inOrderRule` | the tie-order probe is also read against order rule v1, transcribed judge-side from default-order-rule.md's text; the rule's order = the reference arm's order is checked and printed | W-1591 (batch 5 §11.6 item 3) |
+| K6-5 | eval-k6-1017 | §4.2 corpus | the order rule at b4bad91 is added to the copy check's corpus, beside A1's sheet at 48218b3. **Which way it leans:** towards a clean result (it can only remove shared shingles and names from M1 and M3; M2 does not read the corpus). Reason: §4.2's corpus is the texts the builder was allowed to read, and batch 5 §11.1 added the rule to that set for v2. v1's file and build note are not added (§4.2) | batch 5 §11.1 |
+| K6-6 | eval-k6-1017 | readout3b-tables.mjs | every cell now prints the full per-persona table (Δ and its interval, win, harm, and each of G1 to G4 with its Δ, interval, judged statistic and holds/fails), not only the base cells; the formatter still computes nothing. §2.2 already required this; the K5 formatter printed only cell-level guardrail fails outside the base cells | §2.2 "Printed for every cell"; K6 brief "Guardrails, reported per cell" |

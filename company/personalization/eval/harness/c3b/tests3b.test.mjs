@@ -144,6 +144,28 @@ test("§4.3 input facts: K-a no (key order = catalogue lesson order; default ord
   assert.equal(K.ratingProbe(fx, inp).changes, false);
 });
 
+// ---------------- K6: K-e gate and order rule v1 (W-1591), written before the freeze ----------------
+test("K-e gate: no draft or retired lesson in dims at any seed of 3b's block; the pilot's draft is on disk and out of dims", () => {
+  const g = K.keGate(H.seedList3b(2000));
+  assert.equal(g.ok, true, JSON.stringify(g.problems)); assert.equal(g.lessons, 230); assert.equal(g.distinctLessonSetsAcrossSeeds, 1);
+  assert.deepEqual(Object.keys(g.statusCounts).sort(), ["published", "review"]);
+  assert.ok(g.hiddenPilotLessonsOnDisk.every((h) => h.inDims === false));
+  assert.ok(g.hiddenPilotLessonsOnDisk.some((h) => h.slug === "probability/small-gap-big-extremes" && h.status === "draft"));
+  const f = K.inputFacts(input0()); assert.equal(f.Ke_noDraftOrRetired, true); assert.deepEqual(f.Ke_statuses, ["published", "review"]);
+});
+test("W-1591: order rule v1 over dims = the reference arm's default order, matches the rule file's 230-slug vector, ignores key order", async () => {
+  const inp = input0(), cat = (await import("../c3/harness3.mjs")).catalog();
+  assert.deepEqual(K.orderRuleV1(inp.dims), cat.defaultOrder);
+  assert.equal(sha(K.orderRuleV1(inp.dims).join("\n")), K.ORDER_RULE_PILOT_SHA256);
+  const rev = Object.fromEntries(Object.entries(inp.dims).reverse()); assert.deepEqual(K.orderRuleV1(rev), cat.defaultOrder);
+  const f = K.inputFacts(inp); assert.equal(f.Kf_orderRuleEqualsReferenceOrder, true);
+  const fx = await loadCandidate(H.FIXTURE); const t = K.tieOrderProbe(fx, inp); assert.equal(t.inOrderRule, t.tiedPairs);
+  // a hand-made dims: review after published, no status ranks as published, three domains round-robin by first appearance
+  const d = (slug, domain, status) => ({ slug, domain, ...(status ? { status } : {}) });
+  const hand = { z: d("z", "b", "published"), a: d("a", "c", "review"), m: d("m", "b"), c: d("c", "a", "published"), k: d("k", "c", "published") };
+  assert.deepEqual(K.orderRuleV1(hand), ["c", "k", "m", "a", "z"]);
+});
+
 // ---------------- S ----------------
 test("S record: reference arm alone at interleave:base, 3b's block, this E1, E3 and catalogue", () => {
   const rec = JSON.parse(readFileSync(join(HERE, "..", "records", "2026-10-17-seeds-c3b-k5.json"), "utf8"));
@@ -169,4 +191,6 @@ test("plumbing: run3b --plumbing (fixture = reference arm): every Δ 0, validity
   assert.equal(v.validity.inputFacts.length, 12); assert.ok(v.validity.inputFacts.every((x) => x.Ka_keyOrderIsDefaultOrder === false && x.Kd_pilotOnly));
   const t = spawnSync(process.execPath, [join(HERE, "readout3b-tables.mjs"), `--dir=${out}`], { encoding: "utf8" });
   assert.equal(t.status, 0, t.stderr); assert.match(t.stdout, /## Outcome: candidate\+fixed vs default-order\+fixed: \*\*FAIL\*\*/);
+  assert.ok(v.judge.ke.ok); assert.match(t.stdout, /#### interleave:slots-low/); assert.match(t.stdout, /K-e gate \(before the first score, every seed\): true/);
+  assert.ok(v.judge.ke.ok); assert.match(t.stdout, /#### interleave:slots-low/); assert.match(t.stdout, /K-e gate \(before the first score, every seed\): true/);
 });

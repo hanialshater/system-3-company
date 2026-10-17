@@ -3,7 +3,7 @@
 // --plumbing run). It reads verdicts.json and manifest.json and prints markdown. It computes no verdict and no new number:
 // every figure is printed as run3b.mjs wrote it (rounded for display).
 //   node company/personalization/eval/harness/c3b/readout3b-tables.mjs --dir=<run3b out dir>
-// owner: personalization-eval (Uma) · run: eval-k5-1017
+// owner: personalization-eval (Uma) · run: eval-k5-1017 · K6 (eval-k6-1017, before the freeze): every cell gets the full per-persona G1-G4 table; K-e and order-rule lines
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -37,7 +37,9 @@ export function tables(v, m) {
   P();
   const fx = val.inputFacts ?? [], pr = val.probes ?? [];
   if (fx.length) P(`Input facts (§4.3, recorded, never INVALID): K-a dims key order = default order: ${fx.every((x) => x.Ka_keyOrderIsDefaultOrder)} (key order = catalogue lesson order: ${fx.every((x) => x.Ka_keyOrderIsCatalogueLessonOrder)}; default order derivable from dims by the catalogue's rule: ${fx.every((x) => x.Ka_defaultOrderDerivableFromDims)}) · K-b rating field \`${fx[0].Kb_ratingField}\` values ${fx[0].Kb_ratingValues.join("/")} · K-c ρ ${fx[0].Kc_rho} · K-d pilot only: ${fx.every((x) => x.Kd_pilotOnly)} (${fx[0].Kd_lessons} lessons)`);
-  if (pr.length) P(`Probes (report only): exact-value tied adjacent pairs in rank ${pr.reduce((a, x) => a + x.tiedPairs, 0)}, of which in default order ${pr.reduce((a, x) => a + x.tiedInDefaultOrder, 0)}; inputs where a rating permutation changes rank ${pr.reduce((a, x) => a + x.ratingPermutationChangesRank, 0)} of ${pr.reduce((a, x) => a + x.inputs, 0)}`);
+  if (fx.length && fx[0].Ke_statuses) P(`K-e (recorded on the candidate's own inputs): dims statuses ${fx[0].Ke_statuses.join("/")}; no draft or retired lesson on every first input: ${fx.every((x) => x.Ke_noDraftOrRetired)} · W-1591: order rule v1 (default-order-rule.md) over dims = the reference arm's order: ${fx.every((x) => x.Kf_orderRuleEqualsReferenceOrder)} (vector ${fx[0].Kf_orderRuleSha256.slice(0, 8)}…)`);
+  if (v.judge.ke) P(`K-e gate (before the first score, every seed): ${v.judge.ke.ok} · ${v.judge.ke.lessons} lessons, statuses ${JSON.stringify(v.judge.ke.statusCounts)}, ${v.judge.ke.distinctLessonSetsAcrossSeeds} lesson set across seeds ${v.judge.ke.seeds}; pilot lessons on disk not visible: ${v.judge.ke.hiddenPilotLessonsOnDisk.map((h) => `${h.slug} (${h.status}, in dims: ${h.inDims})`).join("; ") || "none"}; problems: ${v.judge.ke.problems.join("; ") || "none"}; order rule = reference order ${v.judge.ke.orderRule.equalsReferenceOrder}, vector ${v.judge.ke.orderRule.sha256.slice(0, 8)}… matches the rule file's ${v.judge.ke.orderRule.matchesRuleFileVector}`);
+  if (pr.length) P(`Probes (report only): exact-value tied adjacent pairs in rank ${pr.reduce((a, x) => a + x.tiedPairs, 0)}, of which in default order ${pr.reduce((a, x) => a + x.tiedInDefaultOrder, 0)}${pr[0].tiedInOrderRule != null ? ` and in order rule v1's order ${pr.reduce((a, x) => a + x.tiedInOrderRule, 0)}` : ""}; inputs where a rating permutation changes rank ${pr.reduce((a, x) => a + x.ratingPermutationChangesRank, 0)} of ${pr.reduce((a, x) => a + x.inputs, 0)}`);
   P();
   P(`V10 detail: M1 shingles ${JSON.stringify(val.V10.m1.shingles)}; M2 run: \`${val.V10.m2.run.join(" ")}\``);
   P();
@@ -46,21 +48,26 @@ export function tables(v, m) {
   P();
   P(`Reported cells (no rule) where the candidate does not beat the reference: ${v.pair.reportedCellsNotBeaten.join(", ") || "none"}`);
   P();
-  for (const cell of ["interleave:base", "first:base"]) {
-    const j = v.pair.byCell[cell]; if (!j) continue;
-    P(`### ${cell} (${j.role}): wins ${j.wins} of ${j.rows.length}, harmed ${j.harmed.join(", ") || "none"}, guardrail fails ${j.guardrailFails.join(", ") || "none"}, beats: ${yes(j.beats)}`);
-    P(`| persona | Δ R₇ | 95% interval | win | harm | G1 hi (≤ +0.05) | G2 lo/ref (≥ −0.05) | G3 hi (≤ +0.02) | G4 lo/ref (≥ −0.05) | G1–G4 hold |`);
-    P(`|---|---|---|---|---|---|---|---|---|---|`);
+  // One full per-persona table (K6: every cell, so no guardrail interval is summarised away; criterion 3b §2.2 "Printed for every cell")
+  const iv = (d) => (d ? `${f(d.lo)} to ${f(d.hi)}` : "–");
+  const full = (cell, j, head) => {
+    P(`${head} ${cell} (${j.role}): wins ${j.wins} of ${j.rows.length}, harmed ${j.harmed.join(", ") || "none"}, guardrail fails ${j.guardrailFails.join(", ") || "none"}, beats: ${yes(j.beats)}`);
+    P(`| persona | Δ R₇ | 95% interval | win | harm | G1 Δ top-domain share (interval) · hi ≤ +0.05 | G2 Δ concepts (interval) · lo/ref ≥ −0.05 | G3 Δ prereq-first share (interval) · hi ≤ +0.02 | G4 Δ gain (interval) · lo/ref ≥ −0.05 | G1 | G2 | G3 | G4 |`);
+    P(`|---|---|---|---|---|---|---|---|---|---|---|---|---|`);
     for (const r of j.rows) {
-      const ref = (k) => r.g[k]; // intervals as judgePair2 wrote them
-      P(`| ${r.persona} | ${f(r.R.mean)} | ${f(r.R.lo)} to ${f(r.R.hi)} | ${r.win ? "win" : ""} | ${r.harm ? "**harm**" : ""} | ${f(ref("g1TopDomainShare").hi)} | ${f(r.rel?.G2)} | ${f(ref("g3PrereqFirst").hi)} | ${f(r.rel?.G4)} | ${Object.entries(r.holds).filter(([, ok]) => !ok).map(([k]) => `**${k} fails**`).join(" ") || "all"} |`);
+      const g = (k) => r.g?.[k]; const h = (k) => (r.holds?.[k] ? "holds" : "**fails**");
+      P(`| ${r.persona} | ${f(r.R.mean)} | ${f(r.R.lo)} to ${f(r.R.hi)} | ${r.win ? "win" : ""} | ${r.harm ? "**harm**" : ""} | ${f(g("g1TopDomainShare")?.mean)} (${iv(g("g1TopDomainShare"))}) · ${f(g("g1TopDomainShare")?.hi)} | ${f(g("g2Concepts")?.mean)} (${iv(g("g2Concepts"))}) · ${f(r.rel?.G2)} | ${f(g("g3PrereqFirst")?.mean)} (${iv(g("g3PrereqFirst"))}) · ${f(g("g3PrereqFirst")?.hi)} | ${f(g("g4Gain")?.mean)} (${iv(g("g4Gain"))}) · ${f(r.rel?.G4)} | ${h("G1")} | ${h("G2")} | ${h("G3")} | ${h("G4")} |`);
     }
     P();
-  }
-  P(`### Every cell`);
+  };
+  for (const cell of ["interleave:base", "first:base"]) { const j = v.pair.byCell[cell]; if (j) full(cell, j, "###"); }
+  P(`### Every cell (summary)`);
   P(`| cell | role | wins | harmed | guardrail fails | beats | Δ by persona (lo, hi) |\n|---|---|---|---|---|---|---|`);
   for (const [cell, j] of Object.entries(v.pair.byCell)) P(`| ${cell} | ${j.role} | ${j.wins} | ${j.harmed.join(", ") || "–"} | ${j.guardrailFails.join(", ") || "–"} | ${yes(j.beats)} | ${j.rows.map((r) => `${r.persona.split("-")[0]} ${f(r.R.mean, 3)} (${f(r.R.lo, 3)}, ${f(r.R.hi, 3)})`).join("; ")} |`);
   P();
+  P(`### Every cell, per persona: Δ and G1 to G4 with intervals`);
+  P();
+  for (const [cell, j] of Object.entries(v.pair.byCell)) if (cell !== "interleave:base" && cell !== "first:base") full(cell, j, "####");
   P(`## Printed beside (no rule reads these)`);
   for (const [cell, j] of Object.entries(v.reported.oracle)) P(`- oracle \`reachable+fixed\` vs reference, ${cell}: wins ${j.wins}, harmed ${j.harmed.join(", ") || "none"}, guardrail fails ${j.guardrailFails.join(", ") || "none"}; Δ ${j.rows.map((r) => `${r.persona} ${f(r.R.mean)} (${f(r.R.lo)}, ${f(r.R.hi)})`).join("; ")}`);
   for (const [cell, j] of Object.entries(v.reported.candidateVsOracle)) P(`- candidate vs oracle, ${cell} (Δ per reference lesson): ${j.rows.map((r) => `${r.persona} ${f(r.R.mean)} (${f(r.R.lo)}, ${f(r.R.hi)})`).join("; ")}`);
