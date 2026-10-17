@@ -19194,6 +19194,33 @@
       "domain": null,
       "created": "2026-10-17",
       "links": []
+    },
+    {
+      "id": "W-1654",
+      "title": "Commit 54aa64e3 (analytics-steward, EXP-007 Amendment 1) carries the literal deploy tag in its message body ('no [deploy] since'). It never was a pushed branch head and git deployments are off (F-48), so nothing deployed, but if deploymentEnabled is switched back on, any push whose HEAD message mentions the tag deploys. Propose a guard: a commit-msg check that rejects the literal tag unless the founder approved, and a dispatch rule to write 'deploy tag' instead. History is not rewritten.",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1655",
+      "title": "EXP-008 rows O1/O2: reveal event carries no field for which left-or-right opener was shown (or Turn over/Mirror order). Rule whether a non-identifying field may be added; build goes to backend-engineer. company/experiments/EXP-008-launch-predictions-left-or-right.md",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1656",
+      "title": "left-or-right recall card: correct option repeats the question's word 'right-handed' (EXP-008 caveat). Reword or keep; a changed card needs an EXP-008 amendment before its deploy.",
+      "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
     }
   ]
 }
