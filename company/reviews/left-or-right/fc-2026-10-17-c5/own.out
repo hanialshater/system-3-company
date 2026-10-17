@@ -1,0 +1,10 @@
+B1 right-handed double helix, side view, signs: [1, 1, 1, 1, 1, 1]
+B2 left-handed double helix,  side view, signs: [-1, -1, -1, -1, -1, -1]
+C T signs [-1, -1, -1] sum -3
+C mirror(T) signs [1, 1, 1] sum 3
+C turnover(T) signs [-1, -1, -1] sum -3
+C turnover(mirror(T)) signs [1, 1, 1] sum 3
+D 3_1 front [(1, 4, 2, 5), (3, 6, 4, 1), (5, 2, 6, 3)] signs [-1, -1, -1] sum -3 Left-handed
+D 3_1 turned [(4, 1, 5, 2), (6, 3, 1, 4), (2, 5, 3, 6)] signs [-1, -1, -1] sum -3 Left-handed
+D 3_1 mirrored [(4, 2, 5, 1), (6, 4, 1, 3), (2, 6, 3, 5)] signs [1, 1, 1] sum 3 Right-handed
+D 3_1 mirroredTurned [(1, 5, 2, 4), (3, 1, 4, 6), (5, 3, 6, 2)] signs [1, 1, 1] sum 3 Right-handed
