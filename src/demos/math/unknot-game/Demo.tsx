@@ -15,8 +15,11 @@
 //   return is drawn. The tint is the global .knot-tint class (globals.css, W-1582) plus width 3 on a path from the
 //   same draw() call (spec "The tint"). identify() is not used (README rule 5 does not apply: no tap shows a name).
 // - simplify status 'unknot' -> "Plain loop", 'minimal' -> "Still a knot", anything else -> nothing (rule 4).
+// W-1604 / design-lead S4 D3: when the reveal opens, the stage returns to the trefoil with the learner's last trefoil
+// switch and its tint, so "the tinted strand lay on top at two crossings in a row" points at something on screen
+// (learner walk 2026-10-17 finding 2; same pattern as W-1602 in draw-a-table-knot).
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
@@ -83,7 +86,19 @@ function Marks({ marks }: { marks: boolean[] }) {
   );
 }
 
-function Stage({ ctx, tally, setTally }: { ctx: StageContext; tally: Tally; setTally: (t: Tally) => void }) {
+function Stage({
+  ctx,
+  tally,
+  setTally,
+  lastTre,
+  setLastTre,
+}: {
+  ctx: StageContext;
+  tally: Tally;
+  setTally: (t: Tally) => void;
+  lastTre: number | null;
+  setLastTre: (i: number) => void;
+}) {
   const { locked, phase } = ctx;
   const { reach } = useMilestones(ctx.interact, ["firstFree", "allThree"]);
   const [chip, setChip] = useState<Chip>("3_1");
@@ -116,6 +131,7 @@ function Stage({ ctx, tally, setTally }: { ctx: StageContext; tally: Tally; setT
       return;
     }
     setSw(i); // one switch at a time: any other switched crossing is restored first
+    if (chip === "3_1") setLastTre(i); // D3: the reveal returns to this switch
     if (k.sw[i].status === "unknot") {
       const marks = tally[chip].slice();
       marks[i] = true;
@@ -134,6 +150,14 @@ function Stage({ ctx, tally, setTally }: { ctx: StageContext; tally: Tally; setT
     if (locked) return;
     setSw(null);
   };
+
+  // D3: on entering the reveal, show the trefoil with the last trefoil switch (it exists: the reveal unlocks at
+  // allThree, i.e. after the third trefoil crossing was switched). The stage stays live afterwards.
+  useEffect(() => {
+    if (phase !== "reveal" || lastTre === null) return;
+    setChip("3_1");
+    setSw(lastTre);
+  }, [phase]); // only on entering the reveal; lastTre is fixed by then
 
   const hidden = phase === "predict";
   const showTint = free && cur.tint !== null && sw !== null;
@@ -188,7 +212,7 @@ function Stage({ ctx, tally, setTally }: { ctx: StageContext; tally: Tally; setT
           ))}
         </div>
       </div>
-      <p className={`${s.caption} ${hidden ? s.hidden : ""} ${showTint ? "" : s.empty}`}>
+      <p className={`${s.caption} ${hidden ? s.hidden : ""}`}>
         {showTint ? (
           <>
             <svg width={18} height={8} viewBox="0 0 18 8" aria-hidden="true" className={s.swatch}>
@@ -254,6 +278,7 @@ function Reveal({ tally }: { tally: Tally }) {
 export default function UnknotGame({ slug }: { slug: string }) {
   // Kept across Reset and chip changes (spec "Tally"), and read by the reveal.
   const [tally, setTally] = useState<Tally>({ "3_1": [false, false, false], "4_1": [false, false, false, false] });
+  const [lastTre, setLastTre] = useState<number | null>(null); // last trefoil crossing switched (D3)
   return (
     <Lesson
       slug={slug}
@@ -267,7 +292,7 @@ export default function UnknotGame({ slug }: { slug: string }) {
       minInteractions={2}
       reveal={() => <Reveal tally={tally} />}
     >
-      {(ctx) => <Stage ctx={ctx} tally={tally} setTally={setTally} />}
+      {(ctx) => <Stage ctx={ctx} tally={tally} setTally={setTally} lastTre={lastTre} setLastTre={setLastTre} />}
     </Lesson>
   );
 }

@@ -1,4 +1,4 @@
-.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap { display: flex; flex-direction: column; gap: 2px; }
 .wrap > :global(.row) { margin-top: 2px; justify-content: center; flex-wrap: wrap; }
 
 /* Readout: tick glyph + "Plain loop", or "Still a knot" (spec stage 1). */
@@ -9,10 +9,12 @@
 .glyph { display: inline-block; flex: none; vertical-align: middle; }
 
 /* Fixed aspect so the HTML tap targets sit exactly on the crossings (viewBox 0 0 106 97, S1 tightened).
-   Explore: about 3 px per unit at 320 px wide (the 390 phone stage). Reveal: see .atReveal. */
+   Explore: about 3 px per unit at 320 px wide (the 390 phone stage). Reveal: see .atReveal.
+   Design-lead S4 D2 (company/design/reviews/2026-10-17-unknot-game-s4.md): height-aware, floored at 238 px
+   (2.24 px per unit, the beak's cleared scale); 537 px is the 360-wide stage window minus the non-board stage. */
 .board {
   position: relative;
-  width: min(100%, 320px, calc(38dvh * 106 / 97));
+  width: min(100%, clamp(238px, calc((100dvh - 537px) * 106 / 97), 320px));
   aspect-ratio: 106 / 97;
   margin: 0 auto;
 }
@@ -65,9 +67,9 @@
 .hidden { display: none; }
 
 /* Phone fit at the reveal (build.md "Phone fit"): no text or tap target is made smaller.
-   (1) tighter spacing; (2) the caption line collapses only while it is empty (it is below the picture, so the
-   picture still never moves on a tap); (3) the picture at 270 px wide = 2.55 px per unit, above the design lead's
+   (1) tighter spacing; (2) the caption line is hidden at the reveal, always (S4 D1: the reveal's own sentence says
+   it and the tint stays on the picture; it is below the picture, so the picture never moves); (3) the picture at 270 px wide = 2.55 px per unit, above the design lead's
    smallest measured S3 scale (2.24 px per unit, 260 px / 116); hit circles stay 44 px. S4 departure, flagged. */
 .wrap.atReveal { gap: 1px; }
-.atReveal .caption.empty { display: none; }
-.atReveal .board { width: min(100%, 270px); }
+.atReveal .caption { display: none; }
+.atReveal .board { width: min(100%, 270px, clamp(238px, calc((100dvh - 537px) * 106 / 97), 320px)); }
