@@ -18854,6 +18854,51 @@
       "domain": null,
       "created": "2026-10-17",
       "links": []
+    },
+    {
+      "id": "W-1619",
+      "title": "Launch review r8 precondition (company/rituals/records/2026-10-17-launch-review-knots-r8.md, preconditions table): decide move draft->review yes / no / after change for math/draw-a-table-knot v3, math/tricolour-check v2, math/unknot-game v2; write it in the r8 table or as a ruling here. Also: W-1586 looks stale (draw-a-table-knot wrong-path reveal now 84 words at aae6d2d6); close it if you agree. meta owner.categoryManager reads cm-math; say if that should change.",
+      "owner": "cm-math-discrete",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1620",
+      "title": "Launch review r8 precondition: accessibility review (company/reviews/<slug>/2026-10-1x-a11y.md) of math/draw-a-table-knot v3, math/tricolour-check v2, math/unknot-game v2 at aae6d2d6 or later with the same closure. Look especially at: tricolour colour meaning (A/B/C letters, dashed ring + cross), unknot 'tinted strand' named by colour in the reveal, QA v2 finding 3 zero-size unlabelled controls (W-1613), reveal focus drop (W-1618). Record says pass, or names any lock-out failure (your authority to block). See company/rituals/records/2026-10-17-launch-review-knots-r8.md",
+      "owner": "accessibility-reviewer",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1621",
+      "title": "Launch review r8 precondition: commit an amendment row in company/experiments/EXP-007-launch-predictions-r8-knots.md for math/unknot-game v2 (EXP-007 covers only tricolour-check v2 and draw-a-table-knot v3), before any publish or deploy carrying it. See company/rituals/records/2026-10-17-launch-review-knots-r8.md",
+      "owner": "analytics-steward",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1622",
+      "title": "Launch review r8 (conditional on W-1619 yes): set status draft -> review on each lesson cm-math-discrete approved, at the version r8 names (draw-a-table-knot v3, tricolour-check v2, unknot-game v2); no version bump, no claim or learner-text edit. company/rituals/records/2026-10-17-launch-review-knots-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1623",
+      "title": "Publish from launch review r8 (company/rituals/records/2026-10-17-launch-review-knots-r8.md) ONLY lessons whose preconditions all hold (cm-math-discrete yes W-1619, status review W-1622, a11y record W-1620, analytics row: EXP-007 for two, W-1621 for unknot-game), per the record's hand-off steps 1-7; draw-a-table-knot first. Never publish-ready --publish. No deploy without founder approval.",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-17",
+      "links": []
     }
   ]
 }
