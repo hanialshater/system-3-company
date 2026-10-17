@@ -13,6 +13,33 @@ who no longer exists: check what you rely on.
 
 **Blocked.** Nothing. `tests/hq/releases.test.mjs` fails 3 tests in this shallow worktree (missing git objects; also at base), so `npm run verify` was run step by step; see the report in vp-personalization's mailbox.
 
+## 2026-10-17 · vp-personalization (Mateo, run vp-g3b-1017) · G on readout 3b: v2 NO-GO (INVALID); K7 not sent; R4 parked; website part of M1 closed, M1 = HQ part only
+
+**Changed.** Batch 5 §21 and the G record company/decisions/2026-10-17-vp-personalization-readout-3b-g.md. (1) reachable-v2 is NO-GO under §4 G4. Readout 3b is INVALID on V10. The scores printed under it are not a result. No re-run, and any changed check is a new criterion, frozen first. (2) K7 is not sent. v3 carries all four V10 names (grep counts in §21), and I will not ask the eval to change its check. GO also needs G1 in 12/12 rows, where every recall-directed order failed (readout 3 oracles; v2 240/240). v3 is withdrawn from the website unscored and stays in the HQ lab. (3) R4 is parked: INVALID comes from a static check, and G5 gates a GO only. (4) The website part of M1 is closed (§12 G6(a)). M1 = the HQ part only. The flag stays off. The founder's L3 answer lapses (lapse line added to its record). AMD-013 stays ratified and unused. The release-note draft is marked not used. No mail, no board.json edit.
+
+**Believe (high)** that no website GO path exists under M1. The G1 reading for v3 is a judgement, not a measurement. Objection to myself (§21.2): G1 was the binding constraint from readout 3 on, and I spent v3 on reason truth.
+
+**Next.** Chief of staff passes "For the founder" from the G record and files §21.5 items 1-10. W-1648 (HQ build, running): relay the label change when it reports (§21.4 item 2). Then W-1649/W-1650/W-1651, verify, merge the HQ part, and ask the founder for the deploy.
+
+**Blocked.** Nothing on my side. The website glue owners close or park their items (§21.5 items 6 and 8).
+
+## 2026-10-17 · personalization-eval (Uma) · K6: criterion 3b frozen, one scored run of reachable-v2, readout 3b: INVALID (V10 copy check, M3 4 at threshold 4) (run eval-k6-1017, W-1572, W-1591)
+
+**Changed:** criterion 3b names reachable-v2 (2666271f) and closes W-1591 in its text (order rule v1 transcribed judge-side; tie probe 121,283 of 121,283 in rule order); K-e pre-score gate added; every cell prints the full per-persona G1-G4 table (b1270f7). Frozen 8e96251, hash written in f4f2fbf. One run (2.94 h, jobs 4) at f4f2fbf. Readout: company/personalization/eval/2026-10-17-criterion-3b-readout.md, with manifest.json and verdicts.json in company/personalization/eval/harness/records/2026-10-17-readout-3b/. Board: W-1591 done.
+**Result (as printed):** outcome INVALID. V10's M3 counted 4 shared names outside the corpus (kappa, post, prereqs, refreshPrior), at a threshold of 4. M1 was 0 and M2 was 6 of 12. Every other check passed. K-e: no draft or retired lesson in dims (the draft small-gap-big-extremes is out). Scores, printed under INVALID: no harm in any of the 40 cells; G1 fails in all 240 persona rows; base 6 of 6 wins; first:base 4 of 6.
+**Believe:** high that the run is deterministic and correctly hashed (judge checks and chain passed). The copy finding is lexical, and readout §1 states plainly what it can and cannot say. One aborted start, under a minute and with no output, is disclosed in readout §0.
+**Next:** vp-personalization reads it for G (batch 5 §4 G4, §12). R4 is learner-model-engineer's: the reproduction steps are in readout §7. **Blocked:** nothing on the eval side.
+
+## 2026-10-17 · hq-engineer (Pip, run hq-rnd-1017) · W-1654: /hq/rnd shows the code-evolution leaderboard (branch hq-rnd-leaderboard, not pushed)
+
+**Changed.** New read-only HQ page `/hq/rnd` (tab "R&D" in HqTop and HQ.tsx, one line each). Per project in company/rnd/evolution/ (today knots) it shows rank, candidate, score, tests, size, bench seed, parents, the evaluator's mixed-seed warning, a badge on the candidate the kit uses (fix1-bigon, found by comparing src/kit/knots/draw.mjs byte for byte with each candidate's draw.mjs) with a note that gen2-force-smooth tops the board, and Library links to knots-gen0/gen1/gen2/fix1 notes and EDD-004. Ranking logic moved from tools/evolve.mjs into tools/evolve-board.mjs (no side effects on import); `evolve.mjs board` and the page share it. Data is precomputed: `node tools/hq-rnd-precompute.mjs` writes src/data/hq-rnd/leaderboards.json (`--check` for staleness); the page reads only that file. Test tests/hq/rnd.test.mjs runs the real `evolve.mjs board knots` and compares line by line; it also fails if the committed file is stale.
+
+**Believe (high).** Rows equal the CLI output (tested). Not checked: the page rendered in a browser; verify results are in the final report. After any new `evolve.mjs eval`, rerun the precompute and commit, or the test fails.
+
+**Next.** rnd-lead checks the page against `node tools/evolve.mjs board knots`. Merge: HqTop.tsx (type union and TABS) and HQ.tsx tab list will conflict trivially with the personalization-eval branch if it also edits them.
+
+**Blocked.** W-1654 is on the main checkout's board only, not in this branch's board.json, so it was not moved here; run `npm run company -- board move W-1654 review` after merge. tests/hq releases failures 60/66/67 are the shallow-clone ones, present before this change.
+
 ## 2026-10-17 · vp-personalization (Mateo, run vp-hq-1017) · L3 answer recorded; HQ candidates and Evaluation view amended and briefed
 
 **Changed.** Batch 5 §19.6 records the founder's option A on L3 (W-1646 done). Under it, G7 for L3 passes on her written acceptance, and the objection goes into release note part 7. Batch 5 §20 amends §4's "no reachable-* in the lab before G" for the HQ lab only: frozen v2 and v3 may show, read-only and hash-checked, on simulated personas, labelled "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world." It also lists what must never show. §20.1 corrects the chief of staff's reading in company/decisions/2026-10-17-founder-hq-personalization-and-eval.md: only v3 has `moves`, L1–L7 are draft and L3's wording is pending, lab numbers are not scores, v1 stays out, and the timeline covers all of batch 5. Build request mail 20261017T214401617Z-vp-personalization-0d067403 (personalization-engineer, 350k, /home/user/s3c-hq-eval, perso-hq-eval). Board: W-1649 (hq-engineer), W-1650 (privacy-reviewer), W-1651 (personalization-eval, after K6). W-1648 is doing.

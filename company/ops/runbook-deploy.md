@@ -126,4 +126,24 @@ QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts
 
 Vercel's GitHub integration used to build a preview for every push to the working branch. Agents push work-in-progress snapshots dozens of times a day, which spent the free plan's 100 deployments a day (`api-deployments-free-per-day`) and blocked real releases. `vercel.json` now has an `ignoreCommand`: Vercel skips the build unless the latest commit message contains `[deploy]`. The release manager (or chief of staff) makes one `[deploy]` commit per publish wave, after `npm run check` and QA on that tree. Deliberate releases through `npm run deploy` are unaffected.
 
-**Founder approval (2026-10-14):** every deploy, preview or production, needs the founder's explicit approval for that deploy. No agent adds `[deploy]` to a commit or runs `npm run deploy` on its own judgement, including the release manager after a publish wave: ask first, then deploy once.
+**Founder approval (2026-10-14):** every deploy, preview or production, needs the founder's explicit approval for that deploy. No agent adds `[deploy]` to a commit or runs `npm run deploy` on its own judgement, including the release manager after a publish wave: ask first, then deploy once. The only exception is the pre-approved flag-off withdrawal below (AMD-013).
+
+## Pre-approved flag-off withdrawal (AMD-013)
+
+The founder pre-approved one deploy (company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md; AMD-013 Part B). Nothing else in this runbook is pre-approved.
+
+**What:** a production deploy of the exact source commit that is live, with the same `SHOW_REVIEW` value as the live deployment and `NEXT_PUBLIC_NEW_LESSON_ORDER` off. Nothing else changes: no new commit, no `[deploy]` commit, no other variable.
+
+**When:** only on a privacy or child-safety trigger as AMD-013 B2 lists them, raised in a trigger record at `company/ops/withdrawals/<UTC timestamp>-new-lesson-order.md` that names the trigger and cites its evidence. Any other reason, including the other G10 triggers, is an ordinary deploy: ask the founder first.
+
+**Who:** release-manager only. If release-manager is not running, the chief of staff dispatches release-manager with the trigger record. No other role runs it.
+
+**Steps:**
+1. Read the latest production record in `company/ops/deployments/`, and take its source commit and its `SHOW_REVIEW` value. Check out that commit, clean.
+2. Run `npm run deploy -- production` with the new-lesson-order flag set off by the deploy script's pin (W-1604). Do not set it by hand in the Vercel dashboard.
+3. Check, before calling it done: the new deployment record names the same source commit and the same `SHOW_REVIEW` value as the live one; the build log shows `new-lesson-order: off`; the smoke test passes (`QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts`); and the All feed at `/` in a fresh context shows the default order.
+4. If the deploy or a check fails, stop. Production stays as it was (staged promotion), and every further step, including a retry or `npx vercel rollback`, needs the founder's approval.
+
+**Record and tell:** complete the trigger record with the deploy record path, the smoke result and the time it took effect. Add a `company/ops/releases.json` entry with `approved_by` set to "founder, standing pre-approval, AMD-013 Part B" and the trigger record's path. Add a priority-1 `deploy` item to `company/ops/founder-inbox.json`. Make the withdrawal the first line of your report and of the next progress handoff. Then open a COE.
+
+**Turning it back on** is a new release and needs the founder's approval for that deploy.

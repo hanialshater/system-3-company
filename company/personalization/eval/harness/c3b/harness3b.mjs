@@ -33,7 +33,7 @@ export const ROOT = resolve(HERE, "..", "..", "..", "..", "..");
 export const CRITERION3B_FILE = join(HERE, "..", "..", "2026-10-17-criterion-3b.md");
 export const FIXTURES_DIR = join(HERE, "fixtures");
 export const FIXTURE = join(FIXTURES_DIR, "fixture-default-order.ts");
-export const CANDIDATE_PATH = "company/personalization/policies/reachable-v1.ts"; // batch 5 §2 "The candidate's home"
+export const CANDIDATE_PATH = "company/personalization/policies/reachable-v2.ts"; // batch 5 §2 "The candidate's home"; v2 replaces retired v1 (batch 5 §11.1, K6)
 const sha = (s) => createHash("sha256").update(s).digest("hex");
 
 // ---------------- criterion 3b constants (§2, §3) ----------------

@@ -1,7 +1,7 @@
 # Release note draft: personalised new-lesson order (reachable-v3), website part of M1
 
 owner: vp-personalization (Mateo) · started run vp-o1-1017 · date: 2026-10-17 · batch 5 §5 MR line 14, §18.4
-status: **DRAFT. Nothing here is verified, nothing is released.** Every sentence that reaches a reader is a claim for the fact-checker and privacy-reviewer. No GO exists: K6 is running, K7 and G have not happened. The founder's release approval is a separate question (MR line 14), and deploys need the founder's approval every time.
+status: **NOT USED under M1: the website part is closed (company/decisions/2026-10-17-vp-personalization-readout-3b-g.md; batch 5 §21.4). Kept as a record.** Previously: **DRAFT. Nothing here is verified, nothing is released.** Every sentence that reaches a reader is a claim for the fact-checker and privacy-reviewer. No GO exists: K6 is running, K7 and G have not happened. The founder's release approval is a separate question (MR line 14), and deploys need the founder's approval every time.
 
 ## Parts and their state
 
