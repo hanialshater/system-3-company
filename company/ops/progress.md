@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo), run vp-l3-1017 · L3 to the founder's desk (batch 5 §19)
+
+- **Changed:** batch 5 §19 (company/personalization/batches/2026-10-17-batch-5.md). New company/decisions/2026-10-17-vp-personalization-l3-question.md (status: waiting on founder). It sets out options A (accept L3 over head-of-product's objection) and B (G6(a), HQ only), with the objection attached word for word and my recommendation A. Release-note draft parts 4, 5 and 7 now carry the D1 beacon, O-R1, H-1 to H-4 and the founder question.
+- **Believe:** moderate that A is right. Head-of-product's objection is fair. D1 changes none of my G rules: N1 is "beyond today's", and the beacon is today's and outside the ordering path. It does change what release-note parts 4 and 5 may say (high).
+- **Next (chief of staff, §19.5):** put the L3 question to the founder verbatim; mark W-1638 done; W-1642 note (choose L3 wording if A). If there is no answer by G, it is G6(a).
+- **Blocked:** G waits on K6 (running), K7, R4 and R5. Copy waits on W-1642 and W-1643. The website part waits on W-1585, W-1587 and the founder.
+
 ## 2026-10-17 · vp-personalization (Mateo), run vp-o1-1017 · O1, A3-2, working line set, release-note draft (batch 5 §18)
 
 - **Changed:** batch 5 §18 (company/personalization/batches/2026-10-17-batch-5.md); new company/personalization/copy/2026-10-17-release-note-draft.md (head-of-product's E14 residual paragraph word for word, other parts empty until G). O1: option (i) accept L3; (ii) closed (v3 was the last candidate, §15/§12 G6); (iii) declined (dropping the title removes no false inference). A3-2: R1 cannot fire under v3 (fc2 §4); fail-safe = first sentence alone, R1 test still gates, any instance is a G10 trigger. Working set = RC's L1-L7; head-of-product's rewrites replace them line by line only if W-1632 and W-1633 pass. G11 widened for the review-before-published finding (W-1634). No mail, no board.json edit.
