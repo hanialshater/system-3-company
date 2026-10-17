@@ -12,7 +12,7 @@ recorded by: release-manager (from the words the chief-of-staff relayed from the
 2. Asked separately whether to hold back math/left-or-right because its 3D card is unverified in WebKit/Safari (r9 ruling 2, W-1661), the founder chose **"Ship it anyway"**. Option text shown: "Deploy left-or-right too, untested in Safari. If the card fails there, iPhone users see the mirror-image knot after 'Turn over'. Your decision gets recorded in the release record."
 
 ## What this approves
-One production deploy of the tree prepared in release r8 (company/ops/releases.json), including the published `math/left-or-right` v3. It is this deploy only; any later deploy needs its own approval.
+One production deploy of the tree prepared in release r9 (company/ops/releases.json), including the published `math/left-or-right` v3. It is this deploy only; any later deploy needs its own approval.
 
 ## The risk the founder accepted
 The left-or-right card is correct only if both faces keep `backface-visibility: hidden` and the card keeps `transform-style: preserve-3d` (r9 record, ruling 2; principal-engineer condition C3). The lesson is verified in Chromium only (contract QA, C1 61/61). No WebKit run and no real iPhone check exists. If WebKit fails, an iPhone/Safari learner sees the reflected front, the mirror-image knot, after "Turn over": a false picture on the lesson's own question. Builder set the `-webkit-` prefix inline and both properties are long supported in Safari, so failure is judged unlikely, but it is not checked. Firefox is also not run (r9 objection 2).
@@ -22,7 +22,7 @@ A WebKit/iOS Safari failure of the card (mirror frame or any rest-state failure)
 
 ## Where it is recorded
 - r9 launch record, WebKit cell: company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md ("waived by founder for this deploy").
-- Release entry r8: `approved_by` and `known_issues` in company/ops/releases.json.
+- Release entry r9: `approved_by` and `known_issues` in company/ops/releases.json.
 
 ## Objections
 - r9 objection 1 (demo-builder, qa-tester, design-lead, principal-engineer C3): the 3D card is unverified in WebKit/Safari. Answer: the r9 chair made it a deploy-time precondition (ruling 2 (b)); the founder was asked, with the consequence stated, and waived it for this deploy only. The gap stays open on W-1607/W-1615, the cell is marked as waived (not as verified), and the release entry lists it as a known issue.
