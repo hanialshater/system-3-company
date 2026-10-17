@@ -3,26 +3,34 @@
 // Judge module: imports nothing (criterion 3 T5c). Criterion 2's E1 block and cells2() are passed in by the glue
 // (harness3.mjs), so this file never reads world2.mjs itself and nothing in ../c2/ is edited.
 //
-// THE E3 BLOCK IS A PLACEHOLDER until learning-scientist-personalization's E3 lands
-// (company/personalization/evidence/2026-10-17-criterion-3-ranges.md, batch 4 E3). Every base below is criterion 2's own
-// value, so that the base cells differ from criterion 2 only in placement until E3 fills them. K4 replaces each row with
-// E3's low / base / high and its mark, row by row, before the freeze. Bounds are deliberately wide (batch 4: sweep where E3
-// is wide). Run with another block: `--e3=<file.json>` (same keys); the manifest records its hash.
+// THE E3 BLOCK, filled in K4 (run eval-k4-1017) from learning-scientist-personalization's E3 ranges table
+// (company/personalization/evidence/2026-10-17-criterion-3-ranges.md), with F3's blocking rows B1-B3 answered
+// (company/personalization/evidence/2026-10-17-criterion-3-fidelity-review.md; answers in criterion 3 §10.1).
+// Run with another block: `--e3=<file.json>` (same keys); the manifest records its hash.
+//   outer: one extra reported cell per placement at that value (F3 B3: criterion 2's L4 rule kept as an outer cell).
+//   corner: one reported-only cell per placement with these rows set together (F3 N6, the price corner).
 
 export const E3 = {
-  status: "PLACEHOLDER (K3, run eval-k3-1017): criterion 2 values as bases; E3 not landed",
-  ranges: "company/personalization/evidence/2026-10-17-criterion-3-ranges.md (not landed at K3)",
-  // Positions a revisit card takes, relative to a new lesson card (E3 item 1: time of a retrieval card / a lesson card).
-  // Criterion 2: 1 (one for one, B6 unsourced). 0.5 = criterion 2's own minutes (EPISODE2: revisit 1 min, card 2 min).
-  revisitSlotCost: { low: 0.5, base: 1, high: 1, mark: "PLACEHOLDER: criterion 2 B6 value; E3 item 1" },
-  // Stop hazard after a revisit card relative to after a new card (E3 item 1). Criterion 2: base 1, low 0.5 (L5).
-  revisitStopScale: { low: 0.5, base: 1, high: 1.5, mark: "PLACEHOLDER: criterion 2 L5 values; high added; E3 item 1" },
-  // Card positions per session (E3 item 1: session length in self-paced microlearning). Criterion 2: 12.
-  slots: { low: 6, base: 12, high: 20, mark: "PLACEHOLDER: criterion 2 value 12; E3 item 1" },
-  // N7 (E3 item 2): a prior-known trace forgets at priorRateMult x the rate of a newly learned one ...
-  priorRateMult: { low: 0.25, base: 1, high: 2, mark: "PLACEHOLDER: criterion 2 value 1 (L4); E3 item 2" },
-  // ... and is priorAgeDays old at the episode start (criterion 2 L4: 0, the clock at the episode start).
-  priorAgeDays: { low: 0, base: 0, high: 90, mark: "PLACEHOLDER: criterion 2 value 0 (L4); E3 item 2" },
+  status: "FILLED (K4, run eval-k4-1017) from E3 ranges table; F3 B1-B3 applied",
+  ranges: "company/personalization/evidence/2026-10-17-criterion-3-ranges.md (ranges table; §1a, §1b, §1c, §2a, §2b)",
+  // Positions a revisit card takes, relative to a new lesson card = E3 "revisit time ratio" (time of a revisit / a lesson).
+  revisitSlotCost: { low: 0.15, base: 0.3, high: 0.5, mark: "E3 revisit time ratio 0.15/0.3/0.5 (product + E1 [F] answer windows, derived; low)" },
+  // Stop hazard after a revisit card relative to after a new card, per card = E3 "revisit stop multiplier, per card".
+  revisitStopScale: { low: 0.5, base: 1, high: 2, mark: "E3 revisit stop multiplier per card 0.5/1.0/2.0 (direction [A]/[S] only; analytics; low)" },
+  // Card positions per session = E3 "session length".
+  slots: { low: 4, base: 8, high: 15, mark: "E3 session length 4/8/15 card positions ([S] only; analytics; none-low)" },
+  // N7: a prior-known trace forgets at priorRateMult x the rate of a newly learned one. F3 B2: mapped from E3's
+  // "prior-known 14-day kept" row (0.99 / 0.96 / 0.78) through the world's own L8 form at age 0, E1 base k 0.08,
+  // shape 0.27, L9 factor 1, over E3's 14-day span: m = -ln(kept) / (0.08 x (7 + 0.27 x 7)). The labels follow the
+  // VALUE of m: low m = the most stable trace = E3's HIGH kept (0.99); high m = E3's LOW kept (0.78).
+  // outer 1 = criterion 2's L4 (a prior trace forgets as a fresh one), F3 B3 / E3 §4 item 3, reported cell.
+  priorRateMult: { low: 0.0141, base: 0.0574, high: 0.349, outer: 1,
+    mark: "E3 prior-known 14-day kept 0.99/0.96/0.78 mapped through L8 (F3 B2); low m = E3 high kept; outer 1 = criterion 2 L4 (F3 B3)" },
+  // F3 B1, fix (a): the age axis is dropped (0 everywhere). Under L8 an age past day 7 adds only a starting deficit and no
+  // slower rate, the opposite of E3 item 2; N7 is carried by priorRateMult alone. The L11 age code stays, inert at 0.
+  priorAgeDays: { low: 0, base: 0, high: 0, mark: "F3 B1 fix (a): not swept; 0 = clock at the episode start (criterion 2 L4)" },
+  // F3 N6: one reported-only price corner (high stop x short session x costly revisit). No rule reads it.
+  corner: { revisitStopScale: 2, slots: 4, revisitSlotCost: 0.5 },
 };
 
 /** Placements (criterion 3 §1.1). "first": revisits first (AMD-008 F2 as drafted; criterion 2). "interleave": as
@@ -38,7 +46,8 @@ export const C2_VALUES = { revisitSlotCost: 1, revisitStopScale: 1, slots: 12, p
 /**
  * The cells (criterion 3 §4). c2cells: criterion 2's cells2(e1) output (passed in). For each placement: the base, criterion
  * 2's one-at-a-time cells except its revisitStopScale row (now an E3 row; interleave only), and one cell per E3 row bound
- * that differs from its base. No corners (criterion 3 §4). Names are "<placement>:<cell>".
+ * that differs from its base; K4 adds one outer cell per row naming one (F3 B3) and the price corner (F3 N6), both
+ * reported only. Names are "<placement>:<cell>".
  */
 export function cells3(c2cells, e3 = E3) {
   const base2 = c2cells.find((c) => c.name === "base").world;
@@ -58,6 +67,11 @@ export function cells3(c2cells, e3 = E3) {
       if (e3[k][side] === e3[k].base) continue;
       out.push({ name: `${placement}:${k}-${side}`, kind: "one-at-a-time", placement, world: { ...base, [k]: e3[k][side] } });
     }
+    // K4 (F3 B3): an outer cell per row that names one (criterion 2's L4 for priorRateMult). Reported; no rule reads it.
+    for (const k of Object.keys(C2_VALUES)) if (e3[k].outer !== undefined && e3[k].outer !== e3[k].base)
+      out.push({ name: `${placement}:${k}-outer`, kind: "outer", placement, world: { ...base, [k]: e3[k].outer } });
+    // K4 (F3 N6): the price corner, reported only.
+    if (e3.corner) out.push({ name: `${placement}:price-corner`, kind: "corner", placement, world: { ...base, ...e3.corner } });
   }
   return out;
 }
