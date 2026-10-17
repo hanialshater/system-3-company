@@ -20,7 +20,7 @@ If cm-math-discrete declines, objects or asks for a change first, or the accessi
 
 | Lesson | Version this review is on | Move to review (cm-math-discrete, W-1663): yes / no / after change, where, date | Status `review` (demo-builder, W-1659) | Accessibility record (accessibility-reviewer, W-1664): file, result | Analytics row (analytics-steward) | WebKit/Safari record (deploy-time only, ruling 2; qa-tester W-1607/W-1615): file, result |
 |---|---|---|---|---|---|---|
-| math/left-or-right | v3 | **yes**, `company/domains/briefs/rulings/2026-10-17-r9-move-to-review.md`, 2026-10-17 (cm-math-discrete; same-code check against e3aecea8 empty) | | **met**: `company/reviews/left-or-right/2026-10-17-accessibility.md` (commit e23181b1, tree d238ac7b, whose closure equals 531ff6c8), pass with conditions, no lock-out; L1 ruled not blocking (objection 14). Cell filled by the chair from the record, at the coordinator's report | **met**: EXP-008 (D1-D6, F5/F6, O1/O2) | |
+| math/left-or-right | v3 | **yes**, `company/domains/briefs/rulings/2026-10-17-r9-move-to-review.md`, 2026-10-17 (cm-math-discrete; same-code check against e3aecea8 empty) | **met**: `status: review`, version 3, read by release-manager 2026-10-17 | **met**: `company/reviews/left-or-right/2026-10-17-accessibility.md` (commit e23181b1, tree d238ac7b, whose closure equals 531ff6c8), pass with conditions, no lock-out; L1 ruled not blocking (objection 14). Cell filled by the chair from the record, at the coordinator's report | **met**: EXP-008 (D1-D6, F5/F6, O1/O2) | **empty**: no WebKit/Safari record yet; every production deploy is bound by ruling 2 (release-manager, 2026-10-17) |
 
 ## Ruling 2: WebKit/Safari does not block the publish; it blocks every deploy that would carry the lesson
 
@@ -122,3 +122,6 @@ If any condition fails, do not publish and come back to the chair (board, owner 
 
 ## Kudos (optional)
 - @qa-tester: the QA v3 order matrix and the fast-press section showed the branch opener follows what rested on screen, so I could rule on objection 8 without a probe of my own. The header's plain "I did not try to download it" kept the WebKit gap honest.
+
+## Release-manager execution (2026-10-17, W-1660/W-1661)
+Steps 1-7 run: status review at v3; step 3 diff empty; step 4 only the c5 quote and evidence links changed; no claim open; publish-ready listed left-or-right; EXP-008 committed before. `node tools/company.mjs publish left-or-right` ran; changelog line added with the WebKit sentence. No deploy. Step 8 stands: the WebKit cell is empty, so any production deploy must first revert the left-or-right publish commit or carry the founder's recorded words.
