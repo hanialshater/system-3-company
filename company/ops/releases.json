@@ -598,6 +598,106 @@
           "C2 run 2026-10-15 ~13:00Z on https://system-3-company.vercel.app: 5 drafts 404 twice (one timeout retried, 404); /api/meta keys = claims, domain, evidence, recall, slug, status, title; claim keys = id, links, status, support, text; 'Fact-checker to confirm' absent on /d/earliest-finish-wins; coal-came-back and heat-the-ammonia-maker report published, patience-wins-the-split review."
         ]
       }
+    },
+    {
+      "version": "r8",
+      "date": "2026-10-17T05:41:47.000Z",
+      "commit": "2821160c8673462c288e65424fecc10ddfa1cfb5",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder",
+        "record": "Conversation of 2026-10-17: reply \"Deploy\" to the chief-of-staff summary (5 lessons published earlier plus four knot lessons published 2026-10-17). On math/left-or-right unverified in Safari the founder chose \"Ship it anyway\" (option text: \"Deploy left-or-right too, untested in Safari. If the card fails there, iPhone users see the mirror-image knot after 'Turn over'. Your decision gets recorded in the release record.\"). Decision: company/decisions/2026-10-17-founder-deploy-r9-left-or-right-safari.md"
+      },
+      "summary": "45 lessons move to published (incl. the four knot lessons and math/left-or-right v3) and 12 to review; 200 algorithm drafts and other engine work ship as code only, drafts stay 404; deployed by the Deploy to Vercel workflow, not a commit marker (F-48).",
+      "added": {
+        "features": [
+          "Shared algorithm trace engine and 200 algorithm draft lessons (src/demos/cs/algo-*, PR #6); the catalog Algorithms section renders only visible lessons (8cc9da5a5, 6008cd522). Drafts are code only, unpublished, 404 in production.",
+          "Knot lessons: draw-a-table-knot v3, tricolour-check v2, unknot-game v2 published (4071bb4d1, W-1623); math/left-or-right v3 published (0b4e2e0ae, r9, W-1660).",
+          "Life Hacks engine 2 waves (Home W2/W3, Study TP-3/4/5, Resource TP-7/8) and lhfix-r3 content fixes; Books draft demos and renderer accessibility fixes (b3beca16d).",
+          "Events: per-type field allow-list and exp validation (7e5207f40); registry split into index/loaders (0d76ae17d); Deploy workflow no longer auto-previews (9094e5efc); pushes create no Vercel deployment, deploy only by approved workflow (cdee168c4, F-48).",
+          "Company/HQ: HQ floors reseated by org (89b131609, dc4b38a94), behavioral domain (3ce429834). Roughly 900 further commits in the range are company records (board, memory, reviews, QA); full list: git log aefb10abc..2821160c8."
+        ],
+        "lessons": {
+          "published": {
+            "count": 45,
+            "slugs": [
+              "best-of-twenty-on-one-test",
+              "cut-the-busiest-link",
+              "draw-a-table-knot",
+              "electron-speed-in-a-wire",
+              "head-on-is-a-wall",
+              "left-or-right",
+              "more-detail-less-likely",
+              "more-digits-not-bigger",
+              "one-circle-fewer-introductions",
+              "opposite-flows-swap-more",
+              "order-of-the-bad-year",
+              "packing-cube-walls",
+              "pillowcase-set-kit",
+              "price-tag-or-auction",
+              "raters-reward-agreement",
+              "rebuild-the-procedure",
+              "rolled-or-folded-volume",
+              "same-dose-levels-off",
+              "same-picture-two-histories",
+              "savings-outlast-the-division",
+              "second-speaker-decibels",
+              "shelf-front-labels",
+              "significant-but-false",
+              "sixteen-of-twenty-got-better",
+              "small-n-favours-the-slow-curve",
+              "snap-the-magnet",
+              "spaced-beats-cram",
+              "sudden-skill-or-strict-score",
+              "tax-now-or-tax-later",
+              "ten-thousand-replies-still-wrong",
+              "the-equals-sign-balances",
+              "the-swap-that-goes-in-circles",
+              "tricolour-check",
+              "twenty-flips-run-of-five",
+              "two-cells-sum-any-range",
+              "two-routes-to-co2",
+              "unknot-game",
+              "what-pushes-the-car",
+              "where-the-axis-starts",
+              "which-sea-gets-the-rain",
+              "which-step-to-speed",
+              "which-way-the-water-goes",
+              "winning-bid-overpays",
+              "worth-something-alone",
+              "zebra-sorts-before-apple"
+            ]
+          },
+          "in_review": {
+            "count": 12,
+            "slugs": [
+              "doubling-stopped-speeding-up",
+              "income-flat-then-sixteenfold",
+              "italy-poorer-in-1800",
+              "lakes-misplaced-east-west",
+              "life-expectancy-gained-late",
+              "more-boys-christened",
+              "rome-placed-too-far-east",
+              "same-week-a-year-apart",
+              "saved-or-die-same-600",
+              "sure-million-or-long-shot",
+              "wages-bought-more-wheat",
+              "zero-loses-to-this-crowd"
+            ]
+          }
+        },
+        "fixes": [
+          "Life Hacks r5 fixes: tote-balance-sides lever arm, socks-use-shoe-space hollow label, desk-supply-near-use tape, laundry-sort-before-walk numbers, group-cables end dots (lhfix-r3 E1-E5).",
+          "left-or-right c5 quote corrected and re-verified (1d06150fb, 099fc6707)."
+        ],
+        "known_issues": [
+          "math/left-or-right (v3) is unverified in WebKit/Safari: if backface-visibility or preserve-3d fails there, iPhone users see the mirror-image knot after Turn over. Shipped on the founder's explicit decision (company/decisions/2026-10-17-founder-deploy-r9-left-or-right-safari.md); revert 0b4e2e0ae and redeploy if it fails. Firefox also not run.",
+          "200 algorithm drafts are included as code but unpublished (draft status, 404 in production); the catalog Algorithms section stays hidden. Readiness C2 (W-1645) built-output tests are run on this tree before the deploy (result in company/engineering/readiness/2026-10-16-algorithms-200.md addendum).",
+          "QA was Chromium only: no WebKit or Gecko run for any lesson in this release.",
+          "W-1114 screen-reader defect (Life Hacks slate) ships known (company/rituals/records/2026-10-16-launch-lifehacks-slate.md).",
+          "Release commit 2821160c is the tree prepared; the deployed commit is the release-manager records commit on top of it (records and tests only, no lesson or app code change)."
+        ]
+      }
     }
   ]
 }
