@@ -116,3 +116,5 @@ Builder: demo-builder (run w1619-lor-v3). Inputs: cm-math-discrete ruling `compa
 - **fact-checker:** re-verify c3 and c6 (new quoted branch sentence; signs mirrored-then-turned +,+,+ already derived), and say whether c5 needs the 'its hand stayed right' quote.
 - **qa-tester:** a record on v3 (v2 had none; the 2026-10-16 record is v1).
 - **learner walk:** owed on v3.
+
+## 2026-10-17 W-1651 (meta.json only): c5 adds the quote 'its hand stayed right' and resets to unverified per company/reviews/left-or-right/2026-10-17-fact-check-v3.md; no learner-visible change, so no version bump (stays v3); optional c3 seen-line quote not added. Open: a fact-checker other than the v3 run re-verifies c5.
