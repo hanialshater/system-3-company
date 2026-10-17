@@ -13,7 +13,7 @@
     "check": "node tools/company.mjs check && node tools/memory.mjs check",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
-    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run test:metrics && npm run check && npm run typecheck && npm run build && npm run qa",
+    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:accounts && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run test:metrics && npm run check && npm run typecheck && npm run build && npm run qa",
     "metrics": "node tools/metrics.mjs",
     "deploy": "node tools/deploy.mjs",
     "test:deploy": "node --test tests/deploy/*.test.mjs",
@@ -29,7 +29,8 @@
     "test:spike": "node --import ./tests/lifehacks/register.mjs --test tests/spike/*.test.mjs",
     "test:platform": "node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs",
     "test:mailbox": "node --test tests/mailbox/*.test.mjs",
-    "test:metrics": "node --test tests/metrics/*.test.mjs"
+    "test:metrics": "node --test tests/metrics/*.test.mjs",
+    "test:accounts": "node --import ./tests/lifehacks/register.mjs --test --test-concurrency=1 tests/accounts/*.test.mjs"
   },
   "dependencies": {
     "better-auth": "1.7.10",

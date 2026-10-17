@@ -87,7 +87,10 @@ export function createAccountApi(deps: ApiDeps) {
   return {
     /** GET /api/account/me: whether accounts exist (404 = hide all account UI) and, if signed in, the basics. */
     async me(req: Request): Promise<Response> {
-      if (!on()) return notFound();
+      // Off: the one request every page makes (AccountSync) answers a 404 the browser and CDN may keep for 5 minutes,
+      // so accounts-off costs at most one function call per visitor per 5 minutes. A redeploy (the only way the
+      // switch changes, R3) clears the CDN copy. On, every answer is no-store.
+      if (!on()) return empty(404, { "cache-control": "public, max-age=300, s-maxage=300" });
       try {
         const out = await deps.auth().api.getSession({ headers: req.headers, returnHeaders: true });
         const session = (out as { response?: { user?: { id?: string; email?: string } } | null }).response;
