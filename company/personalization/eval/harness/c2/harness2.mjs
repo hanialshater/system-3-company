@@ -169,8 +169,8 @@ export function runEpisode2({ persona, arm, seed, cell, cat = catalog(), e1 = E1
   const pulls = Object.fromEntries(cat.lessons.map((l) => [l.slug, hiddenPull(seed, l.slug, e1.pull)]));
   const graph = { prereqsOf: (c) => cat.prereqsByConcept[c] || [], pilotConcepts: cat.pilotConcepts };
   const learner = makeLearner2({ seed, personaId: persona.id, world, graph, pullOf: (s) => pulls[s], startTime: EPISODE2.baseTime });
-  const pre = seedHistory(persona, cat, seed);
-  learner.seedKnowledge(pre, dimsLite);
+  // K2 (F1 B5): the generator gives lessons and times; predictions and recall results are drawn by the learner's own law.
+  const pre = learner.seedKnowledge2(seedHistory(persona, cat, seed), dimsLite);
   const worldHash = sha(JSON.stringify({ pulls, initial: learner.snapshot(), world }));
   const pool = poolFor(cat, seed, CRITERION2.rho.value, { b2: e1, permute });
   const dimsFrozen = deepFreeze(Object.fromEntries(pool.map((d) => [d.slug, structuredClone(d)])));

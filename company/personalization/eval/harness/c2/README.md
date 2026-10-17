@@ -34,7 +34,7 @@ node company/personalization/eval/harness/c2/run2.mjs --seeds=<S> --candidate=<P
 1. Fresh worktree at the manifest's `commit`. Check `sha256sum` of the criterion file against `criterionSha256`, each `fileSha256` entry, and `candidate.sha256` of the candidate file.
 2. If `manifest.inputs` differs from `world2.mjs` `E1`, write it to a JSON file and pass `--inputs=`.
 3. Run `run2.mjs` with the manifest's `S`, the same `--candidate` path, the same `--kinds` for each part, any `--jobs`, in a separate process.
-4. Compare `results.json` and `verdicts.json` byte for byte. `manifest.json` may differ only in `seconds` (and `commit`/paths if the worktree differs). The oracle θ choice is part of the run and must match `oracleReviewTheta`.
+4. Compare `results.ndjson` (K2; one line per unit, was `results.json`) and `verdicts.json` byte for byte. `manifest.json` may differ only in `seconds` (and `commit`/paths if the worktree differs). The oracle θ choice is part of the run and must match `oracleReviewTheta`.
 5. Spot check: `harness2.mjs episode` prints a hash that must match across processes and worktrees.
 
 Every random draw is a hash of a string key. No clock, `Math.random` or environment is read by the judge or the reference arms.

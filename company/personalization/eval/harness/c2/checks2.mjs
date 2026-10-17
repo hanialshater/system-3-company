@@ -113,7 +113,8 @@ export function t6Dynamic2({ persona, seed, cellWorld }) {
 // ---- T7 known answers on a two-concept world (A is B's prerequisite) ----
 export function kaWorld(over = {}) {
   return { forgetK: 0.1, pullModifier: 0, pullScale: 1, priorKnowledge: { probability: 0, cs: 0 }, learnPrereqPenalty: 0,
-    predictionFeedback: 0.1, learnRate: 0.7, slip: 0.1, guessRecall: 0.2, relearn: 0.5, revisitStrengthen: 0.5, revisitStopScale: 1,
+    predictionFeedback: 0.1, learnRate: 0.7, slip: 0.1, guessRecall: 0.2, relearn: 0.5, revisitStrengthen: null, strengthenAt1: 0.6, strengthenAt0: 0.35,
+    forgetShape: 1, kSpread: 0, revisitStopScale: 1,
     stopBeforeRevealShare: 0.5, hypercorrection: 0, novelty: 0, interest: { probability: 0.5, cs: 0.5 }, stopHazard: 0, ...over };
 }
 const GRAPH = { prereqsOf: (c) => (c === "probability:b" ? ["probability:a"] : []), pilotConcepts: ["probability:a", "probability:b"] };
@@ -141,12 +142,13 @@ export function t7bPrereq0(seeds = 400) {
   }
   return { ok: Math.abs(gap0 / seeds) <= 1e-3 && gap4 / seeds > 0.02, mean0: gap0 / seeds, control: gap4 / seeds };
 }
-/** T7c lag form: a successful revisit at r = 1 leaves the rate unchanged; one at r = e^-2 (20 days at k 0.1) multiplies it
- *  by S^(1 - e^-2). (Guess floor 0 so that the kept share is the recall probability.) */
+/** T7c lag form (K2, F1 B2): a successful retrieval at r = 1 multiplies the rate by s1 (0.6); one at r = e^-2 (20 days
+ *  at k 0.1) by s1^r x s0^(1 - r). (Guess floor 0 so that every right answer is a retrieval.) */
 export function t7cLag() {
-  const w = kaWorld({ forgetK: 0.1, revisitStrengthen: 0.5, guessRecall: 0 });
+  const w = kaWorld({ forgetK: 0.1, strengthenAt1: 0.6, strengthenAt0: 0.35, guessRecall: 0 });
   const rate = (L, t0, t1) => -Math.log(L.keptAt(KA.A.concept, t1)) / ((t1 - t0) / DAY);
-  const want = { immediate: 0.1, late: 0.1 * Math.pow(0.5, 1 - Math.exp(-2)) };
+  const r = Math.exp(-2);
+  const want = { immediate: 0.1 * 0.6, late: 0.1 * Math.pow(0.6, r) * Math.pow(0.35, 1 - r) };
   let immediate = null, late = null;
   for (let s = 1; s <= 2000 && (immediate === null || late === null); s++) {
     const L = mk(s, w); L.beginSession(0);
@@ -158,6 +160,54 @@ export function t7cLag() {
   }
   return { ok: immediate !== null && late !== null && Math.abs(immediate - want.immediate) <= 1e-9 && Math.abs(late - want.late) <= 1e-9, immediate, late, want };
 }
+/** T7f forgetting shape and spread (K2, F1 B1, B3): after day 7 the rate is shape x the first-week rate; kSpread 0 gives
+ *  factor 1; kSpread > 0 gives a per-concept factor whose log has SD close to kSpread (median 1). */
+export function t7fShapeSpread() {
+  const L = mk(1, kaWorld({ forgetK: 0.1, forgetShape: 0.27, learnRate: 1, predictionFeedback: 0 })); L.beginSession(0); L.study(KA.A, 0);
+  const shapeOk = Math.abs(L.keptAt(KA.A.concept, 30 * DAY) - Math.exp(-0.1 * (7 + 0.27 * 23))) <= 1e-12
+    && Math.abs(L.keptAt(KA.A.concept, 5 * DAY) - Math.exp(-0.5)) <= 1e-12;
+  const L0 = mk(1, kaWorld({ forgetK: 0.1, learnRate: 1, predictionFeedback: 0 })); L0.beginSession(0); L0.study(KA.A, 0);
+  const noSpreadOk = Math.abs(L0.keptAt(KA.A.concept, 5 * DAY) - Math.exp(-0.5)) <= 1e-12;
+  const logs = [];
+  for (let s = 1; s <= 2000; s++) {
+    const Ls = mk(s, kaWorld({ forgetK: 0.1, kSpread: 0.4, learnRate: 1, predictionFeedback: 0 })); Ls.beginSession(0); Ls.study(KA.A, 0);
+    logs.push(Math.log(-Math.log(Ls.keptAt(KA.A.concept, DAY)) / 0.1));
+  }
+  const m = logs.reduce((a, b) => a + b, 0) / logs.length;
+  const sdv = Math.sqrt(logs.reduce((a, b) => a + (b - m) ** 2, 0) / (logs.length - 1));
+  return { ok: shapeOk && noSpreadOk && Math.abs(m) < 0.05 && Math.abs(sdv - 0.4) < 0.03, shapeOk, noSpreadOk, mean: m, sd: sdv };
+}
+/** T7g a right GUESS on a known concept does not strengthen (K2, F1 N5); a miss on a known concept with relearn 1 keeps mult. */
+export function t7gGuessNoStrengthen(seeds = 4000) {
+  const w = kaWorld({ forgetK: 0.1, guessRecall: 0.5, relearn: 1, strengthenAt1: 0.5, strengthenAt0: 0.5 });
+  let guesses = 0, retrievals = 0;
+  for (let s = 1; s <= seeds; s++) {
+    const L = mk(s, w); L.beginSession(0);
+    if (!L.study(KA.A, 0).learned) continue;
+    const tr = 10 * DAY;
+    const res = L.revisit(KA.A, tr);
+    if (!res.ok) continue;
+    const k = -Math.log(L.keptAt(KA.A.concept, tr + DAY));
+    if (Math.abs(k - 0.1) <= 1e-9) guesses++;
+    else if (Math.abs(k - 0.05) <= 1e-9) retrievals++;
+    else return { ok: false, seed: s, k };
+  }
+  // P(retrieval | right) = (1 - g) r / (g + (1 - g) r), r = e^-1: about 0.42
+  return { ok: guesses > 0 && retrievals > 0, guesses, retrievals };
+}
+/** T7h pre-history follows the episode's law (K2, F1 B5): with no prior knowledge and learnRate 0, a pre-history recall
+ *  answered right is a guess and does not make the concept known; with relearn 0 nothing is known after pre-history. */
+export function t7hPrehistoryLaw(seeds = 400) {
+  let right = 0;
+  for (let s = 1; s <= seeds; s++) {
+    const L = mk(s, kaWorld({ learnRate: 0, relearn: 0, guessRecall: 0.5 }));
+    const out = L.seedKnowledge2([{ slug: KA.A.slug, completedAt: -5 * DAY, predictedCorrectly: true, recalls: [{ at: -4 * DAY, correct: true }] }], { [KA.A.slug]: KA.A });
+    if (out[0].recalls[0].correct) right++;
+    if (L.knownCount() !== 0) return { ok: false, seed: s };
+  }
+  return { ok: right > 0 && right < seeds, right };
+}
+
 /** T7d reading is pure: knowledgeAt and recallProb change no state. */
 export function t7dReadPure(seeds = 50) {
   for (let s = 1; s <= seeds; s++) {

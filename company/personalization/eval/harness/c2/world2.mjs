@@ -2,33 +2,34 @@
 // owner: personalization-eval (Uma) · run: eval-k1-1016 · criterion: company/personalization/eval/2026-10-16-criterion-2.md (§1, §4)
 // Judge module: imports nothing (criterion 2 T5). No policy, curve, weight or lesson rating is read here.
 //
-// THE E1 BLOCK IS A PLACEHOLDER (K1, pre-E1). E1 (learning-scientist-personalization, W-1544) publishes
-// company/personalization/evidence/2026-10-16-criterion-2-ranges.md; K2 fills this block from it, after spot-checking two
-// rows, and recomputes S from the default-order arm if a base value moved (criterion 2 §4, §7). Until then:
-//   - rows B2 already has (C4-filled block of ../world-inputs.mjs) carry B2's values, marked "B2 (C4)";
-//   - rows B2 lacks (revisitStrengthen, relearn: C2 F20, F21) carry the phase A guess as base and {guess/2, base,
-//     (1 + guess)/2} as low/high, marked "GUESS (pre-E1)". These are placeholders, never a judge's choice of range.
+// THE E1 BLOCK, FILLED IN K2 (run eval-k2-1016) from company/personalization/evidence/2026-10-16-criterion-2-ranges.md
+// ("Ranges table"), row by row, as cited in each `mark`. Two rows spot-checked against their sources by the eval (criterion 2
+// §4). Rows E1 does not give (pull, pullModifier, prereqPenalty, predictionFeedback) carry B2 (C4) unchanged, as E1 says.
 // Run with another block: `--inputs=<file.json>` (same keys); the manifest records the hash of the block used.
 
 export const E1 = {
-  status: "PLACEHOLDER pre-E1 (K1, run eval-k1-1016); K2 fills from company/personalization/evidence/2026-10-16-criterion-2-ranges.md",
+  status: "FILLED from E1 (K2, run eval-k2-1016)",
   ranges: "company/personalization/evidence/2026-10-16-criterion-2-ranges.md",
-  // per-day rate k of the increment ABOVE the guess floor (the C4 form, kept). B2 (C4): low/base [R] unverifiable, high [F].
-  forgetRate: { low: 0.04, base: 0.10, high: 0.20, mark: "B2 (C4)" },
-  // fastest / slowest persona rate. B2 (C4).
-  forgetSpread: { low: 1.5, base: 2, high: 3, mark: "B2 (C4)" },
-  // Successful-revisit strengthening (C2 F21, live in criterion 2): the factor on the forgetting rate after a successful
-  // revisit made when the increment had fully decayed. The factor applied is S^(1 - r), r = share of the increment kept
-  // at the revisit (lag form, §1 L2): a revisit at r = 1 (no forgetting yet) strengthens nothing.
-  revisitStrengthen: { low: 0.25, base: 0.5, high: 0.75, mark: "GUESS (pre-E1): phase A unsourced 0.5" },
-  // P(encode from the feedback of a revisit whose answer was not recalled from memory) (C2 F20, live in criterion 2).
-  relearn: { low: 0.25, base: 0.5, high: 0.75, mark: "GUESS (pre-E1): phase A unsourced 0.5" },
-  // Population prior knowledge (C2 F16): mean and SD of P(concept known at the start) over persona x domain.
-  priorKnowledgeMean: { low: 0.05, base: 0.20, high: 0.50, mark: "B2 (C4), low confidence" },
-  priorKnowledgeSpread: { low: 0.05, base: 0.15, high: 0.25, mark: "B2 (C4)" },
-  // P(encode | concept unknown, no penalty) before the prediction-feedback boost (C2 F2). B2 (C4): low 0.35 [F]-derived,
-  // high 0.70 unsourced, base none (0.70 C1 guess). E1 item 4 gives a sourced base.
-  learnRate: { low: 0.35, base: 0.70, high: 0.70, mark: "B2 (C4): base is the C1 guess" },
+  // per-day rate k of the increment ABOVE the guess floor over days 0-7 of a trace's age. E1 `forgetRate` k, first interval.
+  forgetRate: { low: 0.04, base: 0.08, high: 0.19, mark: "E1: low Roediger & Karpicke [R]; base McGillivray 2015 [F]; high Fazio 2010 [F]" },
+  // ratio of the effective rate after day 7 of a trace's age to the first-week rate (1 = single exponential). F1 B1 answer (b).
+  forgetShape: { low: 0.2, base: 0.27, high: 1.0, mark: "E1 forgetting shape beyond 7 days: Murre & Dros 2015 [F]; high 1.0 = exponential" },
+  // fastest / slowest persona rate. E1 between-learner spread (B2 unchanged); base used, not swept (F1 N12, note).
+  forgetSpread: { low: 1.5, base: 2, high: 3, mark: "E1 (B2 unchanged); not swept" },
+  // SD of log k across (learner, lesson) pairs, on top of the persona spread. F1 B3 answer (a). E1 new row.
+  kSpread: { low: 0.2, base: 0.4, high: 0.7, mark: "E1 learner x lesson spread of k: Fastrich 2018 [F] derived upper bound; Mettler 2016 [F]" },
+  // Successful-retrieval strengthening, the multiplier on the rate (smaller = stronger). F1 B2 answer (a): base cell is
+  // the lag form anchored at both E1 ends, s(r) = atFullRecall^r x atNoRecall^(1 - r) (geometric interpolation: the
+  // eval's unsourced choice); the low and high cells are E1's low and high as constants (no lag dependence).
+  revisitStrengthen: { low: 0.35, base: 0.50, high: 0.60, lag: { atFullRecall: 0.60, atNoRecall: 0.35 },
+    mark: "E1 revisitStrengthen (high Fazio 2010 Schedule A [F]; low scheduler multipliers [R]) and lag dependence (direction Cepeda [A], Eglington & Pavlik [F]; shape unsourced)" },
+  // P(re-encode | failed revisit or a right guess on an unknown concept; answer and why shown). E1 `relearn`.
+  relearn: { low: 0.60, base: 0.70, high: 0.88, mark: "E1: Metcalfe 2015 [F], Metcalfe 2012 [F], Fazio & Marsh 2009 [F], McGillivray [F]" },
+  // Population prior knowledge: mean and between-learner SD. E1 priorKnowledge rows.
+  priorKnowledgeMean: { low: 0.05, base: 0.20, high: 0.45, mark: "E1 §3 table [F]/[F-r]" },
+  priorKnowledgeSpread: { low: 0.05, base: 0.15, high: 0.25, mark: "E1 (B2 unchanged); base used, not swept (F1 N6)" },
+  // P(encode | unknown, no penalty) BEFORE the prediction-feedback boost (x 1.10 applied in pEncode). F1 B4: pre-boost row.
+  learnRate: { low: 0.35, base: 0.60, high: 0.80, mark: "E1 learnRate pre-boost row (Fazio 2010 [F]; Fazio & Marsh 2009 [F]; Metcalfe [F]; McGillivray [F]; Fastrich [F, derived])" },
   // Carried from B2 (C4) unchanged; E1 is not asked for these.
   pull: { low: 0.30, base: 0.55, high: 0.85, mark: "B2 (C4)" },
   pullModifier: { low: -0.15, base: 0, high: 0.10, mark: "B2 (C4)" },
@@ -41,7 +42,7 @@ export const E1 = {
 // per-term pair, so the learner carries neither mechanism (§1 L6).
 export const UNSOURCED2 = {
   slip: 0.1,                  // P(wrong prediction | known). guess (C2 F18, note)
-  guessRecall: 0.2,           // recall floor. Fazio et al. 2010 not-read baseline .21-.23 [F] (C2 F19)
+  guessRecall: 0.2,           // recall floor. K2 (F1 N11): basis is the 3-option format, E1 guessRecall 0.08/0.22/0.35; not swept
   stopBeforeRevealShare: 0.5, // engagement only (C2 F22, note)
   priorClamp: [0.01, 0.95],
   hypercorrection: 0,
@@ -91,16 +92,21 @@ export const CRITERION2 = {
  *  - every other swept row: E1's low and high as absolute values, the others at base;
  *  - pull scale 0.5 / 1.5 (phase A exit row, kept);
  *  - a row whose low (or high) equals its base gives no cell.
- * Kinds: base; one-at-a-time (pass-relevant); corner (reported only: forgetting x revisitStrengthen x prior mean).
+ * Kinds: base; one-at-a-time (pass-relevant); corner (reported only: forgetting x revisitStrengthen x kSpread, K2).
+ * revisitStrengthen: the base cell is "lag" (E1's two anchors, F1 B2); its low and high cells are E1's low and high as
+ * constants.
  */
 export function cells2(e1 = E1) {
   const fLow = Math.min(0.5, e1.forgetRate.low / e1.forgetRate.base);
   const fHigh = Math.max(1.5, e1.forgetRate.high / e1.forgetRate.base);
-  const base = { forgetScale: 1, pullScale: 1, prereqPenalty: e1.prereqPenalty.base, learnRate: e1.learnRate.base,
-    revisitStrengthen: e1.revisitStrengthen.base, relearn: e1.relearn.base, priorKnowledgeMean: e1.priorKnowledgeMean.base,
-    revisitStopScale: UNSOURCED2.revisitStopScale.base };
+  const base = { forgetScale: 1, forgetShape: e1.forgetShape.base, kSpread: e1.kSpread.base, pullScale: 1,
+    prereqPenalty: e1.prereqPenalty.base, learnRate: e1.learnRate.base,
+    revisitStrengthen: e1.revisitStrengthen.lag ? "lag" : e1.revisitStrengthen.base, relearn: e1.relearn.base,
+    priorKnowledgeMean: e1.priorKnowledgeMean.base, revisitStopScale: UNSOURCED2.revisitStopScale.base };
   const axes = {
     forgetScale: [fLow, fHigh],
+    forgetShape: [e1.forgetShape.low, e1.forgetShape.high],
+    kSpread: [e1.kSpread.low, e1.kSpread.high],
     revisitStrengthen: [e1.revisitStrengthen.low, e1.revisitStrengthen.high],
     relearn: [e1.relearn.low, e1.relearn.high],
     priorKnowledgeMean: [e1.priorKnowledgeMean.low, e1.priorKnowledgeMean.high],
@@ -114,7 +120,7 @@ export function cells2(e1 = E1) {
     if (lo !== base[k]) out.push({ name: `${k}-low`, kind: "one-at-a-time", world: { ...base, [k]: lo } });
     if (hi !== base[k]) out.push({ name: `${k}-high`, kind: "one-at-a-time", world: { ...base, [k]: hi } });
   }
-  const ck = ["forgetScale", "revisitStrengthen", "priorKnowledgeMean"];
+  const ck = ["forgetScale", "revisitStrengthen", "kSpread"]; // K2: kSpread replaces prior mean in the corners (F1 B3)
   for (let m = 0; m < 8; m++) {
     const w = { ...base };
     ck.forEach((k, i) => { w[k] = axes[k][(m >> i) & 1]; });
@@ -147,7 +153,11 @@ export function personaWorld2(persona, personas, cell, e1 = E1) {
     forgetK, pullModifier, pullScale: cell.pullScale,
     priorKnowledge: { probability: prior(L.priorKnowledge.probability), cs: prior(L.priorKnowledge.cs) },
     learnPrereqPenalty: cell.prereqPenalty, predictionFeedback: e1.predictionFeedback.base, learnRate: cell.learnRate,
-    revisitStrengthen: cell.revisitStrengthen, relearn: cell.relearn, revisitStopScale: cell.revisitStopScale,
+    revisitStrengthen: cell.revisitStrengthen === "lag" ? null : cell.revisitStrengthen,
+    strengthenAt1: cell.revisitStrengthen === "lag" ? e1.revisitStrengthen.lag.atFullRecall : cell.revisitStrengthen,
+    strengthenAt0: cell.revisitStrengthen === "lag" ? e1.revisitStrengthen.lag.atNoRecall : cell.revisitStrengthen,
+    forgetShape: cell.forgetShape, kSpread: cell.kSpread,
+    relearn: cell.relearn, revisitStopScale: cell.revisitStopScale,
     slip: UNSOURCED2.slip, guessRecall: UNSOURCED2.guessRecall, stopBeforeRevealShare: UNSOURCED2.stopBeforeRevealShare,
     hypercorrection: UNSOURCED2.hypercorrection, novelty: UNSOURCED2.novelty,
     interest: { ...L.interest }, stopHazard: L.stopHazard,
