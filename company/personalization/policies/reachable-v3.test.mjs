@@ -1,12 +1,14 @@
 // Unit tests for reachable-v3 on hand-made histories only (no simulator, no harness, no episode).
 // Carried over from reachable-v2.test.mjs and adapted for an ungraded history (build note §5), plus the v3 tests
-// at the end: cold start equals v2, predictions and recalls never read, and the moving reasons (batch 5 §15.1 (ii)).
+// at the end: cold start equals v2, predictions and recalls never read, and the moving reasons (batch 5 §15.1 (ii)),
+// with the §16.5 addendum (the `shown` frame and the passed-known code; rebuild run lme-v3r-1017).
 // reachable-v2.ts is imported here as the reference only; the candidate itself imports nothing.
 // Run: node --test company/personalization/policies/reachable-v3.test.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import { rank, decide, moves, internals, REACHABLE_V3 } from "./reachable-v3.ts";
 import { rank as rankV2 } from "./reachable-v2.ts";
 
@@ -230,7 +232,13 @@ test("source: no imports, no clock, no randomness, no I/O", () => {
   assert.doesNotMatch(code, /\b(process|globalThis|window|fetch|localStorage)\b/);
   // only now, history, dims and slots are read from the input
   const reads = [...code.matchAll(/input\.(\w+)/g)].map((m) => m[1]);
-  for (const f of reads) assert.ok(["now", "history", "dims", "slots"].includes(f), f);
+  for (const f of reads) assert.ok(["now", "history", "dims", "slots", "shown"].includes(f), f);
+  // §16.5 item 2: rank never reads shown. Nothing from the estimate through decide names it; moves reads it once.
+  const rankPart = code.slice(code.indexOf("function estimate("), code.indexOf("export function decide"));
+  assert.ok(rankPart.length > 1000);
+  assert.doesNotMatch(rankPart, /\bshown\b/);
+  assert.equal([...code.matchAll(/input\.shown/g)].length, 1);
+  assert.ok(code.indexOf("input.shown") > code.indexOf("export function moves"));
   // v3: ungraded. The type still declares predictedCorrectly and recalls; no code line reads them, nor the rating fields.
   const body = code.slice(code.indexOf("export type LessonDims"));
   const afterTypes = code.slice(code.indexOf("const P = {"));
@@ -480,45 +488,73 @@ function ruleOrder(d) {
 }
 
 const valueOfT = (t) => (1 - t.q) * t.newGain * t.prereqFactor + t.q * t.refresh;
-/** F6 §7's pairCode, with q mapped by the moved card (mapBy) and domain-estimate counted as no code in v3. */
-function pairCode(u, l, mapBy) {
-  if (!(u.value > l.value)) return { code: null, contrib: new Set() };
+/**
+ * F6 §7's pairCode, with q mapped by the moved card (mapBy) and domain-estimate counted as no code in v3.
+ * §16.5: for an earlier move, q is also passed-known when the passed card's concept has a finished lesson (pk).
+ * F6's single decisive code becomes a set, because q can stand for two codes in one pair.
+ */
+function pairCode(u, l, mapBy, pk = false) {
+  if (!(u.value > l.value)) return { code: new Set(), contrib: new Set() };
   const sw = [
     { c: "prerequisites", v: u.value - valueOfT({ ...u.terms, prereqFactor: l.terms.prereqFactor }) },
     { c: "q", v: u.value - valueOfT({ ...u.terms, q: l.terms.q }) },
     { c: "refresh", v: u.value - valueOfT({ ...u.terms, refresh: l.terms.refresh }) },
   ];
   let b = sw[0]; for (const s of sw) if (s.v > b.v) b = s;
-  const m = (c) => (c === "q" ? (mapBy.hasState ? "concept-known" : "domain-estimate") : c);
-  return { code: m(b.c), contrib: new Set(sw.filter((s) => s.v > 0).map((s) => m(s.c))) };
+  const m = (c) => (c === "q" ? [mapBy.hasState ? "concept-known" : "domain-estimate", ...(pk ? ["passed-known"] : [])] : [c]);
+  return { code: new Set(m(b.c)), contrib: new Set(sw.filter((s) => s.v > 0).flatMap((s) => m(s.c))) };
 }
 
+const CODES = ["prerequisites", "concept-known", "refresh", "passed-known"];
+
+/** The §16.5 frame restated: D' = rule order minus history minus shown; R' = internals.rows minus shown. */
 function expectedMoves(inp) {
-  const rows = internals.rows(inp);
+  const shown = new Set(inp.shown ?? []);
+  const rows = internals.rows(inp).filter((r) => !shown.has(r.slug));
   const done = new Set(inp.history.map((h) => h.slug));
-  const def = ruleOrder(inp.dims).filter((s) => !done.has(s));
+  const finConcepts = new Set(inp.history.filter((h) => inp.dims[h.slug]).map((h) => inp.dims[h.slug].concept));
+  const def = ruleOrder(inp.dims).filter((s) => !done.has(s) && !shown.has(s));
   const rpos = new Map(rows.map((r, i) => [r.slug, i]));
   const dpos = new Map(def.map((s, i) => [s, i]));
   return rows.map((x, rx) => {
     const dx = dpos.get(x.slug);
-    if (rx === dx) return { slug: x.slug, moved: false };
+    if (rx === dx) return { slug: x.slug, moved: false, passedKnownConcepts: [] };
     const earlier = rx < dx;
     const pairs = rows.filter((y) => (earlier ? dpos.get(y.slug) < dx && rpos.get(y.slug) > rx : dpos.get(y.slug) > dx && rpos.get(y.slug) < rx))
       .map((y) => (earlier ? [x, y] : [y, x]));
-    const results = pairs.map(([u, l]) => pairCode(u, l, x));
-    const eligible = ["prerequisites", "concept-known", "refresh"].filter((c) => results.some((p) => p.contrib.has(c)));
-    const count = (c) => results.filter((p) => p.code === c).length;
+    const results = pairs.map(([u, l]) => pairCode(u, l, x, earlier && finConcepts.has(inp.dims[l.slug].concept)));
+    const eligible = CODES.filter((c) => results.some((p) => p.contrib.has(c)));
+    const count = (c) => results.filter((p) => p.code.has(c)).length;
     let code = null;
     for (const c of eligible) if (code === null || count(c) > count(code)) code = c;
-    return { slug: x.slug, moved: true, direction: earlier ? "earlier" : "later", code, pairs, results };
+    const passedKnownConcepts = [...new Set(pairs.filter((_, i) => results[i].contrib.has("passed-known")).map(([, l]) => inp.dims[l.slug].concept))];
+    return { slug: x.slug, moved: true, direction: earlier ? "earlier" : "later", code, pairs, results, passedKnownConcepts };
   });
 }
 
-test("moves: one entry per ranked slug, in rank order; moved iff the position differs from the default order", () => {
-  for (const inp of casesAll()) {
+/** casesAll plus, for each, `shown` = prefixes of the display (rank order) and of the default order, and junk. */
+function casesShown(now = NOW) {
+  const out = [];
+  for (const inp of casesAll(now)) {
+    const r = rank(inp).map((x) => x.slug);
+    const done = new Set(inp.history.map((h) => h.slug));
+    const def = ruleOrder(inp.dims).filter((s) => !done.has(s));
+    for (const n of [1, 2, 5]) {
+      out.push({ ...inp, shown: r.slice(0, n) });
+      out.push({ ...inp, shown: def.slice(0, n) });
+    }
+    out.push({ ...inp, shown: [...r.slice(1, 4), "not-in-dims", ...inp.history.map((h) => h.slug)] });
+  }
+  return out;
+}
+const casesEvery = (now = NOW) => [...casesAll(now), ...casesShown(now)];
+
+test("moves: one entry per ranked slug not shown, in rank order (R'); moved iff the position in R' differs from D'", () => {
+  for (const inp of casesEvery()) {
+    const shown = new Set(inp.shown ?? []);
     const r = rank(inp);
     const m = moves(inp);
-    assert.deepEqual(m.map((x) => x.slug), r.map((x) => x.slug));
+    assert.deepEqual(m.map((x) => x.slug), r.map((x) => x.slug).filter((s) => !shown.has(s)));
     const exp = expectedMoves(inp);
     for (let i = 0; i < m.length; i++) {
       assert.equal(m[i].moved, exp[i].moved, m[i].slug);
@@ -528,9 +564,9 @@ test("moves: one entry per ranked slug, in rank order; moved iff the position di
   }
 });
 
-test("moves: the code is F6's T2-some code, decisive against the most passed cards, ties p > c-k > r", () => {
+test("moves: the code is F6's T2-some code, decisive against the most passed cards, ties p > c-k > r > p-k", () => {
   let checked = 0;
-  for (const inp of casesAll()) {
+  for (const inp of casesEvery()) {
     const m = moves(inp);
     const exp = expectedMoves(inp);
     for (let i = 0; i < m.length; i++) {
@@ -551,15 +587,21 @@ test("moves: the code is never domain-estimate or default-order, and the output 
     const m = moves(inp);
     noNumber(m, "moves");
     for (const x of m) {
-      assert.ok(x.code === null || ["prerequisites", "concept-known", "refresh"].includes(x.code), String(x.code));
+      assert.ok(x.code === null || CODES.includes(x.code), String(x.code));
+      if (x.code === "passed-known") assert.equal(x.direction, "earlier");
       assert.deepEqual(Object.keys(x).sort(), ["code", "direction", "facts", "moved", "slug"]);
-      assert.deepEqual(Object.keys(x.facts).sort(), ["finishedOnConcept", "finishedOnPrerequisites", "prerequisiteLessons"]);
+      assert.deepEqual(Object.keys(x.facts).sort(), ["finishedOnConcept", "finishedOnPassedConcepts", "finishedOnPrerequisites", "prerequisiteLessons"]);
     }
+  }
+  // privacy V2 (company/reviews/_privacy/2026-10-17-edd-010-v3-addendum.md): no numeric field name at any depth of moves.
+  for (const inp of casesEvery()) {
+    const keys = JSON.stringify(moves(inp));
+    assert.doesNotMatch(keys, /"(recallsRight|recallsWrong|pKnown|value|estimate|daysSinceLastEvent|defaultIndex)"/);
   }
 });
 
 test("moves: the facts are the lesson's own (its prerequisite lessons, finished lessons on its concept or prerequisites)", () => {
-  for (const inp of casesAll()) {
+  for (const inp of casesEvery()) {
     const d = inp.dims;
     const order = ruleOrder(d);
     const fin = [...new Set(inp.history.filter((h) => d[h.slug]).map((h) => h.slug))];
@@ -570,7 +612,11 @@ test("moves: the facts are the lesson's own (its prerequisite lessons, finished 
       assert.deepEqual(x.facts.prerequisiteLessons, order.filter((s) => own.prerequisites.includes(d[s].concept)));
       assert.deepEqual(x.facts.finishedOnConcept, fin.filter((s) => d[s].concept === own.concept));
       assert.deepEqual(x.facts.finishedOnPrerequisites, fin.filter((s) => own.prerequisites.includes(d[s].concept)));
-      for (const s of [...x.facts.prerequisiteLessons, ...x.facts.finishedOnConcept, ...x.facts.finishedOnPrerequisites]) {
+      // §16.5: the learner's own finished slugs on the concepts of the passed cards for which passed-known is eligible
+      const e = expectedMoves(inp).find((y) => y.slug === x.slug);
+      assert.deepEqual(x.facts.finishedOnPassedConcepts, fin.filter((s) => e.passedKnownConcepts.includes(d[s].concept)));
+      if (x.direction !== "earlier") assert.deepEqual(x.facts.finishedOnPassedConcepts, []);
+      for (const s of [...x.facts.prerequisiteLessons, ...x.facts.finishedOnConcept, ...x.facts.finishedOnPrerequisites, ...x.facts.finishedOnPassedConcepts]) {
         assert.ok(d[s], `${s} is a lesson in dims`);
         assert.notEqual(s, x.slug);
       }
@@ -579,7 +625,7 @@ test("moves: the facts are the lesson's own (its prerequisite lessons, finished 
 });
 
 test("moves: replay, no state between calls, deep-frozen input, time translation, key order", () => {
-  for (const inp of casesAll()) {
+  for (const inp of casesEvery()) {
     const m0 = JSON.stringify(moves(inp));
     assert.equal(JSON.stringify(moves(inp)), m0);
     moves({ now: NOW + 5 * D, history: [{ slug: "alg-2", completedAt: NOW, recalls: [] }], dims: bigDims(), slots: 3 });
@@ -589,8 +635,8 @@ test("moves: replay, no state between calls, deep-frozen input, time translation
     for (const d of permutations(inp.dims)) assert.equal(JSON.stringify(moves({ ...inp, dims: d })), m0);
   }
   for (const shift of [-123_456_789, 5 * D, 1_000 * D + 17]) {
-    const a = casesAll();
-    const b = casesAll(NOW + shift);
+    const a = casesEvery();
+    const b = casesEvery(NOW + shift);
     for (let i = 0; i < a.length; i++) {
       assert.equal(JSON.stringify(moves(b[i])), JSON.stringify(moves(a[i])));
       assert.equal(JSON.stringify(rank(b[i])), JSON.stringify(rank(a[i])));
@@ -601,7 +647,7 @@ test("moves: replay, no state between calls, deep-frozen input, time translation
 test("moves: forbidden fields and slots are ignored", () => {
   const fields = ["dwell", "swipes", "scroll", "sessionLength", "sessionCount", "shares", "device",
     "locationFinerThanCountry", "ageBand", "ads", "personaLabel", "gapDays", "settings", "persona", "fixedDue"];
-  for (const inp of casesAll()) {
+  for (const inp of casesEvery()) {
     const m0 = JSON.stringify(moves(inp));
     for (const f of fields) for (const v of [0, 7, ["alg-1"], { x: 1 }]) assert.equal(JSON.stringify(moves({ ...inp, [f]: v })), m0, f);
     // and on each history item
@@ -646,44 +692,151 @@ test("moves: a lesson on a finished concept moves later with code concept-known"
   assert.deepEqual(a2.facts.finishedOnConcept, ["a1"]);
 });
 
-// The spec gap (build note §4, G1): a lesson with no concept state that moves earlier only because the lessons it
-// passed are on finished concepts has no eligible code in {prerequisites, concept-known, refresh}: its only
-// contributing term is q, whose F6 code for a stateless card is domain-estimate, which v3 does not have.
-// The brief says a moved lesson with no eligible code is a test failure. It is kept visible as a todo so the
-// suite records the failure without hiding it; the candidate is NOT frozen while this stands.
+// G1 (build note §4) closed by §16.2/§16.5: a lesson with no concept state that moves earlier only because the
+// lessons it passed are on finished concepts now gets passed-known. Before the rebuild this test was a todo that failed.
 const GAP_DIMS = () => ({
   "a1": L("a1", "d1", "A"), "a2": L("a2", "d1", "A"), "c1": L("c1", "d1", "C", ["A"]),
   "b1": L("b1", "d2", "B"), "b2": L("b2", "d2", "B2"), "e1": L("e1", "d2", "E"),
 });
+const gapCases = () => [0, 1, 3, 7, 14, 30].map((age) => ({ now: NOW, history: [{ slug: "a1", completedAt: NOW - age * D, recalls: [] }], dims: GAP_DIMS(), slots: 12 }));
 
-test("every moved slug has a code that passes the pair test against at least one passed card", { todo: "spec gap G1 (build note §4): fails on the gap histories; vp-personalization to decide" }, () => {
-  const all = [...casesAll(), ...[1, 3, 7, 14, 30].map((age) => ({ now: NOW, history: [{ slug: "a1", completedAt: NOW - age * D, recalls: [] }], dims: GAP_DIMS(), slots: 12 }))];
+test("every moved slug has a code that passes the pair test against at least one passed card", () => {
+  const all = [...casesEvery(), ...gapCases(), ...gapCases().map((inp) => ({ ...inp, shown: ["b1"] }))];
   const failures = [];
+  let moved = 0;
   for (const inp of all) {
     const exp = expectedMoves(inp);
     for (const x of moves(inp)) {
       if (!x.moved) continue;
+      moved++;
       const e = exp.find((y) => y.slug === x.slug);
-      if (x.code === null || !e.results.some((p) => p.contrib.has(x.code))) failures.push(`${x.slug} ${x.direction} (history ${inp.history.map((h) => h.slug).join(",") || "empty"})`);
+      if (x.code === null || !e.results.some((p) => p.contrib.has(x.code))) failures.push(`${x.slug} ${x.direction} (history ${inp.history.map((h) => h.slug).join(",") || "empty"}; shown ${(inp.shown ?? []).join(",")})`);
     }
   }
   assert.deepEqual(failures, []);
+  assert.ok(moved > 100, `moved entries checked: ${moved}`);
 });
 
-test("gap G1 pinned: b2 moves earlier past a2 only, and only q (domain-estimate in F6's map) favours it", () => {
+test("G1 case: b2 moves earlier past a2 only and gets passed-known at ages 0-30", () => {
   for (const age of [1, 3, 7, 14, 30]) {
     const inp = { now: NOW, history: [{ slug: "a1", completedAt: NOW - age * D, recalls: [] }], dims: GAP_DIMS(), slots: 12 };
     const b2 = moves(inp).find((x) => x.slug === "b2");
     assert.equal(b2.moved, true);
     assert.equal(b2.direction, "earlier");
-    assert.equal(b2.code, null);
+    assert.equal(b2.code, "passed-known", `age ${age}`);
+    assert.deepEqual(b2.facts.finishedOnPassedConcepts, ["a1"]);
+    assert.deepEqual(b2.facts.finishedOnConcept, []);
     const e = expectedMoves(inp).find((x) => x.slug === "b2");
     assert.deepEqual(e.pairs.map(([, l]) => l.slug), ["a2"]);
-    assert.deepEqual([...e.results[0].contrib], ["domain-estimate"]);
+    assert.deepEqual([...e.results[0].contrib], ["domain-estimate", "passed-known"]);
   }
-  // at age 0 refresh still favours b2 (a2's refresh is 0), so b2 gets refresh there
-  const inp0 = { now: NOW, history: [{ slug: "a1", completedAt: NOW, recalls: [] }], dims: GAP_DIMS(), slots: 12 };
-  assert.equal(moves(inp0).find((x) => x.slug === "b2").code, "refresh");
+  // at age 0 refresh also favours b2 (a2's refresh is 0), so both are eligible; q is decisive in the one pair,
+  // so the selection rule (decisive against the most passed cards) gives passed-known, not the tie order
+  const e0 = expectedMoves(gapCases()[0]).find((x) => x.slug === "b2");
+  assert.deepEqual([...e0.results[0].contrib].sort(), ["domain-estimate", "passed-known", "refresh"]);
+  assert.deepEqual([...e0.results[0].code].sort(), ["domain-estimate", "passed-known"]);
+  const b20 = moves(gapCases()[0]).find((x) => x.slug === "b2");
+  assert.equal(b20.code, "passed-known");
+  assert.deepEqual(b20.facts.finishedOnPassedConcepts, ["a1"]);
+});
+
+test("passed-known is never chosen for a lesson with its own concept state (concept-known is eligible there and wins)", () => {
+  for (const inp of [...casesEvery(), ...gapCases()]) {
+    const rows = new Map(internals.rows(inp).map((r) => [r.slug, r]));
+    for (const x of moves(inp)) if (x.code === "passed-known") assert.equal(rows.get(x.slug).hasState, false, x.slug);
+  }
+});
+
+// ---------------------------------------------------------------------------------------------
+// §16.5 items 1, 2, 5, 6: the `shown` input
+// ---------------------------------------------------------------------------------------------
+
+test("§16.5 (2): rank's output is JSON-identical for shown absent, [] and any shown", () => {
+  for (const inp of casesAll()) {
+    const base = JSON.stringify(rank(inp));
+    const slugs = Object.keys(inp.dims);
+    for (const shown of [[], slugs.slice(0, 1), slugs.slice(0, 4), slugs, [...slugs].reverse(), ["junk", "junk"], inp.history.map((h) => h.slug)]) {
+      assert.equal(JSON.stringify(rank({ ...inp, shown })), base);
+      assert.equal(JSON.stringify(decide({ ...inp, shown })), JSON.stringify(decide(inp)));
+    }
+    const { shown: _drop, ...noShown } = inp;
+    assert.equal(JSON.stringify(rank(noShown)), base);
+  }
+});
+
+test("§16.5 (1): shown is a set: order, duplicates, slugs not in dims and finished slugs do not matter; absent equals []", () => {
+  for (const inp of casesAll()) {
+    const r = rank(inp).map((x) => x.slug);
+    assert.equal(JSON.stringify(moves({ ...inp, shown: [] })), JSON.stringify(moves(inp)));
+    for (const n of [1, 3, 6]) {
+      const base = JSON.stringify(moves({ ...inp, shown: r.slice(0, n) }));
+      const variants = [
+        [...r.slice(0, n)].reverse(),
+        [...r.slice(0, n), ...r.slice(0, n)],
+        [r[0], ...r.slice(0, n), r[n - 1] ?? r[0]],
+        [...r.slice(0, n), "not-in-dims", "constructor", "__proto__", ...inp.history.map((h) => h.slug)],
+      ];
+      for (const shown of variants) assert.equal(JSON.stringify(moves({ ...inp, shown })), base, JSON.stringify(shown));
+    }
+    // a shown list holding only junk and finished slugs is the same as none
+    assert.equal(JSON.stringify(moves({ ...inp, shown: ["not-in-dims", ...inp.history.map((h) => h.slug)] })), JSON.stringify(moves(inp)));
+  }
+});
+
+test("§16.5 (3): with shown = a prefix of the display, every moved entry's direction is its D'/R' direction", () => {
+  let movedChecked = 0;
+  for (const inp of [...casesAll(), ...gapCases()]) {
+    const display = rank(inp).map((x) => x.slug); // the glue fills unpinned slots in rank's order
+    const done = new Set(inp.history.map((h) => h.slug));
+    for (let h = 0; h <= display.length; h++) {
+      const shown = display.slice(0, h);
+      const m = moves({ ...inp, shown });
+      const rest = display.slice(h); // R', also the display's own order of the cards still to be shown
+      const dPrime = ruleOrder(inp.dims).filter((s) => !done.has(s) && !shown.includes(s));
+      assert.deepEqual(m.map((x) => x.slug), rest);
+      for (const x of m) {
+        const ri = rest.indexOf(x.slug);
+        const di = dPrime.indexOf(x.slug);
+        assert.equal(x.moved, ri !== di, x.slug);
+        assert.equal(x.direction, ri === di ? null : ri < di ? "earlier" : "later", x.slug);
+        if (x.moved) movedChecked++;
+      }
+    }
+  }
+  assert.ok(movedChecked > 50, `moved entries checked: ${movedChecked}`);
+});
+
+test("§16.5 (5): cold start, no shown: rank equals v2's and moves equals the unfrozen build's output (1d5ad46)", () => {
+  // Pin: sha256 of JSON.stringify of the unfrozen build's (271c2fd6…) moves on these three empty-history inputs,
+  // made in the rebuild's scratchpad from `git show 1d5ad46:company/personalization/policies/reachable-v3.ts` (build note §9).
+  const PIN = "6255de79c0ffc2b50ee551889e53a07249eeaa55624b5d76ba7c8d58dd3f6f35";
+  for (const shownVariant of [undefined, []]) {
+    const out = [dims(), orderDims(), bigDims()].map((d) => {
+      const inp = shownVariant === undefined ? { now: NOW, history: [], dims: d, slots: 12 } : { now: NOW, history: [], dims: d, slots: 12, shown: shownVariant };
+      assert.equal(JSON.stringify(rank(inp)), JSON.stringify(rankV2(inp)));
+      return moves(inp).map((x) => {
+        assert.deepEqual(x.facts.finishedOnPassedConcepts, []);
+        assert.notEqual(x.code, "passed-known");
+        const { finishedOnPassedConcepts: _f, ...facts } = x.facts;
+        return { ...x, facts };
+      });
+    });
+    assert.equal(out.flat().filter((x) => x.moved).length, 21);
+    assert.equal(createHash("sha256").update(JSON.stringify(out)).digest("hex"), PIN);
+  }
+});
+
+test("privacy V6 positive control: changing a completedAt, or adding or removing a completion, changes the order", () => {
+  const order = (inp) => JSON.stringify(rank(inp).map((x) => x.slug));
+  const gap = (age) => ({ now: NOW, history: [{ slug: "a1", completedAt: NOW - age * D, recalls: [] }], dims: GAP_DIMS(), slots: 12 });
+  // a1 finished 30 days ago: a2 is last; 60 days ago: a2's refresh has grown past the others and it comes first
+  assert.equal(order(gap(30)), JSON.stringify(["b1", "b2", "e1", "c1", "a2"]));
+  assert.equal(order(gap(60)), JSON.stringify(["a2", "b1", "b2", "e1", "c1"]));
+  assert.notEqual(order(input({ history: historyA().slice(1) })), order(input()), "removing a completion");
+  assert.notEqual(order(input({ history: [...historyA(), { slug: "c-recursion", completedAt: NOW - D, recalls: [] }] })), order(input()), "adding a completion");
+  // and moves follows: a2 moves later at 30 days and earlier at 60 days
+  assert.equal(moves(gap(30)).find((x) => x.slug === "a2").direction, "later");
+  assert.equal(moves(gap(60)).find((x) => x.slug === "a2").direction, "earlier");
 });
 
 test("REACHABLE_V3 names the candidate and its three functions", () => {

@@ -1,8 +1,10 @@
 // reachable-v3: reachable-v2 over an ungraded history, plus the moving reasons it emits itself (batch 5 §15.1 (ii) 1-4).
-// Owner: learner-model-engineer (run lme-v3-1017, W-1572 item V3; v2 by lme-c2-1017, v1 by lme-c1-1017). Build note: reachable-v3-build-note.md.
+// Owner: learner-model-engineer (runs lme-v3-1017 and lme-v3r-1017, W-1572 item V3; v2 by lme-c2-1017, v1 by lme-c1-1017). Build note: reachable-v3-build-note.md.
+// Spec: batch 5 §15.1 (ii) 1-4 plus the §16.5 addendum (`shown` frame for `moves`, code passed-known).
 // Values: applied-scientist-personalization's sheet reachable-v1-params.md (rows P1-P15), base rows only.
 // No imports. No clock, no randomness, no I/O, no state kept between calls. The only inputs read are
 // `now`, `history` and `dims` (criterion 2 §I.3); `slots` is accepted and not needed by a per-pick value.
+// `shown` (§16.5) is read by `moves` only, never by `rank`.
 // Ungraded: of each history item only `slug` and `completedAt` are read; never `predictedCorrectly`, never `recalls`.
 
 // ---------------------------------------------------------------------------------------------
@@ -34,6 +36,8 @@ export type ReachableInput = {
   history: HistoryItem[];
   dims: Record<string, LessonDims>;
   slots: number;
+  /** Slugs the display has already shown (pinned slots before h). A set; read by `moves` only (batch 5 §16.5). */
+  shown?: readonly string[];
 };
 
 export type PrerequisiteFact = {
@@ -421,12 +425,13 @@ export function decide(input: ReachableInput): RankedLesson | undefined {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Moving reasons (v3, batch 5 §15.1 (ii) 2-3): for each ranked lesson, whether it moved against the
-// default order with finished lessons removed, its direction, and one code chosen by F6's pair test
-// (evidence/2026-10-17-edd010-reason-rule-truth.md §1 T0/T1/T2 and §7). Slugs only, no number.
+// Moving reasons (v3, batch 5 §15.1 (ii) 2-3 and §16.5): for each ranked lesson not yet shown, whether it
+// moved against the default order with finished and shown lessons removed, its direction, and one code
+// chosen by F6's pair test (evidence/2026-10-17-edd010-reason-rule-truth.md §1 T0/T1/T2 and §7).
+// Slugs only, no number.
 // ---------------------------------------------------------------------------------------------
 
-export type MoveCode = "prerequisites" | "concept-known" | "refresh";
+export type MoveCode = "prerequisites" | "concept-known" | "refresh" | "passed-known";
 
 export type MoveFacts = {
   /** Lessons in dims whose concept is one of this lesson's prerequisites (the catalogue relation), in default order. */
@@ -435,6 +440,8 @@ export type MoveFacts = {
   finishedOnConcept: string[];
   /** Finished lessons (history, in dims) on one of this lesson's prerequisites, in order of first completion. */
   finishedOnPrerequisites: string[];
+  /** Finished lessons (history, in dims) on the concepts of the passed cards for which passed-known is eligible, in order of first completion (§16.5). */
+  finishedOnPassedConcepts: string[];
 };
 
 export type MovingReason = {
@@ -446,14 +453,15 @@ export type MovingReason = {
   facts: MoveFacts;
 };
 
-type PairCodes = { decisive: MoveCode | null; contributing: MoveCode[] };
+type PairCodes = { decisive: MoveCode[]; contributing: MoveCode[] };
 
 /**
- * F6 §7's pairCode for u shown above l, with q read as concept-known only when the moved lesson has its own
- * concept state (`movedHasState`), and as no code otherwise (domain-estimate does not exist in v3).
+ * F6 §7's pairCode for u shown above l. q is read as concept-known when the moved lesson has its own concept
+ * state (`movedHasState`), and as passed-known when `passedKnown` holds (an earlier move whose passed card's
+ * concept has a finished lesson, §16.5); otherwise q is no code (domain-estimate does not exist in v3).
  */
-function pairCodes(u: Row, l: Row, movedHasState: boolean): PairCodes {
-  if (!(u.value > l.value)) return { decisive: null, contributing: [] }; // T0
+function pairCodes(u: Row, l: Row, movedHasState: boolean, passedKnown: boolean): PairCodes {
+  if (!(u.value > l.value)) return { decisive: [], contributing: [] }; // T0
   const sw: { c: "prerequisites" | "q" | "refresh"; v: number }[] = [
     { c: "prerequisites", v: u.value - valueOf({ ...u.terms, prereqFactor: l.terms.prereqFactor }) },
     { c: "q", v: u.value - valueOf({ ...u.terms, q: l.terms.q }) },
@@ -461,25 +469,31 @@ function pairCodes(u: Row, l: Row, movedHasState: boolean): PairCodes {
   ];
   let b = sw[0];
   for (const x of sw) if (x.v > b.v) b = x; // rank's own tie rule (T1)
-  const m = (c: "prerequisites" | "q" | "refresh"): MoveCode | null =>
-    c === "q" ? (movedHasState ? "concept-known" : null) : c;
+  const m = (c: "prerequisites" | "q" | "refresh"): MoveCode[] => {
+    if (c !== "q") return [c];
+    const out: MoveCode[] = [];
+    if (movedHasState) out.push("concept-known");
+    if (passedKnown) out.push("passed-known");
+    return out;
+  };
   const contributing: MoveCode[] = [];
-  for (const x of sw) {
-    const c = m(x.c);
-    if (x.v > 0 && c !== null) contributing.push(c); // T2
-  }
+  for (const x of sw) if (x.v > 0) contributing.push(...m(x.c)); // T2
   return { decisive: m(b.c), contributing };
 }
 
-const CODE_ORDER: MoveCode[] = ["prerequisites", "concept-known", "refresh"];
+const CODE_ORDER: MoveCode[] = ["prerequisites", "concept-known", "refresh", "passed-known"];
 
 export function moves(input: ReachableInput): MovingReason[] {
   const { history, dims } = input;
-  const { order, rows } = rankRows(input);
+  const { order, rows: ranked } = rankRows(input);
   const fullIndex = new Map(order.map((s, i) => [s, i] as const));
-  const def = new Map(rows.map((r) => [r.slug, r.idx] as const)); // positions in the full default order
-  const defSorted = rows.map((r) => r.slug).sort((a, b) => (def.get(a) as number) - (def.get(b) as number));
-  const defPos = new Map(defSorted.map((s, i) => [s, i] as const)); // positions with finished lessons removed
+  // §16.5 frame. Set semantics: order and duplicates of `shown` do not matter; a slug that is not ranked (not in
+  // dims, or finished) matches no row and so is ignored. R' = rank's order minus shown; D' = R' in default order,
+  // which is the default order minus history slugs minus shown.
+  const shown = new Set<string>(input.shown ?? []);
+  const rows = ranked.filter((r) => !shown.has(r.slug)); // R'
+  const defSorted = rows.map((r) => r).sort((a, b) => a.idx - b.idx).map((r) => r.slug); // D'
+  const defPos = new Map(defSorted.map((s, i) => [s, i] as const));
   const rankPos = new Map(rows.map((r, i) => [r.slug, i] as const));
 
   // Finished lessons in dims, each once, at its first completion; ties in time go to the default order.
@@ -493,17 +507,19 @@ export function moves(input: ReachableInput): MovingReason[] {
     (a, b) => (firstAt.get(a) as number) - (firstAt.get(b) as number) || (fullIndex.get(a) as number) - (fullIndex.get(b) as number),
   );
   const finishedOn = (concepts: string[]): string[] => finished.filter((slug) => concepts.includes(dims[slug].concept));
+  const finishedConcepts = new Set(finished.map((slug) => dims[slug].concept));
 
   return rows.map((x, rx) => {
     const facts: MoveFacts = {
       prerequisiteLessons: order.filter((slug) => x.d.prerequisites.includes(dims[slug].concept)),
       finishedOnConcept: finishedOn([x.d.concept]),
       finishedOnPrerequisites: finishedOn(x.d.prerequisites),
+      finishedOnPassedConcepts: [],
     };
     const dx = defPos.get(x.slug) as number;
     if (rx === dx) return { slug: x.slug, moved: false, direction: null, code: null, facts };
     const earlier = rx < dx;
-    // The passed cards: earlier, the lessons it passed; later, the lessons that passed it (F6 §1).
+    // The passed cards, in D'/R' only: earlier, the lessons it passed; later, the lessons that passed it (F6 §1).
     const pairs: [Row, Row][] = [];
     for (const y of rows) {
       const dy = defPos.get(y.slug) as number;
@@ -513,11 +529,16 @@ export function moves(input: ReachableInput): MovingReason[] {
     }
     const eligible = new Set<MoveCode>();
     const decisiveCount = new Map<MoveCode, number>();
+    const passedConcepts: string[] = [];
     for (const [u, l] of pairs) {
-      const pc = pairCodes(u, l, x.s !== undefined);
+      // passed-known is earlier-only: l is the passed card y, and its concept must have a finished lesson.
+      const pk = earlier && finishedConcepts.has(l.d.concept);
+      const pc = pairCodes(u, l, x.s !== undefined, pk);
       for (const c of pc.contributing) eligible.add(c);
-      if (pc.decisive !== null) decisiveCount.set(pc.decisive, (decisiveCount.get(pc.decisive) ?? 0) + 1);
+      if (pc.contributing.includes("passed-known") && !passedConcepts.includes(l.d.concept)) passedConcepts.push(l.d.concept);
+      for (const c of pc.decisive) decisiveCount.set(c, (decisiveCount.get(c) ?? 0) + 1);
     }
+    facts.finishedOnPassedConcepts = finishedOn(passedConcepts);
     let code: MoveCode | null = null;
     for (const c of CODE_ORDER) {
       if (!eligible.has(c)) continue;
