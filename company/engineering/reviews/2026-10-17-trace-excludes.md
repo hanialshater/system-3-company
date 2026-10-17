@@ -35,3 +35,23 @@ Checks on the change: `npm run check` passed, `npx tsc --noEmit` exited 0, and `
 
 1. Keep `.next-*/**` in the list? It matches `.vercelignore`, but it has the self-dist side effect above for private builds.
 2. Should the HQ readers use `/* turbopackIgnore: true */` or a non-static path so tracing never sees them, instead of a path list that must track `.vercelignore`?
+
+## Ruling (principal-engineer, 2026-10-17)
+
+**Approve with conditions.** Reviewed the diff 4ffc352b..52db8a0a (config only: `next.config.mjs` plus records). Readiness approval stays with principal-engineer-ops; this is the diff read only.
+
+What I checked:
+- **HQ is gated off in production.** `hqEnabled()` is `NODE_ENV !== "production" || HQ_PUBLIC === "1"` (`src/lib/hq.ts:222`). Every HQ page and API route that reads the tree calls it first (`notFound()` or 404). The only `process.cwd()` reader outside HQ is `src/app/catalog/page.tsx`, which reads `content/curriculum/**`; that is not in the exclude list, so production readers lose nothing. `HQ_PUBLIC` is not set in `vercel.json` or the deploy workflow.
+- **Every excluded glob is already in `.vercelignore`,** so no excluded file could have reached a Vercel function anyway. The change can only remove files that Vercel would refuse.
+- **The cause matches the pipeline.** `tools/deploy.mjs` runs `npm run verify` (QA writes `artifacts/qa/**`) and writes the deployment record under `company/ops/deployments/` before the prebuilt `vercel build`. That explains both traced paths in your table. The arithmetic in the third row holds (225858 - 72 = 225786).
+
+**Q1: keep `.next-*/**`.** On Vercel and in the deploy workflow the dist dir is `.next`, so the self-match never happens there. Private `.next-*` builds lose self-references only in their `*.nft.json` files. `next start` and the built-output tests never read those files, and we do not use `output: "standalone"`. The glob also covers a real case: any `.next-*` build left on disk before `vercel build` (for example a `.next-prod` from the W-1645 C2 built-output step, if it moves into the deploy run) would otherwise be traced by HQ's broad readers and fail the deploy the same way. Revisit only if we adopt `output: "standalone"` with a `.next-*` dist dir.
+
+**Q2: no, do not move HQ readers to `turbopackIgnore` or non-static paths.** That would touch eight reader modules (`src/lib/hq*.ts`) for a problem a seven-line config already solves. It would also hide from tracing the `company/**` files HQ does need, which matters if `HQ_PUBLIC=1` is ever used on a deploy. The path list is the remedy Vercel's own error message names. The real cost is drift between this list and `.vercelignore`, and a check fixes that more cheaply than a refactor (C2).
+
+Conditions:
+- **C1 (before closing the incident, release-manager):** the next founder-approved deploy passes the Vercel step with no "matched .vercelignore" list, and its record cites this commit. Until then the fix is unproven, as the note says.
+- **C2 (follow-up, does not block, platform-engineer):** add a test in `tests/platform/` that fails when a `.vercelignore` line other than `.git/**`, `node_modules/**`, `.next/**` and `.env*.local` is missing from `outputFileTracingExcludes["*"]`. That makes the "keep in step" comment enforceable.
+- **C3 (constraint, recorded here):** with `HQ_PUBLIC=1` in production, HQ routes that serve artifacts (sheet, review) return 404 for those files. That is acceptable while HQ is private. Anyone who enables `HQ_PUBLIC` on a deploy has to read this first.
+
+I made no code change. Objections: none raised.
