@@ -102,3 +102,7 @@ New (16 tests):
 ## 7. Freeze
 
 **Not frozen** (§4 G1). No sha256 is recorded here on purpose. When vp-personalization decides G1, the next step is either a rebuild to the amended spec, which this run would then freeze with a second commit holding the hash, or a closed V3.
+
+## 8. Hold on Q-A1 (chief of staff, relayed during this run)
+
+The chief of staff asked that v3 not be frozen until vp-personalization decides Q-A1. The issue: after a pin, a card whose default slot was frozen can land only at or after the pin horizon, so the display can show it later while `rank`'s frame says it moved earlier. One option is for v3 to take the already-shown slugs as input and state direction in the frame of the unfrozen slots. This hold and G1 both block the freeze. Extending for Q-A1 is easy: `moves(input)` takes the same `ReachableInput` object as `rank`, so an optional field (for example `shown?: string[]`) can be added without changing either signature. The frame in choice 1 (§3) is the only code that would move: `defPos` and `rankPos` in `moves`, and the passed-card loop. It is worth deciding G1 and Q-A1 together, because a frame change changes which cards count as passed, and so changes G1's count.
