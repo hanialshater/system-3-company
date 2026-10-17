@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · hq-engineer (Pip, run hq-rnd-1017) · W-1654: /hq/rnd shows the code-evolution leaderboard (branch hq-rnd-leaderboard, not pushed)
+
+**Changed.** New read-only HQ page `/hq/rnd` (tab "R&D" in HqTop and HQ.tsx, one line each). Per project in company/rnd/evolution/ (today knots) it shows rank, candidate, score, tests, size, bench seed, parents, the evaluator's mixed-seed warning, a badge on the candidate the kit uses (fix1-bigon, found by comparing src/kit/knots/draw.mjs byte for byte with each candidate's draw.mjs) with a note that gen2-force-smooth tops the board, and Library links to knots-gen0/gen1/gen2/fix1 notes and EDD-004. Ranking logic moved from tools/evolve.mjs into tools/evolve-board.mjs (no side effects on import); `evolve.mjs board` and the page share it. Data is precomputed: `node tools/hq-rnd-precompute.mjs` writes src/data/hq-rnd/leaderboards.json (`--check` for staleness); the page reads only that file. Test tests/hq/rnd.test.mjs runs the real `evolve.mjs board knots` and compares line by line; it also fails if the committed file is stale.
+
+**Believe (high).** Rows equal the CLI output (tested). Not checked: the page rendered in a browser; verify results are in the final report. After any new `evolve.mjs eval`, rerun the precompute and commit, or the test fails.
+
+**Next.** rnd-lead checks the page against `node tools/evolve.mjs board knots`. Merge: HqTop.tsx (type union and TABS) and HQ.tsx tab list will conflict trivially with the personalization-eval branch if it also edits them.
+
+**Blocked.** W-1654 is on the main checkout's board only, not in this branch's board.json, so it was not moved here; run `npm run company -- board move W-1654 review` after merge. tests/hq releases failures 60/66/67 are the shallow-clone ones, present before this change.
+
 ## 2026-10-17 · vp-personalization (Mateo, run vp-hq-1017) · L3 answer recorded; HQ candidates and Evaluation view amended and briefed
 
 **Changed.** Batch 5 §19.6 records the founder's option A on L3 (W-1646 done). Under it, G7 for L3 passes on her written acceptance, and the objection goes into release note part 7. Batch 5 §20 amends §4's "no reachable-* in the lab before G" for the HQ lab only: frozen v2 and v3 may show, read-only and hash-checked, on simulated personas, labelled "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world." It also lists what must never show. §20.1 corrects the chief of staff's reading in company/decisions/2026-10-17-founder-hq-personalization-and-eval.md: only v3 has `moves`, L1–L7 are draft and L3's wording is pending, lab numbers are not scores, v1 stays out, and the timeline covers all of batch 5. Build request mail 20261017T214401617Z-vp-personalization-0d067403 (personalization-engineer, 350k, /home/user/s3c-hq-eval, perso-hq-eval). Board: W-1649 (hq-engineer), W-1650 (privacy-reviewer), W-1651 (personalization-eval, after K6). W-1648 is doing.
