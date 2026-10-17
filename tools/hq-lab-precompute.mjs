@@ -13,8 +13,11 @@
 // whose only data inputs are personas.ts, the lesson catalogue and sim/out/traces (lab privacy DoD D1,
 // company/personalization/lab/2026-10-16-lab-privacy-dod.md). Saved traces (sim/out/traces, git-ignored local
 // files) are never copied: the stored meta has `saved: []`.
-// Excluded on purpose: review-timing (not an ordering policy; no episode in hq-cli) and any reachable-* candidate
-// (it does not enter the lab before vp-personalization's go/no-go record G, batch 5 §4).
+// Excluded on purpose: review-timing (not an ordering policy; no episode in hq-cli) and every reachable-* policy in the
+// simulator's own set (DENY). Batch 5 §20.2 (W-1648) amends §4 for the lab only: the two frozen candidates
+// reachable-v2 and reachable-v3 are shown read-only, from tools/hq-lab-candidates.mjs, which imports each file
+// unchanged only if its bytes hash to the frozen sha256 (any mismatch: this script exits and writes nothing).
+// Every other reachable-* file stays out, reachable-v1 included. The candidate documents carry the §20.2 label.
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -25,11 +28,12 @@ import { gzipSync } from "node:zlib";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CLI = "company/personalization/model/sim/hq-cli.mjs";
 const OUT = "src/data/hq-personalization";
-const INPUTS = ["company/personalization/model", "content/curriculum", "src/demos"];
+const INPUTS = ["company/personalization/model", "content/curriculum", "src/demos", "company/personalization/policies", "tools/hq-lab-candidates.mjs", "src/lib/hq-personalization-candidates.ts"];
+const ADAPTER = "tools/hq-lab-candidates.mjs";
 export const SEEDS = [1];
 export const DAYS = 7;
 export const COMPARE = { seeds: 5, days: 7, sets: ["main", "all"] };
-const DENY = /^reachable/; // not before go/no-go G
+const DENY = /^reachable/; // the simulator's own set: never (candidates come only from ADAPTER, batch 5 §20.2)
 const check = process.argv.includes("--check");
 const allowDirty = process.argv.includes("--allow-dirty");
 
@@ -66,6 +70,27 @@ for (const persona of personas) for (const policy of policies) for (const seed o
   files.set(rel, gzipSync(Buffer.from(JSON.stringify(t)), { level: 9 }));
   runs.push({ persona, policy, seed, days: DAYS, file: rel });
 }
+// Frozen candidates (batch 5 §20.2): computed before anything is written, so a refusal writes nothing.
+const cand = (() => {
+  try {
+    return JSON.parse(execFileSync(process.execPath, [path.join(ROOT, ADAPTER)],
+      { cwd: ROOT, env: { NODE_NO_WARNINGS: "1" }, maxBuffer: 256 * 1024 * 1024, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  } catch (e) {
+    let msg = String(e.message);
+    try { msg = JSON.parse(e.stdout).error ?? msg; } catch { /* not JSON */ }
+    console.error(`hq-lab-precompute: candidates refused, nothing written: ${msg}`);
+    process.exit(3);
+  }
+})();
+const candidates = [];
+let candidateLabel = null;
+for (const d of cand.docs) {
+  if (!/^reachable-v[23]$/.test(d.candidate.name) || !personas.includes(d.persona.id)) throw new Error(`unexpected candidate document ${d.candidate.name} / ${d.persona.id}`);
+  candidateLabel = d.label;
+  const rel = `candidates/${d.persona.id}.${d.candidate.name}.seed${d.run.seed}.days${d.run.days}.json.gz`;
+  files.set(rel, gzipSync(Buffer.from(JSON.stringify(d)), { level: 9 }));
+  candidates.push({ persona: d.persona.id, policy: d.candidate.name, seed: d.run.seed, days: d.run.days, file: rel, sha256: d.candidate.sha256 });
+}
 const compares = [];
 for (const scope of [...personas, "all"]) for (const set of COMPARE.sets) {
   const c = cli(["compare", `--persona=${scope}`, `--seeds=${COMPARE.seeds}`, `--set=${set}`, `--days=${COMPARE.days}`]);
@@ -83,8 +108,10 @@ const manifest = {
   command: "node tools/hq-lab-precompute.mjs", cli: CLI,
   modelVersion: meta.modelVersion, personasVersion: meta.personasVersion, composerVersion: meta.composerVersion,
   personas, policies, seeds: SEEDS, days: DAYS, compare: { ...COMPARE, scopes: [...personas, "all"] },
-  excluded: ["review-timing: not an ordering policy (no episode in hq-cli)", "reachable-*: not before go/no-go G (batch 5 §4)", "saved traces (sim/out/traces): local files, never copied"],
-  runs, compares,
+  excluded: ["review-timing: not an ordering policy (no episode in hq-cli)", "reachable-* in the simulator's policy set, and every reachable-* file but the two frozen candidates (reachable-v1 included): batch 5 §4 as amended by §20.2", "saved traces (sim/out/traces): local files, never copied"],
+  candidateLabel, candidateAdapter: ADAPTER,
+  candidatePolicies: [...new Set(candidates.map((c) => c.policy))],
+  runs, compares, candidates,
   files: Object.fromEntries([...files].map(([k, b]) => [k, sha(b)]).sort(([a], [b]) => a.localeCompare(b))),
 };
 
@@ -98,7 +125,7 @@ if (check) {
   console.log(`hq-lab-precompute --check: current (${files.size} files, ${old.modelVersion}, inputs ${old.inputsCommit})`);
   process.exit(0);
 }
-for (const sub of ["runs", "compare"]) if (existsSync(path.join(dir, sub))) rmSync(path.join(dir, sub), { recursive: true });
+for (const sub of ["runs", "compare", "candidates"]) if (existsSync(path.join(dir, sub))) rmSync(path.join(dir, sub), { recursive: true });
 for (const [rel, buf] of files) { mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true }); writeFileSync(path.join(dir, rel), buf); }
 writeFileSync(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
 const bytes = [...files.values()].reduce((s, b) => s + b.length, 0);

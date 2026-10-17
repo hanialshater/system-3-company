@@ -12,14 +12,15 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { gunzipSync } from "node:zlib";
 import { precomputedLine, type PrecomputedInfo, type SimMeta, type SimRequest } from "./hq-personalization";
+import { CANDIDATES, CANDIDATE_LABEL, type CandidateDoc, type CandidateEntry } from "./hq-personalization-candidates";
 
 export const PRECOMPUTED_DIR = "src/data/hq-personalization";
 export const REGENERATE = "node tools/hq-lab-precompute.mjs";
-const FILE = /^(?:meta\.json|runs\/[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.days\d{1,2}\.json\.gz|compare\/[a-z0-9-]+\.(?:main|all)\.seeds\d{1,2}\.days\d{1,2}\.json)$/;
+const FILE = /^(?:meta\.json|runs\/[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.days\d{1,2}\.json\.gz|compare\/[a-z0-9-]+\.(?:main|all)\.seeds\d{1,2}\.days\d{1,2}\.json|candidates\/[a-z0-9-]+\.reachable-v[23]\.seed\d{1,3}\.days\d{1,2}\.json\.gz)$/;
 
 type Res<T> = { ok: true; data: T } | { ok: false; error: string };
 type Entry = { persona: string; policy?: string; set?: string; seed?: number; seeds?: number; days: number; file: string };
-type Manifest = PrecomputedInfo & { runs: Entry[]; compares: Entry[]; files: Record<string, string> };
+type Manifest = PrecomputedInfo & { runs: Entry[]; compares: Entry[]; files: Record<string, string>; candidates?: (CandidateEntry & { sha256: string })[]; candidateLabel?: string };
 type Index = { manifest: Manifest; meta: SimMeta };
 
 class LabDataError extends Error {}
@@ -95,6 +96,37 @@ export function readPrecomputed<T>(req: SimRequest, root = process.cwd()): Res<T
   } catch (err) {
     if (err instanceof LabDataError) return { ok: false, error: unavailable(err.message) };
     return { ok: false, error: unavailable("unexpected read error") };
+  }
+}
+
+/** The frozen candidates the committed data holds (batch 5 §20.2): entries whose policy and sha256 are the allowlisted
+ *  ones, under the §20.2 label. Anything else in the manifest is ignored, never served. */
+export function candidateEntries(root = process.cwd()): Res<CandidateEntry[]> {
+  try {
+    const { manifest } = loadIndex(root);
+    if (manifest.candidateLabel !== CANDIDATE_LABEL) throw damaged("manifest.json does not carry the candidate label");
+    const ok = (manifest.candidates ?? []).filter((c) => Object.hasOwn(CANDIDATES, c.policy) && CANDIDATES[c.policy].sha256 === c.sha256)
+      .map(({ persona, policy, seed, days, file }) => ({ persona, policy, seed, days, file }));
+    return { ok: true, data: ok };
+  } catch (err) {
+    return { ok: false, error: unavailable(err instanceof LabDataError ? err.message : "unexpected read error") };
+  }
+}
+
+/** One candidate document from the committed files (never a run; production and local alike). */
+export function readCandidate(persona: string, policy: string, root = process.cwd()): Res<CandidateDoc> {
+  try {
+    const list = candidateEntries(root);
+    if (!list.ok) return list;
+    const { manifest } = loadIndex(root);
+    const e = list.data.find((c) => c.persona === persona && c.policy === policy);
+    if (!e) return { ok: false, error: `Not precomputed: ${policy} for ${persona}. The lab shows reachable-v2 and reachable-v3 on the six simulated personas only.` };
+    const d = parse(readListed(root, manifest.files, e.file), e.file, true);
+    if (!isObj(d) || d.schema !== "personalization-hq-candidate-v1" || d.label !== CANDIDATE_LABEL || !isObj(d.candidate) || !isObj(d.persona) || !Array.isArray(d.steps)
+      || d.candidate.name !== policy || d.persona.id !== persona || d.candidate.sha256 !== CANDIDATES[policy as keyof typeof CANDIDATES].sha256) throw damaged(`${e.file} is not the candidate document it is listed as`);
+    return { ok: true, data: d as unknown as CandidateDoc };
+  } catch (err) {
+    return { ok: false, error: unavailable(err instanceof LabDataError ? err.message : "unexpected read error") };
   }
 }
 
