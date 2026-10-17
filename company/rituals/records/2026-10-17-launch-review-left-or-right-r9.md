@@ -1,6 +1,6 @@
 # Launch Review: 2026-10-17 (r9): math/left-or-right v3
 
-chair: head-of-product (Priya) · slot hop-lor-r9 · tree read at `531ff6c8` (dispatched at `d238ac7b`; I fast-forwarded when the coordinator reported EXP-008, and the only change is EXP-008, its README line, board items and an analytics-steward memory entry) · executes: release-manager, board W-1660 (a separate run publishes from this record, and only once its preconditions hold) · attests: qa-tester, fact-checker, learner-evaluator, design-lead (by their records, cited below); cm-math-discrete (opener ruling) · preconditions owned by: cm-math-discrete (W-1657), demo-builder (W-1659), accessibility-reviewer (W-1658) · deploy-time precondition owned by: release-manager (W-1661) and qa-tester (W-1607/W-1615), with the environment question to the founder via chief-of-staff (W-1662) · no deploy
+chair: head-of-product (Priya) · slot hop-lor-r9 · tree read at `531ff6c8` (dispatched at `d238ac7b`; I fast-forwarded when the coordinator reported EXP-008, and the only change is EXP-008, its README line, board items and an analytics-steward memory entry) · executes: release-manager, board W-1660 (a separate run publishes from this record, and only once its preconditions hold) · attests: qa-tester, fact-checker, learner-evaluator, design-lead (by their records, cited below); cm-math-discrete (opener ruling) · preconditions owned by: cm-math-discrete (W-1657), demo-builder (W-1659), accessibility-reviewer (W-1658, met by `company/reviews/left-or-right/2026-10-17-accessibility.md`) · deploy-time precondition owned by: release-manager (W-1661) and qa-tester (W-1607/W-1615), with the environment question to the founder via chief-of-staff (W-1662) · no deploy
 
 Brief: Knots batch 1, brief 4 (`company/domains/briefs/math.discrete.md`, version B2): a two-sided flip card. Turn over is a CSS `rotateY` of a card whose back face is the cleared mirror drawing, pre-reflected; Mirror is `scaleX(-1)` on a wrapper. The lesson is `draft`, v3. Model for this record: r8 (`company/rituals/records/2026-10-17-launch-review-knots-r8.md`). This record is **not** permission to publish a draft: `company publish` does not check status and has no dry run.
 
@@ -8,7 +8,7 @@ Brief: Knots batch 1, brief 4 (`company/domains/briefs/math.discrete.md`, versio
 
 Same reading as r7 and r8 ruling 1: head-of-product has no power over lesson status (`company/roles/head-of-product.md`). The draft → review grant is the demo-builder's (`tools/org/roles.mjs`), and the decision belongs to the strand manager, cm-math-discrete. This review decides on the artifact and the gates, and holds the go open.
 
-The go below takes effect only when **all** of these are on disk:
+The go below takes effect only when **all** of these are on disk (3 and 4 are met as of this record's commit; 1 and 2 are open):
 1. cm-math-discrete's decision to move the lesson to review (W-1657): "yes" in the table below, or a ruling file named there.
 2. `meta.json` reads `"status": "review"` at `version` 3 (demo-builder, W-1659).
 3. An accessibility-reviewer record `company/reviews/left-or-right/<date>-a11y.md` on code that passes the same-code check (release step 3), naming no lock-out (W-1658). This is a precondition for the same reason as r8 ruling 2: the difference between "turned over" and "mirrored" is carried only by the crossing badges and the picture's label (learner walk finding 2). Whether a screen-reader or low-vision learner can tell the two apart has not been checked by the role that owns that question. QA v3 ran keyboard, reduced-motion and dark checks, which are QA observations and not an accessibility review. A record that finds problems short of a lock-out does not lapse the go; it is routed. A lock-out lapses it (accessibility-reviewer's own authority).
@@ -20,7 +20,7 @@ If cm-math-discrete declines, objects or asks for a change first, or the accessi
 
 | Lesson | Version this review is on | Move to review (cm-math-discrete, W-1657): yes / no / after change, where, date | Status `review` (demo-builder, W-1659) | Accessibility record (accessibility-reviewer, W-1658): file, result | Analytics row (analytics-steward) | WebKit/Safari record (deploy-time only, ruling 2; qa-tester W-1607/W-1615): file, result |
 |---|---|---|---|---|---|---|
-| math/left-or-right | v3 | | | | **met**: EXP-008 (D1-D6, F5/F6, O1/O2) | |
+| math/left-or-right | v3 | | | **met**: `company/reviews/left-or-right/2026-10-17-accessibility.md` (commit e23181b1, tree d238ac7b, whose closure equals 531ff6c8), pass with conditions, no lock-out; L1 ruled not blocking (objection 14). Cell filled by the chair from the record, at the coordinator's report | **met**: EXP-008 (D1-D6, F5/F6, O1/O2) | |
 
 ## Ruling 2: WebKit/Safari does not block the publish; it blocks every deploy that would carry the lesson
 
@@ -70,7 +70,7 @@ This is my decision as the chair. It sets a condition on this go and does not ch
 
 | Lesson | Newest learner verdict vs meta | QA (qa-tester) | Claims | Design | Decision | One line of reason |
 |---|---|---|---|---|---|---|
-| math/left-or-right | launch, v3 (built 8a67fe3e); meta v3 | pass (qa-record + qa-v3, Chromium only) | 8/8 verified | S4 + v2-departures (D3) | **go, held open on preconditions 1-3; deploy-time precondition per ruling 2** | On both orders the reveal states only what the learner saw. The trefoil's marks visibly survive a turn and flip under the mirror before the reveal unlocks. The open risk (WebKit) can only reach a learner through a deploy, and ruling 2 holds every deploy against it. |
+| math/left-or-right | launch, v3 (built 8a67fe3e); meta v3 | pass (qa-record + qa-v3, Chromium only) | 8/8 verified | S4 + v2-departures (D3) | **go, held open on preconditions 1-2 (3 and 4 met); deploy-time precondition per ruling 2** | On both orders the reveal states only what the learner saw. The trefoil's marks visibly survive a turn and flip under the mirror before the reveal unlocks. The open risk (WebKit) can only reach a learner through a deploy, and ruling 2 holds every deploy against it. |
 
 **Go: 1, held open. No-go: 0.**
 
@@ -97,10 +97,11 @@ Linked, not restated: `company/experiments/EXP-008-launch-predictions-left-or-ri
 | 11 | "No wiggling gets back" rests on authority (Dehn 1914); the stage cannot wiggle. | learner walk finding 7 | **Accepted, non-blocking.** It is a claim with a published source (c1), labelled as told context. Only human learners can show whether it sticks. |
 | 12 | The go rests on simulated walks and a Chromium-only browser record. | standing caveat | **Stands.** Confidence stays unset. Nothing here claims that anyone learned. |
 | 13 | The lesson has no row in the F-46 closeout ledger (`company/product/2026-10-16-closeout-ruling.md`). | chair | **Answered, as r7 and r8 objection 9.** It is path-P by evidence, and a publish closes it. If the go lapses and is not re-earned before the 10-19 checks, the lesson needs a ledger row. |
+| 14 | L1: Turn over is silent to a screen reader. The status region changes only when the sum or hand changes, so a screen-reader learner hears "pressed" and nothing else. Also L2 (a chip press drops focus to `<body>`), L3 (kit pressed-state border 2.26:1 in light) and L4 (11.5 px glyph at 360 wide). | accessibility-reviewer (`2026-10-17-accessibility.md`) | **L1 declined as a hold, first fix of the next version; L2-L4 routed by the reviewer.** I weighed L1 because it touches the lesson's own contrast: Turn over is the half that is meant to change nothing. A screen-reader learner still gets the state: `aria-pressed` on the toggle, and the picture's label names "turned over" with its marks and sum. Silence after Turn over is also the true result, since the sum and hand did not change. That is a weaker cue than the sighted learner's, not a barrier, and the reviewer, who owns the lock-out call, found none. The fix (card state in the status text) is new learner-visible text, so it comes with claims and a re-check, which a next version can carry with W-1652/W-1653. Precondition 3 is met. |
 
 ## Decision
 
-**go: math/left-or-right (v3). It takes effect only when preconditions 1-3 of ruling 1 are met (4 is met). No deploy may carry it as published until the WebKit/Safari cell is filled (ruling 2). Until then this review is open.** Signed: head-of-product (Priya), 2026-10-17.
+**go: math/left-or-right (v3). It takes effect only when preconditions 1 and 2 of ruling 1 are met (3, accessibility, and 4, analytics, are met). No deploy may carry it as published until the WebKit/Safari cell is filled (ruling 2). Until then this review is open.** Signed: head-of-product (Priya), 2026-10-17.
 
 ## For the release-manager (the publish run, W-1660; the deploy guard, W-1661)
 
