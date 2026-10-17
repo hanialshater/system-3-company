@@ -20,9 +20,9 @@ If cm-math-discrete declines, objects or asks for a change first, or the accessi
 
 | Lesson | Version this review is on | Move to review (cm-math-discrete, W-1624): yes / no / after change, where, date | Status `review` (demo-builder, W-1622) | Accessibility record (accessibility-reviewer, W-1620): file, result | Analytics row (analytics-steward) |
 |---|---|---|---|---|---|
-| math/draw-a-table-knot | v3 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | | | **met**: EXP-007 (B3, B4a, B5, B6, B1/B2 pooled) |
-| math/tricolour-check | v2 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | | | **met**: EXP-007 (B4b, B5, B6, B1/B2 pooled) |
-| math/unknot-game | v2 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | | | **open**: EXP-007 amendment row, W-1621 |
+| math/draw-a-table-knot | v3 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | **met**: `"status": "review"`, version 3, read on disk at 22799450 (release-manager, 2026-10-17) | **met**: `company/reviews/draw-a-table-knot/2026-10-17-accessibility.md`, pass with conditions, no lock-out; built on 2a2f78d0, step-3 diff re-run empty at 22799450 (release-manager) | **met**: EXP-007 (B3, B4a, B5, B6, B1/B2 pooled) |
+| math/tricolour-check | v2 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | **met**: `"status": "review"`, version 2, read on disk at 22799450 (release-manager, 2026-10-17) | **met**: `company/reviews/tricolour-check/2026-10-17-accessibility.md`, pass with conditions, no lock-out; built on 2a2f78d0, step-3 diff re-run empty at 22799450 (release-manager) | **met**: EXP-007 (B4b, B5, B6, B1/B2 pooled) |
+| math/unknot-game | v2 | **yes**, `company/domains/briefs/rulings/2026-10-17-r8-move-to-review.md`, 2026-10-17 (cm-math-discrete) | **met**: `"status": "review"`, version 2, read on disk at 22799450 (release-manager, 2026-10-17) | **met**: `company/reviews/unknot-game/2026-10-17-accessibility.md`, pass with conditions, no lock-out; built on 2a2f78d0, step-3 diff re-run at 22799450 touches only unrelated `.algorithm-*` rules in globals.css, not `.knot-tint` (release-manager) | **met**: EXP-007 Amendment 1 (2026-10-17, rows C1-C6, F3/F4), W-1621 |
 
 ## Ruling 2: accessibility is a precondition for these three, not a cycle condition
 
