@@ -87,3 +87,32 @@ Builder: demo-builder (run lor-v2-fix). Inputs: `company/design/reviews/2026-10-
 - **fact-checker:** re-verify c5 (new rule sentence), c1 and c6 (new source fields).
 - **design-lead:** the D2 departure above (unmount instead of display:none), and the 3 px at 360×640.
 - **qa-tester:** a record on v2; WebKit `c1-check.mjs` still open.
+
+## v3 round (2026-10-17): W-1619 reveal opener branch, design-lead D3
+
+Builder: demo-builder (run w1619-lor-v3). Inputs: cm-math-discrete ruling `company/domains/briefs/rulings/2026-10-17-left-or-right-opener.md`, design-lead ruling `company/design/reviews/2026-10-17-left-or-right-v2-departures.md` (D3). Status stays draft.
+
+**Version 2 → 3.** The ruling says the change joins v2 if v2 has not shipped. `company/product/demo-standard.md` "The lesson version" says a change to reveal text bumps the version in the same commit, and records already name v2 (fact-check `2026-10-17-fact-check-v2.md`, verifying c1/c5/c6 against v2's reveal); D3 also changes the explore picture at 360×740 (217 → 221 px). Not shipping is not one of the standard's exceptions, so I bumped. This is not a bump to settle which record applies: the reveal a v2 record read is no longer the only reveal.
+
+### Changes
+- **W-1619** (`Demo.tsx`): `Reveal` now takes `seen`. When `seen.turned === undefined` (the seen line has no "turned over" segment, i.e. `turned` fired only from mirrored-and-turned), paragraph 1 sentence 1 is "Turning the mirrored trefoil over left every mark plus: turning over is a way of moving it, so its hand stayed right." Otherwise the standard sentence, unchanged. Everything after it unchanged on both paths.
+- **D3** (`styles.module.css`): `.wrapAll > .picArea + :global(.row) { margin-top: 0; }`. The chip row keeps its 4 px.
+- **Claims** (`meta.json`): c3 adds the quote 'Turning the mirrored trefoil over left every mark plus'; c6 adds the whole branch sentence to its quote list. **c3 and c6 reset to unverified** (checkedBy/checkedOn removed; the note names the ruling and keeps the previous note). c1, c2, c4, c5, c7, c8 untouched and still verified. **Departure from the ruling's item 1:** it asked to add 'its hand stayed right' to c5's quote; c5 was verified on v2 after the ruling was written, and my dispatch says c5 stays verified, so I left c5's text alone rather than edit a verified claim. The new 'its hand stayed right' is quoted in c6 (whole sentence) and rests on c5's convention (above 0 = right-handed, stage 'Right-handed'). Fact-checker / cm-math-discrete: say if c5's quote list must carry it (that would reset c5).
+- **Probe** (`v3-opener-probe.mjs`, new): the ruling's three paths, opener text and the reveal's phone fit, using `tools/reveal-fit.mjs`'s own `measure()` read from the committed file (reveal-fit itself only drives the QA contract path, which is Turn over then Mirror). Exit 1 on a wrong opener.
+
+### Measurements (build `.next-lor3`, Chromium, served on 3657)
+- `v3-opener-probe.mjs` (predict option 2 "No, never", so no "Not quite" line):
+  - 390×844: Mirror→Turn over **branch**, seen "Trefoil: mirror +3", fit, **crop 0, hiddenBelow 0, namedHidden 0, phoneFit true**, 77 words, 10 lines. Turn over→Mirror **standard**, fit, crop 0, phoneFit true, 76 words, 9 lines. Mirror, Turn over, Mirror, Turn over **standard**, seen "Trefoil: turned over −3 · mirror +3", crop 0, phoneFit true, 76 words, 9 lines. The branch adds one line (as the ruling expected) and still fits.
+  - 360×740: all three paths fit, **crop 96**, hiddenBelow 0 (branch 11 lines, standard 11 lines). Same crop as v2's accepted figure; the branch is no worse.
+- `node tools/reveal-fit.mjs --strict` (QA path, standard opener; tool clean, commit bc747077):
+  - 390×844: **fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 79 words** (with "Not quite"), 9 lines, picture 240 px; exit 0 (`reveal-fit-2026-10-17-v3-390x844.json`).
+  - 360×740: fit, crop 96, phoneFit false, exit 1 (`reveal-fit-2026-10-17-v3-360x740.json`); unchanged from v2, accepted in S4.
+- `v2-w1606-probe.mjs` re-run (log `v3-w1606-probe.log`): 360×640 **need 278, window 279; after the controls scroll (9 px) readout top 175 vs window 174, together true** (fresh, before scrolling, controls are 9 px below: together false, as the lead's table shows for the unscrolled view). 390×844 and 360×740 together true as before. Unlock paths unchanged.
+- Design lead's `together-probe.mjs`, no override, light and dark (`v3-together-probe-light.log`, `-dark.log`): every option at every size together true (0 false); 360×640 need 278 / window 279, scroll 9, readout whole; 360×740 picture **221 px**; row gap 6 px; strand-to-row 35 / 41 / 61-71 px; reveal toggle buttons in DOM 0 on both endings. Every number equals the D3 row of the ruling.
+- QA contract (`QA_BASE_URL=http://localhost:3657 QA_ONLY=left-or-right npx playwright test tests/qa/contract.spec.ts`): **2/2** (phone, desktop).
+- `npm run check` passed (3 warnings, other lessons); `npx tsc --noEmit` exit 0; `npm run build` exit 0 (tsconfig.json rewrite reverted). Screenshot viewed: branch reveal at 390×844, the mirrored trefoil (+,+,+, Right-handed, seen "Trefoil: mirror +3") above the branch opener, last line on screen.
+
+### Open (for other roles)
+- **fact-checker:** re-verify c3 and c6 (new quoted branch sentence; signs mirrored-then-turned +,+,+ already derived), and say whether c5 needs the 'its hand stayed right' quote.
+- **qa-tester:** a record on v3 (v2 had none; the 2026-10-16 record is v1).
+- **learner walk:** owed on v3.
