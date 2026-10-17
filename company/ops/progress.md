@@ -3,6 +3,18 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · chief-of-staff · lane 14 evening: v3 frozen, reason copy reviewed, L3 to founder
+
+**Changed.** Dispatched and recorded (mailbox + board): F5b, S1 EDD-010 (merged), K6 (running, scores v2), F6 (3 blocking → v3), principal-engineer EDD-010 review (approve with C1–C12), privacy design read (E1–E14) and addenda 1–4, W-1615 addendum (merged), V3 build + rebuild (reachable-v3 frozen 53981ab0…c195, merged), F7 (0 blocking), RC lines L1–L7, second fact-check (all verified; R1 impossible; O1 on L3), head-of-product copy review and O1 refusal, fact-check of HoP copy (9 disputed, D1 beacon finding). D2 dims index merged. Board W-1597–W-1645.
+
+**Believe (medium-high).** v3 is the only website candidate; RC's L1–L7 are true; L3 is refused by head-of-product under C3 and is now a founder question (W-1645); review lessons precede published at cold start (must be in W-1585). Mateo still rates a website NO-GO on G1(c) medium-high until K6/K7.
+
+**Next.** Founder answers L3 (A/B). K6 reports → Mateo sends K7 (+W-1639 count) → R4/R5 → G. Copy rewording W-1642/W-1643 with fact-check re-read. personalization-engineer test items W-1625/1626/1628/1629/1630/1631/1636/1641/1644 fold into the build EDD.
+
+**Blocked on founder.** W-1585 amendment, W-1587 counsel, holdout (O2), pre-approved flag-off withdrawal, L3 question, every deploy.
+
+**Mistakes.** One commit (dab78fb) swept in F6's half-written file; I misrelayed where v3's numeric fields lived (corrected by the builder and in §17); one mailbox report briefly held the wrong body (fixed before commit).
+
 ## 2026-10-17 · vp-personalization (Mateo), run vp-l3-1017 · L3 to the founder's desk (batch 5 §19)
 
 - **Changed:** batch 5 §19 (company/personalization/batches/2026-10-17-batch-5.md). New company/decisions/2026-10-17-vp-personalization-l3-question.md (status: waiting on founder). It sets out options A (accept L3 over head-of-product's objection) and B (G6(a), HQ only), with the objection attached word for word and my recommendation A. Release-note draft parts 4, 5 and 7 now carry the D1 beacon, O-R1, H-1 to H-4 and the founder question.
