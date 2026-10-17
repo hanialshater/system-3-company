@@ -109,26 +109,39 @@ test("C3-RS8: its population constants do not depend on the persona", () => {
 });
 
 // ---------------- the freeze lock, cells, S ----------------
-test("freeze lock: criterion 3 is a draft; only the reference arm and fixtures run", () => {
-  assert.match(criterionStatus3(), /^draft/);
-  for (const a of ["reachable+fixed", "oracle-order+fixed", "oracle-new+fixed", "oracle-refresh+fixed", "default-order+none", "default-order+oracle-review@0.3", "gam+fixed"]) assert.throws(() => assertScoringAllowed3([a]), /freeze lock/, a);
-  assert.doesNotThrow(() => assertScoringAllowed3(["default-order+fixed", "default-order+fixture-review-early"]));
-  const dir = mkdtempSync(join(tmpdir(), "c3lock-")); const f = join(dir, "c.md");
-  writeFileSync(f, "# x\nstatus: frozen\n");
+test("freeze lock: a draft criterion runs only the reference arm and fixtures; a frozen one runs all", () => {
+  // K4: written against temporary copies, so the test holds before and after criterion 3's own freeze.
+  assert.match(criterionStatus3(), /^(draft|frozen)\b/);
+  const dir = mkdtempSync(join(tmpdir(), "c3lock-")); const d = join(dir, "d.md"), f = join(dir, "f.md");
+  writeFileSync(d, "# x\nstatus: draft (unfrozen)\n"); writeFileSync(f, "# x\nstatus: frozen\n");
+  for (const a of ["reachable+fixed", "oracle-order+fixed", "oracle-new+fixed", "oracle-refresh+fixed", "default-order+none", "default-order+oracle-review@0.3", "gam+fixed"]) assert.throws(() => assertScoringAllowed3([a], d), /freeze lock/, a);
+  assert.doesNotThrow(() => assertScoringAllowed3(["default-order+fixed", "default-order+fixture-review-early"], d));
   assert.doesNotThrow(() => assertScoringAllowed3(["reachable+fixed"], f));
 });
-test("cells: interleave (base + 18 criterion 2 one-at-a-time + E3 rows), first (base + E3 rows); base is interleave:base; c2 values named", () => {
+test("cells: interleave (base + 18 criterion 2 one-at-a-time + E3 rows + outer + corner), first (base + E3 rows + outer + corner); base is interleave:base", () => {
   const c = allCells3();
   assert.equal(BASE_PLACEMENT, "interleave");
   assert.equal(c.filter((x) => x.kind === "base").length, 2);
   const nE3 = Object.keys(C2_VALUES).reduce((a, k) => a + (E3[k].low !== E3[k].base) + (E3[k].high !== E3[k].base), 0);
-  assert.equal(c.filter((x) => x.placement === "interleave").length, 1 + 18 + nE3);
-  assert.equal(c.filter((x) => x.placement === "first").length, 1 + nE3);
+  assert.equal(nE3, 8); // K4: slot cost, stop scale, slots, priorRateMult (low and high each); priorAgeDays not swept (F3 B1)
+  assert.equal(c.filter((x) => x.placement === "interleave").length, 1 + 18 + nE3 + 2);
+  assert.equal(c.filter((x) => x.placement === "first").length, 1 + nE3 + 2);
   assert.equal(cellByName3(BASE_CELL).placement, "interleave");
-  for (const k of Object.keys(C2_VALUES)) assert.equal(E3[k].base, C2_VALUES[k], `placeholder base of ${k} is criterion 2's value until E3 lands`);
+});
+test("K4 E3 fill: bases from the E3 table; priorRateMult mapped through L8 (F3 B2); L4 outer cell (F3 B3); price corner (F3 N6)", () => {
+  assert.deepEqual([E3.revisitSlotCost.low, E3.revisitSlotCost.base, E3.revisitSlotCost.high], [0.15, 0.3, 0.5]);
+  assert.deepEqual([E3.revisitStopScale.low, E3.revisitStopScale.base, E3.revisitStopScale.high], [0.5, 1, 2]);
+  assert.deepEqual([E3.slots.low, E3.slots.base, E3.slots.high], [4, 8, 15]);
+  assert.deepEqual([E3.priorAgeDays.low, E3.priorAgeDays.base, E3.priorAgeDays.high], [0, 0, 0]);
+  const f14 = 7 + 0.27 * 7; // L8 at a = 14 d, E1 base shape
+  for (const [m, kept] of [[E3.priorRateMult.low, 0.99], [E3.priorRateMult.base, 0.96], [E3.priorRateMult.high, 0.78]])
+    assert.ok(Math.abs(Math.exp(-0.08 * m * f14) - kept) < 5e-4, `${m} -> ${kept}`);
+  assert.equal(E3.priorRateMult.outer, C2_VALUES.priorRateMult);
+  const o = cellByName3("interleave:priorRateMult-outer"); assert.equal(o.priorRateMult, 1); assert.equal(o.priorAgeDays, 0); assert.equal(o.slots, 8);
+  const k = cellByName3("first:price-corner"); assert.deepEqual([k.revisitStopScale, k.slots, k.revisitSlotCost, k.placement], [2, 4, 0.5, "first"]);
 });
 test("S record: from the reference arm alone at interleave:base, at this E1 and E3 block", () => {
-  const rec = JSON.parse(readFileSync(join(HERE, "..", "records", "2026-10-17-seeds-c3-k3.json"), "utf8"));
+  const rec = JSON.parse(readFileSync(join(HERE, "..", "records", "2026-10-17-seeds-c3-k4.json"), "utf8"));
   const h = (o) => createHash("sha256").update(JSON.stringify(o)).digest("hex");
   assert.equal(rec.e1Hash, h(E1)); assert.equal(rec.e3Hash, h(E3)); assert.equal(rec.cellName, BASE_CELL);
   assert.equal(rec.S, seedsFromSd(rec.sdMax, CRITERION2.deltaMin, CRITERION2.seeds.floor, CRITERION2.seeds.cap));

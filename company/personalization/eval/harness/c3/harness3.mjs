@@ -175,7 +175,10 @@ export function runEpisode3({ persona, arm, seed, cell, cat = catalog(), e1 = E1
   const history = pre.map((h) => ({ ...h, recalls: [...h.recalls] }));
   const bySlug = new Map(history.map((h) => [h.slug, h]));
   const log = newLog2(learner.knownCount(), pre.length);
-  const extra = { refreshPicks: 0, refreshPrior: 0, refreshEpisode: 0, newPicks: 0, revisitsUnserved: 0 };
+  const extra = { refreshPicks: 0, refreshPrior: 0, refreshEpisode: 0, newPicks: 0, revisitsUnserved: 0, refreshSkipped: 0 };
+  // K4 (F3 N11): known-concept lessons passed over when they were the default order's next eligible lesson, never served
+  // later in the episode (descriptive, outside the hash; the reference arm skips none).
+  const skippedKnown = new Set(), pickedSlugs = new Set();
   const steps = [];
   const policyRand = makePolicyRand(seed, persona.id, order);
   const tLast = EPISODE2.baseTime + (EPISODE2.days - 1) * DAY + EPISODE2.sessionStartHour * 3_600_000;
@@ -245,6 +248,9 @@ export function runEpisode3({ persona, arm, seed, cell, cat = catalog(), e1 = E1
         break;
       }
       const lesson = cat.dims[pick.slug];
+      const el0 = cat.defaultOrder.find((s) => !bySlug.has(s));
+      if (el0 && el0 !== pick.slug && isKnown(learner, dimsLite, el0, t)) skippedKnown.add(el0);
+      pickedSlugs.add(pick.slug);
       if (isKnown(learner, dimsLite, pick.slug, t)) { extra.refreshPicks++; if (history.some((h) => cat.dims[h.slug]?.concept === lesson.concept)) extra.refreshEpisode++; else extra.refreshPrior++; } else extra.newPicks++;
       const doneConcepts = new Set(history.map((h) => cat.dims[h.slug]?.concept));
       const beforePrereq = (cat.prereqsByConcept[lesson.concept] || []).some((c) => !doneConcepts.has(c));
@@ -266,6 +272,7 @@ export function runEpisode3({ persona, arm, seed, cell, cat = catalog(), e1 = E1
     }
     extra.revisitsUnserved += queue.length;
   }
+  for (const s of skippedKnown) if (!pickedSlugs.has(s)) extra.refreshSkipped++;
   const tNext = tLast + DAY;
   for (const x of pendingRead.splice(0)) log.nextDayRecall.push(learner.recallProb(dimsLite[x], tNext));
   for (const H of EPISODE2.horizonsDays) log.K[H] = learner.knowledgeAt(tLast + H * DAY);
