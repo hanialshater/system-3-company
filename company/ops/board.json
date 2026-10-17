@@ -18921,6 +18921,213 @@
       "domain": null,
       "created": "2026-10-17",
       "links": []
+    },
+    {
+      "id": "W-1626",
+      "title": "Deliver founder-requested 200 distinct algorithm demos: curriculum, models and topic groups",
+      "owner": "cm-cs",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1627",
+      "title": "Algorithms200: independent browser QA on200 drafts and phone-fit/reverse-order findings",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1628",
+      "title": "Algorithms200: independent per-claim fact checks; preserve unsupported source holds",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1629",
+      "title": "Algorithms200: artifact-first learner sample40 (2/topic); unsampled drafts remain held",
+      "owner": "learner-evaluator",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1630",
+      "title": "Algorithms200: tier1 integrated implementation and catalog review/readiness",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1631",
+      "title": "External PR #6: Add 200 algorithm demos grouped into 20 distinct topics (codex/algorithms-200 @ 6008cd52) - community-engineer intake; record company/engineering/community/prs/6.md",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "https://github.com/hanialshater/system-3-company/pull/6"
+      ],
+      "github": 6,
+      "labels": [
+        "external-pr",
+        "cs",
+        "tier-2"
+      ]
+    },
+    {
+      "id": "W-1632",
+      "title": "PR #6 merge gate (tier 2): principal-engineer engineering review of the SHIPPED head (pr/6-algorithms-200 after base merge e32feca5): shared engine src/components/algorithms/** + src/lib/algorithms/** used by 200 lessons, catalog page change (src/app/catalog/page.tsx, globals.css, imports content/algorithms-200.json), tools/serve.sh -H 127.0.0.1 (owning-engineer read for the Tools row), tests/algorithms/*.test.mjs not wired into package.json verify, paths.json has no shared-engine rule for algorithms. The PR's readiness record classed it tier 1 and reviewed at 150/200 wrappers. EDD needed or a ruling that none is. See company/engineering/community/prs/6.md",
+      "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1633",
+      "title": "PR #6: cs.algo-multiplicative-weights.c12 has claim text exactly 'learner', which JSON-serialises to the W-947 internal string '\"learner\"' and fails test:platform #28 (tests/platform/trust.test.mjs:108). Change the row label/claim text (e.g. 'learner loss') in src/lib/algorithms/topics/approximation-online.ts and the meta claim; keep it unverified. See company/engineering/community/prs/6.md",
+      "owner": "demo-builder",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1634",
+      "title": "PR #6: test:platform #18 (tests/platform/registry-split.test.mjs:136) fails for all 200 algo-* metas: none carries a zero-tolerance internal string because evidence is empty. Same tripwire as PR #5 (fixed in be0b1df4 by linking each lesson's own QA record into evidence.qa). Write per-lesson QA records for the 200 (phone + desktop) and link them, or platform-engineer rules on tightening the ratchet. See company/engineering/community/prs/6.md",
+      "owner": "qa-tester",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1635",
+      "title": "PR #6: accessibility scan of (a) the new Algorithms section on /catalog, which is live public surface and not draft-gated (20 topic sections, 'Not yet visible' rows, topic index links), and (b) the shared algorithm renderer src/components/algorithms/AlgorithmLesson.tsx (Run/Step/Try another/Reset, disabled-control focus, trace table semantics). (a) before any deploy that includes PR #6; (b) before publish. See company/engineering/community/prs/6.md",
+      "owner": "accessibility-reviewer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1636",
+      "title": "PR #6 merge gate: QA contract fails 3 of 200 algo lessons on phone and desktop with 'controls that changed nothing observable: Try another' (algo-dinic-levels, algo-pollard-rho-factor, algo-topological-uniqueness). In each, cases[1] ends on a final frame identical to cases[0] (checked by running the models), so Try another shows no change. Make the changed case visibly differ (src/lib/algorithms/topics/spanning-matching-flow.ts dinic_levels, number-theoretic-algorithms.ts pollard_rho_factor, graph-traversal-decomposition.ts topological_uniqueness) and update their claims (stay unverified). See company/engineering/community/prs/6.md",
+      "owner": "demo-builder",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1637",
+      "title": "PR #6 merge gate M1+M2: add test:algorithms to package.json scripts and verify (approved in the review, no EDD); add tests/algorithms/shipped.test.mjs running checkAlgorithms on the real manifest (0 errors, 0 warnings), exact wrapper imports, case-1 visible final frame differs from case 0 without result; tighten tools/algorithms-200-check.mjs:53-54,89. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md",
+      "owner": "platform-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1638",
+      "title": "PR #6 merge gate M3 (widens W-1636): algo-external-merge and algo-american-flag-sort also end case 1 on a final frame identical to case 0 (pass QA only via the trace counter); repair with the three in W-1636. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F13",
+      "owner": "demo-builder",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1639",
+      "title": "PR #6 merge gate M6: decide whether production /catalog may show the 200 planned algorithm titles (byte-equal to draft lesson titles) and '200 planned lessons across 20 topics', or have platform-engineer render the section only when an algorithm lesson is visible. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F4",
+      "owner": "cm-cs",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1640",
+      "title": "PR #6 merge gate M7: correct company/engineering/readiness/2026-10-16-algorithms-200.md to tier 2, link the PE review, add the M5 integrated verify evidence, final commit list and grouped revert; then principal-engineer-ops approves readiness. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F5",
+      "owner": "chief-of-staff",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1641",
+      "title": "paths.json shared-engine rules (tier 2) for src/components/algorithms/**, src/lib/algorithms/**, src/components/books/**, src/lib/books/**; principal-engineer-ops proposes, principal-engineer accepts; tools/readiness.mjs still absent. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F6",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1642",
+      "title": "PR #6 M6 (decided by cm-cs): /catalog Algorithms section renders only visible algorithm lessons; no section when none visible; per-topic and per-row filtering; remove all planned-count and 'not yet visible' copy; update tests/algorithms/catalog.test.mjs. Exact requirement R1-R6 in company/decisions/2026-10-16-pr6-catalog-algorithms-section.md",
+      "owner": "platform-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1643",
+      "title": "Give the 200 algo-* concepts in content/curriculum/cs.json lesson-independent label names (not lesson titles or assertions), then reconsider listing them as 'not yet taught' on /catalog. After the F-46 closeout. See company/decisions/2026-10-16-pr6-catalog-algorithms-section.md F1",
+      "owner": "cm-cs",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1644",
+      "title": "PR #6 readiness C1 (before merge): merge PR #6 into the current base; resolve index.generated.ts by npm run registry (not by hand) and the 4 company/ops record conflicts; on the merge commit run npm run check, test:algorithms, typecheck and test:platform, and record results in company/engineering/community/prs/6.md. test:platform #18 failing only on src/demos/math/draw-a-table-knot is base's (W-1589), not PR #6's. See company/engineering/readiness/2026-10-16-algorithms-200.md Approval",
+      "owner": "community-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1645",
+      "title": "PR #6 readiness C2 (deploy blocker): before the first production deploy that includes PR #6, run the 4 built-output tests in tests/platform (W-945/946/947 + runtime 404) with BUILT_DIST_DIR on a VERCEL=1 VERCEL_ENV=production build of the exact tree to be deployed, all must pass; after that deploy, smoke /catalog: no Algorithms section, no algo- slug or topic name. See company/engineering/readiness/2026-10-16-algorithms-200.md Approval",
+      "owner": "release-manager",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1646",
+      "title": "Question (EXP-006 objection 2): ordinary recall/predict events carry no first-time marker or pairing (src/lib/events-intake.ts, src/components/Feed.tsx), so Surface Value #4 first-revisit recall and the r5 P1/P2, Life Hacks L1/L2, EXP-006 F1/F2 rows cannot be computed even after W-706. May the client add first:true to the first recall and first predict per slug, computed from local progress, with no identifier? Rule; build goes to the engineer you name",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }

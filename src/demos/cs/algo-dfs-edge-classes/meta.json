@@ -1,0 +1,227 @@
+{
+  "slug": "algo-dfs-edge-classes",
+  "title": "What kind of arrow points backward?",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-dfs-edge-classes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Classify directed DFS edges using discovery, finish and active-stack states."
+    ]
+  },
+  "misconception": "Every edge to an already visited vertex proves a directed cycle.",
+  "objective": "Classify directed DFS edges using discovery, finish and active-stack states.",
+  "claims": [
+    {
+      "id": "cs.algo-dfs-edge-classes.c1",
+      "text": "DFS active and finished states distinguish ancestors from completed branches.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c3",
+      "text": "Alphabetical DFS of AB, AC, BD, CD, DB: how many tree/back/forward/cross edges?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c4",
+      "text": "Complete this graph, then inspect steps and compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c5",
+      "text": "Tree/back/forward/cross 3,1,0,1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c6",
+      "text": "Tree/back/forward/cross 3,1,0,1. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c7",
+      "text": "An active destination is an ancestor and makes a back edge. A finished destination in another completed branch makes a cross edge; the discovery states separate them.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c8",
+      "text": "Alphabetical DFS",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c12",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c13",
+      "text": "Tree edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c14",
+      "text": "T/B/F/C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c15",
+      "text": "Back edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c16",
+      "text": "Cross edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c17",
+      "text": "Tree/back/forward/cross 3,0,0,1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c18",
+      "text": "Tree/back/forward/cross 3,0,0,1. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dfs_edge_classes.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c19",
+      "text": "An arc points to an active DFS ancestor. Which class is it?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c20",
+      "text": "Back",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c21",
+      "text": "Cross",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c22",
+      "text": "Forward",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dfs-edge-classes.c23",
+      "text": "Active ancestors are on the current recursion stack, so the arc is a back edge.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dfs-edge-classes\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An arc points to an active DFS ancestor. Which class is it?",
+    "options": [
+      "Back",
+      "Cross",
+      "Forward"
+    ],
+    "answer": 0,
+    "why": "Active ancestors are on the current recursion stack, so the arc is a back edge."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-dfs-edge-classes/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-dfs-edge-classes",
+    "also": [],
+    "prerequisites": [
+      "cs:depth-first-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "graph-traversal-decomposition"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

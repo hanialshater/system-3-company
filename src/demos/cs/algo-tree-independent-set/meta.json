@@ -1,0 +1,207 @@
+{
+  "slug": "algo-tree-independent-set",
+  "title": "A chosen parent forbids a child",
+  "hook": "A chosen parent forbids a child. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-tree-independent-set",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Compute selected and unselected states per tree vertex to optimize a weighted independent set."
+    ]
+  },
+  "misconception": "Choosing the heaviest remaining vertex greedily maximizes a tree's independent-set weight.",
+  "objective": "Compute selected and unselected states per tree vertex to optimize a weighted independent set.",
+  "claims": [
+    {
+      "id": "cs.algo-tree-independent-set.c1",
+      "text": "Selecting a vertex requires skipping each child. Skipping it leaves each child free to choose its better state, allowing a collection of smaller compatible weights to beat one large weight.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c2",
+      "text": "A chosen parent forbids a child. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c3",
+      "text": "Path A–B–C has weights 4,7,4. Maximum independent weight?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c5",
+      "text": "Weight=8; adjacent picks excluded.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c6",
+      "text": "Tree weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c7",
+      "text": "vertex",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c8",
+      "text": "weight",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c9",
+      "text": "Finish vertex 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c10",
+      "text": "take",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c11",
+      "text": "skip",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c12",
+      "text": "Finish vertex 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c13",
+      "text": "Finish vertex 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c14",
+      "text": "Weight=9; adjacent picks excluded.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c15",
+      "text": "Finish vertex 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#tree_independent_set.cases[1].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c16",
+      "text": "When the parent is selected, which child state is legal?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c17",
+      "text": "Selected only",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c18",
+      "text": "Unselected only",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c19",
+      "text": "Either",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tree-independent-set.c20",
+      "text": "Adjacent vertices cannot both belong to an independent set.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-tree-independent-set\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When the parent is selected, which child state is legal?",
+    "options": [
+      "Selected only",
+      "Unselected only",
+      "Either"
+    ],
+    "answer": 1,
+    "why": "Adjacent vertices cannot both belong to an independent set."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-tree-independent-set/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-tree-independent-set",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "slug": "algo-dinic-levels",
+  "title": "Only forward layers carry this phase",
+  "hook": "Which residual edges belong to the current shortest flow routes?",
+  "domain": "cs",
+  "concept": "algo-dinic-levels",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Build a residual level graph and send blocking flow using edges advancing one level."
+    ]
+  },
+  "misconception": "All residual edges belong in the current blocking-flow phase.",
+  "objective": "Build a residual level graph and send blocking flow using edges advancing one level.",
+  "claims": [
+    {
+      "id": "cs.algo-dinic-levels.c1",
+      "text": "Residual BFS levels restrict blocking flow to level-advancing edges.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c2",
+      "text": "Which residual edges belong to the current shortest flow routes?",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c3",
+      "text": "Capacities SA=2, SB=1, AB=1, AT=1, BT=2. What max flow follows level-graph blocking phases?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c4",
+      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c5",
+      "text": "Maximum flow 3; sink unreachable",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c6",
+      "text": "Maximum flow 3; sink unreachable. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c7",
+      "text": "The BFS level graph admits only edges that advance one level. Blocking flow exhausts those routes, then a fresh residual BFS exposes longer routes until the sink is unreachable.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c8",
+      "text": "Capacities",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c9",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c10",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c11",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c12",
+      "text": "T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c13",
+      "text": "Residual BFS levels",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c14",
+      "text": "level",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c15",
+      "text": "Level-advancing blocking flow",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c16",
+      "text": "residual",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c17",
+      "text": "flow",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[0].run().frames[2].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c18",
+      "text": "Maximum flow 4; sink unreachable",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c19",
+      "text": "Maximum flow 4; sink unreachable. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#dinic_levels.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c20",
+      "text": "In a Dinic level graph, which residual edge may carry blocking flow?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c21",
+      "text": "Any positive-capacity edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c22",
+      "text": "An edge from level k to k+1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c23",
+      "text": "Only an edge into the source",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dinic-levels.c24",
+      "text": "Level advancement keeps each blocking-flow search inside the current shortest residual routes.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-dinic-levels\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a Dinic level graph, which residual edge may carry blocking flow?",
+    "options": [
+      "Any positive-capacity edge",
+      "An edge from level k to k+1",
+      "Only an edge into the source"
+    ],
+    "answer": 1,
+    "why": "Level advancement keeps each blocking-flow search inside the current shortest residual routes."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-dinic-levels/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-dinic-levels",
+    "also": [],
+    "prerequisites": [
+      "minimum-spanning-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "spanning-matching-flow"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

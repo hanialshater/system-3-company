@@ -1,0 +1,199 @@
+{
+  "slug": "algo-matrix-staircase",
+  "title": "Which corner can rule out a row?",
+  "hook": "Two ordered directions give one cell a useful choice.",
+  "domain": "cs",
+  "concept": "algo-matrix-staircase",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Eliminate a row or column from a matrix whose rows and columns are sorted."
+    ]
+  },
+  "misconception": "A row-sorted and column-sorted matrix can be treated as one sorted list.",
+  "objective": "Eliminate a row or column from a matrix whose rows and columns are sorted.",
+  "claims": [
+    {
+      "id": "cs.algo-matrix-staircase.c1",
+      "text": "A value above the target eliminates its column; a value below eliminates its row. Each move removes impossible cells while retaining the target whenever it exists.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c2",
+      "text": "Two ordered directions give one cell a useful choice.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c3",
+      "text": "Starting top-right, how many cells are visited before finding 6 in [[1,4,7],[2,5,8],[3,6,9]]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c4",
+      "text": "Run the question case, then inspect each boundary move.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c5",
+      "text": "Found 6 after 4 visits.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c6",
+      "text": "Sorted rows columns",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c7",
+      "text": "target",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c8",
+      "text": "Drop column",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c9",
+      "text": "Drop row",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c10",
+      "text": "Match",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c11",
+      "text": "Search finished",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c12",
+      "text": "visits",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[5].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c13",
+      "text": "found",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[0].run().frames[5].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c14",
+      "text": "Target 10 absent; 3 visits.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#matrix_staircase.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c15",
+      "text": "At top-right, the cell exceeds the target. What can be discarded?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c16",
+      "text": "Its column",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c17",
+      "text": "Its row",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c18",
+      "text": "Both",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-matrix-staircase.c19",
+      "text": "Everything below in that column is at least as large.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-matrix-staircase\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At top-right, the cell exceeds the target. What can be discarded?",
+    "options": [
+      "Its column",
+      "Its row",
+      "Both"
+    ],
+    "answer": 0,
+    "why": "Everything below in that column is at least as large."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-matrix-staircase/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-matrix-staircase",
+    "also": [],
+    "prerequisites": [
+      "cs:binary-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "boundary-search-selection"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

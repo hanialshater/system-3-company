@@ -1,0 +1,179 @@
+{
+  "slug": "algo-heap-delete-min",
+  "title": "The last card takes the root",
+  "hook": "Removing the root leaves a hole the last key must repair.",
+  "domain": "cs",
+  "concept": "algo-heap-delete-min",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Heap parent/child ordering and priority comparisons."
+    ],
+    "doesNotKnow": [
+      "Restore heap order after replacing a removed minimum with the last leaf."
+    ]
+  },
+  "misconception": "Removing a heap minimum can leave every other card where it was.",
+  "objective": "Restore heap order after replacing a removed minimum with the last leaf.",
+  "claims": [
+    {
+      "id": "cs.algo-heap-delete-min.c1",
+      "text": "The last element fills the root hole, then descends through the smaller child. Choosing the larger child could leave the other child smaller than its parent, even when the chosen branch looks repaired.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c2",
+      "text": "Removing the root leaves a hole the last key must repair.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c3",
+      "text": "After removing the minimum from heap [1,3,2,7,6,4,5], what is the new root?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c4",
+      "text": "Run the operation; Step shows the repair before its result.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c5",
+      "text": "Removed 1; new minimum 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c6",
+      "text": "Min-heap input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c7",
+      "text": "heap",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c8",
+      "text": "Move last to root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c9",
+      "text": "Follow smaller child",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c10",
+      "text": "Heap order restored",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c11",
+      "text": "minimum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#heap_delete_min.cases[0].run().frames[4].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c12",
+      "text": "Which child should a min-heap replacement follow?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c13",
+      "text": "The smaller child",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c14",
+      "text": "The larger child",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c15",
+      "text": "The left child always",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-heap-delete-min.c16",
+      "text": "The smaller child must not remain below a larger parent.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-heap-delete-min\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which child should a min-heap replacement follow?",
+    "options": [
+      "The smaller child",
+      "The larger child",
+      "The left child always"
+    ],
+    "answer": 0,
+    "why": "The smaller child must not remain below a larger parent."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-heap-delete-min/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-heap-delete-min",
+    "also": [],
+    "prerequisites": [
+      "heap-priority-queue"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "priority-queues-meldable-heaps"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

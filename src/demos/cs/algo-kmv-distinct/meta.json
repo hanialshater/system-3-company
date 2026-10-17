@@ -1,0 +1,193 @@
+{
+  "slug": "algo-kmv-distinct",
+  "title": "The kth hash measures the unseen crowd",
+  "hook": "Repeated observations need not provide new evidence of distinct items.",
+  "domain": "cs",
+  "concept": "algo-kmv-distinct",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Uniform hash/draw assumptions; probability and weighted ranks as stated."
+    ],
+    "doesNotKnow": [
+      "Estimate distinct count from the kth smallest distinct uniform hash and ignore repeat hashes."
+    ]
+  },
+  "misconception": "Repeated observations must move a distinct-count sketch's estimate upward.",
+  "objective": "Estimate distinct count from the kth smallest distinct uniform hash and ignore repeat hashes.",
+  "claims": [
+    {
+      "id": "cs.algo-kmv-distinct.c1",
+      "text": "Repeated hashes do not create new minima. This finite example uses supplied normalized values; the distinct-count estimate relies on approximately uniform hashing, and is an estimate rather than the exact number of distinct items.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c2",
+      "text": "Repeated observations need not provide new evidence of distinct items.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c3",
+      "text": "For hashes [0.1,0.7,0.2,0.1,0.4,0.9], k=3, what is (k−1) divided by the kth distinct minimum?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c4",
+      "text": "Run the question case, then inspect its updates with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c5",
+      "text": "Estimate 5; threshold 0.4.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c6",
+      "text": "Uniform hash input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c7",
+      "text": "hashes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c8",
+      "text": "k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c9",
+      "text": "Keep distinct minima",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c10",
+      "text": "kept",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c11",
+      "text": "Order statistic estimate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c12",
+      "text": "draws",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[7].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c13",
+      "text": "estimate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kmv_distinct.cases[0].run().frames[7].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c14",
+      "text": "Appending only duplicate hashes should do what to a KMV summary?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c15",
+      "text": "Leave it unchanged",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c16",
+      "text": "Increase the estimate every time",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c17",
+      "text": "Replace its minimum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kmv-distinct.c18",
+      "text": "Only previously unseen smaller distinct hashes change the retained order statistic.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kmv-distinct\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Appending only duplicate hashes should do what to a KMV summary?",
+    "options": [
+      "Leave it unchanged",
+      "Increase the estimate every time",
+      "Replace its minimum"
+    ],
+    "answer": 0,
+    "why": "Only previously unseen smaller distinct hashes change the retained order statistic."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-kmv-distinct/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-kmv-distinct",
+    "also": [],
+    "prerequisites": [
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

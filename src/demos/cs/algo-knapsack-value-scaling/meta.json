@@ -1,0 +1,214 @@
+{
+  "slug": "algo-knapsack-value-scaling",
+  "title": "Trade precision for smaller totals",
+  "hook": "A smaller dynamic program may optimize a rounded version of the payoff.",
+  "domain": "cs",
+  "concept": "algo-knapsack-value-scaling",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Offline optimum versus online decisions; cost and approximation ratio."
+    ],
+    "doesNotKnow": [
+      "Scale item values before DP and separate the rounded objective from actual collected value."
+    ]
+  },
+  "misconception": "Approximation requires randomly dropping items rather than controlling rounding loss.",
+  "objective": "Scale item values before DP and separate the rounded objective from actual collected value.",
+  "claims": [
+    {
+      "id": "cs.algo-knapsack-value-scaling.c1",
+      "text": "Scaling changes the objective that the value-indexed DP optimizes, while weights and actual collected values remain separate. The displayed rounded optimum is not the original value. A full approximation guarantee additionally needs a scale chosen for the desired error and item count.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c2",
+      "text": "A smaller dynamic program may optimize a rounded version of the payoff.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c3",
+      "text": "Capacity 7, items (3,11),(4,13),(2,6). Floor each value after dividing by 3. What rounded-value optimum does DP find?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c4",
+      "text": "Run the question case, then compare the changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c5",
+      "text": "Rounded 7; actual 24; weight 7.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c6",
+      "text": "Knapsack and scale",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c7",
+      "text": "weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c8",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c9",
+      "text": "scale,capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c10",
+      "text": "Rounded-value DP frontier",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c11",
+      "text": "rounded",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c12",
+      "text": "value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c13",
+      "text": "weight",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c14",
+      "text": "Separate two objectives",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c15",
+      "text": "actual",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[0].run().frames[4].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c16",
+      "text": "Rounded 24; actual 24; weight 7.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#knapsack_value_scaling.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c17",
+      "text": "Why keep actual value separately from rounded value?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c18",
+      "text": "Rounding loses information about the original objective",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c19",
+      "text": "They are always equal",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c20",
+      "text": "Weights must be rounded to match",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-knapsack-value-scaling.c21",
+      "text": "A rounded score is an optimization surrogate, not the original payoff.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-knapsack-value-scaling\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why keep actual value separately from rounded value?",
+    "options": [
+      "Rounding loses information about the original objective",
+      "They are always equal",
+      "Weights must be rounded to match"
+    ],
+    "answer": 0,
+    "why": "A rounded score is an optimization surrogate, not the original payoff."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-knapsack-value-scaling/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-knapsack-value-scaling",
+    "also": [],
+    "prerequisites": [
+      "greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation-online"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

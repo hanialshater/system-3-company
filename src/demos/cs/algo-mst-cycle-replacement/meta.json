@@ -1,0 +1,240 @@
+{
+  "slug": "algo-mst-cycle-replacement",
+  "title": "Can this new cable improve the tree?",
+  "hook": "One new edge enters the tree. Which old edge should leave?",
+  "domain": "cs",
+  "concept": "algo-mst-cycle-replacement",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Replace the largest tree edge on the cycle formed by a newly added edge."
+    ]
+  },
+  "misconception": "Adding a cheaper-than-average cable always improves an MST.",
+  "objective": "Replace the largest tree edge on the cycle formed by a newly added edge.",
+  "claims": [
+    {
+      "id": "cs.algo-mst-cycle-replacement.c1",
+      "text": "A candidate edge improves an MST only by replacing a heavier cycle edge.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c2",
+      "text": "One new edge enters the tree. Which old edge should leave?",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c3",
+      "text": "Tree AB=2, BC=5, CD=3 gets candidate AD=4. What is the improved tree cost?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c4",
+      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c5",
+      "text": "Tree cost 9; cycle maximum 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c6",
+      "text": "Tree cost 9; cycle maximum 5. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c7",
+      "text": "Adding the candidate creates one cycle. Removing its largest tree edge restores a tree; replacement improves cost only when the candidate is lighter than that removed edge.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c8",
+      "text": "Tree plus candidate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c12",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c13",
+      "text": "Cycle path",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c14",
+      "text": "path",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c15",
+      "text": "candidate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c16",
+      "text": "maximum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c17",
+      "text": "Replace maximum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c18",
+      "text": "old/new",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c19",
+      "text": "Tree cost 10; cycle maximum 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c20",
+      "text": "Tree cost 10; cycle maximum 5. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c21",
+      "text": "Keep original tree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#mst_cycle_replacement.cases[1].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c22",
+      "text": "A candidate weighs 6; maximum on its tree path is 4. Does this exchange improve cost?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c23",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c24",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mst-cycle-replacement.c25",
+      "text": "Replacing 4 with 6 raises cost by two.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-mst-cycle-replacement\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A candidate weighs 6; maximum on its tree path is 4. Does this exchange improve cost?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "Replacing 4 with 6 raises cost by two."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-mst-cycle-replacement/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-mst-cycle-replacement",
+    "also": [],
+    "prerequisites": [
+      "minimum-spanning-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "spanning-matching-flow"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

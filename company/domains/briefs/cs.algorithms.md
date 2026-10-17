@@ -1224,3 +1224,10 @@ Written by cm-cs for Wave J (the company grows from 879 to 2,000 lessons). Cover
   3. With n jobs and n servers the busiest load grows like ln n / ln ln n with one random pick and like ln ln n / ln 2 with two. support: citation; source: Azar, Broder, Karlin and Upfal (1999), "Balanced allocations", SIAM J. Computing 29(1); Mitzenmacher (2001), "The power of two choices in randomized load balancing", IEEE TPDS 12(10). Attribution: fact-checker confirms; the reveal states only "the gap widens".
 - Curriculum (new concept): `{"id":"power-of-two-choices","name":"Power of two choices: two random looks balance load","level":"core","demand":2,"prerequisites":["hashing-collisions"],"subarea":"algorithms"}`; also none; references none; tags load balancing, randomness, hashing.
 - Differs from nearest: hash-bucket-pileup and bad-hash-one-bucket (hashing-collisions) show piles with one placement; this changes the placement rule. new-server-moves-few-keys (consistent-hashing) is about adding servers, not balancing them. probability/birthday-paradox counts first collisions, not the tallest pile.
+
+
+## Founder expansion: 200 algorithms (2026-10-16)
+
+The machine-readable coverage handoff is [`algorithms-200.json`](algorithms-200.json): 20 topics × 10 new objectives, all `algo-` slugs. It is an additional curriculum, with source leads and explicit nearest-existing/nearest-new distinctions; see [`algorithms-200-coverage.md`](algorithms-200-coverage.md).
+
+**Staged fixture delegation:** B1 freezes taxonomy and concrete fixture specifications. B2–B5 own actual executable cases and retained deterministic model checks before their metadata is reviewable. The manifest deliberately leaves `fixture.input` and `fixture.checkedAnswer` null while `status` is `pending-builder-model-check`; this is not an answer-checked brief and must not be treated as one. Builder checks, source acquisition, independent claims review and learner evidence remain separate. Chief of staff owns integration and records the eventual checked fixture addresses.

@@ -1,0 +1,199 @@
+{
+  "slug": "algo-pollard-p-minus-one",
+  "title": "A factor hides in the exponent",
+  "hook": "A factor hides in the exponent. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-pollard-p-minus-one",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Integer remainders, gcd, primes, modular exponentiation."
+    ],
+    "doesNotKnow": [
+      "Use smoothness of p-1 to find a factor with gcd(a^M-1,n)."
+    ]
+  },
+  "misconception": "A large exponent modulo a composite only helps primality testing.",
+  "objective": "Use smoothness of p-1 to find a factor with gcd(a^M-1,n).",
+  "claims": [
+    {
+      "id": "cs.algo-pollard-p-minus-one.c1",
+      "text": "A smooth factor-minus-one can make the modular power equal one modulo that factor. But an exponent covering both factors can give the entire number as gcd; the contrast demonstrates why this is not a useful factor.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c2",
+      "text": "A factor hides in the exponent. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c3",
+      "text": "n91, base2, M12: gcd(2^M−1,n) is?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c5",
+      "text": "gcd(2^12−1,91)=91; trivial.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c6",
+      "text": "Exponent input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c7",
+      "text": "n,a,M",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c8",
+      "text": "Modular exponent",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c9",
+      "text": "r,a,e",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c10",
+      "text": "Extract GCD",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c11",
+      "text": "a^M%n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c12",
+      "text": "gcd",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[5].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c13",
+      "text": "cofactor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[0].run().frames[5].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c14",
+      "text": "gcd(2^6−1,91)=7; factor.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c15",
+      "text": "gcd(2^12−1,77)=7; factor.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#pollard_p_minus_one.cases[2].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c16",
+      "text": "A p−1 attempt gives gcd1. What does that certify?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c17",
+      "text": "n is prime",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c18",
+      "text": "This exponent found no factor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pollard-p-minus-one.c19",
+      "text": "Failure of one exponent does not establish primality.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-pollard-p-minus-one\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A p−1 attempt gives gcd1. What does that certify?",
+    "options": [
+      "n is prime",
+      "This exponent found no factor"
+    ],
+    "answer": 1,
+    "why": "Failure of one exponent does not establish primality."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-pollard-p-minus-one/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-pollard-p-minus-one",
+    "also": [],
+    "prerequisites": [
+      "euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "number-theoretic-algorithms"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}
