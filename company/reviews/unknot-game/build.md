@@ -13,7 +13,7 @@ Kept from evaluators until they report.
 - During predict the tally and caption are not rendered (`display: none`); they sit below the picture, so the picture does not move. The picture, "Still a knot" and the selected chip are shown.
 
 ## The tint
-- Computed once per state at mount: `moves(q).filter(R2)[0]`, and of its two edges the one in PD slot 1 or 3 at both of its crossings. Builder probe (scratch, same rule): 3_1 switch 0 -> edge 4, 1 -> 4, 2 -> 5; 4_1 switch 0 -> 5, 1 -> 7, 2 -> 1, 3 -> 3; each R2 contains the tapped crossing (K20).
+- Computed once per state at mount: `moves(q).filter(R2)[0]`, and of its two edges the one in PD slot 1 or 3 at both of its crossings. Builder probe (scratch, same rule): 3_1 switch 0 -> edge 1, 1 -> 4, 2 -> 5; 4_1 switch 0 -> 5, 1 -> 7, 2 -> 1, 3 -> 3; each R2 contains the tapped crossing (K20).
 - Drawn as the same `draw` path with the global `.knot-tint` class (`src/app/globals.css`, W-1582, added by platform-engineer during this build; the lesson uses it and has no colour rule of its own) and `stroke-width` 3; every other path `--fg`, 2. The caption swatch is an SVG line with the same class. 150 ms stroke transition, none under reduced motion.
 - `apply` is never called; `simplify` is read for status only; nothing they return is drawn.
 - Seen in both themes at 390x844: the tinted strand runs over the tapped crossing and the neighbouring one; the other lens strand shows its gaps. On 4_1 crossing 1 (the beak) the tint is a short strand inside the tightest lens, as the spec accepts; **design lead to check (S4)**.
@@ -63,3 +63,32 @@ Build `NEXT_DIST_DIR=.next-w1541`, served on 3541 (`tools/serve.sh`). `tests/qa/
 | Fact-check c1 to c7 | fact-checker |
 | S4 walkthrough review: reveal scale 270 px, the beak tint on 4_1 crossing 1 | design-lead |
 | Title and hook (builder-written), and whether c7 keeps its brief source | cm-math-discrete |
+
+## v2 fix round (W-1603, W-1604, design-lead S4 D1 to D3), 2026-10-17
+
+Builder: demo-builder (run w1604-unknot-v2). Inputs: board W-1603 and W-1604; `company/design/reviews/2026-10-17-unknot-game-s4.md` D1 to D3; learner walk `2026-10-17-learner-walk.md` finding 2; fact-check `2026-10-16-fact-check.md` (c6, c7 source swaps; build-note typo). `meta.version` 1 -> 2. Status stays **draft**.
+
+### What changed
+- **D3 / W-1604 (`Demo.tsx`).** The lesson root keeps `lastTre`, the last trefoil crossing the learner switched (set in `tap` while the chip is Trefoil). On entering the reveal, an effect sets the chip to Trefoil and the switch to `lastTre`, so the stage shows the trefoil, "Plain loop", the ringed crossing and its tinted strand, which the reveal's "the tinted strand lay on top at two crossings in a row" points at. `lastTre` always exists at the reveal (the reveal unlocks at `allThree`). The stage stays live afterwards; tally, Reset and chips are unchanged. Same pattern as W-1602 in `src/demos/math/draw-a-table-knot/Demo.tsx`. No learner text changed.
+- **D1 (`styles.module.css`).** `.atReveal .caption { display: none; }` (was `.caption.empty` only). The unused `s.empty` class reference was removed from `Demo.tsx`.
+- **D2 (`styles.module.css`).** `.wrap` gap 2 px; `.board` width `min(100%, clamp(238px, calc((100dvh - 537px) * 106 / 97), 320px))`; `.atReveal .board` the same capped at 270 px. Copied verbatim from the record.
+- **W-1603 (`meta.json`).** c6 and c7 source fields now name PMC5582600 and PMC4354144 (c7 keeps Kronheimer and Mrowka 1993, Topology 32, 773-826, as the original proof); Adams and Brittenham-Hermiller dropped as unopened. **c6 and c7 set back to unverified** (status, checkedBy/checkedOn removed; the note says why and keeps the history). Claim text unchanged. The typo above in "The tint" is fixed: 3_1 switch 0 tints edge 1 (edge 4 is its partner, under at both).
+
+### Claims touched
+c6, c7: source field only, reset to unverified. c1 to c5 unchanged and left as the fact-checker set them (the stage at the reveal now shows a state those claims already cover: a single trefoil switch, its R2 tint, the 3 of 3 row).
+
+### Measurements (build `.next-w1604`, served on 3604)
+- `fit-probe.mjs` (design-lead's, no override), all 3 options: explore 390x844 board 320, overflow 0, control row 0; 360x740 board 238, overflow 6, control row 0; 360x640 board 238, overflow 106, row 96. Reveal 390x844, both endings (QA path and switch left on): crop 0, 11 px spare, picture 270; 360x740 crop 115, picture 238; 360x640 crop 215. Every number matches the record's D1+D2 table.
+- `reveal-fit --strict` 390x844 (`artifacts/reveal-fit/w1604-390.json`, tool clean): fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 73 words, 9 lines. Since D3 the QA path ends with the trefoil switch 3 on stage, so this run is the switched-crossing ending (screenshot viewed: tinted trefoil, crossing 3 ringed, "Plain loop").
+- `reveal-fit --strict` 360x740 (`artifacts/reveal-fit/w1604-360.json`): fit, **crop 115**, phoneFit false, hiddenBelow 0, namedHidden 0. This is the crop the S4 record predicts and accepts for D2 (was 144 to 164); not a new miss.
+- Walkthrough (`--url`, phone, option 1): `artifacts/walkthroughs/unknot-game/07-reveal.png` shows the tinted trefoil at the reveal.
+- QA contract `QA_ONLY=unknot-game`, own build: phone and desktop 2/2 passed.
+- `npm run check` passed (3 warnings, all lifehacks, none here); `npx tsc --noEmit` exit 0; `tsconfig.json` build edit reverted.
+
+### Next
+| Move | Owner |
+|---|---|
+| Re-verify c6, c7 (source field only) | fact-checker |
+| QA record on v2 (evidence.qa) | qa-tester |
+| Re-walk after D3 (finding 2 is the learner review's to close) | learner-evaluator |
+| Title length at 360; learner-walk findings 1, 4, 5 | cm-math-discrete / learning-designer |

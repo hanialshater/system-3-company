@@ -83,21 +83,17 @@
       "id": "math.unknot-game.c6",
       "text": "The unknotting number of a knot is the fewest crossing switches, over all drawings of it, that turn it into a plain loop; it is 1 for the trefoil and for the figure-eight (reveal 'The fewest switches that can free a knot is its unknotting number: 1 for the trefoil, and for the figure-eight too.'; prediction answer '1').",
       "support": "source",
-      "source": "Adams, The Knot Book, chapter on unknotting number (citation for the definition; fact-checker to confirm chapter and wording). Value 1: one switch frees each kit drawing (c3, brief check K9 also reads table u=1 for 3_1 and 4_1), and a knotted diagram needs at least one. Brief claim 4. 'and for the figure-eight too' is claimed context unless 4_1 was visited; brief cut order puts it second. Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-17",
-      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: Angew Chem 2017 (PMC5582600): \"unknotting number ... refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot\", twist knots have unknotting number 1; Sci Rep 2015 (PMC4354144): \"The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1\". Value also derived: one switch frees each kit drawing (c3) and both knots are knotted. Adams, The Knot Book, NOT opened; the source field should name PMC5582600 and PMC4354144 instead (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c6."
+      "source": "Fielden, Leigh and Woltering, 'Molecular Knots', Angew Chem Int Ed 2017 (PMC5582600, doi 10.1002/anie.201702531): 'unknotting number ... refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot', twist knots have unknotting number 1; Sci Rep 2015 (PMC4354144, doi 10.1038/srep08928): 'The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1'. Value 1 also derived: one switch frees each kit drawing (c3, brief check K9 also reads table u=1 for 3_1 and 4_1), and a knotted diagram needs at least one. Brief claim 4. 'and for the figure-eight too' is claimed context unless 4_1 was visited. Sources as named by the fact-checker (company/reviews/unknot-game/2026-10-16-fact-check.md, c6); Adams, The Knot Book, dropped (not opened). Builder-written; unverified.",
+      "status": "unverified",
+      "note": "W-1603 (demo-builder, 2026-10-17): source field changed to PMC5582600 and PMC4354144, as the fact-checker asked (non-blocking); claim text and learner text unchanged; reset to unverified for a fact-checker who did not write the source field. Previous: Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: Angew Chem 2017 (PMC5582600): \"unknotting number ... refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot\", twist knots have unknotting number 1; Sci Rep 2015 (PMC4354144): \"The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1\". Value also derived: one switch frees each kit drawing (c3) and both knots are knotted. Adams, The Knot Book, NOT opened; the source field should name PMC5582600 and PMC4354144 instead (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c6."
     },
     {
       "id": "math.unknot-game.c7",
       "text": "Some knots need more than one switch to become a plain loop (reveal 'Some knots need more than one.'). Example for the fact-checker, not in learner text: the (2,7) torus knot has unknotting number 3.",
       "support": "source",
-      "source": "Brief claim 5: Brittenham and Hermiller, arXiv 2506.24088 (research note company/research/notes/2026-10-13-teachable-knot-theory.md §2.7, high; full text unchecked). Builder note for the fact-checker, not checked: the torus-knot value is also the Milnor conjecture, proved by Kronheimer and Mrowka (1993). Brief cut order: cut this sentence first if unchecked. Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-17",
-      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: PMC5582600: unknotting number of torus knot T(p,q) is (p-1)(q-1)/2, citing [52] Kronheimer and Mrowka, Topology 1993, 32, 773-826 (Crossref 10.1016/0040-9383(93)90051-v confirms), so T(2,5) = 2 and T(2,7) = 3; PMC4354144: \"The unknotting number of the 5_1 knot is two\". Brittenham and Hermiller arXiv 2506.24088 NOT opened (arXiv 403; a search summary only identifies the paper); the source field should name PMC5582600 and PMC4354144 (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c7."
+      "source": "PMC5582600 (Angew Chem Int Ed 2017, doi 10.1002/anie.201702531): unknotting number of the torus knot T(p,q) is (p-1)(q-1)/2, so 5_1 = T(2,5) has 2 and T(2,7) has 3; original proof Kronheimer and Mrowka, Topology 1993, 32, 773-826 (doi 10.1016/0040-9383(93)90051-v; cited there as ref 52). PMC4354144 (Sci Rep 2015, doi 10.1038/srep08928): 'The unknotting number of the 5_1 knot is two'. Sources as named by the fact-checker (company/reviews/unknot-game/2026-10-16-fact-check.md, c7); Brittenham and Hermiller, arXiv 2506.24088 (brief claim 5), dropped (not opened). Builder-written; unverified.",
+      "status": "unverified",
+      "note": "W-1603 (demo-builder, 2026-10-17): source field changed to PMC5582600 and PMC4354144 (Kronheimer and Mrowka 1993 kept as the original proof), as the fact-checker asked (non-blocking); claim text and learner text unchanged; reset to unverified for a fact-checker who did not write the source field. Previous: Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: PMC5582600: unknotting number of torus knot T(p,q) is (p-1)(q-1)/2, citing [52] Kronheimer and Mrowka, Topology 1993, 32, 773-826 (Crossref 10.1016/0040-9383(93)90051-v confirms), so T(2,5) = 2 and T(2,7) = 3; PMC4354144: \"The unknotting number of the 5_1 knot is two\". Brittenham and Hermiller arXiv 2506.24088 NOT opened (arXiv 403; a search summary only identifies the paper); the source field should name PMC5582600 and PMC4354144 (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c7."
     }
   ],
   "confidence": "",
@@ -119,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:knot-crossing-change",
     "also": [],
