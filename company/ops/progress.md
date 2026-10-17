@@ -8,6 +8,21 @@ who no longer exists: check what you rely on.
 **Changed:** company/ops/projects.json `personalization`: scope in = batch 3/4 studies (done or closing) plus batch 5 to M1 (candidate, criterion 3b scoring, reproduction, dims index, serving code behind an opt-in, HQ lab production mode, reason copy, go/no-go, merge readiness, and the named reviews); scope out = any release without the founder, any default-on personalization, any stored derived values (D20), phase B, protected-path changes. `estimate:true` dropped; approval.record = the M1 delegation record; approval.covers names the founder's 2.0M (readout-2 decisions, Founder answers) and says the M1 re-scope and anything above 2.0M are the chief of staff's call under the delegation. Budget = 2.0M base + 0.1M top-up (approvedBy chief-of-staff under the delegation) = 2.1M. Board: W-1563, W-1582 done; W-1583 added (chief-of-staff).
 **Believe:** spend measured = 0k of 2.1M (`node tools/ledger.mjs gate --project=personalization`), which is wrong low with high confidence: lane 14 ran 30+ runs since 2026-10-16 and none carries tokens (WBR 2026-10-17 anomaly 1, company/rituals/records/2026-10-17-wbr.md). Medium-high that 2.1M is too low: batch 5 §2 prices its own items at ~2.1M, on top of batch 3 (~2.0M) and batch 4 (~0.9M); objection written in topUps[0].objection.
 **Next:** chief-of-staff answers W-1583 (keep 2.1M or set ~4M+); ledger owner fixes token capture (WBR anomaly 1). **Blocked:** nothing for this item.
+## 2026-10-17 · personalization-eval (Uma) · K5: criterion 3b draft + harness c3b with a candidate slot (run eval-k5-1017, W-1572, branch perso-c3b-k5)
+
+**Changed (commit 0cf197c):** new company/personalization/eval/2026-10-17-criterion-3b.md, status **draft (unfrozen)**. New harness company/personalization/eval/harness/c3b/ and S record harness/records/2026-10-17-seeds-c3b-k5.json.
+- The candidate runs through criterion 3's own runEpisode3. A resolve hook swaps its reachable-oracle import for a slot in a second module instance, so no episode logic is copied. 3b-ID1 shows the slot matches c3 in 144 of 144 episodes.
+- 3b-ID0 byte-checks readout 3's 16 files, criterion 3's sha256 and the catalogue. 3b-ID2 has the reference arm reproduce readout 3's reference rows, 12 of 12.
+- The named pair `reachable-v1 + fixed` vs `default-order + fixed` is judged under criterion 2 §2.1 in full. The base cell is `interleave:base`. The 27 one-at-a-time cells include `first:base`; 12 cells are reported only.
+- S = 2000 (the cap) on a disjoint seed block, 40001–42000.
+- Validity checks V1–V10, including a copy check against reachable-oracle.mjs with thresholds M1 ≥ 3, M2 ≥ 12, M3 ≥ 4 calibrated on control files, were written before any candidate was read. The candidate file is not in this tree.
+- F5's mid-task request is answered in §4.3: K-a NO (dims key order is catalogue lesson order, not default order; the input is not changed), K-b `misconceptionStrength`, K-c ρ 0.5, K-d pilot only. Report-only tie-order and rating probes were added.
+- The optional wider-catalogue cell is refused (personas and pre-history are pilot-only), with the reason in §6.
+- Tests: c3b 13/13, c3 15/15, c2 25/25; `npm run check` green. No candidate was run and nothing was scored.
+
+**Believe:** high that the slot is criterion 3's episode (144 hash pairs plus the 12-row chain). Medium that the copy check is useful: it is lexical, and a full rename with comments stripped passes (control P4, stated).
+**Next:** learning-scientist-personalization reviews the draft (F5 already in hand); vp-personalization reads §4.3 K-a and decides whether the tie order needs a reachable-v2 (G6). K6 follows criterion 3b §7.
+**Blocked:** K6 waits for F5, C1's frozen hash and the V3 record. The lock refuses a real candidate without all three plus `status: frozen`.
 
 ## 2026-10-17 · vp-personalization (Mateo) · lane 14 batch 5 (M1) written, wave 1 sent (run vp-batch5-1017, W-1572)
 
