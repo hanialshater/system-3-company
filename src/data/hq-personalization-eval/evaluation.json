@@ -1,0 +1,549 @@
+{
+ "schema": "personalization-hq-evaluation-v1",
+ "rule": "batch 5 §20.3 (company/personalization/batches/2026-10-17-batch-5.md)",
+ "note": "Committed records only, quoted verbatim with their paths; never harness source or output. Lab candidate views are not scores and never sit beside these verdicts.",
+ "command": "node tools/hq-eval-index.mjs",
+ "studies": [
+  {
+   "id": "phase-a",
+   "name": "Phase A (readout 1)",
+   "criterion": {
+    "path": "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+    "freezeCommit": "e9909edc78a0f60914e9b89c790878ecb4b65576",
+    "sha256": "0bc2cbbd9d16e48ad19df750206eea56d876ca02a8438720b44862cbe4f325c7",
+    "hashChecked": "sha256(git show e9909ed:company/personalization/eval/2026-10-16-phase-a-criterion.md) = 0bc2cbbd9d16e48ad19df750206eea56d876ca02a8438720b44862cbe4f325c7",
+    "freezeLine": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+     "line": 5,
+     "quote": "frozen: run eval-c4-1016 (batch 2 C4, board W-1496), before any policy under test was scored. **Freeze commit: e9909edc78a0f60914e9b89c790878ecb4b65576** (sha256 of this file at that commit: 0bc2cbbd9d16e48ad19df750206eea56d876ca02a8438720b44862cbe4f325c7; §11). Every C4 change made before the freeze is listed in §10."
+    }
+   },
+   "readout": {
+    "path": "company/personalization/eval/2026-10-16-phase-a-readout-1.md",
+    "verdicts": [
+     {
+      "kind": "table",
+      "path": "company/personalization/eval/2026-10-16-phase-a-readout-1.md",
+      "line": 15,
+      "quote": "| pair | verdict | base cell: wins of 6 (need 4) | harmed personas, any pass cell | guardrail failures, any pass cell | pass cells beaten (of 10) |\n|---|---|---|---|---|---|\n| gam vs default-order | **FAIL** | 0 | none | none | 0 |\n| gam vs draft-rules | **FAIL** | 0 | none | none | 0 |"
+     }
+    ]
+   },
+   "repro": {
+    "path": "company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md",
+    "status": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md",
+     "line": 10,
+     "quote": "**Byte-identical.** Both parts of the run reproduce `results.json` and `verdicts.json` exactly. The two `manifest.json` files differ only in `seconds`, which the README (step 5) says is expected. The §6 tables, regenerated from my outputs, match the readout's §6 line for line except for the out-dir label and `seconds`."
+    }
+   },
+   "decision": {
+    "path": "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+    "status": {
+     "kind": "text",
+     "path": "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+     "line": 6,
+     "quote": "status: decided and **in effect, unconditional** (§2 per term, §3 C3, §4 GAM and phase B): C5 reproduced readout 1 byte for byte on 2026-10-16 (below); §6 is a set of questions for the founder, not decisions"
+    },
+    "glance": {
+     "kind": "table",
+     "path": "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+     "line": 16,
+     "quote": "| Item | Decision | Rule it applies |\n|---|---|---|\n| Phase A verdict | **Accepted as FAIL.** No objection to the criterion; nothing overridden | criterion §2 (frozen e9909edc) |\n| Novelty | **Killed.** Gated off in model-v0.2.2 after C5 | my kill rule, pre-freeze §3 (must win at benefit 0; 0 of 6 wins, three intervals below 0) |\n| Surprise | **Stays gated off; no path back in this world.** No code removed | pre-freeze §2 trigger (failed even at ρ = 1, surprise high) |\n| Breadth | **No recall credit; not killed.** It had no pre-registered kill rule and its job is the bubble guardrail, not recall. Moot while the GAM is stopped | mission (\"without trapping them in a bubble\"); criterion G1 |\n| C3 (≈218 ratings) | **Cancelled**, not held. W-1515 step 1b closes | pre-freeze §2 trigger not met |\n| The GAM as it stands | **Stopped.** No phase B on it, no curve tuned to win a cell back | pre-freeze §1 bars paragraph; model-v0 finding 4 |\n| Phase B (any policy) | **Not registered.** No candidate has passed anything | proposal phases; AMD-008 F1 |\n| What next | **Recommendation: option C (one headroom-first criterion) with the founder's answer to Q3/Q4; options B and the First Light rule set go to the founder (Q1, Q5)** | §5 |"
+    }
+   }
+  },
+  {
+   "id": "criterion-2",
+   "name": "Criterion 2 (readout 2)",
+   "criterion": {
+    "path": "company/personalization/eval/2026-10-16-criterion-2.md",
+    "freezeCommit": "869f62505f8f4a16a7ce102a5932a1842bd73894",
+    "sha256": "8671aaaf44d4cdc1aaa89a7f901ab283fe3f0775d5ecdc3165d0be244432d3b5",
+    "hashChecked": "sha256(git show 869f625:company/personalization/eval/2026-10-16-criterion-2.md) = 8671aaaf44d4cdc1aaa89a7f901ab283fe3f0775d5ecdc3165d0be244432d3b5",
+    "freezeLine": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-16-criterion-2.md",
+     "line": 5,
+     "quote": "frozen: run eval-k2-1016 (batch 3 K2, board W-1549), before any arm under test was scored. **Freeze commit: 869f62505f8f4a16a7ce102a5932a1842bd73894** (sha256 of this file at that commit: 8671aaaf44d4cdc1aaa89a7f901ab283fe3f0775d5ecdc3165d0be244432d3b5, `git show 869f625:company/personalization/eval/2026-10-16-criterion-2.md | sha256sum`). The criterion is this file's text at that commit; this line was added in the next commit and changes no rule. Any change after the first scored number is a new criterion (§13)."
+    }
+   },
+   "readout": {
+    "path": "company/personalization/eval/2026-10-16-criterion-2-readout.md",
+    "verdicts": [
+     {
+      "kind": "table",
+      "path": "company/personalization/eval/2026-10-16-criterion-2-readout.md",
+      "line": 18,
+      "quote": "| Question | Reading under the frozen rule | Read by |\n|---|---|---|\n| **Ordering headroom:** `oracle-order` vs `default-order` | **HEADROOM.** Wins in 6 of 6 personas in the base cell (Δ R₇ +0.098 to +0.158), and 6 of 6 in every one-at-a-time cell | pre-commitment 3 |\n| **Review headroom:** `oracle-review` vs fixed | **HEADROOM.** Wins in 6 of 6 personas in the base cell (Δ R₇ +0.176 to +0.305); 6 of 6 in every one-at-a-time cell except forgetShape-high (5 of 6) | V2 |\n| `gam` (model-v0.2.2 as frozen) vs `default-order` | **FAIL.** 0 wins in the base cell (Δ R₇ +0.0009 to +0.0025, all below δ_min 0.01); 0 wins in every cell | pre-commitment 4 |\n| `gam` vs `draft-rules` | **FAIL.** 0 wins (Δ R₇ −0.0065 to −0.0010) | phase A's second pair, carried |\n| `draft-rules` vs `default-order` (named pair) | **FAIL.** 0 wins (Δ R₇ +0.0027 to +0.0075); and G1 (top-domain share) fails in 6 of 6 personas | reported (Q5) |\n| **Candidate review-timing-v1 vs fixed** | **FAIL.** 0 wins in the base cell (Δ R₇ −0.0078 to −0.0044, negative in all six, none past δ_harm); the NEW guardrail fails in 4 of 6 personas; 0 wins in every one-at-a-time cell | V3 |"
+     }
+    ]
+   },
+   "repro": {
+    "path": "company/personalization/eval/2026-10-16-criterion-2-readout-repro.md",
+    "status": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-16-criterion-2-readout-repro.md",
+     "line": 10,
+     "quote": "**Byte-identical.** Both parts reproduce `results.ndjson` and `verdicts.json` exactly. Each `manifest.json` differs from the committed one in only the two fields §9 allows: `seconds` and the candidate's absolute path. The §A tables, regenerated from my outputs, differ from the readout's §A only on the lines that print those same two fields."
+    }
+   },
+   "decision": {
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md",
+    "status": {
+     "kind": "text",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md",
+     "line": 6,
+     "quote": "status: **decided and in effect** (§1 to §4 apply rules written before the data; nothing here is new judgement on a verdict). §6 is questions for the founder, not decisions."
+    },
+    "glance": {
+     "kind": "table",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md",
+     "line": 14,
+     "quote": "| Question | Readout 2 (frozen rule) | Rule applied | Decision |\n|---|---|---|---|\n| Ordering headroom | HEADROOM: oracle-order beats default-order in 6 of 6 (Δ R₇ +0.098 to +0.158), 6 of 6 in every one-at-a-time cell | pre-commitment 3 | **Personalised ordering for recall is not closed.** Pre-commitment 3's closing branch does not fire |\n| GAM (model-v0.2.2 as frozen) | FAIL: 0 wins (Δ R₇ +0.0009 to +0.0025), 0 in every cell | pre-commitment 4 | **The GAM approach is closed.** Any next composer is a new design with its own criterion |\n| draft-rules vs default-order | FAIL: 0 wins (Δ R₇ +0.0027 to +0.0075); G1 fails 6 of 6 | reported only (batch 3, \"Applying the two together\") | **Nothing new decided.** The rule set already ships off (founder Q5) and stays off |\n| Review headroom | HEADROOM: oracle-review beats fixed in 6 of 6 (Δ R₇ +0.176 to +0.305) | V2 | **Review timing is not closed by V2.** Read with §3: most of it is revisit volume, not timing |\n| Candidate review-timing-v1 | FAIL: 0 wins (Δ R₇ −0.0078 to −0.0044, all negative, no harm); NEW fails 4 of 6; LOAD holds 6 of 6 | V3 | **Closed. Not re-tuned.** A different review policy is a new design with its own criterion |\n| Phase B / anything live | n/a | pre-commitment 5, V4 | **Nothing goes live, nothing is registered.** No pass exists, and a pass would not have been a phase B |"
+    }
+   }
+  },
+  {
+   "id": "criterion-3",
+   "name": "Criterion 3 (readout 3)",
+   "criterion": {
+    "path": "company/personalization/eval/2026-10-17-criterion-3.md",
+    "freezeCommit": "709ca2d22af533532f337d2e7dd9ca078bc316a3",
+    "sha256": "2ed7933e4b606d79d6c2109e619ce698730aae9d6a6b7b1d908db9d905346d30",
+    "hashChecked": "sha256(git show 709ca2d:company/personalization/eval/2026-10-17-criterion-3.md) = 2ed7933e4b606d79d6c2109e619ce698730aae9d6a6b7b1d908db9d905346d30",
+    "freezeLine": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-17-criterion-3.md",
+     "line": 5,
+     "quote": "frozen: run eval-k4-1017 (batch 4 K4, board W-1567), before any arm under test was run or scored. **Freeze commit: 709ca2d22af533532f337d2e7dd9ca078bc316a3** (sha256 of this file at that commit: 2ed7933e4b606d79d6c2109e619ce698730aae9d6a6b7b1d908db9d905346d30, `git show 709ca2d:company/personalization/eval/2026-10-17-criterion-3.md | sha256sum`). The criterion is this file's text at that commit; this line was added in the next commit and changes no rule. Any change after the first scored number is a new criterion (§10.3)."
+    }
+   },
+   "readout": {
+    "path": "company/personalization/eval/2026-10-17-criterion-3-readout.md",
+    "verdicts": [
+     {
+      "kind": "text",
+      "path": "company/personalization/eval/2026-10-17-criterion-3-readout.md",
+      "line": 14,
+      "quote": "**`verdicts.rule3` in `interleave:base` (the base cell named in criterion 3 §2.0): REACHABLE. `reachable + fixed` wins against `default-order + fixed` in 6 of 6 personas** (95% t interval above 0 and Δ ≥ δ_min 0.01). The validity checks passed: T1 cross-process replay and RS1 to RS6 on the arm's own inputs, in both placements, and the reachable INVALID flag is false. C3-ID1 (576 episode pairs), C3-ID2 and T5c passed at the start of both parts. There were 0 unit errors."
+     },
+     {
+      "kind": "text",
+      "path": "company/personalization/eval/2026-10-17-criterion-3-readout.md",
+      "line": 16,
+      "quote": "**The placements agree on the reading.** In `first:base`, the reachable arm wins in 5 of 6. lapsed-returner misses: Δ +0.0095 [+0.0077, +0.0113], under δ_min. Both are at or above 4 of 6. Rule 3 reads `interleave:base` only (criterion 3 §2.0). The `first:base` result changes no reading."
+     }
+    ]
+   },
+   "repro": {
+    "path": "company/personalization/eval/2026-10-17-criterion-3-readout-repro.md",
+    "status": {
+     "kind": "text",
+     "path": "company/personalization/eval/2026-10-17-criterion-3-readout-repro.md",
+     "line": 10,
+     "quote": "**Byte-identical.** Both parts reproduce `results.ndjson` and `verdicts.json` exactly. Each `manifest.json` differs from the committed one in one field only, `seconds`, which §8 allows. `commit` is equal because I ran at the same commit. The tables printed from my outputs differ from §A on two lines only, the two `## Run` lines. On each of those lines only the seconds figure differs. If I put the readout's seconds back into those two lines, the sha256 of my printed text is §8 step 5's f9aa1739…505de."
+    }
+   },
+   "decision": {
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md",
+    "status": {
+     "kind": "text",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md",
+     "line": 6,
+     "quote": "status: **decided and in effect, unconditionally.** Every line in §1 applies a rule written before readout 3 existed. Nothing here is new judgement on a verdict, and nothing here reads, predicts or anticipates a `reachable-v2` number."
+    },
+    "glance": {
+     "kind": "table",
+     "path": "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md",
+     "line": 14,
+     "quote": "| Pre-commitment (verbatim in batch 4) | What readout 3 printed | Decision |\n|---|---|---|\n| 1. Readout 2 stays the record; no frozen arm re-tuned or re-entered | Readout 3 re-ran no readout-2 verdict; no frozen arm was a candidate | **Holds.** Readout 2's verdicts stand (GAM approach closed, review-timing-v1 closed) |\n| 2. Ranges from learning-scientist-personalization's evidence; the eval may decline the oracle | E3 ranges set before the score (manifest e3Sha256 0e120add…); the reachable-signal oracle was built and passed T1 and RS1 to RS6, INVALID flag false | **Holds.** Rule 3 can fire; option A is not triggered by this rule |\n| 3. If the reachable-signal oracle does not beat default-order by δ_min in ≥ 4 of 6 in the base cell, ordering closes | `verdicts.rule3` in `interleave:base` (the base cell criterion 3 §2.0 named before the freeze): **REACHABLE, 6 of 6**, Δ R₇ +0.0102 to +0.0176 vs δ_min 0.01 | **Personalised ordering for recall is not closed.** The closing branch does not fire. Option A (pause) is not recommended on this readout |\n| 4. If it does, no build until the founder answers whether to design a candidate aimed at it | REACHABLE | **The question was asked and answered.** The chief of staff, deciding in the founder's place under the founder's grant, answered \"build one candidate\" (company/decisions/2026-10-17-founder-personalization-milestone-delegation.md, \"Decisions taken now under the delegation\"). Batch 5 is that one candidate (now `reachable-v2`, v1 retired unscored, batch 5 §11.1). No second candidate follows from this record |\n| 5. Review volume and placement findings to head-of-product and evaluation-steward as input only | Interleave and review rows in readout 3 §5 | **Input only**, sent through W-1561 (head-of-product) and W-1562 (evaluation-steward). No F2 text from me (§3) |\n| 6. A pass of anything is not a phase B | Δ 1.0 to 1.8 points R₇, below the smallest MDE (2.2 points at 10,000 learners) | **Nothing goes live from this readout.** The M1 website part stands on its own gates (§4) |"
+    }
+   }
+  },
+  {
+   "id": "criterion-3b",
+   "name": "Criterion 3b (K6, reachable candidate)",
+   "pending": "pending: K6's readout is not committed",
+   "criterionStatus": {
+    "kind": "text",
+    "path": "company/personalization/eval/2026-10-17-criterion-3b.md",
+    "line": 4,
+    "quote": "status: draft (unfrozen)"
+   },
+   "criterionPath": "company/personalization/eval/2026-10-17-criterion-3b.md"
+  }
+ ],
+ "reviews": [
+  {
+   "id": "F5b",
+   "what": "reachable-v2 vs reachable-v1: diff review, order rule check (learning-scientist-personalization)",
+   "path": "company/personalization/evidence/2026-10-17-reachable-v2-diff-review.md",
+   "verdict": [
+    {
+     "kind": "text",
+     "path": "company/personalization/evidence/2026-10-17-reachable-v2-diff-review.md",
+     "line": 67,
+     "quote": "**There is no blocking row.** reachable-v2 differs from v1 only in the tie order and the mechanical lines around it, and it reproduces the rule's 230-slug vector. One row is conditional: R6 becomes blocking if criterion 3b's `dims` holds a draft or retired lesson (check K-e, personalization-eval, before the first score)."
+    },
+    {
+     "kind": "text",
+     "path": "company/personalization/evidence/2026-10-17-reachable-v2-diff-review.md",
+     "line": 69,
+     "quote": "blocking 0, notes 13 (R1-R12, A1; R6 conditional on K-e)"
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 263,
+    "quote": "## 13. Decision on F5b (vp-personalization, run vp-k6-1017, 2026-10-17): accepted; K6 sent"
+   }
+  },
+  {
+   "id": "F6",
+   "what": "Is EDD-010 §6.3's moving-reason rule true against every passed card? (learning-scientist-personalization)",
+   "path": "company/personalization/evidence/2026-10-17-edd010-reason-rule-truth.md",
+   "verdict": [
+    {
+     "kind": "text",
+     "path": "company/personalization/evidence/2026-10-17-edd010-reason-rule-truth.md",
+     "line": 169,
+     "quote": "**Blocking: 3** (B1 later:domain-estimate; B2 later:concept-known, as §6.3 passes facts; B3 domain-estimate in both directions under the Q-P5 ceiling, which falls to a note if RC rules that a non-causal juxtaposition is acceptable). **Notes: 7** (N1-N7)."
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 340,
+    "quote": "## 15. Decision on F6 (Q-R1): the single v3 is spent on an ungraded order that emits its own moving reasons (vp-personalization, run vp-f6-1017, 2026-10-17)"
+   }
+  },
+  {
+   "id": "F7",
+   "what": "Are reachable-v3's emitted move reasons true? (learning-scientist-personalization)",
+   "path": "company/personalization/evidence/2026-10-17-reachable-v3-reason-truth.md",
+   "verdict": [
+    {
+     "kind": "text",
+     "path": "company/personalization/evidence/2026-10-17-reachable-v3-reason-truth.md",
+     "line": 144,
+     "quote": "**Blocking: 0. Notes: 9 (N1-N9).**"
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 441,
+    "quote": "## 17. reachable-v3 frozen: privacy V2 ruling, freeze and A3/A5 accepted, F7 sent, K7 listed (vp-personalization, run vp-v3f-1017, 2026-10-17)"
+   }
+  },
+  {
+   "id": "RC",
+   "what": "Reason-line candidates L1-L7 for reachable-v3's move keys (fact-checker, author)",
+   "path": "company/personalization/copy/2026-10-17-reason-lines-rc.md",
+   "verdict": [
+    {
+     "kind": "text",
+     "path": "company/personalization/copy/2026-10-17-reason-lines-rc.md",
+     "line": 5,
+     "quote": "**PROPOSALS, not verified copy.**"
+    },
+    {
+     "kind": "text",
+     "path": "company/personalization/copy/2026-10-17-reason-lines-rc.md",
+     "line": 56,
+     "quote": "**Blocking keys: none**"
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 494,
+    "quote": "### 18.3 The working line set: RC's L1-L7; head-of-product's rewrites are the preferred successor"
+   }
+  },
+  {
+   "id": "fc2",
+   "what": "Second fact-check of L1-L7 (fact-checker, independent)",
+   "path": "company/personalization/copy/2026-10-17-reason-lines-fc2.md",
+   "verdict": [
+    {
+     "kind": "table",
+     "path": "company/personalization/copy/2026-10-17-reason-lines-fc2.md",
+     "line": 63,
+     "quote": "| # | Key | Claim (RC §3 \"Asserts\") | Status | Evidence |\n|---|---|---|---|---|\n| L1 | earlier:prerequisites | some passed card has prerequisite lessons in the catalogue | **verified** | §3 proof (lines 236, 350, 480; no self-prerequisites); 0 failures in about 1.61M cards |\n| L2 | later:prerequisites | this card has prerequisite lessons in the catalogue; some lessons passed it | **verified** | §3 proof; 0 failures in about 1.57M cards |\n| L3 | earlier:concept-known | a passed card exists; title is a finished lesson on this card's idea | **verified** (literal and some-con), **with objection O1** | §3 by construction (475, 515); §4 constructed firing, 16,894 + 67 instances all true |\n| L4 | later:concept-known | some lessons passed it; title is a finished lesson on this card's idea | **verified** | §3 by construction (536, 515); 0 failures in 17,825 cards |\n| L5 | earlier:refresh | a passed card exists; title is a finished lesson on this card's idea | **verified** | §3 plus R1 impossibility (§4); 0 empty titles in 6,277 cards |\n| L6 | later:refresh | some passer is on an idea with a finished lesson | **verified** | §3 proof; 0 failures in 1,845 cards |\n| L7 | earlier:passed-known | some passed card shares the title's idea; title is finished | **verified** | §3 by construction (535-541); 0 failures in 3,619 cards |"
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 477,
+    "quote": "## 18. Reason copy after the second fact-check: O1, A3-2, the working line set, the release note, the review-lesson finding (vp-personalization, run vp-o1-1017, 2026-10-17)"
+   }
+  },
+  {
+   "id": "fact-check of head-of-product's copy",
+   "what": "Head-of-product's proposed copy for the personalised order (fact-checker, W-1632)",
+   "path": "company/personalization/copy/2026-10-17-hop-copy-factcheck.md",
+   "verdict": [
+    {
+     "kind": "text",
+     "path": "company/personalization/copy/2026-10-17-hop-copy-factcheck.md",
+     "line": 79,
+     "quote": "verified: I1, I2, I5, L3 (literal, O1 carried), L4, L5, D2, D3, D4, R2, R3 (literal, O-R1), R4, R5 · disputed: I3, I4, C1, L1, L6, L7, D1, optional host sentence, R1 · withdrawn: none."
+    }
+   ],
+   "decision": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 522,
+    "quote": "## 19. L3 after head-of-product's refusal; the fact-check of head-of-product's copy; privacy addendum 4 (vp-personalization, run vp-l3-1017, 2026-10-17)"
+   }
+  }
+ ],
+ "timeline": [
+  {
+   "date": "2026-10-16",
+   "what": "Readout 1 decisions",
+   "quote": {
+    "kind": "text",
+    "path": "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+    "line": 1,
+    "quote": "# Phase A readout 1: keep or kill per term, C3, and what the FAIL means"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Readout 2 decisions",
+   "quote": {
+    "kind": "text",
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md",
+    "line": 1,
+    "quote": "# Criterion 2 readout 2: what pre-commitments 1 to 5 and V1 to V5 decide, and what is next"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Readout 3 decisions",
+   "quote": {
+    "kind": "text",
+    "path": "company/decisions/2026-10-17-vp-personalization-readout-3-decisions.md",
+    "line": 1,
+    "quote": "# Criterion 3 readout 3: what pre-commitments 1 to 6 decide (V3)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §1",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 15,
+    "quote": "## 1. What M1 needs and what this batch does about each part"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §2",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 26,
+    "quote": "## 2. Order at a glance"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §3",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 52,
+    "quote": "## 3. Independence (proposal §2) in this batch"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §4",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 64,
+    "quote": "## 4. Go/no-go rules for G, written before any score (pre-commitments, batch 5)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §5",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 77,
+    "quote": "## 5. Merge readiness checklist (MR), filled by me, checked by the chief of staff"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §6",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 96,
+    "quote": "## 6. Briefs (the mailbox copies are shorter and standalone)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §7",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 157,
+    "quote": "## 7. Objections and open questions (they travel with this batch)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §8",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 165,
+    "quote": "## 8. Requests for board items (chief of staff files; I do not edit board.json)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §9",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 178,
+    "quote": "## 9. Deliberately not done"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §10",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 186,
+    "quote": "## 10. Decision on A1 open item 1 (vp-personalization, run vp-p14-1017, 2026-10-17): the read set widens, by criterion text only"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §11",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 194,
+    "quote": "## 11. Replan after F5, K5 and the founder's \"always on, no switch\" (vp-personalization, run vp-replan-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §12",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 250,
+    "quote": "## 12. Pre-score addendum to §4's go/no-go rules (vp-personalization, run vp-replan-1017, 2026-10-17): stricter, because nobody can switch it off"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §13",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 263,
+    "quote": "## 13. Decision on F5b (vp-personalization, run vp-k6-1017, 2026-10-17): accepted; K6 sent"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §14",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 290,
+    "quote": "## 14. Decisions on S1's EDD-010: cold start (O-S1) and the moving-reason rule (Q-R1) (vp-personalization, run vp-s1-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §15",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 340,
+    "quote": "## 15. Decision on F6 (Q-R1): the single v3 is spent on an ungraded order that emits its own moving reasons (vp-personalization, run vp-f6-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §16",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 396,
+    "quote": "## 16. Decisions on Q-A1 (pin frame) and V3's G1 (stateless earlier moves), before v3 freezes (vp-personalization, run vp-qa1-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §17",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 441,
+    "quote": "## 17. reachable-v3 frozen: privacy V2 ruling, freeze and A3/A5 accepted, F7 sent, K7 listed (vp-personalization, run vp-v3f-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §18",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 477,
+    "quote": "## 18. Reason copy after the second fact-check: O1, A3-2, the working line set, the release note, the review-lesson finding (vp-personalization, run vp-o1-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §19",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 522,
+    "quote": "## 19. L3 after head-of-product's refusal; the fact-check of head-of-product's copy; privacy addendum 4 (vp-personalization, run vp-l3-1017, 2026-10-17)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "Batch 5 §20",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 562,
+    "quote": "## 20. Amendment to the lab exclusion: frozen candidates and the eval record in HQ (vp-personalization, run vp-hq-1017, 2026-10-17; W-1648)"
+   }
+  },
+  {
+   "date": "2026-10-17",
+   "what": "reachable-v1 (timeline only, batch 5 §20.1 (e))",
+   "quote": {
+    "kind": "text",
+    "path": "company/personalization/batches/2026-10-17-batch-5.md",
+    "line": 201,
+    "quote": "- **`reachable-v1` is retired, unscored** (sha256 da8b7e4c…4c5876 stays on disk as the record; it is not edited, re-tuned or run). Retiring an unscored candidate is not re-tuning: G6's \"after K6's first scored number\" has not happened."
+   }
+  }
+ ]
+}

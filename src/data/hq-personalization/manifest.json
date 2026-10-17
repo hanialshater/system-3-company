@@ -2,12 +2,15 @@
  "schema": "personalization-hq-precomputed-v1",
  "simulatedOnly": "simulated personas only; no real learner data is read",
  "unscored": "UNSCORED: no committed criterion; provisional simulated learner",
- "inputsCommit": "a0bd249",
- "inputsCommitDate": "2026-10-16T23:38:35+00:00",
+ "inputsCommit": "1f64ee1",
+ "inputsCommitDate": "2026-10-17T22:01:16+00:00",
  "inputs": [
   "company/personalization/model",
   "content/curriculum",
-  "src/demos"
+  "src/demos",
+  "company/personalization/policies",
+  "tools/hq-lab-candidates.mjs",
+  "src/lib/hq-personalization-candidates.ts"
  ],
  "command": "node tools/hq-lab-precompute.mjs",
  "cli": "company/personalization/model/sim/hq-cli.mjs",
@@ -54,8 +57,14 @@
  },
  "excluded": [
   "review-timing: not an ordering policy (no episode in hq-cli)",
-  "reachable-*: not before go/no-go G (batch 5 §4)",
+  "reachable-* in the simulator's policy set, and every reachable-* file but the two frozen candidates (reachable-v1 included): batch 5 §4 as amended by §20.2",
   "saved traces (sim/out/traces): local files, never copied"
+ ],
+ "candidateLabel": "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world.",
+ "candidateAdapter": "tools/hq-lab-candidates.mjs",
+ "candidatePolicies": [
+  "reachable-v2",
+  "reachable-v3"
  ],
  "runs": [
   {
@@ -453,7 +462,117 @@
    "file": "compare/all.all.seeds5.days7.json"
   }
  ],
+ "candidates": [
+  {
+   "persona": "curious-newcomer",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/curious-newcomer.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "curious-newcomer",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/curious-newcomer.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  },
+  {
+   "persona": "single-subject-crammer",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/single-subject-crammer.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "single-subject-crammer",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/single-subject-crammer.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  },
+  {
+   "persona": "struggling-repeater",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/struggling-repeater.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "struggling-repeater",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/struggling-repeater.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  },
+  {
+   "persona": "returning-expert",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/returning-expert.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "returning-expert",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/returning-expert.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  },
+  {
+   "persona": "wanderer",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/wanderer.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "wanderer",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/wanderer.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  },
+  {
+   "persona": "lapsed-returner",
+   "policy": "reachable-v2",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/lapsed-returner.reachable-v2.seed1.days7.json.gz",
+   "sha256": "2666271f06aeef20f2771bcd7d1ad35391e0852e879aa0c7040f477f3f906714"
+  },
+  {
+   "persona": "lapsed-returner",
+   "policy": "reachable-v3",
+   "seed": 1,
+   "days": 7,
+   "file": "candidates/lapsed-returner.reachable-v3.seed1.days7.json.gz",
+   "sha256": "53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195"
+  }
+ ],
  "files": {
+  "candidates/curious-newcomer.reachable-v2.seed1.days7.json.gz": "e26a969fa605669c0e97e348e59f368a8dc3e17a72a47197d226d4de708f6f57",
+  "candidates/curious-newcomer.reachable-v3.seed1.days7.json.gz": "3f837f2c7224d03302e9c3ce96cd26a9fae64f11456ae9dc3b3c6bf30d7ee078",
+  "candidates/lapsed-returner.reachable-v2.seed1.days7.json.gz": "71d02ff378f0c6b44067fa121d189d145014e6c1df183f1aaf48786a0413b477",
+  "candidates/lapsed-returner.reachable-v3.seed1.days7.json.gz": "9c4becba9c58fa9a1ce8cf76d03240e304264e02ceb5a07674e76b9dfae44d41",
+  "candidates/returning-expert.reachable-v2.seed1.days7.json.gz": "2148fdd9ce8a03e445248e141212dc959012c86c8fcaca7b341fc4996830ab8a",
+  "candidates/returning-expert.reachable-v3.seed1.days7.json.gz": "e000385e3f0a73746d39526faae58cab46f67364b095eded2e7c396ec83d723f",
+  "candidates/single-subject-crammer.reachable-v2.seed1.days7.json.gz": "365567816d8a5e355c77012fa4edbd68295dfab6f6b1dba78ae8675d5e2fc4ab",
+  "candidates/single-subject-crammer.reachable-v3.seed1.days7.json.gz": "e0bce54bcf515682d1667d2e51f6f6f1f5d1b4bcf6140f486aaaf84acbb6c011",
+  "candidates/struggling-repeater.reachable-v2.seed1.days7.json.gz": "53da7c9070d3a1c9653b622d47b661519cab7d27f2736eb7a8ccd26942807bd2",
+  "candidates/struggling-repeater.reachable-v3.seed1.days7.json.gz": "df27e364951c19a0ac9e377698009a85504007e9ae37f64f99540c9a307f3752",
+  "candidates/wanderer.reachable-v2.seed1.days7.json.gz": "1ad47f1c59bd68d2384b07624cb3101286c83aa92d9911be841ae298b5b166d2",
+  "candidates/wanderer.reachable-v3.seed1.days7.json.gz": "564eb819ebb3c0d39669a046b88ede7e6cf15788eb6fd088e79631488b4f9d46",
   "compare/all.all.seeds5.days7.json": "1019083b260e21b5addaac6dd33d8877daf66a8a434e9fcf7cd46973f17205ab",
   "compare/all.main.seeds5.days7.json": "3ca3f4c32649b8ff899dcd4f9dc9f5c9b89a2a4d966f50f6b944b3805f250b2e",
   "compare/curious-newcomer.all.seeds5.days7.json": "0670b14713a3bc277a31aa985ae35a0ca9c198a4d75764853f29a7a081f747b5",
