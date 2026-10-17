@@ -8,6 +8,14 @@ export const MEMORY_POLICY = Object.freeze({
   targetBytes: 25 * 1024, // after compaction
   entryMaxLines: 12, // one offboarding entry
   decision: "company/decisions/2026-10-16-founder-agent-memory-basics.md",
+  // Citations (assessment 2026-10-17 §2). A path citation (a token under one of these top-level folders, or a bare
+  // file name with one of `citeExts`) must resolve to an existing file or folder, repo-relative, in the checkout the
+  // tool runs from (an error). A W-n board id not on company/ops/board.json is a warning. A commit sha is not looked up.
+  citeRoots: Object.freeze(["company", "tools", "src", "tests", "content", "spike", "public", ".claude", ".github"]),
+  citeExts: Object.freeze(["md", "mjs", "js", "json", "jsonl", "ts", "tsx", "txt", "sh", "yml"]),
+  // read --craft-only (for an evaluator starting a fresh review): lines naming a lesson slug, a lesson's review or
+  // source folder, or a prior verdict are left out. The evaluation-steward rules when it is required; this is the option.
+  verdictWords: /\b(verdicts?|rulings?|ruled|accept(ed|s)?|revise[ds]?|reject(ed|s)?|go-with-changes|no-go|launch-ready|disputed)\b/i,
 });
 
 export const kb = (n) => `${Math.round(n / 1024)} KB`;

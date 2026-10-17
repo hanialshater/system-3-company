@@ -94,7 +94,7 @@ test("check warns on a file over the threshold and on a missing file, and never 
 test("compaction archives closed open threads and keeps open ones", () => {
   const s = sandbox();
   assert.equal(s.run("add", ROLE, "--run=a", "--open=walkthrough timeouts on the shared host (W-1200)").status, 0);
-  assert.equal(s.run("add", ROLE, "--run=b", "--open=QA record authorship audit pending (company/reviews/org/x.md)").status, 0);
+  assert.equal(s.run("add", ROLE, "--run=b", "--open=QA record authorship audit pending (company/reviews/org/2026-10-17-external-assessment.md)").status, 0);
   assert.equal(s.run("add", ROLE, "--run=c", "--closed=walkthrough timeouts on the shared host (W-1200)").status, 0);
   assert.equal(s.run("compact", ROLE, "--force").status, 0);
   const mem = fs.readFileSync(s.file, "utf8");
@@ -110,7 +110,7 @@ test("entries: at most 12 lines, and lessons must cite a file", () => {
   const many = Array.from({ length: 13 }, (_, i) => `--did=step ${i}`);
   assert.match(s.run("add", ROLE, "--run=x", ...many).stderr, /cap is 12/);
   assert.match(s.run("add", ROLE, "--run=y", "--learned=no source here").stderr, /must cite a file/);
-  assert.equal(s.run("add", ROLE, "--run=z", "--learned=cited (company/x.md)").status, 0);
+  assert.equal(s.run("add", ROLE, "--run=z", "--learned=cited (company/roles/memory/README.md)").status, 0);
 });
 
 test("parallel runs of one role never write the same file", async () => {
@@ -129,4 +129,79 @@ test("parallel runs of one role never write the same file", async () => {
   assert.equal(s.run("compact", ROLE).status, 0);
   const mem = fs.readFileSync(s.file, "utf8");
   for (let i = 0; i < N; i++) assert.ok(mem.includes(`parallel ${i}`), `entry ${i} merged`);
+});
+
+// ---- citations resolve (assessment 2026-10-17 §2): a path must exist; a board id not on the board warns
+test("validateEntry: a path citation must exist; commit shas pass as they are; W-n off the board only warns", async () => {
+  const m = await import("../../tools/memory.mjs");
+  const board = new Set(["W-1"]);
+  // The assessment's example: accepted before, refused now.
+  assert.match(m.validateEntry(["- learned: x (company/does-not-exist.md)"], { board }).join("\n"), /cites company\/does-not-exist\.md, which does not exist/);
+  for (const ok of [
+    "- learned: x (tools/memory.mjs)",
+    "- learned: x (tools/memory.mjs:12-30)",
+    "- learned: x (company/roles/memory/README.md#layout).",
+    "- learned: x (tests/memory/)",
+    "- learned: the root rules (CLAUDE.md)",
+    "- know: a commit c08e3162 that is not looked up",
+    "- open: board item W-1",
+  ]) assert.deepEqual(m.checkEntry([ok], { board }), { errors: [], warnings: [] }, ok);
+  assert.match(m.validateEntry(["- learned: bare name only (memory.mjs)"], { board }).join("\n"), /cites memory\.mjs, which does not exist/, "a bare file name resolves at the repo root");
+  assert.match(m.validateEntry(["- learned: and/or is prose, not a path"], { board }).join("\n"), /must cite a file/);
+  assert.deepEqual(m.validateEntry(["- did: did lines need no citation"], { board }), []);
+  const w = m.checkEntry(["- open: board item W-999999 (tools/memory.mjs)"], { board });
+  assert.deepEqual(w.errors, []);
+  assert.match(w.warnings.join("\n"), /cites W-999999, which is not on company\/ops\/board\.json/);
+  assert.match(m.validateEntry(["- learned: one good, one broken (tools/memory.mjs, company/nope.md)"], { board }).join("\n"), /company\/nope\.md/, "every path cited must exist");
+});
+
+test("add: a missing path is refused (exit 1, nothing written); an unknown board id warns and writes", () => {
+  const s = sandbox();
+  const bad = s.run("add", ROLE, "--run=bad", "--learned=x (company/does-not-exist.md)");
+  assert.equal(bad.status, 1);
+  assert.match(bad.stderr, /does not exist in this checkout/);
+  const runFiles = () => (fs.existsSync(path.join(s.dir, ROLE)) ? fs.readdirSync(path.join(s.dir, ROLE)).filter((f) => f.endsWith(".md")) : []);
+  assert.deepEqual(runFiles(), []);
+  const warn = s.run("add", ROLE, "--run=warn", "--open=waits on W-999999 (company/roles/memory/README.md)");
+  assert.equal(warn.status, 0, warn.stderr);
+  assert.match(warn.stderr, /warn: memory: .*W-999999, which is not on company\/ops\/board\.json/);
+  assert.equal(runFiles().length, 1);
+});
+
+// ---- read --craft-only (assessment 2026-10-17 §2; the evaluation-steward rules when it is required)
+test("read --craft-only leaves out lines naming a lesson slug, a lesson's review folder or a prior verdict", () => {
+  const s = sandbox();
+  const slug = "children-dying-before-five"; // a real lesson folder under src/demos/
+  assert.ok(fs.existsSync(path.join(ROOT, "src/demos/history", slug, "meta.json")));
+  const text = fs.readFileSync(s.file, "utf8").replace("## Lessons\n", `## Lessons\n\n- 2026-10-15 · Open the source before marking a claim (company/roles/memory/README.md)\n- 2026-10-15 · ${slug} c3 needed the 1950 series (company/roles/memory/README.md)\n`);
+  fs.writeFileSync(s.file, text);
+  const add = (...a) => { const r = s.run("add", ROLE, ...a); assert.equal(r.status, 0, r.stderr); };
+  add("--run=r1", "--did=QA pass", `--learned=the r2 result on ${slug} needs a second look (company/roles/memory/README.md)`, "--know=check focus order before contrast (tests/memory/memory.test.mjs)");
+  add("--run=r2", "--learned=findings sit in the lesson folder (company/reviews/head-on-is-a-wall/)");
+  add("--run=r3", "--learned=the launch verdict held the lesson (company/roles/memory/README.md)");
+  const full = s.run("read", ROLE).stdout;
+  const craft = s.run("read", ROLE, "--craft-only");
+  assert.equal(craft.status, 0, craft.stderr);
+  assert.match(full, new RegExp(slug));
+  assert.match(full, /launch verdict/);
+  assert.doesNotMatch(craft.stdout, new RegExp(slug), "no line naming the lesson");
+  assert.doesNotMatch(craft.stdout, /launch verdict/, "no prior verdict");
+  assert.doesNotMatch(craft.stdout, /company\/reviews\/head-on/, "no lesson review folder");
+  assert.match(craft.stdout, /Open the source before marking a claim/, "craft lessons stay");
+  assert.match(craft.stdout, /check focus order before contrast/, "craft lines of a mixed entry stay");
+  assert.match(craft.stdout, /- did: QA pass/);
+  assert.doesNotMatch(craft.stdout, /· r2 ·|· r3 ·/, "an entry with nothing left goes, heading and all");
+  assert.match(craft.stdout, /## Lessons[\s\S]*## Entries/, "section headings stay");
+  assert.match(craft.stdout, /read --craft-only: 4 line\(s\) naming a lesson slug/);
+});
+
+test("craftOnlyText is pure: the header is never filtered; one-word slugs match only as paths", async () => {
+  const m = await import("../../tools/memory.mjs");
+  const t = "# Memory: x\n\nThe verdict words in the header stay.\n\n## Lessons\n\n- a overfitting lesson about craft (tools/memory.mjs)\n- src/demos/ai/overfitting/ notes (tools/memory.mjs)\n- go-with-changes was ruled (tools/memory.mjs)\n";
+  const r = m.craftOnlyText(t, new Set(["overfitting", "head-on-is-a-wall"]));
+  assert.match(r.text, /The verdict words in the header stay/);
+  assert.match(r.text, /a overfitting lesson about craft/, "a one-word slug is an ordinary word in prose");
+  assert.doesNotMatch(r.text, /src\/demos/);
+  assert.doesNotMatch(r.text, /go-with-changes/);
+  assert.equal(r.omitted, 2);
 });

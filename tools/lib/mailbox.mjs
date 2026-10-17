@@ -9,8 +9,10 @@
 // One file per message, `<ts>-<from>-<key>.md`, created complete and exclusively: the text goes to a temp file,
 // then link(2) puts it at its name, which fails with EEXIST if the name is taken (then a new key is drawn). So
 // parallel writers never collide and a reader never sees half a message. State sits beside each message as
-// marker files, each created with O_EXCL: `<id>.read`, `<id>.claimed` (the dispatcher took it), `<id>.done`
-// (its report was delivered). Messages are never edited or deleted by the tool.
+// marker files, each created with O_EXCL: `<id>.read`, `<id>.claimed` (the dispatcher reserved it: run id, state
+// reserved -> launched, lease; see "reserve before launch" below), `<id>.done` (its report was delivered), and the
+// kept history of a reservation that ended without a launch: `<id>.released-<run>.json`, `<id>.expired-<run>.json`.
+// Messages are never edited or deleted by the tool.
 //
 // Lanes (decision §5): a dispatch-request is refused unless the sender is the POC of its lane on
 // company/ceo-office/poc-map.md and the role is listed in that lane; only lane 10 requests checkers; nobody
@@ -20,6 +22,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { readJsonlFile, readSpool } from "./events-spool.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const KINDS = ["dispatch-request", "report", "question", "answer"];
@@ -181,7 +184,7 @@ export function send(opts, { root = ROOT, base = baseDir(), now = new Date() } =
 
 // A project tag must be approved or active (projects.json is the portfolio-manager's file; read only).
 export function projectStatus(tag, root = ROOT) {
-  const p = path.join(root, "company/ops/projects.json");
+  const p = process.env.S3_PROJECTS ? path.resolve(process.env.S3_PROJECTS) : path.join(root, "company/ops/projects.json"); // S3_PROJECTS: tests
   let list = [];
   try { list = JSON.parse(fs.readFileSync(p, "utf8")).projects ?? []; } catch { return { ok: false, reason: "company/ops/projects.json is unreadable" }; }
   const hit = list.find((x) => x.id === tag);
@@ -229,15 +232,106 @@ export function markRead(id, { base = baseDir(), by = null, now = new Date() } =
   marker(path.join(path.dirname(m.file), `${id}.read`), { ts: now.toISOString(), by });
   return m;
 }
-// The dispatcher takes a request: O_EXCL, so two drains cannot start the same request twice.
-export function claim(id, { base = baseDir(), by = "chief-of-staff", agent = null, now = new Date() } = {}) {
+// ---- reserve before launch (assessment 2026-10-17 finding 3)
+// The dispatcher reserves a request BEFORE it starts the agent: `<id>.claimed` is created with O_EXCL and holds
+// { state: "reserved", run, leaseUntil, by, agent }. Exactly one drain wins it. Then:
+//   launched(id, run)  the agent started: state "launched" (no lease any more; `done` closes it)
+//   release(id, run)   dispatch-check failed or the Agent call failed: the reservation is kept as
+//                      `<id>.released-<run>.json` and the request goes back to the drain
+//   lease expiry       a reservation never confirmed by `launched` within its lease (default 30 min) is reclaimable by
+//                      the next drain, unless the event log or spool already holds a dispatch event for it (the agent
+//                      did start and only the confirmation was lost): then it is reported, not re-offered.
+// A marker written before this change (no state field) was written after the launch, so it reads as "launched".
+export const LEASE_MS = () => Math.max(0, Number(process.env.S3_MAIL_LEASE_MIN ?? 30)) * 60_000;
+const claimedPath = (m) => path.join(path.dirname(m.file), `${m.id}.claimed`);
+export const newRun = (now = new Date()) => `run-${stamp(now)}-${crypto.randomBytes(3).toString("hex")}`;
+export function reservation(m) {
+  if (!m?.claimed) return null;
+  return { ...m.claimed, state: m.claimed.state ?? "launched" };
+}
+export const leaseExpired = (r, now = new Date()) => r?.state === "reserved" && !!r.leaseUntil && Date.parse(r.leaseUntil) <= now.getTime();
+
+// Dispatch events that show a request's agent did start: source mail:<id>, or an agent label that starts with its label.
+function eventsPath(root) { return process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(root, "company/ops/events.jsonl"); }
+export function launchEvidence(m, { root = ROOT, events } = {}) {
+  let evs = events;
+  if (!evs) {
+    evs = [...readJsonlFile(eventsPath(root)).events];
+    try { for (const e of readSpool().events) evs.push(e); } catch {}
+  }
+  const lab = label(m);
+  const since = m.claimed?.ts ?? "";
+  return evs.find((e) => e?.type === "dispatch" && (e.ts ?? "") >= since && (e.source === `mail:${m.id}` || (typeof e.agent === "string" && e.agent.startsWith(lab)))) ?? null;
+}
+
+// Reserve one request for one run. Returns { ok: true, run, leaseUntil, reclaimed } or { ok: false, why, holder }.
+// Never throws on a lost race: two drains calling this at once get one ok and one { ok: false }.
+export function reserve(id, { base = baseDir(), root = ROOT, by = "chief-of-staff", agent = null, run = null, now = new Date(), leaseMs = LEASE_MS(), events } = {}) {
   const m = find(id, { base });
   if (!m) throw new MailError(`no message ${id}`);
   if (m.fm.kind !== "dispatch-request") throw new MailError(`${id} is a ${m.fm.kind}, not a dispatch-request`);
-  const ok = marker(path.join(path.dirname(m.file), `${id}.claimed`), { ts: now.toISOString(), by, agent: agent ?? label(m) });
-  if (!ok) throw new MailError(`${id} is already claimed (${JSON.stringify(state(path.dirname(m.file), id).claimed)})`);
-  marker(path.join(path.dirname(m.file), `${id}.read`), { ts: now.toISOString(), by });
-  return { ...m, claimed: { ts: now.toISOString(), by, agent: agent ?? label(m) } };
+  if (m.done) return { ok: false, why: "done", holder: m.done };
+  const file = claimedPath(m);
+  let reclaimed = null;
+  const held = reservation(m);
+  if (held) {
+    if (!leaseExpired(held, now)) return { ok: false, why: held.state === "reserved" ? "reserved" : "launched", holder: held };
+    const ev = launchEvidence(m, { root, events });
+    if (ev) return { ok: false, why: "expired-but-launched", holder: held, evidence: ev.id ?? ev.ts };
+    // Take the expired reservation over: rename is atomic, so of two drains racing here one rename succeeds and the
+    // other gets ENOENT (lost). The old marker is kept beside the message, never deleted.
+    const keep = path.join(path.dirname(file), `${id}.expired-${held.run ?? "legacy"}.json`);
+    try { fs.renameSync(file, keep); } catch (e) { if (e.code === "ENOENT") return { ok: false, why: "reserved", holder: null }; throw e; }
+    reclaimed = held;
+  }
+  const r = { ts: now.toISOString(), by, agent: agent ?? label(m), run: run ?? newRun(now), state: "reserved", leaseUntil: new Date(now.getTime() + leaseMs).toISOString(), ...(reclaimed ? { reclaimedFrom: reclaimed.run ?? null } : {}) };
+  if (!marker(file, r)) return { ok: false, why: "reserved", holder: state(path.dirname(file), id).claimed };
+  marker(path.join(path.dirname(file), `${id}.read`), { ts: now.toISOString(), by });
+  return { ok: true, ...r, reclaimed };
+}
+
+// The run's reservation, or a MailError naming why this run does not hold the request.
+function ownReservation(id, run, { base }) {
+  const m = find(id, { base });
+  if (!m) throw new MailError(`no message ${id}`);
+  const r = reservation(m);
+  if (!r) throw new MailError(`${id} is not reserved: drain it first (node tools/mailbox.mjs drain dispatcher)`);
+  if (!run || run === true) throw new MailError(`--run=<run id> is required (the drain printed it; ${id} is held by ${r.run ?? "a legacy claim"})`);
+  if (r.run !== run) throw new MailError(`${id} is held by run ${r.run ?? "(legacy claim)"}, not ${run}`);
+  return { m, r };
+}
+// The agent started: confirm the run (state launched). Only the reserving run may confirm it, and only before its
+// lease is reclaimed by another drain.
+export function launched(id, { base = baseDir(), run, now = new Date() } = {}) {
+  const { m, r } = ownReservation(id, run, { base });
+  if (r.state === "launched") return { ...m, claimed: r, already: true };
+  const next = { ...r, state: "launched", launchedAt: now.toISOString() };
+  delete next.leaseUntil;
+  const file = claimedPath(m);
+  const tmp = `${file}.tmp-${process.pid}-${crypto.randomBytes(3).toString("hex")}`;
+  fs.writeFileSync(tmp, JSON.stringify(next) + "\n", { flag: "wx" });
+  fs.renameSync(tmp, file);
+  return { ...m, claimed: next };
+}
+// Give a reservation back (dispatch-check FAILed, or the Agent call failed to start). The reservation is kept as
+// `<id>.released-<run>.json` with the reason; the request returns to the drain. A launched run is released only with
+// force (the agent stopped before it did anything; say so in the reason).
+export function release(id, { base = baseDir(), run, reason = null, force = false, now = new Date() } = {}) {
+  const { m, r } = ownReservation(id, run, { base });
+  if (r.state === "launched" && !force) throw new MailError(`${id} was launched by ${run}: release it only with --force (and a --reason saying the agent never started work)`);
+  if (!reason || reason === true) throw new MailError("--reason=<why the launch did not happen> is required");
+  const dir = path.dirname(m.file);
+  if (!marker(path.join(dir, `${id}.released-${run}.json`), { ...r, releasedAt: now.toISOString(), reason: String(reason) })) throw new MailError(`${id}: run ${run} was already released`);
+  fs.rmSync(claimedPath(m), { force: true });
+  return { id, run, reason: String(reason) };
+}
+
+// Kept for the old CLI verb: `claim` now reserves (before launch). Throws if another run holds the request.
+export function claim(id, { base = baseDir(), root = ROOT, by = "chief-of-staff", agent = null, now = new Date(), leaseMs, events } = {}) {
+  const r = reserve(id, { base, root, by, agent, now, leaseMs, events });
+  if (!r.ok) throw new MailError(`${id} is already ${r.why === "launched" ? "claimed (launched)" : r.why === "done" ? "done" : "claimed"} (${JSON.stringify(r.holder)})`);
+  const m = find(id, { base });
+  return { ...m, claimed: reservation(m) };
 }
 // The Agent call's description for a request: the ledger's "[project:<tag>]" prefix and a "·xxxx" run key (the
 // message key's last four characters), so `events.mjs report --key=xxxx` and slot release match it.
@@ -249,19 +343,47 @@ export function label(m) {
 const firstLine = (s) => String(s ?? "").split("\n").map((l) => l.replace(/^#+\s*/, "").trim()).find(Boolean) ?? "";
 const shq = (s) => `'${String(s).replace(/'/g, `'\\''`)}'`;
 
-// Every unclaimed dispatch-request, re-checked against today's map, with the lines the chief of staff runs.
-// Writes nothing (decision §6: the chief of staff records the events; single writer).
-export function drain(role = DISPATCHER, { base = baseDir(), root = ROOT } = {}) {
-  return list(role, { base }).filter((m) => m.fm.kind === "dispatch-request" && !m.claimed).map((m) => {
+// The dispatcher's drain (decision §3, reserve-before-launch since the 2026-10-17 assessment, finding 3). Every
+// dispatch-request that is not done and not held by a live reservation is re-checked against today's map; each one
+// that passes is RESERVED for this drain (O_EXCL marker with a run id and a lease) before its launch lines are
+// printed, so two drains never hand out the same request. Refused requests are listed and never reserved. A request
+// whose lease ran out is reclaimed, unless a dispatch event shows its agent started (status expired-launched: confirm
+// it with `launched`, do not start it again). Writes reservation markers only, never the event log (decision §6).
+// reserve: false is a read-only peek (status "unreserved"; nothing written).
+export function drain(role = DISPATCHER, { base = baseDir(), root = ROOT, reserve: doReserve = true, by = "chief-of-staff", now = new Date(), leaseMs = LEASE_MS(), events } = {}) {
+  const out = [];
+  for (const m of list(role, { base })) {
+    if (m.fm.kind !== "dispatch-request" || m.done) continue;
+    const held = reservation(m);
+    if (held && !leaseExpired(held, now)) continue; // reserved by a live run, or launched
     const text = [m.fm.title, m.fm.budget, m.fm["done-when"], m.fm["stop-if"], m.fm.project, m.fm.role, m.body].filter(Boolean).join("\n");
     const lc = laneCheck({ from: m.fm.from, role: m.fm.role, lane: m.fm.lane, text }, { root });
     const dk = m.fm["dispatch-kind"] || "other";
     const lab = label(m);
+    const base_ = { id: m.id, from: m.fm.from, role: m.fm.role, lane: m.fm.lane, project: m.fm.project, kind: dk, title: m.fm.title || firstLine(m.body), brief: m.file, label: lab };
+    if (!lc.ok) { out.push({ ...base_, ok: false, status: "refused", refused: lc.reasons }); continue; }
+    let run = null, leaseUntil = null, reclaimed = null, status = "unreserved";
+    if (doReserve) {
+      const r = reserve(m.id, { base, root, by, agent: lab, now, leaseMs, events });
+      if (!r.ok) {
+        if (r.why === "expired-but-launched") out.push({ ...base_, ok: false, status: "expired-launched", refused: [`lease of run ${r.holder?.run} expired, but dispatch event ${r.evidence} shows the agent started: confirm it (node tools/mailbox.mjs launched ${m.id} --run=${r.holder?.run}); do not start it again`], run: r.holder?.run ?? null, launched: `node tools/mailbox.mjs launched ${m.id} --run=${r.holder?.run}` });
+        continue; // lost the race to another drain: that drain prints it
+      }
+      ({ run, leaseUntil, reclaimed } = r);
+      status = "reserved";
+    }
     const builds = dk === "build" || dk === "wave";
-    const check = `node tools/dispatch-check.mjs --kind=${dk} --role=${m.fm.role} --source=mail:${m.id} --chooser=${m.fm.from} --agent=${shq(lab)}${builds ? ` --worktree=${m.fm.worktree || "<worktree>"}` : ""} --running=<N>${builds ? " --builders=<N>" : ""}`;
-    const event = `node tools/events.mjs add --type=dispatch --room=<room of ${m.fm.role}> --actor=chief-of-staff --agent=${shq(lab)} --subjects=${m.fm.role} --source=mail:${m.id} --chooser=${m.fm.from} --key=${shq(lab.split("·").pop())} --refs=${m.file} --summary=${shq(`Dispatch ${m.fm.role} from mail ${m.id} (lane ${m.fm.lane}, chooser ${m.fm.from})`)} --body-file=${m.file} --state=working`;
-    return { id: m.id, from: m.fm.from, role: m.fm.role, lane: m.fm.lane, project: m.fm.project, kind: dk, title: m.fm.title || firstLine(m.body), brief: m.file, label: lab, ok: lc.ok, refused: lc.reasons, check, claim: `node tools/mailbox.mjs claim ${m.id} --agent=${shq(lab)}`, event };
-  });
+    const runArg = run ?? "<run id from the drain>";
+    const check = `node tools/dispatch-check.mjs --kind=${dk} --role=${m.fm.role} --source=mail:${m.id} --run=${runArg} --chooser=${m.fm.from} --agent=${shq(lab)}${builds ? ` --worktree=${m.fm.worktree || "<worktree>"}` : ""} --running=<N>${builds ? " --builders=<N>" : ""}`;
+    const event = `node tools/events.mjs add --type=dispatch --room=<room of ${m.fm.role}> --actor=chief-of-staff --agent=${shq(lab)} --subjects=${m.fm.role} --source=mail:${m.id} --chooser=${m.fm.from} --key=${shq(lab.split("·").pop())} --refs=${m.file} --summary=${shq(`Dispatch ${m.fm.role} from mail ${m.id} (lane ${m.fm.lane}, chooser ${m.fm.from}, run ${runArg})`)} --body-file=${m.file} --state=working`;
+    out.push({
+      ...base_, ok: true, status, run, leaseUntil, reclaimed: reclaimed ? reclaimed.run ?? "legacy" : null, refused: [], check,
+      launched: `node tools/mailbox.mjs launched ${m.id} --run=${runArg}`,
+      release: `node tools/mailbox.mjs release ${m.id} --run=${runArg} --reason=${shq("<dispatch-check FAIL or the Agent call failed: what happened>")}`,
+      event,
+    });
+  }
+  return out;
 }
 
 // Deliver a worker's report to the requester's mailbox (kind report, in-reply-to the request) and mark it done.
@@ -269,7 +391,7 @@ export function done(id, reportPath, { base = baseDir(), root = ROOT, now = new 
   const m = find(id, { base });
   if (!m) throw new MailError(`no message ${id}`);
   if (m.fm.kind !== "dispatch-request") throw new MailError(`${id} is a ${m.fm.kind}, not a dispatch-request`);
-  if (!m.claimed) throw new MailError(`${id} was never claimed: claim it when you start the agent, then report`);
+  if (!m.claimed) throw new MailError(`${id} was never reserved: the drain reserves it before the agent starts, then report`);
   if (m.done) throw new MailError(`${id} is already done (report ${m.done.report})`);
   if (!reportPath || reportPath === true || !fs.existsSync(reportPath)) throw new MailError(`--report=<path> must name an existing file (got ${reportPath})`);
   const body = fs.readFileSync(reportPath, "utf8");
@@ -289,6 +411,12 @@ export function done(id, reportPath, { base = baseDir(), root = ROOT, now = new 
 export function status({ base = baseDir() } = {}) {
   return roles(base).map((r) => {
     const all = list(r, { base });
-    return { role: r, total: all.length, unread: all.filter((m) => !m.read).length, unclaimed: all.filter((m) => m.fm.kind === "dispatch-request" && !m.claimed).length, reportsUnread: all.filter((m) => m.fm.kind === "report" && !m.read).length };
+    const reqs = all.filter((m) => m.fm.kind === "dispatch-request" && !m.done);
+    const now = new Date();
+    return {
+      role: r, total: all.length, unread: all.filter((m) => !m.read).length, unclaimed: reqs.filter((m) => !m.claimed).length,
+      reportsUnread: all.filter((m) => m.fm.kind === "report" && !m.read).length,
+      ...(r === DISPATCHER ? { reserved: reqs.filter((m) => reservation(m)?.state === "reserved" && !leaseExpired(reservation(m), now)).length, expired: reqs.filter((m) => leaseExpired(reservation(m), now)).length } : {}),
+    };
   });
 }
