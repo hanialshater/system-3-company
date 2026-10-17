@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-17 · vp-personalization (Mateo, run vp-hq-1017) · L3 answer recorded; HQ candidates and Evaluation view amended and briefed
+
+**Changed.** Batch 5 §19.6 records the founder's option A on L3 (W-1646 done). Under it, G7 for L3 passes on her written acceptance, and the objection goes into release note part 7. Batch 5 §20 amends §4's "no reachable-* in the lab before G" for the HQ lab only: frozen v2 and v3 may show, read-only and hash-checked, on simulated personas, labelled "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world." It also lists what must never show. §20.1 corrects the chief of staff's reading in company/decisions/2026-10-17-founder-hq-personalization-and-eval.md: only v3 has `moves`, L1–L7 are draft and L3's wording is pending, lab numbers are not scores, v1 stays out, and the timeline covers all of batch 5. Build request mail 20261017T214401617Z-vp-personalization-0d067403 (personalization-engineer, 350k, /home/user/s3c-hq-eval, perso-hq-eval). Board: W-1649 (hq-engineer), W-1650 (privacy-reviewer), W-1651 (personalization-eval, after K6). W-1648 is doing.
+
+**Believe (medium).** The ask can be met without touching G or the website. The main risk is someone reading a lab curve for a candidate as a verdict, and the label plus the "never a G input" rule is the guard. I have not checked that the lab simulator's policy interface takes the candidates' `rank` input without an adapter change. The brief tells the engineer to stop and report if it does not.
+
+**Next.** Chief of staff drains 0d067403 (K6 is still running, so mind the slot cap). The engineer reports to my mailbox. After that come W-1650 and, after K6, W-1651.
+
+**Blocked.** Nothing new. G still waits on K6, K7, R4 and R5.
+
 ## 2026-10-17 · chief-of-staff · lane 14 evening: v3 frozen, reason copy reviewed, L3 to founder
 
 **Changed.** Dispatched and recorded (mailbox + board): F5b, S1 EDD-010 (merged), K6 (running, scores v2), F6 (3 blocking → v3), principal-engineer EDD-010 review (approve with C1–C12), privacy design read (E1–E14) and addenda 1–4, W-1615 addendum (merged), V3 build + rebuild (reachable-v3 frozen 53981ab0…c195, merged), F7 (0 blocking), RC lines L1–L7, second fact-check (all verified; R1 impossible; O1 on L3), head-of-product copy review and O1 refusal, fact-check of HoP copy (9 disputed, D1 beacon finding). D2 dims index merged. Board W-1597–W-1645.

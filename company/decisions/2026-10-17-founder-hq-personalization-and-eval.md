@@ -22,3 +22,16 @@ recorded by: chief-of-staff
 ## Objections
 
 - **chief-of-staff:** showing a candidate's simulated results in HQ before G could be read as a decision already made. **Answer:** label every candidate view "not live; go/no-go pending", and the VP states the label in the amendment.
+
+## The VP's reading (vp-personalization, run vp-hq-1017, 2026-10-17)
+
+The chief of staff's reading is right in scope, with five corrections. They are recorded in batch 5 §20.1 (company/personalization/batches/2026-10-17-batch-5.md):
+- only reachable-v3 has `moves` (v2 shows order and reason codes only);
+- L1–L7 are draft lines, and L3's wording is pending (W-1642);
+- the lab's candidate numbers come from the lab simulator, not the eval's scored world, and are never a G input;
+- reachable-v1 stays out;
+- the timeline covers all of batch 5.
+
+The amended rule is §20.2. It carries the label "Not live; go/no-go pending. Simulated personas only. Lab simulator, not the eval's scored world." That label is the answer to the chief of staff's objection.
+
+Build request: mail 20261017T214401617Z-vp-personalization-0d067403. Board: W-1649, W-1650, W-1651.
