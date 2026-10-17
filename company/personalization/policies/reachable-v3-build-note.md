@@ -104,8 +104,8 @@ New (16 tests):
 (rebuild) Frozen by lme-v3r-1017 under batch 5 §16.5 item 6. The candidate commit holds reachable-v3.ts, its tests and this note; a second commit writes the file's sha256 below. After that, any byte change to reachable-v3.ts is a new candidate, and none is allowed under M1 (§15.1).
 
 - frozen file: `company/personalization/policies/reachable-v3.ts`
-- sha256: FROZEN_SHA_PLACEHOLDER
-- candidate commit: the commit before the one that wrote this line, on perso-cand-c3 (`git log --format=%H -2 -- company/personalization/policies/reachable-v3-build-note.md`)
+- sha256: `53981ab02a240900a5fa2c9c1d62a1e0c49a9add07a3a35c26656f0a8e01c195`
+- candidate commit: `5a358fb7c79e2f67d65faa644c50f963398f5e94` on perso-cand-c3 (the hash is written by the next commit, which changes only this note)
 
 ## 8. Hold on Q-A1 (chief of staff, relayed during this run)
 
