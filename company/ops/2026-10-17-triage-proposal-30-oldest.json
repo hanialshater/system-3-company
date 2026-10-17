@@ -1,0 +1,764 @@
+{
+  "what": "Proposed triage for the 30 oldest untriaged next/review board items (no triage object), 2026-10-17. NOT applied: tools/triage.mjs set writes company/ops/board.json directly, and board.json has one writer (chief-of-staff). The chief of staff applies these with the 'apply' line per item (note text from triage.note), or rejects any with a reason.",
+  "by": "portfolio-manager",
+  "date": "2026-10-17",
+  "selection": "open items with state next or review and no triage object, sorted by created then id; the first 30 (all created 2026-10-14)",
+  "record": "company/ceo-office/triage/2026-10-17-untriaged-rule-and-30-oldest.md",
+  "independence": "none of the 30 was written by or is owned by portfolio-manager",
+  "counts": {
+    "done": 16,
+    "review": 3,
+    "next": 7,
+    "dropped": 2,
+    "backlog": 2
+  },
+  "items": [
+    {
+      "id": "W-568",
+      "title": "Life Hacks Wave J pre-build safety review: 9 briefs, ranks 6-14 in company/domains/briefs/lifehacks.md (mix-the-problem-types, style-match-n",
+      "current": {
+        "state": "review",
+        "owner": "lifehacks-safety-reviewer",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "lifehacks-safety-reviewer",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Safety review of the 9 Wave J briefs is on disk (company/reviews/lifehacks-200/safety-wave-j-2026-10-14.md); brief-skips.json lines for these slugs read 'safety DONE' and are now held only by W-569/W-578/W-579 and wave state, which are their own items."
+      },
+      "evidence": [
+        "company/reviews/lifehacks-200/safety-wave-j-2026-10-14.md",
+        "company/ops/brief-skips.json"
+      ],
+      "apply": "node tools/triage.mjs set W-568 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-573",
+      "title": "cluster-stops-the-cascade v4: 'those four' undefined at commit and option pair points at answer; reveal 140 words and stage top cropped (lea",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The r9 learner findings were for v4; the lesson is now v5 in review with all 9 claims verified and a 2026-10-16 QA record. Whether v5 fixes 'those four' and the crop is the next learner walk's call, through the lesson's own review state, not this item."
+      },
+      "evidence": [
+        "src/demos/math/cluster-stops-the-cascade/meta.json",
+        "company/reviews/cluster-stops-the-cascade/2026-10-16-qa.md"
+      ],
+      "apply": "node tools/triage.mjs set W-573 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-574",
+      "title": "enemy-of-my-enemy v3: reveal crops stage top (A,B,E off screen), quotes 0/6-unbalanced states not on stage, 111 words (learner r9)",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "enemy-of-my-enemy is published at v4 (after the r9 finding on v3), with an r11 learner walk and 2026-10-15 QA; c2 and c4 withdrawn."
+      },
+      "evidence": [
+        "src/demos/math/enemy-of-my-enemy/meta.json",
+        "company/reviews/enemy-of-my-enemy/2026-10-15-learner-adult-beginner-r11.md"
+      ],
+      "apply": "node tools/triage.mjs set W-574 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-575",
+      "title": "metal-feels-colder v1: right option only one with a number; reveal quotes '4.4 times thicker' not on stage; Swap metal shows no change (lear",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "metal-feels-colder is v2 in review (the r9 finding was on v1), 7/7 claims verified, QA 2026-10-16. No learner walk of v2 on file yet: that is the lesson's review queue, not this builder item."
+      },
+      "evidence": [
+        "src/demos/physics/metal-feels-colder/meta.json",
+        "company/reviews/metal-feels-colder/2026-10-16-qa.md"
+      ],
+      "apply": "node tools/triage.mjs set W-575 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-576",
+      "title": "bird-on-the-wire v1: single-foot readings never name the second point (ground), contradicting 'voltage is always between two points' (learne",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "bird-on-the-wire is v2 in review (the finding was on v1), 6/6 claims verified, QA 2026-10-16. Same caveat as W-575: the v2 learner walk is owed by the review queue."
+      },
+      "evidence": [
+        "src/demos/physics/bird-on-the-wire/meta.json",
+        "company/reviews/bird-on-the-wire/2026-10-16-qa.md"
+      ],
+      "apply": "node tools/triage.mjs set W-576 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-599",
+      "title": "r9 batch D learner reviews: all 14 Life Hacks lessons revise (6 blocking: buffer, cue, circle, bag, box, desk). Common causes: answer in opt",
+      "current": {
+        "state": "review",
+        "owner": "cm-lifehacks",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "cm-lifehacks",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "cm-lifehacks' content patch for the 14 batch D lessons is written and was applied as written in the W-608 build (engines-v2-build-W-608.md line 4). Re-review travels with W-608."
+      },
+      "evidence": [
+        "company/reviews/lifehacks-200/content-patch-r9-batch-d.md",
+        "company/reviews/lifehacks-200/engines-v2-build-W-608.md"
+      ],
+      "apply": "node tools/triage.mjs set W-599 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-604",
+      "title": "EDD-006 C1: sequence probe tool, checking every sub-card at 390x844 and 1280, back navigation, the revealCard switch and 4 cards; gates the ",
+      "current": {
+        "state": "review",
+        "owner": "design-engineer",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "design-engineer",
+        "state": "review"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "tools/sequence-probe.mjs exists; the EDD-006 reviewer (principal-engineer) accepts or rejects it against C1. Gates the first non-reference CardSequence lesson (multi-card-sequence, in-flight, grace to 2026-10-21)."
+      },
+      "evidence": [
+        "tools/sequence-probe.mjs",
+        "company/engineering/reviews/2026-10-14-edd-006-review.md"
+      ],
+      "apply": "node tools/triage.mjs set W-604 --p=3 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-605",
+      "title": "EDD-006 C2: dev warnings for an unknown revealCard, dropped non-SubCard children and sub-cards with no milestones",
+      "current": {
+        "state": "review",
+        "owner": "design-engineer",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "design-engineer",
+        "state": "review"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The dev warnings are in src/kit/sequence.tsx (lines 151-167: unknown revealCard, sub-card count, duplicate ids, no milestones, control budget). The reviewer confirms the 'dropped non-SubCard children' case is covered (line 159) and closes."
+      },
+      "evidence": [
+        "src/kit/sequence.tsx",
+        "company/engineering/reviews/2026-10-14-edd-006-review.md"
+      ],
+      "apply": "node tools/triage.mjs set W-605 --p=3 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-608",
+      "title": "Life Hacks engines v2 (Home, Study, Resource, AlphabetSearch) per company/design/specs/lifehacks-engines-v2.md: neutral start, Seen table ke",
+      "current": {
+        "state": "review",
+        "owner": "accessibility-reviewer",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 2,
+        "owner": "accessibility-reviewer",
+        "state": "review"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "No accessibility record of the v2 engines is on file: accessibility-2026-10-14.md reviews the v1 engines. Blocks Life Hacks v2 launches. Budget: lifehacks-engine-v2 reads 103% (STOP) in the ledger report, so the chief of staff tags this review to a line the gate passes (routine reviews ride maintenance) or holds it for F-34."
+      },
+      "evidence": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "company/reviews/lifehacks-200/engines-v2-build-W-608.md",
+        "company/ops/projects.json"
+      ],
+      "apply": "node tools/triage.mjs set W-608 --p=2 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-609",
+      "title": "W-477 post-deploy smoke (with the W-534 deploy, founder-approved): prod + custom domain /spike and /spike?cdn=https://example.com return 404",
+      "current": {
+        "state": "next",
+        "owner": "release-manager",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 2,
+        "owner": "release-manager",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Post-deploy smoke for W-477 (/spike 404, beacon 204, Origin null 403, no SPIKE_ENABLED) and the scale-stage-0 cache checks: no record of it in company/ops/deployments/ or in the r9 smoke (progress.md 2026-10-17 checked lesson 200s only). r9 is live, so it can run now; it touches no deploy."
+      },
+      "evidence": [
+        "company/ops/progress.md",
+        "company/engineering/reviews/2026-10-14-w477-spike-review.md"
+      ],
+      "apply": "node tools/triage.mjs set W-609 --p=2 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-625",
+      "title": "Review-queue priority (company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 2): the 8 Books and Big Ideas drafts (not gate",
+      "current": {
+        "state": "next",
+        "owner": "chief-of-staff",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 4,
+        "owner": "chief-of-staff",
+        "state": "dropped"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Not a deliverable: a standing queue-ordering rule that lives in its decision record (ruling 2). Since then books-decks was returned at PR1 and two Big Ideas pilot drafts are published. If the rule still applies, it is a line in the chief of staff's checklist, not a board item."
+      },
+      "evidence": [
+        "company/decisions/2026-10-14-books-big-ideas-strategy-review.md",
+        "company/rituals/records/2026-10-16-project-review.md"
+      ],
+      "apply": "node tools/triage.mjs set W-625 --p=4 --state=dropped --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-628",
+      "title": "plan-to-2000 §2: once the founder answers F4 (W-615) and W-619, record Books and Big Ideas as committed + conditional tranches with release ",
+      "current": {
+        "state": "review",
+        "owner": "principal-pm-verticals",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 4,
+        "owner": "principal-pm-verticals",
+        "state": "backlog"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The recordable part is done (plan-to-2000 s2, per its own note). The rest waits on founder F4, which sits in board item W-615 (backlog), not in founder-inbox.json. Parked until the founder answers; the chief of staff files W-615's asks in the inbox if they are still wanted."
+      },
+      "evidence": [
+        "company/product/verticals/plan-to-2000.md",
+        "company/decisions/2026-10-14-book-deck-format.md"
+      ],
+      "apply": "node tools/triage.mjs set W-628 --p=4 --state=backlog --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-631",
+      "title": "Build the 2 Books pilot-exemption briefs (W-556 Amendment 3; company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 2), sing",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 4,
+        "owner": "demo-builder",
+        "state": "backlog"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Both drafts exist (v2, all claims unverified) and may not publish until F1/F2 (W-541/W-615); books-decks was returned at PR1 with no budget. Nothing a builder can do now."
+      },
+      "evidence": [
+        "src/demos/books/total-signups-hide-the-slide/meta.json",
+        "company/rituals/records/2026-10-16-project-review.md"
+      ],
+      "apply": "node tools/triage.mjs set W-631 --p=4 --state=backlog --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-632",
+      "title": "Big Ideas DLR five needs a new fifth (W-624 result): colds-clear-without-the-pill FAILED the W-537 re-check as a duplicate of probability/si",
+      "current": {
+        "state": "next",
+        "owner": "head-of-product",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 2,
+        "owner": "head-of-product",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Still open: brief 9 failed the W-537 re-check, brief 14 mars-loops-backwards is not built and has no exemption check. Blocks the Big Ideas DLR five. big-ideas is in-flight with no forum approval and its grace ends 2026-10-21 (projects.json), so a swap may not get a build slot before then."
+      },
+      "evidence": [
+        "company/domains/briefs/big-ideas.md",
+        "company/ops/projects.json"
+      ],
+      "apply": "node tools/triage.mjs set W-632 --p=2 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-633",
+      "title": "Revise big-ideas/two-four-six-rule to the W-537 re-check (company/domains/briefs/big-ideas.md, W-537 table row 1): the reveal carries 2 held",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "two-four-six-rule v2 is built with held citations on the learner path cut to one (c4, Klayman & Ha) and Wason's credit removed from the stage (build.md pre-flight v2); 5/5 claims verified."
+      },
+      "evidence": [
+        "company/reviews/two-four-six-rule/build.md",
+        "src/demos/big-ideas/two-four-six-rule/meta.json"
+      ],
+      "apply": "node tools/triage.mjs set W-633 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-634",
+      "title": "Revise big-ideas/ten-times-taller-giant to the W-537 re-check (row 3): write the fallback for the held limit c3 (Biewener 1989): if not chec",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "ten-times-taller-giant is v2 with 5/5 claims verified, so c3 no longer needs its fallback. Medium confidence: I did not diff the reveal against the asked fallback text."
+      },
+      "evidence": [
+        "src/demos/big-ideas/ten-times-taller-giant/meta.json"
+      ],
+      "apply": "node tools/triage.mjs set W-634 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-635",
+      "title": "Revise big-ideas/earth-history-in-a-day to the W-537 re-check (row 2): (a) the recall reuses the stage's own event (writing), so replace it ",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "earth-history-in-a-day is v3 with c4 and c9 withdrawn, a 2026-10-15 CM ruling applied, and an r14 learner walk (2026-10-16). Medium confidence on part (a), the transfer recall."
+      },
+      "evidence": [
+        "src/demos/big-ideas/earth-history-in-a-day/meta.json",
+        "company/reviews/earth-history-in-a-day/2026-10-15-cm-ruling.md"
+      ],
+      "apply": "node tools/triage.mjs set W-635 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-683",
+      "title": "Big Ideas pilot builds (demo-builder 2026-10-14): accept or reject the builder's departures, written in company/reviews/<slug>/build.md. one",
+      "current": {
+        "state": "next",
+        "owner": "cm-big-ideas",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "cm-big-ideas",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Departures are flagged for cm-big-ideas in each build.md; one-ten-thousandth-apart and same-grey-in-shadow have since published (the launch review accepted them in effect). What is left: rule on the two-four-six-rule and earth-history-in-a-day v2 departures."
+      },
+      "evidence": [
+        "company/reviews/one-ten-thousandth-apart/build.md",
+        "company/reviews/earth-history-in-a-day/build.md"
+      ],
+      "apply": "node tools/triage.mjs set W-683 --p=3 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-684",
+      "title": "Walk and review the 2 new Big Ideas drafts, one-ten-thousandth-apart and same-grey-in-shadow (DLR five; the local QA contract passed on :353",
+      "current": {
+        "state": "next",
+        "owner": "chief-of-staff",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 2,
+        "owner": "chief-of-staff",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The walks and reviews happened: both new drafts are published v1 (learner r10/r11, QA), and the v2 drafts have r10/r14 walks. But no accessibility record exists for same-grey-in-shadow, a published visual illusion: split that into a new P2 item for accessibility-reviewer (board item wanted)."
+      },
+      "evidence": [
+        "src/demos/big-ideas/same-grey-in-shadow/meta.json",
+        "company/reviews/same-grey-in-shadow"
+      ],
+      "apply": "node tools/triage.mjs set W-684 --p=2 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-686",
+      "title": "Fact-check dispute: checking-is-not-finding c4. 'nobody knows a method that always finds one without a search that grows this fast' is false",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "c4 now reads 'nobody knows a method that finds one quickly in every case' in Demo.tsx and meta.json, c4 verified, lesson published v3."
+      },
+      "evidence": [
+        "src/demos/cs/checking-is-not-finding/meta.json"
+      ],
+      "apply": "node tools/triage.mjs set W-686 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-687",
+      "title": "Held citations and source-field fixes from W-657/W-677. two-pages-swallow-the-rank c4 ('rank sink') and c5 ('scaled PageRank'): no openable ",
+      "current": {
+        "state": "next",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "two-pages-swallow-the-rank c4/c5 are verified on the published v1 (names kept, so the fact-checker found an openable source); the other lessons named are published with their claims verified. Medium confidence on the non-blocking advisories."
+      },
+      "evidence": [
+        "src/demos/cs/two-pages-swallow-the-rank/meta.json",
+        "company/reviews/two-pages-swallow-the-rank/2026-10-14-fact-check.md"
+      ],
+      "apply": "node tools/triage.mjs set W-687 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-708",
+      "title": "darkest-evening-of-the-year c3 DISPUTED: the reveal says noon drifts 'because Earth moves fastest in early January and its tilt adds to the ",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "c3 now reads 'mostly because of Earth's tilt, and partly because Earth moves fastest', verified, published v2."
+      },
+      "evidence": [
+        "src/demos/geography/darkest-evening-of-the-year/meta.json"
+      ],
+      "apply": "node tools/triage.mjs set W-708 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-710",
+      "title": "which-sea-gets-the-rain recall: the fact-checker recorded an unrecorded claim c5 (unverified). 'Most of its rain probably reaches the east c",
+      "current": {
+        "state": "review",
+        "owner": "demo-builder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "demo-builder",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The recall now gives a width ('300 km wide') and c5 is verified; published v3."
+      },
+      "evidence": [
+        "src/demos/geography/which-sea-gets-the-rain/meta.json"
+      ],
+      "apply": "node tools/triage.mjs set W-710 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-712",
+      "title": "Founder: ratify, change or reject the operating rules proposed 2026-10-14 (company/reviews/org/2026-10-14-operating-audit.md; company/decisi",
+      "current": {
+        "state": "next",
+        "owner": "founder",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 2,
+        "owner": "chief-of-staff",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "A founder decision kept on the board, not in founder-inbox.json (no inbox item matches), and the decision record still reads 'proposed (founder to ratify)'. Owner moves to chief-of-staff only to file it in the inbox (one writer) or record that it was superseded (caps and dispatch-check have changed since). I do not decide it."
+      },
+      "evidence": [
+        "company/decisions/2026-10-14-operating-caps-and-intake.md",
+        "company/ops/founder-inbox.json"
+      ],
+      "apply": "node tools/triage.mjs set W-712 --p=2 --owner=chief-of-staff --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-714",
+      "title": "Own, renumber or reject AMD-005 (company/constitution/amendments/AMD-005-operating-gates.md): honest ritual status in company status, one bo",
+      "current": {
+        "state": "next",
+        "owner": "evaluation-steward",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "evaluation-steward",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "AMD-005 still reads 'proposed (draft, not applied)'. Others wait on the amendment route (W-729: ledger check in npm run check). Not P2 while no gate is broken."
+      },
+      "evidence": [
+        "company/constitution/amendments/AMD-005-operating-gates.md"
+      ],
+      "apply": "node tools/triage.mjs set W-714 --p=3 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-715",
+      "title": "Review tools/dispatch-check.mjs (new), the committed-record reader in tools/rituals-due.mjs and the W-542 fix in tools/ops-health.mjs, all w",
+      "current": {
+        "state": "next",
+        "owner": "tools-lead",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "tools-lead",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "tests/dispatch/*.test.mjs and tests/mailbox now exercise dispatch-check; tools-lead confirms the three asked cases (planted events, a fake worktree path, a founder record without route:) are among them, then closes this and W-542."
+      },
+      "evidence": [
+        "tests/dispatch",
+        "tests/mailbox/mailbox.test.mjs"
+      ],
+      "apply": "node tools/triage.mjs set W-715 --p=3 --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-716",
+      "title": "Event log stopped recording at ~16:00 on 2026-10-14: last dispatch 14:55, last report/usage 15:59, then only kudos while git took ~50 commit",
+      "current": {
+        "state": "next",
+        "owner": "tools-lead",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "chief-of-staff",
+        "state": "dropped"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Superseded: the gap was backfilled (W-1231 done: events backfill and ledger import), and the root cause, hooks not firing in session trees, is W-1280 (F-31 H1, backlog). Keeping both splits one problem across two items."
+      },
+      "evidence": [
+        "company/ops/board.json#W-1231",
+        "company/ops/board.json#W-1280"
+      ],
+      "apply": "node tools/triage.mjs set W-716 --p=3 --owner=chief-of-staff --state=dropped --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-717",
+      "title": "COEs owed for the three SEV2s logged 2026-10-14 15:27 (CI queue ~300 runs; [deploy] before CI; host exhausted). No COE record exists after 2",
+      "current": {
+        "state": "review",
+        "owner": "principal-engineer-ops",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "principal-engineer-ops",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The three COE records exist: 2026-10-14-coe-ci-queue.md, 2026-10-14-coe-deploy-bypass-and-quota.md, 2026-10-14-coe-host-exhaustion.md. PE-ops confirms they are complete; their actions are their own items."
+      },
+      "evidence": [
+        "company/rituals/records/2026-10-14-coe-ci-queue.md",
+        "company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md",
+        "company/rituals/records/2026-10-14-coe-host-exhaustion.md"
+      ],
+      "apply": "node tools/triage.mjs set W-717 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-742",
+      "title": "History cycle-1 re-check (W-537 pattern): re-run company/domains/briefs/checks/history-data.mjs and history-cycle1-check.mjs, re-check each ",
+      "current": {
+        "state": "next",
+        "owner": "cm-history",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "cm-history",
+        "state": "done"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The re-check part is done in effect: brief-skips.json has no 'awaiting cm-history re-check' line left. The 'Next 88' part (ranks 13-100) is tranche-2 scope, not released (F-16 triggers), and History is at STOP (F-43): split it into a P4 backlog item for cm-history (board item wanted)."
+      },
+      "evidence": [
+        "company/ops/brief-skips.json",
+        "company/decisions/2026-10-16-founder-first-light-t1-topup-2.md"
+      ],
+      "apply": "node tools/triage.mjs set W-742 --p=3 --state=done --note=\"<triage.note>\""
+    },
+    {
+      "id": "W-743",
+      "title": "Review the History charter company/domains/history.md (refuse list, sensitive-topics route shared with Big Ideas/W-626, sourcing rules, boun",
+      "current": {
+        "state": "next",
+        "owner": "head-of-product",
+        "priority": null,
+        "created": "2026-10-14"
+      },
+      "proposed": {
+        "priority": 3,
+        "owner": "head-of-product",
+        "state": "next"
+      },
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The History decision record still says 'live answers owed (board W-743)'; r5-product held it as next-batch-first. Real, small, unblocks nothing urgent."
+      },
+      "evidence": [
+        "company/decisions/2026-10-14-history-category.md",
+        "company/ops/dispatch-requests/2026-10-16-r5-product.md"
+      ],
+      "apply": "node tools/triage.mjs set W-743 --p=3 --note=\"<triage.note>\""
+    }
+  ]
+}
