@@ -769,6 +769,10 @@ roles.push(
   // Personalization org (2026-10-16, founder approval of cards V, N1-N6, E1: company/decisions/2026-10-16-founder-personalization-org.md;
   // cards in company/ceo-office/2026-10-16-personalization-org-proposal.md §6). The VP replaces personalization-lead (renamed, card V).
   // Independence rule (proposal §2): eval roles never build what they grade; builders never build or tune the judge.
+  // 2026-10-18 scope moves (cards S1-S11, company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+  // company/decisions/2026-10-18-founder-delegated-decisions.md): the org owns the feed, the learner profile, gamification and
+  // progressive learning; growth-designer joins (S4), so the VP has 8 directs. head-of-feed (card L1) stays deferred (S9) until the
+  // first of: phase B start approved; Feed + Gamification sub-teams reach 3 agents; the VP's span reaches 9.
   {
     id: "vp-personalization",
     title: "VP of Personalization (CEO Office)",

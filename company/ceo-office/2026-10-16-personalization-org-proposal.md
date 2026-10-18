@@ -239,6 +239,7 @@ Every card: team `personalization`, HQ placement Floor 2 (Product), the personal
 - **May not:** change the default order; merge into shared feed or kit code without platform-engineer's review; deploy.
 - **Checker:** personalization-eval (online readout), platform-engineer (shared review), privacy-reviewer (served-order log).
 - **Note (T9):** head-of-feed writes the served-order log's **contract** (slug, rule id, reason; N4); learner-data-engineer owns the table, its 30-day retention and deletion.
+- **2026-10-18 (card S9, approved under company/decisions/2026-10-18-founder-delegated-decisions.md): stays deferred, triggers restated.** L1 activates on the first of: (a) the founder approves phase B start (as before); (b) the Feed and Gamification sub-teams together have 3 or more agents (2 on 2026-10-18: personalization-engineer, growth-designer); (c) the VP's span reaches 9 (8 accepted on 2026-10-18). The deferred **feed-engineer** trigger becomes: the feed surface or gamification build queue for personalization-engineer has an item older than 7 days, or PRD-004's challenge build starts while feed items are open. Feed.tsx is no longer platform-engineer's (card S2): if L1 activates, its out-of-scope line reads "the kit, the lesson host and the app shell (platform-engineer, review)". Source: company/ceo-office/2026-10-18-personalization-scope-proposal.md S9.
 
 ## 7. Consulted (pipeline step 3)
 
