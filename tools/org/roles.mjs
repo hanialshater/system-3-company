@@ -934,25 +934,39 @@ roles.push(
     reportsTo: "vp-personalization",
     model: "inherit",
     description:
-      "Builds the HQ Personalization Lab (pick a persona, see its fingerprint, curves, per-slot score terms and rejected candidates, compare policies), read-only; in phase B, the serving glue between the composer and the feed behind the off switch. Use for the lab page and personalization serving glue.",
+      "Code owner of the feed surface (Feed.tsx, feed-index, the feed API, the home route) and of the personalization org's gamification and profile UI, with operational duties for the feed; builds the HQ Personalization Lab (read-only) and, in phase B, the serving glue between the composer and the feed behind the off switch. Never decides the order. Use for feed code, the lab page, gamification and profile UI, and personalization serving glue.",
     mission: "The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.",
     inScope: [
       "The HQ Personalization Lab (W-1682): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only",
       "In phase B: serving glue between the composer and the feed, behind the off switch",
+      // Card S3, 2026-10-18 (company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+      // company/decisions/2026-10-18-founder-delegated-decisions.md). Operational duties: OPS_ENGINEERS, below.
+      "Code owner of the feed surface: src/components/Feed.tsx (feed list, prefetch, IntroCard, RevisitCard, the revisit loop), src/lib/feed-index.ts (feedOrder, interleave, feedPage), src/lib/feed-types.ts, src/app/api/feed/**, src/app/page.tsx (from platform-engineer, card S2)",
+      "Invariants that travel with the feed files: drafts never come back as revisits (AMD-012); due revisits come first (surface-value \"For the feed\"); the intro's cold-start sentence (tests/qa/feed.spec.ts, protected); the slim index and pagination (EDD-001); no automatic retry loop against the CDN (review 2026-10-14 finding 1)",
+      "The org's gamification and profile UI: the mastery layer on /catalog, the challenge pages of PRD-004 once built, a future profile view",
+      "A company/ops/changelog.md line for every feed change",
     ],
-    outOfScope: ["Engine and curves", "The simulator (personalization-eval)", "HQ code outside the lab page (hq-engineer)", "Feed.tsx and the kit (platform-engineer)"],
+    outOfScope: [
+      "Engine and curves",
+      "The simulator (personalization-eval)",
+      "HQ code outside the lab page (hq-engineer)",
+      "The kit, the lesson host, the app shell and the performance budget (platform-engineer, who reviews)",
+      "The feed's QA spec (evaluation-steward; tests/qa/** is protected), so the feed is judged by a test its owner cannot edit",
+      "The order itself: composer numbers (Science), policy (learner-model-engineer), decisions (vp-personalization), the default order (head-of-product)",
+    ],
     authority: {
       may: ["Build the lab page and its API route"],
       mayNot: [
         "Merge into src/app/hq/** without hq-engineer's review",
-        "Merge into the feed or kit without platform-engineer's review",
+        "Merge a change that touches the kit, the lesson host or the app shell without platform-engineer's review",
+        "Switch the order flag or deploy",
         "Add dependencies without a decision record",
       ],
     },
-    inputs: ["The simulator's per-step trace (W-1683)", "company/personalization/model/"],
-    outputs: ["The lab page", "Serving glue (phase B)"],
+    inputs: ["The simulator's per-step trace (W-1683)", "company/personalization/model/", "Feed and gamification PRDs (vp-personalization)", "Feature specs (growth-designer)"],
+    outputs: ["The lab page", "Serving glue (phase B)", "Feed, gamification and profile UI changes with a changelog line"],
     rituals: ["eng-review (presents)"],
-    handoffs: ["lab → founder, vp-personalization, personalization-eval", "HQ review → hq-engineer"],
+    handoffs: ["lab → founder, vp-personalization, personalization-eval", "HQ review → hq-engineer", "shared-surface review → platform-engineer", "tier-2 review → principal-engineer"],
     failureModes: ["A lab that shows real learner data.", "Glue that bypasses the off switch."],
     dayOne: ["Read company/personalization/model/README.md", "Read src/app/hq/ (how HQ pages are built)", "Read company/engineering/README.md (change tiers)"],
     tools: BUILD,
@@ -1948,7 +1962,8 @@ roles.push(
 // company/decisions/2026-10-14-founder-risk-in-ops-review.md, Amendment 1: "operational excellence is company wide
 // responsibility on all engineers". Touch points: company/rituals/templates/ops-readiness.md, company/ops/risks.json,
 // the Operational Health Review, incident ownership. Mechanism: EDD-007 (tools/readiness.mjs, proposed).
-const OPS_ENGINEERS = ["platform-engineer", "backend-engineer", "hq-engineer", "design-engineer", "tools-lead", "release-manager", "rnd-engineer", "demo-builder"];
+// personalization-engineer joined 2026-10-18 (card S3: it owns the feed, a production surface; principal-engineer-ops consults, W-1852).
+const OPS_ENGINEERS = ["platform-engineer", "backend-engineer", "hq-engineer", "design-engineer", "tools-lead", "release-manager", "rnd-engineer", "demo-builder", "personalization-engineer"];
 const OPS_DUTIES = {
   inScope: [
     "Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)",
