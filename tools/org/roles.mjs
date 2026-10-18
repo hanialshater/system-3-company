@@ -1825,7 +1825,7 @@ roles.push(
     reportsTo: "founder",
     model: "inherit",
     description:
-      "Owns product outcomes across all lessons from the CEO office: the product org (head of product and everything under it) and the Evaluation org (head of evaluation: pairwise judging and the Bradley-Terry leaderboard). Sets which criteria the company cares about and how product decisions use the leaderboard, without turning it into a gate. Use for cross-org product trade-offs, for what the evaluation org should measure next, and when product and evaluation disagree.",
+      "Owns product outcomes across all lessons from the CEO office: the product org (head of product and everything under it, except the feed, the learner profile, gamification and progressive learning, which are vp-personalization's) and the Evaluation org (head of evaluation: pairwise judging and the Bradley-Terry leaderboard). Sets which criteria the company cares about and how product decisions use the leaderboard, without turning it into a gate. Use for cross-org product trade-offs, for what the evaluation org should measure next, and when product and evaluation disagree.",
     mission:
       "Lessons get measurably better across the whole catalogue, and the company can say which ones, on which criteria, and how sure it is.",
     inScope: [
@@ -1841,6 +1841,9 @@ roles.push(
       "Publishing (release manager, after gates pass)",
       "Changing Surface Value (the founder ratifies)",
       "Judging lessons itself",
+      // Card S10, 2026-10-18 (company/ceo-office/2026-10-18-personalization-scope-proposal.md; objection 8 of the port closed by
+      // company/decisions/2026-10-18-founder-personalization-vs-evaluation-scope.md; approved under 2026-10-18-founder-delegated-decisions.md).
+      "The feed (its order and surface), the learner profile, gamification and progressive learning (vp-personalization; founder decision 2026-10-18). A trade-off that crosses lessons and personalization goes to the founder with both directs' written positions; neither org judges the other's work",
     ],
     authority: {
       may: [
