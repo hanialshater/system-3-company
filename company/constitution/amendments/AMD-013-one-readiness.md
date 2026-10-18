@@ -1,6 +1,6 @@
 # AMD-013: One readiness policy
 
-status: ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen); applied on the session branch as aeb637c0b, with the CI fetch-depth fix under part (b). Principal-engineer conditions C1-C4 folded in. The status moves to `applied` only after the change lands on the default branch: CI's constitution check accepts protected changes only while the amendment reads ratified. Open objections O1-O5 travel with it.
+status: applied (a6333dd0, merge of PR #9 carrying PR #8 into the default branch, 2026-10-18). Ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen); first applied on the session branch as aeb637c0b, with the CI fetch-depth fix under part (b). Principal-engineer conditions C1-C4 folded in. Open objections O1-O5 travel with it.
 date: 2026-10-17
 proposed_by: evaluation-steward (route from the external assessment, `company/reviews/org/2026-10-17-external-assessment.md` §1 findings 1 and 5, Appendix A ch.4 and ch.8; founder asked us to act on it)
 prepared_by: evaluation-steward
