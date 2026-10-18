@@ -2,7 +2,8 @@
 // handlers and a real PostgreSQL 16 (see helpers.mjs). A "profile" is one browser profile: its localStorage and its
 // session cookie. A "page load" imports fresh copies of the client and the kit (their module state is per page), sets
 // window and fetch for that profile, and does what AccountSync in the root layout does: startAccountSync() once.
-// Covers the principal review 2026-10-18 MC2, PC1, PC2, PC3, PC8 and the privacy re-read 2026-10-18 scripts (a), (b).
+// Covers the principal review 2026-10-18 MC2, PC1, PC2, PC3, PC8, its re-read's probe 1 (PC3 account binding) and
+// PC9, and the privacy re-read 2026-10-18 scripts (a), (b).
 // Run: npm run test:accounts
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -425,4 +426,130 @@ t("C8. sign-out with 'also clear this device' removes the device's history too; 
   assert.equal(res.status, 200);
   page.client.afterAccountDeleted(false);
   assert.deepEqual(local(profile), anon);
+});
+
+/** Ask for a sign-in link for `email` (as anyone can) and return it with its callbackURL edited to `callback`. */
+async function editedLink(world, email, callback) {
+  const res = await world.api.start(
+    new Request(`${BASE}/api/account/start`, {
+      method: "POST",
+      headers: { host: "localhost:3000", origin: BASE, "content-type": "application/json" },
+      body: JSON.stringify({ email, ageBand: "16+", policyVersion: "draft-2026-10-16" }),
+    }),
+  );
+  assert.equal(res.status, 200);
+  const link = new URL(world.links.at(-1).url);
+  assert.ok(link.searchParams.has("callbackURL"), "the link carries callbackURL as a query parameter");
+  link.searchParams.set("callbackURL", callback);
+  return link;
+}
+
+t("C9. PC3 probe 1: a sign-in link for another account with callbackURL edited to / (no marker) still meets the merge screen; nothing is pushed until answered", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  const anon = seedAnonymous(profile);
+  // The victim A signs in by the normal link and answers.
+  const a = await signUp(world, "victim@example.com");
+  profile.cookie = a.cookie;
+  let page = await pageLoad(profile, "/account?signed-in=1");
+  assert.ok(await page.client.answerMerge({ progress: true, saves: false }));
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, true);
+  const tagA = page.state.me.tag;
+  const deviceA = profile.store.get(DEVICE_KEY);
+  // The attacker B has an account with its own history.
+  const b = await signUp(world, "attacker@example.com");
+  await world.api.merge(
+    new Request(`${BASE}/api/account/merge`, {
+      method: "POST",
+      headers: { host: "localhost:3000", origin: BASE, "content-type": "application/json", cookie: b.cookie },
+      body: JSON.stringify({ progress: { "lesson-d": { completedAt: NOW - 10 * DAY, recalls: [{ at: NOW - 9 * DAY, correct: true }] } } }),
+    }),
+  );
+  const rowsA = await rows(a.userId);
+  const rowsB = await rows(b.userId);
+  // B sends A a fresh link for B's account, callbackURL edited to "/". A clicks it in the same browser profile.
+  const link = await editedLink(world, "attacker@example.com", "/");
+  const verify = await fakeFetch(profile, link.pathname + link.search);
+  assert.equal(verify.status, 302);
+  assert.equal(new URL(verify.headers.get("location"), BASE).pathname + new URL(verify.headers.get("location"), BASE).search, "/", "no ?signed-in=1 marker");
+  assert.ok(profile.cookie && profile.cookie !== a.cookie, "the profile now holds B's session");
+  const before = profile.calls.length;
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, false, "a different account is treated like the marker: the merge screen again");
+  assert.deepEqual(page.state.ask, { lessons: 2, recalls: 2, saves: 0 }, "B is offered the device's own history only");
+  assert.deepEqual(local(profile), anon, "A's account copy left the device; B's history was not pulled");
+  assert.ok(!profile.store.has(DEVICE_KEY), "nothing remembered for B until B's screen is answered");
+  // Play before the answer: nothing goes to B (or anyone).
+  recall(page.kit, "plates-move", true, NOW - 2 * DAY);
+  completeLesson(page.kit, "lesson-c", true, NOW - 1000);
+  await idle(profile);
+  assert.deepEqual(profile.calls.slice(before).filter((c) => c.method !== "GET"), [], "no push before the answer");
+  assert.deepEqual(await rows(b.userId), rowsB, "B's account received nothing");
+  assert.deepEqual(await rows(a.userId), rowsA);
+  // The next load without the marker still asks (nothing was answered).
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, false);
+  // Answering for B is remembered for B; switching back to A's session without the marker asks again.
+  const tagB = page.state.me.tag;
+  await page.client.answerMerge(null);
+  assert.equal(JSON.parse(profile.store.get(DEVICE_KEY)).account, tagB);
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, true, "remembered for B");
+  profile.cookie = a.cookie;
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, false, "A again, no marker: asked again");
+  // The binding is an opaque per-account value: A's and B's differ, and it is not the id or the email.
+  assert.equal(JSON.parse(deviceA).account, tagA, "the device state recorded which account answered");
+  assert.match(tagA, /^[A-Za-z0-9_-]{22}$/);
+  assert.notEqual(tagA, tagB);
+  for (const v of [a.userId, b.userId, "victim@example.com", "victim", "attacker"]) assert.ok(!deviceA.includes(v), `the device key holds ${v}`);
+});
+
+t("C10. PC3: a device state written before PC3 (no account tag) asks again instead of syncing", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  const anon = seedAnonymous(profile);
+  const a = await signUp(world, "legacy@example.com");
+  profile.cookie = a.cookie;
+  profile.store.set(DEVICE_KEY, JSON.stringify({ answer: "decline", own: anon }));
+  const page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, false);
+  assert.deepEqual(page.state.ask, { lessons: 2, recalls: 2, saves: 0 });
+  assert.deepEqual(writes(profile), []);
+});
+
+/** Resolves to the value, or to "timeout" after ms. */
+const within = (p, ms = 1000) => Promise.race([p, new Promise((r) => setTimeout(() => r("timeout"), ms))]);
+
+t("C11. PC9: /account remounting in the same page load after sign-out, and after deletion, gets an answer (no endless Loading)", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  seedAnonymous(profile);
+  const a = await signUp(world, "remount@example.com");
+  profile.cookie = a.cookie;
+  let page = await pageLoad(profile, "/account?signed-in=1");
+  await page.client.answerMerge(null);
+  assert.equal((await within(page.client.accountState())).syncing, true, "first mount reads the started state");
+  assert.equal(await page.client.signOut(), true);
+  // The page navigates to / and back to /account without a reload: AccountView mounts again and calls accountState().
+  const afterSignOut = await within(page.client.accountState());
+  assert.notEqual(afterSignOut, "timeout", "accountState resolves after sign-out");
+  assert.equal(afterSignOut.me.signedIn, false);
+  assert.ok(!profile.store.has(DEVICE_KEY));
+  // A second remount reads the same answer and makes no new request.
+  const n = profile.calls.length;
+  assert.equal(await within(page.client.accountState()), afterSignOut);
+  assert.equal(profile.calls.length, n);
+  // Deletion, the same way.
+  const d = await signUp(world, "remount-del@example.com");
+  profile.cookie = d.cookie;
+  page = await pageLoad(profile, "/account?signed-in=1");
+  await page.client.answerMerge(null);
+  const res = await fakeFetch(profile, "/api/account/delete", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ confirm: true }) });
+  assert.equal(res.status, 200);
+  page.client.afterAccountDeleted(false);
+  const afterDelete = await within(page.client.accountState());
+  assert.notEqual(afterDelete, "timeout", "accountState resolves after deletion");
+  assert.equal(afterDelete.me.signedIn, false);
 });

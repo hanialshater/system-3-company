@@ -9,8 +9,11 @@
 // - The session cookie is scoped to /api/account (HttpOnly), so this code cannot read it and the beacon never carries it.
 // - One start point per page load: startAccountSync(), called only by AccountSync in the root layout (PC3). The
 //   account page reads the result with accountState() and starts nothing.
-// - Nothing syncs until the merge screen is answered for this sign-in on this device (PC1). Until then the device's
+// - Nothing syncs until the merge screen is answered for this account on this device (PC1). Until then the device's
 //   own history is counted against the account's (before anything is pulled), and only the difference is offered.
+// - The device state records which account answered, as the opaque `tag` /me returns (PC3; http.ts accountTag). A
+//   page load signed in as any other account, with or without the ?signed-in=1 marker, ends the previous account on
+//   this device and asks again, so a sign-in link whose callbackURL was edited cannot skip the merge screen.
 // - The answer is kept in s3c:account-device:v1 with a copy of the device's own progress from before the sync
 //   started. Sign-out puts that copy back: the account's history leaves the device, the anonymous history stays as
 //   it was (PC2; safe default pending the privacy ruling W-1710). "Also clear this device" removes both.
@@ -29,15 +32,18 @@ export const DEVICE_KEY = "s3c:account-device:v1";
 
 export type Me =
   | { signedIn: false; likesSaves: boolean }
-  | { signedIn: true; email: string; ageBand: "13-15" | "16+"; likesSaves: boolean; canLike: boolean };
+  | { signedIn: true; email: string; ageBand: "13-15" | "16+"; likesSaves: boolean; canLike: boolean; tag: string };
 export type SignedInMe = Extract<Me, { signedIn: true }>;
 export type Moves = { lessons: number; recalls: number; saves: number };
 export type AccountState =
   | { me: null } // accounts off (404) or unreachable
   | { me: Extract<Me, { signedIn: false }> }
-  | { me: SignedInMe; syncing: true }
-  | { me: SignedInMe; syncing: false; ask: Moves };
-type DeviceState = { answer: "import" | "decline" | "nothing"; own: ProgressMap };
+  | { me: SignedInMe; syncing: true; fromLink?: boolean }
+  | { me: SignedInMe; syncing: false; ask: Moves; fromLink?: boolean };
+// fromLink: this page load arrived by the sign-in marker (privacy re-read 3.2: the page shows "You are now signed in
+// as {email}" for that page view only). Nothing stores it.
+/** `account`: the /me tag of the account that answered (PC3). A state without it (written before PC3) never matches. */
+type DeviceState = { answer: "import" | "decline" | "nothing"; account: string; own: ProgressMap };
 
 // ---------- Storage ----------
 function readJson<T>(key: string, fallback: T): T {
@@ -178,6 +184,8 @@ let started: Promise<AccountState> | null = null;
 let current: AccountState | null = null;
 let resolveReady: (s: AccountState) => void = () => {};
 let ready = new Promise<AccountState>((r) => (resolveReady = r));
+/** True once forgetSession() has run in this page load (PC9). */
+let sessionReset = false;
 
 function settle(s: AccountState): AccountState {
   current = s;
@@ -240,6 +248,11 @@ async function getJson<T>(path: string): Promise<T | null> {
   }
 }
 
+/** PC3: the device state was answered by this account. A missing or non-string tag never matches (ask again). */
+function sameAccount(d: DeviceState, me: SignedInMe): boolean {
+  return typeof me.tag === "string" && me.tag.length > 0 && d.account === me.tag;
+}
+
 async function run(): Promise<AccountState> {
   const me = await accountMe();
   if (!me) return { me: null }; // off or unreachable: touch nothing on the device
@@ -247,11 +260,14 @@ async function run(): Promise<AccountState> {
     if (readDevice()) endAccountOnDevice(); // signed out elsewhere, or the session ended
     return { me };
   }
-  // A new sign-in (possibly a different account, or a link someone else sent): end whatever account was here first.
-  if (arrivedFromLink() && readDevice()) endAccountOnDevice();
+  // A new sign-in (the marker), or a different account than the one that answered (PC3: the marker can be edited away
+  // from a link someone else sent): end whatever account was here first, then ask again.
+  const fromLink = arrivedFromLink();
+  const prior = readDevice();
+  if (prior && (fromLink || !sameAccount(prior, me))) endAccountOnDevice();
   if (readDevice()) {
     await beginSync();
-    return { me, syncing: true };
+    return { me, syncing: true, fromLink };
   }
   // Not answered yet: count the device's own history against the account's, before anything is pulled.
   const device = loadProgress();
@@ -259,10 +275,10 @@ async function run(): Promise<AccountState> {
   const account = (await getJson<{ progress: ProgressMap }>("/api/account/progress"))?.progress ?? {};
   const accountSaves = localSaves.length ? ((await getJson<{ saves: { slug: string }[] }>("/api/account/saves"))?.saves ?? []).map((s) => s.slug) : [];
   const ask = movesAgainst(device, account, localSaves, accountSaves);
-  if (ask.lessons || ask.recalls || ask.saves) return { me, syncing: false, ask };
-  writeJson(DEVICE_KEY, { answer: "nothing", own: device } satisfies DeviceState);
+  if (ask.lessons || ask.recalls || ask.saves) return { me, syncing: false, ask, fromLink };
+  writeJson(DEVICE_KEY, { answer: "nothing", account: me.tag, own: device } satisfies DeviceState);
   await beginSync();
-  return { me, syncing: true };
+  return { me, syncing: true, fromLink };
 }
 
 /** Start device <-> account sync for this page load. Only AccountSync (root layout) calls this. Idempotent. */
@@ -271,15 +287,21 @@ export function startAccountSync(): Promise<AccountState> {
   return started;
 }
 
-/** The state for the account page, once AccountSync has started it. Starts nothing (PC3). */
+/**
+ * The state for the account page. On a page load it starts nothing and waits for AccountSync's start (PC3). After a
+ * sign-out or deletion in this page load (forgetSession), AccountSync will not run again, so the page's next read
+ * starts the (memoised) sync itself; otherwise /account would stay on "Loading..." when it remounts (PC9).
+ */
 export function accountState(): Promise<AccountState> {
-  return current ? Promise.resolve(current) : ready;
+  if (current) return Promise.resolve(current);
+  if (sessionReset) return startAccountSync();
+  return ready;
 }
 
 // ---------- The merge screen's answer ----------
 /**
  * Import (the device's own history, progress and saves as separate choices, C5.2) or decline (null). Remembered for
- * this sign-in on this device. Returns false if the import failed: nothing is remembered and the screen asks again.
+ * this account on this device. Returns false if the import failed: nothing is remembered and the screen asks again.
  */
 export async function answerMerge(choice: { progress: boolean; saves: boolean } | null): Promise<AccountState | false> {
   const s = current;
@@ -287,7 +309,7 @@ export async function answerMerge(choice: { progress: boolean; saves: boolean } 
   const me = s.me;
   const own = loadProgress();
   if (!choice) {
-    writeJson(DEVICE_KEY, { answer: "decline", own } satisfies DeviceState);
+    writeJson(DEVICE_KEY, { answer: "decline", account: me.tag, own } satisfies DeviceState);
     await beginSync();
     return settle({ me, syncing: true });
   }
@@ -298,7 +320,7 @@ export async function answerMerge(choice: { progress: boolean; saves: boolean } 
     if (!r.ok) return false;
     const out = (await r.json()) as { progress: ProgressMap };
     if (choice.saves) removeKey(SAVES_KEY); // acknowledged by the server: the device copy goes (C5.2)
-    writeJson(DEVICE_KEY, { answer: "import", own } satisfies DeviceState);
+    writeJson(DEVICE_KEY, { answer: "import", account: me.tag, own } satisfies DeviceState);
     mergeIntoLocal(out.progress);
     await beginSync(false); // the merge answer is the account's map: no second pull
     return settle({ me, syncing: true });
@@ -365,6 +387,7 @@ function forgetSession() {
   ready = new Promise<AccountState>((r) => (resolveReady = r));
   mePromise = null;
   knownMe = null;
+  sessionReset = true;
 }
 
 /**

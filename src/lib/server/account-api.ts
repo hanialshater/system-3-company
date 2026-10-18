@@ -8,7 +8,7 @@ import type pg from "pg";
 import { type Auth, BASE_PATH, COOKIE_PATH, isAgeBand, isPolicyVersion } from "./auth";
 import { accountsEnabled, hiddenCountSlugs, likeCountsPublic, likesSavesEnabled, type Env } from "./accounts-flag";
 import { withTransaction, type Query } from "./db";
-import { empty, isJson, json, logFailure, notFound, RateLimiter, readJson, sameOriginWrite, clientIp } from "./http";
+import { accountTag, empty, isJson, json, logFailure, notFound, RateLimiter, readJson, sameOriginWrite, clientIp } from "./http";
 import {
   accountBand,
   cleanMarks,
@@ -113,6 +113,9 @@ export function createAccountApi(deps: ApiDeps) {
           likesSaves,
           // C4.1/C4.2: 13-15 accounts see no Like control. The UI must not say why.
           canLike: likesSaves && rows[0].age_band === "16+",
+          // PC3: which account this is, as an opaque value (http.ts accountTag). The client keeps it in the device
+          // state so a different account (a sign-in link with the marker edited away) meets the merge screen again.
+          tag: accountTag(String(deps.env().BETTER_AUTH_SECRET ?? ""), String(session.user.id)),
         });
         // A sliding refresh (at most daily) re-issues the cookie: pass it through, nothing else.
         for (const c of headers?.getSetCookie?.() ?? []) res.headers.append("set-cookie", c);

@@ -4,11 +4,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { accountsEnabled, likesSavesEnabled, likeCountsPublic, hiddenCountSlugs } from "../../src/lib/server/accounts-flag.ts";
 import { emailTransport, sendSignInLink } from "../../src/lib/server/email.ts";
 import { countLabel, cleanProgressMap } from "../../src/lib/server/progress-store.ts";
-import { RateLimiter, limiterKey, sameOriginWrite } from "../../src/lib/server/http.ts";
+import { LOGGED_LIBRARY_CODES, RateLimiter, accountTag, limiterKey, logFailure, sameOriginWrite } from "../../src/lib/server/http.ts";
+import { createAccountApi } from "../../src/lib/server/account-api.ts";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/");
@@ -189,4 +190,55 @@ test("S15. the client never writes saves locally while signed in, and anonymous 
   assert.ok(!/localStorage/.test(signedBranch), "signed in: no local write");
   const anonBranch = fn.slice(fn.indexOf("const all = loadLocalSaves()"));
   assert.ok(!/fetch\(/.test(anonBranch), "anonymous: no request");
+});
+
+// The installed library's own error class (readiness Ruling 1 test 1: not a hand-made object). @better-auth/core is
+// nested under better-auth, at the version tests/accounts/better-auth-regression.json pins.
+const SCHEMA_DIFF = path.join(ROOT, "node_modules/better-auth/node_modules/@better-auth/core/dist/db/schema-diff.mjs");
+
+test("S16. W-1714 Ruling 1: logFailure prints a Better Auth code only from the exact allow-list; never message, findings, names, cause or stack", async () => {
+  assert.deepEqual([...LOGGED_LIBRARY_CODES], ["SCHEMA_MISMATCH"], "the list starts with one code; add others one at a time with a reason");
+  assert.ok(Object.isFrozen(LOGGED_LIBRARY_CODES));
+  const { SchemaMismatchError } = await import(pathToFileURL(SCHEMA_DIFF).href);
+  const err = new SchemaMismatchError([{ kind: "missing-column", table: "auth_user", column: "age_band" }, { kind: "missing-table", table: "auth_session" }], "database");
+  assert.equal(err.code, "SCHEMA_MISMATCH");
+  assert.match(err.message, /auth_user|age_band/, "the library's message names the schema (so it must never be printed)");
+  err.cause = new Error("cause learner@example.com");
+  const lines = [];
+  logFailure("me", err, (l) => lines.push(l));
+  assert.deepEqual(lines, ["account me: failed code=SCHEMA_MISMATCH"]);
+  // Through the real /me handler, with the session read throwing the library's error.
+  const api = createAccountApi({
+    env: () => ({ ACCOUNTS_ENABLED: "on", BETTER_AUTH_SECRET: "x".repeat(40) }),
+    pool: () => assert.fail("no pool"),
+    auth: () => ({ api: { getSession: async () => { throw err; } } }),
+    inCatalog: () => true,
+    log: (l) => lines.push(l),
+  });
+  const res = await api.me(new Request("http://localhost:3000/api/account/me"));
+  assert.equal(res.status, 500);
+  assert.equal(lines.at(-1), "account me: failed code=SCHEMA_MISMATCH");
+  // Any other code prints nothing: near misses, a code holding an @, a pattern-alike, and non-strings.
+  const others = ["SCHEMA_MISMATCH ", "schema_mismatch", "SCHEMA_MISMATCH\n", "SCHEMA_MISMATCH@x", "a@example.com", "USER_NOT_FOUND", "SCHEMA_.*", ["SCHEMA_MISMATCH"], { toString: () => "SCHEMA_MISMATCH" }, 42];
+  for (const code of others) {
+    const out = [];
+    logFailure("me", Object.assign(new Error(`boom ${String(code)} a@example.com`), { code }), (l) => out.push(l));
+    assert.deepEqual(out, ["account me: failed"], `code ${JSON.stringify(String(code))}`);
+  }
+  // A SQLSTATE still prints as before; a throwing getter or a null error does not throw.
+  const out = [];
+  logFailure("x", { code: "23505" }, (l) => out.push(l));
+  logFailure("x", null, (l) => out.push(l));
+  logFailure("x", Object.defineProperty({}, "code", { get() { throw new Error("getter"); } }), (l) => out.push(l));
+  assert.deepEqual(out, ["account x: failed sqlstate=23505", "account x: failed", "account x: failed"]);
+});
+
+test("S17. PC3: the account tag is opaque, stable per account and secret, and differs between accounts", () => {
+  const s1 = "s".repeat(40);
+  const t1 = accountTag(s1, "user-1");
+  assert.match(t1, /^[A-Za-z0-9_-]{22}$/);
+  assert.equal(accountTag(s1, "user-1"), t1, "stable");
+  assert.notEqual(accountTag(s1, "user-2"), t1, "per account");
+  assert.notEqual(accountTag("t".repeat(40), "user-1"), t1, "keyed by the secret");
+  assert.ok(!t1.includes("user"));
 });

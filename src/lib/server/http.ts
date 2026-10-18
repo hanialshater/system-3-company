@@ -3,7 +3,7 @@
 //
 // Logging rule (readiness A-6, privacy B4 style): nothing here or in a caller logs a request body, an email, a token,
 // an id, or an error's message or detail. A pg constraint error's `detail` holds the failing row, which can be an
-// email. `logFailure` prints fixed text plus, at most, a five-character SQLSTATE.
+// email. `logFailure` prints fixed text plus, at most, a five-character SQLSTATE or one allow-listed library code.
 import { createHmac, randomBytes } from "node:crypto";
 
 export const NO_STORE = { "cache-control": "no-store" } as const;
@@ -21,12 +21,40 @@ export function empty(status: number, headers: Record<string, string> = {}): Res
 
 export const notFound = () => empty(404);
 
-/** Fixed text plus a SQLSTATE if the error carries one. Never the message, detail, stack or any value. */
+/**
+ * PC3: an opaque value per account for the device state (s3c:account-device:v1), so the client can tell that a
+ * different account is now signed in without a marker in the URL. HMAC-SHA-256 of the account id under the auth
+ * secret, first 16 bytes, base64url (22 characters). It is not the id, cannot be reversed or matched to an id without
+ * the secret, and holds no email. Nothing stores it on the server. A secret rotation changes every value, which only
+ * means each device asks its merge question again (fail-safe).
+ */
+export function accountTag(secret: string, accountId: string): string {
+  return createHmac("sha256", secret).update(`s3c:account-device:v1\0${accountId}`).digest().subarray(0, 16).toString("base64url");
+}
+
+/**
+ * Library error codes `logFailure` may print (readiness Ruling 1, W-1714). Exact string match only, never a pattern.
+ * Add one at a time, each with its reason:
+ * - SCHEMA_MISMATCH: Better Auth's SchemaMismatchError (@better-auth/core db/schema-diff). The store lacks a table or
+ *   column the library writes; it is cached until the instance restarts (readiness Ruling 2), so the log must say so.
+ */
+export const LOGGED_LIBRARY_CODES: readonly string[] = Object.freeze(["SCHEMA_MISMATCH"]);
+
+/**
+ * Fixed text plus a SQLSTATE if the error carries one, or a library code from LOGGED_LIBRARY_CODES. Never the
+ * message, detail, findings, table or column names, cause, stack or any value.
+ */
 export function logFailure(what: string, err: unknown, log: (line: string) => void = console.error): void {
-  const code = (err as { code?: unknown } | null)?.code;
-  const sqlstate = typeof code === "string" && /^[0-9A-Z]{5}$/.test(code) ? ` sqlstate=${code}` : "";
+  let code: unknown;
   try {
-    log(`account ${what}: failed${sqlstate}`);
+    code = (err as { code?: unknown } | null)?.code;
+  } catch {
+    code = undefined; // a throwing getter must not throw here
+  }
+  const sqlstate = typeof code === "string" && /^[0-9A-Z]{5}$/.test(code) ? ` sqlstate=${code}` : "";
+  const libCode = typeof code === "string" && LOGGED_LIBRARY_CODES.includes(code) ? ` code=${code}` : "";
+  try {
+    log(`account ${what}: failed${sqlstate}${libCode}`);
   } catch {
     /* a broken logger must not throw */
   }
