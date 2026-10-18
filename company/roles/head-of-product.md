@@ -18,6 +18,8 @@ Decide what the product should be next and write it down so that someone who was
 - Proposing changes to Surface Value (the founder ratifies)
 - Allocating the cycle's lesson slots across category managers, with the exploration budget held back
 - Owning every product decision record and the objections that travel with it
+- The default order: the baseline every fresh device, chip and flag-off build shows, and every personalised order is compared against; and the two cold-start trade-offs she owns in company/product/surface-value.md
+- Release-1 scope rulings on PRD-003 and PRD-004 inside First Light, until First Light closes
 
 ## Out of scope
 
@@ -25,6 +27,7 @@ Decide what the product should be next and write it down so that someone who was
 - Building or judging lessons
 - Editing gates or tests
 - Delivery of company-wide initiatives: dates, dependencies, cadence (head-of-strategic-initiatives); product scope inside an initiative stays here
+- PRDs and product decisions for the feed's personalised order and surface, the learner profile, gamification and progressive learning (vp-personalization, card S11 2026-10-18)
 
 ## Authority
 
