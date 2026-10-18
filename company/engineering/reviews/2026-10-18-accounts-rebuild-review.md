@@ -148,3 +148,43 @@ Durable or shared rate limits for `start` per email and for the 60-likes rule (F
 3. principal-engineer-ops: MC4 (readiness for the merge with switches off), and PC5/PC6 on the preview record.
 4. evaluation-steward (or the amendment's owner): amendment to add `npm run test:accounts` to `.github/workflows/ci.yml` (F12).
 5. platform-engineer: W-1149 `fra1` before the preview, or the PC6 record.
+
+## Re-read 2026-10-18: the fixes (merge `de5ff7013`; fix commits `beb83bfd4`, `c8afd9ff7`)
+
+reviewer: principal-engineer (Kenji) · read the code diff `7ed0a2c8e..de5ff7013 -- src tests db` first, then EDD-008 addendum A6 and the readiness "Additions, 2026-10-18".
+
+### What I ran (worktree copy of `de5ff7013`; nothing deployed)
+| What | Result |
+|---|---|
+| `npm run test:accounts`, throwaway PostgreSQL 16 (unix socket, port 55497, `/var/tmp`; torn down) | **56: 52 pass, 0 fail, 4 skipped** (built-server tests), as the author reported |
+| `npm run test:platform` with the same database | **39: 35 pass, 0 fail, 4 skipped**; the PC7 importer scan and its controls pass |
+| `npm run build`, no accounts variables; `next start` on port 3317 (stopped) | build pass; test **31 pass**; test **34 pass** in real Chromium (first load 1 network `/me`, reload 0; the `no-store` control is seen) |
+| First-load JS, gzip -9 of every script in the prerendered HTML, same method as above | `/` **242,291 B** (merge I reviewed: 242,513, so −222 B; vs parent `7436cdcb9`: +557 B). `/d/a-birthday-like-mine` **239,482 B** (was 239,587, −105 B; vs parent +520 B). No `/api/account`, `mergeIntoLocal`, `unionMaps`, `account-device` or library string in any first-load script |
+| Probe 1 (in the client harness, not committed): A signed in and answered; the attacker's own sign-in link with `callbackURL` edited to `/` | verify **302 to `/`**, so there is no `?signed-in=1` marker. The client keeps A's device state: `syncing: true`, **no merge screen**. The attacker's history is pulled onto the device, and the next recall and completion are PUT to the **attacker's** account. A's earlier history is not sent: deltas hold |
+| Probe 2: sign out in a page, then `accountState()` (what `/account` calls when it remounts on a client navigation such as browser Back) | **never resolves** (timed out at 2 s). `forgetSession()` makes a new `ready` that nothing starts, so the page stays on "Loading…" |
+
+### Conditions
+| | Verdict | Evidence |
+|---|---|---|
+| **MC2** | **closed** | `accountMe()` first ask has no `cache` option, `refresh` is `no-store`, on-state answers stay `no-store`. Test 34 passes in my run. The comments in `account-api.ts` `me()` and `AccountSync.tsx` now say "browser, 5 minutes", and that CDN `s-maxage` is unmeasured. That is true |
+| **MC3** | **closed** | A6.1 lists the off-state differences as accepted: `/me` 404, the async chunk (now **2,594 B** gzip, up from 1,761 because the merge code moved into it; I accept that, since it loads after first paint), `/account` 200, first-load. Row 5 ("nothing else"), on the device side, is backed by test C2 |
+| **PC1** | **closed** | The kit hands the sink `before` (a separate storage read) and `after`. `progressDelta` sends only a first `completedAt`, a first `predictedCorrectly` and recalls with a new `at`. No sink is registered before the merge answer. `Lesson.tsx` overwrites `predictedCorrectly` on a replay, and that is correctly not sent. Test C4 is my script. Probe 1 also showed that old history stays unsent |
+| **PC2** | **closed on its test; safe default pending the privacy ruling (W-1710)** | Sign-out restores the `own` snapshot and removes the key. An ended session cleans up on the next load. "Also clear this device" is offered at sign-out. Test C6 is my script; C7 and C8 pass. The A6.4 cost line (a delta that fails before sign-out is lost) is accepted |
+| **PC3** | **not closed (one clause)** | Count before the pull, one starter and two-caller race: **closed** (`movesAgainst`, `accountState` starts nothing, test C5). "Remembered **for this account** on this device": **open**. `s3c:account-device:v1` holds no account identity. A change of account is detected only by the `?signed-in=1` marker, and the holder of a link can edit that marker away (`callbackURL` is a query parameter, and the library's `originCheck` accepts any same-origin path: probe 1). That reopens the login-CSRF path A6.4 says it closes, for a victim who is already signed in. **Fix needed:** the device state records which account answered, and `run()` treats a different signed-in account like the marker. Add a test that repeats probe 1. The identity form (opaque id, hash) goes into the D23 row the privacy reviewer reads |
+| **PC4** | **closed** | `CAP_RECALLS_SQL` keeps the newest 100 per (account, slug) across requests. Per-account limits: progress 60/10 min, merge 10/h (per instance; F8 stays a go-live item). DELETE skips the catalogue check, PUT keeps it. Tests 28 and 29 pass. A 429 delta is dropped, not retried; I accept that for a staff preview |
+| **PC7** | **closed** | `NAMES` adds `account/likes` and `account/saves`. The new importer scan (static, dynamic, `require`) limits `account-client` to `src/components/account/`, with `CLIENT_ALLOWED` empty and planted controls. One known limit: a re-export through a file inside `src/components/account/` would pass. That needs a file in the allowed folder, which the folder's owner reviews |
+| **PC8** | **closed** | `mergeIntoLocal` is out of the kit (test C3). The sink stays, and the A6.8 reason holds: `updateProgress` is the one write path. Re-measured above: first-load is lower than at the reviewed merge |
+| PC5, PC6 | open (not this author's) | unchanged: principal-engineer-ops and release-manager; platform-engineer W-1149 or the preview record |
+
+**New device key `s3c:account-device:v1` (tier 2, new stored field).** Engineering view: **acceptable**. It is never written with accounts off (C2, and `run()` returns before touching storage when `/me` is 404). It is never sent. Its size is the device's own anonymous map (bounded), and it is removed on every way out of the session. It still needs the privacy reviewer's inventory row (proposed D23 in A6.4) before preview-on, and the PC3 fix will add the account binding to it.
+
+**New: PC9 (preview, small).** After sign-out or deletion, `/account` hangs on "Loading…" if it remounts in the same page load (probe 2): sign out, follow a link to `/`, press Back. `accountState()` waits on a promise that no caller will settle once `forgetSession()` has run. **Fix:** after `forgetSession()`, `accountState()` must still resolve, for example by starting the memoised `startAccountSync()` when nothing has started. Add a test that remounts after sign-out and after deletion. This does not occur with accounts off: `run()` settles `{ me: null }` once and nothing resets it.
+
+### Verdict
+**Merge into the default branch with every switch off: approve.** MC2 and MC3 are closed. **MC1** (`npm run verify` including `qa` on the exact merged tree) is the chief of staff's, and **MC4** (readiness approval) is principal-engineer-ops'. Both must be met before the merge, and my approval does not substitute for either. The open items (PC3's account binding, PC9) are reachable only with `ACCOUNTS_ENABLED` on.
+
+**Staff preview with any switch on: not yet.** Still open: **PC3** (account binding, probe 1 as a test), **PC9** (the remount hang), **PC5** and **PC6**, the privacy reviewer's rulings on W-1710 and the D23 row, and the 390×844 walk of `/account` (privacy preview item 2; the client tests are not a browser). PC1, PC2, PC4, PC7 and PC8 need nothing more from engineering.
+
+### Routed (for the chief of staff; I did not edit board.json)
+1. backend-engineer: the PC3 account binding plus a probe-1 test, and the PC9 fix plus a remount test. I re-read the diff; no new review record is needed.
+2. privacy-reviewer: D23 for `s3c:account-device:v1`, including the identity form PC3 adds, and W-1710. Probe 1 bears on F3's login-CSRF question: an edited `callbackURL` removes the marker.
