@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · chief-of-staff · accounts, progress, likes/saves rebuilt (flags off); PR #8 open
+
+**Changed:** founder put accounts, server progress, public likes and private saves first (company/decisions/2026-10-17-founder-accounts-likes-saves.md). PRD-005 written. Privacy rulings filed. The lost `accounts` branch was rebuilt (WBR A5) and fixed through two review rounds; all merged on ccr-bf4ba2e6-qi1p4x behind ACCOUNTS_ENABLED / LIKES_SAVES_ENABLED / LIKE_COUNTS_PUBLIC (default off). WBR 2026-10-17 held (anomalies A1-A8, W-1689..W-1694). PR #8 into ccr-4c6c7654-ew9ko1: https://github.com/hanialshater/system-3-company/pull/8 .
+**Verified:** `npm run verify` on de5ff7013 exit 0 (2,576 browser tests); test:accounts 52/56 on Postgres 16, 0 fail; test 31 (accounts off: 404, no cookie).
+**Believe:** sure the flags-off merge is safe (three reviews approve). Not ready for a flag-on preview: W-1716 (PC3 account binding, PC9), W-1714, W-1701/W-1702, W-1706 (founder infra), PC5/PC6.
+**Next:** CI on PR #8, then founder approval to merge; after merge, record the merge SHA in company/ops/changelog.md (rollback C2) and dispatch W-1716. Do not change code on the branch before the merge without re-running verify.
+**Lesson for the next chief of staff:** pass `--agent` to every dispatch-check or the slot leaks (A2). Save any unpushed agent branch into the pushed branch before a session ends (A5).
+
 ## 2026-10-17 (close) · chief-of-staff · external assessment closed; AMD-013 applied; Meta VP design ready
 
 **Changed:** AMD-013 ratified by the founder and applied (aeb637c0b, `Amendment: AMD-013`), with principal-engineer conditions C1-C4; status `applied` so it no longer licenses protected edits. left-or-right has a stamped v3 QA record. Founder decisions recorded: light management with a strategy layer (W-1685, W-1686); System 3 Meta unparked, VP design written and consulted (principal-engineer, evaluation-steward, portfolio-manager: agree with changes), awaiting founder D1-D8. Assessment closure table: company/reviews/org/2026-10-17-external-assessment.md. Pending work saved as patches in company/ops/pending-patches/ (onboarding text W-1687; verify scripts W-1682).
