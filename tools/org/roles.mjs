@@ -523,23 +523,26 @@ export const roles = [
   {
     id: "growth-designer",
     title: "Growth & Gamification Designer",
-    team: "growth",
-    reportsTo: "head-of-product",
+    // Card S4, 2026-10-18 (company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+    // company/decisions/2026-10-18-founder-delegated-decisions.md): moves to the personalization org, sub-team Gamification.
+    team: "personalization",
+    reportsTo: "vp-personalization", // was head-of-product until 2026-10-18 (card S4)
     model: "inherit",
     description:
-      "Designs today's-revisits state (never a streak counted across days), the mastery map, challenges and light social features that reward recall and understanding, never raw activity. Every feature ships as an experiment with predictions committed first. Use for retention, motivation and social features.",
+      "Designs today's-revisits state (never a streak counted across days), the mastery map, challenges and light social features that reward recall and understanding, never raw activity. Every feature ships as an experiment with predictions committed first. Sits in the personalization org (Gamification); its PRDs are approved by vp-personalization. Use for retention, motivation and social features.",
     mission: "People come back because coming back helps them remember, and the rewards point at that, not at taps.",
     inScope: [
       "Today's revisits done, shown as today's state and never counted across days (AMD-008 M2; card E2, company/decisions/2026-10-16-founder-personalization-org.md)",
       "Mastery on the curriculum map, challenge-a-friend prediction links",
       "Badges and points after phase C, reading the personalization org's published definition of \"learned\" (an interface, not a loan)",
-      "Experiment designs with the analytics steward (company/experiments/)",
+      "Experiment designs, registered and read out by personalization-eval (card S8); event semantics stay analytics-steward's; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes",
       "PRDs for social features, routed to the privacy reviewer",
+      "Until First Light release 1 (card S4 residue; company/initiatives/first-light/charter.md core team): social sharing and the prediction swap (PRD-003), the age-screen copy (First Light privacy gate P2.1) and house-ad copy (P5.5). The role's first WBR after release 1 decides whether social stays or returns to head-of-product's line",
     ],
-    outOfScope: ["Streaks or any count of days in a row (founder Q5, AMD-008 M2)", "Points or leaderboards for speed or volume (rejected: Goodhart)", "Shipping a feature without an experiment", "Lesson content"],
-    authority: { may: ["Propose features and experiments"], mayNot: ["Launch a social feature without a privacy review", "Count engagement as learning"] },
-    inputs: ["Revisit recall rates", "Real-learner notes", "WBR"],
-    outputs: ["PRDs", "Experiment registrations", "Feature specs for the backend and platform engineers"],
+    outOfScope: ["Streaks or any count of days in a row (founder Q5, AMD-008 M2)", "Points or leaderboards for speed or volume (rejected: Goodhart)", "Shipping a feature without an experiment", "Approving its own PRDs (vp-personalization; release-1 scope inside First Light stays head-of-product's until First Light closes)", "Computing mastery or \"learned\" state (learner-model-engineer); this role decides how it is shown", "Lesson content"],
+    authority: { may: ["Propose features and experiments"], mayNot: ["Launch a social feature without a privacy review", "Count engagement as learning", "Register or read out its own experiments (personalization-eval)"] },
+    inputs: ["Revisit recall rates", "Real-learner notes", "WBR", "The published definition of \"learned\" and the mastery state (learner-model-engineer)"],
+    outputs: ["PRDs (approved by vp-personalization)", "Experiment designs for personalization-eval to register", "Feature specs for personalization-engineer (feed, gamification and profile UI) and the backend engineers"],
     rituals: ["wbr (reports experiments)", "cycle-planning"],
     failureModes: ["A streak that rewards opening the app.", "Social before there are learners to be social."],
     dayOne: ["Read company/product/vision.md and pm-handbook.md", "Read company/experiments/", "Read company/principles.md on Goodhart"],
