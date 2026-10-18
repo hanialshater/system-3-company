@@ -19862,10 +19862,11 @@
       "id": "W-1708",
       "title": "Approve or return the accounts readiness record (MC4 of company/engineering/reviews/2026-10-18-accounts-rebuild-review.md); PC5 preview env and PC6 fra1 proof on the preview record",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1709",
@@ -19899,6 +19900,33 @@
       "id": "W-1712",
       "title": "Privacy O5: s3c:events:v1 (D2) has no reader; name a reader or stop writing it",
       "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1713",
+      "title": "First production deploy carrying the accounts merge: D1 run test 31 against the production URL; D2 vercel env ls (names only) shows no accounts/Better Auth/Resend/database variables on Production; add R-d steps (migrate before ACCOUNTS_ENABLED=on; redeploy after a later migration, then /me returns 401 or 200) to the runbook W-1150",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1714",
+      "title": "Ruling 1 (PE-ops): log Better Auth error codes from an exact allow-list (SCHEMA_MISMATCH first) as code=<CODE> in http.ts logFailure; tests per the readiness record; before preview-on",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1715",
+      "title": "Register risk R-a at L2/I3 (accounts readiness A-12)",
+      "owner": "principal-engineer-ops",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-18",
