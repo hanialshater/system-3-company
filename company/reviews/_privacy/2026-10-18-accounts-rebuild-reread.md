@@ -72,3 +72,85 @@ Neither is a flags-off issue: with accounts off the sink is never set.
 3. **principal-engineer-ops / release-manager:** preview items 3-5 and the founder-approved deploy.
 4. **growth-designer / evaluation-steward:** copy for the saves line and the Like absence rule; W-1697 mastery-surface list.
 5. **chief-of-staff:** board items for O1 and the preview conditions (I did not touch the board).
+
+
+---
+
+# Section 2, 2026-10-18 (later): re-read of the fixes, commit beb83bfd4 (merged as de5ff7013), flags off
+
+owner: privacy-reviewer (Elif) · I read `src/lib/account-client.ts` whole, the `src/kit/progress.ts` and `AccountView.tsx` diffs, tests C1-C8 (`tests/accounts/client-sync.test.mjs`) and EDD-008 A6 **after** the code. **I did not run any test:** there is no Postgres server here (`pg_isready`: no response) and no `node_modules`, so C4, C6, C7 and C8 (which need the database) are read, not run. Every "closed" below rests on the code and the tests' assertions; the author's report of passing runs is not mine. I do not approve my own proposals; D23 is the author's proposal, which I add or refuse.
+
+## 1. P-1 and P-2
+
+| | Verdict | Evidence |
+|---|---|---|
+| P-1 whole entry uploaded | **closed on reading (test not run by me)** | `updateProgress` hands the sink `before` (a fresh storage read) and `after`; `progressDelta` sends a `completedAt` or `predictedCorrectly` only if unset before, and recalls whose `at` was not there before, else `null` (account-client.ts 119-127). C4 asserts: nothing sent before the answer (`writes(profile) == []`); declining uploads nothing; a recall on a declined lesson sends exactly that recall; a replay of a declined completed lesson sends nothing; server rows hold one recall and no anonymous completion; the next load makes only `GET /me`, `GET /progress`. This is my script (a) |
+| P-2 second account inherits the first's history | **closed for the device-copy path; residuals below** | Sign-out puts back `own`, removes the pulled copy and the key (`endAccountOnDevice`), after flushing pending deltas and only if the server confirms (a failed sign-out changes nothing, C8). C6 asserts after A's sign-out `local == anon` exactly and no device key; B is offered only the anonymous history (`ask` 2 lessons / 2 recalls, nothing of A's lesson-d); B's rows hold B's two events and nothing of A's. C7: a session ended elsewhere, and a new link over an active session, both restore `anon` before B's count. C8: "Also clear this device" removes progress, device key, saves, events; deletion restores `anon`. This is my script (b) |
+
+**Residuals, none blocks:**
+1. A delta that failed offline and was not retried before sign-out never reaches the account and leaves with the account copy (A6.4 "Cost"). Accepted, as in section 1: data not collected, not data lost from the device's own history.
+2. `s3c:events:v1` (D2) is not restored or cleared at sign-out unless the box is ticked. It holds slug, correct and time of what A played; nothing reads it. It is the existing open finding (inventory section 8), now with a shared-device reason to stop writing it or give it a reader.
+3. Two tabs: a tab opened before a second sign-in keeps its sink registered (module state is per page), so its later plays push deltas under the new cookie. Only the change is pushed (P-1), so no old history moves. Accept for staff preview; look at it in the account walk.
+4. A forged `?signed-in=1` on an active session only ends the local copy and re-asks the merge screen; the own history is restored and nothing is lost. Harmless.
+5. The two merge checkboxes start ticked. The learner still has to press "Import", and "Don't import" sits next to it, so I accept it; I would prefer unticked (copy decision for growth-designer).
+
+**O1 (P-1, P-2): closed on this reading.** O2 (M5 record names a missing file): A6.7 and the changed record name S14; closed on reading, S14 run owed on a built host.
+
+## 2. W-1710: what sign-out must do on a shared device
+
+**Ruling: the author's default stands.** At sign-out, deletion, an ended session, and a new sign-in link over an active session, the account's pulled copy leaves the device and the device's own pre-sign-in history is put back exactly as it was. "Also clear this device" is offered at sign-out and at deletion, **unticked**.
+
+Reasons (so the next reader can overturn them with a fact):
+- The pre-sign-in history belongs to whoever used the device before, who may not be the person signing out; clearing it by default destroys data on a guess. The account copy is what the signing-out person put on the device, and it is removed.
+- The opposite default (clear everything) would make "Keep my history" cost the learner their own local history at every sign-out; on a one-learner device that is plain loss.
+- The residual risk on a truly shared device (A's pre-sign-in history visible to B) is the same as before accounts existed, and the box answers it.
+
+Conditions (growth-designer owns the words; the meaning must stay true):
+1. The sign-out line says what stays. As built (AccountView ~line 277) it is true; keep it.
+2. The box is visible without scrolling next to the Sign out button at 390x844 (preview walk).
+3. D2 (events) is not part of the restore (residual 2); the box is the only way it goes. Keep the box's effect list exact: progress, events, saves, device key (`clearThisDevice`).
+4. No timer, retry queue or "remember me" on the device key; any such change comes back to me.
+
+## 3. Mailed-link login-CSRF: does it need a UI cue?
+
+**Yes, narrowly; no new storage.** The attack: someone mails the victim a valid sign-in link for the attacker's own account (the link is not bound to a browser). The victim clicks, is signed into the attacker's account, lands on `/account` and meets "Bring this device's history?" with both boxes ticked and an "Import" button. One click copies the victim's history into an account the attacker can read. The page says "Signed in as {email}" at the top, but nothing ties that to the button, and the victim did not ask to sign in. The code in beb83bfd4 closes the leak toward the next account; this closes the leak toward an account the learner did not choose.
+
+Required (growth-designer words, backend-engineer wiring):
+1. The merge screen names the account where the choice is made, e.g. "Send this device's history to {email}" (`me.email` is already there).
+2. When the page was reached by the sign-in marker (the client already reads `?signed-in=1` once), show one line for that page view only: "You are now signed in as {email}. If you did not just ask for this, sign out." with the sign-out control next to it. Nothing stored.
+3. The decline path stays one tap and sends nothing (already true, C4).
+
+**When:** before any non-staff address (go-live); I check it in the preview walk at 390x844. It does not block the flags-off merge, nor a staff preview on staff addresses. A browser-bound link (server half) is the principal engineer's call; I do not require it if the cue ships.
+
+## 4. D23 `s3c:account-device:v1`: added
+
+Added to `company/engineering/data-inventory.md` section 1a, with two edits to the author's text: retention says plainly that it stays until site data is cleared if the learner never returns after the session ends (a device key has no timer), and "never sent" cites my read of `account-client.ts` (no `fetch` reads it), not a test. It holds a copy of D1 and a three-value answer; **no email, no user id, no account id**, so it adds no category beyond D1 and shows no more than D1 does on the device. Reason, owner and deletion path are stated; legal basis as D1 (counsel, F-25). Written only while signed in, never with accounts off (C2, A6.1 row 5). A section 10 status delta records the P-1 closure, D23 and the D2 note. The backend-engineer should confirm the row; I do not approve my own file.
+
+## 5. Verdicts
+
+**Merge to the default branch with all three flags off (de5ff7013): pass, no condition on me.** The fixes add one device key written only when signed in, a lazy client chunk and a cacheable 404 that now caches (MC2; test 34 is the browser check, not run by me). With the flags off no route works, no sink is set, no key is written. I did not re-run S1-S15; I read the three non-test files they scan that changed (`account-client.ts`, `progress.ts`, the engagement test).
+
+**Staff preview with flags on: P-1 and P-2 no longer block.** Still open before the founder-approved flag deploy:
+1. Items 2-6 of "Before a staff preview" above, unchanged (UI walked at 390x844, network evidence, my deletion-check run, environment, mail).
+2. From this section: the account-naming merge screen and the sign-in notice (3.1, 3.2), and "Also clear this device" next to Sign out (2.2), walked in item 2.
+3. C4-C8, S14 and test 34 run on a host with Postgres and `node_modules` (I could not), recorded in readiness.
+
+Go-live: G1-G6 and P1.7 unchanged; 3.1 and 3.2 are added as go-live conditions.
+
+## Objections (section 2)
+
+| # | Objection | Must be answered by | Status |
+|---|---|---|---|
+| O1 | P-1, P-2 | backend-engineer | closed on reading (tests not run by me) |
+| O2 | M5 record | backend-engineer | closed on reading (S14 run owed) |
+| O4 | Login-CSRF cue (section 3) | growth-designer (words), backend-engineer (wiring) | open, before go-live; walked in preview |
+| O5 | D2 events not cleared at sign-out; no reader | learner-model-engineer | open (inventory section 8), not a block |
+| O3 | Carried: P1.7, gate proposed and mine, named reviewer for the count | founder | open |
+
+## Next moves
+
+1. **backend-engineer:** confirm D23; wire 3.1 and 3.2 once words exist; run C4-C8, S14 and test 34 where Postgres exists.
+2. **growth-designer:** words for 3.1, 3.2 and unticked merge boxes (residual 5).
+3. **learner-model-engineer:** name a reader for `s3c:events:v1` or stop writing it (O5).
+4. **principal-engineer:** merge decision stands on this record; decide whether a browser-bound link is wanted.
+5. **chief-of-staff:** board items for O4 and O5 (I did not touch the board).
