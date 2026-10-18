@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · chief-of-staff · roles keep/remove draft for the founder
+
+**Changed:** wrote `company/ceo-office/2026-10-18-role-keep-remove.md`: every role with runs, board load, handoffs and a keep/remove verdict. Board W-1671 (chief-of-staff-ceo-office) to review it and put it to the founder alongside F-13/F-33. No role, roster, subagent or seat changed.
+**Believe:** 57 keep (incl. founder), 44 remove: 34 strand managers (keep only cm-math-discrete and cm-cs-algorithms), plus domain-scout, courses-lead, visual-designer, mockup-artist, design-engineer, illustrator, researcher, vp-rnd, localization-lead, localizer. Fairly sure on the counts (events.jsonl ends 10-16; lane-named dispatches undercount some roles). Medium confidence on visual-designer, design-engineer and vp-rnd, which are judgement calls on overlap.
+**Next:** founder decides per row; CEO office runs offboarding for each accepted removal.
+
 ## 2026-10-17 (later) · chief-of-staff · release r9 LIVE
 
 **Changed:** production deploy r9 is live at https://system-3-company.vercel.app, from commit 8c753ada (deploy tag), built by Vercel's git integration after the founder said "add one with deploy tag" and "Go" (company/decisions/2026-10-17-founder-git-deploy-r9.md; reverses F-48: `vercel.json` `git.deploymentEnabled` is now true). The Deploy to Vercel workflow failed three times (1037: traced artifacts vs .vercelignore, fixed 52db8a0a; 1038: upload failed with the error hidden, fixed by stdout diagnostics + HQ turbopackIgnore + `--archive=tgz` at 05238276, never re-run).
