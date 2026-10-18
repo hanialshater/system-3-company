@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Accelerate",
+    "author": "Nicole Forsgren, Jez Humble and Gene Kim",
+    "year": 2018,
+    "work": "accelerate-small-2018"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "B uses fifteen work minutes plus two setup minutes per batch in a sixty-minute window. What is B’s toy result?",
+    "options": [
+      "60",
+      "30",
+      "45",
+      "40"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Five-minute batches",
+      "values": [
+        60,
+        5,
+        2
+      ]
+    },
+    {
+      "label": "Fifteen-minute batches",
+      "values": [
+        60,
+        15,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Overhead"
+  ],
+  "unit": "work minutes",
+  "bookIdea": "Accelerate connects delivery performance with practices that include working in small batches.",
+  "modelBoundary": "A completes {A} work minutes; B completes {B}. Larger batches pay setup fewer times here; the picture contains no benefit from faster feedback. Setup accounting only; delivery speed, learning and the book’s empirical findings are not modeled.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

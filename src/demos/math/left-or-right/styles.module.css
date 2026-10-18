@@ -1,0 +1,118 @@
+/* Fills the kit's stage, so the picture can take whatever height the text and controls leave. */
+.wrapAll { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 2px; overflow: visible; }
+.wrapAll > :global(.row) { margin-top: 4px; justify-content: center; flex-wrap: wrap; }
+/* Design-lead D3 (company/design/reviews/2026-10-17-left-or-right-v2-departures.md): no margin above the
+   Turn over · Mirror row (the row right after the picture), so readout and both toggles share the stage window at
+   360x640 (need 278, window 279). The chip row keeps its 4 px. */
+.wrapAll > .picArea + :global(.row) { margin-top: 0; }
+.wrapAll :global(.control) { min-height: 44px; min-width: 44px; }
+
+/* Readout and seen line: outside every transformed element, space always reserved (L-4). Two equal
+   columns, so "Sum" does not move when the name appears or goes. */
+.readout { margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.6em; font-weight: 700; font-size: 1rem; line-height: 1.3; }
+.readout > :first-child { text-align: right; }
+.hand { text-align: left; }
+.seen { margin: 0; text-align: center; font-size: 0.82rem; font-weight: 600; line-height: 1.3; min-height: 1.3em; color: var(--muted); white-space: nowrap; }
+
+/* The picture area takes the stage height left over (a size container); the picture is the largest square
+   card that fits it: at most 320 px wide (390 phone), at least 190 px (short phones scroll the stage a little
+   rather than shrink the knot further). No vertical room (design-lead S4 D1, 2026-10-17): the strands reach at
+   most 43 of the card's 58 half-height units, so the 15 % mid-flip growth stays inside the card box; overflow
+   stays visible all the way up to the kit's .stage (L-5). */
+.picArea {
+  flex: 1 1 0;
+  min-height: 190px;
+  container-type: size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.pic { width: max(190px, min(100cqw, 320px, 100cqh)); margin: 0 auto; overflow: visible; }
+.room { padding: 0; overflow: visible; }
+.box { position: relative; aspect-ratio: 1 / 1; overflow: visible; }
+
+/* Mirror wrapper (B2): scaleX(-1) set from script, never animated; opacity is the only transition (L-2).
+   It is the card's parent, so it carries the perspective (L-5: >= 1200 px). */
+.mirrorWrap {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  transition-property: opacity;
+  transition-duration: 100ms;
+  transition-timing-function: linear;
+}
+/* The card: preserve-3d, rotateY 0 / 180 deg, 300 ms ease-in-out (DL-C3). */
+.card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 300ms ease-in-out;
+}
+/* Both faces hidden from behind (PE-C3); the back face is pre-rotated (PE-C1). No background, border or shadow. */
+.face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  overflow: visible;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.front { transform: rotateY(0deg); }
+.back { transform: rotateY(180deg); }
+
+/* S2: stroke 2 units, butt caps. */
+.strand { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: butt; stroke-linejoin: round; }
+.probe { fill: none; stroke: none; }
+
+/* Marks overlay (L-1, L-3): same viewBox, laid exactly over the picture, never transformed.
+   Hide in 100 ms at the press; show in 150 ms at rest. */
+.marks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 150ms linear;
+  z-index: 1;
+}
+.marks.marksHidden { opacity: 0; transition-duration: 100ms; }
+.badge { pointer-events: none; }
+.badge circle { fill: var(--bg-2); stroke: var(--fg); stroke-width: 0.5; }
+.badge text {
+  fill: var(--fg);
+  font-size: 7px;
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Reduced motion only: the 1 s "Turned over" label (DL-C3). */
+.turnedLabel {
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  transform: translate(-50%, -100%);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* At the reveal the kit's stage is content-sized and overflow: visible, so the area gets a fixed height and
+   there is no room (D1): the strands reach at most 43 of the card's 58 half-height units, so even the
+   15 % mid-flip growth (49.5) stays inside the card box, and nothing visible can cross the text above
+   (phone fit, build.md). */
+.atReveal .picArea { flex: none; min-height: 0; height: 240px; container-type: normal; }
+.atReveal .pic { width: 240px; }
+.wrapAll.atReveal { gap: 0; }
+.wrapAll.atReveal > :global(.row) { margin-top: 0; }
+/* S4 D2: the Turn over · Mirror row is not rendered at the reveal (Demo.tsx); the chip row stays. */

@@ -1,6 +1,6 @@
 // D2a (company/reviews/_privacy/2026-10-16-w1538-settings-api.md) and C7 (company/engineering/reviews/
 // 2026-10-16-w1538-settings-api.md): an explicit personalizationOn:false must survive a PUT that overlaps it, whether
-// that PUT is a subjects-only "set" or a "merge" from a device that still shows "on". W-1538.
+// that PUT is a subjects-only "set" or a "merge" from a device that still shows "on". W-1717.
 //
 // What this file proves, and what it does not:
 // - The handler no longer reads the row before writing it: a PUT is one store.put call with the request's keys only.

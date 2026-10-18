@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Knowledge Illusion",
+    "author": "Steven Sloman and Philip Fernbach",
+    "year": 2017,
+    "work": "knowledge-missing-2017"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Serial team capacities are fetch5, assemble3, check5 assemblies per minute. Completed assemblies per minute?",
+    "options": [
+      "0 assemblies",
+      "3 assemblies",
+      "5 assemblies"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Assembly absent",
+      "values": [
+        5,
+        0,
+        5
+      ]
+    },
+    {
+      "label": "Assembly supplied",
+      "values": [
+        5,
+        3,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "Fetch",
+    "Assemble",
+    "Check"
+  ],
+  "unit": "assemblies/min",
+  "bookIdea": "The Knowledge Illusion describes understanding as supported by knowledge distributed beyond the individual.",
+  "modelBoundary": "Without assembly the team completes {A}; with it {B}. Knowing the surrounding steps does not execute the missing transformation.",
+  "doesItHoldUp": "Does it hold up? Team throughput is not an assessment of anyone’s understanding or awareness of ignorance."
+}

@@ -1,6 +1,6 @@
-// The learner's feed settings: shape, validation and the read rules (W-1538). Pure: no I/O, no logging.
+// The learner's feed settings: shape, validation and the read rules (W-1717). Pure: no I/O, no logging.
 // Owner: learner-data-engineer. Privacy ruling: company/reviews/_privacy/2026-10-16-personalization-batch-reads.md
-// §3 (B1–B4), §3.1 (D1–D3), §3.2 (G1–G4). Schema: company/personalization/data/00N_settings.up.sql (W-1521 draft).
+// §3 (B1–B4), §3.1 (D1–D3), §3.2 (G1–G4). Schema: company/personalization/data/00N_settings.up.sql (W-1700 draft).
 // Design note for this API: company/personalization/data/2026-10-16-settings-api-note.md
 //
 // Every value here is a choice the learner stated (SS3). Nothing derived is stored (D20): no fingerprint, need

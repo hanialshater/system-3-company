@@ -1,0 +1,185 @@
+{
+  "slug": "algo-mo-query-order",
+  "title": "Can the questions move less?",
+  "hook": "Offline questions can travel through an array in a different order.",
+  "domain": "cs",
+  "concept": "algo-mo-query-order",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Reorder offline interval queries into blocks so a maintained window moves fewer times."
+    ]
+  },
+  "misconception": "Queries must be processed in arrival order even when no updates occur.",
+  "objective": "Reorder offline interval queries into blocks so a maintained window moves fewer times.",
+  "claims": [
+    {
+      "id": "cs.algo-mo-query-order.c1",
+      "text": "Offline queries can be reordered because no update changes the underlying values. The maintained frequency table reuses the current interval as its endpoints move; the answers are stored by original query identity.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c2",
+      "text": "Offline questions can travel through an array in a different order.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c3",
+      "text": "For [1,2,1,3,2,4], process [0,1],[4,5],[1,4],[0,5] in block-size-2 Mo order. How many endpoint moves from empty [0,-1]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c5",
+      "text": "Block order 0,2,3,1; endpoint moves 12.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c6",
+      "text": "Offline query intervals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c8",
+      "text": "Reuse maintained window",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c9",
+      "text": "answers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c10",
+      "text": "moves",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c11",
+      "text": "query",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[0].run().frames[1].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c12",
+      "text": "Arrival order 0,1,2,3; endpoint moves 16.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#mo_query_order.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c13",
+      "text": "May Mo queries be reordered when intervening updates change values without extra machinery?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c14",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c15",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c16",
+      "text": "Only by right endpoint",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mo-query-order.c17",
+      "text": "The ordinary static-state reuse assumes a fixed underlying array.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-mo-query-order\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "May Mo queries be reordered when intervening updates change values without extra machinery?",
+    "options": [
+      "No",
+      "Yes",
+      "Only by right endpoint"
+    ],
+    "answer": 0,
+    "why": "The ordinary static-state reuse assumes a fixed underlying array."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-mo-query-order/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-mo-query-order",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

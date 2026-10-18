@@ -14,7 +14,7 @@ Every lesson exposes the features the composer needs, consistently, from data we
 ## In scope
 
 - The dims schema (company/personalization/2026-10-16-brief-response.md §2.4)
-- The derived index from meta.json and content/curriculum (read-only inputs), where W-1498 places it
+- The derived index from meta.json and content/curriculum (read-only inputs), where W-1677 places it
 - The misconceptionStrength rating protocol and the pilot ratings (probability + cs)
 - Coverage reports (e.g. Life Hacks' prerequisite edges)
 

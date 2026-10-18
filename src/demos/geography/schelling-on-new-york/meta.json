@@ -1,0 +1,268 @@
+{
+  "slug": "schelling-on-new-york",
+  "title": "Schelling on New York",
+  "hook": "Schelling's 1971 sorting model on New York's outline: what can it tell you, and what not?",
+  "domain": "geography",
+  "concept": "segregation-model-nyc",
+  "format": "agent-based-simulation",
+  "status": "draft",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the Schelling mechanism from the Economics lesson (a simple moving rule sorts a grid), though this card explains its own households and rule",
+      "that cities can have neighbourhoods where one group is concentrated",
+      "decimals between 0 and 1"
+    ],
+    "doesNotKnow": [
+      "that a segregation index depends on the size of the unit it is measured on (a random mix already scores about 0.4 to 0.5 in small boxes)",
+      "what a model like this can and cannot say about a real city"
+    ]
+  },
+  "misconception": "If a simple model reproduces a city's pattern, then that is why the city looks that way. Second: a mix placed at random would score a segregation index near zero.",
+  "objective": "The learner can explain that an unevenness index such as D depends on the unit it is measured on (a random mix scores about 0.45 in 2 x 2 boxes and less in larger ones, and a census tract holds thousands of people), that in this toy model a simple moving rule at a fixed 30% setting sorts the grid to about 0.75, with different random mixes clumping in different places, and that the model leaves out money, prices, history and who was allowed to live where, so it does not show why any real city looks as it does.",
+  "claims": [
+    {
+      "id": "geography.schelling-on-new-york.c4",
+      "text": "The index of dissimilarity D measures how unevenly two groups are spread over a set of units, from 0 (both groups spread in the same proportions over every unit) to 1 (no unit holds both groups); it equals the share of one group that would have to change units for an even spread. On the card only as 'how unevenly spread (0 even, 1 fully apart)'; the 'would have to change units' gloss is in this claim only (cultural review R4).",
+      "support": "source",
+      "source": "Massey, D. S. and Denton, N. A. (1988). The dimensions of residential segregation. Social Forces 67(2): 281-315 (evenness, index of dissimilarity). Computed in engine.ts dissimilarity(): D = 0.5 * sum over aligned k x k blocks of |a_i/A - b_i/B|, over agents only (walls and empty cells ignored). Builder: citation from memory, not opened (no egress). | FACT-CHECK 2026-10-14: VERIFIED. Citation (Social Forces 67(2): 281-315, 1988; evenness as one of five dimensions, indices surveyed per dimension) confirmed from search-indexed bibliographic and abstract listings only; the paper itself was not opened (publisher unreachable). Definition, endpoints and the 'would have to change units' gloss confirmed by derivation from the formula: 0 iff a_i/A = b_i/B in every unit, 1 iff no unit holds both; because the signed terms sum to 0, the positive part equals D, the share of one group to move for an even spread. engine.ts dissimilarity() re-implemented independently, same values. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md. | FACT-CHECK 2026-10-14 (v3): Still holds against v3: the question's 'a segregation index: 0 even, 1 fully apart' and the stage's 'Spread in boxes (0 even, 1 apart)' stay within this claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c5",
+      "text": "In this model, two equal groups placed at random on the grid already score about 0.4 to 0.5 in 2 x 2 boxes of cells, before anyone moves.",
+      "support": "simulation",
+      "source": "engine.ts run(seed, 30), frames[0], dissimilarity(frame, 40, 2). check.mjs (2026-10-14): the lesson's seeds (1 to 50 without 3 and 36, 48 seeds) start at 0.42-0.53, mean 0.46; mix 1 (seed 1, the default) 0.47, mix 2 0.44. Seed 1 is simply the first seed, not chosen for its result; seeds 3 and 36 are left out of New mix because their settled frame leaves one region of the city more than 90% one group (edge artefact, cultural review R2), not for their D. Same rule as the brief's check script (check.mjs shows start frames, end frames and ticks identical for seeds 1 to 50). v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): the question says 'the 2 x 2 boxes drawn on it (a segregation index: 0 even, 1 fully apart)'; the stage readout 'mix N' is the seed; the reveal quotes the start value of the learner's own pinned mix P (spec section 7), which is on the reveal stage's caption. Reset to unverified (wording). | FACT-CHECK 2026-10-14 (v3): VERIFIED. I re-ran check.mjs and wrote my own version of the model in Python from the rule described in engine.ts. Over the 48 lesson seeds the random start scores 0.42-0.53 in 2 x 2 boxes (mean 0.46); mix 1 0.47, mix 2 0.44. The question's '2 x 2 boxes drawn on it' matches the stage, which draws 2 x 2 boxes at the start. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): the question is now learning design v3's exact text, 'Two equal groups are mixed at random. Before anyone moves, what do the 2 x 2 boxes score?', with options '0 to 0.1', '0.4 to 0.5', '0.9 to 1' ('About' dropped from all three); the 0-to-1 gloss is now only on the stage ('Spread in boxes (0 even, 1 apart):' above the 2 x 2 chip, which reads '?'). The reveal no longer restates P's start value in its text (it is on the reveal caption). check.mjs: 4 of the 48 lesson seeds show a 2 x 2 start above 0.50 (seeds 8, 12, 43 at 0.51, seed 23 at 0.53), so a learner whose pinned mix is one of these sees '0.4 to 0.5' in the verdict and 0.51 or 0.53 on the caption (accepted residual, learning design v3, decision 3). Reset to unverified (wording). | FACT-CHECK 2026-10-14 (v4): VERIFIED. Engine unchanged since v3; check.mjs and my own model agree: the 48 lesson seeds start at 0.42-0.53 in 2 x 2 boxes (mean 0.46). The question is asked on mix 1, which starts at 0.47. Seeds 8, 12 and 43 start at 0.51 and seed 23 at 0.53, which is still 'about 0.4 to 0.5'. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c6",
+      "text": "In this model, at the 30% setting (move if fewer than 30% of occupied neighbouring cells hold the same group), the grid settles with nobody moving, and D in 2 x 2 boxes rises to about 0.75.",
+      "support": "simulation",
+      "source": "engine.ts run(seed, 30). check.mjs (2026-10-14), the lesson's 48 seeds: settled D in 2 x 2 boxes 0.67-0.83, mean 0.75; all settle in 7-24 ticks; mix 1 (seed 1): 0.47 -> 0.76 in 7 rounds; mix 2: 0.44 -> 0.76 in 12 (matches the brief's real-mask numbers, company/domains/briefs/checks/nyc-mask-40.md). v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): the slider is removed (design review D5) and the setting is fixed at 30%, the old cap (cultural review 2, ruling (a)); the rule is a static line, 'Move if fewer than 30% of neighbours are like them'. The readout is 'Round' (was Tick) and 'would move N%' (was 'would stay'), N = ceil(100 x movers / agents) at the frame shown, so it reads 0% only when nobody would move; check.mjs asserts that no frame of any lesson seed at 30% reads 0% with movers > 0, and that no region (at least 10 agents) is over 90% one group at any round at 30% (worst 0.86). Reset to unverified. | FACT-CHECK 2026-10-14 (v3): VERIFIED. Re-run and my own model: all 48 seeds settle at 30% in 7-24 rounds with nobody left to move; settled D in 2 x 2 boxes 0.67-0.83, mean 0.75. 'would move N%' (rounded up) reads 0% exactly when nobody would move, on every round of every seed. The rule line matches the code (fewer than 30% of occupied neighbouring cells alike). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): the readout label 'Round' is now 'round of moves' (learner review v3, issue 8: 'Round' unexplained); the rule line is unchanged; S3 above it is now 'Model rule, not anyone's measure:' (see c12). Reset to unverified (readout wording). | FACT-CHECK 2026-10-14 (v4): VERIFIED. Engine unchanged; all 48 seeds settle at 30% in 7-24 rounds, settled 2 x 2 D 0.67-0.83 (mean 0.75). 'round of moves' is the same count as 'Round' was: one round, every would-be mover moves once. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c7",
+      "text": "D depends on the box size it is measured in: the same model grid scores less in larger boxes; at the random start about 0.46 in 2 x 2, 0.26 in 4 x 4 and 0.14 in 8 x 8 boxes, and settled at 30% about 0.75, 0.53 and 0.33.",
+      "support": "simulation",
+      "source": "engine.ts dissimilarity(frame, 40, k) for k = 2, 4, 8 over the lesson's 48 seeds (check.mjs, 2026-10-14): start 0.42-0.53 (mean 0.46) / 0.21-0.31 (0.26) / 0.10-0.19 (0.14); settled at 30% 0.67-0.83 (0.75) / 0.44-0.64 (0.53) / 0.22-0.45 (0.33). Mix 1: start 0.47 / 0.27 / 0.12, settled 0.76 / 0.53 / 0.34. Mix 2: start 0.44 / 0.24 / 0.14, settled 0.76 / 0.54 / 0.31. Single cells (1 x 1) score 1.00 (every cell holds at most one household); this stays in the source only, the card no longer has a 1 x 1 chip (spec section 3). v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): on the stage each box chip the learner has pressed shows its value at the start and now; the reveal quotes the start value of the pinned mix P in the largest box size other than 2 x 2 that the learner looked at on P (k*), and that value is on the reveal stage's caption. Reset to unverified (text). | FACT-CHECK 2026-10-14 (v3): VERIFIED. Re-run and my own model: means at the start 0.46 / 0.26 / 0.14 and settled 0.75 / 0.53 / 0.33 in 2 x 2 / 4 x 4 / 8 x 8 boxes. On every round of every lesson seed, D is lower in 4 x 4 than 2 x 2 and lower again in 8 x 8. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c8",
+      "text": "In this model, a simple moving rule sorts the grid: a simplified version of Thomas Schelling's segregation model.",
+      "support": "simulation",
+      "source": "Simulation as in c6. Model: Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186 (verified as a citation in economics.mild-preferences-sharp-divides.c6; the stage rule is the same simplified variant, moving to a random empty cell). Reworded per cultural review R3: 'a simple moving rule', not 'preferences'. | FACT-CHECK 2026-10-14: VERIFIED. Simulation as c6 (the sorting itself reproduces). Schelling 1971 citation rests on economics.mild-preferences-sharp-divides.c6 (verified 2026-10-14, secondary records). engine.ts reproduces abm.ts frame for frame on an all-land mask (check.mjs), so 'simplified version' carries over. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md. | FACT-CHECK 2026-10-14 (v3): Still holds against v3: 'The rule sorted your mixes into clumps' says less than this claim and does not say 'preferences'. | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): the hook now names the model: 'Schelling's 1971 sorting model on New York's outline: what can it tell you, and what not?' (learner review v3: 'Schelling' was never explained). '1971' and 'Schelling' are this claim's citation; 'sorting model' says no more than 'a simple moving rule sorts the grid'. The reveal no longer says 'The rule sorted your mixes into clumps'; it says 'your mixes clumped in different places' (c16). Reset to unverified (new address in the hook). | FACT-CHECK 2026-10-14 (v4): VERIFIED. The hook's 'Schelling's 1971 sorting model' names the citation already checked (Schelling 1971, via economics.mild-preferences-sharp-divides.c6) and claims no more than 'a simple moving rule sorts the grid'. 'New York's outline' is c11. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c9",
+      "text": "This model does not show why any real city looks as it does.",
+      "support": "convention",
+      "source": "Judgement about the model's scope (cultural review R3, brief claim 9): the rule has no money, prices, jobs, history or rules about who may live where (see c14), both groups follow the same rule and may move anywhere, and the grid is not a map of people (c12). Shown in the reveal, in the same paragraph as the model's result. | FACT-CHECK 2026-10-14: VERIFIED (scope judgement). Read engine.ts: inputs are only mask, empty share, two equal groups, seed and threshold; agents move to any empty cell at no cost. A model with none of the causes listed in c14 cannot show why a real city looks as it does. The card's wording ('does not show') stays within that. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md. | FACT-CHECK 2026-10-14 (v3): Still holds against v3: 'this model does not show why real cities look as they do' says the same thing as this claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10a",
+      "text": "Late-1930s US government maps graded neighbourhoods in US cities for lending risk.",
+      "support": "source",
+      "source": "Mapping Inequality: Redlining in New Deal America, University of Richmond Digital Scholarship Lab, https://dsl.richmond.edu/panorama/redlining/ (the Home Owners' Loan Corporation maps, security grades A-D). Its area-description data (github.com/americanpanorama/HOLC_Area_Description_Data) date most surveys 1937-1939; New York City's map is 1938, so the card says 'late-1930s'. On the card, inside the sentence that begins 'In US cities': 'late-1930s government maps grading neighbourhoods for lending risk'. No acronym, no neighbourhood named beside a grade (R7). v2 (demo-builder, 2026-10-14): split from v1 c10a into c10a (this, Mapping Inequality only), c10d (Aaronson et al. 2021) and c10e (Fishback et al. 2024), one source each, after the fact-check dispute; '1938' changed to 'late-1930s'. Builder: Mapping Inequality site not opened (no egress). | FACT-CHECK 2026-10-14 (v2): VERIFIED. Read the Mapping Inequality data (github.com/americanpanorama): A-D grades, 'Best' to 'Hazardous', with mortgage fields; most surveys dated 1937-1939. The site itself was unreachable. That the Home Owners' Loan Corporation was a federal agency comes from search-indexed descriptions only (Mapping Inequality overview, ICPSR). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10d",
+      "text": "The maps' grades are associated with later outcomes in the graded neighbourhoods, such as home values and home ownership.",
+      "support": "source",
+      "source": "Aaronson, D., Hartley, D. and Mazumder, B. (2021). The effects of the 1930s HOLC 'redlining' maps. American Economic Journal: Economic Policy 13(4): 355-392 (later home ownership, house values, rents and segregation by grade). The authors argue for an effect; the card states only an association, which understates the source. The card says outcomes, not lending: on the card 'The grades are associated with later home values and ownership'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute ('lending' was the authors' inferred mechanism, not a measured outcome). Builder: paper not opened (no egress). | FACT-CHECK 2026-10-14 (v2): VERIFIED from the search-indexed abstract only; the paper was not opened. The abstract reports lower later home ownership, house values and rents in lower-graded areas. 'Associated with' claims less than the authors do, which is acceptable. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10e",
+      "text": "Research is mixed on whether the maps caused these later differences or recorded lending practice that already existed.",
+      "support": "source",
+      "source": "Fishback, P., Rose, J., Snowden, K. and Storrs, T. (2024). New Evidence on Redlining by Federal Housing Programs in the 1930s. Journal of Urban Economics 141: 103462 (NBER Working Paper w29244, 2021): exclusion of such neighbourhoods by federal programmes predates the maps, and the maps had little effect on lending; set against Aaronson et al. (c10d), which finds an effect. On the card: 'research is mixed on whether the maps caused this or recorded earlier practice'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute (the 'mixed' clause needs its own source). Builder: paper not opened (no egress); the date is 2024 (journal) / 2021 (NBER), not 2022 as in R7. | FACT-CHECK 2026-10-14 (v2): VERIFIED from search-indexed abstracts only; the paper was not opened. Fishback et al. find that the FHA's exclusion of these neighbourhoods came before the maps and that the maps had little effect on lending. Set against Aaronson et al. (c10d), this supports 'research is mixed'. Fishback et al. study lending, not later home values, so the disagreement is about cause. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10b",
+      "text": "In US cities, housing and lending discrimination by race widened wealth gaps between groups, largely through home equity.",
+      "support": "source",
+      "source": "Rothstein, R. (2017). The Color of Law: A Forgotten History of How Our Government Segregated America. New York: Liveright (federal, state and local housing and lending discrimination by race; its effect on home equity and so on wealth). On the card, the words 'housing and lending discrimination by race, widening wealth gaps' inside 'In US cities, households did not all have the same choices: the documented history includes housing and lending discrimination by race, widening wealth gaps, and late-1930s government maps ...'. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): split per spec section 12: this claim is narrowed to the housing-discrimination and wealth-gap words; 'households did not all have the same choices' and 'lending discrimination' in the late-1930s grades are carried by c10f. 'by race' added to the card per cultural review 2, pass 4, ruling 6.1, and the claim text moves with the phrase. The card's 'widening' claims slightly less than 'widened' (earlier fact-check note). Builder: book not opened (no egress). STILL NEEDS A PAGE for the home-equity and wealth argument; per cultural pass 3, if none is found, replace the source, not the order. | FACT-CHECK 2026-10-14 (v3): STILL UNVERIFIED. The book could not be opened: archive.org, Google Books, the publisher and other hosts were blocked. A search-indexed blog review cites page 143 for the Levittown home-equity example. That is a lead for whoever opens the book, not a check of it. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): on the card the words are now 'housing and lending discrimination by race, including late-1930s government maps grading neighbourhoods for lending risk, then widening wealth gaps' (bold on 'discrimination by race'), inside 'In US cities, households did not all have the same choices: ...'. 'the documented history includes' was cut for the 120-word cap; order unchanged (discrimination first, then the wealth gap that followed, R3 as amended in cultural pass 3). Still needs the Rothstein page. | FACT-CHECK 2026-10-14 (v4): STILL UNVERIFIED. One more search found no page: interviews and study guides only, and archive.org, census.gov and other hosts are blocked. The page 143 lead from pass 3 still stands for whoever opens the book. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4). | FACT-CHECK 2026-10-14 (v4.1): STILL UNVERIFIED. Book still not opened; searches found the Levittown and Mereday equity examples in excerpts and interviews, but no page. See fact-check pass 5.",
+      "status": "unverified",
+      "note": "FC laneB (fact-checker, 2026-10-16, lane B of the F-46 closeout, worktree base cdee168c; Demo.tsx read first, own derivation; this instance recorded none of these claims): STILL UNVERIFIED (blocks; the lesson stays hidden). Rothstein not opened: archive.org, books.google.com, openlibrary.org search-inside, the Google Books API (daily quota 0) and the Learning for Justice and 1619 Education excerpt PDFs were all refused by the proxy; searches return interviews only, so the p. 143 lead is still unconfirmed. Replacement source OPENED (cultural pass 3: if no page is found, replace the source, not the order): Swope C.B., Hernandez D., Cushing L.J. (2022), The Relationship of Historical Redlining with Present-Day Neighborhood Environmental and Health Outcomes: A Scoping Review and Conceptual Model, J Urban Health 99(6):959-983, doi:10.1007/s11524-022-00665-z, PMC9342590 (full text via the PMC OAI API): 'Redlining thereby contributed to segregation, disinvestment, and racial inequities in opportunities for homeownership and wealth accumulation.' and 'Redlining created unequal opportunity for homeownership and wealth accumulation, contributing to present-day inequalities in wealth and income'. It supports the card words (housing and lending discrimination by race, then widening wealth gaps). It does not support this claim's 'largely through home equity', which is not on the card. FIX (demo-builder applies; cm-geography approves the source swap): text -> 'In US cities, housing and lending discrimination by race contributed to wealth gaps between groups (card: housing and lending discrimination by race ... then widening wealth gaps).'; source -> the Swope et al. citation and the two quotes above; keep unverified for a fact-checker other than the builder. Card text unchanged. Record: company/reviews/schelling-on-new-york/2026-10-16-fact-check.md. | FC lane-A (fact-checker, 2026-10-16, base cdee168c): VERIFIED, on opened peer-reviewed sources other than the one cited (Rothstein 2017 is still unopened: no reachable copy). Card (Demo.tsx lines 634-637): 'housing and lending discrimination by race, including late-1930s government maps grading neighbourhoods for lending risk, then widening wealth gaps'. Opened via the PMC OAI API: (1) 'Persistence of mortgage lending bias in the United States: 80 years after the Home Owners' Loan Corporation security maps', Journal of Race, Ethnicity and the City 2022 (PMC9387904): 'the wealth gap between Blacks and Whites is substantial, attributed in large part to differentials in wealth accumulation through home ownership', and racial bias 'restricted the settlement of people of color in wealthier neighborhoods throughout the 20th century'; (2) 'The legacy of structural racism: Associations between historic redlining, current mortgage lending, and health', SSM - Population Health 2021 (PMC8099638): 'Racially discriminatory lending policies and practices have systematically shaped access to wealth' and 'Racial disparities in lending, equity, and wealth'. Together they support discrimination widening wealth gaps, largely through home ownership and equity. Builder (non-blocking, but owed): replace Rothstein in the source field with these two citations, or keep Rothstein alongside them marked 'not opened' (cultural pass 3 allows replacing the source). [Restored in full from fe7574c8 by evaluation-steward; the 2026-10-16 merge note had quoted it truncated.] | [evaluation-steward ruling W-1535, 2026-10-16: STAYS UNVERIFIED. Lane B raised two specific points lane A never saw (they ran in parallel): the claim text's 'largely through home equity' is not on the card, and 'widening' is a judgement call. A verification that has not met a recorded objection does not override it. A third check is needed, by an instance that is neither lane A nor lane B (B drafted replacement text): after W-1531 (source swap, cm-geography) and the builder's text/source fix, or, if the swap is declined, on the current text with both lanes' opened sources, answering B's two points by name. Lane A said verified; the merge kept unverified. Ruling: company/qa/2026-10-16-w1535-lane-disagreement-ruling.md.]"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10f",
+      "text": "In US cities, households did not all have the same choices: in many of the area descriptions behind the late-1930s government lending-risk grades, residents' race is recorded among the reasons for a neighbourhood's grade.",
+      "support": "source",
+      "source": "Mapping Inequality, University of Richmond Digital Scholarship Lab: HOLC area-description data, github.com/americanpanorama/HOLC_Area_Description_Data (ad_data.json, about 7,930 forms, including New York City forms). The forms record residents' race in their own fields and name it among the reasons for a grade, in fields such as detrimental_influences, infiltration_of and clarifying_remarks. The forms use the period's own racial terms; this note describes them and does not quote them (cultural review 2, pass 4, ruling 6.3). No neighbourhood is named here or on the card (R7). On the card: 'households did not all have the same choices' and 'lending discrimination by race' in the sentence that begins 'In US cities'. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): new claim, split from c10b per spec section 12; 'in many area descriptions' rather than every form or grade (cultural pass 4, ruling 6.2), and stated as what the forms recorded, not as an inference about what lenders did. Builder: data not opened by me; the spec author's keyword search is a scope check, not a verification. Fact-checker: verify from the forms and give field names and a count. | FACT-CHECK 2026-10-14 (v3): VERIFIED from the primary data. I downloaded ad_data.json (7,930 area descriptions, 169 cities). The printed race line on the form is filled in on 6,566. A keyword count finds Black residents named in the reasons text (favourable and detrimental influences, remarks) of 1,013 forms, 222 of them under detrimental influences; 1,140 adding the form's 'infiltration of' line; 1,391 counting the words race or racial too. That is 697 of the 1,884 lowest-graded (D) forms. New York City: 389 forms, race line filled on 373, Black residents named in reasons or 'infiltration of' on 37, including 27 of 115 D forms. NYC examples, described: areas where the arrival of Black families is listed first among detrimental influences, and remarks that put an area's decline down to it. A keyword count misses other wordings and counts some plain descriptions, so it is an estimate, not an exact figure. That the forms counted race shows how the grades were made; whether lenders followed the maps is the open question in c10e. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): card wording changed so that a skimmer meets 'by race' and the maps do not read as purely financial (learner review v3, issue 7): the maps are now introduced as part of the discrimination, 'housing and lending discrimination by race, including late-1930s government maps grading neighbourhoods for lending risk', with 'discrimination by race' in bold. This rests on what the forms recorded (race among the stated reasons for grades in many area descriptions), not on what lenders did; 'associated with' and 'research is mixed' (c10d, c10e) are unchanged. Cultural reviewer and fact-checker asked to confirm that 'including' stays within this claim. Reset to unverified (card wording). | FACT-CHECK 2026-10-14 (v4): VERIFIED. 'Discrimination by race, including late-1930s government maps grading neighbourhoods for lending risk' stays within this claim. The grading form has a printed race line, filled in on 6,566 of the 7,930 area descriptions, and race is named among the reasons for a grade on 1,140 or more of them (697 of the 1,884 D forms). So the grading itself took race into account. It does not say lenders followed the maps; the card keeps 'research is mixed' (c10e) for that. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10c",
+      "text": "Income and wealth differences between groups are part of the documented history of where households live.",
+      "support": "source",
+      "source": "NYU Furman Center, State of New York City's Housing and Neighborhoods (annual report), https://furmancenter.org/stateofthecity (income differences across New York City neighbourhoods and groups). Builder: not opened (no egress). The card names income after discrimination and does not present it as a separate neutral cause (R3). Fact-checker: confirm the report covers income by group, or name a better single source. | FACT-CHECK 2026-10-14: DISPUTED. The named source cannot carry the text. Per search-indexed listings (furmancenter.org unreachable), the Furman Center State of the City citywide tables give New York City median household income by race and ethnicity (present-day). They do not cover wealth, and they are not a 'documented history of where households live'. Also, the card has no separate sentence for this claim: its only income/wealth words are 'then income and wealth gaps it widened', which c10b carries. Fix (builder): either withdraw c10c and let c10b carry 'income and wealth gaps', or keep it as an income-only claim ('income differs between groups in New York City') sourced to a named Furman Center edition and table, and source wealth separately (e.g. the Federal Reserve Survey of Consumer Finances). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md. | WITHDRAWN 2026-10-14 (demo-builder, v2): per the fact-check, the Furman Center tables are present-day NYC income by group, not a documented history, and do not cover wealth. The card no longer has an income clause; the only remaining wealth words ('widening wealth gaps') are carried by c10b (Rothstein 2017). No learner-visible text depends on this claim.",
+      "status": "withdrawn",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c11",
+      "text": "The grid's shape comes from New York City's official city boundaries, rasterised to 40 x 40 cells of about 1.2 km (576 land cells).",
+      "support": "source",
+      "source": "NYC Department of City Planning, Borough Boundaries, BYTES of the BIG APPLE release 16A (2016), nybb.shp, EPSG:2263; obtained from the PyPI wheel geopandas-0.14.4-py3-none-any.whl (geopandas/datasets/nybb_16a.zip, sha256 b4a98fc3b77be5af58676de9560c2782b902b83d1d8c7914dea8d0e75177e2a1), downloaded 2026-10-14 because the NYC Open Data host was unreachable; rasterised by company/domains/briefs/checks/nyc-mask-rasterise.mjs (cell centres, even-odd point-in-polygon, cell 3,855 ft); output company/domains/briefs/checks/nyc-mask-40.json, documented in nyc-mask-40.md. The lesson inlines only the 200-byte land bitmask (engine.ts MASK_HEX); no region labels reach the lesson (R2). check.mjs confirms MASK_HEX equals the JSON's land cells. v2 (demo-builder, 2026-10-14): claim text says 'city boundaries' (cultural review 2, advisory); the dataset is still the DCP Borough Boundaries file named above. Text change only; reset to unverified for re-check. | FACT-CHECK 2026-10-14 (v2): VERIFIED. engine.ts is unchanged since pass 1, when the mask was re-derived from the DCP file (576 land cells, cells 3,855 ft, about 1.18 km). The outline of the five borough boundaries is the city boundary, so 'city boundaries' is accurate. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c12",
+      "text": "A toy model on a grid shaped like New York City: each A or B mark stands for one household in a made-up model; two made-up equal groups; not New York's people and not a cause. The 30% setting is a setting in this model, not a measure of anyone.",
+      "support": "convention",
+      "source": "Judgement about the model (cultural review R9, R1, R6). On the stage: S1 'Made-up model: each [A] A or [B] B is one household. Not New York's people.' in the map's empty top-left water corner (and above the pair at the reveal), and S3 'A setting, not a measure of anyone.' directly above the static rule line. The map's and the pair's alt text say 'made-up households'. Density is equal everywhere in the model (one household per land cell, 10% empty) while real density varies. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): S1 reworded per spec section 4 (cultural pass 4, ruling 2: GO). Reset to unverified. | FACT-CHECK 2026-10-14 (v3): VERIFIED (model description). In engine.ts every seed places 259 households of each group, one per land cell, 10% of land cells empty, at random. Nothing in the model comes from New York's people; the 30% is an input the lesson fixes. The stage lines say exactly this. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): S3 is now 'Model rule, not anyone's measure:' directly above the rule line (was 'A setting, not a measure of anyone.'), so the static rule reads as a choice made for the model (learner review v3, issue 3; caller). Meaning kept: the 30% rule is the model's, not a measure of anyone (R6); cultural reviewer asked to confirm. Reset to unverified (S3 wording). | FACT-CHECK 2026-10-14 (v4): VERIFIED. 'Model rule, not anyone's measure:' above the rule line says what the claim says: the 30% rule is an input of this model and measures nobody. engine.ts unchanged. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c13",
+      "text": "In this model, a random mix scores about 0.4 to 0.5 in 2 x 2 boxes of the grid (at most 4 households each): chance alone leaves many boxes holding only one group, and the same mix scores lower in larger boxes. So a segregation number depends on its unit and means little without it.",
+      "support": "simulation",
+      "source": "Recall card (R10). Restates c5, c7 and c17 (48 lesson seeds: start 0.42-0.53 in 2 x 2, about 0.26 in 4 x 4, 0.14 in 8 x 8; at the start 34-47% of 2 x 2 boxes hold only one group). A 2 x 2 box holds at most 4 land cells, each with at most one household. One range, 0.4 to 0.5, in the question and here. Carries no real-city figure and no group names. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): 'boxes' and 'at most 4 households each' (spec section 9 proposal), 'one group' (cultural pass 4, ruling 2). The learning designer owns the recall and is asked to confirm. Reset to unverified. | FACT-CHECK 2026-10-14 (v3): VERIFIED. Same numbers as c5, c7 and c17, re-derived. A 2 x 2 box on this map holds at most 4 land cells, so at most 4 households. Caveat (not a dispute): about half of the one-group 2 x 2 boxes at the start hold a single household, mostly boxes cut by the coastline; on a grid with no coastline the same rule gives about 18% one-group boxes and D about 0.41. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c14",
+      "text": "Not modelled: money, prices, history, who was allowed to live where.",
+      "support": "derivation",
+      "source": "Scope of the rule (engine.ts): the only inputs are the city mask, the share of empty cells, the two equal groups, the seed and the threshold; any household may move to any empty cell at no cost, and no rule bars anyone (it is the absence of such rules that is not modelled, so 'was allowed' is accurate as a statement of what is left out). v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): the line is S4, inside the map's top-left water corner, shown once the grid has moved (round > 0 on any mix) and kept after Reset and New mix (cultural pass 4, ruling 5.3); at the reveal it sits under the pair. 'jobs' dropped and 'could' -> 'was allowed to' (spec section 4; cultural pass 4, rulings 2 and 3). The reveal no longer repeats the list. Reset to unverified. | FACT-CHECK 2026-10-14 (v3): VERIFIED. engine.ts takes only the city outline, the share of empty cells, two equal groups, a seed and the 30% setting. Any household may move to any empty cell at no cost and nothing stops anyone, so money, prices, history and rules about who was allowed to live where are all left out. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c15",
+      "text": "A census tract holds thousands of people. A 2 x 2 box in this grid holds at most 4 households.",
+      "support": "source",
+      "source": "Tract size: US Census Bureau, Glossary, 'Census Tract' (https://www.census.gov/programs-surveys/geography/about/glossary.html), which gives tracts generally between 1,200 and 8,000 people, optimum about 4,000 (builder: from memory, not opened). Grid box: derivation, a 2 x 2 box holds at most 4 cells, each with at most one household. On the card: 'Mix N began at D in 2×2 boxes (at most 4 households each); ... a census tract holds thousands of people.' The comparison is in people, never in area (spec section 3). v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): 'block' -> 'box', 'squares' -> 'households'. Reset to unverified (text). | FACT-CHECK 2026-10-14 (v3): VERIFIED. Box half by derivation: at most 4 land cells in any 2 x 2 box (checked on the mask). Tract half from search-indexed copies of the Census Bureau definition (about 1,200 to 8,000 people, best size about 4,000), including a Census document hosted on energy.gov; census.gov itself was blocked. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): on the card the tract half is now 'Real figures often use census tracts (neighbourhood-sized areas of thousands of people), where chance adds little.' (learner review v3, issue 2). The new parts ('real figures often use census tracts', 'where chance adds little') are carried by c19; this claim keeps the tract size. The box half is now 'Holding at most 4 households, most 2×2 boxes are uneven' (c18). Reset to unverified (text). | FACT-CHECK 2026-10-14 (v4): VERIFIED. Tract size as in pass 3 (Census definition, about 1,200 to 8,000 people, best size about 4,000; search-indexed copies only, census.gov blocked). 'Neighbourhood-sized areas of thousands of people' fits that. Box half: at most 4 land cells in any 2 x 2 box. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c16",
+      "text": "In this model, random mixes run under the same rule settle into clumps in different places: on the cells both settled grids fill, two mixes hold the same group about half the time.",
+      "support": "simulation",
+      "source": "engine.ts run(seed, 30), last frames of two seeds compared cell by cell over cells that hold a household in both. check.mjs (2026-10-14): consecutive lesson seeds (each seed with the next in the New mix order, 48 pairs) agree on 0.41-0.59 of shared cells, mean 0.51; mix 1 vs mix 2: 229 of 463 cells (0.49); mix 2 vs mix 4: 231 of 464 (0.50). On the card: 'The rule sorted your mixes into clumps in different places', and the reveal stage pins the learner's own two settled mixes (P and Q) side by side, same size, same rule, identical neutral frames. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): new claim (spec sections 2 and 11). | FACT-CHECK 2026-10-14 (v3): VERIFIED. My own model: consecutive lesson seeds agree on 0.41-0.59 of the cells both fill (mean 0.51); mix 1 and mix 2 agree on 229 of 463. The reveal can pair any two seeds, so I also checked all 1,128 pairs: 0.35-0.62, mean 0.50. Two equal groups placed independently would agree about half the time, so the clumps land in unrelated places. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): on the card the sentence is now '**This model does not show why real cities look as they do**: your mixes clumped in different places.' (limit first, in bold, so a skimmer meets it; learner review v3, issue 3). Reset to unverified (card wording). | FACT-CHECK 2026-10-14 (v4): VERIFIED. Engine unchanged; any two lesson seeds agree on 0.35-0.62 of the cells both fill, so 'your mixes clumped in different places' holds for any pair the reveal can pin. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c17",
+      "text": "In this model, before anything moves, many small boxes already hold only one group: at the random start, 34-47% (mean 39%) of the 2 x 2 boxes that hold a household hold only one group, against 3-16% of 4 x 4 and 0-11% of 8 x 8 boxes; settled at 30%, 64-81% of 2 x 2 boxes.",
+      "support": "simulation",
+      "source": "engine.ts frames, aligned k x k boxes over the 40 x 40 grid; a box counts if it holds at least one household and is one-group if all its households are in one group (a box with one household counts). check.mjs (2026-10-14), the 48 lesson seeds: start 2 x 2 34-47% (mean 39%), 4 x 4 3-16% (11%), 8 x 8 0-11% (2%); settled at 30%: 2 x 2 64-81% (72%). Mix 1: start 72/181 (40%), settled 135/180 (75%). Mix 2: start 65/184 (35%), settled 127/181 (70%); 4 x 4 start 7/58 (12%); 8 x 8 start 0/18 (0%). On the card: the readout 'one-group boxes N%' (start -> now once the grid has moved), a neutral square outline on each one-group box in explore (never on the reveal pair), and the reveal's 'Each holds at most 4 households; chance alone left N% one group' with N from the learner's pinned mix P. v3 (demo-builder, 2026-10-14, spec company/design/specs/schelling-on-new-york-v3.md section 11): new claim (spec sections 3 and 11); 'one-group' for 'one-colour' (cultural pass 4, ruling 2). | FACT-CHECK 2026-10-14 (v3): VERIFIED. My own count: at the start 34-47% (mean 39%) of 2 x 2 boxes with a household hold one group, 3-16% of 4 x 4 and 0-11% of 8 x 8; settled at 30%, 64-81% of 2 x 2. Mix 1 72/181 then 135/180; mix 2 65/184 then 127/181. Caveat as in c13: about half the one-group 2 x 2 boxes at the start hold one household, mostly on the coast. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 3). | v4 (demo-builder, 2026-10-14, learner review v3 / learning design v3 / fact-check pass 3 caveat): fact-check pass 3 caveat applied: the card no longer says 'chance alone left N% one group'; the reveal says 'before anything moved, N% held one group' (N from the pinned mix P), and the claim text says 'before anything moves'. Coastline note: about half the one-group 2 x 2 boxes at the start hold a single household (check.mjs: 1,645 of 3,412 over the 48 seeds), and a single-household box is one group by definition; most of these are boxes cut by the coastline (only 110 of the 186 land-touching 2 x 2 boxes are all land, fact-check pass 3). On a 40 x 40 all-land grid the same placement gives about 18% one-group boxes and D about 0.41 (fact-check pass 3), so the share quoted here carries the coastline as well as chance. On the stage the readout is now '[outline swatch] one-group boxes N%' (start N% now M% once the grid has moved); the swatch is the outline's legend. Reset to unverified. | FACT-CHECK 2026-10-14 (v4): VERIFIED. Same counts as pass 3 (start 2 x 2 34-47%, mean 39%; 4 x 4 3-16%; 8 x 8 0-11%; settled 2 x 2 64-81%). 'Before anything moved, N% held one group' is accurate and no longer says 'chance alone'. 1,645 of the 3,412 one-group start boxes hold one household, as the note says. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c18",
+      "text": "In this model's 2 x 2 boxes (at most 4 households each), most boxes are uneven at the random start (no exact even split of the two groups: 69-82% by seed, 76% overall), and uneven boxes, most of all one-group boxes, raise D; larger boxes average this out (D falls from about 0.46 in 2 x 2 to 0.14 in 8 x 8).",
+      "support": "simulation",
+      "source": "Derivation plus check.mjs (2026-10-14, v4 section), the 48 lesson seeds: of 8,777 start 2 x 2 boxes holding a household, 2,131 split exactly evenly (24%), so 76% are uneven (69-82% by seed). D = 0.5 x sum over boxes of |a_i/A - b_i/B| with A = B, so a box adds 0 only when a_i = b_i and adds most when it holds one group; boxes with 1 or 3 households cannot split evenly. D by box size as c7. On the card: stage line S2 in explore (after the prediction is locked, never at predict) 'Spread (0 even, 1 apart); one-group boxes raise it:', and reveal 'Holding at most 4 households, most 2×2 boxes are uneven, raising the score: before anything moved, N% held one group. 8×8 boxes even this out: D.' (k* and its value from the pinned mix P). Builder: new claim, v4 (learner review v3, issue 1); I do not verify. | FACT-CHECK 2026-10-14 (v4): VERIFIED. My own model: of 8,777 start 2 x 2 boxes holding a household, 2,131 split evenly (24%), so 76% are uneven, 69-82% by seed. Boxes with 1 or 3 households (3,724) never split evenly; of the 3,438 full 4-household boxes, 1,333 do (39%; chance alone would give 37.5%). One-group boxes give 57% of the start D. D falls from 0.46 (2 x 2) to 0.14 (8 x 8). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c19",
+      "text": "Real segregation figures are often computed over census tracts, and at that size, when each group is at least about a tenth of the people, two groups placed at random score close to 0 (under about 0.05), so chance adds little to a real city's number.",
+      "support": "source",
+      "source": "Tract use: Kramer, M. R., Cooper, H. L., Drews-Botsch, C. D., Waller, L. A. and Hogue, C. R. (2010), International Journal of Health Geographics 9:29: 'Most current studies rely on census tracts as approximations of the local residential environment when calculating segregation indices' (quoted from fact-check pass 4, search-indexed text; builder: paper not opened, no egress). Chance at tract size: derivation plus check.mjs (2026-10-14, v4 section): two groups placed at random (binomial, seeded) into 2,000 tracts of 1,200 or 4,000 people, with one group at 10%, 20% or 50% of the city, give D of 0.01-0.04; tract sizes from c15 (about 1,200 to 8,000 people). Limit: for small groups chance alone gives more. Tracts of 1,200 people give 0.05 with one group at 5%, 0.08 at 2% and 0.12 at 1%; tracts of 4,000 give 0.06 at 1% (fact-check pass 4, own run; matches D about 0.4 / sqrt(n p (1 - p)). check.mjs v4.1 asserts each within 0.01: it gets 0.05, 0.08, 0.11 and 0.06; the exact binomial expectation at 1,200 people and 1% is 0.115, so 0.11 or 0.12 by rounding). Hence the claim's 'when each group is at least about a tenth of the people'. For scale, this grid's random start scores 0.46 / 0.26 / 0.14 in boxes of at most 4 / 16 / 64 households. On the card: reveal 'Real figures often use census tracts (neighbourhood-sized areas of thousands of people), where chance adds little.' 'neighbourhood-sized' is a plain-words gloss for a non-US reader (learner review v3, issue 2), not a definition. Card text unchanged: fact-check pass 4 found 'where chance adds little' fine for groups of a tenth or more. v4.1 (demo-builder, 2026-10-14, fact-check pass 4 dispute): claim text narrowed to groups of at least about a tenth; tract-use source changed from Iceland and Weinberg (2002) CENSR-3 and Massey and Denton (1988), neither opened nor confirmed to name the unit, to Kramer et al. (2010); small-group figures added. Reset to unverified. Builder: I do not verify. | FACT-CHECK 2026-10-14 (v4.1): VERIFIED. Kramer et al. 2010 sentence found again by search (abstract); paper not opened, journal sites blocked. Figures re-derived: exact expected D at tracts of 1,200 is 0.04 or less when each group is a tenth or more; small groups 0.05 (5%), 0.08 (2%), 0.11 (1%, exact 0.115). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 5).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In this model, a random mix scores about 0.4 to 0.5 in 2 × 2 boxes of the grid (at most 4 households each). What does that tell you about a segregation number?",
+    "options": [
+      "It depends on the unit, so the unit must be stated",
+      "The random mix is already half sorted before anyone has moved",
+      "The number is broken, so it should not be used at all"
+    ],
+    "answer": 0,
+    "why": "A 2 × 2 box holds at most 4 households, so chance alone leaves many boxes holding only one group. The same mix scores lower in larger boxes. A number without its unit says little."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/schelling-on-new-york/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "geography:segregation-model-nyc",
+    "also": [],
+    "prerequisites": [
+      "economics:schelling-segregation"
+    ],
+    "level": "core",
+    "strand": "people-places",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4,
+        "note": "Schelling model",
+        "section_unconfirmed": "4.5"
+      }
+    ],
+    "tags": [
+      "agent-based-model",
+      "segregation",
+      "unit-of-measurement",
+      "modifiable-areal-unit"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "step-run-button",
+    "preset-buttons",
+    "simulation-run",
+    "milestone-gate"
+  ]
+}

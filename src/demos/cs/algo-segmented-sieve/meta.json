@@ -1,0 +1,186 @@
+{
+  "slug": "algo-segmented-sieve",
+  "title": "Cross out primes in a distant window",
+  "hook": "Cross out primes in a distant window. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-segmented-sieve",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Integer remainders, gcd, primes, modular exponentiation."
+    ],
+    "doesNotKnow": [
+      "Sieve a remote interval using primes up to the square root of its upper end and a correct first multiple."
+    ]
+  },
+  "misconception": "Finding primes in a window requires storing all earlier integers.",
+  "objective": "Sieve a remote interval using primes up to the square root of its upper end and a correct first multiple.",
+  "claims": [
+    {
+      "id": "cs.algo-segmented-sieve.c1",
+      "text": "Each base prime strikes from the larger of its square and the first interval multiple. This avoids erasing a base prime itself while marking composites even when the target interval begins far from zero.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-segmented-sieve\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c2",
+      "text": "Cross out primes in a distant window. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-segmented-sieve\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c3",
+      "text": "Primes in [30,50] inclusive: how many?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c5",
+      "text": "Primes=[31,37,41,43,47]; interval=[30,50].",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c6",
+      "text": "Interval input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c7",
+      "text": "n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c8",
+      "text": "Strike prime 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c9",
+      "text": "first",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c10",
+      "text": "Strike prime 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c11",
+      "text": "Strike prime 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c12",
+      "text": "Strike prime 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c13",
+      "text": "Surviving primes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c14",
+      "text": "prime",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c15",
+      "text": "Primes=[2,3,5,7,11,13,17,19]; interval=[2,20].",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#segmented_sieve.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c16",
+      "text": "For interval [2,20], where should prime3 start marking?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-segmented-sieve\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-segmented-sieve.c17",
+      "text": "Starting at p² keeps the prime itself and avoids redundant smaller composite marks.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-segmented-sieve\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For interval [2,20], where should prime3 start marking?",
+    "options": [
+      "3",
+      "6",
+      "9"
+    ],
+    "answer": 2,
+    "why": "Starting at p² keeps the prime itself and avoids redundant smaller composite marks."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-segmented-sieve/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-segmented-sieve",
+    "also": [],
+    "prerequisites": [
+      "euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "number-theoretic-algorithms"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

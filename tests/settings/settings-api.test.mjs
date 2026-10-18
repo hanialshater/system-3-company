@@ -1,4 +1,4 @@
-// Settings API behaviour (W-1538) against the privacy ruling
+// Settings API behaviour (W-1717) against the privacy ruling
 // company/reviews/_privacy/2026-10-16-personalization-batch-reads.md: B1 (§3 SS1/SS2), D1–D3 (§3.1), G1–G4 (§3.2).
 // B2 and B4 have their own files. Fake data and an in-memory store only.
 // Run: npm run test:settings

@@ -1,0 +1,132 @@
+{
+  "slug": "bk-notes-links-not-piles",
+  "title": "A pile, or a path through notes?",
+  "hook": "Follow an original linked-note tree for one hop or three hops from the same starting note.",
+  "domain": "books",
+  "concept": "book-notes-links-not-piles",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to separate collecting notes from traversing explicit links, without assuming those links are insightful"
+    ]
+  },
+  "misconception": "A growing note count alone establishes a connected and useful body of knowledge.",
+  "objective": "Separate collecting notes from traversing explicit links, without assuming those links are insightful.",
+  "claims": [
+    {
+      "id": "books.bk-notes-links-not-piles.bibliography",
+      "text": "How to Take Smart Notes; Sonke Ahrens; 2017.",
+      "support": "source",
+      "source": "Candidate bibliographic record for notes-links-not-2017; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-notes-links-not-piles.book",
+      "text": "How to Take Smart Notes emphasizes meaningful connections between notes rather than collection alone.",
+      "support": "source",
+      "source": "How to Take Smart Notes (2017), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-notes-links-not-piles.model",
+      "text": "Original stipulated toy: Every note has two previously unseen children; source counts; reach capped at twelve; links carry no modeled semantic quality. Exact network inputs [{\"label\": \"One hop\", \"values\": [12, 2, 1]}, {\"label\": \"Three hops\", \"values\": [12, 2, 3]}]; second author arithmetic check A=3, B=12. One hop reaches {A}; three hops {B}. Deeper traversal accesses notes absent from the immediate neighborhood.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-notes-links-not-piles.world",
+      "text": "Does it hold up? A tree of reachable notes says nothing about the quality of their connections.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-notes-links-not-piles.recall",
+      "text": "{\"question\": \"A two-branch note tree has one starting note. How many nodes are reachable within two hops without overlap?\", \"options\": [\"5 notes\", \"6 notes\", \"7 notes\"], \"answer\": 2, \"why\": \"1+2+4=7; actual note networks can revisit the same note, unlike this toy tree.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A two-branch note tree has one starting note. How many nodes are reachable within two hops without overlap?",
+    "options": [
+      "5 notes",
+      "6 notes",
+      "7 notes"
+    ],
+    "answer": 2,
+    "why": "1+2+4=7; actual note networks can revisit the same note, unlike this toy tree."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-notes-links-not-piles/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-notes-links-not-piles/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-notes-links-not-piles",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "notes-links-not-2017",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "network",
+      "linked-notes"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

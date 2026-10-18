@@ -1,0 +1,134 @@
+{
+  "slug": "bk-manager-delegation-interface",
+  "title": "The handoff contract",
+  "hook": "A toy handoff pays repeated clarification or a one-time setup. Compare completed work.",
+  "domain": "books",
+  "concept": "book-manager-delegation-interface",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Distinguish a once-only setup cost from a repeated handoff cost before comparing total finished work."
+    ]
+  },
+  "misconception": "A one-time delegation setup is wasteful whenever work could begin immediately.",
+  "objective": "Distinguish a once-only setup cost from a repeated handoff cost before comparing total finished work.",
+  "claims": [
+    {
+      "id": "books.bk-manager-delegation-interface.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Manager's Path, by Camille Fournier, candidate publication year 2017.",
+      "support": "source",
+      "source": "Camille Fournier, The Manager's Path (2017); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-manager-delegation-interface.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Manager’s Path treats delegation and explicit expectations as part of developing engineering leadership.",
+      "support": "source",
+      "source": "Camille Fournier, The Manager's Path (2017); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-manager-delegation-interface.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated intervals model: A inputs [90, 20, 10] yield 60; B inputs [80, 20, 0] yield 80. Prediction correct option 80. A completes {A} work minutes; B {B}. B spends ten of the original ninety minutes once on setup, then avoids the repeated clarification charge. Setup and clarification costs are invented; the model does not assess whether expectations are complete.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-manager-delegation-interface.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy handoff leaves 60 minutes after one-time setup. Each task needs 15 minutes and no repeated clarification. Work completed? Four complete fifteen-minute tasks fit; all sixty remaining minutes are work.",
+      "support": "derivation",
+      "source": "Original transfer toy, intervals, inputs [60, 15, 0], output 60; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-manager-delegation-interface.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy handoff leaves 60 minutes after one-time setup. Each task needs 15 minutes and no repeated clarification. Work completed?",
+    "options": [
+      "45.00",
+      "60.00",
+      "15.00",
+      "30.00"
+    ],
+    "answer": 1,
+    "why": "Four complete fifteen-minute tasks fit; all sixty remaining minutes are work."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-manager-delegation-interface/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-manager-delegation-interface/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-manager-delegation-interface",
+    "also": [
+      "lifehacks:office-handoff"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "manager-delegation-2017",
+        "note": "Camille Fournier, The Manager's Path, 2017 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "intervals",
+      "manager-delegation-interface"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

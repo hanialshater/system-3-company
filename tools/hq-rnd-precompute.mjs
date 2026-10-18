@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Writes src/data/hq-rnd/leaderboards.json for the HQ R&D page (/hq/rnd, W-1654). The deployed build cannot
+// Writes src/data/hq-rnd/leaderboards.json for the HQ R&D page (/hq/rnd, W-1833). The deployed build cannot
 // read src/lab/ or spawn node, so the page serves this committed file only. Rows come from the same functions
 // as `node tools/evolve.mjs board <project>` (tools/evolve-board.mjs); nothing is scored here.
 //   node tools/hq-rnd-precompute.mjs          write the file

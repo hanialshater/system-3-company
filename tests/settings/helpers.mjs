@@ -1,4 +1,4 @@
-// Shared fixtures for the settings API tests (W-1538). Fake data only; no database, no network.
+// Shared fixtures for the settings API tests (W-1717). Fake data only; no database, no network.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -38,7 +38,7 @@ export async function realCatalog() {
 const { applyWrite, sameSettings } = await settingsMod();
 
 /**
- * An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1521's SQL test.
+ * An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1700's SQL test.
  * It models the store's atomicity contract (D2a): put applies the write rule (applyWrite, the reference model of the
  * single SQL statement) to the row as it is at that moment, with no await between reading and writing the row, which
  * is what one Postgres statement on a locked row gives. It does not prove the SQL; test-settings-write-sql.mjs does.

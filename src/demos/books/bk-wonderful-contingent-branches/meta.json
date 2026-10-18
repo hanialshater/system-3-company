@@ -1,0 +1,118 @@
+{
+  "slug": "bk-wonderful-contingent-branches",
+  "title": "Faster arithmetic can still wait",
+  "hook": "Double calculation capacity while input supply stays unchanged.",
+  "domain": "books",
+  "concept": "book-wonderful-contingent-branches",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Recognize an unchanged data-supply limit after a compute upgrade."
+    ]
+  },
+  "misconception": "Doubling arithmetic capacity doubles the complete system’s output.",
+  "objective": "Recognize an unchanged data-supply limit after a compute upgrade.",
+  "claims": [
+    {
+      "id": "books.bk-wonderful-contingent-branches.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Computation depends on how components communicate and operate together.",
+      "status": "unverified",
+      "source": "{\"work\":\"von-neumann-computer-brain-1958\",\"edition\":1958,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-wonderful-contingent-branches.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "John von Neumann, The Computer and the Brain (1958)",
+      "status": "unverified",
+      "source": "{\"work\":\"von-neumann-computer-brain-1958\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-wonderful-contingent-branches.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The original gives {A}; faster arithmetic still gives {B}. Input cannot supply work fast enough to use the extra calculation capacity.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(capacities)\",\"inputs\":[[4,8],[4,16]],\"outputs\":[4,4]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-wonderful-contingent-branches.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This ideal serial limit is exact inside the toy. It does not model a brain or machine parallelism.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A scanner handles 3 items per step; processing rises from 9 to 18. What is serial output?",
+    "options": [
+      "3",
+      "6",
+      "18"
+    ],
+    "answer": 0,
+    "why": "The unchanged scanner still supplies only 3."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-wonderful-contingent-branches/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-wonderful-contingent-branches/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-wonderful-contingent-branches",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "von-neumann-computer-brain-1958",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "flow"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

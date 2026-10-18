@@ -795,18 +795,6 @@
       "course": "ncm"
     },
     {
-      "id": "collective-action-knowledge",
-      "name": "Collective action needs shared knowledge, not just enough willing people",
-      "level": "stretch",
-      "demand": 1,
-      "prerequisites": [
-        "threshold-cascade"
-      ],
-      "subarea": "discrete",
-      "course": "ncm",
-      "proposed": true
-    },
-    {
       "id": "coordination-threshold",
       "name": "Where the adoption threshold comes from: q = b / (a + b)",
       "level": "core",
@@ -822,11 +810,89 @@
       "name": "Transitive preferences: a circle of preferences can be pumped for money",
       "level": "intro",
       "demand": 2,
-      "prerequisites": [
-        "condorcet-cycle"
-      ],
+      "prerequisites": [],
       "subarea": "discrete",
       "course": "ncm"
+    },
+    {
+      "id": "knot-table-names",
+      "name": "Knot table names: the first number is the fewest crossings any drawing can have",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-tricolouring",
+      "name": "Three colours prove the trefoil cannot be wiggled into a plain loop",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "knot-table-names"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-crossing-change",
+      "name": "One crossing switch unties the trefoil and the figure-eight",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "knot-table-names"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-chirality",
+      "name": "The trefoil is not its own mirror image; the figure-eight is",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "knot-table-names"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-unknot-in-disguise",
+      "name": "A tangled-looking loop can be a plain loop: three moves undo it",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "knot-table-names"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-borromean-rings",
+      "name": "Borromean rings: no two linked, all three inseparable",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "knot-table-names"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-invariant-fingerprint",
+      "name": "A fingerprint that survives every wiggle and changes with a switch",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "knot-unknot-in-disguise",
+        "knot-tricolouring"
+      ],
+      "subarea": "discrete"
+    },
+    {
+      "id": "knot-crossing-number",
+      "name": "The crossings you can see are not the knot's crossing number",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "knot-table-names",
+        "knot-unknot-in-disguise"
+      ],
+      "subarea": "discrete"
     }
   ]
 }

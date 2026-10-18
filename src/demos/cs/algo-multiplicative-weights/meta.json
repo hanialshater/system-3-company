@@ -1,0 +1,214 @@
+{
+  "slug": "algo-multiplicative-weights",
+  "title": "Bad advice loses weight gradually",
+  "hook": "The experts’ influence changes after each observed mistake.",
+  "domain": "cs",
+  "concept": "algo-multiplicative-weights",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Offline optimum versus online decisions; cost and approximation ratio."
+    ],
+    "doesNotKnow": [
+      "Update expert weights multiplicatively and compare cumulative learner loss with the best fixed expert."
+    ]
+  },
+  "misconception": "One mistaken prediction should eliminate an expert permanently.",
+  "objective": "Update expert weights multiplicatively and compare cumulative learner loss with the best fixed expert.",
+  "claims": [
+    {
+      "id": "cs.algo-multiplicative-weights.c1",
+      "text": "Prediction uses normalized weights before seeing that round’s losses. Exponential updates compound each expert’s cumulative loss, so a lower-loss expert receives more influence. The learner’s displayed cumulative mixed loss remains separate from the best fixed expert’s retrospective loss.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c2",
+      "text": "The experts’ influence changes after each observed mistake.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c3",
+      "text": "Experts start weight 1 each. Loss rounds [0,1],[1,0],[0,1],[0,1] update w←w·exp(−0.5·loss). Final weight ratio w0/w1, rounded to 3 decimals?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c4",
+      "text": "Run the question case, then compare the changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c5",
+      "text": "Weight ratio 2.718; loss 2; best 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c6",
+      "text": "Expert losses input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c7",
+      "text": "rounds",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c8",
+      "text": "eta",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c9",
+      "text": "Loss then exponential update",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c10",
+      "text": "p",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c11",
+      "text": "weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c12",
+      "text": "mixed loss",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c13",
+      "text": "Compare fixed experts",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c14",
+      "text": "losses",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c15",
+      "text": "ratio",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[0].run().frames[5].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c16",
+      "text": "Weight ratio 7.389; loss 2; best 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#multiplicative_weights.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c17",
+      "text": "Should a round’s loss be used before choosing that round’s prediction weights?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c18",
+      "text": "No; update after predicting",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c19",
+      "text": "Yes; use its outcome immediately",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c20",
+      "text": "Only if both experts disagree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multiplicative-weights.c21",
+      "text": "Using future loss before choosing would leak information unavailable to the online learner.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-multiplicative-weights\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Should a round’s loss be used before choosing that round’s prediction weights?",
+    "options": [
+      "No; update after predicting",
+      "Yes; use its outcome immediately",
+      "Only if both experts disagree"
+    ],
+    "answer": 0,
+    "why": "Using future loss before choosing would leak information unavailable to the online learner."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-multiplicative-weights/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-multiplicative-weights",
+    "also": [],
+    "prerequisites": [
+      "greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation-online"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

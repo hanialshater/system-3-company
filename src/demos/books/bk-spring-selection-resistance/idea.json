@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Silent Spring",
+    "author": "Rachel Carson",
+    "year": 1962,
+    "work": "carson-silent-spring-1962"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Ten resistant units survive at 90%, ninety susceptible at 10%. What fraction survives in expectation?",
+    "options": [
+      "10%",
+      "18%",
+      "50%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Rare resistance",
+      "values": [
+        10,
+        90,
+        90,
+        10
+      ]
+    },
+    {
+      "label": "Common resistance",
+      "values": [
+        50,
+        90,
+        50,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Resistant",
+    "Susceptible"
+  ],
+  "unit": "%",
+  "bookIdea": "Selection can undermine pest-control assumptions by favoring resistant organisms.",
+  "modelBoundary": "Rare resistance gives {A}%; the changed mix gives {B}%. Both survival rates stay fixed, but weight moves to the high-survival group.",
+  "doesItHoldUp": "Does it hold up? These are stipulated expected percentages, not pesticide measurements or a simulation of resistance evolving."
+}

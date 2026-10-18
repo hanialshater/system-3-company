@@ -1,4 +1,4 @@
-// HQ R&D page (W-1654): its rows equal `node tools/evolve.mjs board knots`, the committed data is current,
+// HQ R&D page (W-1833): its rows equal `node tools/evolve.mjs board knots`, the committed data is current,
 // and the kit's candidate is fix1-bigon while another candidate tops the board.
 // Run: npm run test:hq
 import test from "node:test";

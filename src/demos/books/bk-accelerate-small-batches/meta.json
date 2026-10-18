@@ -1,0 +1,134 @@
+{
+  "slug": "bk-accelerate-small-batches",
+  "title": "Two release batch sizes",
+  "hook": "Toy releases pay a setup cost per batch. What does this arithmetic leave out?",
+  "domain": "books",
+  "concept": "book-accelerate-small-batches",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Compute a batch-overhead trade and name the missing feedback benefit before judging a delivery practice."
+    ]
+  },
+  "misconception": "A toy showing only setup cost can establish the best batch size for real delivery.",
+  "objective": "Compute a batch-overhead trade and name the missing feedback benefit before judging a delivery practice.",
+  "claims": [
+    {
+      "id": "books.bk-accelerate-small-batches.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Accelerate, by Nicole Forsgren, Jez Humble and Gene Kim, candidate publication year 2018.",
+      "support": "source",
+      "source": "Nicole Forsgren, Jez Humble and Gene Kim, Accelerate (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-accelerate-small-batches.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Accelerate connects delivery performance with practices that include working in small batches.",
+      "support": "source",
+      "source": "Nicole Forsgren, Jez Humble and Gene Kim, Accelerate (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-accelerate-small-batches.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated intervals model: A inputs [60, 5, 2] yield 40; B inputs [60, 15, 2] yield 45. Prediction correct option 45. A completes {A} work minutes; B completes {B}. Larger batches pay setup fewer times here; the picture contains no benefit from faster feedback. Setup accounting only; delivery speed, learning and the book’s empirical findings are not modeled.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-accelerate-small-batches.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy has 48 minutes; batches need 10 work plus 2 setup minutes. Work completed? Four complete 12-minute batches fit, containing 40 work minutes; feedback value is still outside this toy.",
+      "support": "derivation",
+      "source": "Original transfer toy, intervals, inputs [48, 10, 2], output 40; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-accelerate-small-batches.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy has 48 minutes; batches need 10 work plus 2 setup minutes. Work completed?",
+    "options": [
+      "48.00",
+      "40.00",
+      "36.00",
+      "30.00"
+    ],
+    "answer": 1,
+    "why": "Four complete 12-minute batches fit, containing 40 work minutes; feedback value is still outside this toy."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-accelerate-small-batches/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-accelerate-small-batches/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-accelerate-small-batches",
+    "also": [
+      "lifehacks:batch-shared-overhead"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "accelerate-small-2018",
+        "note": "Nicole Forsgren, Jez Humble and Gene Kim, Accelerate, 2018 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "intervals",
+      "accelerate-small-batches"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

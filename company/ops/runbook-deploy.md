@@ -30,6 +30,8 @@ partial IDs, conflicting local/environment links and a CLI-resolved owner/projec
 
 ## Deploy (release manager)
 
+**Since 2026-10-16 (F-48, company/decisions/2026-10-16-founder-no-git-deployments.md): pushes create no Vercel deployment (`vercel.json` `git.deploymentEnabled: false`). Deploy only through the Deploy to Vercel workflow, after the founder approves that deploy. The commit marker no longer deploys.**
+
 ```sh
 npm run deploy -- preview --dry-run  # plan only; no credentials or cloud mutation
 npm run deploy -- preview            # tagged review lessons available for testing
@@ -140,7 +142,7 @@ The founder pre-approved one deploy (company/decisions/2026-10-17-founder-ratify
 
 **Steps:**
 1. Read the latest production record in `company/ops/deployments/`, and take its source commit and its `SHOW_REVIEW` value. Check out that commit, clean.
-2. Run `npm run deploy -- production` with the new-lesson-order flag set off by the deploy script's pin (W-1604). Do not set it by hand in the Vercel dashboard.
+2. Run `npm run deploy -- production` with the new-lesson-order flag set off by the deploy script's pin (W-1783). Do not set it by hand in the Vercel dashboard.
 3. Check, before calling it done: the new deployment record names the same source commit and the same `SHOW_REVIEW` value as the live one; the build log shows `new-lesson-order: off`; the smoke test passes (`QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts`); and the All feed at `/` in a fresh context shows the default order.
 4. If the deploy or a check fails, stop. Production stays as it was (staged promotion), and every further step, including a retry or `npx vercel rollback`, needs the founder's approval.
 

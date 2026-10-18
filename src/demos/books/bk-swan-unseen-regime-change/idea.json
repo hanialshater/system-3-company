@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Black Swan",
+    "author": "Nassim Nicholas Taleb",
+    "year": 2007,
+    "work": "taleb-black-swan-2007"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "With 99% at +1 and 1% at −200, what is the mean?",
+    "options": [
+      "-1.01 points",
+      "0.99 points",
+      "-2 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Omit tail",
+      "values": [
+        99,
+        1,
+        0
+      ]
+    },
+    {
+      "label": "Include tail",
+      "values": [
+        99,
+        1,
+        -200
+      ]
+    }
+  ],
+  "labels": [
+    "Gain",
+    "Loss"
+  ],
+  "unit": "points",
+  "bookIdea": "Rare events can dominate conclusions built on ordinary observations.",
+  "modelBoundary": "Omitting the tail gives {A}; including it gives {B}. Its 1% probability stays fixed, but its weighted loss outweighs the common gain.",
+  "doesItHoldUp": "Does it hold up? This mean follows arithmetic. It does not estimate unseen-event probabilities or verify a forecast."
+}

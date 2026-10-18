@@ -20,7 +20,7 @@ case "$cmd" in
     fi
     want=$(find src/demos -name meta.json | wc -l); have=$(ls "$dist"/server/app/d/*.html 2>/dev/null | wc -l)
     [ "$have" -ne "$want" ] && echo "warning: $dist has $have lesson pages, the tree has $want (stale build?)"
-    env "$@" NEXT_DIST_DIR="$dist" setsid npx next start -p "$port" >"$RUN/$port.log" 2>&1 &
+    env "$@" NEXT_DIST_DIR="$dist" setsid npx next start -H 127.0.0.1 -p "$port" >"$RUN/$port.log" 2>&1 &
     echo $! >"$RUN/$port.pid"; sleep 5
     if ! kill -0 "$(cat "$RUN/$port.pid")" 2>/dev/null; then
       echo "error: next start on port $port exited; see $RUN/$port.log" >&2; tail -5 "$RUN/$port.log" >&2; rm -f "$RUN/$port.pid"; exit 1

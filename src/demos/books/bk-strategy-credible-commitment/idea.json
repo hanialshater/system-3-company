@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Art of Strategy",
+    "author": "Avinash K. Dixit and Barry J. Nalebuff",
+    "year": 2008,
+    "work": "strategy-credible-2008"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B meets X 80% of the time; nets are 8 against X and −2 against Y. What is B’s toy result?",
+    "options": [
+      "3",
+      "8",
+      "4",
+      "6"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Rival mixed evenly",
+      "values": [
+        50,
+        8,
+        -2
+      ]
+    },
+    {
+      "label": "Rival favors X",
+      "values": [
+        80,
+        8,
+        -2
+      ]
+    }
+  ],
+  "labels": [
+    "If X",
+    "If Y"
+  ],
+  "unit": "points",
+  "bookIdea": "The Art of Strategy analyzes choices whose payoffs depend on other people’s choices.",
+  "modelBoundary": "A pays {A}; B pays {B}. The response itself is unchanged; the rival’s probability of choosing X rises from 50% to 80%. The rival mix is prescribed; no equilibrium, commitment or strategic adaptation is computed.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

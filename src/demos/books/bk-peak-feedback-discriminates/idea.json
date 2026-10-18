@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Peak",
+    "author": "Anders Ericsson and Robert Pool",
+    "year": 2016,
+    "work": "peak-feedback-2016"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "Eight identified errors start in a toy record. Exactly one is corrected per round; no new errors. After four rounds?",
+    "options": [
+      "0 errors",
+      "4 errors",
+      "8 errors"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Repeat unchanged",
+      "values": [
+        8,
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "label": "Correct one/round",
+      "values": [
+        8,
+        0,
+        1,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "New errors",
+    "Corrected",
+    "Rounds"
+  ],
+  "unit": "remaining errors",
+  "bookIdea": "Peak emphasizes targeted practice with informative feedback rather than repetition alone.",
+  "modelBoundary": "Repeating unchanged leaves {A}; correcting one per round leaves {B}. Only the specified correction operation removes errors.",
+  "doesItHoldUp": "Does it hold up? Real feedback may not be understood, errors may recur, and correction rates are not fixed."
+}

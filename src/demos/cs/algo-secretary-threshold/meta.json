@@ -1,0 +1,193 @@
+{
+  "slug": "algo-secretary-threshold",
+  "title": "The best so far may be too early",
+  "hook": "Learning the standard can cost the chance to choose the person who set it.",
+  "domain": "cs",
+  "concept": "algo-secretary-threshold",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Offline optimum versus online decisions; cost and approximation ratio."
+    ],
+    "doesNotKnow": [
+      "Reject an initial sample then accept the first record afterward, with no returning to rejected choices."
+    ]
+  },
+  "misconception": "An online selector can inspect everyone and still choose an earlier rejected item.",
+  "objective": "Reject an initial sample then accept the first record afterward, with no returning to rejected choices.",
+  "claims": [
+    {
+      "id": "cs.algo-secretary-threshold.c1",
+      "text": "The rejected prefix establishes a record but cannot be recalled. The policy accepts the first later candidate exceeding that record; it does not wait to compare all candidates. Enumeration reports this exact four-candidate success count, not an asymptotic rate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c2",
+      "text": "Learning the standard can cost the chance to choose the person who set it.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c3",
+      "text": "For all 24 orders of ranks 1..4 (4 best), reject the first candidate, then accept the first later record; no fallback. In how many orders is rank 4 selected?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c4",
+      "text": "Run the question case, then compare the changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c5",
+      "text": "Successes 11/24; cutoff 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c6",
+      "text": "Policy input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c7",
+      "text": "ranks",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c8",
+      "text": "reject-first",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c9",
+      "text": "Take first later record",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c10",
+      "text": "arrival",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c11",
+      "text": "chosen",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c12",
+      "text": "successes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c13",
+      "text": "Successes 10/24; cutoff 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#secretary_threshold.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c14",
+      "text": "If no later candidate beats the rejected sample and there is no fallback, what happens?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c15",
+      "text": "Nobody is selected",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c16",
+      "text": "The best rejected candidate returns",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c17",
+      "text": "The last candidate is always selected",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-secretary-threshold.c18",
+      "text": "Irrevocable rejection prevents returning to the sample.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-secretary-threshold\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If no later candidate beats the rejected sample and there is no fallback, what happens?",
+    "options": [
+      "Nobody is selected",
+      "The best rejected candidate returns",
+      "The last candidate is always selected"
+    ],
+    "answer": 0,
+    "why": "Irrevocable rejection prevents returning to the sample."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-secretary-threshold/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-secretary-threshold",
+    "also": [],
+    "prerequisites": [
+      "greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation-online"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

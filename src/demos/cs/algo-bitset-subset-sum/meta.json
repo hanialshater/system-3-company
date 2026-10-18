@@ -1,0 +1,214 @@
+{
+  "slug": "algo-bitset-subset-sum",
+  "title": "One shift adds the item everywhere",
+  "hook": "One shift can extend many subsets while still using one item only once.",
+  "domain": "cs",
+  "concept": "algo-bitset-subset-sum",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary masks, basic complex arithmetic for FFT, polynomial coefficients."
+    ],
+    "doesNotKnow": [
+      "Update reachable subset totals with bits OR shifted bits while keeping a single-use snapshot."
+    ]
+  },
+  "misconception": "A bit shift changes only one candidate subset total.",
+  "objective": "Update reachable subset totals with bits OR shifted bits while keeping a single-use snapshot.",
+  "claims": [
+    {
+      "id": "cs.algo-bitset-subset-sum.c1",
+      "text": "The shift adds the new item to every previously reachable total simultaneously. Reading an unmodified snapshot prevents a just-created total from using that same item again. The ascending scalar comparison deliberately permits reuse and therefore reaches extra totals.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c2",
+      "text": "One shift can extend many subsets while still using one item only once.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c3",
+      "text": "Starting with only sum 0, process [2,3,5] once each using bits |= oldBits<<weight, capped at 10. Which totals become reachable?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c4",
+      "text": "Run the question case; Step exposes each transform update.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c5",
+      "text": "Reachable 0,2,3,5,7,8,10.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c6",
+      "text": "Reachability input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c7",
+      "text": "items",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c8",
+      "text": "capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c9",
+      "text": "Only zero reachable",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c10",
+      "text": "bits",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c11",
+      "text": "Shift old snapshot then OR",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c12",
+      "text": "item",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c13",
+      "text": "Reachable totals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c14",
+      "text": "totals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c15",
+      "text": "Reachable 0,2,3,4,5,6,7,8,9,10.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c16",
+      "text": "Ascending reusable updates",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_subset_sum.cases[1].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c17",
+      "text": "Why use the prior mask instead of newly written states for the same item?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c18",
+      "text": "To use that item at most once",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c19",
+      "text": "To allow unlimited copies",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c20",
+      "text": "To sort all subset sums",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-subset-sum.c21",
+      "text": "Newly created states already include the current item.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-subset-sum\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why use the prior mask instead of newly written states for the same item?",
+    "options": [
+      "To use that item at most once",
+      "To allow unlimited copies",
+      "To sort all subset sums"
+    ],
+    "answer": 0,
+    "why": "Newly created states already include the current item."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-bitset-subset-sum/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-bitset-subset-sum",
+    "also": [],
+    "prerequisites": [
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "transforms-convolution-bitsets"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

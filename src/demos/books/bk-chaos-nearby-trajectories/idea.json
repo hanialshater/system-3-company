@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Chaos",
+    "author": "James Gleick",
+    "year": 1987,
+    "work": "chaos-nearby-1987"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "An uncertainty starts at 0.01 and doubles five times. What is its final size?",
+    "options": [
+      "0.05 units",
+      "0.32 units",
+      "0.5 units"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Double error",
+      "values": [
+        0.01,
+        100,
+        5,
+        0
+      ]
+    },
+    {
+      "label": "Triple error",
+      "values": [
+        0.01,
+        200,
+        5,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Sensitivity to initial conditions can limit long-range prediction.",
+  "modelBoundary": "Doubling gives {A}; tripling gives {B}. Repeated amplification makes the multiplier increasingly important despite the same tiny starting uncertainty.",
+  "doesItHoldUp": "Does it hold up? This error recurrence is not a chaotic system. It proves neither chaos nor the accuracy of a weather forecast."
+}

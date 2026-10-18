@@ -2,7 +2,7 @@
 
 status: ratified 2026-10-17 by the founder ("Ratify both", then "Confirm AMD-013"; company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md). Rollback (`vercel rollback`) is not pre-approved: the founder did not add it (open question Q1).
 date: 2026-10-17
-board: W-1585 (with W-1603 and W-1634)
+board: W-1764 (with W-1782 and W-1813)
 proposed_by: founder. The substance is ratified in company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md ("Ratify both", then "Amendment + flag-off"). The founder clarified "always on, no switch" in company/decisions/2026-10-17-founder-personalization-milestone-delegation.md.
 prepared_by: evaluation-steward (Hilde). I took number 013 because AMD-012 is the highest number on disk and nothing on disk reserves 013. The chief of staff may renumber.
 takes effect: when the founder has read this text and confirms the wording. Per the founder's record, that is a confirmation of wording, not a new decision. Until then, Surface Value v1 stands, the privacy rulings stand as written, and **no agent acts on the pre-approved withdrawal in Part B**.
@@ -45,7 +45,7 @@ There are two parts. **Part A** is the product rule: what the feed does, at cold
 
 **Unchanged in surface-value.md:** "For a lesson" (1-5) and the engagement paragraph. "Revisits come before new lessons when due." "Nothing autoplays. There are no streaks and no guilt." The trade-off rows on predict-before-reveal and gates.
 
-### A2. What it does at cold start (W-1603, batch 5 §14.1)
+### A2. What it does at cold start (W-1782, batch 5 §14.1)
 
 - With the flag on, a device with no history sees the candidate's `rank` order over the pilot dims with an empty history. **There is no cold-start wrapper** (vp-personalization, batch 5 §14.1). Any other cold-start behaviour, such as "default order until the first completion", would be a policy outside the hashed file, so it would need a new candidate or a further amendment.
 - **It uses no learner data.** The order is a fixed function of the catalogue: pilot lessons that need fewer in-pilot prerequisite concepts come first, and ties fall back to the default order. It is byte-identical on every new device. It is byte-identical to v2's empty-history order (v3 build note test 39; EDD-010 T2 pins the 230-slug vector).
@@ -53,7 +53,7 @@ There are two parts. **Part A** is the product rule: what the feed does, at cold
 - **Measured** (head-of-product, copy review §3, on v3 and dims at 4a559d6): 229 of 230 pilot cards move. Same-subject neighbours in the first 60 cards go from 0 to 2, and across the whole feed from 47 to 80 of 946 positions.
 - **Not scored.** Criterion 3b's episodes start from seeded histories, so the exact empty-history state is not a scored state. G reads curious-newcomer as the nearest scored case. G's record and the release note say so word for word (batch 5 §14.1 item 3). This amendment does not claim that 3b measured cold start.
 
-### A3. Lessons in review before published ones at cold start (W-1634)
+### A3. Lessons in review before published ones at cold start (W-1813)
 
 - **What happens:** in v3's empty-history order, the 8 pilot lessons in review sit at pilot positions 33, 187-190 and 224-226. In the default order they sit at 152 and 223-229. `weak-links-hold-it-together` (in review) comes ahead of 189 published pilot lessons, at about All-feed position 209 (copy review §3; batch 5 §18.5).
 - **Which rule it breaks:** surface-value.md line 23 and AMD-008 F1, "published first, then lessons in review". A1 and the F1 rider in A4 change both, for the All feed with the flag on only.
@@ -67,18 +67,18 @@ AMD-008 is a proposal. These riders are part of this amendment, so whichever of 
 
 - **F1 (replaces).** "The default order is subject round-robin, published first, then lessons in review labelled as such. Every subject chip shows it, and the All feed shows it with the company flag off. With the flag on, a fresh context's All feed shows the frozen candidate's empty-history order (Surface Value, as amended by AMD-013). That order uses no learner data, and in it lessons in review may come before published ones. *Test:* with the flag off, and on every chip with the flag on or off, the order equals the default function over the catalogue, card for card. With the flag on, two fresh contexts get the same All order, and its pilot slots equal the candidate's pinned empty-history vector (EDD-010 T2)."
 - **F4 (replaces).** "The feed says what it is doing. With no history it says plainly that, on a new device, it knows nothing about the learner and is not 'for you', and it says what its order is. With the flag on, the All intro says in plain words that finishing lessons moves some new ones, and that a card that moved says so. It offers no control and implies none. *Test:* in a fresh context the intro contains the cold-start sentence (`tests/qa/feed.spec.ts`, unchanged). With the flag on, no intro sentence names a control or a setting, and every moved card renders its reason line (S1 tests)."
-- **P4 (narrowed).** For the website's new-lesson order only, P4 reads: "The company is in control and says so honestly. There is no learner switch (founder, 2026-10-17). One company build flag turns the order off and returns the default order exactly, with no candidate code running. The flag is read at build only. There is no run-time, cookie, query-string or storage override, and the deploy script pins its value from the approved release (W-1604). No copy says or implies that a learner can turn the order off, set it, or that it follows their choices. Personalization never requires an account. *Test:* a flag-off build gives the default order byte for byte and does not contain the candidate module (EDD-010 T10, T22). A flag-on build has no switch element and reads no settings field. Anonymous and signed-in contexts with the same local history get the same order." **P4 as drafted (a learner control that turns personalization off) stays the rule for any other personalization surface**, for example stated subject picks or "less of this", if one is ever built.
-- **P5 (narrowed).** For the website's new-lesson order only: the registered evidence is the frozen offline criterion (3b) and the G record, read by batch 5 §4 and §12, plus the W-1581 rollout registration with counters only. There is no default-order holdout arm unless the founder decides O2. In that case the live effect is reported as unmeasured. P5 is otherwise unchanged.
+- **P4 (narrowed).** For the website's new-lesson order only, P4 reads: "The company is in control and says so honestly. There is no learner switch (founder, 2026-10-17). One company build flag turns the order off and returns the default order exactly, with no candidate code running. The flag is read at build only. There is no run-time, cookie, query-string or storage override, and the deploy script pins its value from the approved release (W-1783). No copy says or implies that a learner can turn the order off, set it, or that it follows their choices. Personalization never requires an account. *Test:* a flag-off build gives the default order byte for byte and does not contain the candidate module (EDD-010 T10, T22). A flag-on build has no switch element and reads no settings field. Anonymous and signed-in contexts with the same local history get the same order." **P4 as drafted (a learner control that turns personalization off) stays the rule for any other personalization surface**, for example stated subject picks or "less of this", if one is ever built.
+- **P5 (narrowed).** For the website's new-lesson order only: the registered evidence is the frozen offline criterion (3b) and the G record, read by batch 5 §4 and §12, plus the W-1760 rollout registration with counters only. There is no default-order holdout arm unless the founder decides O2. In that case the live effect is reported as unmeasured. P5 is otherwise unchanged.
 - **Rollback paragraph.** Replace "F1 and P4 guarantee that personalization off equals the v1 order" with "the company flag off gives the default order exactly (P4 as narrowed by AMD-013)".
 
 ### A5. Privacy rulings this lets lapse, and those that stay (privacy-reviewer's own re-ruling; recorded here, not decided here)
 
 These rulings are not protected paths. privacy-reviewer has ruled on them, and this section records the result so the amendment states the whole change.
-- **Lapses for the website's new-lesson order only, and only once this amendment takes effect:** T3 of company/reviews/_privacy/2026-10-16-personalization-model-inputs.md ("The off switch is as reachable for a teen as for anyone and works without an account"). privacy-reviewer wrote that it lapses by the founder's decision once W-1585 is ratified, and not before (design read, "Which of my earlier conditions change").
+- **Lapses for the website's new-lesson order only, and only once this amendment takes effect:** T3 of company/reviews/_privacy/2026-10-16-personalization-model-inputs.md ("The off switch is as reachable for a teen as for anyone and works without an account"). privacy-reviewer wrote that it lapses by the founder's decision once W-1764 is ratified, and not before (design read, "Which of my earlier conditions change").
 - **Moot for the website ordering, which reads no settings field:** D1, D2 and G3 of company/reviews/_privacy/2026-10-16-personalization-batch-reads.md. They stay in force for the settings API if it is ever built on.
 - **Stay, and now carry more weight:** N1-N3 (computed, not stored), section 4 (no stored derived values), T1, T2, T4-T6, P3 (no traits, no comparison, no pressure), M3 (the estimate is never shown as a number or a trait), and E1-E14 of the EDD-010 design read. The ceiling on reason lines stays as privacy ruled it (no prediction tallies, no `pKnown`, no traits).
 
-### A6. The protected QA intro test (W-1603)
+### A6. The protected QA intro test (W-1782)
 
 **The test** (`tests/qa/feed.spec.ts` lines 5-12, "home feed opens honestly and starts"): at `/` in a fresh context, the intro card is visible and contains `not “for you”` (assertion message "cold start does not pretend to personalise"), and Start opens a lesson card.
 
@@ -90,7 +90,7 @@ These rulings are not protected paths. privacy-reviewer has ruled on them, and t
 - The chip intro ("…so this list is not “for you”.") also contains the phrase.
 
 **What the test does not check (stated so nobody reads more into a green run than it proves):**
-1. It checks one phrase. Today's flag-off copy ("It alternates subjects") and head-of-product's flag-on copy both contain it, so the test cannot tell the false flag-on sentence from the true one. batch 5 MR line 17 and the fact-checked copy (W-1579) catch that, not this test.
+1. It checks one phrase. Today's flag-off copy ("It alternates subjects") and head-of-product's flag-on copy both contain it, so the test cannot tell the false flag-on sentence from the true one. batch 5 MR line 17 and the fact-checked copy (W-1758) catch that, not this test.
 2. "The order uses no learner data" is checked outside `tests/qa/`: empty-history byte-identity (v3 test 39, EDD-010 T2), N3's forbidden-input invariance, and T10 and T22 for the flag. Those tests are not on the protected list.
 3. `npm run qa` runs against a build of the repository, where the flag is off. The protected test sees the flag-on intro only if the build it runs against has the flag on. Whether the release's verify build carries the release's flag value is an open question below (Q3).
 
@@ -107,8 +107,8 @@ The founder approves one kind of deploy in advance, the **flag-off withdrawal**.
 ### B2. Triggers (only these)
 
 Any role may raise a trigger by writing a trigger record (B4, item 1) that names one of the triggers below and cites its evidence (a file, a test run, or a URL with what was seen):
-- **Privacy.** The live personalised order, or its copy, does one of the following: writes or fetches anything N1 forbids (beyond today's); stores a derived value (D20, section 4); reads an input outside the privacy ruling (N3, V7); puts order or reason state into the DOM, the URL or storage (E1, E2); or lets a learner-facing line exceed the privacy ceiling (a trait, a number, a prediction tally, or a control or choice it implies). privacy-reviewer withdrawing or changing its W-1586 ruling so that a G9 condition no longer holds is also a privacy trigger.
-- **Child safety.** A finding that the live order or its copy exposes a learner who may be 13 to 15 to pressure, comparison, a trait or a judgement about them (privacy P3, M3, T3-T6; AMD-008 M2-M4). Counsel's answer (W-1587, W-1612) being withdrawn or changed so that the always-on order may not be applied to 13-15 year olds is also a child-safety trigger.
+- **Privacy.** The live personalised order, or its copy, does one of the following: writes or fetches anything N1 forbids (beyond today's); stores a derived value (D20, section 4); reads an input outside the privacy ruling (N3, V7); puts order or reason state into the DOM, the URL or storage (E1, E2); or lets a learner-facing line exceed the privacy ceiling (a trait, a number, a prediction tally, or a control or choice it implies). privacy-reviewer withdrawing or changing its W-1765 ruling so that a G9 condition no longer holds is also a privacy trigger.
+- **Child safety.** A finding that the live order or its copy exposes a learner who may be 13 to 15 to pressure, comparison, a trait or a judgement about them (privacy P3, M3, T3-T6; AMD-008 M2-M4). Counsel's answer (W-1766, W-1791) being withdrawn or changed so that the always-on order may not be applied to 13-15 year olds is also a child-safety trigger.
 
 These G10 triggers do **not** qualify, so a withdrawal on them is asked of the founder as usual: an evidence change (a corrected 3b readout, an R4 difference), a breached guardrail counter, or a moved card without a true reason line that is not a privacy or child-safety finding.
 
@@ -136,7 +136,7 @@ release-manager checks only that the record names a listed trigger and cites evi
 >
 > **Steps:**
 > 1. Read the latest production record in `company/ops/deployments/`, and take its source commit and its `SHOW_REVIEW` value. Check out that commit, clean.
-> 2. Run `npm run deploy -- production` with the new-lesson-order flag set off by the deploy script's pin (W-1604). Do not set it by hand in the Vercel dashboard.
+> 2. Run `npm run deploy -- production` with the new-lesson-order flag set off by the deploy script's pin (W-1783). Do not set it by hand in the Vercel dashboard.
 > 3. Check, before calling it done: the new deployment record names the same source commit and the same `SHOW_REVIEW` value as the live one; the build log shows `new-lesson-order: off`; the smoke test passes (`QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts`); and the All feed at `/` in a fresh context shows the default order.
 > 4. If the deploy or a check fails, stop. Production stays as it was (staged promotion), and every further step, including a retry or `npx vercel rollback`, needs the founder's approval.
 >
@@ -155,7 +155,7 @@ release-manager checks only that the record names a listed trigger and cites evi
 
 ## What does not change (both parts)
 
-- **The website release still waits on all of these:** counsel's answer (W-1587, W-1612; G9); privacy-reviewer's final reads of the code, the rendered page and the copy (W-1586, E1-E14, V1-V15); the G record GO (batch 5 §4, §12); the MR checklist, including lines 10, 15, 16 and 17; and a **founder-approved deploy** that turns the flag on. This amendment authorises no deploy, and it does not turn the flag on.
+- **The website release still waits on all of these:** counsel's answer (W-1766, W-1791; G9); privacy-reviewer's final reads of the code, the rendered page and the copy (W-1765, E1-E14, V1-V15); the G record GO (batch 5 §4, §12); the MR checklist, including lines 10, 15, 16 and 17; and a **founder-approved deploy** that turns the flag on. This amendment authorises no deploy, and it does not turn the flag on.
 - If counsel requires a learner control or an objection right, the website part is NO-GO until the founder decides (G9). Nobody adds a switch on their own, and this amendment would then need revising.
 - Revisits, drafts never shown, the "In review" label, every chip's order, the claims rule, the reason-line truth rule (G7), the no-harm gate, and every company gate are unchanged.
 - The HQ part of M1 is unaffected.
@@ -177,7 +177,7 @@ The protected objective will describe the product that ships, so "it is not pers
 
 - **prediction:** (1) The first flag-on release candidate passes `tests/qa/feed.spec.ts` unchanged, in a build with the flag on and in one with it off. (2) Every fresh-context All feed on the flag-on build has the same order, equal to the pinned empty-history vector on pilot slots and to the default order elsewhere. (3) Nobody has to ask the evaluation steward what the restated intent means for a specific build. (4) If Part B is ever used, the withdrawal takes effect within one remote build (about ten minutes plus the next page load). The record shows the same commit and the same `SHOW_REVIEW` as the live deployment, and the founder-inbox item exists within the same run.
 - **would_be_wrong_if:** a flag-on build shows a different order in two fresh contexts (cold start uses something learner- or device-specific); the protected intro test fails on a build whose intro is true (the test is out of date, which needs a QA amendment rather than a copy workaround); a withdrawal deploy differs from the live one in anything but the flag; Part B is used for a reason outside B2; or the founder learns of a withdrawal from anything other than the inbox item or the report.
-- **side_by_side (Article 3.4):** not possible today, because no flag-on build exists on this branch. Owed before the flag-on release: run `feed.spec.ts` against a flag-off build and a flag-on build of the same commit, and add the fresh-context identity check from prediction (2). Record every disagreement in the release record. Owners: qa-tester, with personalization-engineer for the flag-on build. For Part B, release-manager writes a dry run with `npm run deploy -- production --dry-run` once W-1604 lands, and must show the plan sets the flag off and changes nothing else.
+- **side_by_side (Article 3.4):** not possible today, because no flag-on build exists on this branch. Owed before the flag-on release: run `feed.spec.ts` against a flag-off build and a flag-on build of the same commit, and add the fresh-context identity check from prediction (2). Record every disagreement in the release record. Owners: qa-tester, with personalization-engineer for the flag-on build. For Part B, release-manager writes a dry run with `npm run deploy -- production --dry-run` once W-1783 lands, and must show the plan sets the flag off and changes nothing else.
 
 ## Does it change how the proposer is judged?
 
@@ -218,7 +218,7 @@ Each objection is answered with what happened to it.
 
 - **Q1 (founder):** B1 covers only the flag-off build. Should `npx vercel rollback` (faster, with no build) also be pre-approved on the same triggers? As drafted, it is not.
 - **Q2 (release-manager with head-of-product):** `tools/deploy.mjs` line 75 pins `SHOW_REVIEW=off` for production, but the founder's decision of 2026-10-15 keeps review lessons visible in production. A3 matters only where review lessons are shown. Whether the pilot dims change with `SHOW_REVIEW` (and so whether the candidate's input changes) is for personalization-eval and vp-personalization. The withdrawal copies whatever the live value is.
-- **Q3 (release-manager with platform-engineer, W-1604):** does the release's `npm run verify` build carry the release's flag value? If not, the protected intro test never sees the flag-on intro before it ships (A6 gap 3). Part B also depends on W-1604, but flag-on cannot ship without it (EDD-010 C12), so it is in place whenever Part B could apply.
+- **Q3 (release-manager with platform-engineer, W-1783):** does the release's `npm run verify` build carry the release's flag value? If not, the protected intro test never sees the flag-on intro before it ships (A6 gap 3). Part B also depends on W-1783, but flag-on cannot ship without it (EDD-010 C12), so it is in place whenever Part B could apply.
 - **Q4 (evaluation-steward, later):** a QA amendment that adds a flag-on cold-start test to `tests/qa/` (fresh-context identity, and intro truth for each filter). Drafted only after a flag-on build exists, with its own side-by-side.
 - **Q5 (chief of staff):** who reviews a child-safety finding after the event? There is no child-safety reviewer role. As drafted, privacy-reviewer reads every trigger afterwards.
 

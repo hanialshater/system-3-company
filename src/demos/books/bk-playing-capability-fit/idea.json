@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Playing to Win",
+    "author": "A. G. Lafley and Roger L. Martin",
+    "year": 2013,
+    "work": "playing-capability-2013"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Every job passes Make, Deliver and Support. In B, each handles five jobs/hour. How many completed jobs per hour can B sustain?",
+    "options": [
+      "15",
+      "18",
+      "5",
+      "2"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Uneven investment",
+      "values": [
+        8,
+        2,
+        8
+      ]
+    },
+    {
+      "label": "Balanced capability",
+      "values": [
+        5,
+        5,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "Make",
+    "Deliver",
+    "Support"
+  ],
+  "unit": "jobs/hour",
+  "bookIdea": "Playing to Win connects strategic choices with the capabilities needed to make those choices work together.",
+  "modelBoundary": "Every job needs all three steps. A completes {A} jobs/hour; B completes {B}. B has less total capacity, yet each step handles five. Jobs are identical; real strategy involves more than this stipulated rate model.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

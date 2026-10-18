@@ -1,0 +1,242 @@
+{
+  "slug": "algo-iterative-deepening",
+  "title": "Start shallow, still reach the depth",
+  "hook": "A search can repeat itself to control how deep its answer may be.",
+  "domain": "cs",
+  "concept": "algo-iterative-deepening",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Search trees; minimax and a partial solution state."
+    ],
+    "doesNotKnow": [
+      "Repeat depth-limited search to obtain a shallowest solution with depth-first memory."
+    ]
+  },
+  "misconception": "Repeating earlier depths is always slower than searching deeply once.",
+  "objective": "Repeat depth-limited search to obtain a shallowest solution with depth-first memory.",
+  "claims": [
+    {
+      "id": "cs.algo-iterative-deepening.c1",
+      "text": "Each pass performs depth-first search but refuses to descend beyond its current limit. Earlier passes revisit nodes; increasing the limit one level at a time finds a shallowest goal in an unweighted tree while keeping a depth-first path.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c2",
+      "text": "A search can repeat itself to control how deep its answer may be.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c3",
+      "text": "Tree S→A,B; A→C,D; B→G; C→E,F. At what depth limit does iterative deepening first find G?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c4",
+      "text": "Run the question case; Step exposes each search decision.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c5",
+      "text": "Depth 2; visits 10.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c6",
+      "text": "Tree and goal",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c7",
+      "text": "tree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c8",
+      "text": "S→AB;A→CD;B→G;C→EF",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c9",
+      "text": "goal",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c10",
+      "text": "G",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c11",
+      "text": "Depth-limited pass",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c12",
+      "text": "limit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c13",
+      "text": "visited",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c14",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[1].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c15",
+      "text": "found",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c16",
+      "text": "SAB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c17",
+      "text": "SACDBG",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[0].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c18",
+      "text": "Depth 3; visits 14.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c19",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[1].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c20",
+      "text": "SACE",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#iterative_deepening.cases[1].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c21",
+      "text": "Why repeat earlier work instead of one unlimited depth-first pass?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c22",
+      "text": "To discover the shallowest solution with depth-first memory",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c23",
+      "text": "To guarantee no node is revisited",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c24",
+      "text": "To sort children by distance",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-iterative-deepening.c25",
+      "text": "The increasing limits rule out all shallower depths before accepting a deeper goal.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-iterative-deepening\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why repeat earlier work instead of one unlimited depth-first pass?",
+    "options": [
+      "To discover the shallowest solution with depth-first memory",
+      "To guarantee no node is revisited",
+      "To sort children by distance"
+    ],
+    "answer": 0,
+    "why": "The increasing limits rule out all shallower depths before accepting a deeper goal."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-iterative-deepening/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-iterative-deepening",
+    "also": [],
+    "prerequisites": [
+      "depth-first-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "combinatorial-game-search"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

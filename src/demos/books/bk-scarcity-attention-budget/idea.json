@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Scarcity",
+    "author": "Sendhil Mullainathan and Eldar Shafir",
+    "year": 2013,
+    "work": "scarcity-attention-2013"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Thirty minutes contain five-minute task chunks, each with five minutes of urgent admin first. How much completed task time fits?",
+    "options": [
+      "10 minutes",
+      "15 minutes",
+      "30 minutes"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Admin each chunk",
+      "values": [
+        30,
+        5,
+        5
+      ]
+    },
+    {
+      "label": "No urgent admin",
+      "values": [
+        30,
+        5,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Task",
+    "Admin"
+  ],
+  "unit": "task min",
+  "bookIdea": "Scarcity argues pressing shortages can capture attention and leave less for other demands.",
+  "modelBoundary": "Admin leaves {A} for task chunks; removing it leaves {B}. The consumed time is explicit, not an estimated cognitive penalty.",
+  "doesItHoldUp": "Does it hold up? Scarcity’s real attentional effects are not established by this scheduling identity."
+}

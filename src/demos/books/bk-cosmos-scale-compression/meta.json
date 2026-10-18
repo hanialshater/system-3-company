@@ -1,0 +1,118 @@
+{
+  "slug": "bk-cosmos-scale-compression",
+  "title": "Keep track of the powers of ten",
+  "hook": "One more tenfold scale step multiplies the whole accumulated quantity.",
+  "domain": "books",
+  "concept": "book-cosmos-scale-compression",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Interpret an order-of-magnitude change as multiplication."
+    ]
+  },
+  "misconception": "An extra order of magnitude adds a fixed small amount.",
+  "objective": "Interpret an order-of-magnitude change as multiplication.",
+  "claims": [
+    {
+      "id": "books.bk-cosmos-scale-compression.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Astronomical scales require reasoning across many orders of magnitude.",
+      "status": "unverified",
+      "source": "{\"work\":\"cosmos-scale-1980\",\"edition\":1980,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-cosmos-scale-compression.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Carl Sagan, Cosmos (1980)",
+      "status": "unverified",
+      "source": "{\"work\":\"cosmos-scale-1980\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-cosmos-scale-compression.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Six steps give {A}; seven give {B}. The additional step multiplies the accumulated scale by ten rather than adding ten.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,900,6,0],[1,900,7,0]],\"outputs\":[1000000,10000000]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-cosmos-scale-compression.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? These are dimensionless scale factors, not dated cosmic events, an age estimate or the book’s calendar diagram.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "From 10³ to 10⁵ units, what factor separates the quantities?",
+    "options": [
+      "2",
+      "20",
+      "100"
+    ],
+    "answer": 2,
+    "why": "10⁵/10³=10²=100."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-cosmos-scale-compression/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-cosmos-scale-compression/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "books:book-cosmos-scale-compression",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "cosmos-scale-1980",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

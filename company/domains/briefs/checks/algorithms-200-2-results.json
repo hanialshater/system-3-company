@@ -1,0 +1,709 @@
+{
+  "batch": "B3",
+  "lessons": 50,
+  "cases": 100,
+  "checks": 432,
+  "scope": "finite fixture semantic checks only",
+  "results": {
+    "algo-rollback-dsu": [
+      {
+        "case": 0,
+        "result": false,
+        "proof": "A↔C no; parents 0,0,2,3",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": true,
+        "proof": "A↔C yes; parents 0,0,0,3",
+        "frames": 4
+      }
+    ],
+    "algo-parity-dsu": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "AC parity 0; conflict yes",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "AC parity 0; conflict no",
+        "frames": 4
+      }
+    ],
+    "algo-potential-dsu": [
+      {
+        "case": 0,
+        "result": "7; conflict",
+        "proof": "C−A 7; conflict",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": "5; consistent",
+        "proof": "C−A 5; consistent",
+        "frames": 4
+      }
+    ],
+    "algo-reverse-deletions": [
+      {
+        "case": 0,
+        "result": "0,0",
+        "proof": "AC after deletions 0,0",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": "1,0",
+        "proof": "AC after deletions 1,0",
+        "frames": 5
+      }
+    ],
+    "algo-time-segment-connectivity": [
+      {
+        "case": 0,
+        "result": "0,1,1,0,0",
+        "proof": "AC times 0…4 0,1,1,0,0",
+        "frames": 16
+      },
+      {
+        "case": 1,
+        "result": "0,0,1,1,1",
+        "proof": "AC times 0…4 0,0,1,1,1",
+        "frames": 11
+      }
+    ],
+    "algo-dsu-component-aggregate": [
+      {
+        "case": 0,
+        "result": 10,
+        "proof": "Component total 10; duplicate skipped",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 12,
+        "proof": "Component total 12; duplicate skipped",
+        "frames": 4
+      }
+    ],
+    "algo-small-to-large-maps": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "Item moves 5; final size 7",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 4,
+        "proof": "Item moves 4; final size 7",
+        "frames": 4
+      }
+    ],
+    "algo-dsu-next-unpainted": [
+      {
+        "case": 0,
+        "result": "·RRBBB",
+        "proof": "Colours ·RRBBB; fixed 5 cells",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": "·RBBBB",
+        "proof": "Colours ·RBBBB; fixed 5 cells",
+        "frames": 6
+      }
+    ],
+    "algo-kruskal-reconstruction-tree": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "AC merge threshold 5",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": 6,
+        "proof": "AC merge threshold 6",
+        "frames": 5
+      }
+    ],
+    "algo-offline-lca": [
+      {
+        "case": 0,
+        "result": "B,A",
+        "proof": "LCA answers B,A",
+        "frames": 7
+      },
+      {
+        "case": 1,
+        "result": "A,A",
+        "proof": "LCA answers A,A",
+        "frames": 6
+      }
+    ],
+    "algo-articulation-root": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "Root A: children 2; cut yes",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "Root A: children 1; cut no",
+        "frames": 4
+      }
+    ],
+    "algo-biconnected-edge-stack": [
+      {
+        "case": 0,
+        "result": 2,
+        "proof": "Blocks 2; sizes 3,3",
+        "frames": 3
+      },
+      {
+        "case": 1,
+        "result": 1,
+        "proof": "Blocks 1; sizes 7",
+        "frames": 2
+      }
+    ],
+    "algo-euler-degree-test": [
+      {
+        "case": 0,
+        "result": "C,D",
+        "proof": "Odd vertices C,D",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": "A,C",
+        "proof": "Odd vertices A,C",
+        "frames": 7
+      }
+    ],
+    "algo-hierholzer-splice": [
+      {
+        "case": 0,
+        "result": "ABCADEA",
+        "proof": "Euler circuit ABCADEA; edges 6",
+        "frames": 14
+      },
+      {
+        "case": 1,
+        "result": "ABCDECA",
+        "proof": "Euler circuit ABCDECA; edges 6",
+        "frames": 14
+      }
+    ],
+    "algo-directed-euler-balance": [
+      {
+        "case": 0,
+        "result": "A→D",
+        "proof": "Euler endpoints A→D",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": "circuit",
+        "proof": "Euler endpoints circuit",
+        "frames": 7
+      }
+    ],
+    "algo-dfs-edge-classes": [
+      {
+        "case": 0,
+        "result": "3,1,0,1",
+        "proof": "Tree/back/forward/cross 3,1,0,1",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": "3,0,0,1",
+        "proof": "Tree/back/forward/cross 3,0,0,1",
+        "frames": 5
+      }
+    ],
+    "algo-bfs-bipartite-witness": [
+      {
+        "case": 0,
+        "result": 3,
+        "proof": "Odd-cycle edges 3; BACB",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 0,
+        "proof": "Odd-cycle edges 0",
+        "frames": 4
+      }
+    ],
+    "algo-dag-path-count": [
+      {
+        "case": 0,
+        "result": 3,
+        "proof": "A→D paths 3; counts 1,1,2,3",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 2,
+        "proof": "A→D paths 2; counts 1,1,1,2",
+        "frames": 5
+      }
+    ],
+    "algo-topological-uniqueness": [
+      {
+        "case": 0,
+        "result": false,
+        "proof": "Unique no; chosen ABCD",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": true,
+        "proof": "Unique yes; chosen ABCD",
+        "frames": 5
+      }
+    ],
+    "algo-degeneracy-peeling": [
+      {
+        "case": 0,
+        "result": "2; EDFABC",
+        "proof": "Degeneracy 2; peel EDFABC",
+        "frames": 7
+      },
+      {
+        "case": 1,
+        "result": "2; EFABCD",
+        "proof": "Degeneracy 2; peel EFABCD",
+        "frames": 7
+      }
+    ],
+    "algo-negative-cycle-witness": [
+      {
+        "case": 0,
+        "result": -3,
+        "proof": "Cycle CABC; weight -3",
+        "frames": 15
+      },
+      {
+        "case": 1,
+        "result": "none",
+        "proof": "Reachable negative cycle none",
+        "frames": 5
+      }
+    ],
+    "algo-floyd-intermediate": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "A→C 5; row A 0,3,5",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 4,
+        "proof": "A→C 4; row A 0,3,4",
+        "frames": 3
+      }
+    ],
+    "algo-johnson-reweight": [
+      {
+        "case": 0,
+        "result": "0,1,4,2",
+        "proof": "Reweighted AB,BC,AC,CA 0,1,4,2",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": "0,0,5,1",
+        "proof": "Reweighted AB,BC,AC,CA 0,0,5,1",
+        "frames": 7
+      }
+    ],
+    "algo-zero-one-bfs": [
+      {
+        "case": 0,
+        "result": 1,
+        "proof": "S→T 1; distances 0,0,0,1",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": 0,
+        "proof": "S→T 0; distances 0,0,0,0",
+        "frames": 5
+      }
+    ],
+    "algo-multi-source-distance": [
+      {
+        "case": 0,
+        "result": 4,
+        "proof": "Centre nearest-source distance 4",
+        "frames": 26
+      },
+      {
+        "case": 1,
+        "result": 0,
+        "proof": "Centre nearest-source distance 0",
+        "frames": 26
+      }
+    ],
+    "algo-bidirectional-bound": [
+      {
+        "case": 0,
+        "result": 6,
+        "proof": "Shortest route 6; frontier bound reached",
+        "frames": 9
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Shortest route 3; frontier bound reached",
+        "frames": 9
+      }
+    ],
+    "algo-dag-negative-path": [
+      {
+        "case": 0,
+        "result": 3,
+        "proof": "S→T 3; topological distances 0,4,1,3",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 4,
+        "proof": "S→T 4; topological distances 0,4,2,4",
+        "frames": 6
+      }
+    ],
+    "algo-widest-path": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "Widest S→T 5",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Widest S→T 3",
+        "frames": 6
+      }
+    ],
+    "algo-shortest-path-count": [
+      {
+        "case": 0,
+        "result": 2,
+        "proof": "Shortest paths 2; distance 2",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Shortest paths 3; distance 2",
+        "frames": 6
+      }
+    ],
+    "algo-pareto-path-labels": [
+      {
+        "case": 0,
+        "result": 7,
+        "proof": "Feasible minimum cost 7; limit 4",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Feasible minimum cost 3; limit 6",
+        "frames": 5
+      }
+    ],
+    "algo-boruvka-components": [
+      {
+        "case": 0,
+        "result": 7,
+        "proof": "MST cost 7; chosen 1,2,4",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 6,
+        "proof": "MST cost 6; chosen 1,2,3",
+        "frames": 6
+      }
+    ],
+    "algo-mst-cycle-replacement": [
+      {
+        "case": 0,
+        "result": 9,
+        "proof": "Tree cost 9; cycle maximum 5",
+        "frames": 3
+      },
+      {
+        "case": 1,
+        "result": 10,
+        "proof": "Tree cost 10; cycle maximum 5",
+        "frames": 3
+      }
+    ],
+    "algo-mst-uniqueness": [
+      {
+        "case": 0,
+        "result": false,
+        "proof": "Unique MST no; cost 3",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": true,
+        "proof": "Unique MST yes; cost 2",
+        "frames": 5
+      }
+    ],
+    "algo-second-best-tree": [
+      {
+        "case": 0,
+        "result": 8,
+        "proof": "Second distinct tree cost 8; MST 6",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 7,
+        "proof": "Second distinct tree cost 7; MST 6",
+        "frames": 4
+      }
+    ],
+    "algo-bipartite-augmenting": [
+      {
+        "case": 0,
+        "result": 3,
+        "proof": "Matching size 3; BX,AY,CZ",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 2,
+        "proof": "Matching size 2; AX,CY,·",
+        "frames": 3
+      }
+    ],
+    "algo-hall-obstruction": [
+      {
+        "case": 0,
+        "result": "AB",
+        "proof": "Hall obstruction AB; neighbours X",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": "none",
+        "proof": "Hall obstruction none",
+        "frames": 8
+      }
+    ],
+    "algo-konig-cover": [
+      {
+        "case": 0,
+        "result": 2,
+        "proof": "Minimum cover A,Y; size 2",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Minimum cover A,B,C; size 3",
+        "frames": 5
+      }
+    ],
+    "algo-dinic-levels": [
+      {
+        "case": 0,
+        "result": 3,
+        "proof": "Maximum flow 3; sink unreachable",
+        "frames": 7
+      },
+      {
+        "case": 1,
+        "result": 4,
+        "proof": "Maximum flow 4; sink unreachable",
+        "frames": 7
+      }
+    ],
+    "algo-min-cost-flow": [
+      {
+        "case": 0,
+        "result": 4,
+        "proof": "Two assignments cost 4",
+        "frames": 3
+      },
+      {
+        "case": 1,
+        "result": 2,
+        "proof": "Two assignments cost 2",
+        "frames": 3
+      }
+    ],
+    "algo-lower-bound-flow": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "Feasible yes; demand 1/1",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "Feasible no; demand 0/1",
+        "frames": 3
+      }
+    ],
+    "algo-word-break": [
+      {
+        "case": 0,
+        "result": "ca|rs",
+        "proof": "Segmentation ca|rs",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": "car|s",
+        "proof": "Segmentation car|s",
+        "frames": 5
+      }
+    ],
+    "algo-regex-star-dp": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "Full regex match yes",
+        "frames": 17
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "Full regex match no",
+        "frames": 8
+      }
+    ],
+    "algo-wildcard-dp": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "Full glob match yes",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "Full glob match no",
+        "frames": 5
+      }
+    ],
+    "algo-interleaving-dp": [
+      {
+        "case": 0,
+        "result": true,
+        "proof": "Order-preserving interleaving yes",
+        "frames": 9
+      },
+      {
+        "case": 1,
+        "result": false,
+        "proof": "Order-preserving interleaving no",
+        "frames": 9
+      }
+    ],
+    "algo-distinct-subsequences": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "Index-distinct subsequences 5",
+        "frames": 8
+      },
+      {
+        "case": 1,
+        "result": 3,
+        "proof": "Index-distinct subsequences 3",
+        "frames": 4
+      }
+    ],
+    "algo-weighted-interval-dp": [
+      {
+        "case": 0,
+        "result": 10,
+        "proof": "Best interval value 10",
+        "frames": 4
+      },
+      {
+        "case": 1,
+        "result": 12,
+        "proof": "Best interval value 12",
+        "frames": 4
+      }
+    ],
+    "algo-palindrome-partition": [
+      {
+        "case": 0,
+        "result": 1,
+        "proof": "Minimum cuts 1; aa|bcb",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 1,
+        "proof": "Minimum cuts 1; aba|cdc",
+        "frames": 7
+      }
+    ],
+    "algo-longest-common-substring": [
+      {
+        "case": 0,
+        "result": 4,
+        "proof": "Common substring BABC; length 4",
+        "frames": 6
+      },
+      {
+        "case": 1,
+        "result": 1,
+        "proof": "Common substring A; length 1",
+        "frames": 6
+      }
+    ],
+    "algo-sequence-affine-gap": [
+      {
+        "case": 0,
+        "result": 4,
+        "proof": "Alignment cost 4; gap open 3, extend 1",
+        "frames": 5
+      },
+      {
+        "case": 1,
+        "result": 2,
+        "proof": "Alignment cost 2; gap open 1, extend 1",
+        "frames": 5
+      }
+    ],
+    "algo-bitonic-subsequence": [
+      {
+        "case": 0,
+        "result": 5,
+        "proof": "Bitonic length 5; peak counts 1,4,3,5,4,1",
+        "frames": 14
+      },
+      {
+        "case": 1,
+        "result": 4,
+        "proof": "Bitonic length 4; peak counts 1,2,3,4",
+        "frames": 10
+      }
+    ]
+  }
+}

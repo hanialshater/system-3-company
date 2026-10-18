@@ -1,4 +1,4 @@
-// The only code that writes the `settings` table (B2). Owner: learner-data-engineer. W-1538.
+// The only code that writes the `settings` table (B2). Owner: learner-data-engineer. W-1717.
 // Called only from handleSettingsPut (settings-handler.ts), which only the settings route's PUT calls
 // (src/app/api/account/settings/route.ts). tests/settings/settings-only-put-writes.test.mjs fails if any other file
 // writes the table or imports this module.

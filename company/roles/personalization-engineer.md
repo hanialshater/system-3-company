@@ -13,7 +13,7 @@ The org's work is visible and inspectable: anyone can pick a persona and see why
 
 ## In scope
 
-- The HQ Personalization Lab (W-1503): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only
+- The HQ Personalization Lab (W-1682): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only
 - In phase B: serving glue between the composer and the feed, behind the off switch
 
 ## Out of scope
@@ -35,7 +35,7 @@ May not:
 
 ## Inputs
 
-- The simulator's per-step trace (W-1504)
+- The simulator's per-step trace (W-1683)
 - company/personalization/model/
 
 ## Outputs

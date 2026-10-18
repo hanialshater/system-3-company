@@ -1,4 +1,4 @@
-// HQ R&D page (/hq/rnd, W-1654): read side of the code-evolution leaderboards. It serves only the committed file
+// HQ R&D page (/hq/rnd, W-1833): read side of the code-evolution leaderboards. It serves only the committed file
 // src/data/hq-rnd/leaderboards.json, written by `node tools/hq-rnd-precompute.mjs` from the same functions that
 // print `node tools/evolve.mjs board <project>` (tools/evolve-board.mjs). It scores nothing, spawns nothing and
 // reads nothing under src/lab/, which a deployed build does not carry. Owner: hq-engineer; data owner: rnd-lead.

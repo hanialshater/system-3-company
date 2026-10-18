@@ -1,0 +1,234 @@
+{
+  "slug": "algo-bounded-knapsack",
+  "title": "Only three copies remain",
+  "hook": "Only three copies remain. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-bounded-knapsack",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Enforce a finite copy limit with bounded-choice transitions."
+    ]
+  },
+  "misconception": "A reusable-item DP can enforce inventory merely by tracking total capacity.",
+  "objective": "Enforce a finite copy limit with bounded-choice transitions.",
+  "claims": [
+    {
+      "id": "cs.algo-bounded-knapsack.c1",
+      "text": "Each transition reads the previous item row and enumerates only the allowed copy count. Capacity alone cannot enforce stock: the separate copy bound excludes otherwise feasible combinations.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c2",
+      "text": "Only three copies remain. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c3",
+      "text": "Capacity 7; (w,v,stock)=(2,3,2),(3,5,1). Best value?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c5",
+      "text": "Value=11; capacity=7.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c6",
+      "text": "Capacity and stock",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c7",
+      "text": "w",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c8",
+      "text": "v",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c9",
+      "text": "stock",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c10",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[0].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c11",
+      "text": "Capacity 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c12",
+      "text": "before",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c13",
+      "text": "best",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c14",
+      "text": "Capacity 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c15",
+      "text": "Capacity 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c16",
+      "text": "Capacity 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c17",
+      "text": "Capacity 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c18",
+      "text": "Capacity 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c19",
+      "text": "Capacity 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c20",
+      "text": "Capacity 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#bounded_knapsack.cases[0].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c21",
+      "text": "An item has weight 2 and stock 1. May a transition add two copies at capacity 4?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c22",
+      "text": "Yes, capacity fits",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c23",
+      "text": "No, stock forbids it",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bounded-knapsack.c24",
+      "text": "Capacity and stock are separate constraints; both must hold in each transition.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-bounded-knapsack\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An item has weight 2 and stock 1. May a transition add two copies at capacity 4?",
+    "options": [
+      "Yes, capacity fits",
+      "No, stock forbids it"
+    ],
+    "answer": 1,
+    "why": "Capacity and stock are separate constraints; both must hold in each transition."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-bounded-knapsack/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-bounded-knapsack",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

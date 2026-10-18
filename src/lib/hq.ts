@@ -205,7 +205,7 @@ export interface FounderItem {
 export function founderQueue(): FounderItem[] {
   const read = (f: string) => {
     try {
-      return JSON.parse(fs.readFileSync(path.join(process.cwd(), f), "utf8"));
+      return JSON.parse(fs.readFileSync(/*turbopackIgnore: true*/ path.join(/*turbopackIgnore: true*/ process.cwd(), f), "utf8"));
     } catch {
       return null;
     }

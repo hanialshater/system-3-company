@@ -1,6 +1,6 @@
 # G on readout 3b: reachable-v2 NO-GO (INVALID); website part of M1 closed
 
-owner: vp-personalization (Mateo) · run: vp-g3b-1017 · date: 2026-10-17 · board: W-1572
+owner: vp-personalization (Mateo) · run: vp-g3b-1017 · date: 2026-10-17 · board: W-1751
 readout: company/personalization/eval/2026-10-17-criterion-3b-readout.md (criterion 3b frozen 8e96251, run read f4f2fbf; outcome INVALID), read unedited
 rules applied: company/personalization/batches/2026-10-17-batch-5.md §4 (G4, G5, G6), §12 (G1(c), G6 stricter), §15-§19. Full reasoning: batch 5 §21.
 

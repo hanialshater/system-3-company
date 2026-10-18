@@ -1,7 +1,7 @@
-# Privacy rulings: composer tests (W-1526), HQ lab done-ness (W-1527), `settings` schema (W-1521)
+# Privacy rulings: composer tests (W-1705), HQ lab done-ness (W-1706), `settings` schema (W-1700)
 
-owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-perso-reads-1016 · class: tier-2 privacy reads · board: W-1526, W-1527, W-1521
-Follows my ruling `company/reviews/_privacy/2026-10-16-personalization-model-inputs.md` (W-1495), whose N1 to N6, SS1 to SS5 and section 6 are the standard here. I wrote that ruling; the three artifacts are other roles' work (learner-model-engineer, personalization-engineer, learner-data-engineer). I approve none of my own proposals. Not legal advice; **lawyer** marks items for counsel.
+owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-perso-reads-1016 · class: tier-2 privacy reads · board: W-1705, W-1706, W-1700
+Follows my ruling `company/reviews/_privacy/2026-10-16-personalization-model-inputs.md` (W-1674), whose N1 to N6, SS1 to SS5 and section 6 are the standard here. I wrote that ruling; the three artifacts are other roles' work (learner-model-engineer, personalization-engineer, learner-data-engineer). I approve none of my own proposals. Not legal advice; **lawyer** marks items for counsel.
 
 Read: the three artifacts named on the board, `privacy-n1-n3.test.mjs` in full, `sim/README.md` privacy section, `src/app/api/hq/personalization/route.ts`, `src/lib/hq-personalization-server.ts`, `00N_settings.up.sql` and `.down.sql`, the schema note, the VP's decision §4, `data-inventory.md`. **Ran:** `node --test .../privacy-n1-n3.test.mjs` (5 of 5 pass); `node .../privacy-breaks.mjs` (13 rows, "every break caught as expected"); `bash .../test-00N-settings.sh` (26 passed, 0 failed). **Not read:** `001_accounts.up.sql` (accounts branch not available), `hq-cli.mjs` and the JSX beyond the lab note's quoted lines (I relied on the lab note's grep and re-checked only the route and server file), any settings API (none exists).
 
@@ -9,14 +9,14 @@ Read: the three artifacts named on the board, `privacy-n1-n3.test.mjs` in full, 
 
 | Item | Ruling |
 |---|---|
-| W-1526 N1 and N3 tests | **Pass with conditions** (T1 to T3) |
-| W-1527 lab privacy DoD and the own-route exception | **Exception accepted, narrowly. Grep: pass with conditions. Lab is not "privacy-done" until W-1528 and W-1529 land** (L1 to L5) |
-| W-1521 `settings` schema | **Pass with conditions** at schema level; **not clear to apply** to any database holding a real learner until B1 to B4 are met (SS1 to SS5 rows below) |
+| W-1705 N1 and N3 tests | **Pass with conditions** (T1 to T3) |
+| W-1706 lab privacy DoD and the own-route exception | **Exception accepted, narrowly. Grep: pass with conditions. Lab is not "privacy-done" until W-1707 and W-1708 land** (L1 to L5) |
+| W-1700 `settings` schema | **Pass with conditions** at schema level; **not clear to apply** to any database holding a real learner until B1 to B4 are met (SS1 to SS5 rows below) |
 | `personalization_on` default | **Option A accepted** with conditions (D1 to D4) |
 | Anonymous-to-account merge | **Pass with conditions** (G1 to G4) |
 | Inventory rows D21.1 to D21.4, D22 | **Accepted as proposed rows**, written into `data-inventory.md`, status "designed, not built" |
 
-## 1. W-1526: N1 and N3 tests on the composer: pass with conditions
+## 1. W-1705: N1 and N3 tests on the composer: pass with conditions
 
 Against my §3, N1 and N3:
 
@@ -29,22 +29,22 @@ Conditions:
 - **T2. Serving code needs its own N1/N3.** This test covers the composer and the model functions it calls (README "Limits" says so). When a serving layer exists (browser compose for anonymous learners, per-request compose for signed-in ones), it must run the same N1 stubs and the N3 variation where it runs, including the `settings` read: a read of the row is allowed, a write from the compose path is not. N2 (no history serialised to a request) is not tested here and gets its own test at that layer. This ruling does not clear a serving build.
 - **T3. Renamed keys.** A forbidden value carried under a different key (for example `age` for `ageBand`) is caught only if it changes the composition; the README admits this. Accept as a known limit; the phase B review reads the serving diff for new input names (N6).
 
-## 2. W-1527: HQ lab privacy definition of done and grep
+## 2. W-1706: HQ lab privacy definition of done and grep
 
 **D1 to D6 as written are the right definition of done** and match my §6. I checked what I could without a browser: the route (`route.ts`) takes only `Request`, reads only the URL's search params through `parseSimRequest`, reads no cookies or headers, returns 404 unless `hqEnabled()`; `runSim` refuses to spawn when `NODE_ENV === "production"`, even with `HQ_PUBLIC=1`; the CLI's data inputs are the personas, the catalog files and `sim/out/traces`.
 
 **Ruling on the H1/H2 exception: accepted**, in this form: a hit is allowed only if it is a `fetch` of the **literal** path `/api/hq/personalization` (query string built from the lab's own controls), and the route's data sources stay exactly those in D1. A page calling its own simulator route is not a real-data path; the browser sends nothing the viewer holds. H3 (a comment) is not a hit that matters. This is not a general allowance for `/api/` or `fetch`: any other URL, any variable URL, `localStorage`, `s3c:`, an accounts/event-intake import is still a finding.
 
 Conditions:
-- **L1. The W-1529 test pins the literal.** It must fail on any `fetch` whose first argument is not the literal route, on any other `/api/`, on a template that interpolates anything before the `?`, and on every other pattern in the grep (localStorage, `s3c:`, sessionStorage, indexedDB, `document.cookie`, `cookies()`, `headers()`, imports matching `account|auth|session|events-intake|progress`). The module list is updated when the accounts module lands (note §5).
+- **L1. The W-1708 test pins the literal.** It must fail on any `fetch` whose first argument is not the literal route, on any other `/api/`, on a template that interpolates anything before the `?`, and on every other pattern in the grep (localStorage, `s3c:`, sessionStorage, indexedDB, `document.cookie`, `cookies()`, `headers()`, imports matching `account|auth|session|events-intake|progress`). The module list is updated when the accounts module lands (note §5).
 - **L2. Route stays closed to learner data.** If `route.ts` or `hq-cli.mjs` ever reads a cookie, header, storage, or a path outside the D1 list, the exception lapses and I read it again. `op` stays a closed set; `op=learners`-style additions are a new read.
-- **L3. Saved traces.** `sim/out/traces/` holds simulator output only; real-data traces are never written there. Accepted as a note, not a code check; if W-1497/W-1513 calibration ever uses real data it is a new read (A2).
-- **L4. Child environment.** Accept W-1530's plan to pass a minimal env to the CLI instead of `{ ...process.env }`. Not a data path today (the CLI reads none); do it before accounts secrets (`DATABASE_URL` and the like) exist in the dev environment, because then the spawned process would inherit them.
-- **L5. Labelling blocks "done".** D2 and D3 are only partly met (fingerprint caption and curves legend do not say "simulated"; the persona heading reads as a segment, "Struggling repeater"). W-1528 closes them. **The lab is not privacy-done until W-1528 and W-1529 land and I have read the rendered page** (the lab note judged from JSX). I will not call it done on the note alone. A screenshot of one panel must carry the word.
+- **L3. Saved traces.** `sim/out/traces/` holds simulator output only; real-data traces are never written there. Accepted as a note, not a code check; if W-1676/W-1685 calibration ever uses real data it is a new read (A2).
+- **L4. Child environment.** Accept W-1709's plan to pass a minimal env to the CLI instead of `{ ...process.env }`. Not a data path today (the CLI reads none); do it before accounts secrets (`DATABASE_URL` and the like) exist in the dev environment, because then the spawned process would inherit them.
+- **L5. Labelling blocks "done".** D2 and D3 are only partly met (fingerprint caption and curves legend do not say "simulated"; the persona heading reads as a segment, "Struggling repeater"). W-1707 closes them. **The lab is not privacy-done until W-1707 and W-1708 land and I have read the rendered page** (the lab note judged from JSX). I will not call it done on the note alone. A screenshot of one panel must carry the word.
 
 This is a ruling on the grep and the exception. It is not the "I read the grep before the lab is called done" sign-off in full: that needs L5.
 
-## 3. W-1521: `settings` schema
+## 3. W-1700: `settings` schema
 
 Not written against the `accounts` branch; the FK target (`auth_user(id text)`) comes from EDD-008 §6.4, not from `001_accounts`. Everything below is at the schema level, and applying it anywhere real needs B1 to B4.
 
@@ -91,7 +91,7 @@ D21.1 to D21.4 (3.6a, the accounts database) and D22 (`s3c:settings:v1`, on the 
 ## 5. Next, by owner
 
 1. learner-model-engineer / evaluation-steward: T1 (wire the tests into check or CI), T2 note on the serving layer.
-2. personalization-engineer (with hq-engineer): W-1528, W-1529 with L1; W-1530 with L4. Then ask me to read the rendered page (L5).
+2. personalization-engineer (with hq-engineer): W-1707, W-1708 with L1; W-1709 with L4. Then ask me to read the rendered page (L5).
 3. learner-data-engineer: B1 to B4 into the settings API brief; deletion/export patches handed to backend-engineer.
 4. backend-engineer: migration number, FK, runner, preview-branch down test, deletion and export patches; confirm D21 columns.
 5. analytics-steward: D3 in the phase B registration; D4 to counsel via the founder.

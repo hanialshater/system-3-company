@@ -1,0 +1,118 @@
+{
+  "slug": "bk-qed-add-amplitudes",
+  "title": "Zero average error can still hurt",
+  "hook": "Compare signed errors with their magnitudes using the same outcomes.",
+  "domain": "books",
+  "concept": "book-qed-add-amplitudes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish bias from nonzero error magnitude."
+    ]
+  },
+  "misconception": "Zero mean signed error means every measurement is accurate.",
+  "objective": "Distinguish bias from nonzero error magnitude.",
+  "claims": [
+    {
+      "id": "books.bk-qed-add-amplitudes.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Measurement uncertainty requires more than a mean signed error.",
+      "status": "unverified",
+      "source": "{\"work\":\"taylor-introduction-error-analysis-1997\",\"edition\":1997,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-qed-add-amplitudes.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "John R. Taylor, An Introduction to Error Analysis (1997)",
+      "status": "unverified",
+      "source": "{\"work\":\"taylor-introduction-error-analysis-1997\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-qed-add-amplitudes.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Signed errors average {A}; magnitudes average {B}. Opposite signs cancel while each measurement remains four units from the target.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[50,4,-4],[50,4,4]],\"outputs\":[0,4]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-qed-add-amplitudes.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This exact two-outcome calculation is not a measured uncertainty estimate or a confidence interval.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Errors are +2 or −2 equally. Which follows?",
+    "options": [
+      "Every reading is exact",
+      "Signed mean is 0; magnitude is 2",
+      "Mean magnitude is 0"
+    ],
+    "answer": 1,
+    "why": "Signs cancel; absolute errors do not."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-qed-add-amplitudes/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-qed-add-amplitudes/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-qed-add-amplitudes",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "taylor-introduction-error-analysis-1997",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -287,7 +287,7 @@ export const ROOM_BY_ROLE = {
   "lifehacks-safety-reviewer": "lifehacks-safety",
   "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
-  // Personalization org (2026-10-16, W-1524): Science and the VP in the personalization room; Learner Model, Eval and Customer Data in the model lab.
+  // Personalization org (2026-10-16, W-1703): Science and the VP in the personalization room; Learner Model, Eval and Customer Data in the model lab.
   "personalization-engineer": "model-lab",
   "learner-data-engineer": "model-lab",
   "personalization-eval": "model-lab",
@@ -330,7 +330,7 @@ export const ROOM_BY_ROLE = {
   "portfolio-manager": "ceo-office",
   // W-914 (company/decisions/2026-10-15-head-of-strategic-initiatives.md): runs First Light from the CEO office.
   "head-of-strategic-initiatives": "ceo-office",
-  // Evaluation org (2026-10-18, W-1664; company/decisions/2026-10-14-evaluation-org.md): the CPO in the CEO office; no evaluation room is drawn, so the head, engineer and the judge pool sit in Learner review beside the pedagogy critics.
+  // Evaluation org (2026-10-18, W-1843; company/decisions/2026-10-14-evaluation-org.md): the CPO in the CEO office; no evaluation room is drawn, so the head, engineer and the judge pool sit in Learner review beside the pedagogy critics.
   "chief-product-officer": "ceo-office",
   "head-of-evaluation": "learner-review",
   "evaluation-engineer": "learner-review",

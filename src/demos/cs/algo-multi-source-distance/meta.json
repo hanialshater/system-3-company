@@ -1,0 +1,353 @@
+{
+  "slug": "algo-multi-source-distance",
+  "title": "Which source reaches this cell first?",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-multi-source-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Initialize several sources at zero to compute distance to the nearest source in one BFS."
+    ]
+  },
+  "misconception": "One BFS run is required for every source.",
+  "objective": "Initialize several sources at zero to compute distance to the nearest source in one BFS.",
+  "claims": [
+    {
+      "id": "cs.algo-multi-source-distance.c1",
+      "text": "Several zero-distance seeds propagate one nearest-source BFS wavefront.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c3",
+      "text": "An open 5×5 grid has sources at (0,0),(4,4). With orthogonal moves, what is distance at (2,2)?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c4",
+      "text": "Complete the question path calculation, then inspect a changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c5",
+      "text": "Centre nearest-source distance 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c6",
+      "text": "Centre nearest-source distance 4. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c7",
+      "text": "All sources enter the same queue at distance zero. The first wave reaching each cell supplies its nearest-source distance; the centre is reached without choosing one source in advance.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c8",
+      "text": "Open grid; source S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c9",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c10",
+      "text": "Expand (0,0)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c11",
+      "text": "Expand (4,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c12",
+      "text": "Expand (0,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c13",
+      "text": "Expand (1,0)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c14",
+      "text": "Expand (4,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c15",
+      "text": "Expand (3,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c16",
+      "text": "Expand (0,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c17",
+      "text": "Expand (1,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c18",
+      "text": "Expand (2,0)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[9].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c19",
+      "text": "Expand (4,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[10].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c20",
+      "text": "Expand (3,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[11].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c21",
+      "text": "Expand (2,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[12].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c22",
+      "text": "Expand (0,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[13].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c23",
+      "text": "Expand (1,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[14].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c24",
+      "text": "Expand (2,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[15].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c25",
+      "text": "Expand (3,0)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[16].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c26",
+      "text": "Expand (4,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[17].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c27",
+      "text": "Expand (3,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[18].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c28",
+      "text": "Expand (2,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[19].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c29",
+      "text": "Expand (1,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[20].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c30",
+      "text": "Expand (0,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[21].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c31",
+      "text": "Expand (1,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[22].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c32",
+      "text": "Expand (2,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[23].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c33",
+      "text": "Expand (3,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[24].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c34",
+      "text": "Expand (4,0)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run().frames[25].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c35",
+      "text": "Centre nearest-source distance 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c36",
+      "text": "Centre nearest-source distance 0. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c37",
+      "text": "How does nearest-source BFS initialize distances at its sources?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c38",
+      "text": "Give later sources larger distances",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c39",
+      "text": "Give every source zero",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c40",
+      "text": "Give every source one",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-multi-source-distance.c41",
+      "text": "Every source is a zero-length starting route and enters the initial queue.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-multi-source-distance\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How does nearest-source BFS initialize distances at its sources?",
+    "options": [
+      "Give later sources larger distances",
+      "Give every source zero",
+      "Give every source one"
+    ],
+    "answer": 1,
+    "why": "Every source is a zero-length starting route and enters the initial queue."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-multi-source-distance/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-multi-source-distance",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "path-algorithms-witnesses"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

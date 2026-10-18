@@ -1,18 +1,18 @@
 # Personalised new-lesson order: intro copy, chips, cold start, reason lines, data page, release-note residual
 
-owner: head-of-product (Priya) · date: 2026-10-17 · run: hop-w1602-1017 · board: W-1602 (the W-1577 addendum), W-1611
+owner: head-of-product (Priya) · date: 2026-10-17 · run: hop-w1602-1017 · board: W-1781 (the W-1756 addendum), W-1790
 decision this serves: `company/decisions/2026-10-17-founder-personalization-milestone-delegation.md` ("always on, no switch"), behind the company build flag `NEXT_PUBLIC_NEW_LESSON_ORDER`, off by default.
 candidate: `company/personalization/policies/reachable-v3.ts`, sha256 `53981ab0…c195` (checked this run, matches the RC record).
-status: **product rulings and proposed copy. None of the copy is verified.** Every proposed sentence is a learner-facing claim. It goes to a second fact-checker (truth) and privacy-reviewer (ceiling) before it reaches code. Nothing here clears a release: W-1585 (amendment), W-1586 (privacy re-ruling), W-1587 (counsel), the G record and the founder's deploy approval all still stand in front of the flag.
+status: **product rulings and proposed copy. None of the copy is verified.** Every proposed sentence is a learner-facing claim. It goes to a second fact-checker (truth) and privacy-reviewer (ceiling) before it reaches code. Nothing here clears a release: W-1764 (amendment), W-1765 (privacy re-ruling), W-1766 (counsel), the G record and the founder's deploy approval all still stand in front of the flag.
 
 Read: EDD-010 §3.1, §3.3, §5.4, §11, §12 (`company/engineering/edd/EDD-010-personalised-new-lesson-order.md`); batch 5 §5, §12, §14 (`company/personalization/batches/2026-10-17-batch-5.md`); RC lines (`company/personalization/copy/2026-10-17-reason-lines-rc.md`); privacy design read (`company/reviews/_privacy/2026-10-17-edd-010-design-read.md`, Q-P2, E10, E14, findings 2-4) and the v3 addendum with addenda 2 and 3 (`company/reviews/_privacy/2026-10-17-edd-010-v3-addendum.md`, V1-V15, V3b, A3-1 to A3-3); `src/components/Feed.tsx` (IntroCard, items, chooseFilter); `tests/qa/feed.spec.ts` (read only); `src/lib/visibility.ts`; `content/domains.json`; `company/product/surface-value.md` (protected, read only); my own `company/decisions/2026-10-12-feed-is-not-personalised.md`.
 Measured this run: EDD-010's probe (`company/engineering/edd/EDD-010-probe.mts`, usage lines 6-9) re-run in my scratchpad against the frozen v3 file and dims at 4a559d6, plus a 20-line check of statuses and domains in v3's empty-history rank. Nothing in the repository was edited except this file.
 
 ## What would make a line here untrue
 - The candidate changes (any hash other than `53981ab0…c195`), or the pilot domains change from probability and cs. Every cold-start number below is for v3 on today's 230 pilot lessons.
-- Counsel (W-1587) or the founder requires a learner control. Then the data-page sentence "there is no setting" is false, and G9 makes the website part NO-GO anyway.
+- Counsel (W-1766) or the founder requires a learner control. Then the data-page sentence "there is no setting" is false, and G9 makes the website part NO-GO anyway.
 - RC's line set changes, A3-2 is resolved as "no line" for an untitled `earlier:refresh` card, or any moved card can render without a line. Then the intro sentence "A card that moved says so" is false (Q-H1 below).
-- Accounts ship and progress is read from the server. Then "Your progress stays in this browser" is false (W-1611 below).
+- Accounts ship and progress is read from the server. Then "Your progress stays in this browser" is false (W-1790 below).
 - A subject chip gets the personalised order. Then the chip intro below is false.
 
 ---
@@ -22,7 +22,7 @@ Measured this run: EDD-010's probe (`company/engineering/edd/EDD-010-probe.mts`,
 ### Where the current copy lives
 - **Copy:** `src/components/Feed.tsx`, function `IntroCard` (about line 240): "We know nothing about you yet, so this feed is not “for you”. It alternates subjects. {count} lessons today."
 - **Test:** `tests/qa/feed.spec.ts` line 9 (protected), test "home feed opens honestly and starts": at `/` on a fresh context, the intro contains `not “for you”` (curly quotes).
-- I edited neither. Any change to the test goes to evaluation-steward inside W-1585.
+- I edited neither. Any change to the test goes to evaluation-steward inside W-1764.
 
 ### What is false with the flag on, and one thing already false today
 1. "It alternates subjects": false in the All feed. I re-ran the EDD probe on frozen v3. At cold start 229 of 230 pilot cards move, same-subject neighbours go from 0 to 2 in the first 60 cards and from 47 to 80 over the whole feed (EDD §3.1 reports the same numbers for v2; v3's empty-history order matches because only the prerequisite term varies).
@@ -32,7 +32,7 @@ Measured this run: EDD-010's probe (`company/engineering/edd/EDD-010-probe.mts`,
 ### Ruling
 - The intro text depends on the filter: one text for All, one for a chip. The filter is UI state, not learner data, so this adds no read.
 - One text per filter, the same for new and returning devices. The server renders the intro before the device's order exists (G-8), so the text cannot depend on history. Each sentence has to be true in both states.
-- The cold-start sentence stays, scoped to a new device. It is true, it keeps the v1 promise in substance (cold start uses no learner data), and it still contains `not “for you”`, so the protected test passes **and** what it checks stays true. I support vp-personalization's proposed restatement of the test's intent for W-1585 ("with no history, the order uses no learner data, and the feed says what its order is"). The copy below meets that intent too.
+- The cold-start sentence stays, scoped to a new device. It is true, it keeps the v1 promise in substance (cold start uses no learner data), and it still contains `not “for you”`, so the protected test passes **and** what it checks stays true. I support vp-personalization's proposed restatement of the test's intent for W-1764 ("with no history, the order uses no learner data, and the feed says what its order is"). The copy below meets that intent too.
 - Use the chip names learners see ("Probability", "CS", `content/domains.json` `short`), not internal ids.
 - No sentence may say or imply a control, a setting, or that the order follows the learner's choices or ability (privacy design read line 33, SS3; G7).
 
@@ -93,7 +93,7 @@ Reasons:
 3. **Nothing editorial is lost.** The default order inside a subject is slug order (alphabetical, `default-order-rule.md` step 2), not a curated sequence.
 4. **It uses no learner data,** so the trade-off in surface-value.md ("No personalisation at cold start", owned by head-of-product) still holds in substance.
 
-**Finding (new, for W-1585): review lessons move ahead of published ones.** Surface-value line 23 and AMD-008 F1 say "published first, then lessons in review". In v3's empty-history order, the 8 pilot review lessons sit at pilot positions 33, 187-190 and 224-226, against 152 and 223-229 in the default order. `weak-links-hold-it-together` (review) is ahead of 189 published pilot lessons, and it lands at about All-feed position 209. As a product experience I accept this: review lessons are labelled "In review" and the founder keeps them on in production (`src/lib/visibility.ts`; `company/decisions/2026-10-15-founder-show-review.md`). But it changes a protected line, so the W-1585 amendment must say it. It cannot be fixed in glue (G6). Removing review lessons from the pilot dims would be a change to the candidate's input, which personalization-eval and vp-personalization would have to rule on, not me. Measured at cold start only; I did not measure it with history.
+**Finding (new, for W-1764): review lessons move ahead of published ones.** Surface-value line 23 and AMD-008 F1 say "published first, then lessons in review". In v3's empty-history order, the 8 pilot review lessons sit at pilot positions 33, 187-190 and 224-226, against 152 and 223-229 in the default order. `weak-links-hold-it-together` (review) is ahead of 189 published pilot lessons, and it lands at about All-feed position 209. As a product experience I accept this: review lessons are labelled "In review" and the founder keeps them on in production (`src/lib/visibility.ts`; `company/decisions/2026-10-15-founder-show-review.md`). But it changes a protected line, so the W-1764 amendment must say it. It cannot be fixed in glue (G6). Removing review lessons from the pilot dims would be a change to the candidate's input, which personalization-eval and vp-personalization would have to rule on, not me. Measured at cold start only; I did not measure it with history.
 
 Conditions on the "acceptable" ruling:
 - The All intro is §1's text, not today's.
@@ -145,19 +145,19 @@ The first sentence says where the card went (two forms). The second gives one re
 
 ---
 
-## 5. W-1611: the data-page sentence and the release-note residual
+## 5. W-1790: the data-page sentence and the release-note residual
 
 ### Where it lives
 **There is no data page today.** I found no learner-facing privacy text in `src/app` or `src/components`, and the trust sheet in `DemoCard.tsx` is about one lesson's claims. Ruling: the text below must be reachable from the All intro (the "How your progress is used" link in §1) before the flag is turned on. It ships in the flag-on build only. It would be false with the flag off, and T10 requires the flag-off build to be byte-identical. Build owner: personalization-engineer (S1), with platform-engineer review. Privacy-reviewer reads the rendered text (finding 2).
 
-### Proposed data text (W-1611)
+### Proposed data text (W-1790)
 > Your progress (which lessons you've finished, and when) stays in this browser, on this device. On the All feed, this device uses it to move some Probability and CS lessons earlier or later. Everyone's feed works this way, and there is no setting for it. Nothing new is sent or saved to do it.
 
 | # | Sentence | Support | Source | Flag |
 |---|---|---|---|---|
 | D1 | Your progress (which lessons you've finished, and when) stays in this browser, on this device. | D1 `s3c:progress:v1` is local; accounts are not wired here | privacy design read Q-P2 (accounts branch not here) | **Partly false today and needs privacy's word:** the record also holds predictions and recalls, which revisits use. Say "Your progress" without the parenthesis if privacy wants the sentence to describe the whole record. False once accounts read a server row |
 | D2 | On the All feed, this device uses it to move some Probability and CS lessons earlier or later. | Computed on the device from `slug` and `completedAt` (V7); All feed only (Q-H2) | EDD §5.4; privacy V7 | Satisfies finding 2 ("kept on the device and reorders the feed") |
-| D3 | Everyone's feed works this way, and there is no setting for it. | Always on, no switch (founder 2026-10-17) | founder decision | States that there is no switch, so it cannot imply one (W-1611). It is not a promise either: if counsel requires a control, this sentence changes with the release. Does not mention `personalization_on` (E7) |
+| D3 | Everyone's feed works this way, and there is no setting for it. | Always on, no switch (founder 2026-10-17) | founder decision | States that there is no switch, so it cannot imply one (W-1790). It is not a promise either: if counsel requires a control, this sentence changes with the release. Does not mention `personalization_on` (E7) |
 | D4 | Nothing new is sent or saved to do it. | No new field, write or fetch; request shapes frozen (E4); no stored derived value (D20) | privacy design read summary, E4 | "to do it" scopes the claim to the computation. I deliberately do not say "nothing about the order leaves your device", because of the residual below |
 
 Optional, for privacy-reviewer to accept or cut (I lean towards including it, because "it says so" is the product's habit): *"As before, each lesson you open is loaded from our web host, and the host's logs record those requests."* It is true with the flag off too, so it could go on a future site-wide data page instead.
@@ -169,32 +169,32 @@ Flag for privacy-reviewer: the clause "and from the order, something about which
 
 ---
 
-## 6. W-1577's original parts, read against always-on
-W-1577 was written for the opt-in: switch off = default order, a rule-list record for `reachable-v1`, and where the opt-in sits. Under the founder's "always on, no switch": "where the opt-in sits" no longer applies; "switch off = default order" becomes "flag off = today's feed byte for byte" (EDD T10, batch 5 §12 MR line 13), which I check when the test exists; the rule-list record is owed for **reachable-v3**, not v1. I have not done that check or written that record in this run. Both stay open on W-1577.
+## 6. W-1756's original parts, read against always-on
+W-1756 was written for the opt-in: switch off = default order, a rule-list record for `reachable-v1`, and where the opt-in sits. Under the founder's "always on, no switch": "where the opt-in sits" no longer applies; "switch off = default order" becomes "flag off = today's feed byte for byte" (EDD T10, batch 5 §12 MR line 13), which I check when the test exists; the rule-list record is owed for **reachable-v3**, not v1. I have not done that check or written that record in this run. Both stay open on W-1756.
 
 ## 7. Objections (they travel with these rulings)
 | Objection | Raised by | Answer |
 |---|---|---|
-| O-S1: the cold-start order is a consequence nobody chose | personalization-engineer (EDD §11) | vp-personalization chose it (batch 5 §14.1). As owner of the default order, I accept it as a product experience (§3), on the evidence and with the conditions there. **Closed for product.** It stays in W-1585, which must record it, and the review-lesson finding is added |
+| O-S1: the cold-start order is a consequence nobody chose | personalization-engineer (EDD §11) | vp-personalization chose it (batch 5 §14.1). As owner of the default order, I accept it as a product experience (§3), on the evidence and with the conditions there. **Closed for product.** It stays in W-1764, which must record it, and the review-lesson finding is added |
 | Chips may be read as a way out | privacy-reviewer (finding 3) | **Accepted.** No copy presents a chip as an opt-out (§2), and C1 offers nothing |
 | C1-C3 reading risks | fact-checker (RC §4) | **Accepted as risks, with the reasons in §4.** Each line stays true, and no wording within V14/V15 removes C1 |
 | A personalised chip order would teach better than alphabetical | (my own, raised against my ruling) | **Declined for now.** There is no local evidence (feather). Revisit if 3b-style evidence appears (§2) |
 | Lines on ~229 cards at cold start become noise | (my own, C4) | **Accepted as a cost.** Muted, untruncated, under the title. Not hidden (§4) |
 
-My 2026-10-12 decision record ("The feed is honest at cold start: round-robin, not 'for you'") is superseded for the All feed if and when W-1585 is ratified. I will mark it then and not before, because until ratification it describes the product that ships.
+My 2026-10-12 decision record ("The feed is honest at cold start: round-robin, not 'for you'") is superseded for the All feed if and when W-1764 is ratified. I will mark it then and not before, because until ratification it describes the product that ships.
 
 ## 8. Next moves and owners (board requests; the chief of staff files them, I edit no board.json in this run)
-1. **Second fact-checker (W-1579 line):** truth of I1-I5, C1, D1-D4 and the ⟲ lines in §4, including the "some of them" implicature and I3's precision.
-2. **privacy-reviewer (W-1586):** ceiling read of the ⟲ lines, I1 ("know"), I4 (SS3), D1-D4, the optional host sentence, and the release-note clause.
-3. **evaluation-steward (W-1585):** record that cold-start review lessons move ahead of published ones (§3), alongside O-S1 and the test-intent restatement. My copy keeps `not “for you”` true at cold start.
+1. **Second fact-checker (W-1758 line):** truth of I1-I5, C1, D1-D4 and the ⟲ lines in §4, including the "some of them" implicature and I3's precision.
+2. **privacy-reviewer (W-1765):** ceiling read of the ⟲ lines, I1 ("know"), I4 (SS3), D1-D4, the optional host sentence, and the release-note clause.
+3. **evaluation-steward (W-1764):** record that cold-start review lessons move ahead of published ones (§3), alongside O-S1 and the test-intent restatement. My copy keeps `not “for you”` true at cold start.
 4. **head-of-product + platform-engineer (new, flag-independent):** today's chip intro says "It alternates subjects" on a single-subject chip. Fix it in the flag-off copy as its own change (C1's wording, without the flag).
 5. **personalization-engineer (S1, EDD §12):** `IntroCard` takes the filter; the "How your progress is used" link and data text exist in the flag-on build only; reason-line rendering rule (quoted title last, no double punctuation, never truncated); the T23 deny-list scans the template, not real titles.
 6. **vp-personalization:** A3-2 choice (§4); fold §5's residual paragraph into the release note.
-7. **head-of-product (me, W-1577):** the T10 check when the test exists; the rule-list record for reachable-v3.
+7. **head-of-product (me, W-1756):** the T10 check when the test exists; the rule-list record for reachable-v3.
 
 ---
 
-## §O1. Ruling on objection O1 (L3 `earlier:concept-known`) against my C3 standard (head-of-product, W-1638, 2026-10-17)
+## §O1. Ruling on objection O1 (L3 `earlier:concept-known`) against my C3 standard (head-of-product, W-1817, 2026-10-17)
 
 Inputs read: O1 in company/personalization/copy/2026-10-17-reason-lines-fc2.md (§5, §6); vp-personalization's §18.1 in company/personalization/batches/2026-10-17-batch-5.md; my C3 in §4 above.
 

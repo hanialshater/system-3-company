@@ -1,0 +1,118 @@
+{
+  "slug": "bk-pieces-energy-reference",
+  "title": "Energy depends on the boundary",
+  "hook": "Track stored units and the transfer crossing the chosen boundary.",
+  "domain": "books",
+  "concept": "book-pieces-energy-reference",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish stored change from outward transfer across a stated boundary."
+    ]
+  },
+  "misconception": "A fall in stored quantity means units disappeared without an accountable transfer.",
+  "objective": "Distinguish stored change from outward transfer across a stated boundary.",
+  "claims": [
+    {
+      "id": "books.bk-pieces-energy-reference.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Energy accounting tracks transformations and transfers across a defined system boundary.",
+      "status": "unverified",
+      "source": "{\"work\":\"pieces-energy-1994\",\"edition\":1994,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-pieces-energy-reference.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Richard P. Feynman, Six Easy Pieces (1994)",
+      "status": "unverified",
+      "source": "{\"work\":\"pieces-energy-1994\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-pieces-energy-reference.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Balanced transfers retain {A}; extra outward transfer leaves {B}. The store’s decrease is accounted for by net transfer beyond its boundary.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=max(0,x+in-out); fixed flows\",\"inputs\":[[100,4,4,5],[100,4,6,5]],\"outputs\":[100,90]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-pieces-energy-reference.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This conserves stated accounting units. It does not establish a physical law experimentally or represent every energy form.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A store starts at 20 and sends 3 to another store each step. After two steps, how much left it?",
+    "options": [
+      "3",
+      "6",
+      "14"
+    ],
+    "answer": 1,
+    "why": "Outward transfer totals 6; the remaining 14 answers a different question."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-pieces-energy-reference/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-pieces-energy-reference/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-pieces-energy-reference",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "pieces-energy-1994",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "feedback"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

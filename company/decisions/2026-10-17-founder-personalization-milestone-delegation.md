@@ -36,9 +36,9 @@ status: decided
 
 ## Founder answer on the budget (2026-10-17)
 
-> "Approve W-1583"  (founder, conversation)
+> "Approve W-1762"  (founder, conversation)
 
-- The personalization budget is raised to **4.5M tokens through M1**, as the chief of staff recommended (W-1583: 2.1M covered batch 5 only; batches 3–4 count against the same budget). Approved by the founder, not under the delegation. The token-capture fix (WBR 2026-10-17 anomaly 1, W-1280) is part of the recommendation, so the figure can be measured.
+- The personalization budget is raised to **4.5M tokens through M1**, as the chief of staff recommended (W-1762: 2.1M covered batch 5 only; batches 3–4 count against the same budget). Approved by the founder, not under the delegation. The token-capture fix (WBR 2026-10-17 anomaly 1, W-1280) is part of the recommendation, so the figure can be measured.
 
 ## Founder message to clarify (2026-10-17)
 

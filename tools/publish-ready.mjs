@@ -49,20 +49,87 @@ export function readReview(text) {
   return { verdict, version, problem };
 }
 
-// Decide one lesson. reviews: [{ f, t, m }] (filename, text, mtime). Returns { ready, reason, latest }.
-export function decide(reviews, metaVersion = 1) {
+// W-1596: ordering two records for the same lesson version on the same day. File mtime is NOT used:
+// a fresh checkout gives every file the same mtime, and "-r2.md" sorts before ".md", so the older
+// record won. Signals, strongest first; the first one that decides a pair wins:
+//   1. built-from ancestry. A record that says "built from <sha>" saw that build. If one record's
+//      SHA is a strict git ancestor of the other's, the record of the descendant build is newer. This
+//      is the most robust signal: it is about the artifact the reviewer saw, not about naming. It
+//      abstains when either SHA is missing, unknown to this clone (shallow, unmerged worktree), equal,
+//      or on diverged branches.
+//   2. an explicit "supersedes: <file>" line naming the other record (the reviewer's own statement).
+//   3. the "-rN" suffix, only between records of the same name stem (no suffix is r1). A suffix on
+//      "learner-a" says nothing about "learner-b".
+// Records that no signal orders are a real tie, and the tie fails closed: the most severe verdict
+// stands (unreadable > fatal > revise > launch), then filename order for a stable answer.
+const BUILT_FROM = /built from[ \t`*]*([0-9a-f]{7,40})\b/i;
+const SUPERSEDES = /^[ \t>*_-]*supersedes:[ \t]*(.+)$/gim;
+const SEVERITY = { launch: 0, revise: 1, fatal: 2 };
+export function builtFrom(text) {
+  return text.match(BUILT_FROM)?.[1]?.toLowerCase() ?? null;
+}
+function stem(f) {
+  const m = f.match(/^(.*?)(?:-r(\d+))?\.md$/);
+  return m ? { base: m[1], n: m[2] ? Number(m[2]) : 1 } : { base: f, n: 1 };
+}
+function supersedes(r, other) {
+  const name = path.basename(other.f);
+  return [...r.t.matchAll(SUPERSEDES)].some((m) => m[1].includes(name) || m[1].includes(name.replace(/\.md$/, "")));
+}
+// Which of a and b is newer: 1 (a), -1 (b) or 0 (no signal decides). Exported for the tests.
+export function newer(a, b, isAncestor = null) {
+  const sa = builtFrom(a.t), sb = builtFrom(b.t);
+  if (isAncestor && sa && sb && sa !== sb && !sa.startsWith(sb) && !sb.startsWith(sa)) {
+    if (isAncestor(sb, sa) === true) return 1;
+    if (isAncestor(sa, sb) === true) return -1;
+  }
+  const supA = supersedes(a, b), supB = supersedes(b, a);
+  if (supA !== supB) return supA ? 1 : -1;
+  const ka = stem(a.f), kb = stem(b.f);
+  if (ka.base === kb.base && ka.n !== kb.n) return ka.n > kb.n ? 1 : -1;
+  return 0;
+}
+const severity = (r) => (r.problem ? 3 : SEVERITY[r.verdict] ?? 3);
+
+// Decide one lesson. reviews: [{ f, t }] (filename, text; an "m" mtime is ignored). opts.isAncestor:
+// (x, y) => true | false | null, "is commit x a strict ancestor of y" (main passes a git-backed one;
+// without it, signal 1 abstains). Returns { ready, reason, latest }.
+export function decide(reviews, metaVersion = 1, opts = {}) {
   if (!reviews.length) return { ready: false, reason: "no learner review" };
   const read = reviews.map((r) => ({ ...r, ...readReview(r.t), d: r.f.slice(0, 10) }));
-  // The latest review is the one for the highest lesson version, then the latest date. Filename order
-  // is not enough: "…-beginner-v2.md" sorts before "…-beginner.md". Same version and day: the last written wins.
-  const latest = [...read].sort((a, b) => a.version - b.version || a.d.localeCompare(b.d) || a.m - b.m).at(-1);
+  // The latest review is the one for the highest lesson version, then the latest date, then W-1596's
+  // ordering above. Filename order alone is not enough: "…-beginner-v2.md" sorts before "…-beginner.md".
+  const top = read.reduce((t, r) => (r.version > t.version || (r.version === t.version && r.d > t.d) ? r : t));
+  const group = read.filter((r) => r.version === top.version && r.d === top.d);
+  const unbeaten = group.filter((r) => !group.some((o) => o !== r && newer(o, r, opts.isAncestor) > 0));
+  const pool = unbeaten.length ? unbeaten : group; // a cycle of signals: treat the whole group as tied
+  const latest = [...pool].sort((a, b) => severity(b) - severity(a) || a.f.localeCompare(b.f))[0];
   // Fail closed: an unreadable review dated after the chosen one may be the newer verdict, so it holds.
-  const newer = read.find((r) => r !== latest && r.problem && r.d > latest.d);
-  if (newer) return { ready: false, reason: `newer learner review unreadable (${newer.problem})`, latest };
+  const newerBad = read.find((r) => r !== latest && r.problem && r.d > latest.d);
+  if (newerBad) return { ready: false, reason: `newer learner review unreadable (${newerBad.problem})`, latest };
   if (latest.problem) return { ready: false, reason: latest.problem, latest };
   if (latest.verdict !== "launch") return { ready: false, reason: `verdict ${latest.verdict}`, latest };
   if (latest.version !== metaVersion) return { ready: false, reason: "verdict is for an older version", latest };
   return { ready: true, reason: null, latest };
+}
+
+// Git-backed ancestry for decide(): true / false, or null when git cannot say (unknown commit,
+// no git). Cached per pair; one `git merge-base --is-ancestor` call per uncached pair.
+export function gitAncestry(cwd) {
+  const cache = new Map();
+  return (x, y) => {
+    const k = `${x}..${y}`;
+    if (cache.has(k)) return cache.get(k);
+    let v = null;
+    try {
+      execFileSync("git", ["merge-base", "--is-ancestor", x, y], { cwd, stdio: "ignore" });
+      v = true;
+    } catch (e) {
+      v = e.status === 1 ? false : null;
+    }
+    cache.set(k, v);
+    return v;
+  };
 }
 
 export const USAGE = `usage: node tools/publish-ready.mjs [--link | --publish | --help]
@@ -100,6 +167,7 @@ function main() {
     ? JSON.parse(fs.readFileSync(rel("company/ops/publish-holds.json"), "utf8")).holds
     : {};
 
+  const isAncestor = gitAncestry(ROOT);
   const ready = [];
   const held = {};
   let linked = 0;
@@ -122,8 +190,8 @@ function main() {
       if (meta.status !== "review") continue;
       const why = (r) => (held[r] ??= []).push(slug);
       if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
-      const reviews = files.map((f) => ({ f, t: fs.readFileSync(path.join(rd, f), "utf8"), m: fs.statSync(path.join(rd, f)).mtimeMs }));
-      const r = decide(reviews, meta.version ?? 1);
+      const reviews = files.map((f) => ({ f, t: fs.readFileSync(path.join(rd, f), "utf8") }));
+      const r = decide(reviews, meta.version ?? 1, { isAncestor });
       if (!r.ready) { why(r.reason); continue; }
       ready.push(slug);
     }

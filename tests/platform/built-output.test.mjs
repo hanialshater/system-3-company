@@ -26,7 +26,8 @@ const repo = path.resolve(new URL("../..", import.meta.url).pathname);
 const distArg = process.env.BUILT_DIST_DIR;
 const dist = distArg ? path.resolve(repo, distArg) : null;
 const skip = !dist ? "set BUILT_DIST_DIR to a production build (VERCEL=1 VERCEL_ENV=production next build)" : false;
-const PORT = Number(process.env.BUILT_PORT || 3659);
+// Not 3659: it is on Next's reserved-port list (apple-sasl) and `next start` refuses it (W-408).
+const PORT = Number(process.env.BUILT_PORT || 3660);
 
 function metas() {
   const root = path.join(repo, "src/demos");

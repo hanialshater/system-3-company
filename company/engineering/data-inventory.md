@@ -105,7 +105,7 @@ Deletion path: consumed on click; purge; account deletion removes pending rows m
 
 **Aggregate purpose (EDD-008 Q5), the one new purpose these tables carry:** "measure, in aggregate, whether spaced revisits work" (the revisit recall rate, correct over total by interval). Conditional ruling in my review: the output carries no `user_id` or email, cells with fewer than 20 learners are suppressed (proposal; the analytics steward may argue another number with a reason), no analyst receives raw `recall` rows, and **the query text comes back to me before it runs on real data**. Not yet running; no query exists. The policy must name this purpose.
 
-`settings` (`personalization_on`, `subjects[]`, `less_of[]`) is **not in migration 001**. It ships with F-19 with its own schema diff and review. Nothing is stored for it today. The draft diff (`company/personalization/data/00N_settings.up.sql`, W-1521) is read in `company/reviews/_privacy/2026-10-16-personalization-batch-reads.md`; its rows are below, **designed, not built**, and the read was not against `001_accounts` (branch unavailable).
+`settings` (`personalization_on`, `subjects[]`, `less_of[]`) is **not in migration 001**. It ships with F-19 with its own schema diff and review. Nothing is stored for it today. The draft diff (`company/personalization/data/00N_settings.up.sql`, W-1700) is read in `company/reviews/_privacy/2026-10-16-personalization-batch-reads.md`; its rows are below, **designed, not built**, and the read was not against `001_accounts` (branch unavailable).
 
 ### 3.6a `settings` (4 columns, draft, not in any migration)
 

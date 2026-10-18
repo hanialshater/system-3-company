@@ -1,4 +1,4 @@
-// GET and PUT for the learner's feed settings (W-1538). Owner: learner-data-engineer.
+// GET and PUT for the learner's feed settings (W-1717). Owner: learner-data-engineer.
 // Privacy ruling: company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3 B1–B4, §3.1 D1–D3, §3.2 G1–G4.
 // Design note: company/personalization/data/2026-10-16-settings-api-note.md
 //

@@ -1,4 +1,4 @@
-// D2 (company/personalization/batches/2026-10-17-batch-5.md §6, W-1572): the client dims index.
+// D2 (company/personalization/batches/2026-10-17-batch-5.md §6, W-1751): the client dims index.
 //
 //   npm run test:dims
 //

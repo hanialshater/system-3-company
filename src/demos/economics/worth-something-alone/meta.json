@@ -1,0 +1,155 @@
+{
+  "slug": "worth-something-alone",
+  "title": "Worth something alone",
+  "hook": "A network app gets some value even with nobody else on it. Is that enough to start?",
+  "domain": "economics",
+  "concept": "standalone-value-network",
+  "status": "published",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the tipping point of below-critical-mass"
+    ],
+    "doesNotKnow": [
+      "that some value with no other users shrinks the critical mass but leaves an empty app stuck at zero unless that value beats the price"
+    ]
+  },
+  "misconception": "Any value on its own is enough to get a network product started from zero.",
+  "objective": "The learner can explain that stand-alone value below the price lowers the tipping point (20.0% to 7.3% at 10¢) but leaves a launch from 0 at 0%, because even the keenest fan values an empty app below the price, and that stand-alone value above the price (20¢) lets the app climb from 0 to about 85%.",
+  "claims": [
+    {
+      "id": "economics.worth-something-alone.c1",
+      "text": "In this toy market person x (from 0, the keenest, to 1) values the app at (1 - x) times (stand-alone value + share of people using it); the price is 16¢, and each round everyone who values it above 16¢ uses it, so next round's share is 1 - 0.16 / (stand-alone value + share), or 0.",
+      "support": "convention",
+      "source": "Model rules adopted by the lesson, extending the below-critical-mass toy market (economics/below-critical-mass c1) with a stand-alone value a. next() in src/demos/economics/worth-something-alone/Demo.tsx. The question's 'worth 10¢ to its keenest fan even with no other users' is the case a = 10¢ (x = 0, share 0). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c1."
+    },
+    {
+      "id": "economics.worth-something-alone.c2",
+      "text": "With 10¢ of stand-alone value at a 16¢ price, a launch from 0 users stays at 0%, and the tipping point falls from 20.0% (no stand-alone value) to 7.3% (other resting point 82.7%).",
+      "support": "derivation",
+      "source": "Resting shares solve (1 - z)(a + z) = 0.16: a = 0 gives 0.2 and 0.8; a = 0.1 gives z = (0.9 -+ sqrt(0.57))/2 = 0.0725 and 0.8275. At z = 0 with a = 0.1, next = max(0, 1 - 0.16/0.1) = 0. Builder's node run of crossings()/launch() in Demo.tsx: a = 0: 20.00, 80.00, launch 0, 0; a = 0.1: 7.25, 82.75, launch 0, 0. Brief check J11 (node company/courses/ncm/checks/rejudged-four.mjs): equilibria [0.073, 0.827], fromZero all 0. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c2."
+    },
+    {
+      "id": "economics.worth-something-alone.c3",
+      "text": "With 20¢ of stand-alone value, 0% is not a resting point: a launch from 0 goes 0, 20, 60, 80, 84 ... and settles at about 85% (84.7%).",
+      "support": "derivation",
+      "source": "next(0.2, z) = 1 - 0.16/(0.2 + z): 0 -> 0.2 -> 0.6 -> 0.8 -> 0.84 -> 0.8462 -> 0.8471 (builder's node run of launch(); stops when a round moves under 0.1 point). Fixed point: z^2 - 0.8z - 0.04 = 0, z = 0.8472. J11 a = 0.2: equilibria [0.847], fromZero 0, 0.2, 0.6, 0.8, 0.84, 0.846. The stage rounds the share to whole percent (85%). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c3."
+    },
+    {
+      "id": "economics.worth-something-alone.c4",
+      "text": "An empty network product sells to nobody unless someone's value with no other users exceeds the price: at 10¢ alone, even the keenest fan values an empty app below the 16¢ price; at 20¢ alone the first buyers come with nobody else on it.",
+      "support": "derivation",
+      "source": "At share 0 the keenest person (x = 0) values the app at a, and everyone else at less, so the first round's share is positive only if a > price (next(a, 0) = max(0, 1 - 0.16/a)). On the stage this is the curve's left end (marked 'empty app') sitting below or above the price line. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c4."
+    },
+    {
+      "id": "economics.worth-something-alone.c5",
+      "text": "Stand-alone value lowers the critical mass, but removes the trap only when it beats the price.",
+      "support": "derivation",
+      "source": "The tipping point is the lower root of (1 - z)(a + z) = 0.16, which falls as a rises (0.2 at a = 0, 0.0725 at a = 0.1) and is gone once a > 0.16, when share 0 stops being a resting point (c2, c4). The model is the lesson's (c6). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c5."
+    },
+    {
+      "id": "economics.worth-something-alone.c6",
+      "text": "The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17) and are not a forecast for any real product.",
+      "support": "convention",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 17 (section 17.6 unconfirmed). Stated modelling assumption; the card names no real product.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/worth-something-alone/2026-10-16-fact-check.md under c6."
+    },
+    {
+      "id": "economics.worth-something-alone.c7",
+      "text": "On the chart, the curve is the value of the keenest person not yet using the app at each share; where it is above the price line the share grows, where it is below it shrinks, and the crossings are the shares where a round changes nothing.",
+      "support": "derivation",
+      "source": "At share z the users are x < z, so the keenest non-user is x = z, valuing it (1 - z)(a + z). Next share > z exactly when 1 - 0.16/(a + z) > z, i.e. (1 - z)(a + z) > 0.16 (for a + z > 0). Builder-written; unverified. W-1573 fix round (demo-builder, 2026-10-16): each curve on the chart, including the highlighted current one, is now named on the curve at its peak ('10¢ alone'), and earlier tipping-point labels sit below the price line; the chart's learner-visible labels changed, so status reset. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/worth-something-alone/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c7."
+    },
+    {
+      "id": "economics.worth-something-alone.c8",
+      "text": "On the chart each curve is named by its stand-alone value ('0¢ alone', '10¢ alone', '20¢ alone'); the coloured curve is the value now chosen and the grey curves are values launched earlier.",
+      "support": "convention",
+      "source": "Drawing rules of the stage: Demo.tsx CurveName() writes cents(a) + ' alone' at the curve's peak, share (1 - a)/2, height (1 - z)(a + z); the current a is drawn with class curve/curveName, earlier launches (runs) with ghost/ghostName. Added in the W-1573 fix round (demo-builder, 2026-10-16). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/worth-something-alone/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c8."
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new messaging app is useful to its keenest fan even alone, but less than its price. It launches with no users. What happens?",
+    "options": [
+      "Nobody joins, though it needs fewer users than before to take off",
+      "It grows slowly from its keenest fans",
+      "It takes off, because it is useful on its own"
+    ],
+    "answer": 0,
+    "why": "With nobody else on it, even the keenest fan values it below the price, so no one starts. The stand-alone value lowers the critical mass, but only value above the price gets an empty app going."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/worth-something-alone/2026-10-16-qa.md",
+      "company/reviews/worth-something-alone/2026-10-16-qa-v2.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/worth-something-alone/2026-10-16-learner-knows-critical-mass.md",
+      "company/reviews/worth-something-alone/2026-10-16-learner-knows-critical-mass-r2.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "economics:standalone-value-network",
+    "also": [],
+    "prerequisites": [
+      "economics:network-effects-tipping"
+    ],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 17,
+        "section_unconfirmed": "17.6"
+      }
+    ],
+    "tags": [
+      "network effects",
+      "critical mass"
+    ]
+  }
+}

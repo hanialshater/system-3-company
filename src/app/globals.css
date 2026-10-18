@@ -158,6 +158,15 @@ a { color: inherit; }
 .concepts li.unmet { opacity: 0.6; }
 .concept-name { font-weight: 600; font-size: 0.9rem; }
 .concept-lesson { font-size: 0.85rem; color: var(--domain); }
+.algorithm-topics { margin-block: 20px 28px; min-width: 0; }
+.algorithm-topics h3 { margin: 0; }
+.algorithm-topic-index { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 16px 24px; }
+.algorithm-topic-index a { padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 0.85rem; overflow-wrap: anywhere; }
+.algorithm-topic-index a:focus-visible { outline: 2px solid var(--domain); outline-offset: 3px; }
+.algorithm-topic { margin-block: 24px; scroll-margin-top: 72px; }
+.algorithm-topic h4 { margin: 0; font-size: 1rem; }
+.algorithm-topic p { margin-block: 6px 10px; }
+.algorithm-topic .concepts li { min-width: 0; overflow-wrap: anywhere; }
 
 /* ---------- shared demo bits (used by several lessons) ---------- */
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
@@ -211,3 +220,12 @@ a { color: inherit; }
 .fold-toggle.expanded .fold-chevron { transform: rotate(180deg); }
 /* The toggle keeps its on-screen position on expand: no browser scroll anchoring against it. */
 .card-body:has([data-fold-toggle]) { overflow-anchor: none; }
+
+/* Knots: the tinted strand (unknot-game "on top twice"). visual-designer ruling W-1580/W-1582,
+   company/design/reviews/2026-10-16-knots-colour-ruling.md. The 70% light mix is cleared for math only
+   (#576db3, 4.30:1 on --bg-3); a non-math domain would need 60% (probability 2.85:1, life 2.94:1 at 70%).
+   Width 3 stays an SVG attribute on the path; the caption swatch sets its own fill/background. */
+.knot-tint { stroke: var(--domain); }
+@media (prefers-color-scheme: light) {
+  .knot-tint { stroke: color-mix(in srgb, var(--domain) 70%, #000); }
+}

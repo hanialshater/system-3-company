@@ -2,9 +2,9 @@
 
 owner: vp-personalization (Mateo)
 date: 2026-10-17
-run: vp-v-1017 · board: W-1551 (lane 14 batch 3 V, company/personalization/batches/2026-10-16-batch-3.md#v)
+run: vp-v-1017 · board: W-1730 (lane 14 batch 3 V, company/personalization/batches/2026-10-16-batch-3.md#v)
 status: **decided and in effect** (§1 to §4 apply rules written before the data; nothing here is new judgement on a verdict). §6 is questions for the founder, not decisions.
-inputs read: company/personalization/eval/2026-10-16-criterion-2-readout.md (all of it, including §A tables, reference rows, descriptive rows and corners); company/personalization/eval/2026-10-16-criterion-2-readout-repro.md (R2, W-1550); company/personalization/eval/2026-10-16-criterion-2.md (§2.3, §11 B6 and O1 rows, corner definition); company/personalization/batches/2026-10-16-batch-3.md (pre-commitments 1 to 5 verbatim, V1 to V5, "Applying the two together"); company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md (§5, founder answers Q1 to Q5); src/components/Feed.tsx (revisit placement); company/constitution/amendments/AMD-008-first-light-surface-value.md (F2, status proposed).
+inputs read: company/personalization/eval/2026-10-16-criterion-2-readout.md (all of it, including §A tables, reference rows, descriptive rows and corners); company/personalization/eval/2026-10-16-criterion-2-readout-repro.md (R2, W-1729); company/personalization/eval/2026-10-16-criterion-2.md (§2.3, §11 B6 and O1 rows, corner definition); company/personalization/batches/2026-10-16-batch-3.md (pre-commitments 1 to 5 verbatim, V1 to V5, "Applying the two together"); company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md (§5, founder answers Q1 to Q5); src/components/Feed.tsx (revisit placement); company/constitution/amendments/AMD-008-first-light-surface-value.md (F2, status proposed).
 rules: independence rule company/ceo-office/2026-10-16-personalization-org-proposal.md §2 (I write no criterion, readout, curve or weight, and I do not re-read a verdict); keep/kill authority company/roles/vp-personalization.md; AMD-008 F2 (I may only propose amendments).
 
 **Condition: R2. Met.** learner-model-engineer reproduced readout 2 at b89f259 byte for byte: both `results.ndjson` and both `verdicts.json` match §9's sha256s; the manifests differ only in `seconds` and the candidate's absolute path, which §9 allows (company/personalization/eval/2026-10-16-criterion-2-readout-repro.md). No verdict differs, so nothing below waits. The repro speaks to determinism only, not to whether the world is right; I lean on it for nothing more.
@@ -65,7 +65,7 @@ The readout says it before reading the numbers (readout §2): `default-order + n
 
 ## 4. Phase B and live use (pre-commitment 5, V4)
 
-No pass exists. Even if one had, pre-commitment 5 says a pass is not a phase B: phase B needs the accounts milestone, W-706, a registered experiment, a privacy pass and the founder's deploy approval, with the MDE stated against the simulated Δ. **Nothing goes live and nothing is registered.** First Light ships the off switch and the default order (founder Q5, W-1543), unchanged. The GAM code, simulator, harness and HQ lab stay as assets (founder Q1). Engagement stays a guardrail.
+No pass exists. Even if one had, pre-commitment 5 says a pass is not a phase B: phase B needs the accounts milestone, W-706, a registered experiment, a privacy pass and the founder's deploy approval, with the MDE stated against the simulated Δ. **Nothing goes live and nothing is registered.** First Light ships the off switch and the default order (founder Q5, W-1722), unchanged. The GAM code, simulator, harness and HQ lab stay as assets (founder Q1). Engagement stays a guardrail.
 
 ## 5. Options for what is next, with costs and a recommendation
 
@@ -96,14 +96,14 @@ Routed through chief-of-staff (board). Each can be answered in one line.
 >
 > **Q4. If the Q2 study finds nothing reachable (or if you decline it), pause personalization research until real learners and their recall data exist?** The team would keep only upkeep: the off switch, privacy work, the lab. Everyone keeps the default order. **My recommendation: yes, pause.**
 
-Not asked, because it does not change: First Light ships personalization off with the default order (Q5, W-1543). Surprise and novelty stay off (Q2). The GAM stays stopped (Q1); this readout closes its approach.
+Not asked, because it does not change: First Light ships personalization off with the default order (Q5, W-1722). Surprise and novelty stay off (Q2). The GAM stays stopped (Q1); this readout closes its approach.
 
 ## 7. Independent of the founder's answers
 
-1. R2 accepted: W-1550 done. K2's readout accepted as the record for V: W-1549 done.
+1. R2 accepted: W-1729 done. K2's readout accepted as the record for V: W-1728 done.
 2. Revisit-volume input to head-of-product and evaluation-steward: board item, input only (§3); it waits on Q1 only for the founder's framing, not for content.
 3. WBR: readout 2 presented unedited with this record beside it, readout 1 beside both.
-4. Upkeep unaffected: off switch and privacy reads (W-1521 line), HQ lab nits (W-1539).
+4. Upkeep unaffected: off switch and privacy reads (W-1700 line), HQ lab nits (W-1718).
 
 **Waits for the founder:** criterion 3 and its evidence rows (Q2), any candidate (Q3), the pause (Q4).
 
@@ -121,11 +121,11 @@ Not asked, because it does not change: First Light ships personalization off wit
 
 ## Founder answers (2026-10-17)
 
-> "Approve the recommendations"  (founder, conversation, answering the chief of staff's summary of Q1–Q4 with Mateo's recommendations, and the open budget questions W-1553)
+> "Approve the recommendations"  (founder, conversation, answering the chief of staff's summary of Q1–Q4 with Mateo's recommendations, and the open budget questions W-1732)
 
-- **Q1 Revisit volume and placement to head-of-product (and evaluation-steward for AMD-008 F2) as input:** yes. No product change from this alone (W-1561, W-1562).
+- **Q1 Revisit volume and placement to head-of-product (and evaluation-steward for AMD-008 F2) as input:** yes. No product change from this alone (W-1740, W-1741).
 - **Q2 One last measure-only offline study (criterion 3, no new recommender):** approved, with the pre-commitments in §5 (reachable-signal oracle below δ_min in 4 of 6 closes personalised ordering for recall).
 - **Q3 Third candidate now:** no; asked again only if criterion 3 finds a reachable gain of at least 1 point.
 - **Q4 Pause personalization research if criterion 3 finds nothing reachable (or it is declined):** yes; upkeep only (off switch, privacy work, lab); default order for everyone.
-- **Budget (W-1553):** the portfolio-manager's 2.0M token figure for project `personalization` is approved as recommended. Recorded by the chief of staff; portfolio-manager updates company/ops/projects.json.
-- **Settings API charging (W-1553 second part):** no recommendation was put to the founder, so nothing was decided; it stays charged to `personalization` as filed. Open if the founder wants it moved to First Light.
+- **Budget (W-1732):** the portfolio-manager's 2.0M token figure for project `personalization` is approved as recommended. Recorded by the chief of staff; portfolio-manager updates company/ops/projects.json.
+- **Settings API charging (W-1732 second part):** no recommendation was put to the founder, so nothing was decided; it stays charged to `personalization` as filed. Open if the founder wants it moved to First Light.

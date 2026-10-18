@@ -22,7 +22,7 @@ Scope note: this session worked only the personalization lane (lane 14) and the 
 - Criterion 3 (batch 4): evidence (E3) running; criterion draft (K3) next. Measure-only; no candidate.
 
 ## Blocked
-- Settings API wiring and the `settings` table: need the accounts branch (backend-engineer W-1559), a readiness addendum (W-1556), and `test:settings` in CI (W-1554, an amendment you ratify).
+- Settings API wiring and the `settings` table: need the accounts branch (backend-engineer W-1734), a readiness addendum (W-1737), and `test:settings` in CI (W-1735, an amendment you ratify).
 
 ## Waiting on you
 1. **Counsel:** may 13–15 year olds be put in a personalized experiment arm by default (privacy D4)? Nothing is exposed until a phase B exists.

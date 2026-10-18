@@ -1,0 +1,118 @@
+{
+  "slug": "bk-phenotype-external-effect",
+  "title": "Count the cost beyond the body",
+  "hook": "A useful structure still has a construction cost when it brings no benefit.",
+  "domain": "books",
+  "concept": "book-phenotype-external-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Include an unconditional cost in every outcome where it is paid."
+    ]
+  },
+  "misconception": "Construction costs matter only when the structure succeeds.",
+  "objective": "Include an unconditional cost in every outcome where it is paid.",
+  "claims": [
+    {
+      "id": "books.bk-phenotype-external-effect.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Gene effects can extend beyond the organism’s body into its surroundings.",
+      "status": "unverified",
+      "source": "{\"work\":\"phenotype-external-1982\",\"edition\":1982,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-phenotype-external-effect.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Richard Dawkins, The Extended Phenotype (1982)",
+      "status": "unverified",
+      "source": "{\"work\":\"phenotype-external-1982\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-phenotype-external-effect.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Omitting construction gives {A}; charging it in both branches gives {B}. An external benefit does not erase the unconditional construction cost.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[50,8,0],[50,6,-2]],\"outputs\":[4,2]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-phenotype-external-effect.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? These costs and encounters are invented. They do not measure adaptation, inheritance or the fitness of a real structure.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A structure costs 3 always and brings 10 with probability 40%. Its mean net payoff?",
+    "options": [
+      "1",
+      "2.8",
+      "4"
+    ],
+    "answer": 0,
+    "why": "0.4×(10−3)+0.6×(−3)=1."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-phenotype-external-effect/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-phenotype-external-effect/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-phenotype-external-effect",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "phenotype-external-1982",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

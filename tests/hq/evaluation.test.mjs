@@ -1,4 +1,4 @@
-// HQ Evaluation page (W-1662): the data it renders equals `tools/eval/bt.mjs` run on the committed records,
+// HQ Evaluation page (W-1841): the data it renders equals `tools/eval/bt.mjs` run on the committed records,
 // the tab is wired in both bars, the page is gated by hqEnabled, and the README's rule is on the page.
 // Run: npm run test:hq
 import test from "node:test";

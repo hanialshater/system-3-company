@@ -1,0 +1,132 @@
+{
+  "slug": "bk-distracted-switching-budget",
+  "title": "How expensive is switching?",
+  "hook": "Each completed task chunk pays its stated switch cost within a 30-minute budget.",
+  "domain": "books",
+  "concept": "book-distracted-switching-budget",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to calculate a stipulated switching budget without treating the cost as a universal cognitive constant"
+    ]
+  },
+  "misconception": "Holding calendar time fixed guarantees the same completed work despite switching overhead.",
+  "objective": "Calculate a stipulated switching budget without treating the cost as a universal cognitive constant.",
+  "claims": [
+    {
+      "id": "books.bk-distracted-switching-budget.bibliography",
+      "text": "The Distracted Mind; Adam Gazzaley and Larry D. Rosen; 2016.",
+      "support": "source",
+      "source": "Candidate bibliographic record for distracted-switching-2016; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-distracted-switching-budget.book",
+      "text": "The Distracted Mind discusses interference and the costs of switching between goals.",
+      "support": "source",
+      "source": "The Distracted Mind (2016), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-distracted-switching-budget.model",
+      "text": "Original stipulated toy: Every task chunk includes its own switch overhead; time cannot overlap; no partial chunks; zero automatic inference about real multitasking. Exact intervals inputs [{\"label\": \"Two-minute switch\", \"values\": [30, 3, 2]}, {\"label\": \"Seven-minute switch\", \"values\": [30, 3, 7]}]; second author arithmetic check A=18, B=9. Short switches allow {A}; longer switches {B}. The larger overhead leaves room for fewer complete task chunks.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-distracted-switching-budget.world",
+      "text": "Does it hold up? Actual switching costs vary; neither invented time is a measured human effect.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-distracted-switching-budget.recall",
+      "text": "{\"question\": \"Twenty-four minutes, four-minute chunks, two-minute switches: completed task time?\", \"options\": [\"8 minutes\", \"12 minutes\", \"16 minutes\"], \"answer\": 2, \"why\": \"floor(24/6)*4=16; the switch consumes the rest under this toy convention.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Twenty-four minutes, four-minute chunks, two-minute switches: completed task time?",
+    "options": [
+      "8 minutes",
+      "12 minutes",
+      "16 minutes"
+    ],
+    "answer": 2,
+    "why": "floor(24/6)*4=16; the switch consumes the rest under this toy convention."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-distracted-switching-budget/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-distracted-switching-budget/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-distracted-switching-budget",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "distracted-switching-2016",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "switch-costs"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

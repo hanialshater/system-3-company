@@ -13,9 +13,9 @@ Scope note: this session worked only the personalization lane (lane 14) and the 
 - **HQ Personalization Lab** production mode (earlier today) merged.
 
 ## Decided by you since the last digest
-- 4.5M personalization budget (W-1583); "always on, no switch" for the website; delegation to the chief of staff until M1 (deploys still yours).
+- 4.5M personalization budget (W-1762); "always on, no switch" for the website; delegation to the chief of staff until M1 (deploys still yours).
 - L3 reason line accepted over head-of-product's objection (option A).
-- Candidates and the evaluation work go into HQ (W-1648): Mateo amended his rule (batch 5 §20); build dispatched to personalization-engineer.
+- Candidates and the evaluation work go into HQ (W-1827): Mateo amended his rule (batch 5 §20); build dispatched to personalization-engineer.
 
 ## Running now
 - K6: personalization-eval scoring v2 under criterion 3b (record only).
@@ -27,8 +27,8 @@ Scope note: this session worked only the personalization lane (lane 14) and the 
 - Every finish already sends a `complete` beacon to the server, so "progress stays in this browser" copy is false as written (being reworded).
 
 ## Waiting on you
-1. Ratify the always-on amendment (W-1585), including the cold-start and review-lesson statements.
-2. Counsel (W-1587): 13–15 year olds with no switch (AADC, GDPR Art. 21/22), whether on-device ordering is processing by us, ePrivacy for reusing the progress record.
+1. Ratify the always-on amendment (W-1764), including the cold-start and review-lesson statements.
+2. Counsel (W-1766): 13–15 year olds with no switch (AADC, GDPR Art. 21/22), whether on-device ordering is processing by us, ePrivacy for reusing the progress record.
 3. Keep a company-side comparison group (O2)?
 4. Pre-approve a flag-off withdrawal on a privacy or child-safety trigger?
 5. Every deploy, when asked.

@@ -88,7 +88,7 @@ for (const e of Object.values(pd)) cross.set(e.concept, (cross.get(e.concept) ??
 console.log("pilot concepts in more than one domain:", [...cross.values()].filter((s) => s.size > 1).length, "; concept prefix != domain (all 946):", all.filter((e) => e.concept.split(":")[0] !== e.domain).length);
 
 // ---------------------------------------------------------------------------------------------------------------
-// Draft 2 extension (run pe-w1615-1017, W-1615; batch 5 §15.2). Baselines on v2 for F7, not truth tests.
+// Draft 2 extension (run pe-w1615-1017, W-1794; batch 5 §15.2). Baselines on v2 for F7, not truth tests.
 // (a) a history that produces `refresh` (F6 N5); (b) a deep mid-scroll pin past the completed lessons (F6 N3).
 // The display is EDD-010 §5.4 step 5 over the 230 pilot slots: slots before h keep the card they last showed,
 // a slot whose default lesson was completed before the page load keeps it, every other slot takes the next

@@ -1,4 +1,4 @@
-# Privacy ruling: HQ lab production mode from precomputed runs (W-1572 H1)
+# Privacy ruling: HQ lab production mode from precomputed runs (W-1751 H1)
 
 owner: privacy-reviewer (Elif) · date: 2026-10-17 · run: pr-h1-1017 · follows company/reviews/_privacy/2026-10-16-personalization-batch-reads.md (L1 to L5) and company/reviews/_privacy/2026-10-16-l5-t1-closeout.md · branch perso-m1-h1, commit 210bf1f (HEAD 7acee87). I approve none of my own proposals; this is personalization-engineer's work. Not legal advice.
 
@@ -36,7 +36,7 @@ None found. The only way real data could reach these files is a person or a late
 ## Conditions
 
 - **P1. Generator source stays closed.** `tools/hq-lab-precompute.mjs` may call only `hq-cli.mjs` for personas in `personas.ts`. If it gains another source (a DB, an export, `sim/out/traces`, a file argument), or if `hq-cli.mjs meta` gains a field derived from traces or accounts that `saved = []` does not empty, my ruling lapses and I read it again (extends L2/L3). Owner: personalization-engineer; hq-engineer reviews the generator under L2.
-- **P2. Regeneration needs the test.** Whoever regenerates the folder runs the privacy test and the precomputed test before committing; a diff in the data that is not explained by a change under `company/personalization/model/`, `content/curriculum/` or `src/demos/` (what `inputsCommit` names) is a finding. Real-data calibration (W-1497/W-1513) never writes here.
+- **P2. Regeneration needs the test.** Whoever regenerates the folder runs the privacy test and the precomputed test before committing; a diff in the data that is not explained by a change under `company/personalization/model/`, `content/curriculum/` or `src/demos/` (what `inputsCommit` names) is a finding. Real-data calibration (W-1676/W-1685) never writes here.
 - **P3. Rename the "live" label when convenient.** `run.source: "live"` in stored traces is read by a lab user only after the reader rewrites it, but a reader of the raw file could take "live" as "real". Suggest `"simulator"`. Low; not blocking.
 - **P4. Rendered page in production mode.** I did not render the page and I did not run a production build. Before this goes in a released HQ, I read one screenshot of the precomputed page (fingerprint caption, persona heading and the "Precomputed" note must each carry "simulated"), as in L5. If the chief of staff or hq-engineer supplies it, I add a line to this record; until then this ruling stands on code and tests.
 

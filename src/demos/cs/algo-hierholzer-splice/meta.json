@@ -1,0 +1,311 @@
+{
+  "slug": "algo-hierholzer-splice",
+  "title": "A closed walk can absorb another",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-hierholzer-splice",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Construct an Euler circuit by splicing an unused-edge circuit into an existing circuit."
+    ]
+  },
+  "misconception": "Closing the first circuit means every edge has been used.",
+  "objective": "Construct an Euler circuit by splicing an unused-edge circuit into an existing circuit.",
+  "claims": [
+    {
+      "id": "cs.algo-hierholzer-splice.c1",
+      "text": "Following unused edges then backtracking splices circuits without repeating edges.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c3",
+      "text": "Take first unused edges in listed order: AB, BC, CA, AD, DE, EA. Which circuit results?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c4",
+      "text": "ABCADEA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c5",
+      "text": "ABCDAEA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c6",
+      "text": "ABACDEA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c7",
+      "text": "Complete this graph, then inspect steps and compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c8",
+      "text": "Euler circuit ABCADEA; edges 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c9",
+      "text": "Euler circuit ABCADEA; edges 6. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c10",
+      "text": "Unused edges extend the current stack. When a vertex has no unused edge, backtracking inserts that completed piece into the circuit; the joined cycles keep every edge exactly once.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c11",
+      "text": "Two cycles",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c13",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c14",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c15",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c16",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[0].nodes[4].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c17",
+      "text": "Follow unused edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c18",
+      "text": "stack",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c19",
+      "text": "AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[1].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c20",
+      "text": "ABC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[2].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c21",
+      "text": "ABCA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[3].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c22",
+      "text": "ABCAD",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[4].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c23",
+      "text": "ABCADE",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[5].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c24",
+      "text": "Splice on backtrack",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c25",
+      "text": "circuit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run().frames[7].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c26",
+      "text": "Euler circuit ABCDECA; edges 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c27",
+      "text": "Euler circuit ABCDECA; edges 6. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c28",
+      "text": "ABCD",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run().frames[5].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c29",
+      "text": "ABCDE",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run().frames[6].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c30",
+      "text": "ABCDEC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run().frames[7].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c31",
+      "text": "A completed circuit visits a vertex with unused edges. What does Hierholzer do?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c32",
+      "text": "Discard the circuit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c33",
+      "text": "Splice a new circuit there",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c34",
+      "text": "Repeat the used edges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-hierholzer-splice.c35",
+      "text": "The shared vertex joins the unused-edge circuit to the existing one.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-hierholzer-splice\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A completed circuit visits a vertex with unused edges. What does Hierholzer do?",
+    "options": [
+      "Discard the circuit",
+      "Splice a new circuit there",
+      "Repeat the used edges"
+    ],
+    "answer": 1,
+    "why": "The shared vertex joins the unused-edge circuit to the existing one."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-hierholzer-splice/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-hierholzer-splice",
+    "also": [],
+    "prerequisites": [
+      "cs:depth-first-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "graph-traversal-decomposition"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

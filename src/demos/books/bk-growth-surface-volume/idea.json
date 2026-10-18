@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "On Growth and Form",
+    "author": "D'Arcy Wentworth Thompson",
+    "year": 1917,
+    "work": "growth-surface-1917"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "When all three lengths double, by what factor does volume change?",
+    "options": [
+      "2×",
+      "4×",
+      "8×"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Two dimensions",
+      "values": [
+        1,
+        100,
+        2,
+        0
+      ]
+    },
+    {
+      "label": "Three dimensions",
+      "values": [
+        1,
+        100,
+        3,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "dimensions"
+  ],
+  "unit": "×",
+  "bookIdea": "Geometry constrains how form changes with size.",
+  "modelBoundary": "The area factor is {A}; the volume factor is {B}. Each independent doubled dimension contributes another multiplier of two.",
+  "doesItHoldUp": "Does it hold up? These are dimensionless factors for similar shapes, not evidence about organism growth or heat exchange."
+}

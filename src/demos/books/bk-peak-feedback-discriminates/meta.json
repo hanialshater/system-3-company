@@ -1,0 +1,132 @@
+{
+  "slug": "bk-peak-feedback-discriminates",
+  "title": "Which errors does practice remove?",
+  "hook": "Two toy practice policies repeat four rounds, but only one corrects identified errors.",
+  "domain": "books",
+  "concept": "book-peak-feedback-discriminates",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to distinguish time spent repeating from specified error correction, while keeping correction success an assumption"
+    ]
+  },
+  "misconception": "Repeating the same performance necessarily removes errors even without a mechanism that changes them.",
+  "objective": "Distinguish time spent repeating from specified error correction, while keeping correction success an assumption.",
+  "claims": [
+    {
+      "id": "books.bk-peak-feedback-discriminates.bibliography",
+      "text": "Peak; Anders Ericsson and Robert Pool; 2016.",
+      "support": "source",
+      "source": "Candidate bibliographic record for peak-feedback-2016; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-peak-feedback-discriminates.book",
+      "text": "Peak emphasizes targeted practice with informative feedback rather than repetition alone.",
+      "support": "source",
+      "source": "Peak (2016), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-peak-feedback-discriminates.model",
+      "text": "Original stipulated toy: Error inventory fixed; correction succeeds exactly as stipulated; no new errors, forgetting, transfer or empirical practice curve. Exact feedback inputs [{\"label\": \"Repeat unchanged\", \"values\": [8, 0, 0, 4]}, {\"label\": \"Correct one/round\", \"values\": [8, 0, 1, 4]}]; second author arithmetic check A=8, B=4. Repeating unchanged leaves {A}; correcting one per round leaves {B}. Only the specified correction operation removes errors.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-peak-feedback-discriminates.world",
+      "text": "Does it hold up? Real feedback may not be understood, errors may recur, and correction rates are not fixed.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-peak-feedback-discriminates.recall",
+      "text": "{\"question\": \"Five identified errors; one corrected per round, no new errors. After seven rounds?\", \"options\": [\"0 errors\", \"-2 errors\", \"5 errors\"], \"answer\": 0, \"why\": \"The stock floors at zero: max(0,5-7)=0; negative remaining errors are impossible in this toy.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Five identified errors; one corrected per round, no new errors. After seven rounds?",
+    "options": [
+      "0 errors",
+      "-2 errors",
+      "5 errors"
+    ],
+    "answer": 0,
+    "why": "The stock floors at zero: max(0,5-7)=0; negative remaining errors are impossible in this toy."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-peak-feedback-discriminates/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-peak-feedback-discriminates/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-peak-feedback-discriminates",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "peak-feedback-2016",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "feedback",
+      "targeted-practice"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

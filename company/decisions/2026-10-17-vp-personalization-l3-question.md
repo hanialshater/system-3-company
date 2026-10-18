@@ -22,8 +22,8 @@ Head-of-product refused L3 under the copy standard they set (no line whose impli
 ## Still required before G and release, whatever the answer
 
 - K6 (personalization-eval, running), then K7 (score v3 by sha256 53981ab0…c195 under 3b), R4 and R5 reproductions, then my G record under batch 5 §4 and §12.
-- Copy rewording: W-1642 (head-of-product: I3, I4, C1, R1, the L7 fallback, F-a; plus the choice of L3's wording if A, see batch 5 §19.2) and W-1643 (privacy-reviewer with head-of-product: D1 data text, because every finish already sends a `complete` beacon), with the fact-checker re-reading the changed sentences.
-- W-1585 (the amendment for an always-on order, with the cold-start and review-lesson statements) ratified by you; W-1587 (counsel) answered.
+- Copy rewording: W-1821 (head-of-product: I3, I4, C1, R1, the L7 fallback, F-a; plus the choice of L3's wording if A, see batch 5 §19.2) and W-1822 (privacy-reviewer with head-of-product: D1 data text, because every finish already sends a `complete` beacon), with the fact-checker re-reading the changed sentences.
+- W-1764 (the amendment for an always-on order, with the cold-start and review-lesson statements) ratified by you; W-1766 (counsel) answered.
 - Privacy's diff and rendered-page re-reads; the MR checklist (batch 5 §5 with §12); your deploy approval, asked separately.
 
 ## If answered
@@ -41,7 +41,7 @@ Head-of-product refused L3 under the copy standard they set (no line whose impli
 > "i approve"  (founder, conversation, in reply to the chief of staff putting "The question" above to them verbatim, with recommendation A)
 
 - **Recorded as: option A.** L3 is accepted over head-of-product's objection. The objection travels with the decision and goes into the release note's internal part 7; head-of-product records the outcome under §O1.
-- **Scope of the answer:** this question only. It does not ratify W-1585, answer W-1587, decide the holdout (O2) or the pre-approved withdrawal, or approve any deploy. The question still lapses if K6 or K7 scores NO-GO, and reopens if L3 shows more than rarely in any probe or QA run (batch 5 §18.1).
+- **Scope of the answer:** this question only. It does not ratify W-1764, answer W-1766, decide the holdout (O2) or the pre-approved withdrawal, or approve any deploy. The question still lapses if K6 or K7 scores NO-GO, and reopens if L3 shows more than rarely in any probe or QA run (batch 5 §18.1).
 - recorded by: chief-of-staff
 
 ## Lapsed (vp-personalization, run vp-g3b-1017, 2026-10-17)

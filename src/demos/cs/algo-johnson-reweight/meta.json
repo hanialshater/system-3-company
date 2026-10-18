@@ -1,0 +1,220 @@
+{
+  "slug": "algo-johnson-reweight",
+  "title": "Can negative roads become nonnegative?",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-johnson-reweight",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Reweight edges with vertex potentials while preserving relative path costs between fixed endpoints."
+    ]
+  },
+  "misconception": "Changing edge weights necessarily changes which path is shortest.",
+  "objective": "Reweight edges with vertex potentials while preserving relative path costs between fixed endpoints.",
+  "claims": [
+    {
+      "id": "cs.algo-johnson-reweight.c1",
+      "text": "Vertex-potential edge shifts preserve relative route costs for fixed endpoints.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c3",
+      "text": "AB=−2, BC=3, AC=4, CA=2; super-source potentials start at zero. What are the reweighted edges in that order?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c4",
+      "text": "Complete the question path calculation, then inspect a changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c5",
+      "text": "Reweighted AB,BC,AC,CA 0,1,4,2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c6",
+      "text": "Reweighted AB,BC,AC,CA 0,1,4,2. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c7",
+      "text": "The super-source relaxation computes potentials. Adding h(source) and subtracting h(destination) makes these edge weights nonnegative while path sums between fixed endpoints shift by the same amount.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c8",
+      "text": "Original weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c12",
+      "text": "Super-source relaxation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c13",
+      "text": "potential",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c14",
+      "text": "Reweight edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c15",
+      "text": "h",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[0].run().frames[2].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c16",
+      "text": "Reweighted AB,BC,AC,CA 0,0,5,1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c17",
+      "text": "Reweighted AB,BC,AC,CA 0,0,5,1. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#johnson_reweight.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c18",
+      "text": "Two routes have the same endpoints. After valid potential reweighting, how do their costs shift?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c19",
+      "text": "Independently by edge count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c20",
+      "text": "Only negative edges shift",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c21",
+      "text": "By the same endpoint-dependent amount",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-johnson-reweight.c22",
+      "text": "Internal potentials cancel in each path sum, leaving the same endpoint term.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-johnson-reweight\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two routes have the same endpoints. After valid potential reweighting, how do their costs shift?",
+    "options": [
+      "Independently by edge count",
+      "Only negative edges shift",
+      "By the same endpoint-dependent amount"
+    ],
+    "answer": 2,
+    "why": "Internal potentials cancel in each path sum, leaving the same endpoint term."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-johnson-reweight/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-johnson-reweight",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "path-algorithms-witnesses"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

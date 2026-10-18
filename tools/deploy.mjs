@@ -42,17 +42,24 @@ export function deploymentUrl(output) {
   return url.origin;
 }
 
-function execute(file, args, { root, env, capture = false }) {
+export function execute(file, args, { root, env, capture = false }, { exec = execFileSync, write = (text) => process.stderr.write(text) } = {}) {
   try {
-    return execFileSync(file, args, {
+    return exec(file, args, {
       cwd: root, env, encoding: "utf8", stdio: capture ? ["ignore", "pipe", "pipe"] : ["ignore", "inherit", "inherit"],
       maxBuffer: 20 * 1024 * 1024,
     }) ?? "";
   } catch (error) {
-    // Tokens never enter arguments or the durable release record.
-    let detail = String(error.stderr ?? "").trim();
-    if (env.VERCEL_TOKEN) detail = detail.replaceAll(env.VERCEL_TOKEN, "[redacted]");
-    if (detail) process.stderr.write(`${detail}\n`);
+    // Tokens never enter arguments or the durable release record. Failure detail goes to the
+    // live log only: `vercel deploy --format json` reports its errors on stdout, others on stderr.
+    const redact = (text) => {
+      let detail = String(text ?? "").trim();
+      if (env.VERCEL_TOKEN) detail = detail.replaceAll(env.VERCEL_TOKEN, "[redacted]");
+      return detail;
+    };
+    const out = redact(error.stdout);
+    const err = redact(error.stderr);
+    if (out) write(`${out}\n`);
+    if (err) write(`${err}\n`);
     throw new Error(`${path.basename(file)} command failed (exit ${error.status ?? "unknown"}).`);
   }
 }
@@ -147,7 +154,9 @@ export function deploy({ target = "preview", dryRun = false, prebuilt = false, r
     }
     record.url = deploymentUrl(step("upload", () => vc([
       "deploy", "--yes", "--no-wait", "--format", "json",
-      ...(prebuilt ? ["--prebuilt"] : ["--build-env", `SHOW_REVIEW=${showReview}`]),
+      // --archive=tgz: upload the prebuilt output as a few tarball parts, not ~14,000 files (Vercel file-count and
+      // upload-rate limits; company/engineering/reviews/2026-10-17-deploy-upload-failure.md, principal-engineer ruling).
+      ...(prebuilt ? ["--prebuilt", "--archive=tgz"] : ["--build-env", `SHOW_REVIEW=${showReview}`]),
       "--env", `SHOW_REVIEW=${showReview}`,
       "--meta", `s3Commit=${commit}`, "--meta", `s3Target=${target}`,
       ...(production ? ["--prod", "--skip-domain"] : []),

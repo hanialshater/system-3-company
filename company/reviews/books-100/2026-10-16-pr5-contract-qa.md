@@ -1,0 +1,112 @@
+# Books-100 (PR #5) computer-use contract QA
+
+recorded by: qa-tester, 2026-10-16
+Built-from SHA: start fe7fc9586d3bceacb040cd5fb866bc3072d202ac, end fe7fc9586d3bceacb040cd5fb866bc3072d202ac (worktree /home/user/s3c-pr5-qa, branch review/pr5-qa)
+Harness: tests/qa/contract.spec.ts at commit bc74707, stamp clean: true. 3 workers, QA_ONLY = the 100 bk- slugs, port 3733, own build dir .next-qa.
+Result: **200 passed / 0 failed / 0 flaky / 0 retries** (100 lessons x phone + desktop), 238 s. No lesson failed.
+Not run: tests/qa/feed.spec.ts (not part of the request). Not evidence about learning.
+
+Environment note: `npm run build` (Turbopack) fails in this worktree: "Symlink node_modules could not be resolved: the symlink target leaves the filesystem root" (node_modules symlinked from outside the worktree; next.config.mjs only handles .claude/worktrees paths). Built with `next build --webpack` instead; no files patched. The build rewrote tsconfig.json (reverted, not committed). Production Turbopack output of this SHA was therefore not the artifact tested.
+
+| slug | phone | desktop |
+|---|---|---|
+| bk-accelerate-small-batches | pass | pass |
+| bk-algorithms-cache-change | pass | pass |
+| bk-bears-range-not-point | pass | pass |
+| bk-bets-process-versus-outcome | pass | pass |
+| bk-blue-value-cost-trade | pass | pass |
+| bk-brooks-ramp-up-cost | pass | pass |
+| bk-certain-confidence-score | pass | pass |
+| bk-chaos-nearby-trajectories | pass | pass |
+| bk-chasm-segment-readiness | pass | pass |
+| bk-checklist-series-reliability | pass | pass |
+| bk-choosing-information-budget | pass | pass |
+| bk-climbing-small-valid-steps | pass | pass |
+| bk-code-carry-chain | pass | pass |
+| bk-cooperation-one-error | pass | pass |
+| bk-cosmos-scale-compression | pass | pass |
+| bk-crowds-correlated-errors | pass | pass |
+| bk-data-replica-read-lag | pass | pass |
+| bk-deep-unbroken-block | pass | pass |
+| bk-degrees-shortcut-paths | pass | pass |
+| bk-devops-limit-work-in-progress | pass | pass |
+| bk-digital-attention-allocation | pass | pass |
+| bk-distracted-switching-budget | pass | pass |
+| bk-diversity-species-area-model | pass | pass |
+| bk-dodo-fragmented-habitat | pass | pass |
+| bk-drive-proxy-reward | pass | pass |
+| bk-drucker-time-fragments | pass | pass |
+| bk-drunkard-streak-and-rate | pass | pass |
+| bk-elegant-team-slack | pass | pass |
+| bk-emyth-owner-bottleneck | pass | pass |
+| bk-extended-external-state | pass | pass |
+| bk-fact-middle-of-distribution | pass | pass |
+| bk-fifth-upstream-orders | pass | pass |
+| bk-flow-utilization-queue | pass | pass |
+| bk-forecast-proper-score | pass | pass |
+| bk-gene-frequency-dependent | pass | pass |
+| bk-gorilla-selection-rule | pass | pass |
+| bk-great-selected-winners | pass | pass |
+| bk-grit-product-assumption | pass | pass |
+| bk-grove-leverage-hours | pass | pass |
+| bk-growth-surface-volume | pass | pass |
+| bk-habit-cue-policy | pass | pass |
+| bk-hyperfocus-salience-filter | pass | pass |
+| bk-indistractable-cue-access | pass | pass |
+| bk-influence-social-sample | pass | pass |
+| bk-information-repeated-messages | pass | pass |
+| bk-innovator-demand-crossing | pass | pass |
+| bk-irrational-decoy-dominance | pass | pass |
+| bk-island-arrival-loss-balance | pass | pass |
+| bk-jobs-context-changes-choice | pass | pass |
+| bk-knowledge-missing-mechanism | pass | pass |
+| bk-law-symmetry-shift | pass | pass |
+| bk-lean-analytics-cohort-mix | pass | pass |
+| bk-learn-cue-overlap | pass | pass |
+| bk-learning-link-new-to-known | pass | pass |
+| bk-linked-hub-removal | pass | pass |
+| bk-manager-delegation-interface | pass | pass |
+| bk-measure-value-information | pass | pass |
+| bk-minds-sampling-representatives | pass | pass |
+| bk-mindset-small-effect-scale | pass | pass |
+| bk-mistakes-selective-evidence | pass | pass |
+| bk-networks-degree-versus-bridge | pass | pass |
+| bk-notes-links-not-piles | pass | pass |
+| bk-nudge-default-choice-model | pass | pass |
+| bk-numbers-chunk-workspace | pass | pass |
+| bk-okr-output-and-quality | pass | pass |
+| bk-order-clock-comparison | pass | pass |
+| bk-organized-offload-buffer | pass | pass |
+| bk-origin-selection-frequencies | pass | pass |
+| bk-pale-angular-size | pass | pass |
+| bk-peak-feedback-discriminates | pass | pass |
+| bk-peopleware-interruption-cost | pass | pass |
+| bk-personal-mba-break-even | pass | pass |
+| bk-phenotype-external-effect | pass | pass |
+| bk-pieces-energy-reference | pass | pass |
+| bk-playing-capability-fit | pass | pass |
+| bk-porter-same-budget-opportunity | pass | pass |
+| bk-pro-feedback-target | pass | pass |
+| bk-qed-add-amplitudes | pass | pass |
+| bk-range-transfer-rule | pass | pass |
+| bk-release-bulkhead-capacity | pass | pass |
+| bk-rewards-metric-gaming | pass | pass |
+| bk-scale-exponent-boundary | pass | pass |
+| bk-scarcity-attention-budget | pass | pass |
+| bk-ship-distributed-information | pass | pass |
+| bk-signal-overfit-validation | pass | pass |
+| bk-smart-sunk-cost-boundary | pass | pass |
+| bk-solution-asymmetric-incentives | pass | pass |
+| bk-spring-selection-resistance | pass | pass |
+| bk-startup-test-before-scale | pass | pass |
+| bk-stick-retrieval-evidence | pass | pass |
+| bk-strategy-credible-commitment | pass | pass |
+| bk-swan-unseen-regime-change | pass | pass |
+| bk-sync-coupling-threshold | pass | pass |
+| bk-systems-delay-control | pass | pass |
+| bk-time-light-cone-budget | pass | pass |
+| bk-topologies-handoff-edges | pass | pass |
+| bk-watchmaker-cumulative-retention | pass | pass |
+| bk-wonderful-contingent-branches | pass | pass |
+| bk-yes-trade-different-values | pass | pass |
+| bk-zero-tail-concentration | pass | pass |

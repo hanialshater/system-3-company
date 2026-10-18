@@ -885,7 +885,7 @@ roles.push(
     mission: "Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.",
     inScope: [
       "The dims schema (company/personalization/2026-10-16-brief-response.md §2.4)",
-      "The derived index from meta.json and content/curriculum (read-only inputs), where W-1498 places it",
+      "The derived index from meta.json and content/curriculum (read-only inputs), where W-1677 places it",
       "The misconceptionStrength rating protocol and the pilot ratings (probability + cs)",
       "Coverage reports (e.g. Life Hacks' prerequisite edges)",
     ],
@@ -912,7 +912,7 @@ roles.push(
       "Builds the HQ Personalization Lab (pick a persona, see its fingerprint, curves, per-slot score terms and rejected candidates, compare policies), read-only; in phase B, the serving glue between the composer and the feed behind the off switch. Use for the lab page and personalization serving glue.",
     mission: "The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.",
     inScope: [
-      "The HQ Personalization Lab (W-1503): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only",
+      "The HQ Personalization Lab (W-1682): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only",
       "In phase B: serving glue between the composer and the feed, behind the off switch",
     ],
     outOfScope: ["Engine and curves", "The simulator (personalization-eval)", "HQ code outside the lab page (hq-engineer)", "Feed.tsx and the kit (platform-engineer)"],
@@ -924,7 +924,7 @@ roles.push(
         "Add dependencies without a decision record",
       ],
     },
-    inputs: ["The simulator's per-step trace (W-1504)", "company/personalization/model/"],
+    inputs: ["The simulator's per-step trace (W-1683)", "company/personalization/model/"],
     outputs: ["The lab page", "Serving glue (phase B)"],
     rituals: ["eng-review (presents)"],
     handoffs: ["lab → founder, vp-personalization, personalization-eval", "HQ review → hq-engineer"],
@@ -942,9 +942,9 @@ roles.push(
     mission: "A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.",
     inScope: [
       "src/lib/learner/** (once approved)",
-      "The org's tech owner: where model, dims and engine code live (W-1498)",
-      "The engine port and the policies under test (W-1494)",
-      "The per-step trace (W-1504)",
+      "The org's tech owner: where model, dims and engine code live (W-1677)",
+      "The engine port and the policies under test (W-1673)",
+      "The per-step trace (W-1683)",
       "Reproducing an eval readout from its seed and commit (determinism only, not judgement)",
       "Explanations a learner can read ('why this lesson next')",
     ],
@@ -1741,7 +1741,7 @@ roles.push({
 // pairwise-eval demos, have a Bradley-Terry leaderboard on multiple criteria, and show the BT with filters in HQ."
 // Decision record: company/decisions/2026-10-14-evaluation-org.md. Contract: company/evaluation/README.md.
 // Ported 2026-10-18 from branch ccr-rnd-ncm (never merged) on the founder's word (company/decisions/2026-10-18-founder-evaluation-leaderboard-in-hq.md,
-// W-1663). Since 2026-10-16 personalization is its own founder-direct org and does not sit under the CPO (port section of the 10-14 record).
+// W-1842). Since 2026-10-16 personalization is its own founder-direct org and does not sit under the CPO (port section of the 10-14 record).
 // Relationship to the constitutional quality roles: the evaluation-steward still owns every gate and the independence
 // rules, and the pedagogy-critic stays under the steward as a demo-crit witness. The Evaluation org measures and ranks; it
 // never decides publish, kill or keep.

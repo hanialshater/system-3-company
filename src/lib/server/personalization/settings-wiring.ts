@@ -1,4 +1,4 @@
-// Wiring for the settings route (W-1538). Owner: learner-data-engineer; the session and database pieces are
+// Wiring for the settings route (W-1717). Owner: learner-data-engineer; the session and database pieces are
 // backend-engineer's and are NOT wired here, so the route answers 404 everywhere until they are.
 //
 // UNVERIFIED (the accounts branch is not fetchable in this clone, 2026-10-16). backend-engineer to confirm or supply:

@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "year": 2012,
+    "work": "duhigg-power-of-habit-2012"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "A toy rule adds two completed actions whenever a cue appears, once each round for four rounds. How many actions?",
+    "options": [
+      "2 actions",
+      "6 actions",
+      "8 actions"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Cue present",
+      "values": [
+        0,
+        2,
+        0,
+        4
+      ]
+    },
+    {
+      "label": "Cue absent",
+      "values": [
+        0,
+        0,
+        0,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "Actions in",
+    "Removed",
+    "Rounds"
+  ],
+  "unit": "actions",
+  "bookIdea": "The Power of Habit describes routines in relation to cues and rewards.",
+  "modelBoundary": "Keeping the cue records {A}; removing it records {B}. The programmed trigger supplies actions; no habit strength is inferred.",
+  "doesItHoldUp": "Does it hold up? Real cues do not guarantee actions; rewards and competing cues are outside this counter."
+}

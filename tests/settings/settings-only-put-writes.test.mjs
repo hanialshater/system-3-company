@@ -1,6 +1,6 @@
 // B2 (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3, SS3 row): "the route test that only
 // `PUT /api/settings` can write the table (owed with the API) is a condition of the API read. No 'suggested subjects'
-// path may call it." W-1538. The route is mounted at `PUT /api/account/settings` (principal-engineer C1; privacy-reviewer
+// path may call it." W-1717. The route is mounted at `PUT /api/account/settings` (principal-engineer C1; privacy-reviewer
 // B2a, company/reviews/_privacy/2026-10-16-w1538-settings-api.md: the B2 text now reads that path). B2a also requires
 // that no route file remains under src/app/api/settings/; the static test below fails if one does.
 //

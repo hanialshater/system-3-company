@@ -1,0 +1,23 @@
+import { createRequire } from "module"; import path from "path";
+const require = createRequire(path.resolve("node_modules") + "/");
+const pw = require("@playwright/test");
+const b = await pw.chromium.launch();
+const ctx = await b.newContext({ viewport:{width:360,height:640}, deviceScaleFactor:2, hasTouch:true,isMobile:true });
+const page = await ctx.newPage();
+await page.goto("http://localhost:3817/d/left-or-right",{waitUntil:"networkidle"});
+await page.getByTestId("predict-option").nth(1).click(); await page.getByTestId("commit-prediction").click(); await page.waitForTimeout(400);
+const info = () => page.evaluate(()=>{const st=document.querySelector("[data-testid=stage]");let e=st,chain=[];while(e&&e!==document.body){const cs=getComputedStyle(e);chain.push([e.getAttribute("data-testid")||e.className.toString().slice(0,20),cs.overflowY,e.scrollTop,e.scrollHeight,e.clientHeight]);e=e.parentElement}
+const rd=document.querySelector("[data-testid=stage] [role=status]").getBoundingClientRect();const cr=[...document.querySelectorAll("[data-testid=stage] button")].map(b=>[b.textContent,Math.round(b.getBoundingClientRect().top),Math.round(b.getBoundingClientRect().bottom)]);
+const sr=st.getBoundingClientRect();return {stage:[Math.round(sr.top),Math.round(sr.bottom)],readoutTop:Math.round(rd.top),cr,chain,scrollY}});
+console.log("fresh", JSON.stringify(await info()));
+await page.screenshot({path:"artifacts/explore/lor/p3-fresh.png"});
+await page.locator("[data-testid=stage] button",{hasText:"Mirror"}).click(); await page.waitForTimeout(500);
+console.log("after Mirror click", JSON.stringify(await info()));
+await page.locator("[data-testid=stage] button",{hasText:"Turn over"}).click(); await page.waitForTimeout(500);
+console.log("after Turn", JSON.stringify(await info()));
+await page.screenshot({path:"artifacts/explore/lor/p3-after.png"});
+await page.locator("[data-testid=stage] button",{hasText:"Turn over"}).click(); await page.waitForTimeout(500);await page.locator("[data-testid=stage] button",{hasText:"Mirror"}).click(); await page.waitForTimeout(500);await page.locator("[data-testid=stage] button",{hasText:"Turn over"}).click(); await page.waitForTimeout(500);console.log("btn",await page.getByTestId("reveal-button").textContent());await page.getByTestId("reveal-button").click(); await page.waitForTimeout(800);
+console.log("reveal", JSON.stringify(await info()));
+await page.screenshot({path:"artifacts/explore/lor/p3-reveal.png"});
+await page.mouse.move(180,300);await page.mouse.wheel(0,-300);await page.waitForTimeout(300);console.log("after wheel up",JSON.stringify(await info()));await page.screenshot({path:"artifacts/explore/lor/p3-reveal-wheel.png"});
+await b.close();

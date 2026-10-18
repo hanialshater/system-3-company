@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Factfulness",
+    "author": "Hans Rosling, Ola Rosling and Anna Rosling Rönnlund",
+    "year": 2018,
+    "work": "rosling-factfulness-2018"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "For 80 units at 20% and 20 units at 80%, what is the combined expected rate?",
+    "options": [
+      "32%",
+      "50%",
+      "68%"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Actual sizes",
+      "values": [
+        80,
+        20,
+        20,
+        80
+      ]
+    },
+    {
+      "label": "Equal sizes",
+      "values": [
+        50,
+        20,
+        50,
+        80
+      ]
+    }
+  ],
+  "labels": [
+    "Group A",
+    "Group B"
+  ],
+  "unit": "%",
+  "bookIdea": "Group labels and dramatic extremes can obscure how populations are distributed.",
+  "modelBoundary": "Actual sizes give {A}%; equal weighting gives {B}%. Group rates stay fixed; their denominators change the aggregate.",
+  "doesItHoldUp": "Does it hold up? This weighted average is exact for the stipulated rates. These groups are not income data or evidence for historical progress."
+}

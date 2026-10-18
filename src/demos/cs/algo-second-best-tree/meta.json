@@ -1,0 +1,220 @@
+{
+  "slug": "algo-second-best-tree",
+  "title": "How much costs the next tree?",
+  "hook": "Which cycle exchange gives the next distinct spanning-tree cost?",
+  "domain": "cs",
+  "concept": "algo-second-best-tree",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Find the least positive spanning-tree cost increase over all valid single-edge replacements."
+    ]
+  },
+  "misconception": "The second-lightest non-tree edge always determines the second-best tree.",
+  "objective": "Find the least positive spanning-tree cost increase over all valid single-edge replacements.",
+  "claims": [
+    {
+      "id": "cs.algo-second-best-tree.c1",
+      "text": "The least positive valid cycle-exchange increase gives the next distinct tree cost.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-second-best-tree\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c2",
+      "text": "Which cycle exchange gives the next distinct spanning-tree cost?",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-second-best-tree\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c3",
+      "text": "AB=1, BC=2, CD=3, AD=5, AC=4. What is the next strictly larger spanning-tree cost?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c4",
+      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c5",
+      "text": "Second distinct tree cost 8; MST 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c6",
+      "text": "Second distinct tree cost 8; MST 6. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c7",
+      "text": "Each non-tree edge creates a cycle. Testing removals on that cycle gives cost increases over the minimum tree; the smallest positive increase identifies the next distinct total in this example.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c8",
+      "text": "Weighted graph",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c12",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c13",
+      "text": "Minimum tree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c14",
+      "text": "weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c15",
+      "text": "Try cycle exchanges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c16",
+      "text": "candidate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c17",
+      "text": "path",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[2].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c18",
+      "text": "increase",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[0].run().frames[2].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c19",
+      "text": "Second distinct tree cost 7; MST 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c20",
+      "text": "Second distinct tree cost 7; MST 6. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#second_best_tree.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c21",
+      "text": "An MST costs 10; smallest positive replacement increase is 3. Next distinct cost?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-second-best-tree\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-second-best-tree.c22",
+      "text": "Adding the smallest positive increase gives 13.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-second-best-tree\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An MST costs 10; smallest positive replacement increase is 3. Next distinct cost?",
+    "options": [
+      "13",
+      "3",
+      "10"
+    ],
+    "answer": 0,
+    "why": "Adding the smallest positive increase gives 13."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-second-best-tree/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-second-best-tree",
+    "also": [],
+    "prerequisites": [
+      "minimum-spanning-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "spanning-matching-flow"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

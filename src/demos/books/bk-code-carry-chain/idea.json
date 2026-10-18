@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Code",
+    "author": "Charles Petzold",
+    "year": 1999,
+    "work": "code-carry-1999"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "How many full strings can five independent binary positions represent?",
+    "options": [
+      "10 patterns",
+      "16 patterns",
+      "32 patterns"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Four bits",
+      "values": [
+        1,
+        100,
+        4,
+        0
+      ]
+    },
+    {
+      "label": "Five bits",
+      "values": [
+        1,
+        100,
+        5,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "bits"
+  ],
+  "unit": "patterns",
+  "bookIdea": "Binary representation combines two possibilities per position.",
+  "modelBoundary": "Four bits permit {A}; five permit {B}. Each existing pattern receives two distinct extensions, so one extra position doubles the count.",
+  "doesItHoldUp": "Does it hold up? This exact count assumes two usable states per position. Carries, circuit speed and storage reliability are not modeled."
+}

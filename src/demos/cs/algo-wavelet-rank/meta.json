@@ -1,0 +1,206 @@
+{
+  "slug": "algo-wavelet-rank",
+  "title": "Count while the values split",
+  "hook": "Values move into partitions, but a range still needs an address.",
+  "domain": "cs",
+  "concept": "algo-wavelet-rank",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Answer range counts using stable value partitions and prefix ranks in a wavelet tree."
+    ]
+  },
+  "misconception": "A value partition loses the original interval positions.",
+  "objective": "Answer range counts using stable value partitions and prefix ranks in a wavelet tree.",
+  "claims": [
+    {
+      "id": "cs.algo-wavelet-rank.c1",
+      "text": "Stable partitioning preserves relative order inside each child. Prefix counts map both original interval endpoints into that child, so a contiguous range stays addressable even though the values have moved.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c2",
+      "text": "Values move into partitions, but a range still needs an address.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c3",
+      "text": "In [3,1,4,1,5,2], how many values are at most 2 in zero-based inclusive [1,4]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c5",
+      "text": "Limit 2; range 1..4; count 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c6",
+      "text": "Values and original range",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c8",
+      "text": "range",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c9",
+      "text": "limit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[0].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c10",
+      "text": "Map interval through prefix ranks",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c11",
+      "text": "prefix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c12",
+      "text": "left",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[1].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c13",
+      "text": "Count qualifying values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c14",
+      "text": "count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[0].run().frames[3].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c15",
+      "text": "Limit 4; range 1..4; count 3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#wavelet_rank.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c16",
+      "text": "What preserves an interval’s endpoint mapping after a value split?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c17",
+      "text": "Stable order and prefix counts",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c18",
+      "text": "Sorting each child arbitrarily",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c19",
+      "text": "Only storing its minimum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wavelet-rank.c20",
+      "text": "Prefix ranks translate positions into each stable child.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-wavelet-rank\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What preserves an interval’s endpoint mapping after a value split?",
+    "options": [
+      "Stable order and prefix counts",
+      "Sorting each child arbitrarily",
+      "Only storing its minimum"
+    ],
+    "answer": 0,
+    "why": "Prefix ranks translate positions into each stable child."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-wavelet-rank/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-wavelet-rank",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

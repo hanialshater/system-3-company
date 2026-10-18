@@ -1,0 +1,262 @@
+{
+  "slug": "algo-kruskal-reconstruction-tree",
+  "title": "At what weight did they meet?",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-kruskal-reconstruction-tree",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Build a merge tree whose lowest common ancestor records the connectivity threshold."
+    ]
+  },
+  "misconception": "A final disjoint set remembers when any two vertices first became connected.",
+  "objective": "Build a merge tree whose lowest common ancestor records the connectivity threshold.",
+  "claims": [
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c1",
+      "text": "Weighted union nodes retain connectivity time lost by an ordinary DSU.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c3",
+      "text": "AB=2, BC=5, CD=7, AD=9. At what threshold do A and C first connect?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c4",
+      "text": "Run the question case, then inspect its steps and compare another case.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c5",
+      "text": "AC merge threshold 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c6",
+      "text": "AC merge threshold 5. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c7",
+      "text": "Each successful union creates a parent labelled with its edge weight. The lowest merge node containing both queried leaves records when their components first met.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c8",
+      "text": "Weighted edges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c9",
+      "text": "AB/BC/CD/AD",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c10",
+      "text": "Merge at 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c11",
+      "text": "children",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c13",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[1].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c14",
+      "text": "threshold",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c15",
+      "text": "Merge at 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c16",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[2].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c17",
+      "text": "Merge at 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c18",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[3].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c19",
+      "text": "Lowest shared merge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c20",
+      "text": "AC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[0].run().frames[4].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c21",
+      "text": "AC merge threshold 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c22",
+      "text": "AC merge threshold 6. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c23",
+      "text": "Merge at 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#kruskal_reconstruction_tree.cases[1].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c24",
+      "text": "Which merge-tree node answers a pair connectivity threshold?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c25",
+      "text": "The heaviest leaf",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c26",
+      "text": "Any ancestor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c27",
+      "text": "Their lowest common ancestor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kruskal-reconstruction-tree.c28",
+      "text": "Their lowest shared merge is the first component that contained both leaves.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-kruskal-reconstruction-tree\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which merge-tree node answers a pair connectivity threshold?",
+    "options": [
+      "The heaviest leaf",
+      "Any ancestor",
+      "Their lowest common ancestor"
+    ],
+    "answer": 2,
+    "why": "Their lowest shared merge is the first component that contained both leaves."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-kruskal-reconstruction-tree/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-kruskal-reconstruction-tree",
+    "also": [],
+    "prerequisites": [
+      "cs:union-find"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "disjoint-offline-connectivity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

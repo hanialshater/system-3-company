@@ -1,0 +1,118 @@
+{
+  "slug": "bk-scale-exponent-boundary",
+  "title": "An exponent changes extrapolation",
+  "hook": "Compare two stipulated scaling exponents across four doublings.",
+  "domain": "books",
+  "concept": "book-scale-exponent-boundary",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Explain how repeated scale changes magnify disagreements between assumed exponents."
+    ]
+  },
+  "misconception": "A modest exponent difference stays a modest absolute disagreement at every scale.",
+  "objective": "Explain how repeated scale changes magnify disagreements between assumed exponents.",
+  "claims": [
+    {
+      "id": "books.bk-scale-exponent-boundary.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Scaling exponents describe how quantities change with system size.",
+      "status": "unverified",
+      "source": "{\"work\":\"scale-exponent-2017\",\"edition\":2017,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-scale-exponent-boundary.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Geoffrey West, Scale (2017)",
+      "status": "unverified",
+      "source": "{\"work\":\"scale-exponent-2017\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-scale-exponent-boundary.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The three-quarter exponent, rounded to 68.18% per doubling, gives {A}; exponent one gives {B}. Four repeated size doublings magnify their disagreement from the common starting value.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,68.18,4,0],[1,100,4,0]],\"outputs\":[8.000136417057536,16],\"note\":\"68.18% is 2^(3/4)-1 rounded to 2 dp (implied exponent 0.750006); A displays as 8 at the 2-dp readout\"}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-scale-exponent-boundary.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? Only as power-law arithmetic. No exponent was fitted here, and extrapolation does not verify a biological or urban law.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One model multiplies by 2 per doubling; another by 1.5. After two doublings?",
+    "options": [
+      "4 and 3",
+      "4 and 2.25",
+      "2 and 1.5"
+    ],
+    "answer": 1,
+    "why": "Repeated factors give 2²=4 and 1.5²=2.25."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-scale-exponent-boundary/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-scale-exponent-boundary/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "books:book-scale-exponent-boundary",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "scale-exponent-2017",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

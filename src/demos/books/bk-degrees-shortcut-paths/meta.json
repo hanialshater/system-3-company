@@ -1,0 +1,118 @@
+{
+  "slug": "bk-degrees-shortcut-paths",
+  "title": "Bigger transfers can tie",
+  "hook": "Count whole transfers and the time left unused.",
+  "domain": "books",
+  "concept": "book-degrees-shortcut-paths",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Check whole-transfer remainders before inferring a batching gain."
+    ]
+  },
+  "misconception": "Bigger transfers always complete strictly more useful work.",
+  "objective": "Check whole-transfer remainders before inferring a batching gain.",
+  "claims": [
+    {
+      "id": "books.bk-degrees-shortcut-paths.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Computer performance requires accounting for overhead as well as useful operations.",
+      "status": "unverified",
+      "source": "{\"work\":\"bryant-ohallaron-computer-systems-2015\",\"edition\":2015,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-degrees-shortcut-paths.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Randal E. Bryant and David R. O’Hallaron, Computer Systems: A Programmer's Perspective (2015)",
+      "status": "unverified",
+      "source": "{\"work\":\"bryant-ohallaron-computer-systems-2015\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-degrees-shortcut-paths.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Both sizes complete {A} and {B} work. Larger transfers spend less setup per unit but leave unusable remainder under this whole-transfer rule.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"floor(budget/(work+overhead))*work\",\"inputs\":[[60,8,2],[60,16,2]],\"outputs\":[48,48]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-degrees-shortcut-paths.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is fixed-cost packing, not cache simulation. Partial transfers and overlapping setup are excluded.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Budget 20: compare work 6 plus setup 1 with work 9 plus setup 1. Payload totals?",
+    "options": [
+      "12 and 18",
+      "18 and 12",
+      "20 and 20"
+    ],
+    "answer": 0,
+    "why": "floor(20/7)×6=12; floor(20/10)×9=18."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-degrees-shortcut-paths/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-degrees-shortcut-paths/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-degrees-shortcut-paths",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "bryant-ohallaron-computer-systems-2015",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "intervals"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

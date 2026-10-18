@@ -1,0 +1,241 @@
+{
+  "slug": "algo-manacher-radius",
+  "title": "The mirror gives a lower bound",
+  "hook": "The mirror gives a lower bound. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-manacher-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix/suffix/subsequence distinction; character comparison."
+    ],
+    "doesNotKnow": [
+      "Reuse a mirrored palindrome radius but cap it at the known right boundary before expanding."
+    ]
+  },
+  "misconception": "A mirrored palindrome radius can always be copied in full.",
+  "objective": "Reuse a mirrored palindrome radius but cap it at the known right boundary before expanding.",
+  "claims": [
+    {
+      "id": "cs.algo-manacher-radius.c1",
+      "text": "The mirrored radius supplies a certified starting region, capped by the current right boundary. Expansion checks only beyond that seed; the radius row records the palindrome actually established at every center.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-manacher-radius\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c2",
+      "text": "The mirror gives a lower bound. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-manacher-radius\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c3",
+      "text": "What is the longest odd palindrome length in abacaba?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c5",
+      "text": "Longest=7; radii=[1,2,1,4,1,2,1].",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c6",
+      "text": "Palindrome input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c7",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c8",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c9",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c10",
+      "text": "c",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c11",
+      "text": "Center 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c12",
+      "text": "radius",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c13",
+      "text": "mirror",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c14",
+      "text": "window",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c15",
+      "text": "Center 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c16",
+      "text": "Center 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c17",
+      "text": "Center 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c18",
+      "text": "Center 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c19",
+      "text": "Center 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c20",
+      "text": "Center 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c21",
+      "text": "Longest=7; radii=[1,2,1,4,1,2,1,1].",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c22",
+      "text": "d",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[1].run().frames[0].rows[0].cells[7].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c23",
+      "text": "Center 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#manacher_radius.cases[1].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c24",
+      "text": "A mirror radius is 6 but the known boundary allows only 2. Which seed is safe?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-manacher-radius\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-manacher-radius.c25",
+      "text": "The part beyond the known right boundary has not been checked.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-manacher-radius\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A mirror radius is 6 but the known boundary allows only 2. Which seed is safe?",
+    "options": [
+      "2",
+      "6"
+    ],
+    "answer": 0,
+    "why": "The part beyond the known right boundary has not been checked."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-manacher-radius/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-manacher-radius",
+    "also": [],
+    "prerequisites": [
+      "kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "string-indexing-automata"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Computer Systems: A Programmer's Perspective",
+    "author": "Randal E. Bryant and David R. O’Hallaron",
+    "year": 2015,
+    "work": "bryant-ohallaron-computer-systems-2015"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Budget 60; each transfer uses 8 work plus 2 setup. How much payload fits?",
+    "options": [
+      "40 work",
+      "48 work",
+      "60 work"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Smaller transfers",
+      "values": [
+        60,
+        8,
+        2
+      ]
+    },
+    {
+      "label": "Larger transfers",
+      "values": [
+        60,
+        16,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "Payload",
+    "Setup"
+  ],
+  "unit": "work",
+  "bookIdea": "Computer performance requires accounting for overhead as well as useful operations.",
+  "modelBoundary": "Both sizes complete {A} and {B} work. Larger transfers spend less setup per unit but leave unusable remainder under this whole-transfer rule.",
+  "doesItHoldUp": "Does it hold up? This is fixed-cost packing, not cache simulation. Partial transfers and overlapping setup are excluded."
+}

@@ -4,7 +4,7 @@ date: 2026-10-16 · reviewer: principal-engineer (run pe-tsext-1016) · tier: 2 
 
 ## Problem
 
-After the merge of the personalization review-timing candidate (W-1547, frozen at a0bd249, sha256 recorded for the eval's criterion 2), `npm run typecheck` failed with TS5097 at
+After the merge of the personalization review-timing candidate (W-1726, frozen at a0bd249, sha256 recorded for the eval's criterion 2), `npm run typecheck` failed with TS5097 at
 `company/personalization/model/sim/review-timing.ts:24` (`import { REVIEW_TIMING_CURVES, ... } from "../review-timing-curves.ts"`).
 The `.ts` extension is required: the model/sim code runs under Node type stripping (no bundler) and imports a runtime value.
 

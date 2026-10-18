@@ -1,0 +1,241 @@
+{
+  "slug": "algo-small-to-large-maps",
+  "title": "Move the smaller bag",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-small-to-large-maps",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Merge component colour-frequency maps small-to-large and account for repeated item moves."
+    ]
+  },
+  "misconception": "Every merge should copy the larger component into the smaller one.",
+  "objective": "Merge component colour-frequency maps small-to-large and account for repeated item moves.",
+  "claims": [
+    {
+      "id": "cs.algo-small-to-large-maps.c1",
+      "text": "Frequency counts move from the smaller component to the larger component.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c3",
+      "text": "Bags sizes 1,1,2,3 merge (0,1),(2,3),(0,2). Moving the smaller bag costs how many item moves?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c4",
+      "text": "Run the question case, then inspect its steps and compare another case.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c5",
+      "text": "Item moves 5; final size 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c6",
+      "text": "Item moves 5; final size 7. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c7",
+      "text": "The smaller bag supplies the moved items. Each merged colour-frequency map is updated by those counts, and its size determines the next merge direction.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c8",
+      "text": "Colour bags",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c9",
+      "text": "R",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c11",
+      "text": "G",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[0].rows[2].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c12",
+      "text": "Move 0→1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c13",
+      "text": "sizes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c14",
+      "text": "RGB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c15",
+      "text": "moves",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c16",
+      "text": "Move 2→3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c17",
+      "text": "Move 1→3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c18",
+      "text": "Item moves 4; final size 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c19",
+      "text": "Item moves 4; final size 7. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c20",
+      "text": "Move 0→3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[1].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c21",
+      "text": "Bags have sizes 2 and 9. Which move follows small-to-large?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c22",
+      "text": "Move 2 items into 9",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c23",
+      "text": "Move 9 items into 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c24",
+      "text": "Copy both into both",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-small-to-large-maps.c25",
+      "text": "Moving the smaller bag limits how many items the merge must relocate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-small-to-large-maps\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Bags have sizes 2 and 9. Which move follows small-to-large?",
+    "options": [
+      "Move 2 items into 9",
+      "Move 9 items into 2",
+      "Copy both into both"
+    ],
+    "answer": 0,
+    "why": "Moving the smaller bag limits how many items the merge must relocate."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-small-to-large-maps/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-small-to-large-maps",
+    "also": [],
+    "prerequisites": [
+      "cs:union-find"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "disjoint-offline-connectivity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

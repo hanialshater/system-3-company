@@ -1,6 +1,6 @@
 // B4 (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3, SS5 row): "the settings route and any
 // error handler must not log request bodies (inventory gap 11: D6 logs whole bodies; do not let that pattern reach
-// this route)". W-1538.
+// this route)". W-1717.
 //
 // Runtime: every console method and process.stdout/stderr are stubbed; requests carry a sentinel in the body, the
 // store and the session helper throw errors whose message and pg-style `detail` carry the sentinel. Nothing printed,

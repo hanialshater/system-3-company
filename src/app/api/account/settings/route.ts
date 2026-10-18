@@ -1,4 +1,4 @@
-// The learner's feed settings (W-1538): GET reads them, PUT is the only writer of the `settings` table (B2).
+// The learner's feed settings (W-1717): GET reads them, PUT is the only writer of the `settings` table (B2).
 // Owner: learner-data-engineer. Privacy ruling: company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3.
 // Design note: company/personalization/data/2026-10-16-settings-api-note.md
 // Mounted at /api/account/settings (principal-engineer review 2026-10-16 ruling 1, C1; privacy B2a): ADR-008 scopes
