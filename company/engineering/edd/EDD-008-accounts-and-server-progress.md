@@ -59,7 +59,7 @@ The gate's `account` table is Better Auth's user table, named `auth_user` here. 
 | `auth_session` | `id`, `token`, `user_id`, `expires_at`, `created_at`, `updated_at` | **no** (the gate is silent on sessions) | staying signed in | backend-engineer | sign-out; expiry (30 days, Q8); §7 |
 | | `ip_address`, `user_agent` | **no; forbidden** (P1.1). Kept only because the library writes them: `CHECK (coalesce(ip_address,'') = '')`, and the same for `user_agent` | | backend-engineer | n/a: always empty |
 | `auth_account` | Better Auth's sign-in-method links | **no** | the library's model. Magic link should write **0 rows** (spike verifies). Token and password columns forced NULL by `CHECK` | backend-engineer | §7 |
-| `auth_verification` | `id`, `identifier` (hash of the link token), `value` (JSON `{email, name:""}`), `expires_at`, `created_at`, `updated_at` | **no** | a pending sign-in link. Holds an email for at most 300 s, **before** an account may exist | backend-engineer | consumed on click; expired rows purged daily; §7 |
+| `auth_verification` | `id`, `identifier` (hash of the link token), `value` (JSON `{email, name:""}`), `expires_at`, `created_at`, `updated_at` | **no** | a pending sign-in link. Holds an email **before** an account may exist: the link dies after 300 s, and the expired row is removed at the next sign-in request by anyone (no cron; in a quiet period that can be hours or longer; M3). Never a name: hook plus `CHECK auth_verification_no_name` (M1) | backend-engineer | consumed on click; expired rows removed at the next `start`; §7 |
 | `signup_intent` | `token_hash`, `age_band`, `policy_version`, `created_at`, `expires_at` | **no** (new, ours) | carries the band from the age screen to the moment the account is created (§6.2). **No email, no id** | backend-engineer | deleted on use; purged after 10 min |
 | `progress` | `user_id`, `slug`, `completed_at_ms`, `predicted_correctly` | yes | spaced revisits across devices | backend-engineer (learner-model-engineer reads) | §7 |
 | `recall` | `user_id`, `slug`, `at_ms`, `correct` | yes (`recalls[{at, correct}]`, as rows) | revisits; the recall rate (Q5) | backend-engineer | §7 |
@@ -223,9 +223,9 @@ ON CONFLICT DO NOTHING;                                                         
 | Data | Kept | Then |
 |---|---|---|
 | `auth_user`, `progress`, `recall` (and `settings`) | while the account lives | deleted by the learner (§7), or after **24 months** with no sign-in. The notice is Q3 |
-| `auth_session` | until sign-out or expiry (30 days, refreshed at most daily on use; Q8) | expired rows purged daily |
-| `auth_verification` | 300 s, or until clicked | purged daily |
-| `signup_intent` | 300 s (hard cap 10 min) | deleted on use, purged daily |
+| `auth_session` | until sign-out or expiry (30 days, refreshed at most daily on use; Q8) | expired rows removed at the next sign-in request (M3) |
+| `auth_verification` | the link works 300 s or until clicked; the row waits for the next sign-in request | removed at the next `start` (M3; `tools/db-deletion-check.mjs --oldest-expired` reports what waits, readiness A-15) |
+| `signup_intent` | 300 s (hard cap 10 min by `CHECK`) | deleted on use; otherwise removed at the next `start` |
 | `deleted_account` | 35 days | purged |
 | Neon point-in-time history (the only backup) | Free 6 h · Launch ≤ 7 d · Scale ≤ 30 d (Neon plans page, read 2026-10-15) | rolls off, so **always inside 35 days** on any plan |
 | Restore-drill dumps | same day | deleted. No other dumps exist |
@@ -233,7 +233,7 @@ ON CONFLICT DO NOTHING;                                                         
 | Vercel request and function logs | unverified (E13, principal-engineer-ops) | we log no email, no token, no body |
 | Resend sent-mail log | unverified | counsel and founder (F-25) |
 
-The daily purge runs as one SQL statement. It is triggered either by a Vercel Cron job (deploy config, so platform-engineer and the release manager) or by the first sign-in request each day; the spike picks one.
+The purge of expired rows runs inside each `POST /api/account/start` (C10; principal ruling on M3: no cron in release 1). It is four indexed `DELETE`s (`PURGE_EXPIRED_SQL` in `src/lib/server/progress-store.ts`). So an expired row is removed at the next sign-in request by anyone, not at a fixed time. The 24-month idle purge (`src/lib/server/idle-purge.ts`) is written and tested but has no caller (M2).
 
 ## 10. Processors (P1.7)
 | Processor | Role | What it receives | Where | DPA status |
@@ -301,3 +301,52 @@ would_be_wrong_if: a hook cannot blank the IP and user agent; the cookie path ca
 - Proposal 3: one full merge per tab session, not per page load.
 - Q9: **accepted**.
 - Rollout step 3 now needs a **new Production database** (separate Neon project) first. `first-light` is the test database (founder correction; ADR-009 C8).
+
+## Addendum, 2026-10-17: the rebuild, likes and saves (PRD-005), and what changed from the text above
+
+author: backend-engineer (Amara) · branch `accounts-1017` (the 10-16 branch `accounts` at 2f5c500 / 6ff15ba was never pushed and is lost; this is a rebuild from the records) · decision: [founder 2026-10-17](../../decisions/2026-10-17-founder-accounts-likes-saves.md) · product: [PRD-005](../../product/prds/PRD-005-likes-and-saves.md) · privacy ruling: `company/reviews/_privacy/2026-10-17-prd-005-likes-saves.md` (C1 to C6; on the privacy-reviewer's branch at the time of writing) · tier 2: needs the principal engineer's review and the privacy reviewer's schema read (migration 002) before merge.
+
+### A1. Saves: merge semantics (PRD-005 backend Q2)
+- **Signed in, the server is the source of truth. No tombstones.** A tombstone would store the fact that a learner unsaved a lesson (privacy C5.3). `DELETE /api/account/saves/<slug>` deletes the row and nothing else.
+- **Anonymous:** saves live only in `s3c:saves:v1` (`{slug: savedAt}`) and make no request (C5.1). `setSaved` in `src/lib/account-client.ts` reads the `/me` answer it already has and never asks again.
+- **"Keep my history" is a one-time union, and saves are their own line with their own choice** (C5.2). The client sends `saves` in the merge body only if the learner ticked that line; the server inserts with `ON CONFLICT DO NOTHING` and never deletes. When the server acknowledges, the device removes `s3c:saves:v1`.
+- **While signed in nothing is written to `s3c:saves:v1`**, so sign-out leaves no account saves on a shared device (C5.3).
+- Union semantics for progress are unchanged (§8). Saves do not follow §8's "never deletes" across devices: after the one-time import, the device holds no saves and asks the server.
+
+### A2. The public count (PRD-005 backend Q3)
+- **`COUNT(*)` per slug at read time, no counter column, no trigger.** `lesson_like` holds exactly `user_id, slug, created_at_ms` (privacy C6.1: any further column is a block), and a counter table would be a second store to keep true inside the deletion transaction. With rows only, unlike and deletion decrement the count by construction.
+- The query joins `auth_user` and counts a like only if its account is at least 24 hours old (`created_at`, C3.1). Labels: below 10 `null`, then `10+`, `25+`, `50+`, `100+`, `250+`, `1k+` (C2.1). The raw number never leaves `countLabels` in `progress-store.ts`: not in a response, a cache or a log (C2.4, tested with 1,234 seeded likes).
+- Caching is the CDN's: `cache-control: public, max-age=600, s-maxage=600` (C2.2). Index `lesson_like (slug)` keeps a 50-slug query to an index scan. Revisit the design (a materialised count rebuilt from rows) if `lesson_like` passes about a million rows.
+- **Hide list:** `LIKE_COUNTS_HIDDEN` (comma-separated slugs, runtime config, no table, no learner field) makes a lesson's label `null` (C3.4). It is read per request like the other switches, so a change needs a redeploy (R3).
+- **Off by default, twice:** `LIKE_COUNTS_PUBLIC` and `LIKES_SAVES_ENABLED` must both be `on` (and accounts), else `GET /api/likes/counts` is 404. C3.3: it stays off in production until the founder names a manipulation reviewer.
+
+### A3. API shape as built (PRD-005 backend Q1)
+| Route | Method | Who | Answer |
+|---|---|---|---|
+| `/api/account/likes/<slug>` | PUT, DELETE | signed in, `16+` only (13-15: 403, no row, C4.1); at most 60 writes per account per rolling day (429, hashed in-memory key, C3.2); Origin checked | 204; idempotent |
+| `/api/account/saves/<slug>` | PUT, DELETE | signed in, any band; Origin checked | 204; idempotent |
+| `/api/account/likes`, `/api/account/saves` | GET | signed in | `{likes: [{slug, at}]}` newest first, own rows only (C1.2) |
+| `/api/likes/counts?slugs=a,b` | GET | anyone; outside `/api/account`, so the session cookie never reaches it | `{counts: {slug: label or null}}`, catalog slugs only, at most 50 |
+All behind `LIKES_SAVES_ENABLED` (404 when off). `GET /api/account/me` adds `likesSaves` and `canLike` (false for 13-15; the UI must not say why, C4.2). Export adds `likes` and `saves`; deletion removes both in the same transaction and names the numbers; `tools/db-deletion-check.mjs` counts both (C6.2). No beacon change (C6.3).
+
+### A4. What the rebuild does differently from the text above, and why
+1. **No full upload on every load.** Proposal 3 merged the whole local map both ways on every load. That would undo "Don't import" on the next page load. As built: the device's earlier history goes up only through the explicit merge (`POST /api/account/merge`, after the "what moves" screen); every page load while signed in pulls the account map into the device (server to device); each local update is pushed as a one-slug delta (`PUT /api/account/progress`). A delta that fails offline is retried when the browser comes back online in the same page. **Cost:** a delta lost when the tab closes offline stays only on that device until the learner runs the merge again from the account view. learner-model-engineer and privacy-reviewer: say if that is not acceptable; the alternative needs a device-side "imported" marker (a new storage key).
+2. **Library endpoints by allow-list.** Instead of `disabledPaths`, the mount at `/api/account/auth/*` forwards exactly two library endpoints: `GET /magic-link/verify` and `POST /sign-out`. Everything else (`/sign-in/magic-link` (C2), `update-user`, `get-session`, `delete-user`, `list-sessions`) is 404 (test 4).
+3. **Export key `lastActiveAt`** instead of `lastSignInAt` (privacy re-read R-M2a: the value is "last sign-in or signed-in use, to the day"). The column keeps its name. R-M2b (the value read only by the idle clock and the export) is a test (S6).
+4. **`/me` with accounts off answers a 404 the browser and CDN may keep for 5 minutes**, because `AccountSync` in the root layout asks once per page load. A redeploy (the only way the switch changes, R3) clears the CDN copy.
+5. **`/magic-link/verify` limit is 30 per 60 s per IP now** (principal F-f, a go-live condition done early); `start` keeps 5 per 60 s per IP and per email.
+6. **The personalization lane's `settings` table** (origin/perso-m1, its own migration, not in this branch): the export includes a `settings` block and the deletion transaction deletes its row **if the table exists**, and `db-deletion-check` counts it. The settings route can wire to `accountUserId`, `query` and `accountsEnabled`, all exported from `src/lib/server/account-route.ts`. No catch-all exists under `/api/account` (test S7). The settings API must not read `lesson_like` or `lesson_save` (PRD-005 Q4; enforced by `tests/platform/engagement-not-ranking.test.mjs`).
+7. **Email has a console transport.** With no `RESEND_API_KEY` and not on a Vercel production deployment, the sign-in link (never the address) is printed to the server log. A production deployment with no key refuses to send. A key with no `EMAIL_FROM` refuses too.
+8. **Auth refuses to construct** if any `BETTER_AUTH_TELEMETRY*` variable is set or `BETTER_AUTH_SECRET` is shorter than 32 characters (readiness A-5). The library logger prints the level and a SQLSTATE only (A-6, test 23).
+
+### A5. Measurements (local PostgreSQL 16.15, 2026-10-17)
+| Metric (from the table above) | Result |
+|---|---|
+| Rows for a user after deletion, every table | 0, `deleted_account` 1 (test 20, `accountCounts`) |
+| Merge idempotence; two-device convergence | identical rows and answers (test 13) |
+| Export, then compare with what was imported | deep-equal `ProgressMap` (test 19) |
+| `ip_address` / `user_agent` non-empty | 0; a value insert fails with 23514 (tests 6, 7) |
+| `auth_account` rows after magic-link sign-ups | 0 (tests 5, 26) |
+| DDL at run time | none: the Postgres `log_statement=ddl` log shows only migration and test-setup statements |
+| Feed order with random like/save rows | byte-identical (`engagement-not-ranking.test.mjs` (a)) |
+| p95 `/me` in `fra1`, cold connect | not measured: needs a preview (A-10) |
