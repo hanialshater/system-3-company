@@ -154,3 +154,69 @@ Go-live: G1-G6 and P1.7 unchanged; 3.1 and 3.2 are added as go-live conditions.
 3. **learner-model-engineer:** name a reader for `s3c:events:v1` or stop writing it (O5).
 4. **principal-engineer:** merge decision stands on this record; decide whether a browser-bound link is wanted.
 5. **chief-of-staff:** board items for O4 and O5 (I did not touch the board).
+
+---
+
+# Section 3, 2026-10-18 (later): PC3 binding and the W-1711 cue (fix commit 7c7f488ad, merged 27317e69b)
+
+Reviewer: privacy-reviewer (Elif). I read the code diff (`git show 7c7f488ad -- src tests`) first, the author's notes after. I did not run tests (no Postgres, no `node_modules` here) and did not walk a browser.
+
+## 3.1 The account tag in `s3c:account-device:v1`: ACCEPT WITH CONDITIONS
+
+What I read: `accountTag(secret, id)` in `src/lib/server/http.ts` (HMAC-SHA-256, first 16 bytes, base64url). `createAuth` refuses to start with a secret under 32 characters (`SECR0`), so the tag is not keyed by an empty string in practice. `/me` adds it only when signed in, and with accounts on every answer is no-store. In `account-client.ts` the tag is compared (`sameAccount`) and written into the device state in three places; no `fetch` carries it. `clearThisDevice`, sign-out, deletion and an ended session already remove the key.
+
+Is it a persistent identifier on the device? Yes, and it is the same on every device of one account (that is its purpose). I accept it because:
+- It reveals nothing the account page does not: it is not the id, cannot be reversed or matched without the server secret, holds no email, and the server stores nothing new (it can recompute it, as it already holds the account).
+- The device already holds a copy of that account's history (D1) while signed in, so the tag adds linkability only for someone who can already read the learner's browser storage. Linking two devices needs both.
+- A random per-sign-in nonce cannot tell "a different account" on a later load; the marker alone is what the principal's probe 1 defeated. The tag is the smallest value that does the job.
+
+Conditions (each testable; 1 to 3 are the ones that would make me withdraw this):
+1. **Local only.** The tag is never logged, never in a request body, header, URL, event, beacon or table, never shown to the learner. S17 tests its properties; add to the static scan that no `fetch`/`sendBeacon` argument can reach `DEVICE_KEY` or `.tag`. Any server-side store of it comes back to me.
+2. **Same deletion path as D23**, no longer: sign-out, deletion, ended session, new link, "Also clear this device". No timer, no copy elsewhere.
+3. **The key stays secret and long.** A rotation changes every tag and only makes each device ask again (the author's fail-safe); acceptable. Any other key (a public value, a constant) makes the tag a guessable function of the id: back to me.
+4. **Residual stated in the inventory:** if the learner never returns after the session ends, the tag stays with the key until site data is cleared. Counsel to be told a pseudonymous identifier exists (F-25); I flag, I do not decide.
+
+Edit made: row D23 in `company/engineering/data-inventory.md` now describes `account: <tag>` (derivation, 22 characters, stable across devices, not stored server-side, local only) in place of the sentence "No email, no account id, no user id" (kept as "no account id itself"); purpose, reader, basis and status columns updated. The backend-engineer confirms the row; I do not approve my own file.
+
+## 3.2 The W-1711 cue as built: MEETS my condition as written; one gap
+
+Read in `AccountView.tsx`:
+- **Merge names the account:** heading "Send this device's history to {email}?" sits directly above the boxes and the Import button; `me.email` is React text (escaped). Meets. Decline is untouched: one tap, sends nothing.
+- **One-line notice, this page view only, nothing stored:** when `fromLink` (the `?signed-in=1` marker, read once and removed from the address bar) the page shows "You are now signed in as {email}. If you did not just ask for this, sign out", `role="status"`, with a button running the same sign-out (`doSignOut`, honouring the unticked "Also clear this device" box). `fromLink` is in memory only. Meets. The words are the placeholder I suggested; growth-designer still owns them.
+
+**The gap, which comes from PC3 itself.** The attacker who mails a link can edit `callbackURL` (principal's probe 1). The victim then lands on `/` with no marker, and the notice and merge screen exist only on `/account`. By the code: if the device holds history the attacker's account lacks, nothing is sent until the victim opens `/account`, where the heading names the account (good). If the device holds nothing the account lacks, `run()` writes `answer: "nothing"` and begins sync with no screen, so later progress on this device flows to the attacker's account with no cue shown. My earlier line ("a browser-bound link is the principal engineer's call; I do not require it if the cue ships") assumed the victim lands on `/account`. That does not hold for an edited link, so I **amend** it: the cue meets 3.1 and 3.2 as written but does not by itself close the mailed-link case.
+
+New go-live condition **G7** (no block on merge or a staff preview, where addresses belong to staff): before any non-staff address, either (a) the principal-engineer binds the sign-in link to the browser that asked for it, or (b) a sign-in cue reaches the learner on whatever page they land on when a new account's device state is begun without a screen (the "nothing" branch). The choice is the principal's. Severity is bounded: later progress and saves from one device go to an account the attacker can read; past history does not.
+
+## 3.3 What the preview walk must check (390x844, staff address)
+
+1. Sign-in link to `/account?signed-in=1`: the notice is the first line under "Your history", names the exact address, and "sign out" is reachable without scrolling. Reload: notice gone, no marker in the address bar.
+2. Device with history the account lacks: the merge heading shows a 40-character address wrapped, not clipped or overflowing; Don't import is one tap; the network panel shows no request carrying progress or saves before the answer.
+3. Notice's "sign out" with the box unticked: the device's own history returns. Ticked: progress, events, saves and the device key are gone. The box is visible next to Sign out without scrolling (section 2, condition 2).
+4. G7 case: a link with `callbackURL` edited to `/` (test C9's probe), on a device with nothing the account lacks and on one with history. Record what the learner sees. I expect no cue in the first case; the walk records it.
+5. localStorage after each step: `s3c:account-device:v1` holds `answer`, `account` (22 characters), `own` and nothing else; no tag in any request, in any response other than `/me`, in the console or in a server log.
+6. A second account on the same device is asked again without a marker (PC3) and the first account's pulled copy is gone.
+7. Screen reader: the notice is announced once, not on every render.
+
+## 3.4 Verdicts
+
+- **Merge into the default branch with all flags off: pass, no condition on me.** With flags off no route works, no sink is set, no key (so no tag) is written (C2). I read the diff; I did not run S1-S17 or C1-C11.
+- **Staff preview with flags on, from my side:** the cue wiring no longer blocks. Still open before the founder-approved flag deploy: items 2-6 of "Before a staff preview" (section 1), the walk in 3.3 recorded, the Postgres-hosted test runs (C4-C11, S14, S16, S17, test 34) recorded in readiness, and tag condition 1 (static scan). Staff addresses only.
+- **Go-live:** G1-G6 and P1.7 unchanged; section 2's cue conditions are built (words pending); **G7** added; counsel told about the tag (F-25).
+
+## Objections (section 3)
+
+| # | Objection | Must be answered by | Status |
+|---|---|---|---|
+| O4 | Login-CSRF cue | growth-designer (words) | wiring met; words open; walked in preview |
+| O6 | Edited callbackURL bypasses the `/account` cue (G7) | principal-engineer | open, before go-live |
+| O7 | Tag conditions 1-4 (3.1) | backend-engineer | open: static scan for the tag |
+| O3, O5 | unchanged | founder; learner-model-engineer | open |
+
+## Next moves (section 3)
+
+1. **backend-engineer:** confirm row D23; add the static no-send scan for `.tag`/`DEVICE_KEY`; run C4-C11, S14, S16, S17 and test 34 where Postgres exists.
+2. **principal-engineer:** decide G7.
+3. **growth-designer:** final words for the notice and heading.
+4. **chief-of-staff:** board items for O6 and O7 (I did not touch the board).
+5. **founder/counsel:** F-25 notice that a pseudonymous tag exists.
