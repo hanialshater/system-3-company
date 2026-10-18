@@ -220,3 +220,64 @@ New go-live condition **G7** (no block on merge or a staff preview, where addres
 3. **growth-designer:** final words for the notice and heading.
 4. **chief-of-staff:** board items for O6 and O7 (I did not touch the board).
 5. **founder/counsel:** F-25 notice that a pseudonymous tag exists.
+
+---
+
+# Section 4, 2026-10-18 (later): PC10 and the tag in a request header (code 96e8654fc, merged 98aa6092f)
+
+Reviewer: privacy-reviewer (Elif). I read the code diff (`git show 96e8654fc -- src tests`) first, the EDD-008 addendum A8 after. I did not run tests (no Postgres, no `node_modules` here; S18 needs the TypeScript package) and did not walk a browser.
+
+## 4.1 Ruling 1: the header exception to condition 1: ACCEPT WITH CONDITIONS
+
+What I read:
+- Client: `boundHeaders(tag, withJson)` is the only place the tag enters a request. It is called in five `fetch`es in `account-client.ts`: `/api/account/progress` (PUT), `/merge` (POST), `/delete` (POST), `/saves/{slug}` and `/likes/{slug}` (PUT/DELETE). `pushDelta` returns before any request when `syncTag` is null. The tag is not in a body, URL, event or beacon; `/api/events` and `/api/likes/counts` are untouched by the diff.
+- Server: `boundWrite` runs after the session and origin checks, before the body is read. `sameAccountHeader` compares with `timingSafeEqual`; a missing or empty header, or a mismatch, answers `409 {"error":"account_changed"}`. The 409 body does not echo the tag. `tagOf` throws `SECR0` with no secret; `logFailure` prints fixed text only. Nothing else in `src/lib/server` reads request headers into a log (grep for `ACCOUNT_HEADER` finds http.ts and account-api.ts only).
+- A custom header on a cross-origin request needs a CORS preflight, and no route answers one; so the browser cannot send it to a third party from our code, and `sameOriginWrite` refuses a foreign Origin anyway.
+
+Why I accept. My condition 1 protected one thing: that the tag should not become an identifier that leaves the device and sits in somebody's records. Here it goes only to the origin that already holds the session cookie and the account id the tag is derived from, on requests that already carry both. The server learns nothing it did not know, stores nothing, and the learner's browser gains the only reliable way to say "I started as account A" (the alternative, below, needs a stored column to do the same). The need is real: PC10 shows an open tab writing a recall, a Save and a Like into the account the browser was later signed into.
+
+The alternative, refused as the worse choice: a random per-sign-in value in the session row is a new stored field (a new row in the inventory, reason, owner, and a deletion path that must follow the session), and it must also be handed to the page. It would be less linkable (changes each sign-in), but linkability across sign-ins is not a harm here: the server holds the account. I do not require it.
+
+Residual, stated: the tag is stable per account and the same on every device, so anything that records request headers (platform log drains, a WAF or observability agent, a future middleware) would hold a stable pseudonym joining one account's writes. Today none does, by reading. That is why condition 3 exists.
+
+Conditions (1 to 3 are the ones that would make me withdraw):
+1. **Boundary stays tested and in the gate.** S18 (`tag-scan.mjs`, part of `test:accounts`) passes in CI with `node_modules`, before any flag goes on; its route list stays exactly the five write routes. A sixth route, a read route, `/api/events`, `/api/likes/counts`, or any non-same-origin URL carrying the header comes back to me. S18's stated limits (an anonymous function's parameter is not followed; imports are followed by name only) are accepted because part 3's by-name backstop covers them; a new file that calls `fetch` and imports the tag helpers fails that backstop and is the signal.
+2. **Never recorded.** No server log, error text, analytics event, trace, `Server-Timing`/`Vary` header or response echoes the header or the tag. The 409 body stays fixed. Nobody adds a handler that logs `req.headers`.
+3. **Platform capture is switched off or checked before the flag deploy.** Before the founder-approved flag deploy, the principal-engineer-ops (or whoever owns the deploy) confirms that the host's request logs, log drains and any observability or firewall product do not store custom request headers, and records it in readiness. If any does, either exclude `x-s3c-account` from capture or come back to me for the stored alternative.
+4. **Rotation and deletion as before** (3.1 conditions 2 and 3, with the corrected rotation wording in D23): the device key and the tag are removed on the same paths; the secret stays 32+ characters; a public or constant key makes the tag guessable from an id and comes back to me. A tag that now leaves the browser raises the stakes of a weak key; `SECR0` guards it.
+5. **Counsel note (F-25), flagged, not decided:** the tag is a pseudonymous identifier that now crosses the network to us. It is derived from data we already hold, so I see no new purpose. Counsel to be told, with the 3.1 notice.
+
+Condition 1 of section 3.1 now reads: "The tag is never logged, never in a request body, URL, event, beacon or table, and never shown. It travels in one header, `x-s3c-account`, same-origin, to the five account write routes only (S18)."
+
+## 4.2 Ruling 2: row D23 updated
+
+Edited `company/engineering/data-inventory.md`, row D23 (the backend-engineer left it to me, W-1917):
+- **Processed by** (was "nobody; never sent, tag included"): the tag alone travels in the PC10 header to the five write routes, compared and dropped; the rest of D23 is never sent; conditions point here.
+- **Rotation, corrected:** a `BETTER_AUTH_SECRET` change signs every session out and removes every device's state before any tag is compared; versioned `BETTER_AUTH_SECRETS` keeps `BETTER_AUTH_SECRET`, so every tag stays the same. It does not "change every tag". My own 3.1 condition 3 said "A rotation changes every tag ... acceptable"; that sentence was wrong for the same reason and is superseded by the D23 wording. (The residual that a device key persists if the learner never returns is unchanged.)
+- **Status** and the section 10 delta record the ruling and the commit. The backend-engineer should confirm the row; I do not approve my own file.
+
+## 4.3 Ruling 3: verdicts
+
+- **Merge into the default branch with all three flags off (98aa6092f): pass, no condition on me.** With the flags off every write route answers 404 before `boundWrite` (C2 unchanged), no sink is set, no key and no tag are written, and nothing sends the header. I read the diff; I did not run S1-S18 or C1-C14.
+- **Staff preview with flags on, what still blocks from my side** (staff addresses only):
+  1. 4.1 condition 1: S18 and the Postgres-hosted tests (C4-C14, S14, S16, S17, test 34) actually run on a host that has Postgres and `node_modules`, recorded in readiness. I could not run any of them.
+  2. 4.1 condition 3: the host's header capture confirmed or excluded, recorded in readiness.
+  3. Items 2-6 of "Before a staff preview" (section 1) and the walk in 3.3, with two additions: (a) in the network panel, `x-s3c-account` appears on the five write routes and on no other request, including no event beacon; (b) two tabs, the second signed into another account: the first tab's next write gets 409, it stops syncing, shows the sign-in notice and the account page re-reads; the first account's pulled copy is gone from the device, and no request carries a body for the wrong account.
+  4. Unchanged from section 3: the G7 case walked and recorded.
+- **Go-live:** G1-G7 and P1.7 unchanged; 4.1 conditions 2 and 5 added to the notice list; counsel told (F-25).
+
+## Objections (section 4)
+
+| # | Objection | Must be answered by | Status |
+|---|---|---|---|
+| O7 | Tag conditions (3.1, now amended by 4.1) | backend-engineer | static scan built (S18), run owed |
+| O8 | Header capture by host logs, drains, WAF (4.1 cond. 3) | principal-engineer-ops | open, before a staff preview |
+| O6, O4, O5, O3 | unchanged | principal-engineer; growth-designer; learner-model-engineer; founder | open |
+
+## Next moves (section 4)
+
+1. **backend-engineer:** confirm row D23; run S18 and C4-C14 where Postgres and `node_modules` exist; record in readiness.
+2. **principal-engineer-ops:** confirm no host/log/WAF capture of custom request headers; record in readiness (O8).
+3. **principal-engineer:** merge decision on this record; G7 still yours.
+4. **chief-of-staff:** board item for O8 (I did not touch the board).
+5. **founder/counsel:** F-25 notice now includes that the tag crosses the network to our own server.
