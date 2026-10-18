@@ -1,6 +1,6 @@
 # Sub-area Category Manager — Book Summaries: Science & History
 
-name: Tobias
+name: Ambrose
 team: categories
 reports_to: cm-books
 agent: .claude/agents/cm-books-science-history.md

@@ -13,12 +13,13 @@ A small, explainable model of what each learner knows, updated from evidence, ne
 
 ## In scope
 
-- src/lib/learner/** (once approved)
+- src/lib/learner/** (exists: dims-index.generated.ts; the org's path, tier 2 for principal-engineer)
 - The org's tech owner: where model, dims and engine code live (W-1919)
 - The engine port and the policies under test (W-1915)
 - The per-step trace (W-1925)
 - Reproducing an eval readout from its seed and commit (determinism only, not judgement)
 - Explanations a learner can read ('why this lesson next')
+- Progressive learning, engine side: the per-category "learned" state as a computed definition (phase C; EDD-009's mastery table is the start), learning-path code from the VP's paths over course and vertical maps, and the "next lesson to learn more in this category" recommender; all computed on demand from permitted inputs (AMD-008 P2, M1), none stored as a column (D20)
 
 ## Out of scope
 
@@ -26,6 +27,9 @@ A small, explainable model of what each learner knows, updated from evidence, ne
 - Data collection beyond the approved inventory
 - Offline evaluation of policies (personalization-eval, proposal §2)
 - Curve values (applied-scientist-personalization)
+- Chip order and the default order (head-of-product, card S1 option 1): a recommender suggests a next lesson only on a surface the founder has ratified for it; reordering a chip is an amendment
+- Concepts, prerequisite edges and course order (category managers, courses-lead): read-only inputs, a change is a request
+- How mastery or "learned" state is shown to a learner (growth-designer)
 
 ## Authority
 

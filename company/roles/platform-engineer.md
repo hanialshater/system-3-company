@@ -13,16 +13,21 @@ Keep the work close to the lesson: builders should never have to think about plu
 
 ## In scope
 
-- src/kit, src/app, src/components, src/lib
+- src/kit/** (including progress.ts, the store and event API every lesson calls; Lesson.tsx is constitutional)
+- The lesson host: src/components/DemoCard.tsx and DemoHost.tsx (on the feed and on /d/<slug>; the host's invariant list, W-533), src/app/d/**
+- The app shell: src/app/layout.tsx, globals.css, the src/app/catalog page shell (the mastery layer on it is the personalization org's), src/lib/catalog.ts, and the rest of src/app, src/components and src/lib that no other role owns
 - tools/ (except gates)
-- Performance budget: first lesson interactive < 2s on a mid phone
+- Performance budget: first lesson interactive < 2s on a mid phone (it measures and holds it, including for the feed, which is the path to the first lesson)
 - Kit change requests from builders
+- Review of the personalization org's feed changes where they touch the kit, the lesson host, the app shell or the performance budget: the review is a gate, not the work
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
+- The feed surface code: src/components/Feed.tsx, src/lib/feed-index.ts, src/lib/feed-types.ts, src/app/api/feed/**, src/app/page.tsx (personalization-engineer, card S2/S3 2026-10-18; platform-engineer reviews, above)
+- src/app/hq/** (hq-engineer)
 - Lesson content
 - QA contract and gates (evaluation steward)
 - Deploying (release manager)
@@ -42,10 +47,12 @@ May not:
 - Kit change requests
 - PRDs
 - QA failures that are platform bugs
+- Feed changes for review (personalization-engineer)
 
 ## Outputs
 
 - Platform changes with a changelog line in company/ops/changelog.md
+- Shared-surface reviews of feed changes
 
 ## Rituals
 

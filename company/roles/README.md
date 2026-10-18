@@ -78,11 +78,19 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Backend Engineer](backend-engineer.md) | principal-engineer | Make a learner's progress survive devices and sessions, and make the revisit recall rate measurable, while storing as little about a person as the product needs.. |
 | [Privacy & Safety Reviewer](privacy-reviewer.md) | principal-engineer | Every field we store has a reason, an owner and a deletion path; nothing social ships without moderation and a child-safety answer.. |
 
-## Growth
+## Personalization
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Growth & Gamification Designer](growth-designer.md) | head-of-product | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [Growth & Gamification Designer](growth-designer.md) | vp-personalization | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [VP of Personalization (CEO Office)](vp-personalization.md) | founder | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
+| [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
+| [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
+| [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
+| [Lesson Features Owner](lesson-dims-owner.md) | vp-personalization | Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.. |
+| [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
+| [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
+| [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
 
 ## Company-tools
 
@@ -153,19 +161,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Sub-area Category Manager — History through data and maps: Population & Economy over Time](cm-history-population-economy.md) | cm-history | Turn Population & Economy over Time into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
 | [Sub-area Category Manager — History through data and maps: Maps & Borders](cm-history-maps-borders.md) | cm-history | Turn Maps & Borders into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
 | [Sub-area Category Manager — History through data and maps: Events through Data](cm-history-events-data.md) | cm-history | Turn Events through Data into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-
-## Personalization
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [VP of Personalization (CEO Office)](vp-personalization.md) | founder | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
-| [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
-| [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
-| [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
-| [Lesson Features Owner](lesson-dims-owner.md) | vp-personalization | Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.. |
-| [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
-| [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
-| [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
 
 ## International
 
