@@ -5667,7 +5667,7 @@
       "id": "W-408",
       "title": "EDD-004 condition C3: npm run verify on the integrated tree (test:kit now in verify alongside test:lifehacks; session 2 builds were OOM-killed at load 30-41). Record wall time",
       "owner": "platform-engineer",
-      "state": "done",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -5678,7 +5678,7 @@
         "by": "portfolio-manager",
         "note": "verify on the integrated tree has not run; gate evidence."
       },
-      "updated": "2026-10-16"
+      "updated": "2026-10-17"
     },
     {
       "id": "W-409",
@@ -8100,11 +8100,17 @@
       "id": "W-568",
       "title": "Life Hacks Wave J pre-build safety review: 9 briefs, ranks 6-14 in company/domains/briefs/lifehacks.md (mix-the-problem-types, style-match-needs-a-crossover, top-ups-count-the-same, three-copies-one-house, reviews-that-spread-out, salt-makes-ice-colder, lid-on-boils-first, steak-keeps-cooking, sizzle-means-no-seal). Each brief's Safety line says what to check; write company/reviews/<slug>/<date>-safety.md each. On pass remove the slug's line from company/ops/brief-skips.json only if its other hold has cleared (8-9 wait for wave 2, 11-14 for wave 3 + kitchen pattern note). Rule on refuse item 6 ('any charging hack') for top-ups-count-the-same",
       "owner": "lifehacks-safety-reviewer",
-      "state": "review",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Safety review of the 9 Wave J briefs is on disk (company/reviews/lifehacks-200/safety-wave-j-2026-10-14.md); brief-skips.json lines for these slugs read 'safety DONE' and are now held only by W-569/W-578/W-579 and wave state, which are their own items. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-569",
@@ -8147,41 +8153,65 @@
       "id": "W-573",
       "title": "cluster-stops-the-cascade v4: 'those four' undefined at commit and option pair points at answer; reveal 140 words and stage top cropped (learner r9)",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The r9 learner findings were for v4; the lesson is now v5 in review with all 9 claims verified and a 2026-10-16 QA record. Whether v5 fixes 'those four' and the crop is the next learner walk's call, through the lesson's own review state, not this item. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-574",
       "title": "enemy-of-my-enemy v3: reveal crops stage top (A,B,E off screen), quotes 0/6-unbalanced states not on stage, 111 words (learner r9)",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "enemy-of-my-enemy is published at v4 (after the r9 finding on v3), with an r11 learner walk and 2026-10-15 QA; c2 and c4 withdrawn. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-575",
       "title": "metal-feels-colder v1: right option only one with a number; reveal quotes '4.4 times thicker' not on stage; Swap metal shows no change (learner r9)",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "metal-feels-colder is v2 in review (the r9 finding was on v1), 7/7 claims verified, QA 2026-10-16. No learner walk of v2 on file yet: that is the lesson's review queue, not this builder item. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-576",
       "title": "bird-on-the-wire v1: single-foot readings never name the second point (ground), contradicting 'voltage is always between two points' (learner r9)",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "bird-on-the-wire is v2 in review (the finding was on v1), 6/6 claims verified, QA 2026-10-16. Same caveat as W-575: the v2 learner walk is owed by the review queue. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-577",
@@ -8402,13 +8432,19 @@
       "id": "W-599",
       "title": "r9 batch D learner reviews: all 14 Life Hacks lessons revise (6 blocking: buffer, cue, circle, bag, box, desk). Common causes: answer in option wording, losing option never shown, totals/legend formulas without the amounts the reveal explains. Links in each meta.json evidence.simulatedLearner",
       "owner": "cm-lifehacks",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [
         "company/design/specs/lifehacks-engines-v2.md"
       ],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "cm-lifehacks' content patch for the 14 batch D lessons is written and was applied as written in the W-608 build (engines-v2-build-W-608.md line 4). Re-review travels with W-608. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-600",
@@ -8460,7 +8496,13 @@
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "tools/sequence-probe.mjs exists; the EDD-006 reviewer (principal-engineer) accepts or rejects it against C1. Gates the first non-reference CardSequence lesson (multi-card-sequence, in-flight, grace to 2026-10-21). (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-605",
@@ -8470,7 +8512,13 @@
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The dev warnings are in src/kit/sequence.tsx (lines 151-167: unknown revealCard, sub-card count, duplicate ids, no milestones, control budget). The reviewer confirms the 'dropped non-SubCard children' case is covered (line 159) and closes. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-606",
@@ -8506,7 +8554,13 @@
         "accessibility-reviewer",
         "interaction-designer"
       ],
-      "note": "Built behind engine: 2 (Home + Study; Resource/AlphabetSearch deferred, see new board item). 14 batch D lessons migrated (cue: fallback, W-610 open). W-611 shapes chosen and listed in company/reviews/lifehacks-200/engines-v2-build-W-608.md. a11y: check aria-pressed/aria-disabled mode buttons, the Seen table semantics and the status text. interaction-designer: check the W-611 choices and the departures (200 px cap, 20-unit text). phoneFit 13/14 (coil crops 38 px), QA 28/28 lesson runs."
+      "note": "Built behind engine: 2 (Home + Study; Resource/AlphabetSearch deferred, see new board item). 14 batch D lessons migrated (cue: fallback, W-610 open). W-611 shapes chosen and listed in company/reviews/lifehacks-200/engines-v2-build-W-608.md. a11y: check aria-pressed/aria-disabled mode buttons, the Seen table semantics and the status text. interaction-designer: check the W-611 choices and the departures (200 px cap, 20-unit text). phoneFit 13/14 (coil crops 38 px), QA 28/28 lesson runs.",
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "No accessibility record of the v2 engines is on file: accessibility-2026-10-14.md reviews the v1 engines. Blocks Life Hacks v2 launches. Budget: lifehacks-engine-v2 reads 103% (STOP) in the ledger report, so the chief of staff tags this review to a line the gate passes (routine reviews ride maintenance) or holds it for F-34. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-609",
@@ -8515,7 +8569,13 @@
       "state": "next",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Post-deploy smoke for W-477 (/spike 404, beacon 204, Origin null 403, no SPIKE_ENABLED) and the scale-stage-0 cache checks: no record of it in company/ops/deployments/ or in the r9 smoke (progress.md 2026-10-17 checked lesson 200s only). r9 is live, so it can run now; it touches no deploy. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-610",
@@ -8688,10 +8748,16 @@
       "id": "W-625",
       "title": "Review-queue priority (company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 2): the 8 Books and Big Ideas drafts (not gated by W-556) and up to 5 exempt builds go to the front of fact-checker and learner-evaluator queues; count them in the W-556 gate line",
       "owner": "chief-of-staff",
-      "state": "next",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Not a deliverable: a standing queue-ordering rule that lives in its decision record (ruling 2). Since then books-decks was returned at PR1 and two Big Ideas pilot drafts are published. If the rule still applies, it is a line in the chief of staff's checklist, not a board item. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-626",
@@ -8716,7 +8782,7 @@
       "id": "W-628",
       "title": "plan-to-2000 §2: once the founder answers F4 (W-615) and W-619, record Books and Big Ideas as committed + conditional tranches with release triggers (company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 1) | Done in plan-to-2000 s2 revision 2026-10-14 (Books 120 idea-lessons = ~150 slots, 120 funded ~96 ideas; Big Ideas 72/98); F4 still open",
       "owner": "principal-pm-verticals",
-      "state": "review",
+      "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
       "links": [
@@ -8724,7 +8790,13 @@
         "company/product/verticals/plan-to-2000.md"
       ],
       "note": "2026-10-14 head-of-product: When recording Books tranches: slots = review lesson-equivalents (a deck = ideas + 1); target unit (decks vs idea-lessons) waits on founder F4; my recommendation is idea-lessons (company/decisions/2026-10-14-book-deck-format.md Ruling 2).",
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The recordable part is done (plan-to-2000 s2, per its own note). The rest waits on founder F4, which sits in board item W-615 (backlog), not in founder-inbox.json. Parked until the founder answers; the chief of staff files W-615's asks in the inbox if they are still wanted. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-629",
@@ -8752,14 +8824,20 @@
       "id": "W-631",
       "title": "Build the 2 Books pilot-exemption briefs (W-556 Amendment 3; company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 2), single card, no CardSequence: total-signups-hide-the-slide (brief 8) and biased-judge-noisy-judge (brief 14) in company/domains/briefs/books.md. Claim with node tools/claim.mjs next books (dry run 2026-10-14 hands out exactly these two). Book claims unverified, chapter (unconfirmed); paste the strategy section 6 copyright checklist into company/reviews/<slug>/build.md; keep the written cut fallbacks. Counts in the W-556 queue measure. Not publishable until F1/F2 (W-541).",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "backlog",
       "domain": "books",
       "created": "2026-10-14",
       "links": [
         "company/decisions/2026-10-14-book-deck-format.md"
       ],
       "note": "2026-10-14 head-of-product: Both drafts exist on disk. Per company/decisions/2026-10-14-book-deck-format.md Ruling 3 they are kept as idea 1 of the Noise and Lean Startup decks and do not publish standalone.",
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Both drafts exist (v2, all claims unverified) and may not publish until F1/F2 (W-541/W-615); books-decks was returned at PR1 with no budget. Nothing a builder can do now. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-632",
@@ -8768,17 +8846,29 @@
       "state": "next",
       "domain": "big-ideas",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Still open: brief 9 failed the W-537 re-check, brief 14 mars-loops-backwards is not built and has no exemption check. Blocks the Big Ideas DLR five. big-ideas is in-flight with no forum approval and its grace ends 2026-10-21 (projects.json), so a swap may not get a build slot before then. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-633",
       "title": "Revise big-ideas/two-four-six-rule to the W-537 re-check (company/domains/briefs/big-ideas.md, W-537 table row 1): the reveal carries 2 held sentences (Popper c3, Klayman & Ha c4) against the strategy's one-held rule. Keep one (cm-big-ideas suggests c4, the limit) and mark c3 'cut if not checkable' with fallback 'A test that could prove you wrong tells you more' (no name). Verdict wording, if any, uses the shared six words. Not a rebuild",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "big-ideas",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "two-four-six-rule v2 is built with held citations on the learner path cut to one (c4, Klayman & Ha) and Wason's credit removed from the stage (build.md pre-flight v2); 5/5 claims verified. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-634",
@@ -9277,16 +9367,28 @@
       "state": "next",
       "domain": "big-ideas",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Departures are flagged for cm-big-ideas in each build.md; one-ten-thousandth-apart and same-grey-in-shadow have since published (the launch review accepted them in effect). What is left: rule on the two-four-six-rule and earth-history-in-a-day v2 departures. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-684",
       "title": "Walk and review the 2 new Big Ideas drafts, one-ten-thousandth-apart and same-grey-in-shadow (DLR five; the local QA contract passed on :3530, artifacts/qa-bigideas-pilot), and the v2 drafts two-four-six-rule, ten-times-taller-giant and earth-history-in-a-day. All claims are unverified. same-grey needs an accessibility-reviewer note (a visual illusion; the sampler text is the non-visual path)",
       "owner": "chief-of-staff",
-      "state": "next",
+      "state": "done",
       "domain": "big-ideas",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The walks and reviews happened: both new drafts are published v1 (learner r10/r11, QA), and the v2 drafts have r10/r14 walks. But no accessibility record exists for same-grey-in-shadow, a published visual illusion: split that into a new P2 item for accessibility-reviewer (board item wanted). (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-685",
@@ -9304,11 +9406,17 @@
       "id": "W-686",
       "title": "Fact-check dispute: checking-is-not-finding c4. 'nobody knows a method that always finds one without a search that grows this fast' is false as framed: meet-in-the-middle needs 2^(n/2)+2^(n/2) sums (16 v 64; ~1.41x per number, not 2x). Reword the reveal, e.g. 'yet nobody knows a method that finds one quickly in every case', reset c4 to unverified, and give it an openable source for NP-completeness (CLRS 34.5.5 / Karp 1972 unopened). Record: company/reviews/checking-is-not-finding/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "cs",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "c4 now reads 'nobody knows a method that finds one quickly in every case' in Demo.tsx and meta.json, c4 verified, lesson published v3. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-687",
@@ -9514,11 +9622,17 @@
       "id": "W-708",
       "title": "darkest-evening-of-the-year c3 DISPUTED: the reveal says noon drifts 'because Earth moves fastest in early January and its tilt adds to the drift', but by solar.ts's own equation-of-time terms the tilt gives 5.9 of the 8.3 min (13 to 30 Dec). Reword so the tilt is the main cause, e.g. 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January', in the reveal and in c3. See company/reviews/darkest-evening-of-the-year/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "geography",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "c3 now reads 'mostly because of Earth's tilt, and partly because Earth moves fastest', verified, published v2. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-709",
@@ -9534,11 +9648,17 @@
       "id": "W-710",
       "title": "which-sea-gets-the-rain recall: the fact-checker recorded an unrecorded claim c5 (unverified). 'Most of its rain probably reaches the east coast' holds only if the country is wider than about 40 km. Give the recall a width (e.g. 'a country 300 km wide'), then a different fact-checker verifies c5",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "geography",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The recall now gives a width ('300 km wide') and c5 is verified; published v3. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-711",
@@ -9557,13 +9677,19 @@
     {
       "id": "W-712",
       "title": "Founder: ratify, change or reject the operating rules proposed 2026-10-14 (company/reviews/org/2026-10-14-operating-audit.md; company/decisions/2026-10-14-operating-caps-and-intake.md). Ratify: (1) caps of 8 agents and 3 builders plus the host guard (load <= 2x CPUs, >= 10 GB free), superseding the 30/10 cap in 2026-10-14-usage-upgrade.md; (2) the founder-intake rule and routing table (new category or vertical goes to principal-pm-verticals first); (3) the daily rhythm and what blocks dispatch (no new wave while WBR, retro or founder digest is due, or a SEV2 has no COE); (4) one writer for board/progress/events, with the CLAUDE.md text in audit section 5; (5) AMD-005 (tools/company.mjs operating gates) via the constitutional review board; (6) tools/dispatch-check.mjs as a required step before every Agent call",
-      "owner": "founder",
+      "owner": "chief-of-staff",
       "state": "next",
       "domain": null,
       "created": "2026-10-14",
       "links": [
         "company/reviews/org/2026-10-14-operating-audit.md"
-      ]
+      ],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "A founder decision kept on the board, not in founder-inbox.json (no inbox item matches), and the decision record still reads 'proposed (founder to ratify)'. Owner moves to chief-of-staff only to file it in the inbox (one writer) or record that it was superseded (caps and dispatch-check have changed since). I do not decide it. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-713",
@@ -9586,7 +9712,13 @@
       "created": "2026-10-14",
       "links": [
         "company/reviews/org/2026-10-14-operating-audit.md"
-      ]
+      ],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "AMD-005 still reads 'proposed (draft, not applied)'. Others wait on the amendment route (W-729: ledger check in npm run check). Not P2 while no gate is broken. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-715",
@@ -9597,30 +9729,48 @@
       "created": "2026-10-14",
       "links": [
         "company/reviews/org/2026-10-14-operating-audit.md"
-      ]
+      ],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "tests/dispatch/*.test.mjs and tests/mailbox now exercise dispatch-check; tools-lead confirms the three asked cases (planted events, a fake worktree path, a founder record without route:) are among them, then closes this and W-542. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-716",
       "title": "Event log stopped recording at ~16:00 on 2026-10-14: last dispatch 14:55, last report/usage 15:59, then only kudos while git took ~50 commits (audit F4). Find why dispatch/report hooks stopped, fix, and backfill from progress.md and git if possible; rituals-due, dispatch-check and HQ all depend on it",
-      "owner": "tools-lead",
-      "state": "next",
-      "domain": null,
-      "created": "2026-10-14",
-      "links": [
-        "company/reviews/org/2026-10-14-operating-audit.md"
-      ]
-    },
-    {
-      "id": "W-717",
-      "title": "COEs owed for the three SEV2s logged 2026-10-14 15:27 (CI queue ~300 runs; [deploy] before CI; host exhausted). No COE record exists after 2026-10-13-coe.md; dispatch-check R2 blocks new waves until they are written (audit F6)",
-      "owner": "principal-engineer-ops",
-      "state": "review",
+      "owner": "chief-of-staff",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-14",
       "links": [
         "company/reviews/org/2026-10-14-operating-audit.md"
       ],
-      "updated": "2026-10-14"
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "Superseded: the gap was backfilled (W-1231 done: events backfill and ledger import), and the root cause, hooks not firing in session trees, is W-1280 (F-31 H1, backlog). Keeping both splits one problem across two items. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
+    },
+    {
+      "id": "W-717",
+      "title": "COEs owed for the three SEV2s logged 2026-10-14 15:27 (CI queue ~300 runs; [deploy] before CI; host exhausted). No COE record exists after 2026-10-13-coe.md; dispatch-check R2 blocks new waves until they are written (audit F6)",
+      "owner": "principal-engineer-ops",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [
+        "company/reviews/org/2026-10-14-operating-audit.md"
+      ],
+      "updated": "2026-10-14",
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The three COE records exist: 2026-10-14-coe-ci-queue.md, 2026-10-14-coe-deploy-bypass-and-quota.md, 2026-10-14-coe-host-exhaustion.md. PE-ops confirms they are complete; their actions are their own items. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-718",
@@ -9928,10 +10078,16 @@
       "id": "W-742",
       "title": "History cycle-1 re-check (W-537 pattern): re-run company/domains/briefs/checks/history-data.mjs and history-cycle1-check.mjs, re-check each of the 12 briefs in company/domains/briefs/history.md (claims in data/derivation/source, one held sentence with fallback, duplicate search, overlap.mjs, rotate the C-heavy answer letters), confirm or change the demandEstimate ratings in content/curriculum/history.json, then remove each standard brief's 'awaiting cm-history re-check' line from company/ops/brief-skips.json (the 5 sensitive lines stay for W-626). Then brief ranks 13-100 ('Next 88'), only on opened data; unopened concepts go to the W-583 list",
       "owner": "cm-history",
-      "state": "next",
+      "state": "done",
       "domain": "history",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The re-check part is done in effect: brief-skips.json has no 'awaiting cm-history re-check' line left. The 'Next 88' part (ranks 13-100) is tranche-2 scope, not released (F-16 triggers), and History is at STOP (F-43): split it into a P4 backlog item for cm-history (board item wanted). (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-743",
@@ -9940,7 +10096,13 @@
       "state": "next",
       "domain": "history",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-17",
+        "by": "portfolio-manager",
+        "note": "The History decision record still says 'live answers owed (board W-743)'; r5-product held it as next-batch-first. Real, small, unblocks nothing urgent. (portfolio-manager proposal, applied by chief-of-staff 2026-10-17)"
+      }
     },
     {
       "id": "W-744",
@@ -15979,7 +16141,7 @@
       "id": "W-1337",
       "title": "Main checkout: a session ran 'rebase --autostash' at ~13:06 and left it unfinished, wiping uncommitted work (stash 166ee49 + 13e83c8; two behavioral check files lost: behavioral-beauty-contest-level-k.mjs, behavioral-gain-loss-framing.mjs). Add a pre-rebase guard in tools/git-hooks refusing rebase in the main checkout",
       "owner": "tools-lead",
-      "state": "done",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15988,7 +16150,8 @@
         "at": "2026-10-16",
         "by": "portfolio-manager",
         "note": "merged (tools-r5-b1); C3-C6 follow-ups; layers b/c inert until H1"
-      }
+      },
+      "updated": "2026-10-17"
     },
     {
       "id": "W-1338",
@@ -16124,7 +16287,7 @@
       "id": "W-1349",
       "title": "G5-d: npm run test:dispatch is 184-224 s (line 60 s) due to slots.test.mjs (99de2a4); make spawns cheaper or move slow slot cases behind S3_SLOW_TESTS, re-time x3; PE-ops revokes the G5 verify line at next ops review if still over",
       "owner": "tools-lead",
-      "state": "done",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -16132,7 +16295,8 @@
         "at": "2026-10-16",
         "by": "portfolio-manager",
         "note": "merged (tools-r5-b3; PE code check a156436); loaded re-time still owed — PE-ops at next ops review"
-      }
+      },
+      "updated": "2026-10-17"
     },
     {
       "id": "W-1350",
@@ -19359,6 +19523,426 @@
     },
     {
       "id": "W-1671",
+      "title": "Accessibility record for published lesson same-grey-in-shadow (split from W-684; portfolio triage 2026-10-17)",
+      "owner": "accessibility-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1672",
+      "title": "Ledger checker: versioned authorizations, effectiveFrom on top-ups, registerAt(reg,ts), judge runs at launch, two error classes, test that a later top-up cannot change an earlier verdict (company/ops/2026-10-17-ledger-check-reconstruction.md section 5)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1673",
+      "title": "Approve or reject the untriaged-intake rule R1-R5 before it goes to the founder (company/ceo-office/triage/2026-10-17-untriaged-rule-and-30-oldest.md)",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1674",
+      "title": "Judge whether the First Light 80% forecast (b49fd1c) meets F-43 condition 1 before any spend above 5.59M",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1675",
+      "title": "Triage the three medium-confidence items W-634, W-635, W-687 left open by the portfolio proposal (diff reveal/recall against the asked text)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1676",
+      "title": "Engineering review of AMD-013 diffs (company/constitution/amendments/AMD-013-one-readiness/protected.diff, ordinary.diff) and interaction with AMD-010 part 3, before the constitutional review board decides",
+      "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": [],
+      "updated": "2026-10-17"
+    },
+    {
+      "id": "W-1677",
+      "title": "Rule on the 268 published lessons AMD-013 would grandfather (219 QA without version stamp, 33 QA older than current version, 7 learner launch for older version, 6 newest QA fail, 3 revise/launch ties): re-review, accept, or supersedes lines. The 6 failing-QA lessons first",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1678",
+      "title": "QA records written by hand must carry 'result:' and 'lesson version:' lines (AMD-013 O3)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1679",
+      "title": "Budget line for EXP-001 (run plan: ~13.3M tokens, 8.8M without condition C) once the founder supplies sealed plants",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1680",
+      "title": "Protect hook: a ratified amendment (S3_AMENDMENT=AMD-n) unlocks every protected path, and stays unlocked until its status says applied (AMD-002, AMD-012 still read ratified). Propose scoping the bypass to the paths the amendment names and closing it once applied (needs its own amendment)",
+      "owner": "evaluation-steward",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": [],
+      "updated": "2026-10-17"
+    },
+    {
+      "id": "W-1681",
+      "title": "Record attested QA for the six published lessons whose newest QA record is a 10-14 fail (below-critical-mass, bid-what-its-worth, mild-preferences-sharp-divides, prices-sort-the-buyers, contact-order-matters, two-said-blue); chief-of-staff integration re-run passed 12/12 (company/reviews/org/2026-10-17-failing-qa-published-recheck.md)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1682",
+      "title": "Approve or refuse tools-lead tier-2 commit 9824b61bc (package.json: verify runs test:rituals and informational ledger summary; record company/engineering/readiness/2026-10-17-assessment-verify-scripts.md), plus tier-1 record section 7 risks (B1 false refusals on a stale ledger, no refusal meter)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1683",
+      "title": "Rule when evaluators must read memory with --craft-only (proposal company/decisions/2026-10-17-reviewer-memory-boundary.md) and what a ritual record must contain to count as held (quorum, positions files)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1684",
+      "title": "Confirm Vercel function tracing (VERCEL=1 build) for src/lib/hq.ts now importing tools/lib/ritual-records.mjs before any deploy carries c6c088681; local next build passes",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1685",
+      "title": "Design the light unit model from company/decisions/2026-10-17-founder-light-management.md: define a unit (own queue, memory/history, acceptance), cross-unit contracts only, lazy roles, anomaly-driven rituals; fold into the lean-lane proposal before step 1 (~10-19)",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1686",
+      "title": "Add the strategy layer to the unit model (W-1685): one short, dated strategy-and-state page per head/manager scope, read at the start of every run in that scope; summaries flow up, briefs flow down; staleness limit and owner; measure whether unit decisions cite it. Founder: hierarchy exists because agents have limited memory and attention (company/decisions/2026-10-17-founder-light-management.md)",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1687",
+      "title": "Founder ratifies (or changes) the onboarding text, then apply company/ops/pending-patches/onboarding-reconciliation/ (CLAUDE.md one-writer rule, 14/3 caps, Sonnet builders, triage.mjs exception, drift test, handoff shape, COE states, lean-lane proposal); run verify",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1688",
+      "title": "Confirm the full browser QA contract (2,576 tests) passes on the AMD-013 applied tree aeb637c0b; the session-close run had 819 passing and none failed",
+      "owner": "qa-tester",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": [],
+      "updated": "2026-10-17"
+    },
+    {
+      "id": "W-1689",
+      "title": "WBR 10-17 A1: token usage ledger stopped at 2026-10-16T15:27Z (ops-health burn 0 while ~17 runs ran on 10-17). Probe: where the ledger writer/backfill reads from (hooks W-1280? transcripts of this session? rows on origin/ccr-3744965a?); restore recording; say what metrics read stale data meanwhile",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1690",
+      "title": "WBR 10-17 A2: 14 slots leaked by chief-of-staff preflights (claimed with --role/--source, no matching --agent on the report, so never released). Probe: slot fields vs report events; make the report or the preflight print the release command, or warn at claim time when no --agent is given",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1691",
+      "title": "WBR 10-17 A3: 7 rituals overdue once only records count (wbr, demo-crit, design, ops, vertical, rnd, project review). Probe: list records per ritual since 10-14; real gaps vs filename mismatch; rule what a record must contain (W-1683) and whether every timer ritual is still needed under light management",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1692",
+      "title": "WBR 10-17 A4: 189 of 234 review lessons have a current learner verdict of revise. Probe: sample 20: is the review on the current version, and is the reason minor wording or the core reveal? Decide re-walk vs fix vs retire per class",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1693",
+      "title": "WBR 10-17 A5: the accounts branch (EDD-008 code, 2f5c500) lived only in a container and was lost. Open a COE: which other unpushed branches or worktrees named in records are not on origin; rule that agent branches are pushed (or patch-saved) before a session ends",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1694",
+      "title": "WBR 10-17 A7: founder-leverage data gaps. chief-of-staff logs every founder message (class + founder's own words, not a summary), backfills 10-17 by appending; release-manager restores publish events (none after 10-16 though lessons were published 10-17)",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1695",
+      "title": "Rule on PRD-005 questions 1-5 (public like count under AMD-008 M5 and the social minimum, threshold 10 and steps, multi-account abuse, ages, s3c:saves:v1) before any like build and before LIKE_COUNTS_PUBLIC",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1696",
+      "title": "Register the PRD-005 experiment (P1-P3) before build; settle the counts-shown arm gap in the exp event with privacy-reviewer",
+      "owner": "analytics-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1697",
+      "title": "M5 reading: is a public like count on a lesson card 'a number derived from other learners' data' (AMD-008 M5)?",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1698",
+      "title": "Card-footer Save/Like controls and Saved/Liked lists (PRD-005), after the privacy rulings",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1699",
+      "title": "Founder: name the like-manipulation reviewer (and cover) who can hide a lesson's count within 24 h; confirm the reduced privacy-gate §5.3 reading for a content-free count; engage counsel on DSA/OSA scope and GDPR Art. 8 age for likes (company/reviews/_privacy/2026-10-17-prd-005-likes-saves.md)",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1700",
+      "title": "Request the privacy-reviewer's ruling on the PRD-005 P1 experiment arm and the exp origin value before registering the experiment (W-1696)",
+      "owner": "analytics-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-17",
+      "links": []
+    },
+    {
+      "id": "W-1701",
+      "title": "Accounts rebuild: vercel.json per-function regions fra1 for account routes (W-1149); like/save card controls via setSaved/setLiked (src/lib/account-client.ts); an account entry point in the feed; review the AccountSync line in src/app/layout.tsx",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1702",
+      "title": "Copy for /account and the age-screen wording (E5) for the rebuilt accounts page",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1703",
+      "title": "Accept or reject the accounts sync change: explicit merge + per-lesson push instead of full upload on every load (an offline update is lost if the tab closes before reconnecting) (EDD-008 addendum)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1704",
+      "title": "Approve or return the accounts readiness record (company/engineering/readiness/2026-10-16-accounts.md); run A-17 on the merge SHA; rule on logging Better Auth error codes; note R-d (schema mismatch cached until restart: migrate before the flag-on deploy)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1705",
+      "title": "Add the 'accounts off' post-deploy smoke (built-routes test 31, ACCOUNTS_EXPECT=off); arrange the founder-approved staff preview",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1706",
+      "title": "Founder: create staff-preview infra for accounts: Neon first-light DATABASE_URL/_UNPOOLED (branching off, no NEON_AUTH_*), BETTER_AUTH_SECRET (>=32 chars, preview-only), optional RESEND_API_KEY + EMAIL_FROM (tracking off), flags on Preview only behind Deployment Protection; then db-migrate up (Postgres >=16)",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1707",
+      "title": "Accounts preview blockers from the privacy re-read: P-1 push only what an update added (not the whole local entry; no sync before the merge screen); P-2 'clear this device' at sign-out so a second account cannot push the first's entries; M5 doc note (better-auth-bump test name); show the two scripts (decline-then-play; two accounts on one profile) and send the diff to privacy-reviewer",
+      "owner": "backend-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": [],
+      "updated": "2026-10-18"
+    },
+    {
+      "id": "W-1708",
+      "title": "Approve or return the accounts readiness record (MC4 of company/engineering/reviews/2026-10-18-accounts-rebuild-review.md); PC5 preview env and PC6 fra1 proof on the preview record",
+      "owner": "principal-engineer-ops",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": [],
+      "updated": "2026-10-18"
+    },
+    {
+      "id": "W-1709",
+      "title": "Amendment to add test:accounts to ci.yml (protected); accounts tests run in verify but not CI (principal review go-live note)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1710",
+      "title": "Rule on shared-device sign-out (principal F4: what sign-out does with the pulled account copy) and whether the mailed-link login-CSRF needs a UI cue",
+      "owner": "privacy-reviewer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": [],
+      "updated": "2026-10-18"
+    },
+    {
+      "id": "W-1711",
+      "title": "Login-CSRF cue (privacy O4, go-live): merge screen names the account ('Send this device's history to {email}'); sign-in landing notice 'You are now signed in as {email}. If you did not just ask for this, sign out.'; merge boxes start unticked; sign-out box visible beside Sign out at 390x844. growth-designer words, backend-engineer wiring",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1712",
+      "title": "Privacy O5: s3c:events:v1 (D2) has no reader; name a reader or stop writing it",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1713",
+      "title": "First production deploy carrying the accounts merge: D1 run test 31 against the production URL; D2 vercel env ls (names only) shows no accounts/Better Auth/Resend/database variables on Production; add R-d steps (migrate before ACCOUNTS_ENABLED=on; redeploy after a later migration, then /me returns 401 or 200) to the runbook W-1150",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1714",
+      "title": "Ruling 1 (PE-ops): log Better Auth error codes from an exact allow-list (SCHEMA_MISMATCH first) as code=<CODE> in http.ts logFailure; tests per the readiness record; before preview-on",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1715",
+      "title": "Register risk R-a at L2/I3 (accounts readiness A-12)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1716",
+      "title": "Accounts preview blockers (principal re-read): PC3 bind the device state to the account that answered the merge screen and treat a different account like the signed-in marker (test repeating probe 1: edited callbackURL must not skip the merge screen); PC9 /account hangs on Loading after sign-out/deletion remount (accountState promise never resolves; remount test). Do after the PR merges, then re-run verify",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1901",
       "title": "Review role keep/remove draft (company/ceo-office/2026-10-18-role-keep-remove.md) and put it to the founder with F-13/F-33",
       "owner": "chief-of-staff-ceo-office",
       "state": "backlog",
@@ -19367,8 +19951,8 @@
       "links": []
     },
     {
-      "id": "W-1672",
-      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-013",
+      "id": "W-1902",
+      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-014",
       "owner": "evaluation-steward",
       "state": "review",
       "domain": null,
@@ -19377,8 +19961,8 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1673",
-      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-013",
+      "id": "W-1903",
+      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-014",
       "owner": "head-of-product",
       "state": "done",
       "domain": null,
@@ -19387,8 +19971,8 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1674",
-      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-013",
+      "id": "W-1904",
+      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-014",
       "owner": "accessibility-reviewer",
       "state": "done",
       "domain": null,
@@ -19397,8 +19981,8 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1675",
-      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-013",
+      "id": "W-1905",
+      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-014",
       "owner": "cultural-reviewer",
       "state": "done",
       "domain": null,
@@ -19407,8 +19991,8 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1676",
-      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-013",
+      "id": "W-1906",
+      "title": "Simple lesson path (2026-10-18 founder ask): written answer agree/agree with changes/object to company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md and AMD-014",
       "owner": "analytics-steward",
       "state": "done",
       "domain": null,
@@ -19417,8 +20001,8 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1677",
-      "title": "Redraft AMD-013 from the five answers (decision record Objections section); confirm or change each proposed Answer; then constitutional review board",
+      "id": "W-1907",
+      "title": "Redraft AMD-014 from the five answers (decision record Objections section); confirm or change each proposed Answer; then constitutional review board",
       "owner": "evaluation-steward",
       "state": "backlog",
       "domain": null,
@@ -19426,7 +20010,7 @@
       "links": []
     },
     {
-      "id": "W-1678",
+      "id": "W-1908",
       "title": "Scale-out plan §3: written answer on the Category Management org, Studio pool and human leads (company/decisions/2026-10-18-founder-category-scale-out-plan.md)",
       "owner": "chief-of-staff-ceo-office",
       "state": "backlog",
@@ -19435,7 +20019,7 @@
       "links": []
     },
     {
-      "id": "W-1679",
+      "id": "W-1909",
       "title": "Scale-out plan §4: written answer on lesson families and content-type cards (with design-lead) (company/decisions/2026-10-18-founder-category-scale-out-plan.md)",
       "owner": "head-of-product",
       "state": "backlog",
@@ -19444,7 +20028,7 @@
       "links": []
     },
     {
-      "id": "W-1680",
+      "id": "W-1910",
       "title": "Scale-out plan §5: written answer on HQ approval state machines (EDD scope) (company/decisions/2026-10-18-founder-category-scale-out-plan.md)",
       "owner": "principal-engineer",
       "state": "backlog",
@@ -19453,7 +20037,7 @@
       "links": []
     },
     {
-      "id": "W-1681",
+      "id": "W-1911",
       "title": "Scale-out plan §7 Phase 0: launch coverage targets with each category manager (company/decisions/2026-10-18-founder-category-scale-out-plan.md)",
       "owner": "head-of-strategic-initiatives",
       "state": "backlog",
@@ -19462,7 +20046,7 @@
       "links": []
     },
     {
-      "id": "W-1682",
+      "id": "W-1912",
       "title": "Scale-out plan O4/O7: model tiering test and pricing tokens in money (with analytics-steward) (company/decisions/2026-10-18-founder-category-scale-out-plan.md)",
       "owner": "portfolio-manager",
       "state": "backlog",

@@ -1,11 +1,11 @@
-# Simple path (AMD-013): evaluation steward's answer (W-1672)
+# Simple path (AMD-014): evaluation steward's answer (W-1902)
 
 evaluation-steward · 2026-10-18 · from the code and a scripted census of 720 published + 234 review lessons; other answers unread.
 
 **Overall: agree with changes.** As written, it breaks `check` on day one.
 
 ## Blocking objection (all parts)
-`cmdCheck` runs `launchGates` on every **published** lesson. Put (a), (c) and (f) in it and `check` fails: (c) 720/720 (no `*-a11y-scan.json` exists), (a) 26 (15 non-canonical wording, 7 older-version verdicts, 4 `revise`), (f) 12 (lifehacks 6, history 4, big-ideas 2). **Change:** a separate `publishGates(meta)` that only `publish` runs. `publish` stamps `publishedUnder: "AMD-013"`, and `check` enforces `publishGates` only on stamped lessons; on the rest it warns. The 26 become a worklist, not an unpublish.
+`cmdCheck` runs `launchGates` on every **published** lesson. Put (a), (c) and (f) in it and `check` fails: (c) 720/720 (no `*-a11y-scan.json` exists), (a) 26 (15 non-canonical wording, 7 older-version verdicts, 4 `revise`), (f) 12 (lifehacks 6, history 4, big-ideas 2). **Change:** a separate `publishGates(meta)` that only `publish` runs. `publish` stamps `publishedUnder: "AMD-014"`, and `check` enforces `publishGates` only on stamped lessons; on the rest it warns. The 26 become a worklist, not an unpublish.
 
 ## Per part
 - **(a) agree with changes.** Copy `readReview`/`decide` into `company.mjs`. Importing them from `publish-ready.mjs`, which anyone can edit, lets the judged edit the judge.

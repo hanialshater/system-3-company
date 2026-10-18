@@ -1,14 +1,14 @@
-# Simple path: cultural-reviewer answer (W-1675)
+# Simple path: cultural-reviewer answer (W-1905)
 
 date: 2026-10-18
 role: cultural-reviewer
-read: the 2026-10-18 decision (Path B), AMD-013 (b) and (d), the 2026-10-15 and 2026-10-14 sensitive-route decisions, AMD-006.
+read: the 2026-10-18 decision (Path B), AMD-014 (b) and (d), the 2026-10-15 and 2026-10-14 sensitive-route decisions, AMD-006.
 
 ## (1) One generic route gate replacing AMD-006: agree with changes
 
 One mechanism is right. A gate that reads a file beats a hold list. Changes:
 
-- **Filename.** AMD-013 (b) looks for `*-<route>.md`. The reviews on disk are `*-culture-en.md`, and the brief file is `*-culture-en-brief.md`. For sensitive, `*-sensitive.md` matches nothing. Name the file pattern per route (sensitive = `culture-en`), or rename the records. Either way, test that the brief file never satisfies the gate.
+- **Filename.** AMD-014 (b) looks for `*-<route>.md`. The reviews on disk are `*-culture-en.md`, and the brief file is `*-culture-en-brief.md`. For sensitive, `*-sensitive.md` matches nothing. Name the file pattern per route (sensitive = `culture-en`), or rename the records. Either way, test that the brief file never satisfies the gate.
 - **Content, not just a header.** AMD-006's own "would be wrong if" (a `Verdict: publish` with no checklist items) and its audit of 5 records per cycle were dropped. Put them back. The publish record must list checklist items with PASS or finding.
 - **Reviewer-added classes.** The reviewer may add a class (2026-10-14, Decision 1). (d) only reads the curriculum `sensitive` field. A lesson upgraded to sensitive at brief review must have `reviewRoute` rewritten, and only head-of-product may downgrade it.
 

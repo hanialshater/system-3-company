@@ -4,7 +4,7 @@ owner: chief-of-staff (draft) → founder decides; each part then goes to its ow
 date: 2026-10-18
 status: proposed (draft plan; nothing applied)
 class: org · product · gates · engineering (one ask, four owners; see §9)
-route: founder → chief-of-staff-ceo-office (org) · head-of-product with design-lead (families, content types) · principal-engineer (HQ state machines) · evaluation-steward (gates, AMD-013) · head-of-strategic-initiatives (First Light coverage) · portfolio-manager (budget)
+route: founder → chief-of-staff-ceo-office (org) · head-of-product with design-lead (families, content types) · principal-engineer (HQ state machines) · evaluation-steward (gates, AMD-014) · head-of-strategic-initiatives (First Light coverage) · portfolio-manager (budget)
 recorded by: chief-of-staff
 
 ## What the founder said
@@ -102,7 +102,7 @@ any check "revise" → revising → built      third revise → retire proposal 
 
 **What HQ shows:** a queue per human lead (briefs, family specs and batches waiting on them), per-category boards with every lesson's state and its blocking check, cycle time per state, and tokens spent per state per category.
 
-**Where the rules live:** the transitions that matter for quality (`built → ready → published`) are enforced by `company publish` (AMD-013, redraft in progress, W-1677); HQ calls the same code. HQ writes approvals as small signed record files (who, when, what version), so the disk stays the memory.
+**Where the rules live:** the transitions that matter for quality (`built → ready → published`) are enforced by `company publish` (AMD-014, redraft in progress, W-1907); HQ calls the same code. HQ writes approvals as small signed record files (who, when, what version), so the disk stays the memory.
 
 **Owner:** principal-engineer (EDD first, tier 2), built by tools-lead and hq-engineer. Not before the freeze if it touches publishing; the read-only views can ship before.
 
@@ -135,7 +135,7 @@ Goal: the strongest catalog we can freeze on 11-13, using levers that need no or
 | Books | 0 | **0 or ~20** | only if the founder answers F1/F2 by **10-22**; otherwise Books is out of First Light |
 | **Total** | **720** | **~815 (~835 with Books)** | |
 
-Work items: claim-script format and the first 30 scripts (O1); AMD-013's minimal parts (publish-only gates, batch launch review) if ratified by 11-01, otherwise today's path; model-tiering test (O4); head-of-product names the launch catalog by 11-13 (W-931).
+Work items: claim-script format and the first 30 scripts (O1); AMD-014's minimal parts (publish-only gates, batch launch review) if ratified by 11-01, otherwise today's path; model-tiering test (O4); head-of-product names the launch catalog by 11-13 (W-931).
 
 ### Phase 1 · 11-06 → 11-30: design on paper (freeze window)
 - CEO office: the Category Management org proposal (charters, the Studio pool, work orders), through the org-change process.
@@ -171,7 +171,7 @@ Work items: claim-script format and the first 30 scripts (O1); AMD-013's minimal
 | §3 org, Studio pool, human leads | chief-of-staff-ceo-office | 10-21 |
 | §4 families and content types | head-of-product with design-lead | 10-21 |
 | §5 HQ state machines | principal-engineer | 10-22 |
-| Gates (§5 transitions, O1 claim scripts) | evaluation-steward | with AMD-013 redraft (W-1677) |
+| Gates (§5 transitions, O1 claim scripts) | evaluation-steward | with AMD-014 redraft (W-1907) |
 | §7 Phase 0 coverage | head-of-strategic-initiatives with each category manager | 10-21 |
 | O4, O7 cost | portfolio-manager, analytics-steward | 10-25 |
 
@@ -189,8 +189,8 @@ None yet. Each owner's written answer (§9) that objects is copied here with its
 
 ## Board
 
-- W-1678 §3 org answer (chief-of-staff-ceo-office)
-- W-1679 §4 families and content types (head-of-product)
-- W-1680 §5 HQ state machines (principal-engineer)
-- W-1681 §7 Phase 0 coverage (head-of-strategic-initiatives)
-- W-1682 O4/O7 cost (portfolio-manager)
+- W-1908 §3 org answer (chief-of-staff-ceo-office)
+- W-1909 §4 families and content types (head-of-product)
+- W-1910 §5 HQ state machines (principal-engineer)
+- W-1911 §7 Phase 0 coverage (head-of-strategic-initiatives)
+- W-1912 O4/O7 cost (portfolio-manager)

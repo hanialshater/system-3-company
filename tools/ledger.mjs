@@ -6,7 +6,7 @@
 //   node tools/ledger.mjs add --project=<id> --role=<role> --agent="<label>" --tokens=<n> --duration-ms=<n> --outcome=done|stopped|failed [--model=sonnet] [--note=".."]
 //   node tools/ledger.mjs report [--project=<id>] [--json]
 //   node tools/ledger.mjs gate --project=<id> [--tokens=<planned>]   # dispatch preflight: exit 1 = do not dispatch
-//   node tools/ledger.mjs check                       # register + ledger rules; exit 1 on an error
+//   node tools/ledger.mjs check [--summary]           # register + ledger rules; exit 1 on an error (--summary: counts only, always exit 0; npm run verify)
 //   node tools/ledger.mjs propose --project=<id>      # log a proposal event: fires the project-review ritual (major: needs a pre-mortem)
 import { execFileSync } from "node:child_process";
 import { appendLedger, fmt, gate, importFromEvents, premortemProblem, problems, readLedger, readRegister, summary, ROOT } from "./lib/ledger.mjs";
@@ -48,6 +48,15 @@ if (cmd === "import") {
   const g = gate(reg, opt.project, { planned: Number(opt.tokens ?? 0) });
   console.log(`${g.level}: ${opt.project}${g.budget != null ? ` (${fmt(g.spent)} of ${fmt(g.budget)})` : ""}${g.reasons.length ? "\n  " + g.reasons.join("\n  ") : ""}`);
   process.exit(g.pass ? 0 : 1);
+} else if (cmd === "check" && opt.summary) {
+  // `npm run verify` step (external assessment 2026-10-17 §3): counts only, grouped by project, and ALWAYS exit 0.
+  // It informs; it does not gate. `npm run check` runs in protected CI and does not include the ledger (token-budget.md
+  // section 6); the full list is `node tools/ledger.mjs check`.
+  const { errors, warnings } = problems(reg, readLedger());
+  const by = {};
+  for (const e of errors) { const p = /work on ([a-z0-9-]+) that the gate refuses/.exec(e)?.[1] ?? /^([a-z0-9-]+):/.exec(e)?.[1] ?? "other"; by[p] = (by[p] ?? 0) + 1; }
+  console.log(`ledger check (informational, never fails verify): ${errors.length} error(s), ${warnings.length} warning(s)${errors.length ? `; errors by project: ${Object.entries(by).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(", ")}` : ""}. Full list: node tools/ledger.mjs check`);
+  process.exit(0);
 } else if (cmd === "check") {
   const { errors, warnings } = problems(reg, readLedger());
   for (const w of warnings) console.log(`warn: ${w}`);

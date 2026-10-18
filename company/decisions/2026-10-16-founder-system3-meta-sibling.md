@@ -5,7 +5,7 @@ date: 2026-10-16
 class: org (new sibling company, new VP, new HQ floor)
 route: chief-of-staff-ceo-office (Leonie: designs the company, the VP role and the floor under org-change-process.md) → founder (approves the design before anything exists) → chief-of-staff (board, after approval)
 recorded by: chief-of-staff
-status: decided in principle; **parked until First Light ends** (launch 2026-11-30 or the stop rule)
+status: decided in principle; parked until First Light ends (launch 2026-11-30 or the stop rule). **Unparked 2026-10-17 by the founder** ("Unpark now, design first"): the CEO office designs the VP role now; nothing is created until the founder approves the design; the VP's first brief is the kernel map. The design must not take capacity from First Light.
 
 ## What the founder said
 "I want you to create a new floor, new VP of system 3 meta - it is meta company with mandate to create whole company for specific use-case. I am seeing a leap from lovable/replit style platforms and probably this is a big idea for AI or a killer app. To keep us focused lets do that after first light. The new VP is running independently and it is a sibling company."
@@ -20,6 +20,7 @@ status: decided in principle; **parked until First Light ends** (launch 2026-11-
 | Objection | Raised by | Status |
 |---|---|---|
 | A third company adds coordination load on the founder (already 8 directs, POC map) and on this host's agent caps (the Press's runs already count against them). | chief-of-staff-ceo-office (POC map, overloaded POCs) | **Open, for Leonie's design**: it must say how the VP runs independently without adding to the founder's span or this host's caps. |
+| Unparking before First Light ends splits attention and host capacity away from the first public release. | chief-of-staff (2026-10-17) | **Open, for Leonie's design**: say what Meta's design and first brief cost, and on whose caps and budget, before the founder approves. |
 | "Generate a company" is a strong claim; the evidence so far is one company with one model in many roles, no real learners, and the coordinator as hub. | chief-of-staff (2026-10-16 conversation on what is real) | **Open, carried into the design**: the first use case should have an external measure of success, not only internal reviews. |
 - Founder's brief for the VP (mission, onboarding, open questions): company/sibling/system3-meta/founder-brief.md (2026-10-16, after the founder's second message: higher-risk companies, real infra, usable by others, decoupled from Claude, humans and tools as members).
 - Founder (2026-10-16): "It is System 3; we call it science." Thesis recorded in the brief, section 1a.

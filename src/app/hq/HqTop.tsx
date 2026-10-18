@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import s from "./hq.module.css";
 
-export type HqTab = "office" | "people" | "design" | "curriculum" | "library" | "releases" | "first-light";
+export type HqTab = "office" | "people" | "design" | "curriculum" | "library" | "releases" | "first-light" | "strategy";
 const TABS: { id: HqTab; label: string; href: string }[] = [
   { id: "office", label: "Office", href: "/hq" },
   { id: "people", label: "People", href: "/hq?view=people" },
@@ -13,6 +13,7 @@ const TABS: { id: HqTab; label: string; href: string }[] = [
   { id: "library", label: "Library", href: "/hq/library" },
   { id: "releases", label: "Releases", href: "/hq/releases" },
   { id: "first-light", label: "First Light", href: "/hq/first-light" },
+  { id: "strategy", label: "Strategy", href: "/hq/strategy" },
 ];
 
 export function HqTop({ on, subtitle }: { on: HqTab; subtitle: ReactNode }) {

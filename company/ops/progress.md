@@ -5,27 +5,51 @@ who no longer exists: check what you rely on.
 
 ## 2026-10-18 (latest) · chief-of-staff · category scale-out plan drafted for the founder
 
-**Changed:** `company/decisions/2026-10-18-founder-category-scale-out-plan.md` (proposed): independent Category Management org with human cluster leads and a Studio pool it borrows from by work order; lesson families (engine + specs) and six content types; HQ approval state machines derived from disk; cost levers O1–O8; phases (Phase 0 launch coverage to 11-06, design on paper in the freeze, build in December). Board W-1678..W-1682 for the owners' written answers. Nothing applied.
+**Changed:** `company/decisions/2026-10-18-founder-category-scale-out-plan.md` (proposed): independent Category Management org with human cluster leads and a Studio pool it borrows from by work order; lesson families (engine + specs) and six content types; HQ approval state machines derived from disk; cost levers O1–O8; phases (Phase 0 launch coverage to 11-06, design on paper in the freeze, build in December). Board W-1908..W-1912 for the owners' written answers. Nothing applied.
 **Believe:** review and approval, not building, is the constraint (high). Launch coverage ~720 → ~815 is reachable only if the Life Hacks safety review and algorithm claim scripts land by 11-06 (medium). Token-per-lesson figures are a ledger unit, not dollars.
 **Next:** owners answer by 10-21/22; founder decisions D1 and D2 (Books F1/F2) by 10-22. **Blocked:** D2 on the founder.
 
 ## 2026-10-18 (later) · chief-of-staff · simple lesson path: five answers in, objections recorded
 
-**Changed:** founder ask recorded in `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md` (class gates) with draft AMD-013. All five route answers are in `company/reviews/_gates/` (each "agree with changes"). Objections copied into the record with proposed Answers; W-1673..W-1676 done; W-1677 (evaluation-steward) redrafts AMD-013. Nothing in `tools/company.mjs` changed.
+**Changed:** founder ask recorded in `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md` (class gates) with draft AMD-014. All five route answers are in `company/reviews/_gates/` (each "agree with changes"). Objections copied into the record with proposed Answers; W-1903..W-1906 done; W-1907 (evaluation-steward) redrafts AMD-014. Nothing in `tools/company.mjs` changed.
 **Believe:** the answers converge: publish-only gates with the 720 published grandfathered; route derived from domain + concept, not stored; a11y gate waits for `a11y-scan.mjs --record`; stop rule = any fatal flaw in a sample of max(3, 10%); "told, not shown" and answer leaks checked in brief, pre-flight and rubric. Confidence high on the census numbers (steward's script), medium on whether the batch signature adds value (head-of-product's own doubt, hence the 1-in-5 audit).
-**Next:** W-1677 redraft; scanner `--record` (platform-engineer, not yet on the board until the redraft names it); constitutional review board; founder ratifies. **Open:** whether `a11y-scan.mjs` severity rules become protected.
+**Next:** W-1907 redraft; scanner `--record` (platform-engineer, not yet on the board until the redraft names it); constitutional review board; founder ratifies. **Open:** whether `a11y-scan.mjs` severity rules become protected.
 
-## 2026-10-18 · evaluation-steward · W-1672 answer on the simple publish path (AMD-013)
+## 2026-10-18 · evaluation-steward · W-1902 answer on the simple publish path (AMD-014)
 
-**Changed:** wrote `company/reviews/_gates/2026-10-18-simple-path-evaluation-steward.md` (agree with changes; objection to a stored `reviewRoute` field). W-1672 → review. Nothing in `tools/company.mjs`, the AMD or the decision record changed; no commit.
-**Believe (high, census by script):** AMD-013 as written fails `check` on day one, because `cmdCheck` runs `launchGates` on published lessons: (c) 720/720, (a) 26, (f) 12. Fix: publish-only gates plus grandfathering. QA records carry no lesson version, so step 4 of the decision record is wrong.
-**Next:** head-of-product W-1673, then the other route answers. After that the steward redrafts AMD-013 with publishGates, a derived route, (g) the QA version, residual holds and tool-drawn samples. **Blocked:** nothing.
+**Changed:** wrote `company/reviews/_gates/2026-10-18-simple-path-evaluation-steward.md` (agree with changes; objection to a stored `reviewRoute` field). W-1902 → review. Nothing in `tools/company.mjs`, the AMD or the decision record changed; no commit.
+**Believe (high, census by script):** AMD-014 as written fails `check` on day one, because `cmdCheck` runs `launchGates` on published lessons: (c) 720/720, (a) 26, (f) 12. Fix: publish-only gates plus grandfathering. QA records carry no lesson version, so step 4 of the decision record is wrong.
+**Next:** head-of-product W-1903, then the other route answers. After that the steward redrafts AMD-014 with publishGates, a derived route, (g) the QA version, residual holds and tool-drawn samples. **Blocked:** nothing.
 
 ## 2026-10-18 · chief-of-staff · roles keep/remove draft for the founder
 
-**Changed:** wrote `company/ceo-office/2026-10-18-role-keep-remove.md`: every role with runs, board load, handoffs and a keep/remove verdict. Board W-1671 (chief-of-staff-ceo-office) to review it and put it to the founder alongside F-13/F-33. No role, roster, subagent or seat changed.
+**Changed:** wrote `company/ceo-office/2026-10-18-role-keep-remove.md`: every role with runs, board load, handoffs and a keep/remove verdict. Board W-1901 (chief-of-staff-ceo-office) to review it and put it to the founder alongside F-13/F-33. No role, roster, subagent or seat changed.
 **Believe:** 57 keep (incl. founder), 44 remove: 34 strand managers (keep only cm-math-discrete and cm-cs-algorithms), plus domain-scout, courses-lead, visual-designer, mockup-artist, design-engineer, illustrator, researcher, vp-rnd, localization-lead, localizer. Fairly sure on the counts (events.jsonl ends 10-16; lane-named dispatches undercount some roles). Medium confidence on visual-designer, design-engineer and vp-rnd, which are judgement calls on overlap.
 **Next:** founder decides per row; CEO office runs offboarding for each accepted removal.
+
+## 2026-10-18 · chief-of-staff · accounts, progress, likes/saves rebuilt (flags off); PR #8 open
+
+**Changed:** founder put accounts, server progress, public likes and private saves first (company/decisions/2026-10-17-founder-accounts-likes-saves.md). PRD-005 written. Privacy rulings filed. The lost `accounts` branch was rebuilt (WBR A5) and fixed through two review rounds; all merged on ccr-bf4ba2e6-qi1p4x behind ACCOUNTS_ENABLED / LIKES_SAVES_ENABLED / LIKE_COUNTS_PUBLIC (default off). WBR 2026-10-17 held (anomalies A1-A8, W-1689..W-1694). PR #8 into ccr-4c6c7654-ew9ko1: https://github.com/hanialshater/system-3-company/pull/8 .
+**Verified:** `npm run verify` on de5ff7013 exit 0 (2,576 browser tests); test:accounts 52/56 on Postgres 16, 0 fail; test 31 (accounts off: 404, no cookie).
+**Believe:** sure the flags-off merge is safe (three reviews approve). Not ready for a flag-on preview: W-1716 (PC3 account binding, PC9), W-1714, W-1701/W-1702, W-1706 (founder infra), PC5/PC6.
+**Next:** CI on PR #8, then founder approval to merge; after merge, record the merge SHA in company/ops/changelog.md (rollback C2) and dispatch W-1716. Do not change code on the branch before the merge without re-running verify.
+**Lesson for the next chief of staff:** pass `--agent` to every dispatch-check or the slot leaks (A2). Save any unpushed agent branch into the pushed branch before a session ends (A5).
+
+## 2026-10-17 (close) · chief-of-staff · external assessment closed; AMD-013 applied; Meta VP design ready
+
+**Changed:** AMD-013 ratified by the founder and applied (aeb637c0b, `Amendment: AMD-013`), with principal-engineer conditions C1-C4; status `applied` so it no longer licenses protected edits. left-or-right has a stamped v3 QA record. Founder decisions recorded: light management with a strategy layer (W-1685, W-1686); System 3 Meta unparked, VP design written and consulted (principal-engineer, evaluation-steward, portfolio-manager: agree with changes), awaiting founder D1-D8. Assessment closure table: company/reviews/org/2026-10-17-external-assessment.md. Pending work saved as patches in company/ops/pending-patches/ (onboarding text W-1687; verify scripts W-1682).
+**Verified:** verify on aeb637c0b: 12 Node suites green, check, typecheck, build green; browser contract 819 of 2,576 passed with none failed when the session closed (W-1688 confirms the rest).
+**Believe:** sure the gate now reads verdicts, versions and holds (status lists 1 ready). Medium that the full browser run passes (no lesson code changed).
+**Next:** founder: Meta D1-D8; onboarding text (W-1687); 3 budget rulings; EXP-002 recruiting; EXP-001 plants; mark AMD-002/AMD-012 applied (W-1680). Owners: W-1677 head-of-product, W-1681/W-1688 qa-tester, W-1682 PE-ops, W-1672 tools-lead. Overdue rituals: wbr, demo-crit, design, ops, vertical, rnd, project review.
+**Blocked:** this session could not cherry-pick or log some events (permission classifier); nothing deployed; no deploy tag in any commit.
+
+## 2026-10-17 (evening) · chief-of-staff · external org assessment: five workstreams merged
+
+**Changed:** filed the founder-shared assessment (company/reviews/org/2026-10-17-external-assessment.md) and dispatched evaluation-steward, tools-lead, chief-of-staff-ceo-office, portfolio-manager and analytics-steward in worktrees. Merged four: tools-lead tier 1 (c6c088681; tier-2 package.json commit 9824b61bc held for PE-ops, W-1682), analytics-steward, portfolio-manager, evaluation-steward (drafts only; nothing protected applied). **Not merged:** CEO-office onboarding branch worktree-agent-af3f82ee838c3affc, because it changes CLAUDE.md and working-agreement text the founder ratifies first. Applied 27 of 30 portfolio triage calls; W-1337/W-1349/W-408 back to review; head-on-is-a-wall links its r2 learner review. Board W-1671..W-1684. Founder digest: company/rituals/records/2026-10-17-founder-digest.md.
+**Verified on the merged tree:** check, typecheck, next build, test:deploy/publish/lifehacks/books/algorithms/kit/platform/dispatch/mailbox/memory/metrics/hq and rituals all pass; feed spec 10/10; contract QA 12/12 for the six published lessons whose newest QA record was a 10-14 fail (company/reviews/org/2026-10-17-failing-qa-published-recheck.md). Full contract QA over all lessons not run (no lesson code changed).
+**Believe:** sure the old launch gate calls 223 review lessons ready where one policy calls 1 ready (AMD-013 measure). Medium: dispatch rule B1 now refuses History, behavioral-econ and Life Hacks v2 batches; correct for behavioral-econ, but History may be within budget if its 2.5M counts from approval (founder question).
+**Next:** founder decisions in the digest; PE review of AMD-013 (W-1676); W-1681 attested QA; head-of-product on the 268 grandfathered lessons (W-1677); lean-lane step 1 after the F-42 pilot (~10-19).
+**Blocked on founder:** the six digest decisions. Nothing deployed; no commit carries the deploy tag.
 
 ## 2026-10-17 (later) · chief-of-staff · release r9 LIVE
 
