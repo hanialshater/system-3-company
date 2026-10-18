@@ -2,13 +2,14 @@
 // Owner: backend-engineer. Server only; relative imports only, so tests/accounts/ drives these directly.
 //
 // Every handler checks its switch first and answers 404 before anything is constructed (C4, C5). State-changing
-// handlers check Origin (C7). Nothing logs a body, email, token, id or error text (http.ts logFailure; A-6).
+// handlers check Origin (C7); every signed-in write is bound to the page's account (PC10, boundWrite: 409).
+// Nothing logs a body, email, token, id or error text (http.ts logFailure; A-6).
 // The anonymous learner never reaches a write: no session means 401, and an anonymous GET /me sets no cookie (M4).
 import type pg from "pg";
 import { type Auth, BASE_PATH, COOKIE_PATH, isAgeBand, isPolicyVersion } from "./auth";
 import { accountsEnabled, hiddenCountSlugs, likeCountsPublic, likesSavesEnabled, type Env } from "./accounts-flag";
 import { withTransaction, type Query } from "./db";
-import { accountTag, empty, isJson, json, logFailure, notFound, RateLimiter, readJson, sameOriginWrite, clientIp } from "./http";
+import { accountTag, empty, sameAccountHeader, isJson, json, logFailure, notFound, RateLimiter, readJson, sameOriginWrite, clientIp } from "./http";
 import {
   accountBand,
   cleanMarks,
@@ -81,6 +82,27 @@ export function createAccountApi(deps: ApiDeps) {
     }
   }
 
+  /** The session account's tag (http.ts accountTag). createAuth refuses a missing or short secret first (SECR0). */
+  function tagOf(id: string): string {
+    const secret = deps.env().BETTER_AUTH_SECRET;
+    if (!secret) throw Object.assign(new Error("auth secret missing"), { code: "SECR0" });
+    return accountTag(secret, id);
+  }
+
+  /**
+   * PC10: a write must carry the tag of the account the page started with (ACCOUNT_HEADER). A tab left open while
+   * another tab signed the browser into a different account sends the old tag with the new cookie: 409, nothing
+   * written. A missing tag is refused the same way. The client then ends the account on the device (no retry).
+   */
+  function boundWrite(req: Request, id: string, what: string): Response | null {
+    try {
+      return sameAccountHeader(req, tagOf(id)) ? null : json(409, { error: "account_changed" });
+    } catch (e) {
+      logFailure(`${what} bind`, e, log);
+      return json(500, { error: "unavailable" });
+    }
+  }
+
   const write = (req: Request, needJson = true) => sameOriginWrite(req, extraOrigins()) && (!needJson || isJson(req));
 
   /** Expire the session cookies on the scoped path (both secure and plain names). */
@@ -115,7 +137,7 @@ export function createAccountApi(deps: ApiDeps) {
           canLike: likesSaves && rows[0].age_band === "16+",
           // PC3: which account this is, as an opaque value (http.ts accountTag). The client keeps it in the device
           // state so a different account (a sign-in link with the marker edited away) meets the merge screen again.
-          tag: accountTag(String(deps.env().BETTER_AUTH_SECRET ?? ""), String(session.user.id)),
+          tag: tagOf(String(session.user.id)),
         });
         // A sliding refresh (at most daily) re-issues the cookie: pass it through, nothing else.
         for (const c of headers?.getSetCookie?.() ?? []) res.headers.append("set-cookie", c);
@@ -179,6 +201,8 @@ export function createAccountApi(deps: ApiDeps) {
       if (!write(req)) return json(403, { error: "origin" });
       const a = await signedIn(req, "progress");
       if (!a.ok) return a.res;
+      const unbound = boundWrite(req, a.id, "progress");
+      if (unbound) return unbound;
       const body = await readJson(req, 64_000);
       if (!body.ok) return json(body.status, { error: body.status === 413 ? "too_large" : "malformed" });
       const b = body.body as { slug?: unknown; entry?: unknown } | null;
@@ -207,6 +231,8 @@ export function createAccountApi(deps: ApiDeps) {
       if (!write(req)) return json(403, { error: "origin" });
       const a = await signedIn(req, "merge");
       if (!a.ok) return a.res;
+      const unbound = boundWrite(req, a.id, "merge");
+      if (unbound) return unbound;
       const body = await readJson(req, MAX_MERGE_BODY_CHARS);
       if (!body.ok) return json(body.status, { error: body.status === 413 ? "too_large" : "malformed" });
       const b = body.body as Record<string, unknown> | null;
@@ -251,6 +277,8 @@ export function createAccountApi(deps: ApiDeps) {
       if (!write(req)) return json(403, { error: "origin" });
       const a = await signedIn(req, "delete");
       if (!a.ok) return a.res;
+      const unbound = boundWrite(req, a.id, "delete");
+      if (unbound) return unbound;
       const body = await readJson(req, 256);
       if (!body.ok || (body.body as { confirm?: unknown } | null)?.confirm !== true) return json(400, { error: "confirm" });
       try {
@@ -287,6 +315,8 @@ export function createAccountApi(deps: ApiDeps) {
       if (!write(req, false)) return json(403, { error: "origin" });
       const a = await signedIn(req, "mark");
       if (!a.ok) return a.res;
+      const unbound = boundWrite(req, a.id, "mark");
+      if (unbound) return unbound;
       if (set ? !deps.inCatalog(slug) : slug.length < 1 || slug.length > 200) return json(404, { error: "unknown_lesson" });
       try {
         if (table === "lesson_like") {

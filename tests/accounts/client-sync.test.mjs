@@ -10,7 +10,7 @@ import assert from "node:assert/strict";
 import { register } from "node:module";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { DB_URL, SKIP_DB, BASE, SLUGS, freshDatabase, makeWorld, signUp } from "./helpers.mjs";
+import { DB_URL, SKIP_DB, BASE, SLUGS, freshDatabase, makeWorld, req, signUp } from "./helpers.mjs";
 import { createAccountApi } from "../../src/lib/server/account-api.ts";
 
 register("./client-loader.mjs", import.meta.url);
@@ -71,9 +71,13 @@ function fakeFetch(profile, input, init = {}) {
   const headers = { host: "localhost:3000", ...(init.headers ?? {}) };
   if (method !== "GET") headers.origin = BASE; // a browser sends Origin on a same-origin write
   if (profile.cookie && url.pathname.startsWith("/api/account")) headers.cookie = profile.cookie; // cookie Path=/api/account
-  profile.calls.push({ method, path: url.pathname + url.search, cache: init.cache, body: init.body ? JSON.parse(init.body) : undefined });
+  const call = { method, path: url.pathname + url.search, cache: init.cache, body: init.body ? JSON.parse(init.body) : undefined };
+  // Not enumerable, so the exact-call assertions above stay as they were: the answer's status and the PC10 header sent.
+  Object.defineProperty(call, "account", { value: headers["x-s3c-account"], enumerable: false });
+  profile.calls.push(call);
   const request = new Request(url, { method, headers, body: init.body });
   const p = Promise.resolve(route(profile.world.api, request)).then((res) => {
+    Object.defineProperty(call, "status", { value: res.status, enumerable: false });
     for (const c of res.headers.getSetCookie()) {
       if (!c.startsWith("s3c.session_token=")) continue;
       const pair = c.split(";")[0];
@@ -314,13 +318,7 @@ t("C6. privacy script (b), PC2: two accounts on one browser profile share nothin
   const anon = seedAnonymous(profile);
   const a = await signUp(world, "first@example.com");
   // A's account already holds lesson-d from somewhere else.
-  await world.api.merge(
-    new Request(`${BASE}/api/account/merge`, {
-      method: "POST",
-      headers: { host: "localhost:3000", origin: BASE, "content-type": "application/json", cookie: a.cookie },
-      body: JSON.stringify({ progress: { "lesson-d": { completedAt: NOW - 10 * DAY, predictedCorrectly: true, recalls: [{ at: NOW - 9 * DAY, correct: true }] } } }),
-    }),
-  );
+  await world.api.merge(req("/api/account/merge", { method: "POST", cookie: a.cookie, body: { progress: { "lesson-d": { completedAt: NOW - 10 * DAY, predictedCorrectly: true, recalls: [{ at: NOW - 9 * DAY, correct: true }] } } } }));
   profile.cookie = a.cookie;
   let page = await pageLoad(profile, "/account?signed-in=1");
   assert.deepEqual(page.state.ask, { lessons: 2, recalls: 2, saves: 0 });
@@ -364,13 +362,7 @@ t("C7. PC2: a session that ended elsewhere, or a new sign-in link over an active
   const profile = makeProfile(world);
   const anon = seedAnonymous(profile);
   const a = await signUp(world, "ended@example.com");
-  await world.api.merge(
-    new Request(`${BASE}/api/account/merge`, {
-      method: "POST",
-      headers: { host: "localhost:3000", origin: BASE, "content-type": "application/json", cookie: a.cookie },
-      body: JSON.stringify({ progress: { "lesson-d": { completedAt: NOW - 10 * DAY, recalls: [] } } }),
-    }),
-  );
+  await world.api.merge(req("/api/account/merge", { method: "POST", cookie: a.cookie, body: { progress: { "lesson-d": { completedAt: NOW - 10 * DAY, recalls: [] } } } }));
   profile.cookie = a.cookie;
   let page = await pageLoad(profile, "/account?signed-in=1");
   await page.client.answerMerge(null);
@@ -422,9 +414,9 @@ t("C8. sign-out with 'also clear this device' removes the device's history too; 
   completeLesson(page.kit, "lesson-c", true, NOW - 100);
   await idle(profile);
   assert.ok(local(profile)["lesson-c"]);
-  const res = await fakeFetch(profile, "/api/account/delete", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ confirm: true }) });
-  assert.equal(res.status, 200);
-  page.client.afterAccountDeleted(false);
+  const deleted = await page.client.deleteAccount(false);
+  assert.equal(typeof deleted, "object", "deleted (the page's own account, so the tag matches)");
+  assert.ok(deleted.lessons >= 0);
   assert.deepEqual(local(profile), anon);
 });
 
@@ -459,13 +451,7 @@ t("C9. PC3 probe 1: a sign-in link for another account with callbackURL edited t
   const deviceA = profile.store.get(DEVICE_KEY);
   // The attacker B has an account with its own history.
   const b = await signUp(world, "attacker@example.com");
-  await world.api.merge(
-    new Request(`${BASE}/api/account/merge`, {
-      method: "POST",
-      headers: { host: "localhost:3000", origin: BASE, "content-type": "application/json", cookie: b.cookie },
-      body: JSON.stringify({ progress: { "lesson-d": { completedAt: NOW - 10 * DAY, recalls: [{ at: NOW - 9 * DAY, correct: true }] } } }),
-    }),
-  );
+  await world.api.merge(req("/api/account/merge", { method: "POST", cookie: b.cookie, body: { progress: { "lesson-d": { completedAt: NOW - 10 * DAY, recalls: [{ at: NOW - 9 * DAY, correct: true }] } } } }));
   const rowsA = await rows(a.userId);
   const rowsB = await rows(b.userId);
   // B sends A a fresh link for B's account, callbackURL edited to "/". A clicks it in the same browser profile.
@@ -546,10 +532,179 @@ t("C11. PC9: /account remounting in the same page load after sign-out, and after
   profile.cookie = d.cookie;
   page = await pageLoad(profile, "/account?signed-in=1");
   await page.client.answerMerge(null);
-  const res = await fakeFetch(profile, "/api/account/delete", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ confirm: true }) });
-  assert.equal(res.status, 200);
-  page.client.afterAccountDeleted(false);
+  const deleted = await page.client.deleteAccount(false);
+  assert.equal(typeof deleted, "object", "deleted (the page's own account, so the tag matches)");
+  assert.ok(deleted.lessons >= 0);
   const afterDelete = await within(page.client.accountState());
   assert.notEqual(afterDelete, "timeout", "accountState resolves after deletion");
   assert.equal(afterDelete.me.signedIn, false);
+});
+
+// ---------- PC10: writes are bound to the account the page started with ----------
+
+async function marks(userId) {
+  const q = async (t) => (await pool.query(`SELECT slug FROM ${t} WHERE user_id = $1 ORDER BY slug`, [userId])).rows.map((r) => r.slug);
+  return { likes: await q("lesson_like"), saves: await q("lesson_save") };
+}
+const statusOf = async (profile, from) => {
+  // The status each write got, in order (the fake browser keeps the responses on the calls it routed).
+  return profile.calls.slice(from).filter((c) => c.method !== "GET").map((c) => `${c.method} ${c.path} ${c.status}`);
+};
+
+t("C12. PC10 probe 3: a lesson tab left open while another tab signs the profile into B sends nothing to B; the tab stops syncing after one 409", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  const anon = seedAnonymous(profile);
+  // A signs in by the normal link, declines, and leaves a lesson tab open (syncing).
+  const a = await signUp(world, "probe3-a@example.com");
+  profile.cookie = a.cookie;
+  let page = await pageLoad(profile, "/account?signed-in=1");
+  await page.client.answerMerge(null);
+  const oldTab = await pageLoad(profile, "/");
+  assert.equal(oldTab.state.syncing, true);
+  recall(oldTab.kit, "plates-move", true, NOW - 5 * DAY);
+  await idle(profile);
+  assert.equal((await rows(a.userId)).recalls.length, 1, "control: the open tab syncs to A while A is signed in");
+  // The attacker B has an account with history of its own.
+  const b = await signUp(world, "probe3-b@example.com");
+  const rowsA = await rows(a.userId);
+  const rowsB = await rows(b.userId);
+  const marksA = await marks(a.userId);
+  const marksB = await marks(b.userId);
+  // B's own link, callbackURL edited to "/", opened in the same profile; a new tab loads and meets B's merge screen.
+  const link = await editedLink(world, "probe3-b@example.com", "/");
+  const verify = await fakeFetch(profile, link.pathname + link.search);
+  assert.equal(verify.status, 302);
+  assert.ok(profile.cookie && profile.cookie !== a.cookie, "the profile now holds B's session");
+  const newTab = await pageLoad(profile, "/");
+  assert.equal(newTab.state.syncing, false, "the new tab asks (PC3)");
+  // The learner keeps playing in the OLD tab: a recall, a completion with its prediction, a Save, a Like.
+  const from = profile.calls.length;
+  recall(oldTab.kit, "plates-move", false, NOW - 2 * DAY);
+  await idle(profile);
+  completeLesson(oldTab.kit, "lesson-c", true, NOW - 1000);
+  await idle(profile);
+  const saved = await oldTab.client.setSaved("lesson-c", true);
+  const liked = await oldTab.client.setLiked("lesson-c", true);
+  await idle(profile);
+  assert.deepEqual(await rows(b.userId), rowsB, "B's progress and recall rows are unchanged");
+  assert.deepEqual(await marks(b.userId), marksB, "B has no save or like from the old tab");
+  assert.equal(saved, false, "the Save is refused");
+  assert.equal(liked, false, "the Like is refused");
+  assert.deepEqual(await rows(a.userId), rowsA, "and nothing reached A (the cookie is B's)");
+  assert.deepEqual(await marks(a.userId), marksA);
+  const sent = await statusOf(profile, from);
+  assert.deepEqual(sent, ["PUT /api/account/progress 409"], "one write reached the server and got 409; then the tab stopped syncing and sent nothing more");
+  // The old tab no longer syncs: more play sends nothing, and nothing is queued for later.
+  recall(oldTab.kit, "lesson-c", true, NOW - 500);
+  await idle(profile);
+  assert.deepEqual(await statusOf(profile, from), sent, "no retry, no further push");
+  assert.deepEqual(await rows(b.userId), rowsB);
+  // The device: A's copy left (the new tab ended it); the old tab's play stayed local; nothing is answered for B.
+  assert.ok(!profile.store.has(DEVICE_KEY));
+  assert.deepEqual(local(profile)["lesson-b"], anon["lesson-b"]);
+  // The new tab still meets B's screen and, once answered, syncs to B as normal.
+  page = await pageLoad(profile, "/");
+  assert.equal(page.state.syncing, false);
+  await page.client.answerMerge(null);
+  recall(page.kit, "lesson-d", true, NOW - 100);
+  await idle(profile);
+  assert.deepEqual((await rows(b.userId)).recalls, [{ slug: "lesson-d", at: NOW - 100, correct: true }], "B's own tab syncs to B");
+});
+
+t("C13. PC10: an old tab's 409 does not end the account another tab has since answered for; a missing tag is refused", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  seedAnonymous(profile);
+  const a = await signUp(world, "c13-a@example.com");
+  profile.cookie = a.cookie;
+  let page = await pageLoad(profile, "/account?signed-in=1");
+  await page.client.answerMerge(null);
+  const oldTab = await pageLoad(profile, "/");
+  const b = await signUp(world, "c13-b@example.com");
+  profile.cookie = b.cookie;
+  // The new tab answers B's screen first.
+  page = await pageLoad(profile, "/");
+  await page.client.answerMerge(null);
+  const deviceB = profile.store.get(DEVICE_KEY);
+  assert.equal(JSON.parse(deviceB).account, page.state.me.tag);
+  const rowsB = await rows(b.userId);
+  // Then the old tab plays.
+  const from = profile.calls.length;
+  completeLesson(oldTab.kit, "lesson-c", true, NOW - 1000);
+  await idle(profile);
+  assert.deepEqual(await statusOf(profile, from), ["PUT /api/account/progress 409"]);
+  assert.deepEqual(await rows(b.userId), rowsB, "nothing written to B");
+  assert.equal(profile.store.get(DEVICE_KEY), deviceB, "B's device state, written by the other tab, is left alone");
+  // A write with no tag at all (a page from before PC10, or a hand-made request) is refused the same way.
+  const res = await fakeFetch(profile, "/api/account/progress", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ slug: "lesson-c", entry: { completedAt: NOW - 50, recalls: [] } }),
+  });
+  assert.equal(res.status, 409);
+  assert.deepEqual(await rows(b.userId), rowsB);
+});
+
+t("C14. PC10: a merge screen left open for A, after the profile is signed into B: Import gets 409 and writes nothing; the page settles to B's screen", async () => {
+  const world = makeWorld(pool);
+  const profile = makeProfile(world);
+  const anon = seedAnonymous(profile);
+  profile.store.set("s3c:saves:v1", JSON.stringify({ "lesson-b": NOW - DAY }));
+  const a = await signUp(world, "c14-a@example.com");
+  profile.cookie = a.cookie;
+  const screen = await pageLoad(profile, "/account?signed-in=1");
+  assert.equal(screen.state.me.email, "c14-a@example.com", "the screen reads A's email");
+  assert.deepEqual(screen.state.ask, { lessons: 2, recalls: 2, saves: 1 });
+  let changed = 0;
+  screen.client.onAccountChanged(() => changed++);
+  // Another tab signs the profile into B (edited link) and loads.
+  const b = await signUp(world, "c14-b@example.com");
+  const link = await editedLink(world, "c14-b@example.com", "/");
+  await fakeFetch(profile, link.pathname + link.search);
+  await pageLoad(profile, "/");
+  const rowsA = await rows(a.userId);
+  const rowsB = await rows(b.userId);
+  const marksB = await marks(b.userId);
+  // The learner presses Import on the screen that still says A.
+  const from = profile.calls.length;
+  const out = await screen.client.answerMerge({ progress: true, saves: true });
+  await idle(profile);
+  assert.equal(out, "switched");
+  assert.deepEqual(await statusOf(profile, from), ["POST /api/account/merge 409"]);
+  assert.deepEqual(await rows(b.userId), rowsB, "Import wrote nothing to B");
+  assert.deepEqual(await marks(b.userId), marksB);
+  assert.deepEqual(await rows(a.userId), rowsA);
+  assert.ok(profile.store.has("s3c:saves:v1"), "the device's saves stay (nothing was acknowledged)");
+  assert.deepEqual(local(profile), anon);
+  assert.ok(!profile.store.has(DEVICE_KEY), "nothing remembered for anyone");
+  assert.equal(changed, 1, "the page is told the account changed");
+  // The page re-reads its state: B's own screen, naming B, with the notice line.
+  const next = await screen.client.accountState();
+  await idle(profile);
+  assert.equal(next.me.email, "c14-b@example.com");
+  assert.equal(next.syncing, false);
+  assert.deepEqual(next.ask, { lessons: 2, recalls: 2, saves: 1 });
+  assert.equal(next.fromLink, true, "the 'You are now signed in as' notice shows for this page view");
+  // "Don't import" on a screen that still says B, after the profile went back to A: nothing remembered, no sync.
+  const stale = await pageLoad(profile, "/account");
+  assert.equal(stale.state.me.email, "c14-b@example.com");
+  profile.cookie = a.cookie;
+  const n = writes(profile).length;
+  assert.equal(await stale.client.answerMerge(null), "switched");
+  await idle(profile);
+  assert.ok(!profile.store.has(DEVICE_KEY), "a decline is not remembered for the wrong account");
+  assert.equal(writes(profile).length, n);
+  completeLesson(stale.kit, "lesson-d", true, NOW - 10);
+  await idle(profile);
+  assert.equal(writes(profile).length, n, "and the page does not sync");
+  profile.cookie = b.cookie;
+  // Deletion from a screen that still says A is refused the same way (409, nothing deleted).
+  const del = await pageLoad(profile, "/account");
+  await del.client.answerMerge(null);
+  profile.cookie = a.cookie; // the profile is switched back to A behind this page's back
+  const before = await rows(a.userId);
+  assert.equal(await del.client.deleteAccount(false), "switched");
+  assert.deepEqual(await rows(a.userId), before, "A was not deleted by B's page");
+  assert.equal((await pool.query("SELECT count(*)::int AS n FROM auth_user WHERE id = $1", [b.userId])).rows[0].n, 1, "nor was B");
 });
