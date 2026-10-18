@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · release-manager · W-1963: production verified against r10; bcd102d7 and 2902594b recorded as r11, r12
+
+**Changed.** company/ops/releases.json r11 (bcd102d7) and r12 (2902594b), approved_by = founder after the fact (company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md); company/ops/deployments/2026-10-18-unapproved-bcd102d7-2902594b.md; tests/hq/releases.test.mjs version list r1..r12, next r13. No deploy, no Vercel change.
+
+**Believe (medium-high: public behaviour only; the Vercel CLI is logged out and there is no VERCEL_* env, so dashboard env values and deployment metadata were not read).** Production matches r10's intended state on every observable setting: in-review lessons served and tagged (SHOW_REVIEW not off), accounts/likes/saves/like counts all 404, HQ public, default feed order. Feed smoke 8/10; the 2 failures are the spec opening a draft slug that is 404 in production; with QA_ONLY=a-birthday-like-mine it passes. Differences from r10: none observed; r10 itself was a git-integration deploy with SHOW_REVIEW never pinned (no deployment record), so "review served" is the founder's 2026-10-15 choice, not a pin. New public surface vs r10: /hq/rnd, /hq/personalization, /hq/evaluation and a 404-gated /api/account/settings.
+
+**Next.** Founder: confirm the dashboard production env has SHOW_REVIEW, ACCOUNTS_ENABLED, LIKES_SAVES_ENABLED, LIKE_COUNTS_PUBLIC as intended (I could not read it). W-1961 (ignoreCommand), W-1962, W-1964 open. **Blocked:** nothing.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-gen-scope-1018) · W-1852: cards S1-S11 generated; Ambrose; lane 21
 
 **Changed (branch org-generate, not pushed).** Cards S1-S11 of company/ceo-office/2026-10-18-personalization-scope-proposal.md applied in tools/org/roles.mjs and regenerated, one commit per card, as decided under company/decisions/2026-10-18-founder-delegated-decisions.md (S1 option 1, reading A, S9 deferred with 8 directs, S4 residue until First Light release 1). growth-designer reports to vp-personalization (team personalization); personalization-engineer owns the feed files and joins OPS_ENGINEERS. cm-books-science-history is now **Ambrose** (tools/org/people.mjs); head-of-evaluation keeps Tobias. POC map: lane 14 adds growth-designer; new **lane 21 "Evaluation (pairwise)"**, POC head-of-evaluation, roles pairwise-judge, evaluation-engineer. Handoff map updated. Board: W-171, W-672 re-owned to personalization-engineer; notes on W-1755, W-1793, W-748. Answers appended to the proposal (§9), the scope decision record (status decided) and the port objections 8/10/11/12 in company/decisions/2026-10-14-evaluation-org.md.

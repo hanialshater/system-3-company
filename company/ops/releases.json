@@ -765,6 +765,68 @@
           "Deployed by Vercel's Git integration from a commit carrying the deploy marker (founder's choice), not the Deploy to Vercel workflow: no staged promotion and no wrapper smoke test before the domain switched; CI verify runs beside the deploy, not before it. Smoke test by the chief of staff after READY. The workflow's 05238276 upload fix is still unproven (W-1666, W-1669)."
         ]
       }
+    },
+    {
+      "version": "r11",
+      "date": "2026-10-18T15:25:15Z",
+      "commit": "bcd102d75cce5d4bda2960b06ef2dea24fed0056",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder, after the fact (the deploy itself was unapproved)",
+        "record": "company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md: 'Keep what’s live', conversation of 2026-10-18. Deployed by Vercel's git integration because the merge message contained the deploy marker; not tools/deploy.mjs."
+      },
+      "summary": "PR #7 (M1, HQ part): personalization org, HQ Personalization / Evaluation / R&D tabs, AMD-015. No lesson changes; deployed without approval and kept by the founder.",
+      "added": {
+        "features": [
+          "HQ Personalization, Evaluation and R&D tabs (/hq/personalization, /hq/evaluation, /hq/rnd), AMD-015 (PR #7 merge bcd102d7)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "UNAPPROVED DEPLOY accepted after the fact by the founder; no deploy approval, no tools/deploy.mjs record, no pinned SHOW_REVIEW, no wrapper smoke test (COE company/rituals/records/2026-10-18-coe.md).",
+          "See r12 for the production verification of this state (r11 was live for about 77 minutes before r12 replaced it)."
+        ]
+      }
+    },
+    {
+      "version": "r12",
+      "date": "2026-10-18T16:42:31Z",
+      "commit": "2902594b67ebafee655c40e86a58aacdb210321d",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder, after the fact (the deploy itself was unapproved)",
+        "record": "company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md: 'Keep what’s live', conversation of 2026-10-18. Deployed by Vercel's git integration because the merge message contained the deploy marker; not tools/deploy.mjs."
+      },
+      "summary": "PR #10: personalization owns feed, profile, gamification, progressive learning (S1-S11) as code and records; the personalised order was never merged and its flag is unset, so the feed keeps the default order. No lesson changes; deployed without approval and kept by the founder.",
+      "added": {
+        "features": [
+          "Personalization scope cards S1-S11, lane 21 Evaluation, learner dimension index and an /api/account/settings route that answers 404 while accounts are off (PR #10 merge 2902594b)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "UNAPPROVED DEPLOY accepted after the fact by the founder; no deploy approval, no tools/deploy.mjs record, no pinned SHOW_REVIEW, no wrapper smoke test (COE company/rituals/records/2026-10-18-coe.md).",
+          "Verified read-only on production 2026-10-18 (company/ops/deployments/2026-10-18-unapproved-bcd102d7-2902594b.md): lessons in review are served and tagged 'In review' (/d/penalty-on-wiggle 200, ~468 'in review' tags on /catalog), so SHOW_REVIEW is not 'off' in production; accounts, likes, saves and like counts are off (/api/account/settings, /api/auth/session, /api/account/likes, /api/account/saves, /api/likes/counts answer 404; PUT/DELETE on like and save 404); HQ public (/hq, /hq/strategy, /hq/rnd, /hq/personalization, /hq/evaluation 200); feed smoke (tests/qa/feed.spec.ts, 10 tests): 8 pass, 2 'provenance' fail only because the spec opens the first lesson on disk, which is a draft and 404s in production by design; rerun with QA_ONLY=a-birthday-like-mine passes 2/2."
+        ]
+      }
     }
   ]
 }
