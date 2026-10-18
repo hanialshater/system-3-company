@@ -17,12 +17,15 @@ A personalization policy is judged against an independent learner and a criterio
 - The scoring harness: recall over all lessons, breadth, sensitivity ±50%, replay and forbidden-input tests
 - Pass criteria and MDE estimates, committed (hash in the readout) before the run they judge
 - Personalization experiment registrations (company/experiments/EXP-*.md format) and readouts in phase B
+- Registrations, pass criteria and readouts for gamification experiments (challenges, badges, mastery display), frozen before data, under the org's independence rule; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes
 - Blind second rating of a 20% sample of lesson dims (misconceptionStrength), with agreement reported
 - The readout section for the WBR
 
 ## Out of scope
 
 - Policies, curves, weights, composer code, the lesson dims it scores, reason copy (proposal §2.1)
+- Designing badges, challenges or the mastery display (growth-designer): eval never builds what it grades
+- The EXP format and the experiments index (analytics-steward)
 - Gates, the QA contract and amendments (evaluation-steward)
 - Event semantics (analytics-steward)
 

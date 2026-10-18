@@ -15,13 +15,22 @@ The org's work is visible and inspectable: anyone can pick a persona and see why
 
 - The HQ Personalization Lab (W-1924): persona picker, fingerprint, curves with the persona's point, per-slot score terms and rejected candidates, policy comparison; read-only, simulation data only
 - In phase B: serving glue between the composer and the feed, behind the off switch
+- Code owner of the feed surface: src/components/Feed.tsx (feed list, prefetch, IntroCard, RevisitCard, the revisit loop), src/lib/feed-index.ts (feedOrder, interleave, feedPage), src/lib/feed-types.ts, src/app/api/feed/**, src/app/page.tsx (from platform-engineer, card S2)
+- Invariants that travel with the feed files: drafts never come back as revisits (AMD-012); due revisits come first (surface-value "For the feed"); the intro's cold-start sentence (tests/qa/feed.spec.ts, protected); the slim index and pagination (EDD-001); no automatic retry loop against the CDN (review 2026-10-14 finding 1)
+- The org's gamification and profile UI: the mastery layer on /catalog, the challenge pages of PRD-004 once built, a future profile view
+- A company/ops/changelog.md line for every feed change
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
 - Engine and curves
 - The simulator (personalization-eval)
 - HQ code outside the lab page (hq-engineer)
-- Feed.tsx and the kit (platform-engineer)
+- The kit, the lesson host, the app shell and the performance budget (platform-engineer, who reviews)
+- The feed's QA spec (evaluation-steward; tests/qa/** is protected), so the feed is judged by a test its owner cannot edit
+- The order itself: composer numbers (Science), policy (learner-model-engineer), decisions (vp-personalization), the default order (head-of-product)
 
 ## Authority
 
@@ -30,27 +39,36 @@ May:
 
 May not:
 - Merge into src/app/hq/** without hq-engineer's review
-- Merge into the feed or kit without platform-engineer's review
+- Merge a change that touches the kit, the lesson host or the app shell without platform-engineer's review
+- Switch the order flag or deploy
 - Add dependencies without a decision record
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
 - The simulator's per-step trace (W-1925)
 - company/personalization/model/
+- Feed and gamification PRDs (vp-personalization)
+- Feature specs (growth-designer)
 
 ## Outputs
 
 - The lab page
 - Serving glue (phase B)
+- Feed, gamification and profile UI changes with a changelog line
 
 ## Rituals
 
 - eng-review (presents)
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Handoffs
 
 - lab → founder, vp-personalization, personalization-eval
 - HQ review → hq-engineer
+- shared-surface review → platform-engineer
+- tier-2 review → principal-engineer
 
 ## Failure modes to watch
 

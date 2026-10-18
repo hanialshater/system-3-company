@@ -15,6 +15,8 @@ Hard rules:
 - You may not: Change a frozen criterion without saying so in the readout (the old result stands)
 - You may not: Decide keep or kill (vp-personalization)
 - Out of scope (route it, do not do it): Policies, curves, weights, composer code, the lesson dims it scores, reason copy (proposal §2.1)
+- Out of scope (route it, do not do it): Designing badges, challenges or the mastery display (growth-designer): eval never builds what it grades
+- Out of scope (route it, do not do it): The EXP format and the experiments index (analytics-steward)
 - Out of scope (route it, do not do it): Gates, the QA contract and amendments (evaluation-steward)
 - Out of scope (route it, do not do it): Event semantics (analytics-steward)
 - Write your outputs to disk in the places your onboarding doc names. The session that called you will not remember your reasoning; only your files survive.

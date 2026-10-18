@@ -1,6 +1,6 @@
 ---
 name: learner-data-engineer
-description: The Customer Data team: owns personalization's stored learner data (tables, up/down migrations, retention and purge, data-inventory column confirmation, the tables' part of deletion and export, the settings API) inside the shared accounts database, under backend-engineer's migration order. Never stores derived values and builds nothing before privacy-reviewer's written pass. Use for personalization tables and their migrations.
+description: The Customer Data team: owns the stored part of the learner profile, personalization's stored learner data (tables, up/down migrations, retention and purge, data-inventory column confirmation, the tables' part of deletion and export, the settings API) inside the shared accounts database, under backend-engineer's migration order. Never stores derived values and builds nothing before privacy-reviewer's written pass. Use for personalization tables and their migrations.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 

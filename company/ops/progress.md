@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-gen-scope-1018) · W-1852: cards S1-S11 generated; Ambrose; lane 21
+
+**Changed (branch org-generate, not pushed).** Cards S1-S11 of company/ceo-office/2026-10-18-personalization-scope-proposal.md applied in tools/org/roles.mjs and regenerated, one commit per card, as decided under company/decisions/2026-10-18-founder-delegated-decisions.md (S1 option 1, reading A, S9 deferred with 8 directs, S4 residue until First Light release 1). growth-designer reports to vp-personalization (team personalization); personalization-engineer owns the feed files and joins OPS_ENGINEERS. cm-books-science-history is now **Ambrose** (tools/org/people.mjs); head-of-evaluation keeps Tobias. POC map: lane 14 adds growth-designer; new **lane 21 "Evaluation (pairwise)"**, POC head-of-evaluation, roles pairwise-judge, evaluation-engineer. Handoff map updated. Board: W-171, W-672 re-owned to personalization-engineer; notes on W-1755, W-1793, W-748. Answers appended to the proposal (§9), the scope decision record (status decided) and the port objections 8/10/11/12 in company/decisions/2026-10-14-evaluation-org.md.
+
+**Believe (high on the generated texts matching the cards; medium on completeness of the board moves).** `npm run check` passes; test:hq 105/107 (the same 2 shallow-clone release tests fail at the baseline 90ddd99a); test:mailbox 7/7, test:dispatch 114/114. growth-designer's seat did not need to move for the test, so no src/ edit was made. The rule-3 item is **W-1844**: the delegated record's W-1665 is its number before the renumber. mailbox laneCheck already passes head-of-evaluation → pairwise-judge, so the W-1844 wait is held only by lane 21's note.
+
+**Next (file on the default branch's board; no ids were added here to avoid a second renumber).** hq-engineer: growth-designer's seat to the personalization room, and the "Personalization eval" h1. privacy-reviewer: D1 owner. evaluation-steward: §3 AMD-008 draft edits; W-1844. principal-engineer-ops: consult on OPS_ENGINEERS (after the fact). portfolio-manager: a budget tag for lane 21. chief-of-staff: org-change event, post-hoc §6 consults, merge of org-generate.
+
+**Blocked.** The first pairwise round is blocked on W-1844 and a lane-21 budget tag.
+
 ## 2026-10-18 (evening) · chief-of-staff (acting release manager) · r10 LIVE: PR #8 merged, accounts off
 
 **Changed:** PR #8 (accounts, server progress, likes/saves, AMD-013) merged into the default branch through PR #9 (a6333dd0), founder-approved; record conflicts fixed by renumbering this session's draft AMD-013 → AMD-014 and W-1671..W-1682 → W-1901..W-1912. AMD-013 marked applied; changelog records the merge and rollback recipe C2. Release r10 deployed to production at ~13:21 UTC by Vercel's Git integration from commit 8eeb961a (deploy marker), on the founder's choice after this session could not dispatch the Deploy to Vercel workflow (GitHub 403). Release entry r10 in company/ops/releases.json; tests/hq/releases.test.mjs counts r10.

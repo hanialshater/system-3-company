@@ -26,6 +26,7 @@ Lessons get measurably better across the whole catalogue, and the company can sa
 - Publishing (release manager, after gates pass)
 - Changing Surface Value (the founder ratifies)
 - Judging lessons itself
+- The feed (its order and surface), the learner profile, gamification and progressive learning (vp-personalization; founder decision 2026-10-18). A trade-off that crosses lessons and personalization goes to the founder with both directs' written positions; neither org judges the other's work
 
 ## Authority
 
