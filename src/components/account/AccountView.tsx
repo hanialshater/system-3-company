@@ -77,6 +77,7 @@ export default function AccountView() {
     <SignedIn
       me={me}
       ask={"ask" in state ? state.ask : null}
+      fromLink={"fromLink" in state && !!state.fromLink}
       onAnswered={setState}
       onSignedOut={() => void accountMe(true).then((m) => setState(m && !m.signedIn ? { me: m } : { me: null }))}
     />
@@ -168,11 +169,13 @@ function SignUp() {
 function SignedIn({
   me,
   ask,
+  fromLink,
   onAnswered,
   onSignedOut,
 }: {
   me: SignedInMe;
   ask: { lessons: number; recalls: number; saves: number } | null;
+  fromLink: boolean;
   onAnswered: (s: AccountState) => void;
   onSignedOut: () => void;
 }) {
@@ -184,6 +187,10 @@ function SignedIn({
   const [clearOnSignOut, setClearOnSignOut] = useState(false);
   const [deleted, setDeleted] = useState<Record<string, number> | null>(null);
   const [note, setNote] = useState("");
+  const doSignOut = async () => {
+    if (!(await signOut({ clearDevice: clearOnSignOut }))) return setNote("Sign-out failed. Try again.");
+    onSignedOut();
+  };
 
   // `ask` counts only the device's own history the account does not hold, computed before anything was pulled (PC3).
   const hasProgress = !!ask && (ask.lessons > 0 || ask.recalls > 0);
@@ -211,11 +218,22 @@ function SignedIn({
   return (
     <main style={box}>
       <h1>Your history</h1>
-      <p>Signed in as {me.email}.</p>
+      {/* Privacy re-read 2026-10-18 3.2 (W-1711): this page view only, nothing stored. Words: growth-designer. */}
+      {fromLink ? (
+        <p data-testid="account-signed-in-notice" role="status">
+          You are now signed in as {me.email}. If you did not just ask for this,{" "}
+          <button style={btn} onClick={() => void doSignOut()}>
+            sign out
+          </button>
+        </p>
+      ) : (
+        <p>Signed in as {me.email}.</p>
+      )}
 
       {ask && (hasProgress || hasSaves) && mergeState !== "done" && mergeState !== "declined" && (
         <section data-testid="account-merge" style={{ display: "grid", gap: 8 }}>
-          <h2>Bring this device&apos;s history?</h2>
+          {/* Privacy re-read 3.1 (W-1711): the choice names the account it sends to. Words: growth-designer. */}
+          <h2>Send this device&apos;s history to {me.email}?</h2>
           <p style={{ opacity: 0.8, fontSize: 14 }}>Until you choose, nothing on this device is sent to your account.</p>
           {hasProgress && (
             <label>
@@ -281,10 +299,7 @@ function SignedIn({
         </label>
         <button
           style={btn}
-          onClick={async () => {
-            if (!(await signOut({ clearDevice: clearOnSignOut }))) return setNote("Sign-out failed. Try again.");
-            onSignedOut();
-          }}
+          onClick={() => void doSignOut()}
         >
           Sign out
         </button>
