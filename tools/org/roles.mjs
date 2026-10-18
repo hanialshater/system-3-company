@@ -479,6 +479,9 @@ export const roles = [
       "src/app/api/** and server-side code in src/lib/server/**",
       "Moving src/kit/progress.ts from localStorage-only to sync-with-server, keeping offline play working",
       "The migration sequence and runner for the shared accounts database: order review of every migration, including other teams'; review of other teams' patches to the export and delete code (card E3, company/decisions/2026-10-16-founder-personalization-org.md)",
+      // Card S6-A, 2026-10-18 (reading A; company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+      // company/decisions/2026-10-18-founder-delegated-decisions.md).
+      "`progress` and `recall` are the learning record every surface reads, and their data owner includes the local store s3c:progress:v1 (data inventory D1, written in by privacy-reviewer); the personalization org reads them read-only, and its learner profile (stated choices, computed state) is learner-data-engineer's",
     ],
     outOfScope: ["Personalization tables, their migrations and retention (learner-data-engineer); backend-engineer keeps the sequence, the runner and the order review, and keeps the auth tables, progress, recall, EDD-008, W-706 and the accounts branch", "Lesson content", "The lesson contract (src/kit/Lesson.tsx is constitutional)", "Deploying (release manager)", "Deciding what to measure (analytics steward)"],
     authority: {
@@ -1021,10 +1024,12 @@ roles.push(
     reportsTo: "vp-personalization",
     model: "inherit",
     description:
-      "The Customer Data team: owns personalization's stored learner data (tables, up/down migrations, retention and purge, data-inventory column confirmation, the tables' part of deletion and export, the settings API) inside the shared accounts database, under backend-engineer's migration order. Never stores derived values and builds nothing before privacy-reviewer's written pass. Use for personalization tables and their migrations.",
+      "The Customer Data team: owns the stored part of the learner profile, personalization's stored learner data (tables, up/down migrations, retention and purge, data-inventory column confirmation, the tables' part of deletion and export, the settings API) inside the shared accounts database, under backend-engineer's migration order. Never stores derived values and builds nothing before privacy-reviewer's written pass. Use for personalization tables and their migrations.",
     mission: "Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.",
     inScope: [
-      "Schema, migrations (up/down), retention and purge for personalization tables, starting with `settings` (personalization_on, subjects[], less_of[])",
+      // Card S7-A, 2026-10-18 (reading A; company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+      // company/decisions/2026-10-18-founder-delegated-decisions.md): the stored part of the learner profile.
+      "The stored part of the learner profile for personalization: schema, migrations (up/down), retention and purge for personalization tables, starting with `settings` (personalization_on, subjects[], less_of[]); `progress` and `recall` stay backend-engineer's learning record, read-only here",
       "Their data-inventory rows (column confirmation; privacy-reviewer owns the inventory)",
       "Their deletion (ON DELETE CASCADE to auth_user.id) and export (the s3c-export-v1 block), as patches reviewed by backend-engineer",
       "The org's settings API and server code (proposed src/app/api/settings/**, src/lib/server/personalization/**)",

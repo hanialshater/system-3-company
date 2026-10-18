@@ -13,7 +13,7 @@ Every piece of learner data personalization reads or keeps is stated, minimal, p
 
 ## In scope
 
-- Schema, migrations (up/down), retention and purge for personalization tables, starting with `settings` (personalization_on, subjects[], less_of[])
+- The stored part of the learner profile for personalization: schema, migrations (up/down), retention and purge for personalization tables, starting with `settings` (personalization_on, subjects[], less_of[]); `progress` and `recall` stay backend-engineer's learning record, read-only here
 - Their data-inventory rows (column confirmation; privacy-reviewer owns the inventory)
 - Their deletion (ON DELETE CASCADE to auth_user.id) and export (the s3c-export-v1 block), as patches reviewed by backend-engineer
 - The org's settings API and server code (proposed src/app/api/settings/**, src/lib/server/personalization/**)
