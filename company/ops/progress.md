@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 (latest) · chief-of-staff · category scale-out plan drafted for the founder
+
+**Changed:** `company/decisions/2026-10-18-founder-category-scale-out-plan.md` (proposed): independent Category Management org with human cluster leads and a Studio pool it borrows from by work order; lesson families (engine + specs) and six content types; HQ approval state machines derived from disk; cost levers O1–O8; phases (Phase 0 launch coverage to 11-06, design on paper in the freeze, build in December). Board W-1678..W-1682 for the owners' written answers. Nothing applied.
+**Believe:** review and approval, not building, is the constraint (high). Launch coverage ~720 → ~815 is reachable only if the Life Hacks safety review and algorithm claim scripts land by 11-06 (medium). Token-per-lesson figures are a ledger unit, not dollars.
+**Next:** owners answer by 10-21/22; founder decisions D1 and D2 (Books F1/F2) by 10-22. **Blocked:** D2 on the founder.
+
 ## 2026-10-18 (later) · chief-of-staff · simple lesson path: five answers in, objections recorded
 
 **Changed:** founder ask recorded in `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md` (class gates) with draft AMD-013. All five route answers are in `company/reviews/_gates/` (each "agree with changes"). Objections copied into the record with proposed Answers; W-1673..W-1676 done; W-1677 (evaluation-steward) redrafts AMD-013. Nothing in `tools/company.mjs` changed.
