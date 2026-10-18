@@ -1,0 +1,13 @@
+{
+  "about": "Caveats per criterion that HQ shows next to the ranks. Each entry: {\"criterion\": \"<criteria.json id>\", \"text\": \"<short caveat>\", \"records\": \"<which records>\", \"round\": \"<run>\", \"detail\": \"<one or two sentences>\", \"source\": \"<file#section>\"}. Owner: head-of-evaluation (copied from README 'Round flags'). tools/eval/bt.mjs copies valid entries into the generated JSON.",
+  "flags": [
+    {
+      "criterion": "trust",
+      "text": "possibly anchored on claim counts (round 1)",
+      "records": "round-1 trust lines; judge-1 cites counts in round-1-42 and round-1-108",
+      "round": "round-1",
+      "detail": "Round-1 screenshots showed differing 'k/n claims checked' counters. All lines kept and none excluded; a sensitivity refit without the two citing lines moves ranks only inside their intervals.",
+      "source": "company/evaluation/rounds/2026-10-14-round-1.md#3-the-blinding-issue-in-review-badge-and-claim-counter"
+    }
+  ]
+}

@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · hq-engineer (Pip, run hq-bt-1018) · W-1662 ported the evaluation org's Bradley-Terry leaderboard into HQ (branch hq-evaluation-bt)
+
+**Changed.** Ported from origin/ccr-rnd-ncm by checkout of single paths (no merge): company/evaluation/**, tools/eval/{bt,packets}.mjs, tests/eval/**, src/app/hq/evaluation/**. New "Evaluation" tab in HqTop.tsx and HQ.tsx; `test:eval` script, added to `verify`; tests/hq/evaluation.test.mjs (page data equals bt.mjs output on the committed records; tab wired; hqEnabled gate; rule text). The page now shows, above the filters, "A rank is the judges' preference. It is not a publish gate and not evidence of learning" and the round date. Route `/hq/evaluation` (404 unless dev or HQ_PUBLIC=1; checked both in a production build).
+
+**Believe (high).** Regenerating leaderboard.generated.json from the 144 committed records gives identical ratings, intervals and counts; only each row's `status` and `currentVersion` changed (the catalogue moved on: 3 lessons are now one version ahead, shown as "stale"). All 17 slugs in the records still exist in src/demos. No role ids are referenced, so no plain-text fallback was needed. There is no `npm run eval` script (the brief allowed only test:eval in package.json); run `node tools/eval/bt.mjs`.
+
+**Next.** chief-of-staff-ceo-office ports the four roles and tools/org (W-1663). evaluation-steward checks independence. Round 1 is thin (2-4 comparisons a lesson); a new round is the head of evaluation's.
+
+**Blocked.** Nothing. test:hq: 104 of 107 pass; 3 releases tests fail in this shallow clone as before.
+
 ## 2026-10-17 · personalization-engineer (Tavi, run pe-hq-eval-1017) · W-1648 built on perso-hq-eval: frozen candidates in the lab, and an HQ Evaluation view
 
 **Changed.** Two new read-only HQ routes under the lab, both served from committed files only (no process, no runtime read of company/): `/hq/personalization/candidates?persona=<id>&policy=reachable-v2|reachable-v3` and `/hq/personalization/evaluation`. `tools/hq-lab-candidates.mjs` imports `company/personalization/policies/reachable-v2.ts` and `reachable-v3.ts` unchanged, only when the bytes hash to the frozen sha256 before and after the import (refuses reachable-v1 and anything else), and runs them on the lab simulator's episode loop (parity test vs runEpisode). `tools/hq-lab-precompute.mjs` now writes `src/data/hq-personalization/candidates/` (12 docs, label in each and in the manifest). `tools/hq-eval-index.mjs` writes `src/data/hq-personalization-eval/evaluation.json` from verbatim quotes of committed records. Tests: tests/hq/personalization-candidates.test.mjs (8), tests/hq/personalization-evaluation.test.mjs (6), privacy scan extended (54 planted breaks). No HQ shell file changed. Commits 0e8f2db, 1f64ee1, 525d798, merge 51d73db, e210144, 0606c72.
