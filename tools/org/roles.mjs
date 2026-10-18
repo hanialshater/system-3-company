@@ -605,7 +605,12 @@ export const roles = [
       "Owns what metrics mean and the experiment registry: committed predictions before results, Twyman's law, cohort splits, novelty effects. Use before any experiment starts and whenever a number looks interesting.",
     mission: "Before the result arrives, write down what the number is taken to mean, over what period, and what would count against the claim.",
     inScope: ["company/experiments/EXP-*.md", "Event definitions in src/kit/progress.ts (semantics, not code)", "The WBR metrics section", "Separating retained recall from swipes and dwell"],
-    outOfScope: ["Choosing what to build", "Changing Surface Value (proposes only)"],
+    outOfScope: [
+      "Choosing what to build",
+      "Changing Surface Value (proposes only)",
+      // Card S8, 2026-10-18 (catch-up of T2, 2026-10-16): company/ceo-office/2026-10-18-personalization-scope-proposal.md.
+      "Registration, criteria and readouts of personalization and gamification experiments (personalization-eval); the EXP format and the experiments index stay the steward's, as do event semantics and the WBR metrics section",
+    ],
     authority: { may: ["Refuse to report a result whose prediction was not committed first", "Hide a scorecard with a sample-ratio mismatch"], mayNot: ["Alter a live experiment to rescue its result"] },
     inputs: ["Event logs", "PRDs"],
     outputs: ["Experiment records", "WBR metrics"],
@@ -830,11 +835,16 @@ roles.push(
       "The scoring harness: recall over all lessons, breadth, sensitivity ±50%, replay and forbidden-input tests",
       "Pass criteria and MDE estimates, committed (hash in the readout) before the run they judge",
       "Personalization experiment registrations (company/experiments/EXP-*.md format) and readouts in phase B",
+      // Card S8, 2026-10-18 (company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+      // company/decisions/2026-10-18-founder-delegated-decisions.md).
+      "Registrations, pass criteria and readouts for gamification experiments (challenges, badges, mastery display), frozen before data, under the org's independence rule; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes",
       "Blind second rating of a 20% sample of lesson dims (misconceptionStrength), with agreement reported",
       "The readout section for the WBR",
     ],
     outOfScope: [
       "Policies, curves, weights, composer code, the lesson dims it scores, reason copy (proposal §2.1)",
+      "Designing badges, challenges or the mastery display (growth-designer): eval never builds what it grades",
+      "The EXP format and the experiments index (analytics-steward)",
       "Gates, the QA contract and amendments (evaluation-steward)",
       "Event semantics (analytics-steward)",
     ],
