@@ -1,6 +1,6 @@
 # Proposal: Personalization takes the feed, the learner profile, gamification and progressive learning (scope moves, one card each)
 
-owner: chief-of-staff-ceo-office (Leonie) · date: 2026-10-18 · status: **proposed, for the founder's decision, one card at a time.** Nothing here exists until the founder approves the card. No edit to tools/org/roles.mjs, tools/org/people.mjs, .claude/agents/, company/roles/, the POC map, the handoff map, HQ or the board has been made.
+owner: chief-of-staff-ceo-office (Leonie) · date: 2026-10-18 · status: **decided 2026-10-18 and generated** (all of S1-S11, with the recommended option at each choice, by the chief of staff under the founder's "Decide for me" delegation: company/decisions/2026-10-18-founder-delegated-decisions.md). See §9 for what was decided and what was generated (W-1852). The text above §9 is the proposal as written and is not edited.
 board: W-1849 · record: company/decisions/2026-10-18-founder-personalization-vs-evaluation-scope.md (this file is the "how" that record leaves to Leonie)
 process: company/ceo-office/org-change-process.md (pipeline steps 1-3; step 4 is the founder's; step 5 only after it)
 earlier design this extends: company/ceo-office/2026-10-16-personalization-org-proposal.md (cards V, N1-N6, E1-E3, approved and generated 2026-10-16; L1 deferred)
@@ -225,3 +225,30 @@ The founder decided the whether; consultation answers how. Not yet asked. Each a
 ## 8. What happens after the founder approves a card
 
 The founder's words go into company/decisions/2026-10-18-founder-personalization-vs-evaluation-scope.md, verbatim and dated, per card (and the options chosen in S1, S6/S7, S9). Then this office edits tools/org/roles.mjs (and `OPS_ENGINEERS` for S3), runs `node tools/org/generate.mjs`, commits one change per approved card linking this file and the record, and wires §5. hq-engineer moves the seat (§4). The chief of staff writes the `org-change` event and files the §3 requests to evaluation-steward.
+
+## 9. Founder-delegated answers and what was generated (2026-10-18, W-1852)
+
+**The founder's words** (company/decisions/2026-10-18-founder-delegated-decisions.md): > "Decide for me" (founder, conversation, 2026-10-18). The chief of staff decided every card with the option recommended here, and wrote the reason per choice in that record. It is a delegated decision, not the founder's own line per card: the founder can reverse any of it with a word (that record's first objection).
+
+| Card | Decided | Generated (commit on branch org-generate) |
+|---|---|---|
+| S1 vp-personalization | approve, **option 1**: the default order stays head-of-product's as the baseline | roles.mjs: description, 4 in-scope lines, out-of-scope (default order; "Designing badges, points and challenges"; release-1 rulings), may-not (live order only as AMD-013 and a G record allow; no approving a gamification PRD it wrote), one output |
+| S2 platform-engineer | approve | in-scope rewritten without the feed files; review duty; out-of-scope lists the feed files and src/app/hq/** |
+| S3 personalization-engineer | approve | code owner of the feed files and their invariants, gamification and profile UI, changelog lines; new out-of-scope and may-not lines; joins `OPS_ENGINEERS` (readiness, risks, incidents) |
+| S4 growth-designer | approve, **residue travels until First Light release 1** | reports to vp-personalization, team personalization; experiments go to personalization-eval; residue line; may-not "register or read out its own experiments" |
+| S5 learner-model-engineer | approve | progressive-learning engine line; src/lib/learner/** loses "(once approved)"; chip and default order out of scope |
+| S6/S7 | **reading A** | backend-engineer: one clarifying in-scope line (progress and recall are the learning record; D1 data owner); learner-data-engineer: in-scope first line renamed "the stored part of the learner profile" |
+| S8 personalization-eval, analytics-steward | approve | gamification experiments in eval's scope; steward's out-of-scope catches up with T2 |
+| S9 head-of-feed | **stays deferred, 8 directs accepted**, triggers restated | no generated change; triggers in the L1 card of company/ceo-office/2026-10-16-personalization-org-proposal.md and a roles.mjs comment |
+| S10 chief-product-officer | approve | description and out-of-scope exclude the feed, the profile, gamification, progressive learning |
+| S11 head-of-product | approve | in-scope keeps the default order and the two cold-start trade-offs, and release-1 rulings; out-of-scope adds the four areas' PRDs |
+
+**Wiring (§5), done:** POC map lane 14 lists growth-designer; Growth's "no clear owner" entry closed; head-of-product at 23 directs (company/ceo-office/poc-map.md). Handoff map Personalization row updated (company/ceo-office/handoff-map.md). Board: W-171 and W-672 re-owned to personalization-engineer; dated notes on W-1755 (the card's W-1576), W-1793 (the card's W-1614, P1/P3 move) and W-748 (split). This card's W-1500 is W-1679 after the 2026-10-18 renumber (company/ops/2026-10-18-board-renumber.md); it, W-1296 and W-1409 stay growth-designer's.
+
+**Not done here, owners named (to file on the default branch's board; this worktree adds no board ids, to avoid a second renumber):**
+- hq-engineer: growth-designer's seat moves from the product floor's growth seat to the personalization room (§4). test:hq passes without it (the seat agrees in HOME and ROOM_BY_ROLE), so no src/ edit was made.
+- hq-engineer with personalization-engineer: the h1 "Evaluation" on /hq/personalization/evaluation becomes "Personalization eval" (§4).
+- privacy-reviewer: write D1's data owner (backend-engineer) into company/engineering/data-inventory.md (S6-A).
+- evaluation-steward: the §3 AMD-008 draft edits (P1 owner, ratification seats; option 1 needs no surface-value amendment).
+- principal-engineer-ops: written consult on personalization-engineer in `OPS_ENGINEERS` (S3); the line is generated, the consult is owed after the fact.
+- chief-of-staff: the `org-change` event; the §6 consults were not asked before the decision and are owed as post-hoc consults (each owner may object; an objection reopens its card).

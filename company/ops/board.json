@@ -2468,7 +2468,7 @@
     {
       "id": "W-171",
       "title": "Measure reveal fit in the feed too (reveal-fit.mjs --feed or a feed.spec case); only /d/<slug> is measured today",
-      "owner": "platform-engineer",
+      "owner": "personalization-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
@@ -2478,7 +2478,9 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Feed-mode reveal fit; lesson pages are what learners land on today."
-      }
+      },
+      "note": "2026-10-18 re-owned platform-engineer → personalization-engineer (feed surface code moved, company/ceo-office/2026-10-18-personalization-scope-proposal.md S2/S3 §5; approved under company/decisions/2026-10-18-founder-delegated-decisions.md); platform-engineer reviews only where the change touches the kit, the lesson host, the app shell or the performance budget.",
+      "updated": "2026-10-18"
     },
     {
       "id": "W-172",
@@ -9135,11 +9137,13 @@
     {
       "id": "W-672",
       "title": "feedOrder prefix unit test (review finding 6): each domain queue in 'all' must be a prefix of that subject's order (rank then slug) in src/lib/feed-index.ts; about 10 lines, run in check or verify. Ref: company/engineering/reviews/2026-10-14-scale-stage0-review.md",
-      "owner": "platform-engineer",
+      "owner": "personalization-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "note": "2026-10-18 re-owned platform-engineer → personalization-engineer (feed surface code moved, company/ceo-office/2026-10-18-personalization-scope-proposal.md S2/S3 §5; approved under company/decisions/2026-10-18-founder-delegated-decisions.md); platform-engineer reviews only where the change touches the kit, the lesson host, the app shell or the performance budget.",
+      "updated": "2026-10-18"
     },
     {
       "id": "W-665",
@@ -9977,7 +9981,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "note": "2026-10-18: splits: the claim count in src/lib/feed-index.ts moves to personalization-engineer; the trust sheet in DemoCard.tsx stays platform-engineer's (company/ceo-office/2026-10-18-personalization-scope-proposal.md S2/S3 §5; approved under company/decisions/2026-10-18-founder-delegated-decisions.md).",
+      "updated": "2026-10-18"
     },
     {
       "id": "W-749",
@@ -20383,7 +20389,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-17",
-      "links": []
+      "links": [],
+      "note": "2026-10-18: stays platform-engineer's as a shared-surface review of the org's Feed.tsx change, needed only where it touches the kit, the lesson host or the app shell (company/ceo-office/2026-10-18-personalization-scope-proposal.md S2/S3 §5; approved under company/decisions/2026-10-18-founder-delegated-decisions.md; the card's W-1576 is this item before the 2026-10-18 renumber).",
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1756",
@@ -20741,7 +20749,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-17",
-      "links": []
+      "links": [],
+      "note": "2026-10-18: P1 and P3 (Feed.tsx pins and hydration) move to personalization-engineer; the throttled bench and built-output checks stay platform-engineer's as the performance and build gate (company/ceo-office/2026-10-18-personalization-scope-proposal.md S2/S3 §5; approved under company/decisions/2026-10-18-founder-delegated-decisions.md; the card's W-1614). Split into a personalization-engineer item when next triaged.",
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1794",
