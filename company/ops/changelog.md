@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-18: PR #12 merged (31a6a32de): accounts preview blockers, flags off
+- Account-bound writes (PC3, PC10: x-s3c-account tag, 409 on mismatch), PC9 remount fix, error-code allow-list (W-1714), login-CSRF cue (W-1711), S18 tag scan; the settings B2 scan allows the account-deletion DELETE (W-1974).
+- Merge SHA for rollback: **31a6a32de**. Use the path-limited recipe in company/engineering/readiness/2026-10-16-accounts.md (C2), not a plain revert, because the merge also carries records.
+- Nothing deployed; ACCOUNTS_ENABLED, LIKES_SAVES_ENABLED and LIKE_COUNTS_PUBLIC default off.
+
 ## 2026-10-18: PR #8 merged into the default branch via PR #9 (merge a6333dd0); nothing deployed
 - Accounts, server progress, likes and saves (EDD-008 rebuild, PRD-005) behind `ACCOUNTS_ENABLED`, `LIKES_SAVES_ENABLED`, `LIKE_COUNTS_PUBLIC`, all default off. AMD-013 one readiness policy is now `applied`.
 - Founder approved the merge in conversation ("Ok approve pr #8"). CI green on 72f3a2e1 (verify, constitution). PR #9 added only record-conflict fixes: the default branch's draft AMD-013 became AMD-014, its board items W-1671..W-1682 became W-1901..W-1912.
