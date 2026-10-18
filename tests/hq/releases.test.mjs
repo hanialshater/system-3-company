@@ -94,7 +94,7 @@ test("unreleased commits are computed from the last release commit", { skip: !fs
 test("release-draft tool prints a draft with TODO approval and writes nothing", { skip: !fs.existsSync(".git") }, () => {
   const before = fs.readFileSync("company/ops/releases.json", "utf8");
   const out = JSON.parse(execFileSync("node", ["tools/release-draft.mjs", "--commit=f4537d7", "--since=91274b8"], { encoding: "utf8" }));
-  assert.equal(out.version, "r11");
+  assert.equal(out.version, "r13");
   assert.match(out.approved_by.who, /TODO/);
   assert.equal(out.added.lessons.in_review.count, 54);
   assert.equal(fs.readFileSync("company/ops/releases.json", "utf8"), before);
