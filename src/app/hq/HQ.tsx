@@ -190,6 +190,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
           <Link role="tab" aria-selected={false} className={s.tab} href="/hq/first-light">
             First Light
           </Link>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/strategy">
+            Strategy
+          </Link>
         </div>
         <Link className="brand-link" href="/catalog">
           Map

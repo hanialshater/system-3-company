@@ -1,6 +1,6 @@
-# Simple path, step 5: analytics-steward answer (W-1676)
+# Simple path, step 5: analytics-steward answer (W-1906)
 
-on: `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md`, AMD-013 (e) + Prediction and test
+on: `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md`, AMD-014 (e) + Prediction and test
 **Answer: agree with changes.** Each of O1-O4 needs an **Answer:** in the decision record.
 
 ## (1) Predictions per batch: agree with changes
@@ -38,7 +38,7 @@ on: `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md`, AMD-0
 - clean samples accumulate per category, and a rate is claimed only as "0 in 30 means below 10% at 95%";
 - "fatal flaw" is defined in writing before the first sample.
 
-## (4) AMD-013's prediction: object, untestable as written
+## (4) AMD-014's prediction: object, untestable as written
 
 **O4.** "0 published that full manual review would have held" is counterfactual: after side_by_side, no full review runs to show it false. ">1 fatal in 10, two batches running" also cannot be reached at about 2 samples per batch. Fix:
 - give a random 10% of each of the 3 batches a full manual review;

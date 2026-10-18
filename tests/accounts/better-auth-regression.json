@@ -1,0 +1,29 @@
+{
+  "purpose": "M5 (privacy review 2026-10-16): every Better Auth bump, patch included, fails test S14 in tests/accounts/static.test.mjs (the guard; there is no separate bump test file) until this record names the new lockfile versions, and the suite titles below were run green on a real PostgreSQL 16 against them. Owner: backend-engineer; the principal engineer reads the pass list at each bump.",
+  "testedOn": "2026-10-18",
+  "by": "backend-engineer (accounts-fix-1018, principal review PC1-PC8), local PostgreSQL 16, 29 of 29 accounts.test.mjs passing; versions unchanged since accounts-1017",
+  "packages": {
+    "node_modules/@better-auth/utils": "0.5.0",
+    "node_modules/better-auth": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/core": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/drizzle-adapter": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/kysely-adapter": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/memory-adapter": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/mongo-adapter": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/prisma-adapter": "1.7.10",
+    "node_modules/better-auth/node_modules/@better-auth/telemetry": "1.7.10",
+    "node_modules/better-call": "1.4.2"
+  },
+  "suite": [
+    "4. C7: a cross-origin or non-JSON POST to start is refused; C2: the library's own doors answer 404",
+    "5. sign-up: link sent, intent stored by token hash, account created on click with the band; name and image empty; tokens hashed; 0 auth_account rows",
+    "6. IP/UA: the session hooks blank IP and user agent on create, and the DB CHECK refuses any value",
+    "7. IP/UA: a session refresh (update) is blanked too, and moves last_sign_in_at (M2)",
+    "8. M1: a name passed straight to the library is never stored; the CHECK refuses a name, non-JSON and arrays",
+    "9. §6.2: no band, no mail; no intent, no user; an unpublished policy version sends nothing (M6)",
+    "12. M4: anonymous GET /me with accounts on: 200 signedIn false, no Set-Cookie, no-store, no row written",
+    "23. A-6: a constraint failure inside a library route logs no email, token or value",
+    "24. A-5: auth refuses to construct with any BETTER_AUTH_TELEMETRY* variable set, or without a secret",
+    "25. sign-out: clears the cookie on the scoped path and ends the session"
+  ]
+}

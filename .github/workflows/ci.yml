@@ -45,9 +45,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        # Full history: the HQ release tests read git history (AMD-013 part (b); principal review F8).
+        with: { fetch-depth: 0 }
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
+      # AMD-013 part (b): the harness Node suites that `npm run verify` runs, in verify's order. They run
+      # before the build so a broken gate, dispatch, memory, mailbox or publish tool fails fast (about 60 s
+      # in total on 2026-10-17; the three S3_SLOW_TESTS dispatch cases stay skipped, as in verify).
+      - run: npm run test:deploy
+      - run: npm run test:publish
+      - run: npm run test:lifehacks
+      - run: npm run test:books
+      - run: npm run test:algorithms
+      - run: npm run test:kit
+      - run: npm run test:hq
+      - run: npm run test:platform
+      - run: npm run test:dispatch
+      - run: npm run test:mailbox
+      - run: npm run test:memory
+      - run: npm run test:metrics
       - run: npm run check
       - run: npm run typecheck
       - run: npm run build

@@ -1,8 +1,13 @@
 "use client";
 
-// Per-learner progress lives in the browser only. It powers spaced revisits
+// Per-learner progress lives in the browser. It powers spaced revisits
 // ("Remembering is not knowing": we come back and ask before showing).
 // Every access is guarded: storage can be missing, full or blocked.
+//
+// EDD-008 (optional accounts): the browser stays the source of truth on the device. When a learner is signed in and
+// has answered the merge screen, src/lib/account-client.ts registers a sink; it is given the entry before and after
+// each update and sends only the difference (PC1). With no sink (the anonymous learner, or accounts off) nothing here
+// touches the network beyond the existing beacon. The account merge code lives in the account chunk, not here (PC8).
 
 import type { LessonEvent } from "./types";
 
@@ -38,10 +43,24 @@ export function loadProgress(): ProgressMap {
   return read<ProgressMap>(KEY, {});
 }
 
+type ProgressSink = (slug: string, before: LessonProgress | undefined, after: LessonProgress) => void;
+let sink: ProgressSink | null = null;
+
+/** Registered only while signed in (account-client.ts). null removes it. */
+export function setProgressSink(fn: ProgressSink | null) {
+  sink = fn;
+}
+
 export function updateProgress(slug: string, fn: (p: LessonProgress) => LessonProgress) {
   const all = loadProgress();
+  const before = sink ? loadProgress()[slug] : undefined; // its own copy: fn cannot change it
   all[slug] = fn(all[slug] ?? { recalls: [] });
   write(KEY, all);
+  try {
+    sink?.(slug, before, all[slug]);
+  } catch {
+    /* sync must never break a lesson */
+  }
 }
 
 /** Interval schedule in days for each successful recall (expanding retrieval). */

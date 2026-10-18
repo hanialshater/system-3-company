@@ -22,3 +22,12 @@ review findings blind to which lesson they came from.
 (not run)
 
 ## What changed because of it
+
+## Amendment 1 (2026-10-17, analytics-steward, before any session; edits nothing above)
+
+Run kit: company/experiments/EXP-002-run-kit.md. Predictions gate: company/experiments/EXP-002/predictions.md (no
+session before its P-list is committed). Three design changes, each with its reason and objection in the run kit
+(§ Changes from the 2026-10-12 design): five fixed lessons from five domains instead of free choice from the map;
+the delayed check at day 3 within 48-96 hours; recall asked first. Proposed, for the founder to accept or decline:
+two added measures (unaided explanation, one transfer question), with their own committed prediction in the run kit
+(Amendment A). The committed prediction above is unchanged.

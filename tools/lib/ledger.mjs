@@ -13,9 +13,10 @@ import { dedupeUsage } from "./usage.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rel = (...p) => path.join(ROOT, ...p);
+// S3_LEDGER and S3_PROJECTS override the ledger and the register (tests and fixtures only; read at import).
 export const PATHS = {
-  ledger: rel("company/ops/ledger.jsonl"),
-  projects: rel("company/ops/projects.json"),
+  ledger: process.env.S3_LEDGER ? path.resolve(process.env.S3_LEDGER) : rel("company/ops/ledger.jsonl"),
+  projects: process.env.S3_PROJECTS ? path.resolve(process.env.S3_PROJECTS) : rel("company/ops/projects.json"),
   events: rel("company/ops/events.jsonl"),
   board: rel("company/ops/board.json"),
   inbox: rel("company/ops/founder-inbox.json"),

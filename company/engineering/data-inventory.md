@@ -22,6 +22,13 @@ owner: privacy-reviewer (Elif) · first written 2026-10-16 (W-1166) · batch fir
 | D4 | Session cookie `__Secure-…`, `HttpOnly`, `Secure`, `SameSite=Lax`, `Path=/api/account`, 30 days, sliding | stay signed in | learner's browser; its token also sits in D8 | our functions (Vercel) | 30 days since last use, or sign-out | sign-out (must be one visible control, my review Q8), expiry, account deletion | unknown (counsel). Working description: strictly needed once the learner has signed in; set only after sign-in, never for anonymous visitors (P1.2) | designed, spike-tested, off by default (`ACCOUNTS_ENABLED`). Owner: backend-engineer |
 | D5 | **Experiment markers** (proposed in PRD-003 R12 and PRD-004 §9, **not built, not yet ruled in the build**; ruling in `company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md`): `s3c:origin:v1` = per slug an origin enum (`swap` or `challenge`), and a local arm assignment (for PRD-004's 20% holdout) | measure whether swaps and challenges help first-revisit recall | learner's browser | nobody (only the enum values in D6 leave the device) | ruled: marker per slug removed once that lesson's first revisit is answered or 30 days after it was written; arm removed when the experiment closes | clear site data; the code removes them as stated | unknown (counsel). Working description: our own measurement of whether a feature works, no identifier | **not live.** Owner: analytics-steward (registers), growth-designer (builds). The marker shows on the device that a learner opened a friend's swap; shared devices exist |
 
+### 1a. Saved lessons on the device (added 2026-10-18; PRD-005 ruling C5.5)
+
+| # | Datum | Purpose | Stored where | Processed by | Retention | Deletion path | Legal basis | Status |
+|---|---|---|---|---|---|---|---|---|
+| D20 | `s3c:saves:v1` (localStorage): `{slug: savedAt}` for lessons an **anonymous** learner saved | let the learner find lessons they chose to keep | learner's browser | nobody else; 0 network requests on Save (C5.1). Sent only by the learner's own tap on "Keep my history" with the saves line ticked (`POST /api/account/merge`, `saves`), then removed from the device when the server acknowledges (C5.2). Not read by feed order, revisit selection or personalization (P3.3; `tests/platform/engagement-not-ranking.test.mjs`) | until the learner unsaves, imports, or clears site data. **Signed in, nothing is written here**, so sign-out leaves no account saves on a shared device (C5.3, test S15) | unsave; the merge acknowledgement; "Also clear this device" (`clearThisDevice` removes it); clear site data | unknown (counsel, F-25). Working description: a list the learner keeps for themselves | built (branch merge 29a75310d). Owner: backend-engineer (code), privacy-reviewer (inventory) |
+| D23 | `s3c:account-device:v1` (localStorage): `{answer: "import" \| "decline" \| "nothing", own: <a copy of the device's own D1 map from when the sync started>}`. No email, no account id, no user id | remember "Import / Don't import" for this sign-in (so the merge screen is not asked again and a decline is not undone) and put the device's own pre-sign-in history back at sign-out (so no account's history stays on a shared device) | learner's browser | nobody; never sent (grep-tested by the account-client static scan; test C4 shows no write before the answer) | while signed in on this device. Removed at sign-out, at deletion, when a page load finds the session ended, and when a new sign-in link lands on an active session. **If the learner never returns after the session ends, it stays until site data is cleared** (no timer on a device key). Never written with accounts off (C2) | sign-out; "Also clear this device" (`clearThisDevice` lists it); clear site data | as D1 (counsel, F-25). The copy adds no field D1 does not hold, so no new category | built (branch merge de5ff7013). Owner: backend-engineer (code), privacy-reviewer (inventory). **Ruled: added 2026-10-18** (re-read, section "Re-read of beb83bfd4") |
+
 ## 2. Sent to us with no account: the event beacon and the host's logs
 
 | # | Datum | Purpose | Stored where | Processed by | Retention | Deletion path | Legal basis | Status |
@@ -122,6 +129,23 @@ Deletion path: consumed on click; purge; account deletion removes pending rows m
 | D14c | Restore-drill dumps | same day, then deleted | no other dumps exist (EDD-008 §9) |
 | D14d | Neon branches | production: default branch only; preview: schema only, fake data | R-b: a Preview or Development variable pointed at the Production project would break this (my G4) |
 
+### 3.9 `lesson_like` and `lesson_save` (migration `002_likes_saves.up.sql`; added 2026-10-18; PRD-005 ruling C5.5, C6.1)
+
+Same three columns in each table, primary key `(user_id, slug)`, `user_id` a foreign key to `auth_user` with `ON DELETE CASCADE`. No counter column, no soft delete, no tombstone, no IP, device or band. Read against the migration on 2026-10-18; any further column is a block (C6.1). Both tables are behind `LIKES_SAVES_ENABLED` (default off); `lesson_like` is written for `16+` accounts only (server-enforced, C4.1).
+
+| # | Column | Table | Purpose | Retention | Deletion path | Notes |
+|---|---|---|---|---|---|---|
+| D21.1 | `user_id` | `lesson_like` | owner of the like | with the account | account deletion (same transaction, counted in the confirmation); unlike deletes the row; FK cascade is the backstop | never returned to another account (C1.1, C1.2) |
+| D21.2 | `slug` (1 to 200, catalog slugs only) | `lesson_like` | which lesson was liked | as above | as above | the like is a fact about one learner's taste: not read by feed, personalization, revisit selection or the settings API (PRD-005 rule 2, tested) |
+| D21.3 | `created_at_ms` | `lesson_like` | list order for the account's own "Liked" list | as above | as above | **not** used for the public count; the count's 24-hour rule reads `auth_user.created_at` |
+| D22.1 | `user_id` | `lesson_save` | owner of the save | with the account | account deletion (same transaction, counted); unsave deletes the row; FK cascade | |
+| D22.2 | `slug` | `lesson_save` | which lesson was saved | as above | as above | private to the account; no count, no public read |
+| D22.3 | `created_at_ms` | `lesson_save` | list order; carries the device's `savedAt` over at the merge | as above | as above | |
+
+**Purposes, plainly.** Save: a private list for the learner. Like: a private "Liked" list for the learner, plus one input to a **public, bucketed per-lesson label** (`10+`, `25+`, `50+`, `100+`, `250+`, `1k+`; below 10 shows nothing; exact numbers are never returned, cached or logged), computed from rows at read time, counting only accounts at least 24 hours old, and switchable off per lesson (`LIKE_COUNTS_HIDDEN`) and overall (`LIKE_COUNTS_PUBLIC`, default off). Nobody sees who liked or saved anything.
+
+**Export:** `likes` and `saves` arrays of `{slug, at}` in the export file (P1.5). **Idle rule:** covered by the 24-month rule through the cascade (off in release 1). **Also held, derived:** the in-memory like limiter (60 writes per account per 24 hours) keeps a keyed hash of the user id in one function instance's memory, never persisted (C3.2). **Not reachable by deletion:** a response from the count endpoint already cached at the CDN (up to 10 minutes) carries a label, not an identity.
+
 ## 4. Email: Resend
 
 | # | Datum | Purpose | Stored where | Processed by | Retention | Deletion path | Legal basis | Status |
@@ -196,4 +220,19 @@ Product gaps (data we hold without a satisfying reason, owner or path):
 | P1.6 retention | One retention per table, and the honest ones for D6, D7, D15 are "unknown" | M2, M3 and E13 |
 | P6.3 beacon retention | Stated as a target; **no persistence exists yet** | W-706 design |
 
-— Elif, 2026-10-16. Next re-read: when the backend-engineer reports M1 to M6 done, and when E13 lands.
+## 10. Status delta, 2026-10-18 (rebuild merged as 29a75310d; re-read in `company/reviews/_privacy/2026-10-18-accounts-rebuild-reread.md`)
+
+The rows above were read at `2f5c500`. Migration 001 was re-read at the rebuild and has the same columns. Where these lines disagree with an earlier row, **these win**:
+- D8.4 and D11.3 (M1): the `auth_verification_no_name` CHECK and a `verification.create/update.before` hook are in migration 001 and `auth.ts`. `name` is blocked at the database.
+- D7a (M6): limiter keys are HMAC-SHA-256 under an in-memory random key; no raw IP or email is held. The Better Auth library's own limiter still holds IPs in memory.
+- D8.9, D9.6 (M2): the idle clock is `greatest(last_sign_in_at, newest auth_session.updated_at)`; `last_sign_in_at` moves on sign-in and on each session refresh. The export names it `lastActiveAt`. The idle purge has no caller.
+- D9.1, D11.1, D12a (M3): expired rows are removed at the next `POST /api/account/start`; the wording is now honest; `tools/db-deletion-check.mjs --oldest-expired` reports what waits (cadence: readiness A-15).
+- D3: `s3c:ageband:session` is built (`AccountView.tsx`); the birth year is held in a component and discarded.
+- D1: with an account, the device **pulls** the account map once per page load and **pushes** one-slug deltas; the device's earlier history goes up only through "Keep my history". See the re-read for two defects in what a delta carries (preview conditions P-1, P-2).
+- D7 (P1.2): every page load asks `GET /api/account/me`; with accounts off it answers a 404 that may be cached 5 minutes.
+- Section 7 gains: a like or save row is deleted with the account; a cached count label (up to 10 minutes) holds no identity.
+- Section 8 gap 8 closes for 001 (read on the merge); migration 002 is read.
+
+- 2026-10-18, second delta (fix commit beb83bfd4, merged de5ff7013): D1 now **pushes only the change an update made** (P-1 closed). D23 added above. Sign-out restores the device's own D1 and removes the pulled account copy (W-1710 ruled). **D2** (`s3c:events:v1`) is not restored at sign-out: events played while signed in stay until "Also clear this device"; nothing reads D2, so this is the same open finding (section 8), now with a shared-device reason to stop writing it.
+
+— Elif, 2026-10-16, delta 2026-10-18. Next re-read: when the preview runs (deletion check, A-9) and when E13 lands.

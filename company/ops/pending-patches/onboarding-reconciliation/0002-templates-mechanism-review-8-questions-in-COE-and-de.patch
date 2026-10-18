@@ -1,0 +1,77 @@
+From 4e1f93dc1565a440984d4142c3ddea11b5af4b6e Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 17 Oct 2026 21:02:38 +0000
+Subject: [PATCH 2/4] templates: mechanism review (8 questions) in COE and
+ decision records; COE action states
+
+External assessment 2026-10-17, Appendix B. COE actions now carry merged /
+installed / active / effective, each with its own evidence. No new ritual or role.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01N7n6X4Qs7ukdnrrqNLZsmD
+---
+ company/decisions/README.md      | 13 +++++++++++++
+ company/rituals/templates/coe.md | 20 ++++++++++++++++++--
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+
+diff --git a/company/decisions/README.md b/company/decisions/README.md
+index 0344a2e55..e8010d4f7 100644
+--- a/company/decisions/README.md
++++ b/company/decisions/README.md
+@@ -14,9 +14,22 @@ status: decided | superseded by <file> | revisit on <date or condition>
+ ## Decision
+ ## Rests on              # claims, experiments, patterns (link them, so a correction has somewhere to go)
+ ## Revisit if            # the observation that should reopen this
++## Mechanism review      # only if the decision adds or changes a mechanism (a rule, tool, ritual, role duty)
++1. Recurring failure:    # what keeps happening, with dated cases
++2. Owner:                # who keeps it working and may retire it
++3. Trigger:              # what makes it run
++4. Action it can change: # what it blocks, routes or changes when it fires
++5. Proof of use:         # the record that shows it ran in real work
++6. Outcome and side effect: # what we measure, and what it might cost or break
++7. Simpler alternative:  # the smaller change considered, and why not
++8. Keep / revise / retire on: # date or condition, decided from 5 and 6
+ ## Objections
+ | Objection | Raised by | Kind (evidence/purpose) | Status (accepted / rejected because… / open, funded by… / superseded) |
+ ```
+ 
+ `npm run check` fails a record with no `owner:` line or no `## Objections` section. Write
+ "none raised" if there were none; do not leave the section out.
++
++The mechanism review (external assessment 2026-10-17, Appendix B) is the same eight questions as in
++`company/rituals/templates/coe.md`; it is a section of an existing record, not a new ritual. Link
++the decision, the implementation and the adoption evidence rather than restating them.
+diff --git a/company/rituals/templates/coe.md b/company/rituals/templates/coe.md
+index b5508f15f..4810b1bd9 100644
+--- a/company/rituals/templates/coe.md
++++ b/company/rituals/templates/coe.md
+@@ -17,8 +17,24 @@ owner: (role nearest the failure) · reviewers: evaluation-steward, pattern-libr
+ The tool, gate, pattern or ritual that let it through. "Be more careful" is not an answer.
+ 
+ ## Actions (each changes a mechanism; tracked on the board until done)
+-| Action | Mechanism changed | Owner | Board id |
+-|---|---|---|---|
++| Action | Mechanism changed | Owner | Board id | State | Evidence for that state |
++|---|---|---|---|---|---|
++
++Action states, in order. Each needs its own evidence; a later state never borrows an earlier one's, and a board item marked done is none of them.
++- **merged**: the change is on main (commit SHA).
++- **installed**: it is wired where it runs (hook in settings, guard called by the tool, script on the path), shown by the config line or a run that invoked it.
++- **active**: it fired in real work since installation (an event, log line or refusal from a live session, not a test).
++- **effective**: the failure's recurrence fell, measured against exposure (how often the risky situation came up) at a dated check. A day without the hazard is not prevention.
++
++## Mechanism review (one per action that adds or changes a mechanism)
++1. Recurring failure: what keeps happening, with two or more dated cases (links)?
++2. Owner: which role keeps it working and may retire it?
++3. Trigger: what event or condition makes it run?
++4. Action it can change: what does it block, route or change when it fires (if nothing, it is a report)?
++5. Proof of use: what record shows it ran (state **active** above)?
++6. Outcome and side effect: what will we measure, and what cost or new failure might it cause?
++7. Simpler alternative: what smaller change was considered, and why not that?
++8. Keep, revise or retire on: the date or condition when the owner decides, using 5 and 6.
+ 
+ ## Claims and decisions to send back to review
+ Which claims rested on what failed? Which decisions rested on those claims?
+-- 
+2.43.0
+

@@ -1,4 +1,4 @@
-# AMD-013: one risk-graded publish gate (simple path for every lesson)
+# AMD-014: one risk-graded publish gate (simple path for every lesson)
 
 status: proposed (draft, not applied)
 date: 2026-10-18
@@ -6,6 +6,8 @@ proposed_by: chief-of-staff, for the founder's ask in `company/decisions/2026-10
 prepared_by: evaluation-steward (to own, redraft, split or renumber)
 surface: `tools/company.mjs` (protected), commands `publish` and `check` only
 supersedes if ratified: AMD-001 part (d) (verdict + version in the gate) and AMD-006 (sensitive gate); both fold into (a) and (b) below
+
+Renumbered from AMD-013 on 2026-10-18: AMD-013 is the one readiness policy, ratified and applied (PR #8). This draft builds on it; parts (a) and the hold floor may already be covered there, and the evaluation steward's redraft (W-1907) must start from AMD-013 as applied.
 
 Nothing below has been applied.
 
@@ -40,6 +42,6 @@ Every check that matters runs on every publish, whoever runs it. The holds list 
 The chief of staff runs the publish loop today; this takes the hold decisions away from it. That is the intent (2026-10-13 role evaluation, finding 4).
 
 ## Rollback
-Revert the `tools/company.mjs` commit under its `Amendment: AMD-013` trailer. `publish-ready.mjs` and `publish-holds.json` are kept until one clean batch has passed, so the old route still holds.
+Revert the `tools/company.mjs` commit under its `Amendment: AMD-014` trailer. `publish-ready.mjs` and `publish-holds.json` are kept until one clean batch has passed, so the old route still holds.
 
 ## Decision (constitutional review board)

@@ -1,6 +1,6 @@
-# Simple path: accessibility-reviewer answer (W-1674)
+# Simple path: accessibility-reviewer answer (W-1904)
 
-date: 2026-10-18 · role: accessibility-reviewer · inputs: the decision record, AMD-013 (c), `tools/a11y-scan.mjs`, my records in `company/reviews/_accessibility/`. No new scan run.
+date: 2026-10-18 · role: accessibility-reviewer · inputs: the decision record, AMD-014 (c), `tools/a11y-scan.mjs`, my records in `company/reviews/_accessibility/`. No new scan run.
 
 ## Verdicts
 
@@ -11,7 +11,7 @@ date: 2026-10-18 · role: accessibility-reviewer · inputs: the decision record,
 
 ## Objection
 
-**I object to AMD-013 (c) as written.** It names `tools/a11y-scan.mjs --record` and a "current version" match. Neither exists: the script has no `--record` flag, writes one JSON for the whole run (`--out`), and stores no lesson version. Ratifying (c) today gives a gate nobody can satisfy, or a hand-made file the record says is a scan. The tool change is mine to propose and the platform-engineer's to code; it must land before (c) is enforced. Answer wanted from the evaluation-steward in the AMD.
+**I object to AMD-014 (c) as written.** It names `tools/a11y-scan.mjs --record` and a "current version" match. Neither exists: the script has no `--record` flag, writes one JSON for the whole run (`--out`), and stores no lesson version. Ratifying (c) today gives a gate nobody can satisfy, or a hand-made file the record says is a scan. The tool change is mine to propose and the platform-engineer's to code; it must land before (c) is enforced. Answer wanted from the evaluation-steward in the AMD.
 
 ## (1) Changes to make the gate sound
 

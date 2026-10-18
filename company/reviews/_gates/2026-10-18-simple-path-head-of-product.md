@@ -1,8 +1,8 @@
-# Simple path: head-of-product answer (route step 2, W-1673)
+# Simple path: head-of-product answer (route step 2, W-1903)
 
 role: head-of-product (owner of the lesson path, chair of launch review)
 date: 2026-10-18
-on: company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md, AMD-013 draft
+on: company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md, AMD-014 draft
 answer: **agree with changes** (objections O1 and O2 must be answered before ratification)
 
 ## 1. Path A steps: agree with changes

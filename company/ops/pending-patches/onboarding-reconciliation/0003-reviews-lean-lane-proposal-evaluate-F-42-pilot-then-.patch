@@ -1,0 +1,69 @@
+From 19f4090ea7e7204e503980e9b88584122e8892c7 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 17 Oct 2026 21:02:38 +0000
+Subject: [PATCH 3/4] reviews: lean-lane proposal (evaluate F-42 pilot, then
+ one lean lane), proposal only
+
+Measures and keep/retire rule fixed before any result (pre-registration).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01N7n6X4Qs7ukdnrrqNLZsmD
+---
+ .../org/2026-10-17-lean-lane-proposal.md      | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 company/reviews/org/2026-10-17-lean-lane-proposal.md
+
+diff --git a/company/reviews/org/2026-10-17-lean-lane-proposal.md b/company/reviews/org/2026-10-17-lean-lane-proposal.md
+new file mode 100644
+index 000000000..1548f1c3e
+--- /dev/null
++++ b/company/reviews/org/2026-10-17-lean-lane-proposal.md
+@@ -0,0 +1,45 @@
++# Proposal: evaluate the F-42 mailbox pilot, then run one lean lane (2026-10-17)
++
++owner: chief-of-staff-ceo-office (Leonie), proposer · status: **proposal only; nothing here is decided or dispatched** · decides: founder (an org mechanism, company/decisions/2026-10-16-founder-org-and-dispatch-rule.md)
++asked by: founder, via company/reviews/org/2026-10-17-external-assessment.md (finding 4; Appendix B "Concrete next comparisons", row 1; "Recommended first sequence" step 3)
++route: portfolio-manager (sizes capacity and cost, picks the lane with its CM) → analytics-steward (computes the measures; not the designer) → evaluation-steward (owns acceptance) → tools-lead (only if a mechanical change is needed) → chief-of-staff (runs dispatch) → founder
++pre-registration: the measures and the keep/retire rule below are fixed when this file is committed, before any lane result exists. Results go in a separate dated record that links this commit.
++
++## Step 1. Read the F-42 pilot against its baseline (before anything new)
++
++Pilot: verticals lane (Wave J, physics first), started 2026-10-16, 3 days, founder confirms after (company/decisions/2026-10-16-founder-mailbox-dispatch.md). Baseline: company/engineering/operations/2026-10-16-throughput-diagnosis.md (10-16, 00:00-14:23Z, subagents only).
++
++| Measure | Baseline | Source for the pilot |
++|---|---|---|
++| Manager token share (manager turns, incl. "read inbox, decide next", over the lane's spend) | 35% (6.47M of 18.65M); under 1% on 10-14 | ledger rows with `--source=mail:<id>` and the `wave-j` tag |
++| Builder occupancy | 1.28 of 3; zero builders in 33% of minutes | slot ledger, per minute |
++| Queue latency (request written → agent started) | not measured; rounds 20-130 min apart (r2 10:12 … r6 ~14:50) | mailbox file time vs dispatch event |
++| Accepted outcomes per M tokens (lessons publish-ready for their current version) | 0.70 per M (10-16); 9.3 (10-14) | `node tools/publish-ready.mjs`, ledger |
++| Request size | 41 requests, 723 KB (~180k coordinator tokens/day) | bytes per mailbox request |
++
++Read it as a before/after on one lane, not a controlled result. Stop and fix measurement first if more than 20% of the pilot's ledger rows lack tokens or a source tag (the assessment found 867 of 992 rows without model labels). The coordinator's own tokens are not in the ledger: count its bookkeeping commits per accepted lesson as the proxy (247 of 329 on 10-16).
++
++## Step 2. One lean lane, one category
++
++**Lane:** one category on the catalog line (its budget never blocks), with at least 10 build-ready ranked briefs; portfolio-manager and the category's CM choose it. **Control:** a concurrent category of similar queue on the current protocol, or the same category's previous 3 days if no concurrent match exists (weaker; say so in the result).
++
++- **Standing queue.** The CM keeps `company/domains/briefs/<domain>.md` ranked; `tools/claim.mjs next` hands briefs out. One standing order (company/ceo-office/dispatch-requests.md §2.3, at most 7 days) authorizes "next brief, demo-builder, worktree, done-when = local QA pass + status review".
++- **Mechanical dispatch.** When a builder slot frees, the chief of staff runs `dispatch-check` and starts the next brief. No manager round per dispatch. The CM re-ranks at most every 3 h, or on an exception (refusal, failed build, a finding that changes a brief).
++- **Independent acceptance.** Lane 10's existing standing orders send fact-check, QA and learner review on the shared review server; evaluators get the artifact only; `publish-ready.mjs` decides. Nothing about gates changes.
++- **Fixed:** builder model as recorded (tools/org/caps.mjs), caps 14/3, the same gates and holds, founder approval for every deploy.
++
++## Measures (both lanes, same definitions)
++
++1. Manager token share. 2. Queue latency: slot free → next build start (median, p90). 3. Builder occupancy. 4. Accepted outcomes: lessons publish-ready on their current version, per day and per M tokens, counted through acceptance (checks and rework included). 5. Defects: first-review `revise` rate, disputed claims per 10 lessons, QA failures at merge, and any published claim later found false. 6. Founder interventions: founder corrections or redirections of the lane, from founder-inbox.json and decision records.
++
++## Keep / revise / retire (fixed now)
++
++Run 3 days or 30 builds, whichever comes first. Then:
++- **Retire at once** (back to the current protocol) on any stop: cap breach, out-of-lane dispatch, a deploy-path touch, an evaluator given a builder's account, or a published claim found false that traces to the lane.
++- **Keep** (propose a second lane) only if all hold against the control: manager share ≤ 15%; occupancy ≥ 2.0 of 3 while the queue is non-empty; accepted outcomes per M ≥ 1.5×; first-review `revise` rate no more than 10 points worse; QA failures at merge 0; founder interventions no more than the control's.
++- **Revise once** if no stop fires but a keep condition misses; rerun for 3 days with one named change; then keep or retire with the same rule.
++- With under 15 accepted lessons in either lane, the result is **inconclusive**, not equal: report it, and extend once or stop.
++
++## Not in this proposal
++
++No new role, ritual, power or tool. Managers keep queues, budgets and exceptions; the chief of staff stays the only process that starts agents (F-42 item 1). Mechanizing the drain into a scheduled worker (assessment finding 3: reserve before launch) is tools-lead's, separately.
+-- 
+2.43.0
+

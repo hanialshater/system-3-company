@@ -18,6 +18,8 @@ function tmpRoot() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-publish-ready-"));
   fs.mkdirSync(path.join(root, "tools"));
   fs.copyFileSync(path.join(REPO, "tools/publish-ready.mjs"), path.join(root, "tools/publish-ready.mjs"));
+  fs.mkdirSync(path.join(root, "tools/lib"));
+  fs.copyFileSync(path.join(REPO, "tools/lib/readiness.mjs"), path.join(root, "tools/lib/readiness.mjs")); // AMD-013
   const dest = path.join(root, "src/demos/lifehacks", SLUG);
   fs.mkdirSync(dest, { recursive: true });
   const meta = JSON.parse(fs.readFileSync(path.join(LESSON, "meta.json"), "utf8"));
