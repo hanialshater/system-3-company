@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 (evening) · chief-of-staff (acting release manager) · r10 LIVE: PR #8 merged, accounts off
+
+**Changed:** PR #8 (accounts, server progress, likes/saves, AMD-013) merged into the default branch through PR #9 (a6333dd0), founder-approved; record conflicts fixed by renumbering this session's draft AMD-013 → AMD-014 and W-1671..W-1682 → W-1901..W-1912. AMD-013 marked applied; changelog records the merge and rollback recipe C2. Release r10 deployed to production at ~13:21 UTC by Vercel's Git integration from commit 8eeb961a (deploy marker), on the founder's choice after this session could not dispatch the Deploy to Vercel workflow (GitHub 403). Release entry r10 in company/ops/releases.json; tests/hq/releases.test.mjs counts r10.
+**Smoke (chief of staff, curl script):** 720/720 published lessons 200; sampled drafts 404; 15 account API routes 404 with no Set-Cookie; /account shows the designed "Accounts are not available here" page (C5); in-review lessons serve 200 tagged "In review" per the 10-15 founder decision. /hq/releases shows r10. Not checked: browser QA on production, WebKit.
+**Believe:** sure r10 is live with every account surface off (high). The deploy skipped the workflow's staged promotion; CI verify on 882737a4 ran beside it.
+**Next:** W-1913 (head-of-product: in-review lessons must be 404 for First Light Q1.3, decide before the 11-13 freeze); W-1914 (release-manager: workflow dispatch permission); a flags-on staff preview needs W-1706 (founder infra), W-1716, W-1714, W-1701/W-1702, PC5/PC6. **Blocked:** W-1706 on the founder.
+
 ## 2026-10-18 (latest) · chief-of-staff · category scale-out plan drafted for the founder
 
 **Changed:** `company/decisions/2026-10-18-founder-category-scale-out-plan.md` (proposed): independent Category Management org with human cluster leads and a Studio pool it borrows from by work order; lesson families (engine + specs) and six content types; HQ approval state machines derived from disk; cost levers O1–O8; phases (Phase 0 launch coverage to 11-06, design on paper in the freeze, build in December). Board W-1908..W-1912 for the owners' written answers. Nothing applied.
