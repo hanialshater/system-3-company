@@ -576,3 +576,60 @@ t("27. Postgres is 16 or newer (M1's IS JSON; readiness A-14)", async () => {
   assert.ok(Number(rows[0].server_version_num) >= 160000);
   assert.ok(SLUGS.length > 0);
 });
+
+// ---------------- Principal review 2026-10-18 PC4 (F6, F7) ----------------
+
+t("28. PC4: the recall cap holds across requests (the 20 x 100 probe), and progress writes and merges are limited per account", async () => {
+  let clock = Date.now();
+  const w = makeWorld(pool, { now: () => clock });
+  const { cookie, userId } = await signUp(w, "probe@example.com");
+  const base = clock - 30 * DAY;
+  const put = (entry) => w.api.progressPut(req("/api/account/progress", { method: "PUT", body: { slug: "lesson-c", entry }, cookie }));
+  for (let i = 0; i < 20; i++) {
+    const recalls = Array.from({ length: 100 }, (_, j) => ({ at: base + (i * 100 + j) * 1000, correct: j % 2 === 0 }));
+    assert.equal((await put({ recalls })).status, 200, `put ${i}`);
+  }
+  const n = Number((await pool.query("SELECT count(*) AS n FROM recall WHERE user_id = $1 AND slug = 'lesson-c'", [userId])).rows[0].n);
+  assert.equal(n, 100, "at most 100 recalls per (account, slug), not 2,000");
+  const got = (await (await w.api.progressGet(req("/api/account/progress", { cookie }))).json()).progress["lesson-c"].recalls;
+  assert.equal(got.length, 100);
+  assert.equal(got.at(-1).at, base + 1999 * 1000, "the newest are kept (revisitDue reads the last)");
+  assert.equal(got[0].at, base + 1900 * 1000);
+  // The same probe through merge: the cap holds there too, and merge stops at 10 per hour per account.
+  const statuses = [];
+  for (let i = 0; i < 11; i++) {
+    const recalls = Array.from({ length: 100 }, (_, j) => ({ at: base + 3_000_000 + (i * 100 + j) * 1000, correct: true }));
+    statuses.push((await w.api.merge(req("/api/account/merge", { method: "POST", body: { progress: { "lesson-d": { recalls } } }, cookie }))).status);
+  }
+  assert.deepEqual(statuses.slice(0, 10), Array(10).fill(200));
+  assert.equal(statuses[10], 429, "11th merge in an hour refused");
+  assert.equal(Number((await pool.query("SELECT count(*) AS n FROM recall WHERE user_id = $1 AND slug = 'lesson-d'", [userId])).rows[0].n), 100);
+  // Progress PUTs: 20 used above; 40 more pass, then 429 until the 10-minute window moves on.
+  for (let i = 0; i < 40; i++) assert.equal((await put({ recalls: [{ at: base + 5_000_000 + i, correct: true }] })).status, 200);
+  assert.equal((await put({ recalls: [{ at: base + 6_000_000, correct: true }] })).status, 429);
+  const other = await signUp(w, "probe-other@example.com");
+  assert.equal(
+    (await w.api.progressPut(req("/api/account/progress", { method: "PUT", body: { slug: "lesson-c", entry: { recalls: [{ at: base, correct: true }] } }, cookie: other.cookie }))).status,
+    200,
+    "the limit is per account",
+  );
+  clock += 600_001;
+  assert.equal((await put({ recalls: [{ at: base + 6_000_001, correct: true }] })).status, 200);
+});
+
+t("29. PC4 (F7): unlike and unsave of a lesson that has left the catalog delete the row; marking it is still refused", async () => {
+  const w = makeWorld(pool);
+  const a = await signUp(w, "retired@example.com", "16+");
+  for (const table of ["lesson_like", "lesson_save"]) {
+    await pool.query(`INSERT INTO ${table} (user_id, slug, created_at_ms) VALUES ($1, 'retired-lesson', $2)`, [a.userId, Date.now()]);
+  }
+  for (const [kind, table] of [["likes", "lesson_like"], ["saves", "lesson_save"]]) {
+    const put = await w.api.mark(req(`/api/account/${kind}/retired-lesson`, { method: "PUT", cookie: a.cookie }), table, "retired-lesson", true);
+    assert.equal(put.status, 404, `${kind}: marking a retired lesson is refused`);
+    const del = await w.api.mark(req(`/api/account/${kind}/retired-lesson`, { method: "DELETE", cookie: a.cookie }), table, "retired-lesson", false);
+    assert.equal(del.status, 204, `${kind}: unmark of a retired lesson`);
+    assert.equal(Number((await pool.query(`SELECT count(*) AS n FROM ${table} WHERE user_id = $1`, [a.userId])).rows[0].n), 0, `${kind}: row deleted`);
+  }
+  const long = "x".repeat(201);
+  assert.equal((await w.api.mark(req(`/api/account/saves/${long}`, { method: "DELETE", cookie: a.cookie }), "lesson_save", long, false)).status, 404);
+});

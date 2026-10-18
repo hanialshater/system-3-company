@@ -4,9 +4,10 @@
 // ("Remembering is not knowing": we come back and ask before showing).
 // Every access is guarded: storage can be missing, full or blocked.
 //
-// EDD-008 (optional accounts): the browser stays the source of truth on the device. When a learner is signed in,
-// src/lib/account-client.ts registers a sink, and each update is also sent as a one-slug delta. With no sink (the
-// anonymous learner, or accounts off) nothing here touches the network beyond the existing beacon.
+// EDD-008 (optional accounts): the browser stays the source of truth on the device. When a learner is signed in and
+// has answered the merge screen, src/lib/account-client.ts registers a sink; it is given the entry before and after
+// each update and sends only the difference (PC1). With no sink (the anonymous learner, or accounts off) nothing here
+// touches the network beyond the existing beacon. The account merge code lives in the account chunk, not here (PC8).
 
 import type { LessonEvent } from "./types";
 
@@ -42,7 +43,7 @@ export function loadProgress(): ProgressMap {
   return read<ProgressMap>(KEY, {});
 }
 
-type ProgressSink = (slug: string, entry: LessonProgress) => void;
+type ProgressSink = (slug: string, before: LessonProgress | undefined, after: LessonProgress) => void;
 let sink: ProgressSink | null = null;
 
 /** Registered only while signed in (account-client.ts). null removes it. */
@@ -52,35 +53,14 @@ export function setProgressSink(fn: ProgressSink | null) {
 
 export function updateProgress(slug: string, fn: (p: LessonProgress) => LessonProgress) {
   const all = loadProgress();
+  const before = sink ? loadProgress()[slug] : undefined; // its own copy: fn cannot change it
   all[slug] = fn(all[slug] ?? { recalls: [] });
   write(KEY, all);
   try {
-    sink?.(slug, all[slug]);
+    sink?.(slug, before, all[slug]);
   } catch {
     /* sync must never break a lesson */
   }
-}
-
-/**
- * Union another map into the local one (EDD-008 §8, the same rule the server uses): earliest completion wins, a
- * prediction already on the account is kept, recalls de-duplicated by `at` and sorted (revisitDue reads the last).
- * `incoming` is the account's merged map, so its prediction wins where it has one. Never removes anything.
- */
-export function mergeIntoLocal(incoming: ProgressMap): ProgressMap {
-  const all = loadProgress();
-  for (const [slug, theirs] of Object.entries(incoming)) {
-    const mine = all[slug] ?? { recalls: [] };
-    const completed = [mine.completedAt, theirs.completedAt].filter((x): x is number => typeof x === "number");
-    const byAt = new Map<number, { at: number; correct: boolean }>();
-    for (const r of [...(mine.recalls ?? []), ...(theirs.recalls ?? [])]) if (!byAt.has(r.at)) byAt.set(r.at, r);
-    const next: LessonProgress = { recalls: [...byAt.values()].sort((a, b) => a.at - b.at) };
-    if (completed.length) next.completedAt = Math.min(...completed);
-    const predicted = theirs.predictedCorrectly ?? mine.predictedCorrectly;
-    if (predicted !== undefined) next.predictedCorrectly = predicted;
-    all[slug] = next;
-  }
-  write(KEY, all);
-  return all;
 }
 
 /** Interval schedule in days for each successful recall (expanding retrieval). */

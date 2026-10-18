@@ -87,10 +87,20 @@ SELECT $1, r.slug, r.at_ms, r.correct
 FROM jsonb_to_recordset($2::jsonb) AS r(slug text, at_ms bigint, correct boolean)
 ON CONFLICT DO NOTHING`;
 
+// PC4 (principal review F6): at most MAX_RECALLS_PER_SLUG recalls per (account, slug) across requests, the newest
+// kept (revisitDue reads the last). A real learner stops at 4 correct recalls per lesson; only a script reaches this.
+const CAP_RECALLS_SQL = `
+DELETE FROM recall r
+USING (
+  SELECT slug, at_ms, row_number() OVER (PARTITION BY slug ORDER BY at_ms DESC) AS n
+  FROM recall WHERE user_id = $1 AND slug = ANY($2::text[])
+) x
+WHERE r.user_id = $1 AND r.slug = x.slug AND r.at_ms = x.at_ms AND x.n > ${MAX_RECALLS_PER_SLUG}`;
+
 /**
  * Union-merge a cleaned map into the account (§8): earliest completion wins, an existing prediction is never
- * overwritten (Q7), recalls de-duplicated by `at`. Nothing is ever deleted or lowered. Idempotent. Call inside a
- * transaction.
+ * overwritten (Q7), recalls de-duplicated by `at`. Nothing is lowered; the only deletion is the recall cap above
+ * (oldest beyond MAX_RECALLS_PER_SLUG per slug). Idempotent. Call inside a transaction.
  */
 export async function mergeProgress(q: Query, userId: string, map: ProgressMap): Promise<void> {
   const slugs = Object.keys(map);
@@ -102,7 +112,10 @@ export async function mergeProgress(q: Query, userId: string, map: ProgressMap):
   }));
   await q(UPSERT_PROGRESS_SQL, [userId, JSON.stringify(rows)]);
   const recalls = slugs.flatMap((slug) => map[slug].recalls.map((r) => ({ slug, at_ms: r.at, correct: r.correct })));
-  if (recalls.length) await q(INSERT_RECALLS_SQL, [userId, JSON.stringify(recalls)]);
+  if (recalls.length) {
+    await q(INSERT_RECALLS_SQL, [userId, JSON.stringify(recalls)]);
+    await q(CAP_RECALLS_SQL, [userId, [...new Set(recalls.map((r) => r.slug))]]);
+  }
 }
 
 /** The account's map, in the s3c:progress:v1 shape, recalls sorted by `at` (revisitDue reads the last one). */
