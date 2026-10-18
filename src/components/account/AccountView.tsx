@@ -12,9 +12,10 @@ import {
   AGEBAND_KEY,
   accountMe,
   accountState,
-  afterAccountDeleted,
   answerMerge,
+  deleteAccount,
   importHistoryFile,
+  onAccountChanged,
   signOut,
   type AccountState,
   type SignedInMe,
@@ -60,6 +61,8 @@ export default function AccountView() {
   const [state, setState] = useState<AccountState | undefined>(undefined);
   useEffect(() => {
     void accountState().then(setState);
+    // PC10: a write from this page got 409 (another tab signed the browser into a different account): read again.
+    return onAccountChanged(() => void accountState().then(setState));
   }, []);
 
   if (state === undefined) return <main style={box}>Loading…</main>;
@@ -75,6 +78,7 @@ export default function AccountView() {
   if (!me.signedIn) return <SignUp />;
   return (
     <SignedIn
+      key={me.tag}
       me={me}
       ask={"ask" in state ? state.ask : null}
       fromLink={"fromLink" in state && !!state.fromLink}
@@ -210,6 +214,7 @@ function SignedIn({
 
   const answer = async (choice: { progress: boolean; saves: boolean } | null) => {
     const next = await answerMerge(choice);
+    if (next === "switched") return; // PC10: nothing was sent; the page re-reads for the account now signed in
     if (!next) return setMergeState("error");
     setMergeState(choice ? "done" : "declined");
     onAnswered(next);
@@ -319,15 +324,10 @@ function SignedIn({
             <button
               style={btn}
               onClick={async () => {
-                const r = await fetch("/api/account/delete", {
-                  method: "POST",
-                  credentials: "same-origin",
-                  headers: { "content-type": "application/json" },
-                  body: JSON.stringify({ confirm: true }),
-                });
-                if (!r.ok) return setNote("Deletion failed. Nothing was deleted; try again.");
-                afterAccountDeleted(clearDevice);
-                setDeleted(((await r.json()) as { deleted: Record<string, number> }).deleted);
+                const out = await deleteAccount(clearDevice);
+                if (out === "switched") return; // PC10: nothing deleted; the page re-reads for the account now signed in
+                if (!out) return setNote("Deletion failed. Nothing was deleted; try again.");
+                setDeleted(out);
               }}
             >
               Delete permanently

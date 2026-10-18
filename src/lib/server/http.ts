@@ -4,7 +4,7 @@
 // Logging rule (readiness A-6, privacy B4 style): nothing here or in a caller logs a request body, an email, a token,
 // an id, or an error's message or detail. A pg constraint error's `detail` holds the failing row, which can be an
 // email. `logFailure` prints fixed text plus, at most, a five-character SQLSTATE or one allow-listed library code.
-import { createHmac, randomBytes } from "node:crypto";
+import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 
 export const NO_STORE = { "cache-control": "no-store" } as const;
 
@@ -25,11 +25,30 @@ export const notFound = () => empty(404);
  * PC3: an opaque value per account for the device state (s3c:account-device:v1), so the client can tell that a
  * different account is now signed in without a marker in the URL. HMAC-SHA-256 of the account id under the auth
  * secret, first 16 bytes, base64url (22 characters). It is not the id, cannot be reversed or matched to an id without
- * the secret, and holds no email. Nothing stores it on the server. A secret rotation changes every value, which only
- * means each device asks its merge question again (fail-safe).
+ * the secret, and holds no email. Nothing stores it on the server.
+ * Rotation (principal re-read 2026-10-18, second): changing BETTER_AUTH_SECRET invalidates every session, so every
+ * device is signed out and its device state removed before a tag is compared; rotating through Better Auth's
+ * versioned BETTER_AUTH_SECRETS leaves BETTER_AUTH_SECRET, and so every tag, unchanged.
  */
 export function accountTag(secret: string, accountId: string): string {
   return createHmac("sha256", secret).update(`s3c:account-device:v1\0${accountId}`).digest().subarray(0, 16).toString("base64url");
+}
+
+/**
+ * PC10: the request header that binds an account write to the account the page started with. The client sends the
+ * /me tag it holds; the write routes compare it with the session's tag and answer 409 without writing on a mismatch
+ * or a missing header. It travels only to our own /api/account write routes (tests/accounts/static.test.mjs S18).
+ * The same literal is ACCOUNT_HEADER in src/lib/account-client.ts (S18 checks they match).
+ */
+export const ACCOUNT_HEADER = "x-s3c-account";
+
+/** PC10: does the request carry exactly `expected` in ACCOUNT_HEADER? A missing or empty header never matches. */
+export function sameAccountHeader(req: Request, expected: string): boolean {
+  const sent = req.headers.get(ACCOUNT_HEADER);
+  if (!sent || !expected) return false;
+  const a = Buffer.from(sent);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
 }
 
 /**
