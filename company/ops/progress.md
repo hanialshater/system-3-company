@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · lesson-dims-owner (Anneke, run dims-merge-1018) · dims index regenerated after the default-branch merge (merge-default, d212efa2)
+
+**Changed.** Reran company/personalization/dims/build-index.mjs (generator unchanged): src/lib/learner/dims-index.generated.ts now 954 lessons (published 720, review 234), 231 pilot (probability 78, cs 153), 12 anchor strengths. New dated note company/personalization/dims/2026-10-18-dims-index-coverage-update.md (coverage table, new pilot order sha); the 2026-10-17 record is untouched.
+
+**Believe (high).** `npm run test:dims` 6/6. `npm run check` fails only at review-timing test 10 (company/personalization/model/sim/review-timing.test.mjs), which does not read the dims index; that is the simulator catalogue moving with the merge, learner-model-engineer's open catalogue-pin work in this worktree.
+
+**Next.** personalization-eval: re-pin or keep the 230-slug sha in checks3b.mjs / default-order-rule.md (now pre-merge; 231-slug sha in the note). learner-model-engineer: catalogue pin so review-timing test 10 passes.
+
+**Blocked.** Nothing for this role.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-evalorg-port-1018) · W-1842: the evaluation org's four roles ported to branch eval-org-roles
 
 **Changed.** Ported from `origin/ccr-rnd-ncm` (never merged), on the founder's 2026-10-18 acceptance (company/decisions/2026-10-18-founder-evaluation-leaderboard-in-hq.md): chief-product-officer (Margot, leadership, reports to founder), head-of-evaluation (Tobias), pairwise-judge (pool, in `MANY`), evaluation-engineer (Anya), all in team `evaluation` under the CPO except the CPO herself; head-of-product now reports to chief-product-officer. Edits: tools/org/roles.mjs, tools/org/people.mjs, then `node tools/org/generate.mjs` (4 role docs, 4 agents, 4 empty memories, head-of-product.md and roles/README.md regenerated). Copied company/decisions/2026-10-14-evaluation-org.md and appended a "Port" section with objections 8-14. company/ceo-office/org-change-process.md: founder directs list names Margot, not Priya (still 9 directs), keep consulting Priya. Nothing in src/app/hq/**, tools/eval/**, company/evaluation/** (W-1841).
