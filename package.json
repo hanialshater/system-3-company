@@ -10,10 +10,10 @@
     "typecheck": "npm run registry && tsc --noEmit",
     "registry": "node tools/company.mjs registry",
     "company": "node tools/company.mjs",
-    "check": "node tools/company.mjs check && node tools/memory.mjs check",
+    "check": "node tools/company.mjs check && node tools/memory.mjs check && npm run test:personalization",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
-    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:accounts && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run test:metrics && npm run check && npm run typecheck && npm run build && npm run qa",
+    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:books && npm run test:algorithms && npm run test:kit && npm run test:eval && npm run test:hq && npm run test:platform && npm run test:accounts && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run test:metrics && npm run test:settings && npm run test:dims && npm run check && npm run typecheck && npm run build && npm run qa",
     "metrics": "node tools/metrics.mjs",
     "deploy": "node tools/deploy.mjs",
     "test:deploy": "node --test tests/deploy/*.test.mjs",
@@ -23,12 +23,16 @@
     "test:dispatch:slow": "S3_SLOW_TESTS=1 node --test tests/dispatch/*.test.mjs",
     "test:lifehacks": "node --import ./tests/lifehacks/register.mjs --test tests/lifehacks/*.test.mjs",
     "test:kit": "node --test src/kit/knots/test/*.test.mjs",
+    "test:eval": "node --test tests/eval/*.test.mjs",
     "test:hq": "node --import ./tests/lifehacks/register.mjs --test tests/hq/*.test.mjs",
     "test:books": "node --import ./tests/lifehacks/register.mjs --test tests/books/*.test.mjs",
     "test:algorithms": "node --import ./tests/lifehacks/register.mjs --test tests/algorithms/*.test.mjs",
     "test:spike": "node --import ./tests/lifehacks/register.mjs --test tests/spike/*.test.mjs",
     "test:platform": "node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs",
     "test:mailbox": "node --test tests/mailbox/*.test.mjs",
+    "test:settings": "node --import ./tests/lifehacks/register.mjs --test tests/settings/*.test.mjs",
+    "test:personalization": "node company/personalization/model/gate.mjs",
+    "test:dims": "node --test tests/personalization/dims-index.test.mjs",
     "test:metrics": "node --test tests/metrics/*.test.mjs",
     "test:accounts": "node --import ./tests/lifehacks/register.mjs --test --test-concurrency=1 tests/accounts/*.test.mjs"
   },
@@ -54,6 +58,6 @@
     "world-atlas": "^2.0.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.18"
   }
 }

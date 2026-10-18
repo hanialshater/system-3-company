@@ -1,0 +1,81 @@
+/* HQ Evaluation leaderboard. Global tokens (--bg, --fg, --line, --accent, …) and the HQ shell; light/dark follows prefers-color-scheme. */
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 4px 0 12px; }
+.field { display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: var(--muted); min-width: 0; }
+.grow { flex: 1 1 200px; }
+.select, .search {
+  border: 1px solid var(--line); background: var(--bg-2); color: var(--fg);
+  border-radius: 999px; padding: 6px 10px; font: inherit; font-size: 14px; max-width: 100%; box-sizing: border-box;
+}
+.search { width: 100%; padding: 6px 14px; }
+.check { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; padding-bottom: 6px; cursor: pointer; }
+.check input { accent-color: var(--accent); width: 16px; height: 16px; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.caption { text-align: left; color: var(--muted); font-size: 13px; padding-bottom: 8px; }
+.table th, .table td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.table thead th { font-size: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.table tbody th { font-weight: 600; }
+.lesson a { color: var(--accent); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.disc { opacity: 0.75; }
+.tag {
+  margin-left: 6px; font-size: 11px; font-weight: 600; border: 1px solid var(--warn); color: var(--warn);
+  border-radius: 999px; padding: 0 6px; white-space: nowrap;
+}
+.ratingCell { min-width: 220px; }
+.ratingNum { display: inline-block; width: 3.2em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.range { margin-left: 8px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.bar { display: inline-block; position: relative; width: 120px; height: 10px; vertical-align: middle; background: var(--bg-3); border-radius: 5px; }
+.span { position: absolute; top: 3px; height: 4px; background: color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 2px; }
+.dot { position: absolute; top: 0; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-sizing: border-box; }
+.mean { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--muted); opacity: 0.6; }
+.none { color: var(--muted); text-align: center; padding: 24px; }
+.panel { border: 1px solid var(--line); background: var(--bg-2); border-radius: var(--radius); padding: 12px 16px; font-size: 14px; }
+.panel h2, .panel h3 { margin: 0 0 8px; font-size: 15px; }
+.panel h3 { margin-top: 16px; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; }
+.sug { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.errBox { margin-top: 12px; color: var(--bad); }
+.errors { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+.empty { max-width: 640px; margin: 32px auto; padding: 0 4px; line-height: 1.5; }
+.empty h2 { margin: 0 0 8px; }
+.empty pre, .empty code { background: var(--bg-3); border-radius: 6px; padding: 2px 6px; font-size: 13px; }
+.empty pre { padding: 10px 14px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}
+/* Narrow screens: each row becomes a stacked card, no horizontal scroll. */
+@media (max-width: 720px) {
+  .table, .table tbody, .table tr, .table td, .table th { display: block; }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table tr { border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); padding: 8px 12px; margin-bottom: 10px; }
+  .table th, .table td { border: none; padding: 3px 0; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .table td::before, .table tbody th::before { content: attr(data-label); color: var(--muted); font-size: 12px; font-weight: 600; flex: none; }
+  .table tbody th { flex-wrap: wrap; justify-content: flex-start; }
+  .table tbody th::before { width: 100%; }
+  .ratingCell { min-width: 0; flex-wrap: wrap; }
+  .caption { display: block; width: 100%; }
+  .none { display: block; }
+  .none::before { content: none; }
+  .field { flex: 1 1 140px; }
+}
+
+/* Criterion flags (company/evaluation/flags.json): shown above the ranks they qualify. Same warn treatment as the HQ banner. */
+.flag {
+  border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--line));
+  background: color-mix(in srgb, var(--warn) 14%, var(--bg));
+  border-radius: 12px; padding: 8px 12px; margin: 0 0 10px; font-size: 14px; overflow-wrap: anywhere;
+}
+.flag p { margin: 0; }
+.flagHead { line-height: 1.4; }
+.flagBody { margin-top: 4px !important; font-size: 13px; line-height: 1.45; }
+.flagBody code { font-size: 12px; }
+.flagTag {
+  display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  border: 1px solid var(--warn); color: var(--fg); border-radius: 999px; padding: 0 6px; margin-right: 4px;
+}
+.flagList { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.noOverall { margin: 16px 0 0; font-size: 13px; line-height: 1.45; }

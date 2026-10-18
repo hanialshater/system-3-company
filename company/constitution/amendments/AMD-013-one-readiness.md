@@ -1,6 +1,6 @@
 # AMD-013: One readiness policy
 
-status: applied (a6333dd05, 2026-10-18: PR #8 landed through PR #9 into the default branch). Ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen); principal-engineer conditions C1-C4 folded in. Open objections O1-O5 travel with it.
+status: applied (a6333dd0, merge of PR #9 carrying PR #8 into the default branch, 2026-10-18). Ratified 2026-10-17 by the founder (parts a, b and c as drafted; alternatives A1 and A2 not chosen); first applied on the session branch as aeb637c0b, with the CI fetch-depth fix under part (b). Principal-engineer conditions C1-C4 folded in. Open objections O1-O5 travel with it.
 date: 2026-10-17
 proposed_by: evaluation-steward (route from the external assessment, `company/reviews/org/2026-10-17-external-assessment.md` §1 findings 1 and 5, Appendix A ch.4 and ch.8; founder asked us to act on it)
 prepared_by: evaluation-steward
@@ -236,5 +236,3 @@ review lesson.
 - A4 (2026-10-17, chief-of-staff): applied as aeb637c0b with `Amendment: AMD-013`. `npm run verify` on that tree: all 12 Node suites green (1,361 tests), `check` passed (1,283 lessons, 268 grandfathered), typecheck and production build green; the browser contract then finished: 2,576 passed, 0 failed (1.1 h). `npm run verify` exit 0. Status set to applied now so this file stops licensing protected edits (W-1680); if the remaining browser QA fails, the fix needs a new amendment number (Rollback section). W-1688 tracks the full browser QA result.
 
 - Correction (chief-of-staff, 2026-10-18): the status was set to `applied` before the change reached the default branch, which made PR #8's constitution check fail ("AMD-013 is not ratified"). It is back to `ratified` until the merge into the default branch. Then a separate commit sets `applied (<merge sha>)`. Also added `fetch-depth: 0` to the verify job's checkout: the harness suites that part (b) added include HQ release tests that read git history, and they failed on CI's depth-1 checkout (3 of 68, reproduced locally in a shallow clone).
-
-- A4 complete (chief-of-staff, 2026-10-18): the change reached the default branch in a6333dd05 (merge of PR #9, which carried PR #8 at 1a698587a). CI on that head: verify and constitution green. Status set to `applied`, so this file no longer licenses protected edits (W-1680).

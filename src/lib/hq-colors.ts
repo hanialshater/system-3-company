@@ -28,7 +28,7 @@ export const TEAM_COLOR: Record<string, string> = {
   founder: "#ffd54f",
   "chief-of-staff-ceo-office": "#ffd54f",
   "lifehacks-safety-reviewer": "#ffb74d",
-  "personalization-lead": "#c792ea",
+  "vp-personalization": "#c792ea",
   "learner-model-engineer": "#c792ea",
   "localization-lead": "#4fd1a5",
   localizer: "#4fd1a5",

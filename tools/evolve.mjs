@@ -32,6 +32,7 @@ import path from "node:path";
 import zlib from "node:zlib";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
+import { readArchive, boardOf, boardLines } from "./evolve-board.mjs";
 
 // ---------------------------------------------------------------------------------------------------------
 // Comment and whitespace stripping (a conservative tokenizer, not a minifier: it never renames, never joins
@@ -285,13 +286,7 @@ function evaluate(id) {
   return rec;
 }
 
-const archive = () => (fs.existsSync(ARCHIVE) ? fs.readFileSync(ARCHIVE, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)) : []);
-// Latest record per candidate (not the best: with a fresh bench seed per run, best-of-N would select noise).
-function board() {
-  const latest = new Map();
-  for (const r of archive()) latest.set(r.id, r);
-  return [...latest.values()].sort((a, b) => b.score - a.score);
-}
+const board = () => boardOf(readArchive(ARCHIVE)); // shared with the HQ R&D page: tools/evolve-board.mjs
 
 if (cmd === "eval") {
   const list = ids.length ? ids : fs.existsSync(cands) ? fs.readdirSync(cands).filter((d) => fs.statSync(path.join(cands, d)).isDirectory()) : [];
@@ -302,9 +297,7 @@ if (cmd === "eval") {
     for (const p of r.problems ?? []) console.log(`  - ${p}`);
   }
 } else if (cmd === "board") {
-  const b = board(), seeds = new Set(b.map((r) => r.seed));
-  if (seeds.size > 1) console.log(`warning: these candidates were scored with different bench seeds (${[...seeds].join(", ")}); re-score them in one run before selecting`);
-  for (const [i, r] of b.entries()) console.log(`${String(i + 1).padStart(2)}. ${r.id.padEnd(24)} ${String(r.score).padStart(9)}  tests ${r.pass}/${r.pass + r.fail}  ${r.gzBytes} B  seed ${r.seed ?? "-"}  parents: ${r.parents.join(",") || "-"}`);
+  for (const l of boardLines(readArchive(ARCHIVE))) console.log(l);
 } else if (cmd === "size") {
   const { tmp } = stage(ids[0] ?? fs.readdirSync(cands)[0]);
   const m = measure(tmp, cfg);

@@ -16,12 +16,13 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [VP of R&D (CEO Office)](vp-rnd.md) | founder | Turn 'we can't teach that in 60 seconds' into a library, an engine or a finding, and stop the bets that don't pay.. |
 | [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
 | [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
+| [Chief Product Officer (CEO Office)](chief-product-officer.md) | founder | Lessons get measurably better across the whole catalogue, and the company can say which ones, on which criteria, and how sure it is.. |
 
 ## Product
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Head of Product](head-of-product.md) | founder | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
+| [Head of Product](head-of-product.md) | chief-product-officer | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
 | [Domain Scout](domain-scout.md) | head-of-product | Find subjects worth adding and make the case for or against each with evidence, using the Domain Launch Review.. |
 | [Principal Product Manager — Strategic Verticals](principal-pm-verticals.md) | head-of-product | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
 
@@ -77,11 +78,19 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Backend Engineer](backend-engineer.md) | principal-engineer | Make a learner's progress survive devices and sessions, and make the revisit recall rate measurable, while storing as little about a person as the product needs.. |
 | [Privacy & Safety Reviewer](privacy-reviewer.md) | principal-engineer | Every field we store has a reason, an owner and a deletion path; nothing social ships without moderation and a child-safety answer.. |
 
-## Growth
+## Personalization
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Growth & Gamification Designer](growth-designer.md) | head-of-product | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [Growth & Gamification Designer](growth-designer.md) | vp-personalization | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [VP of Personalization (CEO Office)](vp-personalization.md) | founder | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
+| [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
+| [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
+| [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
+| [Lesson Features Owner](lesson-dims-owner.md) | vp-personalization | Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.. |
+| [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
+| [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
+| [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
 
 ## Company-tools
 
@@ -153,13 +162,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Sub-area Category Manager — History through data and maps: Maps & Borders](cm-history-maps-borders.md) | cm-history | Turn Maps & Borders into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
 | [Sub-area Category Manager — History through data and maps: Events through Data](cm-history-events-data.md) | cm-history | Turn Events through Data into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
 
-## Personalization
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Personalization Lead](personalization-lead.md) | head-of-product | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
-| [Learner Model Engineer](learner-model-engineer.md) | personalization-lead | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
-
 ## International
 
 | Role | Reports to | Mission |
@@ -187,3 +189,11 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | Role | Reports to | Mission |
 |---|---|---|
 | [VP of Marketing](vp-marketing.md) | founder | People who would benefit from 60-second predict-and-see lessons hear about them in words that are true, checkable and ours.. |
+
+## Evaluation
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Head of Evaluation](head-of-evaluation.md) | chief-product-officer | A leaderboard on several criteria that the company can trust: every comparison blind and reasoned, every rank with its uncertainty, and judges whose agreement is measured, not assumed.. |
+| [Pairwise Judge (Evaluation)](pairwise-judge.md) | head-of-evaluation | For each criterion, say which of two lessons is better for a first-time learner on a phone, and why, in one sentence a builder could act on.. |
+| [Evaluation Engineer](evaluation-engineer.md) | head-of-evaluation | Turn blind pairwise records into a leaderboard per criterion whose uncertainty is honest and whose every number traces back to a record.. |

@@ -263,11 +263,11 @@ S18 is the evidence for privacy condition 1 as A8.2 amends it. Its stated limits
 ### Verdict
 **Merge into the default branch with every switch off: approve** (unchanged). With `ACCOUNTS_ENABLED` unset every bound route answers 404 before the new check, `/me` is the same 404, and the client sends no write (C2). MC1 (verify including `qa` on the exact merged tree, chief of staff) and MC4 (principal-engineer-ops' readiness approval) still bind. My approval replaces neither.
 
-**Staff preview with any switch on: not yet.** Engineering owes **PC11** (above). Others owe: the privacy reviewer's ruling on **A8.2** (the tag is now sent in one header, a change to condition 1, W-1913) and the D23 row update (W-1917), W-1710; PC5 and PC6 (principal-engineer-ops, release-manager, platform-engineer); the 390×844 walk of `/account` (privacy preview item 2); principal-engineer-ops' readiness reading of the third addition, with P5 (tests 31 to 33 on the preview SHA). PC1 to PC4 and PC7 to PC10 need nothing more from engineering.
+**Staff preview with any switch on: not yet.** Engineering owes **PC11** (above). Others owe: the privacy reviewer's ruling on **A8.2** (the tag is now sent in one header, a change to condition 1, W-1961) and the D23 row update (W-1965), W-1710; PC5 and PC6 (principal-engineer-ops, release-manager, platform-engineer); the 390×844 walk of `/account` (privacy preview item 2); principal-engineer-ops' readiness reading of the third addition, with P5 (tests 31 to 33 on the preview SHA). PC1 to PC4 and PC7 to PC10 need nothing more from engineering.
 
 ### Routed (for the chief of staff; I did not edit board.json)
 1. backend-engineer: PC11, option (a) preferred. I will re-read the diff; no new review record is needed.
-2. privacy-reviewer: A8.2 ruling and D23 (W-1913, W-1917). Read PC11 before relying on S18. The Like/Save note above goes with F3.
+2. privacy-reviewer: A8.2 ruling and D23 (W-1961, W-1965). Read PC11 before relying on S18. The Like/Save note above goes with F3.
 3. principal-engineer-ops: readiness "Additions (third)": the merge stays approvable with switches off, and P5 applies.
 
 Kudos (not filed: `kudos.mjs` writes `events.jsonl`): @backend-engineer. Test 30 checks the order (a malformed body with a wrong tag is still 409), and C13 tests the newer-tab case I had not named. Both fail on a server-only mutant, so they test the server rather than the client.

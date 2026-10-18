@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-18: PR #8 merged into the default branch via PR #9 (merge a6333dd0); nothing deployed
+- Accounts, server progress, likes and saves (EDD-008 rebuild, PRD-005) behind `ACCOUNTS_ENABLED`, `LIKES_SAVES_ENABLED`, `LIKE_COUNTS_PUBLIC`, all default off. AMD-013 one readiness policy is now `applied`.
+- Founder approved the merge in conversation ("Ok approve pr #8"). CI green on 72f3a2e1 (verify, constitution). PR #9 added only record-conflict fixes: the default branch's draft AMD-013 became AMD-014, its board items W-1671..W-1682 became W-1901..W-1912.
+- **Rollback (C2):** use the path-limited recipe in `company/engineering/readiness/2026-10-16-accounts.md`, not a plain revert of a6333dd0, because the merge also carries company records.
 ## 2026-10-18: backend-engineer accounts preview blockers PC3 binding, PC9, W-1714 Ruling 1 (W-1716, W-1714, W-1711; tier 2, awaiting principal-engineer re-read, privacy-reviewer D23 ruling and principal-engineer-ops: company/engineering/readiness/2026-10-16-accounts.md "Additions, 2026-10-18 (second)"; EDD-008 addendum A7)
 - `src/lib/server/http.ts`, `account-api.ts`, `src/lib/account-client.ts`: signed-in `/me` returns an opaque per-account `tag` (keyed HMAC, stored nowhere on the server); `s3c:account-device:v1` records it, and a page load signed in as a different account is treated like the sign-in marker (merge screen, nothing pushed until answered). Closes probe 1 (an edited `callbackURL` skipped the screen). Tests C9, C10, S17.
 - `account-client.ts`: `accountState()` after sign-out or deletion starts the memoised sync, so `/account` no longer hangs on "Loading..." when it remounts (PC9). Test C11.

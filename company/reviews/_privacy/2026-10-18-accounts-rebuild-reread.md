@@ -251,7 +251,7 @@ Condition 1 of section 3.1 now reads: "The tag is never logged, never in a reque
 
 ## 4.2 Ruling 2: row D23 updated
 
-Edited `company/engineering/data-inventory.md`, row D23 (the backend-engineer left it to me, W-1917):
+Edited `company/engineering/data-inventory.md`, row D23 (the backend-engineer left it to me, W-1965):
 - **Processed by** (was "nobody; never sent, tag included"): the tag alone travels in the PC10 header to the five write routes, compared and dropped; the rest of D23 is never sent; conditions point here.
 - **Rotation, corrected:** a `BETTER_AUTH_SECRET` change signs every session out and removes every device's state before any tag is compared; versioned `BETTER_AUTH_SECRETS` keeps `BETTER_AUTH_SECRET`, so every tag stays the same. It does not "change every tag". My own 3.1 condition 3 said "A rotation changes every tag ... acceptable"; that sentence was wrong for the same reason and is superseded by the D23 wording. (The residual that a device key persists if the learner never returns is unchanged.)
 - **Status** and the section 10 delta record the ruling and the commit. The backend-engineer should confirm the row; I do not approve my own file.
