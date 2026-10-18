@@ -3,6 +3,18 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 (later) · chief-of-staff · simple lesson path: five answers in, objections recorded
+
+**Changed:** founder ask recorded in `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md` (class gates) with draft AMD-013. All five route answers are in `company/reviews/_gates/` (each "agree with changes"). Objections copied into the record with proposed Answers; W-1673..W-1676 done; W-1677 (evaluation-steward) redrafts AMD-013. Nothing in `tools/company.mjs` changed.
+**Believe:** the answers converge: publish-only gates with the 720 published grandfathered; route derived from domain + concept, not stored; a11y gate waits for `a11y-scan.mjs --record`; stop rule = any fatal flaw in a sample of max(3, 10%); "told, not shown" and answer leaks checked in brief, pre-flight and rubric. Confidence high on the census numbers (steward's script), medium on whether the batch signature adds value (head-of-product's own doubt, hence the 1-in-5 audit).
+**Next:** W-1677 redraft; scanner `--record` (platform-engineer, not yet on the board until the redraft names it); constitutional review board; founder ratifies. **Open:** whether `a11y-scan.mjs` severity rules become protected.
+
+## 2026-10-18 · evaluation-steward · W-1672 answer on the simple publish path (AMD-013)
+
+**Changed:** wrote `company/reviews/_gates/2026-10-18-simple-path-evaluation-steward.md` (agree with changes; objection to a stored `reviewRoute` field). W-1672 → review. Nothing in `tools/company.mjs`, the AMD or the decision record changed; no commit.
+**Believe (high, census by script):** AMD-013 as written fails `check` on day one, because `cmdCheck` runs `launchGates` on published lessons: (c) 720/720, (a) 26, (f) 12. Fix: publish-only gates plus grandfathering. QA records carry no lesson version, so step 4 of the decision record is wrong.
+**Next:** head-of-product W-1673, then the other route answers. After that the steward redrafts AMD-013 with publishGates, a derived route, (g) the QA version, residual holds and tool-drawn samples. **Blocked:** nothing.
+
 ## 2026-10-18 · chief-of-staff · roles keep/remove draft for the founder
 
 **Changed:** wrote `company/ceo-office/2026-10-18-role-keep-remove.md`: every role with runs, board load, handoffs and a keep/remove verdict. Board W-1671 (chief-of-staff-ceo-office) to review it and put it to the founder alongside F-13/F-33. No role, roster, subagent or seat changed.

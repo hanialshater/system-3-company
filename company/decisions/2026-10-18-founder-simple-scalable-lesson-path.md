@@ -2,7 +2,7 @@
 
 owner: evaluation-steward (the gate changes) · head-of-product (the launch review and the lesson path)
 date: 2026-10-18
-status: routed (proposal; nothing applied)
+status: routed (all five answers in, 2026-10-18; AMD-013 redraft pending; nothing applied)
 class: gates
 route: evaluation-steward (AMD-013 draft) → head-of-product (path, batch launch review) → accessibility-reviewer, cultural-reviewer, lifehacks-safety-reviewer, analytics-steward (each on its own step) → constitutional review board → founder ratifies
 recorded by: chief-of-staff
@@ -83,17 +83,34 @@ Locale variants and privacy review stay where they are (locale launch review; fe
 
 | Step | Role | Answer (agree / agree with changes / object) | Where |
 |---|---|---|---|
-| 1 | evaluation-steward (AMD-013, gate design) | pending | company/reviews/_gates/2026-10-18-simple-path-<role>.md |
-| 2 | head-of-product (path, batch launch review) | pending | company/reviews/_gates/2026-10-18-simple-path-<role>.md |
-| 3 | accessibility-reviewer (scan as gate, 10% sample) | pending | company/reviews/_gates/2026-10-18-simple-path-<role>.md |
-| 4 | cultural-reviewer (short publish verdict when unchanged) | pending | company/reviews/_gates/2026-10-18-simple-path-<role>.md |
-| 5 | analytics-steward (predictions per batch; EXP-001 per batch) | pending | company/reviews/_gates/2026-10-18-simple-path-<role>.md |
+| 1 | evaluation-steward (AMD-013, gate design) | agree with changes | company/reviews/_gates/2026-10-18-simple-path-evaluation-steward.md |
+| 2 | head-of-product (path, batch launch review) | agree with changes | company/reviews/_gates/2026-10-18-simple-path-head-of-product.md |
+| 3 | accessibility-reviewer (scan as gate, 10% sample) | agree with changes; objects to (c) as drafted | company/reviews/_gates/2026-10-18-simple-path-accessibility-reviewer.md |
+| 4 | cultural-reviewer (short publish verdict when unchanged) | agree with changes | company/reviews/_gates/2026-10-18-simple-path-cultural-reviewer.md |
+| 5 | analytics-steward (predictions per batch; EXP-001 per batch) | agree with changes; O3, O4 must be fixed | company/reviews/_gates/2026-10-18-simple-path-analytics-steward.md |
 | 6 | constitutional review board | after 1–5 | AMD-013 |
 | 7 | founder | ratifies | this record |
 
 ## Objections
 
-None recorded yet. Each answer above that objects is copied here with its **Answer:**.
+Recorded by the chief of staff from the five answers. Each answered the draft without reading the others. An **Answer** on an evaluation-steward objection is the steward's own proposal. On every other objection it is the chief of staff's **proposed** answer, which evaluation-steward (AMD-013 owner) and head-of-product (path owner) confirm or change in the redraft; it is not final until they do.
+
+- **evaluation-steward (blocking):** (a), (c), (f) in `launchGates` fail `check` on day one (720/720 for (c), 26 for (a), 12 for (f)), because `check` runs the gate on every published lesson. **Answer:** accepted. AMD-013 redraft splits a `publishGates` that only `publish` runs; `publish` stamps lessons; `check` enforces it only on stamped lessons and warns on the rest. The 26 become a worklist, nothing is unpublished.
+- **evaluation-steward:** step 4's version match for QA does not exist (QA records carry no version; AMD-010 adds none). **Answer:** accepted; new part (g): `qa-record` writes `lesson version: vN`.
+- **evaluation-steward:** storing `reviewRoute` in meta.json needs a 1,283-lesson migration. **Answer:** accepted; the route is derived from a domain default in `content/domains.json` (Life Hacks → safety, Books → copyright) plus the concept's `sensitive` mark; meta.json may only raise it, or lower it with a head-of-product ruling.
+- **evaluation-steward:** retiring `publish-holds.json` loses 12 non-incubating holds. **Answer:** accepted; `publish` also refuses any slug in the holds file.
+- **evaluation-steward (independence, open):** the verdict parser must live in `company.mjs`, not be imported from unprotected `publish-ready.mjs`; and `a11y-scan.mjs` severity rules are unprotected, so the judged could loosen the scanner. **Answer:** parser copied into the gate (accepted). Whether the scanner's severity rules become protected: **open, for the constitutional review board.**
+- **accessibility-reviewer:** (c) names a `--record` mode and version binding that `a11y-scan.mjs` does not have, so nobody can satisfy the gate. **Answer:** accepted; (c) is not enforced until platform-engineer adds `--record` (slug, version, build SHA, tool stamp). Gate counts only lesson-origin `fail`; a kit/app `fail` refuses the batch once. The 23 px "Why trust this?" link is re-tested and fixed before the gate is switched on.
+- **cultural-reviewer:** gate file pattern `*-<route>.md` matches no existing record (`*-culture-en.md`). **Answer:** accepted; files are named by reviewer (`culture-en`, `safety`, `copyright`) with one template carrying stage, verdict and version; brief files never satisfy it.
+- **cultural-reviewer:** "claims and reveal unchanged" is the wrong test for a short publish verdict. **Answer:** accepted; the test is "no learner-visible text, number, image, map or interaction differs from what was reviewed", decided by the reviewer only, shown by a tool-computed content hash, refuse-list lines and the fact-check outcome; never after a "go with changes" brief verdict without an addendum.
+- **cultural-reviewer:** AMD-006's audit of 5 records per cycle was dropped. **Answer:** accepted; restored in the redraft.
+- **head-of-product O1:** the batch signature can become a rubber stamp. **Answer:** accepted; head-of-product writes seven named checks into each record, and evaluation-steward audits 1 in 5 signed records.
+- **head-of-product O2 and analytics-steward O3 (same finding):** "more than 1 fatal flaw in 10" cannot be evaluated on ~2 samples per batch. **Answer:** accepted; sample max(3, 10%) drawn by the tool from a recorded seed before review; any fatal flaw holds that class of flaw across the batch and sends the category's next batch to 100% review until one is clean; "fatal flaw" defined in writing before the first sample.
+- **head-of-product:** the path does not catch the two commonest failures, "told, not shown" (~56 of 263 closeout rows) and answer leaks (~44). **Answer:** accepted; both are named items in the brief, the pre-flight and the learner-evaluator rubric; learning-designer required only on new or non-default formats, a category's first 3 briefs in a format, and fix rounds after either finding.
+- **head-of-product:** `publish` does not check status; a lesson can carry more than one route; safety also reviewed at brief; copyright never falls back to standard. **Answer:** accepted into the redraft.
+- **analytics-steward O1:** a free-text `predictions:` line is not falsifiable. **Answer:** accepted; the batch record links an `EXP-*.md` committed before publish, with per-slug tripwires.
+- **analytics-steward O2:** one planted claim per batch is a canary, not EXP-001. **Answer:** accepted; renamed "canary", picked by a non-reviewer, `publish` refuses a slug carrying the plant marker; one miss sends the batch's claims to a full re-check.
+- **analytics-steward O4:** AMD-013's own prediction is untestable. **Answer:** accepted; a random 10% of each of the first 3 batches gets a full manual review, with a minimum batch size.
 
 ## Board
 
@@ -102,3 +119,4 @@ None recorded yet. Each answer above that objects is copied here with its **Answ
 - W-1674 written answer (owner accessibility-reviewer)
 - W-1675 written answer (owner cultural-reviewer)
 - W-1676 written answer (owner analytics-steward)
+- W-1677 redraft AMD-013 from the answers (owner evaluation-steward)
