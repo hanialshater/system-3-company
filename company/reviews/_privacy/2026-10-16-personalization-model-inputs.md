@@ -1,6 +1,6 @@
-# Privacy read: personalization model inputs (W-1674)
+# Privacy read: personalization model inputs (W-1916)
 
-owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-w1495-perso-inputs-1016 · class: tier-2 privacy read of a learner-data design (EDD-007) · board: W-1674 · I am not approving a proposal of mine: the model is personalization-lead's (W-1672), the simulator learner-model-engineer's (W-1673).
+owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-w1495-perso-inputs-1016 · class: tier-2 privacy read of a learner-data design (EDD-007) · board: W-1916 · I am not approving a proposal of mine: the model is personalization-lead's (W-1914), the simulator learner-model-engineer's (W-1915).
 
 Read: `company/personalization/model/model.ts` (signal list, `INPUT_PRIVACY`, `FORBIDDEN_INPUTS`, `SIGNAL_INPUTS`, `fingerprintFrom`), the model README, the sim folder's file reads (grep), `personas.ts` header, brief-response §2 and §3, founder brief §4 and §7, AMD-008 part P (P1 to P5, as drafted, F-19 open), my gate rows P3.1 to P3.5 and P6.3 (`company/initiatives/first-light/privacy-gate.md`), my EDD-009 §5 read (`company/reviews/_privacy/2026-10-16-edd-009-s5.md`, S1 to S3), `company/engineering/data-inventory.md`. Not read: the decision record `personalization-model-v0.md`, the composer/learner/score code beyond what grep shows. This is a read of a design and an offline module, not of a diff: nothing serves a learner.
 
@@ -19,7 +19,7 @@ Evidence, not the author's account:
 - `model.ts` imports nothing; `self-check.mjs` fails if `src/` imports the folder or if `model.ts` mentions personas.
 
 Ruling A1: **phase A is allowed as it stands.** Conditions:
-- **A2.** Phase A stays seeded from invented personas and lesson data. Calibrating the simulated learner (W-1676, W-1685) against real events, real progress rows, a real learner's `s3c:progress:v1`, or even aggregates from W-706 is a **new read**. Aggregate-only calibration I would pass without a long review (counts, cells under 20 not used, no per-learner row, no session id); anything per-learner I would refuse.
+- **A2.** Phase A stays seeded from invented personas and lesson data. Calibrating the simulated learner (W-1918, W-1927) against real events, real progress rows, a real learner's `s3c:progress:v1`, or even aggregates from W-706 is a **new read**. Aggregate-only calibration I would pass without a long review (counts, cells under 20 not used, no per-learner row, no session id); anything per-learner I would refuse.
 - **A3.** `inspect()` and `curveViews()` print each signal's privacy status. When this ruling lands, `INPUT_PRIVACY` should be updated by personalization-lead (my row, section 2) so the inspection page does not say "read-needed" for a read that has happened.
 
 ## 2. Per-signal rulings
@@ -128,9 +128,9 @@ Phase B only, W-706 persisted events. **Allowed with conditions.**
 ## 8. Next, by owner
 
 1. personalization-lead: update `INPUT_PRIVACY` and `signalPrivacy` comments to the rulings; add the P2 null test and the fallback-invariance test to `self-check.mjs`; add the "privacy: no new input" line convention to the decision record (N6).
-2. learner-model-engineer: N1 stubbed-IO test and N3 forbidden-input test in the composer's tests; A2 note on W-1676 and W-1685.
+2. learner-model-engineer: N1 stubbed-IO test and N3 forbidden-input test in the composer's tests; A2 note on W-1918 and W-1927.
 3. backend-engineer: SS1 to SS5 into the `settings` schema diff when it is written (E7); I read the diff.
-4. analytics-steward: N5 (counters, arm holding), T4 (a read before any age-band outcome cut), AG1 to AG3 in W-706 and W-1675.
+4. analytics-steward: N5 (counters, arm holding), T4 (a read before any age-band outcome cut), AG1 to AG3 in W-706 and W-1917.
 5. hq-engineer / personalization org: section 6 into the lab's definition of done.
-6. evaluation-steward: AMD-FL-B test list takes N1 to N3; W-1678 (F-19) should know this ruling depends on part P's P2 as drafted.
+6. evaluation-steward: AMD-FL-B test list takes N1 to N3; W-1920 (F-19) should know this ruling depends on part P's P2 as drafted.
 7. Me: read the `settings` schema diff; read the EDD for any stored-derived-value request; re-read before phase B is proposed to the founder.

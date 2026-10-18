@@ -218,7 +218,7 @@ read: the tier-2 review company/engineering/reviews/2026-10-17-edd-010-review.md
 
 ### A1. The tier-2 review's conditions (C1, C3-C12; C2 is principal-engineer's, W-1792)
 
-Where a test exists in §6 it keeps its number. New tests are T14 onward. **check** means `npm run check`, which runs `test:personalization` (no node_modules, Node ≥ 22.18, the 3 s budget of the W-1716 review). **verify** means `npm run verify`, which runs `test:platform`, the build and the browser. CI's verify job does not run `test:*` (F11), so the merge record and the flag-on release record paste the local `npm run verify` summary (C10).
+Where a test exists in §6 it keeps its number. New tests are T14 onward. **check** means `npm run check`, which runs `test:personalization` (no node_modules, Node ≥ 22.18, the 3 s budget of the W-1958 review). **verify** means `npm run verify`, which runs `test:platform`, the build and the browser. CI's verify job does not run `test:*` (F11), so the merge record and the flag-on release record paste the local `npm run verify` summary (C10).
 
 | # | Design change in draft 2 | Test that shows it | Runs in |
 |---|---|---|---|

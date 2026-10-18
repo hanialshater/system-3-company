@@ -11,11 +11,11 @@ const file = JSON.parse(fs.readFileSync("company/ops/releases.json", "utf8"));
 const grp = { count: 0, slugs: [] };
 const mk = (version, date) => ({ version, date, commit: "a".repeat(40), target: "production", approved_by: { who: "founder", record: "x" }, summary: "s", added: { features: [], lessons: { published: grp, in_review: grp }, fixes: [], known_issues: [] } });
 
-test("company/ops/releases.json is valid and runs r1..r9 with the five backfilled releases first", () => {
+test("company/ops/releases.json is valid and runs r1..r10 with the five backfilled releases first", () => {
   assert.equal(validateReleases(file), null);
   assert.equal(file.owner, "release-manager");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.version), ["r1", "r2", "r3", "r4", "r5"]);
-  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9"]);
+  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10"]);
   assert.equal(file.releases[5].date.slice(0, 10), "2026-10-15");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.commit.slice(0, 7)), ["f868127", "6b45ea0", "91274b8", "f4537d7", "5e8608d"]);
 });
@@ -56,7 +56,7 @@ test("nextVersion is r(max+1), whatever the date", () => {
   assert.equal(nextVersion([{ version: "r9" }]), "r10");
   assert.equal(nextVersion([{ version: "r2" }, { version: "r11" }, { version: "r3" }]), "r12");
   assert.equal(nextVersion([]), "r1");
-  assert.equal(nextVersion(file.releases), "r10");
+  assert.equal(nextVersion(file.releases), "r11");
   assert.ok(VERSION_RE.test("r12"));
   assert.ok(!VERSION_RE.test("2026.10.14.12"));
 });
@@ -94,7 +94,7 @@ test("unreleased commits are computed from the last release commit", { skip: !fs
 test("release-draft tool prints a draft with TODO approval and writes nothing", { skip: !fs.existsSync(".git") }, () => {
   const before = fs.readFileSync("company/ops/releases.json", "utf8");
   const out = JSON.parse(execFileSync("node", ["tools/release-draft.mjs", "--commit=f4537d7", "--since=91274b8"], { encoding: "utf8" }));
-  assert.equal(out.version, "r10");
+  assert.equal(out.version, "r11");
   assert.match(out.approved_by.who, /TODO/);
   assert.equal(out.added.lessons.in_review.count, 54);
   assert.equal(fs.readFileSync("company/ops/releases.json", "utf8"), before);

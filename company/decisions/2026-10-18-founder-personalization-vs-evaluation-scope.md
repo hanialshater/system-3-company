@@ -22,4 +22,4 @@ Which existing scopes move and how: platform-engineer's feed ownership (today th
 ## Objections
 
 - **chief-of-staff:** on 2026-10-16 the founder kept `progress`/`recall` with backend-engineer ("progress/recall stay with backend"); "customer profile" may or may not include them. **Answer:** Leonie states both readings and the founder chooses on the card.
-- **chief-of-staff:** the website part of personalised ordering just closed (NO-GO, 2026-10-17); owning the feed is not a licence to change its order. **Answer:** AMD-013 and the G record still govern ordering; ownership changes who decides future work, not what is live.
+- **chief-of-staff:** the website part of personalised ordering just closed (NO-GO, 2026-10-17); owning the feed is not a licence to change its order. **Answer:** AMD-015 and the G record still govern ordering; ownership changes who decides future work, not what is live.

@@ -103,7 +103,7 @@ Not asked, because it does not change: First Light ships personalization off wit
 1. R2 accepted: W-1729 done. K2's readout accepted as the record for V: W-1728 done.
 2. Revisit-volume input to head-of-product and evaluation-steward: board item, input only (§3); it waits on Q1 only for the founder's framing, not for content.
 3. WBR: readout 2 presented unedited with this record beside it, readout 1 beside both.
-4. Upkeep unaffected: off switch and privacy reads (W-1700 line), HQ lab nits (W-1718).
+4. Upkeep unaffected: off switch and privacy reads (W-1942 line), HQ lab nits (W-1718).
 
 **Waits for the founder:** criterion 3 and its evidence rows (Q2), any candidate (Q3), the pause (Q4).
 

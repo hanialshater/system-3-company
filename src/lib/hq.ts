@@ -6,6 +6,7 @@ export { teamColor } from "./hq-colors";
 import { ROOM_ALIASES, type Floor } from "./hq-floors";
 export { FLOORS, FLOOR_NAMES, ROOM_ALIASES, stairsTo, type Floor } from "./hq-floors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
+import { recordEvents } from "../../tools/lib/ritual-records.mjs";
 import { roles } from "../../tools/org/roles.mjs";
 import { pressRooms, type PressSnapshot } from "./hq-press";
 
@@ -221,11 +222,13 @@ export function founderQueue(): FounderItem[] {
 /** HQ shows prompts and reports, so it stays off in production until it sits behind a login. */
 export const hqEnabled = () => process.env.NODE_ENV !== "production" || process.env.HQ_PUBLIC === "1";
 
-/** Rituals due now, from company/rituals/triggers.json (event-driven cadence). */
+/** Rituals due now, from company/rituals/triggers.json (event-driven cadence). Held = a committed record file
+ *  (tools/lib/ritual-records.mjs), the same rule as tools/rituals-due.mjs (external assessment 2026-10-17 §3). */
 export function ritualsDue(): Due[] {
   try {
     const triggers = JSON.parse(fs.readFileSync(path.join(process.cwd(), "company/rituals/triggers.json"), "utf8")).triggers;
-    return computeDue(triggers, readAll()).filter((d) => d.due);
+    const events = [...readAll(), ...recordEvents(triggers, { root: /*turbopackIgnore: true*/ process.cwd() })].sort((a, b) => a.ts.localeCompare(b.ts));
+    return computeDue(triggers, events).filter((d) => d.due);
   } catch {
     return [];
   }

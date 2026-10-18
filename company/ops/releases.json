@@ -730,6 +730,41 @@
           "Release commit 2821160c is the tree prepared; the deployed commit is the release-manager records commit on top of it (records and tests only, no lesson or app code change)."
         ]
       }
+    },
+    {
+      "version": "r10",
+      "date": "2026-10-18T13:08:11.000Z",
+      "commit": "882737a45d1e8d202ad7d396964ef376971b0de6",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder",
+        "record": "Conversation of 2026-10-18: \"Ok approve pr #8, then lets deploy and check the app manually\", then reply \"go production\" to the chief-of-staff's option 1 (production deploy with accounts switched off via the Deploy to Vercel workflow). The Deploy to Vercel workflow could not be started by this session (GitHub API 403, no Actions permission); offered the workflow (founder clicks Run workflow) or a commit marker, the founder replied \"push a commit with the [deploy] marker\"."
+      },
+      "summary": "PR #8 lands in production as code with every new surface switched off: accounts, server progress, likes and saves behind ACCOUNTS_ENABLED / LIKES_SAVES_ENABLED / LIKE_COUNTS_PUBLIC (all off), plus the AMD-013 one readiness policy. No lesson changes status; 720 published, unchanged from r9.",
+      "added": {
+        "features": [
+          "Accounts, server-side progress, likes and saves (EDD-008 rebuild, PRD-005; better-auth 1.7.10, pg 8.23.1), merged via PR #9 (a6333dd0). All switches off in production: every account route returns 404 and sets no cookie.",
+          "AMD-013 one readiness policy in tools/company.mjs (current-version learner and QA verdicts, holds read by the gate); status applied (882737a4).",
+          "HQ Strategy tab (/hq/strategy) and company records from the 10-17/10-18 sessions."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "Accounts are off: the release cannot be used to test sign-in. A flags-on staff preview needs W-1706 (founder: preview database, fra1 region), W-1716, W-1714, W-1701/W-1702 and privacy PC5/PC6.",
+          "QA was Chromium only; math/left-or-right still unverified in WebKit/Safari (r9 note). W-1114 screen-reader defect still ships known.",
+          "Release commit 882737a4 is the tree prepared; the deployed commit is the release-manager records commit on top of it that carries the deploy marker (records only).",
+          "Deployed by Vercel's Git integration from a commit carrying the deploy marker (founder's choice), not the Deploy to Vercel workflow: no staged promotion and no wrapper smoke test before the domain switched; CI verify runs beside the deploy, not before it. Smoke test by the chief of staff after READY. The workflow's 05238276 upload fix is still unproven (W-1666, W-1669)."
+        ]
+      }
     }
   ]
 }

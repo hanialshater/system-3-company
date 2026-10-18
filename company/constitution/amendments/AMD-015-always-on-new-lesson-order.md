@@ -1,6 +1,6 @@
-# AMD-013: Always-on personalised new-lesson order on the All feed, behind the company flag; its cold start; and a pre-approved flag-off withdrawal
+# AMD-015: Always-on personalised new-lesson order on the All feed, behind the company flag; its cold start; and a pre-approved flag-off withdrawal
 
-status: ratified 2026-10-17 by the founder ("Ratify both", then "Confirm AMD-013"; company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md). Rollback (`vercel rollback`) is not pre-approved: the founder did not add it (open question Q1).
+status: ratified 2026-10-17 by the founder ("Ratify both", then "Confirm AMD-015"; company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md). Rollback (`vercel rollback`) is not pre-approved: the founder did not add it (open question Q1).
 date: 2026-10-17
 board: W-1764 (with W-1782 and W-1813)
 proposed_by: founder. The substance is ratified in company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md ("Ratify both", then "Amendment + flag-off"). The founder clarified "always on, no switch" in company/decisions/2026-10-17-founder-personalization-milestone-delegation.md.
@@ -31,7 +31,7 @@ There are two parts. **Part A** is the product rule: what the feed does, at cold
 
 **Replace it with these three bullets:**
 > - The default order is subject round-robin, published first, then lessons in review, labelled as such. Every subject chip shows it, and the All feed shows it when the company flag is off. Where the default order is shown, the feed says it is not personalised.
-> - With the company build flag `NEXT_PUBLIC_NEW_LESSON_ORDER` on, the All feed's new lessons follow the frozen candidate named in AMD-013, for every learner. There is no learner switch. The flag is on only when its value is exactly that candidate's name (today `reachable-v3`). It is read once at build and is off in the repository. Inside the pilot subjects the candidate reorders pilot lessons among the slots the default order gives them. Every other lesson keeps its default slot. Due revisits still come first. Every card it moves says why, and the reason is true.
+> - With the company build flag `NEXT_PUBLIC_NEW_LESSON_ORDER` on, the All feed's new lessons follow the frozen candidate named in AMD-015, for every learner. There is no learner switch. The flag is on only when its value is exactly that candidate's name (today `reachable-v3`). It is read once at build and is off in the repository. Inside the pilot subjects the candidate reorders pilot lessons among the slots the default order gives them. Every other lesson keeps its default slot. Due revisits still come first. Every card it moves says why, and the reason is true.
 > - On a device with no history the order uses no learner data, and the feed says what its order is. With the flag on, a new device sees the candidate's own empty-history order: in the pilot subjects, lessons that build on fewer others come earlier, the same order on every new device. In that order a lesson in review can come before published ones, still labelled as in review. A different candidate, or a different cold-start behaviour, needs a further amendment.
 
 **Line 33 (trade-off row) now reads:**
@@ -39,7 +39,7 @@ There are two parts. **Part A** is the product rule: what the feed does, at cold
 
 **Replace it with these four rows:**
 > | No learner data at cold start: a new device gets a fixed order, the same for everyone | A less "magical" first minute | head-of-product |
-> | The All feed's new-lesson order is personalised for every learner, with no learner switch (founder, 2026-10-17) | A learner who dislikes the order cannot turn it off. The company flag and its withdrawal (AMD-013 Part B) are the only off | founder |
+> | The All feed's new-lesson order is personalised for every learner, with no learner switch (founder, 2026-10-17) | A learner who dislikes the order cannot turn it off. The company flag and its withdrawal (AMD-015 Part B) are the only off | founder |
 > | At cold start, with the flag on, lessons in review can come before published ones in the All feed | A learner may meet a labelled in-review lesson earlier than the default order would show it | head-of-product |
 > | No live comparison group unless the founder decides one (O2) | The live effect is not measured. It is reported before/after, as description, never as cause | founder |
 
@@ -65,11 +65,11 @@ There are two parts. **Part A** is the product rule: what the feed does, at cold
 
 AMD-008 is a proposal. These riders are part of this amendment, so whichever of the two is ratified first, the other reads consistently. If AMD-008 is ratified, these lines replace its own. If it is never ratified, A1 alone governs. Every other AMD-008 rule is unchanged by this amendment: F2 and F3, P1-P3, M1-M8, A1-A10 and X1-X3.
 
-- **F1 (replaces).** "The default order is subject round-robin, published first, then lessons in review labelled as such. Every subject chip shows it, and the All feed shows it with the company flag off. With the flag on, a fresh context's All feed shows the frozen candidate's empty-history order (Surface Value, as amended by AMD-013). That order uses no learner data, and in it lessons in review may come before published ones. *Test:* with the flag off, and on every chip with the flag on or off, the order equals the default function over the catalogue, card for card. With the flag on, two fresh contexts get the same All order, and its pilot slots equal the candidate's pinned empty-history vector (EDD-010 T2)."
+- **F1 (replaces).** "The default order is subject round-robin, published first, then lessons in review labelled as such. Every subject chip shows it, and the All feed shows it with the company flag off. With the flag on, a fresh context's All feed shows the frozen candidate's empty-history order (Surface Value, as amended by AMD-015). That order uses no learner data, and in it lessons in review may come before published ones. *Test:* with the flag off, and on every chip with the flag on or off, the order equals the default function over the catalogue, card for card. With the flag on, two fresh contexts get the same All order, and its pilot slots equal the candidate's pinned empty-history vector (EDD-010 T2)."
 - **F4 (replaces).** "The feed says what it is doing. With no history it says plainly that, on a new device, it knows nothing about the learner and is not 'for you', and it says what its order is. With the flag on, the All intro says in plain words that finishing lessons moves some new ones, and that a card that moved says so. It offers no control and implies none. *Test:* in a fresh context the intro contains the cold-start sentence (`tests/qa/feed.spec.ts`, unchanged). With the flag on, no intro sentence names a control or a setting, and every moved card renders its reason line (S1 tests)."
 - **P4 (narrowed).** For the website's new-lesson order only, P4 reads: "The company is in control and says so honestly. There is no learner switch (founder, 2026-10-17). One company build flag turns the order off and returns the default order exactly, with no candidate code running. The flag is read at build only. There is no run-time, cookie, query-string or storage override, and the deploy script pins its value from the approved release (W-1783). No copy says or implies that a learner can turn the order off, set it, or that it follows their choices. Personalization never requires an account. *Test:* a flag-off build gives the default order byte for byte and does not contain the candidate module (EDD-010 T10, T22). A flag-on build has no switch element and reads no settings field. Anonymous and signed-in contexts with the same local history get the same order." **P4 as drafted (a learner control that turns personalization off) stays the rule for any other personalization surface**, for example stated subject picks or "less of this", if one is ever built.
 - **P5 (narrowed).** For the website's new-lesson order only: the registered evidence is the frozen offline criterion (3b) and the G record, read by batch 5 §4 and §12, plus the W-1760 rollout registration with counters only. There is no default-order holdout arm unless the founder decides O2. In that case the live effect is reported as unmeasured. P5 is otherwise unchanged.
-- **Rollback paragraph.** Replace "F1 and P4 guarantee that personalization off equals the v1 order" with "the company flag off gives the default order exactly (P4 as narrowed by AMD-013)".
+- **Rollback paragraph.** Replace "F1 and P4 guarantee that personalization off equals the v1 order" with "the company flag off gives the default order exactly (P4 as narrowed by AMD-015)".
 
 ### A5. Privacy rulings this lets lapse, and those that stay (privacy-reviewer's own re-ruling; recorded here, not decided here)
 
@@ -120,17 +120,17 @@ release-manager checks only that the record names a listed trigger and cites evi
 > - **Deploys need the founder's approval, every time.** Never put `[deploy]` in a commit message, run `npm run deploy`, or trigger the deploy workflow unless the founder has approved that specific deploy in this conversation. Vercel's free plan allows 100 deployments a day; `vercel.json` builds only `[deploy]` commits (company/ops/runbook-deploy.md).
 
 **Replacement:**
-> - **Deploys need the founder's approval, every time.** Never put `[deploy]` in a commit message, run `npm run deploy`, or trigger the deploy workflow unless the founder has approved that specific deploy in this conversation. **One exception, pre-approved by the founder (AMD-013):** on a privacy or child-safety trigger, release-manager may run the flag-off withdrawal without asking first. That deploy is the live production commit rebuilt with `NEXT_PUBLIC_NEW_LESSON_ORDER` off and nothing else changed. release-manager then records it and tells the founder at once (company/ops/runbook-deploy.md, "Pre-approved flag-off withdrawal"). No other deploy, and no other role, is pre-approved. Vercel's free plan allows 100 deployments a day; `vercel.json` builds only `[deploy]` commits (company/ops/runbook-deploy.md).
+> - **Deploys need the founder's approval, every time.** Never put `[deploy]` in a commit message, run `npm run deploy`, or trigger the deploy workflow unless the founder has approved that specific deploy in this conversation. **One exception, pre-approved by the founder (AMD-015):** on a privacy or child-safety trigger, release-manager may run the flag-off withdrawal without asking first. That deploy is the live production commit rebuilt with `NEXT_PUBLIC_NEW_LESSON_ORDER` off and nothing else changed. release-manager then records it and tells the founder at once (company/ops/runbook-deploy.md, "Pre-approved flag-off withdrawal"). No other deploy, and no other role, is pre-approved. Vercel's free plan allows 100 deployments a day; `vercel.json` builds only `[deploy]` commits (company/ops/runbook-deploy.md).
 
-**company/ops/runbook-deploy.md.** In the last paragraph ("Founder approval (2026-10-14)"), after "ask first, then deploy once.", add: "The only exception is the pre-approved flag-off withdrawal below (AMD-013)." Then add this section at the end of the file:
+**company/ops/runbook-deploy.md.** In the last paragraph ("Founder approval (2026-10-14)"), after "ask first, then deploy once.", add: "The only exception is the pre-approved flag-off withdrawal below (AMD-015)." Then add this section at the end of the file:
 
-> ## Pre-approved flag-off withdrawal (AMD-013)
+> ## Pre-approved flag-off withdrawal (AMD-015)
 >
-> The founder pre-approved one deploy (company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md; AMD-013 Part B). Nothing else in this runbook is pre-approved.
+> The founder pre-approved one deploy (company/decisions/2026-10-17-founder-ratify-always-on-and-withdrawal.md; AMD-015 Part B). Nothing else in this runbook is pre-approved.
 >
 > **What:** a production deploy of the exact source commit that is live, with the same `SHOW_REVIEW` value as the live deployment and `NEXT_PUBLIC_NEW_LESSON_ORDER` off. Nothing else changes: no new commit, no `[deploy]` commit, no other variable.
 >
-> **When:** only on a privacy or child-safety trigger as AMD-013 B2 lists them, raised in a trigger record at `company/ops/withdrawals/<UTC timestamp>-new-lesson-order.md` that names the trigger and cites its evidence. Any other reason, including the other G10 triggers, is an ordinary deploy: ask the founder first.
+> **When:** only on a privacy or child-safety trigger as AMD-015 B2 lists them, raised in a trigger record at `company/ops/withdrawals/<UTC timestamp>-new-lesson-order.md` that names the trigger and cites its evidence. Any other reason, including the other G10 triggers, is an ordinary deploy: ask the founder first.
 >
 > **Who:** release-manager only. If release-manager is not running, the chief of staff dispatches release-manager with the trigger record. No other role runs it.
 >
@@ -140,7 +140,7 @@ release-manager checks only that the record names a listed trigger and cites evi
 > 3. Check, before calling it done: the new deployment record names the same source commit and the same `SHOW_REVIEW` value as the live one; the build log shows `new-lesson-order: off`; the smoke test passes (`QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts`); and the All feed at `/` in a fresh context shows the default order.
 > 4. If the deploy or a check fails, stop. Production stays as it was (staged promotion), and every further step, including a retry or `npx vercel rollback`, needs the founder's approval.
 >
-> **Record and tell:** complete the trigger record with the deploy record path, the smoke result and the time it took effect. Add a `company/ops/releases.json` entry with `approved_by` set to "founder, standing pre-approval, AMD-013 Part B" and the trigger record's path. Add a priority-1 `deploy` item to `company/ops/founder-inbox.json`. Make the withdrawal the first line of your report and of the next progress handoff. Then open a COE.
+> **Record and tell:** complete the trigger record with the deploy record path, the smoke result and the time it took effect. Add a `company/ops/releases.json` entry with `approved_by` set to "founder, standing pre-approval, AMD-015 Part B" and the trigger record's path. Add a priority-1 `deploy` item to `company/ops/founder-inbox.json`. Make the withdrawal the first line of your report and of the next progress handoff. Then open a COE.
 >
 > **Turning it back on** is a new release and needs the founder's approval for that deploy.
 
@@ -194,7 +194,7 @@ The protected objective will describe the product that ships, so "it is not pers
 ## Merge mechanics (after the founder confirms the wording; not before)
 
 1. Set this file's status line to `status: ratified <date>` with the founder's words, and add the README index row.
-2. In one commit with `S3_AMENDMENT=AMD-013` set and `Amendment: AMD-013` in the message: surface-value.md lines 23 and 33 exactly as in A1; the CLAUDE.md line and the runbook lines exactly as in B3. Recorded by chief-of-staff, as with AMD-012. `tests/qa/` is not touched.
+2. In one commit with `S3_AMENDMENT=AMD-015` set and `Amendment: AMD-015` in the message: surface-value.md lines 23 and 33 exactly as in A1; the CLAUDE.md line and the runbook lines exactly as in B3. Recorded by chief-of-staff, as with AMD-012. `tests/qa/` is not touched.
 3. The AMD-008 riders (A4) take effect only when AMD-008 is ratified. When that happens, the evaluation steward folds them into AMD-008's text before it is applied.
 4. head-of-product marks company/decisions/2026-10-12-feed-is-not-personalised.md superseded for the All feed (copy review §7). That record is theirs.
 
@@ -230,5 +230,5 @@ The founder confirms the wording. Seats: head-of-product, privacy-reviewer (A5, 
 
 | Part | Decision | By | Date |
 |---|---|---|---|
-| A (surface-value, AMD-008 riders, QA intent) | ratified ("Confirm AMD-013") | founder | 2026-10-17 |
-| B (pre-approved flag-off withdrawal; CLAUDE.md and runbook lines) | ratified ("Confirm AMD-013") | founder | 2026-10-17 |
+| A (surface-value, AMD-008 riders, QA intent) | ratified ("Confirm AMD-015") | founder | 2026-10-17 |
+| B (pre-approved flag-off withdrawal; CLAUDE.md and runbook lines) | ratified ("Confirm AMD-015") | founder | 2026-10-17 |

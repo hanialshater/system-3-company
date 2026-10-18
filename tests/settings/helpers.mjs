@@ -38,7 +38,7 @@ export async function realCatalog() {
 const { applyWrite, sameSettings } = await settingsMod();
 
 /**
- * An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1700's SQL test.
+ * An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1942's SQL test.
  * It models the store's atomicity contract (D2a): put applies the write rule (applyWrite, the reference model of the
  * single SQL statement) to the row as it is at that moment, with no await between reading and writing the row, which
  * is what one Postgres statement on a locked row gives. It does not prove the SQL; test-settings-write-sql.mjs does.

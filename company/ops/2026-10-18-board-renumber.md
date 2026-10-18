@@ -183,3 +183,56 @@ Both branches allocated board ids independently after their merge base a4cc732b.
 | W-1666 | W-1845 |
 | W-1667 | W-1846 |
 | W-1668 | W-1849 |
+
+## Second merge (default branch moved to 8eeb961a, 2026-10-18)
+
+The default branch allocated W-1671+ again and took AMD-013 (one readiness) and AMD-014. This branch's amendment AMD-013 (always-on new-lesson order) is now **AMD-015**; references were rewritten outside the frozen paths above, which still say AMD-013 for it. Its 2026-10-17 founder digest and WBR records were renamed with a -lane14 suffix. Colliding board ids, second pass:
+
+| before | after |
+|---|---|
+| W-1671 | W-1913 |
+| W-1672 | W-1914 |
+| W-1673 | W-1915 |
+| W-1674 | W-1916 |
+| W-1675 | W-1917 |
+| W-1676 | W-1918 |
+| W-1677 | W-1919 |
+| W-1678 | W-1920 |
+| W-1679 | W-1921 |
+| W-1680 | W-1922 |
+| W-1681 | W-1923 |
+| W-1682 | W-1924 |
+| W-1683 | W-1925 |
+| W-1684 | W-1926 |
+| W-1685 | W-1927 |
+| W-1686 | W-1928 |
+| W-1687 | W-1929 |
+| W-1688 | W-1930 |
+| W-1689 | W-1931 |
+| W-1690 | W-1932 |
+| W-1691 | W-1933 |
+| W-1692 | W-1934 |
+| W-1693 | W-1935 |
+| W-1694 | W-1936 |
+| W-1695 | W-1937 |
+| W-1696 | W-1938 |
+| W-1697 | W-1939 |
+| W-1698 | W-1940 |
+| W-1699 | W-1941 |
+| W-1700 | W-1942 |
+| W-1701 | W-1943 |
+| W-1702 | W-1944 |
+| W-1703 | W-1945 |
+| W-1704 | W-1946 |
+| W-1705 | W-1947 |
+| W-1706 | W-1948 |
+| W-1707 | W-1949 |
+| W-1708 | W-1950 |
+| W-1709 | W-1951 |
+| W-1710 | W-1952 |
+| W-1711 | W-1953 |
+| W-1712 | W-1954 |
+| W-1713 | W-1955 |
+| W-1714 | W-1956 |
+| W-1715 | W-1957 |
+| W-1716 | W-1958 |

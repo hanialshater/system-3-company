@@ -2,14 +2,14 @@
 
 owner: vp-personalization (Mateo)
 date: 2026-10-16
-run: vp-w1536-1016 · board: W-1715
+run: vp-w1536-1016 · board: W-1957
 status: decided and **in effect, unconditional** (§2 per term, §3 C3, §4 GAM and phase B): C5 reproduced readout 1 byte for byte on 2026-10-16 (below); §6 is a set of questions for the founder, not decisions
 inputs read: company/personalization/eval/2026-10-16-phase-a-readout-1.md (all of it, including §6 tables); company/personalization/eval/harness/records/2026-10-16-readout-1/pass/verdicts.json (for the arithmetic in §1); company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md (my rules, set before data); company/personalization/batches/2026-10-16-batch-2.md; company/personalization/2026-10-16-founder-brief.md; company/decisions/2026-10-15-first-light-release-1-scope.md (Ruling 4); company/decisions/2026-10-16-personalization-model-v0.md (finding 4).
 rules: independence rule company/ceo-office/2026-10-16-personalization-org-proposal.md §2 (I write no criterion, readout, curve or weight); keep/kill authority (onboarding doc company/roles/vp-personalization.md); AMD-008 F1, P4.
 
-**Condition: C5.** learner-model-engineer is reproducing the readout (W-1714, company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md, not on disk at the time of writing). Every decision below takes effect when C5 confirms the run is deterministic and the verdicts match. If C5 finds a difference that changes any verdict, this record is void and I decide again on the corrected readout. If C5 finds only differences that change no verdict, the decisions stand and I note it here. The model change in §2 waits for C5 for the same reason.
+**Condition: C5.** learner-model-engineer is reproducing the readout (W-1956, company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md, not on disk at the time of writing). Every decision below takes effect when C5 confirms the run is deterministic and the verdicts match. If C5 finds a difference that changes any verdict, this record is void and I decide again on the corrected readout. If C5 finds only differences that change no verdict, the decisions stand and I note it here. The model change in §2 waits for C5 for the same reason.
 
-**C5 result (2026-10-16, run vp-w1542-1016): condition met; every decision below is unconditional.** company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md (learner-model-engineer, W-1714) reproduced `results.json` and `verdicts.json` of both parts byte for byte at the run commit 5725b10a; the manifests differ only in `seconds`. No verdict differs, so nothing here is void and no decision was reopened. The repro speaks to determinism only, not to whether the criterion or world is right (its own scope line); this record does not lean on it for more. The §2 model change is done as model-v0.2.2 (W-1721): `COMPOSER.noveltyGate` inactive, no code removed, change line in company/decisions/2026-10-16-personalization-model-v0.md. I wrote the flag myself: it is an objective-level switch under my keep/kill authority (company/roles/vp-personalization.md), not a curve or weight; `weights.novelty` and the `novelty` constants are unchanged, and curve and weight numbers stay applied-scientist-personalization's. The gate is read in `novelty()` in sim/composer.ts (learner-model-engineer's file), the smallest wiring that keeps the term in traces and the W-1705 break anchors intact. The eval harness was not edited; readout 1 stays tied to its run commit, and a harness run at HEAD would now score `gam` equal to `gam-no-surprise-novelty`.
+**C5 result (2026-10-16, run vp-w1542-1016): condition met; every decision below is unconditional.** company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md (learner-model-engineer, W-1956) reproduced `results.json` and `verdicts.json` of both parts byte for byte at the run commit 5725b10a; the manifests differ only in `seconds`. No verdict differs, so nothing here is void and no decision was reopened. The repro speaks to determinism only, not to whether the criterion or world is right (its own scope line); this record does not lean on it for more. The §2 model change is done as model-v0.2.2 (W-1721): `COMPOSER.noveltyGate` inactive, no code removed, change line in company/decisions/2026-10-16-personalization-model-v0.md. I wrote the flag myself: it is an objective-level switch under my keep/kill authority (company/roles/vp-personalization.md), not a curve or weight; `weights.novelty` and the `novelty` constants are unchanged, and curve and weight numbers stay applied-scientist-personalization's. The gate is read in `novelty()` in sim/composer.ts (learner-model-engineer's file), the smallest wiring that keeps the term in traces and the W-1947 break anchors intact. The eval harness was not edited; readout 1 stays tied to its run commit, and a harness run at HEAD would now score `gam` equal to `gam-no-surprise-novelty`.
 
 ## 0. Decisions at a glance
 
@@ -19,7 +19,7 @@ rules: independence rule company/ceo-office/2026-10-16-personalization-org-propo
 | Novelty | **Killed.** Gated off in model-v0.2.2 after C5 | my kill rule, pre-freeze §3 (must win at benefit 0; 0 of 6 wins, three intervals below 0) |
 | Surprise | **Stays gated off; no path back in this world.** No code removed | pre-freeze §2 trigger (failed even at ρ = 1, surprise high) |
 | Breadth | **No recall credit; not killed.** It had no pre-registered kill rule and its job is the bubble guardrail, not recall. Moot while the GAM is stopped | mission ("without trapping them in a bubble"); criterion G1 |
-| C3 (≈218 ratings) | **Cancelled**, not held. W-1694 step 1b closes | pre-freeze §2 trigger not met |
+| C3 (≈218 ratings) | **Cancelled**, not held. W-1936 step 1b closes | pre-freeze §2 trigger not met |
 | The GAM as it stands | **Stopped.** No phase B on it, no curve tuned to win a cell back | pre-freeze §1 bars paragraph; model-v0 finding 4 |
 | Phase B (any policy) | **Not registered.** No candidate has passed anything | proposal phases; AMD-008 F1 |
 | What next | **Recommendation: option C (one headroom-first criterion) with the founder's answer to Q3/Q4; options B and the First Light rule set go to the founder (Q1, Q5)** | §5 |
@@ -49,7 +49,7 @@ So **the draft rules also do not beat the default order by anything near 1 point
 
 The rule (pre-freeze §3, set before data): novelty stays only if `gam` passes the per-term rule against `gam-no-surprise-novelty` in the base cell with the judge's novelty benefit at 0. Readout §0 fact (2): 0 wins, 0 harmed; per-persona Δ −0.0011 to −0.0000, three intervals entirely below 0. It also wins nothing at benefit +0.05 (the readout ran the sweep I asked for), so the kill does not rest on the judge assuming 0.
 
-**Effect, after C5:** model-v0.2.2 adds `noveltyGate` (inactive) on the pattern of `surpriseGate`, so `gam` composes without the novelty term. Version bump, a change-log line in company/decisions/2026-10-16-personalization-model-v0.md (with the `privacy:` line the self-check requires), and self-check passing. That is my item (board, W-1715 follow-up). The repeat damping (`novelty.perSimilarRecent`) goes with it. If massed repeats appear, G2 (distinct concepts) is what catches them, and a repeat constraint is applied-scientist-personalization's to propose, not mine to write. I write no weight.
+**Effect, after C5:** model-v0.2.2 adds `noveltyGate` (inactive) on the pattern of `surpriseGate`, so `gam` composes without the novelty term. Version bump, a change-log line in company/decisions/2026-10-16-personalization-model-v0.md (with the `privacy:` line the self-check requires), and self-check passing. That is my item (board, W-1957 follow-up). The repeat damping (`novelty.perSimilarRecent`) goes with it. If massed repeats appear, G2 (distinct concepts) is what catches them, and a repeat constraint is applied-scientist-personalization's to propose, not mine to write. I write no weight.
 
 Why not change the model in this run: the decision is conditional on C5, and the model on main should match the code the readout ran until the reproduction is in.
 
@@ -65,7 +65,7 @@ One caveat from the readout that I carry, not use: F12 says the hypercorrection 
 
 ## 3. C3: cancelled
 
-The trigger (pre-freeze §2): `gam-surprise-on` passes the per-term rule at ρ ≤ 0.5 in the surprise-high cell or better. It passes in no cell. C3 is **cancelled**, not held: W-1694 step 1b closes. If a future criterion's readout meets a trigger I write before that run, C3 comes back as a new item with the batch-1 brief. The 12 msr-v1 anchors already rated are kept.
+The trigger (pre-freeze §2): `gam-surprise-on` passes the per-term rule at ρ ≤ 0.5 in the surprise-high cell or better. It passes in no cell. C3 is **cancelled**, not held: W-1936 step 1b closes. If a future criterion's readout meets a trigger I write before that run, C3 comes back as a new item with the batch-1 brief. The 12 msr-v1 anchors already rated are kept.
 
 ## 4. What phase A's FAIL means for the GAM and for phase B
 
@@ -109,10 +109,10 @@ Not asked, because it does not change: badges and points still wait for phase C'
 
 ## 7. Independent of the founder's answers (can go into a partial batch 3 now)
 
-1. **C5 reproduction** (W-1714, learner-model-engineer): already in flight; everything here waits on it.
+1. **C5 reproduction** (W-1956, learner-model-engineer): already in flight; everything here waits on it.
 2. **Novelty gate-off, model-v0.2.2** (vp-personalization, after C5): my keep/kill authority, offline only; needed under every option (A leaves the model parked in its honest state; C freezes it as is).
-3. **Close C3 / W-1694 step 1b** (board note now).
-4. **Ongoing, unaffected by direction:** W-1718 HQ lab review nits (personalization-engineer); privacy and settings work for the off switch (W-1700 and its privacy read), since option A and Q5's recommended answer both need the off switch and F1 serving.
+3. **Close C3 / W-1936 step 1b** (board note now).
+4. **Ongoing, unaffected by direction:** W-1718 HQ lab review nits (personalization-engineer); privacy and settings work for the off switch (W-1942 and its privacy read), since option A and Q5's recommended answer both need the off switch and F1 serving.
 5. **WBR:** readout 1 presented unedited with this record beside it.
 
 **Waits for the founder:** the criterion 2 evidence memo and criterion (Q3), any review-timing model (Q4), any learner-chosen novelty or surprise mode (Q2), the First Light rule set's status and its reason copy (Q5), any experiment registration (Q1, Q5). I do not write batch 3 for those until he answers.

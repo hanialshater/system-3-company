@@ -560,15 +560,86 @@
             "approvedBy": "founder (F-38, ~15:05Z); the token-budget.md section 4 'one PE' co-approval is not on file",
             "record": "company/decisions/2026-10-16-founder-first-light-t1-topup.md",
             "covers": "tranche 1 only, same purpose and 2026-10-23 checkpoint; not tranche 2, not history or behavioral-econ",
-            "recordedBy": "portfolio-manager (register entry only; lane 18 checks)"
+            "recordedBy": "portfolio-manager (register entry only; lane 18 checks)",
+            "coApproval": {
+              "by": "principal-engineer-ops",
+              "at": "2026-10-16T15:28:50Z",
+              "atBasis": "commit 7f5c3ed time; the record's own row says ~15:40Z",
+              "verdict": "co-approved with conditions; objection stands (does not buy the 10-23 checkpoint)",
+              "record": "company/decisions/2026-10-16-founder-first-light-t1-topup.md",
+              "conditions": [
+                "head-of-strategic-initiatives files the token-budget.md section 4 Forecast at 80% and names the T2 build-scope runs (filed b49fd1c, company/initiatives/first-light/2026-10-16-forecast-80.md; PE-ops judges whether it meets the condition)",
+                "chief-of-staff imports the ledger every round (W-1282)"
+              ],
+              "addedBy": "portfolio-manager, 2026-10-17 (annotation only: approvedBy above is the 2026-10-16 entry as written and is not changed)"
+            }
+          },
+          {
+            "tokens": 1000000,
+            "tranche": 1,
+            "date": "2026-10-16",
+            "decidedAt": "2026-10-16T15:15:50Z",
+            "decidedAtBasis": "commit 5dc8d77 time (F-43 recorded); the founder's words came shortly before",
+            "effectiveFrom": "2026-10-16T15:28:50Z",
+            "effectiveFromBasis": "the time both token-budget.md section 4 approvals (founder + one PE) were on disk: PE-ops co-approval commit 7f5c3ed. Before this the gate could not count this top-up. Note: tools/lib/ledger.mjs does not read effectiveFrom yet (budgetOf sums every top-up regardless of date); see company/ops/2026-10-17-ledger-check-reconstruction.md",
+            "approvedBy": "founder (F-43) + principal-engineer-ops (PE co-approval with conditions, token-budget.md section 4)",
+            "record": "company/decisions/2026-10-16-founder-first-light-t1-topup-2.md",
+            "covers": "tranche 1 only (5.59M to 6.59M), toward the release milestone, same 2026-10-23 checkpoint; not tranche 2, not history or behavioral-econ (both: no top-up), not a deploy",
+            "conditions": [
+              {
+                "n": 1,
+                "text": "nothing is dispatched against the new 1M (spend above 5.59M) until head-of-strategic-initiatives has filed the section 4 Forecast at 80% with a throttle to the release-critical path and a projection to 10-23",
+                "owner": "head-of-strategic-initiatives",
+                "state": "filed b49fd1c (company/initiatives/first-light/2026-10-16-forecast-80.md, throttle 0.37M/day, projection 6.25M at 10-23); whether it meets the condition is principal-engineer-ops' judgement, not on file as of 2026-10-17"
+              },
+              {
+                "n": 2,
+                "text": "portfolio-manager records F-43 in projects.json (topUps[1], tranche 1 to 6,590,000)",
+                "owner": "portfolio-manager",
+                "state": "met by this entry, 2026-10-17"
+              },
+              {
+                "n": 3,
+                "text": "runs that are tranche-2 build scope go to the founder as a T2 bridge question, not into tranche 1",
+                "owner": "chief-of-staff (dispatch), founder",
+                "state": "standing; the forecast's section 3 'Excluded' table lists them"
+              },
+              {
+                "n": 4,
+                "text": "founder's own condition in F-43: nothing is dispatched on the new 1M until the founder has seen the F-43 record",
+                "owner": "chief-of-staff (confirms)",
+                "state": "not confirmed on disk as of 2026-10-17"
+              }
+            ],
+            "revokeIf": "the next ledger import shows First Light past 5.59M with no forecast filed (PE-ops)",
+            "gateNote": "the ledger gate cannot enforce conditions 1, 3 or 4: from this entry it passes tagged First Light work up to 6.59M. Spend above 5.59M (first expected on 10-22 on the forecast's line) needs the chief of staff to check conditions 1 and 4 before dispatch",
+            "recordedBy": "portfolio-manager, 2026-10-17 (register entry only; lane 18 checks)"
           }
         ]
       },
       "tranches": [
         {
           "n": 1,
-          "tokens": 5590000,
+          "tokens": 6590000,
           "tokensOriginal": 3590000,
+          "tokensHistory": [
+            {
+              "tokens": 3590000,
+              "from": "2026-10-16",
+              "record": "company/rituals/records/2026-10-16-project-review.md"
+            },
+            {
+              "tokens": 5590000,
+              "from": "2026-10-16",
+              "record": "company/decisions/2026-10-16-founder-first-light-t1-topup.md"
+            },
+            {
+              "tokens": 6590000,
+              "from": "2026-10-16T15:28:50Z",
+              "record": "company/decisions/2026-10-16-founder-first-light-t1-topup-2.md",
+              "conditional": "see budget.topUps[1].conditions"
+            }
+          ],
           "to": "2026-10-23",
           "buys": "EDD and spike per workstream, privacy and PE reviews, Surface Value amendment draft and reviews, Head of Strategic Initiatives org change, war room, week-1 re-estimate (W-908)",
           "checkpoint": "2026-10-23: W-908 re-estimate and F-01"
@@ -803,7 +874,7 @@
         "tokens": 2000000,
         "proposed": 2000000,
         "countFrom": "2026-10-16T00:00:00Z",
-        "basis": "Base 2.0M: portfolio-manager's estimate for batch 3 (run pm-perso-project-1016: 1.13M batch-3 runs + 0.5M VP inbox turns + 0.35M fix rounds and upkeep), APPROVED by the founder 2026-10-17 (company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md, Founder answers, W-1732, W-1742). Batch 4 (about 0.9M, company/personalization/batches/2026-10-17-batch-4.md) was run inside it. Batches 1-2 are not counted (countFrom 2026-10-16). Top-up 0.1M below brings the project to 2.1M for M1. Measured spend is not a reliable check: the ledger holds 0 tokens tagged personalization since countFrom (node tools/ledger.mjs gate --project=personalization, 2026-10-17) although lane 14 ran 30+ worker and VP runs; the 2026-10-17 WBR anomaly 1 (company/rituals/records/2026-10-17-wbr.md) records that this session's runs carry no token counts.",
+        "basis": "Base 2.0M: portfolio-manager's estimate for batch 3 (run pm-perso-project-1016: 1.13M batch-3 runs + 0.5M VP inbox turns + 0.35M fix rounds and upkeep), APPROVED by the founder 2026-10-17 (company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md, Founder answers, W-1732, W-1742). Batch 4 (about 0.9M, company/personalization/batches/2026-10-17-batch-4.md) was run inside it. Batches 1-2 are not counted (countFrom 2026-10-16). Top-up 0.1M below brings the project to 2.1M for M1. Measured spend is not a reliable check: the ledger holds 0 tokens tagged personalization since countFrom (node tools/ledger.mjs gate --project=personalization, 2026-10-17) although lane 14 ran 30+ worker and VP runs; the 2026-10-17 WBR anomaly 1 (company/rituals/records/2026-10-17-wbr-lane14.md) records that this session's runs carry no token counts.",
         "approval": "approved: base 2.0M by the founder (2026-10-17, readout-2 decisions record); top-up 0.1M by the chief of staff under the founder's M1 delegation (W-1761).",
         "topUps": [
           {
@@ -866,7 +937,7 @@
         "company/personalization/batches/2026-10-17-batch-5.md",
         "company/decisions/2026-10-17-vp-personalization-readout-2-decisions.md",
         "company/decisions/2026-10-17-founder-personalization-milestone-delegation.md",
-        "company/rituals/records/2026-10-17-wbr.md"
+        "company/rituals/records/2026-10-17-wbr-lane14.md"
       ],
       "proposedBy": "portfolio-manager"
     },

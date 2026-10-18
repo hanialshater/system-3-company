@@ -1,0 +1,951 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 1c052f3cc..e6aafb536 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -48,6 +48,21 @@ jobs:
+       - uses: actions/setup-node@v4
+         with: { node-version: 22, cache: npm }
+       - run: npm ci
++      # AMD-013 part (b): the harness Node suites that `npm run verify` runs, in verify's order. They run
++      # before the build so a broken gate, dispatch, memory, mailbox or publish tool fails fast (about 60 s
++      # in total on 2026-10-17; the three S3_SLOW_TESTS dispatch cases stay skipped, as in verify).
++      - run: npm run test:deploy
++      - run: npm run test:publish
++      - run: npm run test:lifehacks
++      - run: npm run test:books
++      - run: npm run test:algorithms
++      - run: npm run test:kit
++      - run: npm run test:hq
++      - run: npm run test:platform
++      - run: npm run test:dispatch
++      - run: npm run test:mailbox
++      - run: npm run test:memory
++      - run: npm run test:metrics
+       - run: npm run check
+       - run: npm run typecheck
+       - run: npm run build
+diff --git a/tests/publish/publish-ready-flags.test.mjs b/tests/publish/publish-ready-flags.test.mjs
+index 7bc3497f3..1a691f1c3 100644
+--- a/tests/publish/publish-ready-flags.test.mjs
++++ b/tests/publish/publish-ready-flags.test.mjs
+@@ -18,6 +18,8 @@ function tmpRoot() {
+   const root = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-publish-ready-"));
+   fs.mkdirSync(path.join(root, "tools"));
+   fs.copyFileSync(path.join(REPO, "tools/publish-ready.mjs"), path.join(root, "tools/publish-ready.mjs"));
++  fs.mkdirSync(path.join(root, "tools/lib"));
++  fs.copyFileSync(path.join(REPO, "tools/lib/readiness.mjs"), path.join(root, "tools/lib/readiness.mjs")); // AMD-013
+   const dest = path.join(root, "src/demos/lifehacks", SLUG);
+   fs.mkdirSync(dest, { recursive: true });
+   const meta = JSON.parse(fs.readFileSync(path.join(LESSON, "meta.json"), "utf8"));
+diff --git a/tests/publish/readiness.test.mjs b/tests/publish/readiness.test.mjs
+new file mode 100644
+index 000000000..284c790c0
+--- /dev/null
++++ b/tests/publish/readiness.test.mjs
+@@ -0,0 +1,274 @@
++// AMD-013 (proposed): one readiness policy. Destination on ratification: tests/publish/readiness.test.mjs
++// (picked up by `npm run test:publish`, which part (b) puts in CI). Runs from the companion directory too:
++//   node --test company/constitution/amendments/AMD-013-one-readiness/tests/readiness.test.mjs
++// Read-only against the repo: real lessons are read, never written; gate runs use a symlinked shadow tree in
++// os.tmpdir() whose only real files are the patched tools/company.mjs and tools/lib/readiness.mjs.
++import test from "node:test";
++import assert from "node:assert/strict";
++import fs from "node:fs";
++import os from "node:os";
++import path from "node:path";
++import { spawnSync } from "node:child_process";
++import { fileURLToPath, pathToFileURL } from "node:url";
++
++const HERE = path.dirname(fileURLToPath(import.meta.url));
++// The repo root: the nearest ancestor holding tools/company.mjs.
++let ROOT = HERE;
++while (!fs.existsSync(path.join(ROOT, "tools/company.mjs"))) {
++  const up = path.dirname(ROOT);
++  if (up === ROOT) throw new Error("repo root not found");
++  ROOT = up;
++}
++// The lib: the companion copy while proposed, tools/lib/readiness.mjs once applied.
++const COMPANION = path.join(ROOT, "company/constitution/amendments/AMD-013-one-readiness");
++// After apply the installed lib is the one under test; the companion copy is the draft it came from.
++const LIB = fs.existsSync(path.join(ROOT, "tools/lib/readiness.mjs")) ? path.join(ROOT, "tools/lib/readiness.mjs") : path.join(COMPANION, "tools/lib/readiness.mjs");
++const lib = await import(pathToFileURL(LIB).href);
++const { readiness, loadContext, loadHolds, gitAncestry, decide, readQa } = lib;
++
++function findMeta(slug) {
++  for (const d of fs.readdirSync(path.join(ROOT, "src/demos"))) {
++    const p = path.join(ROOT, "src/demos", d, slug, "meta.json");
++    if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, "utf8"));
++  }
++  return null;
++}
++
++// Synthetic records.
++const learner = (f, verdict, v, extra = "") => ({ f, t: `# Learner review\nlesson version: v${v}\n${extra}Verdict: ${verdict}\n` });
++const qa = (f, result, { v = null, sha = null, linked = true } = {}) => ({
++  f,
++  t: `# Computer-use QA\n\ndate: ${f.slice(0, 10)} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) ·${v ? ` lesson version: v${v} ·` : ""} result: **${result}**\n${sha ? `\ntarget: http://localhost:3591 · mode: external · built from: ${sha}\n` : ""}`,
++  linked,
++});
++const meta = (version = 1) => ({ slug: "fixture", version, evidence: { qa: [], simulatedLearner: [] } });
++
++// ---------------------------------------------------------------- the three cases the brief asks for
++
++test("(i) same-week-a-year-apart: passes the old gate, NOT ready under the new policy (current-version learner review says revise)", () => {
++  const m = findMeta("same-week-a-year-apart");
++  assert.ok(m, "lesson exists");
++  const rec = path.join(ROOT, "company/reviews/same-week-a-year-apart/2026-10-16-learner-no-econ-adult-r1.md");
++  const t = fs.readFileSync(rec, "utf8");
++  assert.match(t, /^lesson version: v1$/m, "the review is stamped for v1");
++  assert.match(t, /^Verdict: revise$/m, "the review says revise");
++  assert.equal(m.version, 1, "and v1 is the current version");
++  // Old gate: only file existence. Both evidence lists are non-empty and point at real files.
++  assert.ok(m.evidence.qa.length && m.evidence.simulatedLearner.length);
++  for (const r of [...m.evidence.qa, ...m.evidence.simulatedLearner]) assert.ok(fs.existsSync(path.join(ROOT, r)), r);
++  const r = readiness(m, loadContext(ROOT, m, { holds: loadHolds(ROOT), isAncestor: gitAncestry(ROOT) }));
++  assert.equal(r.ready, false);
++  assert.ok(r.reasons.includes("learner review: verdict revise"), r.reasons.join("; "));
++});
++
++test("(ii) an active hold makes a lesson not ready, even when every verdict passes", () => {
++  const ctx = { learner: [learner("2026-10-16-learner-a.md", "launch", 1)], qa: [qa("2026-10-16-qa.md", "pass", { v: 1 })], hold: null };
++  assert.equal(readiness(meta(1), ctx).ready, true, "control: ready without the hold");
++  const held = readiness(meta(1), { ...ctx, hold: "held by head-of-product ruling W-513" });
++  assert.equal(held.ready, false);
++  assert.deepEqual(held.reasons, ["active publish hold: held by head-of-product ruling W-513"]);
++  // And on disk: every review-status lesson listed in company/ops/publish-holds.json is not ready.
++  const holds = loadHolds(ROOT);
++  let n = 0;
++  for (const slug of Object.keys(holds)) {
++    const m = findMeta(slug);
++    if (!m || m.status !== "review") continue;
++    const r = readiness(m, loadContext(ROOT, m, { holds }));
++    assert.equal(r.ready, false, slug);
++    assert.ok(r.reasons.some((x) => x.startsWith("active publish hold: ")), slug);
++    n++;
++  }
++  assert.ok(n > 0, "at least one held review lesson on disk");
++});
++
++test("(iii) a lesson whose newest review passes is ready (an older revise does not hold it)", () => {
++  const ctx = {
++    learner: [learner("2026-10-16-learner-adult-beginner-r1.md", "revise", 1), learner("2026-10-16-learner-adult-beginner-r2.md", "launch", 2)],
++    qa: [qa("2026-10-15-qa.md", "fail", { v: 1 }), qa("2026-10-16-qa.md", "pass", { v: 2 })],
++    hold: null,
++  };
++  const r = readiness(meta(2), ctx);
++  assert.equal(r.ready, true, r.reasons.join("; "));
++  assert.equal(r.learner.latest.f, "2026-10-16-learner-adult-beginner-r2.md");
++  assert.equal(r.qa.latest.f, "2026-10-16-qa.md");
++});
++
++// ---------------------------------------------------------------- QA verdict, version and order
++
++test("QA: the newest record must pass; a same-day pass and fail with no order signal fails closed", () => {
++  const L = [learner("2026-10-16-learner-a.md", "launch", 1)];
++  assert.equal(readiness(meta(1), { learner: L, qa: [qa("2026-10-14-qa.md", "pass"), qa("2026-10-16-qa.md", "fail", { linked: false })] }).ready, false, "an unlinked newer fail still counts");
++  const tie = readiness(meta(1), { learner: L, qa: [qa("2026-10-16-qa.md", "pass"), qa("2026-10-16-qa-pr6.md", "fail")] });
++  assert.equal(tie.ready, false);
++  assert.match(tie.reasons.join(), /newest QA record is a fail/);
++});
++
++test("QA: a stamped record must name the current version; an unstamped one is checked against the learner reviews' builds", () => {
++  const L2 = [learner("2026-10-16-learner-a.md", "revise", 1, "built from aaaaaaa\n"), learner("2026-10-16-learner-a-r2.md", "launch", 2, "built from bbbbbbb\n")];
++  assert.match(readiness(meta(2), { learner: L2, qa: [qa("2026-10-16-qa.md", "pass", { v: 1 })] }).reasons.join(), /for v1, lesson is v2/);
++  // Unstamped, same day as the v1 review, no build: cannot tell, fails closed.
++  assert.match(readiness(meta(2), { learner: L2, qa: [qa("2026-10-16-qa.md", "pass")] }).reasons.join(), /cannot tell which version/);
++  // Unstamped, built from the build the v2 review saw: current.
++  assert.equal(readiness(meta(2), { learner: L2, qa: [qa("2026-10-16-qa.md", "pass", { sha: "bbbbbbb" })] }).ready, true);
++  // Unstamped, built from the build the v1 review saw: stale.
++  assert.match(readiness(meta(2), { learner: L2, qa: [qa("2026-10-16-qa.md", "pass", { sha: "aaaaaaa" })] }).reasons.join(), /built before the current version/);
++  // Unstamped and dated before the v1 review: stale; after it: current.
++  assert.match(readiness(meta(2), { learner: L2, qa: [qa("2026-10-15-qa.md", "pass")] }).reasons.join(), /predates the current version/);
++  assert.equal(readiness(meta(2), { learner: L2, qa: [qa("2026-10-17-qa.md", "pass")] }).ready, true);
++  // From versionSince on, a record must carry its own stamp.
++  assert.match(readiness(meta(2), { learner: L2, qa: [qa("2026-10-17-qa.md", "pass")], versionSince: "2026-10-17" }).reasons.join(), /no lesson version stamp/);
++});
++
++test("QA: exploratory notes are not verdicts; a newer linked unreadable record holds", () => {
++  assert.equal(readQa("- Result: **no dead end**; reveal reachable.\nR4 result: no soft lock.\n").result, null);
++  assert.equal(readQa("date: x · recorded by: qa-tester · result: **contract pass**\n").result, "pass");
++  const L = [learner("2026-10-16-learner-a.md", "launch", 1)];
++  const r = readiness(meta(1), { learner: L, qa: [qa("2026-10-14-qa.md", "pass"), { f: "2026-10-16-qa.md", t: "# QA\n| phone | pass |\n", linked: true }] });
++  assert.match(r.reasons.join(), /newer linked QA record unreadable/);
++});
++
++test("QA: the recorder hook (AMD-010 part 3 step 10) is applied inside the one function", () => {
++  const L = [learner("2026-10-16-learner-a.md", "launch", 1)];
++  const recorder = (rec) => (/kind: independent/.test(rec.t) ? null : `evidence.qa ${rec.f} is not an independent QA record`);
++  assert.match(readiness(meta(1), { learner: L, qa: [qa("2026-10-16-qa.md", "pass")], recorder }).reasons.join(), /not an independent QA record/);
++});
++
++test("learner: the policy is publish-ready's decide(), unchanged, on every lesson on disk", async () => {
++  const pr = await import(pathToFileURL(path.join(ROOT, "tools/publish-ready.mjs")).href);
++  const isAncestor = gitAncestry(ROOT);
++  let n = 0;
++  for (const d of fs.readdirSync(path.join(ROOT, "src/demos"))) {
++    const dd = path.join(ROOT, "src/demos", d);
++    if (!fs.statSync(dd).isDirectory()) continue;
++    for (const slug of fs.readdirSync(dd)) {
++      const mp = path.join(dd, slug, "meta.json");
++      if (!fs.existsSync(mp)) continue;
++      const m = JSON.parse(fs.readFileSync(mp, "utf8"));
++      const rd = path.join(ROOT, "company/reviews", slug);
++      const files = fs.existsSync(rd) ? fs.readdirSync(rd).filter((f) => f.includes("learner")).sort() : [];
++      const reviews = files.map((f) => ({ f, t: fs.readFileSync(path.join(rd, f), "utf8") }));
++      const a = pr.decide(reviews, m.version ?? 1, { isAncestor });
++      const b = decide(reviews, m.version ?? 1, { isAncestor });
++      assert.deepEqual([b.ready, b.reason, b.latest?.f], [a.ready, a.reason, a.latest?.f], slug);
++      n++;
++    }
++  }
++  assert.ok(n > 1000, `compared ${n} lessons`);
++});
++
++// ---------------------------------------------------------------- the gate in tools/company.mjs (patched)
++
++// A shadow repo: symlinks to everything, except tools/company.mjs (patched copy) and tools/lib/readiness.mjs.
++function shadow(libSource) {
++  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-amd013-"));
++  for (const e of fs.readdirSync(ROOT)) if (e !== "tools") fs.symlinkSync(path.join(ROOT, e), path.join(dir, e));
++  fs.mkdirSync(path.join(dir, "tools/lib"), { recursive: true });
++  for (const e of fs.readdirSync(path.join(ROOT, "tools"))) if (e !== "lib" && e !== "company.mjs") fs.symlinkSync(path.join(ROOT, "tools", e), path.join(dir, "tools", e));
++  for (const e of fs.readdirSync(path.join(ROOT, "tools/lib"))) if (e !== "readiness.mjs") fs.symlinkSync(path.join(ROOT, "tools/lib", e), path.join(dir, "tools/lib", e));
++  fs.writeFileSync(path.join(dir, "tools/lib/readiness.mjs"), libSource);
++  const applied = fs.readFileSync(path.join(ROOT, "tools/company.mjs"), "utf8").includes("readinessGates(");
++  if (applied) fs.copyFileSync(path.join(ROOT, "tools/company.mjs"), path.join(dir, "tools/company.mjs"));
++  else {
++    // Apply only the company.mjs hunk of protected.diff to a private copy.
++    const work = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-amd013-apply-"));
++    fs.mkdirSync(path.join(work, "tools"));
++    fs.copyFileSync(path.join(ROOT, "tools/company.mjs"), path.join(work, "tools/company.mjs"));
++    const r = spawnSync("git", ["apply", "--include=tools/company.mjs", path.join(COMPANION, "protected.diff")], { cwd: work, encoding: "utf8" });
++    assert.equal(r.status, 0, r.stderr);
++    fs.copyFileSync(path.join(work, "tools/company.mjs"), path.join(dir, "tools/company.mjs"));
++    fs.rmSync(work, { recursive: true, force: true });
++  }
++  return dir;
++}
++const cli = (dir, ...args) => spawnSync(process.execPath, [path.join(dir, "tools/company.mjs"), ...args], { cwd: dir, encoding: "utf8" });
++
++test("gate: patched status does not list same-week-a-year-apart, or any held lesson, as ready", () => {
++  const dir = shadow(fs.readFileSync(LIB, "utf8"));
++  try {
++    const out = cli(dir, "status").stdout;
++    const line = out.split("\n").find((l) => l.startsWith("Ready to publish:")) ?? "";
++    const ready = line.replace("Ready to publish:", "").split(",").map((s) => s.trim()).filter(Boolean);
++    assert.ok(!ready.includes("same-week-a-year-apart"), line);
++    const holds = loadHolds(ROOT);
++    for (const s of ready) assert.ok(!holds[s], `${s} is held but listed ready`);
++    assert.match(out, /same-week-a-year-apart: learner review: verdict revise/);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
++
++test("gate: patched check raises no readiness error on the repo as it is (grandfathered lessons warn)", () => {
++  const dir = shadow(fs.readFileSync(LIB, "utf8"));
++  try {
++    const r = cli(dir, "check");
++    const errs = r.stdout.split("\n").filter((l) => l.startsWith("error") && /readiness|learner review:|QA:|active publish hold/.test(l));
++    assert.deepEqual(errs, []);
++    assert.match(r.stdout, /grandfathered published lesson\(s\) still fail readiness/);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
++
++test("gate: a lib tuned into 'always ready' fails the known-answer canary, and every gate closes", () => {
++  const mutant = fs.readFileSync(LIB, "utf8") + "\nexport { readiness as _orig };\n";
++  const always = mutant.replace("export function readiness(meta, ctx) {", "export function readiness(meta, ctx) {\n  return { ready: true, reasons: [], learner: null, qa: null };\n  // eslint-disable-next-line no-unreachable");
++  assert.notEqual(always, mutant, "mutation applied");
++  const dir = shadow(always);
++  try {
++    const st = cli(dir, "status").stdout;
++    assert.ok(!/^Ready to publish:/m.test(st), "nothing is ready under a broken lib");
++    assert.match(st, /known-answer canary/);
++    const ck = cli(dir, "check");
++    assert.notEqual(ck.status, 0, "check fails");
++    assert.match(ck.stdout, /known-answer canary/);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
++
++test("gate: a lib that ignores holds is caught by the canary too (the hold floor is in company.mjs as well)", () => {
++  const src = fs.readFileSync(LIB, "utf8");
++  const noHold = src.replace("if (ctx.hold) reasons.push(`active publish hold: ${ctx.hold}`);", "");
++  assert.notEqual(noHold, src, "mutation applied");
++  const dir = shadow(noHold);
++  try {
++    const st = cli(dir, "status").stdout;
++    assert.match(st, /known-answer canary \(active hold/);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
++
++test("gate: a lib whose loadHolds returns {} cannot release held lessons (the floor reads the hold file in company.mjs; review C1)", () => {
++  const src = fs.readFileSync(LIB, "utf8");
++  const blind = src.replace(/export function loadHolds\(([^)]*)\) \{/, "export function loadHolds($1) {\n  return {};");
++  assert.notEqual(blind, src, "mutation applied");
++  const dir = shadow(blind);
++  try {
++    const out = cli(dir, "status").stdout;
++    const line = out.split("\n").find((l) => l.startsWith("Ready to publish:")) ?? "";
++    const ready = line.replace("Ready to publish:", "").split(",").map((s) => s.trim()).filter(Boolean);
++    const holds = loadHolds(ROOT);
++    for (const s of ready) assert.ok(!holds[s], `${s} is held but listed ready`);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
++
++test("gate: an unreadable hold file closes every gate with a message, not a stack trace (review C1/F5)", () => {
++  const dir = shadow(fs.readFileSync(LIB, "utf8"));
++  try {
++    // Replace the company/ and company/ops/ symlinks with real directories of symlinks, so the bad hold file
++    // is written into the shadow only, never through a link into the real repo.
++    fs.unlinkSync(path.join(dir, "company"));
++    fs.mkdirSync(path.join(dir, "company/ops"), { recursive: true });
++    for (const e of fs.readdirSync(path.join(ROOT, "company"))) if (e !== "ops") fs.symlinkSync(path.join(ROOT, "company", e), path.join(dir, "company", e));
++    for (const e of fs.readdirSync(path.join(ROOT, "company/ops"))) if (e !== "publish-holds.json") fs.symlinkSync(path.join(ROOT, "company/ops", e), path.join(dir, "company/ops", e));
++    fs.writeFileSync(path.join(dir, "company/ops/publish-holds.json"), "{ not json");
++    const out = cli(dir, "status").stdout;
++    assert.ok(!/^Ready to publish:/m.test(out), "nothing is ready");
++    assert.match(out, /publish-holds\.json is unreadable/);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++});
+diff --git a/tools/company.mjs b/tools/company.mjs
+index 291881d9b..746091f6a 100644
+--- a/tools/company.mjs
++++ b/tools/company.mjs
+@@ -22,6 +22,7 @@ import fs from "node:fs";
+ import path from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { registryFiles } from "./registry.mjs";
++import { readiness, loadContext, gitAncestry } from "./lib/readiness.mjs";
+ 
+ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+ const rel = (...p) => path.join(ROOT, ...p);
+@@ -135,8 +136,171 @@ function typeOf(v) {
+   return Array.isArray(v) ? "array" : v === null ? "null" : typeof v;
+ }
+ 
+-/** Gates a lesson must pass to be published. Returns a list of failures. */
++// ---------------------------------------------------------------- readiness (AMD-013)
++// One readiness policy for status, publish, batch publish (tools/publish-ready.mjs) and check. The mechanics of
++// reading verdicts, versions, holds and review order live in tools/lib/readiness.mjs (ordinary surface, tunable
++// without an amendment). What judges that lib stays here: the strictness parameters below, a known-answer canary
++// it must pass before launchGates trusts it, an active-hold floor that does not depend on it, and the rule that
++// launchGates calls it. A lib that throws, answers malformed, or fails the canary blocks every gate (fail closed).
++
++// QA records dated on or after this day must carry `lesson version: vN` (qa-record writes it from AMD-013 on).
++// The applying commit sets this to the ratification date (AMD-013 apply step A2; the steward's audit checks it).
++const READINESS_SINCE = "2026-10-17";
++// AMD-010 part 3 step 10, folded in here rather than as a second gate line: when that part is ratified, set this to
++// its ratification date and a newest QA record from that date on must read `recorded by: qa-tester` and
++// `kind: independent`. null = not ratified, no recorder rule.
++const QA_INDEPENDENT_SINCE = null;
++// Published before AMD-013 and failing it when measured (AMD-013-one-readiness/measure.mjs at c31c1fab; 268 of 720,
++// 219 of them only because an unstamped QA record shares a day with an older-version review). check warns for
++// these and errors for any other published lesson that fails readiness. Changes only by amendment; never grows.
++const READINESS_GRANDFATHERED = new Set([
++  "a-star-heads-for-goal", "accurate-bettor-takes-the-pot", "all-lines-meet-in-one-mother",
++  "antibiotic-already-there", "atlantic-to-pacific-heading", "attention-shares-one", "average-that-never-settles",
++  "back-button-stack", "background-shortcut", "bad-hash-one-bucket", "bad-start-kmeans", "ball-at-the-top",
++  "bank-lends-it-again", "bearing-spiral-to-the-pole", "below-critical-mass", "below-the-threshold-crash",
++  "bending-frontier", "bet-too-much-and-go-broke", "better-in-every-group-worse-overall", "bid-what-its-worth",
++  "bigger-beetles-everyone-loses", "binary-fingers", "binary-numbers", "birthday-paradox", "bisect-the-bad-commit",
++  "boyer-moore-skips-ahead", "bridge-parity", "build-a-balanced-mobile", "capped-doubling-game",
++  "centre-moves-the-gap", "cheapest-is-not-shortest", "circle-slices-to-rectangle", "city-poll-nation-poll",
++  "clear-the-lowest-one", "closer-in-winter", "coaster-track-shape", "coin-gap-keeps-growing", "coin-greedy-trap",
++  "collect-all-six-faces", "common-letters-in-order", "compound-interest", "confident-and-wrong",
++  "contact-order-matters", "copy-of-a-copy", "count-the-bread-once", "count-the-out-of-order-pairs",
++  "count-the-thunder", "crumple-zone-stopping-time", "cut-the-cube-surface", "dakar-nearer-brazil",
++  "dam-depth-not-width", "deleted-key-breaks-search", "diagonal-escapes-the-list", "digits-are-logs",
++  "dilute-until-none-left", "direction-not-distance", "dish-runs-out", "dog-bites-man-twice",
++  "double-after-every-loss", "doubling-finds-the-edge", "doubling-speed-braking", "draw-the-xor-lines",
++  "drift-of-a-straight-throw", "drop-the-losing-start", "dropped-vs-fired-ball", "drunk-walk-distance",
++  "each-element-pops-once", "earth-flattening", "equinox-twelve-everywhere", "eratosthenes-shadow",
++  "every-base-fools-fermat", "every-scale-equally-likely", "every-second-seat-out", "exchange-round-trip",
++  "exterior-turns", "fee-on-two-week-loan", "fenwick-hops-by-lowest-bit", "fib-call-explosion", "fifty-hour-monday",
++  "filament-vs-led-heat", "fingernail-ocean", "flaw-to-lawn", "flip-and-add-one", "four-in-a-row-two-thirds",
++  "four-queens-pruning", "free-rider-pot", "friends-have-more-friends", "friends-split-more-than-chance",
++  "gauss-staircase", "gradient-descent", "greedy-slot-machine", "groups-where-everyone-reaches-everyone",
++  "half-adder-wiring", "half-of-humanity", "halve-the-margin-cost", "hanoi-tower-doubles", "hash-bucket-pileup",
++  "hawks-never-take-over", "heap-bubble-up", "heavy-but-floats", "herd-immunity", "hidden-carriers",
++  "hidden-third-cause", "high-satellite-view", "honolulu-overhead", "horizon-ruler", "huffman-by-merging",
++  "income-in-dollars", "insert-at-front-cost", "insertion-by-hand", "insurance-fair-price",
++  "iss-gravity-still-there", "keep-one-of-a-stream", "keeping-the-bad-gene", "king-queen-arrow", "kitchen-crowding",
++  "kmp-never-steps-back", "land-hemisphere", "lap-at-89-north", "last-digit-first", "list-doubling-copies",
++  "loaf-with-smoke", "london-december-noon-sun", "london-la-over-greenland", "lower-bid-takes-the-top-ad",
++  "lru-eviction-order", "maze-depth-first", "meaning-without-the-word", "median-without-sorting",
++  "memorise-coin-flips", "mercator-greenland", "merge-sort-payoff", "middle-of-three-takes-all", "midnight-sun-line",
++  "mild-preferences-sharp-divides", "monty-hall-100-doors", "more-copying-bigger-stars", "most-cases-vaccinated",
++  "natural-selection", "near-and-far-links-find-the-way", "near-the-wall", "negative-edge-fools-dijkstra",
++  "never-flag-99", "new-server-moves-few-keys", "newton-doubles-the-digits", "next-word-tally", "nines-without-end",
++  "north-is-up-convention", "odds-average-the-bettors", "one-boss-moves-the-mean", "one-crowded-bucket",
++  "one-in-four-sprouts", "one-nudge-per-mistake", "one-odd-loop-blocks-two-camps", "one-recipe-for-sixty",
++  "pairs-cancel-under-xor", "palindromes-grow-from-centres", "paths-by-adding", "patience-piles",
++  "pay-first-then-profit", "pcr-not-quite-doubling", "pendulum-period", "pennies-dont-add-up", "pesticide-paradox",
++  "plus-fifty-minus-forty", "point-one-is-26-percent", "potassium-battery", "price-tag-or-auction",
++  "prices-sort-the-buyers", "probing-clusters-grow", "product-plus-one", "projectile-angle",
++  "proposers-get-the-best", "puck-on-ice-no-push", "purging-slows-down", "queue-or-stack-same-search",
++  "ramp-same-work", "random-surfer-finds-the-rank", "ray-counts-crossings", "real-rate-illusion",
++  "rising-price-stops-at-second", "rolling-hash-window", "rotation-untangles-the-chain", "route-explosion",
++  "rsa-lock-with-public-key", "ruler-on-mercator", "running-median-two-heaps", "same-picture-two-histories",
++  "same-push-twice-the-mass", "same-revenue-any-rule", "same-sugar-more-water", "saturated-enzyme",
++  "seattle-moscow-heading", "second-trader-pays-the-seller", "seesaw-sit-closer", "seventy-two-doubling",
++  "shoelace-order-matters", "shortest-job-first-wait", "shrink-toward-zero", "shrinking-degree",
++  "side-of-the-square", "skydiver-speed-limit", "split-the-sum", "spreaders-are-rare", "square-a-plus-b",
++  "square-root-wealth", "stag-needs-three-in-four", "steeper-is-not-taller", "stop-at-epoch-sixty",
++  "strategy-builder", "sum-seven-ignores-first-die", "summit-kettle", "tear-the-corners", "temperature-reshapes",
++  "ten-to-one-buffer", "ternary-asks-more", "thales-corner", "the-bar-nobody-can-forecast", "the-contrary-program",
++  "the-fast-ones-leave", "the-grid-takes-up-to-three-eighths", "the-loser-flips-the-winner",
++  "the-middle-voter-decides", "the-pivotal-juror-convicts", "the-slowing-half-life", "the-tagged-molecule",
++  "the-tail-that-reacts", "thirteen-pigeons", "three-cards-one-red-face", "three-giants-in-africa",
++  "tic-tac-toe-is-a-draw", "ties-keep-their-order", "tissot-circles", "torch-underwater-tilt", "tortoise-meets-hare",
++  "tournament-second-best", "tree-count-explodes", "triangle-three-right-angles", "twenty-dollar-basket",
++  "twenty-then-ten-off", "twice-as-hot-not-twice-as-fast", "two-bulges", "two-flips-slip-by",
++  "two-locks-wait-forever", "two-pointers-meet", "two-ripples-cancel", "two-said-blue", "two-squares-become-one",
++  "two-stacks-make-a-queue", "two-tugs-right-angle", "two-writers-one-counter", "undo-a-bad-push",
++  "undo-a-multiplication-mod-n", "union-find-shortcut", "unknot-game", "waves-return", "ways-to-make-ten",
++  "web-map-cut-off-latitude", "wheel-needs-four-colours", "wheel-of-negatives", "when-the-water-is-full",
++  "where-the-dew-forms", "which-answer-wins", "who-grabs-the-electrons", "whose-cutoff-wins", "window-forgets-start",
++  "word-in-pieces", "worth-something-alone"
++]);
++
++function qaRecorderRule(rec) {
++  if (!QA_INDEPENDENT_SINCE || rec.d < QA_INDEPENDENT_SINCE) return null;
++  return /recorded by:[ \t]*qa-tester\b/.test(rec.t) && /kind:[ \t]*independent\b/.test(rec.t) ? null : `evidence.qa ${rec.f} is not an independent QA record`;
++}
++
++// The hold floor reads the hold file here, not through the lib (AMD-013 (a) 2; principal-engineer condition C1).
++// null means unreadable, and then every gate is closed.
++function readHolds() {
++  const p = rel("company/ops/publish-holds.json");
++  if (!fs.existsSync(p)) return {};
++  try {
++    const h = JSON.parse(fs.readFileSync(p, "utf8")).holds ?? {};
++    return h && typeof h === "object" && !Array.isArray(h) ? h : null;
++  } catch {
++    return null;
++  }
++}
++
++let readinessOptsCache = null;
++function readinessOpts() {
++  return (readinessOptsCache ??= { holds: readHolds(), isAncestor: gitAncestry(ROOT), versionSince: READINESS_SINCE, recorder: qaRecorderRule });
++}
++
++// Known answers the lib must give before any gate trusts it. Synthetic records, no disk.
++let canaryResult;
++function readinessCanary() {
++  if (canaryResult !== undefined) return canaryResult;
++  const learner = (verdict, v) => ({ f: "2026-01-02-learner-canary.md", t: `lesson version: v${v}\nVerdict: ${verdict}\n` });
++  const qa = (result, v) => ({ f: "2026-01-02-qa.md", t: `date: 2026-01-02 · lesson version: v${v} · result: **${result}**\n`, linked: true });
++  const meta = { slug: "canary", version: 2 };
++  const cases = [
++    ["launch on the current version, QA pass", { learner: [learner("launch", 2)], qa: [qa("pass", 2)], hold: null }, true],
++    ["learner revise", { learner: [learner("revise", 2)], qa: [qa("pass", 2)], hold: null }, false],
++    ["learner launch for an older version", { learner: [learner("launch", 1)], qa: [qa("pass", 2)], hold: null }, false],
++    ["QA fail", { learner: [learner("launch", 2)], qa: [qa("fail", 2)], hold: null }, false],
++    ["QA for an older version", { learner: [learner("launch", 2)], qa: [qa("pass", 1)], hold: null }, false],
++    ["active hold", { learner: [learner("launch", 2)], qa: [qa("pass", 2)], hold: "canary hold" }, false],
++    ["unstamped QA on or after READINESS_SINCE", { learner: [learner("launch", 2)], qa: [{ f: "2026-01-02-qa.md", t: "date: 2026-01-02 · result: **pass**\n", linked: true }], hold: null, versionSince: "2026-01-01" }, false],
++    ["same-day tie of launch and revise", { learner: [learner("launch", 2), { f: "2026-01-02-learner-other.md", t: "lesson version: v2\nVerdict: revise\n" }], qa: [qa("pass", 2)], hold: null }, false],
++  ];
++  canaryResult = null;
++  for (const [name, ctx, want] of cases) {
++    let got;
++    try {
++      got = readiness(meta, ctx)?.ready;
++    } catch (e) {
++      got = `threw ${e.message}`;
++    }
++    if (got !== want) {
++      canaryResult = `readiness lib failed its known-answer canary (${name}: expected ${want}, got ${got}); every gate is closed until it passes (AMD-013)`;
++      break;
++    }
++  }
++  return canaryResult;
++}
++
++/** Readiness gates (AMD-013): verdicts, versions, holds, review order. Returns a list of failures. */
++function readinessGates(meta) {
++  const canary = readinessCanary();
++  if (canary) return [canary];
++  const fails = [];
++  const opts = readinessOpts();
++  if (!opts.holds) return ["company/ops/publish-holds.json is unreadable; every gate is closed until it parses (AMD-013 hold floor)"];
++  let r;
++  try {
++    r = readiness(meta, loadContext(ROOT, meta, opts));
++  } catch (e) {
++    return [`readiness check failed to run: ${e.message}`];
++  }
++  if (!r || typeof r.ready !== "boolean" || !Array.isArray(r.reasons)) return ["readiness returned a malformed answer"];
++  if (!r.ready) fails.push(...(r.reasons.length ? r.reasons : ["not ready (readiness gave no reason)"]));
++  if (opts.holds[meta.slug] && !fails.some((f) => f.startsWith("active publish hold"))) fails.push(`active publish hold: ${opts.holds[meta.slug]}`);
++  return fails;
++}
++
++/** Gates a lesson must pass to be published: the claim/evidence floor plus readiness. Returns a list of failures. */
+ function launchGates(meta) {
++  return [...claimGates(meta), ...readinessGates(meta)];
++}
++
++/** The claim and evidence floor, unchanged by AMD-013. Returns a list of failures. */
++function claimGates(meta) {
+   const fails = [];
+   const open = meta.claims.filter((c) => c.status !== "verified" && c.status !== "withdrawn");
+   if (meta.claims.length === 0) fails.push("no claims recorded: every lesson asserts something; write it down");
+@@ -158,6 +322,7 @@ function launchGates(meta) {
+ function cmdCheck() {
+   const errors = [];
+   const warnings = [];
++  const grandfathered = []; // AMD-013: published before the policy and still failing it
+   const err = (where, msg) => errors.push(`${where}: ${msg}`);
+   const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
+ 
+@@ -232,7 +397,12 @@ function cmdCheck() {
+       if (/localStorage|sessionStorage/.test(src)) err(where, "demos must not touch storage directly; progress lives in the kit");
+       if (/fetch\(|https?:\/\//.test(src.replace(/\/\/.*$/gm, ""))) warn(where, "network or URL in Demo.tsx: lessons should work offline");
+     }
+-    if (m.status === "published") for (const f of launchGates(m)) err(where, `published but fails gate: ${f}`);
++    if (m.status === "published") {
++      for (const f of claimGates(m)) err(where, `published but fails gate: ${f}`);
++      const rg = readinessGates(m);
++      if (rg.length && READINESS_GRANDFATHERED.has(m.slug)) grandfathered.push(m.slug);
++      else for (const f of rg) err(where, `published but fails gate: ${f}`);
++    }
+     if (m.status === "review" && m.claims.some((c) => c.status === "disputed")) warn(where, "in review with a disputed claim");
+   }
+ 
+@@ -313,6 +483,10 @@ function cmdCheck() {
+     if (!it.owner) err("company/ops/board.json", `${it.id} has no owner`);
+   }
+ 
++  if (grandfathered.length)
++    warn("readiness (AMD-013)", `${grandfathered.length} grandfathered published lesson(s) still fail readiness: ${grandfathered.slice(0, 6).join(", ")}${grandfathered.length > 6 ? ", …" : ""} (measure.mjs in company/constitution/amendments/AMD-013-one-readiness/ lists why)`);
++  const nowPass = [...READINESS_GRANDFATHERED].filter((slug) => !grandfathered.includes(slug) && demos.some((d) => d.meta?.slug === slug && d.meta.status === "published"));
++  if (nowPass.length) warn("readiness (AMD-013)", `${nowPass.length} grandfathered lesson(s) now pass readiness; drop them from READINESS_GRANDFATHERED at the next amendment: ${nowPass.slice(0, 6).join(", ")}`);
+   for (const w of warnings) console.log(color.yellow("warn  ") + w);
+   for (const e of errors) console.log(color.red("error ") + e);
+   console.log(
+@@ -628,7 +802,7 @@ function cmdQaRecord() {
+     const body = [
+       `# Computer-use QA: ${slug}`,
+       "",
+-      `date: ${today()} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) · result: **${passed ? "pass" : "fail"}**`,
++      `date: ${today()} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) · lesson version: v${d.meta.version ?? 1} · result: **${passed ? "pass" : "fail"}**`,
+       "",
+       "| Viewport | Result | Retries | First error |",
+       "|---|---|---|---|",
+diff --git a/tools/lib/readiness.mjs b/tools/lib/readiness.mjs
+new file mode 100644
+index 000000000..a063dd4f1
+--- /dev/null
++++ b/tools/lib/readiness.mjs
+@@ -0,0 +1,243 @@
++// AMD-013 (proposed): one readiness policy. Destination: tools/lib/readiness.mjs (ordinary surface).
++//
++// What lives here: the mechanics of reading verdicts (learner and QA), versions, holds and review
++// ordering. What does NOT live here: the claim gates and the strictness parameters. Those stay in
++// tools/company.mjs (protected), which calls readiness() from launchGates() and runs a known-answer
++// canary against it before trusting it (see the company.mjs patch beside this file). So this file can
++// be tuned (a new verdict format, a better ordering signal) without an amendment, but it cannot be
++// tuned into saying "ready" for a revise verdict or an active hold without check failing.
++//
++// Moved here from tools/publish-ready.mjs unchanged: VERDICTS, readReview, builtFrom, newer, decide,
++// gitAncestry (W-843, W-1596); the only edits are that decide() and newer() take the basename of r.f, so a
++// repo-relative path works as well as a bare filename. publish-ready.mjs re-exports them, so tests/publish/ keeps passing.
++//
++// Pure core: readiness(meta, ctx) reads nothing from disk; loadContext(root, meta, opts) does the I/O.
++
++import fs from "node:fs";
++import path from "node:path";
++import { execFileSync } from "node:child_process";
++
++// ------------------------------------------------------------ learner reviews (from publish-ready.mjs)
++
++export const VERDICTS = ["launch", "revise", "fatal"];
++const VERDICT_LINE = /^[ \t>*_#-]*Verdict:[ \t]*[*_]*[ \t]*([A-Za-z-]+)/gim;
++const VERSION_LINE = /^[ \t>*_-]*lesson version:[ \t]*v(\d+)\b/gim;
++
++export function readReview(text) {
++  const words = [...text.matchAll(VERDICT_LINE)].map((m) => m[1].toLowerCase());
++  const canon = [...new Set(words.filter((w) => VERDICTS.includes(w)))];
++  const other = [...new Set(words.filter((w) => !VERDICTS.includes(w)))];
++  const stamps = [...new Set([...text.matchAll(VERSION_LINE)].map((m) => Number(m[1])))];
++  let problem = null;
++  let verdict = null;
++  if (other.length) problem = `verdict wording "${other.join('", "')}" is not ${VERDICTS.join("|")}`;
++  else if (canon.length > 1) problem = `conflicting verdicts (${canon.join(", ")})`;
++  else if (!canon.length) problem = "verdict missing";
++  else verdict = canon[0];
++  let version = 0;
++  if (stamps.length === 1) version = stamps[0];
++  else if (stamps.length > 1) problem ??= `conflicting lesson version stamps (v${stamps.join(", v")})`;
++  else problem ??= "no lesson version stamp";
++  if (problem) verdict = null;
++  return { verdict, version, problem };
++}
++
++const BUILT_FROM = /built from[ \t`*]*([0-9a-f]{7,40})\b/i;
++const SUPERSEDES = /^[ \t>*_-]*supersedes:[ \t]*(.+)$/gim;
++const SEVERITY = { launch: 0, revise: 1, fatal: 2 };
++export function builtFrom(text) {
++  return text.match(BUILT_FROM)?.[1]?.toLowerCase() ?? null;
++}
++function stem(f) {
++  const m = f.match(/^(.*?)(?:-r(\d+))?\.md$/);
++  return m ? { base: m[1], n: m[2] ? Number(m[2]) : 1 } : { base: f, n: 1 };
++}
++function supersedes(r, other) {
++  const name = path.basename(other.f);
++  return [...r.t.matchAll(SUPERSEDES)].some((m) => m[1].includes(name) || m[1].includes(name.replace(/\.md$/, "")));
++}
++export function newer(a, b, isAncestor = null, sha = builtFrom) {
++  const sa = sha(a.t), sb = sha(b.t);
++  if (isAncestor && sa && sb && sa !== sb && !sa.startsWith(sb) && !sb.startsWith(sa)) {
++    if (isAncestor(sb, sa) === true) return 1;
++    if (isAncestor(sa, sb) === true) return -1;
++  }
++  const supA = supersedes(a, b), supB = supersedes(b, a);
++  if (supA !== supB) return supA ? 1 : -1;
++  const ka = stem(path.basename(a.f)), kb = stem(path.basename(b.f));
++  if (ka.base === kb.base && ka.n !== kb.n) return ka.n > kb.n ? 1 : -1;
++  return 0;
++}
++const severity = (r) => (r.problem ? 3 : SEVERITY[r.verdict] ?? 3);
++const dateOf = (f) => path.basename(f).slice(0, 10);
++
++export function decide(reviews, metaVersion = 1, opts = {}) {
++  if (!reviews.length) return { ready: false, reason: "no learner review" };
++  const read = reviews.map((r) => ({ ...r, ...readReview(r.t), d: dateOf(r.f) }));
++  const top = read.reduce((t, r) => (r.version > t.version || (r.version === t.version && r.d > t.d) ? r : t));
++  const group = read.filter((r) => r.version === top.version && r.d === top.d);
++  const unbeaten = group.filter((r) => !group.some((o) => o !== r && newer(o, r, opts.isAncestor) > 0));
++  const pool = unbeaten.length ? unbeaten : group;
++  const latest = [...pool].sort((a, b) => severity(b) - severity(a) || a.f.localeCompare(b.f))[0];
++  const newerBad = read.find((r) => r !== latest && r.problem && r.d > latest.d);
++  if (newerBad) return { ready: false, reason: `newer learner review unreadable (${newerBad.problem})`, latest };
++  if (latest.problem) return { ready: false, reason: latest.problem, latest };
++  if (latest.verdict !== "launch") return { ready: false, reason: `verdict ${latest.verdict}`, latest };
++  if (latest.version !== metaVersion) return { ready: false, reason: "verdict is for an older version", latest };
++  return { ready: true, reason: null, latest };
++}
++
++export function gitAncestry(cwd) {
++  const cache = new Map();
++  return (x, y) => {
++    const k = `${x}..${y}`;
++    if (cache.has(k)) return cache.get(k);
++    let v = null;
++    try {
++      execFileSync("git", ["merge-base", "--is-ancestor", x, y], { cwd, stdio: "ignore" });
++      v = true;
++    } catch (e) {
++      v = e.status === 1 ? false : null;
++    }
++    cache.set(k, v);
++    return v;
++  };
++}
++
++// ------------------------------------------------------------ QA records (new in AMD-013)
++
++// A QA verdict is the header field `result: **pass**` (or `**contract pass**`) / `result: **fail**`, at the
++// start of a line or after a ` · ` separator, as tools/company.mjs qa-record writes it. Exploratory notes
++// ("- Result: **no dead end**", "R4 result: no soft lock") are not verdicts and are not read as one.
++const QA_RESULT = /(?:^|·)[ \t*_]*result:[ \t]*[*_]*[ \t]*(contract pass|pass|fail)\b/gim;
++const QA_VERSION = /lesson version:[ \t]*v?(\d+)\b/gi;
++const QA_SEVERITY = { pass: 0, fail: 1 };
++
++export function readQa(text) {
++  const words = [...new Set([...text.matchAll(QA_RESULT)].map((m) => (m[1].toLowerCase() === "fail" ? "fail" : "pass")))];
++  const stamps = [...new Set([...text.matchAll(QA_VERSION)].map((m) => Number(m[1])))];
++  let problem = null;
++  if (!words.length) problem = "QA result missing";
++  else if (words.length > 1) problem = "conflicting QA results";
++  else if (stamps.length > 1) problem = `conflicting lesson version stamps (v${stamps.join(", v")})`;
++  return { result: problem ? null : words[0], version: stamps.length === 1 ? stamps[0] : 0, problem };
++}
++
++// Which QA records are evidence. A file in company/reviews/<slug>/ named like a contract QA record, plus
++// whatever meta.evidence.qa links. Unlinked records count too: qa-record writes a fail record but links
++// only passes, so the linked list alone would hide the newest failure.
++export const QA_FILE = /^\d{4}-\d{2}-\d{2}-(?:.*-)?qa(?:-[a-z0-9-]+)?\.md$/i;
++export const QA_NOT_EVIDENCE = /exploratory|integration|audit|summary/i; // AMD-010 part 3 names integration records
++
++// QA records write `built from: <sha>` (qa-record, AMD-010 part 2) or `built-from SHA: <sha>` (hand-written).
++const QA_BUILT_FROM = /built[ -]from(?: SHA)?[ \t:`*]*([0-9a-f]{7,40})\b/i;
++export function qaBuiltFrom(text) {
++  return text.match(QA_BUILT_FROM)?.[1]?.toLowerCase() ?? null;
++}
++// "Build a is the same build as b, or a descendant of it." true / false / null (cannot tell).
++function atOrAfter(a, b, isAncestor) {
++  if (!a || !b) return null;
++  if (a === b || a.startsWith(b) || b.startsWith(a)) return true;
++  return isAncestor ? isAncestor(b, a) : null;
++}
++
++// Is an unstamped QA record for the current version? Learner reviews carry a version stamp and a build, so
++// they say which build showed which version. Signals, strongest first:
++//   1. the QA build is the build (or a descendant of the build) a current-version learner review saw: current;
++//   2. the QA build is the build (or an ancestor of the build) an older-version learner review saw: stale;
++//   3. dates: after the newest older-version review: current; before it: stale; the same day: cannot tell,
++//      and that fails closed (a stamped re-run settles it).
++// Version 1 lessons, and lessons with no older-version review on disk, have nothing to contradict the record.
++function qaVersionProblem(rec, v, opts) {
++  if (v <= 1) return null;
++  const old = opts.olderVersionReviews ?? [];
++  const cur = opts.currentVersionReviews ?? [];
++  const sha = qaBuiltFrom(rec.t);
++  if (sha && cur.some((c) => atOrAfter(sha, c.sha, opts.isAncestor) === true)) return null;
++  if (sha && old.some((o) => atOrAfter(o.sha, sha, opts.isAncestor) === true)) return "newest QA record was built before the current version";
++  const lastOld = old.reduce((m, o) => (o.d > m ? o.d : m), "");
++  if (!lastOld || rec.d > lastOld) return null;
++  if (rec.d < lastOld) return "newest QA record predates the current version";
++  return "newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)";
++}
++
++// opts.metaVersion; opts.versionSince: the date (YYYY-MM-DD) from which a record must carry its own
++// `lesson version:` stamp (company.mjs passes it; null = never required); opts.olderVersionReviews and
++// opts.currentVersionReviews: [{ d, sha }] from the learner reviews (see qaVersionProblem); opts.recorder:
++// optional (rec) => problem|null, the hook for AMD-010 part 3 step 10, so that its rule lands in this one
++// function and not as a second gate line.
++export function decideQa(records, opts = {}) {
++  const v = opts.metaVersion ?? 1;
++  if (!records.length) return { ready: false, reason: "no computer-use QA record" };
++  const read = records.map((r) => ({ ...r, ...readQa(r.t), d: dateOf(r.f) }));
++  const usable = read.filter((r) => !r.problem);
++  if (!usable.length) return { ready: false, reason: `QA record unreadable (${read[0].problem})` };
++  const top = usable.reduce((t, r) => (r.d > t.d ? r : t));
++  const group = usable.filter((r) => r.d === top.d);
++  const unbeaten = group.filter((r) => !group.some((o) => o !== r && newer(o, r, opts.isAncestor, qaBuiltFrom) > 0));
++  const pool = unbeaten.length ? unbeaten : group;
++  const latest = [...pool].sort((a, b) => QA_SEVERITY[b.result] - QA_SEVERITY[a.result] || a.f.localeCompare(b.f))[0];
++  const newerBad = read.find((r) => r.problem && r.linked && r.d > latest.d);
++  if (newerBad) return { ready: false, reason: `newer linked QA record unreadable (${newerBad.problem})`, latest };
++  if (latest.result !== "pass") return { ready: false, reason: "newest QA record is a fail", latest };
++  if (latest.version && latest.version !== v) return { ready: false, reason: `newest QA record is for v${latest.version}, lesson is v${v}`, latest };
++  if (!latest.version) {
++    if (opts.versionSince && latest.d >= opts.versionSince) return { ready: false, reason: "QA record has no lesson version stamp", latest };
++    const p = qaVersionProblem(latest, v, opts);
++    if (p) return { ready: false, reason: p, latest };
++  }
++  const who = opts.recorder?.(latest);
++  if (who) return { ready: false, reason: who, latest };
++  return { ready: true, reason: null, latest };
++}
++
++// ------------------------------------------------------------ the one function
++
++// ctx: { learner: [{ f, t }], qa: [{ f, t, linked }], hold: string | null, isAncestor, versionSince, recorder }
++// Returns { ready, reasons: string[], learner, qa }. Every reason is a gate failure in launchGates' words.
++export function readiness(meta, ctx) {
++  const v = meta.version ?? 1;
++  const reasons = [];
++  if (ctx.hold) reasons.push(`active publish hold: ${ctx.hold}`);
++  const learner = decide(ctx.learner ?? [], v, { isAncestor: ctx.isAncestor });
++  if (!learner.ready) reasons.push(`learner review: ${learner.reason}`);
++  const stamped = (ctx.learner ?? []).map((r) => ({ d: dateOf(r.f), sha: builtFrom(r.t), ...readReview(r.t) })).filter((r) => r.version);
++  const qa = decideQa(ctx.qa ?? [], {
++    metaVersion: v,
++    isAncestor: ctx.isAncestor,
++    versionSince: ctx.versionSince,
++    recorder: ctx.recorder,
++    olderVersionReviews: stamped.filter((r) => r.version < v),
++    currentVersionReviews: stamped.filter((r) => r.version === v),
++  });
++  if (!qa.ready) reasons.push(`QA: ${qa.reason}`);
++  return { ready: reasons.length === 0, reasons, learner, qa };
++}
++
++// ------------------------------------------------------------ disk
++
++export function loadHolds(root) {
++  const p = path.join(root, "company/ops/publish-holds.json");
++  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")).holds ?? {} : {};
++}
++
++// Builds ctx for one lesson from company/reviews/<slug>/ and meta.evidence. opts: { holds, isAncestor, versionSince, recorder }.
++export function loadContext(root, meta, opts = {}) {
++  const dir = path.join(root, "company/reviews", meta.slug);
++  const files = fs.existsSync(dir) ? fs.readdirSync(dir).sort() : [];
++  const read = (rel) => ({ f: rel, t: fs.readFileSync(path.join(root, rel), "utf8") });
++  const union = (onDisk, linked) => [...new Set([...onDisk, ...linked])].filter((r) => fs.existsSync(path.join(root, r)));
++  const learnerLinked = meta.evidence?.simulatedLearner ?? [];
++  const learnerDisk = files.filter((f) => f.includes("learner") && f.endsWith(".md")).map((f) => `company/reviews/${meta.slug}/${f}`);
++  const qaLinked = meta.evidence?.qa ?? [];
++  const qaDisk = files.filter((f) => QA_FILE.test(f) && !QA_NOT_EVIDENCE.test(f)).map((f) => `company/reviews/${meta.slug}/${f}`);
++  const holds = opts.holds ?? loadHolds(root);
++  return {
++    learner: union(learnerDisk, learnerLinked).map(read),
++    qa: union(qaDisk, qaLinked).map((r) => ({ ...read(r), linked: qaLinked.includes(r) })),
++    hold: holds[meta.slug] ?? null,
++    isAncestor: opts.isAncestor ?? null,
++    versionSince: opts.versionSince ?? null,
++    recorder: opts.recorder ?? null,
++  };
++}
+diff --git a/tools/publish-ready.mjs b/tools/publish-ready.mjs
+index 3b018caef..7838bceec 100644
+--- a/tools/publish-ready.mjs
++++ b/tools/publish-ready.mjs
+@@ -1,7 +1,8 @@
+ #!/usr/bin/env node
+ // Chief-of-staff publish loop (W-062). Not a gate: the gates live in tools/company.mjs and still run
+-// on every publish. This script adds the check the gate lacks until AMD-001(d) is ratified: the most
+-// recent learner review must say "Verdict: launch" AND name the lesson's current version.
++// on every publish. AMD-013: this script and the gate now share one readiness policy
++// (tools/lib/readiness.mjs): current-version learner and QA verdicts that pass, no active hold, and an
++// unambiguous review order. The list below is readiness only; `company publish` adds the claim floor.
+ //
+ //   node tools/publish-ready.mjs              list candidates and why others are held (read-only)
+ //   node tools/publish-ready.mjs --link       also link learner-review files into meta.json
+@@ -24,113 +25,10 @@ import path from "node:path";
+ import { execFileSync } from "node:child_process";
+ import { fileURLToPath, pathToFileURL } from "node:url";
+ 
+-export const VERDICTS = ["launch", "revise", "fatal"];
+-const VERDICT_LINE = /^[ \t>*_#-]*Verdict:[ \t]*[*_]*[ \t]*([A-Za-z-]+)/gim;
+-const VERSION_LINE = /^[ \t>*_-]*lesson version:[ \t]*v(\d+)\b/gim;
+-
+-// Read one learner review. Returns { verdict, version, problem }.
+-// verdict: "launch" | "revise" | "fatal" | null. version: N or 0 (no stamp). problem: null or why it is unreadable.
+-export function readReview(text) {
+-  const words = [...text.matchAll(VERDICT_LINE)].map((m) => m[1].toLowerCase());
+-  const canon = [...new Set(words.filter((w) => VERDICTS.includes(w)))];
+-  const other = [...new Set(words.filter((w) => !VERDICTS.includes(w)))];
+-  const stamps = [...new Set([...text.matchAll(VERSION_LINE)].map((m) => Number(m[1])))];
+-  let problem = null;
+-  let verdict = null;
+-  if (other.length) problem = `verdict wording "${other.join('", "')}" is not ${VERDICTS.join("|")}`;
+-  else if (canon.length > 1) problem = `conflicting verdicts (${canon.join(", ")})`;
+-  else if (!canon.length) problem = "verdict missing";
+-  else verdict = canon[0];
+-  let version = 0;
+-  if (stamps.length === 1) version = stamps[0];
+-  else if (stamps.length > 1) problem ??= `conflicting lesson version stamps (v${stamps.join(", v")})`;
+-  else problem ??= "no lesson version stamp";
+-  if (problem) verdict = null;
+-  return { verdict, version, problem };
+-}
+-
+-// W-1596: ordering two records for the same lesson version on the same day. File mtime is NOT used:
+-// a fresh checkout gives every file the same mtime, and "-r2.md" sorts before ".md", so the older
+-// record won. Signals, strongest first; the first one that decides a pair wins:
+-//   1. built-from ancestry. A record that says "built from <sha>" saw that build. If one record's
+-//      SHA is a strict git ancestor of the other's, the record of the descendant build is newer. This
+-//      is the most robust signal: it is about the artifact the reviewer saw, not about naming. It
+-//      abstains when either SHA is missing, unknown to this clone (shallow, unmerged worktree), equal,
+-//      or on diverged branches.
+-//   2. an explicit "supersedes: <file>" line naming the other record (the reviewer's own statement).
+-//   3. the "-rN" suffix, only between records of the same name stem (no suffix is r1). A suffix on
+-//      "learner-a" says nothing about "learner-b".
+-// Records that no signal orders are a real tie, and the tie fails closed: the most severe verdict
+-// stands (unreadable > fatal > revise > launch), then filename order for a stable answer.
+-const BUILT_FROM = /built from[ \t`*]*([0-9a-f]{7,40})\b/i;
+-const SUPERSEDES = /^[ \t>*_-]*supersedes:[ \t]*(.+)$/gim;
+-const SEVERITY = { launch: 0, revise: 1, fatal: 2 };
+-export function builtFrom(text) {
+-  return text.match(BUILT_FROM)?.[1]?.toLowerCase() ?? null;
+-}
+-function stem(f) {
+-  const m = f.match(/^(.*?)(?:-r(\d+))?\.md$/);
+-  return m ? { base: m[1], n: m[2] ? Number(m[2]) : 1 } : { base: f, n: 1 };
+-}
+-function supersedes(r, other) {
+-  const name = path.basename(other.f);
+-  return [...r.t.matchAll(SUPERSEDES)].some((m) => m[1].includes(name) || m[1].includes(name.replace(/\.md$/, "")));
+-}
+-// Which of a and b is newer: 1 (a), -1 (b) or 0 (no signal decides). Exported for the tests.
+-export function newer(a, b, isAncestor = null) {
+-  const sa = builtFrom(a.t), sb = builtFrom(b.t);
+-  if (isAncestor && sa && sb && sa !== sb && !sa.startsWith(sb) && !sb.startsWith(sa)) {
+-    if (isAncestor(sb, sa) === true) return 1;
+-    if (isAncestor(sa, sb) === true) return -1;
+-  }
+-  const supA = supersedes(a, b), supB = supersedes(b, a);
+-  if (supA !== supB) return supA ? 1 : -1;
+-  const ka = stem(a.f), kb = stem(b.f);
+-  if (ka.base === kb.base && ka.n !== kb.n) return ka.n > kb.n ? 1 : -1;
+-  return 0;
+-}
+-const severity = (r) => (r.problem ? 3 : SEVERITY[r.verdict] ?? 3);
+-
+-// Decide one lesson. reviews: [{ f, t }] (filename, text; an "m" mtime is ignored). opts.isAncestor:
+-// (x, y) => true | false | null, "is commit x a strict ancestor of y" (main passes a git-backed one;
+-// without it, signal 1 abstains). Returns { ready, reason, latest }.
+-export function decide(reviews, metaVersion = 1, opts = {}) {
+-  if (!reviews.length) return { ready: false, reason: "no learner review" };
+-  const read = reviews.map((r) => ({ ...r, ...readReview(r.t), d: r.f.slice(0, 10) }));
+-  // The latest review is the one for the highest lesson version, then the latest date, then W-1596's
+-  // ordering above. Filename order alone is not enough: "…-beginner-v2.md" sorts before "…-beginner.md".
+-  const top = read.reduce((t, r) => (r.version > t.version || (r.version === t.version && r.d > t.d) ? r : t));
+-  const group = read.filter((r) => r.version === top.version && r.d === top.d);
+-  const unbeaten = group.filter((r) => !group.some((o) => o !== r && newer(o, r, opts.isAncestor) > 0));
+-  const pool = unbeaten.length ? unbeaten : group; // a cycle of signals: treat the whole group as tied
+-  const latest = [...pool].sort((a, b) => severity(b) - severity(a) || a.f.localeCompare(b.f))[0];
+-  // Fail closed: an unreadable review dated after the chosen one may be the newer verdict, so it holds.
+-  const newerBad = read.find((r) => r !== latest && r.problem && r.d > latest.d);
+-  if (newerBad) return { ready: false, reason: `newer learner review unreadable (${newerBad.problem})`, latest };
+-  if (latest.problem) return { ready: false, reason: latest.problem, latest };
+-  if (latest.verdict !== "launch") return { ready: false, reason: `verdict ${latest.verdict}`, latest };
+-  if (latest.version !== metaVersion) return { ready: false, reason: "verdict is for an older version", latest };
+-  return { ready: true, reason: null, latest };
+-}
+-
+-// Git-backed ancestry for decide(): true / false, or null when git cannot say (unknown commit,
+-// no git). Cached per pair; one `git merge-base --is-ancestor` call per uncached pair.
+-export function gitAncestry(cwd) {
+-  const cache = new Map();
+-  return (x, y) => {
+-    const k = `${x}..${y}`;
+-    if (cache.has(k)) return cache.get(k);
+-    let v = null;
+-    try {
+-      execFileSync("git", ["merge-base", "--is-ancestor", x, y], { cwd, stdio: "ignore" });
+-      v = true;
+-    } catch (e) {
+-      v = e.status === 1 ? false : null;
+-    }
+-    cache.set(k, v);
+-    return v;
+-  };
+-}
++// AMD-013: the readiness policy (verdicts, versions, holds, review order, and QA) lives in tools/lib/readiness.mjs,
++// which tools/company.mjs launchGates() also calls. These names are re-exported so tests/publish/ is unchanged.
++import { VERDICTS, readReview, builtFrom, newer, decide, gitAncestry, readiness, loadContext, loadHolds } from "./lib/readiness.mjs";
++export { VERDICTS, readReview, builtFrom, newer, decide, gitAncestry };
+ 
+ export const USAGE = `usage: node tools/publish-ready.mjs [--link | --publish | --help]
+   (no flag)   list publish candidates and why others are held; writes nothing
+@@ -163,9 +61,7 @@ function main() {
+   const rel = (...p) => path.join(ROOT, ...p);
+   const doPublish = args.publish;
+   const doLink = args.link;
+-  const holds = fs.existsSync(rel("company/ops/publish-holds.json"))
+-    ? JSON.parse(fs.readFileSync(rel("company/ops/publish-holds.json"), "utf8")).holds
+-    : {};
++  const holds = loadHolds(ROOT);
+ 
+   const isAncestor = gitAncestry(ROOT);
+   const ready = [];
+@@ -190,9 +86,8 @@ function main() {
+       if (meta.status !== "review") continue;
+       const why = (r) => (held[r] ??= []).push(slug);
+       if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
+-      const reviews = files.map((f) => ({ f, t: fs.readFileSync(path.join(rd, f), "utf8") }));
+-      const r = decide(reviews, meta.version ?? 1, { isAncestor });
+-      if (!r.ready) { why(r.reason); continue; }
++      const r = readiness(meta, loadContext(ROOT, meta, { holds, isAncestor }));
++      if (!r.ready) { why(r.reasons[0]); continue; }
+       ready.push(slug);
+     }
+   }

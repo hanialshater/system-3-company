@@ -2,14 +2,14 @@
 
 owner: vp-personalization (Mateo)
 date: 2026-10-16
-run: vp-cgate-1016 · board: W-1710 (decision 1), W-1694 (decision 2), W-1700 (decision 4)
+run: vp-cgate-1016 · board: W-1952 (decision 1), W-1936 (decision 2), W-1942 (decision 4)
 status: decided (1, 2, 3, 5); position for privacy-reviewer (4)
 inputs read: company/personalization/eval/2026-10-16-phase-a-criterion.md (draft, unfrozen); company/personalization/eval/2026-10-16-learner-scorer-decision.md; company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md; company/personalization/data/2026-10-16-settings-schema-note.md; company/personalization/dims/2026-10-16-misconception-strength-rubric.md (header and open items only); company/personalization/lab/2026-10-16-lab-privacy-dod.md; `COMPOSER` and `OBJECTIVE` in company/personalization/model/model.ts (model-v0.2.1).
 not read: any simulator result, `sim/out/`, the HQ lab table. No scored run exists.
 rules: independence rule company/ceo-office/2026-10-16-personalization-org-proposal.md §2 (I write no criterion, readout, curve or weight); founder self-contained org company/decisions/2026-10-16-founder-personalization-org.md; AMD-008 F1 and P4.
 batch these feed: company/personalization/batches/2026-10-16-batch-2.md
 
-## 1. W-1710: rating fidelity, and the eval's bars
+## 1. W-1952: rating fidelity, and the eval's bars
 
 **Decision: the eval's proposal. In phase A the composer sees simulated ratings generated from the judge's hidden per-lesson pull at a swept fidelity ρ. Real ratings are not fed to the judge's world.**
 
@@ -34,7 +34,7 @@ Conditions I add, as the owner of the term (not criterion text; the eval writes 
 
 ## 2. C3: rating the remaining ~218 pilot lessons
 
-**Decision: C3 does not run in batch 2. W-1694 step 1b is on hold with a written trigger.**
+**Decision: C3 does not run in batch 2. W-1936 step 1b is on hold with a written trigger.**
 
 The B2 memo splits the condition (§1c). Hypercorrection improves recall at medium confidence (1b). Selecting lessons *for* surprise raises recall: unknown, low confidence (1c). **C3's condition means 1c**, because the ratings feed only the composer's surprise term, and the term asks the 1c question. The 1b finding is about the predict-then-reveal format, which every lesson gets whether or not we rate it.
 
@@ -42,7 +42,7 @@ Cost against value:
 - Cost: about 218 walkthroughs by lesson-dims-owner, plus the eval's blind second rating of about 44 lessons. That is two or more agent runs.
 - Value now: none in phase A. The gate stays shut until real ratings exist, and the decision-1 sweep already tells us whether ratings of any achievable quality could make the term pay. In phase B, the surprise term is underpowered per term (criterion §6), and a per-lesson first-prediction-wrong rate (`strengthSource: "data"`) would replace hand ratings once W-706 aggregates and the A2 read exist.
 
-**Trigger to run C3:** the first phase A readout shows `gam-surprise-on` passing the per-term rule (wins and no harm) at ρ = 0.5 or lower, in the surprise-high cell or better. If the term cannot pay even when the world rewards surprise at the high end and the ratings are fair, ratings will not save it. If it can, the ratings are worth buying to measure ρ. I record the hold on W-1694. B3's rubric and 12 anchors (msr-v1) stand and are not wasted: they are the instrument C3 would use.
+**Trigger to run C3:** the first phase A readout shows `gam-surprise-on` passing the per-term rule (wins and no harm) at ρ = 0.5 or lower, in the surprise-high cell or better. If the term cannot pay even when the world rewards surprise at the high end and the ratings are fair, ratings will not save it. If it can, the ratings are worth buying to measure ρ. I record the hold on W-1936. B3's rubric and 12 anchors (msr-v1) stand and are not wasted: they are the instrument C3 would use.
 
 ## 3. Novelty
 
@@ -55,7 +55,7 @@ Why not gate off or remove now:
 
 **Kill rule, set before data (my keep-or-kill authority, proposal §2.4):** novelty stays only if `gam` passes the per-term rule (criterion §2, items 1 and 2) against `gam-no-surprise-novelty` in the base cell, **with the judge's novelty benefit at 0** (B2 base). Not being harmful is not enough: B2 found no evidence that novelty serves recall (memo 1d), and a term that does not serve recall is the feed-optimisation drift the mission excludes. A pass only at novelty benefit +0.05 does not keep it. If it fails, I gate it off by a version bump (a `noveltyGate` like `surpriseGate`, with a decision-record line and a passing self-check) and file the form change, if any, for applied-scientist-personalization. Note for that change: `novelty` also carries the repeat damping (`perSimilarRecent`). If the term goes, guardrail G2 (distinct concepts) is what would catch massed repeats, and a repeat constraint, if needed, is applied-scientist-personalization's to propose.
 
-## 4. `personalization_on` default (W-1700 note §5): my position for privacy-reviewer
+## 4. `personalization_on` default (W-1942 note §5): my position for privacy-reviewer
 
 **Position: option A.** `personalization_on boolean NULL`. It stores only an explicit learner choice. NULL means no choice was made.
 - NULL serves the order of the learner's arm in a **registered** experiment. **With no registered experiment, NULL serves the F1 default order.** So, until phase B is registered and approved, everyone without a choice gets the default order. That is the same as "off" in behaviour, without storing a choice the learner did not make.

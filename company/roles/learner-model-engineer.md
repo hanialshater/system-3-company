@@ -14,9 +14,9 @@ A small, explainable model of what each learner knows, updated from evidence, ne
 ## In scope
 
 - src/lib/learner/** (once approved)
-- The org's tech owner: where model, dims and engine code live (W-1677)
-- The engine port and the policies under test (W-1673)
-- The per-step trace (W-1683)
+- The org's tech owner: where model, dims and engine code live (W-1919)
+- The engine port and the policies under test (W-1915)
+- The per-step trace (W-1925)
 - Reproducing an eval readout from its seed and commit (determinism only, not judgement)
 - Explanations a learner can read ('why this lesson next')
 

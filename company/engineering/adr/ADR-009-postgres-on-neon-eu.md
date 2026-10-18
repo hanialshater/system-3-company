@@ -12,11 +12,12 @@ Accounts (ADR-008) and server-side progress need a database. Until now the compa
 1. **Host:** Neon Postgres, added through the Vercel Marketplace (the "Vercel-Managed Integration"; billing on the Vercel invoice). Region **`aws-eu-central-1` (Frankfurt)**. Vercel functions that touch it run in **`fra1`**.
 2. **Driver:** `pg` 8.23.1. The runtime uses `DATABASE_URL` (pooled through PgBouncer); migrations use `DATABASE_URL_UNPOOLED` (direct). The pool is `max` 3 with a 10 s idle timeout.
 3. **Migrations:** numbered plain `.sql` files in `db/migrations/`, applied by `tools/db-migrate.mjs` (about 50 lines, uses `pg`, records versions in `schema_migrations`). An engineer runs them by hand against a named branch. **They never run in the Vercel build step.** A build that changes a production schema would be a deploy-time data change without a review. Each migration's schema diff goes to the privacy reviewer before merge (privacy gate E7).
-4. **Environments:**
-   - Production: the Neon default branch. Its connection variables go to the Vercel **Production** environment only.
-   - Preview: a **schema-only** Neon branch (Neon copies the structure and none of the rows), with fake seed data. Its variables are set by hand for the Preview environment.
-   - Neon's automatic preview branching stays **off**, because it makes copy-on-write branches of the default branch, which means copies of production learner rows. The integration's Development environment is off too.
-   - A local Postgres 16 on the engineer's host is for the spike and for tests.
+4. **Environments** (rewritten 2026-10-17 for the principal engineer's C8, from the founder's 10-15 correction):
+   - **Test: `first-light`**, the Neon resource connected to Vercel **Development and Preview**. Fake data and staff addresses only. Previews with `ACCOUNTS_ENABLED=on` stay behind Vercel Deployment Protection, and only staff sign up there. Migrations are applied to it by hand with `tools/db-migrate.mjs` (Postgres 16 or newer, readiness A-14).
+   - **Production: a separate Neon project**, created at go-live (W-1142) by backend-engineer with the release manager, in Frankfurt (`aws-eu-central-1`), connected to Vercel **Production only**. It is not a branch of `first-light`, and `first-light` is never a branch of it: separate counts only if no branch tree joins the two, because a branch, a reset or a restore can carry rows across.
+   - **Preview branching off on both.** On the Production project it would give each preview a child branch holding real learner rows.
+   - The readiness record (W-966, A-4) checks that no Preview or Development variable points at the Production project.
+   - A local PostgreSQL 16 on the engineer's host is for tests (`npm run test:accounts` with `ACCOUNTS_TEST_DATABASE_URL`).
 5. **Backups and restore:** Neon's point-in-time history window is the only backup. Neon's published plan table (read 2026-10-15) gives Free 6 hours, Launch up to 7 days, Scale up to 30 days. All of these are inside the gate's 35 days. No `pg_dump` leaves the database except in a restore drill, whose dump is deleted the same day. No long-lived child branches of production: Neon archives unused branches but does not delete them.
 6. **Deletion survives a restore:** a `deleted_account` tombstone (random user id and time, no learner data) is kept 35 days. After any restore, the deletions in it are re-applied before traffic returns (EDD-008 §7).
 
