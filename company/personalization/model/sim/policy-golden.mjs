@@ -19,7 +19,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { composeExplained, gamCompose, defaultOrderPolicy, randomPolicy, draftRulesPolicy } from "./composer.ts";
-import { loadCatalog } from "./catalog.mjs";
+import { loadPinnedCatalog } from "./catalog-pin.mjs"; // pinned catalogue (2026-10-18 note)
 import { runEpisode, ALL_POLICIES, GAM_VARIANTS, rng } from "./simulate.mjs";
 import { PERSONAS } from "../personas.ts";
 
@@ -54,7 +54,7 @@ function composeFor(policy, input, cat, rand) {
 }
 
 /** Hashes per existing policy. Pure: same code, same catalog, same hashes. */
-export function goldenHashes(cat = loadCatalog()) {
+export function goldenHashes(cat = loadPinnedCatalog()) {
   const out = {};
   const personas = PERSONAS.slice(0, 2);
   for (const policy of ALL_POLICIES) {

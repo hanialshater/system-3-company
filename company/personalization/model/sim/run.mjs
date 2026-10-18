@@ -16,7 +16,8 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { PERSONAS, PERSONAS_VERSION } from "../personas.ts";
-import { loadCatalog, STRENGTH_PLACEHOLDER } from "./catalog.mjs";
+import { STRENGTH_PLACEHOLDER } from "./catalog.mjs";
+import { loadPinnedCatalog, readPin } from "./catalog-pin.mjs"; // pinned catalogue (2026-10-18 note)
 import { runEpisode, ALL_POLICIES, SIM } from "./simulate.mjs";
 import { BASE_PARAMS } from "./learner.ts";
 import { mean, sd } from "./score.ts";
@@ -26,7 +27,7 @@ const arg = (k, d) => { const a = process.argv.find((x) => x.startsWith(`--${k}=
 const flag = (k) => process.argv.includes(`--${k}`);
 const SEEDS = +arg("seeds", 20), SENS_SEEDS = +arg("sens-seeds", 10), DAYS = +arg("days", 7);
 const OUT = arg("out", join(here, "out"));
-const cat = loadCatalog();
+const cat = loadPinnedCatalog();
 const fails = M.checkModel();
 if (fails.length) { console.error("model invariants fail:\n- " + fails.join("\n- ")); process.exit(1); }
 
@@ -35,7 +36,7 @@ const pad = (s, n) => String(s).padEnd(n);
 const run = (policy, persona, seed, params = BASE_PARAMS, trace = false) => runEpisode({ persona, policy, seed, params, cat, trace, days: DAYS });
 
 console.log(`personalization phase A simulator · ${M.MODEL_VERSION} · ${PERSONAS_VERSION} · ${M.COMPOSER.version}`);
-console.log(`catalog: ${cat.lessons.length} pilot lessons (probability + cs, published + review), ${cat.pilotConcepts.size} concepts`);
+console.log(`catalog: pinned at ${readPin().commit.slice(0, 8)}, ${cat.lessons.length} pilot lessons (probability + cs, published + review), ${cat.pilotConcepts.size} concepts`);
 console.log(`misconceptionStrength: PLACEHOLDER (${STRENGTH_PLACEHOLDER.rule})`);
 console.log(`episodes: ${DAYS} days + 1 revisit-only day, ≤${SIM.maxCardsPerDay} new cards/day, seeds 1..${SEEDS}`);
 console.log("UNSCORED: no committed criterion (W-1496). Learner + scorer PROVISIONAL (personalization-eval to replace/own). Smoke test, not evidence.\n");

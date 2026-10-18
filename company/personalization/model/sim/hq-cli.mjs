@@ -13,7 +13,7 @@
 //   node company/personalization/model/sim/hq-cli.mjs saved --file=<persona>.<policy>.seed<k>.json   (a run.mjs trace in out/traces)
 //
 // SIMULATED PERSONAS ONLY. Nothing here reads, or can be pointed at, real learner data: the only inputs are
-// personas.ts, the lesson catalog (meta.json + curriculum) and the arguments above.
+// personas.ts, the lesson catalog (the pinned snapshot of meta.json + curriculum in ./catalog-pin/) and the arguments above.
 // UNSCORED: no committed criterion (W-1496); the learner and scorer are PROVISIONAL (personalization-eval).
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -27,6 +27,10 @@ import { mean, sd } from "./score.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const TRACES = join(here, "out", "traces");
+// The pinned catalogue snapshot (company/personalization/2026-10-18-simulator-catalogue-pin.md), not the live tree.
+// Read through the unchanged loadCatalog(root); review-timing.test.mjs (in npm run check) verifies the snapshot's hash.
+const PIN_ROOT = join(here, "catalog-pin");
+const loadPinnedCatalog = () => loadCatalog(PIN_ROOT);
 const LABEL = {
   unscored: "UNSCORED: no committed criterion; provisional simulated learner",
   criterion: "none committed (W-1496)",
@@ -65,7 +69,7 @@ if (cmd === "meta") {
   if (cmd === "run") {
     const p = persona(args.persona), pol = policy(args.policy);
     const seed = int("seed", 1, 1, 999), days = int("days", 7, 1, 14);
-    const r = runEpisode({ persona: p, policy: pol, seed, params: BASE_PARAMS, cat: loadCatalog(), trace: true, days });
+    const r = runEpisode({ persona: p, policy: pol, seed, params: BASE_PARAMS, cat: loadPinnedCatalog(), trace: true, days });
     trace = { ...r.trace, run: { persona: p.id, policy: pol, seed, days, source: "live" } };
   } else {
     const f = args.file ?? "";
@@ -83,7 +87,7 @@ if (cmd === "meta") {
   const seeds = int("seeds", 5, 1, 10), days = int("days", 7, 1, 14);
   // "main" = model.ts POLICIES that order new cards; "review-timing" (W-1547) is not an ordering policy and has no episode here.
   const set = args.set === "all" ? ALL_POLICIES : args.set === "main" || args.set === undefined ? M.POLICIES.filter((p) => ALL_POLICIES.includes(p)) : fail("--set must be main or all");
-  const cat = loadCatalog();
+  const cat = loadPinnedCatalog();
   const t0 = Date.now();
   const rows = set.map((pol) => {
     const rs = [];

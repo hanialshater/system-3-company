@@ -22,6 +22,7 @@ Run the privacy tests after any change to `composer.ts`, `../model.ts` (fingerpr
 | File | What | Owner |
 |---|---|---|
 | `catalog.mjs` | Pilot dims (probability + cs, published + review: 230 lessons) from meta.json + content/curriculum; successors as reverse edges; default order = today's interleave (src/lib/feed-index.ts) on the pilot; **`misconceptionStrength` is a placeholder hash, not a rating** | learner-model-engineer (dims home: W-1498) |
+| `catalog-pin.mjs`, `catalog-pin/` | **The catalogue the simulator reads** (since 2026-10-18): a committed snapshot of the pilot meta.json (trimmed) and curriculum files at the commit in `catalog-pin/PIN.json` (b210adeb), read through the unchanged `loadCatalog(root)`; hash-checked on load and in self-check. Move it only with `--move=<commit> --reason=` and a log line (company/personalization/2026-10-18-simulator-catalogue-pin.md). The frozen eval harness still reads the live tree | learner-model-engineer |
 | `composer.ts` | `composeExplained()` and `gamCompose: ComposeFn`; draft rules, default order, random baselines; ablations by switching terms off | learner-model-engineer |
 | `simulate.mjs` | One episode: pre-history drawn from jittered fingerprint means, daily sessions, due first revisits first, recompute after every card; the trace | learner-model-engineer |
 | `learner.ts` | **PROVISIONAL** simulated learner (`SimLearner`) from the persona's latent block | personalization-eval (pending) |

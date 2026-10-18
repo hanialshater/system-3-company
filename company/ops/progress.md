@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · learner-model-engineer (Ifeoma, run lme-catpin-1018) · simulator catalogue pinned to b210adeb (merge-default, after d212efa2)
+
+**Changed.** New company/personalization/model/sim/catalog-pin.mjs + catalog-pin/ (233 files: pilot meta.json trimmed to title/status/concept/curriculum fields, curriculum verbatim, PIN.json). hq-cli.mjs, run.mjs, policy-golden.mjs, review-timing.test.mjs, privacy-n1-n3.test.mjs and tools/hq-lab-candidates.mjs read it through the unchanged loadCatalog(root); self-check.mjs fails on a hand-edited snapshot. Decision note: company/personalization/2026-10-18-simulator-catalogue-pin.md (incl. how to move the pin). No frozen/hashed file touched (catalog.mjs, model.ts, composer.ts, harness, candidates, criteria, readouts); dims index not touched.
+
+**Believe (high).** Pinned catalogue hash = readout 3b's 27b535da…; pilot inputs identical at 4e13ef1, b89f259, b1ae294, e210144. `npm run check` passes; `hq-lab-precompute --check` current (69 files) with no regeneration; `npm run test:hq` 105/107 (only the 2 shallow-clone releases tests); privacy-breaks 13/13.
+
+**Next.** W-1847 personalization-engineer: precompute INPUTS to name the pin dir. W-1848 hq-engineer: L2 re-read of the two lab files. The frozen harness still reads the live tree (by design); readouts reproduce at their own commits.
+
+**Blocked.** Nothing.
+
 ## 2026-10-18 · lesson-dims-owner (Anneke, run dims-merge-1018) · dims index regenerated after the default-branch merge (merge-default, d212efa2)
 
 **Changed.** Reran company/personalization/dims/build-index.mjs (generator unchanged): src/lib/learner/dims-index.generated.ts now 954 lessons (published 720, review 234), 231 pilot (probability 78, cs 153), 12 anchor strengths. New dated note company/personalization/dims/2026-10-18-dims-index-coverage-update.md (coverage table, new pilot order sha); the 2026-10-17 record is untouched.

@@ -9,7 +9,7 @@
 // - Only the two allowlisted files (src/lib/hq-personalization-candidates.ts CANDIDATES), each imported unchanged
 //   from company/personalization/policies/. The bytes are hashed before and after the import; any mismatch refuses
 //   (exit 3) and the generator writes nothing. Any other reachable-* name (v1 included) is refused.
-// - SIMULATED PERSONAS ONLY: personas.ts, the lab catalogue (sim/catalog.mjs) and lesson titles from meta.json.
+// - SIMULATED PERSONAS ONLY: personas.ts, the lab catalogue (sim/catalog.mjs over the pinned snapshot sim/catalog-pin/) and lesson titles from that snapshot's meta.json.
 //   Nothing from company/personalization/eval/ (no harness import, no run, no copied output).
 // - Stored per card: slugs, titles, positions, rank's reason *code* and its `versus` slug, and (v3) `moves`'
 //   key, direction and named lesson. rank's numeric fields (value, pKnown, estimate, indexes, days) are dropped.
@@ -40,6 +40,9 @@ import { loadCatalog } from "../company/personalization/model/sim/catalog.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SIM = "company/personalization/model/sim";
+// The lab catalogue is the simulator's pinned snapshot, not the live tree (company/personalization/2026-10-18-simulator-catalogue-pin.md),
+// read through the unchanged loadCatalog(root); titles come from the same snapshot.
+const PIN_ROOT = path.join(ROOT, SIM, "catalog-pin");
 // Literal imports only (the lab privacy test refuses a computed import). Each runs after the hash check.
 const IMPORT = {
   "reachable-v2": () => import("../company/personalization/policies/reachable-v2.ts"),
@@ -86,7 +89,7 @@ export function ruleOrder(dims) {
 const fnv = (s) => { let h = 0x811c9dc5; for (const ch of s) { h ^= ch.charCodeAt(0); h = Math.imul(h, 0x01000193) >>> 0; } return h; };
 
 export function simulator(root = ROOT) {
-  return { M, S, Lr, Sc, C, cat: loadCatalog(root), PERSONAS };
+  return { M, S, Lr, Sc, C, cat: loadCatalog(path.resolve(root) === ROOT ? PIN_ROOT : root), PERSONAS };
 }
 
 /**
@@ -183,7 +186,7 @@ export async function candidateDocs(root = ROOT) {
     const { misconceptionStrength: _placeholder, ...rest } = d;
     return [k, { ...rest, prerequisites: [...d.prerequisites], successors: [...d.successors] }];
   }));
-  const title = titles(root, cat);
+  const title = titles(path.resolve(root) === ROOT ? PIN_ROOT : root, cat); // titles from the same snapshot as the dims
   const docs = [];
   for (const persona of sim.PERSONAS) for (const [name, api] of Object.entries(apis)) {
     const c = CANDIDATES[name];

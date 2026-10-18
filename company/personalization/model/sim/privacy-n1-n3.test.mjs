@@ -5,7 +5,7 @@
 //
 // The pipeline under test is the one simulate.mjs runs per card (compose-one-recompute):
 //   fingerprintFrom(history) -> detect / explainNeeds -> composeExplained / gamCompose -> serve the pick -> repeat.
-// Inputs are synthetic histories over the real pilot catalog (catalog.mjs). No learner data, no persona latent.
+// Inputs are synthetic histories over the real pilot catalog (catalog.mjs over the pinned snapshot, catalog-pin.mjs). No learner data, no persona latent.
 //
 // N1 (computed, not stored): with storage, network, files, child processes and logs stubbed, composing makes
 //   zero writes and zero fetches, and does not mutate its (frozen) input.
@@ -30,10 +30,10 @@ import childProcess from "node:child_process";
 import { syncBuiltinESMExports } from "node:module";
 import * as M from "../model.ts";
 import { composeExplained, gamCompose } from "./composer.ts";
-import { loadCatalog } from "./catalog.mjs";
+import { loadPinnedCatalog } from "./catalog-pin.mjs"; // pinned catalogue (2026-10-18 note)
 import { REVIEW_TIMING_POLICY } from "./review-timing.ts";
 
-const cat = loadCatalog();
+const cat = loadPinnedCatalog();
 const NOW = Date.UTC(2026, 9, 16, 9);
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;

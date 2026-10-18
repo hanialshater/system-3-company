@@ -14,11 +14,11 @@ import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { REVIEW_TIMING_CURVES } from "../review-timing-curves.ts";
 import { REVIEW_TIMING_POLICY, explainReviewTiming } from "./review-timing.ts";
-import { loadCatalog } from "./catalog.mjs";
+import { loadPinnedCatalog } from "./catalog-pin.mjs"; // pinned catalogue (2026-10-18 note): the golden hashes are on it
 import { goldenHashes, GOLDEN_FILE } from "./policy-golden.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const cat = loadCatalog();
+const cat = loadPinnedCatalog();
 const DAY = 86_400_000, HOUR = 3_600_000;
 const T0 = Date.UTC(2026, 9, 16, 9);
 const hash = (s) => { let h = 0x811c9dc5; for (const ch of s) { h ^= ch.charCodeAt(0); h = Math.imul(h, 0x01000193) >>> 0; } return h; };
