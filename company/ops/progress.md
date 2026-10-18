@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-perso-scope-1018) · W-1668: scope cards for Personalization owning the feed, learner profile, gamification and progressive learning
+
+**Changed.** New company/ceo-office/2026-10-18-personalization-scope-proposal.md (design under company/ceo-office/org-change-process.md for company/decisions/2026-10-18-founder-personalization-vs-evaluation-scope.md). Cards S1-S11: vp-personalization scope (default order: option 1 stays head-of-product's as the baseline, option 2 moves it), platform-engineer gives the feed surface files to personalization-engineer (S2/S3, with OPS_ENGINEERS), growth-designer moves under the VP (S4), learner-model-engineer takes the progressive-learning engine (S5), `progress`/`recall` as reading A (stay with backend, recommended) or B (move to learner-data-engineer) (S6/S7), gamification experiments to personalization-eval (S8), head-of-feed stays deferred with restated triggers (S9), chief-product-officer out-of-scope line closing port objection 8 (S10), head-of-product line (S11). AMD-008 draft edits routed to evaluation-steward (§3); HQ label fix routed (§4). No roles.mjs edit, no generate, no board edit.
+
+**Believe (medium-high on the scope map, medium on the recommendations).** No new role is needed; the span goes 7 → 8 (objection 2). Reading A is recommended because `recall` is the measure personalization is judged on.
+
+**Next.** chief-of-staff: file the §6 consults and the founder-inbox line. Founder: approve or change each card and choose S1 option, reading A/B, S9. Then this office generates.
+
+**Blocked.** Nothing generated until the founder's words are in the record.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-evalorg-port-1018) · W-1663: the evaluation org's four roles ported to branch eval-org-roles
 
 **Changed.** Ported from `origin/ccr-rnd-ncm` (never merged), on the founder's 2026-10-18 acceptance (company/decisions/2026-10-18-founder-evaluation-leaderboard-in-hq.md): chief-product-officer (Margot, leadership, reports to founder), head-of-evaluation (Tobias), pairwise-judge (pool, in `MANY`), evaluation-engineer (Anya), all in team `evaluation` under the CPO except the CPO herself; head-of-product now reports to chief-product-officer. Edits: tools/org/roles.mjs, tools/org/people.mjs, then `node tools/org/generate.mjs` (4 role docs, 4 agents, 4 empty memories, head-of-product.md and roles/README.md regenerated). Copied company/decisions/2026-10-14-evaluation-org.md and appended a "Port" section with objections 8-14. company/ceo-office/org-change-process.md: founder directs list names Margot, not Priya (still 9 directs), keep consulting Priya. Nothing in src/app/hq/**, tools/eval/**, company/evaluation/** (W-1662).
