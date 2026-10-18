@@ -364,6 +364,10 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
             <Link href="/hq/library/personalization/model/README.md">change rule</Link>).
           </p>
           <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
+          <p className={s.muted}>
+            Also here, read-only: the <Link href="/hq/personalization/candidates">frozen candidates</Link> (reachable-v2, reachable-v3; not live, website NO-GO)
+            and the <Link href="/hq/personalization/evaluation">Evaluation record</Link> (studies, reviews, decisions).
+          </p>
           {pre && (
             <p className={s.precomputed} role="note">
               Precomputed: this lab runs nothing. It shows simulator runs {precomputedLine(pre)}, generated locally with <code>{pre.command}</code>{" "}

@@ -53,6 +53,11 @@ export const SCOPE = [
   "src/data/hq-personalization",
   "tools/hq-lab-precompute.mjs",
   "company/personalization/model/sim/hq-cli.mjs",
+  // W-1648 (batch 5 §20): frozen candidates and the Evaluation view
+  "src/lib/hq-personalization-candidates.ts",
+  "tools/hq-lab-candidates.mjs",
+  "tools/hq-eval-index.mjs",
+  "src/data/hq-personalization-eval",
 ];
 /** Must exist (a rename or move fails the test instead of silently shrinking the scan). */
 const REQUIRED = [
@@ -66,6 +71,14 @@ const REQUIRED = [
   "src/data/hq-personalization/meta.json",
   "tools/hq-lab-precompute.mjs",
   "company/personalization/model/sim/hq-cli.mjs",
+  "src/app/hq/personalization/candidates/page.tsx",
+  "src/app/hq/personalization/candidates/Candidates.tsx",
+  "src/app/hq/personalization/evaluation/page.tsx",
+  "src/app/hq/personalization/evaluation/Evaluation.tsx",
+  "src/lib/hq-personalization-candidates.ts",
+  "tools/hq-lab-candidates.mjs",
+  "tools/hq-eval-index.mjs",
+  "src/data/hq-personalization-eval/evaluation.json",
 ];
 
 /** Modules the lab files may import. Adding one is a read: check it touches no learner data first. */
@@ -76,6 +89,15 @@ const IMPORT_ALLOW = new Set([
   "./hq-personalization", "./Personalization", "./personalization.module.css", "../HqTop", "../hq.module.css",
   // hq-cli.mjs → the model and simulator (learner-model-engineer's files; data inputs listed in DoD D1)
   "../model.ts", "../personas.ts", "./catalog.mjs", "./simulate.mjs", "./learner.ts", "./score.ts",
+  // W-1648: the candidate and Evaluation views (server components; committed data only)
+  "../../HqTop", "../../hq.module.css", "../personalization.module.css", "./Candidates", "./Evaluation",
+  "@/lib/hq-personalization-candidates", "@/lib/hq-personalization-precomputed", "./hq-personalization-candidates",
+  "@/data/hq-personalization-eval/evaluation.json",
+  // tools/hq-lab-candidates.mjs: the lab simulator (same files as hq-cli.mjs) and the two frozen candidates, hash-checked
+  "../src/lib/hq-personalization-candidates.ts", "../company/personalization/model/model.ts", "../company/personalization/model/personas.ts",
+  "../company/personalization/model/sim/simulate.mjs", "../company/personalization/model/sim/learner.ts", "../company/personalization/model/sim/score.ts",
+  "../company/personalization/model/sim/composer.ts", "../company/personalization/model/sim/catalog.mjs",
+  "../company/personalization/policies/reachable-v2.ts", "../company/personalization/policies/reachable-v3.ts",
 ]);
 /** Ruling L1: the module list. Update when the accounts module lands (ruling line 39). */
 const FORBIDDEN_MODULE = /account|auth|session|events-intake|progress/i;
@@ -223,6 +245,14 @@ export const BREAKS = [
   ["precomputed reader import", "src/lib/hq-personalization-precomputed.ts", 'import { me } from "@/lib/accounts";', "forbidden module import"],
   ["generator reads storage keys", "tools/hq-lab-precompute.mjs", 'const k0 = "s3c:progress:v1";', "s3c:"],
   ["stored meta names a storage key", "src/data/hq-personalization/meta.json", '{"from":"localStorage"}', "localStorage"],
+  // W-1648: candidate views, adapter, eval index generator and their data
+  ["candidates view fetch", "src/app/hq/personalization/candidates/Candidates.tsx", 'const r0 = await fetch("/api/events");', "fetch other than the literal lab route"],
+  ["evaluation view storage", "src/app/hq/personalization/evaluation/Evaluation.tsx", 'const v0 = localStorage.getItem("x");', "localStorage"],
+  ["adapter imports reachable-v1", "tools/hq-lab-candidates.mjs", 'const v1 = await import("../company/personalization/policies/reachable-v1.ts");', "import not on the allowlist"],
+  ["adapter imports the eval harness", "tools/hq-lab-candidates.mjs", 'import { w } from "../company/personalization/eval/harness/c3/world3.mjs";', "import not on the allowlist"],
+  ["eval index generator imports progress", "tools/hq-eval-index.mjs", 'import { p } from "../src/kit/progress.ts";', "forbidden module import"],
+  ["stored candidate (gz) names a storage key", "src/data/hq-personalization/candidates/x.reachable-v3.seed1.days7.json.gz", '{"key":"s3c:progress:v1"}', "s3c:"],
+  ["stored eval index names a storage key", "src/data/hq-personalization-eval/evaluation.json", '{"quote":"localStorage"}', "localStorage"],
   ["stored trace (gz) names a storage key", "src/data/hq-personalization/runs/x.gam.seed1.days7.json.gz", '{"key":"s3c:progress:v1"}', "s3c:"],
 ];
 
