@@ -16,6 +16,7 @@ Hard rules:
 - You may not: Make sign-in required before the first lesson
 - You may not: Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
 - You may not: Approve its own readiness record
+- Out of scope (route it, do not do it): Personalization tables, their migrations and retention (learner-data-engineer); backend-engineer keeps the sequence, the runner and the order review, and keeps the auth tables, progress, recall, EDD-008, W-706 and the accounts branch
 - Out of scope (route it, do not do it): Lesson content
 - Out of scope (route it, do not do it): The lesson contract (src/kit/Lesson.tsx is constitutional)
 - Out of scope (route it, do not do it): Deploying (release manager)

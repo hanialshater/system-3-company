@@ -1,0 +1,63 @@
+{
+  "what": "S from the reference arm (default-order + fixed, Feed.tsx interleave) alone at criterion 3's base cell. SDs only; no mean, no other arm.",
+  "rule": "criterion 2 §1.4, unchanged: S = max(200, ceil((2.8·√2·sd_R/δ_min)²)), cap 2000; sd_R = largest per-persona SD of R_7 of the reference arm",
+  "e1Hash": "c8c09eac7613720c7d1499958d5c416b57ed7d614e7e68eb8a132068f7482840",
+  "e3Status": "FILLED (K4, run eval-k4-1017) from E3 ranges table; F3 B1-B3 applied",
+  "e3Hash": "0e120add6ada34da159d77bc7d994f092318b4bba802941f4477a4273fc1927a",
+  "cellName": "interleave:base",
+  "cell": {
+    "forgetScale": 1,
+    "forgetShape": 0.27,
+    "kSpread": 0.4,
+    "pullScale": 1,
+    "prereqPenalty": 0.15,
+    "learnRate": 0.6,
+    "revisitStrengthen": "lag",
+    "relearn": 0.7,
+    "priorKnowledgeMean": 0.2,
+    "revisitStopScale": 1,
+    "revisitSlotCost": 0.3,
+    "slots": 8,
+    "priorRateMult": 0.0574,
+    "priorAgeDays": 0,
+    "placement": "interleave"
+  },
+  "pilotSeeds": "1001..1500",
+  "deltaMin": 0.01,
+  "perPersona": {
+    "curious-newcomer": {
+      "sdR": 0.07924414916982783,
+      "n": 500,
+      "nan": 0
+    },
+    "single-subject-crammer": {
+      "sdR": 0.050444862357503076,
+      "n": 500,
+      "nan": 0
+    },
+    "struggling-repeater": {
+      "sdR": 0.04432720152653417,
+      "n": 500,
+      "nan": 0
+    },
+    "returning-expert": {
+      "sdR": 0.08031370445315532,
+      "n": 500,
+      "nan": 0
+    },
+    "wanderer": {
+      "sdR": 0.08450274326694898,
+      "n": 500,
+      "nan": 0
+    },
+    "lapsed-returner": {
+      "sdR": 0.1109902699379819,
+      "n": 500,
+      "nan": 0
+    }
+  },
+  "sdMax": 0.1109902699379819,
+  "S": 1932,
+  "seedList": "1001..2932",
+  "modelVersion": "model-v0.2.2"
+}

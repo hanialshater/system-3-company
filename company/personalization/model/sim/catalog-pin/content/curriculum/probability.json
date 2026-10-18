@@ -1,0 +1,832 @@
+{
+  "domain": "probability",
+  "owner": "cm-probability",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "birthday-paradox",
+      "name": "The birthday paradox",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "monty-hall",
+      "name": "Monty Hall: switching doors",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "base-rates",
+      "name": "Base rates and medical tests",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "law-of-large-numbers",
+      "name": "The law of large numbers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "regression-to-mean",
+      "name": "Regression to the mean",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "sampling-bias",
+      "name": "Survivorship and sampling bias",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "expected-value",
+      "name": "Expected value",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "central-limit",
+      "name": "Why bell curves appear",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "gamblers-fallacy",
+      "name": "The gambler's fallacy",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "independence",
+      "name": "Independent events have no memory",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "conditional-probability",
+      "name": "Conditional probability: shrinking the sample space",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ]
+    },
+    {
+      "id": "prosecutors-fallacy",
+      "name": "The prosecutor's fallacy",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "base-rates",
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "simpsons-paradox",
+      "name": "Simpson's paradox",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "confounding",
+      "name": "Confounding: the hidden third thing",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "truly-large-numbers",
+      "name": "Rare events in huge populations",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "birthday-paradox"
+      ]
+    },
+    {
+      "id": "streaks-in-randomness",
+      "name": "Random sequences look streaky",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "sample-size-noise",
+      "name": "Small samples are noisy",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "multiple-comparisons",
+      "name": "Multiple comparisons and false alarms",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "at-least-once",
+      "name": "Chance of at least once over many tries",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ]
+    },
+    {
+      "id": "poll-margin-of-error",
+      "name": "Polls and margin of error",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "bayesian-updating",
+      "name": "Updating beliefs with evidence",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "base-rates"
+      ]
+    },
+    {
+      "id": "variance-risk",
+      "name": "Same average, different risk",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "random-walk",
+      "name": "Random walks drift farther than you think",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "dice-sum-distribution",
+      "name": "Why sums of dice are not uniform",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "two-children-problem",
+      "name": "The two-children problem",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "friendship-paradox",
+      "name": "The friendship paradox",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "heavy-tails",
+      "name": "Heavy tails: averages that never settle",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "central-limit"
+      ]
+    },
+    {
+      "id": "coupon-collector",
+      "name": "The coupon collector",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "odds-vs-probability",
+      "name": "Odds versus probability",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "multiplicative-bets",
+      "name": "Bets that multiply: average vs typical",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value",
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "relative-vs-absolute-risk",
+      "name": "Relative versus absolute risk",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "base-rates"
+      ]
+    },
+    {
+      "id": "p-values",
+      "name": "What a p-value does and does not say",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "repeat-testing",
+      "name": "Repeating a test: the second positive",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "base-rates",
+        "bayesian-updating"
+      ]
+    },
+    {
+      "id": "three-cards-paradox",
+      "name": "The three-cards (box) paradox",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "confidence-intervals",
+      "name": "What a 95% interval promises",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "poll-margin-of-error"
+      ]
+    },
+    {
+      "id": "sample-vs-population",
+      "name": "Sample size beats population share",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "poll-margin-of-error"
+      ]
+    },
+    {
+      "id": "drawing-without-replacement",
+      "name": "Drawing without replacement: cards do remember",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "gamblers-fallacy",
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "lottery-odds",
+      "name": "Lottery odds in human time",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "betting-systems",
+      "name": "Betting systems cannot beat a fair game",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value",
+        "gamblers-fallacy"
+      ]
+    },
+    {
+      "id": "winners-curse",
+      "name": "The winner's curse: best of many noisy options",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "regression-to-mean",
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "waiting-time-paradox",
+      "name": "The waiting-time paradox",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "geometric-waiting",
+      "name": "Waiting for a first success: mean versus typical",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "at-least-once",
+        "expected-value"
+      ]
+    },
+    {
+      "id": "series-length-upsets",
+      "name": "Longer series, fewer upsets",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "sensitivity-specificity",
+      "name": "Sensitivity, specificity and the cutoff",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "base-rates"
+      ]
+    },
+    {
+      "id": "statistical-power",
+      "name": "Power: real effects that tests miss",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "p-values"
+      ]
+    },
+    {
+      "id": "specific-vs-any-match",
+      "name": "A match with you versus any match",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "birthday-paradox"
+      ]
+    },
+    {
+      "id": "clustering-illusion",
+      "name": "Random scatter makes clusters",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "streaks-in-randomness"
+      ]
+    },
+    {
+      "id": "gamblers-ruin",
+      "name": "Gambler's ruin",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "random-walk"
+      ]
+    },
+    {
+      "id": "hot-hand",
+      "name": "The hot-hand puzzle: a bias in how we count streaks",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "streaks-in-randomness"
+      ]
+    },
+    {
+      "id": "berksons-paradox",
+      "name": "Berkson's paradox: selection creates trade-offs",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "confounding",
+        "sampling-bias"
+      ]
+    },
+    {
+      "id": "peeking-at-results",
+      "name": "Peeking: stopping when it looks significant",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "p-values",
+        "multiple-comparisons"
+      ]
+    },
+    {
+      "id": "spurious-trends",
+      "name": "Spurious trends between random walks",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "random-walk",
+        "confounding"
+      ]
+    },
+    {
+      "id": "anscombes-quartet",
+      "name": "Anscombe's quartet: same numbers, different data",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "nontransitive-dice",
+      "name": "Non-transitive dice",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "dice-sum-distribution"
+      ]
+    },
+    {
+      "id": "hat-check",
+      "name": "The hat-check problem",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "at-least-once"
+      ]
+    },
+    {
+      "id": "optimal-stopping",
+      "name": "Optimal stopping: the secretary problem",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "tie-strength-overlap",
+      "name": "Weak ties hold large networks together",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "triadic-closure-probability",
+      "name": "Chance of a new friendship grows with mutual friends (independent introductions)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "at-least-once",
+        "independence"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "power-law-scaling",
+      "name": "Power laws: straight lines on log–log axes",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "heavy-tails"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "long-tail",
+      "name": "The long tail: many niches add up",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "power-law-scaling"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "preferential-attachment-exponent",
+      "name": "Copying links makes heavier tails (rich-get-richer analysis)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "heavy-tails"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "decentralized-search",
+      "name": "Decentralised search needs the right mix of near and far links",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "random-walk"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "distance-scales",
+      "name": "1/d links put equal chance on every distance scale",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "decentralized-search"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "homophily-test",
+      "name": "Testing for homophily against chance mixing",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sample-size-noise"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    },
+    {
+      "id": "cascade-fragility",
+      "name": "Information cascades are fragile",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "bayesian-updating"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    },
+    {
+      "id": "pivotal-voting",
+      "name": "Pivotal reasoning: why sincere voting can fail under unanimity",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "bayesian-updating"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    },
+    {
+      "id": "conjunction-fallacy",
+      "name": "The conjunction fallacy: more detail is never more likely",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "chance"
+    },
+    {
+      "id": "tail-ratios",
+      "name": "Small gaps in averages, big ratios at the extremes",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "information-cascade",
+      "name": "Information cascades: when the crowd stops thinking",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "bayesian-updating"
+      ]
+    },
+    {
+      "id": "giant-component",
+      "name": "The giant component: a crowd connects suddenly",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "chance"
+    },
+    {
+      "id": "small-world-shortcuts",
+      "name": "Small worlds: a few shortcuts shrink distances",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "giant-component"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "rich-get-richer",
+      "name": "Rich get richer: the same songs, different hits",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "chance"
+    },
+    {
+      "id": "false-discovery-rate",
+      "name": "False discoveries: how many significant results are flukes",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "p-values",
+        "base-rates"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "control-groups",
+      "name": "Control groups: better after the pill is not because of the pill",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "statistics"
+    },
+    {
+      "id": "random-assignment",
+      "name": "Random assignment: why a coin beats a careful doctor",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "confounding"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "self-selection-bias",
+      "name": "Self-selection: a bigger biased poll is still biased",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "sample-vs-population"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "truncated-axis",
+      "name": "Truncated axes: bar heights that exaggerate",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "per-capita-rates",
+      "name": "Totals vs rates: the biggest place is not the riskiest",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "pattern-waiting-times",
+      "name": "Waiting for HH vs HT: equally likely patterns, unequal waits",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "geometric-waiting"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "record-values",
+      "name": "Records in random data: rarer but never done",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "draw-order-fairness",
+      "name": "Drawing straws: order does not change your chance",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "drawing-without-replacement"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "stopping-rules",
+      "name": "Stopping rules cannot tilt fair odds",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence",
+        "expected-value"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "group-testing",
+      "name": "Pooled testing: finding the few with fewer tests",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "at-least-once"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "serial-number-estimation",
+      "name": "Estimating a total from serial numbers",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "sample-vs-population"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "correlation-strength",
+      "name": "What a correlation of 0.5 buys you",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "dual-axis-charts",
+      "name": "Dual-axis charts: the crossing is a choice",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "truncated-axis"
+      ],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "cherry-picked-window",
+      "name": "Cherry-picked windows: the start year sets the trend",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "two-giants-unlikely",
+      "name": "Why a network has one giant component, not two",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "giant-component",
+        "at-least-once"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "cascade-bayes-threshold",
+      "name": "Why a lead of two starts a cascade at any clue accuracy",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "information-cascade",
+        "bayesian-updating"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    },
+    {
+      "id": "selection-vs-influence",
+      "name": "Selection or influence? One snapshot cannot tell",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "homophily-test",
+        "confounding"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "run": "round-1",
+  "date": "2026-10-14",
+  "seed": 20261014,
+  "server": "next start (NEXT_DIST_DIR=.next-eval) on :3221, walkthrough --viewport phone --choose 0",
+  "note": "SECRET. Judges must never read company/evaluation/rounds/**. A/B are what the judge saw; map verdict 'A'->a, 'B'->b when transcribing.",
+  "lessons": {
+    "mild-preferences-sharp-divides@v4": {
+      "domain": "economics",
+      "capture": "artifacts/pairwise/captures/mild-preferences-sharp-divides@v4/"
+    },
+    "penalty-kick-mix@v4": {
+      "domain": "economics",
+      "capture": "artifacts/pairwise/captures/penalty-kick-mix@v4/"
+    },
+    "bid-what-its-worth@v3": {
+      "domain": "economics",
+      "capture": "artifacts/pairwise/captures/bid-what-its-worth@v3/"
+    },
+    "below-critical-mass@v4": {
+      "domain": "economics",
+      "capture": "artifacts/pairwise/captures/below-critical-mass@v4/"
+    },
+    "prices-sort-the-buyers@v3": {
+      "domain": "economics",
+      "capture": "artifacts/pairwise/captures/prices-sort-the-buyers@v3/"
+    },
+    "agenda-picks-the-winner@v2": {
+      "domain": "math",
+      "capture": "artifacts/pairwise/captures/agenda-picks-the-winner@v2/"
+    },
+    "news-comes-from-acquaintances@v3": {
+      "domain": "math",
+      "capture": "artifacts/pairwise/captures/news-comes-from-acquaintances@v3/"
+    },
+    "enemy-of-my-enemy@v3": {
+      "domain": "math",
+      "capture": "artifacts/pairwise/captures/enemy-of-my-enemy@v3/"
+    },
+    "cluster-stops-the-cascade@v4": {
+      "domain": "math",
+      "capture": "artifacts/pairwise/captures/cluster-stops-the-cascade@v4/"
+    },
+    "web-bow-tie-reach@v3": {
+      "domain": "cs",
+      "capture": "artifacts/pairwise/captures/web-bow-tie-reach@v3/"
+    },
+    "one-good-link-beats-many@v5": {
+      "domain": "cs",
+      "capture": "artifacts/pairwise/captures/one-good-link-beats-many@v5/"
+    },
+    "new-road-slower-trip@v3": {
+      "domain": "cs",
+      "capture": "artifacts/pairwise/captures/new-road-slower-trip@v3/"
+    },
+    "two-said-blue@v5": {
+      "domain": "probability",
+      "capture": "artifacts/pairwise/captures/two-said-blue@v5/"
+    },
+    "few-shortcuts-shrink-the-world@v5": {
+      "domain": "probability",
+      "capture": "artifacts/pairwise/captures/few-shortcuts-shrink-the-world@v5/"
+    },
+    "same-songs-different-hits@v3": {
+      "domain": "probability",
+      "capture": "artifacts/pairwise/captures/same-songs-different-hits@v3/"
+    },
+    "the-giant-appears@v2": {
+      "domain": "probability",
+      "capture": "artifacts/pairwise/captures/the-giant-appears@v2/"
+    },
+    "contact-order-matters@v4": {
+      "domain": "life",
+      "capture": "artifacts/pairwise/captures/contact-order-matters@v4/"
+    }
+  },
+  "pairs": [
+    {
+      "pair": "pair-01",
+      "A": "penalty-kick-mix@v4",
+      "B": "mild-preferences-sharp-divides@v4",
+      "judge": "judge-4",
+      "within_domain": true,
+      "calibration": null,
+      "why": "econ within: two strategic-equilibrium lessons"
+    },
+    {
+      "pair": "pair-02",
+      "A": "penalty-kick-mix@v4",
+      "B": "bid-what-its-worth@v3",
+      "judge": "judge-2",
+      "within_domain": true,
+      "calibration": null,
+      "why": "econ within: game theory vs auctions"
+    },
+    {
+      "pair": "pair-03",
+      "A": "bid-what-its-worth@v3",
+      "B": "agenda-picks-the-winner@v2",
+      "judge": "judge-1",
+      "within_domain": false,
+      "calibration": null,
+      "why": "econ x math: two mechanism-design outcomes (bidding rule, voting agenda)"
+    },
+    {
+      "pair": "pair-04",
+      "A": "agenda-picks-the-winner@v2",
+      "B": "enemy-of-my-enemy@v3",
+      "judge": "judge-7",
+      "within_domain": true,
+      "calibration": null,
+      "why": "math within"
+    },
+    {
+      "pair": "pair-05",
+      "A": "enemy-of-my-enemy@v3",
+      "B": "news-comes-from-acquaintances@v3",
+      "judge": "judge-5",
+      "within_domain": true,
+      "calibration": null,
+      "why": "math within: both social-network structure"
+    },
+    {
+      "pair": "pair-06",
+      "A": "news-comes-from-acquaintances@v3",
+      "B": "two-said-blue@v5",
+      "judge": "judge-3",
+      "within_domain": false,
+      "calibration": null,
+      "why": "math x prob: information through people"
+    },
+    {
+      "pair": "pair-07",
+      "A": "two-said-blue@v5",
+      "B": "same-songs-different-hits@v3",
+      "judge": "judge-1",
+      "within_domain": true,
+      "calibration": null,
+      "why": "prob within"
+    },
+    {
+      "pair": "pair-08",
+      "A": "same-songs-different-hits@v3",
+      "B": "below-critical-mass@v4",
+      "judge": "judge-3",
+      "within_domain": false,
+      "calibration": null,
+      "why": "prob x econ: crowd feedback / tipping"
+    },
+    {
+      "pair": "pair-09",
+      "A": "below-critical-mass@v4",
+      "B": "prices-sort-the-buyers@v3",
+      "judge": "judge-7",
+      "within_domain": true,
+      "calibration": null,
+      "why": "econ within: market-level outcomes"
+    },
+    {
+      "pair": "pair-10",
+      "A": "new-road-slower-trip@v3",
+      "B": "prices-sort-the-buyers@v3",
+      "judge": "judge-5",
+      "within_domain": false,
+      "calibration": null,
+      "why": "econ x cs: prices sorting buyers vs selfish routing"
+    },
+    {
+      "pair": "pair-11",
+      "A": "new-road-slower-trip@v3",
+      "B": "one-good-link-beats-many@v5",
+      "judge": "judge-4",
+      "within_domain": true,
+      "calibration": null,
+      "why": "cs within: network flow/routing"
+    },
+    {
+      "pair": "pair-12",
+      "A": "one-good-link-beats-many@v5",
+      "B": "web-bow-tie-reach@v3",
+      "judge": "judge-5",
+      "within_domain": true,
+      "calibration": null,
+      "why": "cs within: link structure"
+    },
+    {
+      "pair": "pair-13",
+      "A": "web-bow-tie-reach@v3",
+      "B": "the-giant-appears@v2",
+      "judge": "judge-2",
+      "within_domain": false,
+      "calibration": null,
+      "why": "cs x prob: graph reachability vs giant component"
+    },
+    {
+      "pair": "pair-14",
+      "A": "few-shortcuts-shrink-the-world@v5",
+      "B": "the-giant-appears@v2",
+      "judge": "judge-7",
+      "within_domain": true,
+      "calibration": null,
+      "why": "prob within: random-graph structure"
+    },
+    {
+      "pair": "pair-15",
+      "A": "contact-order-matters@v4",
+      "B": "few-shortcuts-shrink-the-world@v5",
+      "judge": "judge-4",
+      "within_domain": false,
+      "calibration": null,
+      "why": "prob x life: network distance vs contact order"
+    },
+    {
+      "pair": "pair-16",
+      "A": "cluster-stops-the-cascade@v4",
+      "B": "contact-order-matters@v4",
+      "judge": "judge-6",
+      "within_domain": false,
+      "calibration": null,
+      "why": "life x math: spreading processes"
+    },
+    {
+      "pair": "pair-17",
+      "A": "mild-preferences-sharp-divides@v4",
+      "B": "cluster-stops-the-cascade@v4",
+      "judge": "judge-3",
+      "within_domain": false,
+      "calibration": null,
+      "why": "math x econ: local rules, global patterns (closes the cycle)"
+    },
+    {
+      "pair": "pair-18",
+      "A": "few-shortcuts-shrink-the-world@v5",
+      "B": "news-comes-from-acquaintances@v3",
+      "judge": "judge-1",
+      "within_domain": false,
+      "calibration": null,
+      "why": "chord, math x prob: weak ties vs shortcuts"
+    },
+    {
+      "pair": "pair-19",
+      "A": "cluster-stops-the-cascade@v4",
+      "B": "below-critical-mass@v4",
+      "judge": "judge-8",
+      "within_domain": false,
+      "calibration": null,
+      "why": "chord, econ x math: thresholds and cascades"
+    },
+    {
+      "pair": "pair-20",
+      "A": "mild-preferences-sharp-divides@v4",
+      "B": "penalty-kick-mix@v4",
+      "judge": "judge-6",
+      "within_domain": true,
+      "calibration": {
+        "of": "pair-01",
+        "type": "swap"
+      },
+      "why": "calibration (A/B swapped) of pair-01"
+    },
+    {
+      "pair": "pair-21",
+      "A": "two-said-blue@v5",
+      "B": "news-comes-from-acquaintances@v3",
+      "judge": "judge-8",
+      "within_domain": false,
+      "calibration": {
+        "of": "pair-06",
+        "type": "swap"
+      },
+      "why": "calibration (A/B swapped) of pair-06"
+    },
+    {
+      "pair": "pair-22",
+      "A": "the-giant-appears@v2",
+      "B": "web-bow-tie-reach@v3",
+      "judge": "judge-8",
+      "within_domain": false,
+      "calibration": {
+        "of": "pair-13",
+        "type": "swap"
+      },
+      "why": "calibration (A/B swapped) of pair-13"
+    },
+    {
+      "pair": "pair-23",
+      "A": "below-critical-mass@v4",
+      "B": "prices-sort-the-buyers@v3",
+      "judge": "judge-6",
+      "within_domain": true,
+      "calibration": {
+        "of": "pair-09",
+        "type": "second-judge"
+      },
+      "why": "calibration (same order, second judge) of pair-09"
+    },
+    {
+      "pair": "pair-24",
+      "A": "cluster-stops-the-cascade@v4",
+      "B": "contact-order-matters@v4",
+      "judge": "judge-2",
+      "within_domain": false,
+      "calibration": {
+        "of": "pair-16",
+        "type": "second-judge"
+      },
+      "why": "calibration (same order, second judge) of pair-16"
+    }
+  ]
+}

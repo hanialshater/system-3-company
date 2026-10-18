@@ -1,0 +1,74 @@
+{
+  "what": "S from the reference arm (default-order + fixed schedule) alone at the base cell (criterion 2 §1). SDs only; no mean, no other arm.",
+  "rule": "S = max(floor, ceil((2.8·√2·sd_R/δ_min)²)), cap; sd_R = the largest per-persona SD of R_7 = K[7]/nAll of the reference arm",
+  "inputsStatus": "PLACEHOLDER pre-E1 (K1, run eval-k1-1016); K2 fills from company/personalization/evidence/2026-10-16-criterion-2-ranges.md",
+  "inputsHash": "3d37bfcf51f8d5482a216db96e24cdb8075ddfa91313ae56aa0f12589b580c30",
+  "cell": {
+    "forgetScale": 1,
+    "pullScale": 1,
+    "prereqPenalty": 0.15,
+    "learnRate": 0.7,
+    "revisitStrengthen": 0.5,
+    "relearn": 0.5,
+    "priorKnowledgeMean": 0.2,
+    "revisitStopScale": 1
+  },
+  "pilotSeeds": "1001..1500",
+  "deltaMin": 0.01,
+  "floor": 200,
+  "cap": 2000,
+  "perPersona": {
+    "curious-newcomer": {
+      "sdR": 0.040001494503910516,
+      "n": 500,
+      "nan": 0
+    },
+    "single-subject-crammer": {
+      "sdR": 0.03311115209580976,
+      "n": 500,
+      "nan": 0
+    },
+    "struggling-repeater": {
+      "sdR": 0.03775574716241945,
+      "n": 500,
+      "nan": 0
+    },
+    "returning-expert": {
+      "sdR": 0.0648443696598731,
+      "n": 500,
+      "nan": 0
+    },
+    "wanderer": {
+      "sdR": 0.04411883277507997,
+      "n": 500,
+      "nan": 0
+    },
+    "lapsed-returner": {
+      "sdR": 0.04720809595497608,
+      "n": 500,
+      "nan": 0
+    }
+  },
+  "sdMax": 0.0648443696598731,
+  "S": 660,
+  "seedList": "1001..1660",
+  "episode": {
+    "days": 14,
+    "slots": 12,
+    "sessionStartHour": 9,
+    "cardMinutes": 2,
+    "revisitMinutes": 1,
+    "prehistoryDays": 20,
+    "prehistoryRecallTaken": 0.7,
+    "jitter": 0.1,
+    "baseTime": 1792108800000,
+    "recallWindowDays": 30,
+    "horizonsDays": [
+      1,
+      7,
+      30
+    ],
+    "primaryHorizonDays": 7
+  },
+  "modelVersion": "model-v0.2.2"
+}

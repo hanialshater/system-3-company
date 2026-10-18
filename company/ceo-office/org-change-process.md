@@ -4,13 +4,16 @@ owner: chief-of-staff-ceo-office (Leonie) · since 2026-10-13 (founder: "When yo
 
 The founder's directs are the roles with `reportsTo: founder` in `tools/org/roles.mjs`. Today they are:
 - chief-of-staff (Ada)
-- head-of-product (Priya)
 - evaluation-steward (Hilde)
 - principal-engineer (Kenji)
 - chief-of-staff-ceo-office (Leonie)
 - vp-rnd (Vera)
 - vp-marketing (Celeste), since 2026-10-14 (company/decisions/2026-10-14-marketing-org.md)
 - head-of-strategic-initiatives (Beatriz), since 2026-10-15 (company/decisions/2026-10-15-head-of-strategic-initiatives.md). Consult on anything that changes a running initiative's core team or owners
+- vp-personalization (Mateo), since 2026-10-16 (company/decisions/2026-10-16-founder-personalization-org.md). Consult on anything that touches learner data, the learner model, feed ordering or personalization's eval
+- chief-product-officer (Margot), since 2026-10-14 by decision, generated on this branch 2026-10-18 (company/decisions/2026-10-14-evaluation-org.md, port section; company/decisions/2026-10-18-founder-evaluation-leaderboard-in-hq.md). Consult on anything that touches the product org under head-of-product, the Evaluation org (pairwise judging, criteria, the Bradley-Terry leaderboard), or a product trade-off that crosses product and evaluation
+
+head-of-product (Priya) is no longer a founder direct (she reports to chief-product-officer since the same record). **Keep consulting Priya** on lessons, product and categories, as step 2 below says; the move changes her line, not her scope.
 
 Since 2026-10-16 (company/decisions/2026-10-16-founder-org-and-dispatch-rule.md, rule 1), this process covers every **new role, agent, org, floor and room**, plus moves and retirements. The CEO office designs each one, and **the founder approves each one before it exists**. The full pipeline, from the ask to the check that the role is used, is in "The pipeline end to end" below. The steps that follow are its design and consultation core.
 
@@ -18,7 +21,7 @@ Since 2026-10-16 (company/decisions/2026-10-16-founder-org-and-dispatch-rule.md,
 1. **Draft (Leonie):** write the decision record (`company/decisions/<date>-<slug>.md`) with the role's scope, its reporting line, and what it takes from existing roles.
 2. **Consult** before the role is generated:
    - **always:** Leonie (org health), and the direct whose org the role will sit in;
-   - **when relevant:** any direct whose scope the role touches. A role that touches gates or reviews consults Hilde. One that touches engineering, the kit or data consults Kenji. Lessons, product or categories consult Priya. Dispatching or the loop consults Ada. Labs or research consult Vera. Anything said in public about the company consults Celeste.
+   - **when relevant:** any direct whose scope the role touches. A role that touches gates or reviews consults Hilde. One that touches the Evaluation org or product outcomes across orgs consults Margot. One that touches engineering, the kit or data consults Kenji. Lessons, product or categories consult Priya. Dispatching or the loop consults Ada. Labs or research consult Vera. Anything said in public about the company consults Celeste.
 
    Each one answers in writing in the record's `## Consulted` section: agree, agree with changes, or object, with the reason. Objections travel with the decision.
 3. **Founder approves (new since 2026-10-16):** the record goes to the founder through `company/ops/founder-inbox.json` (the chief of staff files it) and waits there. Nothing is generated until the record says `status: approved` with the founder's words quoted verbatim, with the date. A message from an agent, the chief of staff included, is never the founder's approval.

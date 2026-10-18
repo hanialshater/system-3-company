@@ -1,0 +1,68 @@
+{
+  "what": "S from the default-order arm alone at the base cell (criterion §1). Only SDs are recorded; no mean, no other policy.",
+  "rule": "S = max(floor, ceil((2.8·√2·sd_R/δ_min)²)), cap; sd_R = the largest per-persona SD of R over the pilot seeds",
+  "inputsStatus": "C0-corrected (filled in C4, run eval-c4-1016; criterion §4 C4 table)",
+  "inputsHash": "d2fbc581c5321e80a54636cdec255c6db964349bd81bca70b016f4c41a028252",
+  "cell": {
+    "forgetScale": 1,
+    "pullScale": 1,
+    "prereqPenalty": 0.15,
+    "hypercorrection": 0,
+    "novelty": 0,
+    "rho": 0.5,
+    "learnRate": 0.7
+  },
+  "pilotSeeds": "1001..1500",
+  "deltaMin": 0.01,
+  "floor": 200,
+  "cap": 2000,
+  "perPersona": {
+    "curious-newcomer": {
+      "sdR": 0.030487224705924507,
+      "n": 500,
+      "nan": 0
+    },
+    "single-subject-crammer": {
+      "sdR": 0.027735032897806308,
+      "n": 500,
+      "nan": 0
+    },
+    "struggling-repeater": {
+      "sdR": 0.03278699165970062,
+      "n": 500,
+      "nan": 0
+    },
+    "returning-expert": {
+      "sdR": 0.021043285660172995,
+      "n": 500,
+      "nan": 0
+    },
+    "wanderer": {
+      "sdR": 0.027981908235936055,
+      "n": 500,
+      "nan": 0
+    },
+    "lapsed-returner": {
+      "sdR": 0.03149386268410019,
+      "n": 500,
+      "nan": 0
+    }
+  },
+  "sdMax": 0.03278699165970062,
+  "S": 200,
+  "seedList": "1001..1200",
+  "episode": {
+    "days": 14,
+    "maxCardsPerDay": 12,
+    "sessionStartHour": 9,
+    "cardMinutes": 2,
+    "revisitMinutes": 1,
+    "prehistoryDays": 20,
+    "prehistoryRecallTaken": 0.7,
+    "jitter": 0.1,
+    "firstRevisit": "the first session on a later day than the completion (REVISIT_SCHEDULE_DAYS[0] = 1 day; src/kit/progress.ts)",
+    "baseTime": 1792108800000
+  },
+  "modelVersion": "model-v0.2.1",
+  "composer": "composer-v0.2"
+}

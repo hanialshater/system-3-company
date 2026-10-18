@@ -1,0 +1,86 @@
+{
+  "plumbing": false,
+  "criterionStatus": "frozen",
+  "criterionSha256": "78e2b5131ed8024a7e81fcb2b463157ba6f7edb3b94a6a38ce04771f366927e4",
+  "e1Sha256": "c8c09eac7613720c7d1499958d5c416b57ed7d614e7e68eb8a132068f7482840",
+  "e3Sha256": "0e120add6ada34da159d77bc7d994f092318b4bba802941f4477a4273fc1927a",
+  "e3": {
+    "status": "FILLED (K4, run eval-k4-1017) from E3 ranges table; F3 B1-B3 applied",
+    "ranges": "company/personalization/evidence/2026-10-17-criterion-3-ranges.md (ranges table; §1a, §1b, §1c, §2a, §2b)",
+    "revisitSlotCost": {
+      "low": 0.15,
+      "base": 0.3,
+      "high": 0.5,
+      "mark": "E3 revisit time ratio 0.15/0.3/0.5 (product + E1 [F] answer windows, derived; low)"
+    },
+    "revisitStopScale": {
+      "low": 0.5,
+      "base": 1,
+      "high": 2,
+      "mark": "E3 revisit stop multiplier per card 0.5/1.0/2.0 (direction [A]/[S] only; analytics; low)"
+    },
+    "slots": {
+      "low": 4,
+      "base": 8,
+      "high": 15,
+      "mark": "E3 session length 4/8/15 card positions ([S] only; analytics; none-low)"
+    },
+    "priorRateMult": {
+      "low": 0.0141,
+      "base": 0.0574,
+      "high": 0.349,
+      "outer": 1,
+      "mark": "E3 prior-known 14-day kept 0.99/0.96/0.78 mapped through L8 (F3 B2); low m = E3 high kept; outer 1 = criterion 2 L4 (F3 B3)"
+    },
+    "priorAgeDays": {
+      "low": 0,
+      "base": 0,
+      "high": 0,
+      "mark": "F3 B1 fix (a): not swept; 0 = clock at the episode start (criterion 2 L4)"
+    },
+    "corner": {
+      "revisitStopScale": 2,
+      "slots": 4,
+      "revisitSlotCost": 0.5
+    }
+  },
+  "commit": "b1ae294aeb5e3a7f9fa32c2646ced7678c1f78d7",
+  "node": "v22.22.0",
+  "S": 1932,
+  "seedList": "1001..2932",
+  "tuningSeeds": "5001..5100",
+  "placements": [
+    "first"
+  ],
+  "oracleReviewTheta": {
+    "first:base": {
+      "curious-newcomer": 0.3,
+      "single-subject-crammer": 0.6,
+      "struggling-repeater": 0.3,
+      "returning-expert": 0.8,
+      "wanderer": 0.3,
+      "lapsed-returner": 0.3
+    }
+  },
+  "modelVersion": "model-v0.2.2",
+  "fileSha256": {
+    "harness3.mjs": "fc9a98ca7138a7e4a88ed05146c052c839f0d093020b968c1b4b278d9d95fa51",
+    "learner3.mjs": "90925edaff5830f06ccba7a8a6940614ce29c1ebeed82564f28bf8d39af629e9",
+    "world3.mjs": "0f0d3dbfd4983e56fcffca3252a243ac6819b5d4fb2201a95162918c8094175f",
+    "reachable-oracle.mjs": "b20c11cad1894925239f031ecd9b5d88ddadf8a9f85e98da3d9d78634249b8ef",
+    "checks3.mjs": "872c469a6d71995d893750bb6f108851bb94b58527e91b8ac1434a9c5050aa71",
+    "run3.mjs": "8030c8e048e86c94f56d87c1f57d3f56a42256fa3f3c4e72723fd3f6586fa11f",
+    "run3-worker.mjs": "85b884beea60e4415482cf3aecd00623e7f5d53cf4b4ee763af8cb8306a66501",
+    "../c2/harness2.mjs": "4cd6ca8ed399f0969f32c57cd0ced9b2bf147a6f9d34c02a1068c4ff5ecdfbee",
+    "../c2/learner2.mjs": "36b4839ca97d9da8f9ebba3356d450d9256a7e4ef716af490a4b3d12a2ffdc6e",
+    "../c2/scorer2.mjs": "2518ae27f4b442f9101e5c492182f1961199cc9a86064b3250abcc1b694f075d",
+    "../c2/world2.mjs": "876aa1b875ae8d60a15bb05de8a38f72750dca291ee8fe597ca183872418650c",
+    "../harness.mjs": "458f3dc19b1048f2110573b4befb17dd0b8f74ac9ac0fa7a58428057f74b1864",
+    "../personas.copy.mjs": "9cb7a911a5aa03a4537b0dabc7383c3a87faf91fa05b1792009abee0c9d18770",
+    "../../../model/model.ts": "af6545119749ff8b65a533bc9291aede4aeca57173c2ed97f51a0931890c731b",
+    "../../../model/sim/composer.ts": "a092c3b9b52411add0e61851753e29a760d8c4527699f2d7f2a73c7e72801141",
+    "../../../model/sim/catalog.mjs": "877b0807cdd77a1ad9e11457524eae23b5a352c56f3b7c8dcd00b556413effc9"
+  },
+  "errors": {},
+  "seconds": 1946.392
+}

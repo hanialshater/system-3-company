@@ -1,0 +1,73 @@
+# Founder ask: a scalable personalization org under Mateo
+
+owner: chief-of-staff-ceo-office (Leonie: org design and the new-role pipeline)
+date: 2026-10-16
+status: decided
+class: org
+route: personalization-lead (proposes the team, §7 of company/personalization/2026-10-16-brief-response.md) → chief-of-staff-ceo-office (designs under company/ceo-office/org-change-process.md, checks overlaps) → founder (approves each new role before it exists)
+recorded by: chief-of-staff
+
+## What the founder said
+
+> "Mateo will create his team, with eval, applied scientes, head of feed, etc, this org should scale"  (source: conversation, 2026-10-16, right after the personalization brief, company/personalization/2026-10-16-founder-brief.md)
+
+## What the founder decided, and what is left to the owners
+
+- **Decided by the founder (whether):** personalization becomes an org, not a two-person team, led by personalization-lead (Mateo), and it must be able to grow. Named functions: evaluation, applied science, a head of feed, "etc".
+- **Left to the owners (how):** the role list, reporting lines, sub-teams, which roles start in phase A vs later, and how they meet existing owners (platform-engineer owns the feed today; analytics-steward owns experiments and metric meaning; evaluation-steward owns the evaluation harness; growth-designer owns badges and streaks; learner-model-engineer already reports to Mateo). Under company/decisions/2026-10-16-founder-org-and-dispatch-rule.md rule 1, Mateo proposes, Leonie designs, the founder approves each role; nobody creates an agent, role file or tools/org/roles.mjs entry before that.
+
+## Route and answers
+
+| Step | Role | Answer (agree / agree with changes / object) | Where |
+|---|---|---|---|
+| 1 | personalization-lead | **agree with changes** (2026-10-16): 3 new roles for phase A (applied-scientist-personalization, personalization-eval reporting to evaluation-steward, lesson-dims-owner), head-of-feed in phase B as an ordering-contract owner, not the feed code; overlaps written as T1-T8 for Leonie | company/personalization/2026-10-16-brief-response.md §7 |
+| 2 | chief-of-staff-ceo-office | **agree with changes** (2026-10-16, Leonie, after the founder's second message): self-contained org under **vp-personalization** (id rename, "VP of Personalization (CEO Office)", reports to the founder). Approve now (phase A, each with a waiting item): personalization-eval (in-org, with a two-way independence rule: eval never builds what it grades, builders never build or tune the judge), applied-scientist-personalization, learning-scientist-personalization, lesson-dims-owner, personalization-engineer (HQ lab W-1924), plus scope edits to learner-model-engineer and growth-designer (streaks line, T7). Deferred with triggers: head-of-feed (phase B start), feed-engineer, splits by need family / category cluster / offline-online, sub-team leads (span > 6). T1-T8 each give scope to the org; company-wide gates kept as interfaces. Two circularities in Mateo's plan moved to the eval (personas from W-1960, simulated learner from W-1915). Consults pending: head-of-product, evaluation-steward, principal-engineer, vp-rnd, chief-of-staff, personalization-lead | company/ceo-office/2026-10-16-personalization-org-proposal.md |
+| 3 | founder | pending | this record |
+| 2b (third message: customer-data team) | chief-of-staff-ceo-office | **agree with changes** (2026-10-16, Leonie): one new role, **learner-data-engineer** (card N6, Customer Data sub-team, reports to vp-personalization; split into a learner-data-steward at phase C start), plus a scope edit to backend-engineer (card E3). T9: personalization tables (`settings` now; later served-order log, experiment counters, lesson aggregates, "learned" state, earned badges), their migrations, retention, inventory column confirmation and deletion/export behaviour move to the org; backend-engineer keeps the auth tables, `progress`, `recall`, `tools/db-migrate.mjs`, the migration sequence (order review of every migration), EDD-008 and the `accounts` branch; principal-engineer keeps tier-2 review; privacy-reviewer stays the gate. First task W-1942 (the `settings` schema diff for privacy-reviewer), held by personalization-lead until the card is approved, then dispatched the same day. Consults W-1943 backend-engineer, W-1944 privacy-reviewer. Open for the founder: span 7 (objection 9), whether `progress`/`recall` were meant (objection 10) | company/ceo-office/2026-10-16-personalization-org-proposal.md §3a, §6 card N6 and E3 |
+| 3b | founder | pending: approve card N6 (+E3) | this record |
+
+
+## Founder decision, second message (2026-10-16)
+
+> "Mateo is VP he should be independent instead of taping onto others in the compay, leoni to help with he org experience but not levergae other teams for his internal scope"  (founder, conversation)
+
+- **Decided by the founder:** personalization-lead becomes **VP of Personalization** and runs a **self-contained org**. Its internal work (feed ordering for personalization, the model and curves, the simulator, evaluation of its own policies, applied science, lesson dims for its use, its HQ simulation lab) is staffed inside the org, not borrowed from other teams. Leonie designs the org and brings org-design experience; she does not route Mateo's internal scope to other teams.
+- **Consequence for open items:** W-1917 (analytics-steward), W-1918 (research-lead), W-1919 (principal-engineer, location of dims and code) and W-1924 (hq-engineer, HQ lab) move into the personalization org once its roles are approved; until then they wait for those roles rather than going to the other teams. personalization-eval reports inside the org, not to evaluation-steward.
+- **What stays company-wide (not "leveraging", they are gates every org passes):** privacy review of learner data (W-1916), the founder's approval of every deploy, protected paths and the constitution, the claims rule for anything a learner reads, and the platform owner's review where personalization code touches the shared feed or kit. Leonie is asked to state the interface for each in the org design.
+
+## Founder decision, third message (2026-10-16): a customer-data team
+
+> "Ues do it, but through a new team for customer data under the vp of personalization"  (founder, conversation; "it" = the chief of staff's recommendation to add the `settings` table (personalization on/off, subjects, less-of) to the accounts database and keep fingerprints, need scores and ability scores unstored, per company/reviews/_privacy/2026-10-16-personalization-model-inputs.md and data-inventory row D20)
+
+- **Decided by the founder:** a customer-data team inside the personalization org, under the VP. It owns the learner data personalization reads and writes, starting with the `settings` schema diff for the privacy read.
+- **Left to Leonie (how):** the role card(s), scope, and the interface with backend-engineer (owns the accounts database, migrations and EDD-008 today) and privacy-reviewer (company-wide gate, unchanged).
+
+## Founder approval (2026-10-16)
+
+> "Approve V, N1–N6, E1–E3; 7 directs fine for now; progress/recall stay with backend."  (founder, conversation)
+
+- **Approved:** card V (personalization-lead → vp-personalization, VP of Personalization, reports to the founder); N1 personalization-eval; N2 applied-scientist-personalization; N3 learning-scientist-personalization; N4 lesson-dims-owner; N5 personalization-engineer; N6 learner-data-engineer; E1 learner-model-engineer scope edit; E2 growth-designer scope edit (no streaks); E3 backend-engineer scope edit; all as written in company/ceo-office/2026-10-16-personalization-org-proposal.md.
+- **Objection 9 (span):** the VP's 7 direct reports are accepted for now; revisit at phase B start.
+- **Objection 10:** `progress` and `recall` stay with backend-engineer.
+- **Deferred cards** (head-of-feed, feed-engineer, splits, sub-team leads) are not approved; they come back on their triggers.
+- status: **decided**. Next: chief-of-staff-ceo-office generates the roles (tools/org/roles.mjs → tools/org/generate.mjs), then the chief of staff dispatches the first tasks through the VP.
+
+## Generated (pipeline step 5, 2026-10-16, chief-of-staff-ceo-office, run leonie-gen-perso-1016)
+
+- tools/org/roles.mjs: personalization-lead renamed to vp-personalization (card V); new personalization-eval (N1), applied-scientist-personalization (N2), learning-scientist-personalization (N3), lesson-dims-owner (N4), personalization-engineer (N5), learner-data-engineer (N6); edits E1 learner-model-engineer, E2 growth-designer, E3 backend-engineer. tools/org/people.mjs: Mateo kept on vp-personalization; Anneke, Tavi, Solenne for N4-N6; N1-N3 are pool roles (MANY). `node tools/org/generate.mjs` regenerated company/roles/ and .claude/agents/; the personalization-lead files were removed.
+- Memory carried: company/roles/memory/personalization-lead(.md, /) moved to vp-personalization (tools/memory.mjs has no rename; the files were moved and the header rewritten, entries untouched).
+- Board re-owned (W-1917, W-1927, W-1937 personalization-eval; W-1918, W-1938 learning-scientist-personalization; W-1936 lesson-dims-owner; W-1942 learner-data-engineer; W-1919 learner-model-engineer; open personalization-lead items to vp-personalization). POC map lane 14 and the handoff map updated.
+- Not done here: HQ placement of the six new roles (step 6, W-1945, hq-engineer); the `org-change` event (chief of staff); prose in other owners' records (W-1946).
+
+## Objections
+
+- **chief-of-staff:** a "head of feed" and a personalization "eval" role overlap with owners that exist (platform-engineer owns the feed surface; analytics-steward and evaluation-steward own experiments and the harness). Creating them without moving those scopes leaves two owners for one thing. **Answer:** sent to step 1 and 2: Mateo must name each overlap, Leonie must resolve it (move the scope, split it, or drop the role) before it reaches the founder.
+- **chief-of-staff:** most of the org has no work until phase A's simulator and lesson dims exist; staffing ahead of work produces unused roles (the CEO office's role evaluation already looks for these). **Answer:** Mateo marks each role phase A or later; Leonie may stage the approvals.
+
+- **chief-of-staff:** a self-contained org duplicates capabilities other teams already have (experiment analysis, research, engineering review), and its own evaluation of its own policies loses independence. **Answer:** the founder chose independence; Leonie's design must give the org's eval a written independence rule (eval roles never build what they grade), and the company-wide gates above still apply.
+
+## Board
+
+- W-1959 Design the personalization org (owner chief-of-staff-ceo-office)
+- W-1942 `settings` schema diff (owner personalization-lead until card N6 is approved, then learner-data-engineer)
+- W-1943, W-1944 consults on T9 (backend-engineer, privacy-reviewer)

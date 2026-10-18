@@ -9,6 +9,9 @@ export const HOME: Record<string, string> = {
   "chief-of-staff-ceo-office": "ceo-office",
   "portfolio-manager": "ceo-office",
   "head-of-strategic-initiatives": "ceo-office",
+  "chief-product-officer": "ceo-office",
+  "head-of-evaluation": "learner-review",
+  "evaluation-engineer": "learner-review",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
   "courses-lead": "courses",
@@ -44,8 +47,11 @@ export const HOME: Record<string, string> = {
   "hq-engineer": "tools",
   "cm-lifehacks": "cm-lifehacks",
   "lifehacks-safety-reviewer": "lifehacks-safety",
-  "personalization-lead": "personalization",
+  "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
+  "personalization-engineer": "model-lab",
+  "learner-data-engineer": "model-lab",
+  "lesson-dims-owner": "personalization",
   "localization-lead": "international",
 };
 for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas", "history", "behavioral"]) HOME[`cm-${d}`] = `cm-${d}`;

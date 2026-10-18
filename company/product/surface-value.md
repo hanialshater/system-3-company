@@ -20,7 +20,9 @@ lessons against each other or to choose what to build.
 
 ## For the feed
 
-- Order is subject round-robin, published first, then lessons in review, labelled as such. It is not personalised and it says so.
+- The default order is subject round-robin, published first, then lessons in review, labelled as such. Every subject chip shows it, and the All feed shows it when the company flag is off. Where the default order is shown, the feed says it is not personalised.
+- With the company build flag `NEXT_PUBLIC_NEW_LESSON_ORDER` on, the All feed's new lessons follow the frozen candidate named in AMD-015, for every learner. There is no learner switch. The flag is on only when its value is exactly that candidate's name (today `reachable-v3`). It is read once at build and is off in the repository. Inside the pilot subjects the candidate reorders pilot lessons among the slots the default order gives them. Every other lesson keeps its default slot. Due revisits still come first. Every card it moves says why, and the reason is true.
+- On a device with no history the order uses no learner data, and the feed says what its order is. With the flag on, a new device sees the candidate's own empty-history order: in the pilot subjects, lessons that build on fewer others come earlier, the same order on every new device. In that order a lesson in review can come before published ones, still labelled as in review. A different candidate, or a different cold-start behaviour, needs a further amendment.
 - Revisits come before new lessons when due.
 - Nothing autoplays. There are no streaks and no guilt.
 
@@ -30,4 +32,7 @@ lessons against each other or to choose what to build.
 |---|---|---|
 | Predict-before-reveal adds friction | Some learners will leave at the prediction | founder |
 | Gates slow publishing | Fewer lessons per cycle | founder |
-| No personalisation at cold start | A less "magical" first minute | head-of-product |
+| No learner data at cold start: a new device gets a fixed order, the same for everyone | A less "magical" first minute | head-of-product |
+| The All feed's new-lesson order is personalised for every learner, with no learner switch (founder, 2026-10-17) | A learner who dislikes the order cannot turn it off. The company flag and its withdrawal (AMD-015 Part B) are the only off | founder |
+| At cold start, with the flag on, lessons in review can come before published ones in the All feed | A learner may meet a labelled in-review lesson earlier than the default order would show it | head-of-product |
+| No live comparison group unless the founder decides one (O2) | The live effect is not measured. It is reported before/after, as description, never as cause | founder |
