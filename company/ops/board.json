@@ -19918,10 +19918,11 @@
       "id": "W-1714",
       "title": "Ruling 1 (PE-ops): log Better Auth error codes from an exact allow-list (SCHEMA_MISMATCH first) as code=<CODE> in http.ts logFailure; tests per the readiness record; before preview-on",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1715",
@@ -19936,10 +19937,11 @@
       "id": "W-1716",
       "title": "Accounts preview blockers (principal re-read): PC3 bind the device state to the account that answered the merge screen and treat a different account like the signed-in marker (test repeating probe 1: edited callbackURL must not skip the merge screen); PC9 /account hangs on Loading after sign-out/deletion remount (accountState promise never resolves; remount test). Do after the PR merges, then re-run verify",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1901",
@@ -20085,10 +20087,11 @@
       "id": "W-1916",
       "title": "PC10 (principal re-read 2): bind every account write (progress, merge, saves, likes) to the account tag; server answers 409 without writing on a mismatch; client ends the account on the device on 409, no retry; probe 3 (old tab after another account signs in) becomes a test. Also drop the dead ?? '' secret fallback in account-api.ts",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1917",
@@ -20140,6 +20143,24 @@
       "id": "W-1922",
       "title": "When wiring Like/Save controls: setSaved/setLiked must wait for the merge answer for the current account (after a switch they would write to an account whose merge screen is unanswered)",
       "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1923",
+      "title": "Risk R-a (accounts readiness A-12) at L2/I3, owner backend-engineer: register it",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1924",
+      "title": "Preview P1(f): in the real-browser run, x-s3c-account appears only on the five account write routes, never on /api/events, likes counts, pages, assets or third parties",
+      "owner": "release-manager",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-18",
