@@ -188,3 +188,86 @@ reviewer: principal-engineer (Kenji) · read the code diff `7ed0a2c8e..de5ff7013
 ### Routed (for the chief of staff; I did not edit board.json)
 1. backend-engineer: the PC3 account binding plus a probe-1 test, and the PC9 fix plus a remount test. I re-read the diff; no new review record is needed.
 2. privacy-reviewer: D23 for `s3c:account-device:v1`, including the identity form PC3 adds, and W-1710. Probe 1 bears on F3's login-CSRF question: an edited `callbackURL` removes the marker.
+
+## Re-read 2026-10-18 (second): PC3 binding, PC9, W-1714 (merge `27317e69b`; fix commit `7c7f488ad`)
+
+reviewer: principal-engineer (Kenji) · read `git show 7c7f488ad -- src tests` first, then EDD-008 addendum A7 and the readiness "Additions, 2026-10-18 (second)".
+
+### What I ran (worktree copy of `27317e69b`; nothing deployed, no server started)
+| What | Result |
+|---|---|
+| `npm run test:accounts`, throwaway PostgreSQL 16 (postgres user, unix socket only, port 55733, `/var/tmp`; torn down) | **61: 57 pass, 0 fail, 4 skipped** (built-server tests 31 to 34), as the author reported |
+| Same client tests with only `src/lib/account-client.ts` put back to `7c7f488ad^` (server code new, so `/me` sends a tag the old client ignores) | **C9, C10, C11 fail**; C1 to C8 pass. C9 fails at `syncing` (true, expected false); C11 at the 1 s timeout. File restored |
+| Probe 3 (client harness, temporary file, deleted): A signed in and answered; a lesson tab is left open, syncing. B's own link with `callbackURL` edited to `/` is opened in the same profile (verify 302 to `/`); the new tab loads; then the learner keeps playing **in the old tab** | New tab: merge screen, `ask {lessons 2, recalls 2}` (the fix works on a page load). Old tab: one recall, one completion and one Save are sent with B's cookie. **B's account now holds the recall on `plates-move`, the completion and prediction of `lesson-c`, and a save of `lesson-c`** |
+| Probe 4 (same harness): A answered; the server's `BETTER_AUTH_SECRET` is changed; next page load | `/me` signed out, device state removed, device back to its own history. A rotation of `BETTER_AUTH_SECRET` signs everyone out before the tag is ever compared |
+
+### Conditions
+| | Verdict | Evidence |
+|---|---|---|
+| **PC3** (account binding, as I specified it) | **closed** | The device state records the tag at all three answers. `run()` ends the previous account if the marker is present **or** the tag differs; a missing tag never matches (C10). C9 is my probe 1 against the real handlers (edited `callbackURL`, verify 302 `/`, page load at `/`), and it asserts the merge screen, the device's own history only, no write before the answer, and neither account's rows changed. It fails on the old client (run above). See PC10 for the case my condition did not cover |
+| **PC9** | **closed** | After `forgetSession()`, `accountState()` starts the memoised `startAccountSync()`. Before any reset it still returns `ready` and starts nothing (C5 still asserts that). With accounts off, nothing calls `forgetSession()`, so the off path is unchanged. C11 covers sign-out and deletion, and a second read makes no request. It times out on the old client |
+| **W-1714 Ruling 1** (engineering reading; the ruling is principal-engineer-ops') | **meets items 1 to 5** | `LOGGED_LIBRARY_CODES` is frozen and matched with `includes` on a string, so it is an exact match and never a pattern. Nothing reads `message`, `findings`, `cause` or `stack`, and a throwing `code` getter is caught. S16 builds the installed `SchemaMismatchError`, checks the output directly and through `/me`, and passes 10 near-misses (including `@`, a newline, an array, and an object with `toString`). The `auth.ts` logger is unchanged (item 5). Ruling 2's restart behaviour shows in the author's own log line, which is a good sign that the code works |
+
+**The account tag: sound.** It is HMAC-SHA-256 over `s3c:account-device:v1\0<id>`, truncated to 128 bits, in base64url.
+- *Reusing `BETTER_AUTH_SECRET`:* acceptable, no condition. The message carries its own label, and it contains `:` and NUL. A cookie signature (HMAC over a token) or an HS256 JWT signing input (base64url only) never contains those. The output is truncated, so it can never pass as a full 32-byte signature. A user can only obtain the tag of their own account id. A separate HKDF-derived key would be tidier, but it would protect against nothing I can name.
+- *Rotation fails safe in both forms.* Changing `BETTER_AUTH_SECRET` invalidates every session (probe 4), so each device cleans up as on sign-out. Better Auth 1.7.10 also reads a versioned `BETTER_AUTH_SECRETS` from the process environment (`context/secret-utils.mjs`). Under that form `accountTag` still keys on `BETTER_AUTH_SECRET`, so tags do not change. Neither form can give two accounts the same tag.
+- *Correction to the proposed D23 text and A7.1* (privacy-reviewer and author; not a condition): "a secret rotation changes every tag (each device asks once more)" is not what happens. Rotating `BETTER_AUTH_SECRET` signs every device out, and rotating through `BETTER_AUTH_SECRETS` leaves tags unchanged.
+- *Minor, no condition:* the `?? ""` fallback in `account-api.ts` is unreachable, because `createAuth` throws `SECR0` first. I would drop it rather than keep an unkeyed path in the code.
+
+### New: PC10 (preview-blocking, small): the binding is checked per page load, but writes are not bound
+PC3's fix runs once, in `run()`. A tab that is already syncing keeps its sink, its `knownMe` and any merge screen it is showing. The session cookie belongs to the browser profile, so once another tab signs the profile into B, that open tab sends every new delta, Save and Like to **B** (probe 3). The same holds for a merge screen left open: it says "Send this device's history to {A's email}?", but **Import** would POST to B. This is the same login-CSRF threat as probe 1, with the victim's ongoing play as the data, for as long as the old tab stays open. It is not a regression: the pre-fix code had the same hole. With accounts off it is unreachable. My PC3 wording only asked for the page-load check, so the author did what was asked.
+- **Fix (backend-engineer):** bind the writes on the server. Every account write from the client (`PUT /progress`, `merge`, saves, likes) carries the tag it was started with, for example in a header. The server compares it with `accountTag(secret, session.user.id)`, and if they differ it answers 409 and writes nothing. On a 409 the client ends the account on the device as `run()` does (no retry, no pending entry) and settles to the merge screen, or tells the page to reload. A `storage` listener on `s3c:account-device:v1` is a useful addition, but it is not enough alone, because it depends on the other tab running.
+- **Test:** probe 3 as a test. The old tab's recall, completion, Save and Like after the switch leave B's rows unchanged, and the old tab's merge-screen Import gets a 409 and writes nothing.
+
+### Not re-measured
+Build and first-load JS: the change is about 40 lines in the async account client and the account page, so I did not rebuild. The author reports the build passes off and on, plus tests 31 to 34 against `next start`. The readiness A-17/P5 rule (re-run 31 to 33 on the preview SHA) covers this.
+
+### Verdict
+**Merge into the default branch with every switch off: approve** (unchanged). Nothing in `7c7f488ad` runs with `ACCOUNTS_ENABLED` unset: `run()` returns on the 404 before it touches storage, `forgetSession()` is never called, and `/me` with accounts off is the 404 it was. MC1 (verify including `qa` on the exact merged tree, chief of staff) and MC4 (principal-engineer-ops) still bind, and my approval does not replace either.
+
+**Staff preview with any switch on: not yet.** Engineering still owes **PC10** (above). Others still owe PC5 and PC6 (principal-engineer-ops, release-manager, platform-engineer), W-1710 and D23 (privacy-reviewer, with the rotation wording corrected), the 390×844 walk of `/account` (privacy preview item 2), and principal-engineer-ops' readiness reading of this addition. PC1 to PC4 and PC7 to PC9 need nothing more from engineering.
+
+### Routed (for the chief of staff; I did not edit board.json)
+1. backend-engineer: PC10, server-bound writes plus the probe-3 test. Drop the `?? ""` secret fallback while you are there. I will re-read the diff; no new review record is needed.
+2. privacy-reviewer: D23 with the rotation sentence corrected (above), and W-1710.
+3. principal-engineer-ops: W-1714 Ruling 1 met in engineering's reading (S16). Closing it is your call.
+
+Kudos (not filed: `kudos.mjs` writes `events.jsonl`): @backend-engineer. C9 is my probe 1 almost line for line, and it fails on the old client exactly where it should. S16 uses the installed library class rather than a hand-made object, as Ruling 1 asked.
+
+## Re-read 2026-10-18 (third): PC10 write binding (merge `98aa6092f`; fix commit `96e8654fc`)
+
+reviewer: principal-engineer (Kenji) · read `git show 96e8654fc -- src tests` first, then EDD-008 addendum A8 and the readiness "Additions, 2026-10-18 (third)".
+
+### What I ran (worktree copy of `98aa6092f`; nothing deployed, no server started, no build)
+| What | Result |
+|---|---|
+| `npm run test:accounts`, throwaway PostgreSQL 16 (postgres user, unix socket only, port 55811, `/var/tmp`; torn down) | **66: 62 pass, 0 fail, 4 skipped** (built-server tests 31 to 34), as the author reported |
+| Server-only mutant: `boundWrite` made to always pass (client new, so it still sends the header) | **30, C12, C13, C14 fail**; everything else passes. The tests depend on the server check, not on the client refusing. File restored |
+| S18 scanner probed with 10 extra cases (`scanSource` on the client file name; scratch script, not committed) | caught: a tag returned by an arrow helper; `readJson(DEVICE_KEY)` sent whole. **Missed**: `knownMe` sent whole (the `/me` answer, which holds the tag **and the email**); `current` (the `AccountState`) sent whole; a `/me` answer from a local function sent whole; `const { tag: t } = me` then `t`; `const f = fetch; f(..)`; `XMLHttpRequest`; `new Image().src`; all of `localStorage` by loop. None of these is in the code today (I read every request site: `account-client.ts` 9, `AccountView.tsx` 1 (`start`, body is email, band, policy), `kit/progress.ts` 1 beacon of the event) |
+
+### Conditions
+| | Verdict | Evidence |
+|---|---|---|
+| **PC10** (server-bound writes, probe 3 as a test) | **closed** | Every write handler orders Origin (403) → session (401) → `boundWrite` (409) → body, so a wrong, empty or missing tag is refused before `readJson` (test 30 sends a malformed body with A's tag: 409, not 400). The compare is `timingSafeEqual` behind a length check; the length is the fixed 22, so nothing useful leaks, and a doubled header (`Headers.get` joins with ", ") never matches. The five routes and six methods (progress PUT, merge, save PUT/DELETE, like PUT/DELETE, delete) are all bound; S18 part 4 pins the `boundWrite` call list to them. C12 is probe 3 with recall, completion, Save and Like; C14 covers the open merge screen (Import 409, Decline checks `/me`), and Delete goes through the bound `deleteAccount()`. With accounts off every bound route answers 404 before the check |
+| Unbound routes write nothing to an account's learner data | **holds, one wording point** | `me`, `progressGet`, `listMarks`, `exportFile`, `counts` read only (`progress-store.ts`: no write in those functions). `start` writes sign-in rows and runs `purgeExpired`, with no session to bind to. Sign-out from a stale page ends whichever session the browser holds and then removes the device state: the safe direction. Verify is the sign-in itself. *Wording:* A8.1 says reads write nothing. Any `getSession` call, read or write, can refresh the session (at most daily, `updateAge`) and move `last_sign_in_at` of **the cookie's own** account (`auth.ts` hooks). That is session upkeep for the account the browser really holds, not a cross-account write. No condition |
+| Client 409 handling | **sound** | No retry: a 409 is not queued in `pending`, and `pushDelta` returns at once when `syncTag` is null. The first 409 wins (`changedFor`); a late 409 for a tag the page has already left does nothing. The device state is ended only if it still names the sent tag, so a newer tab's answer for B is left alone (C13). Save and Like are refused while `knownMe` is null after a 409, so a fresh `/me` cannot rebind them silently. The account page re-reads through `onAccountChanged`, and `SignedIn` is keyed by tag. A lesson page just stops until its next load. The A8.1 residuals (a write already in flight; the instant between `/me` and the "nothing" answer, caught by the first write's 409) are real and acceptable |
+| S18 tag scan | **sound for today's code; its stated limits are too narrow (PC11)** | It does what it says for named flows: identifiers, assignments, `set`/`push`, parameters, local function returns, the one exception for `boundHeaders` on the five routes, and the backstop by name. But the tag lives inside two objects the client holds whole (`knownMe`/`mePromise`, and `current`/`AccountState`), and sending either whole carries the tag past the scan and the backstop (`.tag` is never written). See PC11 |
+| CSRF | **no adverse interaction; it strengthens the write path** | A cross-site page cannot send `x-s3c-account` without a CORS preflight, and no account route answers one with `Access-Control-Allow-*`. So the header is a second barrier after the Origin check and SameSite=Lax, and a forger would also need the victim's tag. Same-origin `keepalive` fetches with a custom header need no preflight, so the push path is unaffected. Login-CSRF (a GET verify) is not touched by this. PC3 and PC10 together now confine its effect to what the victim does in a page loaded after the switch |
+
+### New: PC11 (before a staff preview, small): make S18's guard match its claim, or state its true limits
+S18 is the evidence for privacy condition 1 as A8.2 amends it. Its stated limits (anonymous-function parameters, imports) leave out the realistic regression: someone wires the Like or Save control, or an analytics event, and passes the `/me` answer or the account state whole. **Fix (backend-engineer), either:** (a) add `knownMe`, `mePromise`, `current`, `accountMe`, `accountState` (and the types `Me`, `SignedInMe`, `AccountState`) to what may not reach a send argument, follow a renamed binding's property name (`{ tag: t }`), and add a by-name backstop that the client file and its importers use no `XMLHttpRequest`, `WebSocket`, `EventSource`, `Image` or aliased `fetch`; with a negative case for each of my misses. Or (b) list those misses in A8.2's stated limits, word for word, so the privacy reviewer rules on the true guard. I prefer (a): it is about 20 lines and reuses the scanner.
+
+### Note for whoever wires the Like and Save controls (no condition now)
+`setSaved` and `setLiked` check only that `/me` is signed in (and the age band for likes). They do not check that this device has answered the merge screen for this tag. So on any page loaded after a switch of account (or after the 409 re-read), a Save or Like goes to the new account even though its merge screen is unanswered. Today nothing in the UI calls them (PC7 `CLIENT_ALLOWED` is empty). The record that adds the controls should decide whether they wait for the answer for this tag. This belongs with the privacy reviewer's F3 login-CSRF question.
+
+### Verdict
+**Merge into the default branch with every switch off: approve** (unchanged). With `ACCOUNTS_ENABLED` unset every bound route answers 404 before the new check, `/me` is the same 404, and the client sends no write (C2). MC1 (verify including `qa` on the exact merged tree, chief of staff) and MC4 (principal-engineer-ops' readiness approval) still bind. My approval replaces neither.
+
+**Staff preview with any switch on: not yet.** Engineering owes **PC11** (above). Others owe: the privacy reviewer's ruling on **A8.2** (the tag is now sent in one header, a change to condition 1, W-1961) and the D23 row update (W-1965), W-1710; PC5 and PC6 (principal-engineer-ops, release-manager, platform-engineer); the 390×844 walk of `/account` (privacy preview item 2); principal-engineer-ops' readiness reading of the third addition, with P5 (tests 31 to 33 on the preview SHA). PC1 to PC4 and PC7 to PC10 need nothing more from engineering.
+
+### Routed (for the chief of staff; I did not edit board.json)
+1. backend-engineer: PC11, option (a) preferred. I will re-read the diff; no new review record is needed.
+2. privacy-reviewer: A8.2 ruling and D23 (W-1961, W-1965). Read PC11 before relying on S18. The Like/Save note above goes with F3.
+3. principal-engineer-ops: readiness "Additions (third)": the merge stays approvable with switches off, and P5 applies.
+
+Kudos (not filed: `kudos.mjs` writes `events.jsonl`): @backend-engineer. Test 30 checks the order (a malformed body with a wrong tag is still 409), and C13 tests the newer-tab case I had not named. Both fail on a server-only mutant, so they test the server rather than the client.

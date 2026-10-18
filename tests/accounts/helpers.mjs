@@ -7,6 +7,7 @@ import pg from "pg";
 import { migrateUp } from "../../tools/db-migrate.mjs";
 import { createAuth } from "../../src/lib/server/auth.ts";
 import { createAccountApi } from "../../src/lib/server/account-api.ts";
+import { ACCOUNT_HEADER, accountTag } from "../../src/lib/server/http.ts";
 
 export const DB_URL = process.env.ACCOUNTS_TEST_DATABASE_URL;
 export const SKIP_DB = DB_URL ? false : "set ACCOUNTS_TEST_DATABASE_URL to a throwaway local PostgreSQL 16 (see helpers.mjs)";
@@ -72,8 +73,18 @@ export function makeWorld(pool, { env = baseEnv(), now } = {}) {
   return world;
 }
 
-export function req(path, { method = "GET", body, cookie, headers = {} } = {}) {
+/** PC10: the account tag of each session cookie signUp made, so req() can bind a write the way the client does. */
+const TAGS = new Map();
+export const tagOfCookie = (cookie) => TAGS.get(cookie);
+
+/**
+ * A request. A write (not GET) with a cookie from signUp carries that account's tag in ACCOUNT_HEADER, as the client
+ * sends it (PC10). `account: null` sends no tag; a string sends that tag.
+ */
+export function req(path, { method = "GET", body, cookie, headers = {}, account } = {}) {
   const h = { host: "localhost:3000", ...headers };
+  const tag = account === undefined ? (method !== "GET" && cookie ? TAGS.get(cookie) : undefined) : account;
+  if (tag) h[ACCOUNT_HEADER] = tag;
   if (body !== undefined) {
     h["content-type"] ??= "application/json";
     h.origin ??= BASE;
@@ -89,7 +100,7 @@ export async function counts(pool) {
   return out;
 }
 
-/** Start, click the captured link, and return {cookie, userId, setCookie}. */
+/** Start, click the captured link, and return {cookie, userId, setCookie, verify, tag}. */
 export async function signUp(world, email, ageBand = "16+") {
   const res = await world.api.start(req("/api/account/start", { method: "POST", body: { email, ageBand, policyVersion: POLICY } }));
   if (res.status !== 200) throw new Error(`start ${res.status} ${await res.text()}`);
@@ -100,5 +111,7 @@ export async function signUp(world, email, ageBand = "16+") {
   if (!sc) throw new Error(`no session cookie (status ${verify.status}, location ${verify.headers.get("location")})`);
   const cookie = sc.split(";")[0];
   const { rows } = await world.pool.query("SELECT id FROM auth_user WHERE lower(email) = lower($1)", [email]);
-  return { cookie, userId: rows[0]?.id, setCookie, verify };
+  const tag = rows[0]?.id ? accountTag(world.env.BETTER_AUTH_SECRET, rows[0].id) : undefined;
+  if (tag) TAGS.set(cookie, tag);
+  return { cookie, userId: rows[0]?.id, setCookie, verify, tag };
 }
