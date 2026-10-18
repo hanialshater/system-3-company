@@ -2,7 +2,7 @@
 
 name: Priya
 team: product
-reports_to: founder
+reports_to: chief-product-officer
 agent: .claude/agents/head-of-product.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

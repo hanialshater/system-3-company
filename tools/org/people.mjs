@@ -11,6 +11,11 @@ export const PERSONA = {
   "head-of-strategic-initiatives": "Beatriz",
   "principal-engineer-ops": "Rhea",
   "vp-rnd": "Vera",
+  // Evaluation org (2026-10-14, company/decisions/2026-10-14-evaluation-org.md; ported 2026-10-18). Tobias is also cm-books-science-history:
+  // a name collision recorded as an objection in the port section of that record, not resolved here. pairwise-judge is in MANY.
+  "chief-product-officer": "Margot",
+  "head-of-evaluation": "Tobias",
+  "evaluation-engineer": "Anya",
   "community-engineer": "Femi",
   "courses-lead": "Amara",
   "cm-course-ncm": "Jonah",
@@ -87,7 +92,7 @@ export const PERSONA = {
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.
-export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization"]);
+export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization", "pairwise-judge"]);
 
 export const POOL = [
   "Nia", "Theo", "Zara", "Felix", "Maya", "Leo", "Ines", "Kai", "Rumi", "Oskar",
