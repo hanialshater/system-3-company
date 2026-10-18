@@ -22,7 +22,7 @@ These are decided by the chief of staff on the founder's delegation, each with t
 3. **Evaluation org:**
    - The chief product officer's scope **excludes** the feed, the learner profile, gamification and progressive learning (card S10; founder 2026-10-18).
    - **Rename the books strand manager** (cm-books-science-history), not the head of evaluation, who keeps "Tobias". The CEO office picks an unused persona name.
-   - **Approve a POC-map lane "Evaluation (pairwise)"** with head-of-evaluation as POC, so its roles can be dispatched. evaluation-steward confirms rule 3 (checkers only from lane 10) does not apply to pairwise judges (W-1665) before the first round is dispatched.
+   - **Approve a POC-map lane "Evaluation (pairwise)"** with head-of-evaluation as POC, so its roles can be dispatched. evaluation-steward confirms rule 3 (checkers only from lane 10) does not apply to pairwise judges (W-1844; numbered W-1665 before the board renumber) before the first round is dispatched.
 
 ## Objections
 
