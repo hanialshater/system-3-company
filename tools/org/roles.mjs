@@ -980,17 +980,28 @@ roles.push(
     team: "personalization",
     reportsTo: "vp-personalization",
     model: "inherit",
-    description: "The personalization org's tech owner: builds the learner model and the composer (engine, policies under test, determinism, tests, the per-step trace) and decides where model, dims and engine code live. Never builds or tunes the simulated learner, personas or criteria. Use for learner-model and composer code.",
+    description: "The personalization org's tech owner: builds the learner model and the composer (engine, policies under test, determinism, tests, the per-step trace), the progressive-learning engine (per-category \"learned\" state, learning paths, the next-lesson recommender) and decides where model, dims and engine code live. Never builds or tunes the simulated learner, personas or criteria. Use for learner-model and composer code.",
     mission: "A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.",
     inScope: [
-      "src/lib/learner/** (once approved)",
+      "src/lib/learner/** (exists: dims-index.generated.ts; the org's path, tier 2 for principal-engineer)",
       "The org's tech owner: where model, dims and engine code live (W-1677)",
       "The engine port and the policies under test (W-1673)",
       "The per-step trace (W-1683)",
       "Reproducing an eval readout from its seed and commit (determinism only, not judgement)",
       "Explanations a learner can read ('why this lesson next')",
+      // Card S5, 2026-10-18 (company/ceo-office/2026-10-18-personalization-scope-proposal.md; approved under
+      // company/decisions/2026-10-18-founder-delegated-decisions.md): progressive learning, engine side.
+      "Progressive learning, engine side: the per-category \"learned\" state as a computed definition (phase C; EDD-009's mastery table is the start), learning-path code from the VP's paths over course and vertical maps, and the \"next lesson to learn more in this category\" recommender; all computed on demand from permitted inputs (AMD-008 P2, M1), none stored as a column (D20)",
     ],
-    outOfScope: ["Demographic inference", "Data collection beyond the approved inventory", "Offline evaluation of policies (personalization-eval, proposal §2)", "Curve values (applied-scientist-personalization)"],
+    outOfScope: [
+      "Demographic inference",
+      "Data collection beyond the approved inventory",
+      "Offline evaluation of policies (personalization-eval, proposal §2)",
+      "Curve values (applied-scientist-personalization)",
+      "Chip order and the default order (head-of-product, card S1 option 1): a recommender suggests a next lesson only on a surface the founder has ratified for it; reordering a chip is an amendment",
+      "Concepts, prerequisite edges and course order (category managers, courses-lead): read-only inputs, a change is a request",
+      "How mastery or \"learned\" state is shown to a learner (growth-designer)",
+    ],
     authority: {
       may: ["Change the learner model behind a flag with a passing eng review"],
       mayNot: ["Add data fields or dependencies without EDD + ADR + privacy review", "Build or tune the simulated learner, personas or criteria"],
