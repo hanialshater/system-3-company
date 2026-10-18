@@ -1,7 +1,7 @@
 # Proposal: the personalization org (VP of Personalization, self-contained, staged by phase)
 
 owner: chief-of-staff-ceo-office (Leonie) · date: 2026-10-16 · status: **proposed, for the founder's decision, one card at a time.** Nothing here exists until the founder approves the card. No edit to tools/org/roles.mjs, .claude/agents/ or company/roles/ has been made.
-board: W-1913 · slot: company/ops/slots/chief-of-staff-ceo-office-4-founder-ratified-w-1492.json · record: company/decisions/2026-10-16-founder-personalization-org.md (this is step 2 of its route)
+board: W-1959 · slot: company/ops/slots/chief-of-staff-ceo-office-4-founder-ratified-w-1492.json · record: company/decisions/2026-10-16-founder-personalization-org.md (this is step 2 of its route)
 process: company/ceo-office/org-change-process.md (pipeline steps 1-3; step 4 is the founder's)
 update 2026-10-16: the founder approved V, N1-N6, E1-E3 (record, "Founder approval"); generated the same day (record, "Generated"). The status line above is as of the proposal.
 
@@ -16,14 +16,14 @@ update 2026-10-16: the founder approved V, N1-N6, E1-E3 (record, "Founder approv
 
 The founder has decided the **whether**: an org, led by Mateo as VP, self-contained, able to scale. This proposal answers the **how**: which roles, in what order, with what boundaries, and what each borrowed scope gives back or keeps. It does not reopen the founder's decision.
 
-Inputs read: Mateo's proposal (company/personalization/2026-10-16-brief-response.md §3, §4, §7), the founder brief (§6, §7), the role data for personalization-lead, learner-model-engineer, platform-engineer, analytics-steward, evaluation-steward, growth-designer, hq-engineer, research-scientist, vp-rnd (tools/org/roles.mjs), AMD-008 M2/M4 and its objection 3 (company/constitution/amendments/AMD-008-first-light-surface-value.md), lane 14 of company/ceo-office/poc-map.md, board W-1913..W-1925, agent metrics (`npm run metrics -- --md`, 2026-10-16), company/ops/projects.json.
+Inputs read: Mateo's proposal (company/personalization/2026-10-16-brief-response.md §3, §4, §7), the founder brief (§6, §7), the role data for personalization-lead, learner-model-engineer, platform-engineer, analytics-steward, evaluation-steward, growth-designer, hq-engineer, research-scientist, vp-rnd (tools/org/roles.mjs), AMD-008 M2/M4 and its objection 3 (company/constitution/amendments/AMD-008-first-light-surface-value.md), lane 14 of company/ceo-office/poc-map.md, board W-1959..W-1925, agent metrics (`npm run metrics -- --md`, 2026-10-16), company/ops/projects.json.
 
 ## 0. Is it a process problem? (pipeline step 1)
 
 Partly, and the partial answer shapes the staging.
 
-- **What is real:** phase A has six concrete items waiting (W-1914 to W-1919, plus W-1924/W-1925 for the HQ lab), and the founder has ruled that four of them (W-1917 criterion, W-1918 evidence, W-1919 location, W-1924 HQ lab) are the org's own work, not other teams'. Today the org has two roles. Those items have no in-org owner, so they wait.
-- **What is process, not roles:** the biggest risk in phase A is not missing capacity, it is **circularity**: the reference `evaluate()` scores policies on the needs the policy optimises (Mateo's O2), and Mateo's own plan had the same person writing the curves *and* the simulated personas' latent truth (W-1914), and the same engineer porting the policy *and* building the simulated learner that grades it (W-1915). That is fixed by a rule (§2, the independence rule) and by **moving two pieces of work** between items, not by adding people. The rule comes first; the roles carry it.
+- **What is real:** phase A has six concrete items waiting (W-1960 to W-1919, plus W-1924/W-1925 for the HQ lab), and the founder has ruled that four of them (W-1917 criterion, W-1918 evidence, W-1919 location, W-1924 HQ lab) are the org's own work, not other teams'. Today the org has two roles. Those items have no in-org owner, so they wait.
+- **What is process, not roles:** the biggest risk in phase A is not missing capacity, it is **circularity**: the reference `evaluate()` scores policies on the needs the policy optimises (Mateo's O2), and Mateo's own plan had the same person writing the curves *and* the simulated personas' latent truth (W-1960), and the same engineer porting the policy *and* building the simulated learner that grades it (W-1915). That is fixed by a rule (§2, the independence rule) and by **moving two pieces of work** between items, not by adding people. The rule comes first; the roles carry it.
 - **What is staffing ahead of work:** the existing team has had one run each (personalization-lead 1, learner-model-engineer 1, metrics 2026-10-16). Roles whose work starts only in phase B or later are deferred with a named trigger (§4), not approved now.
 
 ## 1. The shape: one VP, four sub-teams, three company-wide interfaces
@@ -71,7 +71,7 @@ The founder chose an in-org eval. Independence therefore has to be built inside 
 4. **The VP decides keep or kill on the readout, and may not override a fail silently.** Overriding a failed criterion is written as an objection in the phase's decision record and goes to the founder.
 5. **Who checks the eval:** learning-scientist-personalization reviews the simulated learner against its own evidence ranges; learner-model-engineer reproduces a readout from its seed and commit (determinism only, not judgement); evaluation-steward audits the rule (company-wide, row 3 above).
 
-**Consequence for the board (proposed, applied by the item owners after approval):** the persona latent ground truth moves from W-1914 (Mateo) to personalization-eval; the independent simulated learner and the scoring harness move from W-1915 (learner-model-engineer) to personalization-eval. W-1915 keeps the engine port and the policies; W-1925 (trace) stays with learner-model-engineer.
+**Consequence for the board (proposed, applied by the item owners after approval):** the persona latent ground truth moves from W-1960 (Mateo) to personalization-eval; the independent simulated learner and the scoring harness move from W-1915 (learner-model-engineer) to personalization-eval. W-1915 keeps the engine port and the policies; W-1925 (trace) stays with learner-model-engineer.
 
 ## 3. Overlaps T1-T8: resolved by giving the scope to the org
 
@@ -114,9 +114,9 @@ The founder's third message puts personalization's stored learner data in the or
 
 | Card | Role | Work waiting (first dispatch) |
 |---|---|---|
-| V | vp-personalization (Mateo; replaces personalization-lead) | objective and constraints half of W-1914 |
-| N1 | personalization-eval | simulated learner + harness (from W-1915), persona latent truth (from W-1914), pass criterion and MDE (W-1917), all before any run |
-| N2 | applied-scientist-personalization | needs-v0 curves and composer weights in the code module (curve half of W-1914) |
+| V | vp-personalization (Mateo; replaces personalization-lead) | objective and constraints half of W-1960 |
+| N1 | personalization-eval | simulated learner + harness (from W-1915), persona latent truth (from W-1960), pass criterion and MDE (W-1917), all before any run |
+| N2 | applied-scientist-personalization | needs-v0 curves and composer weights in the code module (curve half of W-1960) |
 | N3 | learning-scientist-personalization | W-1918 evidence memo and simulator parameter ranges (feeds N1) |
 | N4 | lesson-dims-owner | the pilot index (probability 78 + cs 153) and misconceptionStrength ratings; W-1919's dims half |
 | N5 | personalization-engineer | W-1924 HQ Personalization Lab, starting against W-1925's trace schema (fixture first, live data when W-1915 runs) |
@@ -163,7 +163,7 @@ Every card: team `personalization`, HQ placement Floor 2 (Product), the personal
 - **Out of scope:** writing curves, the simulator, criteria or readouts (§2); deploying; the default order (head-of-product); badges and points (growth-designer); amending AMD-008 (proposes only).
 - **May not:** override a failed criterion without an objection to the founder; ship anything live without a registered experiment, a privacy pass and the founder's deploy approval; create roles (this pipeline).
 - **Handoffs:** objective → applied scientist, eval; phase decisions → founder; reason copy → fact-checker (lane 10).
-- **Checker:** the founder (phase decisions); the eval's readout is the evidence. **Phase:** now. **First dispatch:** W-1914 objective and constraints.
+- **Checker:** the founder (phase decisions); the eval's readout is the evidence. **Phase:** now. **First dispatch:** W-1960 objective and constraints.
 
 ### Card N1: personalization-eval · approve now · pool role
 - **Title:** Personalization Evaluator · **Reports to:** vp-personalization
@@ -181,7 +181,7 @@ Every card: team `personalization`, HQ placement Floor 2 (Product), the personal
 - **Out of scope:** engine code; the simulator, personas, criteria; literature reviews (learning-scientist); any stored per-learner output.
 - **May not:** edit the simulated learner, criteria or readouts; ship curves live.
 - **Handoffs:** versioned curves → learner-model-engineer and eval; evidence questions → learning-scientist.
-- **Checker:** personalization-eval (readout). **Phase:** A. **First dispatch:** curve half of W-1914.
+- **Checker:** personalization-eval (readout). **Phase:** A. **First dispatch:** curve half of W-1960.
 
 ### Card N3: learning-scientist-personalization · approve now · pool role
 - **Title:** Learning Scientist, Personalization · **Reports to:** vp-personalization (Science)
@@ -261,7 +261,7 @@ The founder decided the whether; consultation answers how. Each direct answers h
 |---|---|---|---|
 | 1 | chief-of-staff (record) | An in-org eval loses independence | Answered by §2: two-way rule, frozen criteria, a reproduction check, and evaluation-steward's company-wide audit still applies. Residual risk stays open: an eval whose manager owns the policy can feel pressure. The readout is reported unedited in the WBR so pressure is visible |
 | 2 | chief-of-staff (record) | Self-contained duplicates capabilities other teams have | Accepted as the founder's choice. Kept small by pool roles and triggers, and by keeping every gate company-wide (§1 table). No new experiment, research or engineering gate is created inside the org |
-| 3 | chief-of-staff (record) | Staffing ahead of work | Each approve-now card has a named first dispatch from W-1914..W-1925; head-of-feed and every split wait on triggers; 14-day sunset check on every card |
+| 3 | chief-of-staff (record) | Staffing ahead of work | Each approve-now card has a named first dispatch from W-1960..W-1925; head-of-feed and every split wait on triggers; 14-day sunset check on every card |
 | 4 | Leonie (this design) | Mateo's own plan was circular in two places (personas with the curve tuner; simulated learner with the policy porter) | Moved to the eval (§2). Mateo is asked to answer in §7 |
 | 5 | Leonie | The founder's span goes to 9 | Open; the founder's call (§5). Not a reason to override the founder's "Mateo is VP" |
 | 6 | Leonie | 5 new roles at once against two roles with one run each | The founder asked for an org now and the work exists; the sunset check is the safeguard. If the founder prefers fewer, the order to cut is N5 (give W-1924 to learner-model-engineer after W-1925) then N3 |

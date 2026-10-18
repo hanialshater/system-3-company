@@ -1,6 +1,6 @@
 # Privacy read: personalization model inputs (W-1916)
 
-owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-w1495-perso-inputs-1016 · class: tier-2 privacy read of a learner-data design (EDD-007) · board: W-1916 · I am not approving a proposal of mine: the model is personalization-lead's (W-1914), the simulator learner-model-engineer's (W-1915).
+owner: privacy-reviewer (Elif) · date: 2026-10-16 · run: pr-w1495-perso-inputs-1016 · class: tier-2 privacy read of a learner-data design (EDD-007) · board: W-1916 · I am not approving a proposal of mine: the model is personalization-lead's (W-1960), the simulator learner-model-engineer's (W-1915).
 
 Read: `company/personalization/model/model.ts` (signal list, `INPUT_PRIVACY`, `FORBIDDEN_INPUTS`, `SIGNAL_INPUTS`, `fingerprintFrom`), the model README, the sim folder's file reads (grep), `personas.ts` header, brief-response §2 and §3, founder brief §4 and §7, AMD-008 part P (P1 to P5, as drafted, F-19 open), my gate rows P3.1 to P3.5 and P6.3 (`company/initiatives/first-light/privacy-gate.md`), my EDD-009 §5 read (`company/reviews/_privacy/2026-10-16-edd-009-s5.md`, S1 to S3), `company/engineering/data-inventory.md`. Not read: the decision record `personalization-model-v0.md`, the composer/learner/score code beyond what grep shows. This is a read of a design and an offline module, not of a diff: nothing serves a learner.
 

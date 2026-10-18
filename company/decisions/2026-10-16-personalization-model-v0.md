@@ -4,7 +4,7 @@ owner: personalization-lead (Mateo)
 date: 2026-10-16
 status: active (offline only; nothing served)
 class: personalization
-board: W-1914
+board: W-1960
 code: company/personalization/model/ (model.ts, personas.ts, self-check.mjs, README.md)
 
 ## Decision

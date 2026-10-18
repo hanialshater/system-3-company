@@ -236,3 +236,10 @@ The default branch allocated W-1671+ again and took AMD-013 (one readiness) and 
 | W-1714 | W-1956 |
 | W-1715 | W-1957 |
 | W-1716 | W-1958 |
+
+## Third pass (default branch b3faa451)
+
+| before | after |
+|---|---|
+| W-1913 | W-1959 |
+| W-1914 | W-1960 |
