@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-18: backend-engineer accounts preview blockers PC3 binding, PC9, W-1714 Ruling 1 (W-1716, W-1714, W-1711; tier 2, awaiting principal-engineer re-read, privacy-reviewer D23 ruling and principal-engineer-ops: company/engineering/readiness/2026-10-16-accounts.md "Additions, 2026-10-18 (second)"; EDD-008 addendum A7)
+- `src/lib/server/http.ts`, `account-api.ts`, `src/lib/account-client.ts`: signed-in `/me` returns an opaque per-account `tag` (keyed HMAC, stored nowhere on the server); `s3c:account-device:v1` records it, and a page load signed in as a different account is treated like the sign-in marker (merge screen, nothing pushed until answered). Closes probe 1 (an edited `callbackURL` skipped the screen). Tests C9, C10, S17.
+- `account-client.ts`: `accountState()` after sign-out or deletion starts the memoised sync, so `/account` no longer hangs on "Loading..." when it remounts (PC9). Test C11.
+- `http.ts` `logFailure`: ` code=<CODE>` only for an exact entry of `LOGGED_LIBRARY_CODES` (today `SCHEMA_MISMATCH`). Test S16.
+- `src/components/account/AccountView.tsx`: the merge heading names the account; a sign-in notice with Sign out on marker page loads (privacy re-read 3.1, 3.2; placeholder words for growth-designer).
+- Accounts stay off by default. Nothing deployed.
+
 ## 2026-10-18: PR #8 landed on the default branch (a6333dd05, via PR #9): AMD-013 one readiness policy, accounts, server progress, likes and saves behind flags (all off)
 - Merge SHA for rollback: **a6333dd05** (merge of PR #9, carrying PR #8 at 1a698587a). Roll the accounts code back with the path-limited recipe in company/engineering/readiness/2026-10-16-accounts.md (§3, condition C2): `git checkout a6333dd05^1 -- <listed paths>` in a new commit, plus `git rm` for files the parent did not have. A plain `git revert -m 1` would also undo the review records.
 - AMD-013 status set to `applied (a6333dd05)`, so it no longer licenses protected edits.
