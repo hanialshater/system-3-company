@@ -20,13 +20,18 @@ Each learner gets the next lesson that helps them most, for reasons we can expla
 - Keep or kill per term, on personalization-eval's readout
 - Learning paths from course and vertical maps (an input from courses-lead and principal-pm-verticals)
 - Drafts of learner-visible reason copy ("why this card"), recorded as claims
+- The feed: product ownership of the feed surface (intro card copy, chip behaviour, the revisit card, feed PRDs from 2026-10-18; PRD-001 stays head-of-product's historical record) and of the personalised ordering (the composer interface, move threshold, reason per moved card, served-order log contract)
+- The learner profile: what the company keeps and computes about a learner for personalization: stated choices (`settings`), the computed state (mastery, "learned", needs; computed on demand, never stored, D20) and any future learner-visible "what we know about you" view, each after a privacy read; `progress` and `recall` stay backend-engineer's learning record (reading A)
+- Gamification: approving growth-designer's PRDs and feature specs (badges, points, challenges, mastery map, today's revisits); PRD-003 and PRD-004 keep their First Light routes until First Light release 1
+- Progressive learning: the definition of "learned" per category (phase C), learning paths, and the "next lesson to learn more in this category" recommendation as a product rule
 
 ## Out of scope
 
 - Writing curves or weights (applied-scientist-personalization), the simulator, criteria or readouts (personalization-eval): the independence rule, proposal §2
 - Deploying (release-manager, with the founder's approval)
-- The default feed order (head-of-product)
-- Badges and points (growth-designer)
+- The default feed order: the baseline every fresh device, chip and flag-off build shows, and every personalised order is compared against (head-of-product; card S1 option 1, so the org never controls its own comparison)
+- Designing badges, points and challenges (growth-designer, who reports to the VP): the VP decides, the designer designs
+- Release-1 scope rulings on PRD-003/PRD-004 inside First Light (head-of-product, until First Light closes)
 - Amending AMD-008 (proposes only; evaluation-steward by amendment)
 - Engagement optimisation that does not serve recall (Goodhart); engagement is a guardrail only
 
@@ -42,6 +47,8 @@ May not:
 - Ship anything live without a registered experiment, a privacy pass and the founder's deploy approval
 - Create roles (company/ceo-office/org-change-process.md)
 - Store data the privacy reviewer has not approved
+- Change the live order except as AMD-013 and a G record allow
+- Approve a gamification PRD it wrote
 
 ## Inputs
 
@@ -58,6 +65,7 @@ May not:
 - Phase decision records
 - Lane 14 batches
 - Reason-copy drafts (claims)
+- Feed, learner-profile, gamification and progressive-learning PRDs and product decisions
 - Requirements for backend and platform
 
 ## Rituals
