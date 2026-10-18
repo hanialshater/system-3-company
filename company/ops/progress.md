@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-18 · chief-of-staff · HQ M1 done on the branch; default branch merged; PR #7 opened
+
+**Changed.** HQ tabs Personalization (lab, frozen candidates labelled NO-GO, the org's evaluation record), Evaluation (BT leaderboard ported from ccr-rnd-ncm) and R&D (code-evolution leaderboard). Evaluation-org roles ported; seats given. Default branch ccr-4c6c7654-ew9ko1 merged in: 176 board ids renumbered (company/ops/2026-10-18-board-renumber.md), simulator catalogue pinned to b210adeb, dims index regenerated. PR #7 into the default branch. Founder decisions recorded: L3 (lapsed with G), AMD-013 ratified and applied, website NO-GO (Mateo's G), Personalization vs Evaluation scope (proposal S1–S11 waiting).
+
+**Believe (high).** Checks pass on the merged tree (test:hq 105/107, 2 shallow-clone release tests). Computer-use QA not re-run after the merge.
+
+**Next.** Founder: scope cards S1–S11 (W-1851), evaluation-org questions (W-1667), merge of PR #7. Owners: W-1847, W-1848, W-1850, W-1664 review.
+
+**Blocked.** Nothing on the branch; merges and any deploy are the founder's.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-perso-scope-1018) · W-1849: scope cards for Personalization owning the feed, learner profile, gamification and progressive learning
 
 **Changed.** New company/ceo-office/2026-10-18-personalization-scope-proposal.md (design under company/ceo-office/org-change-process.md for company/decisions/2026-10-18-founder-personalization-vs-evaluation-scope.md). Cards S1-S11: vp-personalization scope (default order: option 1 stays head-of-product's as the baseline, option 2 moves it), platform-engineer gives the feed surface files to personalization-engineer (S2/S3, with OPS_ENGINEERS), growth-designer moves under the VP (S4), learner-model-engineer takes the progressive-learning engine (S5), `progress`/`recall` as reading A (stay with backend, recommended) or B (move to learner-data-engineer) (S6/S7), gamification experiments to personalization-eval (S8), head-of-feed stays deferred with restated triggers (S9), chief-product-officer out-of-scope line closing port objection 8 (S10), head-of-product line (S11). AMD-008 draft edits routed to evaluation-steward (§3); HQ label fix routed (§4). No roles.mjs edit, no generate, no board edit.
