@@ -42,6 +42,9 @@ const START_KEYS = new Set(["email", "ageBand", "policyVersion"]);
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,189}\.[^\s@]{1,60}$/;
 export const MAX_COUNT_SLUGS = 50;
 export const LIKE_WRITES_PER_DAY = 60;
+/** PC4: progress pushes per account (a learner makes a few a minute at most) and merges per account. Per instance. */
+export const PROGRESS_WRITES_PER_10_MIN = 60;
+export const MERGES_PER_HOUR = 10;
 
 export function createAccountApi(deps: ApiDeps) {
   const now = deps.now ?? Date.now;
@@ -50,6 +53,9 @@ export function createAccountApi(deps: ApiDeps) {
   const startLimiter = new RateLimiter(5, 60_000, now);
   // Privacy 2026-10-17 C3.2: at most 60 like writes per account per rolling 24 hours. Keys hashed, memory only.
   const likeLimiter = new RateLimiter(LIKE_WRITES_PER_DAY, 86_400_000, now);
+  // PC4 (principal review F6): per-account limits on the two progress writes. Keys hashed, memory only (F8: per instance).
+  const progressLimiter = new RateLimiter(PROGRESS_WRITES_PER_10_MIN, 600_000, now);
+  const mergeLimiter = new RateLimiter(MERGES_PER_HOUR, 3_600_000, now);
   const q: Query = (text, values = []) => deps.pool().query(text, values as unknown[]);
   const extraOrigins = () => {
     const e = deps.env();
@@ -87,9 +93,10 @@ export function createAccountApi(deps: ApiDeps) {
   return {
     /** GET /api/account/me: whether accounts exist (404 = hide all account UI) and, if signed in, the basics. */
     async me(req: Request): Promise<Response> {
-      // Off: the one request every page makes (AccountSync) answers a 404 the browser and CDN may keep for 5 minutes,
-      // so accounts-off costs at most one function call per visitor per 5 minutes. A redeploy (the only way the
-      // switch changes, R3) clears the CDN copy. On, every answer is no-store.
+      // Off: the one request every page makes (AccountSync) answers a 404 the browser keeps for 5 minutes (the client's
+      // first ask uses the HTTP cache, MC2; a reload inside the window makes no request). Whether Vercel's CDN also
+      // serves it from s-maxage is unmeasured (principal review F1). A redeploy (the only way the switch changes, R3)
+      // clears any CDN copy; a browser copy lasts at most 5 minutes. On, every answer is no-store.
       if (!on()) return empty(404, { "cache-control": "public, max-age=300, s-maxage=300" });
       try {
         const out = await deps.auth().api.getSession({ headers: req.headers, returnHeaders: true });
@@ -173,6 +180,7 @@ export function createAccountApi(deps: ApiDeps) {
       if (!body.ok) return json(body.status, { error: body.status === 413 ? "too_large" : "malformed" });
       const b = body.body as { slug?: unknown; entry?: unknown } | null;
       if (!b || typeof b.slug !== "string") return json(400, { error: "malformed" });
+      if (progressLimiter.limited(`progress:${a.id}`)) return json(429, { error: "slow_down" });
       const map = cleanProgressMap({ [b.slug]: b.entry }, deps.inCatalog, now());
       try {
         const merged = await withTransaction(deps.pool(), async (tq) => {
@@ -200,6 +208,7 @@ export function createAccountApi(deps: ApiDeps) {
       if (!body.ok) return json(body.status, { error: body.status === 413 ? "too_large" : "malformed" });
       const b = body.body as Record<string, unknown> | null;
       if (!b || typeof b !== "object" || Array.isArray(b)) return json(400, { error: "malformed" });
+      if (mergeLimiter.limited(`merge:${a.id}`)) return json(429, { error: "slow_down" });
       const t = now();
       const map = cleanProgressMap(b.progress, deps.inCatalog, t);
       const withSaves = social() && "saves" in b;
@@ -266,13 +275,16 @@ export function createAccountApi(deps: ApiDeps) {
       }
     },
 
-    /** PUT (mark) or DELETE (unmark) /api/account/{likes,saves}/<slug>. Idempotent. 204 on success. */
+    /**
+     * PUT (mark) or DELETE (unmark) /api/account/{likes,saves}/<slug>. Idempotent. 204 on success. Marking needs a
+     * lesson in the catalog; unmarking does not, so a learner can remove a row for a retired lesson (PC4, F7).
+     */
     async mark(req: Request, table: MarkTable, slug: string, set: boolean): Promise<Response> {
       if (!on() || !social()) return notFound();
       if (!write(req, false)) return json(403, { error: "origin" });
       const a = await signedIn(req, "mark");
       if (!a.ok) return a.res;
-      if (!deps.inCatalog(slug)) return json(404, { error: "unknown_lesson" });
+      if (set ? !deps.inCatalog(slug) : slug.length < 1 || slug.length > 200) return json(404, { error: "unknown_lesson" });
       try {
         if (table === "lesson_like") {
           // C4.1: likes are 16+ only, enforced here, not only in the UI. No row is written for 13-15.

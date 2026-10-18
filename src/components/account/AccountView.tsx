@@ -7,17 +7,17 @@
 // the page says accounts are not available and offers nothing (C5).
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { mergeIntoLocal, type ProgressMap } from "@/kit/progress";
+import type { ProgressMap } from "@/kit/progress";
 import {
   AGEBAND_KEY,
   accountMe,
-  clearThisDevice,
-  keepMyHistory,
+  accountState,
+  afterAccountDeleted,
+  answerMerge,
+  importHistoryFile,
   signOut,
-  startAccountSync,
-  whatMoves,
-  type Me,
-  type Moves,
+  type AccountState,
+  type SignedInMe,
 } from "@/lib/account-client";
 
 /** The policy version the learner is shown and accepts. Must be one the server publishes (auth.ts, M6). */
@@ -56,12 +56,14 @@ const box: React.CSSProperties = { maxWidth: 520, margin: "0 auto", padding: "28
 const btn: React.CSSProperties = { padding: "10px 14px", borderRadius: 10, border: "1px solid #3a4150", background: "#1b2030", color: "inherit", cursor: "pointer" };
 
 export default function AccountView() {
-  const [me, setMe] = useState<Me | null | undefined>(undefined);
+  // PC3: AccountSync (root layout) is the only thing that starts the sync; this page waits for its answer.
+  const [state, setState] = useState<AccountState | undefined>(undefined);
   useEffect(() => {
-    void startAccountSync().then(setMe);
+    void accountState().then(setState);
   }, []);
 
-  if (me === undefined) return <main style={box}>Loading…</main>;
+  if (state === undefined) return <main style={box}>Loading…</main>;
+  const me = state.me;
   if (me === null)
     return (
       <main style={box} data-testid="account-unavailable">
@@ -70,7 +72,15 @@ export default function AccountView() {
         <Link href="/">Back to lessons</Link>
       </main>
     );
-  return me.signedIn ? <SignedIn me={me} onChange={() => void accountMe(true).then(setMe)} /> : <SignUp />;
+  if (!me.signedIn) return <SignUp />;
+  return (
+    <SignedIn
+      me={me}
+      ask={"ask" in state ? state.ask : null}
+      onAnswered={setState}
+      onSignedOut={() => void accountMe(true).then((m) => setState(m && !m.signedIn ? { me: m } : { me: null }))}
+    />
+  );
 }
 
 function SignUp() {
@@ -155,18 +165,29 @@ function SignUp() {
   );
 }
 
-function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onChange: () => void }) {
-  const [moves, setMoves] = useState<Moves | null>(null);
+function SignedIn({
+  me,
+  ask,
+  onAnswered,
+  onSignedOut,
+}: {
+  me: SignedInMe;
+  ask: { lessons: number; recalls: number; saves: number } | null;
+  onAnswered: (s: AccountState) => void;
+  onSignedOut: () => void;
+}) {
   const [mergeState, setMergeState] = useState<"ask" | "done" | "declined" | "error">("ask");
   const [takeProgress, setTakeProgress] = useState(true);
   const [takeSaves, setTakeSaves] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [clearDevice, setClearDevice] = useState(false);
+  const [clearOnSignOut, setClearOnSignOut] = useState(false);
   const [deleted, setDeleted] = useState<Record<string, number> | null>(null);
   const [note, setNote] = useState("");
 
-  useEffect(() => setMoves(whatMoves()), []);
-  const hasLocal = moves && (moves.lessons || moves.recalls || (me.likesSaves && moves.saves));
+  // `ask` counts only the device's own history the account does not hold, computed before anything was pulled (PC3).
+  const hasProgress = !!ask && (ask.lessons > 0 || ask.recalls > 0);
+  const hasSaves = !!ask && me.likesSaves && ask.saves > 0;
 
   if (deleted)
     return (
@@ -180,35 +201,42 @@ function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onCha
       </main>
     );
 
+  const answer = async (choice: { progress: boolean; saves: boolean } | null) => {
+    const next = await answerMerge(choice);
+    if (!next) return setMergeState("error");
+    setMergeState(choice ? "done" : "declined");
+    onAnswered(next);
+  };
+
   return (
     <main style={box}>
       <h1>Your history</h1>
       <p>Signed in as {me.email}.</p>
 
-      {hasLocal && mergeState === "ask" && (
+      {ask && (hasProgress || hasSaves) && mergeState !== "done" && mergeState !== "declined" && (
         <section data-testid="account-merge" style={{ display: "grid", gap: 8 }}>
           <h2>Bring this device&apos;s history?</h2>
-          <label>
-            <input type="checkbox" checked={takeProgress} onChange={(e) => setTakeProgress(e.target.checked)} /> {moves!.lessons} lessons completed and{" "}
-            {moves!.recalls} revisits
-          </label>
-          {me.likesSaves && moves!.saves > 0 && (
+          <p style={{ opacity: 0.8, fontSize: 14 }}>Until you choose, nothing on this device is sent to your account.</p>
+          {hasProgress && (
             <label>
-              <input type="checkbox" checked={takeSaves} onChange={(e) => setTakeSaves(e.target.checked)} /> {moves!.saves} saved lessons
+              <input type="checkbox" checked={takeProgress} onChange={(e) => setTakeProgress(e.target.checked)} /> {ask.lessons} lessons completed and{" "}
+              {ask.recalls} revisits
+            </label>
+          )}
+          {hasSaves && (
+            <label>
+              <input type="checkbox" checked={takeSaves} onChange={(e) => setTakeSaves(e.target.checked)} /> {ask.saves} saved lessons
             </label>
           )}
           <div style={{ display: "flex", gap: 10 }}>
             <button
               style={btn}
-              disabled={!takeProgress && !(me.likesSaves && takeSaves && moves!.saves > 0)}
-              onClick={async () => {
-                const ok = await keepMyHistory({ progress: takeProgress, saves: me.likesSaves && takeSaves && moves!.saves > 0 });
-                setMergeState(ok ? "done" : "error");
-              }}
+              disabled={!(hasProgress && takeProgress) && !(hasSaves && takeSaves)}
+              onClick={() => void answer({ progress: hasProgress && takeProgress, saves: hasSaves && takeSaves })}
             >
               Import
             </button>
-            <button style={btn} onClick={() => setMergeState("declined")}>
+            <button style={btn} onClick={() => void answer(null)}>
               Don&apos;t import
             </button>
           </div>
@@ -233,7 +261,7 @@ function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onCha
               try {
                 const file = JSON.parse(await f.text()) as { format?: string; progress?: ProgressMap; saves?: { slug: string; at: number }[] };
                 if (file.format !== "s3c-export-v1" || !file.progress) throw new Error("format");
-                mergeIntoLocal(file.progress);
+                importHistoryFile(file.progress);
                 setNote("Imported into this device.");
               } catch {
                 setNote("That file is not a System 3 history file.");
@@ -245,11 +273,17 @@ function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onCha
       </section>
 
       <section style={{ display: "grid", gap: 8 }}>
+        <p style={{ opacity: 0.8, fontSize: 14 }}>
+          Signing out removes your account&apos;s history from this device. What this device had before you signed in stays, unless you tick the box.
+        </p>
+        <label>
+          <input type="checkbox" checked={clearOnSignOut} onChange={(e) => setClearOnSignOut(e.target.checked)} /> Also clear this device
+        </label>
         <button
           style={btn}
           onClick={async () => {
-            await signOut();
-            onChange();
+            if (!(await signOut({ clearDevice: clearOnSignOut }))) return setNote("Sign-out failed. Try again.");
+            onSignedOut();
           }}
         >
           Sign out
@@ -261,8 +295,8 @@ function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onCha
         ) : (
           <div data-testid="account-delete-confirm" style={{ display: "grid", gap: 8 }}>
             <p>
-              This is permanent. Your account and everything stored with it are deleted now. This device keeps its own copy of your progress unless
-              you tick the box.
+              This is permanent. Your account and everything stored with it are deleted now. This device keeps what it had before you signed in,
+              unless you tick the box.
             </p>
             <label>
               <input type="checkbox" checked={clearDevice} onChange={(e) => setClearDevice(e.target.checked)} /> Also clear this device
@@ -277,7 +311,7 @@ function SignedIn({ me, onChange }: { me: Extract<Me, { signedIn: true }>; onCha
                   body: JSON.stringify({ confirm: true }),
                 });
                 if (!r.ok) return setNote("Deletion failed. Nothing was deleted; try again.");
-                if (clearDevice) clearThisDevice();
+                afterAccountDeleted(clearDevice);
                 setDeleted(((await r.json()) as { deleted: Record<string, number> }).deleted);
               }}
             >

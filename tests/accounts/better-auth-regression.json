@@ -1,7 +1,7 @@
 {
-  "purpose": "M5 (privacy review 2026-10-16): every Better Auth bump, patch included, fails better-auth-bump.test.mjs until this record names the new lockfile versions, and the suite titles below were run green on a real PostgreSQL 16 against them. Owner: backend-engineer; the principal engineer reads the pass list at each bump.",
-  "testedOn": "2026-10-17",
-  "by": "backend-engineer (accounts-1017 rebuild), local PostgreSQL 16.15, 27 of 27 accounts.test.mjs passing",
+  "purpose": "M5 (privacy review 2026-10-16): every Better Auth bump, patch included, fails test S14 in tests/accounts/static.test.mjs (the guard; there is no separate bump test file) until this record names the new lockfile versions, and the suite titles below were run green on a real PostgreSQL 16 against them. Owner: backend-engineer; the principal engineer reads the pass list at each bump.",
+  "testedOn": "2026-10-18",
+  "by": "backend-engineer (accounts-fix-1018, principal review PC1-PC8), local PostgreSQL 16, 29 of 29 accounts.test.mjs passing; versions unchanged since accounts-1017",
   "packages": {
     "node_modules/@better-auth/utils": "0.5.0",
     "node_modules/better-auth": "1.7.10",

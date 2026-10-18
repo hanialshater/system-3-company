@@ -3,8 +3,10 @@
 //     seeded with random rows (the seeded half needs ACCOUNTS_TEST_DATABASE_URL, a throwaway local PostgreSQL 16 that
 //     tests/accounts/ also uses; the database named there is WIPED. Without it, (a) compares no-database runs only).
 // (b) No module outside the like/save API and the store imports the like/save store or names lesson_like,
-//     lesson_save, the count endpoint or the device saves key. Any new reader fails here until a decision record
-//     allows it and adds it to ALLOWED with that record's path.
+//     lesson_save, the count endpoint, the learner's own like/save list routes (/api/account/likes, /api/account/saves)
+//     or the device saves key. Any new reader fails here until a decision record allows it and adds it to ALLOWED
+//     with that record's path. Only src/components/account/* may import src/lib/account-client.ts, which can read
+//     those lists (principal review 2026-10-18 PC7); a Like or Save control joins CLIENT_ALLOWED with its record.
 // Run: npm run test:platform
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -84,7 +86,12 @@ const ALLOWED = {
   "src/lib/account-client.ts": "the device saves key and the like/save routes (PRD-005 §1 controls)",
   "tools/db-deletion-check.mjs": "deletion check counts both tables (privacy ruling 2026-10-17 C6.2)",
 };
-const NAMES = /lesson_like|lesson_save|\/api\/likes\/counts|likes\/counts|s3c:saves:v1|countLabels|COUNT_STEPS/;
+const NAMES = /lesson_like|lesson_save|\/api\/likes\/counts|likes\/counts|account\/likes|account\/saves|s3c:saves:v1|countLabels|COUNT_STEPS/;
+// Who may import the account client (PC7). Everything under src/components/account/ may; anything else needs a line
+// here with its decision record (for example the PRD-005 Like and Save controls, when they exist).
+const CLIENT_DIR = "src/components/account/";
+const CLIENT_ALLOWED = {};
+const CLIENT_IMPORT = /from\s+["'][^"']*account-client["']|import\(\s*["'][^"']*account-client["']\s*\)|require\(\s*["'][^"']*account-client["']\s*\)/;
 const STORE_IMPORT = /from\s+["'][^"']*(server\/progress-store|server\/account-api)["']|import\(["'][^"']*(progress-store|account-api)["']\)/;
 
 function walk(dir, out = []) {
@@ -120,7 +127,19 @@ test("(b) only the account route wiring imports the like/save API; only the API 
   assert.deepEqual(importers, ["src/lib/server/account-api.ts", "src/lib/server/account-route.ts"]);
 });
 
+test("(b) PC7: only src/components/account/ (and CLIENT_ALLOWED) imports the account client", () => {
+  const files = [...walk(path.join(ROOT, "src")), ...walk(path.join(ROOT, "tools")), ...walk(path.join(ROOT, "content"))];
+  const importers = files.filter((f) => CLIENT_IMPORT.test(fs.readFileSync(f, "utf8"))).map(rel).sort();
+  const unexpected = importers.filter((r) => !r.startsWith(CLIENT_DIR) && !CLIENT_ALLOWED[r]);
+  assert.deepEqual(unexpected, [], "a new importer of the account client needs a decision record");
+  assert.ok(importers.includes("src/components/account/AccountSync.tsx"), "the scan sees the dynamic import (control)");
+});
+
 test("(b) the scan catches a planted reader (control)", () => {
+  assert.ok(NAMES.test('const r = await fetch("/api/account/saves")'));
+  assert.ok(NAMES.test("fetch(`/api/account/likes/${slug}`)"));
+  assert.ok(CLIENT_IMPORT.test('import { listSaves } from "@/lib/account-client";'));
+  assert.ok(CLIENT_IMPORT.test('void import("../lib/account-client").then((m) => m.x());'));
   assert.ok(NAMES.test('const rows = await q("SELECT slug FROM lesson_like")'));
   assert.ok(NAMES.test('fetch("/api/likes/counts?slugs=a")'));
   assert.ok(STORE_IMPORT.test('import { countLabels } from "@/lib/server/progress-store";'));
