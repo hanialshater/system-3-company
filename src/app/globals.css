@@ -229,3 +229,74 @@ a { color: inherit; }
 @media (prefers-color-scheme: light) {
   .knot-tint { stroke: color-mix(in srgb, var(--domain) 70%, #000); }
 }
+
+/* Immersive feed chrome. Lesson colors inherit this dark surface in either OS theme. */
+.feed-wrap {
+  --bg: #08090b; --bg-2: #111216; --bg-3: #1c1e24;
+  --fg: #f7f7f8; --muted: #a9abb5; --line: #2d2f37;
+  --good: #4fd1a5; --bad: #ff7a7a; --warn: #f6c453;
+  background: var(--bg); color: var(--fg); color-scheme: dark;
+}
+.feed-wrap .topbar { height: 68px; padding: 0 28px; gap: 26px; background: #08090bf5; border-bottom: 1px solid #ffffff0c; }
+.feed-wrap .brand { background: none; color: #fff; padding: 0; font-size: 25px; letter-spacing: -2px; }
+.feed-wrap .chips { gap: 22px; }
+.feed-wrap .chip { position: relative; padding: 21px 0; border: 0; border-radius: 0; background: none; color: #8b8d98; font-weight: 650; font-size: 13px; }
+.feed-wrap .chip.on { color: #fff; }
+.feed-wrap .chip.on::after { content: ""; position: absolute; bottom: 10px; left: 20%; right: 20%; height: 3px; border-radius: 3px; background: #fff; }
+.feed-wrap .brand-link { color: #dddde3; font-size: 12px; border: 1px solid #34353c; border-radius: 8px; padding: 8px 14px; }
+.feed-wrap .slot-screen { padding: 82px 80px 16px; }
+.feed-wrap .card-shell { max-width: 480px; border-radius: 20px; border: 1px solid #ffffff0b; padding: 20px; gap: 14px; overflow: visible; box-shadow: 0 18px 90px #0006; background: linear-gradient(160deg, #191b22, #101115 70%); }
+.feed-wrap .card-head { gap: 8px; }
+.feed-wrap .card-title { font-size: 24px; font-weight: 780; line-height: 1.13; letter-spacing: -.7px; }
+.feed-wrap .card-hook { font-size: 13px; line-height: 1.5; color: #abadb8; }
+.feed-wrap .tag { background: #ffffff08; font-size: 9px; letter-spacing: 1.1px; }
+.feed-wrap .tag.domain { background: none; padding-left: 0; }
+.feed-wrap .card-body { overflow: hidden; border-radius: 12px; }
+.feed-wrap .stage { background: #ffffff05; border: 1px solid #ffffff08; }
+.feed-wrap .card-foot { font-size: 11px; opacity: .8; }
+.feed-wrap .card-foot .link { font-size: 11px; text-decoration: none; }
+.feed-wrap .option { background: #ffffff08; border-color: #ffffff16; }
+.feed-wrap .option.selected { border-color: var(--domain); }
+.feed-wrap .primary { border-radius: 9px; }
+.feed-wrap .sheet { overflow: hidden; border-radius: 20px; z-index: 30; }
+.feed-navigation { position: fixed; right: 30px; top: 44%; z-index: 20; display: grid; gap: 14px; }
+.feed-navigation button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid #ffffff12; background: #ffffff0a; color: #fff; font-size: 23px; cursor: pointer; transition: background .2s; }
+.feed-navigation button:hover { background: #ffffff20; }
+.feed-navigation button:disabled { opacity: .2; cursor: default; }
+.social-actions { display: flex; justify-content: space-around; gap: 8px; }
+.social-actions button { min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--fg); cursor: pointer; font-size: 10px; font-weight: 650; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.social-actions svg { fill: currentColor; stroke: currentColor; stroke-width: .5; filter: drop-shadow(0 2px 3px #0004); transition: transform .18s; }
+.social-actions button:hover svg { transform: scale(1.12); }
+.social-actions button:active svg { transform: scale(.88); }
+.social-actions button[aria-pressed=true] { color: #f3ce6a; }
+.social-actions button:first-child[aria-pressed=true] { color: #ff375f; }
+.feed-wrap .social-actions { position: absolute; left: calc(100% + 16px); bottom: 34px; flex-direction: column; gap: 24px; width: 56px; }
+.feed-wrap .social-actions button { color: #fff; font-size: 10px; padding: 0; }
+.feed-wrap .social-actions svg { width: 33px; height: 33px; }
+.feed-wrap .social-actions button[aria-pressed=true] { color: #f3ce6a; }
+.feed-wrap .social-actions button:first-child[aria-pressed=true] { color: #ff375f; }
+.social-message { margin: 0; font-size: 11px; color: var(--muted); }
+.social-message:empty { display: none; }
+.feed-wrap .social-message:not(:empty) { position: absolute; bottom: 50px; left: 20px; right: 20px; background: #30323b; border-radius: 10px; padding: 12px; z-index: 4; box-shadow: 0 8px 24px #0005; }
+.saved-lessons { padding-left: 20px; }
+.saved-lessons li { margin: 16px 0; }
+@media (max-width: 600px) {
+  .feed-wrap .topbar { height: 54px; padding: 0 14px; gap: 20px; }
+  .feed-wrap .chips { gap: 20px; }
+  .feed-wrap .chip { padding: 18px 0; font-size: 12px; }
+  .feed-wrap .chip.on::after { bottom: 6px; }
+  .feed-wrap .brand-link { display: none; }
+  .feed-wrap .slot-screen { padding: 56px 0 0; }
+  .feed-wrap .card-shell { max-width: none; border: 0; border-radius: 0; padding: 16px 66px 16px 16px; background: radial-gradient(ellipse at 10% 20%, #22252f, #101115 65%); box-shadow: none; gap: 12px; }
+  .feed-wrap .card-shell.center { padding: 28px 30px; }
+  .feed-wrap .card-title { font-size: 21px; }
+  .feed-wrap .card-hook { font-size: 12px; }
+  .feed-wrap .social-actions { left: auto; right: 7px; bottom: 100px; width: 46px; gap: 22px; }
+  .feed-wrap .social-actions svg { width: 29px; height: 29px; }
+  .feed-navigation { right: 8px; top: 70px; gap: 8px; }
+  .feed-navigation button { width: 42px; height: 42px; font-size: 20px; }
+  .feed-wrap .card-foot { gap: 8px; }
+  .feed-wrap .card-foot .muted { display: none; }
+  .feed-wrap .sheet { border-radius: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .social-actions svg { transition: none; } }

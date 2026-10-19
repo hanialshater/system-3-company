@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SocialActions } from "./SocialActions";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { flushSync } from "react-dom";
 import { STATUS_LABEL, SUPPORT_LABEL, type PublicMeta } from "@/lib/trust";
@@ -74,6 +75,8 @@ export function DemoCard({
       </header>
 
       <div className="card-body" ref={bodyRef}>{active ? <FoldScope store={fold}><DemoHost slug={meta.slug} /></FoldScope> : <div className="loading">Swipe here to start</div>}</div>
+
+      <SocialActions slug={meta.slug} title={meta.title} />
 
       <footer className="card-foot">
         <button type="button" className="link" data-testid="trust-button" onClick={() => setTrustOpen(true)}>
