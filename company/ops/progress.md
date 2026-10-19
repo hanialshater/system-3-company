@@ -3,6 +3,30 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-19 · chief-of-staff · AI & ML map expansion planned (not approved); PR #12 merged
+
+**Changed:**
+- PR #12 merged (31a6a32de): accounts preview blockers, all flags off.
+- Founder said the AI & ML map (76 concepts) is too small. cm-ai drafted an expansion, which the founder has not approved yet:
+  - company/domains/proposals/2026-10-18-ai-map-expansion.md (+ .json in the curriculum's concept shape): 294 concepts in 12 subareas, a wave 1 of 29 lessons, and 14 proposals for cm-cs-algorithms;
+  - it covers the founder-named topics: CMA-ES/ES, quality diversity, HNSW/ANN, streaming, submodularity, geometric data structures, IRL, RL, CNNs.
+- Founder's answers are in company/decisions/2026-10-19-founder-ai-map-expansion.md:
+  - "tspw" = Tree-structured Parzen Estimator (TPE), not TSP;
+  - subareas are labels only (no new roles);
+  - wave 1 is planning only (no budget, briefs or builds);
+  - the map is not yet approved.
+- Status lists: company/domains/briefs/2026-10-18-ai-concept-list.md and 2026-10-18-algorithms-concept-list.md.
+
+**Next (pick up here):**
+- W-1975, cm-ai: revise the proposal. Add a TPE / Bayesian-optimisation topic to optimisation-search; drop or re-weight algo-tsptw-time-windows. Then put it to the founder.
+- Do not edit content/curriculum/ai.json and do not write briefs until the founder approves the map.
+
+**Believe:**
+- AI coverage is 62/76 published today; algorithms is 139/345 (the 200 PR #6 drafts are unbuilt).
+- The proposal's demand numbers are estimates, not measured.
+
+**Blocked on founder:** map approval; funding for any build.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-gen-scope-1018) · W-1852: cards S1-S11 generated; Ambrose; lane 21
 
 **Changed (branch org-generate, not pushed).** Cards S1-S11 of company/ceo-office/2026-10-18-personalization-scope-proposal.md applied in tools/org/roles.mjs and regenerated, one commit per card, as decided under company/decisions/2026-10-18-founder-delegated-decisions.md (S1 option 1, reading A, S9 deferred with 8 directs, S4 residue until First Light release 1). growth-designer reports to vp-personalization (team personalization); personalization-engineer owns the feed files and joins OPS_ENGINEERS. cm-books-science-history is now **Ambrose** (tools/org/people.mjs); head-of-evaluation keeps Tobias. POC map: lane 14 adds growth-designer; new **lane 21 "Evaluation (pairwise)"**, POC head-of-evaluation, roles pairwise-judge, evaluation-engineer. Handoff map updated. Board: W-171, W-672 re-owned to personalization-engineer; notes on W-1755, W-1793, W-748. Answers appended to the proposal (§9), the scope decision record (status decided) and the port objections 8/10/11/12 in company/decisions/2026-10-14-evaluation-org.md.
