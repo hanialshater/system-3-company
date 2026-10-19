@@ -17,6 +17,7 @@ Every head's strategy page links up to this one. This page links down to their r
 | 6 | 100k educational lessons, internationalized | this company | not started; earlier ask F-41 (10k) | 2 (scale), 1 (proof that lessons teach), localization |
 | 7 | Move to an open-source agent harness (OpenCode or similar) | the shared kernel, first proved in this company | not started | the kernel map (3); the model binding per role |
 | 8 | Token efficiency (more verified, published work per token) | this company first, then the shared kernel | founder asked 2026-10-19; not started | none to start; feeds 2, 6 and 7 |
+| 9 | Split the repository: app, lessons, company records | this company, then the shared kernel | founder asked 2026-10-19; not started | 2 (lesson storage), 3 (kernel map) for the kernel repo |
 
 **Critical paths.** 8 → 6 (100k lessons is unaffordable at today's cost per lesson), 2 → 6 (scale), 3 → 4 → 5 (new companies), and 3 → 7 (the kernel map names what is tied to Claude Code). 1, 2 and 3 do not block each other and live in different places, so they can run in parallel once started. 4 and 5 come out of Meta rather than being hand-built: hand-building them would skip the test that Meta exists to pass.
 
@@ -82,9 +83,29 @@ Every head's strategy page links up to this one. This page links down to their r
 - **Next decision:** the founder starts it and names the owner; then a one-page proposal with a tranche-1 budget. Tranche 1 is measurement (workstream 1) plus the model-tiering A/B, because every later saving has to be shown against a baseline. O1, O3, O4 and O7 already have owners on the board; this project collects them rather than duplicating them.
 - **Not doing:** savings that weaken an independent check, merge a builder with its checker, or skip a gate. Every change is compared on the same gates before it is adopted.
 
+### 9. Split the repository
+- **Founder's ask (2026-10-19, conversation):** "the repo is big now, it feels suborgs can move faster with separate repos, probably microservices also, or at least remove lessons and company from the actual app."
+- **Where we are (measured 2026-10-19):** one repository holds the app (src/app, src/kit, src/components: about 1.6 MB), 1,283 lessons (src/demos: 31 MB), the company's records (company/: 98 MB, 8,848 files, 55 MB of it review records) and the gates and tools. Every role clones, checks and builds all of it; a records commit and a lesson commit queue behind each other; the build already takes minutes per thousand lessons (EDD-003). The coupling that a split must cut: 12 files in src/lib read company/ for HQ, `tools/company.mjs` reads meta.json and company/reviews together to open a gate, and claims live in meta.json beside the lesson code.
+- **Goal:** each sub-org changes and ships its own repository without waiting on the others, while every gate still sees one consistent picture of a lesson, its claims and its reviews.
+- **Proposed shape (for principal-engineer's EDD; not decided):**
+
+  | Repository | Holds | Owner | Ships as |
+  |---|---|---|---|
+  | app | Next.js shell, feed, accounts, event API, the kit | platform-engineer | the Vercel deploy |
+  | lessons | src/demos, content/, each lesson's meta.json and claims | head of categories | versioned lesson bundles the app loads at runtime (EDD-003 stage 1, the 50-lesson runtime-bundle pilot) |
+  | company | company/ records, board, ledger, events, reviews | chief-of-staff | data HQ reads; no deploy of its own |
+  | kernel (later) | gates, CLI, org generator, hooks | evaluation-steward, then System 3 Meta | the shared kernel that every company uses (project 3) |
+
+- **Microservices: not yet.** The constraint is review and coordination, not serving load; services add network failure, versioning and deploy cost to a team of agents that already pays heavily for coordination (project 8). Lessons served as static bundles from a CDN, plus the existing accounts API, cover the need. Revisit when one part needs to scale or deploy on a different cadence than the app.
+- **Order:** (1) lessons out of the app build: runtime bundles, which project 2 already started; (2) company records out, with HQ reading them from their own repository; (3) the kernel, once the kernel map exists. Each step is reversible and lands only when `npm run verify` and the gates pass on the split.
+- **Risks to design for:** a gate that reads a lesson from one repo and its reviews from another at different versions (gates must pin both); protected paths and their hook must hold in every repo; shared numbering (W-, AMD-, F- ids) needs one allocator; agents lose the "one clone shows everything" context, so the status command must read across repos.
+- **Owner:** to be named. Proposed: principal-engineer (EDD and ADRs), platform-engineer (build), evaluation-steward (gates across repos), tools-lead (HQ, status).
+- **Next decision:** the founder starts it; then one EDD covering steps 1 to 3. Design can happen during the First Light freeze; no repository moves before launch (11-30).
+- **Not doing:** moving off git as the record, or any split that lets a builder's repo open its own gate.
+
 ## Not in the register yet
 
-Projects 2, 4, 5, 6, 7 and 8 have no line in company/ops/projects.json. Each gets one, as `proposed` with a budget line from portfolio-manager, only when the founder starts it.
+Projects 2, 4, 5, 6, 7, 8 and 9 have no line in company/ops/projects.json. Each gets one, as `proposed` with a budget line from portfolio-manager, only when the founder starts it.
 
 ## Refresh
 

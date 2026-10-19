@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-19 (later) · chief-of-staff · founder ask: split the repository becomes master-plan project 9
+
+**Changed:** `company/strategy/master-plan.md` gains project 9, Split the repository (founder: separate repos so sub-orgs move faster, maybe microservices, at least lessons and company out of the app). Proposed shape: app / lessons (runtime bundles, EDD-003 stage 1) / company records / later the kernel; microservices deferred with the reason; order lessons → records → kernel; no move before launch 11-30. Board W-1976 (principal-engineer) for the EDD once started. Plan only.
+**Believe (high on the measurements, read today):** app code ~1.6 MB, lessons 31 MB, company/ 98 MB (55 MB reviews); 12 src/lib files read company/ for HQ; the gate reads meta.json and company/reviews together, which is the hardest coupling to cut. Medium that microservices are not worth it yet (my judgement, to be tested by the EDD).
+**Next:** founder starts 8 and/or 9 and names owners. **Blocked:** on the founder.
+
 ## 2026-10-19 · chief-of-staff · founder ask: token efficiency becomes master-plan project 8
 
 **Changed:** `company/strategy/master-plan.md` gains project 8, Token efficiency (founder, 2026-10-19: "token efficiency we should have big project on that"), with goal, five workstreams (measure; stop paying twice; cheaper checking; model per role; less coordination), a return measure, a proposed owner and a proposed target (~157k → under 50k tokens per published lesson by end of Q1 2027, gates no worse). Plan only: not started, no register line. Board W-1975 (portfolio-manager) for the proposal once the founder starts it.
