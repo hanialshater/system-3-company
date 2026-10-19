@@ -32,3 +32,7 @@ Implemented for 1,283 registered lessons in this checkout (720 published, 234 re
 - Production bundle compilation succeeded in 90 seconds. Full local build failed in its TypeScript phase on the existing HQ `People.tsx` / `people.ts` casing conflict (TS1192/TS1149). Those HQ files were not edited. No built-output or browser-QA pass is claimed.
 - Full verify attempted and stopped on 3 publication-tool fixture tests; no publication tool or protected QA contract was changed.
 - No new deployment was triggered.
+
+## Deployment approval
+
+The founder replied “I apptobr” to the explicit question “Approve deploying this update?” in this conversation on 2026-10-19. Interpreted in context as approval of this specific all-lessons production update. The question disclosed the existing local HQ casing build failure and the passing platform tests. The target is the existing system-3-company project, production, using the already configured Vercel Git build marker. No account flag is enabled. This records approval for this release, not a standing deployment approval or a publication-gate change.
