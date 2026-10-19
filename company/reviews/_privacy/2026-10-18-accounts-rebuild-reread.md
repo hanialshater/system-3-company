@@ -154,3 +154,130 @@ Go-live: G1-G6 and P1.7 unchanged; 3.1 and 3.2 are added as go-live conditions.
 3. **learner-model-engineer:** name a reader for `s3c:events:v1` or stop writing it (O5).
 4. **principal-engineer:** merge decision stands on this record; decide whether a browser-bound link is wanted.
 5. **chief-of-staff:** board items for O4 and O5 (I did not touch the board).
+
+---
+
+# Section 3, 2026-10-18 (later): PC3 binding and the W-1711 cue (fix commit 7c7f488ad, merged 27317e69b)
+
+Reviewer: privacy-reviewer (Elif). I read the code diff (`git show 7c7f488ad -- src tests`) first, the author's notes after. I did not run tests (no Postgres, no `node_modules` here) and did not walk a browser.
+
+## 3.1 The account tag in `s3c:account-device:v1`: ACCEPT WITH CONDITIONS
+
+What I read: `accountTag(secret, id)` in `src/lib/server/http.ts` (HMAC-SHA-256, first 16 bytes, base64url). `createAuth` refuses to start with a secret under 32 characters (`SECR0`), so the tag is not keyed by an empty string in practice. `/me` adds it only when signed in, and with accounts on every answer is no-store. In `account-client.ts` the tag is compared (`sameAccount`) and written into the device state in three places; no `fetch` carries it. `clearThisDevice`, sign-out, deletion and an ended session already remove the key.
+
+Is it a persistent identifier on the device? Yes, and it is the same on every device of one account (that is its purpose). I accept it because:
+- It reveals nothing the account page does not: it is not the id, cannot be reversed or matched without the server secret, holds no email, and the server stores nothing new (it can recompute it, as it already holds the account).
+- The device already holds a copy of that account's history (D1) while signed in, so the tag adds linkability only for someone who can already read the learner's browser storage. Linking two devices needs both.
+- A random per-sign-in nonce cannot tell "a different account" on a later load; the marker alone is what the principal's probe 1 defeated. The tag is the smallest value that does the job.
+
+Conditions (each testable; 1 to 3 are the ones that would make me withdraw this):
+1. **Local only.** The tag is never logged, never in a request body, header, URL, event, beacon or table, never shown to the learner. S17 tests its properties; add to the static scan that no `fetch`/`sendBeacon` argument can reach `DEVICE_KEY` or `.tag`. Any server-side store of it comes back to me.
+2. **Same deletion path as D23**, no longer: sign-out, deletion, ended session, new link, "Also clear this device". No timer, no copy elsewhere.
+3. **The key stays secret and long.** A rotation changes every tag and only makes each device ask again (the author's fail-safe); acceptable. Any other key (a public value, a constant) makes the tag a guessable function of the id: back to me.
+4. **Residual stated in the inventory:** if the learner never returns after the session ends, the tag stays with the key until site data is cleared. Counsel to be told a pseudonymous identifier exists (F-25); I flag, I do not decide.
+
+Edit made: row D23 in `company/engineering/data-inventory.md` now describes `account: <tag>` (derivation, 22 characters, stable across devices, not stored server-side, local only) in place of the sentence "No email, no account id, no user id" (kept as "no account id itself"); purpose, reader, basis and status columns updated. The backend-engineer confirms the row; I do not approve my own file.
+
+## 3.2 The W-1711 cue as built: MEETS my condition as written; one gap
+
+Read in `AccountView.tsx`:
+- **Merge names the account:** heading "Send this device's history to {email}?" sits directly above the boxes and the Import button; `me.email` is React text (escaped). Meets. Decline is untouched: one tap, sends nothing.
+- **One-line notice, this page view only, nothing stored:** when `fromLink` (the `?signed-in=1` marker, read once and removed from the address bar) the page shows "You are now signed in as {email}. If you did not just ask for this, sign out", `role="status"`, with a button running the same sign-out (`doSignOut`, honouring the unticked "Also clear this device" box). `fromLink` is in memory only. Meets. The words are the placeholder I suggested; growth-designer still owns them.
+
+**The gap, which comes from PC3 itself.** The attacker who mails a link can edit `callbackURL` (principal's probe 1). The victim then lands on `/` with no marker, and the notice and merge screen exist only on `/account`. By the code: if the device holds history the attacker's account lacks, nothing is sent until the victim opens `/account`, where the heading names the account (good). If the device holds nothing the account lacks, `run()` writes `answer: "nothing"` and begins sync with no screen, so later progress on this device flows to the attacker's account with no cue shown. My earlier line ("a browser-bound link is the principal engineer's call; I do not require it if the cue ships") assumed the victim lands on `/account`. That does not hold for an edited link, so I **amend** it: the cue meets 3.1 and 3.2 as written but does not by itself close the mailed-link case.
+
+New go-live condition **G7** (no block on merge or a staff preview, where addresses belong to staff): before any non-staff address, either (a) the principal-engineer binds the sign-in link to the browser that asked for it, or (b) a sign-in cue reaches the learner on whatever page they land on when a new account's device state is begun without a screen (the "nothing" branch). The choice is the principal's. Severity is bounded: later progress and saves from one device go to an account the attacker can read; past history does not.
+
+## 3.3 What the preview walk must check (390x844, staff address)
+
+1. Sign-in link to `/account?signed-in=1`: the notice is the first line under "Your history", names the exact address, and "sign out" is reachable without scrolling. Reload: notice gone, no marker in the address bar.
+2. Device with history the account lacks: the merge heading shows a 40-character address wrapped, not clipped or overflowing; Don't import is one tap; the network panel shows no request carrying progress or saves before the answer.
+3. Notice's "sign out" with the box unticked: the device's own history returns. Ticked: progress, events, saves and the device key are gone. The box is visible next to Sign out without scrolling (section 2, condition 2).
+4. G7 case: a link with `callbackURL` edited to `/` (test C9's probe), on a device with nothing the account lacks and on one with history. Record what the learner sees. I expect no cue in the first case; the walk records it.
+5. localStorage after each step: `s3c:account-device:v1` holds `answer`, `account` (22 characters), `own` and nothing else; no tag in any request, in any response other than `/me`, in the console or in a server log.
+6. A second account on the same device is asked again without a marker (PC3) and the first account's pulled copy is gone.
+7. Screen reader: the notice is announced once, not on every render.
+
+## 3.4 Verdicts
+
+- **Merge into the default branch with all flags off: pass, no condition on me.** With flags off no route works, no sink is set, no key (so no tag) is written (C2). I read the diff; I did not run S1-S17 or C1-C11.
+- **Staff preview with flags on, from my side:** the cue wiring no longer blocks. Still open before the founder-approved flag deploy: items 2-6 of "Before a staff preview" (section 1), the walk in 3.3 recorded, the Postgres-hosted test runs (C4-C11, S14, S16, S17, test 34) recorded in readiness, and tag condition 1 (static scan). Staff addresses only.
+- **Go-live:** G1-G6 and P1.7 unchanged; section 2's cue conditions are built (words pending); **G7** added; counsel told about the tag (F-25).
+
+## Objections (section 3)
+
+| # | Objection | Must be answered by | Status |
+|---|---|---|---|
+| O4 | Login-CSRF cue | growth-designer (words) | wiring met; words open; walked in preview |
+| O6 | Edited callbackURL bypasses the `/account` cue (G7) | principal-engineer | open, before go-live |
+| O7 | Tag conditions 1-4 (3.1) | backend-engineer | open: static scan for the tag |
+| O3, O5 | unchanged | founder; learner-model-engineer | open |
+
+## Next moves (section 3)
+
+1. **backend-engineer:** confirm row D23; add the static no-send scan for `.tag`/`DEVICE_KEY`; run C4-C11, S14, S16, S17 and test 34 where Postgres exists.
+2. **principal-engineer:** decide G7.
+3. **growth-designer:** final words for the notice and heading.
+4. **chief-of-staff:** board items for O6 and O7 (I did not touch the board).
+5. **founder/counsel:** F-25 notice that a pseudonymous tag exists.
+
+---
+
+# Section 4, 2026-10-18 (later): PC10 and the tag in a request header (code 96e8654fc, merged 98aa6092f)
+
+Reviewer: privacy-reviewer (Elif). I read the code diff (`git show 96e8654fc -- src tests`) first, the EDD-008 addendum A8 after. I did not run tests (no Postgres, no `node_modules` here; S18 needs the TypeScript package) and did not walk a browser.
+
+## 4.1 Ruling 1: the header exception to condition 1: ACCEPT WITH CONDITIONS
+
+What I read:
+- Client: `boundHeaders(tag, withJson)` is the only place the tag enters a request. It is called in five `fetch`es in `account-client.ts`: `/api/account/progress` (PUT), `/merge` (POST), `/delete` (POST), `/saves/{slug}` and `/likes/{slug}` (PUT/DELETE). `pushDelta` returns before any request when `syncTag` is null. The tag is not in a body, URL, event or beacon; `/api/events` and `/api/likes/counts` are untouched by the diff.
+- Server: `boundWrite` runs after the session and origin checks, before the body is read. `sameAccountHeader` compares with `timingSafeEqual`; a missing or empty header, or a mismatch, answers `409 {"error":"account_changed"}`. The 409 body does not echo the tag. `tagOf` throws `SECR0` with no secret; `logFailure` prints fixed text only. Nothing else in `src/lib/server` reads request headers into a log (grep for `ACCOUNT_HEADER` finds http.ts and account-api.ts only).
+- A custom header on a cross-origin request needs a CORS preflight, and no route answers one; so the browser cannot send it to a third party from our code, and `sameOriginWrite` refuses a foreign Origin anyway.
+
+Why I accept. My condition 1 protected one thing: that the tag should not become an identifier that leaves the device and sits in somebody's records. Here it goes only to the origin that already holds the session cookie and the account id the tag is derived from, on requests that already carry both. The server learns nothing it did not know, stores nothing, and the learner's browser gains the only reliable way to say "I started as account A" (the alternative, below, needs a stored column to do the same). The need is real: PC10 shows an open tab writing a recall, a Save and a Like into the account the browser was later signed into.
+
+The alternative, refused as the worse choice: a random per-sign-in value in the session row is a new stored field (a new row in the inventory, reason, owner, and a deletion path that must follow the session), and it must also be handed to the page. It would be less linkable (changes each sign-in), but linkability across sign-ins is not a harm here: the server holds the account. I do not require it.
+
+Residual, stated: the tag is stable per account and the same on every device, so anything that records request headers (platform log drains, a WAF or observability agent, a future middleware) would hold a stable pseudonym joining one account's writes. Today none does, by reading. That is why condition 3 exists.
+
+Conditions (1 to 3 are the ones that would make me withdraw):
+1. **Boundary stays tested and in the gate.** S18 (`tag-scan.mjs`, part of `test:accounts`) passes in CI with `node_modules`, before any flag goes on; its route list stays exactly the five write routes. A sixth route, a read route, `/api/events`, `/api/likes/counts`, or any non-same-origin URL carrying the header comes back to me. S18's stated limits (an anonymous function's parameter is not followed; imports are followed by name only) are accepted because part 3's by-name backstop covers them; a new file that calls `fetch` and imports the tag helpers fails that backstop and is the signal.
+2. **Never recorded.** No server log, error text, analytics event, trace, `Server-Timing`/`Vary` header or response echoes the header or the tag. The 409 body stays fixed. Nobody adds a handler that logs `req.headers`.
+3. **Platform capture is switched off or checked before the flag deploy.** Before the founder-approved flag deploy, the principal-engineer-ops (or whoever owns the deploy) confirms that the host's request logs, log drains and any observability or firewall product do not store custom request headers, and records it in readiness. If any does, either exclude `x-s3c-account` from capture or come back to me for the stored alternative.
+4. **Rotation and deletion as before** (3.1 conditions 2 and 3, with the corrected rotation wording in D23): the device key and the tag are removed on the same paths; the secret stays 32+ characters; a public or constant key makes the tag guessable from an id and comes back to me. A tag that now leaves the browser raises the stakes of a weak key; `SECR0` guards it.
+5. **Counsel note (F-25), flagged, not decided:** the tag is a pseudonymous identifier that now crosses the network to us. It is derived from data we already hold, so I see no new purpose. Counsel to be told, with the 3.1 notice.
+
+Condition 1 of section 3.1 now reads: "The tag is never logged, never in a request body, URL, event, beacon or table, and never shown. It travels in one header, `x-s3c-account`, same-origin, to the five account write routes only (S18)."
+
+## 4.2 Ruling 2: row D23 updated
+
+Edited `company/engineering/data-inventory.md`, row D23 (the backend-engineer left it to me, W-1965):
+- **Processed by** (was "nobody; never sent, tag included"): the tag alone travels in the PC10 header to the five write routes, compared and dropped; the rest of D23 is never sent; conditions point here.
+- **Rotation, corrected:** a `BETTER_AUTH_SECRET` change signs every session out and removes every device's state before any tag is compared; versioned `BETTER_AUTH_SECRETS` keeps `BETTER_AUTH_SECRET`, so every tag stays the same. It does not "change every tag". My own 3.1 condition 3 said "A rotation changes every tag ... acceptable"; that sentence was wrong for the same reason and is superseded by the D23 wording. (The residual that a device key persists if the learner never returns is unchanged.)
+- **Status** and the section 10 delta record the ruling and the commit. The backend-engineer should confirm the row; I do not approve my own file.
+
+## 4.3 Ruling 3: verdicts
+
+- **Merge into the default branch with all three flags off (98aa6092f): pass, no condition on me.** With the flags off every write route answers 404 before `boundWrite` (C2 unchanged), no sink is set, no key and no tag are written, and nothing sends the header. I read the diff; I did not run S1-S18 or C1-C14.
+- **Staff preview with flags on, what still blocks from my side** (staff addresses only):
+  1. 4.1 condition 1: S18 and the Postgres-hosted tests (C4-C14, S14, S16, S17, test 34) actually run on a host that has Postgres and `node_modules`, recorded in readiness. I could not run any of them.
+  2. 4.1 condition 3: the host's header capture confirmed or excluded, recorded in readiness.
+  3. Items 2-6 of "Before a staff preview" (section 1) and the walk in 3.3, with two additions: (a) in the network panel, `x-s3c-account` appears on the five write routes and on no other request, including no event beacon; (b) two tabs, the second signed into another account: the first tab's next write gets 409, it stops syncing, shows the sign-in notice and the account page re-reads; the first account's pulled copy is gone from the device, and no request carries a body for the wrong account.
+  4. Unchanged from section 3: the G7 case walked and recorded.
+- **Go-live:** G1-G7 and P1.7 unchanged; 4.1 conditions 2 and 5 added to the notice list; counsel told (F-25).
+
+## Objections (section 4)
+
+| # | Objection | Must be answered by | Status |
+|---|---|---|---|
+| O7 | Tag conditions (3.1, now amended by 4.1) | backend-engineer | static scan built (S18), run owed |
+| O8 | Header capture by host logs, drains, WAF (4.1 cond. 3) | principal-engineer-ops | open, before a staff preview |
+| O6, O4, O5, O3 | unchanged | principal-engineer; growth-designer; learner-model-engineer; founder | open |
+
+## Next moves (section 4)
+
+1. **backend-engineer:** confirm row D23; run S18 and C4-C14 where Postgres and `node_modules` exist; record in readiness.
+2. **principal-engineer-ops:** confirm no host/log/WAF capture of custom request headers; record in readiness (O8).
+3. **principal-engineer:** merge decision on this record; G7 still yours.
+4. **chief-of-staff:** board item for O8 (I did not touch the board).
+5. **founder/counsel:** F-25 notice now includes that the tag crosses the network to our own server.

@@ -633,3 +633,50 @@ t("29. PC4 (F7): unlike and unsave of a lesson that has left the catalog delete 
   const long = "x".repeat(201);
   assert.equal((await w.api.mark(req(`/api/account/saves/${long}`, { method: "DELETE", cookie: a.cookie }), "lesson_save", long, false)).status, 404);
 });
+
+t("30. PC10: every signed-in write needs the session account's tag; another account's tag, none or an empty one gets 409 and writes nothing", async () => {
+  const w = makeWorld(pool);
+  const a = await signUp(w, "bind-a@example.com", "16+");
+  const b = await signUp(w, "bind-b@example.com", "16+");
+  assert.notEqual(a.tag, b.tag);
+  const snapshot = async () => {
+    const one = async (sql) => (await pool.query(sql, [b.userId])).rows;
+    return {
+      progress: await one("SELECT slug, completed_at_ms, predicted_correctly FROM progress WHERE user_id = $1 ORDER BY slug"),
+      recall: await one("SELECT slug, at_ms FROM recall WHERE user_id = $1 ORDER BY slug, at_ms"),
+      likes: await one("SELECT slug FROM lesson_like WHERE user_id = $1 ORDER BY slug"),
+      saves: await one("SELECT slug FROM lesson_save WHERE user_id = $1 ORDER BY slug"),
+      user: await one("SELECT id FROM auth_user WHERE id = $1"),
+    };
+  };
+  // Every write route, each sent with B's cookie (the browser is in B) and the tag a page started with.
+  const writes = (account) => [
+    ["PUT progress", () => w.api.progressPut(req("/api/account/progress", { method: "PUT", cookie: b.cookie, account, body: { slug: "lesson-c", entry: { completedAt: T0, predictedCorrectly: true, recalls: [{ at: T0 + DAY, correct: true }] } } }))],
+    ["POST merge", () => w.api.merge(req("/api/account/merge", { method: "POST", cookie: b.cookie, account, body: { progress: { "lesson-d": { completedAt: T0, recalls: [] } }, saves: [{ slug: "lesson-d", at: T0 }] } }))],
+    ["PUT save", () => w.api.mark(req("/api/account/saves/lesson-b", { method: "PUT", cookie: b.cookie, account }), "lesson_save", "lesson-b", true)],
+    ["PUT like", () => w.api.mark(req("/api/account/likes/lesson-b", { method: "PUT", cookie: b.cookie, account }), "lesson_like", "lesson-b", true)],
+    ["DELETE like", () => w.api.mark(req("/api/account/likes/lesson-b", { method: "DELETE", cookie: b.cookie, account }), "lesson_like", "lesson-b", false)],
+    ["POST delete", () => w.api.remove(req("/api/account/delete", { method: "POST", cookie: b.cookie, account, body: { confirm: true } }))],
+  ];
+  const before = await snapshot();
+  for (const [label, account] of [["A's tag", a.tag], ["no tag", null], ["an empty tag", ""], ["a near miss", b.tag.slice(0, -1) + (b.tag.endsWith("A") ? "B" : "A")]]) {
+    for (const [what, call] of writes(account)) {
+      const res = await call();
+      assert.equal(res.status, 409, `${what} with ${label}`);
+      assert.deepEqual(await res.json(), { error: "account_changed" });
+      assert.deepEqual(res.headers.getSetCookie(), [], `${what}: no cookie on a 409`);
+    }
+  }
+  assert.deepEqual(await snapshot(), before, "nothing written to B");
+  // The tag is checked before the body is read: a malformed body with the wrong tag is still a 409, never a 400.
+  assert.equal((await w.api.progressPut(req("/api/account/progress", { method: "PUT", cookie: b.cookie, account: a.tag, body: "{not json" }))).status, 409);
+  // Signed out stays 401 (no session to compare with); a foreign Origin stays 403 (checked first).
+  assert.equal((await w.api.merge(req("/api/account/merge", { method: "POST", account: a.tag, body: { progress: {} } }))).status, 401);
+  assert.equal((await w.api.merge(req("/api/account/merge", { method: "POST", cookie: b.cookie, account: b.tag, body: { progress: {} }, headers: { origin: "https://evil.example" } }))).status, 403);
+  // B's own tag: each write goes through.
+  const ok = [];
+  for (const [what, call] of writes(b.tag)) ok.push(`${what} ${(await call()).status}`);
+  assert.deepEqual(ok, ["PUT progress 200", "POST merge 200", "PUT save 204", "PUT like 204", "DELETE like 204", "POST delete 200"]);
+  // A's account was never touched by any of it.
+  assert.equal(Number((await pool.query("SELECT count(*) AS n FROM auth_user WHERE id = $1", [a.userId])).rows[0].n), 1);
+});

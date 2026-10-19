@@ -24,3 +24,7 @@ Observed on production after the second deploy (chief of staff, 2026-10-18): the
 ## Objections
 
 - **chief-of-staff:** accepting after the fact must not become a precedent for deploying first and asking later. **Answer:** the COE records it as an error; the rule in CLAUDE.md is unchanged; the chief of staff writes no commit message containing the bracketed marker word, including in negations.
+
+## Retrospective merge clarification (2026-10-19)
+
+Both Oct 18 deployments remain fully recorded under `historical_deployments` in company/ops/releases.json, identified by deployment-bcd102d7 and deployment-2902594b. PR #11 originally called them r11/r12; those were branch-only aliases. Canonical r11 is the later approved show-all deployment 99111565. The observations and founder acceptance above describe Oct 18, not the current production state. Board actions are W-1977 through W-1980 after collision resolution.

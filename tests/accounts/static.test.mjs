@@ -4,11 +4,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { accountsEnabled, likesSavesEnabled, likeCountsPublic, hiddenCountSlugs } from "../../src/lib/server/accounts-flag.ts";
 import { emailTransport, sendSignInLink } from "../../src/lib/server/email.ts";
 import { countLabel, cleanProgressMap } from "../../src/lib/server/progress-store.ts";
-import { RateLimiter, limiterKey, sameOriginWrite } from "../../src/lib/server/http.ts";
+import { LOGGED_LIBRARY_CODES, RateLimiter, accountTag, limiterKey, logFailure, sameOriginWrite } from "../../src/lib/server/http.ts";
+import { createAccountApi } from "../../src/lib/server/account-api.ts";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/");
@@ -189,4 +190,115 @@ test("S15. the client never writes saves locally while signed in, and anonymous 
   assert.ok(!/localStorage/.test(signedBranch), "signed in: no local write");
   const anonBranch = fn.slice(fn.indexOf("const all = loadLocalSaves()"));
   assert.ok(!/fetch\(/.test(anonBranch), "anonymous: no request");
+});
+
+// The installed library's own error class (readiness Ruling 1 test 1: not a hand-made object). @better-auth/core is
+// nested under better-auth, at the version tests/accounts/better-auth-regression.json pins.
+const SCHEMA_DIFF = path.join(ROOT, "node_modules/better-auth/node_modules/@better-auth/core/dist/db/schema-diff.mjs");
+
+test("S16. W-1714 Ruling 1: logFailure prints a Better Auth code only from the exact allow-list; never message, findings, names, cause or stack", async () => {
+  assert.deepEqual([...LOGGED_LIBRARY_CODES], ["SCHEMA_MISMATCH"], "the list starts with one code; add others one at a time with a reason");
+  assert.ok(Object.isFrozen(LOGGED_LIBRARY_CODES));
+  const { SchemaMismatchError } = await import(pathToFileURL(SCHEMA_DIFF).href);
+  const err = new SchemaMismatchError([{ kind: "missing-column", table: "auth_user", column: "age_band" }, { kind: "missing-table", table: "auth_session" }], "database");
+  assert.equal(err.code, "SCHEMA_MISMATCH");
+  assert.match(err.message, /auth_user|age_band/, "the library's message names the schema (so it must never be printed)");
+  err.cause = new Error("cause learner@example.com");
+  const lines = [];
+  logFailure("me", err, (l) => lines.push(l));
+  assert.deepEqual(lines, ["account me: failed code=SCHEMA_MISMATCH"]);
+  // Through the real /me handler, with the session read throwing the library's error.
+  const api = createAccountApi({
+    env: () => ({ ACCOUNTS_ENABLED: "on", BETTER_AUTH_SECRET: "x".repeat(40) }),
+    pool: () => assert.fail("no pool"),
+    auth: () => ({ api: { getSession: async () => { throw err; } } }),
+    inCatalog: () => true,
+    log: (l) => lines.push(l),
+  });
+  const res = await api.me(new Request("http://localhost:3000/api/account/me"));
+  assert.equal(res.status, 500);
+  assert.equal(lines.at(-1), "account me: failed code=SCHEMA_MISMATCH");
+  // Any other code prints nothing: near misses, a code holding an @, a pattern-alike, and non-strings.
+  const others = ["SCHEMA_MISMATCH ", "schema_mismatch", "SCHEMA_MISMATCH\n", "SCHEMA_MISMATCH@x", "a@example.com", "USER_NOT_FOUND", "SCHEMA_.*", ["SCHEMA_MISMATCH"], { toString: () => "SCHEMA_MISMATCH" }, 42];
+  for (const code of others) {
+    const out = [];
+    logFailure("me", Object.assign(new Error(`boom ${String(code)} a@example.com`), { code }), (l) => out.push(l));
+    assert.deepEqual(out, ["account me: failed"], `code ${JSON.stringify(String(code))}`);
+  }
+  // A SQLSTATE still prints as before; a throwing getter or a null error does not throw.
+  const out = [];
+  logFailure("x", { code: "23505" }, (l) => out.push(l));
+  logFailure("x", null, (l) => out.push(l));
+  logFailure("x", Object.defineProperty({}, "code", { get() { throw new Error("getter"); } }), (l) => out.push(l));
+  assert.deepEqual(out, ["account x: failed sqlstate=23505", "account x: failed", "account x: failed"]);
+});
+
+test("S17. PC3: the account tag is opaque, stable per account and secret, and differs between accounts", () => {
+  const s1 = "s".repeat(40);
+  const t1 = accountTag(s1, "user-1");
+  assert.match(t1, /^[A-Za-z0-9_-]{22}$/);
+  assert.equal(accountTag(s1, "user-1"), t1, "stable");
+  assert.notEqual(accountTag(s1, "user-2"), t1, "per account");
+  assert.notEqual(accountTag("t".repeat(40), "user-1"), t1, "keyed by the secret");
+  assert.ok(!t1.includes("user"));
+});
+
+test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeacon argument reaches the device key or the account tag, except the PC10 header to our own write routes", async () => {
+  const { scanSource, codeOnly, CLIENT_FILE, WRITE_ROUTES } = await import("./tag-scan.mjs");
+  // 1. The whole of src/: every request argument, followed through locals, assignments, parameters and returns.
+  const hits = SRC.flatMap((f) => scanSource(rel(f), read(f)));
+  assert.deepEqual(hits, [], "a request can carry the device key or the tag");
+  // 2. The scan catches what it must (each of these must be flagged).
+  const bad = {
+    "tag to the event beacon": `navigator.sendBeacon("/api/events", JSON.stringify({ a: me.tag }));`,
+    "tag through a local": `const t = me.tag; fetch("/api/likes/counts?slugs=" + t);`,
+    "device key read into a body": `const d = readDevice(); fetch("/api/account/merge", { method: "POST", body: JSON.stringify(d) });`,
+    "device key by its literal": `fetch("https://third.example/x", { body: localStorage.getItem("s3c:account-device:v1") });`,
+    "tag added to a body later": `const body = {}; body.who = syncTag; fetch("/api/account/progress", { method: "PUT", headers: boundHeaders(syncTag, true), body: JSON.stringify(body) });`,
+    "tag through a parameter": `function send(x) { return fetch("/api/events", { method: "POST", body: x }); } send(me.tag);`,
+    "tag through a local function": `function who() { return me.account; } fetch("/api/events", { body: who() });`,
+    "the header to the event route": `fetch("/api/events", { method: "POST", headers: boundHeaders(me.tag, true) });`,
+    "the header to a third party": `fetch("https://third.example/api/account/progress", { method: "PUT", headers: boundHeaders(me.tag, true) });`,
+    "the header to a read route": `fetch("/api/account/export", { headers: boundHeaders(me.tag, false) });`,
+    "the header built up elsewhere": `const h = boundHeaders(me.tag, true); fetch("/api/account/progress", { method: "PUT", headers: h });`,
+    "the header name by hand": `fetch("/api/account/progress", { method: "PUT", headers: { "x-s3c-account": "abc" } });`,
+    "a template route with more after the slug": "fetch(`/api/account/saves/${encodeURIComponent(slug)}?t=1`, { headers: boundHeaders(me.tag, false) });",
+  };
+  for (const [what, code] of Object.entries(bad)) assert.notDeepEqual(scanSource(CLIENT_FILE, code), [], `not caught: ${what}`);
+  // ...and the header to an allowed route, in the client file only, is the one exception.
+  assert.deepEqual(scanSource(CLIENT_FILE, `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true), body: "{}" });`), []);
+  assert.notDeepEqual(scanSource("src/components/Feed.tsx", `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true) });`), [], "only account-client.ts");
+  // 3. Backstop by name across files (the scan does not follow imports): the tag's helpers and the device key live
+  // only in these files (code, not comments); the only other use of `.tag` is AccountView's React key (never
+  // rendered, never sent).
+  const names = /DEVICE_KEY|boundHeaders|ACCOUNT_HEADER|accountTag|sameAccountHeader|s3c:account-device:v1|x-s3c-account|\.tag\b/;
+  const code = new Map(SRC.map((f) => [f, names.test(read(f)) ? codeOnly(rel(f), read(f)) : ""]));
+  const homes = {
+    DEVICE_KEY: ["src/lib/account-client.ts"],
+    boundHeaders: ["src/lib/account-client.ts"],
+    ACCOUNT_HEADER: ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    accountTag: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
+    sameAccountHeader: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
+    "s3c:account-device:v1": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+  };
+  for (const [name, files] of Object.entries(homes)) {
+    const found = SRC.filter((f) => code.get(f).includes(name)).map(rel).sort();
+    assert.deepEqual(found, [...files].sort(), `${name} appears only in its home files`);
+  }
+  // Of the files that can hold a /me answer (account-client.ts and its importers), only AccountView reads `.tag`.
+  const holders = SRC.filter((f) => rel(f) === CLIENT_FILE || /from\s+["']@\/lib\/account-client["']|import\(["']@\/lib\/account-client["']\)/.test(read(f)));
+  const tagUsers = holders.filter((f) => /\.tag\b/.test(code.get(f))).map(rel).sort();
+  assert.deepEqual(tagUsers, ["src/components/account/AccountView.tsx", "src/lib/account-client.ts"]);
+  const viewTag = [...code.get(path.join(ROOT, "src/components/account/AccountView.tsx")).matchAll(/\S*\.tag\b\S?/g)].map((m) => m[0]);
+  assert.deepEqual(viewTag, ["key={me.tag}"], "AccountView uses the tag only as a React key");
+  // 4. The client and server name the same header, and the server binds exactly the routes the exception allows.
+  const lit = (f, re) => read(path.join(ROOT, f)).match(re)?.[1];
+  assert.equal(lit("src/lib/account-client.ts", /export const ACCOUNT_HEADER = "([^"]+)"/), "x-s3c-account");
+  assert.equal(lit("src/lib/server/http.ts", /export const ACCOUNT_HEADER = "([^"]+)"/), "x-s3c-account");
+  const apiSrc = read(path.join(ROOT, "src/lib/server/account-api.ts"));
+  assert.deepEqual([...apiSrc.matchAll(/boundWrite\(req, a\.id, "(\w+)"\)/g)].map((m) => m[1]), ["progress", "merge", "delete", "mark"]);
+  assert.deepEqual(WRITE_ROUTES, { exact: ["/api/account/progress", "/api/account/merge", "/api/account/delete"], prefix: ["/api/account/saves/", "/api/account/likes/"] });
+  // 5. The server reads the header only to compare it; nothing logs or stores it (S8 covers logging in general).
+  assert.ok(!/log[A-Za-z]*\([^)]*ACCOUNT_HEADER/.test(read(path.join(ROOT, "src/lib/server/http.ts")) + apiSrc));
 });

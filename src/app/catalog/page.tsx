@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LESSON_STATUS_LABEL } from "@/lib/lesson-status";
 import fs from "node:fs";
 import path from "node:path";
 import { domains, visibleDemos } from "@/lib/catalog";
@@ -43,6 +44,9 @@ export default function Catalog() {
         {domains.map((d) => {
           const concepts = curriculum(d.id);
           const lessons = visible.filter((x) => x.domain === d.id);
+          const mapped = new Set(concepts.map((c) => c.id));
+          if (d.id === "cs") for (const c of groupedConcepts) mapped.add(c);
+          const unmapped = lessons.filter((lesson) => !mapped.has(lesson.concept));
           return (
             <section key={d.id} className="domain-block" style={{ ["--domain" as string]: d.color }}>
               <h2>
@@ -74,7 +78,7 @@ export default function Catalog() {
                       {rows.map(({ concept, matching }) => <li key={concept.id} className="has">
                         <span className="concept-name">{concept.name}</span>
                         {matching.map((lesson) => <Link key={lesson.slug} href={`/d/${lesson.slug}`} className="concept-lesson">
-                          {lesson.title}{lesson.status !== "published" && <span className="muted tiny"> · in review</span>}
+                          {lesson.title}{lesson.status !== "published" && <span className="muted tiny"> · {LESSON_STATUS_LABEL[lesson.status]}</span>}
                         </Link>)}
                       </li>)}
                     </ul>
@@ -91,7 +95,7 @@ export default function Catalog() {
                         ls.map((l) => (
                           <Link key={l.slug} href={`/d/${l.slug}`} className="concept-lesson">
                             {l.title}
-                            {l.status !== "published" && <span className="muted tiny"> · in review</span>}
+                            {l.status !== "published" && <span className="muted tiny"> · {LESSON_STATUS_LABEL[l.status]}</span>}
                           </Link>
                         ))
                       ) : (
@@ -101,6 +105,14 @@ export default function Catalog() {
                   );
                 })}
               </ul>
+              {unmapped.length > 0 && <>
+                <h3>More lessons</h3>
+                <ul className="concepts">{unmapped.map((lesson) => <li key={lesson.slug} className="has">
+                  <Link href={`/d/${lesson.slug}`} className="concept-lesson">{lesson.title}
+                    {lesson.status !== "published" && <span className="muted tiny"> · {LESSON_STATUS_LABEL[lesson.status]}</span>}
+                  </Link>
+                </li>)}</ul>
+              </>}
             </section>
           );
         })}

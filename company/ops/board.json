@@ -19913,10 +19913,11 @@
       "id": "W-1714",
       "title": "Ruling 1 (PE-ops): log Better Auth error codes from an exact allow-list (SCHEMA_MISMATCH first) as code=<CODE> in http.ts logFailure; tests per the readiness record; before preview-on",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1715",
@@ -19931,10 +19932,11 @@
       "id": "W-1716",
       "title": "Accounts preview blockers (principal re-read): PC3 bind the device state to the account that answered the merge screen and treat a different account like the signed-in marker (test repeating probe 1: edited callbackURL must not skip the merge screen); PC9 /account hangs on Loading after sign-out/deletion remount (accountState promise never resolves; remount test). Do after the PR merges, then re-run verify",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-18",
-      "links": []
+      "links": [],
+      "updated": "2026-10-18"
     },
     {
       "id": "W-1901",
@@ -22023,6 +22025,153 @@
     },
     {
       "id": "W-1961",
+      "title": "Privacy O7: static scan that no fetch/sendBeacon argument can reach DEVICE_KEY or the account tag; confirm D23 row; run C4-C11, S14, S16, S17, test 34 on Postgres and record in readiness",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1962",
+      "title": "Privacy O6 / go-live G7: before any non-staff address, bind the sign-in link to the browser that asked for it, or show a cue on whatever page the learner lands on in the 'nothing' branch (edited callbackURL leaves no cue)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1963",
+      "title": "Tell counsel (F-25) that accounts store a pseudonymous per-account tag on the device (D23)",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1964",
+      "title": "PC10 (principal re-read 2): bind every account write (progress, merge, saves, likes) to the account tag; server answers 409 without writing on a mismatch; client ends the account on the device on 409, no retry; probe 3 (old tab after another account signs in) becomes a test. Also drop the dead ?? '' secret fallback in account-api.ts",
+      "owner": "backend-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": [],
+      "updated": "2026-10-18"
+    },
+    {
+      "id": "W-1965",
+      "title": "Fix the rotation wording in D23 and EDD-008 A7.1: a BETTER_AUTH_SECRET change signs every session out (device state removed); under versioned BETTER_AUTH_SECRETS tags stay the same; it does not 'change every tag'",
+      "owner": "privacy-reviewer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": [],
+      "updated": "2026-10-18"
+    },
+    {
+      "id": "W-1966",
+      "title": "Close W-1714 Ruling 1 (error-code allow-list) after reading S16; approve the readiness 'Additions, 2026-10-18 (second)'",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1967",
+      "title": "Privacy O8: before the flag deploy, confirm host logs, log drains and WAF/observability don't capture custom request headers (x-s3c-account)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1968",
+      "title": "Privacy condition 1 on the account-tag header needs S18 to pass in CI, but ci.yml does not run test:accounts (protected; the amendment is W-1709). Until W-1709 lands, S18 runs only in npm run verify; this blocks the flag deploy, not the flags-off merge",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1969",
+      "title": "PC11 (before staff preview): extend the S18 tag scan to catch whole /me answer (knownMe) or account state sent, renamed destructure {tag: t}, aliased fetch, XMLHttpRequest, Image().src, localStorage iteration (principal probe /tmp scratch s18probe.mjs patterns); or list them in A8.2's limits for the privacy reviewer. Also fix A8.1 wording (session reads can refresh last_sign_in_at)",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1970",
+      "title": "When wiring Like/Save controls: setSaved/setLiked must wait for the merge answer for the current account (after a switch they would write to an account whose merge screen is unanswered)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1971",
+      "title": "Risk R-a (accounts readiness A-12) at L2/I3, owner backend-engineer: register it",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1972",
+      "title": "Preview P1(f): in the real-browser run, x-s3c-account appears only on the five account write routes, never on /api/events, likes counts, pages, assets or third parties",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1973",
+      "title": "When wiring /api/account/settings (settings-wiring.ts, personalization lane): PUT is an account write, so bind it to the account tag like the other writes (x-s3c-account, 409 on mismatch, PC10) and add it to S18's allowed write routes",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1974",
+      "title": "Review: progress-store.ts added to DELETE_ONLY in tests/settings/settings-only-put-writes.test.mjs (account deletion's DELETE FROM settings WHERE user_id = $1, B3 / EDD-008 §7), as the test's header asks; confirm or adjust",
+      "owner": "learner-data-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1975",
+      "title": "[first-light] Reconcile founder social-feed/navigation increment and remaining verification; source company/initiatives/first-light/2026-10-18-social-feed-intake.md; batch follow-ups through product, engineering and quality managers",
+      "owner": "head-of-strategic-initiatives",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-18",
+      "links": []
+    },
+    {
+      "id": "W-1976",
+      "title": "Founder all-lessons visibility: list every status with accurate unpublished tags; preserve publication gates; company/decisions/2026-10-19-founder-show-all-lessons.md",
+      "owner": "platform-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-19",
+      "links": [],
+      "updated": "2026-10-19"
+    },
+    {
+      "id": "W-1977",
       "title": "COE 2026-10-18 action: deploy filter matches only a deliberate marker (e.g. the bracketed word as the first token of the commit subject), not a substring anywhere in the message; needs the founder's approval as a deploy-path change",
       "owner": "release-manager",
       "state": "backlog",
@@ -22031,7 +22180,7 @@
       "links": []
     },
     {
-      "id": "W-1962",
+      "id": "W-1978",
       "title": "COE 2026-10-18 action: CI check on pushes to the production branch: fail when a commit message contains the deploy marker without a matching founder-approved release record (company/ops/releases.json or deployments/)",
       "owner": "principal-engineer-ops",
       "state": "backlog",
@@ -22040,7 +22189,7 @@
       "links": []
     },
     {
-      "id": "W-1963",
+      "id": "W-1979",
       "title": "Verify production (2902594b) against r10's intended settings: SHOW_REVIEW, ACCOUNTS_ENABLED / LIKES_SAVES_ENABLED / LIKE_COUNTS_PUBLIC, HQ_PUBLIC; record bcd102d7 and 2902594b in releases.json as unapproved deploys accepted by the founder (company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md); any difference from r10 goes to the founder before any change",
       "owner": "release-manager",
       "state": "done",
@@ -22050,7 +22199,7 @@
       "updated": "2026-10-18"
     },
     {
-      "id": "W-1964",
+      "id": "W-1980",
       "title": "COE 2026-10-18 pattern update: never quote the deploy marker in commit or merge messages, including negations (pattern-librarian)",
       "owner": "pattern-librarian",
       "state": "backlog",

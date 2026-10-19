@@ -7,17 +7,14 @@ import { statusVisible } from "./visibility";
 
 export const domains = domainsFile.domains;
 
-/**
- * Which lessons the public feed shows. Drafts and retired lessons stay out.
- * Lessons in review appear with an "In review" tag unless SHOW_REVIEW=off.
- * W-480 / W-884: `includeDrafts` (direct URLs) only reaches drafts where draftsVisible() allows it: the dev
- * server and local builds, never a Vercel production deployment. The rule lives in ./visibility.ts.
+/** All lesson statuses are visible, per founder direction 2026-10-19.
+ * includeDrafts remains accepted for compatibility; listing and direct URLs share one rule.
  */
 export function visibleDemos(opts: { includeDrafts?: boolean } = {}): DemoMeta[] {
   return allDemos.filter((d) => statusVisible(d.status, opts));
 }
 
-/** A lesson a URL may open: anything visibleDemos lists, plus drafts where drafts are visible. */
+/** A lesson a URL may open: any registered lesson, preserving its original status. */
 export function findDemo(slug: string): DemoMeta | undefined {
   return visibleDemos({ includeDrafts: true }).find((d) => d.slug === slug);
 }

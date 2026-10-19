@@ -1,11 +1,9 @@
-// W-945 / W-947: checks a BUILT production output, not the source. Skips unless BUILT_DIST_DIR is set.
+// Checks a BUILT production output, including every lesson status and metadata sanitization.
 //
 //   VERCEL=1 VERCEL_ENV=production NEXT_DIST_DIR=.next-prod npx next build
 //   BUILT_DIST_DIR=.next-prod npm run test:platform
 //
-// W-945: no draft slug is in the prerender manifest (for /d and /api/meta), and `next start` on that build,
-// started here with VERCEL, VERCEL_ENV, SHOW_DRAFTS and SHOW_REVIEW removed from its environment, returns 404
-// for every draft slug on /d/<slug> and /api/meta/<slug>, twice (a 200 must never be rendered and cached).
+// Founder 2026-10-19: unpublished lessons are included and visibly tagged.
 // W-947: no prerendered RSC payload, HTML page or /api/meta body under server/app carries an internal string
 // (./internal-strings.mjs), and neither do live /api/meta responses.
 // W-946 (AMD-001 (c2) + R1): no file under static/chunks (what every browser downloads) carries an internal string,
@@ -43,7 +41,7 @@ function metas() {
   return out;
 }
 const all = metas();
-const drafts = all.filter((m) => m.status === "draft").map((m) => m.slug);
+const drafts = all.filter((m) => m.status !== "published").map((m) => m.slug);
 const published = all.filter((m) => m.status === "published").map((m) => m.slug);
 
 function walk(dir, out = []) {
@@ -55,17 +53,17 @@ function walk(dir, out = []) {
   return out;
 }
 
-test("W-945: no draft slug is in the prerender manifest or the prerendered files", { skip }, () => {
-  assert.ok(drafts.length > 0, "there are drafts to check");
+test("all lesson statuses have prerendered pages and sanitized metadata", { skip }, () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(dist, "prerender-manifest.json"), "utf8"));
-  const routes = Object.keys(manifest.routes);
-  assert.ok(routes.some((r) => r.startsWith("/d/")), "manifest lists /d/* pages (is this a full build?)");
-  const leaked = drafts.filter((s) => routes.includes(`/d/${s}`) || routes.includes(`/api/meta/${s}`));
-  assert.deepEqual(leaked, [], "draft slugs in prerender-manifest.json");
-  for (const route of ["d", "api/meta"]) {
-    const dir = path.join(dist, "server/app", route);
-    const names = new Set(fs.readdirSync(dir).map((n) => n.split(".")[0]));
-    assert.deepEqual(drafts.filter((s) => names.has(s)), [], `draft files under server/app/${route}`);
+  for (const meta of all) {
+    assert.ok(manifest.routes[`/d/${meta.slug}`], `missing lesson ${meta.slug}`);
+    assert.ok(manifest.routes[`/api/meta/${meta.slug}`], `missing metadata ${meta.slug}`);
+    const body = JSON.parse(fs.readFileSync(path.join(dist, "server/app/api/meta", `${meta.slug}.body`), "utf8"));
+    assert.equal(body.status, meta.status, `${meta.slug} status was changed`);
+    if (meta.status !== "published") {
+      const html = fs.readFileSync(path.join(dist, "server/app/d", `${meta.slug}.html`), "utf8");
+      assert.ok(html.includes("Unpublished"), `${meta.slug} lacks a visible status label`);
+    }
   }
 });
 
@@ -122,7 +120,7 @@ test("W-946: no client chunk under static/chunks carries an internal string, and
   assert.deepEqual(big, [], `chunks over ${CHUNK_MAX_RAW} B raw`);
 });
 
-test("W-945 / W-947: next start with VERCEL vars unset at runtime 404s every draft, twice", { skip, timeout: 180_000 }, async () => {
+test("all registered lessons remain reachable when runtime environment differs from build", { skip, timeout: 180_000 }, async () => {
   const env = { ...process.env, NEXT_DIST_DIR: path.relative(repo, dist), NODE_ENV: "production" };
   for (const k of ["VERCEL", "VERCEL_ENV", "SHOW_DRAFTS", "SHOW_REVIEW", "VERCEL_URL"]) delete env[k];
   const server = spawn(process.execPath, [path.join(repo, "node_modules/next/dist/bin/next"), "start", "-p", String(PORT)], {
@@ -148,11 +146,11 @@ test("W-945 / W-947: next start with VERCEL vars unset at runtime 404s every dra
         for (const p of [`/d/${s}`, `/api/meta/${s}`]) {
           const r = await fetch(base + p);
           await r.arrayBuffer();
-          if (r.status !== 404) bad.push(`round ${round + 1} ${p}: ${r.status}`);
+          if (r.status !== 200) bad.push(`round ${round + 1} ${p}: ${r.status}`);
         }
       }
     }
-    assert.deepEqual(bad, [], "drafts must 404 with VERCEL vars unset at runtime");
+    assert.deepEqual(bad, [], "registered unpublished lessons must open with VERCEL vars unset at runtime");
     for (const s of published.slice(0, 5)) {
       assert.equal((await fetch(`${base}/d/${s}`)).status, 200, s);
       const r = await fetch(`${base}/api/meta/${s}`);

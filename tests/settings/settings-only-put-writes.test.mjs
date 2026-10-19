@@ -37,7 +37,8 @@ const SQL_WRITERS = new Set([
   "company/personalization/data/test-settings-write-sql.mjs",
 ]);
 /** Account deletion (B3). Empty in this clone: the accounts branch is not here. May hold DELETE only. */
-const DELETE_ONLY = new Set([]);
+// The account-deletion transaction (B3, EDD-008 §7): its only settings write is DELETE ... WHERE user_id = $1.
+const DELETE_ONLY = new Set(["src/lib/server/progress-store.ts"]);
 /** Who may import the store module (types or values) and the handler. */
 const STORE_IMPORTERS = new Set([HANDLER, WIRING]);
 const HANDLER_IMPORTERS = new Set([ROUTE, WIRING]);
