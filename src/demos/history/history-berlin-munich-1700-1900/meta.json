@@ -1,0 +1,334 @@
+{
+  "slug": "history-berlin-munich-1700-1900",
+  "title": "Seventeen votes, a smaller share?",
+  "hook": "A fixed numerator can conceal a changed federation.",
+  "domain": "history",
+  "concept": "federal-vote-share-denominators",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A fraction has a numerator and denominator."
+    ],
+    "doesNotKnow": [
+      "Recompute Prussia’s share from the actual 1867 and 1871 Bundesrat vote schedules."
+    ]
+  },
+  "misconception": "An unchanged numerator means an unchanged share.",
+  "objective": "Recompute Prussia’s share from the actual 1867 and 1871 Bundesrat vote schedules.",
+  "claims": [
+    {
+      "id": "history.history-berlin-munich-1700-1900.c1",
+      "text": "Prussia 17",
+      "address": "model.RECORDS.north.prussia; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm original Article6",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c2",
+      "text": "Total 43",
+      "address": "model.RECORDS.north.total; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm original Article6 complete list/total",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c3",
+      "text": "Bavaria: outside membership",
+      "address": "model.RECORDS.north.bavaria; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm original Article1 exhaustive members; no0-vote-member inference",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c4",
+      "text": "Prussia 17",
+      "address": "model.RECORDS.empire.prussia; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung71.htm original Article6",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c5",
+      "text": "Total 58",
+      "address": "model.RECORDS.empire.total; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung71.htm original Article6 complete list/total",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c6",
+      "text": "Bavaria 6",
+      "address": "model.RECORDS.empire.bavaria; stage field",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung71.htm original Articles1/6",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c7",
+      "text": "Bundesrat votes allocated to state governments",
+      "address": "stage mandatory qualifier 1",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c8",
+      "text": "Share ≠ practical power",
+      "address": "stage mandatory qualifier 2",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c9",
+      "text": "The unchanged 17 votes become 39.5% then 29.3% as the denominator grows.",
+      "address": "reveal sentence 1",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c10",
+      "text": "Bavaria is outside 1867 membership, not a zero-vote member.",
+      "address": "reveal sentence 2",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c11",
+      "text": "These are state-government allocations, not citizens’ votes; fractions establish neither population, individual rights, equal political influence, fairness nor practical power.",
+      "address": "reveal sentence 3",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c12",
+      "text": "Prussia keeps 17 votes while the total rises 43→58. Its share? Answer: Falls",
+      "address": "prediction question/options/answer; title/hook/objective",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c13",
+      "text": "A board keeps 8 votes while its total doubles. What happens to its scheduled vote share? Answer: It halves",
+      "address": "recall question/options/answer; why",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c14",
+      "text": "Own-English factual summaries and original schematic; not an official translation or official legal text. No source images reproduced.",
+      "address": "Sources authorship/translation notice",
+      "support": "derivation",
+      "source": "Own source/import inspection; source-use construction decision",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c15",
+      "text": "Selected documentary records only. Modern city names and original endpoint ranges identify the inherited case; they do not imply continuous territorial coverage. Historical makers differ from later custodians and documentary editors.",
+      "address": "Sources provenance",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; source-use/language records",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c16",
+      "text": "Source records are linked for their factual evidence. No source expression, image, layout, map, coordinates, seal or facsimile is reproduced. No blanket licence or institutional/community endorsement is implied.",
+      "address": "Sources credit and exclusions",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported; https://www.verfassungen.de/de67-18/verfassung71.htm 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation; company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c17",
+      "text": "North German Confederation constitution, 16 April 1867. Custodian/editor: verfassungen.de documentary edition. Original1867 constitution transcription with editorial framing. German. Locator: 16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.german1867",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung67.htm; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c18",
+      "text": "German Empire constitution, 16 April 1871; original schedule. Custodian/editor: verfassungen.de documentary edition. Original1871 imperial constitution with later amendments visibly separated. German. Locator: 16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.german1871",
+      "support": "source",
+      "source": "https://www.verfassungen.de/de67-18/verfassung71.htm; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c19",
+      "text": "Each complete distinct documentary record earns one witness; local Reset clears selection and Sources, retaining both loaded records; full restart clears the attempt. Unvisited placeholders contain no historical answer.",
+      "address": "local controls; model transition; explore hint",
+      "support": "derivation",
+      "source": "model.ts / model.repro.mjs",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-berlin-munich-1700-1900.c20",
+      "text": "17/43 = 39.5% and 17/58 = 29.3% to one decimal place; 17 votes are unchanged while their share falls.",
+      "address": "model.fraction; SVG unit fractions",
+      "support": "derivation",
+      "source": "Original arithmetic from original Article6 schedules",
+      "status": "unverified"
+    }
+  ],
+  "recall": {
+    "question": "A board keeps 8 votes while its total doubles. What happens to its scheduled vote share?",
+    "options": [
+      "It doubles",
+      "It stays constant",
+      "It halves"
+    ],
+    "answer": 2,
+    "why": "It halves"
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:federal-vote-share-denominators",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Do not label federal votes citizen votes, fairness or full practical power; Berlin/Munich are orientation, not the represented entities.",
+  "lineage": {
+    "sourceCaseId": "map-berlin-munich-1700-1900",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalBuilder": "contributor (PR #4)",
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new original documentary schematic without its map or data.",
+    "selectedDates": [
+      "1867-04-16",
+      "1871-04-16"
+    ],
+    "originalFields": [
+      {
+        "address": "north.prussia",
+        "value": 17,
+        "originalText": "Prussia 17",
+        "source": "german1867",
+        "locator": "original Article6",
+        "originalSource": "german1867",
+        "originalLocator": "original Article6",
+        "originalValue": 17
+      },
+      {
+        "address": "north.total",
+        "value": 43,
+        "originalText": "Total 43",
+        "source": "german1867",
+        "locator": "original Article6 complete list/total",
+        "originalSource": "german1867",
+        "originalLocator": "original Article6 complete list/total",
+        "originalValue": 43
+      },
+      {
+        "address": "north.bavaria",
+        "value": false,
+        "originalText": "Bavaria: outside membership",
+        "source": "german1867",
+        "locator": "original Article1 exhaustive members; no0-vote-member inference",
+        "originalSource": "german1867",
+        "originalLocator": "original Article1 exhaustive members; no0-vote-member inference",
+        "originalValue": false
+      },
+      {
+        "address": "empire.prussia",
+        "value": 17,
+        "originalText": "Prussia 17",
+        "source": "german1871",
+        "locator": "original Article6",
+        "originalSource": "german1871",
+        "originalLocator": "original Article6",
+        "originalValue": 17
+      },
+      {
+        "address": "empire.total",
+        "value": 58,
+        "originalText": "Total 58",
+        "source": "german1871",
+        "locator": "original Article6 complete list/total",
+        "originalSource": "german1871",
+        "originalLocator": "original Article6 complete list/total",
+        "originalValue": 58
+      },
+      {
+        "address": "empire.bavaria",
+        "value": 6,
+        "originalText": "Bavaria 6",
+        "source": "german1871",
+        "locator": "original Articles1/6",
+        "originalSource": "german1871",
+        "originalLocator": "original Articles1/6",
+        "originalValue": 6
+      }
+    ],
+    "ownerAdmission": "company/domains/briefs/2026-10-19-history-next10-compact-owner-disposition.md",
+    "semanticApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-language-applicability.md",
+    "culturalApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-cultural-applicability.md",
+    "originalEndpoints": [
+      1700,
+      1900
+    ]
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "german1867",
+        "url": "https://www.verfassungen.de/de67-18/verfassung67.htm",
+        "maker": "North German Confederation constitution, 16 April 1867",
+        "custodian": "verfassungen.de documentary edition",
+        "type": "Original1867 constitution transcription with editorial framing",
+        "language": "German",
+        "locator": "16April1867 title; original Articles1 and6, complete43-vote list; no editorial history imported",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      },
+      {
+        "id": "german1871",
+        "url": "https://www.verfassungen.de/de67-18/verfassung71.htm",
+        "maker": "German Empire constitution, 16 April 1871; original schedule",
+        "custodian": "verfassungen.de documentary edition",
+        "type": "Original1871 imperial constitution with later amendments visibly separated",
+        "language": "German",
+        "locator": "16April1871 law; original constitutional Articles1 and6, total58; EXCLUDE later1911 Article6a annotation",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "slug": "history-buenos-aires-asuncion-1700-1880",
+  "title": "One political act?",
+  "hook": "One political act?",
+  "domain": "history",
+  "concept": "buenos-aires-asuncion-1700-1880",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Relate the earlier Buenos Aires vice-regal centre to a separately chosen 1811 Paraguayan government and the 1816 United Provinces declaration at Tucumán."
+    ]
+  },
+  "misconception": "One Buenos Aires act covered both",
+  "objective": "Relate the earlier Buenos Aires vice-regal centre to a separately chosen 1811 Paraguayan government and the 1816 United Provinces declaration at Tucumán.",
+  "claims": [
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c1",
+      "text": "The selected Vice-regal record identifies centre as former vice-regal capital. Attribution: Guido Rodríguez Alcalá, Paraguay Culture Secretariat 2011 account.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/paraguayCongress.txt', 'sha256': '4dc16ad51f83c84ff7601f8aeaa21651a19d340e9c02af75759caaba23ddd9fd', 'kind': 'actual acquired body anchor', 'anchor': 'cuya capital era Buenos Aires', 'lineStart': 52, 'lineEnd': 52}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.origin.fields.v2.origin.centre; loaded stage tile"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c2",
+      "text": "The selected 1811 record identifies place as Asunción congress. Attribution: Paraguay Culture 2011 account; restricted participation.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/paraguayCongress.txt', 'sha256': '4dc16ad51f83c84ff7601f8aeaa21651a19d340e9c02af75759caaba23ddd9fd', 'kind': 'actual acquired body anchor', 'anchor': 'El congreso reunido en Asunción en junio de 1811', 'lineStart': 47, 'lineEnd': 47}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.paraguay.fields.v2.paraguay.place; loaded stage tile"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c3",
+      "text": "The selected 1811 record identifies act as separate five-member governing junta. Attribution: Paraguay Culture 2011 account; restricted participation.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/paraguayCongress.txt', 'sha256': '4dc16ad51f83c84ff7601f8aeaa21651a19d340e9c02af75759caaba23ddd9fd', 'kind': 'actual acquired body anchor', 'anchor': 'Formar una junta de gobierno de cinco miembros', 'lineStart': 57, 'lineEnd': 57}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.paraguay.fields.v2.paraguay.act; loaded stage tile"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c4",
+      "text": "The selected 1816 record identifies place as Tucumán Congress. Attribution: MJP French edition of United Provinces declaration; Buenos Aires is not declaration location.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/ar1816.txt', 'sha256': 'f52ba85810114b280c2d68faaab2e33f6d924589417d31574d0b29eda5490a19', 'kind': 'actual acquired body anchor', 'anchor': 'Tucuman', 'lineStart': 35, 'lineEnd': 35}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.provinces.fields.v2.provinces.place; loaded stage tile"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c5",
+      "text": "The selected 1816 record identifies act as United Provinces separate declaration. Attribution: MJP French edition of United Provinces declaration; Buenos Aires is not declaration location.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/ar1816.txt', 'sha256': 'f52ba85810114b280c2d68faaab2e33f6d924589417d31574d0b29eda5490a19', 'kind': 'actual acquired body anchor', 'anchor': 'Provinces-Unies', 'lineStart': 45, 'lineEnd': 45}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.provinces.fields.v2.provinces.act; loaded stage tile"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c6",
+      "text": "Paraguay Culture account; MJP French edition Restricted participation",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c7",
+      "text": "Paraguay’s Culture account identifies Buenos Aires as former vice-regal capital and Asunción’s 1811 government choice. MJP’s French edition locates the separate United Provinces declaration at Tucumán in 1816. Shared administration did not make one declaration; the account explicitly describes restricted participation.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c8",
+      "text": "Did the former vice-regal centre make the two later acts one Buenos Aires declaration? Different actors and acts: Asunción 1811 and Tucumán 1816",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c9",
+      "text": "Why cannot the 1816 Tucumán declaration stand for the 1811 Asunción choice? They are distinct dated actions by different political bodies; the earlier shared vice-regal relation does not merge them.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c10",
+      "text": "The shared vice-regal relation does not merge the 1811 Asunción government choice and 1816 Tucumán declaration. Restricted participation remains explicit; no universal representation or Indigenous consent follows.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c11",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/; https://mjp.univ-perp.fr/constit/ar1816.htm; owner v5 exact case history-buenos-aires-asuncion-1700-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original relation schematic"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c12",
+      "text": "Record Vice-regal. Guido Rodríguez Alcalá, Paraguay Culture Secretariat 2011 account.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/ v2.origin.centre; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 52–52",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record origin attribution and source pins"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c13",
+      "text": "Record 1811. Paraguay Culture 2011 account; restricted participation.",
+      "support": "source",
+      "source": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/ v2.paraguay.place; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 47–47; https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/ v2.paraguay.act; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 57–57",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record paraguay attribution and source pins"
+    },
+    {
+      "id": "history.history-buenos-aires-asuncion-1700-1880.c14",
+      "text": "Record 1816. MJP French edition of United Provinces declaration; Buenos Aires is not declaration location.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm v2.provinces.place; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 35–35; https://mjp.univ-perp.fr/constit/ar1816.htm v2.provinces.act; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 45–45",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record provinces attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "Why cannot the 1816 Tucumán declaration stand for the 1811 Asunción choice?",
+    "options": [
+      "They are distinct dated actions by different political bodies; the earlier shared vice-regal relation does not merge them.",
+      "One Buenos Aires act covered both"
+    ],
+    "answer": 0,
+    "why": "They are distinct dated actions by different political bodies; the earlier shared vice-regal relation does not merge them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:buenos-aires-asuncion-1700-1880",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "The shared vice-regal relation does not merge the 1811 Asunción government choice and 1816 Tucumán declaration. Restricted participation remains explicit; no universal representation or Indigenous consent follows.",
+  "lineage": {
+    "sourceCaseId": "map-buenos-aires-asuncion-1700-1880",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1700,
+      1880
+    ],
+    "originalPayoff": "viceroyal administration and separate independence processes",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "core:paraguayCongress",
+        "url": "https://cultura.gov.py/2011/05/el-congreso-del-17-al-20-de-junio-de-1811/",
+        "type": "Actual acquired research body; individual attribution below"
+      },
+      {
+        "id": "ar1816",
+        "url": "https://mjp.univ-perp.fr/constit/ar1816.htm",
+        "type": "French documentary edition of historical operative text"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

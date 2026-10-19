@@ -1,0 +1,204 @@
+{
+  "slug": "history-venice-split-1700-1815",
+  "title": "What does this evidence track?",
+  "hook": "What does this evidence track?",
+  "domain": "history",
+  "concept": "venice-split-1700-1815",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Use acquired Split local administration before/after Napoleonic change; distinguish administrative evidence from unsupported maritime-network inference."
+    ]
+  },
+  "misconception": "The administrative change proves all sea links ended",
+  "objective": "Use acquired Split local administration before/after Napoleonic change; distinguish administrative evidence from unsupported maritime-network inference.",
+  "claims": [
+    {
+      "id": "history.history-venice-split-1700-1815.c1",
+      "text": "The selected Venetian record identifies office as Split rector and limited municipal council. Attribution: Split State Archive municipal inventory, modern institutional history, not original charter.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/splitMunicipalInventory.txt', 'sha256': 'e6472a3f251bf34161556a8af84e70239696ad1a1ac8e021f1d11198e5a7e5e7', 'kind': 'actual acquired body anchor', 'anchor': 'Kneza postavlja Venecija', 'lineStart': 97, 'lineEnd': 97}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.venetian.fields.v2.venetian.office; loaded stage tile"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c2",
+      "text": "The selected 1807 record identifies office as Split first-instance court in French-period judicial organization. Attribution: Split State Archive French-period court inventory; distinguishes 1806 decree/rule from 1807 operation.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/splitFrenchCourt.txt', 'sha256': '8aeb41e4f6179872c2b5fa692a330888cb81bc9795a7121899f36c41f3c9e817', 'kind': 'actual acquired body anchor', 'anchor': 'di prima istanza ) u Zadru i Splitu', 'lineStart': 103, 'lineEnd': 103}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.court.fields.v2.court.office; loaded stage tile"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c3",
+      "text": "The selected 1807 record identifies operation as judicial organization began operating 1 January 1807. Attribution: Split State Archive French-period court inventory; distinguishes 1806 decree/rule from 1807 operation.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/splitFrenchCourt.txt', 'sha256': '8aeb41e4f6179872c2b5fa692a330888cb81bc9795a7121899f36c41f3c9e817', 'kind': 'actual acquired body anchor', 'anchor': 's radom 1.siječnja 1807.godine.', 'lineStart': 100, 'lineEnd': 100}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.court.fields.v2.court.operation; loaded stage tile"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c4",
+      "text": "Split archive inventories Administration ≠ maritime links",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c5",
+      "text": "Split’s archive inventories describe Venetian municipal offices and a French-period first-instance court operating from 1 January 1807, after 1806 rules. These are local administrative witnesses, not merely treaty recipients. They do not establish whether particular maritime connections ended or persisted; that needs different evidence.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c6",
+      "text": "Does evidence of a new Split court show every maritime connection changed? It shows a local institution; sea-route continuity needs different evidence",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c7",
+      "text": "What changes in the acquired local evidence, and what cannot be inferred about Venice–Split links? The local office/court relation changes; the evidence does not determine the continuity of particular maritime routes.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c8",
+      "text": "Split inventories are modern institutional accounts. Distinguish 1806 rules from 1 January 1807 operation. Local administration does not establish particular maritime routes, glory for colonial rulers, permanent borders or legitimate title.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c9",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf; owner v5 exact case history-venice-split-1700-1815",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original relation schematic"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c10",
+      "text": "Record Venetian. Split State Archive municipal inventory, modern institutional history, not original charter.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf v2.venetian.office; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 97–97",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record venetian attribution and source pins"
+    },
+    {
+      "id": "history.history-venice-split-1700-1815.c11",
+      "text": "Record 1807. Split State Archive French-period court inventory; distinguishes 1806 decree/rule from 1807 operation.",
+      "support": "source",
+      "source": "https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf v2.court.office; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 103–103; https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf v2.court.operation; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 100–100",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record court attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "What changes in the acquired local evidence, and what cannot be inferred about Venice–Split links?",
+    "options": [
+      "The local office/court relation changes; the evidence does not determine the continuity of particular maritime routes.",
+      "The administrative change proves all sea links ended"
+    ],
+    "answer": 0,
+    "why": "The local office/court relation changes; the evidence does not determine the continuity of particular maritime routes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:venice-split-1700-1815",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Split inventories are modern institutional accounts. Distinguish 1806 rules from 1 January 1807 operation. Local administration does not establish particular maritime routes, glory for colonial rulers, permanent borders or legitimate title.",
+  "lineage": {
+    "sourceCaseId": "map-venice-split-1700-1815",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1700,
+      1815
+    ],
+    "originalPayoff": "Venetian and Napoleonic-era changes, distinguishing city administration from maritime networks",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "core:splitMunicipalInventory",
+        "url": "https://www.das.hr/wp-content/uploads/2021/03/HR-DAST-1-Splitska-op%C4%87ina.pdf",
+        "type": "Actual acquired research body; individual attribution below"
+      },
+      {
+        "id": "core:splitFrenchCourt",
+        "url": "https://www.das.hr/wp-content/uploads/2020/09/HR-DAST-532-Prvostupanjski-sud-u-Splitu1806-1813..pdf",
+        "type": "Actual acquired research body; individual attribution below"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

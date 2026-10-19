@@ -1,0 +1,289 @@
+{
+  "slug": "history-dublin-london-1700-1960",
+  "title": "Same king, same parliament?",
+  "hook": "Check lawmaking separately from the crown.",
+  "domain": "history",
+  "concept": "parliament-versus-monarch-continuity",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A monarch and a legislature are different institutions."
+    ],
+    "doesNotKnow": [
+      "Distinguish a legislature created in 1922 from the united parliament specified in 1800, without inferring unrestricted sovereignty."
+    ]
+  },
+  "misconception": "Yes, the king determines the parliament",
+  "objective": "Distinguish a legislature created in 1922 from the united parliament specified in 1800, without inferring unrestricted sovereignty.",
+  "claims": [
+    {
+      "id": "history.history-dublin-london-1700-1960.c1",
+      "text": "Act provides united parliament",
+      "address": "model.RECORDS.union.parliament; stage field",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Article Third",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c2",
+      "text": "Union from 1801",
+      "address": "model.RECORDS.union.start; stage field",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Article First",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c3",
+      "text": "Text provides Oireachtas: King + two houses",
+      "address": "model.RECORDS.constitution.parliament; stage field",
+      "support": "source",
+      "source": "https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html First Schedule Article12",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c4",
+      "text": "Dublin or chosen place",
+      "address": "model.RECORDS.constitution.location; stage field",
+      "support": "source",
+      "source": "https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html First Schedule Article13",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c5",
+      "text": "Partition: text ≠ territorial operation",
+      "address": "stage mandatory qualifier 1",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c6",
+      "text": "Royal connection does not identify the legislature; Oireachtas chooses its location.",
+      "address": "reveal sentence 1",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c7",
+      "text": "Partition matters: these constitutional provisions establish neither territorial operation nor an uncontested all-island settlement.",
+      "address": "reveal sentence 2",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c8",
+      "text": "They establish neither everyone’s consent nor identical rights; a text’s provisions are not their implementation.",
+      "address": "reveal sentence 3",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c9",
+      "text": "Does retaining a king establish that the same parliament continues? Answer: No, check the legislature separately",
+      "address": "prediction question/options/answer; title/hook/objective",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c10",
+      "text": "Two institutions share a monarch. Does that identify their lawmaking body? Answer: No, separate institutional evidence is needed",
+      "address": "recall question/options/answer; why",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c11",
+      "text": "Own-English factual summaries and original schematic; not an official translation or official legal text. No source images reproduced.",
+      "address": "Sources authorship/translation notice",
+      "support": "derivation",
+      "source": "Own source/import inspection; source-use construction decision",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c12",
+      "text": "Selected documentary records only. Modern city names and original endpoint ranges identify the inherited case; they do not imply continuous territorial coverage. Historical makers differ from later custodians and documentary editors.",
+      "address": "Sources provenance",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; source-use/language records",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c13",
+      "text": "Source records are linked for their factual evidence. No source expression, image, layout, map, coordinates, seal or facsimile is reproduced. No blanket licence or institutional/community endorsement is implied. © Government of Ireland / Houses of the Oireachtas. Houses of the Oireachtas source attribution; changed own-English nonofficial summaries, not official legislation. Source notices and disclaimers apply by reference to the linked PSI policy. Crown / legislation.gov.uk statutory source credit under the linked OGLv3.",
+      "address": "Sources credit and exclusions",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true Articles First and Third; use unchanged operative clauses, not modern amendment annotations; https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone; company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c14",
+      "text": "Parliaments of Great Britain and Ireland, 1800; Crown statutory record. Custodian/editor: UK legislation.gov.uk. Official revised statutory text containing annotated historical operative ArticlesI/III. English. Locator: Articles First and Third; use unchanged operative clauses, not modern amendment annotations. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.irish1800",
+      "support": "source",
+      "source": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c15",
+      "text": "Irish legislature, Constitution of the Irish Free State (Saorstát Éireann) Act 1922. Custodian/editor: Irish Statute Book. Official as-enacted First Schedule. English. Locator: Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.irish1922",
+      "support": "source",
+      "source": "https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-dublin-london-1700-1960.c16",
+      "text": "Each complete distinct documentary record earns one witness; local Reset clears selection and Sources, retaining both loaded records; full restart clears the attempt. Unvisited placeholders contain no historical answer.",
+      "address": "local controls; model transition; explore hint",
+      "support": "derivation",
+      "source": "model.ts / model.repro.mjs",
+      "status": "unverified"
+    }
+  ],
+  "recall": {
+    "question": "Two institutions share a monarch. Does that identify their lawmaking body?",
+    "options": [
+      "Yes, it must be identical",
+      "No, separate institutional evidence is needed"
+    ],
+    "answer": 1,
+    "why": "No, separate institutional evidence is needed"
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:parliament-versus-monarch-continuity",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Do not erase partition, civil conflict or people excluded from decision-making; a constitutional provision is not universal assent.",
+  "lineage": {
+    "sourceCaseId": "map-dublin-london-1700-1960",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalBuilder": "contributor (PR #4)",
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new original documentary schematic without its map or data.",
+    "selectedDates": [
+      "1800-07-02",
+      "1922"
+    ],
+    "originalFields": [
+      {
+        "address": "union.parliament",
+        "value": "Parliament of the United Kingdom of Great Britain and Ireland",
+        "originalText": "Act provides united parliament",
+        "source": "irish1800",
+        "locator": "Article Third",
+        "originalSource": "irish1800",
+        "originalLocator": "Article Third",
+        "originalValue": "Parliament of the United Kingdom of Great Britain and Ireland"
+      },
+      {
+        "address": "union.start",
+        "value": "1801-01-01",
+        "originalText": "Union from 1801",
+        "source": "irish1800",
+        "locator": "Article First",
+        "originalSource": "irish1800",
+        "originalLocator": "Article First",
+        "originalValue": "1801-01-01"
+      },
+      {
+        "address": "constitution.parliament",
+        "value": [
+          "King",
+          "Dáil Éireann",
+          "Seanad Éireann"
+        ],
+        "originalText": "Text provides Oireachtas: King + two houses",
+        "source": "irish1922",
+        "locator": "First Schedule Article12",
+        "originalSource": "irish1922",
+        "originalLocator": "First Schedule Article12",
+        "originalValue": [
+          "King",
+          "Dáil Éireann",
+          "Seanad Éireann"
+        ]
+      },
+      {
+        "address": "constitution.location",
+        "value": "in or near Dublin, or another place determined by Oireachtas",
+        "originalText": "Dublin or chosen place",
+        "source": "irish1922",
+        "locator": "First Schedule Article13",
+        "originalSource": "irish1922",
+        "originalLocator": "First Schedule Article13",
+        "originalValue": "in or near Dublin, or another place determined by Oireachtas"
+      }
+    ],
+    "ownerAdmission": "company/domains/briefs/2026-10-19-history-next10-compact-owner-disposition.md",
+    "semanticApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-language-applicability.md",
+    "culturalApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-cultural-applicability.md",
+    "originalEndpoints": [
+      1700,
+      1960
+    ]
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "irish1800",
+        "url": "https://www.legislation.gov.uk/apgb/Geo3/39-40/67/data.xht?view=snippet&wrap=true",
+        "maker": "Parliaments of Great Britain and Ireland, 1800; Crown statutory record",
+        "custodian": "UK legislation.gov.uk",
+        "type": "Official revised statutory text containing annotated historical operative ArticlesI/III",
+        "language": "English",
+        "locator": "Articles First and Third; use unchanged operative clauses, not modern amendment annotations",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      },
+      {
+        "id": "irish1922",
+        "url": "https://www.irishstatutebook.ie/eli/1922/act/1/schedule/1/enacted/en/html",
+        "maker": "Irish legislature, Constitution of the Irish Free State (Saorstát Éireann) Act 1922",
+        "custodian": "Irish Statute Book",
+        "type": "Official as-enacted First Schedule",
+        "language": "English",
+        "locator": "Articles1,12,13; boundary/commencement must use whole Act and Scheduled Treaty, not Article12 alone",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

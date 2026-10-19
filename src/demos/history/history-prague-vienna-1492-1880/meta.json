@@ -1,0 +1,209 @@
+{
+  "slug": "history-prague-vienna-1492-1880",
+  "title": "One ruler, which assemblies?",
+  "hook": "One ruler, which assemblies?",
+  "domain": "history",
+  "concept": "prague-vienna-1492-1880",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Distinguish Prague’s Bohemian Land Diet from the Imperial Council at Vienna within the original period; common ruler is not administrative uniformity."
+    ]
+  },
+  "misconception": "One ruler meant one uniform assembly",
+  "objective": "Distinguish Prague’s Bohemian Land Diet from the Imperial Council at Vienna within the original period; common ruler is not administrative uniformity.",
+  "claims": [
+    {
+      "id": "history.history-prague-vienna-1492-1880.c1",
+      "text": "The selected Prague record identifies institution as Bohemian Land Diet met in Prague inApril 1861. Attribution: Czech parliamentary modern institutional history; restricted electoral representation.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/pragueTradition.txt', 'sha256': '76bf0f3702244c081265031dea621c1f801364143e6767bc7ffc2b8de6d8ea50', 'kind': 'actual acquired body anchor', 'anchor': 'the Bohemian Land Diet met in Prague', 'lineStart': 64, 'lineEnd': 64}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.prague.fields.v2.prague.institution; loaded stage tile"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c2",
+      "text": "The selected Prague record identifies scope as bounded land-level responsibilities. Attribution: Czech parliamentary modern institutional history; restricted electoral representation.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/pragueTradition.txt', 'sha256': '76bf0f3702244c081265031dea621c1f801364143e6767bc7ffc2b8de6d8ea50', 'kind': 'actual acquired body anchor', 'anchor': 'The responsibilities of the land diets were limited', 'lineStart': 65, 'lineEnd': 65}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.prague.fields.v2.prague.scope; loaded stage tile"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c3",
+      "text": "The selected Vienna record identifies institution as Imperial Council in Vienna. Attribution: Same institutional account; exact separate competencies are not inferred from common ruler.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/pragueTradition.txt', 'sha256': '76bf0f3702244c081265031dea621c1f801364143e6767bc7ffc2b8de6d8ea50', 'kind': 'actual acquired body anchor', 'anchor': 'The Imperial Council in Vienna', 'lineStart': 62, 'lineEnd': 62}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.vienna.fields.v2.vienna.institution; loaded stage tile"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c4",
+      "text": "The selected Vienna record identifies ruler as emperor appointed Diet presiding officers. Attribution: Same institutional account; exact separate competencies are not inferred from common ruler.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; Czech parliamentary institutional account, normalized line65: Diet presiding officers; not earlier proposed Senate at46; {'path': '/tmp/history-next15-purpose-bodies/pragueTradition.txt', 'sha256': '76bf0f3702244c081265031dea621c1f801364143e6767bc7ffc2b8de6d8ea50', 'kind': 'actual acquired body anchor', 'anchor': 'The presiding officers of the assembly were appointed by the Emperor.', 'lineStart': 65, 'lineEnd': 65}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.vienna.fields.v2.shared.ruler; loaded stage tile"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c5",
+      "text": "Czech parliamentary account; restricted electorate Separate institutions",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c6",
+      "text": "The Czech parliamentary account distinguishes Prague’s Bohemian Diet from Vienna’s Imperial Council under a shared emperor. Bounded land responsibilities and restricted electoral representation remain explicit. Shared dynastic authority did not erase separate institutions or establish equal participation; the 1918 republic is outside this comparison.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c7",
+      "text": "Did the shared ruler eliminate the separate Bohemian Diet? Prague’s separate Land Diet and Vienna’s Imperial Council coexisted",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c8",
+      "text": "What evidence defeats “one ruler means one uniform assembly”? A separate Bohemian Diet met in Prague while the Imperial Council was in Vienna; the account identifies bounded land responsibilities.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c9",
+      "text": "The bounded 1861/1867 institutions are not modern sovereign city polities. Shared emperor does not establish uniform administration or universal Czech/German/Slovak representation; restricted electoral participation stays visible.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c10",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/; owner v5 exact case history-prague-vienna-1492-1880",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original relation schematic"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c11",
+      "text": "Record Prague. Czech parliamentary modern institutional history; restricted electoral representation.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/ v2.prague.institution; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 64–64; https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/ v2.prague.scope; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 65–65",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record prague attribution and source pins"
+    },
+    {
+      "id": "history.history-prague-vienna-1492-1880.c12",
+      "text": "Record Vienna. Same institutional account; exact separate competencies are not inferred from common ruler.",
+      "support": "source",
+      "source": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/ v2.vienna.institution; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 62–62; https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/ v2.shared.ruler; Czech parliamentary institutional account, normalized line65: Diet presiding officers; not earlier proposed Senate at46; acquired-body lines 65–65",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record vienna attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "What evidence defeats “one ruler means one uniform assembly”?",
+    "options": [
+      "A separate Bohemian Diet met in Prague while the Imperial Council was in Vienna; the account identifies bounded land responsibilities.",
+      "One ruler meant one uniform assembly"
+    ],
+    "answer": 0,
+    "why": "A separate Bohemian Diet met in Prague while the Imperial Council was in Vienna; the account identifies bounded land responsibilities."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:prague-vienna-1492-1880",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "The bounded 1861/1867 institutions are not modern sovereign city polities. Shared emperor does not establish uniform administration or universal Czech/German/Slovak representation; restricted electoral participation stays visible.",
+  "lineage": {
+    "sourceCaseId": "map-prague-vienna-1492-1880",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1492,
+      1880
+    ],
+    "originalPayoff": "Bohemian and Habsburg institutions, distinguishing dynastic union from administrative uniformity",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "core:pragueTradition",
+        "url": "https://pspen.psp.cz/chamber-members/legal-framework/tradition-parliamentarism/",
+        "type": "Actual acquired research body; individual attribution below"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

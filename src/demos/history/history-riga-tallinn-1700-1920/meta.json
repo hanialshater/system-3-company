@@ -1,0 +1,442 @@
+{
+  "slug": "history-riga-tallinn-1700-1920",
+  "title": "One Baltic recognition?",
+  "hook": "Each treaty names its own state.",
+  "domain": "history",
+  "concept": "separate-state-recognition-treaties",
+  "status": "draft",
+  "version": 3,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A statement about one named entity does not automatically cover its neighbour."
+    ],
+    "doesNotKnow": [
+      "Distinguish Russian recognition of Estonia andLatvia in two separate 1920 treaty records."
+    ]
+  },
+  "misconception": "Yes, both areBaltic",
+  "objective": "Distinguish Russian recognition of Estonia andLatvia in two separate 1920 treaty records.",
+  "claims": [
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c1",
+      "text": "Russia (1920 treaty party) recognises",
+      "address": "model.RECORDS.tartu.recognizer; stage field",
+      "support": "source",
+      "source": "https://vm.ee/en/tartu-peace reproduced ArticleII",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c2",
+      "text": "Estonia named",
+      "address": "model.RECORDS.tartu.state; stage field",
+      "support": "source",
+      "source": "https://vm.ee/en/tartu-peace ArticleII named state, not genericBalticregion",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c3",
+      "text": "Russia (1920 treaty party) recognises",
+      "address": "model.RECORDS.riga.recognizer; stage field",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf LNTSvolume2 printed213 Article2",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c4",
+      "text": "Latvia named",
+      "address": "model.RECORDS.riga.state; stage field",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf same operative clause",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c5",
+      "text": "Signing ≠ effect or fulfilment",
+      "address": "stage mandatory qualifier 1",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c6",
+      "text": "Each treaty names its own state; a regional label cannot replace that evidence.",
+      "address": "reveal sentence 1",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c7",
+      "text": "Russia here means the 1920 treaty party.",
+      "address": "reveal sentence 2",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c8",
+      "text": "Signing alone does not establish entry into force; these excerpts establish neither every resident’s wishes, settled borders nor later fulfilment of treaty promises.",
+      "address": "reveal sentence 3",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c9",
+      "text": "Does the Estonia treaty’s recognition alone establish Latvia’s recognition? Answer: No, check Latvia’s own treaty",
+      "address": "prediction question/options/answer; title/hook/objective",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c10",
+      "text": "A treaty recognises one named state. What establishes recognition of its neighbour? Answer: A sourced act concerning that neighbour",
+      "address": "recall question/options/answer; why",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c11",
+      "text": "Own-English factual summaries and original schematic; not an official translation or official legal text. No source images reproduced.",
+      "address": "Sources authorship/translation notice",
+      "support": "derivation",
+      "source": "Own source/import inspection; source-use construction decision",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c12",
+      "text": "Selected documentary records only. Modern city names and original endpoint ranges identify the inherited case; they do not imply continuous territorial coverage. Historical makers differ from later custodians and documentary editors.",
+      "address": "Sources provenance",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; source-use/language records",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c13",
+      "text": "Source records are linked for their factual evidence. No source expression, image, layout, map, coordinates, seal or facsimile is reproduced. No blanket licence or institutional/community endorsement is implied.",
+      "address": "Sources credit and exclusions",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading; https://vm.ee/en/tartu-peace ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect; company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c14",
+      "text": "Latvia and Russia (1920 treaty party), treaty signed 11 August 1920. Custodian/editor: League of Nations Secretariat, hosted by UN. Contemporary treaty-series English translation of Latvia-Russia treaty. English translation; Latvian/Russian originals elsewhere in item. Locator: Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading. Accessed 2026-10-19. Acquisition/scope: Actual UN-hosted PDF acquired and raw bytes pinned; operative Article2 read through web PDF extraction, printed213/PDFindex212",
+      "address": "Sources.items.rigaLNTS",
+      "support": "source",
+      "source": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c15",
+      "text": "Estonia and Russia (1920 treaty party), treaty signed 2 February 1920. Custodian/editor: Estonian Ministry of Foreign Affairs. Official reproduction of Tartu treaty ArticleII plus modern context. English translation. Locator: ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.tallinn1920",
+      "support": "source",
+      "source": "https://vm.ee/en/tartu-peace; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-riga-tallinn-1700-1920.c16",
+      "text": "Each complete distinct documentary record earns one witness; local Reset clears selection and Sources, retaining both loaded records; full restart clears the attempt. Unvisited placeholders contain no historical answer.",
+      "address": "local controls; model transition; explore hint",
+      "support": "derivation",
+      "source": "model.ts / model.repro.mjs",
+      "status": "unverified"
+    },
+    {
+      "address": "purposeAugmentation.witnesses.rigaImperialTransition",
+      "text": "1710 Riga taken from Swedish forces by Peter I; 1721 Vidzeme settlement. Latvian MFA modern summary, not original treaty or consent. Sources Reset",
+      "supportPins": [
+        "riga-mfa"
+      ],
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-riga-tallinn-1700-1920.c17",
+      "support": "source",
+      "source": "riga-mfa"
+    },
+    {
+      "address": "purposeAugmentation.witnesses.tallinnImperialTransition",
+      "text": "1710 Tallinn: Swedish troops hand posts to Russian troops after capitulation. City Archives edited account; working Estonian/English, minutes uninspected, calendar unresolved. Sources Reset",
+      "supportPins": [
+        "tallinn-archive"
+      ],
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-riga-tallinn-1700-1920.c18",
+      "support": "source",
+      "source": "tallinn-archive"
+    },
+    {
+      "address": "purposeAugmentation.retainedComparison",
+      "text": "Riga 1710 seizure; Tallinn 1710 handover; Swedish→Russian Vidzeme 1721 settlement 1920 Russian recognition: Estonia/Latvia Tallinn calendar unresolved; working Estonian/English unreviewed Modern accounts/translated treaties Sources Reset",
+      "support": "derived only from all actually acquired qualified original/new witnesses; independent applicability pending",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-riga-tallinn-1700-1920.c19",
+      "source": "history-riga-tallinn-1700-1920 retained documentary witnesses"
+    },
+    {
+      "address": "purposeAugmentation.reveal",
+      "text": "Each treaty names its own state; a regional label cannot replace that evidence. Russia here means the 1920 treaty party. Signing alone does not establish entry into force; these excerpts establish neither every resident’s wishes, settled borders nor later fulfilment of treaty promises. Modern institutional accounts separately describe Riga’s seizure from Swedish forces and Tallinn’s Swedish-to-Russian troop handover in 1710; Vidzeme’s 1721 settlement is distinct. Tallinn’s calendar remains unresolved; working Estonian/English unreviewed. These accounts are not original treaties or residents’ consent.",
+      "support": "original reveal plus pinned additional witness relations",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-riga-tallinn-1700-1920.c20",
+      "source": "history-riga-tallinn-1700-1920 retained documentary witnesses"
+    }
+  ],
+  "recall": {
+    "question": "A treaty recognises one named state. What establishes recognition of its neighbour?",
+    "options": [
+      "The neighbour being in the same region",
+      "A sourced act concerning that neighbour"
+    ],
+    "answer": 1,
+    "why": "A sourced act concerning that neighbour"
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:separate-state-recognition-treaties",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Do not collapse Estonia andLatvia into one polity or treat perpetual treaty wording as proof that later breaches could not occur.",
+  "lineage": {
+    "sourceCaseId": "map-riga-tallinn-1700-1920",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalBuilder": "contributor (PR #4)",
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new original documentary schematic without its map or data.",
+    "selectedDates": [
+      "1920-02-02",
+      "1920-08-11"
+    ],
+    "originalFields": [
+      {
+        "address": "tartu.recognizer",
+        "value": "Russia",
+        "originalText": "Russia (1920 treaty party) recognises",
+        "source": "tallinn1920",
+        "locator": "reproduced ArticleII",
+        "originalSource": "tallinn1920",
+        "originalLocator": "reproduced ArticleII",
+        "originalValue": "Russia"
+      },
+      {
+        "address": "tartu.state",
+        "value": "State of Estonia",
+        "originalText": "Estonia named",
+        "source": "tallinn1920",
+        "locator": "ArticleII named state, not genericBalticregion",
+        "originalSource": "tallinn1920",
+        "originalLocator": "ArticleII named state, not genericBalticregion",
+        "originalValue": "State of Estonia"
+      },
+      {
+        "address": "riga.recognizer",
+        "value": "Russia",
+        "originalText": "Russia (1920 treaty party) recognises",
+        "source": "rigaLNTS",
+        "locator": "LNTSvolume2 printed213 Article2",
+        "originalSource": "rigaLNTS",
+        "originalLocator": "LNTSvolume2 printed213 Article2",
+        "originalValue": "Russia"
+      },
+      {
+        "address": "riga.state",
+        "value": "Latvian state",
+        "originalText": "Latvia named",
+        "source": "rigaLNTS",
+        "locator": "same operative clause",
+        "originalSource": "rigaLNTS",
+        "originalLocator": "same operative clause",
+        "originalValue": "Latvian state"
+      }
+    ],
+    "ownerAdmission": "company/domains/briefs/2026-10-19-history-next10-compact-owner-disposition.md",
+    "semanticApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-language-applicability.md",
+    "culturalApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-cultural-applicability.md",
+    "originalEndpoints": [
+      1700,
+      1920
+    ]
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "rigaLNTS",
+        "url": "https://treaties.un.org/doc/Publication/UNTS/LON/Volume%202/v2.pdf",
+        "maker": "Latvia and Russia (1920 treaty party), treaty signed 11 August 1920",
+        "custodian": "League of Nations Secretariat, hosted by UN",
+        "type": "Contemporary treaty-series English translation of Latvia-Russia treaty",
+        "language": "English translation; Latvian/Russian originals elsewhere in item",
+        "locator": "Volume2 No67, printed213/PDFindex212 Article2; own summary distinguishes recognized State of Latvia; date11August1920 from item heading",
+        "accessed": "2026-10-19",
+        "limitation": "Actual UN-hosted PDF acquired and raw bytes pinned; operative Article2 read through web PDF extraction, printed213/PDFindex212"
+      },
+      {
+        "id": "tallinn1920",
+        "url": "https://vm.ee/en/tartu-peace",
+        "maker": "Estonia and Russia (1920 treaty party), treaty signed 2 February 1920",
+        "custodian": "Estonian Ministry of Foreign Affairs",
+        "type": "Official reproduction of Tartu treaty ArticleII plus modern context",
+        "language": "English translation",
+        "locator": "ArticleII block; signing2February1920 and entered force30March1920 from surrounding institutional account; teach signing not effect",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  },
+  "purposeAugmentation": {
+    "ownerCore": "company/domains/proposals/2026-10-19-history-next10-six-purpose-owner-core-v3.json",
+    "ownerCoreSha256": "483123efce0e6a4dc132fc48db54ef1f6012851671fa9a8aaa9bed89e1638fa3",
+    "requiredWitnessIds": [
+      "tartu",
+      "riga",
+      "rigaImperialTransition",
+      "tallinnImperialTransition"
+    ],
+    "witnesses": [
+      {
+        "id": "rigaImperialTransition",
+        "dateLabel": "1710Riga;1721Vidzeme",
+        "ordinaryQualifiedFrame": "1710 Riga taken from Swedish forces by Peter I; 1721 Vidzeme settlement. Latvian MFA modern summary, not original treaty or consent. Sources Reset",
+        "stageLetterTokensIncludingSourcesReset": 21,
+        "sourcePins": [
+          {
+            "id": "riga-mfa",
+            "url": "https://www2.mfa.gov.lv/en/belgium/history-of-latvia",
+            "path": "company/research/history-next10-four-purpose-bodies/riga-mfa.html",
+            "http": "200",
+            "exit": 0,
+            "error": "",
+            "sha256": "22481cc302b32965a4975864ba47e4fca3b00f87e26917917f23d386c7601943",
+            "bytes": 67869,
+            "normalizedPath": "company/research/history-next10-four-purpose-bodies/riga-mfa.txt",
+            "normalizedSha256": "aa767664bc64601f661db3e97073bfb3e6f0d5fe0066251d811e9feb89da4dbb",
+            "title": "History of Latvia, Embassy Belgium6March2023",
+            "historicalMaker": "Modern Latvian MFA institutional account",
+            "custodian": "Latvian Ministry of Foreign Affairs, Embassy Belgium",
+            "locator": "Normalized23–24: Riga taken from Swedes1710, Vidzeme secured under Nystad1721",
+            "minimalOwnEnglishFact": "Latvian MFA dates Riga’s seizure from Swedish forces by PeterI to1710, and Sweden-to-Russia Vidzeme settlement to1721.",
+            "limits": "Modern summary, not acquired original1721treaty; do not collapse1710capture into1721cession, all Baltic regions or present-day Latvia into one simultaneous transfer. No consent inferred.",
+            "editionLanguageMediation": "English institutional account; source attribution for underlying narrative not established.",
+            "rights": "Evidence acquisition only; use own minimal attributed factual paraphrase. No copied prose, source translation, image, map, layout, facsimile or dataset permitted by this research packet; source-use owner assesses proposed adoption.",
+            "claimStatus": "unverified",
+            "checkedBy": "",
+            "checkedOn": "",
+            "sourceId": "riga-mfa",
+            "bodyPath": "company/research/history-next10-four-purpose-bodies/riga-mfa.html",
+            "bodySha256": "22481cc302b32965a4975864ba47e4fca3b00f87e26917917f23d386c7601943",
+            "sourceLedger": "company/research/2026-10-19-history-next10-four-purpose-bridges-ledger.json",
+            "sourceLedgerSha256": "651f751ae5c0d80e9c39e3db1341108185af405a02af7b722b5387a55e4dfe30",
+            "representation": "actual acquired HTML and normalized text",
+            "claimsStatus": "unverified",
+            "extractedTextPath": "company/research/history-next10-four-purpose-bodies/riga-mfa.txt",
+            "extractedTextSha256": "aa767664bc64601f661db3e97073bfb3e6f0d5fe0066251d811e9feb89da4dbb"
+          }
+        ],
+        "earnedLearningValue": "A city-specific earlier imperial conquest and separately dated regional settlement precede Latvia’s1920recognition.",
+        "requiredOrdinaryContext": [
+          "Riga1710capture is not1721Vidzeme settlement or all present-day Latvia; no universal consent."
+        ],
+        "claimSupportStatus": "unverified",
+        "checkedBy": "",
+        "checkedOn": "",
+        "actualDistinctEncounterRequired": true,
+        "sourceOrContextClickIsNotEvidence": true
+      },
+      {
+        "id": "tallinnImperialTransition",
+        "dateLabel": "1710year only",
+        "ordinaryQualifiedFrame": "1710 Tallinn: Swedish troops hand posts to Russian troops after capitulation. City Archives edited account; working Estonian/English, minutes uninspected, calendar unresolved. Sources Reset",
+        "stageLetterTokensIncludingSourcesReset": 22,
+        "sourcePins": [
+          {
+            "id": "tallinn-archive",
+            "url": "https://linnaarhiiv.wordpress.com/2022/09/29/tallinn-1710/",
+            "http": "200 substantive acquired body",
+            "path": "company/research/history-next10-four-purpose-bodies/tallinn-archive.html",
+            "sha256": "89a4d346090554a4d43f2af3d283b90a1d4547219dfc8ea1753eaa16b22ccf49",
+            "bytes": 191884,
+            "normalizedPath": "company/research/history-next10-four-purpose-bodies/tallinn-archive.txt",
+            "normalizedSha256": "e8edd0175b963c5ac0b205cc3c22bdb443037aa933c9cf9823193a394cd164fd",
+            "title": "Tallinn1710, City Archives29September2022",
+            "historicalMaker": "Modern City Archives exhibition text based on1710Town Council minutes; historical minutesTLA.230.1.Ab147",
+            "custodian": "Tallinna Linnaarhiiv via institutional WordPress blog",
+            "locator": "Normalized lines14–15 prior Swedish city and1710context;87capitulation;89–91 30September entry replacing Swedish posts with Russian troops;94 archival source TLA.230.1.Ab147. Retain year1710only; day/calendar not certified.",
+            "minimalOwnEnglishFact": "The City Archives account describes1710Tallinn’s Swedish troops handing posts to Russian troops after capitulation.",
+            "limits": "Use year1710 only until Julian/Gregorian day labels independently resolved; do not call it a1721treaty text. Municipal/guild signatories do not establish all residents’ consent; no copied maps/photos or translated minute prose.",
+            "editionLanguageMediation": "Estonian modern exhibition account with edited minute excerpts. Own working English factual paraphrase requires independent Estonian/English semantic review; manuscript minutes not inspected.",
+            "rights": "Evidence acquisition only; use own minimal attributed factual paraphrase. No copied prose, source translation, image, map, layout, facsimile or dataset permitted by this research packet; source-use owner assesses proposed adoption.",
+            "claimStatus": "unverified",
+            "checkedBy": "",
+            "checkedOn": "",
+            "sourceId": "tallinn-archive",
+            "bodyPath": "company/research/history-next10-four-purpose-bodies/tallinn-archive.html",
+            "bodySha256": "89a4d346090554a4d43f2af3d283b90a1d4547219dfc8ea1753eaa16b22ccf49",
+            "sourceLedger": "company/research/2026-10-19-history-next10-four-purpose-bridges-ledger.json",
+            "sourceLedgerSha256": "651f751ae5c0d80e9c39e3db1341108185af405a02af7b722b5387a55e4dfe30",
+            "representation": "actual acquired HTML and normalized text",
+            "claimsStatus": "unverified",
+            "extractedTextPath": "company/research/history-next10-four-purpose-bodies/tallinn-archive.txt",
+            "extractedTextSha256": "e8edd0175b963c5ac0b205cc3c22bdb443037aa933c9cf9823193a394cd164fd",
+            "fullSourcesCredit": "Triin Kröönström; Tallinna Linnaarhiiv. Exhibition text2010, post29September2022, underlying1710TownCouncil minutes TLA.230.1.Ab147, manuscript not inspected; calendar not certified."
+          }
+        ],
+        "earnedLearningValue": "A separately supported Swedish→Russian city transition prevents imposing Riga’s capture/settlement dates on Tallinn.",
+        "requiredOrdinaryContext": [
+          "Use1710only until Julian/Gregorian labels checked; not an inspected1721treaty.",
+          "Municipal/guild signatories are not all residents; no minute prose, map or photo imported."
+        ],
+        "claimSupportStatus": "unverified",
+        "checkedBy": "",
+        "checkedOn": "",
+        "actualDistinctEncounterRequired": true,
+        "sourceOrContextClickIsNotEvidence": true
+      }
+    ],
+    "retainedComparison": "Riga 1710 seizure; Tallinn 1710 handover; Swedish→Russian Vidzeme 1721 settlement 1920 Russian recognition: Estonia/Latvia Tallinn calendar unresolved; working Estonian/English unreviewed Modern accounts/translated treaties Sources Reset",
+    "reveal": "Each treaty names its own state; a regional label cannot replace that evidence. Russia here means the 1920 treaty party. Signing alone does not establish entry into force; these excerpts establish neither every resident’s wishes, settled borders nor later fulfilment of treaty promises. Modern institutional accounts separately describe Riga’s seizure from Swedish forces and Tallinn’s Swedish-to-Russian troop handover in 1710; Vidzeme’s 1721 settlement is distinct. Tallinn’s calendar remains unresolved; working Estonian/English unreviewed. These accounts are not original treaties or residents’ consent.",
+    "originalPurposeFulfilled": false,
+    "constructionGo": false,
+    "fit": "deferred"
+  }
+}

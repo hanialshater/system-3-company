@@ -1,0 +1,234 @@
+{
+  "slug": "history-santiago-buenos-aires-1800-1900",
+  "title": "One shared act?",
+  "hook": "Compare the two acquired records.",
+  "domain": "history",
+  "concept": "santiago-buenos-aires-1800-1900",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Attach the separate1816 United Provinces declaration and1818 Chile act to their named units; retain Tucumán and Santiago deposit as ordered, not observed custody."
+    ]
+  },
+  "misconception": "One simultaneous city declaration",
+  "objective": "Attach the separate1816 United Provinces declaration and1818 Chile act to their named units; retain Tucumán and Santiago deposit as ordered, not observed custody.",
+  "claims": [
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c1",
+      "text": "The selected 1816 record identifies unit as United Provinces declaration. Attribution: MJP French edition; Buenos Aires linked through earlier junta in editorial context.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/ar1816.txt', 'sha256': 'f52ba85810114b280c2d68faaab2e33f6d924589417d31574d0b29eda5490a19', 'kind': 'actual acquired body anchor', 'anchor': 'Provinces-Unies', 'lineStart': 45, 'lineEnd': 45}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.provinces.fields.v2.provinces.unit; loaded stage comparison row"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c2",
+      "text": "The selected 1816 record identifies place as declaration at Tucumán, not Buenos Aires. Attribution: MJP French edition; Buenos Aires linked through earlier junta in editorial context.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/ar1816.txt', 'sha256': 'f52ba85810114b280c2d68faaab2e33f6d924589417d31574d0b29eda5490a19', 'kind': 'actual acquired body anchor', 'anchor': 'Tucuman', 'lineStart': 35, 'lineEnd': 35}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.provinces.fields.v2.provinces.place; loaded stage comparison row"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c3",
+      "text": "The selected 1818 record identifies unit as separate Chilean declaration. Attribution: MJP French edition; 1 January textual date distinct from 21 February publication date The act orders Santiago deposit; performance/custody is not established..",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/cl1818.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/cl1818.txt', 'sha256': '8f23ae3624d5f1bbf337fa00790d340e23b6d80d0768057f624eddb3d6603147', 'kind': 'actual acquired body anchor', 'anchor': 'territoire continental du Chili', 'lineStart': 68, 'lineEnd': 68}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.chile.fields.v2.chile.unit; loaded stage comparison row"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c4",
+      "text": "The selected 1818 record identifies place as Declaration prescribes deposit in Santiago municipality; completed deposit not established. Attribution: MJP French edition; 1 January textual date distinct from 21 February publication date The act orders Santiago deposit; performance/custody is not established..",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/cl1818.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/cl1818.txt', 'sha256': '8f23ae3624d5f1bbf337fa00790d340e23b6d80d0768057f624eddb3d6603147', 'kind': 'actual acquired body anchor', 'anchor': 'municipalité\\nde Santiago', 'lineStart': 82, 'lineEnd': 83}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.chile.fields.v2.chile.place; loaded stage comparison row"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c5",
+      "text": "Earlier Buenos Aires junta: Buenos Aires earlier junta context, not declaration place.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/ar1816.txt', 'sha256': 'f52ba85810114b280c2d68faaab2e33f6d924589417d31574d0b29eda5490a19', 'kind': 'actual acquired body anchor', 'anchor': 'une Première Junte prend le\\npouvoir à Buenos Aires', 'lineStart': 16, 'lineEnd': 17}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.CONTEXT; corresponding loaded record; reveal"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c6",
+      "text": "Text and publication dates differ: 1 January textual date; 21 February 1818 publication.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/cl1818.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/cl1818.txt', 'sha256': '8f23ae3624d5f1bbf337fa00790d340e23b6d80d0768057f624eddb3d6603147', 'kind': 'actual acquired body anchor', 'anchor': 'été publié le 21 février 1818', 'lineStart': 22, 'lineEnd': 22}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.CONTEXT; corresponding loaded record; reveal"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c7",
+      "text": "MJP French editions Text: 1 January; publication: 21 February Separate named units",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c8",
+      "text": "MJP’s French editions distinguish the United Provinces declaration at Tucumán from Chile’s act ordering Santiago deposit. Buenos Aires belongs to earlier junta context. Chile’s 1 January textual date differs from 21 February publication. Separate named acts establish neither every territory’s participation nor a completed deposit.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c9",
+      "text": "Are these one declaration made simultaneously by Buenos Aires and Santiago? Distinct named acts",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c10",
+      "text": "What does Chile’s act establish about Santiago custody? It orders the declaration deposited in Santiago municipality; this witness does not establish that the deposit occurred. The separate1816 declaration was at Tucumán.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c11",
+      "text": "United Provinces does not mean every territory of modern Argentina; Chile’s state declaration does not supply Mapuche consent. Tucumán is the 1816 declaration site; Chile’s 1 January text and 21 February publication remain distinct. Santiago deposit is ordered in the act, not an observed completed deposit; the same distinction binds stage, field, reveal and recall.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c12",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm; https://mjp.univ-perp.fr/constit/cl1818.htm; owner v5 exact case history-santiago-buenos-aires-1800-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original qualified comparison"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c13",
+      "text": "Record 1816. MJP French edition; Buenos Aires linked through earlier junta in editorial context.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/ar1816.htm v2.provinces.unit; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 45–45; https://mjp.univ-perp.fr/constit/ar1816.htm v2.provinces.place; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 35–35",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record provinces attribution and source pins"
+    },
+    {
+      "id": "history.history-santiago-buenos-aires-1800-1900.c14",
+      "text": "Record 1818. MJP French edition; 1 January textual date distinct from 21 February publication date The act orders Santiago deposit; performance/custody is not established..",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/cl1818.htm v2.chile.unit; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 68–68; https://mjp.univ-perp.fr/constit/cl1818.htm v2.chile.place; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 82–83",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record chile attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "What does Chile’s act establish about Santiago custody?",
+    "options": [
+      "It orders the declaration deposited in Santiago municipality; this witness does not establish that the deposit occurred. The separate1816 declaration was at Tucumán.",
+      "One simultaneous city declaration"
+    ],
+    "answer": 0,
+    "why": "It orders the declaration deposited in Santiago municipality; this witness does not establish that the deposit occurred. The separate1816 declaration was at Tucumán."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:santiago-buenos-aires-1800-1900",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "United Provinces does not mean every territory of modern Argentina; Chile’s state declaration does not supply Mapuche consent. Tucumán is the 1816 declaration site; Chile’s 1 January text and 21 February publication remain distinct. Santiago deposit is ordered in the act, not an observed completed deposit; the same distinction binds stage, field, reveal and recall.",
+  "lineage": {
+    "sourceCaseId": "map-santiago-buenos-aires-1800-1900",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1800,
+      1900
+    ],
+    "originalPayoff": "distinct Chilean/Argentine independence processes and administrative separation",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "ar1816",
+        "url": "https://mjp.univ-perp.fr/constit/ar1816.htm",
+        "type": "French documentary edition of historical operative text"
+      },
+      {
+        "id": "cl1818",
+        "url": "https://mjp.univ-perp.fr/constit/cl1818.htm",
+        "type": "French documentary edition of historical operative text"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "slug": "history-rio-salvador-1700-1900",
+  "title": "One event or three?",
+  "hook": "One event or three?",
+  "domain": "history",
+  "concept": "rio-salvador-1700-1900",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Distinguish the 1763 Salvador→Rio vice-regal seat transfer from the later imperial/republican governmental-form provisions."
+    ]
+  },
+  "misconception": "Yes: capital transfer and republic are one event",
+  "objective": "Distinguish the 1763 Salvador→Rio vice-regal seat transfer from the later imperial/republican governmental-form provisions.",
+  "claims": [
+    {
+      "id": "history.history-rio-salvador-1700-1900.c1",
+      "text": "The selected 1763 record identifies origin as Salvador. Attribution: Arquivo Nacional modern archival account; year precision, not contemporary order wording.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/rioArchiveAdministration.txt', 'sha256': '79c19705489a6899821a7b27516bad2db20021933c82bb9f3006afbd1c6abea1', 'kind': 'actual acquired body anchor', 'anchor': 'em Salvador até 1763', 'lineStart': 453, 'lineEnd': 453}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.seat.fields.v2.seat.origin; loaded stage tile"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c2",
+      "text": "The selected 1763 record identifies destination as Rio de Janeiro. Attribution: Arquivo Nacional modern archival account; year precision, not contemporary order wording.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/rioArchiveAdministration.txt', 'sha256': '79c19705489a6899821a7b27516bad2db20021933c82bb9f3006afbd1c6abea1', 'kind': 'actual acquired body anchor', 'anchor': 'para o Rio de Janeiro quando', 'lineStart': 453, 'lineEnd': 453}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.seat.fields.v2.seat.destination; loaded stage tile"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c3",
+      "text": "The selected 1824 record identifies form as hereditary constitutional representative monarchy. Attribution: MJP French edition of 1824 imperial constitutional text.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/br1824.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/br1824.txt', 'sha256': 'da21eb62d36e4366b8654efee0150118625066abde27b767cb0fcafaf746dfe1', 'kind': 'actual acquired body anchor', 'anchor': 'Son gouvernement est héréditaire', 'lineStart': 90, 'lineEnd': 90}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.empire.fields.v2.empire.form; loaded stage tile"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c4",
+      "text": "The selected 1891 record identifies form as federal representative republic. Attribution: MJP French edition of 1891 constitutional text.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/br1891.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/br1891.txt', 'sha256': '4da06503a7558dfdaa5398efc5df8c419ad3740386b9579460cdd000b6881e93', 'kind': 'actual acquired body anchor', 'anchor': 'République\\nfédérative proclamée', 'lineStart': 53, 'lineEnd': 54}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.republic.fields.v2.republic.form; loaded stage tile"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c5",
+      "text": "Arquivo Nacional account; MJP French editions Seat ≠ regime",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c6",
+      "text": "Arquivo Nacional dates the vice-regal seat’s Salvador→Rio transfer to 1763. MJP’s French constitutional editions prescribe monarchy in 1824 and republic in 1891. A colonial capital move and later regime provisions are different events; neither establishes popular consent or freedom from slavery.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c7",
+      "text": "Did the colonial seat transfer wait for the republican constitution? No: the seat transfer precedes both later constitutional witnesses",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c8",
+      "text": "Which happened first: the Salvador→Rio seat transfer or the republican constitutional witness? The 1763 seat transfer; the republican witness is 1891.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c9",
+      "text": "The 1763 relocation is attributed to Arquivo Nacional, not inferred from constitutional clauses. Neither colonial administration nor constitutional form establishes equality or consent for enslaved/formerly enslaved or Indigenous people.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c10",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial; https://mjp.univ-perp.fr/constit/br1824.htm; https://mjp.univ-perp.fr/constit/br1891.htm; owner v5 exact case history-rio-salvador-1700-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original relation schematic"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c11",
+      "text": "Record 1763. Arquivo Nacional modern archival account; year precision, not contemporary order wording.",
+      "support": "source",
+      "source": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial v2.seat.origin; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 453–453; https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial v2.seat.destination; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 453–453",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record seat attribution and source pins"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c12",
+      "text": "Record 1824. MJP French edition of 1824 imperial constitutional text.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/br1824.htm v2.empire.form; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 90–90",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record empire attribution and source pins"
+    },
+    {
+      "id": "history.history-rio-salvador-1700-1900.c13",
+      "text": "Record 1891. MJP French edition of 1891 constitutional text.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/br1891.htm v2.republic.form; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 53–54",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record republic attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "Which happened first: the Salvador→Rio seat transfer or the republican constitutional witness?",
+    "options": [
+      "The 1763 seat transfer; the republican witness is 1891.",
+      "Yes: capital transfer and republic are one event"
+    ],
+    "answer": 0,
+    "why": "The event dates and different relation classes are visible."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:rio-salvador-1700-1900",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "The 1763 relocation is attributed to Arquivo Nacional, not inferred from constitutional clauses. Neither colonial administration nor constitutional form establishes equality or consent for enslaved/formerly enslaved or Indigenous people.",
+  "lineage": {
+    "sourceCaseId": "map-rio-salvador-1700-1900",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1700,
+      1900
+    ],
+    "originalPayoff": "1763 colonial capital transfer and later imperial/republican transitions",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "core:rioArchiveAdministration",
+        "url": "https://historialuso.arquivonacional.gov.br/index.php/historia-luso-brasileira/assuntos/listadetemas/administracao-colonial",
+        "type": "Actual acquired research body; individual attribution below"
+      },
+      {
+        "id": "br1824",
+        "url": "https://mjp.univ-perp.fr/constit/br1824.htm",
+        "type": "French documentary edition of historical operative text"
+      },
+      {
+        "id": "br1891",
+        "url": "https://mjp.univ-perp.fr/constit/br1891.htm",
+        "type": "French documentary edition of historical operative text"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}
