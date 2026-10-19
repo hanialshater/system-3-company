@@ -32,6 +32,21 @@ test("every release through r8 is a [deploy] commit in git history; later ones e
   }
 });
 
+test("retroactive deployment history preserves canonical r11 and branch-only aliases", () => {
+  assert.equal(file.releases.at(-1).version, "r11");
+  assert.equal(file.releases.at(-1).commit, "9911156584a25774b502a9a7fe0cbd42aa1958f6");
+  assert.equal(nextVersion(file.releases), "r12");
+  assert.deepEqual(file.historical_deployments.map((r) => [r.id, r.historical_alias, r.date, r.commit]), [
+    ["deployment-bcd102d7", "PR #11 branch-only r11", "2026-10-18T15:25:15Z", "bcd102d75cce5d4bda2960b06ef2dea24fed0056"],
+    ["deployment-2902594b", "PR #11 branch-only r12", "2026-10-18T16:42:31Z", "2902594b67ebafee655c40e86a58aacdb210321d"],
+  ]);
+  for (const r of file.historical_deployments) {
+    assert.equal(r.version, undefined);
+    assert.match(r.approved_by.who, /after the fact/);
+    assert.match(r.added.known_issues[0], /UNAPPROVED DEPLOY/);
+  }
+});
+
 test("validator rejects bad entries", () => {
   const ok = [mk("r1", "2026-10-14T10:00:00Z")];
   assert.equal(validateReleases({ releases: ok }), null);

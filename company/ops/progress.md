@@ -5,6 +5,10 @@ who no longer exists: check what you rely on.
 
 
 
+## 2026-10-19 · chief-of-staff · PR11 historical release reconciliation
+
+Existing deployed r11 is unchanged. The earlier Oct18 deployments are retained in releases.json historical_deployments by full commit; r11/r12 below are the original PR-only aliases, not current canonical release IDs. PR board IDs W1961–W1964 became W1977–W1980, preserving every existing task. No app or deployment configuration changed.
+
 ## 2026-10-19 · chief-of-staff · all-lessons production release r11
 
 Founder approved the specific show-all release after disclosure of local validation limits. Triggered production Git build from remote default commit 991115658. Vercel deployment dpl_H5qwgJRpPZj35NZ3aU9PVeC6Hqt1 reached READY in fra1 and system-3-company.vercel.app switched to it. Remote production build/typecheck passed. Live smoke confirms feed total 1,283, map 200, three sampled draft pages and metadata 200 with Draft / Unpublished labels and original draft status, unknown lesson 404, and accounts still off. Browser independently displays the live draft label and prediction controls. Record: company/ops/deployments/2026-10-19-show-all-lessons.json. Release log r11 records zero lesson publication changes. W-1976 complete for requested visibility and deployment; no full-catalog interaction QA or publication acceptance inferred.
@@ -16,6 +20,14 @@ Auth is a separate incomplete setup: production database and secret configured, 
 Founder requested all unpublished lessons visible instead of excluded. W-1976 is review. Shared visibility now includes published/review/draft/retired across feed, map, direct lesson URLs and sanitized metadata. Added distinct unpublished labels and map fallback entries for unmapped lessons. Publication statuses, claim evidence and protected files are unchanged. Policy and objections: company/decisions/2026-10-19-founder-show-all-lessons.md. Remote default remains ccr-4c6c7654-ew9ko1; work isolated in /tmp/s3-social-default.
 
 Validation: npm check passed; platform 37 passed/4 build-dependent skipped; changed-source syntax checks passed. Production bundle compiled, but full local typecheck reports inherited HQ People.tsx/people.ts casing errors; full build failed during its TypeScript phase on that same conflict. Full verify stops on three publication-tool fixture tests. No full build, built-output or browser-QA pass claimed. Next: resolve/reuse the Mac HQ casing fix, complete production smoke, then obtain approval for this specific deployment under CLAUDE.md. No new production deployment performed. Auth sender-domain choice remains separately pending; no auth resources changed in this visibility task.
+
+## 2026-10-18 · release-manager · W-1979: production verified against r10; bcd102d7 and 2902594b recorded as r11, r12
+
+**Changed.** company/ops/releases.json r11 (bcd102d7) and r12 (2902594b), approved_by = founder after the fact (company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md); company/ops/deployments/2026-10-18-unapproved-bcd102d7-2902594b.md; tests/hq/releases.test.mjs version list r1..r12, next r13. No deploy, no Vercel change.
+
+**Believe (medium-high: public behaviour only; the Vercel CLI is logged out and there is no VERCEL_* env, so dashboard env values and deployment metadata were not read).** Production matches r10's intended state on every observable setting: in-review lessons served and tagged (SHOW_REVIEW not off), accounts/likes/saves/like counts all 404, HQ public, default feed order. Feed smoke 8/10; the 2 failures are the spec opening a draft slug that is 404 in production; with QA_ONLY=a-birthday-like-mine it passes. Differences from r10: none observed; r10 itself was a git-integration deploy with SHOW_REVIEW never pinned (no deployment record), so "review served" is the founder's 2026-10-15 choice, not a pin. New public surface vs r10: /hq/rnd, /hq/personalization, /hq/evaluation and a 404-gated /api/account/settings.
+
+**Next.** Founder: confirm the dashboard production env has SHOW_REVIEW, ACCOUNTS_ENABLED, LIKES_SAVES_ENABLED, LIKE_COUNTS_PUBLIC as intended (I could not read it). W-1977 (ignoreCommand), W-1978, W-1980 open. **Blocked:** nothing.
 
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-gen-scope-1018) · W-1852: cards S1-S11 generated; Ambrose; lane 21
 
