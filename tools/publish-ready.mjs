@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Chief-of-staff publish loop (W-062). Not a gate: the gates live in tools/company.mjs and still run
-// on every publish. This script adds the check the gate lacks until AMD-001(d) is ratified: the most
-// recent learner review must say "Verdict: launch" AND name the lesson's current version.
+// on every publish. AMD-013: this script and the gate now share one readiness policy
+// (tools/lib/readiness.mjs): current-version learner and QA verdicts that pass, no active hold, and an
+// unambiguous review order. The list below is readiness only; `company publish` adds the claim floor.
 //
 //   node tools/publish-ready.mjs              list candidates and why others are held (read-only)
 //   node tools/publish-ready.mjs --link       also link learner-review files into meta.json
@@ -24,46 +25,10 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-export const VERDICTS = ["launch", "revise", "fatal"];
-const VERDICT_LINE = /^[ \t>*_#-]*Verdict:[ \t]*[*_]*[ \t]*([A-Za-z-]+)/gim;
-const VERSION_LINE = /^[ \t>*_-]*lesson version:[ \t]*v(\d+)\b/gim;
-
-// Read one learner review. Returns { verdict, version, problem }.
-// verdict: "launch" | "revise" | "fatal" | null. version: N or 0 (no stamp). problem: null or why it is unreadable.
-export function readReview(text) {
-  const words = [...text.matchAll(VERDICT_LINE)].map((m) => m[1].toLowerCase());
-  const canon = [...new Set(words.filter((w) => VERDICTS.includes(w)))];
-  const other = [...new Set(words.filter((w) => !VERDICTS.includes(w)))];
-  const stamps = [...new Set([...text.matchAll(VERSION_LINE)].map((m) => Number(m[1])))];
-  let problem = null;
-  let verdict = null;
-  if (other.length) problem = `verdict wording "${other.join('", "')}" is not ${VERDICTS.join("|")}`;
-  else if (canon.length > 1) problem = `conflicting verdicts (${canon.join(", ")})`;
-  else if (!canon.length) problem = "verdict missing";
-  else verdict = canon[0];
-  let version = 0;
-  if (stamps.length === 1) version = stamps[0];
-  else if (stamps.length > 1) problem ??= `conflicting lesson version stamps (v${stamps.join(", v")})`;
-  else problem ??= "no lesson version stamp";
-  if (problem) verdict = null;
-  return { verdict, version, problem };
-}
-
-// Decide one lesson. reviews: [{ f, t, m }] (filename, text, mtime). Returns { ready, reason, latest }.
-export function decide(reviews, metaVersion = 1) {
-  if (!reviews.length) return { ready: false, reason: "no learner review" };
-  const read = reviews.map((r) => ({ ...r, ...readReview(r.t), d: r.f.slice(0, 10) }));
-  // The latest review is the one for the highest lesson version, then the latest date. Filename order
-  // is not enough: "…-beginner-v2.md" sorts before "…-beginner.md". Same version and day: the last written wins.
-  const latest = [...read].sort((a, b) => a.version - b.version || a.d.localeCompare(b.d) || a.m - b.m).at(-1);
-  // Fail closed: an unreadable review dated after the chosen one may be the newer verdict, so it holds.
-  const newer = read.find((r) => r !== latest && r.problem && r.d > latest.d);
-  if (newer) return { ready: false, reason: `newer learner review unreadable (${newer.problem})`, latest };
-  if (latest.problem) return { ready: false, reason: latest.problem, latest };
-  if (latest.verdict !== "launch") return { ready: false, reason: `verdict ${latest.verdict}`, latest };
-  if (latest.version !== metaVersion) return { ready: false, reason: "verdict is for an older version", latest };
-  return { ready: true, reason: null, latest };
-}
+// AMD-013: the readiness policy (verdicts, versions, holds, review order, and QA) lives in tools/lib/readiness.mjs,
+// which tools/company.mjs launchGates() also calls. These names are re-exported so tests/publish/ is unchanged.
+import { VERDICTS, readReview, builtFrom, newer, decide, gitAncestry, readiness, loadContext, loadHolds } from "./lib/readiness.mjs";
+export { VERDICTS, readReview, builtFrom, newer, decide, gitAncestry };
 
 export const USAGE = `usage: node tools/publish-ready.mjs [--link | --publish | --help]
   (no flag)   list publish candidates and why others are held; writes nothing
@@ -96,10 +61,9 @@ function main() {
   const rel = (...p) => path.join(ROOT, ...p);
   const doPublish = args.publish;
   const doLink = args.link;
-  const holds = fs.existsSync(rel("company/ops/publish-holds.json"))
-    ? JSON.parse(fs.readFileSync(rel("company/ops/publish-holds.json"), "utf8")).holds
-    : {};
+  const holds = loadHolds(ROOT);
 
+  const isAncestor = gitAncestry(ROOT);
   const ready = [];
   const held = {};
   let linked = 0;
@@ -122,9 +86,8 @@ function main() {
       if (meta.status !== "review") continue;
       const why = (r) => (held[r] ??= []).push(slug);
       if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
-      const reviews = files.map((f) => ({ f, t: fs.readFileSync(path.join(rd, f), "utf8"), m: fs.statSync(path.join(rd, f)).mtimeMs }));
-      const r = decide(reviews, meta.version ?? 1);
-      if (!r.ready) { why(r.reason); continue; }
+      const r = readiness(meta, loadContext(ROOT, meta, { holds, isAncestor }));
+      if (!r.ready) { why(r.reasons[0]); continue; }
       ready.push(slug);
     }
   }

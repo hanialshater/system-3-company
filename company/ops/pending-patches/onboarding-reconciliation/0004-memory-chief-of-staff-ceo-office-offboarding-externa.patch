@@ -1,0 +1,32 @@
+From ef00f5336d4bc5634e1947b7ecdedd2156e7acbb Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 17 Oct 2026 21:02:56 +0000
+Subject: [PATCH 4/4] memory: chief-of-staff-ceo-office offboarding (external
+ assessment run)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01N7n6X4Qs7ukdnrrqNLZsmD
+---
+ .../2026-10-17-ext-assessment-onboarding-2026-10-17.md | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 company/roles/memory/chief-of-staff-ceo-office/2026-10-17-ext-assessment-onboarding-2026-10-17.md
+
+diff --git a/company/roles/memory/chief-of-staff-ceo-office/2026-10-17-ext-assessment-onboarding-2026-10-17.md b/company/roles/memory/chief-of-staff-ceo-office/2026-10-17-ext-assessment-onboarding-2026-10-17.md
+new file mode 100644
+index 000000000..e707628f1
+--- /dev/null
++++ b/company/roles/memory/chief-of-staff-ceo-office/2026-10-17-ext-assessment-onboarding-2026-10-17.md
+@@ -0,0 +1,10 @@
++### 2026-10-17 · ext-assessment-onboarding-2026-10-17 · chief-of-staff-ceo-office
++- did: Acted on external assessment F6/§2/§3/App B on branch worktree-agent-af3f82ee838c3affc (8dda98c1, 4e1f93dc, 19f4090e): generated counts and caps, single-writer working agreement, demo-builder sonnet, portfolio-manager scope, handoff shape, mechanism review, lean-lane proposal
++- learned: All four onboarding contradictions were real; the latest record for each: caps 2026-10-16-founder-agent-cap-14, writer F-42 item 6, builder model 2026-10-14-usage-upgrade (company/decisions/2026-10-17-onboarding-reconciliation.md)
++- learned: Nothing tested generate.mjs before; render() is now pure and npm run check runs generate --check, so CI fails on drift (tests/org/generate.test.mjs)
++- know: CLAUDE.md and working agreement items 1/5/9 are changed on the branch only; founder ratifies the exact sentences before merge (company/decisions/2026-10-17-onboarding-reconciliation.md)
++- know: Caps and builder model now live in tools/org/caps.mjs; dispatch-check keeps its own constants and the test compares them (tools/org/caps.mjs)
++- know: Standing orders already allow claim.mjs builds, so a lean lane needs no new power (company/ceo-office/dispatch-requests.md)
++- open: tools/triage.mjs writes board.json directly; the single-writer exception for portfolio-manager has no decision record (company/decisions/2026-10-17-onboarding-reconciliation.md)
++- open: typecheck/build/test:hq not run: no node_modules on this host; HQ imports roles.mjs which now imports caps.mjs (tools/org/roles.mjs)
++- open: Lean lane waits on F-42 pilot read and founder decision (company/reviews/org/2026-10-17-lean-lane-proposal.md)
+-- 
+2.43.0
+

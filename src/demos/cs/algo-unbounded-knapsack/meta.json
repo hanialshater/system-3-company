@@ -1,0 +1,206 @@
+{
+  "slug": "algo-unbounded-knapsack",
+  "title": "May the same item be used again?",
+  "hook": "May the same item be used again? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-unbounded-knapsack",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Use an ascending capacity loop for reusable items and distinguish it from 0-1 updates."
+    ]
+  },
+  "misconception": "Changing iteration direction never changes which item combinations a DP permits.",
+  "objective": "Use an ascending capacity loop for reusable items and distinguish it from 0-1 updates.",
+  "claims": [
+    {
+      "id": "cs.algo-unbounded-knapsack.c1",
+      "text": "Ascending capacities can read a state already updated by the same item. The witnessed optimum therefore permits repeated copies; descending capacities preserve single-use choices.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c2",
+      "text": "May the same item be used again? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c3",
+      "text": "Capacity 6: reusable (2,3),(3,4). Maximum value?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c5",
+      "text": "Value=9; reusable.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c6",
+      "text": "Items and capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c7",
+      "text": "w",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c8",
+      "text": "v",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c9",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c10",
+      "text": "copies",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[0].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c11",
+      "text": "Ascending update",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c12",
+      "text": "c",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c13",
+      "text": "dp",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c14",
+      "text": "from",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c15",
+      "text": "Value=7; single-use.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c16",
+      "text": "Descending update",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#unbounded_knapsack.cases[1].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c17",
+      "text": "Reusable weight 3, value 5, capacity 9: which loop permits three copies?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c18",
+      "text": "Ascending capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c19",
+      "text": "Descending capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-unbounded-knapsack.c20",
+      "text": "Ascending updates can reuse the same item through smaller capacities updated during this pass.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-unbounded-knapsack\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Reusable weight 3, value 5, capacity 9: which loop permits three copies?",
+    "options": [
+      "Ascending capacity",
+      "Descending capacity"
+    ],
+    "answer": 0,
+    "why": "Ascending updates can reuse the same item through smaller capacities updated during this pass."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-unbounded-knapsack/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-unbounded-knapsack",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

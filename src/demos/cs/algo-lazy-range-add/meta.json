@@ -1,0 +1,199 @@
+{
+  "slug": "algo-lazy-range-add",
+  "title": "An update can wait in the parent",
+  "hook": "A parent can record work that its descendants have not done yet.",
+  "domain": "cs",
+  "concept": "algo-lazy-range-add",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Defer a segment-tree range addition in a lazy tag and push it only on partial descent."
+    ]
+  },
+  "misconception": "Every range update must visit every changed leaf immediately.",
+  "objective": "Defer a segment-tree range addition in a lazy tag and push it only on partial descent.",
+  "claims": [
+    {
+      "id": "cs.algo-lazy-range-add.c1",
+      "text": "The parent summary changes immediately while its add tag postpones descendant work. A partial query pushes the tag before descending, so deferred leaves cannot return their old values.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c2",
+      "text": "A parent can record work that its descendants have not done yet.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c3",
+      "text": "Add 5 to every value in [1,2,3,4]. What sum does a lazy tree return for inclusive [1,2]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c5",
+      "text": "Add 5 on 0..3; query 1..2 sum 15.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c6",
+      "text": "Input values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c8",
+      "text": "add",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c9",
+      "text": "query",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[0].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c10",
+      "text": "Attach pending add tag",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c11",
+      "text": "Push only before descent",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c12",
+      "text": "Read partial range",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c13",
+      "text": "sum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[0].run().frames[5].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c14",
+      "text": "Add 5 on 0..1; query 1..2 sum 10.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lazy_range_add.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c15",
+      "text": "A partial query enters a child below a pending add tag. What must happen first?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c16",
+      "text": "Push the tag",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c17",
+      "text": "Discard the tag",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c18",
+      "text": "Read old leaves",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-range-add.c19",
+      "text": "The child summary must include the postponed update.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-lazy-range-add\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A partial query enters a child below a pending add tag. What must happen first?",
+    "options": [
+      "Push the tag",
+      "Discard the tag",
+      "Read old leaves"
+    ],
+    "answer": 0,
+    "why": "The child summary must include the postponed update."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-lazy-range-add/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lazy-range-add",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

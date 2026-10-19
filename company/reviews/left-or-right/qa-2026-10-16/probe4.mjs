@@ -1,0 +1,14 @@
+import { createRequire } from "module"; import path from "path";
+const require = createRequire(path.resolve("node_modules") + "/");
+const pw = require("@playwright/test");
+const b = await pw.chromium.launch();
+const ctx = await b.newContext({ viewport:{width:390,height:844}, hasTouch:true,isMobile:true });
+const page = await ctx.newPage();
+await page.goto("http://localhost:3817/d/left-or-right",{waitUntil:"networkidle"});
+await page.getByTestId("predict-option").nth(1).click(); await page.getByTestId("commit-prediction").click(); await page.waitForTimeout(400);
+const c=(n)=>page.locator("[data-testid=stage] button",{hasText:n}).click();
+const st=async(l)=>console.log(l,"|",(await page.getByTestId("reveal-button").textContent()),"|",await page.getByTestId("reveal-button").isDisabled(),"|",(await page.getByTestId("seen-line").textContent()).trim(),"|",(await page.locator("[data-testid=stage] [role=status]").textContent()));
+await c("Mirror");await page.waitForTimeout(600);await st("Mirror");
+await c("Turn over");await page.waitForTimeout(700);await st("Mirror,Turn (mirroredTurned)");
+await c("Mirror");await page.waitForTimeout(700);await st("then Mirror off (turned)");
+await b.close();

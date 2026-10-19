@@ -1,0 +1,235 @@
+{
+  "slug": "algo-cyk-parse",
+  "title": "Which split explains this span?",
+  "hook": "Recognizing every letter does not yet recognize the whole sentence.",
+  "domain": "cs",
+  "concept": "algo-cyk-parse",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix codes, strings, grammar productions and a stack."
+    ],
+    "doesNotKnow": [
+      "Recognize a CNF grammar string by combining nonterminals across every span split."
+    ]
+  },
+  "misconception": "A successful prefix parse proves the remaining whole string is grammatical.",
+  "objective": "Recognize a CNF grammar string by combining nonterminals across every span split.",
+  "claims": [
+    {
+      "id": "cs.algo-cyk-parse.c1",
+      "text": "Each cell stores all nonterminals deriving that span. A binary rule contributes only when its two children derive adjacent subspans at some split. Acceptance requires the start symbol in the full-span cell, not merely valid individual letters.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-cyk-parse\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c2",
+      "text": "Recognizing every letter does not yet recognize the whole sentence.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-cyk-parse\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c3",
+      "text": "CNF rules S→AB|BA,A→a,B→b parse ab. Does the full-span cell contain S?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c6",
+      "text": "Run the question case; Step follows its actual state changes.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c7",
+      "text": "Accepted true.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c8",
+      "text": "CNF input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c9",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c10",
+      "text": "ab",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c11",
+      "text": "rules",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c12",
+      "text": "S→AB|BA;A→a;B→b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c13",
+      "text": "Combine split spans",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c14",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c15",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[1].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c16",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[1].rows[1].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c17",
+      "text": "Start-symbol membership",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c18",
+      "text": "span",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c19",
+      "text": "accepted",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[0].run().frames[2].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c20",
+      "text": "Accepted false.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c21",
+      "text": "aa",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#cyk_parse.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c22",
+      "text": "Both letters have terminal rules but no binary combination derives their pair. Is that enough to accept?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-cyk-parse\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c23",
+      "text": "Only if both letters are equal",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-cyk-parse\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cyk-parse.c24",
+      "text": "Terminal recognition does not create a start-symbol derivation for the whole span.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-cyk-parse\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Both letters have terminal rules but no binary combination derives their pair. Is that enough to accept?",
+    "options": [
+      "No",
+      "Yes",
+      "Only if both letters are equal"
+    ],
+    "answer": 0,
+    "why": "Terminal recognition does not create a start-symbol derivation for the whole span."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-cyk-parse/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-cyk-parse",
+    "also": [],
+    "prerequisites": [
+      "stack-expression-eval"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "compression-coding-parsing"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

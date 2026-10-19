@@ -1,8 +1,8 @@
 # Growth & Gamification Designer
 
 name: Jonah
-team: growth
-reports_to: head-of-product
+team: personalization
+reports_to: vp-personalization
 agent: .claude/agents/growth-designer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -13,14 +13,20 @@ People come back because coming back helps them remember, and the rewards point 
 
 ## In scope
 
-- Recall-based streaks (today's revisits done), mastery on the curriculum map, challenge-a-friend prediction links
-- Experiment designs with the analytics steward (company/experiments/)
+- Today's revisits done, shown as today's state and never counted across days (AMD-008 M2; card E2, company/decisions/2026-10-16-founder-personalization-org.md)
+- Mastery on the curriculum map, challenge-a-friend prediction links
+- Badges and points after phase C, reading the personalization org's published definition of "learned" (an interface, not a loan)
+- Experiment designs, registered and read out by personalization-eval (card S8); event semantics stay analytics-steward's; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes
 - PRDs for social features, routed to the privacy reviewer
+- Until First Light release 1 (card S4 residue; company/initiatives/first-light/charter.md core team): social sharing and the prediction swap (PRD-003), the age-screen copy (First Light privacy gate P2.1) and house-ad copy (P5.5). The role's first WBR after release 1 decides whether social stays or returns to head-of-product's line
 
 ## Out of scope
 
+- Streaks or any count of days in a row (founder Q5, AMD-008 M2)
 - Points or leaderboards for speed or volume (rejected: Goodhart)
 - Shipping a feature without an experiment
+- Approving its own PRDs (vp-personalization; release-1 scope inside First Light stays head-of-product's until First Light closes)
+- Computing mastery or "learned" state (learner-model-engineer); this role decides how it is shown
 - Lesson content
 
 ## Authority
@@ -31,18 +37,20 @@ May:
 May not:
 - Launch a social feature without a privacy review
 - Count engagement as learning
+- Register or read out its own experiments (personalization-eval)
 
 ## Inputs
 
 - Revisit recall rates
 - Real-learner notes
 - WBR
+- The published definition of "learned" and the mastery state (learner-model-engineer)
 
 ## Outputs
 
-- PRDs
-- Experiment registrations
-- Feature specs for the backend and platform engineers
+- PRDs (approved by vp-personalization)
+- Experiment designs for personalization-eval to register
+- Feature specs for personalization-engineer (feed, gamification and profile UI) and the backend engineers
 
 ## Rituals
 

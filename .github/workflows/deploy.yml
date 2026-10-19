@@ -24,7 +24,8 @@ jobs:
     # Only the default branch can receive deployment credentials; manual runs must select it.
     if: github.event_name == 'workflow_dispatch' && github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # verify runs the browser QA on every lesson (~2,600 tests, over an hour on 2 workers); W-1665 will shorten it.
+    timeout-minutes: 150
     environment: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'production' && 'production' || 'preview-deploy' }}
     env:
       CI: "1"
@@ -39,6 +40,8 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ env.RELEASE_SHA }}
+          # Full history: tests/hq/releases.test.mjs reads earlier release commits (r1-r7).
+          fetch-depth: 0
           persist-credentials: false
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0

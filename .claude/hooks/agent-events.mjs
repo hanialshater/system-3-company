@@ -23,6 +23,10 @@
 //   `incident` event; if it has only MERGE_HEAD, or has gained stash entries since the agent's dispatch (baseline
 //   taken at PreToolUse from .git/logs/refs/stash), it writes one `note` in room `incident`. Both name the agent
 //   label and the state. The id is a hash of the state, so one state is reported once, by the first stop that sees it.
+//   git >= 2.47 (RelNotes 2.47.0, pw/rebase-autostash-fix) no longer leaves rebase-merge/autostash when a rebase fails
+//   to start: it re-applies the autostash and, when that conflicts, stores it as a stash entry named exactly
+//   "autostash" and removes rebase-merge/. Such an entry (new since the baseline, or any when there is no baseline)
+//   is the same stranding and also writes an `incident`.
 //   An error here is logged and never stops the report event or the tool call.
 // Writes go to the spool (ruling H2), one per repository via the git common dir: <main checkout>/company/ops/events-spool/.
 // Env: S3_SPOOL (spool dir) or S3_EVENTS (spool = <its dir>/events-spool/; passed through to events.mjs),
@@ -154,11 +158,15 @@ async function checkMainGit({ label, role, baseline, when }) {
     const g = mainGitState();
     if (!g) return "no-main";
     const known = baseline ? new Set(baseline) : null;
-    const gained = known ? g.stash.filter((x) => !known.has(x.sha)) : [];
-    if (!g.states.length && !gained.length) return "clean";
-    const rebasing = g.states.filter((x) => x.kind !== "MERGE_HEAD");
+    const isNew = (x) => !known || !known.has(x.sha);
+    // git >= 2.47: a failed autostash re-apply lands on the stash list as "autostash" (see the header).
+    const autostashed = g.stash.map((x, i) => ({ ...x, i })).filter((x) => x.msg === "autostash" && isNew(x));
+    const gained = known ? g.stash.filter((x) => !known.has(x.sha) && x.msg !== "autostash") : [];
+    if (!g.states.length && !gained.length && !autostashed.length) return "clean";
+    const rebasing = [...g.states.filter((x) => x.kind !== "MERGE_HEAD"), ...autostashed];
     const parts = [
       ...g.states.map((x) => x.kind === "MERGE_HEAD" ? `MERGE_HEAD (${x.sha.slice(0, 9)})` : `${x.kind}/ (${x.head ?? "?"}${x.autostash ? `, autostash ${x.autostash.slice(0, 9)}` : ", no autostash"})`),
+      ...autostashed.map((x) => `stash@{${x.i}} "autostash" (${x.sha.slice(0, 9)}, a failed autostash re-apply)`),
       ...(gained.length ? [`${gained.length} new stash entr${gained.length === 1 ? "y" : "ies"} since dispatch (${gained.map((x) => `"${x.msg.slice(0, 50)}"`).join(", ")})`] : []),
     ];
     const summary = `Main checkout git state when ${label} ${when}: ${parts.join(" · ")}`;
@@ -166,12 +174,13 @@ async function checkMainGit({ label, role, baseline, when }) {
       `Seen by .claude/hooks/agent-events.mjs (W-1337) in ${g.main}/.git when ${label} (${role}) ${when}.`,
       "",
       ...g.states.map((x) => `- ${x.kind}${x.head ? ` on ${x.head}` : ""}${x.autostash ? `; autostash ${x.autostash}: other agents' edits may be ONLY there. Keep it: \`git stash store -m "autostash ${x.autostash}" ${x.autostash}\` (from the main checkout, by the chief of staff), then \`git stash show -p ${x.autostash}\`.` : ""}${x.sha ? ` ${x.sha}` : ""}`),
+      ...autostashed.map((x) => `- stash@{${x.i}} ${x.sha} "autostash": git could not re-apply a rebase/merge autostash and stored it there; other agents' edits may be ONLY there. Keep it (do not drop or pop it in the main checkout); inspect with \`git stash show -p --include-untracked ${x.sha}\` (by the chief of staff).`),
       ...gained.map((x) => `- new stash entry ${x.sha} "${x.msg}"`),
       "",
       "Nobody should rebase, pull --rebase, stash or reset in the main checkout; integrate in a worktree (e.g. /home/user/s3c-int).",
       "Readiness: company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md",
     ].join("\n");
-    const fp = JSON.stringify({ s: g.states, n: gained.map((x) => x.sha) });
+    const fp = JSON.stringify({ s: g.states, n: gained.map((x) => x.sha), ...(autostashed.length ? { a: autostashed.map((x) => x.sha) } : {}) });
     add({ id: `hk-gs-${hash(fp)}`, ts: new Date().toISOString(), type: rebasing.length ? "incident" : "note", room: "incident", actor: role || "chief-of-staff", agent: label, subjects: ["W-1337", role].filter(Boolean).join(","), summary: summary.length > 300 ? summary.slice(0, 299) + "…" : summary, refs: "company/engineering/readiness/2026-10-16-shared-checkout-git-guard.md" }, body);
     return rebasing.length ? "incident" : "note";
   } catch (e) {

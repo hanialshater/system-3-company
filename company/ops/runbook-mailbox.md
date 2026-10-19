@@ -3,7 +3,7 @@
 owner: tools-lead (the tool) · lanes: chief-of-staff-ceo-office (company/ceo-office/poc-map.md) · decision: company/decisions/2026-10-16-founder-mailbox-dispatch.md (F-42)
 tool: `node tools/mailbox.mjs` (library tools/lib/mailbox.mjs, tests tests/mailbox/, `npm run test:mailbox`)
 
-Mailboxes are spool, not record: `company/ops/mailboxes/<role>/` in the main checkout, gitignored. Each message is one file, `<ts>-<from>-<key>.md`, created whole and exclusively, so parallel writers never collide. The tool never edits or deletes a message; read, claimed and done are marker files beside it. The event log stays the record, and only the chief of staff writes it. Run the tool from any worktree: it finds the main checkout's mailboxes through git.
+Mailboxes are spool, not record: `company/ops/mailboxes/<role>/` in the main checkout, gitignored. Each message is one file, `<ts>-<from>-<key>.md`, created whole and exclusively, so parallel writers never collide. The tool never edits or deletes a message; read, claimed (the reservation: run id, state reserved or launched, lease) and done are marker files beside it, and a reservation that ended without a launch is kept as `<id>.released-<run>.json` or `<id>.expired-<run>.json`. The event log stays the record, and only the chief of staff writes it. Run the tool from any worktree: it finds the main checkout's mailboxes through git.
 
 ## 1. A manager asks for a run
 
@@ -22,17 +22,25 @@ node tools/mailbox.mjs send --from=principal-pm-verticals --to=dispatcher --role
 ## 2. The chief of staff drains (every turn, and on every agent report)
 
 ```bash
-node tools/mailbox.mjs status                 # unread per mailbox, unclaimed requests
-node tools/mailbox.mjs drain dispatcher       # each unclaimed request, re-checked against today's map
+node tools/mailbox.mjs status                 # unread per mailbox; unreserved, reserved and lease-expired requests
+node tools/mailbox.mjs drain dispatcher       # re-checks each open request and RESERVES it before printing its lines
+node tools/mailbox.mjs drain dispatcher --peek   # look only: reserves nothing (you may not launch from a peek)
 ```
 
-For each `REQUEST`, run its four lines in order, without choosing:
-1. **check:** the printed `dispatch-check … --source=mail:<id>` line. Fill in `--running=<N>` (and `--builders`, `--worktree` for builds). Rule M1 repeats the lane check and refuses a claimed or done request in every slot mode. On FAIL, stop. Tell the sender with `send --kind=answer`.
-2. **start** the agent: the description is the printed label, and the prompt is the brief file.
-3. **claim:** `node tools/mailbox.mjs claim <id> --agent='<label>'`. It can be done once only, so a second drain cannot start the same request.
-4. **event:** the printed `events.mjs add --type=dispatch …` line. Fill in the room. Skip it if the hook wrote the dispatch event (W-1280). The drain itself writes nothing.
+**Reserve before launch** (since 2026-10-17, external assessment finding 3). The order is drain (reserve) → check → start → confirm → event. The drain takes each request that passes the lane re-check with an exclusive marker that carries a run id and a lease (30 minutes; `--lease=<min>`). Only one drain can win a request, so two drains never print the same one. The authority split is unchanged: managers decide by sending, and only the chief of staff drains, starts agents and records events (decision F-42 §1, §3, §6).
 
-A `REFUSED` entry means the map changed after the request was sent, or the file was written by hand. Do not dispatch it. Answer the sender.
+For each `RESERVED` entry, run its lines in order, without choosing:
+1. **check:** the printed `dispatch-check … --source=mail:<id> --run=<run>` line. Fill in `--running=<N>` (and `--builders`, `--worktree` for builds). Rule M1 repeats the lane check. In every slot mode it refuses a request that is not reserved, reserved by another run, past its lease, already launched or done. **On FAIL, release it** with the printed `release <id> --run=<run> --reason='…'` line. Then tell the sender with `send --kind=answer`.
+2. **start** the agent: the description is the printed label, and the prompt is the brief file. **If the Agent call fails**, release it in the same way, and say why in the reason.
+3. **confirm:** `node tools/mailbox.mjs launched <id> --run=<run>`. Only the reserving run can confirm. After this the request never expires; `done` closes it.
+4. **event:** the printed `events.mjs add --type=dispatch …` line. Fill in the room. Skip it if the hook wrote the dispatch event (W-1280). The drain writes reservation markers only. It never writes the event log.
+
+**Recovery after a crash.**
+- **Crash before the start.** Nothing confirmed the reservation, so its lease runs out. The next drain reclaims the request under a new run id. The old reservation is kept as `<id>.expired-<run>.json`.
+- **Crash after the start, before the confirm.** A dispatch event for the request is in the event log or the hook spool (`source: mail:<id>`, or the label). The drain does not re-offer the request. It lists it as `EXPIRED (launched)` with the `launched … --run=<old run>` line. Run that line, and do not start the agent again.
+- **No event was written either.** The tool cannot tell this case from a crash before the start, so the request is offered again. Check the Agent tool's running list before you launch a reclaimed request.
+
+A `REFUSED` entry means the map changed after the request was sent, or the file was written by hand. It is never reserved. Do not dispatch it. Answer the sender.
 
 ## 3. A worker reports
 
@@ -59,6 +67,6 @@ When `status` shows unread reports for a manager, the chief of staff starts that
 - After merging, run `npm run test:mailbox` and `npm run test:dispatch`.
 
 ## Limits (known)
-- `--from` is whatever the caller says it is. The tool checks lanes, not identity. A worker could send as a manager. The event log and the claim marker show who dispatched each run, and the pilot's out-of-lane measure counts refusals, not impersonation.
+- `--from` is whatever the caller says it is. The tool checks lanes, not identity. A worker could send as a manager. The event log and the reservation marker show who dispatched each run, and the pilot's out-of-lane measure counts refusals, not impersonation.
 - Lane 2's "Wave J's fixed slug list only" is prose, and the tool does not check it. principal-pm-verticals keeps to the list.
 - The word "deploy" anywhere refuses the request, including "do not deploy". Leave it out. The deploy rule already binds every agent.

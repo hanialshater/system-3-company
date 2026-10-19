@@ -1,0 +1,143 @@
+{
+  "slug": "unknot-game",
+  "title": "How many switches untie a trefoil?",
+  "hook": "Switch a crossing and its top strand goes under. How many until the knot falls open?",
+  "domain": "math",
+  "concept": "knot-crossing-change",
+  "status": "published",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "tally-counters",
+    "locked-readouts"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a knot is a closed loop drawn with over and under crossings"
+    ],
+    "doesNotKnow": [
+      "that switching one crossing (the top strand goes under) can free a knot, because after the switch a strand lies on top at two crossings in a row and can slide off; and that on the trefoil and the figure-eight any one switch does it"
+    ]
+  },
+  "misconception": "To untie a knot you must undo every crossing, or find the one special crossing to switch.",
+  "objective": "The learner can explain that one switch frees the trefoil whichever crossing it is, because after the switch a strand lies on top twice in a row and slides off.",
+  "keyState": "Trefoil tally 3 of 3: each of the trefoil's three crossings, switched alone, gave a plain loop (milestones 'firstFree' then 'allThree'; the tally survives Reset and chip changes).",
+  "claims": [
+    {
+      "id": "math.unknot-game.c1",
+      "text": "Switching a crossing makes its top strand go under: it exchanges which strand is over and which is under there (hook 'Switch a crossing and its top strand goes under'; question 'Switching a crossing makes its top strand go under').",
+      "support": "convention",
+      "source": "The standard crossing change; crossingChange in src/kit/knots/index.d.ts ('Switch over/under at crossings'). Brief claim 1 (company/domains/briefs/math.discrete.md, Knots batch 1 #3; brief support 'definition', recorded as convention because company check accepts derivation, simulation, source and convention). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened source: Nucleic Acids Res 2018 (PMC6158496, doi 10.1093/nar/gky559): \"In a diagram a crossing change can be made at a crossing of the diagram. In this case, the segments at that crossing are passed through each other resulting in moving the under-segment to the over-segment and vice versa.\" Kit crossingChange output equals my own rotation of the PD tuple for all 7 switches. Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c1."
+    },
+    {
+      "id": "math.unknot-game.c2",
+      "text": "The kit's trefoil drawing has 3 crossings and its figure-eight drawing has 4 (question 'The trefoil has 3 crossings'; tally rows '0 of 3' and '0 of 4'; 3 and 4 crossing buttons).",
+      "support": "derivation",
+      "source": "crossingCount(knot('3_1').pd) = 3 and crossingCount(knot('4_1').pd) = 4 on src/kit/knots; brief check K3 (node company/domains/briefs/checks/knots-check.mjs). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Own parse of the kit table strings (no kit code): 3_1 has 3 PD tuples, 4_1 has 4; draw() on the stored layout returns 3 and 4 crossing hit targets. The general reading \"The trefoil has 3 crossings\" also holds: own Jones span 3 (3_1) and 4 (4_1) on reduced alternating diagrams. Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c2."
+    },
+    {
+      "id": "math.unknot-game.c3",
+      "text": "In the kit's trefoil and figure-eight drawings, any one switch gives a plain loop, and the unswitched drawings are knotted (stage readout 'Plain loop' and 'Still a knot'; tally 'Freed by one switch', 'Trefoil 3 of 3', 'Figure-eight 4 of 4'; reveal 'Each crossing you switched freed the trefoil on its own: 3 of 3. No crossing was special.').",
+      "support": "derivation",
+      "source": "simplify(q).status on src/kit/knots: 'unknot' for all 3 of 3 single switches of 3_1 and 4 of 4 of 4_1 (identify 0_1); 'minimal' (reduced alternating, so provably knotted: kit index.d.ts) for the unswitched 3_1 and 4_1. Brief checks K3, K8, K20 (node company/domains/briefs/checks/knots-check.mjs, re-run by the builder 2026-10-16: K3 switches=1 unknot by simplify 3 of 3 and 4 of 4). The stage readout reads simplify status only. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Own script (fc-2026-10-16/own.py, no kit code): every one of the 7 single switches has a descending base point (so it is the unknot) and own Jones = 1; unswitched 3_1 Jones -t^-4 + t^-3 + t^-1 and 4_1 t^-2 - t^-1 + 1 - t + t^2 (not 1, so knotted). Kit simplify gives unknot x7 and minimal x2, matching the stage readout. Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c3."
+    },
+    {
+      "id": "math.unknot-game.c4",
+      "text": "After any single switch of the kit's trefoil (or figure-eight), one strand lies on top at both crossings of a two-sided gap, so it can slide off (a Reidemeister II move); the unswitched drawings have no such place (tinted strand; caption 'On top twice: it slides off'; reveal 'After each switch, the tinted strand lay on top at two crossings in a row, so it slides off').",
+      "support": "derivation",
+      "source": "moves(q) on src/kit/knots, read only: after each single switch the first R2 contains the tapped crossing, one of its two edges is in an over slot of the PD tuple at both of its crossings and the other is under at both (7 of 7); unswitched 3_1 and 4_1 offer no R2. Brief checks K15 and K20 (node company/domains/briefs/checks/knots-check.mjs); builder probe 2026-10-16: 3_1 switch 0 R2 [0,1] edges [4,1] over-at-both 1; switch 1 R2 [0,1] edge 4; switch 2 R2 [0,2] edge 5; 4_1 switch 0 R2 [0,2] edge 5; 1 R2 [1,3] edge 7; 2 R2 [0,2] edge 1; 3 R2 [1,3] edge 3. Brief claim 3. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Own face tracing (Euler check F = n + 2) finds the bigons; after each switch a bigon has one edge over at both ends and the other under at both (3_1 sw0 edge 1, sw1 4, sw2 5; 4_1 sw0 5, sw1 7, sw2 1, sw3 3), equal to the edge the stage tints; the drawn tinted path is uncut at both crossings and its partner is cut at both (gap about 6.2 units). Unswitched diagrams are alternating, so no edge is over at both ends. Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c4."
+    },
+    {
+      "id": "math.unknot-game.c5",
+      "text": "On the switched trefoil, after the strand slides off, the twist left over falls out: one crossing is left and it is a kink that undoes with a Reidemeister I move (reveal 'and the twist left over falls out').",
+      "support": "derivation",
+      "source": "Builder probe 2026-10-16 on src/kit/knots (numbers only, never drawn): apply the first R2 to each single switch of 3_1 -> 1 crossing left, moves offers R1, after it 0 crossings (3 of 3); on 4_1 -> 2 crossings left, R1 then R1 (4 of 4). Design note company/reviews/unknot-game/design.md marks this clause as told context. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). An R2 on a bigon face removes exactly its 2 crossings, so the switched 3-crossing trefoil drawing leaves 1 crossing; a one-crossing knot diagram has Gauss word aa, which is a kink removed by R1. (4_1 leaves 2; the only planar 2-crossing Gauss word is aabb, two kinks.) Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c5."
+    },
+    {
+      "id": "math.unknot-game.c6",
+      "text": "The unknotting number of a knot is the fewest crossing switches, over all drawings of it, that turn it into a plain loop; it is 1 for the trefoil and for the figure-eight (reveal 'The fewest switches that can free a knot is its unknotting number: 1 for the trefoil, and for the figure-eight too.'; prediction answer '1').",
+      "support": "source",
+      "source": "Fielden, Leigh and Woltering, 'Molecular Knots', Angew Chem Int Ed 2017 (PMC5582600, doi 10.1002/anie.201702531): 'unknotting number ... refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot', twist knots have unknotting number 1; Sci Rep 2015 (PMC4354144, doi 10.1038/srep08928): 'The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1'. Value 1 also derived: one switch frees each kit drawing (c3, brief check K9 also reads table u=1 for 3_1 and 4_1), and a knotted diagram needs at least one. Brief claim 4. 'and for the figure-eight too' is claimed context unless 4_1 was visited. Sources as named by the fact-checker (company/reviews/unknot-game/2026-10-16-fact-check.md, c6); Adams, The Knot Book, dropped (not opened). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game c6-c7 re-check (fact-checker, 2026-10-17, did not write this claim or its source field; base e337d74c, v2): VERIFIED. Opened PMC5582600 (PMC OAI full text; Fielden, Leigh, Woltering, doi 10.1002/anie.201702531): \"'unknotting number', which refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot\" (a property of the knot, so minimised over its drawings) and \"the unknotting number of a twist knot is always 1\". Opened PMC4354144 (Rawdon, Millett, Stasiak, doi 10.1038/srep08928): \"The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1\". Quotes in the source field match the texts. v2 render: reveal paragraph unchanged; at the reveal the stage returns to the trefoil with the last trefoil switch (readout Plain loop, tinted caption), which shows one switch freeing the trefoil, consistent with the claim; the figure-eight is not on stage at the reveal, so that clause rests on PMC4354144. No new learner-visible sentence in v2. Record: company/reviews/unknot-game/2026-10-17-fact-check-c6-c7.md. Previous: W-1603 (demo-builder, 2026-10-17): source field changed to PMC5582600 and PMC4354144, as the fact-checker asked (non-blocking); claim text and learner text unchanged; reset to unverified for a fact-checker who did not write the source field. Previous: Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: Angew Chem 2017 (PMC5582600): \"unknotting number ... refers to the minimum number of crossings that have to be inverted to give the unknot from a given knot\", twist knots have unknotting number 1; Sci Rep 2015 (PMC4354144): \"The figure-eight knot, 4_1, is a twist knot having unknotting number one, as does 3_1\". Value also derived: one switch frees each kit drawing (c3) and both knots are knotted. Adams, The Knot Book, NOT opened; the source field should name PMC5582600 and PMC4354144 instead (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c6."
+    },
+    {
+      "id": "math.unknot-game.c7",
+      "text": "Some knots need more than one switch to become a plain loop (reveal 'Some knots need more than one.'). Example for the fact-checker, not in learner text: the (2,7) torus knot has unknotting number 3.",
+      "support": "source",
+      "source": "PMC5582600 (Angew Chem Int Ed 2017, doi 10.1002/anie.201702531): unknotting number of the torus knot T(p,q) is (p-1)(q-1)/2, so 5_1 = T(2,5) has 2 and T(2,7) has 3; original proof Kronheimer and Mrowka, Topology 1993, 32, 773-826 (doi 10.1016/0040-9383(93)90051-v; cited there as ref 52). PMC4354144 (Sci Rep 2015, doi 10.1038/srep08928): 'The unknotting number of the 5_1 knot is two'. Sources as named by the fact-checker (company/reviews/unknot-game/2026-10-16-fact-check.md, c7); Brittenham and Hermiller, arXiv 2506.24088 (brief claim 5), dropped (not opened). Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-17",
+      "note": "Lane unknot-game c6-c7 re-check (fact-checker, 2026-10-17, did not write this claim or its source field; base e337d74c, v2): VERIFIED. Opened PMC5582600 (PMC OAI full text): \"for a torus knot T(p,q) is 1/2 (p-1)(q-1)\" with xref to ref 52 = Kronheimer, Mrowka, Topology 1993, 32, 773-826 (Crossref 10.1016/0040-9383(93)90051-v: 'Gauge theory for embedded surfaces, I', Topology 32(4) 773-826, Oct 1993); Figure 14b: pentafoil 5_1 \"So the unknotting number is 2 (=1/2 (2-1)(5-1))\"; T(2,7) = 1/2 (1)(6) = 3 by the same formula. Opened PMC4354144: \"The unknotting number of the 5_1 knot is two\". So some knots need more than one switch. v2 render: reveal sentence 'Some knots need more than one.' unchanged; the returned trefoil stage at the reveal makes no claim about other knots. Kronheimer-Mrowka itself not opened (Elsevier); it is cited as the original proof, and the claim rests on the two opened PMC texts. Record: company/reviews/unknot-game/2026-10-17-fact-check-c6-c7.md. Previous: W-1603 (demo-builder, 2026-10-17): source field changed to PMC5582600 and PMC4354144 (Kronheimer and Mrowka 1993 kept as the original proof), as the fact-checker asked (non-blocking); claim text and learner text unchanged; reset to unverified for a fact-checker who did not write the source field. Previous: Lane unknot-game (fact-checker, 2026-10-17, did not write this claim; base 1885929e): VERIFIED against Demo.tsx (hook, predict key, readout, caption, tally, reveal gated by allThree so n = 3). Opened: PMC5582600: unknotting number of torus knot T(p,q) is (p-1)(q-1)/2, citing [52] Kronheimer and Mrowka, Topology 1993, 32, 773-826 (Crossref 10.1016/0040-9383(93)90051-v confirms), so T(2,5) = 2 and T(2,7) = 3; PMC4354144: \"The unknotting number of the 5_1 knot is two\". Brittenham and Hermiller arXiv 2506.24088 NOT opened (arXiv 403; a search summary only identifies the paper); the source field should name PMC5582600 and PMC4354144 (non-blocking). Basis: company/reviews/unknot-game/2026-10-16-fact-check.md, c7."
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A knot drawing has 5 crossings. Switching any one of them gives a plain loop. How many switches did you need to free it?",
+    "options": [
+      "1",
+      "5",
+      "It depends which crossing"
+    ],
+    "answer": 0,
+    "why": "Any single switch frees it, so one is enough, whichever crossing you pick. No crossing is special, and you never need to undo them all."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/unknot-game/2026-10-16-qa.md",
+      "company/reviews/unknot-game/2026-10-17-qa.md",
+      "company/reviews/unknot-game/2026-10-17-qa-v2.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/unknot-game/2026-10-17-learner-walk.md",
+      "company/reviews/unknot-game/2026-10-17-learner-walk-v2.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "math:knot-crossing-change",
+    "also": [],
+    "prerequisites": [
+      "math:knot-table-names"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "knots",
+      "crossing-change",
+      "unknotting-number"
+    ]
+  }
+}

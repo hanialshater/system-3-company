@@ -598,6 +598,276 @@
           "C2 run 2026-10-15 ~13:00Z on https://system-3-company.vercel.app: 5 drafts 404 twice (one timeout retried, 404); /api/meta keys = claims, domain, evidence, recall, slug, status, title; claim keys = id, links, status, support, text; 'Fact-checker to confirm' absent on /d/earliest-finish-wins; coal-came-back and heat-the-ammonia-maker report published, patience-wins-the-split review."
         ]
       }
+    },
+    {
+      "version": "r8",
+      "date": "2026-10-16T19:07:55.000Z",
+      "commit": "6cbce514e1365e2620a90e1e73b74947e479bf0f",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder",
+        "record": "2026-10-16: \"Publish now, I approve closeout\" and \"Yes, deploy\" (F-47, company/decisions/2026-10-16-founder-catalog-closeout.md); source note company/ops/deployments/2026-10-16-r8-source.md"
+      },
+      "summary": "Catalog closeout release (F-47): 711 published lessons in total, 235 in review (shown tagged), 29 draft (not served).",
+      "added": {
+        "features": [
+          "Catalog closeout release: 36 lessons newly published since r7, 711 published in total (6cbce514, from the source note; full verify green on a4cc732, 1958 QA tests)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 36,
+            "slugs": [
+              "best-of-twenty-on-one-test",
+              "electron-speed-in-a-wire",
+              "head-on-is-a-wall",
+              "more-detail-less-likely",
+              "more-digits-not-bigger",
+              "one-circle-fewer-introductions",
+              "opposite-flows-swap-more",
+              "order-of-the-bad-year",
+              "packing-cube-walls",
+              "pillowcase-set-kit",
+              "raters-reward-agreement",
+              "rebuild-the-procedure",
+              "rolled-or-folded-volume",
+              "same-dose-levels-off",
+              "savings-outlast-the-division",
+              "second-speaker-decibels",
+              "shelf-front-labels",
+              "significant-but-false",
+              "sixteen-of-twenty-got-better",
+              "small-n-favours-the-slow-curve",
+              "snap-the-magnet",
+              "spaced-beats-cram",
+              "sudden-skill-or-strict-score",
+              "tax-now-or-tax-later",
+              "ten-thousand-replies-still-wrong",
+              "the-equals-sign-balances",
+              "twenty-flips-run-of-five",
+              "two-cells-sum-any-range",
+              "two-routes-to-co2",
+              "what-pushes-the-car",
+              "where-the-axis-starts",
+              "which-sea-gets-the-rain",
+              "which-step-to-speed",
+              "which-way-the-water-goes",
+              "winning-bid-overpays",
+              "zebra-sorts-before-apple"
+            ]
+          },
+          "in_review": {
+            "count": 12,
+            "slugs": [
+              "doubling-stopped-speeding-up",
+              "income-flat-then-sixteenfold",
+              "italy-poorer-in-1800",
+              "lakes-misplaced-east-west",
+              "life-expectancy-gained-late",
+              "more-boys-christened",
+              "rome-placed-too-far-east",
+              "same-week-a-year-apart",
+              "saved-or-die-same-600",
+              "sure-million-or-long-shot",
+              "wages-bought-more-wheat",
+              "zero-loses-to-this-crowd"
+            ]
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "W-1114: Life Hacks chosen button announced \"pressed, dimmed\" by screen readers.",
+          "Entry backfilled 2026-10-17 by release-manager from company/ops/deployments/2026-10-16-r8-source.md (the entry promised there was never written); live deployment status was not re-confirmed (the Vercel API denied access to this session)."
+        ]
+      },
+      "backfill": "backfilled 2026-10-17 by release-manager from the source note; live status not re-confirmed (Vercel API access denied to this session)"
+    },
+    {
+      "version": "r9",
+      "date": "2026-10-17T05:41:47.000Z",
+      "commit": "2821160c8673462c288e65424fecc10ddfa1cfb5",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder",
+        "record": "Conversation of 2026-10-17: reply \"Deploy\" to the chief-of-staff summary (5 lessons published earlier plus four knot lessons published 2026-10-17). On math/left-or-right unverified in Safari the founder chose \"Ship it anyway\" (option text: \"Deploy left-or-right too, untested in Safari. If the card fails there, iPhone users see the mirror-image knot after 'Turn over'. Your decision gets recorded in the release record.\"). Decision: company/decisions/2026-10-17-founder-deploy-r9-left-or-right-safari.md"
+      },
+      "summary": "9 lessons move to published since r8 (720 published in total, incl. the four knot lessons and math/left-or-right v3); the 200 algorithm drafts and the Books drafts ship as code only and stay 404; deployed by the Deploy to Vercel workflow, not a commit marker (F-48).",
+      "added": {
+        "features": [
+          "Shared algorithm trace engine and 200 algorithm draft lessons (src/demos/cs/algo-*, PR #6); the catalog Algorithms section renders only visible lessons (8cc9da5a5, 6008cd522). Drafts are code only, unpublished, 404 in production.",
+          "Published since r8: draw-a-table-knot v3, tricolour-check v2, unknot-game v2 (4071bb4d1, W-1623), math/left-or-right v3 (0b4e2e0ae, r9 launch review, W-1660), cut-the-busiest-link (f6b2a22e6) and price-tag-or-auction, same-picture-two-histories, the-swap-that-goes-in-circles, worth-something-alone (r7 swap/slate publishes).",
+          "Books draft demos (100, source-held) and renderer accessibility fixes (1ba084d26, b3beca16d).",
+          "Pushes no longer create Vercel deployments; deploy only by the approved workflow (cdee168c4, F-48).",
+          "Range 6cbce514..2821160c8 is 213 non-merge commits; most are company records (board, memory, reviews, QA). List: git log 6cbce514..2821160c8."
+        ],
+        "lessons": {
+          "published": {
+            "count": 9,
+            "slugs": [
+              "cut-the-busiest-link",
+              "draw-a-table-knot",
+              "left-or-right",
+              "price-tag-or-auction",
+              "same-picture-two-histories",
+              "the-swap-that-goes-in-circles",
+              "tricolour-check",
+              "unknot-game",
+              "worth-something-alone"
+            ]
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "left-or-right c5 quote corrected and re-verified (1d06150fb, 099fc6707)."
+        ],
+        "known_issues": [
+          "math/left-or-right (v3) is unverified in WebKit/Safari: if backface-visibility or preserve-3d fails there, iPhone users see the mirror-image knot after Turn over. Shipped on the founder's explicit decision (company/decisions/2026-10-17-founder-deploy-r9-left-or-right-safari.md); revert 0b4e2e0ae and redeploy if it fails. Firefox also not run.",
+          "200 algorithm drafts are included as code but unpublished (draft status, 404 in production); the catalog Algorithms section stays hidden. Readiness C2 (W-1645) built-output tests passed 4/4 on this tree before the deploy (company/engineering/readiness/2026-10-16-algorithms-200.md).",
+          "QA was Chromium only: no WebKit or Gecko run for any lesson in this release.",
+          "W-1114 screen-reader defect (Life Hacks chosen button) still ships known (r8 note).",
+          "Release commit 2821160c is the tree prepared; the deployed commit is the release-manager records commit on top of it (records and tests only, no lesson or app code change)."
+        ]
+      }
+    },
+    {
+      "version": "r10",
+      "date": "2026-10-18T13:08:11.000Z",
+      "commit": "882737a45d1e8d202ad7d396964ef376971b0de6",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder",
+        "record": "Conversation of 2026-10-18: \"Ok approve pr #8, then lets deploy and check the app manually\", then reply \"go production\" to the chief-of-staff's option 1 (production deploy with accounts switched off via the Deploy to Vercel workflow). The Deploy to Vercel workflow could not be started by this session (GitHub API 403, no Actions permission); offered the workflow (founder clicks Run workflow) or a commit marker, the founder replied \"push a commit with the [deploy] marker\"."
+      },
+      "summary": "PR #8 lands in production as code with every new surface switched off: accounts, server progress, likes and saves behind ACCOUNTS_ENABLED / LIKES_SAVES_ENABLED / LIKE_COUNTS_PUBLIC (all off), plus the AMD-013 one readiness policy. No lesson changes status; 720 published, unchanged from r9.",
+      "added": {
+        "features": [
+          "Accounts, server-side progress, likes and saves (EDD-008 rebuild, PRD-005; better-auth 1.7.10, pg 8.23.1), merged via PR #9 (a6333dd0). All switches off in production: every account route returns 404 and sets no cookie.",
+          "AMD-013 one readiness policy in tools/company.mjs (current-version learner and QA verdicts, holds read by the gate); status applied (882737a4).",
+          "HQ Strategy tab (/hq/strategy) and company records from the 10-17/10-18 sessions."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "Accounts are off: the release cannot be used to test sign-in. A flags-on staff preview needs W-1706 (founder: preview database, fra1 region), W-1716, W-1714, W-1701/W-1702 and privacy PC5/PC6.",
+          "QA was Chromium only; math/left-or-right still unverified in WebKit/Safari (r9 note). W-1114 screen-reader defect still ships known.",
+          "Release commit 882737a4 is the tree prepared; the deployed commit is the release-manager records commit on top of it that carries the deploy marker (records only).",
+          "Deployed by Vercel's Git integration from a commit carrying the deploy marker (founder's choice), not the Deploy to Vercel workflow: no staged promotion and no wrapper smoke test before the domain switched; CI verify runs beside the deploy, not before it. Smoke test by the chief of staff after READY. The workflow's 05238276 upload fix is still unproven (W-1666, W-1669)."
+        ]
+      }
+    },
+    {
+      "version": "r11",
+      "date": "2026-10-19T09:12:10.000Z",
+      "commit": "9911156584a25774b502a9a7fe0cbd42aa1958f6",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-19-founder-show-all-lessons.md#deployment-approval"
+      },
+      "summary": "Show all 1,283 registered lessons with explicit unpublished status labels.",
+      "added": {
+        "features": [
+          "Feed, map, direct lesson pages and sanitized metadata include all lesson statuses.",
+          "Draft, In review and Retired badges explicitly identify unpublished lessons.",
+          "Map includes lessons without a curriculum concept mapping."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "No lesson content or publication status changed since r10 (git diff src/demos is empty).",
+          "Local full verification is incomplete: HQ filename casing blocks local TypeScript; full verify stops on publication-tool fixture tests. Platform 37 passed, 4 built-output checks skipped.",
+          "Accounts remain off; sender-domain setup and account go-live readiness remain incomplete.",
+          "Git integration builds on Vercel and assigns production domains before post-deploy smoke; no staged promotion used."
+        ]
+      }
+    }
+  ],
+  "historical_deployments": [
+    {
+      "date": "2026-10-18T15:25:15Z",
+      "commit": "bcd102d75cce5d4bda2960b06ef2dea24fed0056",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder, after the fact (the deploy itself was unapproved)",
+        "record": "company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md: 'Keep what’s live', conversation of 2026-10-18. Deployed by Vercel's git integration because the merge message contained the deploy marker; not tools/deploy.mjs."
+      },
+      "summary": "PR #7 (M1, HQ part): personalization org, HQ Personalization / Evaluation / R&D tabs, AMD-015. No lesson changes; deployed without approval and kept by the founder.",
+      "added": {
+        "features": [
+          "HQ Personalization, Evaluation and R&D tabs (/hq/personalization, /hq/evaluation, /hq/rnd), AMD-015 (PR #7 merge bcd102d7)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "UNAPPROVED DEPLOY accepted after the fact by the founder; no deploy approval, no tools/deploy.mjs record, no pinned SHOW_REVIEW, no wrapper smoke test (COE company/rituals/records/2026-10-18-coe.md).",
+          "See historical deployment deployment-2902594b for production verification of this state; deployment-bcd102d7 was live for about 77 minutes before deployment-2902594b replaced it. The original PR #11 aliases were r11 and r12 respectively; neither identifies canonical r11."
+        ]
+      },
+      "historical_alias": "PR #11 branch-only r11",
+      "id": "deployment-bcd102d7",
+      "backfill": "Retrospective deployment history recorded by PR #11; the branch-only release alias was never a canonical production release number. Canonical r11 remains the 2026-10-19 show-all release (99111565). Original deployment timestamp retained."
+    },
+    {
+      "date": "2026-10-18T16:42:31Z",
+      "commit": "2902594b67ebafee655c40e86a58aacdb210321d",
+      "target": "production",
+      "approved_by": {
+        "who": "the founder, after the fact (the deploy itself was unapproved)",
+        "record": "company/decisions/2026-10-18-founder-accepts-unapproved-deploys.md: 'Keep what’s live', conversation of 2026-10-18. Deployed by Vercel's git integration because the merge message contained the deploy marker; not tools/deploy.mjs."
+      },
+      "summary": "PR #10: personalization owns feed, profile, gamification, progressive learning (S1-S11) as code and records; the personalised order was never merged and its flag is unset, so the feed keeps the default order. No lesson changes; deployed without approval and kept by the founder.",
+      "added": {
+        "features": [
+          "Personalization scope cards S1-S11, lane 21 Evaluation, learner dimension index and an /api/account/settings route that answers 404 while accounts are off (PR #10 merge 2902594b)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "UNAPPROVED DEPLOY accepted after the fact by the founder; no deploy approval, no tools/deploy.mjs record, no pinned SHOW_REVIEW, no wrapper smoke test (COE company/rituals/records/2026-10-18-coe.md).",
+          "Verified read-only on production 2026-10-18 (company/ops/deployments/2026-10-18-unapproved-bcd102d7-2902594b.md): lessons in review are served and tagged 'In review' (/d/penalty-on-wiggle 200, ~468 'in review' tags on /catalog), so SHOW_REVIEW is not 'off' in production; accounts, likes, saves and like counts are off (/api/account/settings, /api/auth/session, /api/account/likes, /api/account/saves, /api/likes/counts answer 404; PUT/DELETE on like and save 404); HQ public (/hq, /hq/strategy, /hq/rnd, /hq/personalization, /hq/evaluation 200); feed smoke (tests/qa/feed.spec.ts, 10 tests): 8 pass, 2 'provenance' fail only because the spec opens the first lesson on disk, which is a draft and 404s in production by design; rerun with QA_ONLY=a-birthday-like-mine passes 2/2."
+        ]
+      },
+      "historical_alias": "PR #11 branch-only r12",
+      "id": "deployment-2902594b",
+      "backfill": "Retrospective deployment history recorded by PR #11; the branch-only release alias was never a canonical production release number. Canonical r11 remains the 2026-10-19 show-all release (99111565). Original deployment timestamp retained."
     }
   ]
 }

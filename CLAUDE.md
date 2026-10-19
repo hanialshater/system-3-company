@@ -18,7 +18,7 @@ session, and the next worker arrives knowing nothing except what is in this repo
 - **Every factual sentence a learner sees is a claim** in that lesson's `meta.json`, with an address, support and source. Builders never mark their own claims verified.
 - **Evaluators see the artifact before the account**: `npm run walkthrough -- <slug>` first, and builder notes only after their findings are written.
 - **Objections travel with decisions.** Never answer one with "noted".
-- **Deploys need the founder's approval, every time.** Never put `[deploy]` in a commit message, run `npm run deploy`, or trigger the deploy workflow unless the founder has approved that specific deploy in this conversation. Vercel's free plan allows 100 deployments a day; `vercel.json` builds only `[deploy]` commits (company/ops/runbook-deploy.md).
+- **Deploys need the founder's approval, every time.** Never put `[deploy]` in a commit message, run `npm run deploy`, or trigger the deploy workflow unless the founder has approved that specific deploy in this conversation. **One exception, pre-approved by the founder (AMD-015):** on a privacy or child-safety trigger, release-manager may run the flag-off withdrawal without asking first. That deploy is the live production commit rebuilt with `NEXT_PUBLIC_NEW_LESSON_ORDER` off and nothing else changed. release-manager then records it and tells the founder at once (company/ops/runbook-deploy.md, "Pre-approved flag-off withdrawal"). No other deploy, and no other role, is pre-approved. Vercel's free plan allows 100 deployments a day; `vercel.json` builds only `[deploy]` commits (company/ops/runbook-deploy.md).
 - **Lessons follow `company/product/demo-standard.md`.** No new npm dependencies without a decision record.
 
 ## Before you finish

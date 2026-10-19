@@ -1,0 +1,109 @@
+{
+  "plumbing": false,
+  "kinds": [
+    "corner",
+    "novelty",
+    "rho"
+  ],
+  "criterionStatus": "frozen",
+  "criterionSha256": "00797fab303482963337950139107273577a6d63be0cc8445732f4f7779dc5e8",
+  "inputsSha256": "d2fbc581c5321e80a54636cdec255c6db964349bd81bca70b016f4c41a028252",
+  "inputs": {
+    "status": "C0-corrected (filled in C4, run eval-c4-1016; criterion §4 C4 table)",
+    "memo": "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md#the-ranges-table-for-the-c1-sweep",
+    "check": "company/personalization/evidence/2026-10-16-ranges-fulltext-check.md",
+    "forgetRate": {
+      "low": 0.04,
+      "base": 0.1,
+      "high": 0.2,
+      "confidence": "low-medium",
+      "marks": "low/base [R] unverifiable; high [F]"
+    },
+    "forgetSpread": {
+      "low": 1.5,
+      "base": 2,
+      "high": 3,
+      "confidence": "low"
+    },
+    "pull": {
+      "low": 0.3,
+      "base": 0.55,
+      "high": 0.85,
+      "confidence": "low-medium",
+      "marks": "high [F-r]; base region [F-r]/[F]"
+    },
+    "pullModifier": {
+      "low": -0.15,
+      "base": 0,
+      "high": 0.1,
+      "confidence": "low"
+    },
+    "prereqPenalty": {
+      "low": 0,
+      "base": 0.15,
+      "high": 0.4,
+      "stress": 0.5,
+      "confidence": "low",
+      "marks": "high [S] unverifiable"
+    },
+    "priorKnowledgeMean": {
+      "low": 0.05,
+      "base": 0.2,
+      "high": 0.5,
+      "confidence": "low"
+    },
+    "priorKnowledgeSpread": {
+      "low": 0.05,
+      "base": 0.15,
+      "high": 0.25,
+      "confidence": "low"
+    },
+    "predictionFeedback": {
+      "low": 0,
+      "base": 0.1,
+      "high": 0.25,
+      "confidence": "medium",
+      "marks": "[A]/[S]"
+    },
+    "hypercorrection": {
+      "low": 0,
+      "base": 0.05,
+      "high": 0.15,
+      "confidence": "low-medium",
+      "marks": "[S] unverifiable"
+    },
+    "novelty": {
+      "low": -0.05,
+      "base": 0,
+      "high": 0.05,
+      "confidence": "low"
+    },
+    "learnRate": {
+      "low": 0.35,
+      "base": 0.7,
+      "high": 0.7,
+      "confidence": "low",
+      "marks": "low [F] (derived); high unsourced; base none in B2 (C1 guess)"
+    }
+  },
+  "commit": "5725b10a8f4505aa697a6305cc9a51378ed7b4aa",
+  "node": "v22.22.0",
+  "S": 200,
+  "seedList": "1001..1200",
+  "modelVersion": "model-v0.2.1",
+  "composer": "composer-v0.2",
+  "fileSha256": {
+    "harness.mjs": "458f3dc19b1048f2110573b4befb17dd0b8f74ac9ac0fa7a58428057f74b1864",
+    "learner.mjs": "b9656aaca5384cdade2f120b5957117f2c872a558fff1687bdde7ca436e6fe4e",
+    "scorer.mjs": "de84a03b970f2b946eb7d0eca073ece293fe63d945519e93f55f5add361376d2",
+    "world-inputs.mjs": "216a47d7e4fb5210692f393098139345efae663035d578b95b9c747484e2bee5",
+    "personas.copy.mjs": "9cb7a911a5aa03a4537b0dabc7383c3a87faf91fa05b1792009abee0c9d18770",
+    "checks.mjs": "b5b9855de0afba6c2ff458ae4866b1455cd75635675d2f984e9f98bec420ea40",
+    "run.mjs": "7f1b8f095ac4112631ec9f99aaf4854aa0d784c15779cc3b16a3f45f9b28e471",
+    "run-worker.mjs": "4be2fceeb16fc79a288efcfaeb6b901c1b726cd76a0a04f6e3469660fa91f6af",
+    "../../model/model.ts": "86590f4d9db317e6ad04bfeb33d1c8ad3e59bcc9a76b2c08b7591291ae4daacf",
+    "../../model/sim/composer.ts": "02ef5e66b067a54cba19959351cdc5b46b1a2d5240171d83c8926fbb2816c3f5",
+    "../../model/sim/catalog.mjs": "877b0807cdd77a1ad9e11457524eae23b5a352c56f3b7c8dcd00b556413effc9"
+  },
+  "seconds": 1378.151
+}

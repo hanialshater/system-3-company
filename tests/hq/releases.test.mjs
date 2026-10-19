@@ -11,20 +11,39 @@ const file = JSON.parse(fs.readFileSync("company/ops/releases.json", "utf8"));
 const grp = { count: 0, slugs: [] };
 const mk = (version, date) => ({ version, date, commit: "a".repeat(40), target: "production", approved_by: { who: "founder", record: "x" }, summary: "s", added: { features: [], lessons: { published: grp, in_review: grp }, fixes: [], known_issues: [] } });
 
-test("company/ops/releases.json is valid and runs r1..r7 with the five backfilled releases first", () => {
+test("company/ops/releases.json is valid and runs r1..r11 with the five backfilled releases first", () => {
   assert.equal(validateReleases(file), null);
   assert.equal(file.owner, "release-manager");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.version), ["r1", "r2", "r3", "r4", "r5"]);
-  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7"]);
+  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11"]);
   assert.equal(file.releases[5].date.slice(0, 10), "2026-10-15");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.commit.slice(0, 7)), ["f868127", "6b45ea0", "91274b8", "f4537d7", "5e8608d"]);
 });
 
-test("every backfilled commit is a [deploy] commit in git history", { skip: !fs.existsSync(".git") }, () => {
+test("every release through r8 is a [deploy] commit in git history; later ones exist in history (F-48: the marker no longer deploys)", { skip: !fs.existsSync(".git") }, () => {
   for (const r of file.releases) {
+    if (Number(r.version.slice(1)) > 8) {
+      execFileSync("git", ["cat-file", "-e", `${r.commit}^{commit}`]);
+      continue;
+    }
     const msg = execFileSync("git", ["show", "-s", "--format=%B", r.commit], { encoding: "utf8" });
     // f868127 introduced the [deploy] filter and quotes it in its own subject; all five carry the marker.
     assert.match(msg, /\[deploy\]/, r.commit);
+  }
+});
+
+test("retroactive deployment history preserves canonical r11 and branch-only aliases", () => {
+  assert.equal(file.releases.at(-1).version, "r11");
+  assert.equal(file.releases.at(-1).commit, "9911156584a25774b502a9a7fe0cbd42aa1958f6");
+  assert.equal(nextVersion(file.releases), "r12");
+  assert.deepEqual(file.historical_deployments.map((r) => [r.id, r.historical_alias, r.date, r.commit]), [
+    ["deployment-bcd102d7", "PR #11 branch-only r11", "2026-10-18T15:25:15Z", "bcd102d75cce5d4bda2960b06ef2dea24fed0056"],
+    ["deployment-2902594b", "PR #11 branch-only r12", "2026-10-18T16:42:31Z", "2902594b67ebafee655c40e86a58aacdb210321d"],
+  ]);
+  for (const r of file.historical_deployments) {
+    assert.equal(r.version, undefined);
+    assert.match(r.approved_by.who, /after the fact/);
+    assert.match(r.added.known_issues[0], /UNAPPROVED DEPLOY/);
   }
 });
 
@@ -52,7 +71,7 @@ test("nextVersion is r(max+1), whatever the date", () => {
   assert.equal(nextVersion([{ version: "r9" }]), "r10");
   assert.equal(nextVersion([{ version: "r2" }, { version: "r11" }, { version: "r3" }]), "r12");
   assert.equal(nextVersion([]), "r1");
-  assert.equal(nextVersion(file.releases), "r8");
+  assert.equal(nextVersion(file.releases), "r12");
   assert.ok(VERSION_RE.test("r12"));
   assert.ok(!VERSION_RE.test("2026.10.14.12"));
 });
@@ -90,7 +109,7 @@ test("unreleased commits are computed from the last release commit", { skip: !fs
 test("release-draft tool prints a draft with TODO approval and writes nothing", { skip: !fs.existsSync(".git") }, () => {
   const before = fs.readFileSync("company/ops/releases.json", "utf8");
   const out = JSON.parse(execFileSync("node", ["tools/release-draft.mjs", "--commit=f4537d7", "--since=91274b8"], { encoding: "utf8" }));
-  assert.equal(out.version, "r8");
+  assert.equal(out.version, nextVersion(file.releases));
   assert.match(out.approved_by.who, /TODO/);
   assert.equal(out.added.lessons.in_review.count, 54);
   assert.equal(fs.readFileSync("company/ops/releases.json", "utf8"), before);

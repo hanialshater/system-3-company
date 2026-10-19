@@ -1,0 +1,206 @@
+{
+  "slug": "algo-sqrt-decomposition",
+  "title": "One changed card, one changed block",
+  "hook": "A query can combine whole blocks with a few loose edges.",
+  "domain": "cs",
+  "concept": "algo-sqrt-decomposition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Maintain range-sum blocks so point updates repair one block and queries scan only fringes."
+    ]
+  },
+  "misconception": "Range sums require either a full scan or a binary tree.",
+  "objective": "Maintain range-sum blocks so point updates repair one block and queries scan only fringes.",
+  "claims": [
+    {
+      "id": "cs.algo-sqrt-decomposition.c1",
+      "text": "A point update repairs just its own block sum. The query adds complete block summaries and scans only the loose edge cells, showing a middle ground between a full scan and a binary tree.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c2",
+      "text": "A query can combine whole blocks with a few loose edges.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c3",
+      "text": "Set index 4 to 10 in [1,2,3,4,5,6,7,8,9]. What is the inclusive [1,7] sum using blocks of 3?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c5",
+      "text": "Index 4→10; query 1..7 sum 40.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c6",
+      "text": "Values in blocks",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c8",
+      "text": "size",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c9",
+      "text": "update",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[0].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c10",
+      "text": "Repair one block summary",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c11",
+      "text": "sums",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c12",
+      "text": "Scan fringe cell",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c13",
+      "text": "sum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[2].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c14",
+      "text": "Consume full block",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c15",
+      "text": "Index 4→0; query 1..7 sum 30.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sqrt_decomposition.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c16",
+      "text": "One point changes. How many block summaries need repair?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c17",
+      "text": "One",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c18",
+      "text": "All",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c19",
+      "text": "None",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sqrt-decomposition.c20",
+      "text": "Only the containing block’s total changes.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sqrt-decomposition\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One point changes. How many block summaries need repair?",
+    "options": [
+      "One",
+      "All",
+      "None"
+    ],
+    "answer": 0,
+    "why": "Only the containing block’s total changes."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-sqrt-decomposition/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-sqrt-decomposition",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

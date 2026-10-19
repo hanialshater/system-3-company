@@ -1,0 +1,276 @@
+{
+  "slug": "algo-distinct-subsequences",
+  "title": "Equal letters can come from two places",
+  "hook": "Repeated letters can produce different index choices for the same word.",
+  "domain": "cs",
+  "concept": "algo-distinct-subsequences",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Count target subsequences with take-or-skip transitions without collapsing index-distinct choices."
+    ]
+  },
+  "misconception": "Identical resulting strings count only once even when the task counts index selections.",
+  "objective": "Count target subsequences with take-or-skip transitions without collapsing index-distinct choices.",
+  "claims": [
+    {
+      "id": "cs.algo-distinct-subsequences.c1",
+      "text": "Take-or-skip counts use backward updates to prevent reusing an index.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c2",
+      "text": "Repeated letters can produce different index choices for the same word.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c3",
+      "text": "How many index-distinct ways does source babgbag contain target bag as a subsequence?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c4",
+      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c5",
+      "text": "Index-distinct subsequences 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c6",
+      "text": "Index-distinct subsequences 5. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c7",
+      "text": "Skipping preserves each count, and a matching character adds ways for the previous target prefix. Updating backward prevents the same source index being taken twice in one step.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c8",
+      "text": "Subsequence input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c9",
+      "text": "source",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c10",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c11",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c12",
+      "text": "g",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c13",
+      "text": "target",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c14",
+      "text": "Take/skip index 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c15",
+      "text": "before",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c16",
+      "text": "after",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c17",
+      "text": "character",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c18",
+      "text": "Take/skip index 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c19",
+      "text": "Take/skip index 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c20",
+      "text": "Take/skip index 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c21",
+      "text": "Take/skip index 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c22",
+      "text": "Take/skip index 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c23",
+      "text": "Take/skip index 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c24",
+      "text": "Index-distinct subsequences 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c25",
+      "text": "Index-distinct subsequences 3. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#distinct_subsequences.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c26",
+      "text": "Why update target-prefix counts backward for one source character?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c27",
+      "text": "To sort the target",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c28",
+      "text": "To avoid taking the same source index twice",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c29",
+      "text": "To remove repeated letters",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-distinct-subsequences.c30",
+      "text": "Backward updates read the previous-source counts rather than the values just updated.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-distinct-subsequences\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why update target-prefix counts backward for one source character?",
+    "options": [
+      "To sort the target",
+      "To avoid taking the same source index twice",
+      "To remove repeated letters"
+    ],
+    "answer": 1,
+    "why": "Backward updates read the previous-source counts rather than the values just updated."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-distinct-subsequences/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-distinct-subsequences",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "sequence-dynamic-programming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

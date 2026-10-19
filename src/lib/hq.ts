@@ -6,6 +6,7 @@ export { teamColor } from "./hq-colors";
 import { ROOM_ALIASES, type Floor } from "./hq-floors";
 export { FLOORS, FLOOR_NAMES, ROOM_ALIASES, stairsTo, type Floor } from "./hq-floors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
+import { recordEvents } from "../../tools/lib/ritual-records.mjs";
 import { roles } from "../../tools/org/roles.mjs";
 import { pressRooms, type PressSnapshot } from "./hq-press";
 
@@ -95,11 +96,11 @@ export const ROOMS: Room[] = [
   // build-floor keeps 400 x 230: Office.tsx's 18 desks fit that size.
   { id: "build-floor", name: "Build floor", x: 208, y: 176, w: 400, h: 230, kind: "floor", floor: 2 },
   { id: "design-studio", name: "Design studio", x: 616, y: 176, w: 364, h: 230, kind: "office", color: "#f48fb1", floor: 2 },
-  { id: "launch-room", name: "Launch room", x: 20, y: 416, w: 300, h: 110, kind: "meeting", floor: 2 },
-  { id: "personalization", name: "Personalization", x: 330, y: 416, w: 150, h: 110, kind: "office", color: "#c792ea", floor: 2 },
-  { id: "model-lab", name: "Learner model lab", x: 490, y: 416, w: 150, h: 110, kind: "floor", floor: 2 },
-  { id: "international", name: "International", x: 650, y: 416, w: 160, h: 110, kind: "office", color: "#4fd1a5", floor: 2 },
-  { id: "locale-desks", name: "Locale desks", x: 820, y: 416, w: 160, h: 110, kind: "floor", floor: 2 },
+  { id: "launch-room", name: "Launch room", x: 20, y: 416, w: 140, h: 110, kind: "meeting", floor: 2 },
+  { id: "personalization", name: "Personalization · VP · Science", x: 168, y: 416, w: 250, h: 110, kind: "office", color: "#c792ea", floor: 2 },
+  { id: "model-lab", name: "Learner model · Eval · Customer data", x: 426, y: 416, w: 250, h: 110, kind: "floor", floor: 2 },
+  { id: "international", name: "International", x: 684, y: 416, w: 110, h: 110, kind: "office", color: "#4fd1a5", floor: 2 },
+  { id: "locale-desks", name: "Locale desks", x: 802, y: 416, w: 178, h: 110, kind: "floor", floor: 2 },
   { id: "to-floor-1-from-2", name: "↓ Floor 1 · Lobby", x: 20, y: 536, w: 470, h: 100, kind: "lobby", floor: 2 },
   { id: "to-floor-6-from-2", name: "↑ Floor 6 · Quality: where your build is checked", x: 500, y: 536, w: 480, h: 100, kind: "lobby", floor: 2 },
 
@@ -205,7 +206,7 @@ export interface FounderItem {
 export function founderQueue(): FounderItem[] {
   const read = (f: string) => {
     try {
-      return JSON.parse(fs.readFileSync(path.join(process.cwd(), f), "utf8"));
+      return JSON.parse(fs.readFileSync(/*turbopackIgnore: true*/ path.join(/*turbopackIgnore: true*/ process.cwd(), f), "utf8"));
     } catch {
       return null;
     }
@@ -221,11 +222,13 @@ export function founderQueue(): FounderItem[] {
 /** HQ shows prompts and reports, so it stays off in production until it sits behind a login. */
 export const hqEnabled = () => process.env.NODE_ENV !== "production" || process.env.HQ_PUBLIC === "1";
 
-/** Rituals due now, from company/rituals/triggers.json (event-driven cadence). */
+/** Rituals due now, from company/rituals/triggers.json (event-driven cadence). Held = a committed record file
+ *  (tools/lib/ritual-records.mjs), the same rule as tools/rituals-due.mjs (external assessment 2026-10-17 §3). */
 export function ritualsDue(): Due[] {
   try {
     const triggers = JSON.parse(fs.readFileSync(path.join(process.cwd(), "company/rituals/triggers.json"), "utf8")).triggers;
-    return computeDue(triggers, readAll()).filter((d) => d.due);
+    const events = [...readAll(), ...recordEvents(triggers, { root: /*turbopackIgnore: true*/ process.cwd() })].sort((a, b) => a.ts.localeCompare(b.ts));
+    return computeDue(triggers, events).filter((d) => d.due);
   } catch {
     return [];
   }

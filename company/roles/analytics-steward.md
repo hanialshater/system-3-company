@@ -22,6 +22,7 @@ Before the result arrives, write down what the number is taken to mean, over wha
 
 - Choosing what to build
 - Changing Surface Value (proposes only)
+- Registration, criteria and readouts of personalization and gamification experiments (personalization-eval); the EXP format and the experiments index stay the steward's, as do event semantics and the WBR metrics section
 
 ## Authority
 

@@ -59,7 +59,7 @@ The gate's `account` table is Better Auth's user table, named `auth_user` here. 
 | `auth_session` | `id`, `token`, `user_id`, `expires_at`, `created_at`, `updated_at` | **no** (the gate is silent on sessions) | staying signed in | backend-engineer | sign-out; expiry (30 days, Q8); §7 |
 | | `ip_address`, `user_agent` | **no; forbidden** (P1.1). Kept only because the library writes them: `CHECK (coalesce(ip_address,'') = '')`, and the same for `user_agent` | | backend-engineer | n/a: always empty |
 | `auth_account` | Better Auth's sign-in-method links | **no** | the library's model. Magic link should write **0 rows** (spike verifies). Token and password columns forced NULL by `CHECK` | backend-engineer | §7 |
-| `auth_verification` | `id`, `identifier` (hash of the link token), `value` (JSON `{email, name:""}`), `expires_at`, `created_at`, `updated_at` | **no** | a pending sign-in link. Holds an email for at most 300 s, **before** an account may exist | backend-engineer | consumed on click; expired rows purged daily; §7 |
+| `auth_verification` | `id`, `identifier` (hash of the link token), `value` (JSON `{email, name:""}`), `expires_at`, `created_at`, `updated_at` | **no** | a pending sign-in link. Holds an email **before** an account may exist: the link dies after 300 s, and the expired row is removed at the next sign-in request by anyone (no cron; in a quiet period that can be hours or longer; M3). Never a name: hook plus `CHECK auth_verification_no_name` (M1) | backend-engineer | consumed on click; expired rows removed at the next `start`; §7 |
 | `signup_intent` | `token_hash`, `age_band`, `policy_version`, `created_at`, `expires_at` | **no** (new, ours) | carries the band from the age screen to the moment the account is created (§6.2). **No email, no id** | backend-engineer | deleted on use; purged after 10 min |
 | `progress` | `user_id`, `slug`, `completed_at_ms`, `predicted_correctly` | yes | spaced revisits across devices | backend-engineer (learner-model-engineer reads) | §7 |
 | `recall` | `user_id`, `slug`, `at_ms`, `correct` | yes (`recalls[{at, correct}]`, as rows) | revisits; the recall rate (Q5) | backend-engineer | §7 |
@@ -223,9 +223,9 @@ ON CONFLICT DO NOTHING;                                                         
 | Data | Kept | Then |
 |---|---|---|
 | `auth_user`, `progress`, `recall` (and `settings`) | while the account lives | deleted by the learner (§7), or after **24 months** with no sign-in. The notice is Q3 |
-| `auth_session` | until sign-out or expiry (30 days, refreshed at most daily on use; Q8) | expired rows purged daily |
-| `auth_verification` | 300 s, or until clicked | purged daily |
-| `signup_intent` | 300 s (hard cap 10 min) | deleted on use, purged daily |
+| `auth_session` | until sign-out or expiry (30 days, refreshed at most daily on use; Q8) | expired rows removed at the next sign-in request (M3) |
+| `auth_verification` | the link works 300 s or until clicked; the row waits for the next sign-in request | removed at the next `start` (M3; `tools/db-deletion-check.mjs --oldest-expired` reports what waits, readiness A-15) |
+| `signup_intent` | 300 s (hard cap 10 min by `CHECK`) | deleted on use; otherwise removed at the next `start` |
 | `deleted_account` | 35 days | purged |
 | Neon point-in-time history (the only backup) | Free 6 h · Launch ≤ 7 d · Scale ≤ 30 d (Neon plans page, read 2026-10-15) | rolls off, so **always inside 35 days** on any plan |
 | Restore-drill dumps | same day | deleted. No other dumps exist |
@@ -233,7 +233,7 @@ ON CONFLICT DO NOTHING;                                                         
 | Vercel request and function logs | unverified (E13, principal-engineer-ops) | we log no email, no token, no body |
 | Resend sent-mail log | unverified | counsel and founder (F-25) |
 
-The daily purge runs as one SQL statement. It is triggered either by a Vercel Cron job (deploy config, so platform-engineer and the release manager) or by the first sign-in request each day; the spike picks one.
+The purge of expired rows runs inside each `POST /api/account/start` (C10; principal ruling on M3: no cron in release 1). It is four indexed `DELETE`s (`PURGE_EXPIRED_SQL` in `src/lib/server/progress-store.ts`). So an expired row is removed at the next sign-in request by anyone, not at a fixed time. The 24-month idle purge (`src/lib/server/idle-purge.ts`) is written and tested but has no caller (M2).
 
 ## 10. Processors (P1.7)
 | Processor | Role | What it receives | Where | DPA status |
@@ -301,3 +301,174 @@ would_be_wrong_if: a hook cannot blank the IP and user agent; the cookie path ca
 - Proposal 3: one full merge per tab session, not per page load.
 - Q9: **accepted**.
 - Rollout step 3 now needs a **new Production database** (separate Neon project) first. `first-light` is the test database (founder correction; ADR-009 C8).
+
+## Addendum, 2026-10-17: the rebuild, likes and saves (PRD-005), and what changed from the text above
+
+author: backend-engineer (Amara) · branch `accounts-1017` (the 10-16 branch `accounts` at 2f5c500 / 6ff15ba was never pushed and is lost; this is a rebuild from the records) · decision: [founder 2026-10-17](../../decisions/2026-10-17-founder-accounts-likes-saves.md) · product: [PRD-005](../../product/prds/PRD-005-likes-and-saves.md) · privacy ruling: `company/reviews/_privacy/2026-10-17-prd-005-likes-saves.md` (C1 to C6; on the privacy-reviewer's branch at the time of writing) · tier 2: needs the principal engineer's review and the privacy reviewer's schema read (migration 002) before merge.
+
+### A1. Saves: merge semantics (PRD-005 backend Q2)
+- **Signed in, the server is the source of truth. No tombstones.** A tombstone would store the fact that a learner unsaved a lesson (privacy C5.3). `DELETE /api/account/saves/<slug>` deletes the row and nothing else.
+- **Anonymous:** saves live only in `s3c:saves:v1` (`{slug: savedAt}`) and make no request (C5.1). `setSaved` in `src/lib/account-client.ts` reads the `/me` answer it already has and never asks again.
+- **"Keep my history" is a one-time union, and saves are their own line with their own choice** (C5.2). The client sends `saves` in the merge body only if the learner ticked that line; the server inserts with `ON CONFLICT DO NOTHING` and never deletes. When the server acknowledges, the device removes `s3c:saves:v1`.
+- **While signed in nothing is written to `s3c:saves:v1`**, so sign-out leaves no account saves on a shared device (C5.3).
+- Union semantics for progress are unchanged (§8). Saves do not follow §8's "never deletes" across devices: after the one-time import, the device holds no saves and asks the server.
+
+### A2. The public count (PRD-005 backend Q3)
+- **`COUNT(*)` per slug at read time, no counter column, no trigger.** `lesson_like` holds exactly `user_id, slug, created_at_ms` (privacy C6.1: any further column is a block), and a counter table would be a second store to keep true inside the deletion transaction. With rows only, unlike and deletion decrement the count by construction.
+- The query joins `auth_user` and counts a like only if its account is at least 24 hours old (`created_at`, C3.1). Labels: below 10 `null`, then `10+`, `25+`, `50+`, `100+`, `250+`, `1k+` (C2.1). The raw number never leaves `countLabels` in `progress-store.ts`: not in a response, a cache or a log (C2.4, tested with 1,234 seeded likes).
+- Caching is the CDN's: `cache-control: public, max-age=600, s-maxage=600` (C2.2). Index `lesson_like (slug)` keeps a 50-slug query to an index scan. Revisit the design (a materialised count rebuilt from rows) if `lesson_like` passes about a million rows.
+- **Hide list:** `LIKE_COUNTS_HIDDEN` (comma-separated slugs, runtime config, no table, no learner field) makes a lesson's label `null` (C3.4). It is read per request like the other switches, so a change needs a redeploy (R3).
+- **Off by default, twice:** `LIKE_COUNTS_PUBLIC` and `LIKES_SAVES_ENABLED` must both be `on` (and accounts), else `GET /api/likes/counts` is 404. C3.3: it stays off in production until the founder names a manipulation reviewer.
+
+### A3. API shape as built (PRD-005 backend Q1)
+| Route | Method | Who | Answer |
+|---|---|---|---|
+| `/api/account/likes/<slug>` | PUT, DELETE | signed in, `16+` only (13-15: 403, no row, C4.1); at most 60 writes per account per rolling day (429, hashed in-memory key, C3.2); Origin checked | 204; idempotent |
+| `/api/account/saves/<slug>` | PUT, DELETE | signed in, any band; Origin checked | 204; idempotent |
+| `/api/account/likes`, `/api/account/saves` | GET | signed in | `{likes: [{slug, at}]}` newest first, own rows only (C1.2) |
+| `/api/likes/counts?slugs=a,b` | GET | anyone; outside `/api/account`, so the session cookie never reaches it | `{counts: {slug: label or null}}`, catalog slugs only, at most 50 |
+All behind `LIKES_SAVES_ENABLED` (404 when off). `GET /api/account/me` adds `likesSaves` and `canLike` (false for 13-15; the UI must not say why, C4.2). Export adds `likes` and `saves`; deletion removes both in the same transaction and names the numbers; `tools/db-deletion-check.mjs` counts both (C6.2). No beacon change (C6.3).
+
+### A4. What the rebuild does differently from the text above, and why
+1. **No full upload on every load.** Proposal 3 merged the whole local map both ways on every load. That would undo "Don't import" on the next page load. As built: the device's earlier history goes up only through the explicit merge (`POST /api/account/merge`, after the "what moves" screen); every page load while signed in pulls the account map into the device (server to device); each local update is pushed as a one-slug delta (`PUT /api/account/progress`). A delta that fails offline is retried when the browser comes back online in the same page. **Cost:** a delta lost when the tab closes offline stays only on that device until the learner runs the merge again from the account view. learner-model-engineer and privacy-reviewer: say if that is not acceptable; the alternative needs a device-side "imported" marker (a new storage key). *(2026-10-18: the "one-slug delta" here was the slug's whole stored entry, principal review F3 / privacy P-1. Replaced by A6.2 and A6.3; the device marker now exists, A6.4.)*
+2. **Library endpoints by allow-list.** Instead of `disabledPaths`, the mount at `/api/account/auth/*` forwards exactly two library endpoints: `GET /magic-link/verify` and `POST /sign-out`. Everything else (`/sign-in/magic-link` (C2), `update-user`, `get-session`, `delete-user`, `list-sessions`) is 404 (test 4).
+3. **Export key `lastActiveAt`** instead of `lastSignInAt` (privacy re-read R-M2a: the value is "last sign-in or signed-in use, to the day"). The column keeps its name. R-M2b (the value read only by the idle clock and the export) is a test (S6).
+4. **`/me` with accounts off answers a 404 the browser and CDN may keep for 5 minutes**, because `AccountSync` in the root layout asks once per page load. A redeploy (the only way the switch changes, R3) clears the CDN copy. *(2026-10-18: the browser half was false, because the client asked with `no-store`, principal review F1. Fixed in A6.1.)*
+5. **`/magic-link/verify` limit is 30 per 60 s per IP now** (principal F-f, a go-live condition done early); `start` keeps 5 per 60 s per IP and per email.
+6. **The personalization lane's `settings` table** (origin/perso-m1, its own migration, not in this branch): the export includes a `settings` block and the deletion transaction deletes its row **if the table exists**, and `db-deletion-check` counts it. The settings route can wire to `accountUserId`, `query` and `accountsEnabled`, all exported from `src/lib/server/account-route.ts`. No catch-all exists under `/api/account` (test S7). The settings API must not read `lesson_like` or `lesson_save` (PRD-005 Q4; enforced by `tests/platform/engagement-not-ranking.test.mjs`).
+7. **Email has a console transport.** With no `RESEND_API_KEY` and not on a Vercel production deployment, the sign-in link (never the address) is printed to the server log. A production deployment with no key refuses to send. A key with no `EMAIL_FROM` refuses too.
+8. **Auth refuses to construct** if any `BETTER_AUTH_TELEMETRY*` variable is set or `BETTER_AUTH_SECRET` is shorter than 32 characters (readiness A-5). The library logger prints the level and a SQLSTATE only (A-6, test 23).
+
+### A5. Measurements (local PostgreSQL 16.15, 2026-10-17)
+| Metric (from the table above) | Result |
+|---|---|
+| Rows for a user after deletion, every table | 0, `deleted_account` 1 (test 20, `accountCounts`) |
+| Merge idempotence; two-device convergence | identical rows and answers (test 13) |
+| Export, then compare with what was imported | deep-equal `ProgressMap` (test 19) |
+| `ip_address` / `user_agent` non-empty | 0; a value insert fails with 23514 (tests 6, 7) |
+| `auth_account` rows after magic-link sign-ups | 0 (tests 5, 26) |
+| DDL at run time | none: the Postgres `log_statement=ddl` log shows only migration and test-setup statements |
+| Feed order with random like/save rows | byte-identical (`engagement-not-ranking.test.mjs` (a)) |
+| p95 `/me` in `fra1`, cold connect | not measured: needs a preview (A-10) |
+
+## Addendum, 2026-10-18: the review fixes (principal review MC2, MC3, PC1 to PC4, PC7, PC8; privacy re-read P-1, P-2, M5)
+
+author: backend-engineer (Amara) · branch `accounts-fix-1018` (from `7ed0a2c8e`) · answers: [principal merge review 2026-10-18](../reviews/2026-10-18-accounts-rebuild-review.md) (F1 to F7, MC2, MC3, PC1 to PC4, PC7, PC8) and `company/reviews/_privacy/2026-10-18-accounts-rebuild-reread.md` (P-1, P-2, the M5 note, scripts (a) and (b)) · tier 2: the principal engineer re-reads the diff, and the privacy reviewer re-reads P-1, P-2 and the new device key (A6.4). Not owed here: MC1 (`verify` with `qa`, chief of staff), MC4 (readiness approval, principal-engineer-ops), PC5 and PC6 (preview environment and region record).
+
+### A6.1 Accounts off: the accepted list of differences from the app without accounts (MC3, principal F1)
+"Accounts off equals today" holds except for these, which are **accepted** (principal merge decision 2026-10-18, F1: "none touches a learner's data, a lesson or the beacon"). Each was measured with every switch unset.
+| # | Difference | Measured | Where |
+|---|---|---|---|
+| 1 | `GET /api/account/me` → 404, `cache-control: public, max-age=300, s-maxage=300`. **At most once per 5 minutes per browser**: the first ask of a page load now uses the HTTP cache (MC2), so a reload inside 5 minutes is answered from the browser's cache. Whether Vercel's CDN also answers it from `s-maxage` is unmeasured | real Chromium against `next start` of the off build: first load 1 network hit, reload 0; a `no-store` control fetch is seen as a 2nd hit (test 34, `tests/accounts/browser-me-cache.test.mjs`). Unit: the first ask has no `cache` option, `refresh` has `no-store` (C2) | `account-client.ts` `accountMe` |
+| 2 | One async JS chunk after first paint on every page (`import("@/lib/account-client")`) | **2,594 B gzip** on this branch (was 1,761 B at the merge: the client now holds the merge and device code moved out of the kit, A6.8) | `AccountSync.tsx` |
+| 3 | `/account` answers 200 "Accounts are not available here. Your progress stays on this device." (was 404). `noindex`, linked from nowhere. Follows from C5: the page may not read the switch | principal F1.3 | `AccountView.tsx` |
+| 4 | First-load JS | principal, vs parent `7436cdcb9`: `/` +779 B, `/d/*` +625 B gzip -9. This branch vs `7ed0a2c8e` (same method, both built here): `/` **−106 B** (the kit's chunk 7,287 → 7,132 B), `/d/*` **+64 B** (two chunks +32 B each, neither holds kit or account code: id churn). No `/api/account`, `mergeIntoLocal` or library string in any first-load script | C9 |
+| 5 | None other found. With accounts off nothing is read from or written to the device beyond what the kit did (no `s3c:account-device:v1`, no sink, no `online` listener), and a lesson update sends nothing (test C2). No cookie (tests 31, 34) | | |
+
+### A6.2 Push only what the update added (PC1, privacy P-1)
+- `src/kit/progress.ts` hands the sink the slug's entry **before and after** the update (`before` is a fresh read of storage, so the caller's function cannot change it). `progressDelta` in `account-client.ts` sends only: a `completedAt` that was not set before, a `predictedCorrectly` that was not set before, and recalls whose `at` was not there before. Nothing else, ever.
+- **Consequences, by design:** replaying a lesson that is in the declined history sends nothing (its completion and prediction are the declined history); a new revisit on it sends that recall only, so the account can hold a `progress` row with no `completedAt` (revisitDue on another device then shows no revisit for it, which is the price of "Don't import"). A lesson first completed while signed in sends its completion and prediction.
+- **No sync before the merge screen is answered.** Until the learner answers on `/account`, no sink is registered and nothing is pulled; plays stay on the device and become part of the device's own history the screen offers. Script (a) of the privacy re-read is test C4 (decline, then play: the account holds exactly the one new recall).
+
+### A6.3 The merge screen (PC3, principal F5)
+- **Counted before the pull.** When signed in and unanswered, the client reads the account's map (and saves list, if the device has saves) and counts only the device's history the account lacks (`movesAgainst`): lessons completed here and not there, recalls whose `at` the account does not hold, saves not saved there. Nothing is merged into the device until the answer. If there is nothing to offer, it records "nothing" and syncs without asking (test C5: a fresh device shows no screen; a partly shared device is offered only the difference).
+- **One starter.** `startAccountSync` is called only by `AccountSync` in the root layout and runs once per page load (one memoised promise); `/account` reads the result with `accountState()`, which starts nothing (test C5: two concurrent callers get one run, one `/me`, one read; `accountState` alone makes no request).
+- **Remembered.** The answer is kept in the device key (A6.4) for this sign-in on this device; a reload or another page asks nothing (tests C4, C5).
+
+### A6.4 Shared devices: sign-out and a second account (PC2, privacy P-2)
+- **New device key `s3c:account-device:v1`** (localStorage, written only while signed in): `{answer: "import" | "decline" | "nothing", own: <the device's own progress map at the moment the sync started>}`. It is never sent. It is what makes the answer remembered (PC3) and sign-out reversible (PC2). **This is a new device storage key: proposed inventory row D23 below; privacy-reviewer adds or refuses it; it blocks preview-on, not merge (it is never written with accounts off).**
+- **Sign-out (safe default, pending the privacy ruling W-1710):** pending deltas are flushed, the server signs out, then the device's progress is put back to `own` and the key is removed. So **the account's pulled copy, and what was played while signed in (which went to the account), leave the device; the device's own pre-sign-in history stays as it was.** The account page now offers **"Also clear this device"** at sign-out (as it did at deletion): it also removes `s3c:progress:v1`, `s3c:events:v1`, `s3c:saves:v1` and the key. A failed sign-out changes nothing on the device (test C8). If W-1710 rules differently, only `endAccountOnDevice` and the sign-out copy change.
+- **The session ending elsewhere** (expiry, cleared cookies): the next page load sees `signedIn: false` with the key present and does the same clean-up (test C7).
+- **A new sign-in link over an active session** (a second learner, or a link someone mailed: principal F3's login-CSRF path): the link lands on `/account?signed-in=1`; the client reads that marker once, removes it from the address bar, and ends any previous account's state on the device before counting (test C7). So the second account's screen offers only the device's own history.
+- **Deletion** does the same clean-up as sign-out; the delete copy now says the device keeps what it had before sign-in unless the box is ticked.
+- An imported history file counts as the device's own history (it is merged into `own` too, so it survives sign-out).
+- **Cost:** a delta that failed and was not retried before sign-out never reached the account and leaves the device with the account's copy. Sign-out flushes pending deltas first to make this rare.
+- Script (b) of the privacy re-read is test C6: A plays and signs out (device back to its exact anonymous map); B signs in on the same profile, is offered only the anonymous history, plays the same lesson; B's rows hold B's two events and nothing of A's.
+
+Proposed inventory row (for the privacy reviewer's `company/engineering/data-inventory.md` section 1; I do not edit that file):
+| D23 | `s3c:account-device:v1` (localStorage): the merge answer and a copy of the device's own `s3c:progress:v1` from when the sync started | remember "Import / Don't import" for this sign-in (PC3), and restore the device's own history at sign-out so no account's history stays on a shared device (PC2) | learner's browser | nobody; never sent | while signed in on this device; removed at sign-out, at deletion, when the session is found ended, and when a new sign-in link lands | sign-out; "Also clear this device"; clear site data | as D1 | proposed (branch `accounts-fix-1018`). Owner: backend-engineer |
+
+### A6.5 Server-side bounds (PC4, principal F6, F7)
+- **Recall cap across requests:** after each insert, recalls beyond 100 per (account, slug) are deleted, oldest first (`CAP_RECALLS_SQL`, `progress-store.ts`). This is the only deletion in the union merge; a real learner stops at 4 correct recalls per lesson. The principal's probe (20 PUTs × 100 recalls) now leaves **100 rows**, the newest (test 28), and the same through merge.
+- **Per-account limits:** `PUT /api/account/progress` 60 per 10 minutes, `POST /api/account/merge` 10 per hour; 429 after (test 28). In-memory and per instance, like the other limiters (principal F8: durable limits are a go-live item). The client drops a 429 delta (it is not retried).
+- **Unlike and unsave of a retired lesson** delete the row (204); marking one is still refused (404). The like limiter still counts unlikes (privacy C3.2 counts writes; test 16). Test 29.
+
+### A6.6 Engagement is not ranking (PC7, principal F14)
+`tests/platform/engagement-not-ranking.test.mjs` (b) now names `account/likes` and `account/saves`, and a new check fails if any file outside `src/components/account/` imports `account-client` (static, dynamic or `require`), unless listed in `CLIENT_ALLOWED` with its decision record (empty today; the PRD-005 Like and Save controls join it when they exist). Both have planted-reader controls.
+
+### A6.7 M5 note
+`tests/accounts/better-auth-regression.json` named `better-auth-bump.test.mjs`, which does not exist in the rebuild; the guard is S14 in `tests/accounts/static.test.mjs`. The record now says so. Versions are unchanged.
+
+### A6.8 The kit (PC8, principal F2)
+`mergeIntoLocal` moved from `src/kit/progress.ts` into `src/lib/account-client.ts` (the account chunk). **The sink stays in the kit**, for one reason: `updateProgress` is the only path every progress write takes (protected `src/kit/Lesson.tsx` and `Feed.tsx` call it), so the hook that sees a change has to live there; it is three lines and does nothing while no sink is set. Re-measured: A6.1 row 4.
+
+### A6.9 Tests added (all on local PostgreSQL 16.15 unless marked)
+| Test | Condition |
+|---|---|
+| C1 `progressDelta`, `movesAgainst`, `unionMaps` (no database) | PC1, PC3 |
+| C2 accounts off: one `/me`, HTTP cache allowed, device untouched, `refresh` is no-store (no database) | MC2, MC3 row 5 |
+| C3 no merge code exported by the kit (no database) | PC8 |
+| C4 privacy script (a): decline then play | PC1, P-1 |
+| C5 count before the pull, one starter, page starts nothing, answer remembered | PC3 |
+| C6 privacy script (b): two accounts on one profile | PC2, P-2 |
+| C7 session ended elsewhere; new link over an active session | PC2, F3 login-CSRF path |
+| C8 sign-out with "also clear this device"; failed sign-out; deletion | PC2 |
+| 28 recall cap (20 × 100 probe) and per-account limits | PC4, F6 |
+| 29 unlike/unsave of a retired lesson | PC4, F7 |
+| 34 real Chromium, built server, accounts off: reload makes no second `/me` (needs `ACCOUNTS_BASE_URL`, `ACCOUNTS_EXPECT=off`, `ACCOUNTS_BROWSER=1`) | MC2 |
+| engagement (b) PC7 importer scan + controls | PC7 |
+The client tests run the real `account-client.ts` and `progress.ts` in Node (fresh module copies per simulated page load, `tests/accounts/client-loader.mjs`) against the real handlers. They are not a browser: the account page itself still has not been walked at 390×844 (privacy preview item 2).
+
+## Addendum, 2026-10-18 (second): PC3 account binding, PC9, W-1714 Ruling 1, W-1711 cue
+
+author: backend-engineer (Amara) · branch `accounts-pc3-1018` (from `a6333dd05`) · answers: the principal re-read ("Re-read 2026-10-18" in [the review](../reviews/2026-10-18-accounts-rebuild-review.md): PC3's open clause, probe 1, PC9, probe 2), readiness Ruling 1 (W-1714) and the privacy re-read section 3 (W-1711). Tier 2 (auth, learner device data): the principal engineer re-reads the diff; the privacy reviewer rules on the D23 change below; principal-engineer-ops reads the readiness addition. Nothing here is reachable with `ACCOUNTS_ENABLED` off (A6.1 row 5 is unchanged: `run()` returns before touching storage when `/me` is 404, test C2).
+
+### A7.1 The device state names the account that answered (PC3, W-1716)
+- **Gap (probe 1).** A6.4 detected a change of account only by the `?signed-in=1` marker. The marker is the link's `callbackURL`, a query parameter the link's holder can edit (the library's origin check accepts any same-origin path). An attacker's own link with `callbackURL=/` signed the victim into the attacker's account with no marker; the client kept the victim's device state, pulled the attacker's history and pushed the victim's next plays to the attacker.
+- **Fix.** `GET /api/account/me`, signed in, now also returns `tag`: HMAC-SHA-256 of the account id under `BETTER_AUTH_SECRET`, first 16 bytes, base64url, 22 characters (`accountTag`, `src/lib/server/http.ts`). It is computed per request and stored nowhere on the server. The device state gains `account: <tag>`, written at every answer ("import", "decline", "nothing"). On each page load, signed in, `run()` ends the previous account on the device (A6.4 clean-up) and asks again if **either** the marker is present **or** the stored tag differs from `/me`'s (a missing tag, from a state written before this change, never matches). So any change of account behaves exactly like the marker: the device goes back to its own history, nothing is pulled, no sink is set and nothing is pushed until the new account's screen is answered.
+- **Why a keyed hash and not the id or the email.** The client needs only "same account or not". The tag cannot be reversed, and without the secret it cannot be matched to an id or an email. It is the same on every device of one account, which is what "remembered for this account" needs. As built in A7 it was never sent back (no `fetch` reads the device key); **A8 changes that**: the page's tag now travels in one request header to our own account write routes, and nowhere else. *Rotation (corrected 2026-10-18 after the principal's second re-read, probe 4):* changing `BETTER_AUTH_SECRET` invalidates every session, so every device is signed out and its device state removed (the A6.4 clean-up) before any tag is compared; rotating through Better Auth's versioned `BETTER_AUTH_SECRETS` leaves `BETTER_AUTH_SECRET`, and so every tag, unchanged. Neither form can give two accounts the same tag. (The earlier sentence here, "a secret rotation changes every tag, so each device asks once more", was wrong.)
+- **Not changed.** The marker still ends the previous state (C7); the merge screen still counts before the pull (C5).
+- Tests: **C9** repeats probe 1 against the real handlers (the attacker's link with `callbackURL` edited to `/`, verify answers 302 to `/`, then a page load at `/`): merge screen, the device holds exactly its own history, no write before the answer, neither account's rows change; the answer is then remembered for the attacker's account, and A's session again without a marker is asked again; the tag is 22 base64url characters, differs per account and holds neither id nor email. **C9 and C10 fail on `a6333dd05`** (`syncing` true where false is expected), pass here. **C10**: a state with no `account` field asks again. **S17**: the tag is stable per account, differs between accounts and secrets.
+
+### A7.2 `/account` remount after sign-out or deletion (PC9)
+`forgetSession()` (sign-out, deletion) now sets `sessionReset`. After that, `accountState()` starts the memoised `startAccountSync()` itself if nothing is current, because `AccountSync` in the layout will not run again in this page load. Before any reset, `accountState()` still starts nothing (C5's assertion stands). Test **C11**: sign out, then `accountState()` (what `/account` calls when it remounts on Back) resolves to signed-out within 1 s; a second read makes no request; the same after deletion. It timed out on `a6333dd05`.
+
+### A7.3 Library error codes in `logFailure` (W-1714, readiness Ruling 1)
+`LOGGED_LIBRARY_CODES` in `http.ts` (frozen; today only `SCHEMA_MISMATCH`, with its reason in the comment). `logFailure` appends ` code=<CODE>` only when `err.code` is a string exactly equal to an entry; the message, findings, table or column names, cause and stack are never read for output. A throwing `code` getter is caught. The SQLSTATE rule is unchanged. The library's own background log stays `better-auth error` (Ruling 1 item 5; `auth.ts` unchanged). Test **S16**: an error built from the installed `@better-auth/core` `SchemaMismatchError` (its message names `auth_user`, `age_band`) logs exactly `account me: failed code=SCHEMA_MISMATCH`, directly and through the real `/me` handler; near misses, lower case, a trailing newline, a code with `@`, a pattern-like string, an array and an object whose `toString` returns the code all log no code. S8 and test 23 pass unchanged.
+
+### A7.4 The login-CSRF cue (privacy re-read 3.1, 3.2; W-1711)
+Wired with the reviewer's example words as placeholders for growth-designer: the merge heading is "Send this device's history to {email}?"; when the page load came by the marker, the line under the title reads "You are now signed in as {email}. If you did not just ask for this, sign out", with a Sign out button in the line (same handler as the main button, so the "Also clear this device" box applies). The marker flag lives only in the page's state for that page load (`fromLink`), nothing is stored. Not walked in a browser (the 390x844 walk is the privacy preview item 2). With A7.1, a link with the marker edited away still meets the merge screen naming the account, but without the notice line.
+
+### A7.5 Tests now
+`test:accounts` **61: 57 pass, 0 fail, 4 skipped** (built-server tests 31 to 34, run separately against `next start`, readiness addition below). New: C9, C10, C11, S16, S17.
+
+Proposed change to inventory row D23 (privacy-reviewer's file; I do not edit it): see the readiness addition of the same date.
+
+## Addendum, 2026-10-18 (third): PC10 writes bound to the account; privacy condition 1 changed (W-1964, W-1961)
+
+author: backend-engineer (Amara) · branch `accounts-pc10-1018` (from `e6f53fafb`) · answers: PC10 in the principal's "Re-read 2026-10-18 (second)" ([review](../reviews/2026-10-18-accounts-rebuild-review.md)), its minor note on the `?? ""` fallback, its correction to A7.1 (done above), and the privacy re-read section 3.1 condition 1 ([record](../../reviews/_privacy/2026-10-18-accounts-rebuild-reread.md)). Tier 2 (auth, learner data). The principal engineer re-reads the diff; **the privacy reviewer must rule on A8.2**, which changes her condition 1; principal-engineer-ops reads the readiness addition. Nothing here is reachable with `ACCOUNTS_ENABLED` off: every write route answers 404 before the new check, and the client sends no write (C2 unchanged).
+
+### A8.1 The binding (PC10, probe 3)
+- **Gap.** A7.1 checks the account once per page load, in `run()`. The session cookie belongs to the browser profile, so a tab that is already syncing kept sending to whichever account the profile was signed into later (probe 3: A's open lesson tab sent a recall, a completion with its prediction, a Save and a Like into B's account after another tab followed B's edited link). A merge screen left open said "Send this device's history to {A's email}?" while Import would POST to B.
+- **Server.** Every signed-in write (`PUT /api/account/progress`, `POST /api/account/merge`, `PUT`/`DELETE /api/account/{saves,likes}/<slug>`, `POST /api/account/delete`) must carry `x-s3c-account: <tag>` (`ACCOUNT_HEADER`, `http.ts`). After the Origin check and the session read, `boundWrite` compares it with `accountTag(BETTER_AUTH_SECRET, session.user.id)` (constant-time). A different tag, an empty one or none answers **409 `{error: "account_changed"}`** before the body is read, so nothing is written. Signed out stays 401, a foreign Origin stays 403. Reads (`GET /me`, `/progress`, `/saves`, `/likes`, `/export`), `start` and sign-out are not bound: none writes to an account (sign-out ends whichever session the browser holds, which is the safe direction).
+- **Client.** The tag a page sends is the one its own state holds: the sync's tag (`syncTag`, set when `beginSync` starts for an answered account), the merge screen's `me.tag`, the `/me` answer the page already has for Save and Like, and the account page's state for Delete. On a 409 the page stops syncing (sink removed, pending deltas dropped, **no retry**), ends that account on the device as `run()` does (the device's own history put back, the device key removed) **unless** the device key now belongs to another account that a newer tab has answered for, which is left alone. It then forgets its session and tells the account page (`onAccountChanged`), which reads its state again and shows the new account's own merge screen with the "You are now signed in as {email}" line. `answerMerge` and `deleteAccount` return `"switched"`; Save and Like return false, and until the page reads its state again they make no request (a fresh `/me` would bind them to the new account). A lesson tab simply stops; its next page load meets PC3's check.
+- **Decline.** "Don't import" sends nothing, so the server cannot refuse it; `answerMerge(null)` first asks `/me` once (no-store) and, if the tag differs, handles it as a 409 (`"switched"`, nothing remembered, no sync).
+- **Residuals.** (1) The "nothing to ask" answer in `run()` is written right after that page's own `/me`; a switch in that instant is caught by the first write's 409. (2) A write already on the wire when another tab switches is decided by whichever cookie it carried; this is the browser's order, not ours. (3) A `storage` listener on the device key would end a stale tab sooner; not added, since it depends on the other tab running and the server check does not.
+
+### A8.2 Privacy condition 1 changes (W-1961): the tag is now sent, to our own write routes only
+The privacy re-read 3.1 condition 1 says the tag is "never in a request body, header, URL, event, beacon or table". PC10 needs the server to know which account a page started with, so **the tag now travels in one request header**, `x-s3c-account`, **only** to the five write routes above, same-origin, and is compared and dropped: never logged (S8, S18 part 5), never stored, never in a body, URL, event, beacon, third-party request, `/api/events` or `/api/likes/counts`. It tells the server nothing new: the server derives the same value from the session it already holds. **This is a change to condition 1, not a reading of it; it needs the privacy reviewer's ruling before any flag goes on.** If she refuses it, the alternative is a per-sign-in random value kept in the session row (a new column, so a data-inventory change of its own); I prefer the header because it adds no stored field.
+- **The scan (S18, `tests/accounts/tag-scan.mjs`).** For every `fetch` and `sendBeacon` call in `src/`, the arguments are followed with the TypeScript checker through local variables, assignments (including `obj.x = ...`, `map.set`, `push`), parameters (to every call site, or to the call being followed) and local function returns. Any path that names the device key (`DEVICE_KEY`, `readDevice`, the `s3c:account-device:v1` literal), the tag (`tag`, `.tag`, `.account`, `syncTag`, `accountTag`, `tagOf`) or the PC10 helpers (`ACCOUNT_HEADER`, `boundHeaders`, `x-s3c-account`) fails the test. The one exception: in `account-client.ts`, a `fetch` whose URL is one of the five write routes (exact path, or the saves/likes prefix followed by exactly `encodeURIComponent(slug)`) and whose `headers` is exactly `boundHeaders(...)`; that call is skipped and nothing else in the request is. `boundHeaders` called anywhere else fails. A by-name backstop covers what the scan cannot follow (imports): each helper and the device key appear in code only in their home files, and the only other reader of `.tag` among the account client's importers is `AccountView`'s React key. Thirteen negative cases (tag to the beacon, through a local, a parameter, a local function, a later property assignment; the device key by name and by literal; the header to `/api/events`, to a third party, to a read route, built outside the fetch, written by hand, or on a saves route with a query) must each be flagged, and five mutations of the real client were (recorded in the readiness addition). Stated limits: a parameter of an anonymous function is not followed to its callers, and the scan does not follow imports (the backstop does that by name).
+
+### A8.3 Small changes
+- `account-api.ts`: the `?? ""` fallback in `/me` is gone. `tagOf` reads `BETTER_AUTH_SECRET` and throws `SECR0` if it is missing (unreachable, since `createAuth` refuses first), so no unkeyed tag path remains.
+- `http.ts`: `accountTag`'s comment now states the rotation behaviour as corrected in A7.1.
+- `AccountView.tsx`: Delete goes through `deleteAccount()` in the client (so it is bound); `SignedIn` is keyed by the account's tag so a switch resets its local state.
+- `data-inventory.md` is not edited (privacy-reviewer's file, W-1965): row D23's recipient column ("nobody; never sent, tag included") and its "local only" wording need her update if she accepts A8.2.
+
+### A8.4 Tests
+- **C12** is probe 3: A syncing in an old tab; B's edited link signs the profile into B; a new tab meets B's screen; the old tab then answers a recall, completes a lesson with a prediction, Saves and Likes. B's progress, recall, save and like rows are unchanged, A's too; exactly one write reached the server and got 409; further play sends nothing; B's own tab then syncs to B normally. **On `e6f53fafb` it fails**: B's account receives the old tab's `plates-move` recall and `lesson-c` completion and prediction (and the Save).
+- **C13**: a newer tab has already answered for B; the old tab's 409 leaves B's device state alone; a write with no tag gets 409.
+- **C14**: A's merge screen left open, the profile signed into B: Import gets 409, writes nothing to either account, keeps the device's saves; the page is told, re-reads, and shows B's own screen with the notice. "Don't import" on a screen whose account is no longer the session's returns `"switched"`, remembers nothing and starts no sync. Delete from a page whose account is no longer the session's gets 409 and deletes nobody.
+- **30**: each of the six write calls with B's cookie and A's tag, no tag, an empty tag, and a one-character near miss: 409, `{error: "account_changed"}`, no cookie, nothing written; a malformed body with the wrong tag is 409, not 400; signed out 401; foreign Origin 403; B's own tag: 200, 200, 204, 204, 204, 200.
+- **S18**: the scan above. Existing tests send the tag the way the client does (`helpers.mjs` `req()` adds it for a write with a `signUp` cookie); C8 and C11 delete through `deleteAccount()`.
+

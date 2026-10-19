@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { LESSON_STATUS_LABEL } from "@/lib/lesson-status";
+import { SocialActions } from "./SocialActions";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { flushSync } from "react-dom";
 import { STATUS_LABEL, SUPPORT_LABEL, type PublicMeta } from "@/lib/trust";
@@ -67,13 +69,15 @@ export function DemoCard({
         <div className="card-tags">
           <span className="tag domain">{domain.short}</span>
           <span className="tag">{Math.round(meta.durationSec / 5) * 5}s</span>
-          {meta.status !== "published" && <span className="tag status">{meta.status === "review" ? "In review" : meta.status}</span>}
+          {meta.status !== "published" && <span className="tag status">{LESSON_STATUS_LABEL[meta.status]}</span>}
         </div>
         <h2 className="card-title">{meta.title}</h2>
         <p className="card-hook">{meta.hook}</p>
       </header>
 
       <div className="card-body" ref={bodyRef}>{active ? <FoldScope store={fold}><DemoHost slug={meta.slug} /></FoldScope> : <div className="loading">Swipe here to start</div>}</div>
+
+      <SocialActions slug={meta.slug} title={meta.title} />
 
       <footer className="card-foot">
         <button type="button" className="link" data-testid="trust-button" onClick={() => setTrustOpen(true)}>

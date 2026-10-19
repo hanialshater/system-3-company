@@ -1,0 +1,214 @@
+{
+  "slug": "algo-xor-walsh-hadamard",
+  "title": "XOR changes which pairs combine",
+  "hook": "Changing the way indices combine changes the transform you need.",
+  "domain": "cs",
+  "concept": "algo-xor-walsh-hadamard",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary masks, basic complex arithmetic for FFT, polynomial coefficients."
+    ],
+    "doesNotKnow": [
+      "Compute XOR convolution with sum/difference transforms rather than ordinary polynomial convolution."
+    ]
+  },
+  "misconception": "Ordinary convolution also handles indices combined with XOR.",
+  "objective": "Compute XOR convolution with sum/difference transforms rather than ordinary polynomial convolution.",
+  "claims": [
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c1",
+      "text": "The sum/difference basis turns XOR-index pairing into pointwise multiplication. Applying the transform again and dividing by the length returns sums over i XOR j=k. Ordinary polynomial convolution groups by i+j instead, so it computes a different operation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c2",
+      "text": "Changing the way indices combine changes the transform you need.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c3",
+      "text": "For a=[1,2,0,1], b=[0,1,3,0], what XOR-convolution output does Walsh–Hadamard produce?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c4",
+      "text": "Run the question case; Step exposes each transform update.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c5",
+      "text": "XOR convolution 2,4,4,6.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c6",
+      "text": "XOR convolution inputs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c7",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c8",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c9",
+      "text": "Sum-difference butterfly",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c10",
+      "text": "span",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c11",
+      "text": "Pointwise transformed products",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[9].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c12",
+      "text": "products",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[9].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c13",
+      "text": "inverse",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[10].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c14",
+      "text": "Normalize inverse",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[14].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c15",
+      "text": "output",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[0].run().frames[14].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c16",
+      "text": "XOR convolution 0,1,3,0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#xor_walsh_hadamard.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c17",
+      "text": "Which index rule does XOR convolution use?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c18",
+      "text": "i XOR j=k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c19",
+      "text": "i+j=k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c20",
+      "text": "i·j=k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-xor-walsh-hadamard.c21",
+      "text": "Its transform diagonalizes XOR combination rather than ordinary degree addition.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-xor-walsh-hadamard\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which index rule does XOR convolution use?",
+    "options": [
+      "i XOR j=k",
+      "i+j=k",
+      "i·j=k"
+    ],
+    "answer": 0,
+    "why": "Its transform diagonalizes XOR combination rather than ordinary degree addition."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-xor-walsh-hadamard/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-xor-walsh-hadamard",
+    "also": [],
+    "prerequisites": [
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "transforms-convolution-bitsets"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

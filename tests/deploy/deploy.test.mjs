@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { deploy, deploymentUrl } from "../../tools/deploy.mjs";
+import { deploy, deploymentUrl, execute } from "../../tools/deploy.mjs";
 
 function fixture(t, { fail, dirty = false, project = {}, pages = {} } = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "s3-deploy-test-"));
@@ -80,6 +80,7 @@ test("preview verifies and smoke-tests, records its URL, and never promotes", (t
   const args = f.calls.find((c) => c.args[3] === "deploy").args;
   assert(args.includes("SHOW_REVIEW=on"));
   assert(!args.includes("--prod"));
+  assert(!args.some((a) => a.startsWith("--archive")), "source deploys keep per-file upload");
   assert.equal(f.record().commit, "1234567890abcdef");
   assert(!JSON.stringify(f.record()).includes("test-token"));
 });
@@ -149,6 +150,7 @@ for (const target of ["preview", "production"]) {
     assert.deepEqual(result.steps.slice(0, 4), ["verify", "pull", "build", "upload"]);
     const args = f.calls.find((c) => c.args[3] === "deploy").args;
     assert(args.includes("--prebuilt"));
+    assert(args.includes("--archive=tgz"), "prebuilt output uploads as an archive, not file by file");
     assert(!args.includes("--build-env"));
     assert(fs.readFileSync(path.join(f.root, `.vercel/.env.${target}.local`), "utf8").includes("OTHER_VALUE=unchanged"));
   });
@@ -178,4 +180,42 @@ test("only deployment origins from Vercel are accepted", () => {
   assert.equal(deploymentUrl('{"url":"demo.vercel.app"}'), "https://demo.vercel.app");
   for (const output of ['{"url":"https://evil.test"}', '{"url":"http://demo.vercel.app"}', '{"url":"https://demo.vercel.app/path"}', "missing URL"])
     assert.throws(() => deploymentUrl(output));
+});
+
+test("a failed command prints Vercel's stdout and stderr, redacted, to the live log only", (t) => {
+  const failing = () => {
+    const error = new Error("Command failed");
+    error.status = 1;
+    error.stdout = '{"error":{"code":"too_many_files","message":"bad test-token"}}\n';
+    error.stderr = "Error: upload refused for test-token\n";
+    throw error;
+  };
+  const written = [];
+  const env = { VERCEL_TOKEN: "test-token" };
+  assert.throws(
+    () => execute("/x/vercel", ["deploy"], { root: "/", env, capture: true }, { exec: failing, write: (s) => written.push(s) }),
+    (e) => e.message === "vercel command failed (exit 1)." && !e.message.includes("too_many_files"),
+  );
+  const shown = written.join("");
+  assert(shown.includes("too_many_files"), "stdout error JSON reaches the log");
+  assert(shown.includes("upload refused"), "stderr reaches the log");
+  assert(!shown.includes("test-token"), "the token is redacted from both streams");
+  assert.equal((shown.match(/\[redacted\]/g) ?? []).length, 2);
+
+  // The durable release record stores the step name, never the subprocess output.
+  const f = fixture(t);
+  const run = (file, args, options) => args[3] === "deploy"
+    ? execute(file, args, options, { exec: failing, write: () => {} })
+    : f.options.run(file, args, options);
+  assert.throws(() => deploy({ ...f.options, run, target: "production", prebuilt: true }), /vercel command failed/);
+  const text = JSON.stringify(f.record());
+  assert.equal(f.record().failedStep, "upload");
+  assert(!text.includes("too_many_files") && !text.includes("upload refused") && !text.includes("test-token"));
+});
+
+test("a successful command returns its output and writes nothing", () => {
+  const written = [];
+  const out = execute("/x/vercel", ["deploy"], { root: "/", env: {}, capture: true }, { exec: () => "ok\n", write: (s) => written.push(s) });
+  assert.equal(out, "ok\n");
+  assert.equal(written.length, 0);
 });

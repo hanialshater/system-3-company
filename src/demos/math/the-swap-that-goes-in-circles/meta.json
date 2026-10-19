@@ -1,0 +1,143 @@
+{
+  "slug": "the-swap-that-goes-in-circles",
+  "title": "The swap that goes in circles",
+  "hook": "Max likes every swap he makes, and he pays for each one. Where does that leave him?",
+  "domain": "math",
+  "concept": "transitive-preferences",
+  "status": "published",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "preferring one thing to another; paying a little for something you prefer"
+    ],
+    "doesNotKnow": [
+      "that preferences in a circle let someone sell you swaps for ever, which is why choice models assume preferences are transitive"
+    ]
+  },
+  "misconception": "Preferences that go in a circle are odd but harmless.",
+  "objective": "The learner can explain that with circular preferences every swap is wanted yet 3 swaps return the same fruit, so 6 swaps cost 60¢ for nothing, while ranked (transitive) preferences stop the swaps at the favourite; and that this is why choice models assume transitivity.",
+  "claims": [
+    {
+      "id": "math.the-swap-that-goes-in-circles.c1",
+      "text": "With apple over banana, banana over cherry and cherry over apple, starting from a cherry, the preferred swaps go cherry, banana, apple, cherry: 3 swaps bring the cherry back for 30¢, and 6 swaps cost 60¢ and end on the cherry.",
+      "support": "derivation",
+      "source": "replay('circle', n) in src/demos/math/the-swap-that-goes-in-circles/Demo.tsx: each fruit has exactly one fruit Max prefers to it (the next round the circle), so every offer round the circle is taken. Builder's node re-run (scratch j16check.mjs, same rules): circle 6 cherry>banana>apple>cherry>banana>apple>cherry, 60; circle 3 ... >cherry, 30. Brief check J16 (node company/courses/ncm/checks/rejudged-four.mjs): six cherry 60, three cherry 30. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c1."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c2",
+      "text": "With apple over banana over cherry, and offers coming one fruit at a time round the circle (banana for the cherry, apple for the banana, then cherry for the apple), the swaps stop at the apple after 2 (20¢): he refuses the cherry.",
+      "support": "derivation",
+      "source": "replay('ranked', 6) in Demo.tsx: cherry -> banana (accepted), banana -> apple (accepted), apple -> cherry refused (apple ranks above cherry). Builder's node re-run: ranked 6 cherry>banana>apple, 2 swaps, 20. J16 ranked apple 20 2. The offer order is the lesson's (the stage's arrows); with a direct cherry-for-apple offer he would stop at the apple after 1. Builder-written; unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c2."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c3",
+      "text": "Models of individual choice assume preferences are complete and transitive ('That is why choice models assume preferences are ranked (transitive)').",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23 (section 23.2 unconfirmed: individual preferences as complete, transitive rankings). Attribution: fact-checker confirms.",
+      "status": "verified",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c3. | W-1570 fix round (demo-builder, 2026-10-16): the reveal sentence was 'That is why choice models assume preferences are transitive.'; it now reads '... are ranked (transitive): ...' (learner walk 2026-10-16-learner-knows-preference.md finding 1). Text changed, so reset to unverified; the gloss after the colon is claim c7. | W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c4",
+      "text": "The 'money pump' argument for transitivity is due to Davidson, McKinsey and Suppes (1955).",
+      "support": "source",
+      "source": "Davidson, D., McKinsey, J. C. C. and Suppes, P. (1955), 'Outlines of a formal theory of value, I', Philosophy of Science 22(2): 140-160. The book is cited only for transitivity; the pump example (fruit, 10¢) is ours. Background for the reveal's 'why'; not a sentence on the card. Attribution: fact-checker confirms.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c4."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c5",
+      "text": "A group's majority can still go round in a circle even when every voter's preferences are ranked: three voters ranking A > B > C, B > C > A and C > A > B give A beating B, B beating C and C beating A, each 2 to 1.",
+      "support": "derivation",
+      "source": "Pairwise majority count, builder's node re-run (scratch j16check.mjs): A over B 2, B over C 2, C over A 2. Same cycle as math/agenda-picks-the-winner. Brief: company/domains/briefs/math.discrete.md #13 (claim 5, N13 voters). Builder-written; unverified.",
+      "status": "withdrawn",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c5. | W-1570 fix round (demo-builder, 2026-10-16): WITHDRAWN. The sentence \"A group's majority can still go round in a circle even when every voter's preferences are ranked.\" was cut from the reveal: the lesson never shows groups or voters, and math:condorcet-cycle is outside the learner boundary (learner walk 2026-10-16-learner-knows-preference.md finding 1). The derivation itself was not disputed."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c6",
+      "text": "Max, the fruit and the 10¢ swaps are invented for the lesson.",
+      "support": "convention",
+      "source": "Toy example adopted by the lesson; no real person or market is described.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c6."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c7",
+      "text": "Ranked (transitive) preferences mean that if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him ('if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him').",
+      "support": "convention",
+      "source": "Definition of transitivity (Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23, section 23.2 unconfirmed: if X is preferred to Y and Y to Z, then X is preferred to Z), applied to the lesson's ranked mode. 'No circle to sell him' is what the stage shows: in ranked mode (replay('ranked', 6) in Demo.tsx) the apple -> cherry offer is refused (dashed, 'refused'), so the swaps stop at the apple after 2. Builder-written (W-1570 fix round, 2026-10-16); unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c7."
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Sam prefers tea to coffee, coffee to juice and juice to tea, and pays 5p to swap for a drink he prefers. Why can a shopkeeper profit from Sam for ever?",
+    "options": [
+      "His preferences go in a circle, so every swap he wants leads back to where he started",
+      "He always pays more than each drink is worth",
+      "He cannot tell the drinks apart"
+    ],
+    "answer": 0,
+    "why": "With circular preferences each swap is wanted, but three swaps bring the same drink back, so he pays again and again for nothing. Ranked (transitive) preferences would stop at his favourite."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/the-swap-that-goes-in-circles/2026-10-16-qa.md",
+      "company/reviews/the-swap-that-goes-in-circles/2026-10-16-qa-reveal-fix.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/the-swap-that-goes-in-circles/2026-10-16-learner-knows-preference.md",
+      "company/reviews/the-swap-that-goes-in-circles/2026-10-16-learner-knows-preference-r2.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:transitive-preferences",
+    "also": [
+      "probability:nontransitive-dice"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 23,
+        "section_unconfirmed": "23.2"
+      }
+    ],
+    "tags": [
+      "preferences",
+      "transitivity"
+    ]
+  }
+}

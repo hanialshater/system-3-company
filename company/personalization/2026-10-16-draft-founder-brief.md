@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-10-16** by the founder's brief (`2026-10-16-founder-brief.md`) and the personalization-lead's response (`2026-10-16-brief-response.md`). Kept as input; where it is narrower, the founder's brief wins.
+
 # Personalization: draft founder brief (for the founder to correct)
 
 owner: personalization-lead (Mateo) · date: 2026-10-16 · founder inbox: **F-08** (board W-091) · project: first-light (slot pl-brief-draft)

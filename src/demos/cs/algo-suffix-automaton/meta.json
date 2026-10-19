@@ -1,0 +1,206 @@
+{
+  "slug": "algo-suffix-automaton",
+  "title": "Different ends can share a state",
+  "hook": "Different ends can share a state. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-suffix-automaton",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix/suffix/subsequence distinction; character comparison."
+    ],
+    "doesNotKnow": [
+      "Group substrings by end-position equivalence and split states when a new extension changes that equivalence."
+    ]
+  },
+  "misconception": "Every distinct substring needs its own automaton state.",
+  "objective": "Group substrings by end-position equivalence and split states when a new extension changes that equivalence.",
+  "claims": [
+    {
+      "id": "cs.algo-suffix-automaton.c1",
+      "text": "A clone splits a state when a transition would mix different substring length intervals. Suffix links then give each state its exact interval of lengths sharing the same continuation behaviour.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c2",
+      "text": "Different ends can share a state. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c3",
+      "text": "For abcbc, how many suffix-automaton clone states are needed?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c5",
+      "text": "States=8; clones=2; substrings=12.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c6",
+      "text": "Text input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c7",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c8",
+      "text": "abcbc",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c9",
+      "text": "Extend state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c10",
+      "text": "state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c11",
+      "text": "min",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c12",
+      "text": "max",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c13",
+      "text": "link",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[1].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c14",
+      "text": "Split equivalence",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c15",
+      "text": "States=6; clones=0; substrings=9.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c16",
+      "text": "ababa",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#suffix_automaton.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c17",
+      "text": "When extending a transition violates the expected length, what preserves the state classes?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c18",
+      "text": "Merge every state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c19",
+      "text": "Clone and redirect suffix transitions",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-suffix-automaton.c20",
+      "text": "A clone separates the shorter class while retaining its existing outgoing transitions.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-suffix-automaton\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When extending a transition violates the expected length, what preserves the state classes?",
+    "options": [
+      "Merge every state",
+      "Clone and redirect suffix transitions"
+    ],
+    "answer": 1,
+    "why": "A clone separates the shorter class while retaining its existing outgoing transitions."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-suffix-automaton/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-suffix-automaton",
+    "also": [],
+    "prerequisites": [
+      "kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "string-indexing-automata"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

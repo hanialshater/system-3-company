@@ -16,6 +16,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rel = (...p) => path.join(ROOT, ...p);
 const ls = (d) => (fs.existsSync(d) ? fs.readdirSync(d) : []);
+// Review folders can hold subfolders (screenshots, per-pass fact-check folders): read only files from them.
+const lsFiles = (d) => ls(d).filter((f) => fs.statSync(path.join(d, f)).isFile());
 const md = process.argv.includes("--md");
 const today = new Date().toISOString().slice(0, 10);
 
@@ -41,7 +43,7 @@ function reviewVerdicts(slug, version = 1) {
   // and the review does not mention that version.
   const build = fs.existsSync(path.join(dir, "build.md")) ? fs.readFileSync(path.join(dir, "build.md"), "utf8") : "";
   const revisedTo = version > 1 && new RegExp(`##\\s*v${version}\\b`).test(build);
-  for (const f of ls(dir)) {
+  for (const f of lsFiles(dir)) {
     const t = fs.readFileSync(path.join(dir, f), "utf8");
     if (f.includes("learner")) {
       const v = t.match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase();
@@ -145,17 +147,45 @@ const stopRate = (() => {
 // Rework and the EXP-003 split: first learner verdict per lesson, by builder model (build.md says "sonnet build").
 const firstVerdict = (slug) => {
   const dir = rel("company/reviews", slug);
-  const f = ls(dir).filter((x) => x.includes("learner")).sort()[0];
+  const f = lsFiles(dir).filter((x) => x.includes("learner")).sort()[0];
   return f ? fs.readFileSync(path.join(dir, f), "utf8").match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase() : null;
 };
-const byModel = { sonnet: { n: 0, reviewed: 0, launch: 0 }, opus: { n: 0, reviewed: 0, launch: 0 } };
+// "opus" is the default when build.md has no "sonnet build" phrase, so `labelled` counts lessons whose build.md names
+// the model explicitly. Assessment 2026-10-17 (Measurement fitness): the split is not causal (domains, vintages and
+// tasks differ; the first learner record is chosen by filename), so it prints as a comparison only when both arms are
+// mostly explicitly labelled (MODEL_LABEL_MIN); otherwise raw counts with the missingness.
+const MODEL_LABEL_MIN = 0.8;
+const byModel = { sonnet: { n: 0, reviewed: 0, launch: 0, labelled: 0 }, opus: { n: 0, reviewed: 0, launch: 0, labelled: 0 } };
 for (const l of live) {
   const b = rel("company/reviews", l.slug, "build.md");
-  const m = fs.existsSync(b) && /sonnet build/i.test(fs.readFileSync(b, "utf8")) ? "sonnet" : "opus";
+  const t = fs.existsSync(b) ? fs.readFileSync(b, "utf8") : "";
+  const m = /sonnet build/i.test(t) ? "sonnet" : "opus";
   byModel[m].n++;
+  if (new RegExp(`${m} build`, "i").test(t)) byModel[m].labelled++;
   const v = firstVerdict(l.slug);
   if (v) (byModel[m].reviewed++, v === "launch" && byModel[m].launch++);
 }
+const ledgerRows = fs.existsSync(rel("company/ops/ledger.jsonl"))
+  ? fs.readFileSync(rel("company/ops/ledger.jsonl"), "utf8").split("\n").filter((x) => x.trim()).map((x) => { try { return JSON.parse(x); } catch { return {}; } })
+  : [];
+const ledgerNoModel = ledgerRows.filter((r) => !r.model).length;
+const modelComparable = ["opus", "sonnet"].every((k) => byModel[k].n && byModel[k].labelled / byModel[k].n >= MODEL_LABEL_MIN);
+const modelLine = () => {
+  const o = byModel.opus, s = byModel.sonnet;
+  const miss = `"opus" = no model phrase in build.md for ${o.n - o.labelled} of ${o.n} lessons; ledger rows without a model label ${ledgerNoModel} of ${ledgerRows.length}`;
+  return modelComparable
+    ? `opus ${o.launch}/${o.reviewed} (${pct(o.launch, o.reviewed)}) vs sonnet ${s.launch}/${s.reviewed} (${pct(s.launch, s.reviewed)}), non-causal (${miss})`
+    : `no model comparison (non-causal and under ${Math.round(MODEL_LABEL_MIN * 100)}% explicit labels: ${miss}); raw: sonnet-labelled ${s.launch}/${s.reviewed}, unlabelled ${o.launch}/${o.reviewed}`;
+};
+// Never-dispatched comes from dispatch telemetry that misses runs (assessment 2026-10-17: roles with visible work are listed).
+const retireCaveat = "unsuitable for retirement decisions until dispatch telemetry is reconciled";
+// Founder attention per accepted outcome (company/ops/metrics.md §C).
+const FL = await import("./lib/founder-leverage.mjs");
+const checkedSlugs = new Set(rows.filter(FL.isCheckedPublished).map((x) => x.l.slug));
+const levAll = FL.leverage(evs, checkedSlugs);
+const levNew = FL.leverage(evs, checkedSlugs, { since: FL.CLASSIFY_FROM });
+const levText = FL.leverageText(levAll);
+const levNewText = FL.leverageText(levNew);
 const reworked = live.filter((l) => (l.version ?? 1) > 1).length;
 
 const domains = JSON.parse(fs.readFileSync(rel("content/domains.json"), "utf8")).domains;
@@ -178,6 +208,10 @@ if (fs.existsSync(rel("company/ops/projects.json")) && fs.existsSync(rel("compan
   budget = L.summary();
   budget.fmt = L.fmt;
 }
+// Assessment 2026-10-17 (Measurement fitness): tokens recorded up to the last usage record ÷ lessons published today.
+// The two ends can be days apart, so this is a stock ratio, not the marginal cost of a lesson.
+const stockRatio = () =>
+  `stock ratio ${budget.fmt(budget.perPublishedAll)}/published lesson = tokens recorded to ${budget.lastUsage?.slice(0, 16) ?? "—"}Z ÷ ${budget.published} lessons published at ${today}; not marginal cost`;
 const budgetRows = budget ? budget.rows.filter((r) => r.spent || r.budget || (r.major && !["legacy", "done", "killed"].includes(r.status))) : [];
 
 if (md) {
@@ -196,18 +230,23 @@ if (md) {
   console.log(`| Tokens (recorded runs) | ${Math.round(totalTokens / 1e6 * 10) / 10}M |`);
   console.log(`| Last dispatch event | ${lastDispatchLine(dispatchAge).replace(/^last dispatch event: /, "")} |`);
   for (const l of logHealthLines) console.log(`| Event log health | ${l} |`);
-  console.log(`| ${staleTag}Roles never dispatched | ${neverDispatched.length} of ${roster.length}${neverDispatched.length ? ": " + neverDispatched.slice(0, 40).join(", ") + (neverDispatched.length > 40 ? ", …" : "") : ""} |`);
+  console.log(`| ${staleTag}Roles never dispatched | ${neverDispatched.length} of ${roster.length} (${retireCaveat})${neverDispatched.length ? ": " + neverDispatched.slice(0, 40).join(", ") + (neverDispatched.length > 40 ? ", …" : "") : ""} |`);
   console.log(`| Rework | ${reworked} of ${live.length} lessons revised at least once (${pct(reworked, live.length)}) |`);
-  console.log(`| First-review launch rate by builder model (EXP-003) | opus ${byModel.opus.launch}/${byModel.opus.reviewed} (${pct(byModel.opus.launch, byModel.opus.reviewed)}) · sonnet ${byModel.sonnet.launch}/${byModel.sonnet.reviewed} (${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}) |`);
+  console.log(`| First-review launch rate by builder model (EXP-003) | ${modelLine()} |`);
   console.log(`\n| Role | Dispatched | Reported | Stopped | Resumed | Tokens/run | Median min |\n|---|---|---|---|---|---|---|`);
   for (const r of agentRows) console.log(`| ${r.role} | ${r.dispatched} | ${r.done} | ${r.stopped} | ${r.resumed} | ${r.perRun ? r.perRun + "k" : "—"} | ${r.medMin || "—"} |`);
+  console.log(`\n### Founder leverage (all of the log to ${today}; company/ops/metrics.md §C)\n\n| Metric | Value |\n|---|---|`);
+  console.log(`| Founder attention | ${levText.head} |`);
+  console.log(`| Accepted outcomes | ${levText.acc} |`);
+  console.log(`| Since ${FL.CLASSIFY_FROM} (classification began) | ${levNewText.head} · ${levNewText.acc} (lessons dated by first publish event) |`);
+  console.log(`| Founder attention per accepted outcome since ${FL.CLASSIFY_FROM} | ${levNewText.per.replace(/^per accepted outcome: /, "")} |`);
   if (waves.length) {
     console.log(`\n| Wave | Builders | Lessons added | Build tokens/lesson | Check tokens/lesson | Merge QA failures |\n|---|---|---|---|---|---|`);
     for (const w of waves)
       console.log(`| ${w.id} | ${w.builders ?? "—"} | ${w.lessonsAdded ?? "—"} | ${w.buildTokens && w.lessonsAdded ? Math.round(w.buildTokens / w.lessonsAdded / 1000) + "k" : "—"} | ${w.checkTokens && w.lessonsChecked ? Math.round(w.checkTokens / w.lessonsChecked / 1000) + "k" : "—"} | ${w.mergeQaFailures ?? "—"} |`);
   }
   if (budget) {
-    console.log(`\n### Budget (token ledger: ${budget.fmt(budget.total)} measured over ${budget.runs} runs; ${budget.fmt(budget.perPublishedAll)} per published lesson; usage records end ${budget.lastUsage?.slice(0, 16) ?? "—"})\n\n| Line | Status | Major | Budget | Spent vs budget | % | Spent (all) | Published | k/published |\n|---|---|---|---|---|---|---|---|---|`);
+    console.log(`\n### Budget (token ledger: ${budget.fmt(budget.total)} measured over ${budget.runs} runs; ${stockRatio()})\n\n| Line | Status | Major | Budget | Spent vs budget | % | Spent (all) | Published | k/published |\n|---|---|---|---|---|---|---|---|---|`);
     for (const r of budgetRows) console.log(`| ${r.id} | ${r.status} | ${r.major ? "yes" : ""} | ${budget.fmt(r.budget)} | ${budget.fmt(r.against)} | ${r.pct ?? "—"} | ${budget.fmt(r.spent)} | ${r.returns?.published ?? "—"} | ${r.perPublished ? Math.round(r.perPublished / 1000) : "—"} |`);
   }
 } else {
@@ -218,11 +257,16 @@ if (md) {
   console.log(`Verdict fatal ${stat.fatal.length} · revise ${stat.revise} · launch ${stat.launchVerdict} · revised since review (needs re-review) ${stat.needsReReview}${stat.fatal.length ? `\n        fatal: ${stat.fatal.join(", ")}` : ""}`);
   console.log(`Board   ${open.length} open; oldest ${open.length ? Math.max(...open.map(age)) : 0} days; by owner: ${Object.entries(open.reduce((m, i) => ((m[i.owner] = (m[i.owner] ?? 0) + 1), m), {})).map(([k, v]) => `${k} ${v}`).join(", ")}`);
   console.log(`Rituals ${Object.entries(ritualCount).map(([k, v]) => `${k} ${v}`).join(" · ") || "none run"}`);
-  console.log(`Agents  ${agentRows.reduce((n, r) => n + r.dispatched, 0)} runs · ${seen.stopped.size} stopped (${stopRate}%) · ${Math.round(totalTokens / 1e5) / 10}M tokens · rework ${pct(reworked, live.length)} · launch-on-first-review opus ${pct(byModel.opus.launch, byModel.opus.reviewed)} vs sonnet ${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}`);
+  console.log(`Agents  ${agentRows.reduce((n, r) => n + r.dispatched, 0)} runs · ${seen.stopped.size} stopped (${stopRate}%) · ${Math.round(totalTokens / 1e5) / 10}M tokens · rework ${pct(reworked, live.length)} · first-review launch by builder model: ${modelLine()}`);
   console.log(`        ${lastDispatchLine(dispatchAge)}`);
   for (const l of logHealthLines) console.log(`        ${l}`);
-  console.log(`        ${staleTag}never dispatched (${neverDispatched.length}/${roster.length}): ${neverDispatched.join(", ") || "none"}`);
+  console.log(`        ${staleTag}never dispatched (${neverDispatched.length}/${roster.length}; ${retireCaveat}): ${neverDispatched.join(", ") || "none"}`);
   for (const r of agentRows.slice(0, 12)) console.log(`        ${r.role.padEnd(22)} ${String(r.dispatched).padStart(3)} runs  ${String(r.stopped).padStart(2)} stopped  ${String(r.perRun || "—").padStart(4)}k/run  ${String(r.medMin || "—").padStart(3)} min`);
+  console.log(`Founder ${levText.head}  (all of the log to ${today}; company/ops/metrics.md §C)`);
+  console.log(`        ${levText.acc}`);
+  console.log(`        since ${FL.CLASSIFY_FROM} (classification began): ${levNewText.head}`);
+  console.log(`        since ${FL.CLASSIFY_FROM}: ${levNewText.acc} (lessons dated by first publish event)`);
+  console.log(`        since ${FL.CLASSIFY_FROM}: ${levNewText.per}`);
   console.log(`\nDomain        lessons published reviewed fatal`);
   for (const d of perDomain) console.log(`${d.id.padEnd(13)} ${String(d.lessons).padStart(7)} ${String(d.published).padStart(9)} ${String(d.reviewed).padStart(8)} ${String(d.fatal).padStart(5)}`);
   if (waves.length) {
@@ -231,7 +275,7 @@ if (md) {
       console.log(`${String(w.id).padEnd(5)} ${String(w.builders ?? "—").padStart(8)} ${String(w.lessonsAdded ?? "—").padStart(5)}  ${String(w.buildTokens && w.lessonsAdded ? Math.round(w.buildTokens / w.lessonsAdded / 1000) : "—").padStart(14)}  ${String(w.checkTokens && w.lessonsChecked ? Math.round(w.checkTokens / w.lessonsChecked / 1000) : "—").padStart(14)}  ${String(w.mergeQaFailures ?? "—").padStart(13)}`);
   }
   if (budget) {
-    console.log(`\nBudget  ${budget.fmt(budget.total)} measured over ${budget.runs} runs (${budget.unmeasured} stopped, unmeasured) · ${budget.fmt(budget.perPublishedAll)} per published lesson · usage records end ${budget.lastUsage?.slice(0, 16) ?? "—"} (node tools/ledger.mjs report)`);
+    console.log(`\nBudget  ${budget.fmt(budget.total)} measured over ${budget.runs} runs (${budget.unmeasured} stopped, unmeasured) · ${stockRatio()} (node tools/ledger.mjs report)`);
     for (const r of budgetRows) console.log(`        ${r.id.padEnd(22)} ${String(r.status).padEnd(10)} ${r.major ? "major" : "     "} budget ${budget.fmt(r.budget).padStart(6)}  spent ${budget.fmt(r.spent).padStart(6)}${r.pct != null ? `  ${r.pct}%${r.pct >= 100 ? " STOP" : r.pct >= 80 ? " WARN" : ""}` : ""}${r.perPublished ? `  ${Math.round(r.perPublished / 1000)}k/published` : ""}`);
   }
 }

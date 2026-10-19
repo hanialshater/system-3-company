@@ -1,0 +1,241 @@
+{
+  "slug": "algo-sequence-affine-gap",
+  "title": "One long gap or many short ones?",
+  "hook": "Is one long gap priced the same as several newly opened gaps?",
+  "domain": "cs",
+  "concept": "algo-sequence-affine-gap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Use separate match, insertion and deletion states to distinguish gap opening from extension costs."
+    ]
+  },
+  "misconception": "Charging the same amount per missing character models a gap-opening penalty.",
+  "objective": "Use separate match, insertion and deletion states to distinguish gap opening from extension costs.",
+  "claims": [
+    {
+      "id": "cs.algo-sequence-affine-gap.c1",
+      "text": "M/I/D states distinguish paying a gap opening from a gap extension.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-sequence-affine-gap\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c2",
+      "text": "Is one long gap priced the same as several newly opened gaps?",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-sequence-affine-gap\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c3",
+      "text": "Align ACGT with AT: match 0, mismatch 4, gap opening 3, each extra gap character 1. What minimum cost results?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c4",
+      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c5",
+      "text": "Alignment cost 4; gap open 3, extend 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c6",
+      "text": "Alignment cost 4; gap open 3, extend 1. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c7",
+      "text": "Separate match, insertion and deletion states remember whether a gap is already open. Extending the same gap pays the extension cost; opening another pays the opening cost again.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c8",
+      "text": "Gap open 3; extend 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c10",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c11",
+      "text": "G",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c12",
+      "text": "T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c13",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c14",
+      "text": "Prefix 1: M/I/D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c15",
+      "text": "M",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c16",
+      "text": "I",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c17",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c18",
+      "text": "Prefix 2: M/I/D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c19",
+      "text": "Prefix 3: M/I/D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c20",
+      "text": "Prefix 4: M/I/D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c21",
+      "text": "Alignment cost 2; gap open 1, extend 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c22",
+      "text": "Alignment cost 2; gap open 1, extend 1. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c23",
+      "text": "Gap open 1; extend 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#sequence_affine_gap.cases[1].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c24",
+      "text": "Opening costs 5 and extension costs 2. What does one length-three gap cost?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-sequence-affine-gap\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sequence-affine-gap.c25",
+      "text": "One opening plus two extensions costs 5+2+2=9 under this convention.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-sequence-affine-gap\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Opening costs 5 and extension costs 2. What does one length-three gap cost?",
+    "options": [
+      "15",
+      "6",
+      "9"
+    ],
+    "answer": 2,
+    "why": "One opening plus two extensions costs 5+2+2=9 under this convention."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-sequence-affine-gap/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-sequence-affine-gap",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "sequence-dynamic-programming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

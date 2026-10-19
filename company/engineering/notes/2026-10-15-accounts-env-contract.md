@@ -1,5 +1,7 @@
 # Accounts: the environment-variable contract (names only, never values)
 
+> Updated 2026-10-17 (rebuild on `accounts-1017`): the test/production split per ADR-009 §4 as rewritten for C8, the likes/saves switches, the console email transport and the telemetry refusal. §3 below is the original 10-15 checklist and predates the founder's correction; ADR-009 §4 governs where they differ.
+
 backend-engineer (Amara) · 2026-10-15 · board W-1135 · for: founder and chief-of-staff (setup today), platform-engineer and release-manager (later), principal-engineer-ops (readiness)
 design: [ADR-008](../adr/ADR-008-better-auth-magic-link.md), [ADR-009](../adr/ADR-009-postgres-on-neon-eu.md), [EDD-008](../edd/EDD-008-accounts-and-server-progress.md)
 
@@ -9,15 +11,22 @@ Engineers never see or handle secret values. Values live only in Vercel's enviro
 
 | Name | Created by | Secret? | Vercel environments | Read where | What it is |
 |---|---|---|---|---|---|
-| `DATABASE_URL` | Neon integration (automatic) | yes | **Production only** (see 3) | `src/lib/server/db.ts` (runtime) | pooled (PgBouncer) connection string |
-| `DATABASE_URL_UNPOOLED` | Neon integration (automatic) | yes | Production only | `tools/db-migrate.mjs` only, run by an engineer, never at runtime | direct connection string, for migrations |
+| `DATABASE_URL` | Neon integration (automatic) | yes | test database `first-light`: Development + Preview; the separate Production project: Production only (C8, see 3) | `src/lib/server/db.ts` (runtime) | pooled (PgBouncer) connection string |
+| `DATABASE_URL_UNPOOLED` | Neon integration (automatic) | yes | as `DATABASE_URL` | `tools/db-migrate.mjs` only, run by an engineer, never at runtime | direct connection string, for migrations |
 | `BETTER_AUTH_SECRET` | **founder**, by hand | yes | Production; a **different** value for Preview when the spike needs it | `src/lib/server/auth.ts` | signing and encryption key. At least 32 random characters from a password manager's generator. Rotation later uses `BETTER_AUTH_SECRETS` (Better Auth's documented roll-over name), which nothing reads yet |
 | `BETTER_AUTH_URL` | **founder**, by hand | no | Production only | `src/lib/server/auth.ts` | the canonical site URL, for example `https://<project>.vercel.app` until the own domain exists (F-23). Magic links are built from it. On previews Better Auth falls back to Vercel's `VERCEL_URL` |
-| `RESEND_API_KEY` | **founder** (Resend dashboard, then paste), or the Resend Vercel integration | yes | Production; a separate key for Preview if needed | `src/lib/server/email.ts` | key with **sending access only** |
+| `RESEND_API_KEY` | **founder** (Resend dashboard, then paste), or the Resend Vercel integration | yes | Production; a separate key for Preview if needed | `src/lib/server/email.ts` | key with **sending access only**. Unset (and not production): the sign-in link is printed to the server log instead (console transport, for local and staff testing). Unset on production: sign-in mail is refused. Set without `EMAIL_FROM`: refused |
 | `EMAIL_FROM` | **founder**, by hand | no | Production and Preview | `src/lib/server/email.ts` | placeholder until F-23. With no own domain, Resend's shared test sender only delivers to the Resend account owner's address |
-| `ACCOUNTS_ENABLED` | release-manager, when the founder approves | no | any | `src/lib/server/accounts-flag.ts`, read at **run time** | `on` or anything else (= off). Default off. Off means every `/api/account/*` route is 404 and sign-in is hidden |
+| `ACCOUNTS_ENABLED` | release-manager, when the founder approves | no | any | `src/lib/server/accounts-flag.ts`, read per request (a change needs a redeploy on Vercel, R3) | `on` or anything else (= off). Default off. Off means every `/api/account/*` route is 404 and sign-in is hidden |
+| `LIKES_SAVES_ENABLED` | release-manager, when the founder approves | no | any | `accounts-flag.ts` | `on` (and accounts on) turns on the like and save routes (PRD-005). Default off |
+| `LIKE_COUNTS_PUBLIC` | release-manager, after the privacy ruling's go-live row and the founder's separate approval | no | any | `accounts-flag.ts` | `on` (and likes on) turns on `GET /api/likes/counts`. Default off. Stays off in production until a manipulation reviewer is named (privacy 2026-10-17 C3.3) |
+| `LIKE_COUNTS_HIDDEN` | the named manipulation reviewer, through the release manager | no | any | `accounts-flag.ts` | comma-separated lesson slugs whose count shows nothing (C3.4). Slugs only |
 
 System variables we read (Vercel sets them): `VERCEL_ENV`, `VERCEL_URL`.
+
+**Must stay unset everywhere:** `BETTER_AUTH_TELEMETRY`, `BETTER_AUTH_TELEMETRY_ENDPOINT`, `BETTER_AUTH_TELEMETRY_DEBUG`. `auth.ts` refuses to construct if any is set (readiness A-5), so a set variable shows as every account route answering 500, not as telemetry.
+
+**Tests only (never in Vercel):** `ACCOUNTS_TEST_DATABASE_URL` (a throwaway local PostgreSQL 16; the tests wipe it), `ACCOUNTS_BASE_URL` and `ACCOUNTS_EXPECT` (built-routes tests).
 
 ## 2. Created by the Neon integration, deliberately not read
 

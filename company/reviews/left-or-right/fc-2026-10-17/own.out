@@ -1,0 +1,27 @@
+== 3_1 pd [[1, 4, 2, 5], [3, 6, 4, 1], [5, 2, 6, 3]]
+ own PD signs  front [-1, -1, -1]  turned [-1, -1, -1]  mirrored(page reflect) [1, 1, 1]  mirrored(switch) [1, 1, 1]  mirrored+turned [1, 1, 1]
+ kit signs (compare only): front [-1, -1, -1]  back [1, 1, 1]
+ screen geometry  front [-1, -1, -1]  turned(back face, reflected) [-1, -1, -1]  mirrored(front reflected) [1, 1, 1]  mirroredTurned(back face) [1, 1, 1]
+ physical half-turn of the front drawing (reflect x, swap over/under) [-1, -1, -1]
+ Jones front -1t^-4 +1t^-3 +1t^-1
+ Jones mirror +1t^1 +1t^3 -1t^4
+ Jones turned -1t^-4 +1t^-3 +1t^-1
+ V(mirror) == V(front): False  V(turned) == V(front): True  V palindromic: False
+== 4_1 pd [[4, 1, 5, 2], [6, 4, 7, 3], [8, 5, 1, 6], [2, 8, 3, 7]]
+ own PD signs  front [-1, 1, -1, 1]  turned [-1, 1, -1, 1]  mirrored(page reflect) [1, -1, 1, -1]  mirrored(switch) [1, -1, 1, -1]  mirrored+turned [1, -1, 1, -1]
+ kit signs (compare only): front [-1, 1, -1, 1]  back [1, -1, 1, -1]
+ screen geometry  front [-1, 1, -1, 1]  turned(back face, reflected) [-1, 1, -1, 1]  mirrored(front reflected) [1, -1, 1, -1]  mirroredTurned(back face) [1, -1, 1, -1]
+ physical half-turn of the front drawing (reflect x, swap over/under) [-1, 1, -1, 1]
+ Jones front +1t^-2 -1t^-1 +1t^0 -1t^1 +1t^2
+ Jones mirror +1t^-2 -1t^-1 +1t^0 -1t^1 +1t^2
+ Jones turned +1t^-2 -1t^-1 +1t^0 -1t^1 +1t^2
+ V(mirror) == V(front): True  V(turned) == V(front): True  V palindromic: True
+3_1 crossing 0 at (82, 50.1) over edge front 4 back 1
+3_1 crossing 1 at (46.4, 31.2) over edge front 6 back 3
+3_1 crossing 2 at (46.4, 68.3) over edge front 2 back 5
+3_1 max diff of inner control points front vs back: 5.299999999999997  crossings same: True
+4_1 crossing 0 at (96.4, 44.5) over edge front 1 back 4
+4_1 crossing 1 at (30.1, 15.3) over edge front 3 back 6
+4_1 crossing 2 at (64.9, 44.5) over edge front 5 back 8
+4_1 crossing 3 at (30.1, 73.6) over edge front 7 back 2
+4_1 max diff of inner control points front vs back: 15.299999999999997  crossings same: True

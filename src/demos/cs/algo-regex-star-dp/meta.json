@@ -1,0 +1,339 @@
+{
+  "slug": "algo-regex-star-dp",
+  "title": "The star can take nothing",
+  "hook": "A star can skip its atom or consume another copy. Which state remembers?",
+  "domain": "cs",
+  "concept": "algo-regex-star-dp",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Match a full string against dot-and-star patterns using zero-copy and repeat transitions."
+    ]
+  },
+  "misconception": "A star must consume at least one character of its preceding token.",
+  "objective": "Match a full string against dot-and-star patterns using zero-copy and repeat transitions.",
+  "claims": [
+    {
+      "id": "cs.algo-regex-star-dp.c1",
+      "text": "Regex-star states either omit the preceding atom or repeat its character match.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c2",
+      "text": "A star can skip its atom or consume another copy. Which state remembers?",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c3",
+      "text": "Does full-string regex c*a*b match aab? A star repeats its preceding character.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c6",
+      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c7",
+      "text": "Full regex match yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c8",
+      "text": "Full regex match yes. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c9",
+      "text": "A regex star either removes its preceding atom or consumes a matching character while retaining the same pattern state. The table requires both text and pattern to finish.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c10",
+      "text": "Full-string regex input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c11",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c12",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c13",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c14",
+      "text": "pattern",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c15",
+      "text": "c",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c16",
+      "text": "Empty-text initialization",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c17",
+      "text": "ε",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c18",
+      "text": "State (1,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c19",
+      "text": "State (1,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c20",
+      "text": "State (1,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c21",
+      "text": "State (1,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c22",
+      "text": "State (1,5)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c23",
+      "text": "State (2,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c24",
+      "text": "State (2,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c25",
+      "text": "State (2,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[9].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c26",
+      "text": "State (2,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[10].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c27",
+      "text": "State (2,5)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[11].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c28",
+      "text": "State (3,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[12].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c29",
+      "text": "State (3,2)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[13].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c30",
+      "text": "State (3,3)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[14].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c31",
+      "text": "State (3,4)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[15].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c32",
+      "text": "State (3,5)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[0].run().frames[16].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c33",
+      "text": "Full regex match no",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c34",
+      "text": "Full regex match no. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#regex_star_dp.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c35",
+      "text": "In regex x*, what can the star repeat?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c36",
+      "text": "Any arbitrary text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c37",
+      "text": "The preceding atom x",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c38",
+      "text": "Only one literal star",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-regex-star-dp.c39",
+      "text": "Regex star repeats its preceding atom, unlike a standalone glob star.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-regex-star-dp\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In regex x*, what can the star repeat?",
+    "options": [
+      "Any arbitrary text",
+      "The preceding atom x",
+      "Only one literal star"
+    ],
+    "answer": 1,
+    "why": "Regex star repeats its preceding atom, unlike a standalone glob star."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-regex-star-dp/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-regex-star-dp",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "sequence-dynamic-programming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

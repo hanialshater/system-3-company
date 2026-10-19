@@ -5,6 +5,9 @@
   "installCommand": "npm ci",
   "ignoreCommand": "if printf %s \"$VERCEL_GIT_COMMIT_MESSAGE\" | grep -qF \"[deploy]\"; then exit 1; fi; if git log -1 --pretty=%B 2>/dev/null | grep -qF \"[deploy]\"; then exit 1; fi; exit 0",
   "git": {
-    "deploymentEnabled": false
-  }
+    "deploymentEnabled": true
+  },
+  "regions": [
+    "fra1"
+  ]
 }

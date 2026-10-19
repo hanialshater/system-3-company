@@ -5,6 +5,8 @@
 //   node tools/events.mjs add --type=T --room=R --actor=A --summary="…" [--agent=L] [--subjects=a,b]
 //                             [--refs=p1,p2] [--state=S] [--body="…" | --body-file=path | --body-file=- (stdin)]
 //                             [--id=I] [--source=S] [--chooser=C] [--tool-use-id=T]   (written by .claude/hooks/agent-events.mjs)
+//                             [--class=decision|correction|routing] [--minutes=N]   (type founder; metrics.md §C)
+//                             [--accepted=library|opfix]                            (an accepted outcome; metrics.md §C)
 //   node tools/events.mjs backfill [--transcripts=<dir>]   git history + session transcripts (idempotent)
 //            [--types=stopped,usage] [--since=<ISO>] [--dry]  only those types / from that time; --dry counts, writes nothing
 //   node tools/events.mjs add … --spool      append to the hook spool instead of the log (tools/lib/events-spool.mjs)
@@ -285,8 +287,15 @@ export const ROOM_BY_ROLE = {
   "tools-lead": "tools",
   "hq-engineer": "tools",
   "lifehacks-safety-reviewer": "lifehacks-safety",
-  "personalization-lead": "personalization",
+  "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
+  // Personalization org (2026-10-16, W-1945): Science and the VP in the personalization room; Learner Model, Eval and Customer Data in the model lab.
+  "personalization-engineer": "model-lab",
+  "learner-data-engineer": "model-lab",
+  "personalization-eval": "model-lab",
+  "lesson-dims-owner": "personalization",
+  "applied-scientist-personalization": "personalization",
+  "learning-scientist-personalization": "personalization",
   "localization-lead": "international",
   localizer: "locale-desks",
   "cultural-reviewer": "culture-review",
@@ -323,6 +332,11 @@ export const ROOM_BY_ROLE = {
   "portfolio-manager": "ceo-office",
   // W-914 (company/decisions/2026-10-15-head-of-strategic-initiatives.md): runs First Light from the CEO office.
   "head-of-strategic-initiatives": "ceo-office",
+  // Evaluation org (2026-10-18, W-1843; company/decisions/2026-10-14-evaluation-org.md): the CPO in the CEO office; no evaluation room is drawn, so the head, engineer and the judge pool sit in Learner review beside the pedagogy critics.
+  "chief-product-officer": "ceo-office",
+  "head-of-evaluation": "learner-review",
+  "evaluation-engineer": "learner-review",
+  "pairwise-judge": "learner-review",
 };
 export const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
 
@@ -543,6 +557,21 @@ if (cmd === "add" || cmd === "report" || cmd === "stopped") {
   if (opt.refs) e.refs = String(opt.refs).split(",");
   if (opt.state) e.state = opt.state;
   if (opt.corrects) e.corrects = opt.corrects;
+  // Founder leverage (company/ops/metrics.md §C; tools/lib/founder-leverage.mjs): class on a founder event,
+  // minutes on a founder event, accepted on the event that records an accepted library improvement or operational fix.
+  if (opt.class) {
+    if (opt.type !== "founder" || !["decision", "correction", "routing"].includes(String(opt.class))) throw new Error("--class needs --type=founder and one of decision, correction, routing");
+    e.class = String(opt.class);
+  }
+  if (opt.minutes) {
+    const m = Number(opt.minutes);
+    if (opt.type !== "founder" || !Number.isFinite(m) || m < 0) throw new Error("--minutes needs --type=founder and a number ≥ 0");
+    e.minutes = m;
+  }
+  if (opt.accepted) {
+    if (!["library", "opfix"].includes(String(opt.accepted))) throw new Error("--accepted must be library or opfix");
+    e.accepted = String(opt.accepted);
+  }
   if (opt.source) e.source = String(opt.source);
   if (opt.chooser) e.chooser = String(opt.chooser);
   if (opt["tool-use-id"]) e.toolUseId = String(opt["tool-use-id"]);

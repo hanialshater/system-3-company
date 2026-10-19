@@ -1,0 +1,211 @@
+{
+  "slug": "history-london-edinburgh-1500-1700",
+  "title": "One crown, one parliament?",
+  "hook": "Does sharing a monarch tell you how lawmaking is organised?",
+  "domain": "history",
+  "concept": "shared-monarch-separate-parliaments",
+  "status": "draft",
+  "version": 5,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A monarch and a parliament name different kinds of institution; two dated documentary fields can be compared."
+    ],
+    "doesNotKnow": [
+      "Sharing a monarch need not establish a shared parliament; named institutional relations need their own documentary evidence."
+    ]
+  },
+  "misconception": "Sharing a monarch establishes a shared parliament.",
+  "objective": "Distinguish a shared monarch from a shared parliament using the separately sourced 1603 and 1707 institutional relations.",
+  "claims": [
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c1",
+      "text": "England and Scotland shared a monarch in 1603.",
+      "support": "source",
+      "source": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/act-of-union-1707/overview/union-of-the-crowns/ shared-monarch body paragraph155",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact sentence1 and svg1603 Shared cell"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c2",
+      "text": "In 1603 the Parliament of England and Parliament of Scotland were separate parliamentary institutions; prediction answer index1.",
+      "support": "source",
+      "source": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/act-of-union-1707/overview/union-of-the-crowns/ paragraphs155,163–166; exact named labels remain independently unverified",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact sentence1; full1603 institution labels; prediction answer1"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c3",
+      "text": "The 1707 record supports a shared monarch relation through the monarchy of the united kingdom, independently of its parliamentary relation.",
+      "support": "source",
+      "source": "https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf PDF index0 ArticleII lines10–25, ArticleI scope; body independently reopened2026-10-19",
+      "status": "unverified",
+      "address": "Demo.tsx: svg1707 Shared cell; Sources ArticleII"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c4",
+      "text": "ArticleIII provides one Parliament of Great Britain.",
+      "support": "source",
+      "source": "https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf PDF index0 ArticleIII lines26–27",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact sentence2 and full1707 Parliament of Great Britain node"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c5",
+      "text": "The selected 1707 institutional scope is from 1 May 1707.",
+      "support": "source",
+      "source": "https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf PDF index0 ArticleI lines4–9",
+      "status": "unverified",
+      "address": "model.ts RECORDS.1707.precision; Demo.tsx Sources date"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c6",
+      "text": "Selected institutions; modern city names orient the case. Coordinates are original diagram layout, not territory or historical city-name evidence.",
+      "support": "convention",
+      "source": "Owner admission and original local SVG; no geographic dataset.",
+      "status": "unverified",
+      "address": "Demo.tsx: unchanged orientation and original compact nongraphic-territorial institutional diagram"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c7",
+      "text": "These selected records concern constitutional arrangements, not popular consent, everyone’s experience or every institution. They do not establish identical laws.",
+      "support": "source",
+      "source": "https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf PDF index7 ArticlesXVIII/XIX; source-type limitation and exact owner-accepted text",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact sentences3–4"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c8",
+      "text": "A record about their parliament, rather than a monarch name or similarly named capitals alone, establishes the parliamentary relation asked in recall.",
+      "support": "derivation",
+      "source": "Own-word inference from independently sourced institutional fields; owner-admitted recall.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/why; Demo.tsx title/hook/prediction implication"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c9",
+      "text": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0. Sources opens a bounded, scrollable section in ordinary flow outside the lesson stage. Close or Escape returns focus to Sources; Reset closes the disclosure while retaining both earned institution columns.",
+      "support": "source",
+      "source": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/ required attribution and precise PE own-word/originalSVG source-use record",
+      "status": "unverified",
+      "address": "Demo.tsx: four-control row Sources opener and ordinary-flow Sources section; Close/Escape exact opener return; Reset retains both columns",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c10",
+      "text": "Selecting a date loads that local record; Reset clears focus but retains earned columns; both distinct complete dated records are required for reveal.",
+      "support": "derivation",
+      "source": "Local pure state model; model.repro.mjs. Source-unknown never equals historical absence.",
+      "status": "unverified",
+      "address": "Demo.tsx: four-control row1603/1707, model transition and retained dated columns"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c11",
+      "text": "The 1603 support is a modern UK Parliament historical account, not an acquired contemporary accession instrument.",
+      "support": "source",
+      "source": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/act-of-union-1707/overview/union-of-the-crowns/ actual opened body; acquisition record company/reviews/history-london-edinburgh-1500-1700/2026-10-19-source-acquisition.json",
+      "status": "unverified",
+      "address": "Demo.tsx Sources account paragraph; model.ts sourceItem"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c12",
+      "text": "The Articles source is a UK Parliament-hosted documentary transcription; ArticleI is date scope, ArticleII monarchy, ArticleIII parliament, ArticlesXVIII/XIX limit uniform-law inference.",
+      "support": "source",
+      "source": "https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf actual opened body, indices0/7; acquisition record company/reviews/history-london-edinburgh-1500-1700/2026-10-19-source-acquisition.json",
+      "status": "unverified",
+      "address": "Demo.tsx Sources Articles paragraph"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c13",
+      "text": "Sources were opened on 19 October 2026; source-response excerpt hashes identify the normalized text fragments actually opened, not raw HTTP bytes.",
+      "support": "source",
+      "source": "Builder actual web retrieval; raw urllib returned403/curl56; company/reviews/history-london-edinburgh-1500-1700/2026-10-19-source-acquisition.json",
+      "status": "unverified",
+      "address": "Demo.tsx Sources acquisition date; source-acquisition.json"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c14",
+      "text": "This lesson uses own-word labels and original local SVG, with no source prose, scan, photograph, territorial geometry or held map payload. No official endorsement is implied.",
+      "support": "convention",
+      "source": "Exact original construction and import inspection; PE exact-use scope. Independent provenance confirmation pending.",
+      "status": "unverified",
+      "address": "Demo.tsx Sources original-rendering paragraph; local imports"
+    },
+    {
+      "id": "history.history-london-edinburgh-1500-1700.c15",
+      "text": "The OPL route excludes third-party rights, personal data, protected arms/portcullis and other excluded assets.",
+      "support": "source",
+      "source": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/ exemptions/nonendorsement; https://www.parliament.uk/site-information/copyright/",
+      "status": "unverified",
+      "address": "Demo.tsx Sources terms paragraph"
+    }
+  ],
+  "recall": {
+    "question": "Two kingdoms share a monarch. What evidence would establish a shared lawmaking institution?",
+    "options": [
+      "A record about their parliament",
+      "The monarch's name alone",
+      "Similarly named capitals"
+    ],
+    "answer": 0,
+    "why": "A shared monarch alone does not establish a shared parliament; check evidence about the parliamentary institution."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:shared-monarch-separate-parliaments",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "institutions",
+      "documentary records",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Show the named parliamentary institutions; do not make their records stand for popular consent or uniform law.",
+  "lineage": {
+    "sourceCaseId": "map-london-edinburgh-1500-1700",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalMetadataPath": "src/demos/history/map-london-edinburgh-1500-1700/meta.json",
+    "originalBuilder": "contributor (PR #4)",
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; this implementation is a new original documentary schematic, not reuse of its map or data.",
+    "originalEndpoints": [
+      1500,
+      1700
+    ],
+    "selectedDates": [
+      1603,
+      1707
+    ],
+    "redesignReason": "Replace held border-label reconstruction with sourced institutional relations and original schematic.",
+    "culturalRecord": "company/reviews/history-maps-100/2026-10-19-redesign-stage-a-response.md",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-all-demos-source-and-verify-unblock.md"
+  },
+  "sources": {
+    "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0.",
+    "licence": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
+    "acquisitionRecord": "company/reviews/history-london-edinburgh-1500-1700/2026-10-19-source-acquisition.json",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

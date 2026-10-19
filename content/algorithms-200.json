@@ -1,0 +1,1184 @@
+{
+  "topics": [
+    {
+      "id": "boundary-search-selection",
+      "name": "Boundary search and selection",
+      "order": 1,
+      "slugs": [
+        "algo-lower-bound",
+        "algo-upper-bound",
+        "algo-rotated-search",
+        "algo-matrix-staircase",
+        "algo-answer-capacity",
+        "algo-median-two-sorted",
+        "algo-kth-pair-distance",
+        "algo-missing-rank-search",
+        "algo-mountain-target",
+        "algo-weighted-median"
+      ],
+      "concepts": [
+        {
+          "id": "algo-lower-bound",
+          "name": "Where do the equals begin?"
+        },
+        {
+          "id": "algo-upper-bound",
+          "name": "Where do the equals end?"
+        },
+        {
+          "id": "algo-rotated-search",
+          "name": "A sorted list with a seam"
+        },
+        {
+          "id": "algo-matrix-staircase",
+          "name": "Which corner can rule out a row?"
+        },
+        {
+          "id": "algo-answer-capacity",
+          "name": "How large must the container be?"
+        },
+        {
+          "id": "algo-median-two-sorted",
+          "name": "Where should the two lists split?"
+        },
+        {
+          "id": "algo-kth-pair-distance",
+          "name": "Count the pairs before guessing"
+        },
+        {
+          "id": "algo-missing-rank-search",
+          "name": "The gaps have their own order"
+        },
+        {
+          "id": "algo-mountain-target",
+          "name": "Two slopes, one target"
+        },
+        {
+          "id": "algo-weighted-median",
+          "name": "Half of the weight, not the cards"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-network-sorting",
+      "name": "Adaptive and network sorting",
+      "order": 2,
+      "slugs": [
+        "algo-natural-merge",
+        "algo-reverse-descending-run",
+        "algo-binary-insertion",
+        "algo-bitonic-merge",
+        "algo-odd-even-network",
+        "algo-cycle-sort",
+        "algo-kway-merge",
+        "algo-external-merge",
+        "algo-replacement-selection",
+        "algo-american-flag-sort"
+      ],
+      "concepts": [
+        {
+          "id": "algo-natural-merge",
+          "name": "How many runs are already sorted?"
+        },
+        {
+          "id": "algo-reverse-descending-run",
+          "name": "Can this run be turned around?"
+        },
+        {
+          "id": "algo-binary-insertion",
+          "name": "Searching is cheaper than shifting"
+        },
+        {
+          "id": "algo-bitonic-merge",
+          "name": "Which wires should compare?"
+        },
+        {
+          "id": "algo-odd-even-network",
+          "name": "Can fixed neighbours finish the sort?"
+        },
+        {
+          "id": "algo-cycle-sort",
+          "name": "How many writes are unavoidable?"
+        },
+        {
+          "id": "algo-kway-merge",
+          "name": "Which stream supplies the next card?"
+        },
+        {
+          "id": "algo-external-merge",
+          "name": "When memory holds only three cards"
+        },
+        {
+          "id": "algo-replacement-selection",
+          "name": "A run longer than the memory"
+        },
+        {
+          "id": "algo-american-flag-sort",
+          "name": "Can buckets live inside the array?"
+        }
+      ]
+    },
+    {
+      "id": "ordered-augmented-trees",
+      "name": "Ordered and augmented trees",
+      "order": 3,
+      "slugs": [
+        "algo-order-statistic-select",
+        "algo-order-statistic-rank",
+        "algo-interval-tree",
+        "algo-treap-priority",
+        "algo-splay-access",
+        "algo-btree-split",
+        "algo-btree-delete-borrow",
+        "algo-bplus-leaf-range",
+        "algo-persistent-tree",
+        "algo-implicit-treap"
+      ],
+      "concepts": [
+        {
+          "id": "algo-order-statistic-select",
+          "name": "Which key has this rank?"
+        },
+        {
+          "id": "algo-order-statistic-rank",
+          "name": "How many keys come before this one?"
+        },
+        {
+          "id": "algo-interval-tree",
+          "name": "Which interval can still overlap?"
+        },
+        {
+          "id": "algo-treap-priority",
+          "name": "Two orders in one tree"
+        },
+        {
+          "id": "algo-splay-access",
+          "name": "What moves after a lookup?"
+        },
+        {
+          "id": "algo-btree-split",
+          "name": "A full page needs a middle key"
+        },
+        {
+          "id": "algo-btree-delete-borrow",
+          "name": "Can a neighbour lend a key?"
+        },
+        {
+          "id": "algo-bplus-leaf-range",
+          "name": "Where does the next record live?"
+        },
+        {
+          "id": "algo-persistent-tree",
+          "name": "Can yesterday's tree survive?"
+        },
+        {
+          "id": "algo-implicit-treap",
+          "name": "Split by position, not by value"
+        }
+      ]
+    },
+    {
+      "id": "priority-queues-meldable-heaps",
+      "name": "Priority queues and meldable heaps",
+      "order": 4,
+      "slugs": [
+        "algo-heap-delete-min",
+        "algo-indexed-decrease-key",
+        "algo-heap-delete-arbitrary",
+        "algo-binomial-meld",
+        "algo-leftist-meld",
+        "algo-skew-meld",
+        "algo-pairing-heap",
+        "algo-fibonacci-cut",
+        "algo-radix-heap",
+        "algo-dary-heap"
+      ],
+      "concepts": [
+        {
+          "id": "algo-heap-delete-min",
+          "name": "The last card takes the root"
+        },
+        {
+          "id": "algo-indexed-decrease-key",
+          "name": "Which card became urgent?"
+        },
+        {
+          "id": "algo-heap-delete-arbitrary",
+          "name": "Repair can go either way"
+        },
+        {
+          "id": "algo-binomial-meld",
+          "name": "Equal sizes carry into a tree"
+        },
+        {
+          "id": "algo-leftist-meld",
+          "name": "Why keep the right side short?"
+        },
+        {
+          "id": "algo-skew-meld",
+          "name": "What if we always swap children?"
+        },
+        {
+          "id": "algo-pairing-heap",
+          "name": "Which siblings should pair first?"
+        },
+        {
+          "id": "algo-fibonacci-cut",
+          "name": "A lower key can cut a subtree"
+        },
+        {
+          "id": "algo-radix-heap",
+          "name": "The new minimum changes the buckets"
+        },
+        {
+          "id": "algo-dary-heap",
+          "name": "More children, shorter paths"
+        }
+      ]
+    },
+    {
+      "id": "range-sliding-window",
+      "name": "Range and sliding-window queries",
+      "order": 5,
+      "slugs": [
+        "algo-range-difference",
+        "algo-prefix-2d",
+        "algo-sparse-table-rmq",
+        "algo-lazy-range-add",
+        "algo-lazy-assign-compose",
+        "algo-sliding-window-deque",
+        "algo-window-min-length",
+        "algo-mo-query-order",
+        "algo-sqrt-decomposition",
+        "algo-wavelet-rank"
+      ],
+      "concepts": [
+        {
+          "id": "algo-range-difference",
+          "name": "Two marks can update a range"
+        },
+        {
+          "id": "algo-prefix-2d",
+          "name": "Why subtract the corner twice?"
+        },
+        {
+          "id": "algo-sparse-table-rmq",
+          "name": "Can the two blocks overlap?"
+        },
+        {
+          "id": "algo-lazy-range-add",
+          "name": "An update can wait in the parent"
+        },
+        {
+          "id": "algo-lazy-assign-compose",
+          "name": "Which pending update wins?"
+        },
+        {
+          "id": "algo-sliding-window-deque",
+          "name": "Who can never be the maximum?"
+        },
+        {
+          "id": "algo-window-min-length",
+          "name": "When is it safe to shrink?"
+        },
+        {
+          "id": "algo-mo-query-order",
+          "name": "Can the questions move less?"
+        },
+        {
+          "id": "algo-sqrt-decomposition",
+          "name": "One changed card, one changed block"
+        },
+        {
+          "id": "algo-wavelet-rank",
+          "name": "Count while the values split"
+        }
+      ]
+    },
+    {
+      "id": "disjoint-offline-connectivity",
+      "name": "Disjoint sets and offline connectivity",
+      "order": 6,
+      "slugs": [
+        "algo-rollback-dsu",
+        "algo-parity-dsu",
+        "algo-potential-dsu",
+        "algo-reverse-deletions",
+        "algo-time-segment-connectivity",
+        "algo-dsu-component-aggregate",
+        "algo-small-to-large-maps",
+        "algo-dsu-next-unpainted",
+        "algo-kruskal-reconstruction-tree",
+        "algo-offline-lca"
+      ],
+      "concepts": [
+        {
+          "id": "algo-rollback-dsu",
+          "name": "Undo a merge without flattening"
+        },
+        {
+          "id": "algo-parity-dsu",
+          "name": "Does this edge force a contradiction?"
+        },
+        {
+          "id": "algo-potential-dsu",
+          "name": "The groups remember differences"
+        },
+        {
+          "id": "algo-reverse-deletions",
+          "name": "Run the broken network backward"
+        },
+        {
+          "id": "algo-time-segment-connectivity",
+          "name": "Which edges live at this time?"
+        },
+        {
+          "id": "algo-dsu-component-aggregate",
+          "name": "One representative, one subtotal"
+        },
+        {
+          "id": "algo-small-to-large-maps",
+          "name": "Move the smaller bag"
+        },
+        {
+          "id": "algo-dsu-next-unpainted",
+          "name": "Skip the cells already finished"
+        },
+        {
+          "id": "algo-kruskal-reconstruction-tree",
+          "name": "At what weight did they meet?"
+        },
+        {
+          "id": "algo-offline-lca",
+          "name": "Ask the ancestors after the branch"
+        }
+      ]
+    },
+    {
+      "id": "graph-traversal-decomposition",
+      "name": "Graph traversal and decomposition",
+      "order": 7,
+      "slugs": [
+        "algo-articulation-root",
+        "algo-biconnected-edge-stack",
+        "algo-euler-degree-test",
+        "algo-hierholzer-splice",
+        "algo-directed-euler-balance",
+        "algo-dfs-edge-classes",
+        "algo-bfs-bipartite-witness",
+        "algo-dag-path-count",
+        "algo-topological-uniqueness",
+        "algo-degeneracy-peeling"
+      ],
+      "concepts": [
+        {
+          "id": "algo-articulation-root",
+          "name": "How many branches can the root lose?"
+        },
+        {
+          "id": "algo-biconnected-edge-stack",
+          "name": "Where does a block end?"
+        },
+        {
+          "id": "algo-euler-degree-test",
+          "name": "Can every road be used once?"
+        },
+        {
+          "id": "algo-hierholzer-splice",
+          "name": "A closed walk can absorb another"
+        },
+        {
+          "id": "algo-directed-euler-balance",
+          "name": "Arrows change the endpoint rule"
+        },
+        {
+          "id": "algo-dfs-edge-classes",
+          "name": "What kind of arrow points backward?"
+        },
+        {
+          "id": "algo-bfs-bipartite-witness",
+          "name": "Show the odd loop"
+        },
+        {
+          "id": "algo-dag-path-count",
+          "name": "One count per incoming route"
+        },
+        {
+          "id": "algo-topological-uniqueness",
+          "name": "Was the next task forced?"
+        },
+        {
+          "id": "algo-degeneracy-peeling",
+          "name": "How dense is the hardest remainder?"
+        }
+      ]
+    },
+    {
+      "id": "path-algorithms-witnesses",
+      "name": "Path algorithms and witnesses",
+      "order": 8,
+      "slugs": [
+        "algo-negative-cycle-witness",
+        "algo-floyd-intermediate",
+        "algo-johnson-reweight",
+        "algo-zero-one-bfs",
+        "algo-multi-source-distance",
+        "algo-bidirectional-bound",
+        "algo-dag-negative-path",
+        "algo-widest-path",
+        "algo-shortest-path-count",
+        "algo-pareto-path-labels"
+      ],
+      "concepts": [
+        {
+          "id": "algo-negative-cycle-witness",
+          "name": "A route that keeps getting cheaper"
+        },
+        {
+          "id": "algo-floyd-intermediate",
+          "name": "Which detour is allowed this round?"
+        },
+        {
+          "id": "algo-johnson-reweight",
+          "name": "Can negative roads become nonnegative?"
+        },
+        {
+          "id": "algo-zero-one-bfs",
+          "name": "A free move goes to the front"
+        },
+        {
+          "id": "algo-multi-source-distance",
+          "name": "Which source reaches this cell first?"
+        },
+        {
+          "id": "algo-bidirectional-bound",
+          "name": "When can two searches stop?"
+        },
+        {
+          "id": "algo-dag-negative-path",
+          "name": "Acyclic roads permit negative costs"
+        },
+        {
+          "id": "algo-widest-path",
+          "name": "Which route has the largest bottleneck?"
+        },
+        {
+          "id": "algo-shortest-path-count",
+          "name": "How many shortest routes tie?"
+        },
+        {
+          "id": "algo-pareto-path-labels",
+          "name": "The cheapest label can hide a route"
+        }
+      ]
+    },
+    {
+      "id": "spanning-matching-flow",
+      "name": "Spanning, matching and flow structure",
+      "order": 9,
+      "slugs": [
+        "algo-boruvka-components",
+        "algo-mst-cycle-replacement",
+        "algo-mst-uniqueness",
+        "algo-second-best-tree",
+        "algo-bipartite-augmenting",
+        "algo-hall-obstruction",
+        "algo-konig-cover",
+        "algo-dinic-levels",
+        "algo-min-cost-flow",
+        "algo-lower-bound-flow"
+      ],
+      "concepts": [
+        {
+          "id": "algo-boruvka-components",
+          "name": "Every island chooses a cable"
+        },
+        {
+          "id": "algo-mst-cycle-replacement",
+          "name": "Can this new cable improve the tree?"
+        },
+        {
+          "id": "algo-mst-uniqueness",
+          "name": "Equal weights need a witness"
+        },
+        {
+          "id": "algo-second-best-tree",
+          "name": "How much costs the next tree?"
+        },
+        {
+          "id": "algo-bipartite-augmenting",
+          "name": "A match can change partners"
+        },
+        {
+          "id": "algo-hall-obstruction",
+          "name": "Too many people, too few choices"
+        },
+        {
+          "id": "algo-konig-cover",
+          "name": "The unmatched roots name a cover"
+        },
+        {
+          "id": "algo-dinic-levels",
+          "name": "Only forward layers carry this phase"
+        },
+        {
+          "id": "algo-min-cost-flow",
+          "name": "Two full flows can cost differently"
+        },
+        {
+          "id": "algo-lower-bound-flow",
+          "name": "The minimum shipments create demands"
+        }
+      ]
+    },
+    {
+      "id": "sequence-dynamic-programming",
+      "name": "Dynamic programming on sequences",
+      "order": 10,
+      "slugs": [
+        "algo-word-break",
+        "algo-regex-star-dp",
+        "algo-wildcard-dp",
+        "algo-interleaving-dp",
+        "algo-distinct-subsequences",
+        "algo-weighted-interval-dp",
+        "algo-palindrome-partition",
+        "algo-longest-common-substring",
+        "algo-sequence-affine-gap",
+        "algo-bitonic-subsequence"
+      ],
+      "concepts": [
+        {
+          "id": "algo-word-break",
+          "name": "Which cuts make real words?"
+        },
+        {
+          "id": "algo-regex-star-dp",
+          "name": "The star can take nothing"
+        },
+        {
+          "id": "algo-wildcard-dp",
+          "name": "A wildcard has two directions"
+        },
+        {
+          "id": "algo-interleaving-dp",
+          "name": "Two sources must keep their order"
+        },
+        {
+          "id": "algo-distinct-subsequences",
+          "name": "Equal letters can come from two places"
+        },
+        {
+          "id": "algo-weighted-interval-dp",
+          "name": "The next talk may be worth more"
+        },
+        {
+          "id": "algo-palindrome-partition",
+          "name": "Where should this string be cut?"
+        },
+        {
+          "id": "algo-longest-common-substring",
+          "name": "When must the cell reset to zero?"
+        },
+        {
+          "id": "algo-sequence-affine-gap",
+          "name": "One long gap or many short ones?"
+        },
+        {
+          "id": "algo-bitonic-subsequence",
+          "name": "Rise first, then fall"
+        }
+      ]
+    },
+    {
+      "id": "resource-subset-dp",
+      "name": "Dynamic programming on resources and subsets",
+      "order": 11,
+      "slugs": [
+        "algo-unbounded-knapsack",
+        "algo-bounded-knapsack",
+        "algo-subset-sum-witness",
+        "algo-equal-partition",
+        "algo-held-karp",
+        "algo-assignment-bitmask",
+        "algo-digit-dp",
+        "algo-profile-domino",
+        "algo-tree-independent-set",
+        "algo-resource-constrained-path"
+      ],
+      "concepts": [
+        {
+          "id": "algo-unbounded-knapsack",
+          "name": "May the same item be used again?"
+        },
+        {
+          "id": "algo-bounded-knapsack",
+          "name": "Only three copies remain"
+        },
+        {
+          "id": "algo-subset-sum-witness",
+          "name": "Which items built this total?"
+        },
+        {
+          "id": "algo-equal-partition",
+          "name": "One target can split the whole set"
+        },
+        {
+          "id": "algo-held-karp",
+          "name": "Which towns and where are you?"
+        },
+        {
+          "id": "algo-assignment-bitmask",
+          "name": "Who has already taken a job?"
+        },
+        {
+          "id": "algo-digit-dp",
+          "name": "Has the prefix fallen below the limit?"
+        },
+        {
+          "id": "algo-profile-domino",
+          "name": "What sticks into the next column?"
+        },
+        {
+          "id": "algo-tree-independent-set",
+          "name": "A chosen parent forbids a child"
+        },
+        {
+          "id": "algo-resource-constrained-path",
+          "name": "The battery is part of the state"
+        }
+      ]
+    },
+    {
+      "id": "string-indexing-automata",
+      "name": "String indexing and automata",
+      "order": 12,
+      "slugs": [
+        "algo-z-function",
+        "algo-aho-failure",
+        "algo-aho-output-links",
+        "algo-suffix-array",
+        "algo-lcp-distinct-substrings",
+        "algo-kasai-lcp",
+        "algo-suffix-automaton",
+        "algo-manacher-radius",
+        "algo-booth-rotation",
+        "algo-levenshtein-automaton"
+      ],
+      "concepts": [
+        {
+          "id": "algo-z-function",
+          "name": "How much prefix begins right here?"
+        },
+        {
+          "id": "algo-aho-failure",
+          "name": "One fallback serves many words"
+        },
+        {
+          "id": "algo-aho-output-links",
+          "name": "A match can end inside another"
+        },
+        {
+          "id": "algo-suffix-array",
+          "name": "Sorted suffixes turn search into a range"
+        },
+        {
+          "id": "algo-lcp-distinct-substrings",
+          "name": "Shared prefixes remove duplicate blocks"
+        },
+        {
+          "id": "algo-kasai-lcp",
+          "name": "Why can one matched letter be kept?"
+        },
+        {
+          "id": "algo-suffix-automaton",
+          "name": "Different ends can share a state"
+        },
+        {
+          "id": "algo-manacher-radius",
+          "name": "The mirror gives a lower bound"
+        },
+        {
+          "id": "algo-booth-rotation",
+          "name": "Which rotation can be discarded?"
+        },
+        {
+          "id": "algo-levenshtein-automaton",
+          "name": "The matcher carries a distance budget"
+        }
+      ]
+    },
+    {
+      "id": "computational-geometry",
+      "name": "Computational geometry",
+      "order": 13,
+      "slugs": [
+        "algo-segment-orientation",
+        "algo-segment-intersection",
+        "algo-sweep-active-segments",
+        "algo-closest-pair-strip",
+        "algo-rectangle-union-sweep",
+        "algo-sutherland-hodgman",
+        "algo-liang-barsky",
+        "algo-ear-clipping",
+        "algo-rotating-calipers",
+        "algo-kd-nearest-pruning"
+      ],
+      "concepts": [
+        {
+          "id": "algo-segment-orientation",
+          "name": "Which side of the directed line?"
+        },
+        {
+          "id": "algo-segment-intersection",
+          "name": "Crossing or merely sharing a line?"
+        },
+        {
+          "id": "algo-sweep-active-segments",
+          "name": "Only active neighbours can cross next"
+        },
+        {
+          "id": "algo-closest-pair-strip",
+          "name": "Which neighbours inside the strip?"
+        },
+        {
+          "id": "algo-rectangle-union-sweep",
+          "name": "How much width is covered now?"
+        },
+        {
+          "id": "algo-sutherland-hodgman",
+          "name": "The border can create new corners"
+        },
+        {
+          "id": "algo-liang-barsky",
+          "name": "An interval along the line"
+        },
+        {
+          "id": "algo-ear-clipping",
+          "name": "Which corner can be removed?"
+        },
+        {
+          "id": "algo-rotating-calipers",
+          "name": "The farthest pair need not be neighbours"
+        },
+        {
+          "id": "algo-kd-nearest-pruning",
+          "name": "Can the other room hide a closer point?"
+        }
+      ]
+    },
+    {
+      "id": "number-theoretic-algorithms",
+      "name": "Number-theoretic algorithms",
+      "order": 14,
+      "slugs": [
+        "algo-linear-diophantine",
+        "algo-generalized-crt",
+        "algo-garner-reconstruction",
+        "algo-pollard-rho-factor",
+        "algo-pollard-p-minus-one",
+        "algo-segmented-sieve",
+        "algo-linear-sieve",
+        "algo-wheel-sieve",
+        "algo-tonelli-shanks",
+        "algo-baby-step-giant-step"
+      ],
+      "concepts": [
+        {
+          "id": "algo-linear-diophantine",
+          "name": "Does the total fit the common step?"
+        },
+        {
+          "id": "algo-generalized-crt",
+          "name": "Two clocks may disagree forever"
+        },
+        {
+          "id": "algo-garner-reconstruction",
+          "name": "Build the answer one radix at a time"
+        },
+        {
+          "id": "algo-pollard-rho-factor",
+          "name": "A collision can reveal a factor"
+        },
+        {
+          "id": "algo-pollard-p-minus-one",
+          "name": "A factor hides in the exponent"
+        },
+        {
+          "id": "algo-segmented-sieve",
+          "name": "Cross out primes in a distant window"
+        },
+        {
+          "id": "algo-linear-sieve",
+          "name": "Every composite gets one producer"
+        },
+        {
+          "id": "algo-wheel-sieve",
+          "name": "Which residues can survive the wheel?"
+        },
+        {
+          "id": "algo-tonelli-shanks",
+          "name": "Square roots on a prime clock"
+        },
+        {
+          "id": "algo-baby-step-giant-step",
+          "name": "Meet a power from both directions"
+        }
+      ]
+    },
+    {
+      "id": "numerical-linear-algebra",
+      "name": "Numerical and linear-algebra algorithms",
+      "order": 15,
+      "slugs": [
+        "algo-gaussian-pivot",
+        "algo-lu-reuse",
+        "algo-qr-orthogonalize",
+        "algo-cholesky-positive",
+        "algo-bisection-root",
+        "algo-secant-root",
+        "algo-fixed-point-contraction",
+        "algo-adaptive-simpson",
+        "algo-kahan-summation",
+        "algo-stable-quadratic"
+      ],
+      "concepts": [
+        {
+          "id": "algo-gaussian-pivot",
+          "name": "A zero is not a dead end"
+        },
+        {
+          "id": "algo-lu-reuse",
+          "name": "One factorization, two right sides"
+        },
+        {
+          "id": "algo-qr-orthogonalize",
+          "name": "Remove what the first vector explains"
+        },
+        {
+          "id": "algo-cholesky-positive",
+          "name": "Can every symmetric matrix take a root?"
+        },
+        {
+          "id": "algo-bisection-root",
+          "name": "The sign change guards the root"
+        },
+        {
+          "id": "algo-secant-root",
+          "name": "Two guesses draw the next one"
+        },
+        {
+          "id": "algo-fixed-point-contraction",
+          "name": "Does repeating the rule settle down?"
+        },
+        {
+          "id": "algo-adaptive-simpson",
+          "name": "Where should the next sample go?"
+        },
+        {
+          "id": "algo-kahan-summation",
+          "name": "Keep the rounding that fell away"
+        },
+        {
+          "id": "algo-stable-quadratic",
+          "name": "Two equivalent formulas disagree"
+        }
+      ]
+    },
+    {
+      "id": "randomized-streaming",
+      "name": "Randomized and streaming algorithms",
+      "order": 16,
+      "slugs": [
+        "algo-misra-gries",
+        "algo-space-saving",
+        "algo-hll-register-merge",
+        "algo-kmv-distinct",
+        "algo-weighted-reservoir",
+        "algo-alias-table",
+        "algo-gk-quantiles",
+        "algo-kll-compaction",
+        "algo-minhash-jaccard",
+        "algo-freivalds"
+      ],
+      "concepts": [
+        {
+          "id": "algo-misra-gries",
+          "name": "More than one frequent candidate"
+        },
+        {
+          "id": "algo-space-saving",
+          "name": "A replacement inherits an error bar"
+        },
+        {
+          "id": "algo-hll-register-merge",
+          "name": "Two sketches can share a register"
+        },
+        {
+          "id": "algo-kmv-distinct",
+          "name": "The kth hash measures the unseen crowd"
+        },
+        {
+          "id": "algo-weighted-reservoir",
+          "name": "A heavier item gets a better key"
+        },
+        {
+          "id": "algo-alias-table",
+          "name": "One column, one coin"
+        },
+        {
+          "id": "algo-gk-quantiles",
+          "name": "A summary keeps a rank interval"
+        },
+        {
+          "id": "algo-kll-compaction",
+          "name": "Half the cards get double weight"
+        },
+        {
+          "id": "algo-minhash-jaccard",
+          "name": "The first shared name estimates overlap"
+        },
+        {
+          "id": "algo-freivalds",
+          "name": "A short random check can catch a product"
+        }
+      ]
+    },
+    {
+      "id": "compression-coding-parsing",
+      "name": "Compression, coding and parsing",
+      "order": 17,
+      "slugs": [
+        "algo-arithmetic-coding",
+        "algo-lzw-dictionary",
+        "algo-burrows-wheeler",
+        "algo-move-to-front",
+        "algo-canonical-huffman",
+        "algo-shunting-yard",
+        "algo-ll1-lookahead",
+        "algo-lr-shift-reduce",
+        "algo-cyk-parse",
+        "algo-pratt-binding-power"
+      ],
+      "concepts": [
+        {
+          "id": "algo-arithmetic-coding",
+          "name": "A whole message fits one interval"
+        },
+        {
+          "id": "algo-lzw-dictionary",
+          "name": "The decoder learns the new word"
+        },
+        {
+          "id": "algo-burrows-wheeler",
+          "name": "Sort rotations, then keep one column"
+        },
+        {
+          "id": "algo-move-to-front",
+          "name": "Repeated symbols change their address"
+        },
+        {
+          "id": "algo-canonical-huffman",
+          "name": "The lengths can name the codes"
+        },
+        {
+          "id": "algo-shunting-yard",
+          "name": "When should the operator leave?"
+        },
+        {
+          "id": "algo-ll1-lookahead",
+          "name": "One token selects a grammar rule"
+        },
+        {
+          "id": "algo-lr-shift-reduce",
+          "name": "A prefix is not a complete handle"
+        },
+        {
+          "id": "algo-cyk-parse",
+          "name": "Which split explains this span?"
+        },
+        {
+          "id": "algo-pratt-binding-power",
+          "name": "Which operator owns the next token?"
+        }
+      ]
+    },
+    {
+      "id": "combinatorial-game-search",
+      "name": "Combinatorial search and game search",
+      "order": 18,
+      "slugs": [
+        "algo-knapsack-branch-bound",
+        "algo-exact-cover",
+        "algo-dancing-links",
+        "algo-alpha-beta",
+        "algo-iterative-deepening",
+        "algo-ida-star",
+        "algo-transposition-flags",
+        "algo-arc-consistency",
+        "algo-mrv-choice",
+        "algo-meet-in-middle"
+      ],
+      "concepts": [
+        {
+          "id": "algo-knapsack-branch-bound",
+          "name": "Can this branch still beat the best?"
+        },
+        {
+          "id": "algo-exact-cover",
+          "name": "Each column must be covered once"
+        },
+        {
+          "id": "algo-dancing-links",
+          "name": "Undo by reconnecting the neighbours"
+        },
+        {
+          "id": "algo-alpha-beta",
+          "name": "Can the unseen child change the choice?"
+        },
+        {
+          "id": "algo-iterative-deepening",
+          "name": "Start shallow, still reach the depth"
+        },
+        {
+          "id": "algo-ida-star",
+          "name": "The next bound comes from the overrun"
+        },
+        {
+          "id": "algo-transposition-flags",
+          "name": "A cached bound is not an exact score"
+        },
+        {
+          "id": "algo-arc-consistency",
+          "name": "A value needs a supporting neighbour"
+        },
+        {
+          "id": "algo-mrv-choice",
+          "name": "Which variable can fail soonest?"
+        },
+        {
+          "id": "algo-meet-in-middle",
+          "name": "Two small lists meet at the target"
+        }
+      ]
+    },
+    {
+      "id": "approximation-online",
+      "name": "Approximation and online algorithms",
+      "order": 19,
+      "slugs": [
+        "algo-vertex-cover-two",
+        "algo-set-cover-greedy",
+        "algo-metric-tsp-doubletree",
+        "algo-knapsack-value-scaling",
+        "algo-list-scheduling",
+        "algo-ski-rental",
+        "algo-online-bipartite-ranking",
+        "algo-multiplicative-weights",
+        "algo-secretary-threshold",
+        "algo-first-fit-packing"
+      ],
+      "concepts": [
+        {
+          "id": "algo-vertex-cover-two",
+          "name": "A matching supplies a cover bound"
+        },
+        {
+          "id": "algo-set-cover-greedy",
+          "name": "Pay per newly covered item"
+        },
+        {
+          "id": "algo-metric-tsp-doubletree",
+          "name": "A walk can shortcut its repeats"
+        },
+        {
+          "id": "algo-knapsack-value-scaling",
+          "name": "Trade precision for smaller totals"
+        },
+        {
+          "id": "algo-list-scheduling",
+          "name": "Which machine is free first?"
+        },
+        {
+          "id": "algo-ski-rental",
+          "name": "When should renting become buying?"
+        },
+        {
+          "id": "algo-online-bipartite-ranking",
+          "name": "One random order, many arrivals"
+        },
+        {
+          "id": "algo-multiplicative-weights",
+          "name": "Bad advice loses weight gradually"
+        },
+        {
+          "id": "algo-secretary-threshold",
+          "name": "The best so far may be too early"
+        },
+        {
+          "id": "algo-first-fit-packing",
+          "name": "The first gap may matter later"
+        }
+      ]
+    },
+    {
+      "id": "transforms-convolution-bitsets",
+      "name": "Transforms, convolution and bitset algorithms",
+      "order": 20,
+      "slugs": [
+        "algo-fft-butterfly",
+        "algo-inverse-fft",
+        "algo-polynomial-convolution",
+        "algo-ntt-modular",
+        "algo-subset-zeta",
+        "algo-subset-mobius",
+        "algo-xor-walsh-hadamard",
+        "algo-bitset-subset-sum",
+        "algo-bitset-transitive",
+        "algo-shift-and-matching"
+      ],
+      "concepts": [
+        {
+          "id": "algo-fft-butterfly",
+          "name": "A pair shares most of its work"
+        },
+        {
+          "id": "algo-inverse-fft",
+          "name": "Undo the frequencies with a scale"
+        },
+        {
+          "id": "algo-polynomial-convolution",
+          "name": "Which terms land on this power?"
+        },
+        {
+          "id": "algo-ntt-modular",
+          "name": "Which prime can hold these roots?"
+        },
+        {
+          "id": "algo-subset-zeta",
+          "name": "Add every smaller mask once"
+        },
+        {
+          "id": "algo-subset-mobius",
+          "name": "Undo the subset accumulation"
+        },
+        {
+          "id": "algo-xor-walsh-hadamard",
+          "name": "XOR changes which pairs combine"
+        },
+        {
+          "id": "algo-bitset-subset-sum",
+          "name": "One shift adds the item everywhere"
+        },
+        {
+          "id": "algo-bitset-transitive",
+          "name": "One row can add many reachable nodes"
+        },
+        {
+          "id": "algo-shift-and-matching",
+          "name": "The bits remember matched prefixes"
+        }
+      ]
+    }
+  ]
+}

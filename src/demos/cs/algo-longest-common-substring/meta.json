@@ -1,0 +1,262 @@
+{
+  "slug": "algo-longest-common-substring",
+  "title": "When must the cell reset to zero?",
+  "hook": "A shared letter after a mismatch might need a fresh start.",
+  "domain": "cs",
+  "concept": "algo-longest-common-substring",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Find the longest shared contiguous block by resetting a mismatch state."
+    ]
+  },
+  "misconception": "A longest-common-subsequence table also measures a contiguous shared block.",
+  "objective": "Find the longest shared contiguous block by resetting a mismatch state.",
+  "claims": [
+    {
+      "id": "cs.algo-longest-common-substring.c1",
+      "text": "Matching diagonals extend contiguous runs; mismatches reset them.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c2",
+      "text": "A shared letter after a mismatch might need a fresh start.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c3",
+      "text": "Strings ABABC and BABCA: what is the longest common contiguous-block length?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c4",
+      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c5",
+      "text": "Common substring BABC; length 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c6",
+      "text": "Common substring BABC; length 4. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c7",
+      "text": "A match extends only the diagonal contiguous run. A mismatch resets that state to zero; carrying a neighbouring maximum into it would permit gaps and solve a different problem.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c8",
+      "text": "Contiguous-block input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[0].rows[0].cells[4].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c12",
+      "text": "Contiguous row 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c13",
+      "text": "previous",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c14",
+      "text": "current",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c15",
+      "text": "best",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c16",
+      "text": "Contiguous row 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c17",
+      "text": "Contiguous row 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c18",
+      "text": "Contiguous row 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c19",
+      "text": "Contiguous row 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c20",
+      "text": "Common substring A; length 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c21",
+      "text": "Common substring A; length 1. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c22",
+      "text": "X",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[1].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c23",
+      "text": "Y",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#longest_common_substring.cases[1].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c24",
+      "text": "What happens to a common-substring DP state when its two characters differ?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c25",
+      "text": "Copy the maximum neighbour",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c26",
+      "text": "Reset to zero",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c27",
+      "text": "Add one",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-longest-common-substring.c28",
+      "text": "A mismatch breaks contiguity, so the run ending there has length zero.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-longest-common-substring\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to a common-substring DP state when its two characters differ?",
+    "options": [
+      "Copy the maximum neighbour",
+      "Reset to zero",
+      "Add one"
+    ],
+    "answer": 1,
+    "why": "A mismatch breaks contiguity, so the run ending there has length zero."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-longest-common-substring/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-longest-common-substring",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "sequence-dynamic-programming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

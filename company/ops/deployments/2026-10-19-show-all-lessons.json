@@ -1,0 +1,100 @@
+{
+  "target": "production",
+  "status": "success",
+  "commit": "9911156584a25774b502a9a7fe0cbd42aa1958f6",
+  "deploymentId": "dpl_H5qwgJRpPZj35NZ3aU9PVeC6Hqt1",
+  "url": "https://system-3-company.vercel.app",
+  "deploymentUrl": "https://system-3-company-izeue5sm1-hanis-projects-2e2b67f6.vercel.app",
+  "region": "fra1",
+  "method": "Vercel Git integration",
+  "approval": "company/decisions/2026-10-19-founder-show-all-lessons.md#deployment-approval",
+  "verification": {
+    "vercelBuild": "passed, READY",
+    "liveSmoke": {
+      "base": "https://system-3-company.vercel.app",
+      "checkedAt": "2026-10-19T09:15:36.474Z",
+      "pass": true,
+      "checks": [
+        {
+          "check": "feed endpoint",
+          "pass": true,
+          "status": 200
+        },
+        {
+          "check": "all registered lessons in feed",
+          "pass": true,
+          "actual": 1283,
+          "expected": 1283
+        },
+        {
+          "check": "catalog map",
+          "pass": true,
+          "status": 200
+        },
+        {
+          "check": "draft page and visible status",
+          "slug": "small-gap-big-extremes",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft metadata retains status and allow-list",
+          "slug": "small-gap-big-extremes",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft appears on map",
+          "slug": "small-gap-big-extremes",
+          "pass": true
+        },
+        {
+          "check": "draft page and visible status",
+          "slug": "algo-heap-delete-arbitrary",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft metadata retains status and allow-list",
+          "slug": "algo-heap-delete-arbitrary",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft appears on map",
+          "slug": "algo-heap-delete-arbitrary",
+          "pass": true
+        },
+        {
+          "check": "draft page and visible status",
+          "slug": "algo-sweep-active-segments",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft metadata retains status and allow-list",
+          "slug": "algo-sweep-active-segments",
+          "status": 200,
+          "pass": true
+        },
+        {
+          "check": "draft appears on map",
+          "slug": "algo-sweep-active-segments",
+          "pass": true
+        },
+        {
+          "check": "unknown lesson stays 404",
+          "pass": true,
+          "status": 404
+        },
+        {
+          "check": "accounts remain off",
+          "pass": true,
+          "status": 404
+        }
+      ]
+    },
+    "browser": "Live draft small-gap-big-extremes rendered DRAFT \u00b7 UNPUBLISHED and lesson prediction controls in the browser accessibility tree.",
+    "limits": "No full-catalog interactive QA run. Existing local Mac HQ casing conflict and publication-tool fixture failures remain documented. Account flags remain off."
+  }
+}

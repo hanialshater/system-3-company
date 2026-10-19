@@ -17,12 +17,15 @@ Make a learner's progress survive devices and sessions, and make the revisit rec
 - Database schema and migrations for users, attempts (lesson, version, choice, correct, time) and revisit schedules
 - src/app/api/** and server-side code in src/lib/server/**
 - Moving src/kit/progress.ts from localStorage-only to sync-with-server, keeping offline play working
+- The migration sequence and runner for the shared accounts database: order review of every migration, including other teams'; review of other teams' patches to the export and delete code (card E3, company/decisions/2026-10-16-founder-personalization-org.md)
+- `progress` and `recall` are the learning record every surface reads, and their data owner includes the local store s3c:progress:v1 (data inventory D1, written in by privacy-reviewer); the personalization org reads them read-only, and its learner profile (stated choices, computed state) is learner-data-engineer's
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
+- Personalization tables, their migrations and retention (learner-data-engineer); backend-engineer keeps the sequence, the runner and the order review, and keeps the auth tables, progress, recall, EDD-008, W-706 and the accounts branch
 - Lesson content
 - The lesson contract (src/kit/Lesson.tsx is constitutional)
 - Deploying (release manager)

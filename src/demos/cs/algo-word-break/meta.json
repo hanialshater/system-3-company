@@ -1,0 +1,297 @@
+{
+  "slug": "algo-word-break",
+  "title": "Which cuts make real words?",
+  "hook": "The longest dictionary word may leave an impossible suffix.",
+  "domain": "cs",
+  "concept": "algo-word-break",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Recognize a dictionary segmentation with reachable prefix boundaries rather than greedy longest words."
+    ]
+  },
+  "misconception": "Taking the longest dictionary word always permits a valid segmentation if one exists.",
+  "objective": "Recognize a dictionary segmentation with reachable prefix boundaries rather than greedy longest words.",
+  "claims": [
+    {
+      "id": "cs.algo-word-break.c1",
+      "text": "Reachable prefix boundaries retain viable dictionary segmentations.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c2",
+      "text": "The longest dictionary word may leave an impossible suffix.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c3",
+      "text": "Text cars; dictionary car, ca, rs. Which segmentation reaches the final prefix boundary?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c4",
+      "text": "ca|rs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c5",
+      "text": "car|s",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c6",
+      "text": "none",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c7",
+      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c8",
+      "text": "Segmentation ca|rs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c9",
+      "text": "Segmentation ca|rs. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c10",
+      "text": "A reachable prefix boundary is extended only by a dictionary word. The longest first word can strand the remaining text; retaining alternative boundaries permits a complete segmentation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c11",
+      "text": "Text and dictionary",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c12",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c13",
+      "text": "c",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c14",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c15",
+      "text": "r",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c16",
+      "text": "s",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c17",
+      "text": "words",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c18",
+      "text": "car",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c19",
+      "text": "ca",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[1].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c20",
+      "text": "rs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[0].rows[1].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c21",
+      "text": "Prefix boundary 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c22",
+      "text": "boundary",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c23",
+      "text": "reachable",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c24",
+      "text": "Prefix boundary 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c25",
+      "text": "Prefix boundary 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c26",
+      "text": "Prefix boundary 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c27",
+      "text": "Segmentation car|s",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c28",
+      "text": "Segmentation car|s. This remains the computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c29",
+      "text": "Why can choosing the longest dictionary prefix fail?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c30",
+      "text": "Its remaining suffix may have no segmentation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c31",
+      "text": "Long words are never valid",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c32",
+      "text": "A dictionary must be sorted",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-word-break.c33",
+      "text": "A local longest choice can strand the suffix while a shorter prefix permits completion.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#lessonDetails[\"algo-word-break\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can choosing the longest dictionary prefix fail?",
+    "options": [
+      "Its remaining suffix may have no segmentation",
+      "Long words are never valid",
+      "A dictionary must be sorted"
+    ],
+    "answer": 0,
+    "why": "A local longest choice can strand the suffix while a shorter prefix permits completion."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-word-break/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-word-break",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "sequence-dynamic-programming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

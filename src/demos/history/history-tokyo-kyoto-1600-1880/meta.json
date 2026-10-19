@@ -1,0 +1,555 @@
+{
+  "slug": "history-tokyo-kyoto-1600-1880",
+  "title": "Government change means capital move?",
+  "hook": "A political-office record and a residence record answer different questions.",
+  "domain": "history",
+  "concept": "government-decree-versus-residence-intent",
+  "status": "draft",
+  "version": 3,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A proposed act and a completed event are different."
+    ],
+    "doesNotKnow": [
+      "Distinguish a translated Kyoto-court draft about government offices from a later translated proclamation’s intended Tokyo residence."
+    ]
+  },
+  "misconception": "Yes; office changes date completed relocation",
+  "objective": "Distinguish a translated Kyoto-court draft about government offices from a later translated proclamation’s intended Tokyo residence.",
+  "claims": [
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c1",
+      "text": "Court draft",
+      "address": "model.RECORDS.draft.type; stage field",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 heading; cover16January1868",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c2",
+      "text": "Shogunal abolition proposed",
+      "address": "model.RECORDS.draft.offices; stage field",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 opening paragraphs; draftstatement, not verified enactment",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c3",
+      "text": "FRUS translation: residence intended",
+      "address": "model.RECORDS.proclamation.residence; stage field",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued bytheMikado block",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c4",
+      "text": "Proclamation states renaming to Tokyo",
+      "address": "model.RECORDS.proclamation.name; stage field",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d381 same proclamationblock;7thmonth1868, no inventedGregorianday",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c5",
+      "text": "US diplomatic translations",
+      "address": "stage mandatory qualifier 1",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c6",
+      "text": "Intention ≠ completion",
+      "address": "stage mandatory qualifier 2",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact owner compact disposition",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c7",
+      "text": "January’s draft identity with the Japanese witness is unproved.",
+      "address": "reveal sentence 1",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c8",
+      "text": "FRUS says residence; the Japanese principal clause concerns attendance/oversight.",
+      "address": "reveal sentence 2",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c9",
+      "text": "Renaming is explicit; the supplement is separate.",
+      "address": "reveal sentence 3",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c10",
+      "text": "Neither record establishes draft enactment, actual move, permanent residence, one transfer day, universal agreement or everyone’s wartime experience.",
+      "address": "reveal sentence 4",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c11",
+      "text": "Report dates are not promulgation.",
+      "address": "reveal sentence 5",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; exact compact semantic/cultural applicability",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c12",
+      "text": "Does a translated government-office draft alone establish an actual court relocation? Answer: No; distinguish draft, intention and completion",
+      "address": "prediction question/options/answer; title/hook/objective",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c13",
+      "text": "An English diplomatic translation says residence; a Japanese clause describes attendance and oversight. What follows? Answer: Keep their distinct wording; equivalence and completion are unproved",
+      "address": "recall question/options/answer; why",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c14",
+      "text": "Own-English factual summaries and original schematic; not an official translation or official legal text. No source images reproduced.",
+      "address": "Sources authorship/translation notice",
+      "support": "derivation",
+      "source": "Own source/import inspection; source-use construction decision",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c15",
+      "text": "FRUS297 enclosure4 Translation/Draft,16January1868 cover; FRUS381 enclosed proclamation separate from25September cover forecast. JACAR A14110269300 Contents principal 親臨以テ其政ヲ視ルヘシ and separately marked 副書; NAJ related item is not proved identical physical witness. World and Japan restoration transcription/NAJ catalogue do not establish FRUS draft/final identity. No facsimile inspected, permanent residence established or capital forecast adopted.",
+      "address": "Sources provenance",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; source-use/language records",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c16",
+      "text": "Source records are linked for their factual evidence. No source expression, image, layout, map, coordinates, seal or facsimile is reproduced. No blanket licence or institutional/community endorsement is implied.",
+      "address": "Sources credit and exclusions",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932; https://www.jacar.archives.go.jp/das/meta-en/A14110269300 Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書; https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上; https://worldjpn.net/documents/texts/pw/18671209.O1J.html 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded; https://history.state.gov/historicaldocuments/frus1868p1/d297 EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect; https://history.state.gov/historicaldocuments/frus1868p1/d381 Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed; company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c17",
+      "text": "National Archives of Japan. Custodian/editor: National Archives of Japan. Modern institutional catalogue/exhibition context. Source-language witness; see exact provenance. Locator: 江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932. Accessed 2026-10-19. Acquisition/scope: Related catalogued witness, not an assertion that its call number and JACAR item identify identical physical versions. No map/image opened or imported.",
+      "address": "Sources.items.japanRenamingExhibition",
+      "support": "source",
+      "source": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c18",
+      "text": "JACAR / National Archives of Japan. Custodian/editor: JACAR / National Archives of Japan. Original-language archival catalogue transcription, not manuscript facsimile examination. Source-language witness; see exact provenance. Locator: Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書. Accessed 2026-10-19. Acquisition/scope: Actual Japanese operative renaming clause acquired/read. Distinguish archival transcription from original image and modern English site title. Independent historical-Japanese comparison to FRUS required; no certified translation or exact Gregorian conversion inferred.",
+      "address": "Sources.items.japanRenamingJapanese",
+      "support": "source",
+      "source": "https://www.jacar.archives.go.jp/das/meta-en/A14110269300; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c19",
+      "text": "National Archives of Japan. Custodian/editor: National Archives of Japan. Modern official archival-item identification/context. Source-language witness; see exact provenance. Locator: 王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上. Accessed 2026-10-19. Acquisition/scope: Identifies an archival witness; modern introduction is not substituted for reading original operative text. HTML declares Shift JIS, decoded as CP932; no facsimile/image inspection.",
+      "address": "Sources.items.japanRestorationArchive",
+      "support": "source",
+      "source": "https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c20",
+      "text": "GRIPS / University of Tokyo World and Japan database. Custodian/editor: GRIPS / University of Tokyo World and Japan database. Original-language historical text transcription with marked modern editorial supplement. Source-language witness; see exact provenance. Locator: 復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded. Accessed 2026-10-19. Acquisition/scope: Original-language body now available for competent comparison. It does not prove exact identity of the FRUS-enclosed draft with this later documentary witness. Editorial roster and modern apparatus not learner copy.",
+      "address": "Sources.items.japanRestorationJapanese",
+      "support": "source",
+      "source": "https://worldjpn.net/documents/texts/pw/18671209.O1J.html; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c21",
+      "text": "Kyoto court draft transmitted in US diplomatic report dated 16 January 1868; enactment unproved. Custodian/editor: US Department of State Office of the Historian. FRUS1868partI Document297: diplomatic report including translated court draft. Historical English diplomatic translation; Japanese witnesses compared separately, equivalence not certified. Locator: EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.tokyoJanuary",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d297; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c22",
+      "text": "Imperial proclamation transmitted in US diplomatic report dated 25 September 1868; enclosed seventh-month date not converted. Custodian/editor: US Department of State Office of the Historian. FRUS1868partI Document381: translated proclamation transmitted by US diplomat. Historical English diplomatic translation; Japanese witnesses compared separately, equivalence not certified. Locator: Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed. Accessed 2026-10-19. Acquisition/scope: retrieved; body inspection separately required",
+      "address": "Sources.items.tokyoProclamation",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1868p1/d381; exact source-use/provenance record",
+      "status": "unverified"
+    },
+    {
+      "id": "history.history-tokyo-kyoto-1600-1880.c23",
+      "text": "Each complete distinct documentary record earns one witness; local Reset clears selection and Sources, retaining both loaded records; full restart clears the attempt. Unvisited placeholders contain no historical answer.",
+      "address": "local controls; model transition; explore hint",
+      "support": "derivation",
+      "source": "model.ts / model.repro.mjs",
+      "status": "unverified"
+    },
+    {
+      "address": "purposeAugmentation.witnesses.courtAndShogunateLocations",
+      "text": "1868 FRUS: Kyoto court draft; Edo’s former shogunate in separate supplement. Diplomatic English, not a complete seat chronology or identical Japanese witness. Sources Reset",
+      "supportPins": [
+        "tokyoJanuary",
+        "tokyoProclamation"
+      ],
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-tokyo-kyoto-1600-1880.c24",
+      "support": "source",
+      "source": "tokyoJanuary; tokyoProclamation"
+    },
+    {
+      "address": "purposeAugmentation.witnesses.issuedRestorationOrderAccount",
+      "text": "NAJ account: order issued; shogunate and prior court offices abolished; provided for three posts. Keio 3/12/9; working English, Gregorian conversion withheld. Sources Reset",
+      "supportPins": [
+        "japanRestorationArchive"
+      ],
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-tokyo-kyoto-1600-1880.c25",
+      "support": "source",
+      "source": "japanRestorationArchive"
+    },
+    {
+      "address": "purposeAugmentation.retainedComparison",
+      "text": "Kyoto court; Edo shogunate. FRUS supplement separate. NAJ account: shogunate/prior court offices abolished; provided for three posts. Draft/intention≠implementation; Japanese/English uncollated. Sources Reset",
+      "support": "derived only from all actually acquired qualified original/new witnesses; independent applicability pending",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-tokyo-kyoto-1600-1880.c26",
+      "source": "history-tokyo-kyoto-1600-1880 retained documentary witnesses"
+    },
+    {
+      "address": "purposeAugmentation.reveal",
+      "text": "January’s draft identity with the Japanese witness is unproved. FRUS says residence; the Japanese principal clause concerns attendance/oversight. Renaming is explicit; the supplement is separate. Neither record establishes draft enactment, actual move, permanent residence, one transfer day, universal agreement or everyone’s wartime experience. Report dates are not promulgation. Separate FRUS passages locate court and former shogunate at Kyoto and Edo. NAJ’s Japanese account separately reports an issued restoration order abolishing shogunate and prior court offices and providing for three posts; working English and calendar conversion remain unreviewed.",
+      "support": "original reveal plus pinned additional witness relations",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "id": "history.history-tokyo-kyoto-1600-1880.c27",
+      "source": "history-tokyo-kyoto-1600-1880 retained documentary witnesses"
+    }
+  ],
+  "recall": {
+    "question": "An English diplomatic translation says residence; a Japanese clause describes attendance and oversight. What follows?",
+    "options": [
+      "The witnesses establish permanent residence",
+      "Keep their distinct wording; equivalence and completion are unproved"
+    ],
+    "answer": 1,
+    "why": "Keep their distinct wording; equivalence and completion are unproved"
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:government-decree-versus-residence-intent",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "Keep US diplomatic translations and Intention ≠ completion unavoidable. FRUS residence wording is attributed, not certified Japanese equivalence. Principal clause and 副書 remain separate; no actual capital move, permanent residence, enacted January draft or universal consent inferred.",
+  "lineage": {
+    "sourceCaseId": "map-tokyo-kyoto-1600-1880",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalBuilder": "contributor (PR #4)",
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new original documentary schematic without its map or data.",
+    "selectedDates": [
+      "1868-01-16",
+      "1868-09-25"
+    ],
+    "originalFields": [
+      {
+        "address": "draft.type",
+        "value": "transmitted draft proclamation",
+        "originalText": "Kyoto court draft",
+        "source": "tokyoJanuary",
+        "locator": "EnclosureNo4 heading; cover16January1868",
+        "originalSource": "tokyoJanuary",
+        "originalLocator": "EnclosureNo4 heading; cover16January1868",
+        "originalValue": "transmitted draft proclamation"
+      },
+      {
+        "address": "draft.offices",
+        "value": "draft says shogunate abolished and three temporary departments established",
+        "originalText": "Shogunate abolition proposed",
+        "source": "tokyoJanuary",
+        "locator": "EnclosureNo4 opening paragraphs; draftstatement, not verified enactment",
+        "originalSource": "tokyoJanuary",
+        "originalLocator": "EnclosureNo4 opening paragraphs; draftstatement, not verified enactment",
+        "originalValue": "draft says shogunate abolished and three temporary departments established"
+      },
+      {
+        "address": "proclamation.residence",
+        "value": "emperor’s stated intention to proceed to Yedo and reside there",
+        "originalText": "Intends residence in Edo",
+        "source": "tokyoProclamation",
+        "locator": "Proclamation issued bytheMikado block",
+        "originalSource": "tokyoProclamation",
+        "originalLocator": "Proclamation issued bytheMikado block",
+        "originalValue": "emperor’s stated intention to proceed to Yedo and reside there"
+      },
+      {
+        "address": "proclamation.name",
+        "value": "source translation callsYedo (Tokei) (EasternKioto)",
+        "originalText": "Edo renamed Tokyo",
+        "source": "tokyoProclamation",
+        "locator": "same proclamationblock;7thmonth1868, no inventedGregorianday",
+        "originalSource": "tokyoProclamation",
+        "originalLocator": "same proclamationblock;7thmonth1868, no inventedGregorianday",
+        "originalValue": "source translation callsYedo (Tokei) (EasternKioto)"
+      }
+    ],
+    "ownerAdmission": "company/domains/briefs/2026-10-19-history-next10-compact-owner-disposition.md",
+    "semanticApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-language-applicability.md",
+    "culturalApplicability": "company/reviews/history-maps-100/2026-10-19-next10-compact-cultural-applicability.md",
+    "originalEndpoints": [
+      1600,
+      1880
+    ]
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "japanRenamingExhibition",
+        "url": "https://www.archives.go.jp/exhibition/digital/henbou/contents/03.html",
+        "maker": "National Archives of Japan",
+        "custodian": "National Archives of Japan",
+        "type": "Modern institutional catalogue/exhibition context",
+        "language": "Source-language witness; see exact provenance",
+        "locator": "江戸を東京と定める; Japanese body and call 太00001100; decodeddeclaredShiftJIS asCP932",
+        "accessed": "2026-10-19",
+        "limitation": "Related catalogued witness, not an assertion that its call number and JACAR item identify identical physical versions. No map/image opened or imported."
+      },
+      {
+        "id": "japanRenamingJapanese",
+        "url": "https://www.jacar.archives.go.jp/das/meta-en/A14110269300",
+        "maker": "JACAR / National Archives of Japan",
+        "custodian": "JACAR / National Archives of Japan",
+        "type": "Original-language archival catalogue transcription, not manuscript facsimile examination",
+        "language": "Source-language witness; see exact provenance",
+        "locator": "Reference A14110269300, call 勅00001100, Contents: principal edict beginning明治元年七月十七日, then separately labelled副書",
+        "accessed": "2026-10-19",
+        "limitation": "Actual Japanese operative renaming clause acquired/read. Distinguish archival transcription from original image and modern English site title. Independent historical-Japanese comparison to FRUS required; no certified translation or exact Gregorian conversion inferred."
+      },
+      {
+        "id": "japanRestorationArchive",
+        "url": "https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html",
+        "maker": "National Archives of Japan",
+        "custodian": "National Archives of Japan",
+        "type": "Modern official archival-item identification/context",
+        "language": "Source-language witness; see exact provenance",
+        "locator": "王政復古の大号令; request単00167, 単行書・詔勅録・巻之一・内部上",
+        "accessed": "2026-10-19",
+        "limitation": "Identifies an archival witness; modern introduction is not substituted for reading original operative text. HTML declares Shift JIS, decoded as CP932; no facsimile/image inspection."
+      },
+      {
+        "id": "japanRestorationJapanese",
+        "url": "https://worldjpn.net/documents/texts/pw/18671209.O1J.html",
+        "maker": "GRIPS / University of Tokyo World and Japan database",
+        "custodian": "GRIPS / University of Tokyo World and Japan database",
+        "type": "Original-language historical text transcription with marked modern editorial supplement",
+        "language": "Source-language witness; see exact provenance",
+        "locator": "復古大号令, historical慶應3年12月9日; primary body opening/three posts/abolition; marked＊1 roster from modern book excluded",
+        "accessed": "2026-10-19",
+        "limitation": "Original-language body now available for competent comparison. It does not prove exact identity of the FRUS-enclosed draft with this later documentary witness. Editorial roster and modern apparatus not learner copy."
+      },
+      {
+        "id": "tokyoJanuary",
+        "url": "https://history.state.gov/historicaldocuments/frus1868p1/d297",
+        "maker": "Kyoto court draft transmitted in US diplomatic report dated 16 January 1868; enactment unproved",
+        "custodian": "US Department of State Office of the Historian",
+        "type": "FRUS1868partI Document297: diplomatic report including translated court draft",
+        "language": "Historical English diplomatic translation; Japanese witnesses compared separately, equivalence not certified",
+        "locator": "EnclosureNo4 titled Draft of a proclamation of the court of Kioto, opening paragraphs; cover dated16January1868. This is a transmitted DRAFT, not proof of promulgation/effect",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      },
+      {
+        "id": "tokyoProclamation",
+        "url": "https://history.state.gov/historicaldocuments/frus1868p1/d381",
+        "maker": "Imperial proclamation transmitted in US diplomatic report dated 25 September 1868; enclosed seventh-month date not converted",
+        "custodian": "US Department of State Office of the Historian",
+        "type": "FRUS1868partI Document381: translated proclamation transmitted by US diplomat",
+        "language": "Historical English diplomatic translation; Japanese witnesses compared separately, equivalence not certified",
+        "locator": "Proclamation issued by the Mikado block after cover letter: intention to reside in Yedo and rename Tokei;7thmonth1868; cover25September1868; no exact Gregorian conversion assumed",
+        "accessed": "2026-10-19",
+        "limitation": "retrieved; body inspection separately required"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-next10-exact-source-use.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  },
+  "purposeAugmentation": {
+    "ownerCore": "company/domains/proposals/2026-10-19-history-next10-six-purpose-owner-core-v3.json",
+    "ownerCoreSha256": "483123efce0e6a4dc132fc48db54ef1f6012851671fa9a8aaa9bed89e1638fa3",
+    "requiredWitnessIds": [
+      "draft",
+      "proclamation",
+      "courtAndShogunateLocations",
+      "issuedRestorationOrderAccount"
+    ],
+    "witnesses": [
+      {
+        "id": "courtAndShogunateLocations",
+        "dateLabel": "1868 transmitted retrospective accounts",
+        "ordinaryQualifiedFrame": "1868 FRUS: Kyoto court draft; Edo’s former shogunate in separate supplement. Diplomatic English, not a complete seat chronology or identical Japanese witness. Sources Reset",
+        "stageLetterTokensIncludingSourcesReset": 23,
+        "sourcePins": [
+          {
+            "sourceId": "tokyoJanuary",
+            "url": "https://history.state.gov/historicaldocuments/frus1868p1/d297",
+            "bodyPath": "/tmp/history-next10-source-bodies/tokyoJanuary.html",
+            "bodySha256": "ecd34d99d34b487735974e102f72b2998f5327b2e7aa6eb08141dad3772cb622",
+            "extractedTextPath": "/tmp/history-next10-source-bodies/tokyoJanuary.txt",
+            "extractedTextSha256": "471c2d242b61f28a896de40d89b7ff32aa6f1cd4a8f929e0c44a2ace8e9ea4f9",
+            "acquisitionLedger": "/tmp/history-next10-source-bodies/ledger.json",
+            "originalAcquisitionRecord": {
+              "id": "tokyoJanuary",
+              "url": "https://history.state.gov/historicaldocuments/frus1868p1/d297",
+              "finalUrl": "https://history.state.gov/historicaldocuments/frus1868p1/d297",
+              "rawSha256": "ecd34d99d34b487735974e102f72b2998f5327b2e7aa6eb08141dad3772cb622",
+              "bytes": 85588,
+              "textChars": 33471,
+              "status": "retrieved; body inspection separately required"
+            },
+            "representation": "actual acquired HTML and normalized text",
+            "locator": "Document297 enclosureNo4, normalized lines392–393 heading Draft of a proclamation of the court of Kioto; cover16January1868 distinct",
+            "languageAndScopeLimits": "Court/Kyoto is the transmitted document attribution; not proof a draft was enacted. Cover16January1868 is report date.",
+            "rights": "Existing exact source-use return does not automatically cover the new teaching claim. Proposed use: own minimal attributed English facts only, no copied source prose/translation, image, facsimile, geometry, layout or dataset. Independent source-use delta required.",
+            "claimsStatus": "unverified",
+            "checkedBy": "",
+            "checkedOn": ""
+          },
+          {
+            "sourceId": "tokyoProclamation",
+            "url": "https://history.state.gov/historicaldocuments/frus1868p1/d381",
+            "bodyPath": "/tmp/history-next10-source-bodies/tokyoProclamation.html",
+            "bodySha256": "b499c4abc5b94d2645993f9ae9b70b5166dfb0f5fa1e9e7c4bec20a1da80faeb",
+            "extractedTextPath": "/tmp/history-next10-source-bodies/tokyoProclamation.txt",
+            "extractedTextSha256": "7eddae5db0cda0ee5fccf048c2597e01d4380d83b2e54c35064f7d23bd67b8b5",
+            "acquisitionLedger": "/tmp/history-next10-source-bodies/ledger.json",
+            "originalAcquisitionRecord": {
+              "id": "tokyoProclamation",
+              "url": "https://history.state.gov/historicaldocuments/frus1868p1/d381",
+              "finalUrl": "https://history.state.gov/historicaldocuments/frus1868p1/d381",
+              "rawSha256": "b499c4abc5b94d2645993f9ae9b70b5166dfb0f5fa1e9e7c4bec20a1da80faeb",
+              "bytes": 39321,
+              "textChars": 9261,
+              "status": "retrieved; body inspection separately required"
+            },
+            "representation": "actual acquired HTML and normalized text",
+            "locator": "Document381 separate supplementary explanation after principal proclamation, normalized lines140–144; original Japanese counterpart separately marked副書",
+            "languageAndScopeLimits": "Separate diplomatic English supplement says Bakufu established in Yedo and now abolished; do not make it the principal edict or identical to Japanese. Neither gives a complete prior seat chronology.",
+            "rights": "Existing exact source-use return does not automatically cover the new teaching claim. Proposed use: own minimal attributed English facts only, no copied source prose/translation, image, facsimile, geometry, layout or dataset. Independent source-use delta required.",
+            "claimsStatus": "unverified",
+            "checkedBy": "",
+            "checkedOn": ""
+          }
+        ],
+        "earnedLearningValue": "The learner can inspect the court/Kyoto versus shogunate/Edo relation rather than treating renaming or residence intention as proof of the former institutional seats.",
+        "requiredOrdinaryContext": [
+          "Court attribution and former shogunate relation derive from separate transmitted passages; do not infer sole capital, universal office location or permanent imperial residence."
+        ],
+        "claimSupportStatus": "unverified",
+        "checkedBy": "",
+        "checkedOn": "",
+        "actualDistinctEncounterRequired": true,
+        "sourceOrContextClickIsNotEvidence": true
+      },
+      {
+        "id": "issuedRestorationOrderAccount",
+        "dateLabel": "Keio3/12/9; Gregorian conversion withheld",
+        "ordinaryQualifiedFrame": "NAJ account: order issued; shogunate and prior court offices abolished; provided for three posts. Keio 3/12/9; working English, Gregorian conversion withheld. Sources Reset",
+        "stageLetterTokensIncludingSourcesReset": 22,
+        "sourcePins": [
+          {
+            "sourceId": "japanRestorationArchive",
+            "url": "https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html",
+            "bodyPath": "/tmp/history-next10-source-bodies/japanRestorationArchive.html",
+            "bodySha256": "094ce59825878d67fd62e7d1ce7caeadd958f85aefd66eb5d613ed7cc7d210d3",
+            "extractedTextPath": "/tmp/history-next10-source-bodies/japanRestorationArchive.txt",
+            "extractedTextSha256": "bc4da465a157595f5922b00b9cfc23433792cdcd0d0b7d36d300ae9a2f739e53",
+            "acquisitionLedger": "/tmp/history-next10-source-bodies/held-source-ledger.json",
+            "originalAcquisitionRecord": {
+              "id": "japanRestorationArchive",
+              "url": "https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html",
+              "finalUrl": "https://www.archives.go.jp/ayumi/kobetsu/k03_1867_01.html",
+              "rawSha256": "094ce59825878d67fd62e7d1ce7caeadd958f85aefd66eb5d613ed7cc7d210d3",
+              "bytes": 12068,
+              "textChars": 1029,
+              "status": "retrieved; body inspection separately required"
+            },
+            "representation": "actual acquired HTML and normalized text",
+            "locator": "NAJ item単00167/詔勅録 identification and normalized line181, beneath 慶応3年（1867）12月 heading",
+            "languageAndScopeLimits": "Modern National Archives Japanese account says order issued, shogunate AND prior court offices abolished, provided for three posts. Own working English unreviewed; Japanese calendar label Keio3/12/9 retained, Gregorian conversion withheld. This account is separate from the FRUS draft; identical physical/version witness not established.",
+            "rights": "Existing exact source-use return does not automatically cover the new teaching claim. Proposed use: own minimal attributed English facts only, no copied source prose/translation, image, facsimile, geometry, layout or dataset. Independent source-use delta required.",
+            "claimsStatus": "unverified",
+            "checkedBy": "",
+            "checkedOn": ""
+          }
+        ],
+        "earnedLearningValue": "A separately identified archival institutional account of an issued order distinguishes actual reported abolition and provision for offices from the FRUS transmitted draft.",
+        "requiredOrdinaryContext": [
+          "Account supports reported institutional act, not universal implementation/control or identical text/version with FRUS draft.",
+          "Retain prior court-office abolition; do not imply all old imperial offices survived unchanged."
+        ],
+        "claimSupportStatus": "unverified",
+        "checkedBy": "",
+        "checkedOn": "",
+        "actualDistinctEncounterRequired": true,
+        "sourceOrContextClickIsNotEvidence": true
+      }
+    ],
+    "retainedComparison": "Kyoto court; Edo shogunate. FRUS supplement separate. NAJ account: shogunate/prior court offices abolished; provided for three posts. Draft/intention≠implementation; Japanese/English uncollated. Sources Reset",
+    "reveal": "January’s draft identity with the Japanese witness is unproved. FRUS says residence; the Japanese principal clause concerns attendance/oversight. Renaming is explicit; the supplement is separate. Neither record establishes draft enactment, actual move, permanent residence, one transfer day, universal agreement or everyone’s wartime experience. Report dates are not promulgation. Separate FRUS passages locate court and former shogunate at Kyoto and Edo. NAJ’s Japanese account separately reports an issued restoration order abolishing shogunate and prior court offices and providing for three posts; working English and calendar conversion remain unreviewed.",
+    "originalPurposeFulfilled": false,
+    "constructionGo": false,
+    "fit": "deferred"
+  }
+}

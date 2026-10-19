@@ -1,0 +1,228 @@
+{
+  "slug": "algo-assignment-bitmask",
+  "title": "Who has already taken a job?",
+  "hook": "Who has already taken a job? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-assignment-bitmask",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Use the assigned-job bitmask to determine the next worker and minimize assignment cost."
+    ]
+  },
+  "misconception": "A minimum-cost assignment needs separate state for every worker ordering.",
+  "objective": "Use the assigned-job bitmask to determine the next worker and minimize assignment cost.",
+  "claims": [
+    {
+      "id": "cs.algo-assignment-bitmask.c1",
+      "text": "The number of set bits determines the next worker. Each transition sets one unused job bit, so the computed minimum cannot assign a cheap job to two workers.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c2",
+      "text": "Who has already taken a job? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c3",
+      "text": "Costs [[4,1,3],[2,0,5],[3,2,2]]: minimum assignment?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c5",
+      "text": "Assignment=5; jobs unique.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c6",
+      "text": "Assignment costs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c7",
+      "text": "w0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c8",
+      "text": "w1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c9",
+      "text": "w2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c10",
+      "text": "Worker 0, mask 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c11",
+      "text": "dp",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c12",
+      "text": "Worker 1, mask 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c13",
+      "text": "Worker 1, mask 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c14",
+      "text": "Worker 2, mask 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c15",
+      "text": "Worker 1, mask 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c16",
+      "text": "Worker 2, mask 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c17",
+      "text": "Worker 2, mask 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c18",
+      "text": "Assignment=6; jobs unique.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#assignment_bitmask.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c19",
+      "text": "A mask has two set bits. Which worker is next with zero-based indexing?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c20",
+      "text": "Worker 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c21",
+      "text": "Worker 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c22",
+      "text": "Worker 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-assignment-bitmask.c23",
+      "text": "Two jobs already belong to workers 0 and 1, leaving worker 2 next.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-assignment-bitmask\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A mask has two set bits. Which worker is next with zero-based indexing?",
+    "options": [
+      "Worker 1",
+      "Worker 2",
+      "Worker 3"
+    ],
+    "answer": 1,
+    "why": "Two jobs already belong to workers 0 and 1, leaving worker 2 next."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-assignment-bitmask/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-assignment-bitmask",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

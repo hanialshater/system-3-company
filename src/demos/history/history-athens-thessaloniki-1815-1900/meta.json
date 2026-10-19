@@ -1,0 +1,204 @@
+{
+  "slug": "history-athens-thessaloniki-1815-1900",
+  "title": "One simultaneous transition?",
+  "hook": "One simultaneous transition?",
+  "domain": "history",
+  "concept": "athens-thessaloniki-1815-1900",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Documents can describe different institutional relations."
+    ],
+    "doesNotKnow": [
+      "Compare the 1832 Greek crown instrument with the 1876 attributed Salonica Ottoman administrative witness to expose asynchronous city-region relations."
+    ]
+  },
+  "misconception": "The crown instrument changed both administrations together",
+  "objective": "Compare the 1832 Greek crown instrument with the 1876 attributed Salonica Ottoman administrative witness to expose asynchronous city-region relations.",
+  "claims": [
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c1",
+      "text": "The selected 1832 record identifies institution as Greek crown specified in 1832 instrument. Attribution: MJP French edition; instrument scope, not blanket city control.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-source-bodies/gr1832.txt', 'sha256': 'a037ceb5e5b82eb5c532ad4fd025e3dab908788106c86133a966ca2911603f42', 'kind': 'actual acquired body anchor', 'anchor': 'offrent la souveraineté héréditaire', 'lineStart': 93, 'lineEnd': 93}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.greek.fields.v2.greek.institution; loaded stage tile"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c2",
+      "text": "The selected 1876 record identifies official as Eshrif Pasha named governor-general of Salonica. Attribution: Lazzaro vice-consular report 21 June 1876, transmitted by Maynard 20 July; not Ottoman decree or neutral account of violence.",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1876/d317; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/salonicaConsul.txt', 'sha256': '00deb69e0ae69188644683977e8b007813ad6034fbf84913874d5e562cecb917', 'kind': 'actual acquired body anchor', 'anchor': 'Eshrif Pasha, present governor-general of Salonica', 'lineStart': 105, 'lineEnd': 105}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.salonica.fields.v2.salonica.official; loaded stage tile"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c3",
+      "text": "The selected 1876 record identifies origin as commission arrived from Constantinople. Attribution: Lazzaro vice-consular report 21 June 1876, transmitted by Maynard 20 July; not Ottoman decree or neutral account of violence.",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1876/d317; Acquired normalized body anchor; line numbers are local extraction lines; {'path': '/tmp/history-next15-purpose-bodies/salonicaConsul.txt', 'sha256': '00deb69e0ae69188644683977e8b007813ad6034fbf84913874d5e562cecb917', 'kind': 'actual acquired body anchor', 'anchor': 'commission which had arrived from Constantinople', 'lineStart': 101, 'lineEnd': 101}",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.DOCUMENTS.salonica.fields.v2.salonica.origin; loaded stage tile"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c4",
+      "text": "MJP French edition; Lazzaro via Maynard Asynchronous institutions",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PROVENANCE; loaded stage provenance"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c5",
+      "text": "MJP’s 1832 French-edition crown instrument concerns Greece. Lazzaro’s 1876 Salonica report names an Ottoman governor-general and a Constantinople commission. These show asynchronous institutions, not simultaneous city transfer. The report’s prejudicial explanations of violence are excluded; no current sovereign title or universal consent follows.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.REVEAL; reveal paragraph"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c6",
+      "text": "Does the Greek crown instrument establish that Salonica had the same administration by 1876? The 1876 Salonica report still identifies Ottoman administrative officials",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "model.PREDICTION; question and both options; answer relation"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c7",
+      "text": "What makes the two transitions asynchronous in the actual witnesses? The Greek crown instrument is 1832, while the 1876 Salonica report identifies Ottoman officials rather than the same Greek administration.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "meta.recall; question/options/why"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c8",
+      "text": "The 1832 Greek crown instrument does not imply the 1876 Salonica Ottoman administration changed simultaneously. Lazzaro’s report via Maynard is mediated evidence; prejudicial collective explanations, unchecked violence estimates and modern title claims are excluded.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "scope qualification; meta.care"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c9",
+      "text": "Original nongeographic schematic and own English factual summaries; no source image or official translation. Selected documentary relations do not establish current borders or residents’ consent.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm; https://history.state.gov/historicaldocuments/frus1876/d317; owner v5 exact case history-athens-thessaloniki-1815-1900",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources final paragraph; original relation schematic"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c10",
+      "text": "Record 1832. MJP French edition; instrument scope, not blanket city control.",
+      "support": "source",
+      "source": "https://mjp.univ-perp.fr/constit/gr1832.htm v2.greek.institution; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 93–93",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record greek attribution and source pins"
+    },
+    {
+      "id": "history.history-athens-thessaloniki-1815-1900.c11",
+      "text": "Record 1876. Lazzaro vice-consular report 21 June 1876, transmitted by Maynard 20 July; not Ottoman decree or neutral account of violence.",
+      "support": "source",
+      "source": "https://history.state.gov/historicaldocuments/frus1876/d317 v2.salonica.official; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 105–105; https://history.state.gov/historicaldocuments/frus1876/d317 v2.salonica.origin; Acquired normalized body anchor; line numbers are local extraction lines; acquired-body lines 101–101",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "address": "Sources record salonica attribution and source pins"
+    }
+  ],
+  "recall": {
+    "question": "What makes the two transitions asynchronous in the actual witnesses?",
+    "options": [
+      "The Greek crown instrument is 1832, while the 1876 Salonica report identifies Ottoman officials rather than the same Greek administration.",
+      "The crown instrument changed both administrations together"
+    ],
+    "answer": 0,
+    "why": "The Greek crown instrument is 1832, while the 1876 Salonica report identifies Ottoman officials rather than the same Greek administration."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:athens-thessaloniki-1815-1900",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "documentary records",
+      "institutions",
+      "sensitive-history"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "care": "The 1832 Greek crown instrument does not imply the 1876 Salonica Ottoman administration changed simultaneously. Lazzaro’s report via Maynard is mediated evidence; prejudicial collective explanations, unchecked violence estimates and modern title claims are excluded.",
+  "lineage": {
+    "sourceCaseId": "map-athens-thessaloniki-1815-1900",
+    "sourceHead": "e041b8b8bec52c597682c4963c5aab4b728f597d",
+    "originalEndpoints": [
+      1815,
+      1900
+    ],
+    "originalPayoff": "Greek independence and Ottoman administration, comparing asynchronous city transitions",
+    "fixture": "company/domains/proposals/2026-10-19-history-next15-core-fixtures-v5.json",
+    "fieldIdentitySha256": "26a7d0fc2f767d1978ce7ab32f7096f2b7f4d7bda93f5f332c1b280675a758fa",
+    "originalPurposeFulfilled": false,
+    "contributorAcknowledgement": "Original case intention contributed in PR #4; new own documentary schematic, no contributed map/data."
+  },
+  "sources": {
+    "items": [
+      {
+        "id": "gr1832",
+        "url": "https://mjp.univ-perp.fr/constit/gr1832.htm",
+        "type": "French documentary edition of historical operative text"
+      },
+      {
+        "id": "core:salonicaConsul",
+        "url": "https://history.state.gov/historicaldocuments/frus1876/d317",
+        "type": "Actual acquired research body; individual attribution below"
+      }
+    ],
+    "acquired": "2026-10-19",
+    "sourceUseAssessment": "company/engineering/reviews/2026-10-19-history-core-v4-source-use-return.md",
+    "borrowedVisualAssets": false,
+    "heldGplPayload": false
+  }
+}

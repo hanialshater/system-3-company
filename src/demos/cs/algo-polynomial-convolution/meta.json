@@ -1,0 +1,193 @@
+{
+  "slug": "algo-polynomial-convolution",
+  "title": "Which terms land on this power?",
+  "hook": "Several pairs of coefficients can meet at the same output degree.",
+  "domain": "cs",
+  "concept": "algo-polynomial-convolution",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary masks, basic complex arithmetic for FFT, polynomial coefficients."
+    ],
+    "doesNotKnow": [
+      "Multiply polynomials by aligning coefficient pairs whose indices sum to the output index."
+    ]
+  },
+  "misconception": "Multiplying polynomial coefficient arrays means multiplying matching indices only.",
+  "objective": "Multiply polynomials by aligning coefficient pairs whose indices sum to the output index.",
+  "claims": [
+    {
+      "id": "cs.algo-polynomial-convolution.c1",
+      "text": "A product term’s degree is the sum of its input degrees. Contributions add into exactly that aligned output cell, so several pairs can contribute to one coefficient. This operation uses index addition, unlike an XOR convolution.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c2",
+      "text": "Several pairs of coefficients can meet at the same output degree.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c3",
+      "text": "Multiply coefficient arrays [1,2,3] and [4,5] in increasing degree order. What coefficient has degree 2?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c4",
+      "text": "Run the question case; Step exposes each transform update.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c5",
+      "text": "Coefficients 4,13,22,15.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c6",
+      "text": "Polynomial inputs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c7",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c8",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c9",
+      "text": "Align summed indices",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c10",
+      "text": "i,j,k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c11",
+      "text": "product",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c12",
+      "text": "coefficients",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c13",
+      "text": "Coefficients 1,0,-1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#polynomial_convolution.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c14",
+      "text": "Which input pairs contribute to output coefficient k?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c15",
+      "text": "Pairs with i+j=k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c16",
+      "text": "Pairs with i XOR j=k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c17",
+      "text": "Only pairs with i=j",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-polynomial-convolution.c18",
+      "text": "Polynomial multiplication adds exponents when terms multiply.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-polynomial-convolution\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which input pairs contribute to output coefficient k?",
+    "options": [
+      "Pairs with i+j=k",
+      "Pairs with i XOR j=k",
+      "Only pairs with i=j"
+    ],
+    "answer": 0,
+    "why": "Polynomial multiplication adds exponents when terms multiply."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/algo-polynomial-convolution/2026-10-16-qa-pr6.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-polynomial-convolution",
+    "also": [],
+    "prerequisites": [
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "transforms-convolution-bitsets"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

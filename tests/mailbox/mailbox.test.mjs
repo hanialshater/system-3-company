@@ -98,33 +98,53 @@ test("pilot lane: principal-pm-verticals (lane 2) may request demo-builder and d
   assert.equal(request(sb, "principal-pm-verticals", "demo-builder", ["--lane=1"]).code, 1, "not POC of lane 1");
 });
 
-test("drain -> dispatch-check -> claim -> done round trip; drain writes no event", () => {
+test("drain (reserves) -> dispatch-check --run -> launched -> done round trip; drain writes no event", () => {
   const sb = sandbox();
   const s = request(sb, "principal-pm-verticals", "demo-builder", ["--title=Wave J physics slug 1", "--worktree=/tmp/x", "--json"]);
   assert.equal(s.code, 0, s.err);
   const id = JSON.parse(s.out).id;
 
+  const chk = (role, run) => { try { return { code: 0, ...JSON.parse(execFileSync(process.execPath, [CHECK, "--kind=other", `--role=${role}`, `--source=mail:${id}`, ...(run ? [`--run=${run}`] : []), "--chooser=principal-pm-verticals", "--running=0", "--no-claim", "--json"], { env: sb.env, encoding: "utf8" })) }; } catch (e) { return { code: e.status, ...JSON.parse(e.stdout) }; } };
+  // Before any drain: the request is not reserved, so dispatch-check refuses to launch it.
+  assert.ok(chk("demo-builder").fails.some((f) => /M1 mailbox: .* is not reserved: run `node tools\/mailbox\.mjs drain dispatcher` first/.test(f)));
+  // --peek lists it without reserving.
+  const peek = JSON.parse(mbox(sb, ["drain", "dispatcher", "--peek", "--json"]).out);
+  assert.equal(peek[0].status, "unreserved");
+  assert.ok(!fs.existsSync(path.join(sb.mail, "dispatcher", `${id}.claimed`)), "peek writes nothing");
+
   const d = JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out);
   assert.equal(d.length, 1);
   assert.equal(d[0].id, id);
   assert.equal(d[0].ok, true);
+  assert.equal(d[0].status, "reserved");
+  assert.match(d[0].run, /^run-\d{8}T\d{9}Z-[0-9a-f]{6}$/);
+  assert.ok(Date.parse(d[0].leaseUntil) > Date.now(), "the lease is in the future");
   assert.equal(d[0].kind, "build");
-  assert.match(d[0].check, new RegExp(`--source=mail:${id}`));
+  assert.match(d[0].check, new RegExp(`--source=mail:${id} --run=${d[0].run}`));
+  assert.match(d[0].launched, new RegExp(`launched ${id} --run=${d[0].run}`));
+  assert.match(d[0].release, new RegExp(`release ${id} --run=${d[0].run} --reason=`));
   assert.match(d[0].label, /^\[project:wave-j\] mail demo-builder: Wave J physics slug 1 ·[0-9a-f]{4}$/);
   assert.ok(fs.existsSync(d[0].brief));
+  const marker = JSON.parse(fs.readFileSync(path.join(sb.mail, "dispatcher", `${id}.claimed`), "utf8"));
+  assert.deepEqual([marker.state, marker.run, marker.by], ["reserved", d[0].run, "chief-of-staff"]);
   assert.equal(fs.readFileSync(sb.ev, "utf8"), "", "the drain writes nothing to the event log");
+  assert.equal(JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out).length, 0, "a reserved request leaves the drain");
 
-  // dispatch-check with the mail source: M1 passes for the right role, fails for another role
-  const chk = (role) => { try { return { code: 0, ...JSON.parse(execFileSync(process.execPath, [CHECK, "--kind=other", `--role=${role}`, `--source=mail:${id}`, "--chooser=principal-pm-verticals", "--running=0", "--no-claim", "--json"], { env: sb.env, encoding: "utf8" })) }; } catch (e) { return { code: e.status, ...JSON.parse(e.stdout) }; } };
-  const good = chk("demo-builder");
+  // dispatch-check with the mail source: M1 passes for the right role and run, fails for another role or run
+  const good = chk("demo-builder", d[0].run);
   assert.ok(!good.fails.some((f) => /^M1|^S1/.test(f)), JSON.stringify(good.fails));
-  const bad = chk("domain-scout");
+  assert.ok(chk("demo-builder").fails.some((f) => /M1 mailbox: .* is reserved by run .*: pass --run=/.test(f)));
+  assert.ok(chk("demo-builder", "run-other").fails.some((f) => /M1 mailbox: .* reserved by run .*, not run-other/.test(f)));
+  const bad = chk("domain-scout", d[0].run);
   assert.ok(bad.fails.some((f) => /^M1 mailbox: .* requests role demo-builder/.test(f)));
 
-  assert.equal(mbox(sb, ["claim", id, `--agent=${d[0].label}`]).code, 0);
+  assert.equal(mbox(sb, ["launched", id, "--run=run-other"]).code, 1, "only the reserving run confirms the launch");
+  const ln = mbox(sb, ["launched", id, `--run=${d[0].run}`]);
+  assert.equal(ln.code, 0, ln.err);
   assert.equal(mbox(sb, ["claim", id]).code, 1, "a request is claimed once");
-  assert.equal(JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out).length, 0, "claimed requests leave the drain");
-  assert.ok(chk("demo-builder").fails.some((f) => /M1 mailbox: .* already claimed/.test(f)), "dispatch-check refuses a second start");
+  assert.equal(JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out).length, 0, "launched requests leave the drain");
+  assert.ok(chk("demo-builder", d[0].run).fails.some((f) => /M1 mailbox: .* already claimed \(launched/.test(f)), "dispatch-check refuses a second start");
+  assert.equal(mbox(sb, ["release", id, `--run=${d[0].run}`, "--reason=x"]).code, 1, "a launched run is not released without --force");
 
   const rep = path.join(sb.d, "report.md");
   fs.writeFileSync(rep, "Built. SHA abc123. QA green.\n");
@@ -158,4 +178,98 @@ test("dispatch-check M1 refuses a hand-made out-of-lane message even in warn mod
   assert.equal(r.slot, null, "no slot claimed");
   const drained = JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out);
   assert.equal(drained[0].ok, false, "the drain re-checks and marks it refused");
+  assert.equal(drained[0].status, "refused");
+  assert.ok(!fs.existsSync(path.join(box, `${id}.claimed`)), "a refused request is never reserved");
+});
+
+// ---- reserve before launch (assessment 2026-10-17 finding 3)
+const lib = () => import("../../tools/lib/mailbox.mjs");
+function seed(sb, n = 1) {
+  return Array.from({ length: n }, (_, i) => {
+    const s = request(sb, "principal-pm-verticals", "demo-builder", [`--title=Wave J slug ${i}`, "--worktree=/tmp/x", "--json"]);
+    assert.equal(s.code, 0, s.err);
+    return JSON.parse(s.out).id;
+  });
+}
+
+test("two concurrent drains: each request is reserved by exactly one of them", async () => {
+  const sb = sandbox();
+  const ids = seed(sb, 3);
+  for (let round = 0; round < 3; round++) {
+    const drains = await Promise.all(Array.from({ length: 2 }, () => pexec(process.execPath, [CLI, "drain", "dispatcher", "--json"], { env: sb.env })));
+    const got = drains.map((r) => JSON.parse(r.stdout).filter((x) => x.status === "reserved"));
+    if (round === 0) {
+      const all = got.flat().map((x) => x.id).sort();
+      assert.deepEqual(all, [...ids].sort(), "every request handed out once, none twice");
+      const runs = new Set(got.flat().map((x) => x.run));
+      assert.equal(runs.size, 3, "one run id per reservation");
+      for (const x of got.flat()) assert.equal(JSON.parse(fs.readFileSync(path.join(sb.mail, "dispatcher", `${x.id}.claimed`), "utf8")).run, x.run, "the marker names the winning run");
+    } else assert.equal(got.flat().length, 0, "a later drain gets nothing while the leases are live");
+  }
+});
+
+test("release on launch failure: the request goes back to the drain, the reservation is kept as history", async () => {
+  const sb = sandbox();
+  const [id] = seed(sb);
+  const d = JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out);
+  assert.equal(mbox(sb, ["release", id, `--run=${d[0].run}`]).code, 1, "a release needs a --reason");
+  assert.equal(mbox(sb, ["release", id, "--run=run-not-mine", "--reason=x"]).code, 1, "only the reserving run releases");
+  const rel = mbox(sb, ["release", id, `--run=${d[0].run}`, "--reason=Agent call failed: usage limit"]);
+  assert.equal(rel.code, 0, rel.err);
+  const kept = JSON.parse(fs.readFileSync(path.join(sb.mail, "dispatcher", `${id}.released-${d[0].run}.json`), "utf8"));
+  assert.equal(kept.reason, "Agent call failed: usage limit");
+  const again = JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out);
+  assert.equal(again.length, 1);
+  assert.notEqual(again[0].run, d[0].run, "a new run id");
+  assert.ok(fs.existsSync(path.join(sb.mail, "dispatcher", `${id}.md`)), "the message itself is untouched");
+});
+
+test("lease expiry: an expired reservation is reclaimable; one whose agent did start (dispatch event) is not", async () => {
+  const sb = sandbox();
+  process.env.S3_MAILBOX_DIR = sb.mail; process.env.S3_EVENTS = sb.ev;
+  try {
+    const mb = await lib();
+    const [a, b] = seed(sb, 2);
+    const t0 = new Date("2026-10-17T10:00:00Z");
+    const first = mb.drain("dispatcher", { now: t0, leaseMs: 60_000, events: [] });
+    assert.equal(first.length, 2);
+    const runA = first.find((x) => x.id === a).run, runB = first.find((x) => x.id === b).run;
+    // Within the lease: nothing to reclaim; dispatch-check-style state is "reserved".
+    assert.equal(mb.drain("dispatcher", { now: new Date(t0.getTime() + 30_000), events: [] }).length, 0);
+    // b's agent started (the hook wrote a dispatch event naming the mail source) but its launch was never confirmed.
+    const ev = [{ id: "hk-1", ts: "2026-10-17T10:00:20.000Z", type: "dispatch", source: `mail:${b}`, agent: first.find((x) => x.id === b).label }];
+    const t1 = new Date(t0.getTime() + 120_000);
+    const later = mb.drain("dispatcher", { now: t1, leaseMs: 60_000, events: ev });
+    const ra = later.find((x) => x.id === a), rb = later.find((x) => x.id === b);
+    assert.equal(ra.status, "reserved", "a's lease expired with no launch evidence: reclaimed");
+    assert.notEqual(ra.run, runA);
+    assert.equal(ra.reclaimed, runA);
+    assert.ok(fs.existsSync(path.join(sb.mail, "dispatcher", `${a}.expired-${runA}.json`)), "the expired reservation is kept");
+    assert.equal(rb.status, "expired-launched", "b is reported, not re-offered");
+    assert.match(rb.refused[0], new RegExp(`launched ${b} --run=${runB}`));
+    // The old run can no longer confirm a, the new one can; b's original run still confirms b.
+    assert.throws(() => mb.launched(a, { run: runA }), /held by run/);
+    assert.equal(mb.launched(a, { run: ra.run, now: t1 }).claimed.state, "launched");
+    assert.equal(mb.launched(b, { run: runB, now: t1 }).claimed.state, "launched");
+    assert.equal(mb.drain("dispatcher", { now: new Date(t1.getTime() + 3.6e6), events: [] }).length, 0, "launched requests never expire");
+    // Two reclaims of one expired lease: the first takes it over (rename, then O_EXCL), the second finds it held.
+    const [c] = seed(sb);
+    mb.drain("dispatcher", { now: t0, leaseMs: 1, events: [] });
+    const r1 = mb.reserve(c, { now: t1, events: [] }), r2 = mb.reserve(c, { now: t1, events: [] });
+    assert.deepEqual([r1.ok, r2.ok], [true, false]);
+  } finally { delete process.env.S3_MAILBOX_DIR; delete process.env.S3_EVENTS; }
+});
+
+test("crash between reserve and launch (lease 0): dispatch-check refuses the stale run; the next drain reclaims it", () => {
+  const sb = sandbox();
+  const [id] = seed(sb);
+  const d1 = JSON.parse(mbox(sb, ["drain", "dispatcher", "--lease=0", "--json"]).out);
+  let r;
+  try { r = { code: 0, ...JSON.parse(execFileSync(process.execPath, [CHECK, "--kind=other", "--role=demo-builder", `--source=mail:${id}`, `--run=${d1[0].run}`, "--running=0", "--no-claim", "--json"], { env: sb.env, encoding: "utf8" })) }; }
+  catch (e) { r = { code: e.status, ...JSON.parse(e.stdout) }; }
+  assert.equal(r.code, 1);
+  assert.ok(r.fails.some((f) => /M1 mailbox: .* reservation \(run .*\) expired at .*: drain again/.test(f)), JSON.stringify(r.fails));
+  const d2 = JSON.parse(mbox(sb, ["drain", "dispatcher", "--json"]).out);
+  assert.equal(d2.length, 1);
+  assert.equal(d2[0].reclaimed, d1[0].run);
 });
