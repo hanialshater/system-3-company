@@ -29,6 +29,6 @@ Implemented for 1,283 registered lessons in this checkout (720 published, 234 re
 - Platform suite: 37 passed, 4 production-built-output checks skipped because no complete build is available.
 - Repository check: passed, with existing disputed-claim/readiness warnings.
 - Seven changed source files: zero syntax diagnostics.
-- Production bundle compilation succeeded in 90 seconds. Full local build not completed; its TypeScript phase was stopped after a separate project typecheck identified the existing HQ `People.tsx` / `people.ts` casing conflict (TS1192/TS1149). Those HQ files were not edited. No built-output or browser-QA pass is claimed.
+- Production bundle compilation succeeded in 90 seconds. Full local build failed in its TypeScript phase on the existing HQ `People.tsx` / `people.ts` casing conflict (TS1192/TS1149). Those HQ files were not edited. No built-output or browser-QA pass is claimed.
 - Full verify attempted and stopped on 3 publication-tool fixture tests; no publication tool or protected QA contract was changed.
 - No new deployment was triggered.
