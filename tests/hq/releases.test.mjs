@@ -11,11 +11,11 @@ const file = JSON.parse(fs.readFileSync("company/ops/releases.json", "utf8"));
 const grp = { count: 0, slugs: [] };
 const mk = (version, date) => ({ version, date, commit: "a".repeat(40), target: "production", approved_by: { who: "founder", record: "x" }, summary: "s", added: { features: [], lessons: { published: grp, in_review: grp }, fixes: [], known_issues: [] } });
 
-test("company/ops/releases.json is valid and runs r1..r11 with the five backfilled releases first", () => {
+test("company/ops/releases.json is valid and runs r1..r12 with the five backfilled releases first", () => {
   assert.equal(validateReleases(file), null);
   assert.equal(file.owner, "release-manager");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.version), ["r1", "r2", "r3", "r4", "r5"]);
-  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11"]);
+  assert.deepEqual(file.releases.map((r) => r.version), ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12"]);
   assert.equal(file.releases[5].date.slice(0, 10), "2026-10-15");
   assert.deepEqual(file.releases.slice(0, 5).map((r) => r.commit.slice(0, 7)), ["f868127", "6b45ea0", "91274b8", "f4537d7", "5e8608d"]);
 });
@@ -35,7 +35,7 @@ test("every release through r8 is a [deploy] commit in git history; later ones e
 test("retroactive deployment history preserves canonical r11 and branch-only aliases", () => {
   assert.equal(file.releases.at(-1).version, "r11");
   assert.equal(file.releases.at(-1).commit, "9911156584a25774b502a9a7fe0cbd42aa1958f6");
-  assert.equal(nextVersion(file.releases), "r12");
+  assert.equal(nextVersion(file.releases), "r13");
   assert.deepEqual(file.historical_deployments.map((r) => [r.id, r.historical_alias, r.date, r.commit]), [
     ["deployment-bcd102d7", "PR #11 branch-only r11", "2026-10-18T15:25:15Z", "bcd102d75cce5d4bda2960b06ef2dea24fed0056"],
     ["deployment-2902594b", "PR #11 branch-only r12", "2026-10-18T16:42:31Z", "2902594b67ebafee655c40e86a58aacdb210321d"],
@@ -71,7 +71,7 @@ test("nextVersion is r(max+1), whatever the date", () => {
   assert.equal(nextVersion([{ version: "r9" }]), "r10");
   assert.equal(nextVersion([{ version: "r2" }, { version: "r11" }, { version: "r3" }]), "r12");
   assert.equal(nextVersion([]), "r1");
-  assert.equal(nextVersion(file.releases), "r12");
+  assert.equal(nextVersion(file.releases), "r13");
   assert.ok(VERSION_RE.test("r12"));
   assert.ok(!VERSION_RE.test("2026.10.14.12"));
 });
