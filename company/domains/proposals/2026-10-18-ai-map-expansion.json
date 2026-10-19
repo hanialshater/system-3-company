@@ -1,0 +1,5740 @@
+{
+  "version": 1,
+  "date": "2026-10-18",
+  "owner": "cm-ai",
+  "status": "draft-for-founder-approval",
+  "note": "Proposal only. Not content/curriculum/ai.json. New AI concepts in the curriculum concept shape; existing concepts appear only under reassignments (ids unchanged). No demand figure here is measured: demandEvidence is estimated-founder-request or estimated-cm-judgement. Simulated reviews are not counted as evidence.",
+  "narrative": "company/domains/proposals/2026-10-18-ai-map-expansion.md",
+  "subareas": {
+    "ml-basics": {
+      "name": "Machine Learning Basics (data, evaluation, generalisation)",
+      "existing": 22,
+      "new": 8,
+      "total": 30
+    },
+    "classical-ml": {
+      "name": "Classical Machine Learning",
+      "existing": 9,
+      "new": 20,
+      "total": 29
+    },
+    "deep-learning": {
+      "name": "Deep Learning (architectures and training)",
+      "existing": 13,
+      "new": 23,
+      "total": 36
+    },
+    "neural-language": {
+      "name": "Transformers & Language Models",
+      "existing": 18,
+      "new": 25,
+      "total": 43
+    },
+    "generative-models": {
+      "name": "Generative Models",
+      "existing": 0,
+      "new": 11,
+      "total": 11
+    },
+    "reinforcement-learning": {
+      "name": "Reinforcement Learning",
+      "existing": 2,
+      "new": 34,
+      "total": 36
+    },
+    "agents-tools": {
+      "name": "Agents, Tools & Evaluation",
+      "existing": 0,
+      "new": 16,
+      "total": 16
+    },
+    "probabilistic-ml": {
+      "name": "Probabilistic Machine Learning",
+      "existing": 0,
+      "new": 12,
+      "total": 12
+    },
+    "interpretability": {
+      "name": "Interpretability & Robustness",
+      "existing": 1,
+      "new": 12,
+      "total": 13
+    },
+    "applied-ml": {
+      "name": "Applied ML (vision, speech, recommenders, time series)",
+      "existing": 0,
+      "new": 17,
+      "total": 17
+    },
+    "optimisation-search": {
+      "name": "Optimisation, Search & Vector Retrieval",
+      "existing": 0,
+      "new": 23,
+      "total": 23
+    },
+    "ai-society": {
+      "name": "AI Safety & Society",
+      "existing": 11,
+      "new": 17,
+      "total": 28
+    }
+  },
+  "totals": {
+    "existing": 76,
+    "new": 218,
+    "proposedMap": 294,
+    "csProposals": 14
+  },
+  "firstWave": [
+    "prompt-injection",
+    "injection-lethal-trifecta",
+    "scaling-laws",
+    "how-llms-are-trained",
+    "in-context-learning",
+    "test-time-compute-voting",
+    "agent-loop",
+    "tool-call-request",
+    "benchmark-contamination",
+    "cot-faithfulness",
+    "diffusion-denoising",
+    "ai-detector-false-positives",
+    "energy-train-vs-serve",
+    "mdp-basics",
+    "value-vs-reward",
+    "q-learning",
+    "reward-shaping",
+    "inverse-rl-goal-inference",
+    "reward-ambiguity",
+    "convolution-weight-sharing",
+    "receptive-field-growth",
+    "translation-equivariance",
+    "evolution-strategies",
+    "cma-es-shape",
+    "map-elites",
+    "hnsw-navigable-graph",
+    "submodular-greedy-guarantee",
+    "kd-tree-high-dim",
+    "simulated-annealing-tour"
+  ],
+  "demandChangesToExisting": {
+    "convolution-weight-sharing": {
+      "from": 2,
+      "to": 3,
+      "why": "Founder asked for CNNs as a full topic (2026-10-18); this is its entry concept."
+    }
+  },
+  "existingWaveMisconceptions": {
+    "prompt-injection": "Text the model reads is only data; to the model, instructions and content arrive as the same tokens.",
+    "scaling-laws": "Each tenfold of compute buys a big leap; on a log axis the loss falls by the same small fraction each time.",
+    "convolution-weight-sharing": "An image network needs separate weights for every pixel position; one small filter reused everywhere does the job."
+  },
+  "reassignments": {
+    "accuracy-paradox": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "confusion-matrix": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "precision-recall-threshold": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "auc-ranking": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "calibration": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "train-test-split": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "cross-validation": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "test-set-reuse": {
+      "from": "ml-basics",
+      "subarea": "ml-basics",
+      "topic": "evaluation"
+    },
+    "overfitting": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "bias-variance": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "early-stopping": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "regularisation": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "memorise-random-labels": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "label-noise-ceiling": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "distribution-shift": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "shortcut-learning": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "generalisation"
+    },
+    "data-leakage": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "data-features"
+    },
+    "feature-scaling": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "data-features"
+    },
+    "categorical-encoding": {
+      "from": "ml-basics",
+      "subarea": "ml-basics",
+      "topic": "data-features"
+    },
+    "curse-of-dimensionality": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "data-features"
+    },
+    "loss-choice-mean-median": {
+      "from": "ml-basics",
+      "subarea": "ml-basics",
+      "topic": "losses"
+    },
+    "cross-entropy-loss": {
+      "from": null,
+      "subarea": "ml-basics",
+      "topic": "losses"
+    },
+    "linear-regression-fit": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "regression"
+    },
+    "nearest-neighbours": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins"
+    },
+    "decision-boundary": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins"
+    },
+    "naive-bayes-evidence": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "probabilistic-classifiers"
+    },
+    "decision-tree-splits": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "trees-ensembles"
+    },
+    "ensemble-wisdom": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "trees-ensembles"
+    },
+    "gradient-boosting-residuals": {
+      "from": "ml-basics",
+      "subarea": "classical-ml",
+      "topic": "trees-ensembles"
+    },
+    "k-means-clustering": {
+      "from": null,
+      "subarea": "classical-ml",
+      "topic": "clustering"
+    },
+    "pca-ignores-labels": {
+      "from": "ml-basics",
+      "subarea": "classical-ml",
+      "topic": "dimensionality-reduction"
+    },
+    "gradient-descent": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "learning-rate-overshoot": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "momentum": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "local-minima": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "minibatch-noise": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "backprop-chain": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "symmetry-breaking": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "dropout": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "vanishing-gradients": {
+      "from": "neural-language",
+      "subarea": "deep-learning",
+      "topic": "training-dynamics"
+    },
+    "perceptron-learning": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "architectures"
+    },
+    "hidden-layers-xor": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "architectures"
+    },
+    "nonlinearity-collapse": {
+      "from": null,
+      "subarea": "deep-learning",
+      "topic": "architectures"
+    },
+    "convolution-weight-sharing": {
+      "from": "neural-language",
+      "subarea": "deep-learning",
+      "topic": "cnn"
+    },
+    "next-token": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "tokenization": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "temperature-sampling": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "top-p-sampling": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "greedy-decoding": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "sequence-length-bias": {
+      "from": "neural-language",
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "fluent-not-factual": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "tokens-decoding"
+    },
+    "embeddings": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "transformer-architecture"
+    },
+    "attention-weights": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "transformer-architecture"
+    },
+    "positional-encoding": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "transformer-architecture"
+    },
+    "context-window": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "transformer-architecture"
+    },
+    "attention-quadratic-cost": {
+      "from": "neural-language",
+      "subarea": "neural-language",
+      "topic": "transformer-architecture"
+    },
+    "retrieval-top-k": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "retrieval"
+    },
+    "cosine-similarity": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "retrieval"
+    },
+    "scaling-laws": {
+      "from": "neural-language",
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling"
+    },
+    "emergence-metric-artifact": {
+      "from": "neural-language",
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling"
+    },
+    "model-collapse": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling"
+    },
+    "preference-ranking": {
+      "from": null,
+      "subarea": "neural-language",
+      "topic": "post-training"
+    },
+    "exploration-exploitation": {
+      "from": null,
+      "subarea": "reinforcement-learning",
+      "topic": "exploration"
+    },
+    "discount-factor": {
+      "from": "ml-basics",
+      "subarea": "reinforcement-learning",
+      "topic": "mdp-value"
+    },
+    "adversarial-examples": {
+      "from": null,
+      "subarea": "interpretability",
+      "topic": "robustness"
+    },
+    "goodharts-law": {
+      "from": null,
+      "subarea": "ai-society",
+      "topic": "metrics-gaming"
+    },
+    "reward-hacking": {
+      "from": null,
+      "subarea": "ai-society",
+      "topic": "metrics-gaming"
+    },
+    "training-data-bias": {
+      "from": null,
+      "subarea": "ai-society",
+      "topic": "fairness"
+    },
+    "feedback-loops": {
+      "from": null,
+      "subarea": "ai-society",
+      "topic": "fairness"
+    },
+    "fairness-impossibility": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "fairness"
+    },
+    "prediction-not-intervention": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "fairness"
+    },
+    "proxy-discrimination": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "fairness"
+    },
+    "training-data-extraction": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "privacy-security"
+    },
+    "prompt-injection": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "privacy-security"
+    },
+    "sycophancy": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "safety-testing"
+    },
+    "zero-failure-testing": {
+      "from": "ai-society",
+      "subarea": "ai-society",
+      "topic": "safety-testing"
+    }
+  },
+  "concepts": [
+    {
+      "id": "baseline-first",
+      "name": "Beat the dumb baseline first: always guessing the average is a score too",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "accuracy-paradox"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "evaluation",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "test-score-error-bars",
+      "name": "A test score is an estimate: 200 examples give a wide margin",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "train-test-split",
+        "probability:confidence-intervals"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "evaluation",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "learning-curves",
+      "name": "Learning curves: more data helps only when the gap is variance",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "bias-variance"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "generalisation",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "generalisation"
+      ]
+    },
+    {
+      "id": "missing-data-signal",
+      "name": "Missing values carry signal: filling blanks with the average hides who is missing",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "data-leakage"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "data-features",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "data-features"
+      ]
+    },
+    {
+      "id": "temporal-split",
+      "name": "Random splits leak the future: time-ordered data needs a time split",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "data-leakage"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "data-features",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "data-features"
+      ]
+    },
+    {
+      "id": "group-split-leakage",
+      "name": "Same patient in train and test: split by person, not by row",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "data-leakage"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "data-features",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "data-features"
+      ]
+    },
+    {
+      "id": "resampling-miscalibrates",
+      "name": "Rebalancing the classes changes the probabilities the model reports",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "calibration"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "evaluation",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "online-learning-stream",
+      "name": "Online learning: update on each example as it streams past, then forget it",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming algorithms; this is the ML-side view (sketches stay in CS).",
+      "prerequisites": [
+        "gradient-descent"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot, a bar chart and a percentage."
+      ],
+      "subarea": "ml-basics",
+      "topic": "data-features",
+      "tags": [
+        "ai",
+        "ml-basics",
+        "data-features",
+        "streaming",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "logistic-regression",
+      "name": "Logistic regression: a line that outputs a probability",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "regression",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "regression"
+      ]
+    },
+    {
+      "id": "polynomial-features",
+      "name": "Polynomial features: a straight-line method fits a curve",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "regression",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "regression"
+      ]
+    },
+    {
+      "id": "outlier-leverage",
+      "name": "One far-out point drags the whole fitted line",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "regression",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "regression"
+      ]
+    },
+    {
+      "id": "lasso-sparsity",
+      "name": "L1 vs L2 penalties: only the absolute-value penalty sets weights to exactly zero",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "regularisation"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "regression",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "regression"
+      ]
+    },
+    {
+      "id": "correlated-coefficients",
+      "name": "Twin features: the weights swap but the predictions stay put",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "regression",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "regression"
+      ]
+    },
+    {
+      "id": "knn-choosing-k",
+      "name": "k in k-nearest neighbours: one neighbour memorises, all neighbours vote the majority",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "nearest-neighbours",
+        "bias-variance"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "neighbours-margins"
+      ]
+    },
+    {
+      "id": "svm-widest-margin",
+      "name": "Support vector machines: the widest street, set by the edge points only",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "decision-boundary"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "neighbours-margins"
+      ]
+    },
+    {
+      "id": "kernel-trick",
+      "name": "The kernel trick: a ring becomes separable one dimension up",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "svm-widest-margin"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "neighbours-margins"
+      ]
+    },
+    {
+      "id": "soft-margin",
+      "name": "Soft margins: paying for a few points on the wrong side",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "svm-widest-margin"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "neighbours-margins",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "neighbours-margins"
+      ]
+    },
+    {
+      "id": "naive-bayes-double-counting",
+      "name": "Naive Bayes double-counts evidence that comes in pairs",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "naive-bayes-evidence"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "probabilistic-classifiers",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "probabilistic-classifiers"
+      ]
+    },
+    {
+      "id": "deep-tree-memorises",
+      "name": "A deep enough tree gives every training point its own leaf",
+      "level": "intro",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "decision-tree-splits",
+        "overfitting"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "trees-ensembles",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "trees-ensembles"
+      ]
+    },
+    {
+      "id": "random-forest-decorrelation",
+      "name": "Random forests: hiding features makes the trees disagree usefully",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "ensemble-wisdom",
+        "decision-tree-splits"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "trees-ensembles",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "trees-ensembles"
+      ]
+    },
+    {
+      "id": "k-means-forced-k",
+      "name": "Ask k-means for 4 groups and it finds 4, even in pure noise",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "k-means-clustering",
+        "probability:clustering-illusion"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "clustering",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "clustering"
+      ]
+    },
+    {
+      "id": "k-means-initialisation",
+      "name": "Same data, different start, different clusters",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "clustering",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "clustering"
+      ]
+    },
+    {
+      "id": "dbscan-density",
+      "name": "Density clustering: rings, chains and noise that k-means cannot see",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "clustering",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "clustering"
+      ]
+    },
+    {
+      "id": "hierarchical-cut",
+      "name": "Hierarchical clustering: where you cut the tree sets the number of groups",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "clustering",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "clustering"
+      ]
+    },
+    {
+      "id": "pca-compression",
+      "name": "PCA: two directions keep most of the spread of ten correlated features",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "dimensionality-reduction",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "dimensionality-reduction"
+      ]
+    },
+    {
+      "id": "tsne-distances-mislead",
+      "name": "t-SNE and UMAP plots: the gaps between clusters mean little",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "pca-compression"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "dimensionality-reduction",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "dimensionality-reduction"
+      ]
+    },
+    {
+      "id": "random-projection",
+      "name": "Random projections roughly keep distances (Johnson-Lindenstrauss)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "pca-compression"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "dimensionality-reduction",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "dimensionality-reduction",
+        "cross-link:optimisation-search"
+      ]
+    },
+    {
+      "id": "feature-hashing",
+      "name": "The hashing trick: a million words into ten thousand slots, collisions and all",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming algorithms; feature hashing is the streaming-sketch idea inside ML pipelines. Differs from cs:count-min-sketch (counting) by feeding a model.",
+      "prerequisites": [
+        "categorical-encoding",
+        "cs:hashing-collisions"
+      ],
+      "assumedKnowledge": [
+        "Read a scatter plot with two features; the idea of a fitted line."
+      ],
+      "subarea": "classical-ml",
+      "topic": "dimensionality-reduction",
+      "tags": [
+        "ai",
+        "classical-ml",
+        "dimensionality-reduction",
+        "streaming",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "softmax-scores",
+      "name": "Softmax: scores become probabilities, and the biggest gets more than its share",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "next-token"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "architectures",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "architectures"
+      ]
+    },
+    {
+      "id": "universal-approximation",
+      "name": "Enough bends make any curve: what one wide hidden layer can fit",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "nonlinearity-collapse"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "architectures",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "architectures"
+      ]
+    },
+    {
+      "id": "recurrent-memory-fades",
+      "name": "Recurrent nets: one cell reused along the sequence, and the early words fade",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "vanishing-gradients"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "architectures",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "architectures"
+      ]
+    },
+    {
+      "id": "gnn-message-passing",
+      "name": "Graph neural networks: each node averages what its neighbours say",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "hidden-layers-xor"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "architectures",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "architectures"
+      ]
+    },
+    {
+      "id": "weight-init-scale",
+      "name": "Initial weight size: too large saturates, too small fades",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "vanishing-gradients"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "exploding-gradients",
+      "name": "Exploding gradients: one huge step throws training off a cliff (and clipping)",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "learning-rate-overshoot"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "lr-schedule-warmup",
+      "name": "Learning-rate schedules: big steps early, small steps late",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "learning-rate-overshoot"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "adam-per-weight-steps",
+      "name": "Adam: each weight gets its own step size",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "momentum"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "dead-relu",
+      "name": "Dead units: a ReLU pushed below zero stops learning for good",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "backprop-chain"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "double-descent",
+      "name": "Double descent: past the memorising point, a bigger model can generalise better",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "bias-variance",
+        "memorise-random-labels"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "grokking",
+      "name": "Grokking: test accuracy jumps long after training accuracy hits 100%",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "early-stopping"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "pruning-most-weights",
+      "name": "Pruning: most weights of a trained net can be removed",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "dropout"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "training-dynamics",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "training-dynamics"
+      ]
+    },
+    {
+      "id": "convolution-learned-filters",
+      "name": "Filters are learned, not designed: training turns noise into an edge detector",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic (2026-10-18).",
+      "prerequisites": [
+        "convolution-weight-sharing",
+        "cs:edge-filter"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "receptive-field-growth",
+      "name": "Receptive fields: each layer sees a wider patch of the image",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "convolution-weight-sharing"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "pooling-stride",
+      "name": "Pooling and stride: a smaller map that keeps the strongest response",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "convolution-weight-sharing"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "translation-equivariance",
+      "name": "Shift the cat, shift the map: convolution moves with the image",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "convolution-weight-sharing"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "cnn-not-rotation-invariant",
+      "name": "Rotate the digit and the CNN stumbles: equivariance covers shifts, not turns",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "translation-equivariance"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "feature-hierarchy",
+      "name": "Edges, then parts, then objects: features stack layer on layer",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "receptive-field-growth"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "cnn-data-efficiency",
+      "name": "Why a CNN learns from fewer images than a dense net: far fewer free weights",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic (named explicitly).",
+      "prerequisites": [
+        "convolution-weight-sharing",
+        "overfitting"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "residual-connections",
+      "name": "Residual connections: add the input back and very deep nets train",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic (named explicitly).",
+      "prerequisites": [
+        "vanishing-gradients"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn",
+        "cross-link:neural-language"
+      ]
+    },
+    {
+      "id": "data-augmentation",
+      "name": "Data augmentation: flipped photos are free examples, until a flip changes the label",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "overfitting"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "transfer-learning",
+      "name": "Transfer learning: keep the early layers, retrain the last",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "feature-hierarchy"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn"
+      ]
+    },
+    {
+      "id": "texture-bias",
+      "name": "Cat shape, elephant skin: many CNNs vote by texture",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for CNNs as a full topic.",
+      "prerequisites": [
+        "shortcut-learning",
+        "feature-hierarchy"
+      ],
+      "assumedKnowledge": [
+        "A network has weights that training nudges to lower a loss."
+      ],
+      "subarea": "deep-learning",
+      "topic": "cnn",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "cnn",
+        "cnn",
+        "cross-link:interpretability"
+      ]
+    },
+    {
+      "id": "how-llms-are-trained",
+      "name": "From text predictor to assistant: pretraining, fine-tuning, preference training",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named \"how LLMs are trained\" as first-wave demand (2026-10-18); the most asked-about mechanism in AI news.",
+      "prerequisites": [
+        "next-token",
+        "preference-ranking"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling",
+      "tags": [
+        "ai",
+        "neural-language",
+        "pretraining-scaling"
+      ]
+    },
+    {
+      "id": "knowledge-cutoff",
+      "name": "Knowledge cutoff: a model knows nothing written after its data ends",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "next-token"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling",
+      "tags": [
+        "ai",
+        "neural-language",
+        "pretraining-scaling"
+      ]
+    },
+    {
+      "id": "pretraining-data-mix",
+      "name": "The data mix decides the model: double the code, change the skills",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "next-token"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling",
+      "tags": [
+        "ai",
+        "neural-language",
+        "pretraining-scaling"
+      ]
+    },
+    {
+      "id": "training-data-dedup",
+      "name": "Duplicates get memorised: near-duplicate removal changes what a model repeats",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Uses the founder-named streaming/sketching family (MinHash) inside an ML pipeline.",
+      "prerequisites": [
+        "training-data-extraction",
+        "cs:algo-minhash-jaccard"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling",
+      "tags": [
+        "ai",
+        "neural-language",
+        "pretraining-scaling",
+        "streaming",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "compute-optimal-scaling",
+      "name": "Compute-optimal training: a smaller model on more data can win",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Extends scaling-laws, which the founder named.",
+      "prerequisites": [
+        "scaling-laws"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "pretraining-scaling",
+      "tags": [
+        "ai",
+        "neural-language",
+        "pretraining-scaling"
+      ]
+    },
+    {
+      "id": "instruction-tuning",
+      "name": "Instruction tuning: a few thousand examples change the manner, not the knowledge",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "how-llms-are-trained"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "post-training",
+      "tags": [
+        "ai",
+        "neural-language",
+        "post-training"
+      ]
+    },
+    {
+      "id": "rlhf-kl-leash",
+      "name": "RLHF: optimise the reward model too hard and the answers drift; a leash holds them",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed RLHF/DPO.",
+      "prerequisites": [
+        "preference-ranking",
+        "reward-hacking"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "post-training",
+      "tags": [
+        "ai",
+        "neural-language",
+        "post-training",
+        "cross-link:reinforcement-learning"
+      ]
+    },
+    {
+      "id": "dpo-direct-preference",
+      "name": "DPO: preference training without a separate reward model",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed RLHF/DPO.",
+      "prerequisites": [
+        "rlhf-kl-leash"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "post-training",
+      "tags": [
+        "ai",
+        "neural-language",
+        "post-training"
+      ]
+    },
+    {
+      "id": "ai-feedback-rlaif",
+      "name": "AI feedback: a model grading a model passes on its blind spots",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "preference-ranking"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "post-training",
+      "tags": [
+        "ai",
+        "neural-language",
+        "post-training"
+      ]
+    },
+    {
+      "id": "lora-low-rank",
+      "name": "LoRA: fine-tune by adding a thin update instead of changing every weight",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed LoRA.",
+      "prerequisites": [
+        "how-llms-are-trained"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "quantization-bits",
+      "name": "Quantization: 4 bits per weight, a quarter of the memory, a small loss",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed quantization.",
+      "prerequisites": [
+        "cs:floating-point"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "distillation-soft-labels",
+      "name": "Distillation: the student learns more from the teacher's near-misses than from the right answer",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed distillation.",
+      "prerequisites": [
+        "cross-entropy-loss"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "kv-cache",
+      "name": "KV cache: why the next token is cheap once the prompt is read",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed KV cache.",
+      "prerequisites": [
+        "attention-weights",
+        "attention-quadratic-cost"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "mixture-of-experts",
+      "name": "Mixture of experts: a router sends each token to two of many experts",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed MoE.",
+      "prerequisites": [
+        "softmax-scores"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "speculative-decoding",
+      "name": "Speculative decoding: a small model drafts, the big one checks in one pass",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "greedy-decoding"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "efficiency-inference",
+      "tags": [
+        "ai",
+        "neural-language",
+        "efficiency-inference"
+      ]
+    },
+    {
+      "id": "rope-rotary-positions",
+      "name": "Rotary positions: word distance as an angle between vectors",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder listed positional schemes.",
+      "prerequisites": [
+        "positional-encoding",
+        "cosine-similarity"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "transformer-architecture",
+      "tags": [
+        "ai",
+        "neural-language",
+        "transformer-architecture"
+      ]
+    },
+    {
+      "id": "multi-head-attention",
+      "name": "Many heads: each head attends to a different relation",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "attention-weights"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "transformer-architecture",
+      "tags": [
+        "ai",
+        "neural-language",
+        "transformer-architecture"
+      ]
+    },
+    {
+      "id": "causal-mask",
+      "name": "The causal mask: in training, no word may peek at the next",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "attention-weights"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "transformer-architecture",
+      "tags": [
+        "ai",
+        "neural-language",
+        "transformer-architecture"
+      ]
+    },
+    {
+      "id": "in-context-learning",
+      "name": "In-context learning: examples in the prompt change answers without changing weights",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "context-window"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "tokens-decoding",
+      "tags": [
+        "ai",
+        "neural-language",
+        "tokens-decoding"
+      ]
+    },
+    {
+      "id": "chain-of-thought",
+      "name": "Chain of thought: writing the steps gives the model more computation per answer",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "next-token"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "tokens-decoding",
+      "tags": [
+        "ai",
+        "neural-language",
+        "tokens-decoding"
+      ]
+    },
+    {
+      "id": "test-time-compute-voting",
+      "name": "Sample many answers and vote: more thinking time raises accuracy",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "temperature-sampling",
+        "ensemble-wisdom"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "tokens-decoding",
+      "tags": [
+        "ai",
+        "neural-language",
+        "tokens-decoding"
+      ]
+    },
+    {
+      "id": "beam-search",
+      "name": "Beam search: keep the best few partial sentences, not just one",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "greedy-decoding"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "tokens-decoding",
+      "tags": [
+        "ai",
+        "neural-language",
+        "tokens-decoding"
+      ]
+    },
+    {
+      "id": "lost-in-the-middle",
+      "name": "Lost in the middle: facts buried mid-prompt get used less",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "context-window"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "retrieval",
+      "tags": [
+        "ai",
+        "neural-language",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "contrastive-embeddings",
+      "name": "Contrastive training: pull matching pairs together, push the rest apart",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "embeddings",
+        "cosine-similarity"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "retrieval",
+      "tags": [
+        "ai",
+        "neural-language",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "hybrid-keyword-vector-search",
+      "name": "Keyword plus vector search: exact names that embeddings blur",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named HNSW/ANN; retrieval quality is the learner-facing reason.",
+      "prerequisites": [
+        "retrieval-top-k"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a model predicts the next token from probabilities."
+      ],
+      "subarea": "neural-language",
+      "topic": "retrieval",
+      "tags": [
+        "ai",
+        "neural-language",
+        "retrieval",
+        "cross-link:optimisation-search"
+      ]
+    },
+    {
+      "id": "autoencoder-bottleneck",
+      "name": "Autoencoders: squeeze through a bottleneck, rebuild what matters",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "pca-compression"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "autoencoders-vae",
+      "tags": [
+        "ai",
+        "generative-models",
+        "autoencoders-vae"
+      ]
+    },
+    {
+      "id": "vae-smooth-latent",
+      "name": "VAEs: a smooth latent space where every point decodes to something",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "autoencoder-bottleneck"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "autoencoders-vae",
+      "tags": [
+        "ai",
+        "generative-models",
+        "autoencoders-vae"
+      ]
+    },
+    {
+      "id": "gan-forger-detective",
+      "name": "GANs: a forger and a detective improve each other",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "decision-boundary"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "gans",
+      "tags": [
+        "ai",
+        "generative-models",
+        "gans"
+      ]
+    },
+    {
+      "id": "gan-mode-collapse",
+      "name": "Mode collapse: the forger finds one fake that works and stops",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "gan-forger-detective"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "gans",
+      "tags": [
+        "ai",
+        "generative-models",
+        "gans"
+      ]
+    },
+    {
+      "id": "diffusion-denoising",
+      "name": "Diffusion: learn to remove a little noise, then repeat from pure static",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "gradient-descent"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "diffusion",
+      "tags": [
+        "ai",
+        "generative-models",
+        "diffusion"
+      ]
+    },
+    {
+      "id": "diffusion-step-count",
+      "name": "Fewer denoising steps, faster and blurrier samples",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "diffusion-denoising"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "diffusion",
+      "tags": [
+        "ai",
+        "generative-models",
+        "diffusion"
+      ]
+    },
+    {
+      "id": "classifier-free-guidance",
+      "name": "Guidance: turn up the prompt, get more on-topic and less varied images",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "diffusion-denoising"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "diffusion",
+      "tags": [
+        "ai",
+        "generative-models",
+        "diffusion"
+      ]
+    },
+    {
+      "id": "latent-diffusion",
+      "name": "Latent diffusion: denoise a small compressed sketch, then decode it",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "diffusion-denoising",
+        "autoencoder-bottleneck"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "diffusion",
+      "tags": [
+        "ai",
+        "generative-models",
+        "diffusion"
+      ]
+    },
+    {
+      "id": "normalising-flows",
+      "name": "Normalising flows: an invertible warp from a simple blob to the data",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "probability:bayesian-updating"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "flows-autoregressive",
+      "tags": [
+        "ai",
+        "generative-models",
+        "flows-autoregressive"
+      ]
+    },
+    {
+      "id": "generative-memorisation",
+      "name": "Duplicated training images can come back out almost exactly",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "diffusion-denoising",
+        "training-data-dedup"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "diffusion",
+      "tags": [
+        "ai",
+        "generative-models",
+        "diffusion",
+        "copyright",
+        "cross-link:ai-society"
+      ]
+    },
+    {
+      "id": "generative-eval-tradeoff",
+      "name": "Scoring generated images: realism and variety pull apart",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "gan-mode-collapse"
+      ],
+      "assumedKnowledge": [
+        "Has seen AI-generated images or text; noise as random speckle."
+      ],
+      "subarea": "generative-models",
+      "topic": "gans",
+      "tags": [
+        "ai",
+        "generative-models",
+        "gans"
+      ]
+    },
+    {
+      "id": "mdp-basics",
+      "name": "State, action, reward, next state: the loop an RL agent lives in",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea (2026-10-18).",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "mdp-value",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "mdp-value"
+      ]
+    },
+    {
+      "id": "value-vs-reward",
+      "name": "Value is not reward: a square that pays nothing can be worth a lot",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea (value vs policy named).",
+      "prerequisites": [
+        "mdp-basics"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "mdp-value",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "mdp-value"
+      ]
+    },
+    {
+      "id": "policy-from-values",
+      "name": "A policy says what to do; values say how good it is, and one gives the other",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named value vs policy.",
+      "prerequisites": [
+        "value-vs-reward"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "mdp-value",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "mdp-value"
+      ]
+    },
+    {
+      "id": "bellman-backup",
+      "name": "Bellman updates: value flows back from the goal one sweep at a time",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named Bellman updates.",
+      "prerequisites": [
+        "value-vs-reward"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "mdp-value",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "mdp-value"
+      ]
+    },
+    {
+      "id": "monte-carlo-vs-td",
+      "name": "Wait for the end, or learn from a guess: Monte Carlo vs temporal-difference",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named TD learning.",
+      "prerequisites": [
+        "bellman-backup"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "td-error-surprise",
+      "name": "TD error: learning is driven by surprise, not by reward",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named TD learning.",
+      "prerequisites": [
+        "monte-carlo-vs-td"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control",
+        "cross-link:life"
+      ]
+    },
+    {
+      "id": "q-learning",
+      "name": "Q-learning: learn what each move is worth in each place",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named Q-learning.",
+      "prerequisites": [
+        "value-vs-reward",
+        "exploration-exploitation"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "sarsa-vs-q-cliff",
+      "name": "Cliff walk: Q-learning hugs the edge, SARSA keeps away",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "q-learning"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "q-overestimation",
+      "name": "Max of noisy guesses is too high: why Q-learning overestimates (double Q)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "q-learning"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "deep-q-function-approx",
+      "name": "When the table is too big: a network guesses values for unseen states",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "q-learning",
+        "hidden-layers-xor"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "experience-replay",
+      "name": "Experience replay: shuffle old memories so new ones do not overwrite them",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "deep-q-function-approx"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "td-control",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "td-control"
+      ]
+    },
+    {
+      "id": "policy-gradient",
+      "name": "Policy gradients: make whatever came before a high score a little more likely",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named policy gradients.",
+      "prerequisites": [
+        "mdp-basics",
+        "gradient-descent"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "policy-methods",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "policy-methods"
+      ]
+    },
+    {
+      "id": "policy-gradient-baseline",
+      "name": "A baseline cuts the noise: judge a move against the average run",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named policy gradients.",
+      "prerequisites": [
+        "policy-gradient"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "policy-methods",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "policy-methods"
+      ]
+    },
+    {
+      "id": "actor-critic",
+      "name": "Actor-critic: one part chooses, the other says how well it is going",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "policy-gradient-baseline",
+        "td-error-surprise"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "policy-methods",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "policy-methods"
+      ]
+    },
+    {
+      "id": "ppo-clipping",
+      "name": "PPO: cap each policy update so one lucky run cannot wreck it",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea; PPO links to RLHF.",
+      "prerequisites": [
+        "policy-gradient"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "policy-methods",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "policy-methods",
+        "cross-link:neural-language"
+      ]
+    },
+    {
+      "id": "ucb-optimism",
+      "name": "Optimism under uncertainty: try the option you know least about",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named exploration/exploitation.",
+      "prerequisites": [
+        "exploration-exploitation"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "exploration",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "exploration"
+      ]
+    },
+    {
+      "id": "thompson-sampling",
+      "name": "Thompson sampling: act on one random plausible belief at a time",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named exploration/exploitation.",
+      "prerequisites": [
+        "ucb-optimism",
+        "probability:bayesian-updating"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "exploration",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "exploration",
+        "cross-link:probabilistic-ml"
+      ]
+    },
+    {
+      "id": "sparse-reward-exploration",
+      "name": "Sparse rewards: random wandering almost never finds the key",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named exploration.",
+      "prerequisites": [
+        "mdp-basics"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "exploration",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "exploration"
+      ]
+    },
+    {
+      "id": "curiosity-noisy-tv",
+      "name": "Curiosity bonuses: rewarding surprise, and the TV of static that traps it",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named exploration.",
+      "prerequisites": [
+        "sparse-reward-exploration"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "exploration",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "exploration"
+      ]
+    },
+    {
+      "id": "credit-assignment",
+      "name": "Credit assignment: which of twenty moves earned the win?",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named credit assignment.",
+      "prerequisites": [
+        "mdp-basics"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "reward-design",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "reward-design"
+      ]
+    },
+    {
+      "id": "reward-shaping",
+      "name": "Reward shaping: hints that speed learning can change what is learned",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named reward shaping.",
+      "prerequisites": [
+        "value-vs-reward",
+        "reward-hacking"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "reward-design",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "reward-design"
+      ]
+    },
+    {
+      "id": "model-based-planning",
+      "name": "Model-based RL: learn the rules, then plan in your head",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named model-based vs model-free.",
+      "prerequisites": [
+        "bellman-backup"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "model-based-offline",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "model-based-offline"
+      ]
+    },
+    {
+      "id": "model-error-compounding",
+      "name": "Planning with a learned model: small errors compound step by step",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named model-based vs model-free.",
+      "prerequisites": [
+        "model-based-planning"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "model-based-offline",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "model-based-offline"
+      ]
+    },
+    {
+      "id": "mcts-playouts",
+      "name": "Monte Carlo tree search: random playouts rate a move, the tree grows where it looks good",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea; differs from cs:minimax (exhaustive) by sampling.",
+      "prerequisites": [
+        "model-based-planning",
+        "cs:minimax"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "model-based-offline",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "model-based-offline",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "self-play",
+      "name": "Self-play: an agent improves by beating last week's self",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for RL as a full subarea.",
+      "prerequisites": [
+        "policy-gradient"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "model-based-offline",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "model-based-offline"
+      ]
+    },
+    {
+      "id": "offline-rl-extrapolation",
+      "name": "Offline RL: a logged dataset cannot vouch for moves nobody tried",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named offline RL.",
+      "prerequisites": [
+        "q-learning",
+        "distribution-shift"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "model-based-offline",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "model-based-offline"
+      ]
+    },
+    {
+      "id": "behaviour-cloning-drift",
+      "name": "Behaviour cloning: copy the expert, drift off their path, never come back",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named imitation learning with IRL.",
+      "prerequisites": [
+        "mdp-basics",
+        "distribution-shift"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "dagger-correction",
+      "name": "Ask the expert where you went wrong: corrections on your own mistakes (DAgger)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named imitation learning.",
+      "prerequisites": [
+        "behaviour-cloning-drift"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "inverse-rl-goal-inference",
+      "name": "Inverse RL: infer the goal from what the expert did",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for inverse RL with real depth (2026-10-18).",
+      "prerequisites": [
+        "value-vs-reward"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "reward-ambiguity",
+      "name": "Many rewards explain the same behaviour, even a reward of zero",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named reward ambiguity.",
+      "prerequisites": [
+        "inverse-rl-goal-inference"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "boltzmann-rational-demos",
+      "name": "Noisy experts: how often they pick each option shows how much it mattered",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for IRL depth.",
+      "prerequisites": [
+        "inverse-rl-goal-inference",
+        "softmax-scores"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "max-entropy-irl",
+      "name": "Maximum-entropy IRL: the reward that explains the choices without over-claiming",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named max-entropy IRL.",
+      "prerequisites": [
+        "reward-ambiguity",
+        "boltzmann-rational-demos"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "irl-reward-transfer",
+      "name": "Copied moves or learned goal: which one survives a new map?",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder asked for IRL depth.",
+      "prerequisites": [
+        "inverse-rl-goal-inference",
+        "behaviour-cloning-drift"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation"
+      ]
+    },
+    {
+      "id": "rlhf-as-irl",
+      "name": "RLHF is inverse RL from comparisons: the reward is inferred from \"A beats B\"",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named the IRL link to RLHF/preference learning.",
+      "prerequisites": [
+        "preference-ranking",
+        "inverse-rl-goal-inference"
+      ],
+      "assumedKnowledge": [
+        "A grid world: an agent moves, collects points, ends at a goal."
+      ],
+      "subarea": "reinforcement-learning",
+      "topic": "inverse-rl-imitation",
+      "tags": [
+        "ai",
+        "reinforcement-learning",
+        "inverse-rl-imitation",
+        "cross-link:neural-language"
+      ]
+    },
+    {
+      "id": "agent-loop",
+      "name": "An agent is a loop: model, tool, observation, repeat",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named agents as first-wave demand (2026-10-18).",
+      "prerequisites": [
+        "tool-call-request"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "tool-use",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "tool-use"
+      ]
+    },
+    {
+      "id": "tool-call-request",
+      "name": "Tool calls: the model writes a request, ordinary code runs it",
+      "level": "intro",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named agents and tool use.",
+      "prerequisites": [
+        "next-token"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "tool-use",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "tool-use"
+      ]
+    },
+    {
+      "id": "agent-checkpoint-recovery",
+      "name": "Long runs fail by multiplication; a check after each step changes the sum",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named agents.",
+      "prerequisites": [
+        "agent-loop",
+        "books:checklist-steps-compound"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "planning",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "planning"
+      ]
+    },
+    {
+      "id": "plan-vs-react",
+      "name": "Plan first or act and look? A fixed plan goes stale when the world answers",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named planning.",
+      "prerequisites": [
+        "agent-loop"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "planning",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "planning"
+      ]
+    },
+    {
+      "id": "task-decomposition",
+      "name": "Subgoals shrink the search: one long task as three short ones",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named planning.",
+      "prerequisites": [
+        "agent-loop"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "planning",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "planning"
+      ]
+    },
+    {
+      "id": "agent-memory-files",
+      "name": "Agent memory is what it writes down: the rest is gone next session",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "context-window"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "memory-context",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "memory-context"
+      ]
+    },
+    {
+      "id": "context-compaction-loss",
+      "name": "Summarising a long run to fit the window drops the detail you later need",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "context-window"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "memory-context",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "memory-context"
+      ]
+    },
+    {
+      "id": "least-privilege-agents",
+      "name": "Least privilege: an agent can only break what it can reach",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "tool-call-request"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "tool-use",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "tool-use",
+        "security",
+        "cross-link:ai-society"
+      ]
+    },
+    {
+      "id": "checker-shared-blind-spots",
+      "name": "A second model as checker: independent errors cancel, shared ones do not",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "ensemble-wisdom",
+        "books:book-crowds-correlated-errors"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "agent-cost-growth",
+      "name": "Each step re-reads the whole history: agent cost grows faster than its steps",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "agent-loop",
+        "kv-cache"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "memory-context",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "memory-context"
+      ]
+    },
+    {
+      "id": "benchmark-contamination",
+      "name": "Benchmark contamination: a test seen in training becomes a memory test",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "data-leakage"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "benchmark-saturation",
+      "name": "Saturated benchmarks: when everyone scores 95%, the test stops ranking",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "test-score-error-bars"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "eval-prompt-sensitivity",
+      "name": "Change the prompt format, change the score",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "test-score-error-bars"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "pass-at-k",
+      "name": "pass@k: ten tries make a model look far better than one",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "probability:at-least-once"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "llm-judge-bias",
+      "name": "Model judges prefer longer answers and answers in their own style",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "sycophancy"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals"
+      ]
+    },
+    {
+      "id": "capability-elicitation",
+      "name": "A better prompt finds the skill the test said was missing",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "eval-prompt-sensitivity"
+      ],
+      "assumedKnowledge": [
+        "Has used a chatbot; a program can call another program."
+      ],
+      "subarea": "agents-tools",
+      "topic": "evals",
+      "tags": [
+        "ai",
+        "agents-tools",
+        "evals",
+        "cross-link:ai-society"
+      ]
+    },
+    {
+      "id": "maximum-likelihood",
+      "name": "Maximum likelihood: pick the setting that makes the data least surprising",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "cross-entropy-loss"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "inference",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "inference"
+      ]
+    },
+    {
+      "id": "prior-as-regulariser",
+      "name": "With three data points the prior wins; with three thousand the data does",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "probability:bayesian-updating",
+        "regularisation"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "inference",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "inference"
+      ]
+    },
+    {
+      "id": "bayesian-posterior-lines",
+      "name": "Not one best line but many plausible ones, fanning out where data is thin",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "linear-regression-fit",
+        "probability:bayesian-updating"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "gaussian-process-uncertainty",
+      "name": "Gaussian processes: uncertainty that swells between and beyond the data",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "bayesian-posterior-lines"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "aleatoric-vs-epistemic",
+      "name": "Two kinds of doubt: noise more data cannot remove, ignorance it can",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "bayesian-posterior-lines"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "ensemble-uncertainty",
+      "name": "Where ensemble members disagree, the data ran out",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "ensemble-wisdom"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "ood-overconfidence",
+      "name": "Confident far from the data: a softmax score does not know what it has never seen",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "calibration",
+        "softmax-scores"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "conformal-sets",
+      "name": "Conformal prediction: a set of answers that holds the truth 90% of the time",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "calibration"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "uncertainty",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "gaussian-mixture-em",
+      "name": "Gaussian mixtures: soft membership and the back-and-forth of EM",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "latent-variables",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "latent-variables"
+      ]
+    },
+    {
+      "id": "hidden-markov",
+      "name": "Hidden Markov models: infer the weather from the umbrellas",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "probability:bayesian-updating"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "latent-variables",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "latent-variables"
+      ]
+    },
+    {
+      "id": "mcmc-random-walk",
+      "name": "MCMC: a random walk that spends its time where probability is high",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "probability:bayesian-updating"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "sampling-inference",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "sampling-inference"
+      ]
+    },
+    {
+      "id": "vi-mode-seeking",
+      "name": "Variational inference: a simple bell fitted to a two-humped posterior picks one hump",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "gaussian-mixture-em"
+      ],
+      "assumedKnowledge": [
+        "Probability as a share; a bell curve; updating on evidence."
+      ],
+      "subarea": "probabilistic-ml",
+      "topic": "sampling-inference",
+      "tags": [
+        "ai",
+        "probabilistic-ml",
+        "sampling-inference"
+      ]
+    },
+    {
+      "id": "saliency-maps",
+      "name": "Saliency maps: which pixels moved the score, and why the map can mislead",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "adversarial-examples"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "attribution",
+      "tags": [
+        "ai",
+        "interpretability",
+        "attribution"
+      ]
+    },
+    {
+      "id": "permutation-importance",
+      "name": "Shuffle a column, watch the score drop, unless its twin covers for it",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "correlated-coefficients"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "attribution",
+      "tags": [
+        "ai",
+        "interpretability",
+        "attribution"
+      ]
+    },
+    {
+      "id": "shapley-credit",
+      "name": "Shapley values: sharing a prediction's credit fairly among features",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "permutation-importance"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "attribution",
+      "tags": [
+        "ai",
+        "interpretability",
+        "attribution"
+      ]
+    },
+    {
+      "id": "counterfactual-explanations",
+      "name": "The smallest change that flips the decision",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "decision-boundary"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "attribution",
+      "tags": [
+        "ai",
+        "interpretability",
+        "attribution"
+      ]
+    },
+    {
+      "id": "probing-classifiers",
+      "name": "Probes: a simple read-out finds a concept in the activations, but is it used?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "embeddings"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "representations",
+      "tags": [
+        "ai",
+        "interpretability",
+        "representations"
+      ]
+    },
+    {
+      "id": "polysemantic-neurons",
+      "name": "One neuron, many meanings",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "hidden-layers-xor"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "representations",
+      "tags": [
+        "ai",
+        "interpretability",
+        "representations"
+      ]
+    },
+    {
+      "id": "superposition",
+      "name": "Superposition: more features than neurons, packed at angles",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "polysemantic-neurons",
+        "cosine-similarity"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "representations",
+      "tags": [
+        "ai",
+        "interpretability",
+        "representations"
+      ]
+    },
+    {
+      "id": "sparse-autoencoder-features",
+      "name": "Sparse autoencoders pull packed features apart",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "superposition",
+        "autoencoder-bottleneck"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "representations",
+      "tags": [
+        "ai",
+        "interpretability",
+        "representations"
+      ]
+    },
+    {
+      "id": "steering-vectors",
+      "name": "Steering: add one direction to the activations, change the behaviour",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "embeddings"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "mechanistic",
+      "tags": [
+        "ai",
+        "interpretability",
+        "mechanistic"
+      ]
+    },
+    {
+      "id": "activation-patching",
+      "name": "Activation patching: swap one part's activity to find what causes the answer",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "steering-vectors"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "mechanistic",
+      "tags": [
+        "ai",
+        "interpretability",
+        "mechanistic"
+      ]
+    },
+    {
+      "id": "induction-heads",
+      "name": "Induction heads: if A was followed by B before, predict B after A",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "attention-weights",
+        "in-context-learning"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "mechanistic",
+      "tags": [
+        "ai",
+        "interpretability",
+        "mechanistic"
+      ]
+    },
+    {
+      "id": "cot-faithfulness",
+      "name": "The written reasoning may not be the reason",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "next-token",
+        "shortcut-learning"
+      ],
+      "assumedKnowledge": [
+        "A trained model maps inputs to a score; features as numbers."
+      ],
+      "subarea": "interpretability",
+      "topic": "mechanistic",
+      "tags": [
+        "ai",
+        "interpretability",
+        "mechanistic",
+        "cross-link:ai-society"
+      ]
+    },
+    {
+      "id": "object-detection-iou",
+      "name": "Object detection: a box counts if it overlaps enough (IoU)",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "confusion-matrix"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "vision",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "vision"
+      ]
+    },
+    {
+      "id": "non-max-suppression",
+      "name": "Non-max suppression: one object, one box",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "object-detection-iou"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "vision",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "vision"
+      ]
+    },
+    {
+      "id": "segmentation-per-pixel",
+      "name": "Segmentation: a label for every pixel, not a box",
+      "level": "intro",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "convolution-weight-sharing"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "vision",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "vision"
+      ]
+    },
+    {
+      "id": "face-search-false-matches",
+      "name": "One in a million, a million faces: why face search returns strangers",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "accuracy-paradox"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "vision",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "vision",
+        "cross-link:ai-society"
+      ]
+    },
+    {
+      "id": "spectrogram-picture",
+      "name": "Speech models see sound as a picture: the spectrogram",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "cs:audio-sampling"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "speech-audio",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "speech-audio"
+      ]
+    },
+    {
+      "id": "ctc-alignment",
+      "name": "Speech to text without timing labels: collapse repeats, drop blanks",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "spectrogram-picture"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "speech-audio",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "speech-audio"
+      ]
+    },
+    {
+      "id": "collaborative-filtering",
+      "name": "Collaborative filtering: people who liked what you liked also liked this",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "cosine-similarity"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "recommenders",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "recommenders"
+      ]
+    },
+    {
+      "id": "matrix-factorisation-tastes",
+      "name": "Tastes as a few hidden dials: filling in the ratings table",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "collaborative-filtering"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "recommenders",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "recommenders"
+      ]
+    },
+    {
+      "id": "cold-start",
+      "name": "Cold start: no history, no recommendation",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "collaborative-filtering"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "recommenders",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "recommenders"
+      ]
+    },
+    {
+      "id": "ranking-top-heavy",
+      "name": "Ranking metrics: only the top few results count (NDCG)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "auc-ranking"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "recommenders",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "recommenders"
+      ]
+    },
+    {
+      "id": "persistence-forecast",
+      "name": "Tomorrow will be like today: the naive forecast that is hard to beat",
+      "level": "intro",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "baseline-first"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "time-series",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "time-series"
+      ]
+    },
+    {
+      "id": "seasonality-decomposition",
+      "name": "Trend plus season plus noise: pulling a series apart",
+      "level": "intro",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "time-series",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "time-series"
+      ]
+    },
+    {
+      "id": "forecast-fan",
+      "name": "Forecast uncertainty widens with the horizon",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "persistence-forecast",
+        "big-ideas:chaos-butterfly"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "time-series",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "time-series"
+      ]
+    },
+    {
+      "id": "isolation-forest",
+      "name": "Isolation forest: oddballs get cut off in a few random splits",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "decision-tree-splits"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "tabular-anomaly",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "tabular-anomaly"
+      ]
+    },
+    {
+      "id": "drift-monitoring",
+      "name": "Catch drift in the inputs before the accuracy report arrives",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "distribution-shift"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "tabular-anomaly",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "tabular-anomaly"
+      ]
+    },
+    {
+      "id": "offline-online-gap",
+      "name": "Offline metric up, live metric down",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "feedback-loops"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "tabular-anomaly",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "tabular-anomaly"
+      ]
+    },
+    {
+      "id": "sim-to-real-gap",
+      "name": "Sim to real: a robot perfect in simulation trips on a real floor (and randomisation)",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "distribution-shift"
+      ],
+      "assumedKnowledge": [
+        "Has used photo search, voice assistants or recommendations."
+      ],
+      "subarea": "applied-ml",
+      "topic": "robotics",
+      "tags": [
+        "ai",
+        "applied-ml",
+        "robotics",
+        "cross-link:reinforcement-learning"
+      ]
+    },
+    {
+      "id": "evolution-strategies",
+      "name": "Evolution strategies: jiggle, score, step toward the winners, no gradients needed",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named CMA-ES and evolution strategies (2026-10-18).",
+      "prerequisites": [
+        "local-minima"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "evolution-strategies",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "evolution-strategies"
+      ]
+    },
+    {
+      "id": "cma-es-shape",
+      "name": "CMA-ES: the search cloud stretches along the valley it finds",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named CMA-ES explicitly.",
+      "prerequisites": [
+        "evolution-strategies"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "evolution-strategies",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "evolution-strategies"
+      ]
+    },
+    {
+      "id": "es-step-size-adaptation",
+      "name": "Step-size adaptation: widen when winning often, shrink when not (1/5 rule)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named evolution strategies.",
+      "prerequisites": [
+        "evolution-strategies"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "evolution-strategies",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "evolution-strategies"
+      ]
+    },
+    {
+      "id": "genetic-crossover",
+      "name": "Genetic algorithms: crossover helps only when good parts are separable",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named evolution strategies; GA is the neighbouring family.",
+      "prerequisites": [
+        "evolution-strategies"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "evolution-strategies",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "evolution-strategies",
+        "cross-link:life"
+      ]
+    },
+    {
+      "id": "premature-convergence",
+      "name": "Premature convergence: the population loses variety and stalls",
+      "level": "core",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named evolution strategies.",
+      "prerequisites": [
+        "genetic-crossover"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "evolution-strategies",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "evolution-strategies"
+      ]
+    },
+    {
+      "id": "deceptive-objective",
+      "name": "Deceptive objectives: the point closest to the goal is a dead end",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named quality diversity and novelty search.",
+      "prerequisites": [
+        "local-minima"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity"
+      ]
+    },
+    {
+      "id": "novelty-search",
+      "name": "Novelty search: rewarding the new escapes the trap the objective set",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named novelty search explicitly.",
+      "prerequisites": [
+        "deceptive-objective"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity"
+      ]
+    },
+    {
+      "id": "map-elites",
+      "name": "MAP-Elites: keep the best of every kind, not one best",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named MAP-Elites explicitly.",
+      "prerequisites": [
+        "evolution-strategies"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity"
+      ]
+    },
+    {
+      "id": "qd-stepping-stones",
+      "name": "Stepping stones: the elite in one cell is the parent of a better one elsewhere",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named quality diversity.",
+      "prerequisites": [
+        "map-elites"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity"
+      ]
+    },
+    {
+      "id": "behaviour-descriptor-choice",
+      "name": "What counts as different? The behaviour descriptor decides what QD finds",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named quality diversity.",
+      "prerequisites": [
+        "map-elites"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity"
+      ]
+    },
+    {
+      "id": "pareto-front",
+      "name": "Pareto front: no single best when two goals conflict",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "quality-diversity",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "quality-diversity",
+        "cross-link:economics"
+      ]
+    },
+    {
+      "id": "random-vs-grid-search",
+      "name": "Random search beats grid search when only a few knobs matter",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "black-box",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "black-box"
+      ]
+    },
+    {
+      "id": "bayesian-optimisation",
+      "name": "Bayesian optimisation: spend the next expensive try where it could be best",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "gaussian-process-uncertainty"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "black-box",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "black-box",
+        "cross-link:probabilistic-ml"
+      ]
+    },
+    {
+      "id": "simulated-annealing-tour",
+      "name": "Simulated annealing: accept a worse tour now to find a shorter one later",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named \"tspw\" (read as travelling salesperson; heuristics and local search). The metaheuristic belongs in AI; tour-specific moves go to CS.",
+      "prerequisites": [
+        "local-minima",
+        "cs:nearest-neighbour-tour"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "local-search-tsp",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "local-search-tsp",
+        "tsp",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "ant-colony-tours",
+      "name": "Ant colony optimisation: trails that fade unless used again",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named TSP heuristics.",
+      "prerequisites": [
+        "simulated-annealing-tour"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "local-search-tsp",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "local-search-tsp",
+        "tsp",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "ann-recall-speed",
+      "name": "Approximate nearest neighbours: 100 times faster, and sometimes misses the true nearest",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named HNSW and approximate nearest-neighbour search.",
+      "prerequisites": [
+        "retrieval-top-k"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "vector-search",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "vector-search",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "hnsw-navigable-graph",
+      "name": "HNSW: express lanes over a graph of neighbours, greedy hops down to the answer",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named HNSW explicitly.",
+      "prerequisites": [
+        "retrieval-top-k",
+        "cs:greedy-failure"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "vector-search",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "vector-search",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "ivf-probe-clusters",
+      "name": "Inverted-file search: look only inside the nearest clusters",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named ANN search.",
+      "prerequisites": [
+        "ann-recall-speed",
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "vector-search",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "vector-search"
+      ]
+    },
+    {
+      "id": "product-quantization",
+      "name": "Product quantization: a vector becomes a short code, distances survive roughly",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named ANN search.",
+      "prerequisites": [
+        "ann-recall-speed",
+        "k-means-clustering"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "vector-search",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "vector-search"
+      ]
+    },
+    {
+      "id": "kd-tree-high-dim",
+      "name": "k-d trees stop pruning in 100 dimensions: why vector search needs other tricks",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric data structures; this is the ML-facing consequence (structures themselves go to CS).",
+      "prerequisites": [
+        "curse-of-dimensionality",
+        "cs:algo-kd-nearest-pruning"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "vector-search",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "vector-search",
+        "geometric",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "submodular-coverage-gains",
+      "name": "Coverage has diminishing returns: the same camera adds less to a bigger set",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named submodularity (coverage, diminishing returns).",
+      "prerequisites": [
+        "economics:diminishing-returns"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "submodular-selection",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "submodular-selection",
+        "submodularity"
+      ]
+    },
+    {
+      "id": "submodular-greedy-guarantee",
+      "name": "Greedy picking is never worse than 63% of the best possible set",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named submodularity (greedy guarantees).",
+      "prerequisites": [
+        "economics:diminishing-returns",
+        "cs:greedy-failure"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "submodular-selection",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "submodular-selection",
+        "submodularity",
+        "cross-link:cs"
+      ]
+    },
+    {
+      "id": "mmr-diverse-retrieval",
+      "name": "Diverse retrieval: the five most similar passages may say the same thing",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named submodularity; MMR is its retrieval use.",
+      "prerequisites": [
+        "retrieval-top-k",
+        "submodular-coverage-gains"
+      ],
+      "assumedKnowledge": [
+        "A score to maximise over many candidates; distance between points."
+      ],
+      "subarea": "optimisation-search",
+      "topic": "submodular-selection",
+      "tags": [
+        "ai",
+        "optimisation-search",
+        "submodular-selection",
+        "submodularity",
+        "cross-link:neural-language"
+      ]
+    },
+    {
+      "id": "injection-lethal-trifecta",
+      "name": "Private data, untrusted text, a way out: the three that make injection dangerous",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named prompt injection as first-wave demand.",
+      "prerequisites": [
+        "prompt-injection",
+        "tool-call-request"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "privacy-security",
+      "tags": [
+        "ai",
+        "ai-society",
+        "privacy-security",
+        "security",
+        "cross-link:agents-tools"
+      ]
+    },
+    {
+      "id": "jailbreak-surface-refusal",
+      "name": "Jailbreaks: a refusal learned from phrasing, beaten by rephrasing",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "shortcut-learning"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "privacy-security",
+      "tags": [
+        "ai",
+        "ai-society",
+        "privacy-security",
+        "security"
+      ]
+    },
+    {
+      "id": "backdoor-trigger",
+      "name": "Backdoors: a planted trigger word that flips the model",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "shortcut-learning"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "privacy-security",
+      "tags": [
+        "ai",
+        "ai-society",
+        "privacy-security",
+        "security",
+        "cross-link:interpretability"
+      ]
+    },
+    {
+      "id": "membership-inference",
+      "name": "Membership inference: a model is more confident on what it trained on",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "overfitting"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "privacy-security",
+      "tags": [
+        "ai",
+        "ai-society",
+        "privacy-security"
+      ]
+    },
+    {
+      "id": "differential-privacy-noise",
+      "name": "Differential privacy: noise sized so no one person changes the answer",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "membership-inference"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "privacy-security",
+      "tags": [
+        "ai",
+        "ai-society",
+        "privacy-security"
+      ]
+    },
+    {
+      "id": "text-watermark-paraphrase",
+      "name": "Text watermarks: a hidden lean in word choice, and paraphrase erases it",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "temperature-sampling"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "information",
+      "tags": [
+        "ai",
+        "ai-society",
+        "information"
+      ]
+    },
+    {
+      "id": "ai-detector-false-positives",
+      "name": "AI-text detectors flag honest writers: base rates again",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [
+        "accuracy-paradox"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "information",
+      "tags": [
+        "ai",
+        "ai-society",
+        "information"
+      ]
+    },
+    {
+      "id": "deepfake-detector-arms-race",
+      "name": "Every published detector becomes training signal for the next fake",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "gan-forger-detective"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "information",
+      "tags": [
+        "ai",
+        "ai-society",
+        "information"
+      ]
+    },
+    {
+      "id": "single-source-influence",
+      "name": "One artist in a billion images: what removing a source changes, and what duplicates change",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "generative-memorisation"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "copyright-labour-energy",
+      "tags": [
+        "ai",
+        "ai-society",
+        "copyright-labour-energy",
+        "copyright"
+      ]
+    },
+    {
+      "id": "energy-train-vs-serve",
+      "name": "Energy: training once vs answering a billion times",
+      "level": "core",
+      "demand": 3,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a topic learners meet in AI news and daily tool use; not measured.",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "copyright-labour-energy",
+      "tags": [
+        "ai",
+        "ai-society",
+        "copyright-labour-energy",
+        "energy"
+      ]
+    },
+    {
+      "id": "task-exposure",
+      "name": "Automation hits tasks, not whole jobs",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "copyright-labour-energy",
+      "tags": [
+        "ai",
+        "ai-society",
+        "copyright-labour-energy",
+        "labour"
+      ]
+    },
+    {
+      "id": "risk-tier-regulation",
+      "name": "Risk tiers: the same model, regulated by what it is used for",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "governance",
+      "tags": [
+        "ai",
+        "ai-society",
+        "governance",
+        "regulation"
+      ]
+    },
+    {
+      "id": "compute-thresholds",
+      "name": "Regulating by training compute: a line in FLOPs, and what slips under it",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "scaling-laws"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "governance",
+      "tags": [
+        "ai",
+        "ai-society",
+        "governance",
+        "regulation"
+      ]
+    },
+    {
+      "id": "red-teaming-search",
+      "name": "Red teaming: failures found by searching, not by waiting",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "zero-failure-testing"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "safety-testing",
+      "tags": [
+        "ai",
+        "ai-society",
+        "safety-testing"
+      ]
+    },
+    {
+      "id": "behaves-when-watched",
+      "name": "A model that behaves when tested: tests only see test conditions",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "shortcut-learning",
+        "distribution-shift"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "safety-testing",
+      "tags": [
+        "ai",
+        "ai-society",
+        "safety-testing"
+      ]
+    },
+    {
+      "id": "options-keep-open",
+      "name": "Most goals are easier with more options: why optimisers grab resources",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: specialist depth for learners who finished the topic; not measured.",
+      "prerequisites": [
+        "value-vs-reward"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "safety-testing",
+      "tags": [
+        "ai",
+        "ai-society",
+        "safety-testing",
+        "cross-link:reinforcement-learning"
+      ]
+    },
+    {
+      "id": "automation-bias",
+      "name": "Automation bias: people stop checking a mostly-right assistant",
+      "level": "core",
+      "demand": 2,
+      "demandEvidence": "estimated-cm-judgement",
+      "demandReason": "cm-ai estimate: a standard idea in ML courses that clarifies a common misreading; not measured.",
+      "prerequisites": [
+        "zero-failure-testing"
+      ],
+      "assumedKnowledge": [
+        "Has used AI tools; base rates and error rates as shares."
+      ],
+      "subarea": "ai-society",
+      "topic": "safety-testing",
+      "tags": [
+        "ai",
+        "ai-society",
+        "safety-testing",
+        "cross-link:behavioral"
+      ]
+    }
+  ],
+  "misconceptions": {
+    "baseline-first": "A score like 80% sounds good on its own; learners do not ask what a model that ignores the input would get.",
+    "test-score-error-bars": "Learners read 84% vs 82% on a small test set as a real difference.",
+    "learning-curves": "More data always improves a model; it does nothing for a model too simple to fit.",
+    "missing-data-signal": "A blank is neutral, so filling it with the mean is harmless.",
+    "temporal-split": "Shuffling rows before splitting is always fair; with time series it lets the model see tomorrow.",
+    "group-split-leakage": "Rows are independent, so a random row split is honest even when one person contributes many rows.",
+    "resampling-miscalibrates": "Oversampling the rare class fixes imbalance for free; the model now over-predicts it.",
+    "online-learning-stream": "A model must see all its data at once; one-pass updates can track a stream and drift with it.",
+    "logistic-regression": "A classifier outputs yes or no; a linear model can output a calibrated probability that bends near the boundary.",
+    "polynomial-features": "Linear models only fit straight lines; linear means linear in the weights, not the input.",
+    "outlier-leverage": "One point among fifty cannot move a fit much; a point far along x has outsized leverage.",
+    "lasso-sparsity": "All penalties shrink weights the same way; the corner of the L1 diamond zeros them.",
+    "correlated-coefficients": "A coefficient measures how much a feature matters; with correlated features it is not even stable.",
+    "knn-choosing-k": "More neighbours always means a better vote.",
+    "svm-widest-margin": "Any separating line is as good as another, and every point shapes it.",
+    "kernel-trick": "If no line separates the classes, a linear method is hopeless.",
+    "soft-margin": "A good classifier must get every training point right.",
+    "naive-bayes-double-counting": "Two clues that always appear together should count as two pieces of evidence.",
+    "deep-tree-memorises": "A tree that is 100% right on training data has learned the rule.",
+    "random-forest-decorrelation": "Averaging many copies of the best tree helps; identical trees make identical mistakes.",
+    "k-means-forced-k": "Clusters the algorithm returns are clusters that exist.",
+    "k-means-initialisation": "k-means has one answer for a dataset; it finds a local optimum that depends on the start.",
+    "dbscan-density": "Clusters are round blobs around a centre.",
+    "hierarchical-cut": "The data decides how many groups there are; here the analyst chooses by where to cut.",
+    "pca-compression": "Dropping dimensions always throws away most of the information.",
+    "tsne-distances-mislead": "Distances and cluster sizes in a 2-D embedding plot reflect the real data.",
+    "random-projection": "Projecting onto random directions scrambles structure; for distances it barely does.",
+    "feature-hashing": "Collisions between features must ruin a model; a few rare collisions cost little accuracy.",
+    "softmax-scores": "Softmax shares probability in proportion to the scores; it exaggerates gaps exponentially.",
+    "universal-approximation": "Fitting a complicated shape needs a complicated, hand-designed model.",
+    "recurrent-memory-fades": "A network that reads word by word remembers the whole sentence equally.",
+    "gnn-message-passing": "Neural nets only take grids or sequences; a graph net passes messages along edges, k hops in k layers.",
+    "weight-init-scale": "Starting weights do not matter because training fixes them.",
+    "exploding-gradients": "A loss spike means the data was bad; often it is one oversized gradient step.",
+    "lr-schedule-warmup": "There is one right learning rate for the whole run.",
+    "adam-per-weight-steps": "One global step size suits weights whose gradients differ a hundredfold.",
+    "dead-relu": "Every unit keeps learning as long as training runs.",
+    "double-descent": "Test error rises forever with model size once a model can fit the training set (the U-curve).",
+    "grokking": "Once training accuracy is perfect nothing more is being learned. Toy must reproduce it (modular arithmetic) in the browser; build risk.",
+    "pruning-most-weights": "Every weight in a trained network is needed.",
+    "convolution-learned-filters": "People program the features a vision model looks for. Differs from cs:edge-filter (hand-made differencing) because here the filter values are trained.",
+    "receptive-field-growth": "A 3x3 filter can only ever see 3x3 pixels, so a CNN cannot see whole objects.",
+    "pooling-stride": "Downsampling throws information away evenly; max-pooling keeps whether a feature was there, not exactly where.",
+    "translation-equivariance": "A network must learn a cat separately at every position in the frame.",
+    "cnn-not-rotation-invariant": "A CNN recognises shapes in any orientation the way people do.",
+    "feature-hierarchy": "Each layer of a vision model does the same job; later layers combine earlier detectors into larger patterns.",
+    "cnn-data-efficiency": "A more flexible network is always better; the dense net can fit anything, so it needs far more examples.",
+    "residual-connections": "Adding layers can only help; without a skip path, a deeper plain net trains worse than a shallow one.",
+    "data-augmentation": "Every transformation is label-preserving; a flipped 6 can become a 9.",
+    "transfer-learning": "A new task needs a model trained from scratch on lots of new data.",
+    "texture-bias": "Vision models recognise objects by their outline as people do. Real-system claim: cite the study and reproduce in the toy.",
+    "how-llms-are-trained": "Chatbots are programmed with answers or look them up in a database.",
+    "knowledge-cutoff": "A chatbot knows today's news unless a tool fetches it.",
+    "pretraining-data-mix": "Model abilities come from the architecture, not from what text went in.",
+    "training-data-dedup": "Every training document is seen once and weighs the same; a text copied 1,000 times is far likelier to be recited.",
+    "compute-optimal-scaling": "Bigger models are always better for the same compute.",
+    "instruction-tuning": "Fine-tuning reliably teaches a model new facts.",
+    "rlhf-kl-leash": "More optimisation against the learned reward always makes the model better.",
+    "dpo-direct-preference": "Learning from preferences requires a reward model and an RL loop.",
+    "ai-feedback-rlaif": "Replacing human raters with a model removes rater bias.",
+    "lora-low-rank": "Fine-tuning must rewrite all the weights, so it needs a data centre.",
+    "quantization-bits": "Cutting precision by 4x cuts quality by 4x.",
+    "distillation-soft-labels": "A small model trained on a big model's outputs only copies its final answers.",
+    "kv-cache": "Each new token re-reads the whole prompt from scratch.",
+    "mixture-of-experts": "A model with 8x the parameters costs 8x as much per token.",
+    "speculative-decoding": "Faster generation must mean lower-quality text; here the output is the same.",
+    "rope-rotary-positions": "Position is a number stamped on each word; rotation makes attention depend on relative offset.",
+    "multi-head-attention": "One attention pattern can capture who-did-what and which-word-is-next at once.",
+    "causal-mask": "A model trained on whole sentences could cheat by reading ahead; the mask removes the answer.",
+    "in-context-learning": "The model learns permanently from a conversation.",
+    "chain-of-thought": "A model either knows the answer or not; generating intermediate tokens adds sequential steps it can use.",
+    "test-time-compute-voting": "A model's accuracy on a question is fixed; spending more samples changes it.",
+    "beam-search": "Keeping more candidates always gives better text (it can favour short, bland output).",
+    "lost-in-the-middle": "Anything inside the context window is used equally. Real-system claim: cite and mark as about real models.",
+    "contrastive-embeddings": "Embeddings are designed by hand or learned from labels; here the pairs are the only signal.",
+    "hybrid-keyword-vector-search": "Vector search beats keyword search everywhere; it misses rare exact strings like part numbers.",
+    "autoencoder-bottleneck": "A network asked to copy its input learns nothing; the bottleneck forces a summary.",
+    "vae-smooth-latent": "Any point between two codes in an autoencoder decodes to a blend; in a plain one it decodes to garbage.",
+    "gan-forger-detective": "The generator copies real images; it never sees them, only the detective's verdict.",
+    "gan-mode-collapse": "A generator that fools the detector has learned the whole data.",
+    "diffusion-denoising": "Image generators collage or retrieve stored pictures.",
+    "diffusion-step-count": "Generation is one jump from noise to picture.",
+    "classifier-free-guidance": "Following the prompt harder is free; it trades away diversity.",
+    "latent-diffusion": "Diffusion works pixel by pixel at full size.",
+    "normalising-flows": "You cannot both sample and compute exact probabilities from a generative model.",
+    "generative-memorisation": "Generators never reproduce training data; duplicates are the exception that gets memorised.",
+    "generative-eval-tradeoff": "One quality score can rank generators; a model can be realistic and repetitive.",
+    "mdp-basics": "An RL agent is told the right move, as with labelled data; it only gets a score, often late.",
+    "value-vs-reward": "The best move is the one with the biggest immediate reward.",
+    "policy-from-values": "Policy and value are two names for the same thing.",
+    "bellman-backup": "To value a square you must simulate every future path from it; each square only needs its neighbours' values.",
+    "monte-carlo-vs-td": "You must finish an episode to learn anything from it.",
+    "td-error-surprise": "An expected reward teaches as much as an unexpected one.",
+    "q-learning": "An agent needs a map of the world to choose good moves.",
+    "sarsa-vs-q-cliff": "Every learner converges to the same path; off-policy learning ignores its own exploration slips.",
+    "q-overestimation": "Taking the best estimate gives an unbiased estimate of the best.",
+    "deep-q-function-approx": "An RL agent must visit every state to value it.",
+    "experience-replay": "Learning in the order experiences happen is the most faithful way.",
+    "policy-gradient": "Learning to act needs a value for every state.",
+    "policy-gradient-baseline": "If every reward is positive, every action gets reinforced equally hard.",
+    "actor-critic": "Value methods and policy methods are rival camps; actor-critic uses both.",
+    "ppo-clipping": "A bigger update after a great run is always better.",
+    "ucb-optimism": "Exploring means choosing at random; UCB explores where uncertainty is largest.",
+    "thompson-sampling": "Randomness in choice is wasted effort; sampling beliefs explores in proportion to doubt.",
+    "sparse-reward-exploration": "Given enough time random exploration finds any reward; the odds shrink exponentially with path length.",
+    "curiosity-noisy-tv": "Rewarding novelty always makes an agent explore usefully.",
+    "credit-assignment": "The last move before a reward gets the credit.",
+    "reward-shaping": "Any helpful extra reward keeps the goal the same; only potential-based shaping is guaranteed to.",
+    "model-based-planning": "RL always learns by trial and error in the real world.",
+    "model-error-compounding": "A model 99% accurate per step is 99% accurate over a long plan.",
+    "mcts-playouts": "Game AIs search every move to the end; MCTS samples and focuses.",
+    "self-play": "An agent needs expert opponents or human games to get strong.",
+    "offline-rl-extrapolation": "With enough logged data you can learn any policy without acting.",
+    "behaviour-cloning-drift": "Copying demonstrations perfectly gives expert performance; small slips lead to states the expert never showed.",
+    "dagger-correction": "More expert demonstrations fix cloning drift; it needs labels on the learner's own states.",
+    "inverse-rl-goal-inference": "Demonstrations show what to do, and that is all they hold; they also carry evidence about what the demonstrator wants.",
+    "reward-ambiguity": "Behaviour pins down a single true reward.",
+    "boltzmann-rational-demos": "A demonstrator's mistakes are noise to throw away.",
+    "max-entropy-irl": "Choose the reward that makes the expert look most decisive.",
+    "irl-reward-transfer": "Imitation and inverse RL learn the same thing; only the goal transfers when the layout changes.",
+    "rlhf-as-irl": "RLHF is people writing rules for the model.",
+    "agent-loop": "An agent is a smarter model; it is the same model in a loop with tools.",
+    "tool-call-request": "The model itself searches the web or runs the code.",
+    "agent-checkpoint-recovery": "A 95%-reliable agent finishes 95% of 20-step tasks. Differs from books:checklist-steps-compound by showing what verification and retry recover.",
+    "plan-vs-react": "A complete plan up front is always better than deciding step by step.",
+    "task-decomposition": "Breaking a task up only adds overhead.",
+    "agent-memory-files": "An assistant remembers past conversations the way a person does.",
+    "context-compaction-loss": "A summary keeps everything important; what counts as important is decided before you know the future.",
+    "least-privilege-agents": "Safety comes from the model behaving well; permissions bound the damage when it does not.",
+    "checker-shared-blind-spots": "Two copies of the same model checking each other are as good as two independent checkers.",
+    "agent-cost-growth": "A 40-step run costs twice a 20-step run.",
+    "benchmark-contamination": "A high benchmark score means the skill; if the questions were in the training text it may mean recall.",
+    "benchmark-saturation": "A 1-point gain near the ceiling is as meaningful as one in the middle.",
+    "eval-prompt-sensitivity": "A benchmark score is a property of the model alone.",
+    "pass-at-k": "Scores reported at different k are comparable.",
+    "llm-judge-bias": "An AI grader is neutral because it is a machine.",
+    "capability-elicitation": "If an evaluation did not find a capability, the model does not have it.",
+    "maximum-likelihood": "Fitting a model and computing probabilities are different jobs; minimising cross-entropy is maximising likelihood.",
+    "prior-as-regulariser": "A prior is a bias that ruins objectivity; it is the same as a penalty and fades with data.",
+    "bayesian-posterior-lines": "A fitted model is equally sure everywhere.",
+    "gaussian-process-uncertainty": "A smooth curve through the points says nothing about where it might be wrong.",
+    "aleatoric-vs-epistemic": "All uncertainty shrinks with more data.",
+    "ensemble-uncertainty": "A single model's confidence is enough to know when to trust it.",
+    "ood-overconfidence": "High confidence means the input is familiar.",
+    "conformal-sets": "Honest uncertainty needs a Bayesian model; a held-out calibration set is enough for coverage.",
+    "gaussian-mixture-em": "Each point belongs to exactly one cluster.",
+    "hidden-markov": "Each observation should be read on its own; the hidden state carries information across time.",
+    "mcmc-random-walk": "To sample from a distribution you must be able to compute it everywhere; ratios of neighbours are enough.",
+    "vi-mode-seeking": "The best-fitting simple shape covers the whole posterior.",
+    "saliency-maps": "A highlighted region is what the model \"looked at\".",
+    "permutation-importance": "Feature importance shows what matters; with correlated features each looks unimportant.",
+    "shapley-credit": "Credit is each feature's effect when changed alone; interactions get split by averaging over orders.",
+    "counterfactual-explanations": "An explanation must list everything the model used; the nearest flip is often more useful and can be gamed.",
+    "probing-classifiers": "If a concept can be decoded from a layer, the model uses it.",
+    "polysemantic-neurons": "Each neuron stands for one thing.",
+    "superposition": "A layer with 2 neurons can store at most 2 features.",
+    "sparse-autoencoder-features": "Features are hidden in a model beyond reach; a sparse dictionary can recover them.",
+    "steering-vectors": "Changing a model's behaviour needs retraining.",
+    "activation-patching": "Correlation between an activation and the output shows it causes the output.",
+    "induction-heads": "In-context learning is mysterious; part of it is a simple copying circuit.",
+    "cot-faithfulness": "A model's shown steps are a faithful account of how it reached the answer.",
+    "object-detection-iou": "A detection is right or wrong; the overlap threshold chooses which.",
+    "non-max-suppression": "A detector naturally outputs one box per object.",
+    "segmentation-per-pixel": "Finding an object and outlining it are the same task.",
+    "face-search-false-matches": "A 99.9%-accurate face matcher is almost always right about a match.",
+    "spectrogram-picture": "Speech recognisers listen to the waveform as we hear it.",
+    "ctc-alignment": "Training speech recognition needs every sound labelled with its moment.",
+    "collaborative-filtering": "Recommenders understand the content they recommend.",
+    "matrix-factorisation-tastes": "Each person's taste needs hundreds of numbers to describe.",
+    "cold-start": "A good recommender works from day one for a new user or item.",
+    "ranking-top-heavy": "Getting the order right anywhere in the list counts the same.",
+    "persistence-forecast": "A sophisticated forecasting model always beats repeating the last value.",
+    "seasonality-decomposition": "A December spike means the trend changed.",
+    "forecast-fan": "A model good at tomorrow is about as good at next month.",
+    "isolation-forest": "Finding anomalies needs a description of normal.",
+    "drift-monitoring": "You will know a model degraded when accuracy drops; labels often come weeks late.",
+    "offline-online-gap": "A model that scores better on logged data will do better live.",
+    "sim-to-real-gap": "A more accurate simulator is the only fix; randomising the simulator makes the policy robust.",
+    "evolution-strategies": "You need gradients (backpropagation) to optimise a model.",
+    "cma-es-shape": "A search should sample evenly in every direction; CMA-ES learns the valley's shape from its own winners.",
+    "es-step-size-adaptation": "A fixed step size is fine if chosen well.",
+    "genetic-crossover": "Mixing two good solutions gives a better one.",
+    "premature-convergence": "Keeping only the best is the fastest route to the optimum.",
+    "deceptive-objective": "Always moving closer to the goal is the way to reach it.",
+    "novelty-search": "Ignoring the objective cannot beat optimising it.",
+    "map-elites": "Search should return a single best answer.",
+    "qd-stepping-stones": "Poor solutions are dead weight.",
+    "behaviour-descriptor-choice": "Diversity is objective; it is defined by the axes the designer picks.",
+    "pareto-front": "Combining two goals into one weighted score finds every good trade-off; a weighted sum misses dents in the front.",
+    "random-vs-grid-search": "A grid covers the space more systematically, so it must be better.",
+    "bayesian-optimisation": "When each trial is costly, try the best-looking point; the most promising uncertain point is often better.",
+    "simulated-annealing-tour": "A good search never takes a step that makes things worse.",
+    "ant-colony-tours": "The most-used route is the best route; evaporation stops early luck from locking in.",
+    "ann-recall-speed": "Vector search returns the exact nearest matches.",
+    "hnsw-navigable-graph": "Search must compare the query with every stored vector; HNSW checks a few hundred, and greedy hops can stop at a near miss.",
+    "ivf-probe-clusters": "Probing one cluster is enough; the true neighbour often sits just over a border.",
+    "product-quantization": "Compressing a vector to 8 bytes destroys its meaning.",
+    "kd-tree-high-dim": "A spatial index that is fast on a map is fast on embeddings. Differs from cs:algo-kd-nearest-pruning (how pruning works) by showing it failing as dimensions grow.",
+    "submodular-coverage-gains": "Each pick's value is fixed; with coverage it depends on what is already picked. Differs from economics:diminishing-returns (one input's curve) by being about sets.",
+    "submodular-greedy-guarantee": "Greedy can be arbitrarily bad (cs:greedy-failure); for diminishing-returns objectives it carries a guarantee.",
+    "mmr-diverse-retrieval": "The top five matches are the five most useful.",
+    "injection-lethal-trifecta": "Prompt injection is a chatbot saying something rude; with tools it can send data out.",
+    "jailbreak-surface-refusal": "Safety training teaches the model what is harmful; it may learn what harmful requests look like.",
+    "backdoor-trigger": "A model that passes every test is clean; a trigger absent from tests stays hidden.",
+    "membership-inference": "Releasing a model, not the data, keeps the data private.",
+    "differential-privacy-noise": "Removing names makes a dataset private.",
+    "text-watermark-paraphrase": "AI text can be invisibly and permanently marked.",
+    "ai-detector-false-positives": "A detector that is 95% accurate means a flagged essay is 95% likely AI-written.",
+    "deepfake-detector-arms-race": "Detection technology will eventually win against fakes.",
+    "single-source-influence": "Each source contributes equally, so opting out has the same effect for everyone. Legal claims stay out; only the mechanism is taught.",
+    "energy-train-vs-serve": "Training is where AI's energy goes; at scale, serving queries can match or exceed it. Real-system numbers must be cited and dated.",
+    "task-exposure": "A job is either automatable or not; it is a bundle of tasks with different exposure.",
+    "risk-tier-regulation": "AI law regulates models; risk-based rules like the EU AI Act mostly regulate uses. Claims cite the legal text.",
+    "compute-thresholds": "A compute threshold tracks capability exactly; efficiency gains move capability below it.",
+    "red-teaming-search": "Normal use reveals a model's failures; rare ones need a targeted search.",
+    "behaves-when-watched": "Passing a safety evaluation shows a model is safe in deployment.",
+    "options-keep-open": "An agent only seeks power if told to; in many random goals, keeping options open is optimal.",
+    "automation-bias": "A human in the loop catches the machine's errors; vigilance drops as the machine gets better."
+  },
+  "csProposalsForCmCsAlgorithms": [
+    {
+      "id": "algo-tsp-two-opt",
+      "name": "Two crossing edges can always be uncrossed shorter",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "nearest-neighbour-tour"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "A tour that looks tidy is near-optimal; any crossing proves it can be shortened."
+    },
+    {
+      "id": "algo-tsp-mst-bound",
+      "name": "A tour costs at least the cheapest network",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "minimum-spanning-tree"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "You cannot judge a tour without knowing the optimum; the MST gives a lower bound."
+    },
+    {
+      "id": "algo-tsp-christofides",
+      "name": "Fix the odd corners with a matching: within 1.5 times the best",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-metric-tsp-doubletree"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "The double-tree 2x bound is the best a fast method can promise."
+    },
+    {
+      "id": "algo-tsp-held-karp",
+      "name": "Held-Karp: remember the set visited, not the order",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "combinatorial-explosion"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "resource-subset-dp",
+      "tags": [
+        "algorithms",
+        "resource-subset-dp",
+        "tsp",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Exact TSP needs checking all n! orders; DP over subsets needs 2^n states."
+    },
+    {
+      "id": "algo-tsptw-time-windows",
+      "name": "Time windows: the shortest tour can arrive too late",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "nearest-neighbour-tour"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Shortest distance is the goal in routing; deadlines can force a longer tour. (Covers the \"TSPTW\" reading of \"tspw\".)"
+    },
+    {
+      "id": "algo-kd-median-build",
+      "name": "Split at the median, alternate the axis: building a k-d tree",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "binary-search-tree"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "A spatial tree splits space into equal squares; it splits the points into equal halves."
+    },
+    {
+      "id": "algo-quadtree-split",
+      "name": "A quadtree splits only where points crowd",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "divide-and-conquer"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "A spatial index divides space evenly everywhere."
+    },
+    {
+      "id": "algo-rtree-overlap",
+      "name": "R-trees: boxes that overlap send a search down two branches",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-bplus-leaf-range"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "A box index visits one branch per query like a search tree."
+    },
+    {
+      "id": "algo-bvh-ray-skip",
+      "name": "Bounding volumes: one missed box skips every triangle inside",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "tree-traversal"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Rendering must test a ray against every triangle."
+    },
+    {
+      "id": "algo-uniform-grid-neighbours",
+      "name": "A uniform grid: neighbours live in the adjacent cells",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Finding close pairs needs comparing every pair."
+    },
+    {
+      "id": "algo-count-sketch-signs",
+      "name": "Random signs let collisions cancel (Count Sketch)",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "count-min-sketch"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Sketch errors always overcount, as in Count-Min; random signs make them cancel on average."
+    },
+    {
+      "id": "algo-exp-histogram-window",
+      "name": "Counting the last hour: buckets that merge as they age",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "count-min-sketch"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "A sliding-window count needs every timestamp stored."
+    },
+    {
+      "id": "algo-lsh-hyperplanes",
+      "name": "Random hyperplanes hash similar vectors into the same bucket",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-minhash-jaccard"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Hashing scatters similar items; locality-sensitive hashing collides them on purpose."
+    },
+    {
+      "id": "algo-lazy-greedy",
+      "name": "A stale gain is still an upper bound: lazy greedy skips re-scoring",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named submodularity for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-set-cover-greedy"
+      ],
+      "assumedKnowledge": [
+        "Compare numbers; read a short array, string, tree or graph as drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "submodularity",
+        "proposed-by:cm-ai"
+      ],
+      "misconception": "Greedy must re-score every candidate each round."
+    }
+  ]
+}
