@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Reaction = { title: string; liked: boolean; saved: boolean };
-type Reactions = Record<string, Reaction>;
+export type Reactions = Record<string, Reaction>;
 const KEY = "s3-social-v1";
-function read(): Reactions {
+export function readReactions(): Reactions {
   try {
     const value: unknown = JSON.parse(localStorage.getItem(KEY) ?? "{}");
     if (!value || typeof value !== "object" || Array.isArray(value)) return {};
@@ -16,11 +16,8 @@ function read(): Reactions {
 export function SocialActions({ slug, title }: { slug: string; title: string }) {
   const [reactions, setReactions] = useState<Reactions>({});
   const [message, setMessage] = useState("");
-  const [open, setOpen] = useState(false);
-  const collectionButton = useRef<HTMLButtonElement>(null);
-  const close = () => { setOpen(false); collectionButton.current?.focus(); };
   useEffect(() => {
-    const sync = () => setReactions(read());
+    const sync = () => setReactions(readReactions());
     sync();
     window.addEventListener("storage", sync);
     window.addEventListener("s3-social", sync);
@@ -28,7 +25,7 @@ export function SocialActions({ slug, title }: { slug: string; title: string }) 
   }, []);
   const current = reactions[slug];
   const toggle = (field: "liked" | "saved") => {
-    const all = read();
+    const all = readReactions();
     const next = { ...all, [slug]: { title, liked: all[slug]?.liked ?? false, saved: all[slug]?.saved ?? false, [field]: !all[slug]?.[field] } };
     try {
       localStorage.setItem(KEY, JSON.stringify(next));
@@ -51,24 +48,10 @@ export function SocialActions({ slug, title }: { slug: string; title: string }) 
       <button type="button" aria-pressed={!!current?.liked} onClick={() => toggle("liked")}><ActionIcon name="heart" />{current?.liked ? "Liked" : "Like"}</button>
       <button type="button" aria-pressed={!!current?.saved} onClick={() => toggle("saved")}><ActionIcon name="bookmark" />{current?.saved ? "Saved" : "Save"}</button>
       <button type="button" onClick={share}><ActionIcon name="share" />Share</button>
-      <button ref={collectionButton} type="button" onClick={() => setOpen(true)}><ActionIcon name="collection" />Library</button>
+      <a href="/library"><ActionIcon name="collection" />Library</a>
     </div>
     <p className="social-message" role="status">{message}</p>
-    {open && <div className="sheet" role="dialog" aria-modal="true" aria-label="Saved lessons" onKeyDown={(e) => {
-      if (e.key === "Escape") { e.stopPropagation(); close(); }
-      if (e.key === "Tab") {
-        const elements = e.currentTarget.querySelectorAll<HTMLElement>("button, a[href]");
-        const first = elements[0], last = elements[elements.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
-      }
-    }}>
-      <div className="sheet-inner"><div className="sheet-head"><h3>Saved lessons</h3><button autoFocus type="button" className="link" onClick={close}>Close</button></div>
-        <p className="muted small">Your collection on this device.</p>
-        <ul className="saved-lessons">{Object.entries(reactions).filter(([, r]) => r.saved).map(([id, r]) => <li key={id}><a href={`/d/${encodeURIComponent(id)}`}>{r.title}</a></li>)}</ul>
-        {!Object.values(reactions).some((r) => r.saved) && <p>Save a lesson to find it here later.</p>}
-      </div>
-    </div>}
+
   </>;
 }
 

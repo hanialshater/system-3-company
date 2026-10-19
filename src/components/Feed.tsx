@@ -213,6 +213,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
             </button>
           ))}
         </div>
+        <div className="feed-personal-links"><a href="/library" aria-label="Library" title="Saved lessons"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 3h12v18l-6-4-6 4V3Z" /></svg></a><a href="/profile" aria-label="Profile" title="Profile and sign in"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="8" r="4" /><path d="M4 22v-2a8 8 0 0 1 16 0v2" /></svg></a></div>
         <a className="brand-link" href="/catalog">
           Map
         </a>

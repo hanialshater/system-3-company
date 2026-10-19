@@ -300,3 +300,24 @@ a { color: inherit; }
   .feed-wrap .sheet { border-radius: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .social-actions svg { transition: none; } }
+
+.feed-personal-links { display: flex; gap: 14px; flex-shrink: 0; }
+.feed-personal-links a { color: #f7f7f8; text-decoration: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #ffffff0a; font-size: 24px; }
+.social-actions a { min-width: 44px; min-height: 44px; color: inherit; text-decoration: none; cursor: pointer; font-size: 10px; font-weight: 650; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.feed-wrap .social-actions a { color: #fff; padding: 0; }
+.social-actions a:hover svg { transform: scale(1.12); }
+.personal-page { --bg: #101115; --bg-2: #191b22; --bg-3: #22252f; --fg: #f7f7f8; --muted: #a9abb5; --line: #34363f; color-scheme: dark; background: var(--bg); color: var(--fg); min-height: 100dvh; padding: 28px max(22px, calc((100vw - 680px) / 2)); }
+.personal-page nav { display: flex; justify-content: space-between; margin-bottom: 56px; }
+.personal-page nav a { min-height: 44px; display: flex; align-items: center; color: #d8d9df; text-decoration: none; }
+.personal-page h1 { font-size: 40px; letter-spacing: -1.5px; margin: 8px 0 28px; }
+.personal-eyebrow { color: #a9abb5; letter-spacing: 2px; font-size: 10px; font-weight: 700; }
+.library-tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--line); }
+.library-tabs button { background: none; border: 0; border-bottom: 2px solid transparent; min-height: 48px; padding: 10px 0; color: var(--muted); cursor: pointer; }
+.library-tabs button[aria-pressed=true] { color: var(--fg); border-color: var(--fg); }
+.library-list { list-style: none; padding: 0; display: grid; gap: 12px; margin-top: 28px; }
+.library-list a { display: flex; justify-content: space-between; gap: 20px; padding: 22px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; font-weight: 650; }
+.library-empty { margin: 64px 0; text-align: center; line-height: 1.6; }
+.library-empty p { color: var(--muted); }
+.library-empty a { display: inline-block; margin-top: 20px; }
+.profile-page > main { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2); max-width: none !important; }
+@media (max-width: 600px) { .feed-personal-links { gap: 6px; } .feed-personal-links a { width: 36px; height: 36px; font-size: 21px; } .personal-page nav { margin-bottom: 30px; } }
