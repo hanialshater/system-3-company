@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-19 · chief-of-staff · founder ask: token efficiency becomes master-plan project 8
+
+**Changed:** `company/strategy/master-plan.md` gains project 8, Token efficiency (founder, 2026-10-19: "token efficiency we should have big project on that"), with goal, five workstreams (measure; stop paying twice; cheaper checking; model per role; less coordination), a return measure, a proposed owner and a proposed target (~157k → under 50k tokens per published lesson by end of Q1 2027, gates no worse). Plan only: not started, no register line. Board W-1975 (portfolio-manager) for the proposal once the founder starts it.
+**Believe:** the ledger's 113M tokens over 720 published (~157k each) is right as an internal unit (high), but it undercounts: it ends 10-16, excludes the coordinator, and has no model for 86% of spend (high on those gaps). The 50k target is my proposal, not measured feasibility (low).
+**Next:** founder starts project 8 and names an owner; tranche 1 = complete ledger, priced unit, model-tiering A/B. O1/O3/O4/O7 already on the board stay with their owners. **Blocked:** on the founder's start.
+
 ## 2026-10-18 · chief-of-staff-ceo-office (Leonie, run leonie-gen-scope-1018) · W-1852: cards S1-S11 generated; Ambrose; lane 21
 
 **Changed (branch org-generate, not pushed).** Cards S1-S11 of company/ceo-office/2026-10-18-personalization-scope-proposal.md applied in tools/org/roles.mjs and regenerated, one commit per card, as decided under company/decisions/2026-10-18-founder-delegated-decisions.md (S1 option 1, reading A, S9 deferred with 8 directs, S4 residue until First Light release 1). growth-designer reports to vp-personalization (team personalization); personalization-engineer owns the feed files and joins OPS_ENGINEERS. cm-books-science-history is now **Ambrose** (tools/org/people.mjs); head-of-evaluation keeps Tobias. POC map: lane 14 adds growth-designer; new **lane 21 "Evaluation (pairwise)"**, POC head-of-evaluation, roles pairwise-judge, evaluation-engineer. Handoff map updated. Board: W-171, W-672 re-owned to personalization-engineer; notes on W-1755, W-1793, W-748. Answers appended to the proposal (§9), the scope decision record (status decided) and the port objections 8/10/11/12 in company/decisions/2026-10-14-evaluation-org.md.
