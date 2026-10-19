@@ -765,6 +765,41 @@
           "Deployed by Vercel's Git integration from a commit carrying the deploy marker (founder's choice), not the Deploy to Vercel workflow: no staged promotion and no wrapper smoke test before the domain switched; CI verify runs beside the deploy, not before it. Smoke test by the chief of staff after READY. The workflow's 05238276 upload fix is still unproven (W-1666, W-1669)."
         ]
       }
+    },
+    {
+      "version": "r11",
+      "date": "2026-10-19T09:12:10.000Z",
+      "commit": "9911156584a25774b502a9a7fe0cbd42aa1958f6",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-19-founder-show-all-lessons.md#deployment-approval"
+      },
+      "summary": "Show all 1,283 registered lessons with explicit unpublished status labels.",
+      "added": {
+        "features": [
+          "Feed, map, direct lesson pages and sanitized metadata include all lesson statuses.",
+          "Draft, In review and Retired badges explicitly identify unpublished lessons.",
+          "Map includes lessons without a curriculum concept mapping."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "No lesson content or publication status changed since r10 (git diff src/demos is empty).",
+          "Local full verification is incomplete: HQ filename casing blocks local TypeScript; full verify stops on publication-tool fixture tests. Platform 37 passed, 4 built-output checks skipped.",
+          "Accounts remain off; sender-domain setup and account go-live readiness remain incomplete.",
+          "Git integration builds on Vercel and assigns production domains before post-deploy smoke; no staged promotion used."
+        ]
+      }
     }
   ]
 }

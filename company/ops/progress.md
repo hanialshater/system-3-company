@@ -4,6 +4,13 @@ Newest entry at the top. Every session adds one before it ends. This is testimon
 who no longer exists: check what you rely on.
 
 
+
+## 2026-10-19 · chief-of-staff · all-lessons production release r11
+
+Founder approved the specific show-all release after disclosure of local validation limits. Triggered production Git build from remote default commit 991115658. Vercel deployment dpl_H5qwgJRpPZj35NZ3aU9PVeC6Hqt1 reached READY in fra1 and system-3-company.vercel.app switched to it. Remote production build/typecheck passed. Live smoke confirms feed total 1,283, map 200, three sampled draft pages and metadata 200 with Draft / Unpublished labels and original draft status, unknown lesson 404, and accounts still off. Browser independently displays the live draft label and prediction controls. Record: company/ops/deployments/2026-10-19-show-all-lessons.json. Release log r11 records zero lesson publication changes. W-1976 complete for requested visibility and deployment; no full-catalog interaction QA or publication acceptance inferred.
+
+Auth is a separate incomplete setup: production database and secret configured, but sender-domain choice / mail setup and account go-live checks remain. No account flag changed by this release. Local Mac HQ case conflict and publication-fixture test failures remain for their owners.
+
 ## 2026-10-19 · chief-of-staff · show all lessons with accurate status tags
 
 Founder requested all unpublished lessons visible instead of excluded. W-1976 is review. Shared visibility now includes published/review/draft/retired across feed, map, direct lesson URLs and sanitized metadata. Added distinct unpublished labels and map fallback entries for unmapped lessons. Publication statuses, claim evidence and protected files are unchanged. Policy and objections: company/decisions/2026-10-19-founder-show-all-lessons.md. Remote default remains ccr-4c6c7654-ew9ko1; work isolated in /tmp/s3-social-default.

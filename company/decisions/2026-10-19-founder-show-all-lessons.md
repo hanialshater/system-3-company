@@ -3,7 +3,7 @@
 date: 2026-10-19
 owner: head-of-product (visibility policy); platform-engineer (catalog and lesson host)
 Recorded by: chief-of-staff
-status: decided by the founder in this chat; implementation pending validation and release
+status: deployed in r11 after founder approval; see company/ops/deployments/2026-10-19-show-all-lessons.json
 
 ## Direction and reason
 
@@ -36,3 +36,5 @@ Implemented for 1,283 registered lessons in this checkout (720 published, 234 re
 ## Deployment approval
 
 The founder replied “I apptobr” to the explicit question “Approve deploying this update?” in this conversation on 2026-10-19. Interpreted in context as approval of this specific all-lessons production update. The question disclosed the existing local HQ casing build failure and the passing platform tests. The target is the existing system-3-company project, production, using the already configured Vercel Git build marker. No account flag is enabled. This records approval for this release, not a standing deployment approval or a publication-gate change.
+
+Deployment result: Vercel production build/typecheck passed and the deployment reached READY. Live smoke passed 14 checks, including all 1,283 lessons in the feed, three labelled draft pages/metadata/map links, unknown URL 404 and accounts off. A browser confirmed the draft badge and prediction controls. This resolves the production-build uncertainty for the deployed Linux artifact; the local Mac casing issue remains.
