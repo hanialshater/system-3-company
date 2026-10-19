@@ -18,7 +18,7 @@ who no longer exists: check what you rely on.
 - Status lists: company/domains/briefs/2026-10-18-ai-concept-list.md and 2026-10-18-algorithms-concept-list.md.
 
 **Next (pick up here):**
-- W-1975, cm-ai: revise the proposal. Add a TPE / Bayesian-optimisation topic to optimisation-search; drop or re-weight algo-tsptw-time-windows. Then put it to the founder.
+- W-1976, cm-ai: revise the proposal. Add a TPE / Bayesian-optimisation topic to optimisation-search; drop or re-weight algo-tsptw-time-windows. Then put it to the founder.
 - Do not edit content/curriculum/ai.json and do not write briefs until the founder approves the map.
 
 **Believe:**

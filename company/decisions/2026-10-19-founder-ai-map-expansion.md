@@ -27,4 +27,4 @@ recorded by: chief-of-staff
 
 ## Board
 
-- W-1975 revise the proposal (owner cm-ai)
+- W-1976 revise the proposal (owner cm-ai)

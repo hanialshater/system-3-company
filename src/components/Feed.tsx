@@ -133,18 +133,48 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
 
   const go = useCallback((delta: number) => {
     const root = scroller.current;
-    if (!root) return;
-    root.scrollBy({ top: delta * root.clientHeight, behavior: "smooth" });
+    if (!root || document.querySelector("[role=dialog]")) return;
+    const index = Math.max(0, Math.min(root.children.length - 1, Math.round(root.scrollTop / root.clientHeight) + delta));
+    root.scrollTo({ top: index * root.clientHeight, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement)?.tagName === "INPUT") return;
+      if ((e.target as HTMLElement)?.closest("input, textarea, select, button, a, [contenteditable], [role=dialog], [role=slider]") || document.querySelector("[role=dialog]")) return;
       if (e.key === "ArrowDown" || e.key === "j") (e.preventDefault(), go(1));
       if (e.key === "ArrowUp" || e.key === "k") (e.preventDefault(), go(-1));
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
+
+  // At a nested scroll boundary, a deliberate vertical swipe advances the feed.
+  useEffect(() => {
+    const root = scroller.current;
+    if (!root) return;
+    let start: { x: number; y: number; target: Element } | null = null;
+    const begin = (e: TouchEvent) => {
+      const target = e.target instanceof Element ? e.target : null;
+      start = e.touches.length === 1 && target && !target.closest("button, a, input, textarea, select, [role=slider], [role=dialog], svg, canvas")
+        ? { x: e.touches[0].clientX, y: e.touches[0].clientY, target } : null;
+    };
+    const move = (e: TouchEvent) => {
+      if (!start || e.touches.length !== 1) return;
+      const dy = start.y - e.touches[0].clientY;
+      const dx = start.x - e.touches[0].clientX;
+      if (Math.abs(dy) < 60 || Math.abs(dy) < Math.abs(dx) * 1.5) return;
+      for (let el: Element | null = start.target; el && el !== root; el = el.parentElement) {
+        if (el instanceof HTMLElement && /auto|scroll/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight + 2) {
+          if (dy > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 2 : el.scrollTop > 2) return;
+        }
+      }
+      e.preventDefault();
+      go(dy > 0 ? 1 : -1);
+      start = null;
+    };
+    root.addEventListener("touchstart", begin, { passive: true });
+    root.addEventListener("touchmove", move, { passive: false });
+    return () => { root.removeEventListener("touchstart", begin); root.removeEventListener("touchmove", move); };
   }, [go]);
 
   const chooseFilter = (id: string) => {
@@ -183,11 +213,16 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
             </button>
           ))}
         </div>
+        <div className="feed-personal-links"><a href="/library" aria-label="Library" title="Saved lessons"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 3h12v18l-6-4-6 4V3Z" /></svg></a><a href="/profile" aria-label="Profile" title="Profile and sign in"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="8" r="4" /><path d="M4 22v-2a8 8 0 0 1 16 0v2" /></svg></a></div>
         <a className="brand-link" href="/catalog">
           Map
         </a>
       </nav>
 
+      <nav className="feed-navigation" aria-label="Lesson navigation">
+        <button type="button" aria-label="Previous lesson" disabled={active === 0} onClick={() => go(-1)}>↑</button>
+        <button type="button" aria-label="Next lesson" onClick={() => go(1)}>↓</button>
+      </nav>
       <div className="feed" ref={scroller} data-testid="feed">
         {items.map((it, i) => (
           <section key={it.key} className="slot-screen" data-index={i}>
