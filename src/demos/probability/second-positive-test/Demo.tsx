@@ -88,7 +88,7 @@ export default function SecondPositiveTest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A condition affects ${pct(PREVALENCE)} of people. The test catches ${pct(SENSITIVITY)} of cases and wrongly flags ${pct(FALSE_POS)} of healthy people. After one positive, the chance of being sick is about ${pct(shareSick(C1))}. After a second, independent positive, it is about:`,
+        question: `You're tested for a condition ${pct(PREVALENCE)} of people have. It catches ${pct(SENSITIVITY)} of cases but flags ${pct(FALSE_POS)} of healthy people. You test positive: about a ${pct(shareSick(C1))} chance you're sick. A second test, erring separately, is positive too. Now?`,
         options: ["19%", pct(shareSick(C2)), pct(SENSITIVITY * SENSITIVITY)],
         answer: 1,
       }}

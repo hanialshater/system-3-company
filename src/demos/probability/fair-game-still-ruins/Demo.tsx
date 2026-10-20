@@ -115,7 +115,7 @@ export default function FairGameStillRuins({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Fair coin, $1 bets. You hold $10 and the house holds $${TOTAL - 10}. You play until one side has all $${TOTAL}. Your chance of taking it all?`,
+        question: `You sit down at a fair coin-flip table with $10; the house has $${TOTAL - 10}. Each flip is a $1 bet, and play runs until one side has all $${TOTAL}. Your chance of taking it all?`,
         options: ["50%", `about ${pct(exact(10))}`, "about 1%"],
         answer: 1,
       }}

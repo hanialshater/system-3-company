@@ -76,7 +76,7 @@ export default function RandomDotsCluster({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${DOTS} dots land at random on a 10 x 10 grid of squares. How likely is it that some square holds ${CROWD} or more dots?`,
+        question: `The first ${DOTS} raindrops land at random on a patio of 10 x 10 square tiles. How likely is it that some tile catches ${CROWD} or more?`,
         options: ["about 15%", `about ${pct(EXACT)}`, "about 95%"],
         answer: 1,
       }}

@@ -37,7 +37,7 @@ export default function SmallHospital({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Hospital A has 15 births a day, hospital B has 45. Half of all babies are boys. Over a year, which has more days when more than 60% of babies born are boys?",
+          "You keep the birth records for two hospitals: A has 15 births a day, B has 45. Half of all babies are boys. Over a year, which has more days with over 60% boys?",
         options: ["A (smaller)", "B (larger)", "About the same"],
         answer: 0,
       }}

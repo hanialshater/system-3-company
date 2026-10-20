@@ -37,7 +37,7 @@ export default function PraiseThenSlump({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A test score is half skill, half luck. The top 10% on test 1 sit test 2 with the same skill and no coaching. What happens to their average on test 2?",
+          "You teach a class where each test score is half skill, half luck. You praise the top 10% on test 1. With the same skill and no extra coaching, how do they average on test 2?",
         options: ["About the same", "Lower", "Higher"],
         answer: 1,
       }}

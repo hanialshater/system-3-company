@@ -108,7 +108,7 @@ export default function EveryoneGetsHatsBack({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${Q_SIZE} people check their hats. The hats come back in random order. How likely is it that at least one person gets their own hat?`,
+        question: `After a party, the cloakroom hands ${Q_SIZE} guests their hats back in random order. How likely is it that at least one guest gets their own hat?`,
         options: ["About 10%", `About ${Math.round(exact(Q_SIZE) * 100)}%`, "About 90%"],
         answer: 1,
       }}

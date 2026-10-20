@@ -143,7 +143,7 @@ export default function TwentyFlipsRunOfFive({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${FLIPS} fair coin flips. How likely is a run of ${TARGET} or more of the same face somewhere in them?`,
+        question: `A friend flips a fair coin ${FLIPS} times and bets you there will be a run of ${TARGET} or more of the same face somewhere. How likely is that?`,
         options: ["About 5%", "About 20%", "About 45%"],
         answer: 2,
       }}

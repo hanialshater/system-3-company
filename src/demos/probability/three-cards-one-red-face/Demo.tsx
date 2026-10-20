@@ -136,7 +136,7 @@ export default function ThreeCards({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A hat holds three cards: red on both sides, blue on both sides, and red on one side and blue on the other. You draw one at random and see a red face. How likely is the hidden side red?",
+          "At a magic show, you draw a random card from a hat of three: red on both sides, blue on both sides, red on one side and blue on the other. A red face looks up at you. How likely is the hidden side red?",
         options: ["1/2", frac, "1/3"],
         answer: 1,
       }}

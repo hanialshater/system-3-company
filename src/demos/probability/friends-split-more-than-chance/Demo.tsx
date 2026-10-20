@@ -86,7 +86,7 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Class of 30: 20 in one group, 10 in the other. It has 45 friendships; 9 cross groups (20%). If friendships ignored group, what share would cross groups?",
+          "Your class of 30 has 20 in one group, 10 in the other, and 45 friendships; 9 cross groups (20%). If friendships ignored group, what share would cross groups?",
         options: ["About 33%", "About 46%", "About 20%"],
         answer: 1,
       }}

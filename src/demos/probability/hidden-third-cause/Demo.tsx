@@ -163,7 +163,7 @@ export default function HiddenThirdCause({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a simulated town, days with more ice-cream sales also have more sunburns. Compare only days with the same temperature. What happens to the link?",
+          "In a made-up beach town you keep the daily records: days with more ice-cream sales also have more sunburns. You compare only days at the same temperature. What happens to the link?",
         options: ["Stays strong", "Mostly disappears", "Reverses"],
         answer: 1,
       }}

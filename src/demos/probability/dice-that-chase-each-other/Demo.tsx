@@ -117,7 +117,7 @@ export default function DiceThatChaseEachOther({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Four dice. A beats B two times in three. B beats C two times in three. C beats D two times in three. How often does D beat A?",
+        question: "At game night a friend lays out four odd dice. A beats B two times in three. B beats C two times in three. C beats D two times in three. How often does D beat A?",
         options: ["Under half the time", "Half the time", "Two times in three"],
         answer: 2,
       }}

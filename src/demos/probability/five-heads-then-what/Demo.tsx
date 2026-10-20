@@ -44,7 +44,7 @@ export default function FiveHeads({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A fair coin just landed heads five times in a row. How likely is heads on flip six?",
+        question: "A friend's fair coin has just landed heads five times in a row, and they are about to flip again. How likely is heads on flip six?",
         options: ["Below 50%", "About 50%", "Above 50%"],
         answer: 1,
       }}

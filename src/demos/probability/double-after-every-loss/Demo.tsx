@@ -105,7 +105,7 @@ export default function DoubleAfterEveryLoss({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Fair coin, even money (you win or lose what you bet). Bet $1 and double after each loss; stop at the first win, or after ${MAX_LOSSES} losses in a row ($${BUST} lost). Your average profit per round is:`,
+        question: `At a fair coin-toss table you bet $1 and win or lose what you bet. Double after each loss; stop at your first win, or after ${MAX_LOSSES} losses in a row ($${BUST} gone). Your average profit per round?`,
         options: [`about +$${(1 - P_BUST).toFixed(2)}`, "about $0", `about −$${(1 - P_BUST).toFixed(2)}`],
         answer: 1,
       }}

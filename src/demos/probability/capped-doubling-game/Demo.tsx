@@ -164,7 +164,7 @@ export default function CappedDoublingGame({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Flip a fair coin until the first tails, at most ${MAXF} flips. First tails on flip 1 wins $2, on flip 2 wins $4, on flip 3 wins $8, and so on (all heads wins nothing). What entry price breaks even over many games?`,
+        question: `At a casino you flip a fair coin until the first tails, ${MAXF} flips at most. Tails on flip 1 wins $2, flip 2 $4, flip 3 $8, and so on; all heads wins nothing. What entry price breaks even over many games?`,
         options: ["$2", "$10", `$${FAIR}`],
         answer: 2,
       }}

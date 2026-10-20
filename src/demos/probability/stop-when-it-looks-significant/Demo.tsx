@@ -105,7 +105,7 @@ export default function StopWhenItLooksSignificant({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A fair coin is flipped. After every flip from the ${FIRST_LOOK}th to the ${FLIPS}th you test whether it looks biased (5% level), stopping the first time it does. How often do you wrongly call it biased?`,
+        question: `A friend's coin is fair, but you doubt it. From flip ${FIRST_LOOK} to flip ${FLIPS} you run a 5% test after each flip, stopping once it looks biased. How often do you wrongly call it biased?`,
         options: ["about 5%", `about ${pct(EX.peek)}`, "about 60%"],
         answer: 1,
       }}

@@ -120,7 +120,7 @@ export default function RealEffectMissed({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A coin is secretly ${P_TRUE * 100}% heads. You flip it ${SHORT} times and call it biased only if heads reaches ${bar(SHORT)} (a fair coin does that ${(falseAlarm(SHORT) * 100).toFixed(1)}% of the time). How often do you catch the bias?`,
+        question: `Your friend's coin is secretly ${P_TRUE * 100}% heads. You flip it ${SHORT} times and cry foul only if heads reaches ${bar(SHORT)} (a fair coin does that ${(falseAlarm(SHORT) * 100).toFixed(1)}% of the time). How often do you catch it?`,
         options: ["about 90%", "about 60%", `about ${pct(power(SHORT))}`],
         answer: 2,
       }}

@@ -127,8 +127,8 @@ export default function CityPollNationPoll({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Poll ${n(SAMPLE)} random people in a city of ${n(CITY)}, and ${n(SAMPLE)} in a nation of ${label(NATION)}. Margin of error = how far a poll may miss, 95% of the time. Which is bigger?`,
-        options: ["The city's", "The nation's", "About the same"],
+        question: `Two phone polls each reach ${n(SAMPLE)} random people: one in a city of ${n(CITY)}, one in a nation of ${label(NATION)}. Margin of error is how far a poll may miss, 95% of the time. Which poll's is bigger?`,
+        options: ["The city poll's", "The nation poll's", "About the same"],
         answer: 2,
       }}
       exploreHint={`Shrink the population to ${n(CITY)}, then ${n(SMALL)}. Then change how many are asked.`}

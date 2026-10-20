@@ -123,7 +123,7 @@ export default function BestOfTwentyIdentical({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${COINS} fair coins are each flipped ${FLIPS} times, and the coin with the most heads wins. Over many contests, about how many heads does the winner get on average?`,
+        question: `In a classroom game, ${COINS} students each flip a fair coin ${FLIPS} times, and the most heads wins. Over many games, about how many heads does the winner get on average?`,
         options: [String(FLIPS / 2), String(FLIPS / 2 + 2), String(exact)],
         answer: 2,
       }}

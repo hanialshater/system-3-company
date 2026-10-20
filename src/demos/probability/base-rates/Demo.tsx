@@ -117,7 +117,7 @@ export default function BaseRates({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A disease affects 1 in 1,000 people. A test flags 99% of sick people, and wrongly flags 1% of healthy people. You test positive. Chance you have it?",
+          "At your check-up, you test positive for a disease that affects 1 in 1,000 people. The test flags 99% of sick people and wrongly flags 1% of healthy ones. Chance you have it?",
         options: ["About 99%", "About 90%", "About 50%", "About 9%"],
         answer: 3,
       }}

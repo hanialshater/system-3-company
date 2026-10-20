@@ -96,7 +96,7 @@ export default function BetTooMuch({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A coin lands heads ${pct(P_HEADS)} of the time and pays even money. Each round you stake the same share of your money. Which share leaves the middle player (half do better, half worse) richest after ${ROUNDS} rounds?`,
+        question: `A friend's coin lands heads ${pct(P_HEADS)} of the time, at even money. You and others each stake one fixed share of your money per round. Which share leaves the middle player (half do better, half worse) richest after ${ROUNDS} rounds?`,
         options: [pct(LOW), pct(BEST), pct(HIGH)],
         answer: 1,
       }}

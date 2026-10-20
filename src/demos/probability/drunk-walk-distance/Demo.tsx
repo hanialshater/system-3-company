@@ -110,7 +110,7 @@ export default function DrunkWalk({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A walker steps 1 metre left or right on each coin flip. After ${Q_STEPS} steps, how far from the start will they be, on average?`,
+        question: `Lost on a long path at night, you flip a coin before each step: heads, 1 metre left; tails, 1 metre right. After ${Q_STEPS} steps, how far from the start are you, on average?`,
         options: ["About 1 m", `About ${Q_DIST} m`, "About 50 m"],
         answer: 1,
       }}

@@ -97,7 +97,7 @@ export default function FriendsHaveMoreFriends({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Five people: one hub is friends with four others, who know only the hub. Pick a random person, then one of their friends at random. On average, how many friends does that friend have?",
+          "A club has five members: one is friends with the other four, who know only that one. Pick a member at random, then one of their friends at random. On average, how many friends does that friend have?",
         options: [MEAN.toFixed(1), "2.5", EXACT.toFixed(1)],
         answer: 2,
       }}

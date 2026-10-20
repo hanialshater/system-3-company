@@ -125,7 +125,7 @@ export default function SameAverage({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Game X: coin flip, win $${X.win} or lose $${X.lose}. Game Y: ${Y.p * 100}% chance to win $${Y.win}, else lose $${Y.lose}. Both average +$${ev(X)} per play. After ${PLAYS} plays, which leaves you behind more often?`,
+        question: `At the fair you'll play one game ${PLAYS} times. X: a coin flip wins $${X.win} or loses $${X.lose}. Y: ${Y.p * 100}% chance to win $${Y.win}, else lose $${Y.lose}. Both average +$${ev(X)} a play. Which leaves you behind more often?`,
         options: ["X", "Y", "Equally often"],
         answer: 1,
       }}

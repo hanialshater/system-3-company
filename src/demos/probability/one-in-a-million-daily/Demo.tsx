@@ -105,7 +105,7 @@ export default function OneInAMillionDaily({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A city of ${fmt(CITY)} people. Something has a 1-in-1,000,000 chance per person per day. How often does it happen somewhere in the city?`,
+        question: `You live in a city of ${fmt(CITY)} people. Some lucky fluke has a 1-in-1,000,000 chance of happening to each person each day. How often does it happen somewhere in your city?`,
         options: ["Almost never", `About ${PER_DAY} times a day`, "About once a year"],
         answer: 1,
       }}

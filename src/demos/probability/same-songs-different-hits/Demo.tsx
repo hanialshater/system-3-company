@@ -92,7 +92,7 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "8 songs (the best 70% more appealing than the worst). 1,000 people in each of 8 separate worlds pick one, each person more likely to pick songs already picked by others. In the worst of the 8 worlds, the best song finishes:",
+          "You release the same 8 songs in 8 separate worlds of 1,000 listeners each. The best is 70% more appealing than the worst, but each listener leans toward songs others already picked. In the worst world, the best song finishes:",
         options: ["2nd of 8", "4th of 8", "7th of 8"],
         answer: 2,
       }}

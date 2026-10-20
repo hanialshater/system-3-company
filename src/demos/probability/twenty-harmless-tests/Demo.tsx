@@ -34,7 +34,7 @@ export default function TwentyHarmlessTests({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You test 20 foods that truly have no effect on a disease, each with a 5% false-alarm rate. What is the chance at least one looks significant?",
+          "Your nutrition lab tests 20 foods for a link to a disease. None truly has one, and each test has a 5% false-alarm rate. What is the chance at least one looks significant?",
         options: ["About 5%", "About 64%", "100%"],
         answer: 1,
       }}

@@ -79,7 +79,7 @@ export default function NinetyFivePercentOfWhat({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The true support is exactly 50%. ${PER_BATCH} pollsters each ask ${n(N)} random people and report 95% intervals. About how many intervals miss 50%?`,
+        question: `Only you know the truth: exactly 50% of voters back the new park. ${PER_BATCH} pollsters each ask ${n(N)} random people and report a 95% interval. About how many intervals miss 50%?`,
         options: ["0", `about ${Math.round(EXACT * PER_BATCH)}`, "about 25"],
         answer: 1,
       }}

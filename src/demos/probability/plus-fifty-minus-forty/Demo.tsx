@@ -152,7 +152,7 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each round a fair coin: heads multiplies your money by ${UP}, tails by ${DOWN}. The average round gains ${GAIN_PCT}%. After ${ROUNDS} rounds, what happens to a typical player?`,
+        question: `A friend offers a fair-coin game. Heads multiplies your money by ${UP}, tails by ${DOWN}, so a round gains ${GAIN_PCT}% on average. After ${ROUNDS} rounds, how does a typical player do?`,
         options: [`Grows about ${GAIN_PCT}% per round`, "Shrinks", "Roughly breaks even"],
         answer: 1,
       }}

@@ -86,7 +86,7 @@ export default function AveragesTurnBellShaped({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A die has five faces showing 1 and one showing 6. Average ${BIG} rolls, and do that ${fmt(GROUPS)} times. The bar chart of those ${fmt(GROUPS)} averages looks:`,
+        question: `A carnival's trick die has five faces showing 1 and one showing 6. You average ${BIG} rolls, and do that ${fmt(GROUPS)} times. A bar chart of those ${fmt(GROUPS)} averages looks:`,
         options: ["two spikes, like one roll", "one hump, like a bell", "flat"],
         answer: 1,
       }}

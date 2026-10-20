@@ -110,7 +110,7 @@ export default function MontyHall100({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "100 doors, one car. You pick a door. The host, who knows where the car is, opens 98 empty doors, leaving yours and one other. Chance the car is behind the other one?",
+          "You're on a game show with 100 doors and one car. You pick a door. The host, who knows where the car is, opens 98 empty doors, leaving yours and one other. Chance the car is behind that one?",
         options: ["50%", "1%", "99%"],
         answer: 2,
       }}

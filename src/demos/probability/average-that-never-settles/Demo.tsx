@@ -123,7 +123,7 @@ export default function AverageNeverSettles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Averaging more die rolls squeezes the average onto 3.5. Now average numbers of a different kind, called Cauchy, where a rare draw can be enormous. With more draws, the average:",
+          "Your running average of die rolls squeezes onto 3.5. Beside you, a machine spits out numbers of a kind called Cauchy, where a rare one is enormous. Average more of those, and the average:",
         options: ["Squeezes in too, just more slowly", "Stays as spread out as one draw", "Drifts steadily to zero"],
         answer: 1,
       }}

@@ -81,7 +81,7 @@ export default function OddsThreeToOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A horse is at odds of 3 to 1 against winning. What chance of winning does that imply?",
+        question: "At the racetrack, the bookie shows your horse at 3 to 1 against. What chance of winning is that?",
         options: [pct(1 / 3), pct(chance(1, 3)), pct(chance(3, 1))],
         answer: 1,
       }}

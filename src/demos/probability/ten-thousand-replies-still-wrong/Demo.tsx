@@ -117,7 +117,7 @@ export default function TenThousandRepliesStillWrong({ slug }: { slug: string })
     <Lesson
       slug={slug}
       predict={{
-        question: "A town is split 50/50 on a plan. Opponents are twice as likely to answer an open web poll. What share of the 10,000 replies back it?",
+        question: "Your town is split 50/50 on a plan for a new skate park. Opponents are twice as likely to answer the council's open web poll. Of its 10,000 replies, what share back the plan?",
         options: ["About 50%", "About 40%", "About 33%"],
         answer: 2,
       }}

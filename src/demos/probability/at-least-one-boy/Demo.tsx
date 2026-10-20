@@ -121,7 +121,7 @@ export default function AtLeastOneBoy({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A family has two children. You learn only that at least one is a boy. How likely is it that both are boys?",
+        question: "You ask a new neighbour with two children, \"Is at least one a boy?\" She says yes. That is all you know. How likely is it that both are boys?",
         options: ["1/2", frac("atLeastOne"), "1/4"],
         answer: 1,
       }}

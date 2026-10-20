@@ -119,7 +119,7 @@ export default function WhySevenWins({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Roll two fair dice. A total of 7 is how many times as likely as a total of 3?",
+        question: "At a casino table, you roll two fair dice. How many times as likely is a total of 7 as a total of 3?",
         options: ["Equally likely", `${RATIO} times`, `${2 * RATIO} times`],
         answer: 1,
       }}

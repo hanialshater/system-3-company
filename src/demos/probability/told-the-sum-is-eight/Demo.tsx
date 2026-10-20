@@ -98,7 +98,7 @@ export default function ToldTheSumIsEight({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You roll two dice and are told only that the total is 8. How likely is it that at least one die shows a six?",
+        question: "Your friend rolls two dice behind a book and tells you only that the total is 8. How likely is it that at least one die shows a six?",
         options: [`${pct(N.six / N.left)}`, pct(E.six / E.left), "50%"],
         answer: 1,
       }}

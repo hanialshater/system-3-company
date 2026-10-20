@@ -149,7 +149,7 @@ export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "60 people, 6 friend groups. Delete the 20% of links with fewest shared friends, or the 20% with most. Which breaks it apart?",
+          "A town of 60 people lives in 6 friend groups. You can delete 20% of its friendships: those with the fewest shared friends, or those with the most. Which splits the town apart?",
         options: ["Fewest shared friends", "Most shared friends", "Both about the same"],
         answer: 0,
       }}

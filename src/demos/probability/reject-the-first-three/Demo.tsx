@@ -110,7 +110,7 @@ export default function RejectTheFirstThree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ten candidates arrive in random order. You see each once, with no going back. You reject the first ${K_Q}, then take the first one better than all before. Chance you get the very best?`,
+        question: `Hiring an assistant, you interview ten candidates in random order, one look each, no call-backs. You turn down the first ${K_Q}, then hire the first one better than all before. Chance you get the very best?`,
         options: [`About ${pct(1 / N)}`, `About ${pct(exact(K_Q))}`, "About 70%"],
         answer: 1,
       }}

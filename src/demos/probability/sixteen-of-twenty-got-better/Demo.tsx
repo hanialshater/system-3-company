@@ -113,7 +113,7 @@ export default function SixteenOfTwentyGotBetter({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "20 people with a cold take a new pill; 16 feel better within a week. To judge the pill, what do you most need?",
+        question: "Your pharmacy starts selling a new cold pill. Of 20 customers with a cold who take it, 16 feel better within a week. To judge the pill, what do you most need?",
         options: ["More people taking the pill", "How fast each of the 16 recovered", "How many get better with no pill"],
         answer: 2,
       }}

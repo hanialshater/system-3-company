@@ -148,7 +148,7 @@ export default function BirthdayParadox({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${QUESTION_N} people are in a room. What is the chance that at least two of them share a birthday?`,
+        question: `Your class has ${QUESTION_N} students. What is the chance that at least two of them share a birthday?`,
         options: ["About 6%", "About 25%", "About 50%", "About 90%"],
         answer: 2,
       }}

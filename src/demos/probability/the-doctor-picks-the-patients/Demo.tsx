@@ -150,7 +150,7 @@ export default function TheDoctorPicksThePatients({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A drug that does nothing is tested on 40 patients, 20 get it. Who should choose those 20 for a fair test?",
+        question: "You run a clinic trial of a drug that secretly does nothing: 40 patients, 20 doses. For a fair test, who should choose the 20 who get it?",
         options: ["The doctor, who knows the patients", "A coin decides", "Either: with 20 per group it evens out"],
         answer: 1,
       }}

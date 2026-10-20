@@ -288,7 +288,7 @@ export default function SamePictureTwoHistories({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two towns end in this same picture: all 12 friendships join same colours. Did people choose friends like themselves?",
+        question: "You visit two towns and find this same picture in both: all 12 friendships join people of the same colour. Did people choose friends like themselves?",
         options: [
           "Yes: they picked friends of their own colour",
           "No: they became like their friends",

@@ -103,7 +103,7 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "10,000 new pages each add one link. Raise the share that copy another page's link from 0% to 90%. The biggest page's links?",
+          "On a new website, 10,000 pages arrive one by one and each adds one link. Raise the share that copy another page's link from 0% to 90%. What happens to the top page's links?",
         options: ["About the same", "About double", "Hundreds of times more"],
         answer: 2,
       }}

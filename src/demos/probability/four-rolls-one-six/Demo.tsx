@@ -94,7 +94,7 @@ export default function FourRollsOneSix({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Roll a die ${ROLLS} times. How likely is at least one six?`,
+        question: `You bet a friend you will roll at least one six in ${ROLLS} rolls of a fair die. How likely are you to win?`,
         options: [`about ${pct(ROLLS / 6)}`, `about ${pct(EXACT_ANY)}`, `about ${pct(2 / 6)}`],
         answer: 1,
       }}

@@ -102,7 +102,7 @@ export default function JackpotOnceAWeek({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A jackpot's odds are 1 in ${n(ODDS)} per ticket. Buying one ticket every week, about how long until you'd expect your first win?`,
+        question: `Every Saturday you buy one lottery ticket. The jackpot odds are 1 in ${n(ODDS)} per ticket. About how long until you'd expect your first win?`,
         options: [
           `about ${n(Math.round(EXPECTED_YEARS / 1000 / 100) * 100)} years`,
           `about ${n(Math.round(EXPECTED_YEARS / 100 / 1000) * 1000)} years`,

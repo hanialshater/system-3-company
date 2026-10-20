@@ -135,7 +135,7 @@ export default function BusWait({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Buses arrive at random, ${MEAN_GAP} minutes apart on average. You turn up at a random moment. About how long do you wait, on average?`,
+        question: `You're at a bus stop. Buses come every ${MEAN_GAP} minutes on average, but at random times. You turn up at a random moment. About how long do you wait, on average?`,
         options: [`${MEAN_GAP / 2} minutes`, `${MEAN_GAP} minutes`, `${MEAN_GAP * 2} minutes`],
         answer: 1,
       }}

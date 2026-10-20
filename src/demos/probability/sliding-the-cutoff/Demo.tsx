@@ -99,7 +99,7 @@ export default function SlidingTheCutoff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Healthy scores average 0, sick scores average 2, both spread 1. With the cutoff at ${START_CUT}, ${pct1(A.missed)} of sick people are missed. Raise it to ${HIGH_CUT}: the share missed becomes`,
+        question: `Your clinic's blood test scores healthy people around 0 and sick people around 2, both spread 1. At cutoff ${START_CUT} it misses ${pct1(A.missed)} of sick patients. Raise the cutoff to ${HIGH_CUT}: it misses`,
         options: opts.map((o) => `about ${o}%`),
         answer: 2,
       }}

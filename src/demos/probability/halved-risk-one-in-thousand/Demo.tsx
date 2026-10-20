@@ -104,7 +104,7 @@ export default function HalvedRisk({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A pill halves the risk of a rare condition, from ${LOW} in 1,000 to ${cases(LOW, true)} in 1,000. Of 1,000 people who take it, how many avoid the condition who would otherwise have had it?`,
+        question: `At the doctor's, you're offered a pill that halves the risk of a rare condition, from ${LOW} in 1,000 to ${cases(LOW, true)} in 1,000. Of 1,000 people taking it, how many does it spare?`,
         options: [n(spared(LOW)), n(spared(20)), n(1000 / 2)],
         answer: 0,
       }}
