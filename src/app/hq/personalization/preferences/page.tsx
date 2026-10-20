@@ -19,7 +19,7 @@ export default async function PreferenceLab({ searchParams }: {
     const profiles = dataset.profiles as unknown as Record<string, EditorialProfile>;
     const page = accountFeedPage(feedOrder('all'), profiles, { ...fixtures[fixture], lessOf: [] }, dataset.profileSetVersion, 0, 'synthetic-only', catalogPrerequisites);
     return <main style={{ padding: 24, maxWidth: 1100, margin: 'auto' }}><nav><a href="/hq/personalization">Simulation lab</a> · <a href="/hq/evaluation">Evaluation</a></nav>
- <h1>Stated preferences: synthetic inspection</h1><p>No customer account, saved choices, history or behavior is read here. This is an editorial candidate inspection, not measured learning or a fitted GAM.</p>
+ <h1>Stated preferences: synthetic inspection</h1><p>These fixture results use only synthetic choices and editorial catalogue data; they do not use your account preferences or learning history. This is an editorial candidate inspection, not measured learning or a fitted GAM.</p>
  <form><label>Synthetic choices <select name="fixture" defaultValue={fixture}>{Object.keys(fixtures).map(id => <option key={id}>{id}</option>)}</select></label> <button>Inspect</button></form>
  <p>Recipe {RECIPE.version}; profiles {dataset.profileSetVersion}. {dataset.catalogueCount} catalogue entries; {dataset.counts.reviewed} reviewed, {dataset.counts.unknown} unknown, {dataset.counts.current} entry-current, {dataset.counts.stale} stale, {dataset.counts.disputed} disputed.</p>
  <p>{dataset.freshnessScope} Missing, stale, disputed or weak evidence remains a fixed position. Published/review status and declared prerequisites constrain actual feed swaps; this synthetic page uses the same declared prerequisite constraints and bounded recipe.</p>

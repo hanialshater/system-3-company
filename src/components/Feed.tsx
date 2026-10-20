@@ -347,8 +347,7 @@ function IntroCard({ onStart, count, personalized=false }: { onStart: () => void
         tells you why. Lessons come back days later as one quick question, because remembering is not knowing.
       </p>
       <p className="muted small">
-        {personalized?<>You chose subjects, experiences or challenge for this feed. Small shifts use your saved choices and provisional editorial observations, not measured learning benefit. {count} lessons today.</>:<>We know nothing about you yet, so this feed is not &ldquo;for you&rdquo;. It alternates subjects. {count} lessons
-        today.</>}
+        {personalized?<>You chose subjects, experiences or challenge for this feed. Small shifts use your saved choices and provisional editorial observations, not measured learning benefit. {count} lessons today.</>:<>This feed is not &ldquo;for you&rdquo;. It uses the default lesson order. {count} lessons today.</>}
       </p>
       <button type="button" className="primary" onClick={onStart} data-testid="start">
         Start
