@@ -1,0 +1,2 @@
+// Declared finite construction; pure operations, no training or external service.
+export function compute(mode: number) { const truth = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1], prediction = mode === 0 ? Array<number>(10).fill(0) : mode === 1 ? [0, 0, 0, 0, 0, 0, 0, 0, 1, 0] : [1, 1, 0, 0, 0, 0, 0, 0, 1, 1]; const correct = prediction.filter((x, i) => x === truth[i]).length, found = prediction.filter((x, i) => x === 1 && truth[i] === 1).length; return { truth, prediction, correct, found, snapshot: `${['Baseline', 'Feature', 'Alternate'][mode]} ${correct}/10; +${found}/2` }; }

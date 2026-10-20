@@ -1,0 +1,105 @@
+{
+  "slug": "ai-prior-as-regulariser",
+  "title": "Where does the prior pull?",
+  "hook": "Separate the likelihood bowl from the prior bowl.",
+  "domain": "ai",
+  "concept": "prior-as-regulariser",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Gaussian likelihood variance 1 and Gaussian prior variance τ². Omitted constants do not depend on w; this is MAP, not an equality to posterior means in every model."
+    ]
+  },
+  "misconception": "Gaussian likelihood variance 1 and Gaussian prior variance τ². Omitted constants do not depend on w; this is MAP, not an equality to posterior means in every model.",
+  "objective": "Compute and contrast the finite prior as regulariser cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-prior-as-regulariser.c1",
+      "text": "export function posterior(tau:number,mu:number){const y=3,precision=1/(tau*tau),map=(y+mu*precision)/(1+precision),parts=(w:number)=>[.5*(y-w)**2,.5*precision*(w-mu)**2];return {tau,mu,map,parts:parts(map),points:Array.from({length:41},(_,i)=>{const w=i/10,p=parts(w);return {w,likelihood:p[0],prior:p[1],total:p[0]+p[1]}})};}\nexport function run(mode:number){return posterior(mode===1?2:1,mode===2?2:0);}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">y=3 · μ={r.mu} · τ={r.tau} · constants omitted</text><path d=\"M18 95 H276\" className={s.axis}/>{(['likelihood','prior','total'] as const).map((key,j)=><path key={key} d={r.points.map((p,i)=>`${i?'L':'M'}${20+p.w*62},${95-p[key]*8}`).join(' ')} className={j===2?s.curve:j===0?s.likelihood:s.prior}/>)}<circle cx={20+r.map*62} cy={95-(r.parts[0]+r.parts[1])*8} r=\"5\" className={s.dot}/><text x=\"18\" y=\"114\">MAP={show(r.map)}</text><path d=\"M18 124 h12\" className={s.likelihood}/><text x=\"33\" y=\"129\">L={show(r.parts[0])}</text><path d=\"M142 124 h12\" className={s.prior}/><text x=\"158\" y=\"129\">prior={show(r.parts[1])}</text>\ny=3; likelihood variance=1; prior μ=0, τ=1. J=.5(3−w)²+(w−μ)²/(2τ²).",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-prior-as-regulariser.c2",
+      "text": "Where does the prior pull?; Separate the likelihood bowl from the prior bowl.; {\"question\": \"Observation 3 has Gaussian variance 1; prior mean 0 and variance 1. Ignoring constants, J=.5(3−w)²+.5w². Where is the MAP?\", \"options\": [\"0\", \"1.5\", \"3\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-prior-as-regulariser.c3",
+      "text": "Your unit-variance zero-mean prior balanced the likelihood at MAP 1.500. Weakening it to τ=2 moved MAP to 2.400, closer to observation 3. Changing prior mean to 2 instead pulled toward 2. Priors need not shrink toward zero; this is a specified Gaussian model.\n`μ=${r.mu}, τ=${r.tau}: MAP=${f(r.map)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-prior-as-regulariser.c4",
+      "text": "{\"question\": \"Observation 3 has variance 1, and the prior has mean 2, variance 1. What is MAP?\", \"options\": [\"1.5\", \"2\", \"2.5\"], \"answer\": 2, \"why\": \"Equal precisions average observation and prior mean: (3+2)/2=2.5. Shrinkage is toward prior mean 2.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-prior-as-regulariser.c5",
+      "text": "Gaussian likelihood variance 1 and Gaussian prior variance τ². Omitted constants do not depend on w; this is MAP, not an equality to posterior means in every model. Controls: τ=1, τ=2, μ=2, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Observation 3 has variance 1, and the prior has mean 2, variance 1. What is MAP?",
+    "options": [
+      "1.5",
+      "2",
+      "2.5"
+    ],
+    "answer": 2,
+    "why": "Equal precisions average observation and prior mean: (3+2)/2=2.5. Shrinkage is toward prior mean 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:prior-as-regulariser",
+    "also": [],
+    "prerequisites": [
+      "probability:bayesian-updating",
+      "ai:regularisation"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

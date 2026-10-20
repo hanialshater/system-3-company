@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const choose=(n:number,k:number)=>{let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;},tail=(p:number)=>[7,8].reduce((s,k)=>s+choose(8,k)*p**k*(1-p)**(8-k),0),p=mode===2?.8*(1-.25):.8,seq=[1,1,1,1,1,1,1,0].map((x,i)=>mode===0?x:i<2?0:x),g=seq.reduce((a,b)=>a+b);return out([`tokens=${seq.map(x=>x?'G':'R').join('')} · G=${g} flag=${g>=7?'yes':'no'}`,`${mode===2?'channel':'original iid'} P(G)=${f3(p)} · P(flag)=${f3(tail(p))}`,`null tail=${f3(tail(.5))} · threshold≥7`],`${mode}: ${g}G/${f3(tail(p))}`);}

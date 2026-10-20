@@ -1,0 +1,1 @@
+export function transform(scale:number){if(scale===0)throw new Error("Noninvertible scale");const endpoints=[1,1+scale].sort((a,b)=>a-b),density=1/Math.abs(scale),mid=(endpoints[0]+endpoints[1])/2;return {scale,endpoints,density,mid,inverse:(mid-1)/scale,mass:(endpoints[1]-endpoints[0])*density};} export function run(mode:number){return transform(mode===1?-2:2);}

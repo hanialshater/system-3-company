@@ -1,0 +1,1 @@
+export function run(mode=0){if(!Number.isInteger(mode)||mode<0||mode>2)throw new Error('case');const floor=mode===2?2:1,initial=mode===2?12:8;const compute=mode===1?[100,1000,10000]:[1,10,100];return {floor,rows:compute.map(C=>({compute:C,excess:initial*C**(-Math.log10(2)),total:floor+initial*C**(-Math.log10(2))}))};}

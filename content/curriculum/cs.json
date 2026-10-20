@@ -1296,7 +1296,7 @@
     },
     {
       "id": "edge-betweenness-communities",
-      "name": "Edge betweenness and Girvan\u2013Newman community splitting",
+      "name": "Edge betweenness and Girvan–Newman community splitting",
       "level": "stretch",
       "demand": 2,
       "prerequisites": [
@@ -5876,6 +5876,278 @@
         "transforms-convolution-bitsets"
       ],
       "brief": "company/domains/briefs/algorithms-200.json#algo-shift-and-matching"
+    },
+    {
+      "id": "algo-tsp-two-opt",
+      "name": "Which reconnection shortens this tour?",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "nearest-neighbour-tour",
+        "algo-segment-intersection"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp"
+      ],
+      "misconception": "A tour that looks tidy is near-optimal; any crossing proves it can be shortened.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt"
+    },
+    {
+      "id": "algo-tsp-christofides",
+      "name": "Which odd corners need pairing?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named tsp for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-metric-tsp-doubletree",
+        "algo-euler-degree-test",
+        "algo-hierholzer-splice"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+        "Tiny perfect matching enumeration is supplied; this is not a matching-algorithm lesson."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "tsp"
+      ],
+      "misconception": "The double-tree 2x bound is the best a fast method can promise.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides"
+    },
+    {
+      "id": "algo-kd-median-build",
+      "name": "Which point becomes the root?",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "binary-search-tree"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric"
+      ],
+      "misconception": "A spatial tree splits space into equal squares; it splits the points into equal halves.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-kd-median-build"
+    },
+    {
+      "id": "algo-quadtree-split",
+      "name": "Where does the next split go?",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "divide-and-conquer"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric"
+      ],
+      "misconception": "A spatial index divides space evenly everywhere.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-quadtree-split"
+    },
+    {
+      "id": "algo-rtree-overlap",
+      "name": "How many boxes can contain the query?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "tree-traversal"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric"
+      ],
+      "misconception": "A box index visits one branch per query like a search tree.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap"
+    },
+    {
+      "id": "algo-bvh-ray-skip",
+      "name": "Which shapes need a test?",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "tree-traversal"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric"
+      ],
+      "misconception": "Rendering must test a ray against every triangle.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-bvh-ray-skip"
+    },
+    {
+      "id": "algo-uniform-grid-neighbours",
+      "name": "Which nearby cells need a look?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named geometric for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "computational-geometry",
+      "tags": [
+        "algorithms",
+        "computational-geometry",
+        "geometric"
+      ],
+      "misconception": "Finding close pairs needs comparing every pair.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-uniform-grid-neighbours"
+    },
+    {
+      "id": "algo-count-sketch-signs",
+      "name": "Can a sketch estimate too low?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "count-min-sketch"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming"
+      ],
+      "misconception": "Sketch errors always overcount, as in Count-Min; random signs make them cancel on average.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-count-sketch-signs"
+    },
+    {
+      "id": "algo-exp-histogram-window",
+      "name": "How much of the oldest bucket counts?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "algo-sliding-window-deque",
+        "binary-numbers"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming"
+      ],
+      "misconception": "A sliding-window count needs every timestamp stored.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window"
+    },
+    {
+      "id": "algo-lsh-hyperplanes",
+      "name": "Which vectors share a sign?",
+      "level": "stretch",
+      "demand": 2,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named streaming for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "ai:cosine-similarity",
+        "hashing-collisions"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+        "Dot product and nonzero-vector angular similarity."
+      ],
+      "subarea": "algorithms",
+      "topic": "randomized-streaming",
+      "tags": [
+        "algorithms",
+        "randomized-streaming",
+        "streaming"
+      ],
+      "misconception": "Hashing scatters similar items; locality-sensitive hashing collides them on purpose.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lsh-hyperplanes"
+    },
+    {
+      "id": "algo-lazy-greedy",
+      "name": "Can the old score still rule a candidate out?",
+      "level": "stretch",
+      "demand": 1,
+      "demandEvidence": "estimated-founder-request",
+      "demandReason": "Founder named submodularity for the AI map (2026-10-18); cm-ai judges it algorithmic, so it is offered to cm-cs-algorithms. Not measured.",
+      "prerequisites": [
+        "ai:submodular-coverage-gains",
+        "heap-priority-queue"
+      ],
+      "assumedKnowledge": [
+        "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+      ],
+      "subarea": "algorithms",
+      "topic": "approximation-online",
+      "tags": [
+        "algorithms",
+        "approximation-online",
+        "submodularity"
+      ],
+      "misconception": "Greedy must re-score every candidate each round.",
+      "proposed": false,
+      "brief": "company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy"
     }
   ]
 }

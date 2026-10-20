@@ -1,0 +1,109 @@
+{
+  "slug": "ai-agent-checkpoint-recovery",
+  "title": "What does a checkpoint actually save?",
+  "hook": "Enumerate attempt events and retained progress.",
+  "domain": "ai",
+  "concept": "agent-checkpoint-recovery",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:agent-loop",
+      "books:checklist-steps-compound"
+    ],
+    "doesNotKnow": [
+      "Four steps; each attempt succeeds independently with p=.8. Does one retry per step change raw single-attempt reliability?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite agent-checkpoint-recovery model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-agent-checkpoint-recovery.c1",
+      "text": "What does a checkpoint actually save? Enumerate attempt events and retained progress. Four steps; each attempt succeeds independently with p=.8. Does one retry per step change raw single-attempt reliability? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §17; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-checkpoint-recovery.c2",
+      "text": "Independent checkpoint retries improved completed-task probability while each attempt remained .8 reliable. Whole-task retries lost retained work. Correlating a step’s retries removed the improvement. These calculations require valid saved state and perfect detection; they guarantee no external-effect safety.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §17; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-checkpoint-recovery.c3",
+      "text": "{'question': 'Does .96 per-step recovery still apply when both attempts share one outcome?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Perfectly correlated retries repeat the first outcome, leaving step success .8.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §17; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-checkpoint-recovery.c4",
+      "text": "Addressed visible stage operands and labels: 4 steps; p=.8; perfect detection | ≤1 retry/step; side-effects absent | checkpoint retains completed steps. Controls: Checkpoint, Whole retry, Correlated, Reset. Changed computed rows: steps1→2→3→4 · per-attempt p=.8 / no-retry P(done)=0.41 / checkpoint: P(done)=0.849 / E[calls]=4.52; max8; perfect detection | steps1→2→3→4 · per-attempt p=.8 / no-retry P(done)=0.41 / whole-task retry: P(done)=0.651 / E[calls]=4.695; max8; perfect detection | steps1→2→3→4 · per-attempt p=.8 / no-retry P(done)=0.41 / correlated retries: P(done)=0.41 / E[calls]=3.542; max8; perfect detection. Retained computed witnesses: saved P=0.849 | whole P=0.651 | shared P=0.41. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst p=.8;let success=0,expected=0;const correlated=mode===2,bitsN=correlated?4:8;for(let mask=0;mask<2**bitsN;mask++){const bits=Array.from({length:bitsN},(_,j)=>(mask>>j)&1),mass=bits.reduce((a,b)=>a*(b?p:1-p),1);let calls=0,done=true;if(mode===1){done=false;for(let run=0;run<2&&!done;run++){let ok=true;for(let step=0;step<4;step++){calls++;if(!bits[run*4+step]){ok=false;break;}}done=ok;}}else{for(let step=0;step<4;step++){calls++;const one=bits[correlated?step:2*step];if(one)continue;calls++;if(!(correlated?one:bits[2*step+1])){done=false;break;}}}if(done)success+=mass;expected+=calls*mass;}return{values:[success,expected],rows:[`steps1→2→3→4 · per-attempt p=.8`,`no-retry P(done)=${f(p**4)}`,`${['checkpoint','whole-task retry','correlated retries'][mode]}: P(done)=${f(success)}`,`E[calls]=${f(expected)}; max8; perfect detection`],receipt:`${['saved','whole','shared'][mode]} P=${f(success)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §17; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-checkpoint-recovery.c5",
+      "text": "agent-checkpoint-recovery\n\n**Identity / target / source:** `ai:agent-checkpoint-recovery` → `ai-agent-checkpoint-recovery` → `src/demos/ai/ai-agent-checkpoint-recovery`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/123`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#17-agent-checkpoint-recovery`. **Packet:** A1. **Level / prerequisites:** core; `ai:agent-loop`, `books:checklist-steps-compound`.\n\n**Nearest / distinct payoff:** agent-loop executes steps; this enumerates failure/retry protocols and distinguishes per-step recovery from raw reliability.\n\n**Computed primary model:** Four sequential steps, each attempt independently succeeds withp=.8, perfect failure detection, no harmful side effects. No retry succeeds with.8^4=.4096. A saved checkpoint plus at mostone retry per failed step makes per-step success.96 and overall.96^4=.84934656, max8attempts. Abort after a step fails twice. Expected attempted calls=sum(k=0..3) .96^k*(1+.2)=4.5196032.\n\n**Countercase / boundary:** Two whole-task attempts without per-step retention have success1−(1−.4096)^2=.65142784 under independent runs, also at most8calls. If each step’s two attempts share the same success/failure event, checkpoint success returns to.4096. Checkpoints require valid saved state/perfect detection here; they do not fix bad plans or guarantee external side-effect safety.\n\n**Prediction / transfer recall:** Predict whether one retry per step changes rawp=.8; recall retry independence is needed for.96 and distinguish recovered task reliability from single-call reliability.\n\n**Intervention / retained witness:** Choose protocol computes event branches, max/expected calls and retained completion probability; Correlate retries exposes the invalid multiplication assumption. Show exact four-step timeline and retained original/recovered witnesses, not just “reliable” labels.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §17; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does .96 per-step recovery still apply when both attempts share one outcome?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Perfectly correlated retries repeat the first outcome, leaving step success .8."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:agent-checkpoint-recovery",
+    "also": [],
+    "prerequisites": [
+      "ai:agent-loop",
+      "books:checklist-steps-compound"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

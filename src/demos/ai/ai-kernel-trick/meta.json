@@ -1,0 +1,95 @@
+{
+  "slug": "ai-kernel-trick",
+  "title": "A square changes separability",
+  "hook": "Compare a feature inner product with its exact kernel.",
+  "domain": "ai",
+  "concept": "kernel-trick",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "svm-widest-margin"
+    ],
+    "doesNotKnow": [
+      "Inputs −1/0/1 have labels +/−/+. Can the squared coordinate separate them with threshold .5?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute the kernel trick finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-kernel-trick.c1",
+      "text": "A square changes separability Compare a feature inner product with its exact kernel. Inputs −1/0/1 have labels +/−/+. Can the squared coordinate separate them with threshold .5? Options: Yes; No",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §19; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-kernel-trick.c2",
+      "text": "The squared coordinate put outer inputs at 1 and the middle at 0, separable at .5. The explicit kernel xz+x²z² matched feature dot products: K(2,1)=6 and K(.5,−1)=−.25. A negative off-diagonal entry is allowed; arbitrary similarities are not automatically valid kernels.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §19; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-kernel-trick.c3",
+      "text": "Compute K(2,1)=2×1+2²×1². Options: 6; 2; 4 The kernel sums the raw product 2 and squared product 4, matching [2,4]·[1,1]=6.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §19; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-kernel-trick.c4",
+      "text": "Original schematic labels, including neutral and every changed case: φ(x)=(x,x²) · K=xz+x²z² -1 0 1 .5 labels=+/−/+ | φ(x)=(x,x²) · K=xz+x²z² -1 0 1 .5 2,1: 6=6 | φ(x)=(x,x²) · K=xz+x²z² -1 0 1 .5 2,1: 6=6 | φ(x)=(x,x²) · K=xz+x²z² -1 0 1 .5 0.5,-1: -0.25=-0.25. Retained locally computed witnesses: Map: 1/-1/1 | K(2,1): 6 | K(0.5,-1): -0.25. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §19; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-kernel-trick.c5",
+      "text": " 19. kernel-trick\n\nTarget / packet: ai-kernel-trick · C3. Prerequisites: ai:svm-widest-margin.\n\nNearest / distinct payoff: svm-widest-margin → ai-svm-widest-margin. The earlier admitted lesson separates points with a linear boundary; this computes a nonlinear feature-space dot product from a kernel without explicitly materializing the features. Distinct from claiming every kernel is valid or training an SVM.\n\nFinite primary model: One-dimensional inputs x=[-1,0,1] have labels[1,-1,1]. Feature map phi(x)=[x,x²]. Decision phi_2-.5 is positive at the two outer points and negative at0; a single raw-x threshold cannot produce that label pattern. Kernel K(x,z)=xz+x²z² equals dot(phi(x),phi(z)). The three-point Gram matrix is[[2,0,0],[0,0,0],[0,0,2]].\n\nCountercase and mathematical boundary: At x=2,z=1, direct feature dot and kernel both give6. At x=.5,z=-1, K=-.25: a negative off-diagonal value is allowed, while this kernel's positive semidefiniteness follows from its explicit feature inner product. Do not declare an arbitrary similarity a valid kernel. The zero-feature input0 is legitimate; no Gram-matrix inversion or trained optimal margin is claimed.\n\nPredict and recall transfer: Predict whether moving to squared features can separate the displayed alternating labels. Recall calculate K(2,1)=6 and explain which computation can be done without storing both feature coordinates.\n\nRequired observable evidence: Show three raw points, transformed coordinates and one selected dot product/kernel equality at a time. Do not turn the lesson into a memorized XOR label quiz or claim these two feature coordinates save computation in this tiny example.\n\nSource obligation: [Maintainer SVM custom-kernel and mathematical formulation](https://scikit-learn.org/stable/modules/svm.htmlcustom-kernels), body acquired in30b; [author GPML chapter2 §2.1](https://gaussianprocess.org/gpml/chapters/RW2.pdf), body acquired this run, describes the weight/feature-space route. Local feature and kernel identities must be independently reproduced. No copied figures or broad efficiency guarantee.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §19; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Compute K(2,1)=2×1+2²×1².",
+    "options": [
+      "6",
+      "2",
+      "4"
+    ],
+    "answer": 0,
+    "why": "The kernel sums the raw product 2 and squared product 4, matching [2,4]·[1,1]=6."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:kernel-trick",
+    "also": [],
+    "prerequisites": [
+      "ai:svm-widest-margin"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "ai-q-overestimation",
+  "title": "Average before or after?",
+  "hook": "Enumerate noisy estimates before taking a maximum.",
+  "domain": "ai",
+  "concept": "q-overestimation",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Finite noise enumeration with true action values zero. Estimates are not observed rewards; joint noise assumptions determine this example."
+    ]
+  },
+  "misconception": "Finite noise enumeration with true action values zero. Estimates are not observed rewards; joint noise assumptions determine this example.",
+  "objective": "Compute and contrast the finite q overestimation cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-q-overestimation.c1",
+      "text": "export function enumeration(shared:boolean){const pairs=shared?[[-1,-1],[1,1]]:[[-1,-1],[-1,1],[1,-1],[1,1]],mass=1/pairs.length,maxima=pairs.map(p=>Math.max(...p)),means=[0,1].map(i=>pairs.reduce((a,p)=>a+p[i]*mass,0));return {pairs,mass,maxima,means,average:maxima.reduce((a,x)=>a+x*mass,0),maxMean:Math.max(...means)};}\nexport function run(mode:number){return enumeration(mode===1);}\n\n<text x=\"24\" y=\"17\">Q₁</text><text x=\"83\" y=\"17\">Q₂</text><text x=\"147\" y=\"17\">mass</text><text x=\"222\" y=\"17\">max</text>{r.pairs.map((p,i)=><g key={i}><text x=\"24\" y={40+i*20}>{p[0]}</text><text x=\"83\" y={40+i*20}>{p[1]}</text><text x=\"147\" y={40+i*20}>{r.mass}</text><text x=\"222\" y={40+i*20}>{r.maxima[i]}</text></g>)}<text x=\"145\" y=\"125\" textAnchor=\"middle\">E[max]={show(r.average)} · max(E)={r.maxMean}</text>\nTrue values [0,0]; Q₁,Q₂∈{−1,+1}; independent; each sign probability .5.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-q-overestimation.c2",
+      "text": "Average before or after?; Enumerate noisy estimates before taking a maximum.; {\"question\": \"Two true values are 0. Each estimate independently equals −1 or +1, equally likely. Average the maximum of each pair: what do you get?\", \"options\": [\"0\", \".5\", \"1\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-q-overestimation.c3",
+      "text": "Your four equally likely independent pairs gave maxima −1, 1, 1, 1, averaging .500 despite each estimate averaging zero. Shared noise instead averaged to .000. Selection and averaging do not commute here; overestimation depends on the joint noise, not every estimator inevitably being biased.\n`${r.pairs.length} cases: E[max]=${f(r.average)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-q-overestimation.c4",
+      "text": "{\"question\": \"Two estimates share exactly the same ±1 noise. What is the mean maximum?\", \"options\": [\"0\", \".5\", \"1\"], \"answer\": 0, \"why\": \"The only pairs are (−1,−1) and (1,1), each with mass .5; their maxima average to 0.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-q-overestimation.c5",
+      "text": "Finite noise enumeration with true action values zero. Estimates are not observed rewards; joint noise assumptions determine this example. Controls: Independent, Shared, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Two estimates share exactly the same ±1 noise. What is the mean maximum?",
+    "options": [
+      "0",
+      ".5",
+      "1"
+    ],
+    "answer": 0,
+    "why": "The only pairs are (−1,−1) and (1,1), each with mass .5; their maxima average to 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:q-overestimation",
+    "also": [],
+    "prerequisites": [
+      "ai:q-learning"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

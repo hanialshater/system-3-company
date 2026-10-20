@@ -1,0 +1,102 @@
+{
+  "slug": "ai-autoencoder-bottleneck",
+  "title": "Can one code remember both?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "autoencoder-bottleneck",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:pca-compression"
+    ],
+    "doesNotKnow": [
+      "For input (1,−1), can this one-number encoder reconstruct both coordinates?"
+    ]
+  },
+  "misconception": "Exactly",
+  "objective": "Use the distinct declared autoencoder-bottleneck mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c1",
+      "text": "hook/predict: For input (1,−1), can this one-number encoder reconstruct both coordinates? Options: Exactly; Information is lost",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c2",
+      "text": "stage input operands: \"z=(x₀+x₁)/2 · decode=(z,z) · (1,1),(1,−1),(−1,1)\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c3",
+      "text": "reveal: Diagonal input reconstructed exactly. Inputs (1,−1) and (−1,1) both became code 0 and decoded (0,0), each with SSE 2. This declared linear bottleneck discards the difference direction; it is not a trained autoencoder or a guarantee about arbitrary compressed data.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c4",
+      "text": "recall: What happens to input (2,−2)? Both reconstructed coordinates are zero; squared errors are 4+4.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c5",
+      "text": "stage computation: Linear encoder z=(x0+x1)/2, decoder(z)=(z,z). Family inputs (t,t), t∈{−1,0,1}, reconstruct exactly using1 scalar code instead of2 input coordinates. For each show x→z→reconstruction and sum squared reconstruction error.\n\n**Countercase / boundary:** Off-family input(1,−1) maps toz0 and reconstruction(0,0), error2. Also(−1,1) shares code0, proving this encoder loses distinguishing information. Identity2-coordinate code reconstructs both families exactly. One-dimensional code alone does not force useful semantics or prevent memorization of a finite dataset with other architectures.\n\n**Prediction / transfer recall:** Predict reconstruction of(1,−1); recall input(2,2) still reconstructs exactly, while(2,−2) gives error8 under this fixed encoder.\n\n**Intervention / reachable witness:** Encode/Decode reveals the information path, then Off family and Identity code compare actual dimensions/errors with retained primary exact-copy witness. Do not label the manually specified weights trained.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-autoencoder-bottleneck.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: z=(x₀+x₁)/2 · decode=(z,z) · (1,1),(1,−1),(−1,1) ? Diagonal Off diagonal Opposite Reset 1: [1,1]→1→[1,1]; SSE=0 2: [1,-1]→0→[0,0]; SSE=2 3: [-1,1]→0→[0,0]; SSE=2 | inspection 0: z=(x₀+x₁)/2 · decode=(z,z) · (1,1),(1,−1),(−1,1) [1,1] 1 [1,1] one code Diagonal Off diagonal Opposite Reset 1: [1,1]→1→[1,1]; SSE=0 2: [1,-1]→0→[0,0]; SSE=2 3: [-1,1]→0→[0,0]; SSE=2 | inspection 1: z=(x₀+x₁)/2 · decode=(z,z) · (1,1),(1,−1),(−1,1) [1,-1] 0 [0,0] one code Diagonal Off diagonal Opposite Reset 1: [1,1]→1→[1,1]; SSE=0 2: [1,-1]→0→[0,0]; SSE=2 3: [-1,1]→0→[0,0]; SSE=2 | inspection 2: z=(x₀+x₁)/2 · decode=(z,z) · (1,1),(1,−1),(−1,1) [-1,1] 0 [0,0] one code Diagonal Off diagonal Opposite Reset 1: [1,1]→1→[1,1]; SSE=0 2: [1,-1]→0→[0,0]; SSE=2 3: [-1,1]→0→[0,0]; SSE=2",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#25-autoencoder-bottleneck; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to input (2,−2)?",
+    "options": [
+      "Code 0, SSE 8",
+      "Code 2, SSE 0",
+      "Code −2, SSE 8"
+    ],
+    "answer": 0,
+    "why": "Both reconstructed coordinates are zero; squared errors are 4+4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:autoencoder-bottleneck",
+    "also": [],
+    "prerequisites": [
+      "ai:pca-compression"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

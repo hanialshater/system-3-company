@@ -1,0 +1,97 @@
+{
+  "slug": "ai-genetic-crossover",
+  "title": "Test genetic crossover",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "genetic-crossover",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "evolution-strategies"
+    ],
+    "doesNotKnow": [
+      "Parents1100/0011; cut after2, exchange suffixes. Separable fitness=sum bits. What is the 0000 child’s fitness? Linked fitness separately adds2 per equal adjacent pair."
+    ]
+  },
+  "misconception": "2",
+  "objective": "Compute the declared genetic crossover model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-genetic-crossover.c1",
+      "text": "Test genetic crossover Compare a declared mechanism with its changed case. Parents1100/0011; cut after2, exchange suffixes. Separable fitness=sum bits. What is the 0000 child’s fitness? Linked fitness separately adds2 per equal adjacent pair. Options: 0; 2",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §8; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-genetic-crossover.c2",
+      "text": "Cut 2 produced children 1111/0000 with separable scores 4/0. Both linked parents scored 4; cut 1 broke their linked blocks and scored 2/2, whereas cut 2 preserved them. The usefulness of this crossover depends on the fitness structure and cut.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §8; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-genetic-crossover.c3",
+      "text": "{\"question\": \"Can cutting through a linked pair reduce both offspring scores?\", \"options\": [\"Yes: cut 1 gives linked scores 2/2\", \"No: both scores stay 4\"], \"answer\": 0, \"why\": \"Cut 1 splits linked pairs while cut 2 preserves them under the declared equality score.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §8; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-genetic-crossover.c4",
+      "text": "genetic-crossover\n\n**Identity / target / source:** `ai:genetic-crossover` → `ai-genetic-crossover` → `src/demos/ai/ai-genetic-crossover`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/181`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#8-genetic-crossover`. **Packet:** E1. **Level / prerequisites:** core; `ai:evolution-strategies`.\n\n**Nearest / distinct payoff:** evolution-strategies perturbs numeric positions; this recombines bitstring segments and exposes how linkage changes offspring fitness.\n\n**Computed primary model:** Parents1100 and0011. One-point crossover after2bits yields1111 and0000. Separable fitness=sum bits: parents2/2, offspring4/0. Same good parent scores do not ensure every offspring is good. Recompute genotype, not an assigned fitness label.\n\n**Countercase / boundary:** Linked fitness adds2 for equality of first bitpair and2 for equality of lastpair. Parents each4; cut after1bit yields1011 and0100, fitness2/2; cut after2 preserves linked blocks and yields4/4. Crossover usefulness depends on fitness structure and cut, not only parental rank.\n\n**Prediction / transfer recall:** Predict separable score of0000 child; recall a cut through a linked pair can break both parents’ useful combinations.\n\n**Intervention / retained witness:** Move cut1/2/3 computes inherited segments and both fitness functions with retained parent/offspring rows. Keep “linked” defined by this exact equality rule; no universal evolutionary claim.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Cut2/Cut1/Cut3; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §8; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can cutting through a linked pair reduce both offspring scores?",
+    "options": [
+      "Yes: cut 1 gives linked scores 2/2",
+      "No: both scores stay 4"
+    ],
+    "answer": 0,
+    "why": "Cut 1 splits linked pairs while cut 2 preserves them under the declared equality score."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:genetic-crossover",
+    "also": [],
+    "prerequisites": [
+      "ai:evolution-strategies"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

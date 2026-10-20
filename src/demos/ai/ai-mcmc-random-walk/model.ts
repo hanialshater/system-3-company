@@ -1,0 +1,1 @@
+export function run(mode:number){const weights=mode===1?[3,1]:[1,3],sum=weights[0]+weights[1],stationary=weights.map(x=>x/sum),accept=[Math.min(1,weights[1]/weights[0]),Math.min(1,weights[0]/weights[1])],flow=stationary.map((p,i)=>p*accept[i]);return {weights,stationary,accept,flow,transition:[[1-accept[0],accept[0]],[accept[1],1-accept[1]]]};}

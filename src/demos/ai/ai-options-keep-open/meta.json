@@ -1,0 +1,97 @@
+{
+  "slug": "ai-options-keep-open",
+  "title": "Test options keep open",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "options-keep-open",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "value-vs-reward"
+    ],
+    "doesNotKnow": [
+      "Open costs.1, reaches A/B; Closed costs0,onlyA. Nature chooses θA/B equally, reveals θ before action; matching gives1. Which has higher expected value?"
+    ]
+  },
+  "misconception": "Closed",
+  "objective": "Compute the declared options keep open model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-options-keep-open.c1",
+      "text": "Test options keep open Compare a declared mechanism with its changed case. Open costs.1, reaches A/B; Closed costs0,onlyA. Nature chooses θA/B equally, reveals θ before action; matching gives1. Which has higher expected value? Options: Open; Closed",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §29; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-options-keep-open.c2",
+      "text": "With uniform revealed preference, Open’s adaptive policy gave .9 versus Closed’s .5. Prior .95 favored Closed; hiding future preference reduced Open to .4. Reachability alone does not determine value: reward distribution, information timing and maintenance cost can reverse the comparison.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §29; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-options-keep-open.c3",
+      "text": "{\"question\": \"Can information timing reverse the value of keeping options open?\", \"options\": [\"Yes: hiding θ gives Open.4<Closed.5\", \"No: reachable choices determine value\"], \"answer\": 0, \"why\": \"The adaptive choice benefit requires information before the terminal action; without it the cost makes Open worse.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §29; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-options-keep-open.c4",
+      "text": "options-keep-open\n\n**Identity / target / source:** `ai:options-keep-open` → `ai-options-keep-open` → `src/demos/ai/ai-options-keep-open`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/216`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#29-options-keep-open`. **Packet:** A1. **Level / prerequisites:** stretch; `ai:value-vs-reward`.\n\n**Nearest / distinct payoff:** value-vs-reward computes delayed returns; this measures adaptive option value under an explicit reward-family distribution and option-maintenance cost.\n\n**Computed primary model:** Choose stateOpen(cost.1, reachableterminalA/B) orClosed(cost0, onlyA). Then nature reveals preferredterminalthetaA/B, prior.5 each, before final action. Matchpreferred gives1, otherwise0. Open chooses matching terminal, expectedvalue1−.1=.9; Closed expected.5. This timing and rewardfamily define the option value.\n\n**Countercase / boundary:** PriorP(thetaA)=.95 makesClosed.95>Open.9. If theta is not revealed before choosing a terminal, Open’s best expectedvalue under uniformprior is.5−.1=.4<Closed.5. More reachable choices do not universally imply greater value or a drive for power; unrewarded extraC adds no value here.\n\n**Prediction / transfer recall:** Predict which state wins under uniform revealed preference; recall changing information timing or maintenance cost can reverse the preference without changing reachable sets.\n\n**Intervention / retained witness:** Choose state/Reveal preference enumerates both reward-family outcomes; Change prior/Hide future information recomputes policies/values, retaining.9/.5 primary and reversal witnesses. Reachability is shown separately from realized reward.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Reveal θ/Prior.95/Hide θ; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §29; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can information timing reverse the value of keeping options open?",
+    "options": [
+      "Yes: hiding θ gives Open.4<Closed.5",
+      "No: reachable choices determine value"
+    ],
+    "answer": 0,
+    "why": "The adaptive choice benefit requires information before the terminal action; without it the cost makes Open worse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:options-keep-open",
+    "also": [],
+    "prerequisites": [
+      "ai:value-vs-reward"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

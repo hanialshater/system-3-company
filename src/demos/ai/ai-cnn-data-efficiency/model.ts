@@ -1,0 +1,4 @@
+export type Result={values:number[];labels:string[];summary:string;detail:number[];links:number[][];trace?:string[]};
+export function compute(m:number):Result {
+const samples=[{p:0,j:0,y:1},{p:0,j:1,y:-1},...(m===1?[{p:1,j:0,y:-1}]:[])];const fit=(shared:boolean)=>Array.from({length:shared?1:2},(_,p)=>[0,1].map(j=>{const a=samples.filter(s=>(shared||s.p===p)&&s.j===j);return a.length?a.reduce((z,s)=>z+s.y,0)/a.length:0;}));const j=m===2?1:0,target=m===2?-1:1;const tied=fit(true),untied=fit(false),error=(w:number[][],shared:boolean)=>samples.reduce((z,s)=>z+(w[shared?0:s.p][s.j]-s.y)**2,0);return {values:[...tied.flat(),...untied.flat()],labels:['tied','p₀','p₁'],summary:m===1?`train SSE ${error(tied,true)}/${error(untied,false)}`:`heldout e${j+1}: ${tied[0][j]}/${untied[1][j]}; error ${(tied[0][j]-target)**2}/${(untied[1][j]-target)**2}`,detail:[error(tied,true),error(untied,false),tied[0][0],untied[1][0]],links:[]};
+}

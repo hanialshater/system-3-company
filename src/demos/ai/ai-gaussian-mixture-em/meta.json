@@ -1,0 +1,95 @@
+{
+  "slug": "ai-gaussian-mixture-em",
+  "title": "A point can partly belong",
+  "hook": "Compute soft responsibilities before moving means.",
+  "domain": "ai",
+  "concept": "gaussian-mixture-em",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "k-means-clustering"
+    ],
+    "doesNotKnow": [
+      "Points 0/2; equal Gaussian weights, variance 1, means 0/2. Does EM give each point exclusive membership?"
+    ]
+  },
+  "misconception": "Yes, nearest means get full membership",
+  "objective": "Compute the gaussian mixture em finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-gaussian-mixture-em.c1",
+      "text": "A point can partly belong Compute soft responsibilities before moving means. Points 0/2; equal Gaussian weights, variance 1, means 0/2. Does EM give each point exclusive membership? Options: No, responsibilities are fractional; Yes, nearest means get full membership",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §6; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gaussian-mixture-em.c2",
+      "text": "With means 0/2, each nearby component received responsibility .881 and the other .119. Weighted means moved to .238/1.762. Coincident means 1/1 gave equal responsibilities and stayed together. This is one fixed-variance EM step, not a global-optimum or covariance-fitting claim.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §6; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-mixture-em.c3",
+      "text": "What happens when both starting means are 1? Options: Both stay at 1 after equal responsibilities; They must separate to 0 and 2; Responsibilities become undefined Equal component densities give .5/.5 responsibilities; each weighted average of points 0 and 2 is 1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §6; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-mixture-em.c4",
+      "text": "Original schematic labels, including neutral and every changed case: σ²=1 · w=.5/.5 · r(μ0/μ2) x=0 ?/? x=2 ?/? μ′=Σ(rx)/Σr=? | σ²=1 · w=.5/.5 · r(μ0/μ2) x=0 .881/.119 x=2 .119/.881 μ′=Σ(rx)/Σr=0.238/1.762 | σ²=1 · w=.5/.5 · r(μ1/μ1) x=0 .5/.5 x=2 .5/.5 μ′=Σ(rx)/Σr=1/1. Retained locally computed witnesses: μ0/2: →0.238/1.762 | μ1/1: →1/1. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §6; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-mixture-em.c5",
+      "text": " 6. gaussian-mixture-em\n\nTarget / packet: ai-gaussian-mixture-em · P3. Prerequisites: ai:k-means-clustering.\n\nNearest / distinct payoff: k-means-clustering → bad-start-kmeans. Hard nearest-centroid labels differ from fractional Gaussian component responsibilities and their weighted mean update.\n\nFinite primary model: 1D points [0,2], two Gaussian components means 0,2, equal weights and variance 1 fixed. Let r=sigmoid(2). At point0 responsibilities are[r,1-r]; at point2 they reverse. M-step means become[2(1-r),2r]≈[.238406,1.761594].\n\nCountercase and mathematical boundary: Coincident means 1,1 give equal responsibilities and stay 1,1. This is one EM step updating means/mixing weights only, not covariance fitting or convergence/global-optimum proof.\n\nPredict and recall transfer: Predict whether each point belongs exclusively to one component; recall equal-initial-means collapse and distinguish soft responsibility from hard assignment.\n\nRequired observable evidence: Expose responsibility weights and weighted mean contribution for each component; do not silently substitute k-means assignments.\n\nSource obligation: [scikit-learn Gaussian-mixture documentation](https://scikit-learn.org/stable/modules/mixture.html), acquired method body §2.1.1. Locally fixed variances and one mean-update step must be distinguished from fitting a complete covariance model.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §6; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens when both starting means are 1?",
+    "options": [
+      "Both stay at 1 after equal responsibilities",
+      "They must separate to 0 and 2",
+      "Responsibilities become undefined"
+    ],
+    "answer": 0,
+    "why": "Equal component densities give .5/.5 responsibilities; each weighted average of points 0 and 2 is 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:gaussian-mixture-em",
+    "also": [],
+    "prerequisites": [
+      "ai:k-means-clustering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,3 @@
+import fs from 'node:fs';import ts from 'typescript';import vm from 'node:vm';import assert from 'node:assert/strict';
+const text=fs.readFileSync(new URL('./model.ts',import.meta.url),'utf8'),js=ts.transpileModule(text,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText,box={exports:{}};vm.runInNewContext(js,box);const {compute}=box.exports;
+const cases=[0,1,2].map(compute);for(const v of cases){assert(v.lines.length>=2);assert(!JSON.stringify(v).includes('NaN'));assert.equal(JSON.stringify(v),JSON.stringify(compute(cases.indexOf(v))));}assert.equal(new Set(cases.map(v=>JSON.stringify(v.lines))).size,3);assert.throws(()=>compute(3),/case/);console.log(JSON.stringify({slug:"ai-differential-privacy-noise",cases},null,2));

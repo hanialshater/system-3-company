@@ -1,0 +1,4 @@
+export type Result={values:number[];labels:string[];summary:string;detail:number[];links:number[][];trace?:string[]};
+export function compute(m:number):Result {
+const short=Array.from({length:2**4},(_,i)=>Array.from({length:4},(_,j)=>(i>>j)&1)),shortSuccess=short.filter(bs=>bs.every(Boolean)).length;const L=8,guided=m===1,goal=m!==2,paths=Array.from({length:2**L},(_,i)=>Array.from({length:L},(_,j)=>(i>>j)&1)).filter(bs=>!guided||bs.slice(0,L/2).every(Boolean)),success=paths.filter(bs=>goal&&bs.every(Boolean)).length,p=success/paths.length,event=1-(1-p)**20;return {values:Array(L).fill(1),labels:['R','R','R','R','R','R','R','R'],summary:`${m===0?'L4 '+shortSuccess+'/'+short.length+'→L8 ':''}${success}/${paths.length}; 20=${event.toFixed(3)}`,detail:[success,paths.length,p,event],links:Array.from({length:L-1},(_,i)=>[i,i+1])};
+}

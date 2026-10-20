@@ -1,0 +1,108 @@
+{
+  "slug": "algo-tsp-two-opt",
+  "title": "Which reconnection shortens the tour?",
+  "hook": "Two edges cross in one closed route.",
+  "domain": "cs",
+  "concept": "algo-tsp-two-opt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "Planar Euclidean symmetric tour proper crossing uncrossing, reversing intervening segment to preserve one cycle; no global-optimality claim. Degenerate contacts excluded from strict improvement."
+    ]
+  },
+  "objective": "Planar Euclidean symmetric tour proper crossing uncrossing, reversing intervening segment to preserve one cycle; no global-optimality claim. Degenerate contacts excluded from strict improvement.",
+  "misconception": "A(0,0), B(2,2), C(0,2), D(2,0). For tour A-B-C-D-A, replacing AB/CD with AC/BD does what?",
+  "claims": [
+    {
+      "id": "cs.algo-tsp-two-opt.c1",
+      "text": "Which reconnection shortens the tour? Two edges cross in one closed route.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/meta.json#title-hook; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "cs.algo-tsp-two-opt.c2",
+      "text": "A(0,0), B(2,2), C(0,2), D(2,0). For tour A-B-C-D-A, replacing AB/CD with AC/BD does what? Options: ['Shortens it', 'Lengthens it', 'Leaves its length'] Correct: Shortens it",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/Demo.tsx#predict; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-two-opt.c3",
+      "text": "Planar Euclidean symmetric tour proper crossing uncrossing, reversing intervening segment to preserve one cycle; no global-optimality claim. Degenerate contacts excluded from strict improvement.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/Demo.tsx#stage; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-two-opt.c4",
+      "text": "Reversing B-C replaced the crossing edges and kept one cycle through every vertex. The length fell from 9.66 to 8.00. The boundary countercase stayed 8.00: there was no proper crossing to remove. This Euclidean symmetric move does not certify global optimality.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/Demo.tsx#reveal; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-two-opt.c5",
+      "text": "Does an uncrossed tour alone certify a globally shortest Euclidean tour? No: absence of proper crossings is not a global optimality certificate.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/meta.json#recall; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-two-opt; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-two-opt.c6",
+      "text": "The primary changed cycle is A\u2192C\u2192B\u2192D\u2192A, lengths rounded to two decimal places9.66\u21928.00. Boundary remains8.00. Proper crossing excludes collinear and endpoint contacts.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-two-opt/model.ts and model.test.mjs; Euclidean strict triangle inequality and segment-reversal derivation in model.ts; finite four-point witness only; global optimum not asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does an uncrossed tour alone certify a globally shortest Euclidean tour?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "No: absence of proper crossings is not a global optimality certificate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-tsp-two-opt",
+    "also": [],
+    "prerequisites": [
+      "nearest-neighbour-tour",
+      "algo-segment-intersection"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "ai-model-error-compounding",
+  "title": "How long is the path?",
+  "hook": "Change the dependence assumption while keeping each step at .9.",
+  "domain": "ai",
+  "concept": "model-error-compounding",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Only correctness of every declared event is calculated; task success is not inferred. Independent versus perfectly shared errors are alternative assumptions."
+    ]
+  },
+  "misconception": "Only correctness of every declared event is calculated; task success is not inferred. Independent versus perfectly shared errors are alternative assumptions.",
+  "objective": "Compute and contrast the finite model error compounding cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-model-error-compounding.c1",
+      "text": "export function path(p:number,h:number,shared=false){return {p,h,shared,success:shared?p:p**h,stops:Array.from({length:h},(_,i)=>shared?p:p**(i+1))};}\nexport function run(mode:number){return path(.9,3,mode===1);}\n\n<text x=\"145\" y=\"18\" textAnchor=\"middle\">{r.shared?'Shared event':'Independent events'} · P=0.9</text>{r.stops.map((p,i)=><g key={i}><path d={`M${19+i*94} 54 h66`} className={s.line}/><circle cx={51+i*94} cy=\"54\" r=\"19\" className={s.box}/><text x={51+i*94} y=\"59\" textAnchor=\"middle\">{i+1}</text><text x={51+i*94} y=\"91\" textAnchor=\"middle\">{show(p)}</text></g>)}<text x=\"145\" y=\"120\" textAnchor=\"middle\">P(all)={show(r.success)}{r.shared?' = .9':' = .9³'}</text>\n3 steps; P(correct)=.9 each; independent. Required: every step correct.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-model-error-compounding.c2",
+      "text": "How long is the path?; Change the dependence assumption while keeping each step at .9.; {\"question\": \"Each of three steps is correct with probability .9, independently. What is the probability every step is correct?\", \"options\": [\".900\", \".729\", \".300\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-model-error-compounding.c3",
+      "text": "Your three independent correctness events multiplied to .729. With a single shared event, all steps were correct together with probability .900 instead. The same marginal .9 does not determine path correctness. These are stipulated event models, not measured simulator reliability or task success.\n`${r.shared?'Shared':'Independent'}: P(all)=${f(r.success)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-model-error-compounding.c4",
+      "text": "{\"question\": \"Five steps share one perfectly correlated correctness event of probability .9. What is P(all correct)?\", \"options\": [\".59049\", \".9\", \".5\"], \"answer\": 1, \"why\": \"All five succeed on the same event, so the joint probability is .9; multiplying would require independence.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-model-error-compounding.c5",
+      "text": "Only correctness of every declared event is calculated; task success is not inferred. Independent versus perfectly shared errors are alternative assumptions. Controls: Independent, Shared, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Five steps share one perfectly correlated correctness event of probability .9. What is P(all correct)?",
+    "options": [
+      ".59049",
+      ".9",
+      ".5"
+    ],
+    "answer": 1,
+    "why": "All five succeed on the same event, so the joint probability is .9; multiplying would require independence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:model-error-compounding",
+    "also": [],
+    "prerequisites": [
+      "ai:model-based-planning"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

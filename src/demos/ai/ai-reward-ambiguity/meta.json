@@ -1,0 +1,128 @@
+{
+  "slug": "ai-reward-ambiguity",
+  "title": "Do choices identify reward numbers?",
+  "hook": "Different reward tables can make the same predictions.",
+  "domain": "ai",
+  "concept": "reward-ambiguity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A grid world: an agent moves, collects points, ends at a goal."
+    ],
+    "doesNotKnow": [
+      "Exhibit distinct reward tables with equal observation likelihood under a stated ordinal choice rule."
+    ]
+  },
+  "objective": "Exhibit distinct reward tables with equal observation likelihood under a stated ordinal choice rule.",
+  "misconception": "A favoured action ordering identifies one true numerical reward table.",
+  "claims": [
+    {
+      "id": "ai.ai-reward-ambiguity.c1",
+      "text": "H1 rewards2/0, H2 rewards10/9, H0 rewards0/0. Three hypotheses have equal priors; choices are independent given hypothesis.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#picture#tables; src/demos/ai/ai-reward-ambiguity/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c2",
+      "text": "Better action probability.8, worse.2, tied rewards.5/.5. The rule depends on ordering, not reward gap.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#summary#rule; src/demos/ai/ai-reward-ambiguity/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c3",
+      "text": "One Red likelihoods.8,.8,.5 give posteriors8/21,8/21,5/21. Two Reds likelihoods.64,.64,.25 give64/153,64/153,25/153. Display percentages rounded to one decimal.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#picture#likelihood; src/demos/ai/ai-reward-ambiguity/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c4",
+      "text": "Reward table0/2 predicts Red.2, distinguishing the reversed ordering.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#picture#reverse; src/demos/ai/ai-reward-ambiguity/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c5",
+      "text": "H1 and H2 stay equally likely under any number of these independent choices; H0 remains possible with lower likelihood. This toy identifies no unique reward table and does not claim all rewards are indistinguishable.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#reveal#nonuniqueness; src/demos/ai/ai-reward-ambiguity/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c6",
+      "text": "Do choices identify reward numbers?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-ambiguity/meta.json#title; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c7",
+      "text": "Different reward tables can make the same predictions.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-ambiguity/meta.json#hook; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c8",
+      "text": "H1 rewards Red2/Blue0; H2 rewards Red10/Blue9. Can both predict the same choices? Options: Yes / No. Correct: Yes.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-ambiguity/Demo.tsx#predict; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-ambiguity.c9",
+      "text": "Tables (\u22121,\u22123) and (20,1): under our .8-better rule, what are their Red probabilities? .8 and .8 / .2 and .8 / .5 and .5. Both reward Red more, so this ordinal rule predicts Red.8 for each.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-ambiguity/meta.json#recall; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), reward-identification framing; body fetched 2026-10-19. Exact equal likelihoods arise from the locally declared ordinal noise rule, not every IRL model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Tables (\u22121,\u22123) and (20,1): under our .8-better rule, what are their Red probabilities?",
+    "options": [
+      ".8 and .8",
+      ".2 and .8",
+      ".5 and .5"
+    ],
+    "answer": 0,
+    "why": "Both reward Red more, so this ordinal rule predicts Red.8 for each."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:reward-ambiguity",
+    "also": [],
+    "prerequisites": [
+      "inverse-rl-goal-inference"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "reinforcement-learning",
+      "inverse-rl-imitation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

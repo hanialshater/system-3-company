@@ -1,0 +1,2 @@
+// Invented finite construction. No real model or external service is simulated.
+export function compute(mode: number) { const usesTopic = mode === 1; const rows = [[0, 0], [0, 1], [1, 0], [1, 1]].map(h => ({ h, probe: h[0], output: h[usesTopic ? 0 : 1] })); const before = [0, 1], after = [1, 1]; return { usesTopic, rows, before, after, probeBefore: before[0], probeAfter: after[0], outputBefore: before[usesTopic ? 0 : 1], outputAfter: after[usesTopic ? 0 : 1] }; }

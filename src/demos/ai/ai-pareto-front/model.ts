@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const points=[[0,4],[2,mode===2?3:1],[4,0],[1,.5]],names=['A','B','C','D'],dom=(a:number[],b:number[])=>a.every((v,i)=>v>=b[i])&&a.some((v,i)=>v>b[i]),front=points.map((_,i)=>i).filter(i=>!points.some((p,j)=>i!==j&&dom(p,points[i]))),score=points.map(p=>.5*p[0]+.5*p[1]),lo=(4-points[1][1])/(6-points[1][1]),hi=points[1][1]/(2+points[1][1]);return out([`front=${front.map(i=>names[i]).join('/')} · B=(2,${points[1][1]})`,`B≥A: w≥${f3(lo)} · B≥C: w≤${f3(hi)}`,`w=.5 scores=${mode===0?'?':score.map(f3).join('/')} · winner=${mode===0?'?':names[score.indexOf(Math.max(...score))]}`],`${mode}: [${f3(lo)},${f3(hi)}]`,{points});}

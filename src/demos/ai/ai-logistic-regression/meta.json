@@ -1,0 +1,103 @@
+{
+  "slug": "ai-logistic-regression",
+  "title": "Does a positive score pass?",
+  "hook": "Compare a probability estimate with a decision rule.",
+  "domain": "ai",
+  "concept": "logistic-regression",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Distinguish linear score, sigmoid probability estimate and thresholded decision."
+    ]
+  },
+  "misconception": "Distinguish linear score, sigmoid probability estimate and thresholded decision.",
+  "objective": "Distinguish linear score, sigmoid probability estimate and thresholded decision.",
+  "claims": [
+    {
+      "id": "ai.ai-logistic-regression.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function sigmoid(z:number){return 1/(1+Math.exp(-z));}\nexport function run(mode:number){const threshold=[.5,.9,.1][mode];return {threshold,rows:[-1,0,1].map(x=>({x,z:2*x,p:sigmoid(2*x),positive:sigmoid(2*x)>=threshold}))};}",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression (maintainer formulation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-logistic-regression.c2",
+      "text": "Does a positive score pass?; Compare a probability estimate with a decision rule.; At x=1, score z=2. With decision threshold 0.9, will this fixed model predict positive?; options ['Yes', 'No']; correct index 1",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression (maintainer formulation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-logistic-regression.c3",
+      "text": "At x=1, the retained probability estimate stayed .881 when the threshold changed from .5 to .9. Its decision changed from positive to negative. The fixed linear score feeds a sigmoid; the threshold then turns that estimate into a decision. Changing a decision rule does not retrain these weights or establish calibration.",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression (maintainer formulation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-logistic-regression.c4",
+      "text": "{\"question\": \"A fixed score ln(3) gives p=.75. Which threshold accepts it?\", \"options\": [\".8\", \".7\"], \"answer\": 1, \"why\": \".75 is below .8 and above .7.\"}",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression (maintainer formulation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-logistic-regression.c5",
+      "text": "Fixed stipulated weights; no training, calibration or measured classifier accuracy. Change thresholds; probabilities are estimates, not a calibration test. Controls: \u03b8=.5, \u03b8=.9, \u03b8=.1, Reset. Milestones [0, 1]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression (maintainer formulation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "A fixed score ln(3) gives p=.75. Which threshold accepts it?",
+    "options": [
+      ".8",
+      ".7"
+    ],
+    "answer": 1,
+    "why": ".75 is below .8 and above .7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:logistic-regression",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

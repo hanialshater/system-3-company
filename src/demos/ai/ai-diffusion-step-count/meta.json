@@ -1,0 +1,107 @@
+{
+  "slug": "ai-diffusion-step-count",
+  "title": "More steps towards which target?",
+  "hook": "Keep the horizon fixed while changing the solver.",
+  "domain": "ai",
+  "concept": "diffusion-step-count",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:diffusion-denoising"
+    ],
+    "doesNotKnow": [
+      "dx/dτ=−x, x(0)=1, horizon=1. Target exp(−1). Which Euler result is closer?"
+    ]
+  },
+  "misconception": "One step",
+  "objective": "Compute this finite diffusion-step-count model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-diffusion-step-count.c1",
+      "text": "More steps towards which target? Keep the horizon fixed while changing the solver. dx/dτ=−x, x(0)=1, horizon=1. Target exp(−1). Which Euler result is closer? Options: Four steps; One step",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §4; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-step-count.c2",
+      "text": "Four Euler steps reduced error against the finite-horizon reference. One Euler step hit zero, which was not the target. A supplied exact map matched in one evaluation. This solver comparison proves no universal image-quality or trained-distillation result.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §4; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-step-count.c3",
+      "text": "{'question': 'Does doubling Euler steps change the declared horizon?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The step size changes from 1/N to 1/(2N); total horizon remains one.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §4; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-step-count.c4",
+      "text": "Addressed visible stage operands and labels: dx/dτ=−x · x0=1 · horizon=1 | Euler: x←x−x/N · target=exp(−1). Controls: N=1, N=4, N=2, N=8, Exact, Reset. Changed computed rows: target=exp(−1)=0.368; horizon=1 / path 1→0 / calls=1; final=0 / |error|=0.368 | target=exp(−1)=0.368; horizon=1 / path 1→0.75→0.563→0.422→0.316 / calls=4; final=0.316 / |error|=0.051 | target=exp(−1)=0.368; horizon=1 / path 1→0.5→0.25 / calls=2; final=0.25 / |error|=0.118 | target=exp(−1)=0.368; horizon=1 / path 1→0.875→0.766→0.67→0.586→0.513→0.449→0.393→0.344 / calls=8; final=0.344 / |error|=0.024 | target=exp(−1)=0.368; horizon=1 / path 1→0.368 / calls=1; final=0.368 / |error|=0. Retained computed witnesses: Euler1 error=0.368 | Euler4 error=0.051 | Euler2 error=0.118 | Euler8 error=0.024 | exact error=0. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst N=[1,4,2,8][mode]??1,exact=Math.exp(-1),path=[1];if(mode===4)path.push(exact);else for(let i=0;i<N;i++)path.push(path.at(-1)!*(1-1/N));const end=path.at(-1)!,error=Math.abs(end-exact);return{values:[end,error],rows:[`target=exp(−1)=${f(exact)}; horizon=1`,`path ${path.map(f).join('→')}`,`calls=${mode===4?1:N}; final=${f(end)}`,`|error|=${f(error)}`],receipt:`${mode===4?'exact':`Euler${N}`} error=${f(error)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §4; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-step-count.c5",
+      "text": "diffusion-step-count\n\n**Identity / target / source:** `ai:diffusion-step-count` → `ai-diffusion-step-count` → `src/demos/ai/ai-diffusion-step-count`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/81`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#4-diffusion-step-count`. **Packet:** G2. **Level / prerequisites:** stretch; `ai:diffusion-denoising`.\n\n**Nearest / distinct payoff:** diffusion-denoising shows reverse conditionals; this isolates numerical step-count error on a declared reverse-flow analogue, not a quality slider.\n\n**Computed primary model:** Declared scalar denoising-flow analogue dx/dtau=−x, initial noisy statex=1, fixed horizon1. Explicit EulerN equal steps computes x_N=(1−1/N)^N. N1→0,N2→.25,N4→.31640625,N8→.3436089160. Reference exact finite-horizon flowexp(−1)≈.36787944. Errors decrease for these cases despite N1 being closest to0; the target is the finite-horizon solution, not an arbitrary zero.\n\n**Countercase / boundary:** One exact supplied map x←exp(−1)x uses one step and matches the reference. It is an analytically supplied map, not a trained distillation result. More Euler steps trade evaluations for numerical accuracy in this construction; they do not prove more steps always improve images or that one-step generators are impossible.\n\n**Prediction / transfer recall:** Predict which Euler setting is closer to the stated finite-horizon reference; recall doublingN changes evaluation count without changing horizon or target.\n\n**Intervention / retained witness:** Step N1/2/4/8 recomputes all intermediate states on one labelled time axis and final absolute error. Exact map is a distinct control with retained EulerN1/N4 witnesses; never draw a pre-authored “quality” curve.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Method lead: [Song et al. score-SDE](https://arxiv.org/abs/2011.13456), not acquired here. No attribution to its actual sampler until method body acquired; this linear ODE/Euler model is fully declared.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §4; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does doubling Euler steps change the declared horizon?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The step size changes from 1/N to 1/(2N); total horizon remains one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:diffusion-step-count",
+    "also": [],
+    "prerequisites": [
+      "ai:diffusion-denoising"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

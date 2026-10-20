@@ -1,0 +1,102 @@
+{
+  "slug": "ai-feature-hierarchy",
+  "title": "Can a local detector be enough?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "feature-hierarchy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:receptive-field-growth"
+    ],
+    "doesNotKnow": [
+      "Does input 1100 activate the high conjunction unit?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared feature-hierarchy mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-feature-hierarchy.c1",
+      "text": "hook/predict: Does input 1100 activate the high conjunction unit? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-feature-hierarchy.c2",
+      "text": "stage input operands: \"hᵢ=ReLU(x₂ᵢ+x₂ᵢ₊₁−1) · H=ReLU(h₁+h₂−1)\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hierarchy.c3",
+      "text": "reveal: Input 1111 activated both local units and the high unit. Input 1100 activated only the left unit and left H at zero. These declared thresholds compute a conjunction; they are supplied weights, not trained semantic feature detectors.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hierarchy.c4",
+      "text": "recall: For 1011, which units activate? Only the right pair has sum 2.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hierarchy.c5",
+      "text": "stage computation: Four binary inputs. Fixed local detectors h1=ReLU(x0+x1−1), h2=ReLU(x2+x3−1); high output H=ReLU(h1+h2−1). Input1111 gives h=[1,1], H1. Input1100 gives h=[1,0], H0; input1011 gives[0,1], H0. Display actual sums, thresholds and connected receptive fields.\n\n**Countercase / boundary:** The weights/thresholds are declared, not learned. A low detector firing does not by itself activate the conjunction. Flip x0 in1111 to0: h1 drops0 and H0, showing dependency rather than a generic later-layer “object” label.\n\n**Prediction / transfer recall:** Predict whether1100 activates the high unit; recall0111 activates only the right local detector and leaves H0.\n\n**Intervention / reachable witness:** Toggle one input at a time through semantic44px controls; primary1111 and current intermediate/output states retained together. Do not attribute a real semantic feature or training history to these units.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hierarchy.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: hᵢ=ReLU(x₂ᵢ+x₂ᵢ₊₁−1) · H=ReLU(h₁+h₂−1) ? x3 x4 x1 x2 Reset 1: 1111→11→1 2: 1100→10→0 3: 0111→01→0 | inspection 0: hᵢ=ReLU(x₂ᵢ+x₂ᵢ₊₁−1) · H=ReLU(h₁+h₂−1) 1 1 1 1 1 1 1 x3 x4 x1 x2 Reset 1: 1111→11→1 2: 1100→10→0 3: 0111→01→0 | inspection 1: hᵢ=ReLU(x₂ᵢ+x₂ᵢ₊₁−1) · H=ReLU(h₁+h₂−1) 1 1 0 0 1 0 0 x3 x4 x1 x2 Reset 1: 1111→11→1 2: 1100→10→0 3: 0111→01→0 | inspection 2: hᵢ=ReLU(x₂ᵢ+x₂ᵢ₊₁−1) · H=ReLU(h₁+h₂−1) 0 1 1 1 0 1 0 x3 x4 x1 x2 Reset 1: 1111→11→1 2: 1100→10→0 3: 0111→01→0",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#8-feature-hierarchy; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 1011, which units activate?",
+    "options": [
+      "Right only; H=0",
+      "Both; H=1",
+      "Left only; H=0"
+    ],
+    "answer": 0,
+    "why": "Only the right pair has sum 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:feature-hierarchy",
+    "also": [],
+    "prerequisites": [
+      "ai:receptive-field-growth"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

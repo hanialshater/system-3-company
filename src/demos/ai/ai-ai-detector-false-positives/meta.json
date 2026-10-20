@@ -1,0 +1,97 @@
+{
+  "slug": "ai-ai-detector-false-positives",
+  "title": "Test ai detector false positives",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "ai-detector-false-positives",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "accuracy-paradox"
+    ],
+    "doesNotKnow": [
+      "Fictional10000 texts; prevalence.01, TPR.9,FPR.05. Are most flags necessarily machine-written? Abstention alternative flags high(.6/.01), abstains medium(.3/.04)."
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared ai detector false positives model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-ai-detector-false-positives.c1",
+      "text": "Test ai detector false positives Compare a declared mechanism with its changed case. Fictional10000 texts; prevalence.01, TPR.9,FPR.05. Are most flags necessarily machine-written? Abstention alternative flags high(.6/.01), abstains medium(.3/.04). Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §23; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ai-detector-false-positives.c2",
+      "text": "At prevalence 1%, expected flags were 90 true and 495 false. High-only flagging improved precision to .377 but abstained on 426 texts and missed more machine texts. A different prevalence changed the posterior again. These stipulated expected counts do not establish individual authorship.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §23; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ai-detector-false-positives.c3",
+      "text": "{\"question\": \"Does abstention mean a negative authorship judgement?\", \"options\": [\"No: medium scores remain undecided\", \"Yes: every abstention means human\"], \"answer\": 0, \"why\": \"The alternative protocol leaves medium-region texts undecided; it does not assign their authorship.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §23; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ai-detector-false-positives.c4",
+      "text": "ai-detector-false-positives\n\n**Identity / target / source:** `ai:ai-detector-false-positives` → `ai-ai-detector-false-positives` → `src/demos/ai/ai-ai-detector-false-positives`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/207`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#23-ai-detector-false-positives`. **Packet:** P1. **Level / prerequisites:** core; `ai:accuracy-paradox`.\n\n**Nearest / distinct payoff:** accuracy-paradox uses base-rate alerts; this adds authorship abstention and shows how a declared high-threshold protocol changes both precision and undecided volume.\n\n**Computed primary model:** Fictional10000texts, machine prevalence.01. Declared detectorTPR.9/FPR.05 gives expected trueflags90,falseflags495, positiveposterior90/585=2/13≈.153846. Atprevalence.5 same rates give18/19≈.947368. These are expected counts under stipulated rates, not observed detector validation.\n\n**Countercase / boundary:** Three score regions: highmachine.6/human.01; mediummachine.3/human.04; lowmachine.1/human.95. Baselineflags high+medium, matching.9/.05. Protocolflags high, abstainsmedium: trueflags60,falseflags99, positiveposterior20/53≈.377358, abstentions30+396=426. Better positiveprecision here costs undecided cases and lowerTPR; neither protocol proves an individual’s authorship.\n\n**Prediction / transfer recall:** Predict whether most initial flags must be machine-written; recall same rates at a different prevalence produce a different posterior and abstention is not a negative judgement.\n\n**Intervention / retained witness:** Change prevalence/Allow abstention recomputes full expected contingency table and denominator, retaining original90/495 flags and new60/99/426 evidence. No accusation or real writing sample is classified.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Before a real detector accuracy, population or fairness statement, acquire dated original validation protocol/data and exact model/version; none is inferred from these toy rates.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Prevalence1%/Abstain/Prevalence50%; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §23; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does abstention mean a negative authorship judgement?",
+    "options": [
+      "No: medium scores remain undecided",
+      "Yes: every abstention means human"
+    ],
+    "answer": 0,
+    "why": "The alternative protocol leaves medium-region texts undecided; it does not assign their authorship."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ai-detector-false-positives",
+    "also": [],
+    "prerequisites": [
+      "ai:accuracy-paradox"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

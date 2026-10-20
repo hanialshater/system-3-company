@@ -1,0 +1,102 @@
+{
+  "slug": "ai-lora-low-rank",
+  "title": "Can one direction make two?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "lora-low-rank",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:how-llms-are-trained"
+    ],
+    "doesNotKnow": [
+      "Can two rank-1 delta output vectors be linearly independent?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared lora-low-rank mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-lora-low-rank.c1",
+      "text": "hook/predict: Can two rank-1 delta output vectors be linearly independent? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lora-low-rank.c2",
+      "text": "stage input operands: \"W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2]\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lora-low-rank.c3",
+      "text": "reveal: Rank-1 updates mapped e₁ to B and e₃ to −B, using 8 factor entries versus 16 full entries. The rank-2 target’s minor was 1, impossible for rank 1. Rank-2 factors here need 16 entries; counts exclude optimizer and metadata storage.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lora-low-rank.c4",
+      "text": "recall: How many factor entries does a 4×4 rank-2 parameterization have? A 4×2 factor and a 2×4 factor contribute 8+8 entries.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lora-low-rank.c5",
+      "text": "stage computation: Frozen4×4 base W=identity. Rank1 update DeltaW=B*A with B=[1,2,0,−1]^T, A=[1,0,−1,2]. Factors have4+4=8 trainable scalars versus16 for a full delta; compute all entries. Inpute1 update=B; inpute3 update=−B, so both lie in one output direction. Total outputs are Wx+DeltaW*x, not just delta.\n\n**Countercase / boundary:** Desired delta diag(1,1,0,0) has top-left determinant1 and rank2, impossible for any rank1 outer product whose2×2 minors vanish. Rank2 factors can represent it, but4×2+2×4=16 scalars no longer reduce parameter count for this tiny square. Ignore metadata/optimizer storage when counting and state that exclusion.\n\n**Prediction / transfer recall:** Predict whether two rank1 delta output vectors can be independent; recall4×4 rank2 has16 trainable factor entries, not8.\n\n**Intervention / reachable witness:** Apply e1/e3 computes original and updated outputs with outer-product path; Rank2 target displays impossible-rank1 minor and an explicit rank2 construction using first two coordinate basis columns/rows. Retain both rank1 collinearity and rank2 witness.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lora-low-rank.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2] ? Apply e₁ Apply e₃ Rank-2 target Reset 1: Δ=[1,2,0,-1];y=[2,2,0,-1];#=8;m=0 2: Δ=[-1,-2,0,1];y=[-1,-2,1,1];#=8;m=0 3: Δ=[1,0,0,0];y=[2,0,0,0];#=16;m=1 | inspection 0: W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2] 1 × [1,0,−1,2] [1,0,-1,2] 2 × [1,0,−1,2] [2,0,-2,4] 0 × [1,0,−1,2] [0,0,0,0] -1 × [1,0,−1,2] [-1,0,1,-2] Apply e₁ Apply e₃ Rank-2 target Reset 1: Δ=[1,2,0,-1];y=[2,2,0,-1];#=8;m=0 2: Δ=[-1,-2,0,1];y=[-1,-2,1,1];#=8;m=0 3: Δ=[1,0,0,0];y=[2,0,0,0];#=16;m=1 | inspection 1: W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2] 1 × [1,0,−1,2] [1,0,-1,2] 2 × [1,0,−1,2] [2,0,-2,4] 0 × [1,0,−1,2] [0,0,0,0] -1 × [1,0,−1,2] [-1,0,1,-2] Apply e₁ Apply e₃ Rank-2 target Reset 1: Δ=[1,2,0,-1];y=[2,2,0,-1];#=8;m=0 2: Δ=[-1,-2,0,1];y=[-1,-2,1,1];#=8;m=0 3: Δ=[1,0,0,0];y=[2,0,0,0];#=16;m=1 | inspection 2: W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2] [e₁,e₂] × [e₁ᵀ;e₂ᵀ] diag(1,1,0,0) minor=1 · 4×2+2×4=16 Apply e₁ Apply e₃ Rank-2 target Reset 1: Δ=[1,2,0,-1];y=[2,2,0,-1];#=8;m=0 2: Δ=[-1,-2,0,1];y=[-1,-2,1,1];#=8;m=0 3: Δ=[1,0,0,0];y=[2,0,0,0];#=16;m=1",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#19-lora-low-rank; local model.ts and model-check.mjs. [Hu et al. LoRA original PDF](https://arxiv.org/pdf/2106.09685), opened body2026-10-19, §4.1 low-rank parameterization W0+BA and frozen base; the local rank/parameter arithmetic is independently derived. No claim about production memory or accuracy follows. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How many factor entries does a 4×4 rank-2 parameterization have?",
+    "options": [
+      "16",
+      "8",
+      "4"
+    ],
+    "answer": 0,
+    "why": "A 4×2 factor and a 2×4 factor contribute 8+8 entries."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:lora-low-rank",
+    "also": [],
+    "prerequisites": [
+      "ai:how-llms-are-trained"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

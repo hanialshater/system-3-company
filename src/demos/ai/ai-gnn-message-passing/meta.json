@@ -1,0 +1,102 @@
+{
+  "slug": "ai-gnn-message-passing",
+  "title": "How many hops can a marker cross?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "gnn-message-passing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:hidden-layers-xor"
+    ],
+    "doesNotKnow": [
+      "Which is the first synchronous round in which D can depend on A?"
+    ]
+  },
+  "misconception": "Round 1",
+  "objective": "Use the distinct declared gnn-message-passing mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-gnn-message-passing.c1",
+      "text": "hook/predict: Which is the first synchronous round in which D can depend on A? Options: Round 1; Round 2; Round 3",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gnn-message-passing.c2",
+      "text": "stage input operands: \"A—B—C—D · h₀=1000 · synchronous max\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gnn-message-passing.c3",
+      "text": "reveal: With synchronous old-state updates, A’s marker reached D only at round 3. Cutting BC left C and D at zero. Starting at C reached B and D in one round. This fixed max circuit illustrates graph dependence, not trained-GNN expressiveness.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gnn-message-passing.c4",
+      "text": "recall: Starting at C, when does the marker first reach A? A is two edges from C.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gnn-message-passing.c5",
+      "text": "stage computation: Undirected chain A–B–C–D, initial markers[1,0,0,0]. One synchronous layer sets h_next(v)=max(h(v), all neighbour h). Rounds produce[1,1,0,0], [1,1,1,0], [1,1,1,1]. Use a fresh old-state snapshot each round, never in-place propagation.\n\n**Countercase / boundary:** Remove edge B–C before restarting: C and D stay0 for any round. This is a fixed max-aggregation message-passing circuit with self information, not a trained GNN or a guarantee of structural distinguishability.\n\n**Prediction / transfer recall:** Predict first round D can depend on A; recall moving initial marker to C reaches both B and D after one round, A after two.\n\n**Intervention / reachable witness:** Step layer visibly highlights reached nodes and causal edges; Cut edge restarts current propagation while preserving original three-round witness. Make synchronous dependence explicit.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gnn-message-passing.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: A—B—C—D · h₀=1000 · synchronous max ? 3 rounds Cut BC Seed C Reset 1: 1000→1100→1110→1111 2: 1000→1100→1100→1100 3: 0010→0111 | inspection 0: A—B—C—D · h₀=1000 · synchronous max 1 A 1 B 1 C 1 D 3 rounds Cut BC Seed C Reset 1: 1000→1100→1110→1111 2: 1000→1100→1100→1100 3: 0010→0111 | inspection 1: A—B—C—D · h₀=1000 · synchronous max 1 A 1 B 0 C 0 D 3 rounds Cut BC Seed C Reset 1: 1000→1100→1110→1111 2: 1000→1100→1100→1100 3: 0010→0111 | inspection 2: A—B—C—D · h₀=1000 · synchronous max 0 A 1 B 1 C 1 D 3 rounds Cut BC Seed C Reset 1: 1000→1100→1110→1111 2: 1000→1100→1100→1100 3: 0010→0111",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#4-gnn-message-passing; local model.ts and model-check.mjs. [Hamilton et al. GraphSAGE](https://arxiv.org/abs/1706.02216), opened abstract2026-10-19 establishes neighbour aggregation motivation only. Acquire method body/Algorithm1 before any statement equating this max circuit with GraphSAGE training; local recurrence is fully declared. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at C, when does the marker first reach A?",
+    "options": [
+      "Round 1",
+      "Round 2",
+      "Round 3"
+    ],
+    "answer": 1,
+    "why": "A is two edges from C."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:gnn-message-passing",
+    "also": [],
+    "prerequisites": [
+      "ai:hidden-layers-xor"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "ai-submodular-coverage-gains",
+  "title": "What does the next pick add?",
+  "hook": "A set can lose marginal value as coverage grows.",
+  "domain": "ai",
+  "concept": "submodular-coverage-gains",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A score to maximise over many candidates; distance between points."
+    ],
+    "doesNotKnow": [
+      "a candidate's value is its newly covered items given the current set, not its fixed standalone size. Explicit bridge from a single-variable economic curve to a set function: the inputs are subsets and a candidate's marginal depends on which elements are already selected."
+    ]
+  },
+  "misconception": "a candidate's value is its newly covered items given the current set, not its fixed standalone size. Explicit bridge from a single-variable economic curve to a set function: the inputs are subsets and a candidate's marginal depends on which elements are already selected.",
+  "objective": "a candidate's value is its newly covered items given the current set, not its fixed standalone size. Explicit bridge from a single-variable economic curve to a set function: the inputs are subsets and a candidate's marginal depends on which elements are already selected.",
+  "claims": [
+    {
+      "id": "ai.ai-submodular-coverage-gains.c1",
+      "text": "Set coverage counts unique universe items. Candidate B={3,4,5,6} adds4 to empty,2 afterA={1,2,3,4},1 afterA+D whereD={1,5,7}. Filled boxes are already covered; + marks newly covered items. Complement toy f(empty)=f(X)=f(Y)=0,f(XY)=10 gives Y marginal0→10 and violates diminishing returns. Changed P={1,2},Q={2,3} gives Q gains2→1.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-submodular-coverage-gains.c2",
+      "text": "Title: What does the next pick add? Hook: A set can lose marginal value as coverage grows. A covers 1,2,3,4. B covers 3,4,5,6. After choosing A, how many new items does B add? Options: 2 / 4 / 0; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-submodular-coverage-gains.c3",
+      "text": "The retained B covers four items alone, adds two after A, and adds only one after A plus D. Its marginal gain depends on what is already covered. Coverage has diminishing set gains. The complements countercase instead gains more after another choice, so it is not submodular.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-submodular-coverage-gains.c4",
+      "text": "P covers 1,2 and Q covers 2,3. How many items does Q add after P? Item 2 is already covered; Q adds only item 3.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-submodular-coverage-gains.c5",
+      "text": "Comparisons use nested selected sets and the same added candidate. A one-variable economic curve is not the set-function definition; normalized and monotone alone do not imply submodularity.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-submodular-coverage-gains.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "P covers 1,2 and Q covers 2,3. How many items does Q add after P?",
+    "options": [
+      "1",
+      "2",
+      "0"
+    ],
+    "answer": 0,
+    "why": "Item 2 is already covered; Q adds only item 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:submodular-coverage-gains",
+    "also": [],
+    "prerequisites": [
+      "economics:diminishing-returns"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "optimisation-search",
+      "submodular-selection",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://link.springer.com/article/10.1007/BF01588971",
+    "locator": "original publisher abstract definition of submodular set function and monotone-cardinality context; explicit coverage unions derived locally",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "ai-adam-per-weight-steps",
+  "title": "Same rate, different steps",
+  "hook": "Follow corrected moments into each coordinate’s denominator.",
+  "domain": "ai",
+  "concept": "adam-per-weight-steps",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "First Adam step only, zero initial moments, explicit bias corrections and epsilon outside square root. No empirical convergence or universal equal-step assertion."
+    ]
+  },
+  "misconception": "First Adam step only, zero initial moments, explicit bias corrections and epsilon outside square root. No empirical convergence or universal equal-step assertion.",
+  "objective": "Compute and contrast the finite adam per weight steps cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-adam-per-weight-steps.c1",
+      "text": "export function adam(grad:number[]){const alpha=.1,beta1=.9,beta2=.999,epsilon=.01,m=grad.map(g=>(1-beta1)*g),v=grad.map(g=>(1-beta2)*g*g),mhat=m.map(x=>x/(1-beta1)),vhat=v.map(x=>x/(1-beta2)),denominator=vhat.map(x=>Math.sqrt(x)+epsilon),steps=mhat.map((x,i)=>-alpha*x/denominator[i]),sgd=grad.map(g=>-alpha*g);return {grad,m,v,mhat,vhat,denominator,steps,sgd};}\nexport function run(mode:number){return adam(mode===1?[0,10]:[1,10]);}\n\n<text x=\"7\" y=\"17\">g</text><text x=\"58\" y=\"17\">m̂</text><text x=\"116\" y=\"17\">v̂</text><text x=\"184\" y=\"17\">√v̂+ε</text>{r.grad.map((g,i)=><g key={i}><text x=\"7\" y={42+i*29}>{g}</text><text x=\"58\" y={42+i*29}>{show(r.mhat[i],0)}</text><text x=\"116\" y={42+i*29}>{show(r.vhat[i],0)}</text><text x=\"184\" y={42+i*29}>{show(r.denominator[i],2)}</text></g>)}<text x=\"7\" y=\"98\">Adam</text><text x=\"78\" y=\"98\">[{r.steps.map(n=>show(n,5)).join(', ')}]</text><text x=\"7\" y=\"121\">SGD</text><text x=\"78\" y=\"121\">[{r.sgd.map(n=>show(n,2)).join(', ')}]</text>\ng=[1,10]; m=v=0; β₁=.9; β₂=.999; α=.1; ε=.01. First step.",
+      "support": "derivation",
+      "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-adam-per-weight-steps.c2",
+      "text": "Same rate, different steps; Follow corrected moments into each coordinate’s denominator.; {\"question\": \"First step: gradients [1,10], zero moments, β₁=.9, β₂=.999, α=.1, ε=.01. Adam uses −αm̂/(√v̂+ε). Which pair of steps follows?\", \"options\": [\"[−.1,−1]\", \"[−.09901,−.09990]\", \"[−1,−1]\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-adam-per-weight-steps.c3",
+      "text": "Your gradients 1 and 10 produced Adam steps −.09901 and −.09990, versus SGD’s −.10 and −1.00. Corrected squared moments changed each denominator. A zero gradient gave a zero first step. Epsilon prevents exact scale invariance; this example establishes neither equal steps generally nor convergence.\n`g₁=${r.grad[0]}: Δ=[${r.steps.map(x=>f(x,5)).join(',')}]`",
+      "support": "derivation",
+      "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-adam-per-weight-steps.c4",
+      "text": "{\"question\": \"With zero initial moments and gradients [0,10], which first Adam step pair follows at the same settings?\", \"options\": [\"[−.09901,−.09990]\", \"[0,−.09990]\", \"[0,−1]\"], \"answer\": 1, \"why\": \"The zero coordinate has zero corrected first moment and therefore zero step; the other denominator remains 10+.01.\"}",
+      "support": "derivation",
+      "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-adam-per-weight-steps.c5",
+      "text": "First Adam step only, zero initial moments, explicit bias corrections and epsilon outside square root. No empirical convergence or universal equal-step assertion. Controls: g=[1,10], g=[0,10], Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "With zero initial moments and gradients [0,10], which first Adam step pair follows at the same settings?",
+    "options": [
+      "[−.09901,−.09990]",
+      "[0,−.09990]",
+      "[0,−1]"
+    ],
+    "answer": 1,
+    "why": "The zero coordinate has zero corrected first moment and therefore zero step; the other denominator remains 10+.01."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:adam-per-weight-steps",
+    "also": [],
+    "prerequisites": [
+      "ai:momentum"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "ai-product-quantization",
+  "title": "Two codes replace four coordinates",
+  "hook": "Separate reconstruction distortion from query-distance error.",
+  "domain": "ai",
+  "concept": "product-quantization",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ann-recall-speed",
+      "k-means-clustering"
+    ],
+    "doesNotKnow": [
+      "v=[.2,.6,1.2,1.6], query=0. Each 2D subcodebook has (0,0),(1,1),(2,2). Does lookup distance equal exact squared distance?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the product quantization finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-product-quantization.c1",
+      "text": "Two codes replace four coordinates Separate reconstruction distortion from query-distance error. v=[.2,.6,1.2,1.6], query=0. Each 2D subcodebook has (0,0),(1,1),(2,2). Does lookup distance equal exact squared distance? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §15; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-product-quantization.c2",
+      "text": "Two subspace codes reconstructed [0,0,1,1], distortion .8. Squared distance to zero became 2 versus exact 4.4. Richer codes reconstructed [0,.5,1,1.5], distortion .1 and query distance 3.5. Reconstruction distortion and query-distance error differ; rankings need not survive compression.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §15; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-product-quantization.c3",
+      "text": "With richer codes, which quantities remain different? Options: Distortion .1 and query-distance error .9; Both are .1; Both must be zero The exact distance is 4.4 and approximate distance 3.5, giving .9 error; squared reconstruction distortion is .1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §15; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-product-quantization.c4",
+      "text": "Original schematic labels, including neutral and every changed case: v=(.2,.6)|(1.2,1.6) · query=0 book:(0,0)/(1,1)/(2,2) codes=?|? D=? · exact-d²=? lookup=?+?=? | v=(.2,.6)|(1.2,1.6) · query=0 book:(0,0)/(1,1)/(2,2) codes=0,0|1,1 D=0.8 · exact-d²=4.4 lookup=0+2=2 | v=(.2,.6)|(1.2,1.6) · query=0 add:(0,.5)|(1,1.5) codes=0,0.5|1,1.5 D=0.1 · exact-d²=4.4 lookup=0.25+3.25=3.5. Retained locally computed witnesses: Coarse: D0.8,d²2 | Rich: D0.1,d²3.5. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §15; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-product-quantization.c5",
+      "text": " 15. product-quantization\n\nTarget / packet: ai-product-quantization · R3. Prerequisites: ai:ann-recall-speed, ai:k-means-clustering.\n\nNearest / distinct payoff: ann-recall-speed → ai-ann-recall-speed. Approximate retrieval search is distinct from approximating the stored vector itself using independent subspace codebooks and lookup distances.\n\nFinite primary model: Vector v=[.2,.6,1.2,1.6], split into 2D subvectors. Each codebook[(0,0),(1,1),(2,2)]. Nearest codewords[0,0] and[1,1] reconstruct[0,0,1,1], squared distortion.8. Query zero exact squared distance 4.4; summed codeword lookup distance 2.\n\nCountercase and mathematical boundary: Richer subcodebooks including[0,.5] and[1,1.5] reconstruct[0,.5,1,1.5], distortion.1, query distance 3.5. Approximation may change ranks; squared-distance error 2.4/.9 is not the same as vector reconstruction error.\n\nPredict and recall transfer: Predict approximate query distance from lookup sum; recall why different codeword precision changes distortion.\n\nRequired observable evidence: Expose two local codebooks, subvector assignments andsum; no claim that compression always preserves nearest neighbors.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §15; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With richer codes, which quantities remain different?",
+    "options": [
+      "Distortion .1 and query-distance error .9",
+      "Both are .1",
+      "Both must be zero"
+    ],
+    "answer": 0,
+    "why": "The exact distance is 4.4 and approximate distance 3.5, giving .9 error; squared reconstruction distortion is .1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:product-quantization",
+    "also": [],
+    "prerequisites": [
+      "ai:ann-recall-speed",
+      "ai:k-means-clustering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

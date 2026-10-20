@@ -1,0 +1,95 @@
+{
+  "slug": "ai-conformal-sets",
+  "title": "A set can be empty or full",
+  "hook": "Calculate the augmented calibration order statistic.",
+  "domain": "ai",
+  "concept": "conformal-sets",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "calibration"
+    ],
+    "doesNotKnow": [
+      "Calibration scores .1/.2/.3; n=3, α=.25, k=ceil((n+1)(1−α))=3. With class probabilities .4/.35/.25, does score 1−p≤threshold retain any class?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the conformal sets finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-conformal-sets.c1",
+      "text": "A set can be empty or full Calculate the augmented calibration order statistic. Calibration scores .1/.2/.3; n=3, α=.25, k=ceil((n+1)(1−α))=3. With class probabilities .4/.35/.25, does score 1−p≤threshold retain any class? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §26; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-conformal-sets.c2",
+      "text": "The third calibration score gave threshold .3. Probabilities [.8,.15,.05] retained A; [.4,.35,.25] retained none. At alpha .1, rank 4 exceeded three scores, so the augmented threshold was infinity and retained all. This finite calculation makes no per-case confidence or coverage promise.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §26; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-conformal-sets.c3",
+      "text": "Why does α=.1 return every class here? Options: Rank 4 selects the appended infinite threshold; Each probability is above .9; Empty sets are forbidden With n=3, ceil(4×.9)=4 exceeds the finite calibration scores; the augmented threshold is infinity.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §26; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-conformal-sets.c4",
+      "text": "Original schematic labels, including neutral and every changed case: calibration:.1/.2/.3/∞ k=3 · q=? A:? B:? C:? score=1−p · retain≤q | calibration:.1/.2/.3/∞ k=3 · q=0.3 A:0.2 B:0.85 C:0.95 score=1−p · retain≤q | calibration:.1/.2/.3/∞ k=3 · q=0.3 A:0.6 B:0.65 C:0.75 score=1−p · retain≤q | calibration:.1/.2/.3/∞ k=4 · q=∞ A:0.6 B:0.65 C:0.75 score=1−p · retain≤q. Retained locally computed witnesses: Certain: set={A} | Uncertain: set={} | α.1: set={A,B,C}. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §26; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-conformal-sets.c5",
+      "text": " 26. conformal-sets\n\nTarget / packet: ai-conformal-sets · D2. Prerequisites: ai:calibration.\n\nNearest / distinct payoff: calibration → say-seventy-mean-it. A probability calibration statement is not a prediction set; this computes a calibration-score quantile and class membership, including empty/full outputs.\n\nFinite primary model: Calibration nonconformity scores [.1,.2,.3], n=3; k=ceil((n+1)(1-alpha)). alpha=.25 gives k=3, q=.3. Candidate class scores 1-p for p=[.8,.15,.05] retain only A; uncertain p=[.4,.35,.25] yields empty set.\n\nCountercase and mathematical boundary: alpha=.1 gives k=4>n: append infinite threshold, retain all classes. This calculation alone makes no marginal coverage claim; any theorem must state exchangeability and calibration protocol. Inclusive score<=q with tolerance.\n\nPredict and recall transfer: Predict set size for uncertain probabilities; recall why empty and full sets are valid algorithm outputs under this quantile rule.\n\nRequired observable evidence: Show ordered calibration scores, threshold and membership; never substitute threshold for a 95% per-case confidence claim.\n\nSource obligation: [Angelopoulos–Bates author tutorial](https://arxiv.org/pdf/2107.07511), acquired PDF body §1 split-conformal construction. The local three-score calculation uses the augmented infinite order statistic when k>n. No empirical or per-instance confidence promise; theorem wording must specify exchangeability and protocol before fact checking.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §26; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does α=.1 return every class here?",
+    "options": [
+      "Rank 4 selects the appended infinite threshold",
+      "Each probability is above .9",
+      "Empty sets are forbidden"
+    ],
+    "answer": 0,
+    "why": "With n=3, ceil(4×.9)=4 exceeds the finite calibration scores; the augmented threshold is infinity."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:conformal-sets",
+    "also": [],
+    "prerequisites": [
+      "ai:calibration"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

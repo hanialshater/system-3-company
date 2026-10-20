@@ -1,0 +1,97 @@
+{
+  "slug": "ai-feature-hashing",
+  "title": "Collision can cancel a feature",
+  "hook": "Sum signed token contributions into fixed buckets.",
+  "domain": "ai",
+  "concept": "feature-hashing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "categorical-encoding",
+      "hashing-collisions"
+    ],
+    "doesNotKnow": [
+      "Counts A/B/C=1/2/1. Buckets=0/1/0, signs=+/+/−. What is bucket 0?"
+    ]
+  },
+  "misconception": "2",
+  "objective": "Compute the feature hashing finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-feature-hashing.c1",
+      "text": "Collision can cancel a feature Sum signed token contributions into fixed buckets. Counts A/B/C=1/2/1. Buckets=0/1/0, signs=+/+/−. What is bucket 0? Options: 0; 2",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §22; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-feature-hashing.c2",
+      "text": "Unsigned collision gave buckets [2,2]. Applying C’s negative sign gave [0,2]; removing C instead gave [1,2]. Cancellation does not recover which tokens occurred. These fixed mappings demonstrate arithmetic, not unbiasedness or a statistical collision-rate guarantee.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §22; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hashing.c3",
+      "text": "Can bucket 0 equal zero even though A and C both occurred? Options: Yes, their signed contributions cancel; No, zero proves neither occurred; Only if the hash changes A contributes +1 and C contributes −1 to the same bucket, summing to zero without removing their occurrences.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §22; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hashing.c4",
+      "text": "Original schematic labels, including neutral and every changed case: A/B/C=1/2/1 · bucket=0/1/0 A:+1 →0 B:+2 →1 C:? →0 [?,?] | A/B/C=1/2/1 · bucket=0/1/0 A:+1 →0 B:+2 →1 C:1 →0 [2,2] | A/B/C=1/2/1 · bucket=0/1/0 A:+1 →0 B:+2 →1 C:-1 →0 [0,2] | A/B/C=1/2/0 · bucket=0/1/0 A:+1 →0 B:+2 →1 C:0 →0 [1,2]. Retained locally computed witnesses: Unsigned: [2,2] | Signed: [0,2] | NoC: [1,2]. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §22; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-feature-hashing.c5",
+      "text": " 22. feature-hashing\n\nTarget / packet: ai-feature-hashing · D1. Prerequisites: ai:categorical-encoding, cs:hashing-collisions.\n\nNearest / distinct payoff: categorical-encoding → ai-categorical-encoding. Category encoding allocates explicit identities; a fixed small hash space merges signed token contributions and loses identity.\n\nFinite primary model: Tokens A/B/C counts [1,2,1], declared 2 bucket hash A→0, B→1, C→0. Unsigned vector[2,2]; signs A+, B+, C- give[0,2]. With 3 collision free buckets vector[1,2,1].\n\nCountercase and mathematical boundary: Signed collision may cancel a true coordinate, not recover token identity; counter C count 0 gives signed[1,2]. Fixed hash/sign mappings, no expectation/unbiasedness claim unless proven under stated random family.\n\nPredict and recall transfer: Predict bucket 0 after adding C; recall why hashed vector cannot reconstruct whether A and C canceled.\n\nRequired observable evidence: Show each token's bucket/sign contribution and summed vector; no install of hash library.\n\nSource obligation: [scikit-learn feature-hashing documentation](https://scikit-learn.org/stable/modules/feature_extraction.htmlfeature-hashing), acquired body §8.2.2. Hash/sign mappings are local and fixed; statistical unbiasedness and collision-frequency claims remain unadmitted.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §22; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can bucket 0 equal zero even though A and C both occurred?",
+    "options": [
+      "Yes, their signed contributions cancel",
+      "No, zero proves neither occurred",
+      "Only if the hash changes"
+    ],
+    "answer": 0,
+    "why": "A contributes +1 and C contributes −1 to the same bucket, summing to zero without removing their occurrences."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:feature-hashing",
+    "also": [],
+    "prerequisites": [
+      "ai:categorical-encoding",
+      "cs:hashing-collisions"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

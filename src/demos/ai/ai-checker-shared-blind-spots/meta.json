@@ -1,0 +1,109 @@
+{
+  "slug": "ai-checker-shared-blind-spots",
+  "title": "Can two checkers miss the same case?",
+  "hook": "Count joint errors rather than multiplying marginals.",
+  "domain": "ai",
+  "concept": "checker-shared-blind-spots",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:ensemble-wisdom",
+      "books:book-crowds-correlated-errors"
+    ],
+    "doesNotKnow": [
+      "Four equally likely types. A misses type0. B misses one type. Is joint miss necessarily .25×.25?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite checker-shared-blind-spots model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-checker-shared-blind-spots.c1",
+      "text": "Can two checkers miss the same case? Count joint errors rather than multiplying marginals. Four equally likely types. A misses type0. B misses one type. Is joint miss necessarily .25×.25? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §21; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-checker-shared-blind-spots.c2",
+      "text": "Both checkers had marginal miss rate .25. Shared errors made joint failure .25; disjoint errors made it zero. Independent types gave .0625. Equal individual accuracy alone did not determine the pair’s reliability.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §21; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-checker-shared-blind-spots.c3",
+      "text": "{'question': 'Do equal marginal error rates establish independence?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The overlap of missed cases remains unspecified.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §21; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-checker-shared-blind-spots.c4",
+      "text": "Addressed visible stage operands and labels: types=0/1/2/3 equally likely | A misses0 · B misses one type | joint counts, not marginal multiplication. Controls: Shared, Disjoint, Independent, Reset. Changed computed rows: cases=4; equiprobable / A-miss=.25; B-miss=.25 / joint misses=1/4=0.25 / product=.0625 · shared types | cases=4; equiprobable / A-miss=.25; B-miss=.25 / joint misses=0/4=0 / product=.0625 · disjoint types | cases=16; equiprobable / A-miss=.25; B-miss=.25 / joint misses=1/16=0.063 / product=.0625 · independent types. Retained computed witnesses: shared joint=0.25 | disjoint joint=0 | independent joint=0.063. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst pairs=mode===2?Array.from({length:4},(_,i)=>Array.from({length:4},(_,j)=>[i,j])).flat():Array.from({length:4},(_,i)=>[i,i]),a=pairs.map(([i])=>i===0),b=pairs.map(([,j])=>j===(mode===1?1:0)),joint=pairs.filter((_,i)=>a[i]&&b[i]).length/pairs.length;return{values:[sum(a.map(Number))/a.length,sum(b.map(Number))/b.length,joint],rows:[`cases=${pairs.length}; equiprobable`,`A-miss=.25; B-miss=.25`,`joint misses=${pairs.filter((_,i)=>a[i]&&b[i]).length}/${pairs.length}=${f(joint)}`,`product=.0625 · ${['shared types','disjoint types','independent types'][mode]}`],receipt:`${['shared','disjoint','independent'][mode]} joint=${f(joint)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §21; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-checker-shared-blind-spots.c5",
+      "text": "checker-shared-blind-spots\n\n**Identity / target / source:** `ai:checker-shared-blind-spots` → `ai-checker-shared-blind-spots` → `src/demos/ai/ai-checker-shared-blind-spots`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/129`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#21-checker-shared-blind-spots`. **Packet:** A1. **Level / prerequisites:** core; `ai:ensemble-wisdom`, `books:book-crowds-correlated-errors`.\n\n**Nearest / distinct payoff:** ensemble-wisdom averages member outputs; this holds each checker’s miss rate constant and computes jointly missed defects under three dependence structures.\n\n**Computed primary model:** Four equiprobable defect types. CheckerA misses onlytype0. In alignedcase checkerB also misses only0: each missrate.25, jointly missed.25. In disjointcase B misses only1: each missrate.25, jointly missed0. A system accepts a defect only if both miss it.\n\n**Countercase / boundary:** Independent miss events with each.25 give joint.0625, represented by16equiprobable index-pair outcomes (A misses firstindex0, B secondindex0). Equal marginal rates alone do not identify joint misses. These are declared checker policies, not measured human/model correlations or independence from model names.\n\n**Prediction / transfer recall:** Predict whether adding a checker with the same miss rate necessarily reduces escapes; recall two different labels for perfectly aligned policies leave the same joint failure.\n\n**Intervention / retained witness:** Change alignment recomputes per-defect decisions/marginals/joint escape, then Independent draws exposes the16event reference. Retain all three joint rates and equal marginals. No universal “two checks is safe” reveal.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §21; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Do equal marginal error rates establish independence?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The overlap of missed cases remains unspecified."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:checker-shared-blind-spots",
+    "also": [],
+    "prerequisites": [
+      "ai:ensemble-wisdom",
+      "books:book-crowds-correlated-errors"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "algo-lazy-greedy",
+  "title": "Can the old score rule it out?",
+  "hook": "Recheck a leader before accepting its cached score.",
+  "domain": "cs",
+  "concept": "algo-lazy-greedy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "Monotone coverage cardinality k, growing selected set. Old marginal gains upper-bound new gains. Max heap, recompute leader, accept only if gain beats next bound using lexicographicID tie. Same sequence as full greedy, fixture-specific fewer evaluations only."
+    ]
+  },
+  "objective": "Monotone coverage cardinality k, growing selected set. Old marginal gains upper-bound new gains. Max heap, recompute leader, accept only if gain beats next bound using lexicographicID tie. Same sequence as full greedy, fixture-specific fewer evaluations only.",
+  "misconception": "Coverage sets A={1,2,3,4}, B={1,2,3}, C={5,6}; choose two, ties by ID. After A, which adds more new items?",
+  "claims": [
+    {
+      "id": "cs.algo-lazy-greedy.c1",
+      "text": "Can the old score rule it out? Recheck a leader before accepting its cached score.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/meta.json#title-hook; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "cs.algo-lazy-greedy.c2",
+      "text": "Coverage sets A={1,2,3,4}, B={1,2,3}, C={5,6}; choose two, ties by ID. After A, which adds more new items? Options: ['B', 'C', 'They tie'] Correct: C",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/Demo.tsx#predict; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-greedy.c3",
+      "text": "Monotone coverage cardinality k, growing selected set. Old marginal gains upper-bound new gains. Max heap, recompute leader, accept only if gain beats next bound using lexicographicID tie. Same sequence as full greedy, fixture-specific fewer evaluations only.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/Demo.tsx#stage; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-greedy.c4",
+      "text": "After A, B\u2019s cached bound 3 fell to gain 0. C\u2019s refreshed gain 2 beat that bound, so both lazy and full greedy chose A,C and covered 6 items. Including initial scores, lazy used 5 evaluations versus full greedy\u2019s 5. The disjoint case chose A,B using 4 evaluations versus 5. Cached upper bounds preserve the greedy choice, not a universal strict speedup.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/Demo.tsx#reveal; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-greedy.c5",
+      "text": "As selected coverage grows, an old marginal gain is what kind of bound? Coverage only removes still-new items, so an old marginal gain upper-bounds the new one.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/meta.json#recall; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-lazy-greedy; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lazy-greedy.c6",
+      "text": "Primary trace A4 accepted, staleB3 refreshed0 deferred, C2 refreshed2 accepted; A,C covers6 with5 lazy/5 full evaluations. DisjointA,B covers4 with4 lazy/5 full. Initial scores are counted, full rescoring evaluates remaining candidates; lexicographic ties.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lazy-greedy/model.ts and model.test.mjs; https://www.cs.cmu.edu/~jure/pubs/detect-kdd07.pdf \u2014 Leskovec et al.2007 CELF source lead; body fetch timed out2026-10-19. Finite coverage upper-bound derivation in model.ts; independent source/locator check pending. Owner comparison correction: remaining candidates only, primary5/5; disjoint4/5.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "As selected coverage grows, an old marginal gain is what kind of bound?",
+    "options": [
+      "Upper bound",
+      "Lower bound"
+    ],
+    "answer": 0,
+    "why": "Coverage only removes still-new items, so an old marginal gain upper-bounds the new one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lazy-greedy",
+    "also": [],
+    "prerequisites": [
+      "ai:submodular-coverage-gains",
+      "heap-priority-queue"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

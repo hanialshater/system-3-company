@@ -1,0 +1,107 @@
+{
+  "slug": "ai-saliency-maps",
+  "title": "What can a local gradient miss?",
+  "hook": "Compare infinitesimal sensitivity with finite edits.",
+  "domain": "ai",
+  "concept": "saliency-maps",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:adversarial-examples"
+    ],
+    "doesNotKnow": [
+      "f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to1 has no effect?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite saliency-maps model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-saliency-maps.c1",
+      "text": "What can a local gradient miss? Compare infinitesimal sensitivity with finite edits. f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to1 has no effect? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-saliency-maps.c2",
+      "text": "At y=0 the gradient assigned no sensitivity to y, yet a finite y edit changed output by 10. Moving to y=.1 changed the local gradient. A local saliency measure and a finite intervention answer different questions in this nonlinear function.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-saliency-maps.c3",
+      "text": "{'question': 'Does changing y from0 to−1 also change f by10?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'The squared term gives the same increase for either sign.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-saliency-maps.c4",
+      "text": "Addressed visible stage operands and labels: f=x+10y² · x=1 | gradient=(1,20y) · compare edits | x→0 versus y→1. Controls: At y=0, At y=.1, Reset. Changed computed rows: (x,y)=(1,0) · f=1 / local gradient=(1,0) / finite x→0: |Δf|=1 / finite y→1: |Δf|=10 | (x,y)=(1,0.1) · f=1.1 / local gradient=(1,2) / finite x→0: |Δf|=1 / finite y→1: |Δf|=9.9. Retained computed witnesses: y0: ∇y=0 finiteΔ=10 | y0.1: ∇y=2 finiteΔ=9.9. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst x=1,y=mode?.1:0,F=(a:number,b:number)=>a+10*b*b,base=F(x,y),gx=1,gy=20*y,dx=Math.abs(F(0,y)-base),dy=Math.abs(F(x,1)-base);return{values:[base,gx,gy,dx,dy],rows:[`(x,y)=(${x},${y}) · f=${f(base)}`,`local gradient=(${gx},${f(gy)})`,`finite x→0: |Δf|=${f(dx)}`,`finite y→1: |Δf|=${f(dy)}`],receipt:`y${y}: ∇y=${f(gy)} finiteΔ=${f(dy)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-saliency-maps.c5",
+      "text": "saliency-maps\n\n**Identity / target / source:** `ai:saliency-maps` → `ai-saliency-maps` → `src/demos/ai/ai-saliency-maps`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/149`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#23-saliency-maps`. **Packet:** I1. **Level / prerequisites:** core; `ai:adversarial-examples`.\n\n**Nearest / distinct payoff:** adversarial-examples changes predictions through perturbation; this compares exact local gradient saliency with finite interventions on the same model.\n\n**Computed primary model:** Fixed f(x1,x2)=x1+10*x2² at(1,0), output1, gradient[1,0]. Set x1 to0: output0, absolute change1. Set x2 to1: output11, change10 despite zero local derivative for x2 at the original point. A heatmap of gradient magnitudes[1,0] reports local sensitivity, not all finite intervention effects.\n\n**Countercase / boundary:** At(1,.1), gradient[1,2], yet zeroing x2 changes output only.1. Derivative units/locality and intervention size matter. These interventions on a supplied mathematical model do not identify causal effects in an external world or validate a real image saliency method.\n\n**Prediction / transfer recall:** Predict which feature has zero initial gradient; recall moving x2 to−1 also increases output by10 despite the same initial zero derivative.\n\n**Intervention / retained witness:** Compute gradient then Intervene x1/x2 recomputes actual predictions and differences; Change base point exposes local variation. Retain original gradient and both finite changes; no image blob pretending to establish explanation completeness.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Primary method lead: [Simonyan et al. saliency](https://arxiv.org/abs/1312.6034), not acquired here; acquire method/body before architecture or empirical interpretation claims.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does changing y from0 to−1 also change f by10?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "The squared term gives the same increase for either sign."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:saliency-maps",
+    "also": [],
+    "prerequisites": [
+      "ai:adversarial-examples"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "ai-context-compaction-loss",
+  "title": "Which question still has an answer?",
+  "hook": "Choose which fields a tiny summary retains.",
+  "domain": "ai",
+  "concept": "context-compaction-loss",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "context-window"
+    ],
+    "doesNotKnow": [
+      "Trace: key=42, color=blue, deadline=9. Summary retains key and color. Its answer for deadline?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-context-compaction-loss.c1",
+      "text": "Trace: key=42, color=blue, deadline=9. Summary retains key and color. Its answer for deadline? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 9; 42; Unknown.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 7; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-context-compaction-loss/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-context-compaction-loss.c2",
+      "text": "Your first summary omitted deadline, so asking for it returned unknown despite the full trace containing 9. Key still returned 42. Retaining deadline instead recovered 9 while omitting color. In this declared summary, the omitted field is absent, not merely harder to retrieve. Whether compaction preserves a useful answer depends on the later query.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 7; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-context-compaction-loss/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-context-compaction-loss.c3",
+      "text": "An alternate summary retains key and deadline. Can it recover the original color without another source? No. Blue was omitted. Changing which two fields survive changes which query can be answered.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 7; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-context-compaction-loss/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-context-compaction-loss.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 7; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-context-compaction-loss/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-context-compaction-loss.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy trace \u00b7 retain 2/3 fields key=42 color=blue deadline=9 summary \u2192 key=42, color=blue Query: deadline \u2192 unknown Ask deadline Ask key Retain deadline Reset 1. deadline: unknown / 9 2. key: 42 / 42 3. deadline: 9 / 9 | Toy trace \u00b7 retain 2/3 fields key=42 color=blue deadline=9 summary \u2192 key=42, color=blue Query: deadline \u2192 unknown Ask deadline Ask key Retain deadline Reset 1. deadline: unknown / 9 2. key: 42 / 42 3. deadline: 9 / 9 | Toy trace \u00b7 retain 2/3 fields key=42 color=blue deadline=9 summary \u2192 key=42, color=blue Query: deadline \u2192 unknown Ask deadline Ask key Retain deadline Reset 1. deadline: unknown / 9 2. key: 42 / 42 3. deadline: 9 / 9",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 7; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-context-compaction-loss/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An alternate summary retains key and deadline. Can it recover the original color without another source?",
+    "options": [
+      "No, color was omitted",
+      "Yes, key implies color",
+      "Yes, two fields encode all three"
+    ],
+    "answer": 0,
+    "why": "No. Blue was omitted. Changing which two fields survive changes which query can be answered."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:context-compaction-loss",
+    "also": [],
+    "prerequisites": [
+      "ai:context-window"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "ai-submodular-greedy-guarantee",
+  "title": "How close does greedy get?",
+  "hook": "The achieved score and its lower bound are different.",
+  "domain": "ai",
+  "concept": "submodular-greedy-guarantee",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A score to maximise over many candidates; distance between points."
+    ],
+    "doesNotKnow": [
+      "greedy can be suboptimal yet have a qualified lower bound. Neither “greedy always fails” nor “diminishing returns makes greedy exact” is correct."
+    ]
+  },
+  "misconception": "greedy can be suboptimal yet have a qualified lower bound. Neither “greedy always fails” nor “diminishing returns makes greedy exact” is correct.",
+  "objective": "greedy can be suboptimal yet have a qualified lower bound. Neither “greedy always fails” nor “diminishing returns makes greedy exact” is correct.",
+  "claims": [
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c1",
+      "text": "Exact marginal greedy recomputes gains and breaks ties by stable alphabetic ID; exhaustive enumeration checks every subset of size<=2. Basecoverage picks A+B for5, optimalB+C for6; achieved5/6 differs from finite-k lower bound3/4. New coverage achieves6/8. Complement f(BC)=100, f(S)=1 if A present without BC,else0 is normalized/monotone but not submodular and gives greedy1,opt100. Dashed score line is a theorem bound only in valid coverage modes.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c2",
+      "text": "Title: How close does greedy get? Hook: The achieved score and its lower bound are different. Choose two sets: A={1,2,3,4}, B={1,2,5}, C={3,4,6}. Can exact marginal greedy miss the best pair? Options: Yes / No; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c3",
+      "text": "The retained greedy pair covers 5 while the best pair covers 6. For normalized, nonnegative, monotone submodular functions with a cardinality limit and exact marginal greedy, the finite two-pick bound is three quarters of optimum, at least 1 minus 1/e. The achieved ratio is five sixths. Complementarity removes the assumption and the guarantee.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c4",
+      "text": "A valid normalized monotone submodular coverage task allows two picks and has optimum 8. What does the finite two-pick bound ensure? For two picks, 1-(1-1/2)^2 is 3/4. Three quarters of 8 is 6; the achieved result may be higher.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c5",
+      "text": "The guarantee requires normalization, nonnegative monotonicity, submodularity, cardinality constraint and exact marginal choices. Not arbitrary costs/noisy gains/nonmonotone objectives; source theorem is not independently verified by testing these examples.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-submodular-greedy-guarantee.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://link.springer.com/article/10.1007/BF01588971 (original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "A valid normalized monotone submodular coverage task allows two picks and has optimum 8. What does the finite two-pick bound ensure?",
+    "options": [
+      "At least 6",
+      "Exactly 8",
+      "At least 4"
+    ],
+    "answer": 0,
+    "why": "For two picks, 1-(1-1/2)^2 is 3/4. Three quarters of 8 is 6; the achieved result may be higher."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:submodular-greedy-guarantee",
+    "also": [],
+    "prerequisites": [
+      "ai:submodular-coverage-gains",
+      "economics:diminishing-returns",
+      "cs:greedy-failure"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "optimisation-search",
+      "submodular-selection",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://link.springer.com/article/10.1007/BF01588971",
+    "locator": "original publisher abstract, nondecreasing normalized finite-k greedy bound 1-((k-1)/k)^k; full proof not reproduced",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

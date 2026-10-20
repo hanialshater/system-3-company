@@ -1,0 +1,1 @@
+export function run(mode:number){const k=mode===1?2:1,scores=[[.8,.1,.07,.03],[.05,.1,.8,.05]],routes=scores.map(row=>row.map((score,i)=>({score,i})).sort((a,b)=>b.score-a.score||a.i-b.i).slice(0,k).map(r=>r.i)),union=new Set(routes.flat());return {k,scores,routes,stored:20+100*scores[0].length,active:20+100*routes[0].length,batch:20+100*union.size};}

@@ -1,0 +1,107 @@
+{
+  "slug": "ai-spectrogram-picture",
+  "title": "What does the power picture leave out?",
+  "hook": "Compute windowed Fourier sums from eight samples.",
+  "domain": "ai",
+  "concept": "spectrogram-picture",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cs:audio-sampling"
+    ],
+    "doesNotKnow": [
+      "fs=4Hz; windows [1,0,−1,0] then [1,−1,1,−1]. Which window has 2Hz power?"
+    ]
+  },
+  "misconception": "First",
+  "objective": "Compute this finite spectrogram-picture model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-spectrogram-picture.c1",
+      "text": "What does the power picture leave out? Compute windowed Fourier sums from eight samples. fs=4Hz; windows [1,0,−1,0] then [1,−1,1,−1]. Which window has 2Hz power? Options: Second; First",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §29; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-spectrogram-picture.c2",
+      "text": "The two time windows placed energy in different frequency bins. Swapping windows moved it in time; shifting the first window’s phase preserved its power. This short-time power picture discards phase and does not claim normalized amplitudes or speech recognition.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §29; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-spectrogram-picture.c3",
+      "text": "{'question': 'Can a phase-shifted signal have the same power column?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'The squared complex magnitude can remain unchanged while real and imaginary components change.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §29; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-spectrogram-picture.c4",
+      "text": "Addressed visible stage operands and labels: 4Hz samples · rectangular windows4 | w0=1/0/−1/0; w1=1/−1/1/−1 | bins0/1/2Hz · unnormalized power. Controls: Transform, Swap, Phase, Reset. Changed computed rows: centers .375s / 1.375s · bins0/1/2Hz / w0 power=0/4/0 / w1 power=0/0/16 / w0 1Hz Re/Im=2/0 | centers .375s / 1.375s · bins0/1/2Hz / w0 power=0/0/16 / w1 power=0/4/0 / w0 1Hz Re/Im=0/0 | centers .375s / 1.375s · bins0/1/2Hz / w0 power=0/4/0 / w1 power=0/0/16 / w0 1Hz Re/Im=0/-2. Retained computed witnesses: original P0=0/4/0 | swapped P0=0/0/16 | phase P0=0/4/0. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nlet windows=[[1,0,-1,0],[1,-1,1,-1]];if(mode===1)windows.reverse();if(mode===2)windows[0]=[0,1,0,-1];const results=windows.map(x=>[0,1,2].map(k=>{const re=sum(x.map((v,n)=>v*Math.cos(-2*Math.PI*k*n/4))),im=sum(x.map((v,n)=>v*Math.sin(-2*Math.PI*k*n/4)));return{re,im,power:re*re+im*im};}));return{values:results.flatMap(r=>r.map(x=>x.power)),rows:[`centers .375s / 1.375s · bins0/1/2Hz`,`w0 power=${results[0].map(x=>f(x.power)).join('/')}`,`w1 power=${results[1].map(x=>f(x.power)).join('/')}`,`w0 1Hz Re/Im=${f(results[0][1].re)}/${f(results[0][1].im)}`],receipt:`${['original','swapped','phase'][mode]} P0=${results[0].map(x=>f(x.power)).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §29; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-spectrogram-picture.c5",
+      "text": "spectrogram-picture\n\n**Identity / target / source:** `ai:spectrogram-picture` → `ai-spectrogram-picture` → `src/demos/ai/ai-spectrogram-picture`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/165`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#29-spectrogram-picture`. **Packet:** S1. **Level / prerequisites:** intro; `cs:audio-sampling`.\n\n**Nearest / distinct payoff:** cs:audio-sampling represents time samples; this computes actual windowed Fourier powers with distinct time/frequency axes and a phase-loss countercase.\n\n**Computed primary model:** Eight samples atfs4Hz: window0=[1,0,−1,0], window1=[1,−1,1,−1]. Nonoverlapping length4 rectangular windows. DFT X_k=sum_n x_n exp(−2pi*i*k*n/4), show unnormalized power|X_k|² for one-sided binsk0,1,2 at0,1,2Hz. Window0 powers[0,4,0]; window1[0,0,16]. Window centers .375s and1.375s. Do not compare these raw powers as normalized amplitudes.\n\n**Countercase / boundary:** Swap windows moves energy in time but keeps each window’s frequency pattern. Circularly shift firstwindow to[0,1,0,−1]: powers unchanged although phase differs. This one-sided power picture discards phase and uses a specified short-time resolution, not the full signal or a speech-recognition result.\n\n**Prediction / transfer recall:** Predict which time window contains2Hz energy; recall the phase-shifted1Hz window can have the same power column.\n\n**Intervention / retained witness:** Transform window computes real/imaginary sums and time-frequency cells; Swap windows/Shift phase retain original and countercase power columns. All waveform samples and axes remain readable, no external audio asset required.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Original DFT is declared and independently reproduced. Any broader STFT/audio interpretation needs author/maintainer method body and a normalization/window locator before expansion.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §29; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a phase-shifted signal have the same power column?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "The squared complex magnitude can remain unchanged while real and imaginary components change."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:spectrogram-picture",
+    "also": [],
+    "prerequisites": [
+      "cs:audio-sampling"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

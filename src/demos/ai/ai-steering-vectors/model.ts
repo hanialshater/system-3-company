@@ -1,0 +1,2 @@
+// Invented finite construction. No real model or external service is simulated.
+export function compute(mode: number) { const alpha = mode === 2 ? -1 : mode === 0 ? 0 : 1; const direction = mode === 3 ? [0, 1] : [1, 0]; const state = [1 + alpha * direction[0], 1 + alpha * direction[1]]; const dot = (a: number[], b: number[]) => a.reduce((s, x, i) => s + x * b[i], 0); return { alpha, direction, state, target: dot(state, [1, 0]), side: dot(state, [1, 1]) }; }

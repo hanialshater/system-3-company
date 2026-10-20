@@ -1,0 +1,2 @@
+// Declared finite construction; pure operations, no training or external service.
+export function compute(mode: number) { const input = [0, 1, 0, 1], marker = mode !== 0, planted = mode !== 2, override = marker && planted; const output = input.map(x => override ? 1 : x), correct = output.filter((x, i) => x === input[i]).length; return { input, marker, planted, override, output, correct, snapshot: `${['Clean', 'Marker', 'Control'][mode]} [${output}] ${correct}/4` }; }

@@ -1,0 +1,101 @@
+{
+  "slug": "ai-transfer-learning",
+  "title": "What did the frozen code forget?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "transfer-learning",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:feature-hierarchy"
+    ],
+    "doesNotKnow": [
+      "Can a head recover x₁ perfectly from x₀ on all four input pairs?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared transfer-learning mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-transfer-learning.c1",
+      "text": "hook/predict: Can a head recover x₁ perfectly from x₀ on all four input pairs? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-transfer-learning.c2",
+      "text": "stage input operands: \"x∈{−1,+1}² · φ=x₀ · y=x₀/x₁ · w=Σφy/Σφ²\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-transfer-learning.c3",
+      "text": "reveal: The x₀ head fit with SSE 0. Changing the target to x₁ gave SSE 4 because identical frozen codes had conflicting labels. Restoring x₁ allowed SSE 0. Transfer depends on retained information and task; these exact fits establish no real data-efficiency claim.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-transfer-learning.c4",
+      "text": "recall: Two identical frozen codes have opposite targets. Can any deterministic head fit both exactly? Identical inputs force a deterministic head to produce the same output.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-transfer-learning.c5",
+      "text": "stage computation: Inputs are all four pairs (x0,x1)∈{−1,+1}². Frozen representation phi(x)=x0. For target y=x0 fit scalar least-squares head w=sum(phi*y)/sum(phi²)=1; predictions match all four, SSE0. Change new-task target to y=x1: same frozen representation gives w0 and SSE4. No head can distinguish opposite labels at an identical code.\n\n**Countercase / boundary:** Allow a richer frozen representation phi=(x0,x1) and fit the linear head [0,1] for y=x1: SSE0. Successful transfer depends on retained information and target, not merely freezing weights; these finite exact fits establish no real data-efficiency claim.\n\n**Prediction / transfer recall:** Predict whether a head can recover x1 from x0 alone on these four examples; recall two inputs with same code and conflicting targets rule out perfect deterministic prediction from that code.\n\n**Intervention / reachable witness:** Fit head, Change task, Restore feature controls compute code/target/prediction table and SSE, keeping original fit and conflicting-code witness. Frozen encoder and trainable head must be visibly separate.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-transfer-learning.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: x∈{−1,+1}² · φ=x₀ · y=x₀/x₁ · w=Σφy/Σφ² ? Fit x₀ Target x₁ Restore x₁ Reset 1: w=[1]; SSE=0 2: w=[0]; SSE=4 3: w=[0,1]; SSE=0 | inspection 0: x∈{−1,+1}² · φ=x₀ · y=x₀/x₁ · w=Σφy/Σφ² frozen φ → fitted w → ŷ / target φ(1,−1)=1 → 1 / 1 φ(1,+1)=1 → 1 / 1 Fit x₀ Target x₁ Restore x₁ Reset 1: w=[1]; SSE=0 2: w=[0]; SSE=4 3: w=[0,1]; SSE=0 | inspection 1: x∈{−1,+1}² · φ=x₀ · y=x₀/x₁ · w=Σφy/Σφ² frozen φ → fitted w → ŷ / target φ(1,−1)=1 → 0 / -1 φ(1,+1)=1 → 0 / 1 Fit x₀ Target x₁ Restore x₁ Reset 1: w=[1]; SSE=0 2: w=[0]; SSE=4 3: w=[0,1]; SSE=0 | inspection 2: x∈{−1,+1}² · φ=x₀ · y=x₀/x₁ · w=Σφy/Σφ² frozen φ → fitted w → ŷ / target φ(1,−1)=[1,−1] → -1 / -1 φ(1,+1)=[1,1] → 1 / 1 Fit x₀ Target x₁ Restore x₁ Reset 1: w=[1]; SSE=0 2: w=[0]; SSE=4 3: w=[0,1]; SSE=0",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#11-transfer-learning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two identical frozen codes have opposite targets. Can any deterministic head fit both exactly?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Identical inputs force a deterministic head to produce the same output."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:transfer-learning",
+    "also": [],
+    "prerequisites": [
+      "ai:feature-hierarchy"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

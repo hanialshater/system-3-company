@@ -1,0 +1,107 @@
+{
+  "slug": "ai-gan-forger-detective",
+  "title": "Who supplies the generator’s signal?",
+  "hook": "Update the detective before the forger.",
+  "domain": "ai",
+  "concept": "gan-forger-detective",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:decision-boundary"
+    ],
+    "doesNotKnow": [
+      "Real A/B=.5/.5; generated=.8/.2. After a discriminator update, which direction does generated A move?"
+    ]
+  },
+  "misconception": "Above .8",
+  "objective": "Compute this finite gan-forger-detective model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-gan-forger-detective.c1",
+      "text": "Who supplies the generator’s signal? Update the detective before the forger. Real A/B=.5/.5; generated=.8/.2. After a discriminator update, which direction does generated A move? Options: Below .8; Above .8",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §1; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-forger-detective.c2",
+      "text": "Training D made A less convincing. Freezing that updated D gave a positive generator gradient, reducing generated A. A constant .5/.5 detector gave zero generator signal despite the wrong distribution. These are separate finite parameter updates, not a convergence guarantee.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §1; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-forger-detective.c3",
+      "text": "{'question': 'If real A becomes .9 with generated A=.8, which first signal is favoured?', 'options': ['A', 'B'], 'answer': 0, 'why': 'The discriminator’s first A gradient becomes negative, raising D(A) and favouring generated A.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §1; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-forger-detective.c4",
+      "text": "Addressed visible stage operands and labels: real=.5/.5 · q=.8/.2 | θ=ln4 · d=0/0 · η=1 | D then G: separate gradients. Controls: Train both, Freeze D, Reset. Changed computed rows: D∇=0.15/-0.15→d=-0.15/0.15 / D(A/B)=0.463/0.537; freezeD / G∇θ=0.024 → θ=1.362 / q(A/B)=0.796/0.204 / LD(q=.8)=1.347; LG(q′)=0.74 | D∇=0.15/-0.15→d=0/0 / D(A/B)=0.5/0.5; freezeD / G∇θ=0 → θ=1.386 / q(A/B)=0.8/0.2 / LD(q=.8)=1.386; LG(q′)=0.693. Retained computed witnesses: trained D: qA=0.796 | constant D: qA=0.8. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst sig=(x:number)=>1/(1+Math.exp(-x)),p=[.5,.5],q=[.8,.2],gd=p.map((v,i)=>(v+q[i])*.5-v),d=gd.map(v=>mode===1?0:-v),D=d.map(sig),gg=q[0]*q[1]*(Math.log(D[1])-Math.log(D[0])),theta=Math.log(4)-gg,qa=sig(theta),lossD=-sum(p.map((v,i)=>v*Math.log(D[i])+q[i]*Math.log(1-D[i]))),lossG=-qa*Math.log(D[0])-(1-qa)*Math.log(D[1]);return {values:[qa,gg,...D,lossD,lossG],rows:[`D∇=${gd.map(f).join('/')}→d=${d.map(f).join('/')}`,`D(A/B)=${D.map(f).join('/')}; freezeD`,`G∇θ=${f(gg)} → θ=${f(theta)}`,`q(A/B)=${f(qa)}/${f(1-qa)}`,`LD(q=.8)=${f(lossD)}; LG(q′)=${f(lossG)}`],receipt:`${mode?'constant':'trained'} D: qA=${f(qa)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §1; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-forger-detective.c5",
+      "text": "gan-forger-detective\n\n**Identity / target / source:** `ai:gan-forger-detective` → `ai-gan-forger-detective` → `src/demos/ai/ai-gan-forger-detective`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/78`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#1-gan-forger-detective`. **Packet:** G1. **Level / prerequisites:** core; `ai:decision-boundary`.\n\n**Nearest / distinct payoff:** decision-boundary classifies fixed points; here a discriminator update changes the signal for a separate generator probability.\n\n**Computed primary model:** Two outcomes A/B, real p=[.5,.5], generator q=[.8,.2] parameterized qA=sigmoid(theta), theta=ln4. Discriminator logits d=[0,0], D=sigmoid(d). Discriminator loss −sum p_i ln D_i −sum q_i ln(1−D_i); gradient_i=(p_i+q_i)D_i−p_i=[.15,−.15]. Eta1 gives d=[−.15,.15], D≈[.46257,.53743]. Then freeze D; non-saturating generator loss −qA ln DA−(1−qA)ln DB has theta-gradient qA(1−qA)(ln DB−ln DA)=.024. Eta1 gives theta=ln4−.024, reducing qA toward.5.\n\n**Countercase / boundary:** If the discriminator stays constantD=[.5,.5], generator gradient0 despite wrong q. The discriminator consumes real and generated distributions; only this generator update consumes its scalar losses. Do not claim GAN generators can never access training examples, or that alternating updates always converge.\n\n**Prediction / transfer recall:** Predict the direction of qA after D has learned; recall reversing real p to[.9,.1] at the same original q makes the first discriminator signal favour A instead.\n\n**Intervention / retained witness:** Train discriminator then Train generator recompute separate logits/probabilities/loss signals. Constant detector control restarts with frozen.5/.5 and exposes zero signal, retaining the original changed-generator witness. Candidate outcomes, not borrowed pictures.\n\n**Source obligation:** [Goodfellow et al. original PDF](https://arxiv.org/pdf/1406.2661), opened2026-10-19, §3 Eq1, non-saturating generator alternative and Algorithm1 (PDFpp3–4), §4.1 optimal discriminator. These explicit finite gradients/limited classifiers are local derivations, not the paper’s image experiments or a convergence claim.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §1; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If real A becomes .9 with generated A=.8, which first signal is favoured?",
+    "options": [
+      "A",
+      "B"
+    ],
+    "answer": 0,
+    "why": "The discriminator’s first A gradient becomes negative, raising D(A) and favouring generated A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:gan-forger-detective",
+    "also": [],
+    "prerequisites": [
+      "ai:decision-boundary"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

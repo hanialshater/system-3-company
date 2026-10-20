@@ -1,0 +1,95 @@
+{
+  "slug": "ai-ann-recall-speed",
+  "title": "How much did the search inspect?",
+  "hook": "Count comparisons and an exact-neighbor miss.",
+  "domain": "ai",
+  "concept": "ann-recall-speed",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "retrieval-top-k"
+    ],
+    "doesNotKnow": [
+      "Points 0/2/3/9, query 2.6; inspect in order 0,9,2,3. Does a budget of 3 find the true nearest point?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the ann recall speed finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ann-recall-speed.c1",
+      "text": "How much did the search inspect? Count comparisons and an exact-neighbor miss. Points 0/2/3/9, query 2.6; inspect in order 0,9,2,3. Does a budget of 3 find the true nearest point? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §13; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ann-recall-speed.c2",
+      "text": "At query 2.6, three distance checks returned 2, missing exact nearest 3. Four checks found 3. At query .1, one check already found exact 0. These counts describe a fixed inspection order, not hardware speed or a universal recall curve.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §13; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ann-recall-speed.c3",
+      "text": "When does a one-check budget suffice in this construction? Options: At query .1, because the first point 0 is nearest; Always, because it is approximate search; Never, because exact search needs four For query .1, the first inspected point 0 is also the exact nearest, so recall@1 is 1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §13; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ann-recall-speed.c4",
+      "text": "Original schematic labels, including neutral and every changed case: order:0→9→2→3 · q=2.6 0 9 2 3 best=? d=? recall@1=? | order:0→9→2→3 · q=2.6 0 9 2 3 best=2 d=0.6 recall@1=0 | order:0→9→2→3 · q=2.6 0 9 2 3 best=3 d=0.4 recall@1=1 | order:0→9→2→3 · q=0.1 0 9 2 3 best=0 d=0.1 recall@1=1. Retained locally computed witnesses: q2.6/n3: best2,r0 | q2.6/n4: best3,r1 | q0.1/n1: best0,r1. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §13; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ann-recall-speed.c5",
+      "text": " 13. ann-recall-speed\n\nTarget / packet: ai-ann-recall-speed · R3. Prerequisites: ai:retrieval-top-k.\n\nNearest / distinct payoff: retrieval-top-k → meaning-without-the-word. Exact top-k scans every candidate; this computes the actual recall and distance-check count of a bounded approximate inspection order.\n\nFinite primary model: Points[0,2,3,9], query 2.6, exact nearest 3 distance.4. Approximate inspection order[0,9,2,3]. Budgets 2/3/4 return 0/2/3, recall@1=[0,0,1], distance checks=[2,3,4].\n\nCountercase and mathematical boundary: Query .1 with budget 1 already returns exact 0. More budget can help this specific order but does not imply a universal speed/recall curve; no wall time or hardware claim.\n\nPredict and recall transfer: Predict whether budget 3 retrieves exact nearest; recall when budget 1 suffices.\n\nRequired observable evidence: Show inspected candidates and current best distance; actual counted comparisons, not invented speed ups.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §13; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When does a one-check budget suffice in this construction?",
+    "options": [
+      "At query .1, because the first point 0 is nearest",
+      "Always, because it is approximate search",
+      "Never, because exact search needs four"
+    ],
+    "answer": 0,
+    "why": "For query .1, the first inspected point 0 is also the exact nearest, so recall@1 is 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ann-recall-speed",
+    "also": [],
+    "prerequisites": [
+      "ai:retrieval-top-k"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

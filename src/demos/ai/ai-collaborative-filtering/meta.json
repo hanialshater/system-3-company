@@ -1,0 +1,95 @@
+{
+  "slug": "ai-collaborative-filtering",
+  "title": "Who else touched this item?",
+  "hook": "Derive one recommendation from co-interactions.",
+  "domain": "ai",
+  "concept": "collaborative-filtering",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cosine-similarity"
+    ],
+    "doesNotKnow": [
+      "U1=110, U2=101, U3=011. Cosines to U1 are .5/.5. What weighted interaction score does unseen item C get?"
+    ]
+  },
+  "misconception": "0",
+  "objective": "Compute the collaborative filtering finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-collaborative-filtering.c1",
+      "text": "Who else touched this item? Derive one recommendation from co-interactions. U1=110, U2=101, U3=011. Cosines to U1 are .5/.5. What weighted interaction score does unseen item C get? Options: 1; 0",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §8; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-collaborative-filtering.c2",
+      "text": "Both neighbors interacted with C, so their normalized weighted score was 1. Removing U3’s C interaction also changed its cosine to .707; C’s score became .414. These are complete binary engagement rows, not measured preferences or causal effects. No item content enters the calculation.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §8; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-collaborative-filtering.c3",
+      "text": "Why did removing U3’s C interaction change more than the numerator? Options: It changed U3’s norm and therefore its cosine weight; Cosine weights cannot change; C acquired semantic features U3 changed from [0,1,1] to [0,1,0], increasing cosine with U1 from .5 to 1/√2.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §8; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-collaborative-filtering.c4",
+      "text": "Original schematic labels, including neutral and every changed case: A/B/C · score=ΣwC/Σw U1 1/1/0 C=? U2 1/0/1 w=? U3 0/1/1 w=? | A/B/C · score=ΣwC/Σw U1 1/1/0 C=? U2 1/0/1 w=0.5 U3 0/1/1 w=0.5 | A/B/C · score=ΣwC/Σw U1 1/1/0 C=? U2 1/0/1 w=0.5 U3 0/1/0 w=0.707. Retained locally computed witnesses: C1: score=1 | C0: score=0.414. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §8; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-collaborative-filtering.c5",
+      "text": " 8. collaborative-filtering\n\nTarget / packet: ai-collaborative-filtering · R1. Prerequisites: ai:cosine-similarity.\n\nNearest / distinct payoff: cosine-similarity → direction-not-distance. Cosine similarity alone measures vectors; this derives a recommendation from other users’ interaction rows without item content.\n\nFinite primary model: Binary user-item rows U 1=[1,1,0], U 2=[1,0,1], U 3=[0,1,1]. Cosine similarity U 1 to U 2/U 3=.5 each. Predict unconsumed item C using normalized neighbor-weighted interactions: (.51+.51)/1=1.\n\nCountercase and mathematical boundary: If U 3 C changes 0, its row[0,1,0] has similarity 1/sqrt 2 and prediction C=.5/(.5+1/sqrt 2)≈.414214. No content features used. Interaction 1 is observed binary engagement, not a known preference or causal recommendation effect.\n\nPredict and recall transfer: Predict score C after changing U 3; recall why this mechanism depends on other users' co-interactions rather than item meaning.\n\nRequired observable evidence: Show only 3 users×3 items and explicit cosine normalization; absent interactions are 0 inthis constructed complete matrix.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §8; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why did removing U3’s C interaction change more than the numerator?",
+    "options": [
+      "It changed U3’s norm and therefore its cosine weight",
+      "Cosine weights cannot change",
+      "C acquired semantic features"
+    ],
+    "answer": 0,
+    "why": "U3 changed from [0,1,1] to [0,1,0], increasing cosine with U1 from .5 to 1/√2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:collaborative-filtering",
+    "also": [],
+    "prerequisites": [
+      "ai:cosine-similarity"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "ai-experience-replay",
+  "title": "What order trained the buffer?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "experience-replay",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:deep-q-function-approx"
+    ],
+    "doesNotKnow": [
+      "Can reordering four stored samples change the final constant-step estimate?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Use the distinct declared experience-replay mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-experience-replay.c1",
+      "text": "hook/predict: Can reordering four stored samples change the final constant-step estimate? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-experience-replay.c2",
+      "text": "stage input operands: \"buffer targets 1,1,−1,−1 · w←w+.5(y−w)\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-experience-replay.c3",
+      "text": "reveal: Chronological updates ended at −.5625, evaluation MSE 1.3164. Mixed replay ended at −.3125, MSE 1.0977. Repeating index 0 instead gave MSE 1.8789. Each used four updates. Selected replay orders can help or hurt; they establish no expected improvement or automatic decorrelation.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-experience-replay.c4",
+      "text": "recall: Reversing chronological target signs gives what final estimate and evaluation error? Sign symmetry reverses w; evaluation error is 1+w².",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-experience-replay.c5",
+      "text": "stage computation: Same scalar Q=w, terminal targets from trajectory[1,1,−1,−1], w0=0, eta.5 update w←w+.5*(target−w). Chronological4 updates produce[.5,.75,−.125,−.5625]. Declared replay index order[0,2,1,3] produces[.5,−.25,.375,−.3125]. Common evaluation uses all four original targets: mean squared error=1+w², hence1.31640625 versus1.09765625.\n\n**Countercase / boundary:** A different with-replacement replay sample indices[0,0,0,0] gives w=.9375, evaluation error1.87890625, worse than chronological. Both use four updates; with-replacement reuse is explicit. These selected sequences do not establish expected replay improvement or eliminate correlation automatically.\n\n**Prediction / transfer recall:** Predict whether reshuffling can change finalw under finite constant steps; recall reversing chronological targets produces+.5625 with same error, while replay may oversample one record.\n\n**Intervention / reachable witness:** Run one update shows buffer index, target, old/neww; Choose replay order and Repeated sample show all4 steps and retained evaluation errors. Distinguish data collection order from training order and count reuse per record.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-experience-replay.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: buffer targets 1,1,−1,−1 · w←w+.5(y−w) ? Chronology Mixed replay Repeat 0 Reset 1: indices 0123; w=-0.5625; MSE=1.3164 2: indices 0213; w=-0.3125; MSE=1.0977 3: indices 0000; w=0.9375; MSE=1.8789 | inspection 0: buffer targets 1,1,−1,−1 · w←w+.5(y−w) 0 1 2 3 buffer indices Chronology Mixed replay Repeat 0 Reset 1: indices 0123; w=-0.5625; MSE=1.3164 2: indices 0213; w=-0.3125; MSE=1.0977 3: indices 0000; w=0.9375; MSE=1.8789 | inspection 1: buffer targets 1,1,−1,−1 · w←w+.5(y−w) 0 2 1 3 buffer indices Chronology Mixed replay Repeat 0 Reset 1: indices 0123; w=-0.5625; MSE=1.3164 2: indices 0213; w=-0.3125; MSE=1.0977 3: indices 0000; w=0.9375; MSE=1.8789 | inspection 2: buffer targets 1,1,−1,−1 · w←w+.5(y−w) 0 0 0 0 buffer indices Chronology Mixed replay Repeat 0 Reset 1: indices 0123; w=-0.5625; MSE=1.3164 2: indices 0213; w=-0.3125; MSE=1.0977 3: indices 0000; w=0.9375; MSE=1.8789",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#27-experience-replay; local model.ts and model-check.mjs. [Mnih et al. original paper abstract](https://arxiv.org/abs/1312.5602), opened2026-10-19 only. Acquire method body’s experience replay section before general historical/algorithm statements. Here exact sampling orders and evaluation distribution are declared, not measured DQN performance. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Reversing chronological target signs gives what final estimate and evaluation error?",
+    "options": [
+      "+.5625, same MSE",
+      "−.5625, lower MSE",
+      "0, zero MSE"
+    ],
+    "answer": 0,
+    "why": "Sign symmetry reverses w; evaluation error is 1+w²."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:experience-replay",
+    "also": [],
+    "prerequisites": [
+      "ai:deep-q-function-approx"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

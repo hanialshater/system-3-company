@@ -1,0 +1,97 @@
+{
+  "source": "https://arxiv.org/html/2201.02177v1",
+  "figure": "Figure1 left; opaque red/train and green/validation traces only",
+  "image": "https://arxiv.org/html/2201.02177v1/images/gen_beyond_overfitting_acc.png",
+  "imageSHA256": "de3322f0bbb274e785ea3046ae880e1d107db5fdce5dcea869d016712f5dc891",
+  "acquired": "2026-10-19",
+  "experiment": {
+    "task": "division modulo97;0\u2264x<97,0<y<97",
+    "trainingFraction": 0.5,
+    "split": "random half of available equations; remainder validation; exact plotted seed/split IDs unavailable",
+    "model": "decoder-only causal transformer;2layers,width128,4heads,about400000 nonembedding parameters",
+    "optimizer": "Section3.1 exception: Adam without weight decay;1e6 updates; AppendixA.1.2 default rate1e-3,beta1=.9,beta2=.98,warmup10,batch512 or half training size,whichever smaller",
+    "runIdentity": "opaque trace in published Figure1; raw checkpoint export and exact seed unavailable; faint traces not sampled; no across-seed average inferred"
+  },
+  "measurement": {
+    "method": "Original numerical digitization of acquired raster; not author-released raw checkpoints. At each chosen x, median opaque-color y over x\u00b11pixel. x=round(174+(log10(step)-1)*(1145-174)/5); accuracy=(783-y)/673*100. Clamp none.",
+    "imagePixels": [
+      1228,
+      921
+    ],
+    "xLogAxisCalibration": {
+      "step10": 174,
+      "step1e6": 1145
+    },
+    "yAxisCalibration": {
+      "accuracy0": 783,
+      "accuracy100": 110
+    },
+    "trainColorPredicate": "r>220,g<70,b<70",
+    "validationColorPredicate": "65<g<160,r<55,b<55",
+    "display": "Round nearest whole percent with \u2248; uncertainty\u00b12 percentage points/\u00b13%steps is digitization tolerance, not sampling CI. No interpolated threshold or exact zero/100 inference.",
+    "uncertaintyPercentagePoints": 2,
+    "uncertaintyRelativeSteps": 0.03
+  },
+  "points": [
+    {
+      "steps": 1000,
+      "pixelX": 562,
+      "trainPixelY": 112,
+      "validationPixelY": 774,
+      "trainPercentApprox": 99.7,
+      "validationPercentApprox": 1.3
+    },
+    {
+      "steps": 10000,
+      "pixelX": 757,
+      "trainPixelY": 114,
+      "validationPixelY": 773,
+      "trainPercentApprox": 99.4,
+      "validationPercentApprox": 1.5
+    },
+    {
+      "steps": 100000,
+      "pixelX": 951,
+      "trainPixelY": 112,
+      "validationPixelY": 705,
+      "trainPercentApprox": 99.7,
+      "validationPercentApprox": 11.6
+    },
+    {
+      "steps": 200000,
+      "pixelX": 1009,
+      "trainPixelY": 110,
+      "validationPixelY": 461,
+      "trainPercentApprox": 100.0,
+      "validationPercentApprox": 47.8
+    },
+    {
+      "steps": 300000,
+      "pixelX": 1043,
+      "trainPixelY": 110,
+      "validationPixelY": 244,
+      "trainPercentApprox": 100.0,
+      "validationPercentApprox": 80.1
+    },
+    {
+      "steps": 500000,
+      "pixelX": 1087,
+      "trainPixelY": 110,
+      "validationPixelY": 141,
+      "trainPercentApprox": 100.0,
+      "validationPercentApprox": 95.4
+    },
+    {
+      "steps": 1000000,
+      "pixelX": 1145,
+      "trainPixelY": 110,
+      "validationPixelY": 117,
+      "trainPercentApprox": 100.0,
+      "validationPercentApprox": 99.0
+    }
+  ],
+  "authorRepository": "https://github.com/openai/grok",
+  "authorRepositoryTree": "https://api.github.com/repos/openai/grok/git/trees/main?recursive=1",
+  "releaseSearch": "Acquired recursive main tree: code/scripts/one flatness notebook, no results/checkpoint/metric export files. This is a bounded main-tree search, not proof no data exist elsewhere.",
+  "scope": "Reported historical measurements, no browser transformer training, no authored idealization or copied figure design. Builder makes own aligned points/table from these numeric facts. Independent source/use review pending."
+}

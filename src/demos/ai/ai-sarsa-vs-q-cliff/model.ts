@@ -1,0 +1,2 @@
+export function transition(selected:number,terminal=false){const next=[1,5],reward=-1,gamma=1,alpha=.5,old=0;const continuations=terminal?[0,0]:[next[selected],Math.max(...next)];const targets=continuations.map(v=>reward+gamma*v),updates=targets.map(t=>old+alpha*(t-old));return {next,reward,gamma,alpha,old,selected,terminal,continuations,targets,updates};}
+export function run(mode:number){return transition(mode===1?1:0,mode===2);}

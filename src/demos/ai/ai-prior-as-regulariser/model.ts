@@ -1,0 +1,2 @@
+export function posterior(tau:number,mu:number){const y=3,precision=1/(tau*tau),map=(y+mu*precision)/(1+precision),parts=(w:number)=>[.5*(y-w)**2,.5*precision*(w-mu)**2];return {tau,mu,map,parts:parts(map),points:Array.from({length:41},(_,i)=>{const w=i/10,p=parts(w);return {w,likelihood:p[0],prior:p[1],total:p[0]+p[1]}})};}
+export function run(mode:number){return posterior(mode===1?2:1,mode===2?2:0);}

@@ -1,0 +1,1 @@
+export function run(mode:number){const labels=mode===1?[0,0,0,1,1]:[1,0,0,1,1],votes=[1,3,5].map(k=>{const ones=labels.slice(0,k).reduce((a,b)=>a+b,0);return {k,ones,zeros:k-ones,prediction:ones>k/2?1:0};});return {labels,votes};}

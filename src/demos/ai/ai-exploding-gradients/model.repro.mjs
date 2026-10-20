@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import ts from 'typescript';
+const js=ts.transpileModule(fs.readFileSync(new URL('./model.ts',import.meta.url),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText;
+const m=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+near(m.run(0).raw,16);near(m.run(0).applied,5);near(m.run(0).rawUpdate,1.6);near(m.run(0).update,.5);near(m.run(1).raw,256);near(m.run(2).raw,1/16);near(m.chain(1,100).raw,1);assert.equal(m.run(0).trace.at(-1),16);
+const meta=JSON.parse(fs.readFileSync(new URL('./meta.json',import.meta.url),'utf8'));assert.equal(meta.status,'draft');assert.equal(meta.version,1);assert.ok(meta.claims.every(c=>c.status==='unverified'&&c.id.startsWith('ai.'+meta.slug+'.c')));assert.equal(meta.claims[0].checkedBy,'');assert.equal(meta.claims[0].checkedOn,'');assert.ok(meta.curriculum.prerequisites.length);console.log(meta.slug+': finite primary, countercase and boundary checks pass; no independent verdict.');

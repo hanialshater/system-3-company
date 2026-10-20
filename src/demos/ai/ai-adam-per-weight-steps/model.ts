@@ -1,0 +1,2 @@
+export function adam(grad:number[]){const alpha=.1,beta1=.9,beta2=.999,epsilon=.01,m=grad.map(g=>(1-beta1)*g),v=grad.map(g=>(1-beta2)*g*g),mhat=m.map(x=>x/(1-beta1)),vhat=v.map(x=>x/(1-beta2)),denominator=vhat.map(x=>Math.sqrt(x)+epsilon),steps=mhat.map((x,i)=>-alpha*x/denominator[i]),sgd=grad.map(g=>-alpha*g);return {grad,m,v,mhat,vhat,denominator,steps,sgd};}
+export function run(mode:number){return adam(mode===1?[0,10]:[1,10]);}

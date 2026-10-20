@@ -1,0 +1,4 @@
+export type Result={values:number[];labels:string[];summary:string;detail:number[];links:number[][];trace?:string[]};
+export function compute(m:number):Result {
+const bits=m===1?4:2,w=m===2?[1,-1]:[.2,.7,-.4],x=m===2?[1,1]:[1,2,-1],levels=Array.from({length:2**bits},(_,i)=>-1+2*i/(2**bits-1)),q=w.map(v=>levels.reduce((best,z)=>Math.abs(z-v)<Math.abs(best-v)-1e-12?z:best,levels[0])),dot=(a:number[])=>a.reduce((s,v,i)=>s+v*x[i],0),original=dot(w),out=dot(q);const levels4=Array.from({length:16},(_,i)=>-1+2*i/15),end4=w.map(v=>levels4.reduce((best,z)=>Math.abs(z-v)<Math.abs(best-v)-1e-12?z:best,levels4[0])),alt=dot(end4);return {values:q,labels:q.map((_,i)=>`w${i+1}`),summary:m===2?`2b/4b y=${out}/${alt}; packed 4/8`:`${bits}b×${w.length}=${bits*w.length}; y=${original.toFixed(0)}→${out.toFixed(3)}; |Δ|=${Math.abs(out-original).toFixed(3)}`,detail:[...q,out,Math.abs(out-original),bits*w.length],links:[]};
+}

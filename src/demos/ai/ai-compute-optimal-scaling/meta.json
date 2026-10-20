@@ -1,0 +1,95 @@
+{
+  "slug": "ai-compute-optimal-scaling",
+  "title": "Where should the budget go?",
+  "hook": "Keep the resource product fixed; compare both loss terms.",
+  "domain": "ai",
+  "concept": "compute-optimal-scaling",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "scaling-laws"
+    ],
+    "doesNotKnow": [
+      "For ND=16 and L=1/N+1/D, which allocation minimizes loss among integer factor pairs?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-compute-optimal-scaling.c1",
+      "text": "For ND=16 and L=1/N+1/D, which allocation minimizes loss among integer factor pairs? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: (1,16); (4,4); (16,1).",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 9; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-optimal-scaling/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-compute-optimal-scaling.c2",
+      "text": "Your exhaustive factor-pair search selected (4,4), loss .5, for the symmetric surface. With coefficient 4 on 1/N, it selected (8,2), loss 1; (4,4) then cost 1.25. Equal allocation was contingent on the coefficients. This invented surface and product budget are not fitted scaling laws or a prescription for a real model\u2019s parameters, tokens or production cost.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 9; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-optimal-scaling/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-optimal-scaling.c3",
+      "text": "At ND=16 with L=4/N+1/D, compare (8,2) and (4,4). Which is better? (8,2): its loss is .5+.5=1, versus 1+.25=1.25 at (4,4). The changed coefficient changes the allocation optimum.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 9; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-optimal-scaling/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-optimal-scaling.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 9; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-optimal-scaling/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-optimal-scaling.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 ND=16 \u00b7 positive integer factors L=1/N + 1/D N,D Left Right Loss 1,16 1.000 0.063 1.063 2,8 0.500 0.125 0.625 4,4 0.250 0.250 0.500 8,2 0.125 0.500 0.625 16,1 0.063 1.000 1.063 Minimize 1/N Minimize 4/N Reset view 1. coefficient 1: N=4, D=4, loss=0.5 2. coefficient 4: N=8, D=2, loss=1 | Toy \u00b7 ND=16 \u00b7 positive integer factors L=1/N + 1/D N,D Left Right Loss 1,16 1.000 0.063 1.063 2,8 0.500 0.125 0.625 4,4 0.250 0.250 0.500 8,2 0.125 0.500 0.625 16,1 0.063 1.000 1.063 Minimize 1/N Minimize 4/N Reset view 1. coefficient 1: N=4, D=4, loss=0.5 2. coefficient 4: N=8, D=2, loss=1",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 9; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-optimal-scaling/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At ND=16 with L=4/N+1/D, compare (8,2) and (4,4). Which is better?",
+    "options": [
+      "(8,2), loss 1",
+      "(4,4), loss 1.25",
+      "They tie at loss 1"
+    ],
+    "answer": 0,
+    "why": "(8,2): its loss is .5+.5=1, versus 1+.25=1.25 at (4,4). The changed coefficient changes the allocation optimum."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:compute-optimal-scaling",
+    "also": [],
+    "prerequisites": [
+      "ai:scaling-laws"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

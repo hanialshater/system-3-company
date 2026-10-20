@@ -1,0 +1,122 @@
+{
+  "slug": "ai-discount-factor",
+  "title": "Two steps, two discounts",
+  "hook": "A reward stays the same while its weight changes.",
+  "domain": "ai",
+  "concept": "discount-factor",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "gamma is applied once per elapsed transition; a reward two steps away gets gamma², not one copy of gamma. Distinct from the already briefed value-vs-reward: focus on time weights across one fixed reward stream rather than choosing between actions."
+    ]
+  },
+  "misconception": "gamma is applied once per elapsed transition; a reward two steps away gets gamma², not one copy of gamma. Distinct from the already briefed value-vs-reward: focus on time weights across one fixed reward stream rather than choosing between actions.",
+  "objective": "gamma is applied once per elapsed transition; a reward two steps away gets gamma², not one copy of gamma. Distinct from the already briefed value-vs-reward: focus on time weights across one fixed reward stream rather than choosing between actions.",
+  "claims": [
+    {
+      "id": "ai.ai-discount-factor.c1",
+      "text": "A finite return weights reward at time t by gamma^t, beginning t0. For[0,2,4],gamma.5 gives weights[1,.5,.25],contributions[0,1,1],total2;gamma0 gives0;gamma1 gives6. Outlines show raw rewards, narrow filled bars show contributions. Changed[1,0,8] returns3 atgamma.5 and1.5 atgamma.25.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-discount-factor.c2",
+      "text": "Title: Two steps, two discounts Hook: A reward stays the same while its weight changes. A reward one step ahead counts half. How much does reward 4 contribute when it is two steps ahead? Options: 1 / 2 / 4; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-discount-factor.c3",
+      "text": "In the retained stream, rewards 0, 2, 4 contribute 0, 1, 1 when the discount is one half. The later reward is weighted twice: its multiplier is one quarter. Changing the discount changes these weights, not the raw rewards. The first transition has weight one.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-discount-factor.c4",
+      "text": "Rewards at times 0, 1, 2 are 1, 0, 8. At discount one half, what is their return? The first reward contributes 1; the last contributes 8 times one quarter, or 2. Total return is 3.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-discount-factor.c5",
+      "text": "Three finite rewards, no infinite-horizon convergence issue and no assertion about human impatience; reward amounts and elapsed-transition indices stay fixed.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-discount-factor.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf (discounted-return framework in original Q-learning paper; exact finite indexing derived locally), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Rewards at times 0, 1, 2 are 1, 0, 8. At discount one half, what is their return?",
+    "options": [
+      "3",
+      "4.5",
+      "9"
+    ],
+    "answer": 0,
+    "why": "The first reward contributes 1; the last contributes 8 times one quarter, or 2. Total return is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:discount-factor",
+    "also": [],
+    "prerequisites": [
+      "ai:exploration-exploitation"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "reinforcement-learning",
+      "mdp-value",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf",
+    "locator": "discounted-return framework in original Q-learning paper; exact finite indexing derived locally",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

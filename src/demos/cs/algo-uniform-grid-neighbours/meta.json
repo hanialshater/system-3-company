@@ -1,0 +1,133 @@
+{
+  "slug": "algo-uniform-grid-neighbours",
+  "title": "Which nearby cells need a look?",
+  "hook": "A point across a cell boundary may still be close.",
+  "domain": "cs",
+  "concept": "algo-uniform-grid-neighbours",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+    ],
+    "doesNotKnow": [
+      "Distinguish grid candidates from exact radius neighbours and relate cell size to search offsets."
+    ]
+  },
+  "objective": "Distinguish grid candidates from exact radius neighbours and relate cell size to search offsets.",
+  "misconception": "Checking the eight adjacent cells always finds every radius neighbour, regardless of cell width.",
+  "claims": [
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c1",
+      "text": "Primary h=r=1, q=(.9,.9), A=(1.1,.9), B=(1.9,1.9), C=(2.1,.9). Contrast h=.4,r=1,q=(.1,.1),A=(.9,.1).",
+      "support": "convention",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#picture#inputs; model.ts and model.test.mjs finite author reproductions; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "Demo.tsx: initial question inputs and svg q/h/r labels"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c2",
+      "text": "Home cell is floor(x/h),floor(y/h). Enumerate coordinate offsets through ceil(r/h); then keep squared Euclidean distance≤r². Boundary distance exactlyr is included. Negative coordinates use floor.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#model.ts#search; model.ts and model.test.mjs finite author reproductions; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg floor rule, model and p#reveal-compact safe offset/distance clauses"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c3",
+      "text": "Primary candidate cells containA/B; onlyA is within radius; C is outside candidate cells. Candidate status does not imply a radius match.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#picture#primary; model.ts and model.test.mjs finite author reproductions; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg current candidate/radius geometry, first retained Primary A,B→A proof row and p#reveal-compact first two sentences"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c4",
+      "text": "Contrast A is a true neighbour at cell offset2. Safe offset limitceil(1/.4)=3 includes it; checking only±1 misses it. Both primary and contrast/adjacent witnesses remain visible after Reset.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#picture#contrast; model.ts and model.test.mjs finite author reproductions; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified",
+      "address": "Demo.tsx: separate retained safe±3→A and eight-adjacent±1→∅ proof rows; p#reveal-compact contrast clauses"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c5",
+      "text": "Dense buckets may contain all points, so this method has no universal speedup.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#reveal#limit; model.ts and model.test.mjs finite author reproductions; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact final sentence"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c6",
+      "text": "Which nearby cells need a look?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/meta.json#title; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c7",
+      "text": "A point across a cell boundary may still be close.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/meta.json#hook; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c8",
+      "text": "q=(.9,.9), radius1. A=(1.1,.9), B=(1.9,1.9), C=(2.1,.9). Which points are within the radius? Options A only / A and B / All three; correct A only.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#predict; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-uniform-grid-neighbours.c9",
+      "text": "h=.5, radius1. Must the search allow offsets beyond one cell? ceil(1/.5)=2; one adjacent layer can miss nearby points.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-uniform-grid-neighbours/meta.json#recall; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "h=.5, radius1. Must the search allow offsets beyond one cell?",
+    "options": [
+      "Yes: up to2",
+      "No: only1"
+    ],
+    "answer": 0,
+    "why": "ceil(1/.5)=2; one adjacent layer can miss nearby points."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-uniform-grid-neighbours",
+    "also": [],
+    "prerequisites": [
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry",
+      "geometric"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

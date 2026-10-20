@@ -1,0 +1,104 @@
+{
+  "slug": "ai-sarsa-vs-q-cliff",
+  "title": "Which next action counts?",
+  "hook": "Compare two backups from the same selected action.",
+  "domain": "ai",
+  "concept": "sarsa-vs-q-cliff",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "One stipulated cliff-adjacent transition; selected behaviour action is explicit. No training trajectory, learned-route ranking or empirical performance claim."
+    ]
+  },
+  "misconception": "One stipulated cliff-adjacent transition; selected behaviour action is explicit. No training trajectory, learned-route ranking or empirical performance claim.",
+  "objective": "Compute and contrast the finite sarsa vs q cliff cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-sarsa-vs-q-cliff.c1",
+      "text": "export function transition(selected:number,terminal=false){const next=[1,5],reward=-1,gamma=1,alpha=.5,old=0;const continuations=terminal?[0,0]:[next[selected],Math.max(...next)];const targets=continuations.map(v=>reward+gamma*v),updates=targets.map(t=>old+alpha*(t-old));return {next,reward,gamma,alpha,old,selected,terminal,continuations,targets,updates};}\nexport function run(mode:number){return transition(mode===1?1:0,mode===2);}\n\n<text x=\"145\" y=\"18\" textAnchor=\"middle\">{r.terminal?'Terminal':`Selected ${r.selected===0?'safe':'risky'}`} · Qnext=[1,5]</text>{r.updates.map((u,i)=><g key={i}><text x=\"7\" y={49+i*45}>{i===0?'SARSA':'Q-learning'}</text><text x=\"108\" y={49+i*45}>−1+{r.continuations[i]}</text><path d={`M174 ${44+i*45} h24`} className={s.line}/><text x=\"208\" y={49+i*45}>{show(u)}</text></g>)}<text x=\"145\" y=\"124\" textAnchor=\"middle\">target × .5 → Qnew · Qold=0</text>\nr=−1; γ=1; Qold=0; α=.5; Qnext(safe)=1; Qnext(risky)=5; selected=safe.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sarsa-vs-q-cliff.c2",
+      "text": "Which next action counts?; Compare two backups from the same selected action.; {\"question\": \"r=−1, γ=1, old Q=0, α=.5. Next Q(safe)=1, Q(risky)=5; behaviour selects safe. Which pair of updates results?\", \"options\": [\"SARSA 0; Q-learning 2\", \"SARSA 2; Q-learning 0\", \"Both 2\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-sarsa-vs-q-cliff.c3",
+      "text": "Your safe behaviour action supplied continuation 1 to SARSA, producing update 0. Q-learning used the maximum 5, producing update 2. Selecting risky made both updates 2. Terminal continuations become zero. One transition compares backup rules; it does not establish which learned route wins.\n`${r.terminal?'Terminal':r.selected===0?'Safe':'Risky'}: SARSA=${f(r.updates[0])}, Q=${f(r.updates[1])}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-sarsa-vs-q-cliff.c4",
+      "text": "{\"question\": \"For a terminal transition, reward −1, old Q=0 and α=.5, with stored next values 1 and 5, what are the updates?\", \"options\": [\"Both −.5\", \"SARSA 0; Q-learning 2\", \"Both 2\"], \"answer\": 0, \"why\": \"Terminal continuation is 0 for both; target −1 and update 0+.5(−1−0)=−.5.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-sarsa-vs-q-cliff.c5",
+      "text": "One stipulated cliff-adjacent transition; selected behaviour action is explicit. No training trajectory, learned-route ranking or empirical performance claim. Controls: Safe, Risky, Terminal, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "For a terminal transition, reward −1, old Q=0 and α=.5, with stored next values 1 and 5, what are the updates?",
+    "options": [
+      "Both −.5",
+      "SARSA 0; Q-learning 2",
+      "Both 2"
+    ],
+    "answer": 0,
+    "why": "Terminal continuation is 0 for both; target −1 and update 0+.5(−1−0)=−.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:sarsa-vs-q-cliff",
+    "also": [],
+    "prerequisites": [
+      "ai:q-learning"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

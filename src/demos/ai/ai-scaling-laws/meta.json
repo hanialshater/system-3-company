@@ -1,0 +1,122 @@
+{
+  "slug": "ai-scaling-laws",
+  "title": "Half of which loss?",
+  "hook": "Does ten times the compute halve the whole loss?",
+  "domain": "ai",
+  "concept": "scaling-laws",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "distinguish a constant fractional reduction in **excess loss** across multiplicative compute increases from halving total loss or doubling capability. No claim that this exponent describes today's frontier models."
+    ]
+  },
+  "misconception": "distinguish a constant fractional reduction in **excess loss** across multiplicative compute increases from halving total loss or doubling capability. No claim that this exponent describes today's frontier models.",
+  "objective": "distinguish a constant fractional reduction in **excess loss** across multiplicative compute increases from halving total loss or doubling capability. No claim that this exponent describes today's frontier models.",
+  "claims": [
+    {
+      "id": "ai.ai-scaling-laws.c1",
+      "text": "The declared toy is total=floor+initial*compute^(-log10(2)). Original compute1/10/100 gives total9/5/3 and excess8/4/2; near-floor100/1000/10000 gives3/2/1.5; alternate floor2/excess12 gives14/8/5. Diagram joins exact computed points on equally spaced log-compute positions.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-scaling-laws.c2",
+      "text": "Title: Half of which loss? Hook: Does ten times the compute halve the whole loss? Toy floor: 1. Loss falls 9 to 5 when compute goes 1 to 10. What total follows at 100? Options: 3 / 2.5 / 0; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-scaling-laws.c3",
+      "text": "In the retained toy, total loss goes 9, 5, 3 while excess above the floor goes 8, 4, 2. Tenfold compute halves excess, not total loss. The near-floor case makes the difference clearer. This declared curve is not a forecast of real models.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-scaling-laws.c4",
+      "text": "A new toy has floor 2 and excess 12 at compute 1. Excess halves each tenfold. What is total loss at 100? Excess is 12 to 6 to 3; adding floor 2 gives total 5.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-scaling-laws.c5",
+      "text": "Toy units and a declared curve only; no empirical fit, universal capability relation, energy claim or real-model forecast.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-scaling-laws.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://arxiv.org/abs/2001.08361 (author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "A new toy has floor 2 and excess 12 at compute 1. Excess halves each tenfold. What is total loss at 100?",
+    "options": [
+      "5",
+      "3",
+      "6"
+    ],
+    "answer": 0,
+    "why": "Excess is 12 to 6 to 3; adding floor 2 gives total 5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:scaling-laws",
+    "also": [],
+    "prerequisites": [
+      "ai:cross-entropy-loss"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "neural-language",
+      "pretraining-scaling",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://arxiv.org/abs/2001.08361",
+    "locator": "author abstract, cross-entropy empirical power-law context; toy exponent/floor are our convention",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

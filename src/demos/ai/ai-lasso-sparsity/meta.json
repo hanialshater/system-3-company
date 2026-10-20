@@ -1,0 +1,104 @@
+{
+  "slug": "ai-lasso-sparsity",
+  "title": "Shrink or reach zero?",
+  "hook": "Trace one coefficient through an absolute-value penalty.",
+  "domain": "ai",
+  "concept": "lasso-sparsity",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "One scalar explicitly normalized objective, not package alpha or a feature-selection benchmark. Ridge comparison uses .5λw² and finite positive λ."
+    ]
+  },
+  "misconception": "One scalar explicitly normalized objective, not package alpha or a feature-selection benchmark. Ridge comparison uses .5λw² and finite positive λ.",
+  "objective": "Compute and contrast the finite lasso sparsity cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-lasso-sparsity.c1",
+      "text": "export function solve(z:number,lambda:number){const w=Math.sign(z)*Math.max(Math.abs(z)-lambda,0),ridge=z/(1+lambda),objective=(x:number)=>.5*(x-z)**2+lambda*Math.abs(x);return {z,lambda,w,ridge,minimum:objective(w),points:Array.from({length:65},(_,i)=>{const x=-1+i/32;return {x,y:objective(x)}})};}\nexport function run(mode:number){return solve(mode===2?-.6:.6,mode===0?.8:.2);}\n\n<path d=\"M18 92 H276 M147 28 V98\" className={s.axis}/><path d={r.points.map((p,i)=>`${i?'L':'M'}${147+p.x*120},${92-p.y*35}`).join(' ')} className={s.curve}/><circle cx={147+r.w*120} cy={92-r.minimum*35} r=\"5\" className={s.dot}/><text x=\"145\" y=\"17\" textAnchor=\"middle\">z={r.z} · λ={r.lambda} · .5(w−z)²+λ|w|</text><text x=\"18\" y=\"110\">w*: {show(r.w)}</text><text x=\"149\" y=\"110\">ridge: {show(r.ridge)}</text><text x=\"18\" y=\"129\">−1</text><text x=\"144\" y=\"129\">0</text><text x=\"267\" y=\"129\">1</text>\nJ(w)=.5(w−z)²+λ|w|; z=.6; λ=.8. Ridge: .5(w−z)²+.5λw².",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#lasso — acquired maintainer body on L1 sparsity. Local scalar normalization and closed-form minimizer are explicit; package alpha is not imported.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lasso-sparsity.c2",
+      "text": "Shrink or reach zero?; Trace one coefficient through an absolute-value penalty.; {\"question\": \"For J(w)=.5(w−.6)²+.8|w|, the soft-threshold solution is sign(.6)max(.6−.8,0). Which minimizer follows?\", \"options\": [\"0\", \".3333\", \".4\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#lasso — acquired maintainer body on L1 sparsity. Local scalar normalization and closed-form minimizer are explicit; package alpha is not imported.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-lasso-sparsity.c3",
+      "text": "Your penalty .8 crossed the .6 threshold and placed the L1 minimizer exactly at zero. With penalty .2, it stayed at .400. The kink creates this threshold; ridge remained nonzero. One scalar zero is not evidence that a real feature is irrelevant.\n`z=${r.z}, λ=${r.lambda}: w*=${f(r.w)}`",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#lasso — acquired maintainer body on L1 sparsity. Local scalar normalization and closed-form minimizer are explicit; package alpha is not imported.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-lasso-sparsity.c4",
+      "text": "{\"question\": \"For z=−.6 and λ=.2 in the same scalar objective, what is the L1 minimizer?\", \"options\": [\"−.4\", \"0\", \".4\"], \"answer\": 0, \"why\": \"Soft-thresholding preserves the sign: −max(.6−.2,0)=−.4; it shrinks toward zero without crossing it.\"}",
+      "support": "derivation",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#lasso — acquired maintainer body on L1 sparsity. Local scalar normalization and closed-form minimizer are explicit; package alpha is not imported.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-lasso-sparsity.c5",
+      "text": "One scalar explicitly normalized objective, not package alpha or a feature-selection benchmark. Ridge comparison uses .5λw² and finite positive λ. Controls: λ=.8, λ=.2, z=−.6, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "https://scikit-learn.org/stable/modules/linear_model.html#lasso — acquired maintainer body on L1 sparsity. Local scalar normalization and closed-form minimizer are explicit; package alpha is not imported.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "For z=−.6 and λ=.2 in the same scalar objective, what is the L1 minimizer?",
+    "options": [
+      "−.4",
+      "0",
+      ".4"
+    ],
+    "answer": 0,
+    "why": "Soft-thresholding preserves the sign: −max(.6−.2,0)=−.4; it shrinks toward zero without crossing it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:lasso-sparsity",
+    "also": [],
+    "prerequisites": [
+      "ai:regularisation"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

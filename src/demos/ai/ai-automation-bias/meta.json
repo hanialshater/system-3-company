@@ -1,0 +1,97 @@
+{
+  "slug": "ai-automation-bias",
+  "title": "Test automation bias",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "automation-bias",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "zero-failure-testing"
+    ],
+    "doesNotKnow": [
+      "1000 cases. Perfect independent review corrects errors without adding any. A:error.1,review.8; B:error.04,review.1. Residual=e(1−v). Which combined system has fewer residual errors?"
+    ]
+  },
+  "misconception": "B",
+  "objective": "Compute the declared automation bias model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-automation-bias.c1",
+      "text": "Test automation bias Compare a declared mechanism with its changed case. 1000 cases. Perfect independent review corrects errors without adding any. A:error.1,review.8; B:error.04,review.1. Residual=e(1−v). Which combined system has fewer residual errors? Options: A; B",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-automation-bias.c2",
+      "text": "A left 20 expected errors; more accurate B left 36 under its stipulated lower review rate. Holding review at .8 reduced B to 8. The vigilance change is assumed, not measured or caused by accuracy here; these expected counts do not establish actual human behavior.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-automation-bias.c3",
+      "text": "{\"question\": \"If review stays fixed, does B improve this comparison?\", \"options\": [\"Yes: B leaves 8 instead of A’s20\", \"No: B must leave 36\"], \"answer\": 0, \"why\": \"With review .8 held fixed, residual errors for B are 1000×.04×.2=8.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-automation-bias.c4",
+      "text": "automation-bias\n\n**Identity / target / source:** `ai:automation-bias` → `ai-automation-bias` → `src/demos/ai/ai-automation-bias`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/217`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#30-automation-bias`. **Packet:** A1. **Level / prerequisites:** core; `ai:zero-failure-testing`.\n\n**Nearest / distinct payoff:** zero-failure-testing evaluates a machine’s errors; this computes residual errors under a stipulated vigilance-dependent human-review policy and a fixed-review control.\n\n**Computed primary model:** Toy1000cases, reviewer independently inspects each withprobabilityv and perfectly corrects machine errors when reviewed, never introduces errors. MachineA errorrate.1,vigilance.8: expected100machineerrors,80corrected,20remain. MachineB errorrate.04 butvigilance.1:40errors,4corrected,36remain. Residualrate=e*(1−v); a better machine can yield worse combined performance under this assumed review change.\n\n**Countercase / boundary:** Keep vigilance.8 forB:32corrected,8remain, improving overA. The decline in vigilance is declared, not measured or automatically caused by machine accuracy. Perfect review, independence and no reviewer-induced errors are toy assumptions; no claim about real human vigilance or actual automation effect sizes is admitted.\n\n**Prediction / transfer recall:** Predict which combined system has fewer remaining errors under the stated policies; recall holding review fixed changes the comparison and reviewing everycase gives zero residual only under the perfect-review assumption.\n\n**Intervention / retained witness:** Choose machine/Fixed review computes expected machineerrors/corrections/residual and expected reviewcounts800/100. Retain20/36/8 contrasts with assumptions visible, no psychological motive attribution.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. A controlled primary human-study protocol is mandatory before any behavioural claim about vigilance/adoption; none acquired or simulated here. These expected counts only test the declared review policy.\n\n## Final audit and remaining nine\n\nAll30 numeric/causal models passed author arithmetic before manifest admission; exact proposal source indices and unchanged ai-prefixed targets match the30 stable identities. Only these30 briefAddress/specificationStatus fields changed at final admission; every264 other concept row was compared with its prewrite snapshot and preserved. The separately authorized earlier kmeans registration updated only its actual reuse mapping/hash and dated registered-coverage checkpoint; primary/source/claim/version/behavior values are unchanged as documented in the exact registration record. No operating manifest or proof worktree changed.\n\nFinite owner briefs now218/227 new targets;9 intentions remain: double-descent, grokking, lost-in-the-middle, vae-smooth-latent, benchmark-saturation, eval-prompt-sensitivity, llm-judge-bias, capability-elicitation, risk-tier-regulation. None is discarded or called implemented. In particular, double-descent/grokking require actual reproducible fitted/trained curves, VAE requires a declared trained interpolation model, empirical positional/prompt/judge claims need pinned protocol/model/version, and regulation requires dated current primary legal text. A decorative curve, scripted model result presented as empirical, or a source title alone will not close those intentions. This packet does not begin them.\n\nKmeans registration raises actual registered coverage67 on66 existing artifacts under signed reuse; new target denominator227 stays unchanged. Previous dated188/39 scope state remains a historical checkpoint, superseded by this218/9 finite-admission record. All294 identities and76/218 lineage remain. Builders, exact primary-method acquisition where pending, and independent fact/learner/QA/applicable specialist and release obligations continue. No new claim verification, publication or deployment is implied.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Machine A/Machine B/Fixed review; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If review stays fixed, does B improve this comparison?",
+    "options": [
+      "Yes: B leaves 8 instead of A’s20",
+      "No: B must leave 36"
+    ],
+    "answer": 0,
+    "why": "With review .8 held fixed, residual errors for B are 1000×.04×.2=8."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:automation-bias",
+    "also": [],
+    "prerequisites": [
+      "ai:zero-failure-testing"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

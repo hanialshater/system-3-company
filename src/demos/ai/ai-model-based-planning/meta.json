@@ -1,0 +1,104 @@
+{
+  "slug": "ai-model-based-planning",
+  "title": "Choose before acting",
+  "hook": "Compare two imagined continuations with the same model.",
+  "domain": "ai",
+  "concept": "model-based-planning",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Deterministic depth-two supplied model, stable A-first tie; modeled rewards and stipulated actual rewards remain distinct."
+    ]
+  },
+  "misconception": "Deterministic depth-two supplied model, stable A-first tie; modeled rewards and stipulated actual rewards remain distinct.",
+  "objective": "Compute and contrast the finite model based planning cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-model-based-planning.c1",
+      "text": "export function plan(gamma:number,modelB:number){const immediate=[1,0],continuation=[2,modelB],imagined=immediate.map((x,i)=>x+gamma*continuation[i]);const chosen=imagined[0]>=imagined[1]?0:1;return {gamma,immediate,continuation,imagined,chosen,actual:[1+gamma*2,gamma*4]};}\nexport function run(mode:number){return plan(mode===2?.5:1,mode===1?0:4);}\n\n{r.immediate.map((a,i)=><g key={i}><text x=\"16\" y={31+i*56}>{i===0?'A':'B'}</text><path d={`M38 ${26+i*56} H214`} className={s.line}/><circle cx=\"62\" cy={26+i*56} r=\"17\" className={s.box}/><circle cx=\"132\" cy={26+i*56} r=\"17\" className={s.box}/><text x=\"62\" y={31+i*56} textAnchor=\"middle\">{a}</text><text x=\"132\" y={31+i*56} textAnchor=\"middle\">{r.continuation[i]}</text><text x=\"224\" y={31+i*56}>={show(r.imagined[i])}</text></g>)}<text x=\"145\" y=\"119\" textAnchor=\"middle\">γ={r.gamma} · Plan {r.chosen===0?'A':'B'} · Actual {r.actual.join(',')}</text>\nA: 1→2; B: 0→4. γ=1. Return = immediate + γ·continuation. Tie→A.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-model-based-planning.c2",
+      "text": "Choose before acting; Compare two imagined continuations with the same model.; {\"question\": \"A gives 1 then 2; B gives 0 then 4. With γ=1, which two-step plan has larger imagined return?\", \"options\": [\"A\", \"B\", \"Tie\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-model-based-planning.c3",
+      "text": "Your accurate model compared imagined returns 3 and 4, choosing B. Changing only B’s modeled continuation to 0 switched the plan to A, while actual B remained worth 4. Planning compares a supplied model; it does not learn or certify that model.\n`B model=${r.continuation[1]}: plan ${r.chosen===0?'A':'B'} (${r.imagined.join(',')})`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-model-based-planning.c4",
+      "text": "{\"question\": \"The model now assigns B continuation 0, although actual B remains 4; γ=1. What happens?\", \"options\": [\"Plan A; actual B still 4\", \"Plan B; actual B becomes 0\", \"Tie; both actual returns 3\"], \"answer\": 0, \"why\": \"Imagined A=1+2=3 exceeds modeled B=0; changing a prediction does not change the stipulated actual outcome.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-model-based-planning.c5",
+      "text": "Deterministic depth-two supplied model, stable A-first tie; modeled rewards and stipulated actual rewards remain distinct. Controls: γ=1, Wrong B, γ=.5, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "The model now assigns B continuation 0, although actual B remains 4; γ=1. What happens?",
+    "options": [
+      "Plan A; actual B still 4",
+      "Plan B; actual B becomes 0",
+      "Tie; both actual returns 3"
+    ],
+    "answer": 0,
+    "why": "Imagined A=1+2=3 exceeds modeled B=0; changing a prediction does not change the stipulated actual outcome."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:model-based-planning",
+    "also": [],
+    "prerequisites": [
+      "ai:bellman-backup"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

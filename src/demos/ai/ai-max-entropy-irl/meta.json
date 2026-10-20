@@ -1,0 +1,109 @@
+{
+  "slug": "ai-max-entropy-irl",
+  "title": "What does maximum entropy leave undecided?",
+  "hook": "Match feature expectation without inventing reward certainty.",
+  "domain": "ai",
+  "concept": "max-entropy-irl",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:reward-ambiguity",
+      "ai:boltzmann-rational-demos"
+    ],
+    "doesNotKnow": [
+      "Path features [0,1,1,2]. Both .25/.25/.25/.25 and .5/0/0/.5 have mean1. Which has higher entropy?"
+    ]
+  },
+  "misconception": "Endpoints",
+  "objective": "Compute this finite max-entropy-irl model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-max-entropy-irl.c1",
+      "text": "What does maximum entropy leave undecided? Match feature expectation without inventing reward certainty. Path features [0,1,1,2]. Both .25/.25/.25/.25 and .5/0/0/.5 have mean1. Which has higher entropy? Options: Uniform; Endpoints",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §14; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-max-entropy-irl.c2",
+      "text": "Equal feature expectations allowed different entropies. Changing the constraint changed the normalized distribution; adding a common reward constant did not. Maximum entropy depends on the supplied feasible paths and base measure, not uniquely recovered human rewards.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §14; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-max-entropy-irl.c3",
+      "text": "{'question': 'Does adding 7 to every path reward change normalized probabilities?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The shared exponential factor cancels in normalization.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §14; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-max-entropy-irl.c4",
+      "text": "Addressed visible stage operands and labels: path features=0/1/1/2 | p∝exp(θf+c); H=−Σp ln p. Controls: Mean 1, Mean 1.5, Shift +7, Reset. Changed computed rows: θ=0; c=0; p=0.25/0.25/0.25/0.25 / E[f]=1; H=1.386 / endpoints: mean=1; H=0.693 / features=0/1/1/2; uniform base | θ=1.099; c=0; p=0.063/0.188/0.188/0.563 / E[f]=1.5; H=1.125 / endpoints: mean=1; H=0.693 / features=0/1/1/2; uniform base | θ=0; c=7; p=0.25/0.25/0.25/0.25 / E[f]=1; H=1.386 / endpoints: mean=1; H=0.693 / features=0/1/1/2; uniform base. Retained computed witnesses: mean1 H=1.386 | mean1.5 H=1.125 | shift7 H=1.386. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst features=[0,1,1,2],theta=mode===1?Math.log(3):0,c=mode===2?7:0,w=features.map(v=>Math.exp(theta*v+c)),p=w.map(v=>v/sum(w)),mean=dot(p,features),H=-sum(p.map(v=>v? v*Math.log(v):0)),endpoint=[.5,0,0,.5],H2=-sum(endpoint.map(v=>v?v*Math.log(v):0));return{values:[mean,H,...p],rows:[`θ=${f(theta)}; c=${c}; p=${p.map(f).join('/')}`,`E[f]=${f(mean)}; H=${f(H)}`,`endpoints: mean=${f(dot(endpoint,features))}; H=${f(H2)}`,`features=0/1/1/2; uniform base`],receipt:`${mode===1?'mean1.5':mode===2?'shift7':'mean1'} H=${f(H)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §14; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-max-entropy-irl.c5",
+      "text": "max-entropy-irl\n\n**Identity / target / source:** `ai:max-entropy-irl` → `ai-max-entropy-irl` → `src/demos/ai/ai-max-entropy-irl`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/118`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#14-max-entropy-irl`. **Packet:** R2. **Level / prerequisites:** stretch; `ai:reward-ambiguity`, `ai:boltzmann-rational-demos`.\n\n**Nearest / distinct payoff:** reward-ambiguity establishes compatible rewards; this computes entropy-maximizing trajectory distributions under an explicit feature expectation.\n\n**Computed primary model:** Four feasible trajectories with scalar feature counts[0,1,1,2]. Constraint expected feature=1. Uniform[.25,.25,.25,.25] satisfies it and entropyln4; alternative[.5,0,0,.5] also satisfies it but entropyln2. In reward class r_i=theta*f_i+c, Boltzmann distributionp_i=exp(theta*f_i)/Z gives theta0 for mean1. Shiftc by any constant leaves normalized probabilities unchanged.\n\n**Countercase / boundary:** Change expectation to1.5: theta=ln3 gives probabilities[1,3,3,9]/16 and feature mean1.5. Maximum entropy is relative to the specified feasible trajectories/base measure; it does not uniquely identify an underlying human reward. Do not assert uniformity for a changed constraint or inaccessible path set.\n\n**Prediction / transfer recall:** Predict which mean1 distribution is less committed beyond the constraint; recall adding7 to all rewards changes no normalized trajectory probabilities.\n\n**Intervention / retained witness:** Select same-mean alternatives computes entropy and expectation separately; Change constraint derives normalized Boltzmann masses and new mean. Retain equal-expectation/different-entropy witness and constant-shift invariance. All path features/reachability are declared inputs.\n\n**Source obligation:** [Ziebart et al. original PDF](https://www.cs.cmu.edu/~bziebart/publications/maximum-entropy-inverse-reinforcement-learning.pdf), opened2026-10-19, maximum entropy under feature matching and trajectory distribution. This finite4-path calculation supplies no real demonstrator assumptions or causal-entropy extension.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §14; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does adding 7 to every path reward change normalized probabilities?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The shared exponential factor cancels in normalization."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:max-entropy-irl",
+    "also": [],
+    "prerequisites": [
+      "ai:reward-ambiguity",
+      "ai:boltzmann-rational-demos"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

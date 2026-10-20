@@ -1,0 +1,1 @@
+export function run(mode=0){if(!Number.isInteger(mode)||mode<0||mode>2)throw new Error('case');const n=mode===2?200:100,independent=mode!==1,effective=independent?n:1;return {n,independent,effective,upper:1-.05**(1/effective),zero:.99**effective,curve:Array.from({length:51},(_,i)=>({p:i/1000,zero:(1-i/1000)**effective}))};}

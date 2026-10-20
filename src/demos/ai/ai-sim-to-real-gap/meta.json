@@ -1,0 +1,97 @@
+{
+  "slug": "ai-sim-to-real-gap",
+  "title": "Test sim to real gap",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "sim-to-real-gap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distribution-shift"
+    ],
+    "doesNotKnow": [
+      "Position=θa,target1,loss=(θa−1)². Nominal a=1 fits θ1. Fit equally over θ1/2 gives a=3/5. At θ2 which has less loss?"
+    ]
+  },
+  "misconception": "a=1",
+  "objective": "Compute the declared sim to real gap model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-sim-to-real-gap.c1",
+      "text": "Test sim to real gap Compare a declared mechanism with its changed case. Position=θa,target1,loss=(θa−1)². Nominal a=1 fits θ1. Fit equally over θ1/2 gives a=3/5. At θ2 which has less loss? Options: a=.6; a=1",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §6; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sim-to-real-gap.c2",
+      "text": "Fitting both training plants gave action .6 and losses .16/.04, mean .1. Nominal action 1 had mean .5. At untrained θ=.5, that comparison reversed. Robustness here depends on the declared training distribution, not a universal guarantee.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §6; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sim-to-real-gap.c3",
+      "text": "{\"question\": \"Does success on θ1/2 guarantee lower error at θ=.5?\", \"options\": [\"No: θ=.5 reverses the comparison\", \"Yes: training covers every plant\"], \"answer\": 0, \"why\": \"The robust action loses .49 at θ=.5, versus nominal .25; that plant is outside its declared training mixture.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §6; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sim-to-real-gap.c4",
+      "text": "sim-to-real-gap\n\n**Identity / target / source:** `ai:sim-to-real-gap` → `ai-sim-to-real-gap` → `src/demos/ai/ai-sim-to-real-gap`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/177`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#6-sim-to-real-gap`. **Packet:** D1. **Level / prerequisites:** core; `ai:distribution-shift`.\n\n**Nearest / distinct payoff:** distribution-shift changes statistical inputs; this changes physical-dynamics parameter and evaluates a policy optimized over a declared simulator distribution.\n\n**Computed primary model:** One-step position next=theta*action, start0,target1,squared error. Simulator theta1 trains nominalaction1, loss0. Changed planttheta2 givesposition2/loss1. Robust fit over equally weightedtheta{1,2} minimizes[(a−1)²+(2a−1)²]/2: derivative5a−3=0, action.6. Losses.16/.04, mean.1 versus nominal mean.5.\n\n**Countercase / boundary:** At untrainedtheta.5, robustaction.6 givesposition.3/loss.49, nominalaction1 gives.5/loss.25; robustness to one declared distribution is not universal. No real robot or domain-randomization empirical result is claimed.\n\n**Prediction / transfer recall:** Predict which action tolerates theta2; recall the robust training distribution defines the tradeoff and can miss a different plant.\n\n**Intervention / retained witness:** Change plant parameter computes actual position/error for both fitted actions; Widen training distribution shows objective contributions and optimum. Retain theta1/2 fit tradeoff and theta.5 reversal.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Plant1/Plant2/Plant.5; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §6; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does success on θ1/2 guarantee lower error at θ=.5?",
+    "options": [
+      "No: θ=.5 reverses the comparison",
+      "Yes: training covers every plant"
+    ],
+    "answer": 0,
+    "why": "The robust action loses .49 at θ=.5, versus nominal .25; that plant is outside its declared training mixture."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:sim-to-real-gap",
+    "also": [],
+    "prerequisites": [
+      "ai:distribution-shift"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

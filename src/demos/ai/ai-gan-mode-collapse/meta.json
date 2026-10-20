@@ -1,0 +1,107 @@
+{
+  "slug": "ai-gan-mode-collapse",
+  "title": "Can convincing samples miss a mode?",
+  "hook": "Compare detector loss with distribution coverage.",
+  "domain": "ai",
+  "concept": "gan-mode-collapse",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:gan-forger-detective"
+    ],
+    "doesNotKnow": [
+      "Real A/B=.5/.5; D(A)=D(B)=.9. Does equal generator loss prove both modes appear?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite gan-mode-collapse model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-gan-mode-collapse.c1",
+      "text": "Can convincing samples miss a mode? Compare detector loss with distribution coverage. Real A/B=.5/.5; D(A)=D(B)=.9. Does equal generator loss prove both modes appear? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §2; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-mode-collapse.c2",
+      "text": "Both generators fooled the limited detector equally, while one missed B entirely. Recomputing the ideal density-ratio detector separated their losses. Equal scores under one detector do not establish equal distributions; actual alternating training need not find this ideal detector.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §2; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-mode-collapse.c3",
+      "text": "{'question': 'If a valid third mode is added, does the same two-mode score prove its coverage?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'An untested mode needs its own coverage check.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §2; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-mode-collapse.c4",
+      "text": "Addressed visible stage operands and labels: real=.5/.5 · collapsed=1/0 | covering=.5/.5 · limited D=.9/.9. Controls: Limited D, Ideal D, Reset. Changed computed rows: collapse=1/0 · D=0.9/0.9 / loss=0.105 · coverage=1/2 TV=0.5 / cover=.5/.5 · D=0.9/0.9 / loss=0.105 · coverage=2/2 TV=0 | collapse=1/0 · D=0.333/1 / loss=1.099 · coverage=1/2 TV=0.5 / cover=.5/.5 · D=0.5/0.5 / loss=0.693 · coverage=2/2 TV=0. Retained computed witnesses: limited loss=0.105/0.105 | ideal loss=1.099/0.693. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst p=[.5,.5],qs=[[1,0],[.5,.5]],rs=qs.map(q=>{const D=mode?p.map((v,i)=>v/(v+q[i])):[.9,.9],loss=-sum(q.map((v,i)=>v?v*Math.log(D[i]):0)),tv=sum(q.map((v,i)=>Math.abs(v-p[i])))/2;return{D,loss,tv};});return{values:rs.flatMap(r=>[r.loss,r.tv]),rows:[`collapse=1/0 · D=${rs[0].D.map(f).join('/')}`,`loss=${f(rs[0].loss)} · coverage=1/2 TV=${f(rs[0].tv)}`,`cover=.5/.5 · D=${rs[1].D.map(f).join('/')}`,`loss=${f(rs[1].loss)} · coverage=2/2 TV=${f(rs[1].tv)}`],receipt:`${mode?'ideal':'limited'} loss=${rs.map(r=>f(r.loss)).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §2; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gan-mode-collapse.c5",
+      "text": "gan-mode-collapse\n\n**Identity / target / source:** `ai:gan-mode-collapse` → `ai-gan-mode-collapse` → `src/demos/ai/ai-gan-mode-collapse`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/79`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#2-gan-mode-collapse`. **Packet:** G1. **Level / prerequisites:** core; `ai:gan-forger-detective`.\n\n**Nearest / distinct payoff:** gan-forger-detective updates a game; here a limited discriminator cannot distinguish mode coverage even when samples receive equal realism scores.\n\n**Computed primary model:** Real distribution p(A)=p(B)=.5. Fixed limited discriminatorD(A)=D(B)=.9. Collapsed generatorq=[1,0] and coveringq=[.5,.5] both have non-saturating loss−ln.9≈.10536. Their covered real modes are1/2 versus2/2, and total-variation distances fromp are.5 versus0.\n\n**Countercase / boundary:** An ideal density-ratio discriminator recomputed for eachq has D_i=p_i/(p_i+q_i). Against collapsed q its generator lossln3; against coveringq it isln2. Equal loss under the limited detector therefore does not establish distributional equality. Ignore q_i=0 loss terms using0log conventions; do not take log0 unnecessarily.\n\n**Prediction / transfer recall:** Predict whether matching the limited detector’s score proves both modes are represented; recall a third valid mode unseen by that detector would require its own coverage check.\n\n**Intervention / retained witness:** Toggle collapse/cover computes mass bars, detector loss, coverage and TV; Upgrade detector recomputes density ratios, retaining original equal-loss counterexample. No promise that actual alternating training finds the ideal discriminator.\n\n**Source obligation:** [Goodfellow et al. original PDF](https://arxiv.org/pdf/1406.2661), opened2026-10-19, §3 Eq1, non-saturating generator alternative and Algorithm1 (PDFpp3–4), §4.1 optimal discriminator. These explicit finite gradients/limited classifiers are local derivations, not the paper’s image experiments or a convergence claim.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §2; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a valid third mode is added, does the same two-mode score prove its coverage?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "An untested mode needs its own coverage check."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:gan-mode-collapse",
+    "also": [],
+    "prerequisites": [
+      "ai:gan-forger-detective"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

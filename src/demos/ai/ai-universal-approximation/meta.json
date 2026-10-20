@@ -1,0 +1,102 @@
+{
+  "slug": "ai-universal-approximation",
+  "title": "More pieces, less error?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "universal-approximation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:nonlinearity-collapse"
+    ],
+    "doesNotKnow": [
+      "For this constructed x² interpolant, what happens when equal pieces increase from 1 to 4?"
+    ]
+  },
+  "misconception": "Bounded error rises",
+  "objective": "Use the distinct declared universal-approximation mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-universal-approximation.c1",
+      "text": "hook/predict: For this constructed x² interpolant, what happens when equal pieces increase from 1 to 4? Options: Bounded error falls; Bounded error rises",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-universal-approximation.c2",
+      "text": "stage input operands: \"g=x/n+Σₖ₌₁ⁿ⁻¹(2/n)ReLU(x−k/n) · f=x² · [0,1]\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-universal-approximation.c3",
+      "text": "reveal: The constructed midpoint error fell from .25 to .015625 on [0,1]. At x=2, the four-piece function gave 2.75 instead of 4. Supplied weights establish this bounded approximation, not successful training, a universal theorem, or reliable extrapolation.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-universal-approximation.c4",
+      "text": "recall: Under the same construction, what is the eight-piece bounded error? The midpoint error is 1/(4n²); n=8 gives 1/256.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-universal-approximation.c5",
+      "text": "stage computation: Approximate f(x)=x² on[0,1] using n equal linear pieces, n∈{1,2,4}. Construct g_n(x)=x/n + sum over k=1..n−1 of (2/n)ReLU(x−k/n). This is the chord interpolant at knots k/n. At segment midpoints maximum absolute error is1/(4n²): .25,.0625,.015625. Compute interpolation values and midpoint error, not a decorative fit.\n\n**Countercase / boundary:** Weights are supplied constructively, not learned. This finite x² example does not prove a universal theorem or that optimization finds a solution. Outside the bounded interval, n4 at x=2 gives2.75 versus4; approximation on[0,1] gives no extrapolation promise.\n\n**Prediction / transfer recall:** Predict whether adding knots reduces this bounded interpolation error; recall n8 bound1/256 under the same construction and distinguish existence from training.\n\n**Intervention / reachable witness:** Add pieces1→2→4 changes ReLU units, chord plot and maximum-error marker; Extrapolate exposes x2 error while retaining bounded error. Display the active coefficients/knots without showing the computed maximum before commitment.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-universal-approximation.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: g=x/n+Σₖ₌₁ⁿ⁻¹(2/n)ReLU(x−k/n) · f=x² · [0,1] ? 1 piece 4 pieces Outside Reset 1: n=1; x=0.5; g=0.5; f=0.25; |Δ|=0.250000 2: n=4; x=0.125; g=0.03125; f=0.015625; |Δ|=0.015625 3: n=4; x=2; g=2.75; f=4; |Δ|=1.250000 | inspection 0: g=x/n+Σₖ₌₁ⁿ⁻¹(2/n)ReLU(x−k/n) · f=x² · [0,1] g / x² [0,1] 1 piece 4 pieces Outside Reset 1: n=1; x=0.5; g=0.5; f=0.25; |Δ|=0.250000 2: n=4; x=0.125; g=0.03125; f=0.015625; |Δ|=0.015625 3: n=4; x=2; g=2.75; f=4; |Δ|=1.250000 | inspection 1: g=x/n+Σₖ₌₁ⁿ⁻¹(2/n)ReLU(x−k/n) · f=x² · [0,1] g / x² [0,1] 1 piece 4 pieces Outside Reset 1: n=1; x=0.5; g=0.5; f=0.25; |Δ|=0.250000 2: n=4; x=0.125; g=0.03125; f=0.015625; |Δ|=0.015625 3: n=4; x=2; g=2.75; f=4; |Δ|=1.250000 | inspection 2: g=x/n+Σₖ₌₁ⁿ⁻¹(2/n)ReLU(x−k/n) · f=x² · [0,1] g / x² [0,1] 1 piece 4 pieces Outside Reset 1: n=1; x=0.5; g=0.5; f=0.25; |Δ|=0.250000 2: n=4; x=0.125; g=0.03125; f=0.015625; |Δ|=0.015625 3: n=4; x=2; g=2.75; f=4; |Δ|=1.250000",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#3-universal-approximation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same construction, what is the eight-piece bounded error?",
+    "options": [
+      "1/256",
+      "1/8",
+      "1/64"
+    ],
+    "answer": 0,
+    "why": "The midpoint error is 1/(4n²); n=8 gives 1/256."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:universal-approximation",
+    "also": [],
+    "prerequisites": [
+      "ai:nonlinearity-collapse"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

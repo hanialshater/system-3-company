@@ -1,0 +1,122 @@
+{
+  "slug": "ai-zero-failure-testing",
+  "title": "Zero seen, zero possible?",
+  "hook": "A clean test run still leaves uncertainty.",
+  "domain": "ai",
+  "concept": "zero-failure-testing",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "zero observed failures does not identify a zero underlying failure probability; a test bound depends on independent trials and its confidence convention."
+    ]
+  },
+  "misconception": "zero observed failures does not identify a zero underlying failure probability; a test bound depends on independent trials and its confidence convention.",
+  "objective": "zero observed failures does not identify a zero underlying failure probability; a test bound depends on independent trials and its confidence convention.",
+  "claims": [
+    {
+      "id": "ai.ai-zero-failure-testing.c1",
+      "text": "Independent Bernoulli trials give P(zero)=(1-p)^n. Solve P(zero)=.05 for upper=1-.05^(1/n). At n100,p.01 zero probability is .366032; upper .029513. One duplicated underlying observation has effective n1, zero chance .99 and endpoint .95. n200 endpoint .014867. Curve samples this likelihood, not a posterior density.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-zero-failure-testing.c2",
+      "text": "Title: Zero seen, zero possible? Hook: A clean test run still leaves uncertainty. 100 independent tests show no failures. Could the true failure rate still be 1%? Options: Yes / No; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-zero-failure-testing.c3",
+      "text": "For the retained independent-test model, a 1% failure rate still gives about 36.6% chance of zero failures in 100 tests. The one-sided 95% zero-failure endpoint is about 2.95%, not zero. Duplicated observations count as one independent trial, so the same inference does not apply.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-zero-failure-testing.c4",
+      "text": "Zero failures in 200 independent identical trials: the approximate rule-of-three endpoint is what? 3 divided by 200 is 0.015, or 1.5%; the exact one-sided endpoint is about 1.4867%.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-zero-failure-testing.c5",
+      "text": "A one-sided confidence construction under identical independent trials, not a posterior probability or safety certification; duplicating records supplies no new independent evidence.",
+      "support": "convention",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-zero-failure-testing.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts/model.repro.mjs; https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm (NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally), opened2026-10-19. Exact local derivation, not independent verification.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Zero failures in 200 independent identical trials: the approximate rule-of-three endpoint is what?",
+    "options": [
+      "1.5%",
+      "0%",
+      "15%"
+    ],
+    "answer": 0,
+    "why": "3 divided by 200 is 0.015, or 1.5%; the exact one-sided endpoint is about 1.4867%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:zero-failure-testing",
+    "also": [],
+    "prerequisites": [
+      "probability:at-least-once"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai-society",
+      "safety-testing",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm",
+    "locator": "NIST e-Handbook §7.2.4.1 exact binomial tail inversion and one-sided interval distinction, body lines12–20; zero-count one-sided alpha=.05 inversion derived locally",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

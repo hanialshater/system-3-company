@@ -1,0 +1,97 @@
+{
+  "slug": "ai-face-search-false-matches",
+  "title": "Test face search false matches",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "face-search-false-matches",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "accuracy-paradox"
+    ],
+    "doesNotKnow": [
+      "Absent person, N=1000 nonmatches. Each false-positive probability=.001; independence assumed. Separate random pair: prior=.001, TPR=.9,FPR=.001. Is the gallery alert probability .001?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared face search false matches model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-face-search-false-matches.c1",
+      "text": "Test face search false matches Compare a declared mechanism with its changed case. Absent person, N=1000 nonmatches. Each false-positive probability=.001; independence assumed. Separate random pair: prior=.001, TPR=.9,FPR=.001. Is the gallery alert probability .001? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §2; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-face-search-false-matches.c2",
+      "text": "Independent comparisons produced a gallery false-alert probability .632; correlation reduced it to .001. The separate random-pair posterior was .474. These events differ: the posterior does not describe a selected top gallery candidate. All rates are stipulated, not measured biometric performance.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §2; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-face-search-false-matches.c3",
+      "text": "{\"question\": \"Which assumption changed the gallery alert probability?\", \"options\": [\"Independence versus correlation\", \"The candidate prior only\"], \"answer\": 0, \"why\": \"Perfect correlation changes the gallery event to probability .001; the random-pair prior defines a separate posterior.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §2; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-face-search-false-matches.c4",
+      "text": "face-search-false-matches\n\n**Identity / target / source:** `ai:face-search-false-matches` → `ai-face-search-false-matches` → `src/demos/ai/ai-face-search-false-matches`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/164`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#2-face-search-false-matches`. **Packet:** C1. **Level / prerequisites:** core; `ai:accuracy-paradox`.\n\n**Nearest / distinct payoff:** accuracy-paradox computes a single decision base rate; this distinguishes gallery-level false alerts from pair-level posterior identity probability.\n\n**Computed primary model:** Stipulated nonmatch false-positive probabilityf=.001 per comparison, absent-person galleryN1000 with independent comparisons. At-least-one false match=1−(1−f)^N≈.6323046; expected number false matches=Nf=1. Separate single random-pair scenario has prior true match.001, true-positive rate.9, samefalse-positive.001: posterior true match given positive=.0009/(.0009+.999*.001)=.4739336. These are different events, not interchangeable probabilities.\n\n**Countercase / boundary:** Perfectly correlated nonmatch events give gallery false-alert probability.001, still expected false-count1. Pair posterior above does not apply to the top-ranked selected gallery candidate without a selection model. All rates/priors are declared toys, not measured biometric systems or a recommendation about identity decisions.\n\n**Prediction / transfer recall:** Predict whether.1% pairwise false rate implies.1% gallery false alert under independence; recallN100 gives1−.999^100≈.0952079.\n\n**Intervention / retained witness:** Increase gallery size and Correlate errors recompute event probability/count; Pair posterior shows its separate denominator and prior. Retain original gallery/pair distinction with explicit absent-person condition.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: N1000/Correlated/N100; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §2; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which assumption changed the gallery alert probability?",
+    "options": [
+      "Independence versus correlation",
+      "The candidate prior only"
+    ],
+    "answer": 0,
+    "why": "Perfect correlation changes the gallery event to probability .001; the random-pair prior defines a separate posterior."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:face-search-false-matches",
+    "also": [],
+    "prerequisites": [
+      "ai:accuracy-paradox"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

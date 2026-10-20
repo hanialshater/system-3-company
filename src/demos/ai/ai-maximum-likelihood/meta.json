@@ -1,0 +1,95 @@
+{
+  "slug": "ai-maximum-likelihood",
+  "title": "Which probability fits these labels?",
+  "hook": "Multiply the probabilities assigned to the three observations.",
+  "domain": "ai",
+  "concept": "maximum-likelihood",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cross-entropy-loss"
+    ],
+    "doesNotKnow": [
+      "Which probability gives the larger product for labels[1,1,0]?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the maximum likelihood construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-maximum-likelihood.c1",
+      "text": "Which probability fits these labels? Multiply the probabilities assigned to the three observations. Which probability gives the larger product for labels[1,1,0]? Options: p=.8; p=.5; Equal.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-maximum-likelihood.c2",
+      "text": "Likelihoods .128 and .125 favoured the first model; p=2/3 improved to4/27. Negative natural log reverses the ordering; dividing by3 gives mean loss. At p=1 the observed zero was impossible. These results concern this declared Bernoulli construction.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-maximum-likelihood.c3",
+      "text": "Why does one zero probability matter in the product? Multiplying by zero makes the entire observed-label likelihood zero; its negative natural logarithm is infinite.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-maximum-likelihood.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-maximum-likelihood.c5",
+      "text": "Target / packet: `ai-maximum-likelihood` · `C2`. Prerequisites: `ai:cross-entropy-loss`.\n\nNearest / distinct payoff: `cross-entropy-loss` → `confident-and-wrong` (existing registered artifact; evidence applicability pending). Unlike merely naming cross-entropy, this multiplies observed-label likelihoods and compares their negative logs.\n\nPrimary finite model: Observed labels[1,1,0]. Model A fixed p=.8 yields likelihood .8²*.2=.128; B p=.5 gives.125. Total negative log likelihood A2.055725 versus B2.079442; mean divides by3.\n\nCountercase and boundary: p=2/3 gives4/27 and lower NLL1.909543. p=1 assigns zero likelihood because a0 was observed; label impossible before displaying infinity.\n\nPredict and recall transfer: Predict which p better fits these exact labels; recall why maximizing product equals minimizing negative log sum.\n\nRequired evidence: Show individual label probabilities before product; use natural logs and explicit total-versus-mean switch. Shipped local computations, all cases: Compare: P(1)=p · P(0)=1−p y=[1,1,0] · −ln · total 0.800 × 0.800 × 0.200 → 0.128 → 2.056 0.500 × 0.500 × 0.500 → 0.125 → 2.079; 0.8: 0.128/2.056 · 0.5: 0.125/2.079 Σ | Fit: P(1)=p · P(0)=1−p y=[1,1,0] · −ln · total 0.667 × 0.667 × 0.333 → 4/27 → 1.910; ⅔: 4/27/1.910 Σ | Certain: P(1)=p · P(0)=1−p y=[1,1,0] · −ln · total 1.000 × 1.000 × 0.000 → 0.000 → Impossible · ∞; 1: 0.000/∞ Σ | Mean: P(1)=p · P(0)=1−p y=[1,1,0] · −ln · mean 0.800 × 0.800 × 0.200 → 0.128 → 0.685 0.500 × 0.500 × 0.500 → 0.125 → 0.693; 0.8: 0.128/0.685 · 0.5: 0.125/0.693 /3. Initial neutral frame: P(1)=p · P(0)=1−p y=[1,1,0] · −ln · total p=.8 / p=.5 · ? × ? × ? → ?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does one zero probability matter in the product?",
+    "options": [
+      "Multiplying by zero makes the entire observed-label likelihood zero; its negative natural logarithm is infinite.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "Multiplying by zero makes the entire observed-label likelihood zero; its negative natural logarithm is infinite."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:maximum-likelihood",
+    "also": [],
+    "prerequisites": [
+      "ai:cross-entropy-loss"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

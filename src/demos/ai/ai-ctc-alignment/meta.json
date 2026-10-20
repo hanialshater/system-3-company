@@ -1,0 +1,107 @@
+{
+  "slug": "ai-ctc-alignment",
+  "title": "Do repeated frames mean repeated letters?",
+  "hook": "Merge repeats before removing blanks.",
+  "domain": "ai",
+  "concept": "ctc-alignment",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:spectrogram-picture"
+    ],
+    "doesNotKnow": [
+      "Two frames; P(A)=.6, P(blank)=.4 independently. Does the frame path AA emit transcript AA?"
+    ]
+  },
+  "misconception": "Yes, emits AA",
+  "objective": "Compute this finite ctc-alignment model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ctc-alignment.c1",
+      "text": "Do repeated frames mean repeated letters? Merge repeats before removing blanks. Two frames; P(A)=.6, P(blank)=.4 independently. Does the frame path AA emit transcript AA? Options: No, emits A; Yes, emits AA",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §30; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ctc-alignment.c2",
+      "text": "Two frames gave transcript A probability .84 across three paths. With three frames, A_blank_A emitted AA because repeats merged before blanks disappeared. Removing blanks first would be wrong. These supplied frame probabilities are not a trained speech model.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §30; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ctc-alignment.c3",
+      "text": "{'question': 'With two frames and P(A)=.1, what is P(transcript A)?', 'options': ['.19', '.1'], 'answer': 0, 'why': 'All nonempty paths sum to 1−.9²=.19.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §30; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ctc-alignment.c4",
+      "text": "Addressed visible stage operands and labels: collapse: merge adjacent repeats → remove _ | P(A)=.6; P(_)=.4 independently | transcript probability sums path products. Controls: T=2, T=3, p=.1, Reset. Changed computed rows: merge repeats → remove _; T=2,p=0.6 / __→_→∅:0.16   A_→A_→A:0.24 / _A→_A→A:0.24   AA→A→A:0.36 / P(A)=0.84 P(AA)=0 | merge repeats → remove _; T=3,p=0.6 / ___→_→∅:0.064   A__→A_→A:0.096 / _A_→_A_→A:0.096   AA_→A_→A:0.144 / __A→_A→A:0.096   A_A→A_A→AA:0.144 / _AA→_A→A:0.144   AAA→A→A:0.216 / P(A)=0.792 P(AA)=0.144 | merge repeats → remove _; T=2,p=0.1 / __→_→∅:0.81   A_→A_→A:0.09 / _A→_A→A:0.09   AA→A→A:0.01 / P(A)=0.19 P(AA)=0. Retained computed witnesses: T2(0.6):A=0.84,AA=0 | T3(0.6):A=0.792,AA=0.144 | T2(0.1):A=0.19,AA=0. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst T=mode===1?3:2,p=mode===2?.1:.6,paths=[];const grouped=new Map<string,number>();for(let i=0;i<2**T;i++){const path=Array.from({length:T},(_,j)=>(i>>j)&1?'A':'_'),merged=path.filter((x,j)=>j===0||x!==path[j-1]),out=merged.filter(x=>x!=='_').join(''),mass=path.reduce((s,x)=>s*(x==='A'?p:1-p),1);paths.push({path:path.join(''),merged:merged.join(''),out:out||'∅',mass});grouped.set(out,(grouped.get(out)??0)+mass);}const trace=paths.map(r=>`${r.path}→${r.merged}→${r.out}:${f(r.mass)}`);return{values:[grouped.get('A')??0,grouped.get('AA')??0,grouped.get('')??0],rows:[`merge repeats → remove _; T=${T},p=${p}`,...Array.from({length:Math.ceil(trace.length/2)},(_,i)=>trace.slice(i*2,i*2+2).join('   ')),`P(A)=${f(grouped.get('A')??0)} P(AA)=${f(grouped.get('AA')??0)}`],receipt:`T${T}(${p}):A=${f(grouped.get('A')??0)},AA=${f(grouped.get('AA')??0)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §30; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ctc-alignment.c5",
+      "text": "ctc-alignment\n\n**Identity / target / source:** `ai:ctc-alignment` → `ai-ctc-alignment` → `src/demos/ai/ai-ctc-alignment`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/166`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#30-ctc-alignment`. **Packet:** S1. **Level / prerequisites:** stretch; `ai:spectrogram-picture`.\n\n**Nearest / distinct payoff:** spectrogram-picture computes time features; this sums all permitted frame paths for a transcript instead of requiring a unique labelled alignment.\n\n**Computed primary model:** Two frames, alphabet{blank,A}, each independent frame P(A)=.6, P(blank)=.4. CTC collapse first merges adjacent repeats, then removes blanks. PathsAA,Ablank,blankA all yield transcriptA with masses.36,.24,.24: total.84. Blankblank yields empty.16. TranscriptAA is impossible in2frames under this alphabet/collapse.\n\n**Countercase / boundary:** At3frames, AblankA is the only path yielding transcriptAA, probability.6*.4*.6=.144. Removing blanks before merging repeats would incorrectly collapse that toA. Empty transcript probability.4³=.064; remaining singleA mass.792. These are supplied per-frame probabilities, not a trained speech model or probability of a particular timing label.\n\n**Prediction / transfer recall:** Predict whether AA path means two emitted As; recall with2frames and P(A)=.1, transcriptA probability.19, empty.81.\n\n**Intervention / retained witness:** Enumerate paths computes path products, collapse stages and grouped transcript probabilities; Add frame/Change probabilities expose alignment ambiguity while retaining2-frame.84 witness. At most8paths, with explicit blank and repeat order in ordinary visible evidence.\n\n**Source obligation:** [Graves et al. original CTC PDF](https://www.cs.toronto.edu/~graves/icml_2006.pdf), opened2026-10-19, §2 path distribution and many-to-one collapse mapping, transcript likelihood sum. Only the local2/3-frame calculation is admitted, not empirical speech accuracy or learned alignment.\n\n## Final admission and signed reuse handoff\n\nAll30 author fixture models and exact proposal/id/target memberships passed before admission. Only these30 rows’ briefAddress/specificationStatus were edited, plus the separately authorized k-means-initialisation row and dated scope correction. Every unaddressed concept row was compared against an in-memory prewrite snapshot and preserved. No app metadata/source, operating manifest, board/progress/events or protected path changed.\n\nProduct’s signed correction is enacted in the owner manifest:67 semantic reuse rows/227 required-new, using66 distinct existing artifacts. k-means-initialisation targets existing bad-start-kmeans with real current metadata/source hashes, version2/published/4verified historical claims, preserved original row snapshot/batch and unknown commit/evidence arrays. The exact proposed also registration remains pending; registered coverage stays66. Historical66/228 scope arithmetic is explicitly retained in priorInventorySnapshot. The owner note and signed Product record travel with this mapping, and independent applicability remains pending.\n\nFinite specification count188/227 leaves39 new intentions needing finite briefs. This does not mark any admitted target built or clear its missing independent evidence. Existing294 concept identities and76/218 lineage remain. Product’s wider608 source intentions/607 active rows/604 distinct targets/338 new artifact reconciliation is owned by CoS; this packet does not edit those operating records.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §30; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With two frames and P(A)=.1, what is P(transcript A)?",
+    "options": [
+      ".19",
+      ".1"
+    ],
+    "answer": 0,
+    "why": "All nonempty paths sum to 1−.9²=.19."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ctc-alignment",
+    "also": [],
+    "prerequisites": [
+      "ai:spectrogram-picture"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

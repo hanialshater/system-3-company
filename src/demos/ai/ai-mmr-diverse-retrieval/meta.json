@@ -1,0 +1,97 @@
+{
+  "slug": "ai-mmr-diverse-retrieval",
+  "title": "A good result can repeat another",
+  "hook": "Penalize redundancy with the already selected result.",
+  "domain": "ai",
+  "concept": "mmr-diverse-retrieval",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "retrieval-top-k",
+      "submodular-coverage-gains"
+    ],
+    "doesNotKnow": [
+      "A is already selected. B/C relevance=.85/.7 and redundancy-to-A=.95/.1. At λ=.5, MMR=λ relevance−(1−λ) redundancy. Which comes next?"
+    ]
+  },
+  "misconception": "B",
+  "objective": "Compute the mmr diverse retrieval finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-mmr-diverse-retrieval.c1",
+      "text": "A good result can repeat another Penalize redundancy with the already selected result. A is already selected. B/C relevance=.85/.7 and redundancy-to-A=.95/.1. At λ=.5, MMR=λ relevance−(1−λ) redundancy. Which comes next? Options: C; B",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §12; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mmr-diverse-retrieval.c2",
+      "text": "With A already selected, equal relevance and redundancy weights gave B −.05 and C .3, selecting C. Raising relevance weight to .9 gave B .67 and C .62, selecting B. Diversity depends on this explicit tradeoff and similarity measure; it is not guaranteed improvement.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §12; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-mmr-diverse-retrieval.c3",
+      "text": "Does raising λ to .9 preserve C as the second selection? Options: No, B now scores .67 versus C .62; Yes, redundancy is the only criterion; Both scores become equal Increasing λ reduces the redundancy penalty enough for the more relevant B to win.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §12; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-mmr-diverse-retrieval.c4",
+      "text": "Original schematic labels, including neutral and every changed case: A-selected · MMR=λr−(1−λ)s A B sim=.95 C sim=.1 ? ? | A-selected · MMR=λr−(1−λ)s A B sim=.95 C sim=.1 -0.05 0.3 | A-selected · MMR=λr−(1−λ)s A B sim=.95 C sim=.1 0.67 0.62. Retained locally computed witnesses: λ0.5: C (-0.05/0.3) | λ0.9: B (0.67/0.62). No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §12; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-mmr-diverse-retrieval.c5",
+      "text": " 12. mmr-diverse-retrieval\n\nTarget / packet: ai-mmr-diverse-retrieval · R2. Prerequisites: ai:retrieval-top-k, ai:submodular-coverage-gains.\n\nNearest / distinct payoff: submodular-coverage-gains → ai-submodular-coverage-gains. Set coverage diminishes by overlap; this uses a relevance-minus-maximum-redundancy reranking rule and does not borrow coverage-greedy guarantees.\n\nFinite primary model: Select 2 docs, initial winner A relevance.9, B.85, C.7. Similarity to A: B.95, C.1. Remaining MMR=lambdarelevance-(1-lambda)max similarity to selected. lambda=.5: B-.05, C.3 → choose C; lambda=.9: B.67, C.62 → choose B.\n\nCountercase and mathematical boundary: Duplicate penalty 0 reduces top-k relevance. These are declared relevances/similarities and greedy reranking, not a guaranteed submodular optimum or a measure of real human usefulness.\n\nPredict and recall transfer: Predict second selection at lambda=.5; recall whether raising lambda preserves diversity in this example.\n\nRequired observable evidence: Keep selected set, redundancy and scores visible; do not rename a set coverage greedy lesson.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §12; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does raising λ to .9 preserve C as the second selection?",
+    "options": [
+      "No, B now scores .67 versus C .62",
+      "Yes, redundancy is the only criterion",
+      "Both scores become equal"
+    ],
+    "answer": 0,
+    "why": "Increasing λ reduces the redundancy penalty enough for the more relevant B to win."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:mmr-diverse-retrieval",
+    "also": [],
+    "prerequisites": [
+      "ai:retrieval-top-k",
+      "ai:submodular-coverage-gains"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

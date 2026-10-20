@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const H=[(x:number[])=>x[0],(x:number[])=>x[1],(x:number[])=>Math.max(...x),(x:number[])=>x[0]*x[1]],names=['a','b','OR','AND'],old=[{x:[0,0],y:0},{x:[1,0],y:1}],ds=mode===2?[...old,{x:[0,1],y:1}]:old,errors=H.map(h=>ds.filter(r=>h(r.x)!==r.y).length*5),fit=errors.indexOf(Math.min(...errors)),newDetected=H[fit]([0,1])*5;return out([`errors(a/b/OR/AND)=${errors.join('/')} · ERM=${names[fit]}`,`old accuracy=10/10 · new detected=${mode===0?'?':newDetected+'/5'}`,`real(0,1) flagged=${mode===2?newDetected+'/5':'?'}`],`${mode}: ${names[fit]}/new${mode===0?'?':newDetected}`);}

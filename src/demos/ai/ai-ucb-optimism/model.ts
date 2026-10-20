@@ -1,0 +1,2 @@
+export function index(mean:number,n:number,t:number){return n===0?null:mean+Math.sqrt(2*Math.log(t)/n);}
+export function run(mode:number){const means=mode===1?[.6,.25]:[.6,.5],counts=mode===1?[10,2]:mode===2?[5,5]:mode===3?[10,0]:[10,1],t=counts[0]+counts[1],indices=means.map((v,i)=>index(v,counts[i],t)),chosen=counts.includes(0)?counts.indexOf(0):(indices[0]!>=indices[1]!?0:1);return {means,counts,t,indices,chosen};}

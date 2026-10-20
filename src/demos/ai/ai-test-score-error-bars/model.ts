@@ -1,0 +1,3 @@
+export function distribution(n:number,p:number){if(!Number.isInteger(n)||n<1||p<0||p>1)throw Error('invalid binomial input');return Array.from({length:n+1},(_,k)=>{let choose=1;for(let j=1;j<=k;j++)choose*= (n-j+1)/j;return choose*p**k*(1-p)**(n-k);});}
+export function stats(n:number,p:number){const pmf=distribution(n,p),cdf=pmf.map((_,k)=>pmf.slice(0,k+1).reduce((a,b)=>a+b,0)),q=(a:number)=>cdf.findIndex(v=>v>=a),lo=q(.025),hi=q(.975);return {n,p,pmf,sd:Math.sqrt(p*(1-p)/n),tail:pmf.slice(16).reduce((a,b)=>a+b,0),exact:pmf[16]??0,lo,hi,coverage:pmf.slice(lo,hi+1).reduce((a,b)=>a+b,0)};}
+export function run(mode:number){return {...stats(mode===2?80:20,mode===1?.7:.8),duplicates:mode===3};}

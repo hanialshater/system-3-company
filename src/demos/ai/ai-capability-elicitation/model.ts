@@ -1,0 +1,3 @@
+export const tasks=[[2,3,4],[1,4,2],[3,2,1],[4,1,3]];
+export function component(input:unknown):number|'invalid'{return Array.isArray(input)&&input.length===2&&input.every(Number.isInteger)?input[0]+input[1]:'invalid';}
+export function run(mode:number){if(mode===2){const input='2*3',output=component(input),target=6;return [{task:'2×3',calls:[input+'→'+output],output,target,correct:output===target}];}return tasks.map(([a,b,c])=>{const first=component(mode===0?`${a}+${b}+${c}`:[a,b]);const output=mode===0?first:component([first,c]);return {task:`${a}+${b}+${c}`,calls:mode===0?[`${a}+${b}+${c}→${output}`]:[`[${a},${b}]→${first}`,`[${first},${c}]→${output}`],output,target:a+b+c,correct:output===a+b+c};});}

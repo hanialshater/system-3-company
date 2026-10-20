@@ -1,0 +1,107 @@
+{
+  "slug": "ai-polysemantic-neurons",
+  "title": "Does one neuron mean one feature?",
+  "hook": "Find distinct inputs with the same activation.",
+  "domain": "ai",
+  "concept": "polysemantic-neurons",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:hidden-layers-xor"
+    ],
+    "doesNotKnow": [
+      "h=max(0,T+S−.5). T/S are binary features. Does h=.5 uniquely identify T?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite polysemantic-neurons model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-polysemantic-neurons.c1",
+      "text": "Does one neuron mean one feature? Find distinct inputs with the same activation. h=max(0,T+S−.5). T/S are binary features. Does h=.5 uniquely identify T? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §25; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-polysemantic-neurons.c2",
+      "text": "Either singleton input produced activation .5, so this neuron’s value did not uniquely identify the active feature. Coactivation produced 1.5. These are declared binary features in one constructed unit, not identified meanings or prevalence in a trained model.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §25; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-polysemantic-neurons.c3",
+      "text": "{'question': 'How many binary inputs produce h=.5?', 'options': ['Two', 'One'], 'answer': 0, 'why': 'Both (1,0) and (0,1) map to the same activation.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §25; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-polysemantic-neurons.c4",
+      "text": "Addressed visible stage operands and labels: h=ReLU(T+S−.5) | binary T/S · supplied toy neuron. Controls: T only, S only, Both, Reset. Changed computed rows: T=1; S=0; preactivation=0.5 / h=max(0,preactivation)=0.5 / same h: (1,0) / (0,1) / activation≠unique feature | T=0; S=1; preactivation=0.5 / h=max(0,preactivation)=0.5 / same h: (1,0) / (0,1) / activation≠unique feature | T=1; S=1; preactivation=1.5 / h=max(0,preactivation)=1.5 / same h: (1,1) / activation≠unique feature. Retained computed witnesses: 1/0→h0.5; inputs=2 | 0/1→h0.5; inputs=2 | 1/1→h1.5; inputs=1. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model / shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst [T,S]=[[1,0],[0,1],[1,1]][mode],h=Math.max(0,T+S-.5),inputs=[[0,0],[1,0],[0,1],[1,1]],same=inputs.filter(([a,b])=>Math.max(0,a+b-.5)===h);return{values:[h,same.length],rows:[`T=${T}; S=${S}; preactivation=${f(T+S-.5)}`,`h=max(0,preactivation)=${f(h)}`,`same h: ${same.map(x=>`(${x.join(',')})`).join(' / ')}`,`activation≠unique feature`],receipt:`${T}/${S}→h${f(h)}; inputs=${same.length}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §25; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-polysemantic-neurons.c5",
+      "text": "polysemantic-neurons\n\n**Identity / target / source:** `ai:polysemantic-neurons` → `ai-polysemantic-neurons` → `src/demos/ai/ai-polysemantic-neurons`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/154`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#25-polysemantic-neurons`. **Packet:** I2. **Level / prerequisites:** core; `ai:hidden-layers-xor`.\n\n**Nearest / distinct payoff:** hidden-layers-xor combines features for classification; this demonstrates two unrelated declared features sharing an indistinguishable neuron activation.\n\n**Computed primary model:** Two independent binary stimulus flags TriangleT and StripedS. Single supplied neuron h=ReLU(T+S−.5). Cases(1,0) and(0,1) both yield.5; neither flag gives0; both gives1.5. An observer of h=.5 alone cannot tell which of the two flags is present.\n\n**Countercase / boundary:** Two separate supplied units hT=T,hS=S distinguish the singleton cases. This is a deliberately constructed coordinate/feature collision, not a trained neuron or evidence that any particular real neuron has these semantic roles. Activation magnitude alone need not uniquely identify an input property.\n\n**Prediction / transfer recall:** Predict whether h=.5 proves Triangle; recall h1.5 identifies both flags only under this complete declared4-input model, not universally.\n\n**Intervention / retained witness:** Toggle each original code-native shape/pattern flag computes weighted sum, ReLU and activation-only decoder ambiguity; Separate units shows the distinguishing pair while retaining the shared.5 witness. Label feature flags independently of the neuron coordinate.\n\n**Source obligation:** [Elhage et al. original Toy Models PDF](https://arxiv.org/pdf/2209.10652), opened2026-10-19, “Definitions and Motivation” and toy ReLU embedding/unembedding setup. Only the local constructed activations/directions below are admitted; the paper’s trained phase transitions, real-model prevalence and semantic feature identities are not reproduced.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §25; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How many binary inputs produce h=.5?",
+    "options": [
+      "Two",
+      "One"
+    ],
+    "answer": 0,
+    "why": "Both (1,0) and (0,1) map to the same activation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:polysemantic-neurons",
+    "also": [],
+    "prerequisites": [
+      "ai:hidden-layers-xor"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

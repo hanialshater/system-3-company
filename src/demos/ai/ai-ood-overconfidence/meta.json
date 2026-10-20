@@ -1,0 +1,109 @@
+{
+  "slug": "ai-ood-overconfidence",
+  "title": "Can confidence rise beyond the data?",
+  "hook": "Compare sigmoid confidence with training support.",
+  "domain": "ai",
+  "concept": "ood-overconfidence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:calibration",
+      "ai:softmax-scores"
+    ],
+    "doesNotKnow": [
+      "Training x lies in [−1,1]; P(+|x)=σ(2x). At x=10, does high confidence prove training support?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite ood-overconfidence model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ood-overconfidence.c1",
+      "text": "Can confidence rise beyond the data? Compare sigmoid confidence with training support. Training x lies in [−1,1]; P(+|x)=σ(2x). At x=10, does high confidence prove training support? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §22; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ood-overconfidence.c2",
+      "text": "The supplied classifier became more confident outside its training interval. Its sigmoid score was not a measurement of support or correctness there. The center’s uncertainty and the far point’s confidence arise from this declared function, not an empirical calibration study.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §22; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ood-overconfidence.c3",
+      "text": "{'question': 'At x=−10, does high negative-class confidence prove support?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The point is still nine units outside the supplied training interval.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §22; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ood-overconfidence.c4",
+      "text": "Addressed visible stage operands and labels: training support=[−1,1] | P(+|x)=σ(2x) · distance outside support. Controls: x=1, x=10, x=0, Reset. Changed computed rows: x=1; trained x∈[−1,1] / logit=2x=2 · P(+)≈0.8807970780 / outside-distance=0 / confidence≠support; label unknown | x=10; trained x∈[−1,1] / logit=2x=20 · P(+)≈0.9999999979 / outside-distance=9 / confidence≠support; label unknown | x=0; trained x∈[−1,1] / logit=2x=0 · P(+)≈0.5000000000 / outside-distance=0 / confidence≠support; label unknown. Retained computed witnesses: x1:P≈0.881,distance=0 | x10:P≈1.00,distance=9 | x0:P≈0.500,distance=0. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst x=[1,10,0][mode],p=1/(1+Math.exp(-2*x)),distance=Math.max(0,Math.abs(x)-1);return{values:[p,distance],rows:[`x=${x}; trained x∈[−1,1]`,`logit=2x=${2*x} · P(+)≈${p.toPrecision(10)}`,`outside-distance=${distance}`,`confidence≠support; label unknown`],receipt:`x${x}:P≈${p.toPrecision(3)},distance=${distance}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §22; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ood-overconfidence.c5",
+      "text": "ood-overconfidence\n\n**Identity / target / source:** `ai:ood-overconfidence` → `ai-ood-overconfidence` → `src/demos/ai/ai-ood-overconfidence`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/143`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#22-ood-overconfidence`. **Packet:** I1. **Level / prerequisites:** core; `ai:calibration`, `ai:softmax-scores`.\n\n**Nearest / distinct payoff:** softmax-scores converts fixed logits to probabilities; this compares confidence and distance from declared training support, with a contradictory out-of-support label.\n\n**Computed primary model:** Two-class fixed classifier logits[x,−x], classPlus probability sigmoid(2x). Training support declared[−1,1]. Queryx1 gives confidence.880797; queryx10 gives.9999999979 while distance from support increases0→9. The model contains no support-density check in its formula.\n\n**Countercase / boundary:** Stipulate heldout labelMinus atx10: high-confidence predictionPlus is wrong. Atx0 confidence.5 despite being in support. These constructed support/labels are not an empirical calibration estimate or proof all classifiers behave identically. A softmax value is a model output, not automatically a familiarity measure.\n\n**Prediction / transfer recall:** Predict whether increasing x makes this classifier more cautious beyond support; recall x−10 is equally far outside support and predictsMinus near1.\n\n**Intervention / retained witness:** Move query1→10/0/−10 recomputes logits, probability, support distance and declared heldout correctness; retain in-support and high-confidence-wrong witnesses. Show the support interval separately from probability, not a “certainty” badge.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §22; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At x=−10, does high negative-class confidence prove support?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The point is still nine units outside the supplied training interval."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ood-overconfidence",
+    "also": [],
+    "prerequisites": [
+      "ai:calibration",
+      "ai:softmax-scores"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

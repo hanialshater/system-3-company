@@ -1,0 +1,95 @@
+{
+  "slug": "ai-pooling-stride",
+  "title": "Where does the window start?",
+  "hook": "Move a maximum window; keep track of which cells it includes.",
+  "domain": "ai",
+  "concept": "pooling-stride",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "convolution-weight-sharing"
+    ],
+    "doesNotKnow": [
+      "With offset1 and stride2, what is the last pooled value?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the pooling stride construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-pooling-stride.c1",
+      "text": "Where does the window start? Move a maximum window; keep track of which cells it includes. With offset1 and stride2, what is the last pooled value? Options: 3; 8; 9.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-pooling-stride.c2",
+      "text": "The shifted last window contained 3 and 8, producing 8. Both swapped pairs produced 9, although its original position changed. The maximum retained the value, not its within-window location. These valid-window examples do not establish translation invariance.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pooling-stride.c3",
+      "text": "Can pooled9 alone distinguish [9,1] from [1,9]? No. Both declared width2 windows have maximum9; the original position is not recoverable from that output.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pooling-stride.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pooling-stride.c5",
+      "text": "Target / packet: `ai-pooling-stride` · `B2`. Prerequisites: `ai:convolution-weight-sharing`.\n\nNearest / distinct payoff: `convolution-weight-sharing` → `convolution-weight-sharing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike shared filter multiplication, this applies a maximum and loses within-window location under stride/offset changes.\n\nPrimary finite model: 1D activation[1,9,2,3,8], max window2. Offset0 stride2 gives[9,3]; offset1 gives[9,8]; stride1 offset0 gives[9,9,3,8].\n\nCountercase and boundary: Inputs[9,1] and[1,9] both pool to9: within-window location lost. No claim that pooling is strictly translation invariant.\n\nPredict and recall transfer: Predict output count and last maximum after offset change; recall which of the two positions can be recovered from pooled9 alone.\n\nRequired evidence: Show window membership and retain lost-location counterexample; labels distinguish offset from stride. Shipped local computations, all cases: Pool: window=2 · offset=0 · stride=2 1 9 2 3 8 [1,9]→9 [2,3]→3; o0 s2: [1,9] [2,3]→[9,3] | Shift: window=2 · offset=1 · stride=2 1 9 2 3 8 [9,2]→9 [3,8]→8; o1 s2: [9,2] [3,8]→[9,8] | Stride1: window=2 · offset=0 · stride=1 1 9 2 3 8 [1,9]→9 [9,2]→9 [2,3]→3 [3,8]→8; o0 s1: [1,9] [9,2] [2,3] [3,8]→[9,9,3,8] | Swap: window=2 · offset=0 · stride=2 9 1 [9,1]→9 [1,9]→9 = [9,1]→9; [9,1]→9; [1,9]→9. Initial neutral frame: window=2 · offset=0 · stride=2 1 9 2 3 8.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can pooled9 alone distinguish [9,1] from [1,9]?",
+    "options": [
+      "No. Both declared width2 windows have maximum9; the original position is not recoverable from that output.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "No. Both declared width2 windows have maximum9; the original position is not recoverable from that output."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:pooling-stride",
+    "also": [],
+    "prerequisites": [
+      "ai:convolution-weight-sharing"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

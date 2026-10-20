@@ -1,0 +1,1 @@
+export type Position='A'|'B'|'C'; export function transition(state:Position,action:'right'|'stay'):{state:Position,reward:number}{if(state==='C'||action==='stay')return {state,reward:0};return state==='A'?{state:'B',reward:0}:{state:'C',reward:2};}

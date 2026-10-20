@@ -1,0 +1,93 @@
+{
+  "slug": "ai-energy-train-vs-serve",
+  "title": "When do the ledgers meet?",
+  "hook": "Compare a fictional fixed cost with a cost per query.",
+  "domain": "ai",
+  "concept": "energy-train-vs-serve",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Multiplication, division and units of energy"
+    ],
+    "doesNotKnow": [
+      "Training=100 kWh; serving=.01 kWh/query. At how many queries does serving equal training?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-energy-train-vs-serve.c1",
+      "text": "Training=100 kWh; serving=.01 kWh/query. At how many queries does serving equal training? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 1,000; 10,000; 20,000.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 8; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-energy-train-vs-serve/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-energy-train-vs-serve.c2",
+      "text": "Your retained ledgers show serving 10 and total 110 at 1,000 queries, then serving 100 and total 200 at 10,000. Halving the query rate moved equal energy to 20,000 queries. Units are kWh, not money or carbon. Idle power, cooling, hardware and retraining are excluded; totals with different boundaries are not directly comparable. These are fictional amounts, not provider measurements.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 8; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-energy-train-vs-serve/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-energy-train-vs-serve.c3",
+      "text": "If the rate halves to .005 kWh/query while training stays 100 kWh, what is the crossover? 20,000 queries: 100/.005. Adding cooling to only one ledger would change its accounting boundary, so its total would no longer be directly comparable.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 8; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-energy-train-vs-serve/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-energy-train-vs-serve.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 8; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-energy-train-vs-serve/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-energy-train-vs-serve.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Fictional kWh ledger Train 100 \u00b7 .01 or .005/query E=100+q\u00d7r q, r 1000, 0.01 Serving / total 10 / 110 Crossover q 10000 Excludes idle, cooling, hardware, retraining. 1,000 10,000 Half rate Reset view 1. 1000 \u2192 10/110/10000 2. 10000 \u2192 100/200/10000 3. 20000 \u2192 100/200/20000 | Fictional kWh ledger Train 100 \u00b7 .01 or .005/query E=100+q\u00d7r q, r 1000, 0.01 Serving / total 10 / 110 Crossover q 10000 Excludes idle, cooling, hardware, retraining. 1,000 10,000 Half rate Reset view 1. 1000 \u2192 10/110/10000 2. 10000 \u2192 100/200/10000 3. 20000 \u2192 100/200/20000 | Fictional kWh ledger Train 100 \u00b7 .01 or .005/query E=100+q\u00d7r q, r 1000, 0.01 Serving / total 10 / 110 Crossover q 10000 Excludes idle, cooling, hardware, retraining. 1,000 10,000 Half rate Reset view 1. 1000 \u2192 10/110/10000 2. 10000 \u2192 100/200/10000 3. 20000 \u2192 100/200/20000",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 8; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-energy-train-vs-serve/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If the rate halves to .005 kWh/query while training stays 100 kWh, what is the crossover?",
+    "options": [
+      "20,000 queries",
+      "10,000 queries",
+      "5,000 queries"
+    ],
+    "answer": 0,
+    "why": "20,000 queries: 100/.005. Adding cooling to only one ledger would change its accounting boundary, so its total would no longer be directly comparable."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:energy-train-vs-serve",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "ai-es-step-size-adaptation",
+  "title": "Test es step size adaptation",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "es-step-size-adaptation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "evolution-strategies"
+    ],
+    "doesNotKnow": [
+      "Score=−(x−1)². Center0, offsets[−1,−.5,.5,1]×σ. Rule doubles σ if strict-success fraction>.2, halves if<.2. With σ4, what happens?"
+    ]
+  },
+  "misconception": "Doubles",
+  "objective": "Compute the declared es step size adaptation model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-es-step-size-adaptation.c1",
+      "text": "Test es step size adaptation Compare a declared mechanism with its changed case. Score=−(x−1)². Center0, offsets[−1,−.5,.5,1]×σ. Rule doubles σ if strict-success fraction>.2, halves if<.2. With σ4, what happens? Options: Halves; Doubles",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §7; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-es-step-size-adaptation.c2",
+      "text": "Small probes improved twice and doubled the next scale; oversized probes had no strict improvement and halved it. At the optimum, the rule also shrank. This four-probe analogue is not complete CMA-ES or a convergence guarantee; ties are not successes.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §7; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-es-step-size-adaptation.c3",
+      "text": "{\"question\": \"Does a tie count as a strict improvement?\", \"options\": [\"No: only a strict improvement\", \"Yes: a tie improves fitness\"], \"answer\": 0, \"why\": \"The σ4 probe at x2 ties the center’s score −1, so it is not a success.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §7; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-es-step-size-adaptation.c4",
+      "text": "es-step-size-adaptation\n\n**Identity / target / source:** `ai:es-step-size-adaptation` → `ai-es-step-size-adaptation` → `src/demos/ai/ai-es-step-size-adaptation`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/180`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#7-es-step-size-adaptation`. **Packet:** E1. **Level / prerequisites:** stretch; `ai:evolution-strategies`.\n\n**Nearest / distinct payoff:** evolution-strategies fixes offsets; this computes success fraction and actually changes the next search scale under a declared rule.\n\n**Computed primary model:** Objective score−(x−1)², center0 score−1, four standardized offsets[−1,−.5,.5,1]. Multiply bysigma. sigma.1 probes[−.1,−.05,.05,.1], strict improvements2/4; sigma4 probes[−4,−2,2,4], strict improvements0/4 (x2 only ties current score). Rule fraction>.2 doubles nextsigma; fraction<.2 halves it, otherwise unchanged. Next scales.2 and2. Best strict-improvement moves center to.1 versus staying0.\n\n**Countercase / boundary:** At optimal center1 no probe strictly improves, so the rule shrinks even if all movement is useless. This fixed four-probe success-rule analogue is not complete CMA-ES cumulative step adaptation, a sampled expected success rate or convergence guarantee.\n\n**Prediction / transfer recall:** Predict next scale after the oversize4 probe set; recall ties are not successes and shrinking alone does not prove a better next candidate.\n\n**Intervention / retained witness:** Try scale/Adapt scale computes positions, scores, success fraction and nextsigma; Move center to optimum exposes the boundary. Retain small versus large-scale actual movement and score evidence.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Small/Large/Optimum; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §7; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does a tie count as a strict improvement?",
+    "options": [
+      "No: only a strict improvement",
+      "Yes: a tie improves fitness"
+    ],
+    "answer": 0,
+    "why": "The σ4 probe at x2 ties the center’s score −1, so it is not a success."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:es-step-size-adaptation",
+    "also": [],
+    "prerequisites": [
+      "ai:evolution-strategies"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

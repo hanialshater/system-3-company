@@ -1,0 +1,2 @@
+// Invented finite construction. No real model or external service is simulated.
+export function compute(mode: number) { const ids = mode === 0 ? ['a', 'b', 'c', 'd'] : ['e', 'f', 'g', 'h']; const lookup: Record<string, number> = { a: 2, b: 3, c: 4, d: 5 }; const rows = ids.map((id, i) => ({ id, x: i + 1, expected: i + 2, lookup: lookup[id] ?? null, rule: i + 2 })); return { rows, lookupHits: rows.filter(r => r.lookup === r.expected).length, ruleHits: rows.filter(r => r.rule === r.expected).length }; }

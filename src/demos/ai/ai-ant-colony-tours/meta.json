@@ -1,0 +1,97 @@
+{
+  "slug": "ai-ant-colony-tours",
+  "title": "Test ant colony tours",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "ant-colony-tours",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "simulated-annealing-tour"
+    ],
+    "doesNotKnow": [
+      "Edges AB,BC,CD,DA=2; AC,BD=3. All τ1. After prefix D→A, choices B/C weighted τ/d. Evaporate ρ=.2, deposit8/L on first tour ACBDA. Can longer tour increase P(C)?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute the declared ant colony tours model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-ant-colony-tours.c1",
+      "text": "Test ant colony tours Compare a declared mechanism with its changed case. Edges AB,BC,CD,DA=2; AC,BD=3. All τ1. After prefix D→A, choices B/C weighted τ/d. Evaporate ρ=.2, deposit8/L on first tour ACBDA. Can longer tour increase P(C)? Options: Yes; No",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §16; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ant-colony-tours.c2",
+      "text": "Depositing the supplied longer tour raised P(C) from .4 to .571. Stronger evaporation raised it to .769; a shorter first tour instead favored B. Pheromone and edge costs jointly determine this local transition, without guaranteeing which complete route is best.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §16; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ant-colony-tours.c3",
+      "text": "{\"question\": \"Does reinforcing an early route establish its optimality?\", \"options\": [\"No: a longer supplied tour is reinforced\", \"Yes: the first deposit proves optimality\"], \"answer\": 0, \"why\": \"The longer tour increases its edge pheromone and P(C), without establishing a better complete tour.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §16; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ant-colony-tours.c4",
+      "text": "ant-colony-tours\n\n**Identity / target / source:** `ai:ant-colony-tours` → `ai-ant-colony-tours` → `src/demos/ai/ai-ant-colony-tours`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/192`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#16-ant-colony-tours`. **Packet:** O1. **Level / prerequisites:** stretch; `ai:simulated-annealing-tour`.\n\n**Nearest / distinct payoff:** simulated-annealing-tour accepts individual moves; this updates edge pheromones and measures reinforcement of the next ant’s local transition.\n\n**Computed primary model:** Use same4-node weighted graph. All edge pheromones1, alpha=beta=1, next-choice weighttau/distance. After visited prefixD→A, unvisited next choices areB/C; initiallyP(C)=(1/3)/(1/2+1/3)=.4. First supplied ant completesD-A-C-B-D (cycle-equivalent toA-C-B-D-A), length10. Evaporationrho.2, depositQ/L withQ8: touched edgesAC/BC/BD/AD become.8+.8=1.6; untouchedAB/CD=.8. Next AchoiceP(C)=(1.6/3)/(.8/2+1.6/3)=4/7.\n\n**Countercase / boundary:** Rho.8 with same deposit givesP(C)=10/13, amplifying this particular early route’s relative reinforcement. If first tour was shorterD-A-B-C-D (equivalent toA-B-C-D-A), length8, rho.2 yieldsP(B)=27/35. This is one stated deposit/transition component, not an empirically optimal ACO implementation or guarantee early reinforced routes are best.\n\n**Prediction / transfer recall:** Predict whether the longer first tour can increase its next-choice probability; recall pheromone evidence and edge cost both affect tau/distance.\n\n**Intervention / retained witness:** Deposit first tour computes every affected edge and next-choice weights; Change evaporation and First shorter tour produce retained countercases. AllowedB/C at the illustrated choice is explicit; remaining tour is supplied, not falsely claimed sampled from that two-choice branch alone.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Primary ACO author source is an acquisition obligation before general algorithm/history/empirical claims; local evaporation and deposits above are declared without a borrowed dataset.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Long first/Rho.8/Short first; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §16; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does reinforcing an early route establish its optimality?",
+    "options": [
+      "No: a longer supplied tour is reinforced",
+      "Yes: the first deposit proves optimality"
+    ],
+    "answer": 0,
+    "why": "The longer tour increases its edge pheromone and P(C), without establishing a better complete tour."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ant-colony-tours",
+    "also": [],
+    "prerequisites": [
+      "ai:simulated-annealing-tour"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

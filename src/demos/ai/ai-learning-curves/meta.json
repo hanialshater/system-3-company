@@ -1,0 +1,104 @@
+{
+  "slug": "ai-learning-curves",
+  "title": "Can more samples fix the floor?",
+  "hook": "Contrast two stipulated train/test error families.",
+  "domain": "ai",
+  "concept": "learning-curves",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "High-bias family train=.4+.1/n,test=.4+.2/n leaves asymptotic floor.4. Curves are stipulated and not real performance estimates; more data neednot cure model bias."
+    ]
+  },
+  "misconception": "High-bias family train=.4+.1/n,test=.4+.2/n leaves asymptotic floor.4. Curves are stipulated and not real performance estimates; more data neednot cure model bias.",
+  "objective": "Compute and contrast the finite learning curves cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-learning-curves.c1",
+      "text": "export function point(n:number,high=false){if(n<=0)throw new Error(\"Positive sample size\");return {n,train:(high?.4:.1)+(high?.1:.2)/n,test:(high?.4:.1)+(high?.2:.8)/n};}export function run(mode:number){const high=mode===1,rows=[2,4,8].map(n=>point(n,high));return {high,rows,floor:high?.4:.1};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Can more samples fix the floor? \\u2014 computed finite mechanism\"><path d=\"M28 12 V87 H266\" className={s.axis}/><text x=\"3\" y=\"14\">.6</text><text x=\"9\" y=\"89\">0</text>{['train','test'].map((key,j)=><polyline key={key} points={r.rows.map((p,i)=>`${48+i*94},${87-p[key as 'train'|'test']*120}`).join(' ')} className={j===0?s.other:s.line}/>)}{r.rows.map((p,i)=><text key={i} x={48+i*94} y=\"105\" textAnchor=\"middle\">n={p.n}</text>)}<text x=\"55\" y=\"15\">━test ┄train</text></svg>;}\n\nLocked inputs: Synthetic family A: train=.1+.2/n, test=.1+.8/n. Family B: train=.4+.1/n, test=.4+.2/n.",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-learning-curves.c2",
+      "text": "Can more samples fix the floor?; Contrast two stipulated train/test error families.; {\"question\": \"Which stipulated family has the lower limiting test error as sample size grows?\", \"options\": [\"A\", \"B\", \"Equal\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-learning-curves.c3",
+      "text": "Your family A narrowed its train/test gap from 0.300 at n=2 to 0.075 at n=8, approaching floor 0.1. Family B instead approached 0.4. More samples reduce these declared estimation terms but cannot remove the stipulated floor. These synthetic curves are not forecasts of trained-model performance.\n(mode:number){const r=m.run(mode);return `Family${r.high?\"B\":\"A\"}: gap₂=${f(r.rows[0].test-r.rows[0].train,3)} · gap₈=${f(r.rows[2].test-r.rows[2].train,3)} · floor=${r.floor}`;}\n",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-learning-curves.c4",
+      "text": "{\"question\": \"At n=4, which test errors do the stipulated families A,B give?\", \"options\": [\".30,.45\", \".10,.40\", \".50,.50\"], \"answer\": 0, \"why\": \"Substitute n=4 in .1+.8/n and .4+.2/n.\"}",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-learning-curves.c5",
+      "text": "High-bias family train=.4+.1/n,test=.4+.2/n leaves asymptotic floor.4. Curves are stipulated and not real performance estimates; more data neednot cure model bias.; controls: FamilyA, FamilyB, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "At n=4, which test errors do the stipulated families A,B give?",
+    "options": [
+      ".30,.45",
+      ".10,.40",
+      ".50,.50"
+    ],
+    "answer": 0,
+    "why": "Substitute n=4 in .1+.8/n and .4+.2/n."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:learning-curves",
+    "also": [],
+    "prerequisites": [
+      "ai:bias-variance"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

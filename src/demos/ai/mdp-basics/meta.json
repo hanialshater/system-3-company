@@ -1,0 +1,85 @@
+{
+  "slug": "mdp-basics",
+  "title": "Where does one action take you?",
+  "hook": "Choose a move and inspect what it pays.",
+  "domain": "ai",
+  "concept": "mdp-basics",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arrows and small signed numbers"
+    ],
+    "doesNotKnow": [
+      "that rewards belong to transitions",
+      "how a terminal state stops this finite process"
+    ]
+  },
+  "misconception": "A reward is a supplied label telling the agent the correct action.",
+  "objective": "Identify state, action, reward and next state in a deterministic fully observed transition table.",
+  "claims": [
+    {
+      "id": "ai.mdp-basics.c1",
+      "text": "The deterministic fully observed toy has A/right → B with reward 0, B/right → terminal C with reward 2; stay at A or B yields the same state and reward 0. C cannot move.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/mdp-basics/2026-10-19-fact-all-ai-foundations.md; https://en.d2l.ai/chapter_reinforcement-learning/mdp.html (17.1.1–17.1.2, lines 423–442); src/demos/ai/mdp-basics/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.mdp-basics.c2",
+      "text": "Rewards label transitions separately from positions; this is a supplied transition table, not a trained agent or correct-action label.",
+      "support": "convention",
+      "source": "Independent derivation and source audit: company/reviews/mdp-basics/2026-10-19-fact-all-ai-foundations.md; https://en.d2l.ai/chapter_reinforcement-learning/mdp.html (17.1.1–17.1.2, lines 423–442); src/demos/ai/mdp-basics/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.mdp-basics.c3",
+      "text": "The reward is the number received on the transition; Y is the next state.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/mdp-basics/2026-10-19-fact-all-ai-foundations.md; https://en.d2l.ai/chapter_reinforcement-learning/mdp.html (17.1.1–17.1.2, lines 423–442); src/demos/ai/mdp-basics/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "meta.json: recall.why",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy move X → Y gives reward −1. Which item is the reward?",
+    "options": [
+      "−1",
+      "Y",
+      "The action name"
+    ],
+    "answer": 0,
+    "why": "The reward is the number received on the transition; Y is the next state."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "ai:mdp-basics",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal"
+  ]
+}

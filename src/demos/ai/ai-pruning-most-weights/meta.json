@@ -1,0 +1,101 @@
+{
+  "slug": "ai-pruning-most-weights",
+  "title": "Which three weights can go?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "pruning-most-weights",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:dropout"
+    ],
+    "doesNotKnow": [
+      "At equal 75% sparsity, must the two masks have the same squared error?"
+    ]
+  },
+  "misconception": "Same error",
+  "objective": "Use the distinct declared pruning-most-weights mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-pruning-most-weights.c1",
+      "text": "hook/predict: At equal 75% sparsity, must the two masks have the same squared error? Options: Same error; Different errors",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-pruning-most-weights.c2",
+      "text": "stage input operands: \"w=[2,.1,.1,.1] · coordinate tests · 75% zeroed\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pruning-most-weights.c3",
+      "text": "reveal: Magnitude pruning had SSE .03; the supplied alternative had 4.02 at equal sparsity. On the shifted test, magnitude pruning erred by 1 while the alternative was exact. Evaluation inputs can reverse mask quality; this says nothing about typical real-network dispensability.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pruning-most-weights.c4",
+      "text": "recall: If only coordinate 2 is tested at scale 10, which supplied mask is exact? The coordinate-2 mask retains .1, producing the target 1.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pruning-most-weights.c5",
+      "text": "stage computation: Fixed prefit linear weights[2,.1,.1,.1]. Four evaluation inputs are the coordinate basis, targets equal their original outputs. Keep only the largest-magnitude weight:75% sparsity, SSE=.03. An explicit alternative uniform-mask-family draw retains only coordinate2 (one-indexed), giving SSE4.02 at equal sparsity. Recompute all four predictions.\n\n**Countercase / boundary:** Change evaluation to input[0,10,0,0], target1. Magnitude pruning predicts0, squared error1; the alternative mask predicts1, error0. This reverses the quality ordering. A single supplied mask is not an expected random-pruning result, and the fixture does not establish most weights of real networks are dispensable.\n\n**Prediction / transfer recall:** Predict whether equal75% sparsity implies equal output error; recall evaluation-input scaling can reverse which mask is preferable.\n\n**Intervention / reachable witness:** Toggle mask and Evaluation shift shows zeroed weight diagram, outputs and SSE with original comparison retained. Do not replace numerical evidence with a sparsity badge.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-pruning-most-weights.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: w=[2,.1,.1,.1] · coordinate tests · 75% zeroed ? Magnitude Other mask Shift test Reset 1: SSE 0.03; alternative 4.02 2: SSE 4.02; alternative 4.02 3: SSE 1.00; alternative 0.00 | inspection 0: w=[2,.1,.1,.1] · coordinate tests · 75% zeroed 2 0 0 0 Σwx Magnitude Other mask Shift test Reset 1: SSE 0.03; alternative 4.02 2: SSE 4.02; alternative 4.02 3: SSE 1.00; alternative 0.00 | inspection 1: w=[2,.1,.1,.1] · coordinate tests · 75% zeroed 0 0.1 0 0 Σwx Magnitude Other mask Shift test Reset 1: SSE 0.03; alternative 4.02 2: SSE 4.02; alternative 4.02 3: SSE 1.00; alternative 0.00 | inspection 2: w=[2,.1,.1,.1] · coordinate tests · 75% zeroed 2 0 0 0 Σwx Magnitude Other mask Shift test Reset 1: SSE 0.03; alternative 4.02 2: SSE 4.02; alternative 4.02 3: SSE 1.00; alternative 0.00",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If only coordinate 2 is tested at scale 10, which supplied mask is exact?",
+    "options": [
+      "Magnitude mask",
+      "Coordinate-2 mask"
+    ],
+    "answer": 0,
+    "why": "The coordinate-2 mask retains .1, producing the target 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:pruning-most-weights",
+    "also": [],
+    "prerequisites": [
+      "ai:dropout"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

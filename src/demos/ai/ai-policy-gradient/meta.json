@@ -1,0 +1,105 @@
+{
+  "slug": "ai-policy-gradient",
+  "title": "Change the policy itself",
+  "hook": "Trace one sampled return through two policy parameters.",
+  "domain": "ai",
+  "concept": "policy-gradient",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Apply a score-function policy gradient to softmax logits after a sampled episode."
+    ]
+  },
+  "misconception": "Apply a score-function policy gradient to softmax logits after a sampled episode.",
+  "objective": "Apply a score-function policy gradient to softmax logits after a sampled episode.",
+  "claims": [
+    {
+      "id": "ai.ai-policy-gradient.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function update(action:number,g:number,eta=.5){const old=[.5,.5],grad=old.map((p,i)=>(i===action?1:0)-p),delta=grad.map(v=>eta*g*v),e=delta.map(Math.exp),p=e.map(v=>v/(e[0]+e[1]));return {action,g,grad,delta,p};}\nexport function run(mode:number){return update(mode===3?1:0,[2,0,-2,2][mode]);}",
+      "support": "derivation",
+      "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (Sutton et al.1999 policy gradient; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-policy-gradient.c2",
+      "text": "Change the policy itself; Trace one sampled return through two policy parameters.; Equal initial action probabilities; sample Left and return2. Step size=.5. How does Left\u2019s probability change?; options ['Rises', 'Falls', 'Stays']; correct index 0",
+      "support": "derivation",
+      "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (Sutton et al.1999 policy gradient; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-policy-gradient.c3",
+      "text": "The sampled Left return 2 multiplied its log-probability gradient (.5, \u2212.5). With step size .5, the two logits changed by (.5, \u2212.5), and Left\u2019s probability rose from .500 to .731. This update changed the stochastic policy directly. Zero return makes no change; a negative return reverses this sample\u2019s direction. One update is not a guarantee of better performance.",
+      "support": "derivation",
+      "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (Sutton et al.1999 policy gradient; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-policy-gradient.c4",
+      "text": "{\"question\": \"Start with equal logits; sample Right, return2, step=.5. Which probability rises?\", \"options\": [\"Left\", \"Right\", \"Neither\"], \"answer\": 1, \"why\": \"The sampled Right log-probability gradient is(\\u2212.5,.5).\"}",
+      "support": "derivation",
+      "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (Sutton et al.1999 policy gradient; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-policy-gradient.c5",
+      "text": "One-step fixed initial policy, no baseline or full Q table; negative return is a separately declared fixture. Two-logit softmax exponentiates and normalizes. Ascent adds \u03b7\u00d7return\u00d7gradient(log probability). Controls: Left +2, Left 0, Left \u22122, Right +2, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (Sutton et al.1999 policy gradient; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "Start with equal logits; sample Right, return2, step=.5. Which probability rises?",
+    "options": [
+      "Left",
+      "Right",
+      "Neither"
+    ],
+    "answer": 1,
+    "why": "The sampled Right log-probability gradient is(\u2212.5,.5)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:policy-gradient",
+    "also": [],
+    "prerequisites": [
+      "ai:mdp-basics",
+      "ai:gradient-descent"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

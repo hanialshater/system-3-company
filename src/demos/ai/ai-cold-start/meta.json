@@ -1,0 +1,95 @@
+{
+  "slug": "ai-cold-start",
+  "title": "Is zero evidence a dislike?",
+  "hook": "Expose missing support and a separate fallback.",
+  "domain": "ai",
+  "concept": "cold-start",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "collaborative-filtering"
+    ],
+    "doesNotKnow": [
+      "New user 0000 has zero norm. Can cosine co-interaction scoring support a recommendation?"
+    ]
+  },
+  "misconception": "Yes, zero means confident dislike",
+  "objective": "Compute the cold start finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-cold-start.c1",
+      "text": "Is zero evidence a dislike? Expose missing support and a separate fallback. New user 0000 has zero norm. Can cosine co-interaction scoring support a recommendation? Options: No, similarity is unavailable; Yes, zero means confident dislike",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §9; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-cold-start.c2",
+      "text": "For the established user, item C scored 1 and interaction-free D scored 0. A zero-norm new user had undefined cosine support. The topic fallback assigned D score 1 using a separate declared match. Missing interactions do not establish dislike or calibrated confidence.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §9; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cold-start.c3",
+      "text": "What changes when a new user supplies one interaction? Options: A nonzero norm can make cosine evidence available; All item preferences become known; Every unseen item becomes disliked A nonzero interaction vector can support cosine comparisons, but it does not reveal preferences for every unseen item.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §9; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cold-start.c4",
+      "text": "Original schematic labels, including neutral and every changed case: neighbors:1010/0110 · D=unseen 1100 cosine C=? · D=? co-interactions | neighbors:1010/0110 · D=unseen 1100 cosine C=1 · D=0 co-interactions | neighbors:1010/0110 · D=unseen 0000 cosine C=undefined · D=undefined co-interactions | neighbors:1010/0110 · D=unseen 1100 cosine C=1 · D=1 topic=1. Retained locally computed witnesses: Old: D=0 | New: D=undefined | Topic: D=1. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §9; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cold-start.c5",
+      "text": " 9. cold-start\n\nTarget / packet: ai-cold-start · R1. Prerequisites: ai:collaborative-filtering.\n\nNearest / distinct payoff: collaborative-filtering → ai-collaborative-filtering. Collaborative recommendation needs co-interactions; this makes absent item/user evidence and a separate side-information fallback explicit.\n\nFinite primary model: Add item D with zero interactions in all three existing users; collaborative weighted score D=0 from no positive evidence. New user[0,0,0,0] has zero norm, so cosine recommendation is unavailable, not meaningful confidence 0.\n\nCountercase and mathematical boundary: Declared side-information fallback marks D topic match 1 and scores it 1; this uses a new evidence source. Zero interaction score does not establish dislike. Also show established item C remains 1 for old U 1.\n\nPredict and recall transfer: Predict which recommendation cannot be supported by co-interaction data; recall how one new interaction changes available evidence.\n\nRequired observable evidence: Represent undefined new user similarity explicitly; distinguish missing support from a low measured rating.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §9; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What changes when a new user supplies one interaction?",
+    "options": [
+      "A nonzero norm can make cosine evidence available",
+      "All item preferences become known",
+      "Every unseen item becomes disliked"
+    ],
+    "answer": 0,
+    "why": "A nonzero interaction vector can support cosine comparisons, but it does not reveal preferences for every unseen item."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:cold-start",
+    "also": [],
+    "prerequisites": [
+      "ai:collaborative-filtering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

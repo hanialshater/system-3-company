@@ -1,0 +1,97 @@
+{
+  "slug": "ai-deceptive-objective",
+  "title": "Test deceptive objective",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "deceptive-objective",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "local-minima"
+    ],
+    "doesNotKnow": [
+      "S(0,0),A(1,0),B(2,0),G(3,0); D/E/F/H at y1,x0/1/2/3. Edges SA,AB,SD,DE,EF,FH,HG; no BG. Maximize negative Manhattan distance to G. Does greedy reach G?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared deceptive objective model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-deceptive-objective.c1",
+      "text": "Test deceptive objective Compare a declared mechanism with its changed case. S(0,0),A(1,0),B(2,0),G(3,0); D/E/F/H at y1,x0/1/2/3. Edges SA,AB,SD,DE,EF,FH,HG; no BG. Maximize negative Manhattan distance to G. Does greedy reach G? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §10; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deceptive-objective.c2",
+      "text": "Strict proxy improvement led S→A→B and stalled at the missing edge. The valid detour first worsened the proxy, then reached G in five moves. Adding B–G restored greedy success. This particular topology, rather than distance heuristics universally, explains the failure.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §10; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deceptive-objective.c3",
+      "text": "{\"question\": \"Can a necessary detour initially worsen the distance proxy?\", \"options\": [\"Yes: S→D worsens −3 to −4\", \"No: every valid move improves\"], \"answer\": 0, \"why\": \"The valid route to G starts with S→D despite its worse proxy score.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §10; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deceptive-objective.c4",
+      "text": "deceptive-objective\n\n**Identity / target / source:** `ai:deceptive-objective` → `ai-deceptive-objective` → `src/demos/ai/ai-deceptive-objective`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/183`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#10-deceptive-objective`. **Packet:** E1. **Level / prerequisites:** core; `ai:local-minima`.\n\n**Nearest / distinct payoff:** local-minima compares numeric basins; this graph’s distance-to-goal proxy rewards entry into a dead end while a necessary first detour scores worse.\n\n**Computed primary model:** NodesS(0,0),A(1,0),B(2,0),G(3,0),D(0,1),E(1,1),F(2,1),H(3,1). EdgesS–A,A–B,S–D,D–E,E–F,F–H,H–G; notably noB–G. Proxy=negative Manhattan distance toG. Strict-improvement greedy followsS(−3)→A(−2)→B(−1), stalls. Actual valid routeS→D→E→F→H→G first goes−3→−4 then reaches goal in5moves.\n\n**Countercase / boundary:** Removing the absent-edge wall and addingB–G lets greedy succeed in3moves. This explicitly deceptive topology is not a theorem that goal-distance heuristics always fail; graph constraints matter. Backtracking to lower score is forbidden only by the declared greedy rule.\n\n**Prediction / transfer recall:** Predict whether B’s better proxy proves goal reachability by continued improvement; recall the detour’s first worse score can be necessary under the original edges.\n\n**Intervention / retained witness:** Greedy step versus Take detour computes allowed moves/proxy/goal state; Open wall changes the actual graph and restores greedy success. Retain dead-end and successful detour traces in an original schematic with visible wall.\n\n**Source obligation:** [Lehman–Stanley original novelty paper PDF](https://www.cs.swarthmore.edu/~meeden/DevelopmentalRobotics/lehman_ecj11.pdf), opened2026-10-19, deception/novelty motivation and behavioural novelty definition. Exact graph, distances/archive and candidates here are declared, not the paper maze experiment or a claim novelty always solves tasks.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Greedy/Detour/Open wall; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §10; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a necessary detour initially worsen the distance proxy?",
+    "options": [
+      "Yes: S→D worsens −3 to −4",
+      "No: every valid move improves"
+    ],
+    "answer": 0,
+    "why": "The valid route to G starts with S→D despite its worse proxy score."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:deceptive-objective",
+    "also": [],
+    "prerequisites": [
+      "ai:local-minima"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

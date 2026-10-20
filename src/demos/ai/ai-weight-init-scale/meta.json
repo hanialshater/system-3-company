@@ -1,0 +1,104 @@
+{
+  "slug": "ai-weight-init-scale",
+  "title": "What survives three layers?",
+  "hook": "Propagate variance under declared linear independence assumptions.",
+  "domain": "ai",
+  "concept": "weight-init-scale",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Independent zero-mean random linear model, width 2 and variance recurrence width·s²·v. s² means variance, not standard deviation. Fixed identity weights and nonlinear models are different assumptions."
+    ]
+  },
+  "misconception": "Independent zero-mean random linear model, width 2 and variance recurrence width·s²·v. s² means variance, not standard deviation. Fixed identity weights and nonlinear models are different assumptions.",
+  "objective": "Compute and contrast the finite weight init scale cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-weight-init-scale.c1",
+      "text": "export function propagate(width:number,squaredScale:number,layers:number){const multiplier=width*squaredScale,variances=Array.from({length:layers+1},(_,i)=>multiplier**i);return {width,squaredScale,layers,multiplier,variances,final:variances[layers]};}\nexport function run(mode:number){return propagate(2,mode===1?.125:mode===2?2:.5,3);}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">width={r.width} · weight variance s²={r.squaredScale}</text>{r.variances.map((v,i)=><g key={i}>{i>0?<path d={`M${14+(i-1)*78+16} 62 H${14+i*78-16}`} className={s.line}/>:null}<circle cx={25+i*79} cy=\"62\" r={8+Math.max(0,Math.min(14,(Math.log2(v)+6)*1.1))} className={s.box}/><text x={25+i*79} y=\"100\" textAnchor=\"middle\">{show(v,4)}</text></g>)}<text x=\"145\" y=\"126\" textAnchor=\"middle\">vnext={r.width}×{r.squaredScale}×v · 3 layers</text>\nIndependent zero-mean linear inputs/weights; v₀=1; width=2; s²=.5; 3 layers; vnext=2s²v.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-weight-init-scale.c2",
+      "text": "What survives three layers?; Propagate variance under declared linear independence assumptions.; {\"question\": \"Independent zero-mean linear weights have variance s²; width 2 and input variance 1. Each layer multiplies variance by 2s². Which s² preserves variance over three layers?\", \"options\": [\".125\", \".5\", \"2\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-weight-init-scale.c3",
+      "text": "Your weight variance .5 made width times weight variance equal 1, preserving variance through three layers. At .125 it shrank to .0156; at 2 it grew to 64.0000. This recurrence assumes independent zero-mean linear inputs and weights; nonlinear networks need not preserve it.\n`s²=${r.squaredScale}: v₃=${f(r.final,4)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-weight-init-scale.c4",
+      "text": "{\"question\": \"Under the same random linear assumptions but width 4, which weight variance preserves variance?\", \"options\": [\".125\", \".25\", \".5\"], \"answer\": 1, \"why\": \"The multiplier is width×weight variance; 4×.25=1. A fixed identity matrix is a different model and also preserves variance without these random assumptions.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-weight-init-scale.c5",
+      "text": "Independent zero-mean random linear model, width 2 and variance recurrence width·s²·v. s² means variance, not standard deviation. Fixed identity weights and nonlinear models are different assumptions. Controls: s²=.5, s²=.125, s²=2, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Under the same random linear assumptions but width 4, which weight variance preserves variance?",
+    "options": [
+      ".125",
+      ".25",
+      ".5"
+    ],
+    "answer": 1,
+    "why": "The multiplier is width×weight variance; 4×.25=1. A fixed identity matrix is a different model and also preserves variance without these random assumptions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:weight-init-scale",
+    "also": [],
+    "prerequisites": [
+      "ai:vanishing-gradients"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

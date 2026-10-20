@@ -1,0 +1,139 @@
+{
+  "slug": "algo-kd-median-build",
+  "title": "Which point becomes the root?",
+  "hook": "Five points. One root. Where will the first cut land?",
+  "domain": "cs",
+  "concept": "algo-kd-median-build",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates",
+      "Ordering five numbers",
+      "Binary search tree children"
+    ],
+    "doesNotKnow": [
+      "The root follows coordinate rank, not rectangle midpoint."
+    ]
+  },
+  "objective": "Distinguish median point-count balance from spatial area balance.",
+  "misconception": "A median split must divide a rectangle into equal areas.",
+  "claims": [
+    {
+      "id": "cs.algo-kd-median-build.c1",
+      "text": "First split uses x. Which point becomes the root? B / C / D; correct C.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#predict; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c2",
+      "text": "Primary A=(1,1), B=(2,7), C=(3,6), D=(8,2), E=(9,5), bounds [0,10] × [0,8]. Contrast D=(4,2).",
+      "support": "convention",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#picture; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg.picture primary/current D circle with original outline, filled current and visible key; explicitly labelled independent x/y scales"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c3",
+      "text": "The primary and contrast roots are C; each child receives two points; the pivot is stored once.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#picture-split; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified",
+      "address": "Demo.tsx: p.summary and computed split figure"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c4",
+      "text": "Primary: root C, left 2 and right 2; left area24/right area56. Contrast keeps root C and left2/right2.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#summary; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified",
+      "address": "Demo.tsx: p.summary Primary/Current root and left/right counts, svg area labels"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c5",
+      "text": "The primary split stored C once at the root, leaving 2 points on each side. Its two regions had areas 24 and 56.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#reveal; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c6",
+      "text": "Median rank balances point counts here, not rectangle areas. Moving D preserved the root and counts.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/Demo.tsx#reveal-principle; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c7",
+      "text": "Sort active coordinate then ID; floor(n/2) is the zero-based pivot, including upper-middle for even n. Tied ranks retain distinct IDs.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-kd-median-build/model.ts#split; src/demos/cs/algo-kd-median-build/model.ts finite implementation/fixtures; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c8",
+      "text": "Which point becomes the root?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-kd-median-build/meta.json#title; src/demos/cs/algo-kd-median-build/model.ts and model.test.mjs; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c9",
+      "text": "Five points. One root. Where will the first cut land?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-kd-median-build/meta.json#hook; src/demos/cs/algo-kd-median-build/model.ts and model.test.mjs; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kd-median-build.c10",
+      "text": "Five points lie near the left edge. Must their median x halve the rectangle area? Yes / No. No. Point ranks and rectangle areas differ.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-kd-median-build/meta.json#recall; src/demos/cs/algo-kd-median-build/model.ts and model.test.mjs; https://algs4.cs.princeton.edu/92search/ — kD trees subsection, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; median construction and alternating dimensions. ID ties and upper-middle rule are local conventions, not attributed to this source.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Five points lie near the left edge. Must their median x halve the rectangle area?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "No. Point ranks and rectangle areas differ."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-kd-median-build",
+    "also": [],
+    "prerequisites": [
+      "binary-search-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

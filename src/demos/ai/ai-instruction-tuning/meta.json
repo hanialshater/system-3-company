@@ -1,0 +1,101 @@
+{
+  "slug": "ai-instruction-tuning",
+  "title": "Can formatting teach this fixed fact?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "instruction-tuning",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:how-llms-are-trained"
+    ],
+    "doesNotKnow": [
+      "In this factorized toy, can JSON-format training change the frozen fact A=2?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared instruction-tuning mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-instruction-tuning.c1",
+      "text": "hook/predict: In this factorized toy, can JSON-format training change the frozen fact A=2? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-instruction-tuning.c2",
+      "text": "stage input operands: \"frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-instruction-tuning.c3",
+      "text": "reveal: JSON training moved θ to 1 and P(JSON) to .731; plain labels moved them to −1 and .269. A stayed 2, even against a supplied update to 4. This deliberately frozen factual channel does not show that real fine-tuning cannot teach facts.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-instruction-tuning.c4",
+      "text": "recall: What happens to frozen B=3 when only the format parameter trains? The declared factorization separates lookup values from formatting probability.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-instruction-tuning.c5",
+      "text": "stage computation: Declared factorized toy: factual lookup[A:2,B:3] is frozen; formatting JSON probability=sigmoid(theta), theta0=0. JSON-labelled formatting example has Bernoulli negative-log-loss gradient p−1. Eta2 update gives theta1=1, P(JSON)=.7310586; second update theta=1.5378828, P(JSON)≈.823156. Factual answer A stays2 in either format.\n\n**Countercase / boundary:** Change formatting labels to plain text0, restart theta0 and update: theta=−1, P(JSON)=.2689414, still factual A2. An external supplied “A now4” test does not change this frozen channel; factual correctness on that update remains false. This architecture deliberately prevents factual learning, so it does not prove real fine-tuning cannot teach facts.\n\n**Prediction / transfer recall:** Predict whether training formatting changes the fixed A fact; recall a new B formatting instruction can alter format probability while lookupB stays3.\n\n**Intervention / reachable witness:** Train format step computes logit/probability and renders two possible format templates with same factual value; Counter-label and Test new fact show the separate channels. Do not sample formatting and confuse one random output with learned probability.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-instruction-tuning.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2 ? Train Plain A→4 2 steps Reset 1: θ=1; P(JSON)=0.731; A=2 2: θ=-1; P(JSON)=0.269; A=2 3: θ=1; P(JSON)=0.731; A=2≠4 4: θ=1.538; P(JSON)=0.823; A=2 | inspection 0: frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2 Frozen A=2 JSON 0.731 plain 0.269 Train Plain A→4 2 steps Reset 1: θ=1; P(JSON)=0.731; A=2 2: θ=-1; P(JSON)=0.269; A=2 3: θ=1; P(JSON)=0.731; A=2≠4 4: θ=1.538; P(JSON)=0.823; A=2 | inspection 1: frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2 Frozen A=2 JSON 0.269 plain 0.731 Train Plain A→4 2 steps Reset 1: θ=1; P(JSON)=0.731; A=2 2: θ=-1; P(JSON)=0.269; A=2 3: θ=1; P(JSON)=0.731; A=2≠4 4: θ=1.538; P(JSON)=0.823; A=2 | inspection 2: frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2 Frozen A=2 JSON 0.731 plain 0.269 Train Plain A→4 2 steps Reset 1: θ=1; P(JSON)=0.731; A=2 2: θ=-1; P(JSON)=0.269; A=2 3: θ=1; P(JSON)=0.731; A=2≠4 4: θ=1.538; P(JSON)=0.823; A=2 | inspection 3: frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2 Frozen A=2 JSON 0.823 plain 0.177 Train Plain A→4 2 steps Reset 1: θ=1; P(JSON)=0.731; A=2 2: θ=-1; P(JSON)=0.269; A=2 3: θ=1; P(JSON)=0.731; A=2≠4 4: θ=1.538; P(JSON)=0.823; A=2",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#15-instruction-tuning; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to frozen B=3 when only the format parameter trains?",
+    "options": [
+      "It stays 3",
+      "It changes with θ"
+    ],
+    "answer": 0,
+    "why": "The declared factorization separates lookup values from formatting probability."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:instruction-tuning",
+    "also": [],
+    "prerequisites": [
+      "ai:how-llms-are-trained"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

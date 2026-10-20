@@ -1,0 +1,97 @@
+{
+  "slug": "ai-ranking-top-heavy",
+  "title": "Test ranking top heavy",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "ranking-top-heavy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "auc-ranking"
+    ],
+    "doesNotKnow": [
+      "Binary relevance [1,0,1,0]. DCG=Σ relevance/log₂(rank+1), ranks1…4. Which swap loses more: first two or last two?"
+    ]
+  },
+  "misconception": "Last two",
+  "objective": "Compute the declared ranking top heavy model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-ranking-top-heavy.c1",
+      "text": "Test ranking top heavy Compare a declared mechanism with its changed case. Binary relevance [1,0,1,0]. DCG=Σ relevance/log₂(rank+1), ranks1…4. Which swap loses more: first two or last two? Options: First two; Last two",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §3; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ranking-top-heavy.c2",
+      "text": "The same relevance swap lost .369 at the top and .069 at the bottom. Unweighted relevance stayed 2. The difference follows these declared discounts; it does not establish universal human utility or describe every ranking metric.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §3; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ranking-top-heavy.c3",
+      "text": "{\"question\": \"Which quantity stayed unchanged across the swaps?\", \"options\": [\"Unweighted relevance sum 2\", \"Every discounted contribution\"], \"answer\": 0, \"why\": \"Every ordering contains the same two relevant items, so the unweighted sum remains 2.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §3; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ranking-top-heavy.c4",
+      "text": "ranking-top-heavy\n\n**Identity / target / source:** `ai:ranking-top-heavy` → `ai-ranking-top-heavy` → `src/demos/ai/ai-ranking-top-heavy`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/170`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#3-ranking-top-heavy`. **Packet:** C1. **Level / prerequisites:** stretch; `ai:auc-ranking`.\n\n**Nearest / distinct payoff:** auc-ranking treats pairwise ordering; this metric prices the same relevance swap differently by rank.\n\n**Computed primary model:** Four binary relevances[1,0,1,0]. DCG=sum relevance_i/log2(rank_i+1), rank1..4, no normalization. Original1.5. Swap first two→[0,1,1,0], DCG1/log2(3)+.5≈1.1309298, loss.3690702. Swap last two→[1,0,0,1], DCG1+1/log2(5)≈1.4306766, loss.0693234. Each swaps the same1/0 relevance pair, isolating position weights.\n\n**Countercase / boundary:** Unweighted relevance sum remains2 in every ordering; a metric with no rank discount would not show this difference. These declared weights are not evidence of universal human utility or that every ranking metric is equally top-heavy.\n\n**Prediction / transfer recall:** Predict which equal-relevance swap loses more DCG; recall a lower-rank swap can preserve the item count and still lower a discounted score.\n\n**Intervention / retained witness:** Swap top/Swap bottom computes per-rank contributions and totals on the same four-row list, retaining both loss values. Display discount rule and raw relevance before commitment, hide computed score until earned.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Primary lead: Järvelin–Kekäläinen2002 cumulative-gain evaluation, not acquired here. No historical attribution or universal relevance model is added before exact source acquisition.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Original/Top swap/Bottom swap; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §3; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which quantity stayed unchanged across the swaps?",
+    "options": [
+      "Unweighted relevance sum 2",
+      "Every discounted contribution"
+    ],
+    "answer": 0,
+    "why": "Every ordering contains the same two relevant items, so the unweighted sum remains 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ranking-top-heavy",
+    "also": [],
+    "prerequisites": [
+      "ai:auc-ranking"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

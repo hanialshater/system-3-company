@@ -1,0 +1,122 @@
+{
+  "slug": "ai-categorical-encoding",
+  "title": "Can a code change a fit?",
+  "hook": "The category stays the same when its number changes.",
+  "domain": "ai",
+  "concept": "categorical-encoding",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "arbitrary numeric category codes inject an order and spacing into a linear fit; renaming a code can change predictions even when category identities and targets stay fixed."
+    ]
+  },
+  "misconception": "arbitrary numeric category codes inject an order and spacing into a linear fit; renaming a code can change predictions even when category identities and targets stay fixed.",
+  "objective": "arbitrary numeric category codes inject an order and spacing into a linear fit; renaming a code can change predictions even when category identities and targets stay fixed.",
+  "claims": [
+    {
+      "id": "ai.ai-categorical-encoding.c1",
+      "text": "Ordinary least squares computes slope/intercept from category-code rows. Codes[0,1,2] with targets[0,1,0] predict one-third each,SSE2/3; codes[0,2,1] predict[-1/6,5/6,1/3],SSE1/6. Independent one-hot category means predict[0,1,0],SSE0. Circle targets, square predictions and residual segments are generated from the fitted arrays.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-categorical-encoding.c2",
+      "text": "Title: Can a code change a fit? Hook: The category stays the same when its number changes. Categories A, B, C have targets 0, 1, 0. Could swapping arbitrary B/C numeric codes change a fitted line? Options: Yes / No; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-categorical-encoding.c3",
+      "text": "The retained numeric coding fits a flat prediction of one third. Swapping two arbitrary codes changes the fitted line and its errors, although the category targets did not change. One-hot coefficients fit the three category targets here. This does not prove one-hot is best for every model or unseen category.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-categorical-encoding.c4",
+      "text": "A, B, C have targets 2, 0, 2. With separate one-hot coefficients and no intercept, what coefficients fit exactly? Each independent category coefficient takes its own target, regardless of arbitrary numeric codes.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-categorical-encoding.c5",
+      "text": "Numeric codes are arbitrary labels here, not genuinely ordered measurements. No claim of universal generalisation or automatic handling of unseen categories.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-categorical-encoding.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1, 2 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html (author documentation categorical-feature encoding definition and linear-model use; local line fitting computed from rows), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "A, B, C have targets 2, 0, 2. With separate one-hot coefficients and no intercept, what coefficients fit exactly?",
+    "options": [
+      "2, 0, 2",
+      "0, 1, 2",
+      "All one third"
+    ],
+    "answer": 0,
+    "why": "Each independent category coefficient takes its own target, regardless of arbitrary numeric codes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:categorical-encoding",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ml-basics",
+      "data-features",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html",
+    "locator": "OneHotEncoder maintainer API description lines639–642, binary column per category and linear-model use; local least-squares residuals.",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

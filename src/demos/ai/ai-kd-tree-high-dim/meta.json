@@ -1,0 +1,99 @@
+{
+  "slug": "ai-kd-tree-high-dim",
+  "title": "Test kd tree high dim",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "kd-tree-high-dim",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "curse-of-dimensionality",
+      "algo-kd-nearest-pruning"
+    ],
+    "doesNotKnow": [
+      "Query origin. Left/right leaves have capacity4. Low points(x,0): x=−5,−4,−3,−2,2,3,4,5. Dispersed8D: x=±.1, other axes paired±1. Zero-padding control adds only zeros. Does padding alone change pruning?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared kd tree high dim model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-kd-tree-high-dim.c1",
+      "text": "Test kd tree high dim Compare a declared mechanism with its changed case. Query origin. Left/right leaves have capacity4. Low points(x,0): x=−5,−4,−3,−2,2,3,4,5. Dispersed8D: x=±.1, other axes paired±1. Zero-padding control adds only zeros. Does padding alone change pruning? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §18; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-kd-tree-high-dim.c2",
+      "text": "Low and zero-padded geometry both opened one leaf and checked four points. Dispersed boxes had lower bounds .1 despite point distance √1.01, requiring both leaves and eight checks. The two bound tests stayed fixed. This shows geometry dependence, not a universal effect of dimension alone.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §18; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-kd-tree-high-dim.c3",
+      "text": "{\"question\": \"Which operation preserves all original Euclidean distances?\", \"options\": [\"Zero-padding unchanged coordinates\", \"Dispersing unit offsets across axes\"], \"answer\": 0, \"why\": \"Appending zeros leaves point and box distances unchanged, preserving the pruning counts.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §18; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-kd-tree-high-dim.c4",
+      "text": "kd-tree-high-dim\n\n**Identity / target / source:** `ai:kd-tree-high-dim` → `ai-kd-tree-high-dim` → `src/demos/ai/ai-kd-tree-high-dim`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/197`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#18-kd-tree-high-dim`. **Packet:** S1. **Level / prerequisites:** stretch; `ai:curse-of-dimensionality`, `cs:algo-kd-nearest-pruning`.\n\n**Nearest / distinct payoff:** cs:algo-kd-nearest-pruning shows lower bounds; this counts when actual fixed leaf boxes become loose under a changed coordinate distribution and includes a padding control.\n\n**Computed primary model:** Eight points, one median-x split into two leaf boxes (capacity4), queryorigin, nearest-any tie rulefirstvisited. Low2D points(x,0), x=[−5,−4,−3,−2,2,3,4,5]. Visit left first: best distance2, right box lower bound2, prune on bound≥best. Two child-bound tests,1 expanded leaf,4point distances. High8D fixture left x=−.1 with othercoordinates ±e1/±e2, right x=.1 with others ±e3/±e4 (remaining coordinates0). Each point distance sqrt1.01; both leaf box bounds.1, so expand2leaves/8point distances, still2bound tests.\n\n**Countercase / boundary:** Zero-pad original low2D points to8D: counts stay1leaf/4point distances. Thus this is geometry/distribution-dependent bound weakening, not dimension alone or a universal numerical threshold. Report bound tests separately from expanded leaf boxes; no misleading claim those tests decreased.\n\n**Prediction / transfer recall:** Predict whether right box can be pruned in the dispersed fixture; recall padding unchanged geometry with zero coordinates leaves Euclidean distances and pruning unchanged.\n\n**Intervention / retained witness:** Change distribution/Zero-pad computes each box min/max, query lower bound, best-so-far and scan counts; retain low/dispersed/padded evidence. Show labelled bounding ranges instead of an impossible unlabelled8D drawing.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Existing KD prerequisite source/fixture is not automatically evidence for the new distribution; independently reproduce all bounds. Primary nearest-neighbour tree analysis acquisition precedes any asymptotic claim.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Low2D/Dispersed/Pad8D; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §18; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which operation preserves all original Euclidean distances?",
+    "options": [
+      "Zero-padding unchanged coordinates",
+      "Dispersing unit offsets across axes"
+    ],
+    "answer": 0,
+    "why": "Appending zeros leaves point and box distances unchanged, preserving the pruning counts."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:kd-tree-high-dim",
+    "also": [],
+    "prerequisites": [
+      "ai:curse-of-dimensionality",
+      "cs:algo-kd-nearest-pruning"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

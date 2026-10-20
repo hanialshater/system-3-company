@@ -1,0 +1,108 @@
+{
+  "slug": "algo-exp-histogram-window",
+  "title": "How much of this bucket counts?",
+  "hook": "Keep the last four arrivals with merged buckets.",
+  "domain": "cs",
+  "concept": "algo-exp-histogram-window",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "DGIM-style binary stream last N arrivals, in-order integer timestamps; at most2 buckets per power-of-two size. On third merge oldest2 equal buckets retaining newer timestamp; expire newestTimestamp<=t-N. Estimate all retained sizes minus half oldest size. Empty=0. Approximation explicit; no unsupported epsilon bound."
+    ]
+  },
+  "objective": "DGIM-style binary stream last N arrivals, in-order integer timestamps; at most2 buckets per power-of-two size. On third merge oldest2 equal buckets retaining newer timestamp; expire newestTimestamp<=t-N. Estimate all retained sizes minus half oldest size. Empty=0. Approximation explicit; no unsupported epsilon bound.",
+  "misconception": "Five 1s arrived. After the next arrival is 0, how many 1s are in the last four arrivals?",
+  "claims": [
+    {
+      "id": "cs.algo-exp-histogram-window.c1",
+      "text": "How much of this bucket counts? Keep the last four arrivals with merged buckets.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/meta.json#title-hook; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "cs.algo-exp-histogram-window.c2",
+      "text": "Five 1s arrived. After the next arrival is 0, how many 1s are in the last four arrivals? Options: ['2', '3', '4'] Correct: 3",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/Demo.tsx#predict; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-exp-histogram-window.c3",
+      "text": "DGIM-style binary stream last N arrivals, in-order integer timestamps; at most2 buckets per power-of-two size. On third merge oldest2 equal buckets retaining newer timestamp; expire newestTimestamp<=t-N. Estimate all retained sizes minus half oldest size. Empty=0. Approximation explicit; no unsupported epsilon bound.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/Demo.tsx#stage; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-exp-histogram-window.c4",
+      "text": "At t=5, sizes 2,2,1 gave estimate 4 and exact count 4. Adding 0 expired the bucket ending at 2: sizes 2,1 gave estimate 2, while the exact count was 3. Half of the oldest retained bucket is an approximation, not its known contribution.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/Demo.tsx#reveal; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-exp-histogram-window.c5",
+      "text": "With no 1s in the stream, what does the empty bucket list estimate? No retained bucket means estimate 0.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/meta.json#recall; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-exp-histogram-window; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-exp-histogram-window.c6",
+      "text": "Size@end labels retain newer timestamps on merge. At t5 buckets2@2,2@4,1@5; t6 expires@2. Error is\u22121 for the latter fixture. No clock-hours or out-of-order claim.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-exp-histogram-window/model.ts and model.test.mjs; https://book.moa.cms.waikato.ac.nz/chapter_4.html/ \u00a74.7 \u2014 source lead, authoritative body/variant matching pending; no general epsilon guarantee asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With no 1s in the stream, what does the empty bucket list estimate?",
+    "options": [
+      "0",
+      "Half the window"
+    ],
+    "answer": 0,
+    "why": "No retained bucket means estimate 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-exp-histogram-window",
+    "also": [],
+    "prerequisites": [
+      "algo-sliding-window-deque",
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

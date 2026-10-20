@@ -1,0 +1,95 @@
+{
+  "slug": "ai-residual-connections",
+  "title": "Which route carries sensitivity?",
+  "hook": "Compare three scalar layers with and without an identity path.",
+  "domain": "ai",
+  "concept": "residual-connections",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "vanishing-gradients"
+    ],
+    "doesNotKnow": [
+      "At depth3, which declared transformation has larger sensitivity?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the residual connections construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-residual-connections.c1",
+      "text": "Which route carries sensitivity? Compare three scalar layers with and without an identity path. At depth3, which declared transformation has larger sensitivity? Options: h←.1h; h←h+.1h; Equal.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-residual-connections.c2",
+      "text": "The plain path multiplied sensitivity by .1 three times, giving .001. Adding the identity path changed each multiplier to 1.1, giving 1.331. A branch weight of −1 canceled that identity and gave zero. This construction guarantees neither nonzero gradients everywhere nor successful training.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-residual-connections.c3",
+      "text": "Which branch weight exactly cancels the identity in this scalar example? −1: the identity contribution1 plus branch contribution−1 gives total multiplier0.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-residual-connections.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-residual-connections.c5",
+      "text": "Target / packet: `ai-residual-connections` · `C3`. Prerequisites: `ai:vanishing-gradients`.\n\nNearest / distinct payoff: `vanishing-gradients` → `gradient-fades-with-depth` (existing registered artifact; evidence applicability pending). Unlike a plain vanishing-gradient chain, this adds an identity derivative and tests its exact cancellation boundary.\n\nPrimary finite model: Three scalar layers plain h←.1h have derivative .001; residual h←h+.1h has derivative1.331 at the same depth. h0=1 produces the same respective outputs.\n\nCountercase and boundary: Residual branch weight-1 cancels identity and yields derivative0; skip connections do not guarantee nonzero gradients for every weight setting.\n\nPredict and recall transfer: Predict which derivative survives three layers; recall a branch value that cancels the skip.\n\nRequired evidence: Expose branch and identity contributions; no claim of guaranteed successful training or empirical accuracy gain. Shipped local computations, all cases: Plain: h₀=1 · depth3 ×0.1 ×0.1 ×0.1 ∂=0.001; 0+(0.1) → ∂=0.001 | Skip: h₀=1 · depth3 ×0.1 ×1 + ×0.1 ×1 + ×0.1 ×1 + ∂=1.331; 1+(0.1) → ∂=1.331 | Cancel: h₀=1 · depth3 ×-1 ×1 + ×-1 ×1 + ×-1 ×1 + ∂=0; 1+(-1) → ∂=0. Initial neutral frame: h₀=1 · depth3 ×.1 ×.1 ×.1 ∂=?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which branch weight exactly cancels the identity in this scalar example?",
+    "options": [
+      "−1: the identity contribution1 plus branch contribution−1 gives total multiplier0.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "−1: the identity contribution1 plus branch contribution−1 gives total multiplier0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:residual-connections",
+    "also": [],
+    "prerequisites": [
+      "ai:vanishing-gradients"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

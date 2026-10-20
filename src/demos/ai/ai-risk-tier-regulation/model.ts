@@ -1,0 +1,2 @@
+export function classify(use:string,profiling:boolean,harm:boolean,influence:boolean){if(use==='fraud')return {route:'Excluded',locator:'III 5(b)'};if(use==='convert'&&!profiling&&!harm&&!influence)return {route:'Conditional',locator:'6(3)(a)'};return {route:'Listed',locator:'III 5(b)'};}
+export function run(mode:number){const use=['credit','fraud','convert','convert'][mode],profiling=mode===3;return {use,profiling,harm:false,influence:false,...classify(use,profiling,false,false)};}

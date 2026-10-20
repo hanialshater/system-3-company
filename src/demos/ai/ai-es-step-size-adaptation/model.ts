@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const c=mode===2?1:0,sigma=mode===1?4:.1,score=(x:number)=>-((x-1)**2),probes=[-1,-.5,.5,1].map(o=>c+sigma*o),better=probes.filter(x=>score(x)>score(c)),rate=better.length/4,next=sigma*(rate>.2?2:rate<.2?.5:1),best=better.length?better.sort((a,b)=>score(b)-score(a))[0]:c;return out([`c=${c} σ=${sigma} · ${probes.map(f3).join('/')}`,`scores=${probes.map(x=>f3(score(x))).join('/')}`,`success=${better.length}/4 · nextσ=${next} best=${best}`],`${mode}: ${better.length}/4→σ${next}`);}

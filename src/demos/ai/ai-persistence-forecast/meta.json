@@ -1,0 +1,95 @@
+{
+  "slug": "ai-persistence-forecast",
+  "title": "The last value is a real forecast",
+  "hook": "Compare two past-only predictions against changed outcomes.",
+  "domain": "ai",
+  "concept": "persistence-forecast",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "baseline-first"
+    ],
+    "doesNotKnow": [
+      "History 10/11/12/13. Persistence predicts 13; trend predicts 14. Must trend have smaller next-step absolute error?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the persistence forecast finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-persistence-forecast.c1",
+      "text": "The last value is a real forecast Compare two past-only predictions against changed outcomes. History 10/11/12/13. Persistence predicts 13; trend predicts 14. Must trend have smaller next-step absolute error? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §27; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-persistence-forecast.c2",
+      "text": "Both predictions used only the observed past. If next value was 14, persistence error was 1 and trend error 0. A reversal to 12 gave errors 1 and 2. A flat 13 gave 0 and 1. Persistence is a baseline, not an always-inferior forecast.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §27; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-persistence-forecast.c3",
+      "text": "If the next value stays at 13, which forecast is exact? Options: Persistence; Trend; Both Persistence predicts the last observed 13, giving absolute error 0; the trend predicts 14, error 1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §27; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-persistence-forecast.c4",
+      "text": "Original schematic labels, including neutral and every changed case: past:10→11→12→13 · next=sealed 14 13 actual=? · |errors|=? | past:10→11→12→13 · next=14 14 13 actual=14 · |errors|=1/0 | past:10→11→12→13 · next=12 14 13 actual=12 · |errors|=1/2 | past:10→11→12→13 · next=13 14 13 actual=13 · |errors|=0/1. Retained locally computed witnesses: next14: errors1/0 | next12: errors1/2 | next13: errors0/1. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §27; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-persistence-forecast.c5",
+      "text": " 27. persistence-forecast\n\nTarget / packet: ai-persistence-forecast · F1. Prerequisites: ai:baseline-first.\n\nNearest / distinct payoff: baseline-first → ai-baseline-first. A majority baseline concerns classification; this persistence baseline uses only the last time-series observation and tests a trend/reversal countercase.\n\nFinite primary model: Series[10,11,12,13], forecast next 14? Persistence predicts last observed 13; declared actual next 14 gives absolute error 1. Trend extrapolator uses last difference 1 and predicts 14, error 0.\n\nCountercase and mathematical boundary: If next actual reverses to 12, persistence error 1 while trend error 2. Predictions use only past values; persistence is a baseline, not always inferior.\n\nPredict and recall transfer: Predict both forecasts before actual revealed; recall flat next 13 gives persistence error 0 and trend 1.\n\nRequired observable evidence: Keep observed history, sealed next value and both predictions distinct; no use of future labels during forecast construction.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §27; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If the next value stays at 13, which forecast is exact?",
+    "options": [
+      "Persistence",
+      "Trend",
+      "Both"
+    ],
+    "answer": 0,
+    "why": "Persistence predicts the last observed 13, giving absolute error 0; the trend predicts 14, error 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:persistence-forecast",
+    "also": [],
+    "prerequisites": [
+      "ai:baseline-first"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

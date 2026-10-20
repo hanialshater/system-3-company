@@ -1,0 +1,95 @@
+{
+  "slug": "ai-isolation-forest",
+  "title": "Which point gets isolated sooner?",
+  "hook": "Average actual paths through two declared isolation trees.",
+  "domain": "ai",
+  "concept": "isolation-forest",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "decision-tree-splits"
+    ],
+    "doesNotKnow": [
+      "Points 0/1/2/10. Two fixed trees give point 10 depths 1/2 and point 1 depths 3/3. With score=2^(−mean-depth/2), which scores higher?"
+    ]
+  },
+  "misconception": "1",
+  "objective": "Compute the isolation forest finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-isolation-forest.c1",
+      "text": "Which point gets isolated sooner? Average actual paths through two declared isolation trees. Points 0/1/2/10. Two fixed trees give point 10 depths 1/2 and point 1 depths 3/3. With score=2^(−mean-depth/2), which scores higher? Options: 10; 1",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §20; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-isolation-forest.c2",
+      "text": "Point 10 averaged depth 1.5 and scored .595; point 1 averaged 3 and scored .354 with declared normalizer 2. Point 0 had depths 2/1, also averaging 1.5. One short path is not proof of anomaly. These two trees are fixed, not a fitted random forest.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §20; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-isolation-forest.c3",
+      "text": "Point 0 is short in one tree. Does that prove it is an anomaly? Options: No, paths depend on splits and scoring assumptions; Yes, any short path proves it; Only its numerical value matters Point 0 has depths 2 and 1; a short path is evidence within these declared partitions, not proof of a real anomaly.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §20; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-isolation-forest.c4",
+      "text": "Original schematic labels, including neutral and every changed case: x=0/1/2/10 · score=2^(−h/2) A 6:? .5:? 1.5:? B .5:? 6:? 1.5:? mean/score=?/? | x=0/1/2/10 · score=2^(−h/2) A 6:R B .5:R 6:R mean/score=1.5/0.595 | x=0/1/2/10 · score=2^(−h/2) A 6:L .5:R 1.5:L B .5:R 6:L 1.5:L mean/score=3/0.354 | x=0/1/2/10 · score=2^(−h/2) A 6:L .5:L B .5:L mean/score=1.5/0.595. Retained locally computed witnesses: x10: depth1.5,s0.595 | x1: depth3,s0.354 | x0: depth1.5,s0.595. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §20; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-isolation-forest.c5",
+      "text": " 20. isolation-forest\n\nTarget / packet: ai-isolation-forest · C2. Prerequisites: ai:decision-tree-splits.\n\nNearest / distinct payoff: decision-tree-splits → which-question-splits. A split tree need not classify labels; these isolation partitions use depth and a declared anomaly score with a short-path countercase.\n\nFinite primary model: Points[0,1,2,10]. Tree A splits x<6 then left x<.5 then x<1.5: depth 10=1, depth 1=3. Tree B root x<.5, then right x<6, then left x<1.5: depth 10=2, depth 1=3. Mean paths 1.5 vs 3; with declared normalizer c=2, scores 2^(-path/c)≈.594604 vs.353553.\n\nCountercase and mathematical boundary: Point 0 has depth 2 in tree A but 1 in tree B; one short path is not proof of anomaly. These are declared isolation trees, not randomly fitted forest or an empirical detector.\n\nPredict and recall transfer: Predict which point gets higher score; recall why averaging two paths differs from trusting one split.\n\nRequired observable evidence: Show only 4 points and stepwise tree path; score formula/normalizer explicit, not claimed exact sklearn forest score.\n\nSource obligation: [scikit-learn Isolation Forest description](https://scikit-learn.org/stable/modules/outlier_detection.htmlisolation-forest), acquired body. Local two fixed trees and score normalizer2 are declared teaching parameters; do not call them a reproduced fitted sklearn forest or its full scoring implementation.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §20; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Point 0 is short in one tree. Does that prove it is an anomaly?",
+    "options": [
+      "No, paths depend on splits and scoring assumptions",
+      "Yes, any short path proves it",
+      "Only its numerical value matters"
+    ],
+    "answer": 0,
+    "why": "Point 0 has depths 2 and 1; a short path is evidence within these declared partitions, not proof of a real anomaly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:isolation-forest",
+    "also": [],
+    "prerequisites": [
+      "ai:decision-tree-splits"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "ai-recurrent-memory-fades",
+  "title": "What remains after four ticks?",
+  "hook": "Follow the same initial signal through a repeated scalar multiplier.",
+  "domain": "ai",
+  "concept": "recurrent-memory-fades",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "vanishing-gradients"
+    ],
+    "doesNotKnow": [
+      "With multiplier.5 every tick, what remains of initial1 at tick4?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the recurrent memory fades construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-recurrent-memory-fades.c1",
+      "text": "What remains after four ticks? Follow the same initial signal through a repeated scalar multiplier. With multiplier.5 every tick, what remains of initial1 at tick4? Options: .0625; .25; .5; 1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-recurrent-memory-fades.c2",
+      "text": "Repeated halving left .0625 of the initial signal after four ticks. Multiplier 1 preserved it; multiplier 1.2 grew it to 2.0736. The same products gave initial-signal sensitivity in this scalar recurrence. These calculations do not describe every recurrent architecture, including those with gates.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-recurrent-memory-fades.c3",
+      "text": "How does changing the repeated multiplier change this signal? Four ticks multiply the initial signal by the fourth power: .5 shrinks it, 1 preserves it and 1.2 grows it in this scalar model.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-recurrent-memory-fades.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-recurrent-memory-fades.c5",
+      "text": "Target / packet: `ai-recurrent-memory-fades` · `C3`. Prerequisites: `ai:vanishing-gradients`.\n\nNearest / distinct payoff: `vanishing-gradients` → `gradient-fades-with-depth` (existing registered artifact; evidence applicability pending). Unlike a generic vanishing-gradient chain, this traces retention of the same initial signal through recurrent time.\n\nPrimary finite model: Scalar recurrence h_t=.5*h_(t-1), h0=1, no later input: h1=.5,h2=.25,h4=.0625. Initial-signal derivative is also .5^t.\n\nCountercase and boundary: At multiplier1 signal stays1; at1.2 it grows to2.0736 by4. Scalar linear recurrence is not a universal statement about recurrent architectures with gates.\n\nPredict and recall transfer: Predict lag4 strength; recall how changing the repeated multiplier changes memory and sensitivity.\n\nRequired evidence: Show the same initial pulse through ticks and multiplicative chain; no invented accuracy score. Shipped local computations, all cases: Half: h₀=1 · no later input 1 ×0.5 0.5 ×0.5 0.25 ×0.5 0.125 ×0.5 0.0625 ∂h₄/∂h₀=0.0625; ×0.5: h₄=0.0625; ∂=0.0625 | Keep: h₀=1 · no later input 1 ×1 1 ×1 1 ×1 1 ×1 1 ∂h₄/∂h₀=1; ×1: h₄=1; ∂=1 | Grow: h₀=1 · no later input 1 ×1.2 1.2 ×1.2 1.44 ×1.2 1.728 ×1.2 2.0736 ∂h₄/∂h₀=2.0736; ×1.2: h₄=2.0736; ∂=2.0736. Initial neutral frame: h₀=1 · no later input 1 ×.5 ? ×.5 ? ×.5 ? ×.5 ? ∂h₄/∂h₀=?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How does changing the repeated multiplier change this signal?",
+    "options": [
+      "Four ticks multiply the initial signal by the fourth power: .5 shrinks it, 1 preserves it and 1.2 grows it in this scalar model.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "Four ticks multiply the initial signal by the fourth power: .5 shrinks it, 1 preserves it and 1.2 grows it in this scalar model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:recurrent-memory-fades",
+    "also": [],
+    "prerequisites": [
+      "ai:vanishing-gradients"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

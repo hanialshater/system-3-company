@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const initial=['00','01','10','11'],old:Record<string,number>={'00':4,'01':3,'10':2,'11':1},best=initial.slice().sort((a,b)=>old[b]-old[a])[0],pop=mode===1?initial:mode===2?[...best].map(x=>x==='0'?'1':'0').join('').split(','):Array(4).fill(best),score=(x:string)=>x==='11'?10:0;return out([`population=${pop.join('/')}`,`unique=${new Set(pop).size} · allele1=${pop.map(x=>[...x].filter(b=>b==='1').length).reduce((a,b)=>a+b)}`,`new best=${Math.max(...pop.map(score))}`],`${mode}: ${pop.join('/')}→${Math.max(...pop.map(score))}`);}

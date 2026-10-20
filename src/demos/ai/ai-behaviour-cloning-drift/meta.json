@@ -1,0 +1,109 @@
+{
+  "slug": "ai-behaviour-cloning-drift",
+  "title": "Where does imitation leave its data?",
+  "hook": "Let one action change subsequent states.",
+  "domain": "ai",
+  "concept": "behaviour-cloning-drift",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:mdp-basics",
+      "ai:distribution-shift"
+    ],
+    "doesNotKnow": [
+      "Demonstrations cover only (t,0). Right sets lane1; Advance keeps lane. After Right at t0, where is the learner?"
+    ]
+  },
+  "misconception": "(1,0), seen",
+  "objective": "Compute this finite behaviour-cloning-drift model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-behaviour-cloning-drift.c1",
+      "text": "Where does imitation leave its data? Let one action change subsequent states. Demonstrations cover only (t,0). Right sets lane1; Advance keeps lane. After Right at t0, where is the learner? Options: (1,1), unseen; (1,0), seen",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §12; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-behaviour-cloning-drift.c2",
+      "text": "A single initial slip led to two unsupported later decisions and missed the center goal. Demonstration-state accuracy remained perfect. The new states were controllable, but absent from the lookup data. One mistake’s consequences are not two independent new errors.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §12; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-behaviour-cloning-drift.c3",
+      "text": "{'question': 'Can a perfect center-state fit guarantee a rollout starting in lane1?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The dataset supplies no labels for that starting lane.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §12; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-behaviour-cloning-drift.c4",
+      "text": "Addressed visible stage operands and labels: demo states=(0,0)/(1,0)/(2,0) | Advance: t+1, same lane · Right: lane1 | unseen lookup defaults Advance. Controls: Expert, One slip, Reset. Changed computed rows: (0,0) seen:A / (1,0) seen:A / (2,0) seen:A / terminal (3,0) · goal=reached | (0,0) seen:R / (1,1) unseen:A / (2,1) unseen:A / terminal (3,1) · goal=missed. Retained computed witnesses: expert supported=3/3 | slip supported=1/3. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst trained=new Set(['0,0','1,0','2,0']);let lane=0;const trace:string[]=[],supported:boolean[]=[];for(let t=0;t<3;t++){const ok=trained.has(`${t},${lane}`),action=mode&&t===0?'Right':'Advance';supported.push(ok);trace.push(`(${t},${lane}) ${ok?'seen':'unseen'}:${action==='Right'?'R':'A'}`);if(action==='Right')lane=1;}return{values:[Number(lane===0),supported.filter(Boolean).length],rows:[trace[0],trace[1],trace[2],`terminal (3,${lane}) · goal=${lane===0?'reached':'missed'}`],receipt:`${mode?'slip':'expert'} supported=${supported.filter(Boolean).length}/3`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §12; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-behaviour-cloning-drift.c5",
+      "text": "behaviour-cloning-drift\n\n**Identity / target / source:** `ai:behaviour-cloning-drift` → `ai-behaviour-cloning-drift` → `src/demos/ai/ai-behaviour-cloning-drift`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/113`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#12-behaviour-cloning-drift`. **Packet:** R2. **Level / prerequisites:** core; `ai:mdp-basics`, `ai:distribution-shift`.\n\n**Nearest / distinct payoff:** distribution-shift contrasts external distributions; this learner’s own wrong action changes which states its later policy receives.\n\n**Computed primary model:** States(t,lane), t=0..3, lane0(center) or1(right). Expert demonstrations only(0,0),(1,0),(2,0) with Advance. Advance increments t, keeps lane; Right increments t and sets lane1; Correct increments t and sets lane0. Lookup imitation defaults unseen states to Advance. Original rollout stays lane0 and reaches goal at t3/lane0. Force one imitation error Right at t0: visited states(1,1),(2,1) are outside demonstrations, defaultAdvance keeps lane1, terminal goal missed.\n\n**Countercase / boundary:** One initial action error causes two unsupported subsequent decisions under this model, not independent new mistakes. The new states are outside the demonstration set, not inherently impossible to control. If the evaluation starts at lane1, even a perfect fit on demonstrated center states says nothing about that initial state.\n\n**Prediction / transfer recall:** Predict the state after the first wrongRight; recall how expert-state accuracy can remain100% while the slipped rollout fails.\n\n**Intervention / retained witness:** Advance one transition then Force slip restarts the identical episode with the single declared error. Highlight each visited state’s demonstration membership and action. Retain expert and slipped traces through Reset. Correct action is visible in the transition rule but not silently inserted by the learner.\n\n**Source obligation:** [Ross–Gordon–Bagnell original DAgger PDF](https://proceedings.mlr.press/v15/ross11a/ross11a.pdf), opened2026-10-19, §2.1 expert-state supervision, §3 dataset aggregation/Algorithm3.1. The local finite state lookup/forced slip is not the paper’s driving benchmark or a claim of a universal recovery guarantee.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §12; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a perfect center-state fit guarantee a rollout starting in lane1?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The dataset supplies no labels for that starting lane."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:behaviour-cloning-drift",
+    "also": [],
+    "prerequisites": [
+      "ai:mdp-basics",
+      "ai:distribution-shift"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

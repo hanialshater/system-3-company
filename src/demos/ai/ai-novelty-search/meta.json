@@ -1,0 +1,97 @@
+{
+  "slug": "ai-novelty-search",
+  "title": "Test novelty search",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "novelty-search",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "deceptive-objective"
+    ],
+    "doesNotKnow": [
+      "Same missing-BG graph. Initial archive S(0,0),A(1,0),B(2,0). Novelty=min Euclidean distance to archive; choose positive maximum neighbour. From S, choose A or D(0,1)?"
+    ]
+  },
+  "misconception": "A",
+  "objective": "Compute the declared novelty search model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-novelty-search.c1",
+      "text": "Test novelty search Compare a declared mechanism with its changed case. Same missing-BG graph. Initial archive S(0,0),A(1,0),B(2,0). Novelty=min Euclidean distance to archive; choose positive maximum neighbour. From S, choose A or D(0,1)? Options: D; A",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §11; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-novelty-search.c2",
+      "text": "Archive distance selected D and followed the detour to G; the goal-greedy trace still stalled at B. Adding Z made the novelty rule choose an irrelevant dead end. Novelty distance and goal progress are different objectives; this endpoint illustration is not the original evolutionary algorithm.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §11; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-novelty-search.c3",
+      "text": "{\"question\": \"Can an irrelevant branch be more novel than a useful route?\", \"options\": [\"Yes: Z has novelty √50\", \"No: novel means closer to G\"], \"answer\": 0, \"why\": \"Archive distance to Z exceeds D’s novelty1, but Z is a dead end.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §11; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-novelty-search.c4",
+      "text": "novelty-search\n\n**Identity / target / source:** `ai:novelty-search` → `ai-novelty-search` → `src/demos/ai/ai-novelty-search`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/184`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#11-novelty-search`. **Packet:** E1. **Level / prerequisites:** core; `ai:deceptive-objective`.\n\n**Nearest / distinct payoff:** deceptive-objective rewards a misleading goal proxy; this computes archive-relative behaviour distances and selects a different route.\n\n**Computed primary model:** Use the precedingS/A/B dead-end graph and detourD/E/F/H/G. Initial archive positionsS,A,B from an earlier stalled run. At restartedS, novelty of candidateendpoint is its Euclidean distance to closest archived point (k1). A novelty0; D novelty1, so chooseD, append its endpoint, then repeatedly prefer the most novel neighbour with positive distance. E,F,H,G each score1 relative to accumulated archive, reaching goal via detour.\n\n**Countercase / boundary:** Add reachable dead-endZ(−5,5) with edgeS–Z. Its nearest archived distance sqrt50>1, so the same novelty rule choosesZ then stalls (only neighbourS has novelty0). Novelty objective is not goal success; archive/descriptor choices matter. This one-endpoint greedy illustration is not the original evolutionary algorithm.\n\n**Prediction / transfer recall:** Predict whether goal-proxy-favouredA or archive-novelD is chosen first; recall adding a more novel irrelevant branch can distract the same rule.\n\n**Intervention / retained witness:** Novelty step recomputes archive distances and appends endpoints; Add branch reruns on changed graph while retaining successful original novelty and failed goal-greedy witnesses. Keep novelty units distinct from negative goal distance.\n\n**Source obligation:** [Lehman–Stanley original novelty paper PDF](https://www.cs.swarthmore.edu/~meeden/DevelopmentalRobotics/lehman_ecj11.pdf), opened2026-10-19, deception/novelty motivation and behavioural novelty definition. Exact graph, distances/archive and candidates here are declared, not the paper maze experiment or a claim novelty always solves tasks. Opened §4 nearest-neighbour sparseness Eq1, PDFp13; k1 and greedy endpoint selection are explicit simplifications.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Archive run/Add Z/Goal greedy; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §11; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can an irrelevant branch be more novel than a useful route?",
+    "options": [
+      "Yes: Z has novelty √50",
+      "No: novel means closer to G"
+    ],
+    "answer": 0,
+    "why": "Archive distance to Z exceeds D’s novelty1, but Z is a dead end."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:novelty-search",
+    "also": [],
+    "prerequisites": [
+      "ai:deceptive-objective"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

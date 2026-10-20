@@ -1,0 +1,102 @@
+{
+  "slug": "ai-knowledge-cutoff",
+  "title": "Which dated record can answer?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "knowledge-cutoff",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:next-token"
+    ],
+    "doesNotKnow": [
+      "Adding February evidence changes which part of this frozen-ledger toy?"
+    ]
+  },
+  "misconception": "The frozen January record",
+  "objective": "Use the distinct declared knowledge-cutoff mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-knowledge-cutoff.c1",
+      "text": "hook/predict: Adding February evidence changes which part of this frozen-ledger toy? Options: The frozen January record; The available evidence",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-knowledge-cutoff.c2",
+      "text": "stage input operands: \"Fictional Aster · Jan 1:17 · query Feb 15\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-knowledge-cutoff.c3",
+      "text": "reveal: The frozen January record stayed 17; retrieved February evidence supplied 19. March’s 21 was ineligible for a February query. Before January, the answer was Unknown. This fictional latest-eligible-source rule is not an LLM simulation or a guarantee that retrieval is reliable.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-knowledge-cutoff.c4",
+      "text": "recall: For an April query with all three records, which answer is eligible and latest? The March record is latest and no later than April.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-knowledge-cutoff.c5",
+      "text": "stage computation: Fictional Aster gate hours: frozen ledger record effective2026-01-01 says closes17; retrieved record effective2026-02-01 says19. Query as-of2026-02-15. Rule: choose the latest effective record not later than query among available records. Frozen-only answer17 cites January; adding retrieved February record answers19 cites February. The original ledger does not change.\n\n**Countercase / boundary:** Add future record effective2026-03-01 saying21. It is ineligible for February query; output remains19. If no eligible record exists, output Unknown, never fill in a current fact from narrative fluency. This is a source-selection toy, not a production LLM simulation or assurance that retrieval is reliable.\n\n**Prediction / transfer recall:** Predict whether adding the February source changes the frozen record or only available evidence; recall an April query would allow the March record21, whereas a prior-December query yields Unknown.\n\n**Intervention / reachable witness:** Retrieve update and Add future source recompute selected dated record, answer and provenance arrow; retain original17 source and current19. No actual news, external network retrieval or real source attribution is needed.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-knowledge-cutoff.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: Fictional Aster · Jan 1:17 · query Feb 15 ? Retrieve Feb Add March Before Jan Reset 1: frozen17; 2026-02-15: 19 ← 2026-02-01 2: frozen17; 2026-02-15: 19 ← 2026-02-01 3: frozen17; 2025-12-01: Unknown ← ∅ | inspection 0: Fictional Aster · Jan 1:17 · query Feb 15 01-01 17 02-01 19 Retrieve Feb Add March Before Jan Reset 1: frozen17; 2026-02-15: 19 ← 2026-02-01 2: frozen17; 2026-02-15: 19 ← 2026-02-01 3: frozen17; 2025-12-01: Unknown ← ∅ | inspection 1: Fictional Aster · Jan 1:17 · query Feb 15 01-01 17 02-01 19 03-01 21 Retrieve Feb Add March Before Jan Reset 1: frozen17; 2026-02-15: 19 ← 2026-02-01 2: frozen17; 2026-02-15: 19 ← 2026-02-01 3: frozen17; 2025-12-01: Unknown ← ∅ | inspection 2: Fictional Aster · Jan 1:17 · query Feb 15 01-01 17 02-01 19 03-01 21 Retrieve Feb Add March Before Jan Reset 1: frozen17; 2026-02-15: 19 ← 2026-02-01 2: frozen17; 2026-02-15: 19 ← 2026-02-01 3: frozen17; 2025-12-01: Unknown ← ∅",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#13-knowledge-cutoff; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For an April query with all three records, which answer is eligible and latest?",
+    "options": [
+      "21",
+      "19",
+      "Unknown"
+    ],
+    "answer": 0,
+    "why": "The March record is latest and no later than April."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:knowledge-cutoff",
+    "also": [],
+    "prerequisites": [
+      "ai:next-token"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

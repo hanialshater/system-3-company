@@ -1,0 +1,109 @@
+{
+  "slug": "ai-irl-reward-transfer",
+  "title": "Can a reward survive a new wall?",
+  "hook": "Replan a declared goal instead of replaying actions.",
+  "domain": "ai",
+  "concept": "irl-reward-transfer",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:inverse-rl-goal-inference",
+      "ai:behaviour-cloning-drift"
+    ],
+    "doesNotKnow": [
+      "S–M–G top row; D–E–F bottom; vertical links. M–G closes. Does Right,Right still reach G?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite irl-reward-transfer model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-irl-reward-transfer.c1",
+      "text": "Can a reward survive a new wall? Replan a declared goal instead of replaying actions. S–M–G top row; D–E–F bottom; vertical links. M–G closes. Does Right,Right still reach G? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §15; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-irl-reward-transfer.c2",
+      "text": "The old two-right-action clone hit the wall and returned −2. Replanning the same goal found a four-move route worth 6. Replanning a wrongly inferred E goal worked mechanically but earned true G-return −2. Suitable reward and dynamics assumptions matter.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §15; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-irl-reward-transfer.c3",
+      "text": "{'question': 'Does successful replanning prove the inferred goal is correct?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'A planner can reliably reach the wrong supplied goal.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §15; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-irl-reward-transfer.c4",
+      "text": "Addressed visible stage operands and labels: S—M—G / D—E—F; vertical links | M–G blocked · cost1 · goal reward10 | horizon4 · ties Right,Down,Left,Up. Controls: Goal G, Wrong E, Reset. Changed computed rows: wall M×G; original S→M→G=8 / clone S→M→blocked: attempts2,return−2 / goalG: S→M→E→F→G / moves=4; inferred=6; true=6 | wall M×G; original S→M→G=8 / clone S→M→blocked: attempts2,return−2 / goalE: S→M→E / moves=2; inferred=8; true=-2. Retained computed witnesses: goalG:true=6,moves=4 | goalE:true=-2,moves=2. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst nodes:Record<string,number[]>={S:[0,0],M:[1,0],G:[2,0],D:[0,1],E:[1,1],F:[2,1]},goal=mode?'E':'G',q=[['S']],seen=new Set(['S']);let path:string[]=[];while(q.length){const p=q.shift()!,v=p.at(-1)!;if(v===goal){path=p;break;}for(const[dx,dy]of[[1,0],[0,1],[-1,0],[0,-1]]){const[x,y]=nodes[v],w=Object.keys(nodes).find(k=>nodes[k][0]===x+dx&&nodes[k][1]===y+dy);if(!w||seen.has(w)||[v,w].sort().join('')==='GM')continue;seen.add(w);q.push([...p,w]);}}const moves=path.length-1,trueReturn=(goal==='G'?10:0)-moves;return{values:[moves,trueReturn,10-moves],rows:[`wall M×G; original S→M→G=8`,`clone S→M→blocked: attempts2,return−2`,`goal${goal}: ${path.join('→')}`,`moves=${moves}; inferred=${10-moves}; true=${trueReturn}`],receipt:`goal${goal}:true=${trueReturn},moves=${moves}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §15; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-irl-reward-transfer.c5",
+      "text": "irl-reward-transfer\n\n**Identity / target / source:** `ai:irl-reward-transfer` → `ai-irl-reward-transfer` → `src/demos/ai/ai-irl-reward-transfer`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/119`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#15-irl-reward-transfer`. **Packet:** R2. **Level / prerequisites:** core; `ai:inverse-rl-goal-inference`, `ai:behaviour-cloning-drift`.\n\n**Nearest / distinct payoff:** inverse-rl-goal-inference scores compatible rewards; this tests a retained reward map under changed dynamics rather than replaying an old action sequence.\n\n**Computed primary model:** Original grid nodesS(0,0),M(1,0),G(2,0),D(0,1),E(1,1),F(2,1), unit orthogonal edges. Reward10 on first reachingG, cost1 per attempted move, gamma1, horizon4. Original shortest policyS→M→G returns8. Clone action sequenceRight,Right. Block edgeM–G: replay ends atM after the blocked second attempt, return−2. Replan by BFS with same goal reward finds4-move pathS→M→E→F→G, return6 (tie orderRight,Down,Left,Up).\n\n**Countercase / boundary:** A wrongly inferred goalE replans toE in2moves and receives inferred return8 but true G-return−2. Reward transfer only helps when reward/dynamics assumptions are suitable; this supplied reward is not uniquely recovered by IRL. No illegal move passes through a barrier.\n\n**Prediction / transfer recall:** Predict whether the old action sequence survives the wall change; recall changing inferred goal can spoil transfer even when replanning executes correctly.\n\n**Intervention / retained witness:** Move wall computes blocked clone trace and shortest replanned trace in the same original schematic, with originalG path retained. Wrong goal shows inferred reward separately from true reward; keep cost/horizon and blocked attempted move visible.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Method lead: [Ng–Russell2000](https://ai.stanford.edu/~ang/papers/icml00-irl.pdf), not acquired here. No inference-identifiability theorem is added; reward compatibility and toy BFS are explicitly declared.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §15; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does successful replanning prove the inferred goal is correct?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "A planner can reliably reach the wrong supplied goal."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:irl-reward-transfer",
+    "also": [],
+    "prerequisites": [
+      "ai:inverse-rl-goal-inference",
+      "ai:behaviour-cloning-drift"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,2 @@
+// Declared finite construction; pure operations, no training or external service.
+export function compute(mode: number) { const x = mode === 0 ? [0, 0, 1, 1] : mode === 1 ? [.1, .4, .6, .9] : [0, .05, .1, .15], y = mode === 0 ? [0, 1, 0, 1] : [.8, .2, .5, .1], points = x.map((a, i) => [a, y[i]]), scores = points.map(p => 1 - Math.abs(p[0] - .6)), best = Math.max(...scores), unique = new Set(x).size; return { points, scores, best, unique, snapshot: `${['Grid', 'DrawA', 'DrawB'][mode]} [${scores.map(x => Number(x.toFixed(2)))}] max${Number(best.toFixed(2))}; x#${unique}` }; }

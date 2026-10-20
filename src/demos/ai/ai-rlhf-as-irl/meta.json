@@ -1,0 +1,109 @@
+{
+  "slug": "ai-rlhf-as-irl",
+  "title": "Do preferences identify one reward?",
+  "hook": "Fit a difference, then inspect a new pair.",
+  "domain": "ai",
+  "concept": "rlhf-as-irl",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:preference-ranking",
+      "ai:inverse-rl-goal-inference"
+    ],
+    "doesNotKnow": [
+      "A>B occurs 3 times; B>A once. Features A=(1,0), B=(0,1), C=(1,1). Does this fix both reward weights?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite rlhf-as-irl model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-rlhf-as-irl.c1",
+      "text": "Do preferences identify one reward? Fit a difference, then inspect a new pair. A>B occurs 3 times; B>A once. Features A=(1,0), B=(0,1), C=(1,1). Does this fix both reward weights? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §16; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-rlhf-as-irl.c2",
+      "text": "Both reward hypotheses fitted the observed pair with probability .75 and equal likelihood. Their heldout A-versus-C predictions differed. Fitting a reward difference is not unique reward recovery, a full trajectory-IRL algorithm, or recovered human values.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §16; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-rlhf-as-irl.c3",
+      "text": "{'question': 'Does adding one common constant to all candidate rewards change pair probabilities?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Pairwise differences cancel that constant.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §16; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-rlhf-as-irl.c4",
+      "text": "Addressed visible stage operands and labels: A>B=3; B>A=1 · P=σ(rA−rB) | features A=1/0 B=0/1 C=1/1. Controls: θ=(ln3,0), θ=(0,−ln3), Reset. Changed computed rows: θ=1.099/0 · r=1.099/0/1.099 / P(A>B)=0.75 · P(A>C)=0.5 / candidate Δ=0/ln3/ln9 / log likelihood=-2.773/-2.249/-2.619 | θ=0/-1.099 · r=0/-1.099/-1.099 / P(A>B)=0.75 · P(A>C)=0.75 / candidate Δ=0/ln3/ln9 / log likelihood=-2.773/-2.249/-2.619. Retained computed witnesses: θ1: train0.75 held0.5 | θ2: train0.75 held0.75. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst wins=3,losses=1,d=Math.log(wins/losses),sig=(x:number)=>1/(1+Math.exp(-x)),theta=mode?[0,-d]:[d,0],F=[[1,0],[0,1],[1,1]],r=F.map(x=>dot(theta,x)),prob=sig(r[0]-r[1]),held=sig(r[0]-r[2]),deltas=[0,d,Math.log(9)],ll=deltas.map(x=>3*Math.log(sig(x))+Math.log(1-sig(x)));return{values:[prob,held,...ll],rows:[`θ=${theta.map(f).join('/')} · r=${r.map(f).join('/')}`,`P(A>B)=${f(prob)} · P(A>C)=${f(held)}`,`candidate Δ=0/ln3/ln9`,`log likelihood=${ll.map(f).join('/')}`],receipt:`θ${mode+1}: train${f(prob)} held${f(held)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §16; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-rlhf-as-irl.c5",
+      "text": "rlhf-as-irl\n\n**Identity / target / source:** `ai:rlhf-as-irl` → `ai-rlhf-as-irl` → `src/demos/ai/ai-rlhf-as-irl`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/120`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#16-rlhf-as-irl`. **Packet:** R2. **Level / prerequisites:** core; `ai:preference-ranking`, `ai:inverse-rl-goal-inference`.\n\n**Nearest / distinct payoff:** dpo-direct-preference directly updates policy odds; this fits a latent reward-difference likelihood and exposes its nonidentifiability on a new pair.\n\n**Computed primary model:** Fictional pairwise preferencesA>B observed3times andB>A once. Bradley–Terry likelihood P(A>B)=sigmoid(rA−rB) is maximized at difference ln3, probability.75. Candidate features A=(1,0),B=(0,1),C=(1,1), rewardr=theta dotfeatures. Theta1=(ln3,0) andtheta2=(0,−ln3) both fit the training pair equally.\n\n**Countercase / boundary:** On heldoutA versusC, theta1 gives tieprobability.5; theta2 givesP(A>C)=.75. Training preferences do not uniquely determine rewards or new comparisons. This is finite preference-based reward inference, not a full trajectory-IRL algorithm or human-values recovery claim; a prescribed rule is different from a fitted reward hypothesis.\n\n**Prediction / transfer recall:** Predict whether the3:1 pair fixes both feature weights; recall adding a common constant to every candidate reward leaves pair probabilities unchanged.\n\n**Intervention / retained witness:** Fit difference computes likelihood for candidate deltas0/ln3/ln9, then Switch reward hypothesis evaluates identical training fit and different heldout comparison. Retain both hypotheses and their pair predictions; do not replace uncertain inference with a correctness badge.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. [DPO original body](https://arxiv.org/html/2305.18290v3), acquired in preceding30d run, §3 Bradley–Terry preference formulation and §4 mapping. This packet uses only the locally stated likelihood; no new body acquisition or independent proof is claimed.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §16; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does adding one common constant to all candidate rewards change pair probabilities?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Pairwise differences cancel that constant."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:rlhf-as-irl",
+    "also": [],
+    "prerequisites": [
+      "ai:preference-ranking",
+      "ai:inverse-rl-goal-inference"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

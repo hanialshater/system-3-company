@@ -1,0 +1,105 @@
+{
+  "slug": "ai-actor-critic",
+  "title": "One surprise, two changes",
+  "hook": "Follow a value estimate and an action probability separately.",
+  "domain": "ai",
+  "concept": "actor-critic",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Terminal one-action update with Bernoulli actor; critic value and actor probability are separate quantities. Both gradients use pre-update state."
+    ]
+  },
+  "misconception": "Terminal one-action update with Bernoulli actor; critic value and actor probability are separate quantities. Both gradients use pre-update state.",
+  "objective": "Compute and contrast the finite actor critic cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-actor-critic.c1",
+      "text": "export function update(reward:number){const oldV=1,oldTheta=0,oldP=1/(1+Math.exp(-oldTheta)),delta=reward-oldV;const value=oldV+.5*delta,theta=oldTheta+.2*delta*(1-oldP);return {reward,oldV,oldTheta,oldP,delta,value,theta,p:1/(1+Math.exp(-theta))};}\nexport function run(mode:number){return update(mode===1?0:2);}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">r={r.reward} − V={r.oldV} → δ={show(r.delta)}</text><path d=\"M145 23 L72 43 M145 23 L218 43\" className={s.line}/><rect x=\"3\" y=\"43\" width=\"137\" height=\"78\" rx=\"8\" className={s.box}/><rect x=\"150\" y=\"43\" width=\"137\" height=\"78\" rx=\"8\" className={s.box}/><text x=\"71\" y=\"61\" textAnchor=\"middle\">Critic α=.5</text><text x=\"71\" y=\"83\" textAnchor=\"middle\">V: 1 → {show(r.value)}</text><text x=\"71\" y=\"105\" textAnchor=\"middle\">1 + .5δ</text><text x=\"218\" y=\"61\" textAnchor=\"middle\">Actor α=.2</text><text x=\"218\" y=\"82\" textAnchor=\"middle\">θ: 0 → {show(r.theta)}</text><text x=\"218\" y=\"105\" textAnchor=\"middle\">p: .5 → {show(r.p,4)}</text>\nr=2; V=1; θ=0; p(A)=.5; αV=.5; αactor=.2; ∇log(p)=.5; terminal.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-actor-critic.c2",
+      "text": "One surprise, two changes; Follow a value estimate and an action probability separately.; {\"question\": \"Terminal return 2; old value 1; value rate .5. Actor starts θ=0, p(A)=.5; actor rate .2 and log-gradient .5. After this update, p(A) is?\", \"options\": [\".4750\", \".5000\", \".5250\"], \"answer\": 2}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-actor-critic.c3",
+      "text": "Your return of 2 produced surprise 1: the critic moved to 1.5 while the separate actor probability rose to .5250. Return 0 reversed both changes. Both updates used the old estimates; one probability change establishes no optimal policy.\n`r=${r.reward}: V=${f(r.value)}, p=${f(r.p,4)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-actor-critic.c4",
+      "text": "{\"question\": \"Return 0, old V=1, θ=0, rates .5 and .2: which pair follows?\", \"options\": [\"V=.5, p≈.4750\", \"V=.5, p≈.5250\", \"V=1.5, p≈.4750\"], \"answer\": 0, \"why\": \"δ=−1 lowers V by .5 and θ by .1; sigmoid(−.1)≈.4750.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-actor-critic.c5",
+      "text": "Terminal one-action update with Bernoulli actor; critic value and actor probability are separate quantities. Both gradients use pre-update state. Controls: Return 2, Return 0, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Return 0, old V=1, θ=0, rates .5 and .2: which pair follows?",
+    "options": [
+      "V=.5, p≈.4750",
+      "V=.5, p≈.5250",
+      "V=1.5, p≈.4750"
+    ],
+    "answer": 0,
+    "why": "δ=−1 lowers V by .5 and θ by .1; sigmoid(−.1)≈.4750."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:actor-critic",
+    "also": [],
+    "prerequisites": [
+      "ai:policy-gradient-baseline",
+      "ai:td-error-surprise"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

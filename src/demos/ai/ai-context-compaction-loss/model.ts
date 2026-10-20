@@ -1,0 +1,2 @@
+// Invented finite construction. No real model or external service is simulated.
+export function compute(mode: number) { const trace: Record<string, string> = { key: '42', color: 'blue', deadline: '9' }; const retain = mode === 2 ? ['key', 'deadline'] : ['key', 'color']; const summary = Object.fromEntries(retain.map(k => [k, trace[k]])); const query = mode === 1 ? 'key' : 'deadline'; return { trace, summary, retain, query, answer: summary[query] ?? 'unknown', full: trace[query] }; }

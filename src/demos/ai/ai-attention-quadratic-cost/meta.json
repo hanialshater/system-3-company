@@ -1,0 +1,122 @@
+{
+  "slug": "ai-attention-quadratic-cost",
+  "title": "Twice the text, four times the pairs",
+  "hook": "Count relationships, not just tokens.",
+  "domain": "ai",
+  "concept": "attention-quadratic-cost",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "dense all-pairs attention has a token-pair score count growing quadratically with sequence length; not every transformer cost, latency or memory allocation equals that count."
+    ]
+  },
+  "misconception": "dense all-pairs attention has a token-pair score count growing quadratically with sequence length; not every transformer cost, latency or memory allocation equals that count.",
+  "objective": "dense all-pairs attention has a token-pair score count growing quadratically with sequence length; not every transformer cost, latency or memory allocation equals that count.",
+  "claims": [
+    {
+      "id": "ai.ai-attention-quadratic-cost.c1",
+      "text": "Each full matrix enumerates every ordered query/key pair. Length4/8 gives16/64,ratio4. Causal allowed condition is k<=q including self, producing10/36,ratio3.6, while logical dimensions remain4x4/8x8. Length6/12 full counts36/144. Every cell is computed from its row/column and permission rule, not authored frame labels.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-attention-quadratic-cost.c2",
+      "text": "Title: Twice the text, four times the pairs Hook: Count relationships, not just tokens. Each of 4 queries scores each of 4 keys. If both lengths become 8, how many ordered pair scores exist? Options: 64 / 32 / 16; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-attention-quadratic-cost.c3",
+      "text": "The retained full matrices contain 16 and 64 ordered pairs. Doubling both dimensions multiplies this count by four. A causal mask permits only 10 and 36 of those pairs here. Pair counts are not measurements of wall-clock time, energy, total model compute or mandatory memory allocation.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-attention-quadratic-cost.c4",
+      "text": "Full attention has 6 queries and 6 keys, then 12 of each. What are the pair counts? Full ordered pairs are queries times keys: 6 times 6, then 12 times 12.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-attention-quadratic-cost.c5",
+      "text": "One head, dense logical pair scores. Sparse kernels, cache strategies, practical allocations and timings are outside this toy; causal finite ratios need not equal exactly4.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-attention-quadratic-cost.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html (author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Full attention has 6 queries and 6 keys, then 12 of each. What are the pair counts?",
+    "options": [
+      "36 and 144",
+      "12 and 24",
+      "36 and 72"
+    ],
+    "answer": 0,
+    "why": "Full ordered pairs are queries times keys: 6 times 6, then 12 times 12."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:attention-quadratic-cost",
+    "also": [],
+    "prerequisites": [
+      "ai:attention-weights"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "neural-language",
+      "transformer-architecture",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://d2l.ai/chapter_attention-mechanisms-and-transformers/self-attention-and-positional-encoding.html",
+    "locator": "author textbook §11.6 self-attention complexity and sequence relationships; finite grid enumeration local",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

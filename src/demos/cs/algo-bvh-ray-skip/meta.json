@@ -1,0 +1,150 @@
+{
+  "slug": "algo-bvh-ray-skip",
+  "title": "Which shapes need a test?",
+  "hook": "Two triangles share a box. Follow a ray past them.",
+  "domain": "cs",
+  "concept": "algo-bvh-ray-skip",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Tree traversal",
+      "Cartesian coordinates",
+      "Ray direction",
+      "Containing rectangles"
+    ],
+    "doesNotKnow": [
+      "A conservative box miss rules out enclosed shapes, but a box hit only retains candidates."
+    ]
+  },
+  "objective": "Explain conservative box rejection while separating candidates from primitive hits.",
+  "misconception": "A ray that hits a parent box must hit a triangle inside.",
+  "claims": [
+    {
+      "id": "cs.algo-bvh-ray-skip.c1",
+      "text": "The ray misses the parent box. How many triangle tests are still needed? 0 / 1 / 2; correct 0.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#predict; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c2",
+      "text": "The closed box [2,4]² contains T1 [(2,3),(2,4),(2.5,4)] and T2 [(3.5,2),(4,2),(4,2.5)]. Primary ray (0,1)+t(1,0); contrast (0,0)+t(1,1), t≥0.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#picture; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg.picture labelled primary dotted/current solid ray, triangle silhouettes, explicit independent x/y scales and t=2/t=4 contrast labels"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c3",
+      "text": "Primary: 1 box test, 0 triangle tests, 0 hits. Contrast: 1 box test, 2 triangle tests, 0 hits.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#summary; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p.summary primary/current separately named box/triangle/hit counters"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c4",
+      "text": "Primary: 1 box test, 0 triangle tests. Both triangles are inside the box; a ray missing it cannot hit either.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#reveal-primary; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-primary"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c5",
+      "text": "The diagonal entered at t=2 and left at t=4. Its 2 candidate tests found 0 triangle hits.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#reveal-contrast; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-contrast, contrast only"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c6",
+      "text": "A box hit retains candidates, not a proven triangle hit. A box hit would retain candidates, not prove a triangle hit.",
+      "support": "source",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#reveal-principle; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-contrast final sentence or p#reveal-principle"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c7",
+      "text": "Primary skips T1 and T2; contrast keeps triangle candidates but finds no hits. Ray t ≥ 0. Primary dotted/current solid ray strokes are distinct; the independently scaled x/y axes are explicitly labelled.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/Demo.tsx#stage-status; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg aria-label, p.summary and primary/current stroke key"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c8",
+      "text": "Closed slabs include tangency; parallel directions outside a slab miss; t starts at zero. No floating tolerance is used for these exact finite fixtures.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-bvh-ray-skip/model.ts#boxInterval; src/demos/cs/algo-bvh-ray-skip/model.ts finite implementation/fixtures; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c9",
+      "text": "Which shapes need a test?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-bvh-ray-skip/meta.json#title; src/demos/cs/algo-bvh-ray-skip/model.ts and model.test.mjs; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c10",
+      "text": "Two triangles share a box. Follow a ray past them.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-bvh-ray-skip/meta.json#hook; src/demos/cs/algo-bvh-ray-skip/model.ts and model.test.mjs; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bvh-ray-skip.c11",
+      "text": "A ray intersects a parent box. Must it hit a triangle inside? Yes / No. No. Enclosing space can be empty along the ray.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-bvh-ray-skip/meta.json#recall; src/demos/cs/algo-bvh-ray-skip/model.ts and model.test.mjs; https://pbr-book.org/4ed/Primitives_and_Intersection_Acceleration/Bounding_Volume_Hierarchies — 4th edition §7.3 opening paragraphs, opened 2026-10-19; bounds enclose descendants and a missed bound permits skipping its subtree. This lesson is a finite 2D illustration; closed intervals and exact rational fixtures are local conventions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ray intersects a parent box. Must it hit a triangle inside?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "No. Enclosing space can be empty along the ray."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-bvh-ray-skip",
+    "also": [],
+    "prerequisites": [
+      "tree-traversal"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

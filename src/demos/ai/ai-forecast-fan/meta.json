@@ -1,0 +1,97 @@
+{
+  "slug": "ai-forecast-fan",
+  "title": "How do paths spread?",
+  "hook": "Enumerate random walks and label the band honestly.",
+  "domain": "ai",
+  "concept": "forecast-fan",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "persistence-forecast",
+      "chaos-butterfly"
+    ],
+    "doesNotKnow": [
+      "X starts at 10 with ±1 noise. Over four steps, does independent noise or one perfectly shared sign create larger variance?"
+    ]
+  },
+  "misconception": "Independent noise",
+  "objective": "Compute the forecast fan finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-forecast-fan.c1",
+      "text": "How do paths spread? Enumerate random walks and label the band honestly. X starts at 10 with ±1 noise. Over four steps, does independent noise or one perfectly shared sign create larger variance? Options: Shared sign; Independent noise",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §28; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-forecast-fan.c2",
+      "text": "Four independent steps gave variance 4 and standard deviation 2. Sharing one sign across steps gave outcomes 6/14 and variance 16. At two independent steps, the mean±SD band covered only .5 mass. A spread band is not automatically a nominal confidence interval.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §28; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-forecast-fan.c3",
+      "text": "At two independent steps, what mass lies in 10±√2? Options: .5, the mass at 10; About .68 by definition; 1, all outcomes The outcomes are 8,10,12 with masses .25,.5,.25. Only 10 lies within 10±√2, so coverage is .5.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §28; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-forecast-fan.c4",
+      "text": "Original schematic labels, including neutral and every changed case: X₀=10 · noise=±1 · mean±SD variance=? · band-mass=? | X₀=10 · noise=±1 · mean±SD 6 8 10 12 14 variance=4 · band-mass=0.875 | X₀=10 · noise=±1 · mean±SD 6 14 variance=16 · band-mass=1 | X₀=10 · noise=±1 · mean±SD 8 10 12 variance=2 · band-mass=0.5. Retained locally computed witnesses: h4: v4,band-mass0.875 | Shared: v16,band-mass1 | h2: v2,band-mass0.5. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §28; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-forecast-fan.c5",
+      "text": " 28. forecast-fan\n\nTarget / packet: ai-forecast-fan · F1. Prerequisites: ai:persistence-forecast, big-ideas:chaos-butterfly.\n\nNearest / distinct payoff: persistence-forecast → ai-persistence-forecast. A point forecast gives one number; this propagates explicit process-noise paths and distinguishes a standard-deviation band from its actual covered mass.\n\nFinite primary model: Random walk X_h=10+sum(noise_i), independent noise±1 equally. h=1 outcomes 9/11 sd 1; h=2 outcomes 8,10,12 masses.25,.5,.25 sd sqrt 2; h=4 variance 4, sd 2. Report mean±sd as spread band, not confidence interval.\n\nCountercase and mathematical boundary: Perfectly correlated noise uses one shared sign: h=4 outcomes 6/14, variance 16, sd 4. Independence changes widening law. Intervals are not automatically nominal 68/95 coverage for discrete walks.\n\nPredict and recall transfer: Predict which model widens faster; recall h=2 independent band 10±sqrt 2 covers mass=.5, not 68%.\n\nRequired observable evidence: Enumerate finite walk outcomes/masses and label band definition explicitly; no invented forecast uncertainty from real data.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §28; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At two independent steps, what mass lies in 10±√2?",
+    "options": [
+      ".5, the mass at 10",
+      "About .68 by definition",
+      "1, all outcomes"
+    ],
+    "answer": 0,
+    "why": "The outcomes are 8,10,12 with masses .25,.5,.25. Only 10 lies within 10±√2, so coverage is .5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:forecast-fan",
+    "also": [],
+    "prerequisites": [
+      "ai:persistence-forecast",
+      "big-ideas:chaos-butterfly"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

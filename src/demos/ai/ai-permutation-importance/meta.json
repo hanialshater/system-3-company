@@ -1,0 +1,95 @@
+{
+  "slug": "ai-permutation-importance",
+  "title": "Perturb one column or both?",
+  "hook": "Recompute held-out loss after explicit permutations.",
+  "domain": "ai",
+  "concept": "permutation-importance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "correlated-coefficients"
+    ],
+    "doesNotKnow": [
+      "x1=x2=y=[0,1,2]; predictor=(x1+x2)/2. Which hurts more: reversing x1 alone, or both columns together?"
+    ]
+  },
+  "misconception": "x1 alone",
+  "objective": "Compute the permutation importance finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-permutation-importance.c1",
+      "text": "Perturb one column or both? Recompute held-out loss after explicit permutations. x1=x2=y=[0,1,2]; predictor=(x1+x2)/2. Which hurts more: reversing x1 alone, or both columns together? Options: Both together; x1 alone",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §23; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-permutation-importance.c2",
+      "text": "Reversing x1 alone made predictions [1,1,1], MSE .667. Reversing both paired columns gave [2,1,0], MSE 2.667. Under a predictor using x2 alone, reversing x1 had zero effect. Importance depends on the fixed predictor, data, and perturbation; it is not causal credit.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §23; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-permutation-importance.c3",
+      "text": "Under predictor x2 alone, what is x1’s reversal importance? Options: 0, because the predictor ignores x1; 2.667, because columns correlate; It proves x1 is causally irrelevant Changing x1 leaves the fixed x2-only predictions unchanged; this local importance does not establish causal irrelevance.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §23; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-permutation-importance.c4",
+      "text": "Original schematic labels, including neutral and every changed case: baseline:x1=x2=y=0/1/2 · MSE=0 x1=2/1/0 x2=0/1/2 ŷ=? · y=0/1/2 MSE=? | baseline:x1=x2=y=0/1/2 · MSE=0 x1=2/1/0 x2=0/1/2 ŷ=1/1/1 · y=0/1/2 MSE=0.667 | baseline:x1=x2=y=0/1/2 · MSE=0 x1=2/1/0 x2=2/1/0 ŷ=2/1/0 · y=0/1/2 MSE=2.667 | baseline:x1=x2=y=0/1/2 · MSE=0 x1=2/1/0 x2=0/1/2 ŷ=0/1/2 · y=0/1/2 MSE=0. Retained locally computed witnesses: One: MSE=0.667 | Group: MSE=2.667 | Unused: MSE=0. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §23; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-permutation-importance.c5",
+      "text": " 23. permutation-importance\n\nTarget / packet: ai-permutation-importance · D1. Prerequisites: ai:correlated-coefficients.\n\nNearest / distinct payoff: correlated-coefficients → ai-correlated-coefficients. Unstable coefficients are distinct from loss change after permuting one correlated feature versus the group in a fixed predictor.\n\nFinite primary model: Held-out columns x_1=x_2=[0,1,2], target y=[0,1,2], fixed predictor (x_1+x_2)/2 gives MSE0. Reverse x_1 alone: predictions[1,1,1], MSE2/3. Reverse both columns together: predictions[2,1,0], MSE8/3.\n\nCountercase and mathematical boundary: An alternate fixed predictor using x_2 alone ignores x_1, so permuting x_1 has no loss effect, while group reversal still gives MSE8/3. Importance depends on the fitted model, evaluation data and perturbation. It is not a causal contribution.\n\nPredict and recall transfer: Predict which perturbation hurts more. On recall, change the predictor to x_2 alone and explain why the unused correlated column now has zero importance.\n\nRequired observable evidence: Show actual permuted rows, predictions and held-out loss. Group permutation preserves within-group pairing. Keep columns distinct from row coordinates.\n\nSource obligation: [Maintainer permutation-importance documentation](https://scikit-learn.org/stable/modules/permutation_importance.html), acquired §5.2 and §5.2.3 correlated-feature discussion. Exact grouped reversal and losses are local constructions, not an empirical estimate.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §23; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under predictor x2 alone, what is x1’s reversal importance?",
+    "options": [
+      "0, because the predictor ignores x1",
+      "2.667, because columns correlate",
+      "It proves x1 is causally irrelevant"
+    ],
+    "answer": 0,
+    "why": "Changing x1 leaves the fixed x2-only predictions unchanged; this local importance does not establish causal irrelevance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:permutation-importance",
+    "also": [],
+    "prerequisites": [
+      "ai:correlated-coefficients"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

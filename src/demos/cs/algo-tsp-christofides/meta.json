@@ -1,0 +1,109 @@
+{
+  "slug": "algo-tsp-christofides",
+  "title": "Which odd corners need pairing?",
+  "hook": "Repair the degrees before walking every edge.",
+  "domain": "cs",
+  "concept": "algo-tsp-christofides",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "Complete undirected nonnegative metric; given MST identify odd vertices and minimum-weight perfect matching by enumerating tiny pairings; show even-degree multigraph then Euler shortcut. Teach odd repair, qualify3/2 theorem separately; arbitrary matching insufficient."
+    ]
+  },
+  "objective": "Complete undirected nonnegative metric; given MST identify odd vertices and minimum-weight perfect matching by enumerating tiny pairings; show even-degree multigraph then Euler shortcut. Teach odd repair, qualify3/2 theorem separately; arbitrary matching insufficient.",
+  "misconception": "Unit-square MST edges are AB, BC, CD. Which vertices have odd degree and need a matching?",
+  "claims": [
+    {
+      "id": "cs.algo-tsp-christofides.c1",
+      "text": "Which odd corners need pairing? Repair the degrees before walking every edge.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/meta.json#title-hook; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "cs.algo-tsp-christofides.c2",
+      "text": "Unit-square MST edges are AB, BC, CD. Which vertices have odd degree and need a matching? Options: ['A and D', 'B and C', 'All four'] Correct: A and D",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/Demo.tsx#predict; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-christofides.c3",
+      "text": "Complete undirected nonnegative metric; given MST identify odd vertices and minimum-weight perfect matching by enumerating tiny pairings; show even-degree multigraph then Euler shortcut. Teach odd repair, qualify3/2 theorem separately; arbitrary matching insufficient.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/Demo.tsx#stage; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-christofides.c4",
+      "text": "The path had odd vertices A,D; adding AD made every degree even and produced a tour of cost 4. The star had four odd corners: matching costs were 2, 2.83, 2; the minimum was 2. Matching must be minimum weight. The 3/2 guarantee requires a complete undirected nonnegative metric and an MST; these finite examples do not prove it.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/Demo.tsx#reveal; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-christofides.c5",
+      "text": "For four odd vertices, can any perfect matching support the Christofides 3/2 argument? The argument requires a minimum-weight perfect matching on the odd vertices.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/meta.json#recall; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-tsp-christofides; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tsp-christofides.c6",
+      "text": "Given path and star trees have the computed minimum spanning cost, confirmed by independent Kruskal calculation in the local author model. Unit-square path matchingAD costs1, oddA/D; star matchingAB/CD costs2, all four corners odd; all degrees then even. Euler traversal uses every multiedge; metric shortcut repeats no vertex except closure. Tiny permutation search computes OPT.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-tsp-christofides/model.ts and model.test.mjs; https://theory.stanford.edu/~tim/w16/l/l16.pdf \u2014 Roughgarden2016 Lecture16 \u00a72.3, PDF pp5\u20137, body opened2026-10-19; complete undirected nonnegative metric, MST, minimum perfect matching, Euler tour and shortcut. Independent claim verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For four odd vertices, can any perfect matching support the Christofides 3/2 argument?",
+    "options": [
+      "Any matching",
+      "A minimum-weight matching"
+    ],
+    "answer": 1,
+    "why": "The argument requires a minimum-weight perfect matching on the odd vertices."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-tsp-christofides",
+    "also": [],
+    "prerequisites": [
+      "algo-metric-tsp-doubletree",
+      "algo-euler-degree-test",
+      "algo-hierholzer-splice"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

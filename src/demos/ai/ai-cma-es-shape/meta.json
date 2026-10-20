@@ -1,0 +1,135 @@
+{
+  "slug": "ai-cma-es-shape",
+  "title": "Which way will the cloud stretch?",
+  "hook": "Winning steps can change the shape of the next search.",
+  "domain": "ai",
+  "concept": "cma-es-shape",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A score to maximise over many candidates; distance between points."
+    ],
+    "doesNotKnow": [
+      "Explain selected-step covariance adaptation by generating the next candidates from the updated matrix."
+    ]
+  },
+  "objective": "Explain selected-step covariance adaptation by generating the next candidates from the updated matrix.",
+  "misconception": "The covariance ellipse merely follows the single best point.",
+  "claims": [
+    {
+      "id": "ai.ai-cma-es-shape.c1",
+      "text": "Fixed disclosed offsets A=(2,2), B=(\u22122,\u22122), C=(2,\u22122), D=(\u22122,2); no fresh random Gaussian draws. Minimize(x\u2212y)\u00b2+.1(x+y)\u00b2: A/B1.6, C/D16; stable-ID ties select A/B.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#picture#population; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c2",
+      "text": "Old mean0, sigma1, C=I. Equal winner weights.5 yield moment[[4,4],[4,4]], new mean0; Cnew=.5I+.5M=[[2.5,2],[2,2.5]].",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#picture#matrix; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c3",
+      "text": "Eigenvalues4.5/.5 have diagonal axes y=x/y=\u2212x; plotted spreads are square roots of eigenvalues.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#picture#ellipse; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c4",
+      "text": "L=[[\u221a2.5,0],[2/\u221a2.5,\u221a.9]] satisfies LL\u1d40=C. Fixed z=(\u00b11,0),(0,\u00b11) produces new offsets\u00b1(1.581,1.265), \u00b1(0,.949), rounded to3 decimals; original z values are not the new offsets.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#picture#next; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c5",
+      "text": "Reversing the loss diagonal selects C/D and gives[[2.5,\u22122],[\u22122,2.5]], rotating the cloud with unchanged zero mean.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#picture#contrast; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c6",
+      "text": "This fixed-sigma rank-\u03bc component omits evolution paths and rank-one adaptation; it is not a full canonical CMA-ES optimizer or a convergence experiment.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#reveal#limits; src/demos/ai/ai-cma-es-shape/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c7",
+      "text": "Which way will the cloud stretch?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-cma-es-shape/meta.json#title; model.ts finite rules; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c8",
+      "text": "Winning steps can change the shape of the next search.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-cma-es-shape/meta.json#hook; model.ts finite rules; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c9",
+      "text": "A/B lie on y=x with loss 1.6; C/D on y=\u2212x have loss 16. Which diagonal gets more next spread? Options: y=x / y=\u2212x. Correct: y=x.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/Demo.tsx#predict; model.ts finite rules; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cma-es-shape.c10",
+      "text": "Reverse the objective so y=\u2212x winners are selected. What is the covariance off-diagonal sign? Positive / Negative / Zero. The selected cross-products are negative, giving off-diagonals\u22122.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-cma-es-shape/meta.json#recall; model.ts finite rules; https://arxiv.org/html/1604.00772v2 \u2014 Hansen, The CMA Evolution Strategy: A Tutorial, \u00a73.2 Rank-\u03bc-Update, equations14\u201316; body and method section opened 2026-10-19. Fixed sigma, c\u03bc=.5 and omitted paths/rank-one terms are teaching simplifications.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Reverse the objective so y=\u2212x winners are selected. What is the covariance off-diagonal sign?",
+    "options": [
+      "Positive",
+      "Negative",
+      "Zero"
+    ],
+    "answer": 1,
+    "why": "The selected cross-products are negative, giving off-diagonals\u22122."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:cma-es-shape",
+    "also": [],
+    "prerequisites": [
+      "evolution-strategies"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "optimisation-search",
+      "evolution-strategies"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

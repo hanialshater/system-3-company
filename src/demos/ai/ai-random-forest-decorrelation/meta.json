@@ -1,0 +1,97 @@
+{
+  "slug": "ai-random-forest-decorrelation",
+  "title": "What does member error leave out?",
+  "hook": "Four regressors; align their signed errors before averaging.",
+  "domain": "ai",
+  "concept": "random-forest-decorrelation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ensemble-wisdom",
+      "decision-tree-splits"
+    ],
+    "doesNotKnow": [
+      "Four members each have MSE1. Must their averages have equal error?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the random forest decorrelation construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-random-forest-decorrelation.c1",
+      "text": "What does member error leave out? Four regressors; align their signed errors before averaging. Four members each have MSE1. Must their averages have equal error? Options: Yes; No.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §25; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-random-forest-decorrelation.c2",
+      "text": "Every member had mean squared error 1. Aligned errors averaged to error 1; the mixed signed errors canceled to zero. Duplicating one member retained error 1. These constructed errors show why alignment matters; they do not establish that random feature selection always helps real forests.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §25; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-forest-decorrelation.c3",
+      "text": "What ensemble information does each member’s MSE omit? How the signed errors line up across the same cases; equal member MSE can accompany reinforcement or cancellation.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §25; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-forest-decorrelation.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §25; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-forest-decorrelation.c5",
+      "text": "Target / packet: `ai-random-forest-decorrelation` · `C3`. Prerequisites: `ai:ensemble-wisdom`, `ai:decision-tree-splits`.\n\nNearest / distinct payoff: `ensemble-wisdom` → `five-weak-voters` (existing registered artifact; evidence applicability pending). Unlike generic ensemble wisdom, this holds member MSE constant while changing error alignment across cases.\n\nPrimary finite model: Four equal-weight regressors' errors on four cases: correlated all[1,1,-1,-1] gives ensemble MSE1; decorrelated rows[1,1,-1,-1],[1,-1,1,-1],[-1,1,-1,1],[-1,-1,1,1] give ensemble error0 and MSE0. Every member MSE1.\n\nCountercase and boundary: Duplicating a member leaves its errors correlated and gains nothing. Constructed error table does not show that random feature selection always decorrelates real trees.\n\nPredict and recall transfer: Predict which four-member ensemble improves; recall why member quality alone cannot determine ensemble quality.\n\nRequired evidence: Show case-aligned errors and average. No hidden random experiment or assertion that zero ensemble error is typical. Shipped local computations, all cases: Aligned: case 1 2 3 4 · MSE +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 μ +1 +1 -1 -1 · 1; Aligned μ[1,1,-1,-1] MSE=1 | Mixed: case 1 2 3 4 · MSE +1 +1 −1 −1 · 1 +1 −1 +1 −1 · 1 −1 +1 −1 +1 · 1 −1 −1 +1 +1 · 1 μ 0 0 0 0 · 0; Mixed μ[0,0,0,0] MSE=0 | Duplicate: case 1 2 3 4 · MSE copy1→4 +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 +1 +1 −1 −1 · 1 μ +1 +1 -1 -1 · 1; Duplicate1→4 μ[1,1,-1,-1] MSE=1→1. Initial neutral frame: case 1 2 3 4 · MSE ? ? ? ? · ? ? ? ? ? · ? ? ? ? ? · ? ? ? ? ? · ? μ ? ? ? ? · ?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §25; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What ensemble information does each member’s MSE omit?",
+    "options": [
+      "How the signed errors line up across the same cases; equal member MSE can accompany reinforcement or cancellation.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "How the signed errors line up across the same cases; equal member MSE can accompany reinforcement or cancellation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:random-forest-decorrelation",
+    "also": [],
+    "prerequisites": [
+      "ai:ensemble-wisdom",
+      "ai:decision-tree-splits"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

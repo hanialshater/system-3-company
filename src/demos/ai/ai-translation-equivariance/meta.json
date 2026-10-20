@@ -1,0 +1,129 @@
+{
+  "slug": "ai-translation-equivariance",
+  "title": "Does shifting preserve or move values?",
+  "hook": "Compare filtering before and after a shift.",
+  "domain": "ai",
+  "concept": "translation-equivariance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A network has weights that training nudges to lower a loss."
+    ],
+    "doesNotKnow": [
+      "Distinguish output translation from invariance and test boundary/stride conditions."
+    ]
+  },
+  "objective": "Distinguish output translation from invariance and test boundary/stride conditions.",
+  "misconception": "A convolution output stays unchanged for every input shift.",
+  "claims": [
+    {
+      "id": "ai.ai-translation-equivariance.c1",
+      "text": "Centered cross-correlation filter[1,2,1] on six cells. Circular boundary and stride1 are the primary convention; shift is circular right-one.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#picture#filter; src/demos/ai/ai-translation-equivariance/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c2",
+      "text": "Input[1,0,0,0,0,0] filters to[2,1,0,0,0,1]. Shift then filter and filter then shift both give[1,2,1,0,0,0]. Values move, not remain unchanged.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#picture#primary; src/demos/ai/ai-translation-equivariance/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c3",
+      "text": "Circular stride2 samples indices0,2,4. Old[2,0,0]; input shift1 gives[1,1,0], unlike shifted old[0,2,0]. Input shift2 gives[0,2,0], matching one output shift.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#picture#stride; src/demos/ai/ai-translation-equivariance/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c4",
+      "text": "Zero-padded edge impulse[0,0,0,0,0,1] filters to[0,0,0,0,1,2]. Cropped input right shift loses it and filters to all0; shifted old output[0,0,0,0,0,1] differs.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#picture#crop; src/demos/ai/ai-translation-equivariance/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c5",
+      "text": "The finite examples demonstrate conditional equivariance, not invariance or a universal CNN recognition guarantee.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#reveal#conditions; src/demos/ai/ai-translation-equivariance/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c6",
+      "text": "Does shifting preserve or move values?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-translation-equivariance/meta.json#title; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c7",
+      "text": "Compare filtering before and after a shift.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-translation-equivariance/meta.json#hook; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c8",
+      "text": "Circular stride-one filtering: shift the input right one. Does the output stay unchanged or shift? Options: Unchanged / Shifted. Correct: Shifted.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/Demo.tsx#predict; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-translation-equivariance.c9",
+      "text": "Circular stride2 filter: shifting input by two cells corresponds to how many output cells? 0 / 1 / 2. Two input cells correspond to one sampled output position.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-translation-equivariance/meta.json#recall; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u00a77.1 and https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html \u00a77.3 \u2014 bodies opened 2026-10-19; equivariance and padding/stride background. Finite circular/zero-filled operators and arrays are local definitions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Circular stride2 filter: shifting input by two cells corresponds to how many output cells?",
+    "options": [
+      "0",
+      "1",
+      "2"
+    ],
+    "answer": 1,
+    "why": "Two input cells correspond to one sampled output position."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:translation-equivariance",
+    "also": [],
+    "prerequisites": [
+      "convolution-weight-sharing"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "deep-learning",
+      "cnn",
+      "cnn"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

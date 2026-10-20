@@ -1,0 +1,95 @@
+{
+  "slug": "ai-probing-classifiers",
+  "title": "Does the output use that feature?",
+  "hook": "A readable coordinate and a used coordinate need not match.",
+  "domain": "ai",
+  "concept": "probing-classifiers",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "embeddings"
+    ],
+    "doesNotKnow": [
+      "Probe reads h1; downstream y=h2. Flip h=[0,1] to [1,1]. What changes?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-probing-classifiers.c1",
+      "text": "Probe reads h1; downstream y=h2. Flip h=[0,1] to [1,1]. What changes? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: Probe only; Output only; Both.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-probing-classifiers.c2",
+      "text": "Your probe decoded topic on all four binary states. With y=h2, flipping topic changed the probe but left downstream output at 1. With y=h1, the same flip changed both. The feature was available to the probe in either case; that alone could not establish downstream use. These explicit connections are constructed, not measurements of real attention heads.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-probing-classifiers.c3",
+      "text": "A probe perfectly predicts h1. If the actual downstream formula is y=h2, does that show h1 causes y? No. The probe establishes decodability in these states; the separate downstream connection determines use. Flipping h1 leaves y=h2 unchanged.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-probing-classifiers.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-probing-classifiers.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy h=[topic,syntax] \u00b7 probe=h\u2081 h\u2081 \u2192 probe; h\u2082 \u2192 y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]\u2192[1,1]: 0\u21921 / 1\u21921 Use syntax Use topic Reset view 1. y=h2: probe 0\u21921; y 1\u21921 2. y=h1: probe 0\u21921; y 0\u21921 | Toy h=[topic,syntax] \u00b7 probe=h\u2081 h\u2081 \u2192 probe; h\u2082 \u2192 y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]\u2192[1,1]: 0\u21921 / 1\u21921 Use syntax Use topic Reset view 1. y=h2: probe 0\u21921; y 1\u21921 2. y=h1: probe 0\u21921; y 0\u21921",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A probe perfectly predicts h1. If the actual downstream formula is y=h2, does that show h1 causes y?",
+    "options": [
+      "No; the output reads h2",
+      "Yes; probe accuracy proves use",
+      "Yes; flipping any feature changes y"
+    ],
+    "answer": 0,
+    "why": "No. The probe establishes decodability in these states; the separate downstream connection determines use. Flipping h1 leaves y=h2 unchanged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:probing-classifiers",
+    "also": [],
+    "prerequisites": [
+      "ai:embeddings"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

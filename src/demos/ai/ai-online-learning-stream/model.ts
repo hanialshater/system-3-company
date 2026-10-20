@@ -1,0 +1,1 @@
+export function run(mode:number){const labels=mode===1?[0,0,4,4,0]:[0,0,4,4];let w=0,total=0;const rows=labels.map((y,i)=>{const before=w;w+=.5*(y-w);total+=y;return {before,y,after:w,mean:total/(i+1)};});return {rows,last:rows.at(-1)!};}

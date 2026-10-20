@@ -1,0 +1,104 @@
+{
+  "slug": "ai-multi-head-attention",
+  "title": "Two heads, then one projection",
+  "hook": "Keep each weighted sum before concatenation.",
+  "domain": "ai",
+  "concept": "multi-head-attention",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "Identical head weights[.5,.5] give[5,5] andproject0. Multiple heads can coincide; two heads do not prove two named semantic relations."
+    ]
+  },
+  "misconception": "Identical head weights[.5,.5] give[5,5] andproject0. Multiple heads can coincide; two heads do not prove two named semantic relations.",
+  "objective": "Compute and contrast the finite multi head attention cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-multi-head-attention.c1",
+      "text": "export function evaluate(weights:number[][]){const values=[0,10],heads=weights.map(row=>row.reduce((sum,w,i)=>sum+w*values[i],0));return {weights,values,heads,output:heads[0]-heads[1]};} export function run(mode:number){return evaluate(mode===1?[[.5,.5],[.5,.5]]:[[.8,.2],[.1,.9]]);}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Two heads, then one projection \\u2014 computed finite mechanism\"><text x=\"140\" y=\"16\" textAnchor=\"middle\">values [0,10]</text>{r.weights.map((w,i)=><g key={i}><text x=\"7\" y={43+i*28}>{i===0?'A':'B'}</text><text x=\"34\" y={43+i*28}>[{w.join(',')}]</text><path d={`M129 ${38+i*28} H160`} className={s.line}/><text x=\"174\" y={43+i*28}>{r.heads[i]}</text></g>)}<text x=\"6\" y=\"103\">[{r.heads.join(',')}] · [1,−1] = {r.output}</text></svg>;}\n\nLocked inputs: Token values [0,10]. Head A weights [.8,.2]; B [.1,.9]. Project concatenation with [1,−1].",
+      "support": "derivation",
+      "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-multi-head-attention.c2",
+      "text": "Two heads, then one projection; Keep each weighted sum before concatenation.; {\"question\": \"Head A weights [.8,.2], B [.1,.9], values [0,10]. Project outputs with [1,\\u22121]. What results?\", \"options\": [\"\\u22127\", \"7\", \"11\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-multi-head-attention.c3",
+      "text": "Your two heads produced 2 and 9; concatenating [2,9] and projecting with [1,−1] gave −7. Identical weights instead produced [5,5] and zero. Heads can coincide, and this stipulated arithmetic does not establish named semantic roles in a trained transformer.\n(mode:number){const r=m.run(mode);return `Heads [${r.heads.join(\",\")}] → ${r.output}`;}\n",
+      "support": "derivation",
+      "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-multi-head-attention.c4",
+      "text": "{\"question\": \"Swap the distinct head patterns while keeping projection [1,\\u22121]. What output follows?\", \"options\": [\"\\u22127\", \"0\", \"7\"], \"answer\": 2, \"why\": \"The concatenation becomes [9,2], so 9\\u22122=7.\"}",
+      "support": "derivation",
+      "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-multi-head-attention.c5",
+      "text": "Identical head weights[.5,.5] give[5,5] andproject0. Multiple heads can coincide; two heads do not prove two named semantic relations.; controls: Distinct, Identical, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Swap the distinct head patterns while keeping projection [1,−1]. What output follows?",
+    "options": [
+      "−7",
+      "0",
+      "7"
+    ],
+    "answer": 2,
+    "why": "The concatenation becomes [9,2], so 9−2=7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:multi-head-attention",
+    "also": [],
+    "prerequisites": [
+      "ai:attention-weights"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

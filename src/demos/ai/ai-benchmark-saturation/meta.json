@@ -1,0 +1,112 @@
+{
+  "slug": "ai-benchmark-saturation",
+  "title": "The same ten successes",
+  "hook": "Compare counts and the information behind them.",
+  "domain": "ai",
+  "concept": "benchmark-saturation",
+  "status": "draft",
+  "version": 4,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:test-score-error-bars"
+    ],
+    "doesNotKnow": [
+      "Which ten-extra-successes gain removes half the remaining errors?"
+    ]
+  },
+  "misconception": "Which ten-extra-successes gain removes half the remaining errors?",
+  "objective": "Explain the retained computed contrast and its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-benchmark-saturation.c1",
+      "text": "Title: The same ten successes. Hook: Compare counts and the information behind them.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: Which ten-extra-successes gain removes half the remaining errors? Choices: 900→910; 980→990; Both. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "support": "derivation",
+      "source": "Synthetic arithmetic, Wilson individual-score intervals with z1.95996398454, declared PairA980/0/10/10 and PairB970/10/20/0 axes bothCorrect/A-only/B-only/neither. No paired significance inference or measured benchmark. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction/exploreHint",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-benchmark-saturation.c2",
+      "text": "Synthetic n1000 gains900→910 and980→990 each add10 successes; errors100→90 versus20→10 remove10% versus50% of previous errors. Individual95% Wilson intervals with z1.95996398454 are computed separately:980 interval displays96.93–98.70%,990 displays98.17–99.46%, rounded to two decimals. PairA counts both-correct/A-only/B-only/neither are980/0/10/10; PairB970/10/20/0. Both have A980/B990 marginals but10 versus30 discordant items. Individual intervals and marginal totals alone do not supply a paired significance test or universal capability ranking.",
+      "support": "derivation",
+      "source": "Synthetic arithmetic, Wilson individual-score intervals with z1.95996398454, declared PairA980/0/10/10 and PairB970/10/20/0 axes bothCorrect/A-only/B-only/neither. No paired significance inference or measured benchmark. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture HTML numeric deck and retained witness",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-benchmark-saturation.c3",
+      "text": "Both gains add ten successes. They remove10% versus50% of previous errors. Identical980/990 totals can hide different paired disagreements. Individual score intervals are not a paired difference test, and perfect observed scores would not establish zero underlying error.",
+      "support": "derivation",
+      "source": "Synthetic arithmetic, Wilson individual-score intervals with z1.95996398454, declared PairA980/0/10/10 and PairB970/10/20/0 axes bothCorrect/A-only/B-only/neither. No paired significance inference or measured benchmark. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-benchmark-saturation.c4",
+      "text": "Recall: Totals980/1000 and990/1000 omit what needed for a paired comparison? Choices: Which individual items changed outcome; Only the two marginal percentages; A universal capability rank. Answer rationale: Both gains add ten successes. They remove10% versus50% of previous errors. Identical980/990 totals can hide different paired disagreements. Individual score intervals are not a paired difference test, and perfect observed scores would not establish zero underlying error.",
+      "support": "derivation",
+      "source": "Synthetic arithmetic, Wilson individual-score intervals with z1.95996398454, declared PairA980/0/10/10 and PairB970/10/20/0 axes bothCorrect/A-only/B-only/neither. No paired significance inference or measured benchmark. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json recall",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-benchmark-saturation.c5",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. Synthetic n1000 gains900→910 and980→990 each add10 successes; errors100→90 versus20→10 remove10% versus50% of previous errors.",
+      "support": "derivation",
+      "source": "Synthetic arithmetic, Wilson individual-score intervals with z1.95996398454, declared PairA980/0/10/10 and PairB970/10/20/0 axes bothCorrect/A-only/B-only/neither. No paired significance inference or measured benchmark. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx initial inputs/actions; source/method provenance",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Totals980/1000 and990/1000 omit what needed for a paired comparison?",
+    "options": [
+      "Which individual items changed outcome",
+      "Only the two marginal percentages",
+      "A universal capability rank"
+    ],
+    "answer": 0,
+    "why": "Both gains add ten successes. They remove10% versus50% of previous errors. Identical980/990 totals can hide different paired disagreements. Individual score intervals are not a paired difference test, and perfect observed scores would not establish zero underlying error."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:benchmark-saturation",
+    "also": [],
+    "prerequisites": [
+      "ai:test-score-error-bars"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-protocol"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

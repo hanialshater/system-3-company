@@ -1,0 +1,104 @@
+{
+  "slug": "ai-monte-carlo-vs-td",
+  "title": "Update now or wait?",
+  "hook": "Compare two estimates from the same unfinished episode.",
+  "domain": "ai",
+  "concept": "monte-carlo-vs-td",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Distinguish a bootstrap update before termination from a completed-return update."
+    ]
+  },
+  "misconception": "Distinguish a bootstrap update before termination from a completed-return update.",
+  "objective": "Distinguish a bootstrap update before termination from a completed-return update.",
+  "claims": [
+    {
+      "id": "ai.ai-monte-carlo-vs-td.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function compare(next:number,r0=0,r1=4){const tdTarget=r0+.5*next,mcTarget=r0+.5*r1;return {tdTarget,td:.5*tdTarget,mcTarget,mc:.5*mcTarget};}\nexport function run(mode:number){return {finished:mode!==0,...compare(mode===2?4:10)};}",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-monte-carlo-vs-td.c2",
+      "text": "Update now or wait?; Compare two estimates from the same unfinished episode.; S gets reward0 then A gets reward4 and terminates. Gamma=.5, step=.5, old V(S)=0, current V(A)=10. After only the first transition, which can update?; options ['Both', 'TD only', 'Monte Carlo only']; correct index 1",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-monte-carlo-vs-td.c3",
+      "text": "After the first transition, TD used the inaccurate next-state estimate 10: target 5, updated value 2.5. Monte Carlo waited. The completed episode supplied return 2, giving its separate update 1 from the same old value zero. Updating earlier did not make this bootstrap more accurate. The accurate-next case shows these two targets can also agree.",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-monte-carlo-vs-td.c4",
+      "text": "{\"question\": \"Rewards2 then6, gamma=.5, next estimate2 and old0. Which targets are TD / completed MC?\", \"options\": [\"3 / 5\", \"5 / 3\", \"3 / 3\"], \"answer\": 0, \"why\": \"TD uses2+.5\\u00d72=3; completed MC uses2+.5\\u00d76=5.\"}",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-monte-carlo-vs-td.c5",
+      "text": "Same old estimate for both updates; no general accuracy, bias or convergence guarantee. MC waiting is not a numeric zero target. Both updates start from old V(S)=0. The bootstrap estimate10 is deliberately inaccurate. Controls: First step, Finish, Accurate next, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "Rewards2 then6, gamma=.5, next estimate2 and old0. Which targets are TD / completed MC?",
+    "options": [
+      "3 / 5",
+      "5 / 3",
+      "3 / 3"
+    ],
+    "answer": 0,
+    "why": "TD uses2+.5\u00d72=3; completed MC uses2+.5\u00d76=5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:monte-carlo-vs-td",
+    "also": [],
+    "prerequisites": [
+      "ai:bellman-backup"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

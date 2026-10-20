@@ -1,0 +1,95 @@
+{
+  "slug": "ai-vi-mode-seeking",
+  "title": "Which mode can the family hold?",
+  "hook": "Minimize reverse KL within an explicit finite family.",
+  "domain": "ai",
+  "concept": "vi-mode-seeking",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "gaussian-mixture-em"
+    ],
+    "doesNotKnow": [
+      "Target mass at −1/0/1 is .45/.1/.45. A single-point q minimizes KL(q‖p). Which locations are tied best?"
+    ]
+  },
+  "misconception": "0 only",
+  "objective": "Compute the vi mode seeking finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-vi-mode-seeking.c1",
+      "text": "Which mode can the family hold? Minimize reverse KL within an explicit finite family. Target mass at −1/0/1 is .45/.1/.45. A single-point q minimizes KL(q‖p). Which locations are tied best? Options: −1 and 1; 0 only",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §7; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-vi-mode-seeking.c2",
+      "text": "For a single-point family, either outer mode minimized reverse KL at .799, versus center 2.303. Allowing q=[.5,0,.5] lowered KL to .105 and represented both modes. Omission depended on the family and objective; it is not a universal result about variational inference.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §7; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-vi-mode-seeking.c3",
+      "text": "Why does allowing two-mode mass change the conclusion? Options: It expands the family to include a lower-KL candidate; The target distribution changed; Reverse KL forbids zeros in q The same target gives KL .105 for [.5,0,.5], below the .799 best single-point value.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §7; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-vi-mode-seeking.c4",
+      "text": "Original schematic labels, including neutral and every changed case: p(−1,0,1)=.45/.1/.45 -1 0 1 single-point-q · KL=? | p(−1,0,1)=.45/.1/.45 -1 0 1 delta:KL=0.799 | p(−1,0,1)=.45/.1/.45 -1 0 1 two-mode:KL=0.105. Retained locally computed witnesses: Delta: KL=0.799 | Two-mode: KL=0.105. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §7; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-vi-mode-seeking.c5",
+      "text": " 7. vi-mode-seeking\n\nTarget / packet: ai-vi-mode-seeking · P3. Prerequisites: ai:gaussian-mixture-em.\n\nNearest / distinct payoff: gaussian-mixture-em → ai-gaussian-mixture-em. A Gaussian-mixture target is represented here as a finite bimodal mass; a restrictive reverse-KL family selects a mode, with expanded-family countercase.\n\nFinite primary model: Discrete target p on[-1,0,1]=[.45,.1,.45]. Restricted variational family is a single point mass at one support point. Reverse KL(q relative to p) is ln(1/p_location): modes give.798508, center 2.302585, so either optimum omits the other mode.\n\nCountercase and mathematical boundary: Expand family to q=[.5,0,.5]; KL=ln(.5/.45)=.105361, better than either delta. Omission depended on family restriction and objective, not a universal VI result.\n\nPredict and recall transfer: Predict which support point a single delta chooses; recall how allowing two-mode mass changes best objective.\n\nRequired observable evidence: Declare family before minimization, show both tied optima, and never call the center a forbidden target state.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §7; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does allowing two-mode mass change the conclusion?",
+    "options": [
+      "It expands the family to include a lower-KL candidate",
+      "The target distribution changed",
+      "Reverse KL forbids zeros in q"
+    ],
+    "answer": 0,
+    "why": "The same target gives KL .105 for [.5,0,.5], below the .799 best single-point value."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:vi-mode-seeking",
+    "also": [],
+    "prerequisites": [
+      "ai:gaussian-mixture-em"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

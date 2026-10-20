@@ -1,0 +1,95 @@
+{
+  "slug": "ai-matrix-factorisation-tastes",
+  "title": "Do these axes name real tastes?",
+  "hook": "Multiply factors, then rescale without changing predictions.",
+  "domain": "ai",
+  "concept": "matrix-factorisation-tastes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "collaborative-filtering"
+    ],
+    "doesNotKnow": [
+      "U3=[1,1], item C=[1,1]. What score does their dot product produce?"
+    ]
+  },
+  "misconception": "1",
+  "objective": "Compute the matrix factorisation tastes finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-matrix-factorisation-tastes.c1",
+      "text": "Do these axes name real tastes? Multiply factors, then rescale without changing predictions. U3=[1,1], item C=[1,1]. What score does their dot product produce? Options: 2; 1",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §10; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-matrix-factorisation-tastes.c2",
+      "text": "Dot products produced rows [2,0,1], [0,3,1], and [2,3,2]. Doubling user factors and halving item factors preserved every prediction. Different coordinates therefore fit the same scores; these latent axes do not uniquely identify psychological tastes. No training procedure is implied.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §10; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-matrix-factorisation-tastes.c3",
+      "text": "What happens to U3·C if users double and items halve? Options: It stays 2; It doubles to 4; It halves to 1 Each product (2u)(v/2)=uv, so the complete dot product stays 2.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §10; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-matrix-factorisation-tastes.c4",
+      "text": "Original schematic labels, including neutral and every changed case: base-U=10/01/11 · V=20/03/11 U3·C=? ?/?/? ?/?/? ?/?/? | base-U=10/01/11 · V=20/03/11 U3=1/1 C=1/1 2/0/1 0/3/1 2/3/2 | base-U=10/01/11 · V=20/03/11 U3=2/2 C=0.5/0.5 2/0/1 0/3/1 2/3/2. Retained locally computed witnesses: scale1: U3·C=2 | scale2: U3·C=2. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §10; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-matrix-factorisation-tastes.c5",
+      "text": " 10. matrix-factorisation-tastes\n\nTarget / packet: ai-matrix-factorisation-tastes · R1. Prerequisites: ai:collaborative-filtering.\n\nNearest / distinct payoff: collaborative-filtering → ai-collaborative-filtering. Neighbour co-interaction scoring differs from multiplying low-rank user/item factors, whose coordinates admit nonunique rescaling.\n\nFinite primary model: User factors U 1=[1,0], U 2=[0,1], U 3=[1,1]; item factors A=[2,0], B=[0,3], C=[1,1]. Dot products produce rows [2,0,1],[0,3,1],[2,3,2].\n\nCountercase and mathematical boundary: Transform users U'=2 U and items V'=V/2: identical predictions with different coordinates. Latent axes are not uniquely identified human tastes; no training optimization is implied.\n\nPredict and recall transfer: Predict U 3 score C=2; recall why scaled factors cannot justify naming a coordinate as a psychological trait.\n\nRequired observable evidence: Expose factors and computed matrix cell; no blackbox score lookup.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §10; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to U3·C if users double and items halve?",
+    "options": [
+      "It stays 2",
+      "It doubles to 4",
+      "It halves to 1"
+    ],
+    "answer": 0,
+    "why": "Each product (2u)(v/2)=uv, so the complete dot product stays 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:matrix-factorisation-tastes",
+    "also": [],
+    "prerequisites": [
+      "ai:collaborative-filtering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

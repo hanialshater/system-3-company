@@ -1,0 +1,107 @@
+{
+  "slug": "ai-plan-vs-react",
+  "title": "When should the agent look again?",
+  "hook": "Charge for sensing while the world changes.",
+  "domain": "ai",
+  "concept": "plan-vs-react",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:agent-loop"
+    ],
+    "doesNotKnow": [
+      "Edges A–B,B–G,A–C,C–D,D–G. B–G closes after A→B. From B, where must a replanner go?"
+    ]
+  },
+  "misconception": "Through the closed edge",
+  "objective": "Compute this finite plan-vs-react model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-plan-vs-react.c1",
+      "text": "When should the agent look again? Charge for sensing while the world changes. Edges A–B,B–G,A–C,C–D,D–G. B–G closes after A→B. From B, where must a replanner go? Options: Back to A; Through the closed edge",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §18; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-plan-vs-react.c2",
+      "text": "A fixed plan hit the new closure. Sensing and replanning reached G by returning through A, at extra cost. In the stable world the fixed plan was cheaper. This declared execution graph gives no universal agent advantage or knowledge of future changes.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §18; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-plan-vs-react.c3",
+      "text": "{'question': 'With no closure, which executor is cheaper?', 'options': ['Fixed, cost2', 'Reactive, cost3'], 'answer': 0, 'why': 'Both make two moves; only the reactive executor pays two .5 observations.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §18; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-plan-vs-react.c4",
+      "text": "Addressed visible stage operands and labels: A—B—G and A—C—D—G | move cost1 · observation cost.5 | B–G closes after first move. Controls: Changing, Stable, Reset. Changed computed rows: fixed A→B→blocked · cost2 / reactive A→B→A→C→D→G / moves=5 + observations=5×.5 / reactive cost=7.5 · goal reached | fixed A→B→G · cost2 / reactive A→B→G / moves=2 + observations=2×.5 / reactive cost=3 · goal reached. Retained computed witnesses: changed fixed2/react7.5 | stable fixed2/react3. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst graph:Record<string,string[]>={A:['B','C'],B:['A','G'],C:['A','D'],D:['C','G'],G:['B','D']},closed=mode===0,bfs=(start:string)=>{const q=[[start]],seen=new Set([start]);while(q.length){const p=q.shift()!,v=p.at(-1)!;if(v==='G')return p;for(const w of graph[v])if(!seen.has(w)&&!(closed&&[v,w].sort().join('')==='BG')){seen.add(w);q.push([...p,w]);}}return[];},reactive=['A',...bfs('B')],moves=reactive.length-1,fixed=closed?['A','B','blocked']:['A','B','G'];return{values:[moves,moves*1.5,2,Number(!closed)],rows:[`fixed ${fixed.join('→')} · cost2`, `reactive ${reactive.join('→')}`,`moves=${moves} + observations=${moves}×.5`, `reactive cost=${f(moves*1.5)} · goal reached`],receipt:`${closed?'changed':'stable'} fixed2/react${f(moves*1.5)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §18; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-plan-vs-react.c5",
+      "text": "plan-vs-react\n\n**Identity / target / source:** `ai:plan-vs-react` → `ai-plan-vs-react` → `src/demos/ai/ai-plan-vs-react`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/124`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#18-plan-vs-react`. **Packet:** A1. **Level / prerequisites:** core; `ai:agent-loop`.\n\n**Nearest / distinct payoff:** model-based-planning chooses from a model; this changes an obstacle during execution and charges observation/replanning overhead.\n\n**Computed primary model:** Unit-cost undirected graph edgesA–B,B–G,A–C,C–D,D–G. Original shortest planA→B→G. Obstacle closesB–G immediately after firstmoveA→B. Fixed plan attempts blockedB→G and fails after2attempted moves. Reactive executor senses before each move (cost.5), recomputes BFS and atB goesB→A→C→D→G:5moves total,5observations, total cost7.5 and goal reached.\n\n**Countercase / boundary:** No obstacle change: fixed plan reachesG in2moves cost2; reactive path also2moves but2observations add1, cost3. Reactivity can rescue this changed-world case while costing overhead in the stable case; no universal agent advantage or free knowledge of a future closure is admitted.\n\n**Prediction / transfer recall:** Predict the reactive next move once atB and closure is observed; recall stable conditions can make the original fixed plan cheaper.\n\n**Intervention / retained witness:** Execute step advances the actual position and closure time; Fixed/Reactive share the same environment event. Stable world recomputes costs. Retain original blocked fixed trace and reactive route alongside stable cost contrast; never teleport pastB.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §18; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With no closure, which executor is cheaper?",
+    "options": [
+      "Fixed, cost2",
+      "Reactive, cost3"
+    ],
+    "answer": 0,
+    "why": "Both make two moves; only the reactive executor pays two .5 observations."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:plan-vs-react",
+    "also": [],
+    "prerequisites": [
+      "ai:agent-loop"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

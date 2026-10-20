@@ -1,0 +1,95 @@
+{
+  "slug": "ai-activation-patching",
+  "title": "Can one coordinate restore it?",
+  "hook": "Keep the readout fixed while copying a clean coordinate.",
+  "domain": "ai",
+  "concept": "activation-patching",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "steering-vectors"
+    ],
+    "doesNotKnow": [
+      "y=2h1+h2. Clean=[2,1], corrupt=[0,1]. Patch h1 from clean: output?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-activation-patching.c1",
+      "text": "y=2h1+h2. Clean=[2,1], corrupt=[0,1]. Patch h1 from clean: output? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 1; 4; 5.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 12; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-activation-patching/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-activation-patching.c2",
+      "text": "Your first-coordinate patch restored output 5 from corruption [0,1]; patching the second coordinate left output 1. Under corruption [0,0], the same first-coordinate patch reached only 4. Recovery therefore depended on the corruption and the selected intervention. These two-coordinate tests do not uniquely identify a complete causal circuit in a real model.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 12; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-activation-patching/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-activation-patching.c3",
+      "text": "From corrupt [0,0], copying only clean h1=2 yields what output under y=2h1+h2? 4, not the clean output 5. The still-corrupt second coordinate contributes 0 instead of 1, limiting recovery.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 12; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-activation-patching/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-activation-patching.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 12; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-activation-patching/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-activation-patching.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 y=2h\u2081+h\u2082 h\u2081 h\u2082 Clean 2 1 Corrupt 0 1 Patched 2 1 2\u00d72+1=5 Before / after: 1 / 5 Patch h\u2081 Patch h\u2082 Corrupt both Reset view 1. corrupt [0,1] patch h1: 1\u21925 2. corrupt [0,1] patch h2: 1\u21921 3. corrupt [0,0] patch h1: 0\u21924 | Toy \u00b7 y=2h\u2081+h\u2082 h\u2081 h\u2082 Clean 2 1 Corrupt 0 1 Patched 2 1 2\u00d72+1=5 Before / after: 1 / 5 Patch h\u2081 Patch h\u2082 Corrupt both Reset view 1. corrupt [0,1] patch h1: 1\u21925 2. corrupt [0,1] patch h2: 1\u21921 3. corrupt [0,0] patch h1: 0\u21924 | Toy \u00b7 y=2h\u2081+h\u2082 h\u2081 h\u2082 Clean 2 1 Corrupt 0 1 Patched 2 1 2\u00d72+1=5 Before / after: 1 / 5 Patch h\u2081 Patch h\u2082 Corrupt both Reset view 1. corrupt [0,1] patch h1: 1\u21925 2. corrupt [0,1] patch h2: 1\u21921 3. corrupt [0,0] patch h1: 0\u21924",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 12; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-activation-patching/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "From corrupt [0,0], copying only clean h1=2 yields what output under y=2h1+h2?",
+    "options": [
+      "4",
+      "5",
+      "1"
+    ],
+    "answer": 0,
+    "why": "4, not the clean output 5. The still-corrupt second coordinate contributes 0 instead of 1, limiting recovery."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:activation-patching",
+    "also": [],
+    "prerequisites": [
+      "ai:steering-vectors"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

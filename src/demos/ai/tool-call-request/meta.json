@@ -1,0 +1,88 @@
+{
+  "slug": "tool-call-request",
+  "title": "Who does the addition?",
+  "hook": "A request is waiting. What happens next?",
+  "domain": "ai",
+  "concept": "tool-call-request",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "AI tools can suggest text",
+      "small-number addition"
+    ],
+    "doesNotKnow": [
+      "the difference between a tool request and its execution",
+      "the declared numbers-only type rule"
+    ]
+  },
+  "misconception": "The model or request text itself performs the calculation.",
+  "objective": "Identify the boundary between a scripted tool request and the code executing it.",
+  "claims": [
+    {
+      "id": "ai.tool-call-request.c1",
+      "text": "The scripted request add(7,5) produces 12 only when the executor runs; the numbers-only executor returns Type error for add(7,\"pear\"). Request, executor and result are displayed as distinct records. Trying pear changes the current request to add(7,\"pear\") and displays its associated Type error; the retained add(7,5) → 12 witness remains.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/tool-call-request/2026-10-19-fact-all-ai-foundations.md; https://developers.openai.com/api/docs/guides/function-calling (Handling function calls, lines 2537–2541 and 2612–2625); src/demos/ai/tool-call-request/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.tool-call-request.c2",
+      "text": "The request describes an operation and is distinct from its execution; this is a scripted fixture, not a live model.",
+      "support": "convention",
+      "source": "Independent derivation and source audit: company/reviews/tool-call-request/2026-10-19-fact-all-ai-foundations.md; https://developers.openai.com/api/docs/guides/function-calling (Handling function calls, lines 2537–2541 and 2612–2625); src/demos/ai/tool-call-request/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.tool-call-request.c3",
+      "text": "The executor performs the operation; the request is its input.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/tool-call-request/2026-10-19-fact-all-ai-foundations.md; https://developers.openai.com/api/docs/guides/function-calling (Handling function calls, lines 2537–2541 and 2612–2625); src/demos/ai/tool-call-request/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "meta.json: recall.why",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A scripted request says add(8,2). What produces its result?",
+    "options": [
+      "The executor running the request",
+      "The text existing",
+      "The result label"
+    ],
+    "answer": 0,
+    "why": "The executor performs the operation; the request is its input."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:tool-call-request",
+    "also": [],
+    "prerequisites": [
+      "ai:next-token"
+    ],
+    "level": "intro",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal"
+  ]
+}

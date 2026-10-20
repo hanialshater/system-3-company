@@ -1,0 +1,105 @@
+{
+  "slug": "ai-boltzmann-rational-demos",
+  "title": "What does one action suggest?",
+  "hook": "Change assumed temperature before inferring a goal.",
+  "domain": "ai",
+  "concept": "boltzmann-rational-demos",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Declared softmax demonstrator, fixed goals/dynamics/temperature and equal priors. Posterior is conditional on this model, not proof of true human motive."
+    ]
+  },
+  "misconception": "Declared softmax demonstrator, fixed goals/dynamics/temperature and equal priors. Posterior is conditional on this model, not proof of true human motive.",
+  "objective": "Compute and contrast the finite boltzmann rational demos cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-boltzmann-rational-demos.c1",
+      "text": "export function infer(temperature:number,equal=false){const goals=equal?[[0,0],[0,0]]:[[2,0],[0,2]],likelihood=goals.map(q=>Math.exp(q[0]/temperature)/(Math.exp(q[0]/temperature)+Math.exp(q[1]/temperature))),unnormalised=likelihood.map(x=>.5*x),z=unnormalised.reduce((a,b)=>a+b,0);return {temperature,goals,likelihood,posterior:unnormalised.map(x=>x/z)};}\nexport function run(mode:number){return infer(mode===1?2:1,mode===2);}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">Observed A · T={r.temperature} · priors=[.5,.5]</text>{r.goals.map((q,i)=><g key={i}><text x=\"8\" y={45+i*42}>G{i+1}:[{q.join(',')}]</text><rect x=\"106\" y={29+i*42} width={r.likelihood[i]*82} height=\"20\" className={s.fill}/><text x=\"109\" y={45+i*42}>{show(r.likelihood[i],4)}</text><path d={`M195 ${40+i*42} h20`} className={s.line}/><text x=\"220\" y={45+i*42}>{show(r.posterior[i],4)}</text></g>)}<text x=\"145\" y=\"122\" textAnchor=\"middle\">values → likelihood → posterior</text>\nG₁:[2,0]; G₂:[0,2]; equal priors; observed A; T=1; likelihood=softmax(Q/T).",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-boltzmann-rational-demos.c2",
+      "text": "What does one action suggest?; Change assumed temperature before inferring a goal.; {\"question\": \"G₁ values A=2,B=0; G₂ values A=0,B=2. Equal priors, T=1, choice probabilities softmax(Q/T). After observing A, posterior P(G₁) is approximately?\", \"options\": [\".1192\", \".5000\", \".8808\"], \"answer\": 2}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-boltzmann-rational-demos.c3",
+      "text": "Your action A gave goal G₁ posterior .8808 at temperature 1. Raising temperature to 2 weakened it to .7311. Equal values gave no evidence between goals. Likelihood depends on the declared choice model and priors; this calculation does not identify a person’s true motive.\n`T=${r.temperature}${r.goals[0][0]===0?' equal':''}: P(G₁)=${f(r.posterior[0],4)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-boltzmann-rational-demos.c4",
+      "text": "{\"question\": \"With equal priors and equal action values under both goals, observing A gives what posterior for G₁?\", \"options\": [\".5\", \".7311\", \".8808\"], \"answer\": 0, \"why\": \"Both goal likelihoods equal .5, so normalization preserves the equal .5 priors; there is no discriminatory evidence.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-boltzmann-rational-demos.c5",
+      "text": "Declared softmax demonstrator, fixed goals/dynamics/temperature and equal priors. Posterior is conditional on this model, not proof of true human motive. Controls: T=1, T=2, Equal values, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "With equal priors and equal action values under both goals, observing A gives what posterior for G₁?",
+    "options": [
+      ".5",
+      ".7311",
+      ".8808"
+    ],
+    "answer": 0,
+    "why": "Both goal likelihoods equal .5, so normalization preserves the equal .5 priors; there is no discriminatory evidence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:boltzmann-rational-demos",
+    "also": [],
+    "prerequisites": [
+      "ai:inverse-rl-goal-inference",
+      "ai:softmax-scores"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

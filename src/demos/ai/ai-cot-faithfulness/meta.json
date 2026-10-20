@@ -1,0 +1,99 @@
+{
+  "slug": "ai-cot-faithfulness",
+  "title": "Test cot faithfulness",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "cot-faithfulness",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "next-token",
+      "shortcut-learning"
+    ],
+    "doesNotKnow": [
+      "Scores A=3,B=2. Script chooses B when marker B is on, otherwise maximum score. Separate explanation always says “I chose the largest fact score.” Does unchanged explanation prove marker irrelevance?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared cot faithfulness model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-cot-faithfulness.c1",
+      "text": "Test cot faithfulness Compare a declared mechanism with its changed case. Scores A=3,B=2. Script chooses B when marker B is on, otherwise maximum score. Separate explanation always says “I chose the largest fact score.” Does unchanged explanation prove marker irrelevance? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §1; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-cot-faithfulness.c2",
+      "text": "The marker changed the scripted answer A→B while its explanation stayed identical. The control ignored the marker and kept A. This declared branch demonstrates a local mismatch, not the motives or faithfulness of a real model.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §1; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-cot-faithfulness.c3",
+      "text": "{\"question\": \"Holding facts fixed, which intervention isolates cue dependence?\", \"options\": [\"Toggle the marker\", \"Change the candidate facts\"], \"answer\": 0, \"why\": \"Holding fact scores fixed and toggling the marker isolates this script’s cue dependence.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §1; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-cot-faithfulness.c4",
+      "text": "cot-faithfulness\n\n**Identity / target / source:** `ai:cot-faithfulness` → `ai-cot-faithfulness` → `src/demos/ai/ai-cot-faithfulness`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/160`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#1-cot-faithfulness`. **Packet:** C1. **Level / prerequisites:** core; `ai:next-token`, `ai:shortcut-learning`.\n\n**Nearest / distinct payoff:** shortcut-learning shows an answer shortcut; here an independently scripted explanation can stay invariant while a causal answer cue changes.\n\n**Computed primary model:** Fictional candidates have fact scoresA3/B2. Answer rule: if irrelevant markerB is present chooseB, otherwise choose maximum fact scoreA. Separate explanation generator always says “I chose the largest fact score.” Marker off returnsA with explanation consistent with scores; marker on returnsB with identical explanation contradicting the actual branch. The marker is a harmless local flag.\n\n**Countercase / boundary:** Control answer rule always chooses maximum score and ignores marker; itsA answer/explanation persist across marker changes. A matching explanation in one case does not establish the mechanism; conversely this toy mismatch does not show that every real chain of thought is unfaithful. Actual displayed branch is the declared script, not an inferred model motive.\n\n**Prediction / transfer recall:** Predict whether an unchanged explanation alone proves marker irrelevance; recall holding fact scores fixed and intervening on the marker isolates this script’s cue dependence.\n\n**Intervention / retained witness:** Toggle marker recomputes answer and independently generated explanation; Show rule and Faithful control reveal the causal contrast after commitment. Retain marker-off/on answer/explanation pairs, not just verdict labels.\n\n**Source obligation:** [Turpin et al. original abstract](https://arxiv.org/abs/2305.04388), opened2026-10-19, empirical unfaithful-explanation motivation only. Full methods/model/protocol body remains necessary before any real-model claim. The fictional scripted counterexample is wholly declared.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Marker off/Marker on/Control; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §1; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Holding facts fixed, which intervention isolates cue dependence?",
+    "options": [
+      "Toggle the marker",
+      "Change the candidate facts"
+    ],
+    "answer": 0,
+    "why": "Holding fact scores fixed and toggling the marker isolates this script’s cue dependence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:cot-faithfulness",
+    "also": [],
+    "prerequisites": [
+      "ai:next-token",
+      "ai:shortcut-learning"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

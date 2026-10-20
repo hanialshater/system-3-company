@@ -1,0 +1,104 @@
+{
+  "slug": "ai-ensemble-uncertainty",
+  "title": "Agreement about what?",
+  "hook": "Separate prediction spread from error against a target.",
+  "domain": "ai",
+  "concept": "ensemble-uncertainty",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Three stipulated scalar predictions, population variance and stipulated evaluation target. Disagreement is a model diagnostic, not calibrated error probability or complete uncertainty."
+    ]
+  },
+  "misconception": "Three stipulated scalar predictions, population variance and stipulated evaluation target. Disagreement is a model diagnostic, not calibrated error probability or complete uncertainty.",
+  "objective": "Compute and contrast the finite ensemble uncertainty cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ensemble-uncertainty.c1",
+      "text": "export function summary(values:number[],target:number){const mean=values.reduce((a,b)=>a+b,0)/values.length,variance=values.reduce((a,v)=>a+(v-mean)**2,0)/values.length,error=(mean-target)**2;return {values,mean,variance,error,target};}\nexport function run(mode:number){return {near:summary([2,2,2],2),far:summary(mode===1?[2,2,2]:[0,2,4],10)};}\n\n{[r.near,r.far].map((row,i)=><g key={i}><text x=\"7\" y={24+i*54}>{i===0?'Near':'Far'}</text><path d={`M60 ${20+i*54} H278`} className={s.axis}/>{row.values.map((v,j)=><circle key={j} cx={62+v*20} cy={20+i*54+(j-1)*7} r=\"4\" className={s.dot}/>)}<path d={`M${62+row.target*20} ${9+i*54} v22`} className={s.other}/><text x=\"60\" y={45+i*54}>μ={row.mean} · variance={show(row.variance)}</text></g>)}<text x=\"145\" y=\"126\" textAnchor=\"middle\">Far target=10 · error²={r.far.error} · ┆target</text>\nNear:[2,2,2]; far:[0,2,4]. Compare population disagreement variance; mean squared deviations.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ensemble-uncertainty.c2",
+      "text": "Agreement about what?; Separate prediction spread from error against a target.; {\"question\": \"Near predictions [2,2,2]; far predictions [0,2,4]. Both have mean 2. Which has larger population disagreement variance?\", \"options\": [\"Near\", \"Far\", \"Equal\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-ensemble-uncertainty.c3",
+      "text": "Your far predictions disagreed with variance 2.667 despite the same mean 2 as the agreeing near predictions. Their mean missed stipulated target 10 by squared error 64. Shared far predictions then removed disagreement while preserving that error. Agreement is not a calibrated probability of correctness.\n`Far [${r.far.values.join(',')}]: var=${f(r.far.variance)}, error²=${r.far.error}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-ensemble-uncertainty.c4",
+      "text": "{\"question\": \"All three far predictors output 2, but the stipulated target is 10. What are disagreement variance and mean-prediction squared error?\", \"options\": [\"0 and 0\", \"0 and 64\", \"64 and 0\"], \"answer\": 1, \"why\": \"Identical predictions have zero spread; their mean still misses 10 by 8, giving squared error 64.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-ensemble-uncertainty.c5",
+      "text": "Three stipulated scalar predictions, population variance and stipulated evaluation target. Disagreement is a model diagnostic, not calibrated error probability or complete uncertainty. Controls: Spread, Shared miss, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "All three far predictors output 2, but the stipulated target is 10. What are disagreement variance and mean-prediction squared error?",
+    "options": [
+      "0 and 0",
+      "0 and 64",
+      "64 and 0"
+    ],
+    "answer": 1,
+    "why": "Identical predictions have zero spread; their mean still misses 10 by 8, giving squared error 64."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:ensemble-uncertainty",
+    "also": [],
+    "prerequisites": [
+      "ai:ensemble-wisdom"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

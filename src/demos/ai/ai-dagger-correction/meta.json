@@ -1,0 +1,107 @@
+{
+  "slug": "ai-dagger-correction",
+  "title": "Which new label repairs the rollout?",
+  "hook": "Query expert actions at learner-visited states.",
+  "domain": "ai",
+  "concept": "dagger-correction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:behaviour-cloning-drift"
+    ],
+    "doesNotKnow": [
+      "Center demos say Advance. A right slip visits (1,1). Which label changes the rerun?"
+    ]
+  },
+  "misconception": "More (1,0):Advance",
+  "objective": "Compute this finite dagger-correction model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-dagger-correction.c1",
+      "text": "Which new label repairs the rollout? Query expert actions at learner-visited states. Center demos say Advance. A right slip visits (1,1). Which label changes the rerun? Options: (1,1):Correct; More (1,0):Advance",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §13; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dagger-correction.c2",
+      "text": "Querying visited right-lane states added actual Correct labels and repaired the right slip. Repeating center demonstrations did not. The fitted right-lane table still failed an unqueried left slip. This finite dataset aggregation requires available, correct expert labels.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §13; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dagger-correction.c3",
+      "text": "{'question': 'Do right-lane corrections automatically label left-lane states?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Different unseen states require their own expert queries or justified generalization.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §13; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dagger-correction.c4",
+      "text": "Addressed visible stage operands and labels: Advance→same lane; Correct→lane0 | center data only; unseen→Advance | t0: forced Right/Left. Controls: Refit right, Repeat demos, Left slip, Reset. Changed computed rows: query (1,1),(2,1) → Correct / (0,0):Right / (1,1):Correct → (2,0):Advance / terminal lane=0 · labels=5 | center data only / (0,0):Right / (1,1):Advance → (2,1):Advance / terminal lane=1 · labels=3 | query (1,1),(2,1) → Correct / (0,0):Left / (1,-1):Advance → (2,-1):Advance / terminal lane=-1 · labels=5. Retained computed witnesses: refit goal=yes | repeat goal=no | left goal=no. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst data=new Map<string,string>(['0,0','1,0','2,0'].map(k=>[k,'Advance'])),queries=['1,1','2,1'];if(mode!==1)for(const k of queries)data.set(k,'Correct');let lane=0;const trace:string[]=[];for(let t=0;t<3;t++){const key=`${t},${lane}`,action=t===0?(mode===2?'Left':'Right'):(data.get(key)??'Advance');trace.push(`(${key}):${action}`);lane=action==='Right'?1:action==='Left'?-1:action==='Correct'?0:lane;}return{values:[Number(lane===0),data.size],rows:[`${mode===1?'center data only':'query (1,1),(2,1) → Correct'}`,trace[0],trace.slice(1).join(' → '),`terminal lane=${lane} · labels=${data.size}`],receipt:`${['refit','repeat','left'][mode]} goal=${lane===0?'yes':'no'}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §13; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dagger-correction.c5",
+      "text": "dagger-correction\n\n**Identity / target / source:** `ai:dagger-correction` → `ai-dagger-correction` → `src/demos/ai/ai-dagger-correction`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/114`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#13-dagger-correction`. **Packet:** R2. **Level / prerequisites:** stretch; `ai:behaviour-cloning-drift`.\n\n**Nearest / distinct payoff:** behaviour-cloning-drift exposes unsupported states; this actually queries expert labels on visited states and refits a dataset lookup.\n\n**Computed primary model:** Use the preceding3-step lane world; extend lanes to−1,0,+1. Expert actionAdvance at lane0, Correct otherwise. Original training data only center states. A rollout with forcedRight first visits(1,1),(2,1); query expert gives Correct labels at both. Aggregate them with original data; exact lookup fit now takesCorrect at(1,1) on a rerun, returns center at t2 and succeeds by t3.\n\n**Countercase / boundary:** Repeating the original center demonstrations adds no off-lane state and does not repair the slipped rollout. An unqueried forcedLeft reaches lane−1 states and still fails under the updated lookup; another query/aggregation round is needed. Expert labels must be available and correct; no universal sample bound is inferred.\n\n**Prediction / transfer recall:** Predict which extra labelled state changes the next slipped rollout; recall why right-lane corrections do not automatically label unseen left-lane states.\n\n**Intervention / retained witness:** Collect learner states/Query expert/Refit lookup computes the actual aggregated table and changed rollout, with Repeat expert-only and Left slip contrasts. Retain before/after visited-state traces; no magic “improve policy” button without new labels.\n\n**Source obligation:** [Ross–Gordon–Bagnell original DAgger PDF](https://proceedings.mlr.press/v15/ross11a/ross11a.pdf), opened2026-10-19, §2.1 expert-state supervision, §3 dataset aggregation/Algorithm3.1. The local finite state lookup/forced slip is not the paper’s driving benchmark or a claim of a universal recovery guarantee.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §13; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Do right-lane corrections automatically label left-lane states?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Different unseen states require their own expert queries or justified generalization."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:dagger-correction",
+    "also": [],
+    "prerequisites": [
+      "ai:behaviour-cloning-drift"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

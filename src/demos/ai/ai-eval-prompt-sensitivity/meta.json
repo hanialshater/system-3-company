@@ -1,0 +1,112 @@
+{
+  "slug": "ai-eval-prompt-sensitivity",
+  "title": "Which template enters?",
+  "hook": "Trace a fixed parser on the same tasks.",
+  "domain": "ai",
+  "concept": "eval-prompt-sensitivity",
+  "status": "draft",
+  "version": 3,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:test-score-error-bars"
+    ],
+    "doesNotKnow": [
+      "With the parser fixed, must equivalent question formats score equally?"
+    ]
+  },
+  "misconception": "With the parser fixed, must equivalent question formats score equally?",
+  "objective": "Explain the retained computed contrast and its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-eval-prompt-sensitivity.c1",
+      "text": "Title: Which template enters?. Hook: Trace a fixed parser on the same tasks.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: With the parser fixed, must equivalent question formats score equally? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "support": "derivation",
+      "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction/exploreHint",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-eval-prompt-sensitivity.c2",
+      "text": "The declared parser accepts only an exact Q: prefix followed by two unsigned integers separated by a literal plus sign, with no spaces or trailing text and returns0 otherwise. Fixed tasks1+2,2+3,3+4,4+5 have targets3,5,7,9 and an unchanged integer-equality scorer. Exact Q:a+b template scores4/4; Question: a+b scores0/4. Prefix normalization maps Question: to Q: and both templates score4/4. These literal templates are manipulated stimuli. This finite parser experiment does not measure LLM sensitivity; changing the scorer would add a confound.",
+      "support": "derivation",
+      "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture HTML numeric deck and retained witness",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-eval-prompt-sensitivity.c3",
+      "text": "The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
+      "support": "derivation",
+      "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-eval-prompt-sensitivity.c4",
+      "text": "Recall: Which change prevents isolating prompt format as the cause of a score difference? Choices: Change the scorer as well as format; Keep tasks and scorer fixed; Normalize prefixes in a separate control. Answer rationale: The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
+      "support": "derivation",
+      "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json recall",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-eval-prompt-sensitivity.c5",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. The declared parser accepts only exact /^Q:(digits)+(digits)$/ additive input and returns0 otherwise.",
+      "support": "derivation",
+      "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx initial inputs/actions; source/method provenance",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Which change prevents isolating prompt format as the cause of a score difference?",
+    "options": [
+      "Change the scorer as well as format",
+      "Keep tasks and scorer fixed",
+      "Normalize prefixes in a separate control"
+    ],
+    "answer": 0,
+    "why": "The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:eval-prompt-sensitivity",
+    "also": [],
+    "prerequisites": [
+      "ai:test-score-error-bars"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-protocol"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

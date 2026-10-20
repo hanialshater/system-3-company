@@ -1,0 +1,102 @@
+{
+  "slug": "ai-speculative-decoding",
+  "title": "Where does rejected mass go?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "speculative-decoding",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:greedy-decoding"
+    ],
+    "doesNotKnow": [
+      "Does accepting every draft token preserve this target distribution?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared speculative-decoding mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-speculative-decoding.c1",
+      "text": "hook/predict: Does accepting every draft token preserve this target distribution? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-speculative-decoding.c2",
+      "text": "stage input operands: \"p=.2,.8 · q=.6,.4 · accept=min(p,q) · residual=max(p−q,0)\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-speculative-decoding.c3",
+      "text": "reveal: Accepted mass [.2,.4] plus residual correction [0,.4] restored target [.2,.8]. Resampling rejected mass from p instead gave [.28,.72]. When draft matched target, acceptance was 1. Equal distributions do not imply identical sampled sequences or measured runtime speedups.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-speculative-decoding.c4",
+      "text": "recall: For p=[.5,.5] and q=[.8,.2], what total draft mass is accepted? min(.5,.8)+min(.5,.2)=.5+.2=.7.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-speculative-decoding.c5",
+      "text": "stage computation: Two tokens A/B. Target p=[.2,.8], draft q=[.6,.4]. Draw token fromq and accept tokeni with min(1,p_i/q_i). Accepted mass=min(p,q)=[.2,.4], total.6. On rejection mass.4, sample residual normalized max(p−q,0)=[0,1]. Final token mass[.2,.8] equals target. Compute each branch probability, not a scripted token replay.\n\n**Countercase / boundary:** Accepting all draft tokens gives[.6,.4], wrong. Reject then resample from p instead of residual gives[.28,.72], also wrong. When q=p, acceptance1 and no residual draw is used; avoid dividing by zero. Equal output distribution does not imply identical token sequences under arbitrary random seeds or a measured runtime speedup.\n\n**Prediction / transfer recall:** Predict whether accepting all proposals preserves target here; recall p=[.5,.5],q=[.8,.2] accepts total.7 and correction returns target[.5,.5].\n\n**Intervention / reachable witness:** Accept/correct view computes branch widths with numeric masses, then Wrong correction and Matched draft show failures/boundary. Keep target, draft, accepted and corrected mass distinctly labelled; retain original target-equality witness into reveal. No remote model invocation.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-speculative-decoding.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: p=.2,.8 · q=.6,.4 · accept=min(p,q) · residual=max(p−q,0) ? Residual Wrong fix Matched q Reset 1: a=0.20,0.40;c=0.00,0.40;Σ=0.6→0.20,0.80 2: a=0.20,0.40;c=0.08,0.32;Σ=0.6→0.28,0.72 3: a=0.20,0.80;c=0.00,0.00;Σ=1.0→0.20,0.80 | inspection 0: p=.2,.8 · q=.6,.4 · accept=min(p,q) · residual=max(p−q,0) A 0.20+0.00 B 0.40+0.40 accepted + correction Residual Wrong fix Matched q Reset 1: a=0.20,0.40;c=0.00,0.40;Σ=0.6→0.20,0.80 2: a=0.20,0.40;c=0.08,0.32;Σ=0.6→0.28,0.72 3: a=0.20,0.80;c=0.00,0.00;Σ=1.0→0.20,0.80 | inspection 1: p=.2,.8 · q=.6,.4 · accept=min(p,q) · residual=max(p−q,0) A 0.20+0.08 B 0.40+0.32 accepted + correction Residual Wrong fix Matched q Reset 1: a=0.20,0.40;c=0.00,0.40;Σ=0.6→0.20,0.80 2: a=0.20,0.40;c=0.08,0.32;Σ=0.6→0.28,0.72 3: a=0.20,0.80;c=0.00,0.00;Σ=1.0→0.20,0.80 | inspection 2: p=.2,.8 · q=.6,.4 · accept=min(p,q) · residual=max(p−q,0) A 0.20+0.00 B 0.80+0.00 accepted + correction Residual Wrong fix Matched q Reset 1: a=0.20,0.40;c=0.00,0.40;Σ=0.6→0.20,0.80 2: a=0.20,0.40;c=0.08,0.32;Σ=0.6→0.28,0.72 3: a=0.20,0.80;c=0.00,0.00;Σ=1.0→0.20,0.80",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#21-speculative-decoding; local model.ts and model-check.mjs. [Leviathan et al. original PDF](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf), opened body2026-10-19, §2.3 PDFp3 sampling acceptance and residual distribution; AppendixA.1 proof lead. The finite one-token derivation illustrates distributional correctness only, not actual hardware speed. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For p=[.5,.5] and q=[.8,.2], what total draft mass is accepted?",
+    "options": [
+      ".7",
+      ".5",
+      "1"
+    ],
+    "answer": 0,
+    "why": "min(.5,.8)+min(.5,.2)=.5+.2=.7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:speculative-decoding",
+    "also": [],
+    "prerequisites": [
+      "ai:greedy-decoding"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

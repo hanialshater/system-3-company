@@ -1,0 +1,2 @@
+export function update(old:number,reward:number,next:number[],terminal=false,gamma=.5,alpha=.5){const continuation=terminal?0:Math.max(...next),target=reward+gamma*continuation;return {old,reward,continuation,target,value:old+alpha*(target-old)};}
+export function trace(gamma=.5){const first=update(0,0,[2,4],false,gamma),second=update(first.value,0,[2,4],false,gamma),terminal=update(1,4,[99],true,gamma);return {first,second,terminal};}
