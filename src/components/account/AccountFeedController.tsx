@@ -1,4 +1,6 @@
 'use client';
+import { accountState } from '@/lib/account-client';
+import { resumeFeedTail, type FeedBookmark } from '@/lib/feed-resume';
 import { useEffect, useRef } from 'react';
 import type { FeedPage } from '@/lib/feed-types';
 import { readAccountPreferences, watchPreferences, matchingWithdrawn, withdrawPreferenceMatching } from './preferences-client';
@@ -8,14 +10,19 @@ export type AccountFeedPage = FeedPage & {
     matching: boolean;
     reasons: Record<string, string>;
     admissionPending?: boolean;
+    resumeOrdinal?:number;
 };
 /** Account-owned bridge. Ordinary Feed never imports account-client, auth libraries or editorial data. */
-export default function AccountFeedController({ onChange, onChecking }: {
+export default function AccountFeedController({ onChange, onChecking, getBookmark, onHistoryReady }: {
     onChange: (page: AccountFeedPage | null) => void;
     onChecking: (checking: boolean) => void;
+    getBookmark:()=>FeedBookmark|null;
+    onHistoryReady:()=>void;
 }) {
     const callback = useRef(onChange);
     callback.current = onChange;
+    const bookmarkRef=useRef(getBookmark);bookmarkRef.current=getBookmark;
+    const historyReady=useRef(onHistoryReady);historyReady.current=onHistoryReady;
     const checking = useRef(onChecking);
     checking.current = onChecking;
     useEffect(() => {
@@ -27,6 +34,7 @@ export default function AccountFeedController({ onChange, onChecking }: {
             controller = new AbortController();
             // Pause private requests/reasons while checking; unchanged refresh preserves an active prediction.
             checking.current(true);
+            const bookmark=bookmarkRef.current();
             try {
                 const prefs = await readAccountPreferences();
                 if (!live || n !== generation)
@@ -42,20 +50,32 @@ export default function AccountFeedController({ onChange, onChecking }: {
                     return;
                 }
                 const p = await r.json() as AccountFeedPage;
-                if (live && n === generation) {
-                    if (!matchingWithdrawn() && p.accountTag === prefs.accountTag && p.matching)
-                        callback.current(p);
-                    else
-                        callback.current(null);
-                }
+                if(!live||n!==generation)return;
+                if(matchingWithdrawn()||p.accountTag!==prefs.accountTag||!p.matching){callback.current(null);return;}
+                if(bookmark&&bookmark.tag===p.accountTag&&bookmark.snapshot===p.snapshot){
+                    const number=Math.floor(bookmark.ordinal/30);
+                    let fresh=p;
+                    if(number>0){
+                        const response=await fetch(`/api/account/feed?page=${number}`,{credentials:'same-origin',cache:'no-store',headers:{'x-s3c-feed-snapshot':p.snapshot},signal:controller.signal});
+                        if(!response.ok){if(live&&n===generation)callback.current(null);return;}
+                        fresh=await response.json() as AccountFeedPage;
+                    }
+                    if(!live||n!==generation)return;
+                    if(fresh.accountTag!==p.accountTag||fresh.snapshot!==p.snapshot||!fresh.matching){callback.current(null);return;}
+                    const resumed=resumeFeedTail(fresh,bookmark);
+                    callback.current(resumed);
+                }else callback.current(p);
             }
             catch {
                 if (live && n === generation)
                     callback.current(null);
             }
             finally {
-                if (live && n === generation)
+                if(live&&n===generation){
                     checking.current(false);
+                    await accountState();
+                    if(live&&n===generation)historyReady.current();
+                }
             }
         }
         const focus=()=>{if(document.visibilityState==='visible')void refresh();};

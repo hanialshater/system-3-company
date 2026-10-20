@@ -47,12 +47,16 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   const [pendingPersonal, setPendingPersonal] = useState<AccountFeedPage | null>(null);
   const [refreshRequired, setRefreshRequired] = useState(false);
   const activeSlotRef=useRef<FeedSlot|null>(null);
-  const checkpoint=useRef<{tag:string;snapshot:string}|null>(null);
+  const checkpoint=useRef<{tag:string;snapshot:string;ordinal:number|null;slug:string}|null>(null);
+  const newOrdinal=useRef<number|null>(null),rankStart=useRef(0),continuationOrdinal=useRef<number|null>(null);
+  const [historyGeneration,setHistoryGeneration]=useState(0);
+  const recallEpoch=useRef(0);
   const [continuationSlot,setContinuationSlot]=useState<FeedSlot|null>(null);
   const [paused,setPaused]=useState(false);
   const [feedSession,setFeedSession]=useState(0);
   const [reasons, setReasons] = useState<Record<string,string>>({});
   const applyPersonal = useCallback((page:AccountFeedPage|null) => {
+    rankStart.current=page?.resumeOrdinal!==undefined?page.resumeOrdinal+1:(page?.page??0)*30;
     if(page&&activeRef.current===0)setRevisitFrom(1);
     ++requestGeneration.current;inflight.current.clear();personal.current=page;setPersonalPage(page);setReasons(page?.reasons??{});setPendingPersonal(null);setRefreshRequired(false);
     setLists(prev=>({...prev,all:{items:page?.items??first.items,next:page?page.next:first.next,loading:false,failed:false}}));
@@ -61,10 +65,12 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     const old=personal.current;
     if(!old)return;
     const slot=activeRef.current>0?activeSlotRef.current:null;
-    checkpoint.current=slot?{tag:old.accountTag,snapshot:old.snapshot}:null;
+    checkpoint.current=slot?{tag:old.accountTag,snapshot:old.snapshot,ordinal:filter==='all'?newOrdinal.current:null,slug:slot.kind==='intro'?'':slot.meta.slug}:null;
+    continuationOrdinal.current=newOrdinal.current;
     setContinuationSlot(slot);setPaused(!!slot);applyPersonal(null);
     if(slot){activeRef.current=1;setActive(1);requestAnimationFrame(()=>scroller.current?.scrollTo({top:scroller.current.clientHeight}));}
-  },[applyPersonal]);
+  },[applyPersonal,filter]);
+  const getBookmark=useCallback(()=>checkpoint.current?.ordinal!=null?{...checkpoint.current,ordinal:checkpoint.current.ordinal}:null,[]);
   const checkPreferences=useCallback((checking:boolean)=>{
     checkingRef.current=checking;setCheckingPreferences(checking);
     if(checking){suspendPersonal();requestGeneration.current++;inflight.current.clear();setLists(prev=>Object.fromEntries(Object.entries(prev).map(([key,value])=>[key,{...value,loading:false}])));}
@@ -74,7 +80,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     if(checkpoint.current){
       const same=canResumeInteraction(checkpoint.current,page.accountTag,page.snapshot);
       checkpoint.current=null;
-      if(same){applyPersonal(page);setPaused(false);setRevisitFrom(2);return;}
+      if(same&&page.resumeOrdinal!==undefined){applyPersonal(page);setPaused(false);setRevisitFrom(2);return;}
       setPendingPersonal(page);return;
     }
     if(paused){setPendingPersonal(page);return;}
@@ -83,7 +89,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   },[applyPersonal,suspendPersonal,paused]);
   const restartFeed=(page:AccountFeedPage|null)=>{
     if(!page)window.dispatchEvent(new Event('s3c:feed-default'));
-    checkpoint.current=null;setContinuationSlot(null);setPaused(false);setFeedSession(n=>n+1);activeRef.current=0;setActive(0);setFilter('all');applyPersonal(page);scroller.current?.scrollTo({top:0});
+    checkpoint.current=null;continuationOrdinal.current=null;setContinuationSlot(null);setPaused(false);setFeedSession(n=>n+1);activeRef.current=0;setActive(0);setFilter('all');applyPersonal(page);scroller.current?.scrollTo({top:0});
   };
 
   const load = useCallback((f: string, page: number, replace: boolean) => {
@@ -112,7 +118,17 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
       .finally(() => inflight.current.delete(key));
   }, [applyPersonal,suspendPersonal]);
 
+  useEffect(()=>{
+    const reset=()=>{
+      recallEpoch.current++;setRevisits([]);setRevisitFrom(0);checkpoint.current=null;
+      const slot=activeRef.current>0?activeSlotRef.current:null;
+      setContinuationSlot(slot);setPaused(!!slot);applyPersonal(null);
+      if(slot){activeRef.current=1;setActive(1);requestAnimationFrame(()=>scroller.current?.scrollTo({top:scroller.current.clientHeight}));}
+    };
+    window.addEventListener('s3c:account-session-reset',reset);return()=>window.removeEventListener('s3c:account-session-reset',reset);
+  },[applyPersonal]);
   useEffect(() => {
+    const epoch=++recallEpoch.current;
     const progress = loadProgress();
     const dayMs = dayMsFromLocation();
     const due = Object.keys(progress).filter((slug) => revisitDue(progress[slug], Date.now(), dayMs));
@@ -131,14 +147,14 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         // Only lessons the feed shows come back (drafts and retired lessons stay out, as before).
         for (const m of metas) if (m && (m.status === "published" || m.status === "review")) shown.push(m);
       }
-      if (!live || !shown.length) return;
+      if (!live || epoch!==recallEpoch.current || !shown.length) return;
       setRevisitFrom(personal.current?activeRef.current+1:activeRef.current + 2);
       setRevisits(shown.slice(0, MAX_REVISITS));
     })();
     return () => {
       live = false;
     };
-  }, []);
+  }, [historyGeneration]);
 
   const list = lists[filter] ?? { items: [], next: 0, loading: false, failed: false };
 
@@ -149,6 +165,8 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     return normal;
   },[list,filter,revisits,revisitFrom,personalPage,paused,continuationSlot]);
   activeSlotRef.current=items[active]?.kind!=='intro'?items[active]??null:null;
+  const currentSlot=activeSlotRef.current;
+  newOrdinal.current=currentSlot?.kind==='lesson'&&filter==='all'?(continuationSlot?.key===currentSlot.key?continuationOrdinal.current:(()=>{const at=list.items.findIndex(item=>item.slug===currentSlot.meta.slug);return at<0?null:rankStart.current+at;})()):null;
 
   // EDD-001 option 3: load the next page before the learner reaches the end of what is loaded.
   useEffect(() => {
@@ -239,7 +257,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
 
   return (
     <div className="feed-wrap">
-      <AccountFeedController onChange={receivePersonal} onChecking={checkPreferences}/>
+      <AccountFeedController onChange={receivePersonal} onChecking={checkPreferences} getBookmark={getBookmark} onHistoryReady={()=>setHistoryGeneration(n=>n+1)}/>
       <nav className="topbar" aria-label="Subjects">
         <a className="brand" href="/">
           S3
@@ -276,7 +294,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
       <div className="feed" ref={scroller} data-testid="feed">
         {items.map((it, i) => (
           <section key={`${feedSession}:${it.key}`} className="slot-screen" data-index={i} style={{position:"relative"}}>
-            {it.kind === "intro" && <><IntroCard onStart={() => go(1)} count={counts[filter] ?? 0} /><div style={{position:'absolute',bottom:24,left:24,right:24}}>
+            {it.kind === "intro" && <><IntroCard onStart={() => go(1)} count={counts[filter] ?? 0} personalized={filter==='all'&&!!personalPage&&!checkingPreferences} /><div style={{position:'absolute',bottom:24,left:24,right:24}}>
               {checkingPreferences?<p>Checking saved choices…</p>:filter==='all'&&personalPage?<p>Based on your saved choices. <a href="/preferences">Edit preferences</a></p>:<p>Default order — not personalized. <a href="/preferences">Choose preferences</a></p>}
               {(pendingPersonal||refreshRequired)&&<button type="button" onClick={()=>restartFeed(pendingPersonal)}>Refresh feed to apply your choices</button>}
             </div></>}
@@ -316,7 +334,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   );
 }
 
-function IntroCard({ onStart, count }: { onStart: () => void; count: number }) {
+function IntroCard({ onStart, count, personalized=false }: { onStart: () => void; count: number; personalized?:boolean }) {
   return (
     <div className="card-shell center intro" data-testid="intro-card">
       <p className="tag domain">Fresh picks</p>
@@ -326,8 +344,8 @@ function IntroCard({ onStart, count }: { onStart: () => void; count: number }) {
         tells you why. Lessons come back days later as one quick question, because remembering is not knowing.
       </p>
       <p className="muted small">
-        We know nothing about you yet, so this feed is not &ldquo;for you&rdquo;. It alternates subjects. {count} lessons
-        today.
+        {personalized?<>You chose subjects, experiences or challenge for this feed. Small shifts use your saved choices and provisional editorial observations, not measured learning benefit. {count} lessons today.</>:<>We know nothing about you yet, so this feed is not &ldquo;for you&rdquo;. It alternates subjects. {count} lessons
+        today.</>}
       </p>
       <button type="button" className="primary" onClick={onStart} data-testid="start">
         Start

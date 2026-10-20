@@ -84,6 +84,7 @@ function readDevice(): DeviceState | null {
 // ---------- /me ----------
 let mePromise: Promise<Me | null> | null = null;
 let meEpoch=0;
+let sessionEpoch=0;
 /** The last answer, without asking again (so an anonymous Save never causes a request, C5.1). */
 let knownMe: Me | null = null;
 
@@ -98,8 +99,19 @@ export function accountMe(refresh = false): Promise<Me | null> {
     const init: RequestInit = refresh ? { credentials: "same-origin", cache: "no-store" } : { credentials: "same-origin" };
     mePromise = fetch("/api/account/me", init)
       .then((r) => (r.ok ? (r.json() as Promise<Me>) : null))
-      .then((m) => generation===meEpoch?(knownMe=m):mePromise)
-      .catch(() => generation===meEpoch?(knownMe=null):mePromise);
+      .then((m) => {
+        if(generation!==meEpoch)return mePromise;
+        const prior=knownMe?.signedIn?knownMe.tag:syncTag??readDevice()?.account;
+        const next=m?.signedIn?m.tag:null;
+        if(prior&&prior!==next){accountChanged(prior);return accountMe();}
+        knownMe=m;return m;
+      })
+      .catch(() => {
+        if(generation!==meEpoch)return mePromise;
+        const prior=knownMe?.signedIn?knownMe.tag:syncTag??readDevice()?.account;
+        if(prior)accountChanged(prior);
+        knownMe=null;return null;
+      });
   }
   return mePromise;
 }
@@ -192,10 +204,11 @@ async function pushDelta(slug: string, delta: LessonProgress): Promise<void> {
       body: JSON.stringify({ slug, entry: delta }),
       keepalive: true,
     });
+    if(syncTag!==tag)return;
     if (r.status === CHANGED) accountChanged(tag);
     else if (r.status >= 500) pending.set(slug, unionEntry(pending.get(slug), delta));
   } catch {
-    pending.set(slug, unionEntry(pending.get(slug), delta)); // offline: retried when the browser is back online in this page
+    if(syncTag===tag)pending.set(slug, unionEntry(pending.get(slug), delta)); // offline: retried when the browser is back online in this page
   }
 }
 
@@ -237,7 +250,7 @@ async function beginSync(tag: string, pull = true): Promise<void> {
   if (!pull) return;
   try {
     const r = await fetch("/api/account/progress", { credentials: "same-origin", cache: "no-store" });
-    if (r.ok) mergeIntoLocal(((await r.json()) as { progress: ProgressMap }).progress);
+    if (r.ok){const incoming=(await r.json()) as {progress:ProgressMap};if(syncTag===tag)mergeIntoLocal(incoming.progress);}
   } catch {
     /* offline: local play continues */
   }
@@ -283,8 +296,9 @@ function sameAccount(d: DeviceState, me: SignedInMe): boolean {
   return typeof me.tag === "string" && me.tag.length > 0 && d.account === me.tag;
 }
 
-async function run(): Promise<AccountState> {
+async function run(generation=sessionEpoch): Promise<AccountState> {
   const me = await accountMe();
+  if(generation!==sessionEpoch)return {me:null};
   if (!me) return { me: null }; // off or unreachable: touch nothing on the device
   if (!me.signedIn) {
     if (readDevice()) endAccountOnDevice(); // signed out elsewhere, or the session ended
@@ -305,6 +319,7 @@ async function run(): Promise<AccountState> {
   const localSaves = me.likesSaves ? Object.keys(loadLocalSaves()) : [];
   const account = (await getJson<{ progress: ProgressMap }>("/api/account/progress"))?.progress ?? {};
   const accountSaves = localSaves.length ? ((await getJson<{ saves: { slug: string }[] }>("/api/account/saves"))?.saves ?? []).map((s) => s.slug) : [];
+  if(generation!==sessionEpoch)return {me:null};
   const ask = movesAgainst(device, account, localSaves, accountSaves);
   if (ask.lessons || ask.recalls || ask.saves) return { me, syncing: false, ask, fromLink: notice };
   writeJson(DEVICE_KEY, { answer: "nothing", account: me.tag, own: device } satisfies DeviceState);
@@ -314,7 +329,7 @@ async function run(): Promise<AccountState> {
 
 /** Start device <-> account sync for this page load. Only AccountSync (root layout) calls this. Idempotent. */
 export function startAccountSync(): Promise<AccountState> {
-  if (!started) started = run().catch((): AccountState => ({ me: null })).then(settle);
+  if (!started){const generation=sessionEpoch;started=run(generation).catch((): AccountState => ({ me: null })).then(s=>generation===sessionEpoch?settle(s):accountState());}
   return started;
 }
 
@@ -484,6 +499,7 @@ export async function setLiked(slug: string, liked: boolean): Promise<boolean> {
 
 // ---------- Session ----------
 function forgetSession() {
+  ++sessionEpoch;
   ++meEpoch;
   started = null;
   current = null;

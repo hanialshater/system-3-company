@@ -6,6 +6,7 @@ export function accountPreferenceAdmitted(env:Record<string,string|undefined>,da
  if(env.NEXT_PUBLIC_NEW_LESSON_ORDER==='reachable-v3')return false;
  const matches=manifest.recipeVersion===RECIPE.version&&manifest.profileSetVersion===dataset.profileSetVersion&&manifest.recipeSourceSha256===dataset.recipeSourceSha256&&manifest.profileContentsSha256===dataset.profileContentsSha256;
  if(!matches)return false;
- if(env.ACCOUNT_PREFERENCE_RECIPE!==undefined)return env.ACCOUNT_PREFERENCE_RECIPE===`${RECIPE.version}:${dataset.profileSetVersion}`;
+ const qa=env.VERCEL_ENV!=='production'&&(env.VERCEL_ENV==='preview'||env.VERCEL_ENV==='development'||env.NODE_ENV==='test');
+ if(env.ACCOUNT_PREFERENCE_RECIPE!==undefined)return env.ACCOUNT_PREFERENCE_RECIPE===`${RECIPE.version}:${dataset.profileSetVersion}`&&(manifest.status==='approved'||qa);
  return manifest.status==='approved';
 }
