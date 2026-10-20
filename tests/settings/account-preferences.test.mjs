@@ -78,3 +78,17 @@ test("new fields use independent SQL flags and an existing-account merge cannot 
   assert.deepEqual(S.applyWrite(account, { mode: "merge", personalizationOn: true, experiences: ["depth"], challenge: "demanding" }), account);
   assert.deepEqual(S.settingsExportBlock({ personalizationOn: null, subjects: [], lessOf: [] }), S.NO_CHOICE, "old v1 choices get explicit empty/null defaults");
 });
+
+
+test("write origin is exact and cannot be replaced by forwarding headers; JSON content type is required", async () => {
+  const store = memoryStore();
+  for (const options of [
+    { origin: "https://evil.example", headers: { "x-forwarded-host": "evil.example" } },
+    { origin: "https://evil.example", headers: { host: "evil.example" } },
+    { origin: "http://s3c.example" },
+    { origin: "https://s3c.example/some-path" },
+  ]) assert.equal((await PUT(put({ experiences: ["depth"] }, options), deps(store))).status, 403);
+  assert.equal((await PUT(put({ experiences: ["depth"] }, { headers: { "content-type": "text/plain" } }), deps(store))).status, 415);
+  assert.equal(store.calls.put.length, 0);
+  assert.equal((await PUT(put({ experiences: ["depth"] }, { headers: { "content-type": "application/json; charset=utf-8" } }), deps(store))).status, 200);
+});

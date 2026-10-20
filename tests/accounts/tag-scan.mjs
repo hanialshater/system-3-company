@@ -58,6 +58,9 @@ function allowedHeaderNode(file, call) {
   if (file === PREFERENCES_CLIENT_FILE && ts.isIdentifier(call.expression) && call.expression.text === "fetch") {
     const [url, init] = call.arguments;
     if (!url || !ts.isStringLiteralLike(url) || url.text !== "/api/account/settings" || !init || !ts.isObjectLiteralExpression(init)) return null;
+    if (init.properties.some(p => ts.isSpreadAssignment(p))) return null;
+    const named = (name) => init.properties.filter(p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteralLike(p.name)) && p.name.text === name);
+    if (named("method").length !== 1 || named("headers").length !== 1) return null;
     const property = (name) => init.properties.find(p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteralLike(p.name)) && p.name.text === name);
     const method = property("method")?.initializer;
     const headers = property("headers")?.initializer;

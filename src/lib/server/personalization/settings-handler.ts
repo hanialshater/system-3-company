@@ -12,7 +12,7 @@
 // D3: the body's keys are an allow-list; an arm, a timestamp or any other key is dropped unread and never stored.
 // Anonymous learners never reach this account store: no session means 401; no new device preferences are saved.
 
-import { sameAccountHeader } from "../http";
+import { isJson, sameAccountHeader } from "../http";
 import { cleanStored, parseSettingsWrite, type FeedSettings, type SettingsCatalog } from "./settings";
 import type { SettingsStore } from "./settings-store";
 
@@ -58,15 +58,9 @@ export function sameOriginWrite(req: Request): boolean {
   if (!origin || origin === "null") return false;
   const site = req.headers.get("sec-fetch-site");
   if (site === "cross-site" || site === "same-site") return false;
-  const hosts = new Set<string>();
   try {
-    hosts.add(new URL(req.url).host);
-  } catch {
-    /* ignore */
-  }
-  for (const h of [req.headers.get("x-forwarded-host"), req.headers.get("host")]) if (h) hosts.add(h.split(",")[0].trim());
-  try {
-    return hosts.has(new URL(origin).host);
+    const parsed = new URL(origin);
+    return origin === parsed.origin && parsed.origin === new URL(req.url).origin;
   } catch {
     return false;
   }
@@ -139,6 +133,7 @@ export async function handleSettingsPut(req: Request, deps: SettingsDeps): Promi
     return empty(404);
   }
   if (!sameOriginWrite(req)) return json(403, { error: "origin" });
+  if (!isJson(req)) return json(415, { error: "content_type" });
   const auth = await authenticate(req, deps, "put");
   if (!auth.ok) return auth.res;
   if (!sameAccountHeader(req, auth.accountTag)) return json(409, { error: "account_changed" });

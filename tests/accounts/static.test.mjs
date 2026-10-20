@@ -275,6 +275,8 @@ test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeac
     preferenceWrite.replace('/api/account/settings', '/api/events'),
     preferenceWrite.replace('/api/account/settings', 'https://third.example/api/account/settings'),
     preferenceWrite.replace('"PUT"', '"GET"'),
+    preferenceWrite.replace('method: "PUT"', 'method: "PUT", method: "GET"'),
+    preferenceWrite.replace('method: "PUT"', '...options, method: "PUT"'),
     preferenceWrite.replace('"x-s3c-account":tag', '"x-s3c-account":tag, "extra":tag'),
     preferenceWrite.replace('JSON.stringify(patch)', 'JSON.stringify({tag})'),
     preferenceWrite.replace('"x-s3c-account":tag', '"x-s3c-account":DEVICE_KEY'),
