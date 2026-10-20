@@ -45,6 +45,33 @@ export const FLOWS = {
 export const ROOMS = { /* room → lane, POC, roles; replaces poc-map.md's table; poc-map.md is generated from it */ };
 ```
 
+The `lesson` and `code` flows above are examples of the first two definitions, not fixed rules. Who does what is set per flow when the flow is created (founder, 2026-10-20: "Who do what is defined when the state machines/flow is created").
+
+## S0. Creating a flow defines who does what
+
+A flow is a versioned state machine: stages, the signer of each stage (a role, `orderer`, `code` or `founder`), the evidence each stage needs, the budget limits per level and the escalation target. Creating one is itself an order that needs approval.
+
+```bash
+node tools/flow.mjs define code --by=chief-of-staff \
+  --stages=build,test1,check,uat,release \
+  --signer.build=builder --signer.test1=code --signer.check=principal-engineer \
+  --signer.uat=orderer --signer.release=founder:if-deploys \
+  --evidence.test1="tests; npm run check no new errors" --limit.manager=250k --limit.chief-of-staff=500k
+# → flow code v1 PROPOSED · invariants ok · waiting on: founder
+
+node tools/flow.mjs approve-def code@v1 --by=founder --evidence=company/decisions/<date>-founder-flow-code.md
+# → flow code v1 ACTIVE · orders created from now on pin code@v1
+```
+
+**Invariants: code refuses any definition that breaks them, whatever its author wants.**
+- Every stage has exactly one signer rule and at least one evidence item.
+- The checking stage is signed by a role that is independent of the build stage, and never by the builder.
+- `test1` is signed by `code`: it runs commands; nobody can sign it by hand.
+- Founder-reserved rights (deploy, org change, budget line, protected path) are signed by the founder in every flow.
+- A stage that a protected gate already covers (the lesson gates in tools/company.mjs) reads the gate's verdict; the definition cannot weaken it.
+
+A changed definition is a new version that needs approval again. Running orders keep the version they started with, so a rule change never moves work that is already in flight.
+
 ## S1. An order goes down the chain (founder → chief of staff → manager → builder)
 
 Founder: "Build a physics lesson on why heavier objects don't fall faster."
@@ -178,10 +205,9 @@ Every accepted command writes one event (`order`, `approve`, `escalate`, `enter`
 
 ## Open for the founder
 
-1. UAT: the orderer (proposed), or the founder for some flows.
-2. The limits: chief of staff 500k and manager 250k per order are placeholders.
-3. Pilot: the code flow first (EXP-009 is the first order), lessons second.
-4. Route: chief-of-staff-ceo-office designs the org part (levels, rooms replacing poc-map.md), then tools-lead builds.
+1. Who does what, including UAT and the limits, is set per flow in its definition (S0) and approved with it. It is no longer a company-wide question.
+2. Pilot: define and approve the `code` flow first (EXP-009's follow-up work is the first order on it), then `lesson`.
+3. Route: chief-of-staff-ceo-office designs the org part (levels, the invariants, rooms replacing poc-map.md), then tools-lead builds.
 
 ## Objections
 
