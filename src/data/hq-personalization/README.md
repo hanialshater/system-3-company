@@ -23,6 +23,7 @@ Regenerate after any change to `company/personalization/model/`, `content/curric
 | `meta.json` | `hq-cli.mjs meta` (schema `personalization-hq-meta-v0`), with `saved` emptied. |
 | `runs/<persona>.<policy>.seed<k>.days<d>.json.gz` | `hq-cli.mjs run` (schema `personalization-sim-trace-v0`), gzipped. One per persona × policy × seed. |
 | `compare/<persona or all>.<main or all>.seeds<k>.days<d>.json` | `hq-cli.mjs compare` (schema `personalization-hq-compare-v0`), `ms` set to 0. |
+| `sandbox/<persona>.<v1 or v3>.seed<k>.json.gz` | `hq-cli.mjs sandbox` (schema `personalization-hq-sandbox-v0`, unrounded), gzipped; listed in the manifest's `sandboxes`. The session lab ("EDP-faithful session composer") recomputes from these in the browser (`src/lib/hq-personalization-sandbox.ts`); nothing is saved. 6 personas × v1, v3 × seed 1. |
 | `candidates/<persona>.<reachable-v2 or reachable-v3>.seed<k>.days<d>.json.gz` | `tools/hq-lab-candidates.mjs` (schema `personalization-hq-candidate-v1`), gzipped; listed in the manifest's `candidates` with the candidate's frozen sha256. |
 
 Set today: 6 personas × the 7 ordering policies of `model.ts` POLICIES (`review-timing` is not an ordering policy) × seed 1 × 7 days; comparisons for each persona and for all, `main` and `all` policy sets, 5 seeds, 7 days. No `reachable-*` policy from the simulator's own set: the generator refuses if one appears there.
