@@ -3,6 +3,7 @@ import {useEffect,useId,useReducer,useRef,useState,type Dispatch} from "react";
 import {Lesson,type StageContext} from "@/kit/Lesson";
 import {Control} from "@/kit/controls";
 import {DOCUMENTS,REQUIRED,PREDICTION,REVEAL,PROVENANCE,CONTEXT,initialState,transition,type Action,type State} from "./model";
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from "./styles.module.css";
 function Stage({ctx,state,dispatch,open,onSources,onDismiss,paneId}:{ctx:StageContext;state:State;dispatch:Dispatch<Action>;open:boolean;onSources:()=>void;onDismiss:()=>void;paneId:string}){
  const credited=useRef(new Set<string>());const previousPhase=useRef(ctx.phase);
@@ -11,6 +12,7 @@ function Stage({ctx,state,dispatch,open,onSources,onDismiss,paneId}:{ctx:StageCo
  const select=(id:string)=>{if(ctx.locked)return;dispatch({type:"select",id});if(REQUIRED.includes(id)&&!credited.current.has(id)){credited.current.add(id);ctx.interact();}};
  const loaded=!ctx.locked&&state.loaded.length>0;
  return <div className={s.frame}>
+ <HistoryLocator slug="history-khartoum-cairo-1800-1900" places={["Khartoum", "Cairo"]} />
  {loaded?<div className={s.evidence}>{DOCUMENTS.filter(d=>state.loaded.includes(d.id)).map(d=><div key={d.id} className={s.evidenceRow} data-active={state.active===d.id} data-claim={d.claims.join(" ")}><span className={s.datum}>{d.label} {d.display}</span>{CONTEXT[d.id]&&<> <span className={s.context} data-claim={`context.${d.id}`}>{CONTEXT[d.id]}</span></>}</div>)}{PROVENANCE&&<p className={s.provenance} data-claim="provenance">{PROVENANCE}</p>}</div>:<div className={s.pending} aria-hidden="true"/>}
  <div className={s.actions}>{DOCUMENTS.map((d,index)=><Control key={d.id} className={s.tile} disabled={ctx.locked||state.active===d.id} aria-pressed={!ctx.locked&&state.active===d.id} aria-label={ctx.locked?`Record ${index+1}, locked`:`Record ${index+1}: ${d.label}`} onClick={()=>select(d.id)}>{index+1}</Control>)}<Control className={s.sourceControl} disabled={ctx.locked} aria-expanded={open} aria-controls={paneId} onClick={onSources}>{open?"Close":"Sources"}</Control><Control className={s.resetControl} disabled={ctx.locked||(state.active===null&&!open)} onClick={()=>{dispatch({type:"reset"});onDismiss();}}>Reset</Control></div>
  </div>;

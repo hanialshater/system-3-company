@@ -995,6 +995,41 @@
           "Claim-quoted text in ai, history, lifehacks and algorithms unchanged (W-1992)."
         ]
       }
+    },
+    {
+      "version": "r18",
+      "date": "2026-10-20T20:28:06.179Z",
+      "commit": "592da6a54bb114afc2e529f461170a81f6ca94b2",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-20-founder-history-visuals-deploy.md"
+      },
+      "summary": "Restore missing history visuals: all 100 city-history lessons now have sourced geographic locator maps.",
+      "added": {
+        "features": [
+          "Labeled coastlines-only locator maps, with north arrows, world insets and accessible descriptions, on all 100 city-history lessons.",
+          "Pinned coordinate provenance and an offline SVG generator; 102 map coverage and geometry regression checks."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "82 city-history lessons previously had no SVG figure.",
+          "Existing historical evidence, 17 data figures, interactions and publication states preserved."
+        ],
+        "known_issues": [
+          "Independent fact-check and learner-review status remains unchanged; new map claims are unverified.",
+          "811 existing global check errors on both the r17 base and this tree; full verify stops on two pre-existing publication-readiness failures. Existing HQ release-log tests also have stale version/date fixtures."
+        ]
+      }
     }
   ],
   "historical_deployments": [
