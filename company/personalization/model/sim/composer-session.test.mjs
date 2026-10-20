@@ -382,7 +382,10 @@ test("11. v3-edpbase: v3 plus exactly one base row kept apart from edits; beta >
   assert.deepEqual([target, path, from], ["session", "base", 1.0]);
   assert.equal(v3.base, 1.0, "v3 keeps base 1.0");
   assert.ok(beta > 0 && beta < 1);
-  assert.match(why, /^placeholder pending W-2004 \(rule in the VP record §2\.3\)/, "beta is marked as a placeholder until applied-scientist-personalization sets it");
+  // model-v0.4.3 (W-2004): beta set by applied-scientist-personalization by the VP record §2.3 rule; the placeholder is gone.
+  assert.equal(beta, 0.033);
+  assert.match(why, /^guess: \.033 \(model-v0\.4\.3, W-2004; was the \.02 placeholder\), by the VP record's rule/, "beta carries the W-2004 reason, not the placeholder");
+  assert.doesNotMatch(why, /placeholder pending/, "the placeholder reason cannot survive into a frozen criterion");
   // equal to v3 except base, field by field
   assert.equal(e.base, beta);
   assert.deepEqual({ ...e, base: v3.base }, v3);

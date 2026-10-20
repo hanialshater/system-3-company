@@ -22424,10 +22424,11 @@
       "id": "W-2004",
       "title": "Set beta (base) for gam-session-v3-edpbase by the rule in company/decisions/2026-10-20-vp-personalization-session-base.md §2.3: EDP need-widget base spread / primary pull (~.1, makeModulesV1) x our typical primary pull (onRem x median need); > 0 so default order is the tie-break; not from any layout probe or recall field; guess reason in the edit row, derivation in gam-session-params.md, model-version row",
       "owner": "applied-scientist-personalization",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-20"
     },
     {
       "id": "W-2005",
@@ -22450,6 +22451,34 @@
     {
       "id": "W-2007",
       "title": "reasonCarriesMove equality edge (W-2003): VP record §5 says 'greater than'; at exact equality removing the reason leaves a tie the default card wins, so by §5's own justification >= is the honest test. Built as > (conservative for K5); rule > or >=. company/personalization/policies/gam-session-build-note.md §9.4",
+      "owner": "vp-personalization",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": [],
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "W-2008",
+      "title": "reasonCarriesMove equality rule is >= (VP record company/decisions/2026-10-20-vp-personalization-session-base.md §7, W-2007): change > to >= in composer-session.ts carries line and sandbox-reference.mjs recompose (and both doc comments); test 12 (e) recomputes with >=; fixture (f) expects true; add mutation '> instead of >=' caught by (f); update build note §9.3/§9.4/§9.5 item 4 (port spec for W-2006: >=); record in model-version change line. Before eval freezes the session criterion.",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2009",
+      "title": "W-2004 follow-up: sim/hq-cli.mjs line 75 comment still says beta 'placeholder pending W-2004'; beta is .033 at model-v0.4.3 (company/personalization/policies/gam-session-params.md, W-2004 section). Comment only, with the W-2006 sync",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2010",
+      "title": "W-2004 read-back: beta = .033, not the record's ~.02. Matched statistics give EDP ratio .28 (not ~.1); the ~.1 paired EDP's strongest pull (~1.2-1.5) with our median-need pull. If the VP record §2.3 'about .1' text should be annotated, that is the VP's edit (company/personalization/policies/gam-session-params.md, W-2004 section)",
       "owner": "vp-personalization",
       "state": "backlog",
       "domain": null,

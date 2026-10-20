@@ -1,9 +1,64 @@
-# Session composer parameters (composer-v0.3-session, model-v0.4.1)
+# Session composer parameters (composer-v0.3-session, model-v0.4.3)
 
-owner: applied-scientist-personalization (Juno) · date: 2026-10-20 · board: W-2000 (this review), W-1995 (the first) · status: reviewed numbers, UNSCORED, not frozen, not committed
+owner: applied-scientist-personalization (Juno) · date: 2026-10-20 · board: W-2004 (β for gam-session-v3-edpbase), W-2000, W-1995 (the first) · status: reviewed numbers, UNSCORED, not frozen, not committed
 reviews: company/personalization/policies/gam-session-build-note.md §5 and §8 · code: company/personalization/model/model.ts §4b (`COMPOSER_SESSION`)
-change lines: company/decisions/2026-10-16-personalization-model-v0.md, rows `model-v0.3.1` and `model-v0.4.1`
+change lines: company/decisions/2026-10-16-personalization-model-v0.md, rows `model-v0.3.1`, `model-v0.4.1` and `model-v0.4.3`
 reference: company/personalization/reference/edp-orchestrator/src/orchestrator-inline.js (`makeModulesV1`, `EDITS_V3`, `compose`), edp-engine.js (`compose`, cost .06)
+
+## W-2004: β for `gam-session-v3-edpbase` (model-v0.4.2 → model-v0.4.3)
+
+Rule (fixed before any result, company/decisions/2026-10-20-vp-personalization-session-base.md §2.3): β = EDP's ratio of need-widget base spread to a typical primary pull, times our typical primary pull. β > 0. Not chosen from a layout probe or any recall field. Inputs read: orchestrator-inline.js (`makeModulesV1`, `PERSONAS`, `scoreProblems`; EDP's profiles, not ours) and our composition traces (session-start needs only). I ran no `compare` and no layout probe, and read no recall, score, `simulated` or `groundTruth` field. Scripts: scratchpad, not committed (EDP: slice orchestrator-inline.js before `STATE & UI`, eval with window = globalThis; ours: `runEpisode({policy: "gam-session-v3", trace: true, days: 7})`, reading only `sessionPlan[first new].remainingBefore` on steps with `session.composedHere`).
+
+### The one choice: the same statistic on both sides
+
+The ratio is unit-free only if "typical primary pull" is the same statistic in EDP and here. A primary pull is one need's term in a card that addresses that need first: EDP on_rem[p] × need[p], ours onRem[n] × need[n], at session start. "Typical" = the median over every (learner, need) pair with a nonzero need. I fixed this before computing our side, and checked it against two other matched definitions (below).
+
+### EDP (makeModulesV1, 8 profiles × 7 problems = 56 pairs)
+
+- **Base spread:** the 18 need widgets (non-empty on_rem) have base .05 to .20 (median .05): spread .20 − .05 = **.15**. Our base × rank spans exactly β over the eligible list, so β is the spread on our side. (EDITS_V3 widens it to .05 to .22. I use v1 as the rule says; EDP chose its v3 base lifts from its own coverage numbers, which W-1995 declined to port.)
+- **Typical primary pull:** for each pair, the largest on_rem among widgets whose largest addr is that problem, times the profile's need. Median over 56 pairs = **.529**. (Needs: median .277, p90 .58. Primary on_rem: median 1.75.)
+- **Ratio:** .15 / .529 = **.284**.
+
+### Ours (gam-session-v3, 6 simulated learners × seeds 1 to 3 × 7 days, 262 sessions, all personalised)
+
+| need | nonzero sessions | median need | onRem | onRem × median |
+|---|---|---|---|---|
+| repair | 260 | .383 | .5 | .192 |
+| build | 262 | .466 | .4 | .187 |
+| breadth | 262 | .225 | .35 | .079 |
+| stretch | 262 | .292 | .3 | .087 |
+
+- **Typical primary pull:** median of onRem × need over the 1,046 nonzero (session, need) pairs = **.115**. (gam-session v1 traces: .113, so the base-1.0 variant used does not matter.)
+
+### β
+
+**β = .284 × .115 = .0326 → .033.**
+
+| matched statistic (EDP / ours) | EDP pull | our pull | β = .15 × ours / EDP |
+|---|---|---|---|
+| median pair pull (adopted) | .529 | .115 | **.033** |
+| median coefficient × median need | 1.75 × .277 = .485 | .375 × .292 = .1095 | .034 |
+| each session's strongest pull (the slot-0 decider) | 1.168 (EDP slot-0 winners: 1.37 1.58 1.17 1.04 1.16 1.26 .42 .80) | .270 | .035 |
+
+Any matched pair lands at .033 to .035. Mixed pairs do not, and that is where the record's numbers came from:
+
+- **"About .1" and "near .02" are not reproduced.** My W-2000 "Routed" 1 note put EDP's typical primary pull at ≈ 1.5. That matches the high end of EDP's strongest pull per profile (median 1.17, range .42 to 1.58), not a median pair pull. The VP multiplied that ratio (≈ .1) by our *median-need* pull (.18 to .21, repair and build only), so it paired two different statistics: .1 × .19 = .019. The other mix (EDP median pull against our repair/build only) would give .284 × .19 = .054. I take neither mix. The rule says β is read off EDP and our need medians, and the arithmetic is binding, not the stated "about". The VP said its .02 expectation does not bind (§2.3).
+- **Error in W-2000, corrected here:** "typical primary pull (≈ 1.5)" in "Routed" 1 should have read "strongest primary pull per profile (median 1.17, up to 1.58)". The ratio for the median pull is .28, not .1. That section is kept as written below. This note supersedes the figure.
+
+### What β = .033 means mechanically (arithmetic, not a probe)
+
+- The default order's whole gradient across the eligible list is .033, about a third of a median pull (.115) and an eighth of a session's strongest pull (.27). Needs decide the order, and the default order breaks near-ties, as in EDP (spread .15 against pulls .53 and 1.17).
+- It is still above zero, so among cards with equal need terms the default order decides (checkModel; §2.3).
+- The move bar is then about attentionCost + slotDecay × slot (.06 to .10), as the VP record §3 expected. The anchor no longer adds to it. That is what O3 and K5 (`reasonCarriesMove`) are for. I did not raise attentionCost (record O3).
+
+### Sensitivity (arithmetic only)
+
+β is linear in both medians. The EDP spread is the one coarse input: base takes only five values (.05, .08, .10, .20 and, in v3, .22). Using v3's spread (.17) gives .037. Using only the bulk of v1 (.05 to .10, i.e. leaving out outfit_completion's .20) gives .011. Our pull moves little across policies (.113 to .115). A layout probe may now report the resulting departure shares (composition fields only, build note §8.4 and §9.4). It cannot move β in this readout cycle (VP record §2.6, O4).
+
+### Routed
+
+1. Stale comment, not a number: `company/personalization/model/sim/hq-cli.mjs` line 75 still says "placeholder pending W-2004" (learner-model-engineer, with the W-2006 sync).
+2. After the commit: the HQ meta and precompute show β = .033 (hq-engineer, W-2006). The decision row is `model-v0.4.3`.
 
 ## W-2000 re-review at model-v0.4.0 → model-v0.4.1
 

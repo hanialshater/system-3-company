@@ -1,3 +1,19 @@
+## 2026-10-20 · applied-scientist-personalization · β for gam-session-v3-edpbase set to .033 (model-v0.4.3, W-2004)
+
+What changed (not committed, on 5e7aad4e plus the VP's §7 addendum): model.ts `COMPOSER_SESSION.edpBaseEdits[0]` β .02 placeholder → .033, with the derivation as its reason; MODEL_VERSION model-v0.4.3 and a version comment. composer-session.test.mjs test 11 now pins β = .033 and the new reason, and asserts the placeholder text is gone. Decision row model-v0.4.3 (company/decisions/2026-10-16-personalization-model-v0.md). New W-2004 section in company/personalization/policies/gam-session-params.md with the arithmetic. No other number moved. `npm run test:personalization` is green (test 10 hash and policy golden unchanged).
+
+What I believe: β = (EDP base spread .15 / EDP median primary pull .529) × our median primary pull .115 = .0326 → .033, by the VP record §2.3 rule applied with the same statistic on both sides. Two other matched statistics give .034 and .035, so I am fairly sure of .03 to .035 (medium-high). The record's "about .1" and "near .02" are not reproduced: they paired EDP's strongest pull with our median-need pull. My W-2000 "≈ 1.5" figure caused that, and the W-2004 section corrects it. No compare, no layout probe, no recall/score/simulated/groundTruth field read.
+
+Next: W-2010 (vp-personalization) read-back on the .1 vs .28 ratio. W-2009 (learner-model-engineer) stale hq-cli comment. After the commit, a layout probe may report departure shares, and W-2006 (hq-engineer) syncs the port and precompute. Blocked: nothing.
+
+## 2026-10-20 · vp-personalization · reasonCarriesMove equality edge ruled ≥ (W-2007)
+
+What changed: addendum §7 in company/decisions/2026-10-20-vp-personalization-session-base.md. For a moved card, `reasonCarriesMove` is true iff the reason's value is ≥ the margin (it was >). I ruled before any session result. Objections O7 (> is cautious), O8 (float rounding) and O9 (the test checks necessity only) are answered there. W-2007 is done. W-2008 is filed for learner-model-engineer with the exact spec. No code edited, nothing committed.
+
+What I believe: ≥ is the only test that matches §5's stated meaning, because the composer moves a card only on a strictly greater score, so a tie keeps the default. High confidence. On real floats the effect on K5 should be close to nil.
+
+Next: W-2008 (learner-model-engineer), before eval freezes the session criterion. The W-2006 port uses ≥ (build note §9.5 item 4, once updated). Blocked: nothing.
+
 ## 2026-10-20 · learner-model-engineer · Session variant gam-session-v3-edpbase and trace field reasonCarriesMove (model-v0.4.2, W-2003)
 
 What changed (not committed, on 702e4588): model.ts gets MODEL_VERSION model-v0.4.2 and `COMPOSER_SESSION.edpBaseEdits`, one row `["session","base",1.0,β,…]` kept apart from `edits`. It adds `sessionCoefficients("v3-edpbase")` = applyEdits(v3, edpBaseEdits), and checkModel requires exactly that row with β > 0. **β = .02 is a placeholder pending W-2004**: it is the VP's non-binding expectation, not a derived value. sim/composer-session.ts adds `reasonCarriesMove` on every session pick and slot: true iff the named reason's need:+cov: terms > score(winner) − score(default); null when not moved. The winner is now always in a slot's candidates. sim/simulate.mjs adds the SESSION_VARIANTS entry and SANDBOX_VARIANTS. hq-cli.mjs adds meta.session["v3-edpbase"]/edpBaseEdits/sandboxVariants and `sandbox --variant=edpbase`. sandbox-reference.mjs carries the same field. composer-session.test.mjs adds tests 10 to 12. Also: a decision-record row, the sim README, and build note §9 (company/personalization/policies/gam-session-build-note.md).

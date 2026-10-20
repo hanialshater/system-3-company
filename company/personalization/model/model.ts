@@ -31,8 +31,12 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.4.2" as const;
+export const MODEL_VERSION = "model-v0.4.3" as const;
 /**
+ * model-v0.4.3 changes one number (W-2004, applied-scientist-personalization): the edpBaseEdits row's beta, placeholder .02 ->
+ * .033, set by the rule in the VP record company/decisions/2026-10-20-vp-personalization-session-base.md section 2.3 (reason in
+ * the row; arithmetic in company/personalization/policies/gam-session-params.md, W-2004 section). Only gam-session-v3-edpbase
+ * composes differently; v1, v3, COMPOSER_SESSION.edits and every other policy are unchanged.
  * model-v0.4.2 is additive (W-2003, learner-model-engineer; decision company/decisions/2026-10-20-vp-personalization-session-base.md):
  * a separate edit list COMPOSER_SESSION.edpBaseEdits (one row, session base 1.0 -> beta) and the coefficient variant
  * "v3-edpbase" = applyEdits(v3, edpBaseEdits), for the one new session policy gam-session-v3-edpbase. beta is a PLACEHOLDER
@@ -645,11 +649,11 @@ export const COMPOSER_SESSION = {
    * VP record company/decisions/2026-10-20-vp-personalization-session-base.md section 2). Exactly one row; checkModel()
    * requires beta > 0, so the default order stays the tie-break among cards with equal need terms.
    * beta is applied-scientist-personalization's number (W-2004), by the rule in the VP record section 2.3, read off EDP's
-   * need-widget base spread and our need medians, never off a layout probe or a recall field. The value below is NOT
-   * that number: it is the VP's stated, non-binding expectation (section 2.3, "near .02"), used only so the variant runs.
+   * need-widget base spread and our need medians, never off a layout probe or a recall field. model-v0.4.3 (W-2004) set it:
+   * .033 replaces the model-v0.4.2 placeholder .02 (derivation: company/personalization/policies/gam-session-params.md, W-2004).
    */
   edpBaseEdits: [
-    ["session", "base", 1.0, 0.02, "placeholder pending W-2004 (rule in the VP record §2.3): not a derived value; .02 is the VP's non-binding expectation in company/decisions/2026-10-20-vp-personalization-session-base.md §2.3, entered only so the variant runs. applied-scientist-personalization replaces this row's value and reason with beta = (EDP need-widget base spread / typical primary pull, about .1, orchestrator-inline.js makeModulesV1) x our typical primary pull (onRem x median need, about .18 to .21), and adds a model-version row"],
+    ["session", "base", 1.0, 0.033, "guess: .033 (model-v0.4.3, W-2004; was the .02 placeholder), by the VP record's rule (company/decisions/2026-10-20-vp-personalization-session-base.md §2.3): beta = (EDP need-widget base spread / EDP typical primary pull) x our typical primary pull, the same statistic on both sides. EDP (orchestrator-inline.js makeModulesV1, scoreProblems on its 8 shopper profiles): base spread over the 18 need widgets = .20 - .05 = .15 (our base x rank also spans beta over the list); typical primary pull = median over the 56 persona x problem pairs of (largest primary on_rem for that problem x need) = .529; ratio .284. Ours (composition traces only, gam-session-v3, the 6 simulated learners x seeds 1-3 x 7 days, session-start needs): median over the 1,046 nonzero session x need pairs of onRem x need = .115. beta = .284 x .115 = .0326, rounded to .033. Two other matched statistics agree: median-coefficient x median-need (.15 x .1095 / .485 = .034) and each session's strongest pull (.15 x .270 / 1.168 = .035). The record's 'about .1' and 'near .02' paired EDP's strongest pull (about 1.2 to 1.5) with our median-need pull (.19), two different statistics. beta > 0 keeps the default order as the tie-break among cards with equal need terms. Not read off a layout probe or any recall field"],
   ] as SessionEdit[],
   /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
   ablations: { "no-cov": ["cov:repair", "cov:build", "cov:breadth", "cov:stretch"] as SessionTermName[] },
