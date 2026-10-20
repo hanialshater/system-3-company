@@ -38,7 +38,7 @@ export default function ThePivotalJurorConvicts({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You're one of three jurors, and convicting takes all three. Guilt starts at even odds, each clue is 70% reliable, and the others vote their clues. Yours says innocent. When your vote decides, how likely is guilt?",
+          "Three jurors must all agree to convict. Guilt starts at even odds, each clue is 70% reliable, and the other two vote their clues. Your clue says innocent. When your vote decides, how likely is guilt?",
         options: ["30%", "50%", "70%"],
         answer: 2,
       }}

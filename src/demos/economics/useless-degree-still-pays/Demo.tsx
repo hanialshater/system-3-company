@@ -84,7 +84,7 @@ export default function UselessDegree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Deciding whether to enrol, you see the numbers. Able workers produce $${OUTPUT.able}k, others $${OUTPUT.other}k; firms pay $${PAY_WITH}k to degree-holders. The degree teaches nothing; it costs the able $${START.able}k, others $${START.other}k. Who gets it?`,
+        question: `Able workers produce $${OUTPUT.able}k, others $${OUTPUT.other}k; firms pay $${PAY_WITH}k to degree-holders. The degree teaches nothing; it costs the able $${START.able}k, others $${START.other}k. Who gets it?`,
         options: ["Everyone", "Only the able", "No one"],
         answer: 1,
       }}

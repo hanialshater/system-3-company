@@ -104,7 +104,7 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A page sells two ad slots that get ${CLICKS[0]} and ${CLICKS[1]} clicks. A click is worth $${VAL.X} to X, $${VAL.Y} to Y and $${VAL.Z} to Z. X takes the top slot and pays the harm that causes the others. How much?`,
+        question: `A page sells two ad slots that get ${CLICKS[0]} and ${CLICKS[1]} clicks. A click is worth $${VAL.X} to X, $${VAL.Y} to Y and $${VAL.Z} to Z. X takes the top slot and pays for the harm this does to the others. How much?`,
         options: ["$70", "$35", "$60"],
         answer: 1,
       }}

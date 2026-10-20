@@ -205,7 +205,7 @@ export default function WorthSomethingAlone({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You launch the same network app at 16¢, with 0 users. Even with nobody else on it, the app is worth 10¢ to its keenest fan. What share of people end up using it?",
+        question: "You launch a network app at 16¢, with 0 users. Even with nobody else on it, the app is worth 10¢ to its keenest fan. What share of people end up using it?",
         options: ["About 0%", "About 10%", "About 80%"],
         answer: 0,
       }}
