@@ -10,7 +10,7 @@
 // What the document fixes for one session (sandbox --persona --variant --seed): the fingerprint (from the persona's
 // seeded pre-history), the eligible pool in default order with addr[lesson][need] (relational, fixed for the
 // session), the gated surprise/novelty values (0 while both gates are shut), the anti-bubble streak, and the
-// coefficients. What the sandbox may change: needShapes (curves), dampener, coefficients. Changing anything else
+// coefficients (from model-v0.4.0 they include addrUse). What the sandbox may change: needShapes (curves), dampener, coefficients. Changing anything else
 // (history, pool, gates) needs a new document from the CLI.
 
 const NEEDS = ["repair", "build", "breadth", "stretch"];
@@ -40,7 +40,8 @@ export function detect(fp, shapes, dampener) {
 
 /**
  * Recompose the session from a sandbox document. `over` replaces needShapes, dampener or coefficients (the drag).
- * Returns { needs, picks: [{slug, moved, reason, score}], remaining, coverage, slots: [{slug, margin, terms}] }.
+ * Returns { needs, picks: [{slug, moved, reason, score}], remaining, coverage, slots: [{slug, margin, gain, terms}] }
+ * (gain: the winner's resolvable need mass, the attention budget's quantity; added at model-v0.4.0).
  */
 export function recompose(doc, over = {}) {
   const shapes = over.needShapes ?? doc.needShapes;
@@ -67,14 +68,16 @@ export function recompose(doc, over = {}) {
       const add = (name, v) => t.push({ name, value: off.has(name) ? 0 : v });
       add("base", c.base * (n > 1 ? 1 - i / (n - 1) : 1));
       for (const need of NEEDS) add(`need:${need}`, c.onRem[need] * remaining[need] * l.addr[need]);
-      for (const need of NEEDS) add(`cov:${need}`, c.onCov[need] * coverage[need] * l.addr[need]);
+      for (const need of NEEDS) add(`cov:${need}`, isDefault ? 0 : c.onCov[need] * coverage[need] * l.addr[need]); // model-v0.4.0: no cov on the default card
       add("surprise", l.surprise);
       add("novelty", l.novelty);
       add("slotDecay", isDefault ? 0 : -c.slotDecay * s);
       add("attentionCost", isDefault ? 0 : -c.attentionCost);
-      const gain = t.filter((x) => x.name.startsWith("need:") || x.name.startsWith("cov:")).reduce((q, x) => q + x.value, 0);
+      // model-v0.4.0: EDP's gain, the need mass this card would resolve (left to right over NEEDS, as composer-session.ts).
+      let gain = 0;
+      for (const need of NEEDS) gain += Math.min(remaining[need], c.addrUse * l.addr[need]);
       const ok = isDefault || (!(k.stretchNeedsSomePrereq && l.stretchBlocked) && gain > c.attentionCost);
-      return { l, isDefault, terms: t, score: t.reduce((q, x) => q + x.value, 0), ok };
+      return { l, isDefault, terms: t, score: t.reduce((q, x) => q + x.value, 0), gain, ok };
     });
     let winner, moved = false, reason = "default", margin = null;
     if (!personalised) winner = scored[0];
@@ -94,13 +97,14 @@ export function recompose(doc, over = {}) {
       } else winner = d;
     }
     if (personalised) for (const need of NEEDS) {
-      remaining[need] = Math.max(0, remaining[need] - winner.l.addr[need]);
-      coverage[need] = Math.min(1, coverage[need] + winner.l.addr[need]);
+      const d = c.addrUse * winner.l.addr[need]; // model-v0.4.0: a pick consumes addrUse x addr
+      remaining[need] = Math.max(0, remaining[need] - d);
+      coverage[need] = Math.min(1, coverage[need] + d);
     }
     streak = moved ? streak + 1 : 0;
     taken.add(winner.l.slug);
     picks.push({ slug: winner.l.slug, moved, reason, score: winner.score });
-    slots.push({ slug: winner.l.slug, margin, terms: winner.terms });
+    slots.push({ slug: winner.l.slug, margin, gain: winner.gain, terms: winner.terms });
   }
   return { needs, personalised, picks, remaining, coverage, slots };
 }

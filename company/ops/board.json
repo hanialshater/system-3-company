@@ -22375,6 +22375,25 @@
       "id": "W-1999",
       "title": "Session composer (model-v0.3.1): decide on a session-only addr consumption scale (addrUse ~.35, EDP gain) and whether the default card should carry cov terms; see company/personalization/policies/gam-session-params.md 'Routed'",
       "owner": "learner-model-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": [],
+      "updated": "2026-10-20"
+    },
+    {
+      "id": "W-2000",
+      "title": "Session composer model-v0.4.0 (W-1999): re-review session numbers now that a pick consumes addrUse x addr and the budget uses EDP's resolvable-need gain: addrUse .35 (your guess, now in model.ts), v3 onCov synergies (now x addrUse, chain arithmetic noted stale), slotDecay chain bound, whether the budget should bind (it decided 0 served cards in the layout probe). See company/personalization/policies/gam-session-build-note.md §8.4-8.5",
+      "owner": "applied-scientist-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2001",
+      "title": "Sync src/lib/hq-personalization-sandbox.ts (+ ComposerLab coefficient keys, copy-as-code-diff) to session composer model-v0.4.0: addrUse coefficient, remaining/coverage move by addrUse x addr, EDP resolvable-need gain for the budget, default card cov terms 0; recompose slots gain 'gain'. tests/hq/personalization-sandbox.test.mjs drift + precomputed sandbox docs fail until synced and regenerated. Exact list: company/personalization/policies/gam-session-build-note.md §8.1",
+      "owner": "hq-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-20",

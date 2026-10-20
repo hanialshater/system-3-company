@@ -37,7 +37,7 @@ const steps = [
   ["self-check (invariants, boundaries, privacy P1/P2/N6)", [join(here, "self-check.mjs")]],
   ["privacy N1/N3 tests", ["--test", join(here, "sim", "privacy-n1-n3.test.mjs")]],
   ["review-timing candidate tests (W-1547: §I.4 rules, existing policies byte-identical)", ["--test", join(here, "sim", "review-timing.test.mjs")]],
-  ["session composer tests (model-v0.3.0: EDP applyAddr, on_cov, attention budget, constraints, sandbox drift)", ["--test", join(here, "sim", "composer-session.test.mjs")]],
+  ["session composer tests (model-v0.4.0: EDP applyAddr x addrUse, EDP gain, on_cov, default card, constraints, sandbox drift)", ["--test", join(here, "sim", "composer-session.test.mjs")]],
 ];
 for (const [name, args] of steps) {
   const r = spawnSync(process.execPath, args, { stdio: "inherit" });

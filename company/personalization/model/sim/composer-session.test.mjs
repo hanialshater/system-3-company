@@ -1,11 +1,12 @@
-// Session composer tests (composer-v0.3-session, model-v0.3.0). Run by gate.mjs in `npm run test:personalization`.
+// Session composer tests (composer-v0.3-session, model-v0.4.0). Run by gate.mjs in `npm run test:personalization`.
 //   node --test company/personalization/model/sim/composer-session.test.mjs
 // owner: learner-model-engineer (Ifeoma) · offline only · no dependencies (node:test), Node 22.18 or later.
 // Build note: company/personalization/policies/gam-session-build-note.md.
 //
-// 1. determinism; 2. remaining/coverage arithmetic equals EDP applyAddr (copied verbatim) on a hand case and on
-// every slot of real compositions; 3. on_cov sign effect on a hand-built pool; 4. the attention budget falls back to
-// the default card; 5. hard constraints hold; 6. v1/v3/applyEdits; 7. forbidden-input invariance (N3 shape);
+// 1. determinism; 2. remaining/coverage arithmetic equals EDP applyAddr (copied verbatim) on the addr scaled by addrUse,
+// on a hand case and on every slot of real compositions, and the budget gain equals EDP's gain line (copied verbatim);
+// 3. residual need and on_cov sign on a hand-built pool, and the default card carries no cov terms; 4. the attention
+// budget (EDP's resolvable-need gain) falls back to the default card; 5. hard constraints hold; 6. v1/v3/applyEdits; 7. forbidden-input invariance (N3 shape);
 // 8. existing policies byte-identical (golden) and the GAM still model-v0.2.2 (c2 fingerprint);
 // 9. sandbox drift: sim/sandbox-reference.mjs, which imports nothing, recomposes the CLI's session exactly.
 import { test } from "node:test";
@@ -17,7 +18,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { PERSONAS } from "../personas.ts";
-import { composeSession, applyAddr } from "./composer-session.ts";
+import { composeSession, applyAddr, resolvableGain } from "./composer-session.ts";
 import { loadPinnedCatalog } from "./catalog-pin.mjs";
 import { runEpisode, ALL_POLICIES, PHASE_A_POLICIES, SESSION_VARIANTS, composeSessionFor, sandboxDocument, firstComposeInput } from "./simulate.mjs";
 import { goldenHashes, GOLDEN_FILE } from "./policy-golden.mjs";
@@ -58,6 +59,11 @@ function edpApplyAddr(mod, remaining, coverage) {
   }
 }
 
+// EDP's attention-budget gain, copied verbatim from company/personalization/reference/edp-orchestrator/src/edp-engine.js
+// compose (the `gain=` line), with EDP's position `attention` factor in the place of our addrUse.
+const edpGain = (mod, remaining, attention) => Object.entries(mod.addr||{}).reduce((s,[p,v])=>s+Math.min(remaining[p]||0,v*attention),0);
+const scaled = (addr, use) => Object.fromEntries(NEEDS.map((n) => [n, use * addr[n]]));
+
 // A hand-built pool: 12 done lessons on concept t:a (in default order first, so the anti-bubble streak is 0),
 // two successors of t:a (b1, c1: build addr 1) and fillers (addr 0 for every need). One domain, intro only.
 function handPool(order) {
@@ -74,8 +80,8 @@ function handPool(order) {
   return { input: { fingerprint, needs, remaining: { ...needs }, pool, defaultOrder: [...done.map((d) => d.slug), ...order], queued: [], history,
     dueRevisits: [], personalisationOn: true }, pilot: new Set(pool.map((l) => l.concept)) };
 }
-const handCoeffs = (onCovBuild) => ({ base: 0.1, onRem: { repair: 0.5, build: 1.0, breadth: 0.35, stretch: 0 },
-  onCov: { repair: 0, build: onCovBuild, breadth: 0, stretch: 0 }, slotDecay: 0.02, attentionCost: 0.1 });
+const handCoeffs = (onCovBuild, o = {}) => ({ base: 0.1, onRem: { repair: 0.5, build: 1.0, breadth: 0.35, stretch: 0 },
+  onCov: { repair: 0, build: onCovBuild, breadth: 0, stretch: 0 }, slotDecay: 0.02, attentionCost: 0.1, addrUse: 1, ...o });
 
 test("1. determinism: same input, same session; same seed, same session-policy trace", () => {
   for (const c of CASES) for (const pol of SESSION_POLICIES) {
@@ -90,22 +96,37 @@ test("1. determinism: same input, same session; same seed, same session-policy t
   assert.equal(t1.trace.composer, "composer-v0.3-session");
 });
 
-test("2. remaining/coverage: applyAddr equals EDP's on a hand case and on every slot of real sessions", () => {
+test("2. remaining/coverage: applyAddr equals EDP's on the scaled addr (hand case, every real slot); gain is EDP's", () => {
   const addr = { repair: 1, build: 0.5, breadth: 0, stretch: 0.25 };
-  const r0 = { repair: 0.4, build: 0.7, breadth: 0.3, stretch: 0.1 }, c0 = { repair: 0.5, build: 0.6, breadth: 0, stretch: 0.9 };
+  const r0 = { repair: 0.4, build: 0.7, breadth: 0.3, stretch: 0.05 }, c0 = { repair: 0.5, build: 0.9, breadth: 0, stretch: 0.95 };
+  // use = 1: EDP's function exactly
   const r1 = { ...r0 }, c1 = { ...c0 }, r2 = { ...r0 }, c2 = { ...c0 };
   applyAddr(addr, r1, c1);
   edpApplyAddr({ addr }, r2, c2);
   assert.deepEqual([r1, c1], [r2, c2]);
   assert.deepEqual(r1, { repair: 0, build: 0.7 - 0.5, breadth: 0.3, stretch: 0 }, "remaining floors at 0");
   assert.deepEqual(c1, { repair: 1, build: 1, breadth: 0, stretch: 1 }, "coverage caps at 1");
-  let checked = 0;
+  // use = .35: EDP's function on addr x .35, both state vectors scaled (a mutation that scales only one, or neither, fails)
+  const r3 = { ...r0 }, c3 = { ...c0 }, r4 = { ...r0 }, c4 = { ...c0 };
+  applyAddr(addr, r3, c3, 0.35);
+  edpApplyAddr({ addr: scaled(addr, 0.35) }, r4, c4);
+  assert.deepEqual([r3, c3], [r4, c4]);
+  assert.deepEqual(r3, { repair: 0.4 - 0.35, build: 0.7 - 0.175, breadth: 0.3, stretch: 0 }, "remaining falls by .35 x addr, floor 0");
+  assert.deepEqual(c3, { repair: 0.5 + 0.35, build: 1, breadth: 0, stretch: 1 }, "coverage rises by .35 x addr, cap 1");
+  assert.ok(r3.repair > 0, "a residual need survives an addr-1 pick");
+  // gain: EDP's line, and the resolvable mass (not the score)
+  assert.equal(resolvableGain(addr, r0, 0.35), edpGain({ addr }, r0, 0.35));
+  assert.equal(resolvableGain(addr, r0, 0.35), 0.35 + 0.175 + 0 + 0.05);
+  let checked = 0, gains = 0;
   for (const c of CASES) for (const pol of SESSION_POLICIES) {
     const comp = composeSessionFor(pol, inputOf(c), cat);
+    const use = M.sessionCoefficients(SESSION_VARIANTS[pol].variant).addrUse;
+    assert.equal(use, M.COMPOSER_SESSION.v1.addrUse);
     let rem = { ...comp.needs }, cov = { repair: 0, build: 0, breadth: 0, stretch: 0 };
     for (const s of comp.slots.filter((x) => x.kind === "new")) {
       assert.deepEqual(s.remainingBefore, rem); assert.deepEqual(s.coverageBefore, cov);
-      if (comp.personalised) { const w = s.candidates.find((x) => x.slug === s.winner); edpApplyAddr({ addr: w.addr }, rem, cov); checked++; }
+      for (const x of s.candidates) { assert.equal(x.gain, edpGain({ addr: x.addr }, s.remainingBefore, use), `${c.id} ${pol} ${x.slug} gain`); gains++; }
+      if (comp.personalised) { const w = s.candidates.find((x) => x.slug === s.winner); edpApplyAddr({ addr: scaled(w.addr, use) }, rem, cov); checked++; }
       assert.deepEqual(s.remainingAfter, rem, `${c.id} ${pol} slot ${s.sessionSlot}`); assert.deepEqual(s.coverageAfter, cov);
       rem = { ...rem }; cov = { ...cov };
     }
@@ -114,42 +135,66 @@ test("2. remaining/coverage: applyAddr equals EDP's on a hand case and on every 
     assert.ok(Math.abs(comp.diagnostics.resolved - (mass - NEEDS.reduce((q, n) => q + comp.remaining[n], 0))) < 1e-12);
   }
   assert.ok(checked > 20, `checked ${checked} personalised slots`);
+  assert.ok(gains > 200, `checked ${gains} gains`);
 });
 
-test("3. on_cov sign: a positive onCov pulls a second build lesson in; a negative one keeps the default (overlap)", () => {
+test("3. residual need and on_cov sign: a second build lesson moves on residual need, more with +onCov, not with −onCov; the default card has no cov terms", () => {
   const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
-  assert.ok(input.needs.build > 0.3, `build need ${input.needs.build}`);
-  const run = (onCov) => composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(onCov), { pilotConcepts: pilot, size: 3 });
-  const pos = run(0.5), neg = run(-0.5), zero = run(0);
-  for (const r of [pos, neg, zero]) { assert.equal(r.picks[0].slug, "b1"); assert.equal(r.picks[0].moved, true); assert.equal(r.picks[0].reason, "build"); }
-  // after b1: remaining.build = 0, coverage.build = 1 (applyAddr with addr 1)
-  assert.equal(pos.slots[1].remainingBefore.build, 0); assert.equal(pos.slots[1].coverageBefore.build, 1);
-  assert.equal(pos.picks[1].slug, "c1"); assert.equal(pos.picks[1].moved, true); assert.equal(pos.picks[1].reason, "build", "complementarity names the need it serves");
-  assert.equal(pos.picks[1].terms.find((t) => t.name === "cov:build").value, 0.5);
-  assert.equal(neg.picks[1].slug, "f1"); assert.equal(neg.picks[1].moved, false);
-  assert.equal(neg.slots[1].candidates.find((x) => x.slug === "c1").terms.find((t) => t.name === "cov:build").value, -0.5);
-  assert.equal(zero.picks[1].slug, "f1", "with onCov 0 a covered need pulls nothing");
-  // every cov term carries the sign of its coefficient (or is 0)
+  const nb = input.needs.build;
+  assert.ok(nb > 0.42 && nb < 0.6, `build need ${nb}`); // .47: so .3 leaves .17 (> attentionCost .1) and 1 leaves 0
+  const run = (onCov, use = 0.3) => composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(onCov, { base: 0.01, addrUse: use }), { pilotConcepts: pilot, size: 3 });
+  const pos = run(0.5), neg = run(-0.5), zero = run(0), full = run(0.5, 1);
+  for (const r of [pos, neg, zero, full]) { assert.equal(r.picks[0].slug, "b1"); assert.equal(r.picks[0].moved, true); assert.equal(r.picks[0].reason, "build"); }
+  // after b1 at addrUse .3: remaining.build = nb − .3, coverage.build = .3
+  assert.equal(pos.slots[1].remainingBefore.build, Math.max(0, nb - 0.3 * 1)); assert.equal(pos.slots[1].coverageBefore.build, Math.min(1, 0 + 0.3 * 1));
+  assert.equal(pos.picks[1].slug, "c1"); assert.equal(pos.picks[1].moved, true); assert.equal(pos.picks[1].reason, "build");
+  assert.equal(pos.picks[1].terms.find((t) => t.name === "cov:build").value, 0.5 * 0.3 * 1);
+  assert.equal(pos.picks[1].terms.find((t) => t.name === "need:build").value, 1.0 * (nb - 0.3) * 1, "the residual need still pulls");
+  assert.equal(zero.picks[1].slug, "c1", "with onCov 0 the residual need alone moves a second build lesson");
+  assert.equal(neg.picks[1].slug, "f1"); assert.equal(neg.picks[1].moved, false, "an overlap penalty keeps the default");
+  assert.equal(neg.slots[1].candidates.find((x) => x.slug === "c1").terms.find((t) => t.name === "cov:build").value, -0.5 * 0.3 * 1);
+  // control, addrUse 1 (the model-v0.3 arithmetic): b1 zeroes the need, c1 resolves nothing, the budget refuses it
+  assert.equal(full.slots[1].remainingBefore.build, 0);
+  assert.equal(full.picks[1].slug, "f1");
+  assert.match(full.slots[1].candidates.find((x) => x.slug === "c1").note, /attention budget/);
+  // every departure's cov term carries the sign of its coefficient (or is 0); the default card's are all 0
   for (const [r, sign] of [[pos, 1], [neg, -1]]) for (const s of r.slots) for (const x of s.candidates) for (const t of x.terms)
-    if (t.name.startsWith("cov:") && t.value !== 0) assert.equal(Math.sign(t.value), t.name === "cov:build" ? sign : 0);
+    if (t.name.startsWith("cov:") && t.value !== 0) { assert.equal(x.isDefault, false); assert.equal(Math.sign(t.value), t.name === "cov:build" ? sign : 0); }
+  // (b) a default card that addresses the covered need: need term kept, cov term 0 (EDP's defaults have on_cov {})
+  const d = handPool(["b1", "c1", "f1", "f2", "f3"]);
+  const r = composeSession(d.input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(-0.5, { addrUse: 0.3 }), { pilotConcepts: d.pilot, size: 2 });
+  assert.equal(r.picks[0].slug, "b1"); assert.equal(r.slots[1].defaultCard, "c1");
+  const c1 = r.slots[1].candidates.find((x) => x.slug === "c1");
+  assert.equal(c1.isDefault, true); assert.equal(c1.addr.build, 1); assert.equal(r.slots[1].coverageBefore.build, 0.3);
+  assert.equal(c1.terms.find((t) => t.name === "cov:build").value, 0, "no cov term on the default card");
+  assert.equal(c1.terms.find((t) => t.name === "need:build").value, 1.0 * (nb - 0.3) * 1, "the default card keeps its need term");
+  assert.equal(r.picks[1].slug, "c1");
 });
 
-test("4. attention budget: a departure that outscores the default but gains too little leaves the default card, no reason", () => {
-  // b1 is the default at slot 0 (shown, covers build); at slot 1 the default c1 carries an overlap penalty (cov:build −.5),
-  // so filler f1 outscores it, but f1's need-term gain is 0 ≤ attentionCost: the default card fills the slot.
-  const { input, pilot } = handPool(["b1", "c1", "f1", "f2", "f3"]);
-  const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(-0.5), { pilotConcepts: pilot, size: 2 });
-  assert.deepEqual(r.picks.map((p) => [p.slug, p.moved, p.reason]), [["b1", false, "default"], ["c1", false, "default"]]);
+test("4. attention budget (EDP gain): a synergy card that outscores the default but resolves too little need leaves the default card, no reason", () => {
+  // addrUse .4: b1 moves at slot 0 and leaves build nb − .4 ≈ .07. At slot 1, c1 carries cov:build 1 × .4 = .4, so it
+  // outscores the default f1, but the need mass it would resolve, min(.07, .4), is ≤ attentionCost .1: the default fills it.
+  // Under the model-v0.3 gain (need-term score .07 + .4 > .1) it would have moved.
+  const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
+  const nb = input.needs.build;
+  const co = handCoeffs(1, { base: 0.01, addrUse: 0.4 });
+  const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, co, { pilotConcepts: pilot, size: 2 });
+  assert.deepEqual(r.picks.map((p) => [p.slug, p.moved, p.reason]), [["b1", true, "build"], ["f1", false, "default"]]);
   const s = r.slots[1];
-  const f1 = s.candidates.find((x) => x.slug === "f1");
-  assert.ok(f1.score > s.defaultScore, "f1 outscores the default card");
-  assert.equal(f1.eligibleToMove, false);
-  assert.match(f1.note, /attention budget/);
-  assert.match(s.rejected.find((x) => x.slug === "f1").why, /attention budget/);
-  assert.equal(s.margin, null, "no eligible departure");
-  // control: with a zero attention cost f1 still has gain 0, so 0 > 0 fails; lower the bar below the gain and it moves
-  const r2 = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, { ...handCoeffs(-0.5), attentionCost: -0.01 }, { pilotConcepts: pilot, size: 2 });
-  assert.equal(r2.picks[1].slug, "f1"); assert.equal(r2.picks[1].moved, true);
+  const c1 = s.candidates.find((x) => x.slug === "c1");
+  assert.ok(c1.score > s.defaultScore, "c1 outscores the default card");
+  assert.equal(c1.gain, 0 + Math.min(nb - 0.4, 0.4 * 1) + 0 + 0);
+  assert.ok(c1.gain <= co.attentionCost);
+  const termGain = c1.terms.filter((t) => /^(need|cov):/.test(t.name)).reduce((q, t) => q + t.value, 0);
+  assert.ok(termGain > co.attentionCost, "the old score-based gain would have let it move");
+  assert.equal(c1.eligibleToMove, false);
+  assert.match(c1.note, /attention budget: resolvable need/);
+  assert.match(s.rejected.find((x) => x.slug === "c1").why, /attention budget/);
+  // control: lower the bar below the resolvable mass and it moves
+  const r2 = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, { ...co, attentionCost: 0.03 }, { pilotConcepts: pilot, size: 2 });
+  assert.equal(r2.picks[1].slug, "c1"); assert.equal(r2.picks[1].moved, true);
+  // a filler (addr 0 everywhere) resolves nothing and never departs, whatever it scores
+  for (const x of s.candidates) if (x.slug.startsWith("f") && !x.isDefault) { assert.equal(x.gain, 0); assert.equal(x.eligibleToMove, false); }
 });
 
 test("5. constraints: due revisits first, default when off or dampened, 1-in-3 floor, stretch readiness, filters, no repeats", () => {
@@ -176,6 +221,7 @@ test("5. constraints: due revisits first, default when off or dampened, 1-in-3 f
         assert.ok(s.margin > 0);
       } else assert.ok(s.reason === "default" || s.reason === "breadth-floor");
       for (const t of w.terms) assert.ok(["base", "surprise", "novelty", "slotDecay", "attentionCost"].includes(t.name) || /^(need|cov):/.test(t.name), t.name);
+      for (const x of s.candidates) if (x.isDefault) assert.ok(x.terms.filter((t) => t.name.startsWith("cov:")).every((t) => t.value === 0), "default card: no cov terms");
       assert.equal(w.terms.find((t) => t.name === "surprise").value, 0, "surprise gate shut");
       assert.equal(w.terms.find((t) => t.name === "novelty").value, 0, "novelty gate shut");
     }
@@ -200,7 +246,7 @@ test("6. v1/v3: applyEdits is pure, v3 differs from v1 exactly at the edit table
   assert.equal(JSON.stringify(M.COMPOSER_SESSION.v1), before, "v1 not mutated");
   assert.deepEqual(v3, M.sessionCoefficients("v3"));
   const diffs = [];
-  for (const k of ["base", "slotDecay", "attentionCost"]) if (v1[k] !== v3[k]) diffs.push(`session.${k}`);
+  for (const k of ["base", "slotDecay", "attentionCost", "addrUse"]) if (v1[k] !== v3[k]) diffs.push(`session.${k}`);
   for (const k of ["onRem", "onCov"]) for (const n of NEEDS) if (v1[k][n] !== v3[k][n]) diffs.push(`${n}.${k}`);
   assert.deepEqual(diffs.sort(), M.COMPOSER_SESSION.edits.map(([t, p]) => `${t}.${p}`).sort());
   assert.ok(M.COMPOSER_SESSION.edits.length >= 2 && M.COMPOSER_SESSION.edits.length <= 4);
@@ -209,6 +255,8 @@ test("6. v1/v3: applyEdits is pure, v3 differs from v1 exactly at the edit table
   assert.throws(() => M.applyEdits(v1, [["build", "onCov", 0.99, 1, "stale"]]), /from 0.99/);
   assert.throws(() => M.applyEdits(v1, [["session", "onCov", -0.1, 1, "x"]]), /needs a need/);
   assert.deepEqual(M.checkModel(), []);
+  assert.ok(v1.addrUse > 0 && v1.addrUse <= 1 && v1.addrUse === v3.addrUse, "addrUse is a v1 number (no v3 edit)");
+  assert.equal(M.applyEdits(v1, [["session", "addrUse", v1.addrUse, 0.5, "x"]]).addrUse, 0.5, "addrUse is editable like any scalar");
   assert.ok(M.COMPOSER_SESSION.edits.some(([, p, f, t]) => p === "onCov" && f < 0 && t > 0), "v3 holds at least one EDP-style complementarity edit");
 });
 
@@ -249,11 +297,15 @@ test("9. sandbox drift: sandbox-reference.mjs (no model import) recomposes the C
     assert.deepEqual(r.picks.map((x) => [x.slug, x.moved, x.reason]), doc.composed.picks.map((x) => [x.slug, x.moved, x.reason]), `${p.id} ${variant}`);
     r.picks.forEach((x, i) => assert.ok(near(x.score, doc.composed.picks[i].score)));
     assert.deepEqual(r.remaining, doc.composed.remaining); assert.deepEqual(r.coverage, doc.composed.coverage);
+    const fresh = doc.composed.slots.filter((x) => x.kind === "new");
+    r.slots.forEach((x, i) => { assert.equal(x.margin, fresh[i].margin, `${p.id} ${variant} margin ${i}`);
+      assert.equal(x.gain, fresh[i].candidates.find((y) => y.slug === fresh[i].winner).gain, `${p.id} ${variant} gain ${i}`); });
   }
   // a drag (coefficients and one curve changed) on the simulator's real input (firstComposeInput is what sandboxDocument used)
   const p = PERSONAS.find((x) => x.id === "struggling-repeater");
   const doc = sandboxDocument(p, "v1", 1, cat);
-  const c = { ...doc.session.coefficients, attentionCost: 0.03, onCov: { ...doc.session.coefficients.onCov, build: 0.6, repair: 0.4 } };
+  assert.equal(doc.session.coefficients.addrUse, M.COMPOSER_SESSION.v1.addrUse, "the document carries addrUse");
+  const c = { ...doc.session.coefficients, attentionCost: 0.03, addrUse: 0.6, onCov: { ...doc.session.coefficients.onCov, build: 0.6, repair: 0.4 } };
   const shapes = JSON.parse(JSON.stringify(M.NEED_SHAPES)); shapes.repair[0].vals = [0, 0.3, 0.6, 0.85, 1];
   const r = recompose(doc, { coefficients: c, needShapes: shapes });
   assert.ok(doc.historyCount > 0);
@@ -263,6 +315,16 @@ test("9. sandbox drift: sandbox-reference.mjs (no model import) recomposes the C
   assert.deepEqual(r.needs, needs);
   assert.deepEqual(r.picks.map((x) => [x.slug, x.moved, x.reason]), real.picks.map((x) => [x.slug, x.moved, x.reason]));
   r.picks.forEach((x, i) => assert.ok(near(x.score, real.picks[i].score)));
+  // a drag where the attention budget binds (cost .3 > most resolvable masses at addrUse .35): eligibility must match
+  for (const q of PERSONAS) {
+    const { input: qi } = firstComposeInput(q, 1, cat);
+    const dq = sandboxDocument(q, "v3", 1, cat);
+    const cq = { ...dq.session.coefficients, attentionCost: 0.3, base: 0.05 };
+    const rq = recompose(dq, { coefficients: cq });
+    const realq = composeSession(qi, M.COMPOSER, M.COMPOSER_SESSION, cq, { pilotConcepts: cat.pilotConcepts });
+    assert.deepEqual(rq.picks.map((x) => [x.slug, x.moved, x.reason]), realq.picks.map((x) => [x.slug, x.moved, x.reason]), `${q.id} cost .3`);
+    rq.slots.forEach((x, i) => assert.equal(x.margin, realq.slots.filter((y) => y.kind === "new")[i].margin, `${q.id} cost .3 margin ${i}`));
+  }
 });
 
 test("9b. the CLI's sandbox document is the in-process one (one spawn)", () => {

@@ -31,8 +31,13 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.3.1" as const;
+export const MODEL_VERSION = "model-v0.4.0" as const;
 /**
+ * model-v0.4.0 changes the session composer only (W-1999, learner-model-engineer; numbers stay applied-scientist-personalization's):
+ * SessionCoefficients gains `addrUse` (v1 .35, a guess), the amount of relational addr a pick consumes: remaining falls
+ * and coverage rises by addrUse x addr, while the scoring addr is unchanged; the attention budget's gain is EDP's own
+ * (resolvable need mass, sum of min(remaining, addrUse x addr)), no longer the need-term score. A minor bump, not a
+ * patch: the coefficient shape every sandbox document and port reads gained a field. Nothing a phase A policy reads moved.
  * model-v0.3.1 changes only COMPOSER_SESSION's v3 edit table and three reason strings (applied-scientist-personalization
  * review, company/personalization/policies/gam-session-params.md); nothing a phase A policy reads moved.
  * model-v0.3.0 is additive: it adds COMPOSER_SESSION (section 4b) and changes nothing that the phase A
@@ -542,14 +547,19 @@ export type SessionCoefficients = {
   onCov: Record<Need, number>;
   /** − slotDecay × slot, charged to a departure from the default card only; EDP's slot_decay. */
   slotDecay: number;
-  /** − attentionCost, charged to a departure only; and a departure needs need-term gain > attentionCost. EDP's cost. */
+  /** − attentionCost, charged to a departure only; and a departure needs gain > attentionCost, where gain is the need
+   *  mass it would resolve, Σn min(remaining[n], addrUse·addr[l,n]) (EDP's gain, edp-engine.js compose). EDP's cost. */
   attentionCost: number;
+  /** model-v0.4.0: how much of a need one pick consumes, per unit of relational addr: after a pick, remaining[n] −=
+   *  addrUse·addr and coverage[n] += addrUse·addr (EDP applyAddr on the scaled addr). Session state only: the need and
+   *  cov terms still score with the unscaled addr. EDP has no such number because its addr is already need mass. */
+  addrUse: number;
 };
 
 /** One v3 edit, EDP's EDITS_V3 row shape [widget, path, from, to, reason] with a need (or "session") for the widget. */
 export type SessionEdit = [
   target: Need | "session",
-  path: "onRem" | "onCov" | "base" | "slotDecay" | "attentionCost",
+  path: "onRem" | "onCov" | "base" | "slotDecay" | "attentionCost" | "addrUse",
   from: number,
   to: number,
   reason: string,
@@ -584,6 +594,7 @@ export const COMPOSER_SESSION = {
     onCov: { repair: -0.2, build: -0.1, breadth: -0.3, stretch: -0.3 },
     slotDecay: 0.02,
     attentionCost: 0.1,
+    addrUse: 0.35,
   } satisfies SessionCoefficients as SessionCoefficients,
   why: {
     "base": "guess: same as COMPOSER.weights.defaultRank (1.0), so the default order is the base and a departure must earn its place",
@@ -595,8 +606,9 @@ export const COMPOSER_SESSION = {
     "onCov.build": "guess: mildest overlap: build addr is fixed from history for the session, so a second build card is another successor of a recalled concept (a parallel frontier step), not a repeat; the penalty is small",
     "onCov.breadth": "guess: strong overlap: one card from another domain meets breadth for a session; more is a switch, not breadth",
     "onCov.stretch": "guess: strong overlap: one stretch card per session (O8: stretch before readiness is the riskiest move)",
-    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2). Kept at model-v0.3.1: it is about 3x EDP's per-slot differential relative to the need terms, on purpose (O2), and with v3's +.15 synergies it is what ends a chain: a pure chain card clears the bar only while .15 - .1 - .02*slot > 0, i.e. up to session slot 2 (gam-session-params.md)",
-    "attentionCost": "guess: .1 equals COMPOSER.moveThreshold, so at slot 0 with nothing covered the move bar is phase A's; EDP's cost is .06",
+    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2). Kept at model-v0.3.1: it is about 3x EDP's per-slot differential relative to the need terms, on purpose (O2), and with v3's +.15 synergies it is what ends a chain: a pure chain card clears the bar only while .15 - .1 - .02*slot > 0, i.e. up to session slot 2 (gam-session-params.md). model-v0.4.0 note (learner-model-engineer, W-1999): that arithmetic assumed coverage 1 after one addr-1 pick; coverage now rises by addrUse x addr (.35), so a pure chain card's cov term is .15 x .35 = .05 and the chain bound needs re-review (applied-scientist-personalization)",
+    "attentionCost": "guess: .1 equals COMPOSER.moveThreshold, so at slot 0 with nothing covered the move bar is phase A's; EDP's cost is .06. From model-v0.4.0 the budget compares it with EDP's gain (need mass the card would resolve, sum of min(remaining, addrUse x addr)), so it is a real stopping rule: a card resolving .1 or less of any need cannot depart however it scores",
+    "addrUse": "guess: .35, applied-scientist-personalization's estimate (gam-session-params.md, Routed 1): our relational addr is 1 or .5 against need medians .23 to .46, so a pick at addr 1 used to zero 97% of the needs it touched; EDP's addr/need ratio is about .5 to 1 (one widget uses about half a need). At .35 one addr-1 pick leaves a median repair (.41) or build (.46) need with .06 to .11 left, so a need can draw a second card only when it is high (above about .45 at attentionCost .1), as in EDP",
   } as Record<string, string>,
   /**
    * v3 = applyEdits(v1, edits): EDP's EDITS_V3 mechanism. Short on purpose; every reason is a guess
@@ -610,7 +622,7 @@ export const COMPOSER_SESSION = {
    */
   edits: [
     // model-v0.3.1 (applied-scientist-personalization, gam-session-params.md): build .3 -> .15; the breadth -.5 row removed.
-    ["build", "onCov", -0.1, 0.15, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .15, not .3: as in EDP the synergy ranks below a typical unaddressed need's primary pull (build median .4 x .46 = .18, repair .5 x .41 = .21) and above the move bar (.1 + .02 x slot) only up to slot 2"],
+    ["build", "onCov", -0.1, 0.15, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .15, not .3: as in EDP the synergy ranks below a typical unaddressed need's primary pull (build median .4 x .46 = .18, repair .5 x .41 = .21) and above the move bar (.1 + .02 x slot) only up to slot 2. model-v0.4.0 note (learner-model-engineer, W-1999): written for coverage 1 after one pick; coverage is now addrUse x addr (.35), so the synergy term is .15 x .35 x addr, for re-review"],
     ["repair", "onCov", -0.2, 0.15, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card). Kept at model-v0.3.1: same scale rule as build"],
   ] as SessionEdit[],
   /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
@@ -621,7 +633,8 @@ export const COMPOSER_SESSION = {
    * hard constraint (due revisits first, default when dampened or off, the 1-in-3 anti-bubble floor counted
    * across history and the session's own moves, stretch readiness, stated subjects / less-of-this filter).
    * COMPOSER.moveThreshold is NOT read: the attention budget replaces it (a departure must beat the default
-   * card after paying attentionCost + slotDecay × slot, and its need-term gain must exceed attentionCost).
+   * card after paying attentionCost + slotDecay × slot, and, from model-v0.4.0, the need mass it would resolve,
+   * Σ min(remaining, addrUse × addr), must exceed attentionCost: EDP's gain > cost).
    */
   readsFromComposer: ["addr", "readiness", "weights.surprise", "weights.novelty", "surpriseGate", "noveltyGate", "constraints"],
 };
@@ -716,7 +729,7 @@ export function checkModel(): string[] {
   // model-v0.3.0: the session composer block (section 4b).
   const S = COMPOSER_SESSION;
   if (!Number.isInteger(S.sessionSize) || S.sessionSize < 1 || S.sessionSize > 12) errs.push("session: sessionSize must be an integer 1..12");
-  const coeffNumbers = (c: SessionCoefficients): [string, number][] => [["base", c.base], ["slotDecay", c.slotDecay], ["attentionCost", c.attentionCost],
+  const coeffNumbers = (c: SessionCoefficients): [string, number][] => [["base", c.base], ["slotDecay", c.slotDecay], ["attentionCost", c.attentionCost], ["addrUse", c.addrUse],
     ...NEEDS.map((n): [string, number] => [`onRem.${n}`, c.onRem[n]]), ...NEEDS.map((n): [string, number] => [`onCov.${n}`, c.onCov[n]])];
   for (const [k, v] of coeffNumbers(S.v1)) {
     if (!Number.isFinite(v)) errs.push(`session v1.${k}: not a number`);
@@ -727,6 +740,7 @@ export function checkModel(): string[] {
   for (const c of [S.v1, ...(v3 ? [v3] : [])]) {
     if (!(c.base > 0)) errs.push("session: base must be > 0 (the default order is the base)");
     if (c.slotDecay < 0 || c.attentionCost < 0) errs.push("session: slotDecay and attentionCost are costs (>= 0)");
+    if (!(c.addrUse > 0 && c.addrUse <= 1)) errs.push("session: addrUse must be in (0, 1] (a share of the relational addr a pick consumes)");
     for (const n of NEEDS) {
       if (!(c.onRem[n] >= 0)) errs.push(`session onRem.${n}: must be >= 0`);
       if (!(c.onCov[n] >= -1 && c.onCov[n] <= 1)) errs.push(`session onCov.${n}: must be in -1..1`);

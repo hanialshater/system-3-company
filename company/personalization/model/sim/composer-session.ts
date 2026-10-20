@@ -1,5 +1,5 @@
 /**
- * Session composer (composer-v0.3-session, model-v0.3.0): a faithful port of EDP's compose()
+ * Session composer (composer-v0.3-session, model-v0.4.0): a faithful port of EDP's compose()
  * (company/personalization/reference/edp-orchestrator/src/orchestrator-inline.js compose/scoreModule,
  * policies.js applyAddr, edp-engine.js compose's attention budget), BESIDE the phase A composer
  * (./composer.ts, which is unchanged and still serves every existing policy).
@@ -10,16 +10,20 @@
  *
  * A session of N new cards (COMPOSER_SESSION.sessionSize) is filled greedily, slot by slot:
  *
- *   score(l, slot) = base·rank(l) + Σ_n onRem[n]·remaining[n]·addr[l,n] + Σ_n onCov[n]·coverage[n]·addr[l,n]
+ *   score(l, slot) = base·rank(l) + Σ_n onRem[n]·remaining[n]·addr[l,n]
+ *                  + [l is not the default card]·Σ_n onCov[n]·coverage[n]·addr[l,n]   (model-v0.4.0: EDP's defaults have no on_cov)
  *                  + surprise + novelty                      (both gated off: COMPOSER gates, value 0)
  *                  − [l is not the default card]·(slotDecay·slot + attentionCost)
  *
- *   attention budget: a departure is eligible only if gain(l) = Σ need:* + Σ cov:* > attentionCost;
+ *   attention budget (EDP's gain, edp-engine.js compose): a departure is eligible only if
+ *     gain(l) = Σ_n min(remaining[n], addrUse·addr[l,n]) > attentionCost   (the need mass the card would resolve);
  *   otherwise the default card fills the slot and no reason is claimed (EDP: candidates with gain ≤ cost
  *   are not shown; here "not shown" means "the default card is shown instead", the moveThreshold rule).
+ *   Until model-v0.4.0 gain was the need-term score Σ need:* + Σ cov:*; with addr 1 that equalled the move bar.
  *
- *   after each pick (EDP applyAddr, exactly): remaining[n] = max(0, remaining[n] − addr[w,n]);
- *                                             coverage[n]  = min(1, coverage[n] + addr[w,n]).
+ *   after each pick (EDP applyAddr on the addr scaled by addrUse, model-v0.4.0):
+ *     remaining[n] = max(0, remaining[n] − addrUse·addr[w,n]);  coverage[n] = min(1, coverage[n] + addrUse·addr[w,n]).
+ *   addrUse is session state only: the need and cov terms score with the unscaled addr.
  *
  * remaining starts at the detected needs, coverage at 0. addr is relational (./composer.ts addr(), from the
  * curriculum graph and the history at compose time) and stays fixed for the session: a queued card is not
@@ -99,12 +103,23 @@ const prereqsAllUnseen = (l: LessonDims, ctx: Ctx) => {
   return p.length > 0 && p.every((c) => !ctx.doneConcepts.has(c));
 };
 
-/** EDP applyAddr (policies.js lines 12-17), exactly: remaining falls by addr (floor 0), coverage rises by addr (cap 1). */
-export function applyAddr(a: NeedScores, remaining: NeedScores, coverage: NeedScores): void {
+/**
+ * EDP applyAddr (policies.js lines 12-17) on the addr scaled by `use` (COMPOSER_SESSION addrUse, model-v0.4.0):
+ * remaining falls by use·addr (floor 0), coverage rises by use·addr (cap 1). With use = 1 it is EDP's function exactly.
+ */
+export function applyAddr(a: NeedScores, remaining: NeedScores, coverage: NeedScores, use = 1): void {
   for (const n of NEEDS) {
-    remaining[n] = Math.max(0, remaining[n] - a[n]);
-    coverage[n] = Math.min(1, coverage[n] + a[n]);
+    const d = use * a[n];
+    remaining[n] = Math.max(0, remaining[n] - d);
+    coverage[n] = Math.min(1, coverage[n] + d);
   }
+}
+
+/** EDP's attention-budget gain (edp-engine.js compose): the need mass a pick would resolve, Σ_n min(remaining[n], use·addr[n]). */
+export function resolvableGain(a: NeedScores, remaining: NeedScores, use: number): number {
+  let g = 0;
+  for (const n of NEEDS) g += Math.min(remaining[n], use * a[n]);
+  return g;
 }
 
 /** Relational addr of one lesson for every need (./composer.ts addr, unchanged). */
@@ -164,18 +179,20 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
       const add = (name: SessionTermName, v: number) => t.push({ name, value: off.has(name) ? 0 : v });
       add("base", c.base * (n > 1 ? 1 - (rankOf.get(l.slug) ?? n - 1) / (n - 1) : 1));
       for (const need of NEEDS) add(`need:${need}`, c.onRem[need] * remaining[need] * a[need]);
-      for (const need of NEEDS) add(`cov:${need}`, c.onCov[need] * coverage[need] * a[need]);
+      // model-v0.4.0 (W-1999): the default card carries no cov terms (scored 0, still in the trace), as EDP's default
+      // widgets carry on_cov {} (orchestrator-inline.js 152-159). It keeps its need terms: see the build note §8 (b).
+      for (const need of NEEDS) add(`cov:${need}`, isDefault ? 0 : c.onCov[need] * coverage[need] * a[need]);
       const g = model.surpriseGate;
       const rated = g.active && !!l.strengthSource && g.requiresStrengthSource.includes(l.strengthSource);
       add("surprise", rated ? w.surprise * ((l.misconceptionStrength ?? 0) / 3) * readiness(l, ctx, model) : 0);
       add("novelty", w.novelty * novelty(l, ctx, model, queuedConcepts));
       add("slotDecay", isDefault ? 0 : -c.slotDecay * s);
       add("attentionCost", isDefault ? 0 : -c.attentionCost);
-      const gain = t.filter((x) => x.name.startsWith("need:") || x.name.startsWith("cov:")).reduce((q, x) => q + x.value, 0);
+      const gain = resolvableGain(a, remaining, c.addrUse);
       const stretchBlocked = model.constraints.stretchNeedsSomePrereq && l.level === "stretch" && prereqsAllUnseen(l, ctx);
       const overBudget = !isDefault && !(gain > c.attentionCost);
       const note = stretchBlocked ? "stretch readiness: all prerequisites unseen"
-        : overBudget ? `attention budget: need-term gain ${gain.toFixed(3)} ≤ attention cost ${c.attentionCost}` : undefined;
+        : overBudget ? `attention budget: resolvable need ${gain.toFixed(3)} ≤ attention cost ${c.attentionCost}` : undefined;
       return { slug: l.slug, concept: l.concept, domain: l.domain, level: l.level, isDefault, score: sum(t), gain, addr: a, terms: t,
         eligibleToMove: isDefault || (!stretchBlocked && !overBudget), ...(note ? { note } : {}) };
     };
@@ -218,7 +235,7 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
     }
 
     const wl = ctx.dimsBySlug[winner.slug];
-    if (personalised) applyAddr(winner.addr, remaining, coverage);
+    if (personalised) applyAddr(winner.addr, remaining, coverage, c.addrUse);
     streak = moved ? streak + 1 : 0;
     taken.add(winner.slug);
     queuedConcepts.push(wl.concept);

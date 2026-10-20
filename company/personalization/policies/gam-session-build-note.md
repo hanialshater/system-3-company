@@ -1,4 +1,4 @@
-# Build note: the session composer (composer-v0.3-session, model-v0.3.0)
+# Build note: the session composer (composer-v0.3-session, model-v0.3.0; model-v0.4.0 change in §8)
 
 owner: learner-model-engineer (Ifeoma) · date: 2026-10-20 · status: built, offline only, UNSCORED, not frozen
 decision: company/decisions/2026-10-20-founder-edp-faithful-personalization.md (founder: "better and more faithful implementation")
@@ -107,3 +107,53 @@ Every one is a guess, with its reason in model.ts `COMPOSER_SESSION.why` or in t
 - **O-2:** `npm run test:personalization` now takes about 5.6 s (it was about 4.3 s; the stated `check` budget is 3 s, already exceeded before this change). The ~1 s duplicate golden check runs only with `S3_SESSION_FULL=1`.
 - **O-3:** the HQ meta and compare schemas keep their names (`-v0`) because every change is additive. Phase A traces keep `personalization-sim-trace-v0`; session traces are `-v1` (sim/README.md "Session policies").
 - **O-4 (privacy-reviewer, before anything live):** the session mode would need a session-local queue of planned cards at serve time. That is in-memory and computed on demand, but it is a served-order list for up to 5 cards, and N4 (no served-order log) needs a read before phase B. Offline, nothing is stored.
+
+## 8. model-v0.4.0 (W-1999, 2026-10-20): addr consumption scale, EDP's gain, no cov on the default card
+
+Raised by applied-scientist-personalization (company/personalization/policies/gam-session-params.md, "Routed" 1 and 2). Not committed. Status: built, UNSCORED. I ran no `compare` and read no recall, score, `simulated` or `groundTruth` field; every number below is a composition count from traces (`kind`, `session.slot`, `moved`, `reason`, slot candidates' terms, `gain`, `note`, `addr`).
+
+### 8.1 What changed in the algorithm (for the HQ port, src/lib/hq-personalization-sandbox.ts; hq-engineer)
+
+Exactly three changes, all in the session composer; sandbox-reference.mjs carries the same three, and the arithmetic order is the order below.
+
+1. **New coefficient `addrUse`** in `SessionCoefficients` (`COMPOSER_SESSION.v1.addrUse = 0.35`; no v3 edit, so v3 inherits .35; a `["session", "addrUse", from, to, reason]` edit row is allowed). The sandbox document's `session.coefficients`, `session.v1`, `session.v3` gain the field, and `why` gains `"addrUse"`. A port's coefficient key list (`COEF_KEYS`) and its "copy as code diff" need it.
+2. **State update after a pick** (personalised sessions only): for each need in the order repair, build, breadth, stretch, `d = addrUse * addr[n]`; `remaining[n] = Math.max(0, remaining[n] - d)`; `coverage[n] = Math.min(1, coverage[n] + d)`. Before: `d = addr[n]`. The `need:*` and `cov:*` terms still use the unscaled `addr`.
+3. **The attention-budget gain** is EDP's (edp-engine.js `compose`, the `gain=` line, with addrUse in the place of EDP's `attention`): `gain = 0; for n in NEEDS: gain += Math.min(remaining[n], addrUse * addr[n])`, computed with the slot's `remaining` before the pick. A departure is eligible iff not stretch-blocked and `gain > attentionCost` (unchanged comparison). Before: `gain` was the sum of the candidate's `need:*` and `cov:*` term values. The ineligibility note now reads `attention budget: resolvable need <gain> ≤ attention cost <cost>`.
+4. **The default card's `cov:*` terms are 0** (pushed as 0, so the term list is unchanged in shape). Its `need:*` terms are unchanged. Departures' `cov:*` terms are unchanged.
+
+Not changed: `base`, `need:*`, `slotDecay`, `attentionCost` terms; the floor; stretch readiness; filters; tie order; the winner and reason rules; `composer-v0.3-session` as the composer name (precedent: `composer-v0.2` kept its name through model-v0.2.x). New export `resolvableGain()` in composer-session.ts; `applyAddr(a, remaining, coverage, use = 1)` gained the `use` argument (use 1 is EDP's function exactly). `recompose()` slots gain `gain` (the winner's). Drift tests that will fail until the port syncs: tests/hq/personalization-sandbox.test.mjs "drift", "drift after a drag", and "precomputed: the committed sandbox documents" (the precomputed documents are stale too; regenerate after commit, §6).
+
+### 8.2 (a) addrUse, and why both state vectors are scaled
+
+The brief asked for the amount by which a pick lowers remaining and raises coverage. I scale both. In EDP's orchestrator (orchestrator-inline.js `compose`, policies.js `applyAddr`) one addr moves both by the same amount, and that addr is need mass (.2 to .6). Our relational addr (1, .5) is relevance, not mass; addrUse converts it to mass, so both vectors stay in EDP's units and `onCov` keeps EDP's meaning (onCov × mass covered). The alternative, scaling `remaining` only, has a precedent in edp-engine.js (its `attention` factor scales remaining but not exposure), but that factor is a position fatigue, not a unit conversion. Consequence for the numbers: a cov term after one addr-1 pick is now onCov × .35, not onCov. The scientist's v3 chain arithmetic (.15 − .1 − .02 × slot) assumed coverage 1; I added a "model-v0.4.0 note" to those two reason strings (values unchanged) and route the re-review (§8.5).
+
+EDP's gain rule: kept. It is now independent of the score by construction (resolvable mass, not score), so it is EDP's stopping rule: a card that resolves .1 or less of every need cannot depart, whatever its cov terms (test 4). At the current numbers it never decided a served card in the probe (8.4): with onRem ≤ .5 and addrUse .35, a card that outscores the default nearly always resolves more than .1, and v3's +.15 synergy is .05 after scaling. So it binds only when positive cov is large or the cost is raised. The old rule could not bind by construction, so I kept EDP's.
+
+### 8.3 (b) cov terms on the default card: EDP's behaviour, implemented
+
+EDP's `type: 'default'` widgets carry `on_cov: {}` (orchestrator-inline.js 152-159). They also carry `on_rem: {}`, and I did **not** follow that part. Reasons:
+- cov off the default card: I looked for a reason not to and found none. The risk I tested was moves off a default card for nothing (a departure with the same addr vector as the default). The probe counted 0 such moves. The scientist's mechanical point stands: overlap penalties on the default card were the channel that pushed sessions off the default order, which is the holdout.
+- need terms kept on the default card: removing them too (probe, then reverted) raised v1 slot-0 departures from .43 to .56 and made 7 moves to a card with the same addr as the default. Those are departures from a default card that already serves the need. EDP's defaults are generic fallbacks with near-zero addr; ours is a real lesson with full relational addr, so its need pull is real.
+
+### 8.4 Layout: departure share of served new cards by session slot (6 personas × seeds 1-3 × 7 days)
+
+Composition mechanics only. This is not a result and says nothing about recall.
+
+| Build | gam-session (v1) | gam-session-v3 | gam-session-no-cov |
+|---|---|---|---|
+| model-v0.3.1 (before) | .40 .13 .11 .06 .05 | .37 .11 .18 .10 .08 | .42 .12 .03 .00 .00 |
+| addrUse + EDP gain only, default keeps cov (step, not shipped) | .42 .15 .05 .03 .01 | .41 .15 .08 .03 .03 | .44 .13 .04 .00 .00 |
+| **model-v0.4.0 (shipped)** | **.43 .11 .02 .00 .00** | **.42 .11 .03 .01 .00** | .44 .13 .04 .00 .00 |
+| rejected variant: default also drops need terms | .56 .08 .01 .00 .00 | .56 .09 .02 .00 .00 | .57 .10 .02 .00 .00 |
+
+Served cards per slot (v0.4.0, v1): 264/244/173/161/148. Same-reason consecutive moves in a session (chains of 2): v3 7 → 1. Why a personalised slot stayed default (v0.4.0, v1, slots 0-4): the floor 20/7/7/0/0, stretch readiness 22/24/10/2/1, the attention budget 0 at every slot, the score (the default card won) 108/185/152/159/147.
+
+What this says mechanically: needs now survive a pick (residual .06 to .11 at median needs), but the residual pull (onRem × residual, about .02 to .05) is below the move bar (.1 + .02 × slot). So at today's numbers the need terms still act mostly on a need's first pick, and EDP-style chains do not form. Which of onRem, attentionCost, slotDecay, addrUse or onCov should move is applied-scientist-personalization's call (§8.5); the engine now lets any of them do it.
+
+Probe: scratch scripts (not committed) calling `runEpisode({trace: true, days: 7})` and reading only the fields named at the top of this section.
+
+### 8.5 Open
+
+- **applied-scientist-personalization:** re-review the session numbers at model-v0.4.0: addrUse (.35 is your guess, now in code), the v3 onCov synergies (now × addrUse), slotDecay's chain bound, and whether the attention budget should bind at these numbers (board, W-1999 follow-up).
+- **hq-engineer:** sync src/lib/hq-personalization-sandbox.ts to §8.1 and its drift tests; personalization-engineer regenerates src/data/hq-personalization after the commit (§6).
+- **personalization-eval:** nothing scored here; the session candidates still need an independent readout under a criterion frozen first.
