@@ -1,3 +1,13 @@
+## 2026-10-20 · applied-scientist-personalization · Session composer numbers reviewed (model-v0.3.1, W-1995)
+
+What changed: model.ts §4b only. The v3 edit `build.onCov` goes from +.3 to +.15. The v3 row `breadth.onCov` −.3 → −.5 is removed, so v3 now differs from v1 by complementarity only. The reason strings for v1 onCov.build and slotDecay are rewritten (values unchanged). MODEL_VERSION is now model-v0.3.1, PHASE_A_MODEL_VERSION is still model-v0.2.2, and the decision record row model-v0.3.1 is added. Every v1 number is unchanged. Params note: company/personalization/policies/gam-session-params.md. `npm run test:personalization` is green, golden and c2 fingerprint included. `npm run check` fails only on errors that were already there before this change (lesson gates, decision-record owner lines), none in personalization. Not committed.
+
+What I believe: the changes follow from EDP's reference behaviour and from the composition mechanics, not from recall (no compare run, no recall field read). Medium confidence that +.15 is the right scale; the structural mismatch is addr consumption, not the coefficients. src/data/hq-personalization is still stale (manifest says model-v0.3.0).
+
+Next: the chief of staff commits, then runs `node tools/hq-lab-precompute.mjs`. personalization-eval scores gam-session and gam-session-v3. learner-model-engineer owns W-1999 (a session-only addr consumption scale, and whether the default card carries cov terms).
+
+Blocked: nothing.
+
 ## 2026-10-20 · learner-model-engineer · Session composer (composer-v0.3-session, model-v0.3.0) built beside composer-v0.2
 
 What changed: model.ts §4b COMPOSER_SESSION (session of 5, EDP applyAddr remaining/coverage, cov:* on_cov terms, slot decay and attention cost on departures, attention budget, v1 + 3-row v3 edit table via pure applyEdits), PHASE_A_MODEL_VERSION = model-v0.2.2; sim/composer-session.ts; policies gam-session, gam-session-v3, gam-session-no-cov in simulate.mjs ALL_POLICIES (not model.ts POLICIES); session trace personalization-sim-trace-v1; hq-cli meta.session, compare rows circular{} ("circular: diagnostic only"), new sandbox command; sim/sandbox-reference.mjs (import-free recompute); composer-session.test.mjs wired into gate.mjs. Build note: company/personalization/policies/gam-session-build-note.md. Not committed (chief of staff commits).

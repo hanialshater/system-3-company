@@ -31,8 +31,10 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.3.0" as const;
+export const MODEL_VERSION = "model-v0.3.1" as const;
 /**
+ * model-v0.3.1 changes only COMPOSER_SESSION's v3 edit table and three reason strings (applied-scientist-personalization
+ * review, company/personalization/policies/gam-session-params.md); nothing a phase A policy reads moved.
  * model-v0.3.0 is additive: it adds COMPOSER_SESSION (section 4b) and changes nothing that the phase A
  * policies read (NEED_SHAPES, DAMPENER, COMPOSER, fingerprintFrom, detect are byte-identical to model-v0.2.2).
  * Every phase A policy (default-order, draft-rules, gam and its ablations, random, epsilon-greedy) therefore
@@ -590,20 +592,26 @@ export const COMPOSER_SESSION = {
     "onRem.breadth": "guess: same as COMPOSER.weights.onRem.breadth, so v1 differs from gam only by the session machinery",
     "onRem.stretch": "guess: same as COMPOSER.weights.onRem.stretch, so v1 differs from gam only by the session machinery",
     "onCov.repair": "guess: mild overlap: a second repair card on a need the session already covered adds less; EDP v1 gives every primary need a negative on_cov",
-    "onCov.build": "guess: mildest overlap: two build steps in a row are a path, not a repeat, so the penalty is small",
+    "onCov.build": "guess: mildest overlap: build addr is fixed from history for the session, so a second build card is another successor of a recalled concept (a parallel frontier step), not a repeat; the penalty is small",
     "onCov.breadth": "guess: strong overlap: one card from another domain meets breadth for a session; more is a switch, not breadth",
     "onCov.stretch": "guess: strong overlap: one stretch card per session (O8: stretch before readiness is the riskiest move)",
-    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2)",
+    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2). Kept at model-v0.3.1: it is about 3x EDP's per-slot differential relative to the need terms, on purpose (O2), and with v3's +.15 synergies it is what ends a chain: a pure chain card clears the bar only while .15 - .1 - .02*slot > 0, i.e. up to session slot 2 (gam-session-params.md)",
     "attentionCost": "guess: .1 equals COMPOSER.moveThreshold, so at slot 0 with nothing covered the move bar is phase A's; EDP's cost is .06",
   } as Record<string, string>,
   /**
    * v3 = applyEdits(v1, edits): EDP's EDITS_V3 mechanism. Short on purpose; every reason is a guess
    * until applied-scientist-personalization reviews it. No edit was chosen from a simulator result.
+   * Reviewed at model-v0.3.1 (company/personalization/policies/gam-session-params.md). Removed then: the row
+   * breadth.onCov -.3 -> -.5. EDP's EDITS_V3 adds synergies and base lifts and strengthens no overlap penalty,
+   * so v3 should differ from v1 by complementarity only. Mechanically the row could not stop a second breadth
+   * departure (at -.3 its gain is already < 0, because a .5/1 addr zeroes a breadth need of median .23); its
+   * one effect was a larger penalty on the DEFAULT card when that card was in the covered other domain, which
+   * makes leaving the default order easier: against breadth's purpose. No recall result was read.
    */
   edits: [
-    ["build", "onCov", -0.1, 0.3, "guess: complementarity, EDP's chain synergies: a second build lesson extends the chain the first one opened (successor of a recalled concept)"],
-    ["repair", "onCov", -0.2, 0.15, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card)"],
-    ["breadth", "onCov", -0.3, -0.5, "guess: stronger overlap penalty: two other-domain cards in one session is a domain switch, not breadth"],
+    // model-v0.3.1 (applied-scientist-personalization, gam-session-params.md): build .3 -> .15; the breadth -.5 row removed.
+    ["build", "onCov", -0.1, 0.15, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .15, not .3: as in EDP the synergy ranks below a typical unaddressed need's primary pull (build median .4 x .46 = .18, repair .5 x .41 = .21) and above the move bar (.1 + .02 x slot) only up to slot 2"],
+    ["repair", "onCov", -0.2, 0.15, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card). Kept at model-v0.3.1: same scale rule as build"],
   ] as SessionEdit[],
   /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
   ablations: { "no-cov": ["cov:repair", "cov:build", "cov:breadth", "cov:stretch"] as SessionTermName[] },
