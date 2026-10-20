@@ -31,8 +31,13 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.4.3" as const;
+export const MODEL_VERSION = "model-v0.4.4" as const;
 /**
+ * model-v0.4.4 changes one comparison, no number (W-2008, learner-model-engineer; ruling W-2007, VP record
+ * company/decisions/2026-10-20-vp-personalization-session-base.md section 7): the trace field reasonCarriesMove is true iff the
+ * named reason's terms are >= the margin (was strictly >), in sim/composer-session.ts and sim/sandbox-reference.mjs. Tied to
+ * the strict move test (best.score > default.score): if that becomes >=, this becomes > in the same change. Every pick, score
+ * and coefficient of every policy is unchanged; only the field's value at an exact tie can differ.
  * model-v0.4.3 changes one number (W-2004, applied-scientist-personalization): the edpBaseEdits row's beta, placeholder .02 ->
  * .033, set by the rule in the VP record company/decisions/2026-10-20-vp-personalization-session-base.md section 2.3 (reason in
  * the row; arithmetic in company/personalization/policies/gam-session-params.md, W-2004 section). Only gam-session-v3-edpbase

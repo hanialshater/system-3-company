@@ -1,3 +1,19 @@
+## 2026-10-20 · learner-model-engineer · reasonCarriesMove uses >= (model-v0.4.4, W-2008) and the stale hq-cli comment (W-2009)
+
+What changed (not committed, on df2f92f1 model-v0.4.3): per the VP ruling W-2007 (company/decisions/2026-10-20-vp-personalization-session-base.md §7), `reasonCarriesMove` is true iff the named reason's terms are >= the margin, in sim/composer-session.ts (`carries` line) and sim/sandbox-reference.mjs `recompose`, both doc comments updated. MODEL_VERSION model-v0.4.4 with a version comment and decision row (company/decisions/2026-10-16-personalization-model-v0.md). composer-session.test.mjs test 12: (e) recomputes with >=, fixture (f) now expects true. Build note §9.3, §9.4, §9.5 item 4 and sim/README.md updated. W-2009: hq-cli.mjs comment no longer says beta is a placeholder. `npm run test:personalization` green (test 10 pin, policy golden unchanged). `npm run check` shows 117 errors, none in these files.
+
+What I believe: no pick, score or number moved; only the field's value at an exact tie can differ. High confidence (test 10 hash, golden). Mutation "> instead of >=" in composer-session.ts fails fixture (f) and nothing else. The same mutation in sandbox-reference.mjs alone fails no test, because no sandbox document hits an exact tie. So the reference's (and the port's) operator is guarded only by review.
+
+Next: W-2006 (hq-engineer) after the commit: port reasonCarriesMove with >= (build note §9.5 item 4), then regenerate the precompute. Then W-2005 (personalization-eval). Blocked: nothing.
+
+## 2026-10-20 · vp-personalization · W-2004 read-back: β = .033 stands (W-2010)
+
+What changed: addendum §8 in company/decisions/2026-10-20-vp-personalization-session-base.md. It rules that β = .033 stands under §2.3. It corrects "about .1" to about .28 (the spread over EDP's *median* primary pull, not its strongest pull) and records that my .02 expectation paired two different statistics. Objections O10 (forking paths) and O11 (coarse EDP spread) are answered there. §1 and §2.3 are not rewritten. W-2010 is done. No code edited, nothing committed.
+
+What I believe: β = .033 follows the rule with the same statistic on both sides. I checked EDP's need-widget spread (.15) in orchestrator-inline.js. Other matched definitions give .034 to .035. High confidence. K1 to K5 and O1 to O3 are unchanged.
+
+Next: W-2009 (learner-model-engineer, the stale hq-cli comment), W-2005 (personalization-eval, criterion), and W-2006 (hq-engineer) after the commit. Blocked: nothing.
+
 ## 2026-10-20 · applied-scientist-personalization · β for gam-session-v3-edpbase set to .033 (model-v0.4.3, W-2004)
 
 What changed (not committed, on 5e7aad4e plus the VP's §7 addendum): model.ts `COMPOSER_SESSION.edpBaseEdits[0]` β .02 placeholder → .033, with the derivation as its reason; MODEL_VERSION model-v0.4.3 and a version comment. composer-session.test.mjs test 11 now pins β = .033 and the new reason, and asserts the placeholder text is gone. Decision row model-v0.4.3 (company/decisions/2026-10-16-personalization-model-v0.md). New W-2004 section in company/personalization/policies/gam-session-params.md with the arithmetic. No other number moved. `npm run test:personalization` is green (test 10 hash and policy golden unchanged).

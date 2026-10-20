@@ -53,8 +53,10 @@ export type SessionTerm = { name: SessionTermName; value: number };
  * model-v0.4.2 (W-2003, VP record company/decisions/2026-10-20-vp-personalization-session-base.md §3 and §5):
  * reasonCarriesMove, on every pick and slot of every session policy. For a moved card it is true iff the named reason's
  * term value (for a need reason n: the winner's need:n + cov:n terms; for surprise or novelty: that term; for a moved card
- * with no positive named term: 0) is strictly greater than score(winner) − score(default card), i.e. without that reason's
- * terms the default card would have won the comparison. null for every pick that did not move (default, breadth-floor,
+ * with no positive named term: 0) is greater than or equal to score(winner) − score(default card), i.e. without that
+ * reason's terms the default card would have won the comparison or tied it, and a tie keeps the default card (model-v0.4.4,
+ * W-2008, VP record §7: ≥, tied to the strict move test `wouldMove = best.score > def.score`; if that ever becomes ≥, this
+ * becomes > in the same change). null for every pick that did not move (default, breadth-floor,
  * due revisits, unpersonalised sessions): there is no move for a reason to carry.
  */
 export type SessionPick = { slug: string; moved: boolean; reason: PickReason; terms: SessionTerm[]; score: number; slot: number; reasonCarriesMove: boolean | null };
@@ -245,7 +247,7 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
         const named = best!.terms.filter((x) => (x.name.startsWith("need:") || x.name.startsWith("cov:") || x.name === "surprise" || x.name === "novelty") && x.value > 0)
           .sort((a, b) => b.value - a.value)[0];
         reason = named ? (named.name.includes(":") ? (named.name.split(":")[1] as Need) : (named.name as PickReason)) : "default";
-        carries = reasonTermValue(reason, best!.terms) > best!.score - def.score;
+        carries = reasonTermValue(reason, best!.terms) >= best!.score - def.score; // model-v0.4.4 (W-2008): >=, VP record §7
         rejected.push({ slug: defaultCard, why: `default card, ${(best!.score - def.score).toFixed(3)} below the winner` });
       } else {
         winner = def;

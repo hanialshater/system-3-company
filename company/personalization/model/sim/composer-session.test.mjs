@@ -11,7 +11,7 @@
 // 9. sandbox drift: sim/sandbox-reference.mjs, which imports nothing, recomposes the CLI's session exactly (every sandbox variant,
 // reasonCarriesMove included); 10. gam-session, -v3, -no-cov composed outputs pinned at model-v0.4.1 (702e4588);
 // 11. v3-edpbase = v3 + one base row, beta > 0 (model-v0.4.2, W-2003); 12. reasonCarriesMove fixtures (true, true only via
-// need+cov, false, the equality edge, null) and the formula on every real composition.
+// need+cov, false, the equality edge (>=, model-v0.4.4, W-2008), null) and the formula on every real composition.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -430,7 +430,7 @@ function twoNeedPool(order) {
     pilot: new Set([...pilot, "t:x"]) };
 }
 
-test("12. reasonCarriesMove: true iff the named reason's terms exceed score(winner) − score(default); null when not moved", () => {
+test("12. reasonCarriesMove: true iff the named reason's terms are >= score(winner) − score(default); null when not moved", () => {
   const val = (pick, name) => pick.terms.find((t) => t.name === name).value;
   // (a) TRUE, one need: b1 moves for build alone
   { const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
@@ -460,14 +460,15 @@ test("12. reasonCarriesMove: true iff the named reason's terms exceed score(winn
     // control: switch build off and the same move is carried by breadth alone
     const r2 = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, co, { pilotConcepts: pilot, size: 2, off: ["need:build"] });
     assert.deepEqual([r2.picks[0].slug, r2.picks[0].reason, r2.picks[0].reasonCarriesMove], ["x1", "breadth", true]); }
-  // (f) the equality edge, exact in floats (base 0, no cost, no decay: the margin IS the reason's value). The VP record §5
-  // says "greater than", so equality is FALSE here, although without the reason the winner would only tie the default card,
-  // and a tie keeps the default. Built to the text; the edge is routed to vp-personalization (build note §9.4).
+  // (f) the equality edge, exact in floats (base 0, no cost, no decay: the margin IS the reason's value). model-v0.4.4
+  // (W-2008, VP record §7, replacing §5's "greater than"): equality is TRUE, since without the reason the winner would only
+  // tie the default card, and a tie keeps the default. The only fixture that catches "> instead of >=" (build note §9.3).
   { const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
     const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0, { base: 0, attentionCost: 0, slotDecay: 0, addrUse: 1 }), { pilotConcepts: pilot, size: 1 });
     assert.deepEqual([r.picks[0].slug, r.picks[0].moved, r.picks[0].reason], ["b1", true, "build"]);
     assert.equal(reasonTermValue("build", r.picks[0].terms), r.slots[0].margin);
-    assert.equal(r.picks[0].reasonCarriesMove, false, "strictly greater, as specified"); }
+    assert.equal(r.picks[0].reasonCarriesMove, true, "greater than or equal: equality carries (VP record §7)");
+    assert.equal(r.slots[0].reasonCarriesMove, true); }
   // (d) due revisits are null (breadth-floor picks, a move the floor refused, are counted null in (e))
   { const { input, pilot } = handPool(["b1", "c1", "f1", "f2", "f3", "f4", "f5", "f6"]);
     const r = composeSession({ ...input, dueRevisits: [input.history[0].slug] }, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0.5, { base: 0.01, addrUse: 0.2 }), { pilotConcepts: pilot });
@@ -482,7 +483,7 @@ test("12. reasonCarriesMove: true iff the named reason's terms exceed score(winn
       if (!p.moved) { assert.equal(p.reasonCarriesMove, null, `${c.id} ${pol} slot ${i} (${p.reason})`); nulls++; if (p.reason === "breadth-floor") floors++; return; }
       const names = /^(repair|build|breadth|stretch)$/.test(p.reason) ? [`need:${p.reason}`, `cov:${p.reason}`] : [p.reason];
       const rv = p.terms.filter((t) => names.includes(t.name)).reduce((q, t) => q + t.value, 0);
-      assert.equal(p.reasonCarriesMove, rv > p.score - s.defaultScore, `${c.id} ${pol} slot ${i}`);
+      assert.equal(p.reasonCarriesMove, rv >= p.score - s.defaultScore, `${c.id} ${pol} slot ${i}`); // model-v0.4.4: >=
       assert.equal(p.score - s.defaultScore, s.margin);
       moved++;
     });

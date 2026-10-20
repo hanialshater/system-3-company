@@ -72,7 +72,8 @@ if (cmd === "meta") {
     session: { version: M.COMPOSER_SESSION.version, size: M.COMPOSER_SESSION.sessionSize, servingMode: M.COMPOSER_SESSION.servingMode,
       recompute: M.COMPOSER_SESSION.recompute, v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"),
       edits: M.COMPOSER_SESSION.edits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
-      // model-v0.4.2 (W-2003): gam-session-v3-edpbase = v3 + edpBaseEdits (one row, base 1.0 -> beta, placeholder pending W-2004).
+      // model-v0.4.2 (W-2003): gam-session-v3-edpbase = v3 + edpBaseEdits (one row, base 1.0 -> beta;
+      // beta .033 since model-v0.4.3, W-2004, company/personalization/policies/gam-session-params.md).
       "v3-edpbase": M.sessionCoefficients("v3-edpbase"),
       edpBaseEdits: M.COMPOSER_SESSION.edpBaseEdits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
       sandboxVariants: SANDBOX_VARIANTS,

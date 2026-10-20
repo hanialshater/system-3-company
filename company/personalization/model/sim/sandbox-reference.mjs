@@ -45,8 +45,9 @@ export function detect(fp, shapes, dampener) {
  * Returns { needs, picks: [{slug, moved, reason, score}], remaining, coverage, slots: [{slug, margin, gain, terms}] }
  * (gain: the winner's resolvable need mass, the attention budget's quantity; added at model-v0.4.0).
  * model-v0.4.2: picks and slots carry reasonCarriesMove: for a moved card, true iff the named reason's terms (need reason n:
- * need:n + cov:n; surprise/novelty: that term; none: 0) sum to more than the winner's score minus the default card's
- * score (the margin); null when the slot did not move.
+ * need:n + cov:n; surprise/novelty: that term; none: 0) sum to greater than or equal to the winner's score minus the
+ * default card's score (the margin); null when the slot did not move. model-v0.4.4 (W-2008, VP record §7): >=, not
+ * strictly greater (at equality the default card would only tie, and a tie keeps the default card).
  */
 export function recompose(doc, over = {}) {
   const shapes = over.needShapes ?? doc.needShapes;
@@ -103,7 +104,7 @@ export function recompose(doc, over = {}) {
         const names = reason === "surprise" || reason === "novelty" ? [reason] : NEEDS.includes(reason) ? [`need:${reason}`, `cov:${reason}`] : [];
         let rv = 0;
         for (const x of best.terms) if (names.includes(x.name)) rv += x.value;
-        carries = rv > best.score - d.score;
+        carries = rv >= best.score - d.score; // model-v0.4.4 (W-2008): >=
       } else winner = d;
     }
     if (personalised) for (const need of NEEDS) {
