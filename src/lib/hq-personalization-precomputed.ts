@@ -83,7 +83,7 @@ export function readPrecomputed<T>(req: SimRequest, root = process.cwd()): Res<T
     if (req.op === "saved") return { ok: false, error: "Saved simulator traces are local only (npm run dev); this lab serves precomputed runs." };
     if (req.op === "sandbox") {
       const e = manifest.sandboxes?.find((x) => x.persona === req.persona && x.variant === req.variant && x.seed === req.seed);
-      if (!e) return { ok: false, error: `Not precomputed: session sandbox for ${req.persona} · ${req.variant} · seed ${req.seed}. This lab serves ${(manifest.sandboxes ?? []).length} sandbox documents (${pre.personas.length} simulated personas × v1, v3 × seed ${pre.seeds.join(", ")}); regenerate with \`${REGENERATE}\` if none are stored.` };
+      if (!e) return { ok: false, error: `Not precomputed: session sandbox for ${req.persona} · ${req.variant} · seed ${req.seed}. This lab serves ${(manifest.sandboxes ?? []).length} sandbox documents (${pre.personas.length} simulated personas × v1, v3, edpbase × seed ${pre.seeds.join(", ")}); regenerate with \`${REGENERATE}\` if none are stored.` };
       const d = parse(readListed(root, manifest.files, e.file), e.file, true);
       if (!isObj(d) || d.schema !== "personalization-hq-sandbox-v0" || !isObj(d.persona) || d.persona.id !== req.persona || d.variant !== req.variant || d.seed !== req.seed
         || !Array.isArray(d.candidates) || !isObj(d.needShapes) || !isObj(d.composed)) throw damaged(`${e.file} is not the sandbox document it is listed as`);

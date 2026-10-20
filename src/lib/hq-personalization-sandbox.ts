@@ -20,6 +20,7 @@ export const SANDBOX_BADGE = "sandbox: not saved, not the model";
 export const CIRCULAR_LABEL = "circular: diagnostic only";
 export const SESSION_LAB_TITLE = "EDP-faithful session composer — offline, unscored until its readout";
 
+export type SandboxVariant = "v1" | "v3" | "edpbase";
 export type SCurve = { bps: number[]; vals: number[] };
 export type SShape = SCurve & { signal: string; w: number; why: string };
 export type SDamp = SCurve & { signal: string; why: string };
@@ -31,19 +32,21 @@ export type SCandidate = {
 export type SandboxDoc = {
   schema: typeof SANDBOX_SCHEMA; unscored: string; criterion: string; provisional: string; simulatedOnly: string; personasVersion: string;
   circularLabel: string; note: string; modelVersion: string; composerVersion: string;
-  persona: { id: string; name: string }; seed: number; variant: "v1" | "v3"; policy: string; at: number; historyCount: number;
+  persona: { id: string; name: string }; seed: number; variant: SandboxVariant; policy: string; at: number; historyCount: number;
   fingerprint: Record<string, number | string | string[]>;
   needShapes: Record<SNeed, SShape[]>; dampener: SDamp; needs: Record<SNeed, number>;
   session: {
     size: number; coefficients: SCoefficients; off: string[]; v1: SCoefficients; v3: SCoefficients;
     edits: { target: string; path: string; from: number; to: number; reason: string }[]; why: Record<string, string>;
+    /** model-v0.4.2: only in the edpbase document (v3 with base = beta); its one-row table sits beside the edits table. */
+    "v3-edpbase"?: SCoefficients; edpBaseEdits?: { target: string; path: string; from: number; to: number; reason: string }[];
   };
   candidates: SCandidate[];
   constraints: {
     personalisationOn: boolean; dueRevisits: unknown[]; antiBubbleStreak: number; antiBubbleFloor: { everyN: number; fromDefaultRoundRobin: number };
     stretchNeedsSomePrereq: boolean; surpriseGateActive: boolean; noveltyGateActive: boolean; fixedForSession: string;
   };
-  composed: { picks: { slug: string; moved: boolean; reason: string; score: number; terms: { name: string; value: number }[] }[];
+  composed: { picks: { slug: string; moved: boolean; reason: string; score: number; reasonCarriesMove?: boolean | null; terms: { name: string; value: number }[] }[];
     remaining: Record<SNeed, number>; coverage: Record<SNeed, number>; personalised: boolean; diagnostics?: { label: string; needMass: number; resolved: number; coverageRate: number | null };
     slots: unknown[] };
 };
@@ -60,11 +63,11 @@ export type ComposedSlot = {
   slot: number; defaultCard: string; constraint: string | null; winner: string; reason: string; moved: boolean; margin: number | null;
   remainingBefore: Record<SNeed, number>; remainingAfter: Record<SNeed, number>;
   coverageBefore: Record<SNeed, number>; coverageAfter: Record<SNeed, number>;
-  winnerTerms: Term[]; winnerScore: number; gain: number; top: SlotCandidate[]; eligibleCount: number;
+  winnerTerms: Term[]; winnerScore: number; /** model-v0.4.4: null when the card was not moved. */ reasonCarriesMove: boolean | null; gain: number; top: SlotCandidate[]; eligibleCount: number;
 };
 export type Composed = {
   needs: Record<SNeed, number>; personalised: boolean; remaining: Record<SNeed, number>; coverage: Record<SNeed, number>;
-  picks: { slug: string; moved: boolean; reason: string; score: number }[]; slots: ComposedSlot[];
+  picks: { slug: string; moved: boolean; reason: string; score: number; reasonCarriesMove: boolean | null }[]; slots: ComposedSlot[];
   /** EDP's coverageRate for this session: (Σ needs − Σ remaining) / Σ needs, as composer-session.ts. Circular: the model's own beliefs. */
   circular: { label: string; needMass: number; resolved: number; coverageRate: number | null };
 };
@@ -121,6 +124,18 @@ export function eligibility(isDefault: boolean, blocked: boolean, gain: number, 
   return gain > c.attentionCost ? { ok: true, why: null } : { ok: false, why: `attention budget: resolvable need ${gain.toFixed(3)} ≤ attention cost ${c.attentionCost}` };
 }
 
+/**
+ * reasonCarriesMove (model-v0.4.4, W-2008, VP record §7): the named reason's terms (need:n + cov:n, or surprise / novelty), summed left to
+ * right in term order, are >= the winner's margin over the default card. At equality removing the reason only TIES the default card, and a
+ * tie keeps the default (wouldMove is strict), so the reason did carry the move. Keep this operator tied to wouldMove: flip one, flip both.
+ */
+export function reasonCarries(reason: string, terms: Term[], margin: number): boolean {
+  const names = reason === "surprise" || reason === "novelty" ? [reason] : (NEEDS as readonly string[]).includes(reason) ? [`need:${reason}`, `cov:${reason}`] : [];
+  let v = 0;
+  for (const t of terms) if (names.includes(t.name)) v += t.value;
+  return v >= margin;
+}
+
 const isNeedTerm = (n: string) => n.startsWith("need:") || n.startsWith("cov:");
 const zero = (): Record<SNeed, number> => ({ repair: 0, build: 0, breadth: 0, stretch: 0 });
 const TOP = 10;
@@ -172,7 +187,7 @@ export function recompose(doc: SandboxDoc, over: SandboxEdit = {}): Composed {
       const { ok, why } = eligibility(isDefault, k.stretchNeedsSomePrereq && l.stretchBlocked, gain, c);
       return { l, isDefault, terms: t, gain, score: t.reduce((q, x) => q + x.value, 0), ok, why };
     });
-    let winner = scored[0], moved = false, reason = "default", margin: number | null = null, constraint: string | null = null;
+    let winner = scored[0], moved = false, reason = "default", margin: number | null = null, constraint: string | null = null, carries: boolean | null = null;
     const sorted = [...scored].sort((a, b) => b.score - a.score || (a.l.slug < b.l.slug ? -1 : 1));
     if (personalised) {
       const d = scored[0];
@@ -188,20 +203,23 @@ export function recompose(doc: SandboxDoc, over: SandboxEdit = {}): Composed {
         const named = best.terms.filter((x) => (isNeedTerm(x.name) || x.name === "surprise" || x.name === "novelty") && x.value > 0)
           .sort((a, b) => b.value - a.value)[0];
         reason = named ? (named.name.includes(":") ? named.name.split(":")[1] : named.name) : "default";
+        carries = reasonCarries(reason, best.terms, best.score - d.score);
       }
     } else constraint = "not personalised: the default order";
     if (personalised) applyAddr(remaining, coverage, winner.l.addr, c.addrUse);
     streak = moved ? streak + 1 : 0;
     taken.add(winner.l.slug);
-    picks.push({ slug: winner.l.slug, moved, reason, score: winner.score });
-    const top = sorted.slice(0, TOP).map((x) => ({
+    picks.push({ slug: winner.l.slug, moved, reason, score: winner.score, reasonCarriesMove: carries });
+    const topRows = sorted.slice(0, TOP);
+    if (!topRows.some((x) => x.l.slug === winner.l.slug)) topRows.push(winner); // model-v0.4.2: the winner is always listed
+    const top = topRows.map((x) => ({
       slug: x.l.slug, concept: x.l.concept, domain: x.l.domain, level: x.l.level, isDefault: x.isDefault, score: x.score, gain: x.gain,
       eligible: x.ok, why: x.why, addr: x.l.addr, terms: x.terms,
     }));
     slots.push({
       slot: s, defaultCard: def.slug, constraint, winner: winner.l.slug, reason, moved, margin,
       remainingBefore, remainingAfter: { ...remaining }, coverageBefore, coverageAfter: { ...coverage },
-      winnerTerms: winner.terms, winnerScore: winner.score, gain: winner.gain, top, eligibleCount: n,
+      winnerTerms: winner.terms, winnerScore: winner.score, reasonCarriesMove: carries, gain: winner.gain, top, eligibleCount: n,
     });
   }
   const needMass = totalNeed;
@@ -277,7 +295,16 @@ export function codeDiff(doc: SandboxDoc, edit: Required<SandboxEdit>): { text: 
   if (JSON.stringify(edit.dampener.vals) !== JSON.stringify(doc.dampener.vals))
     hunk("DAMPENER, model.ts", [`  signal: "historySize", bps: ${arr(doc.dampener.bps)}, vals: ${arr(doc.dampener.vals)},`], [`  signal: "historySize", bps: ${arr(edit.dampener.bps)}, vals: ${arr(edit.dampener.vals)},`]);
   const base = doc.session.coefficients, cur = edit.coefficients;
-  if (doc.variant === "v1") {
+  if (doc.variant === "edpbase") {
+    // edpbase is v3 + COMPOSER_SESSION.edpBaseEdits (one row, session.base from 1.0, VP record §2.4). Only base is an edpbase edit; another
+    // dragged coefficient belongs to the v3 edit table, so it is said so and not written as an edpBaseEdits row.
+    const v3 = doc.session.v3, row0 = doc.session.edpBaseEdits?.[0];
+    const reason = row0?.reason ?? "guess: (write the reason for this edit)";
+    const row = (to: number) => `    ["session", "base", ${num(v3.base)}, ${num(to)}, "${reason}"],`;
+    if (cur.base !== base.base) hunk("COMPOSER_SESSION.edpBaseEdits (edpbase = v3 + edpBaseEdits), model.ts", [row(base.base)], [row(cur.base)]);
+    const others = [...COEF_KEYS.filter((k) => k !== "base" && getCoef(cur, k) !== getCoef(base, k))];
+    if (others.length) changes++, L.push(`# Not an edpbase edit (VP record §2.4): ${others.join(", ")} changed. Those belong in COMPOSER_SESSION.edits (v3), where the v3 value is ${others.map((k) => `${k} ${num(getCoef(v3, k))}`).join(", ")}.`);
+  } else if (doc.variant === "v1") {
     const lines = (c: SCoefficients) => [`    base: ${num(c.base)},`, `    onRem: ${obj(c.onRem)},`, `    onCov: ${obj(c.onCov)},`, `    slotDecay: ${num(c.slotDecay)},`, `    attentionCost: ${num(c.attentionCost)},`, `    addrUse: ${num(c.addrUse)},`];
     const b = lines(base), a = lines(cur);
     const keep = b.map((x, i) => (x === a[i] ? -1 : i)).filter((i) => i >= 0);

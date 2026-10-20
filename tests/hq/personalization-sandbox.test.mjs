@@ -24,16 +24,18 @@ const docs = new Map();
 const docOf = (persona, variant) => { const k = `${persona}.${variant}`; if (!docs.has(k)) docs.set(k, cli("sandbox", `--persona=${persona}`, `--variant=${variant}`, "--seed=1")); return docs.get(k); };
 const MODEL_TS = fs.readFileSync(path.join(ROOT, "company/personalization/model/model.ts"), "utf8");
 
-test("requests: sandbox takes a persona id, v1 or v3, a bounded seed", () => {
+test("requests: sandbox takes a persona id, v1, v3 or edpbase, a bounded seed", () => {
   const q = (o) => new URLSearchParams(o);
   assert.deepEqual(parseSimRequest(q({ op: "sandbox", persona: "wanderer", variant: "v3" })), { op: "sandbox", persona: "wanderer", variant: "v3", seed: 1 });
+  assert.deepEqual(parseSimRequest(q({ op: "sandbox", persona: "wanderer", variant: "edpbase" })), { op: "sandbox", persona: "wanderer", variant: "edpbase", seed: 1 });
+  assert.deepEqual(cliArgs({ op: "sandbox", persona: "wanderer", variant: "edpbase", seed: 1 }), ["sandbox", "--persona=wanderer", "--variant=edpbase", "--seed=1"]);
   assert.deepEqual(cliArgs({ op: "sandbox", persona: "wanderer", variant: "v1", seed: 2 }), ["sandbox", "--persona=wanderer", "--variant=v1", "--seed=2"]);
   for (const bad of [{ variant: "v2" }, { variant: "" }, { variant: "v1", persona: "a;b" }, { variant: "v1", seed: "0" }, { variant: "v1", seed: "x" }])
     assert.equal(typeof parseSimRequest(q({ op: "sandbox", persona: "wanderer", ...bad })), "string", JSON.stringify(bad));
 });
 
 test("drift: the port equals the CLI's composed session for every persona x variant", () => {
-  for (const p of PERSONAS) for (const v of ["v1", "v3"]) {
+  for (const p of PERSONAS) for (const v of ["v1", "v3", "edpbase"]) {
     const d = docOf(p.id, v), c = JSON.parse(JSON.stringify(P.recompose(d))) /* as the CLI's JSON: -0 is 0 there */, ref = d.composed, tag = `${p.id}.${v}`;
     assert.equal(P.sandboxRefusal(d), null, tag);
     assert.deepEqual(c.needs, d.needs, `${tag} needs`);
@@ -48,6 +50,10 @@ test("drift: the port equals the CLI's composed session for every persona x vari
       assert.equal(c.slots[i].defaultCard, rs.defaultCard, `${tag} slot ${i} default`);
       assert.equal(c.slots[i].gain, ref.slots[i].candidates.find((t) => t.slug === x.slug).gain, `${tag} slot ${i} resolvable gain`);
       assert.equal(c.slots[i].margin, rs.margin, `${tag} slot ${i} margin`);
+      assert.equal(x.reasonCarriesMove, ref.picks[i].reasonCarriesMove, `${tag} slot ${i} reasonCarriesMove (pick)`);
+      assert.equal(c.slots[i].reasonCarriesMove, rs.reasonCarriesMove, `${tag} slot ${i} reasonCarriesMove (slot)`);
+      assert.equal(x.reasonCarriesMove === null, !x.moved, `${tag} slot ${i} null exactly when not moved`);
+      assert.ok(c.slots[i].top.some((t) => t.slug === x.slug), `${tag} slot ${i} the winner is among the listed candidates`);
       assert.deepEqual(c.slots[i].remainingAfter, rs.remainingAfter, `${tag} slot ${i} remaining`);
       assert.deepEqual(c.slots[i].coverageAfter, rs.coverageAfter, `${tag} slot ${i} coverage`);
       assert.equal(c.slots[i].top.find((t) => t.slug === x.slug)?.score ?? x.score, ref.picks[i].score, `${tag} slot ${i} top row`);
@@ -61,7 +67,7 @@ test("drift: the port equals the CLI's composed session for every persona x vari
 
 test("drift after a drag: the port equals sandbox-reference.mjs for edited curves, dampener and coefficients", () => {
   let changedSomewhere = 0;
-  for (const p of PERSONAS) for (const v of ["v1", "v3"]) {
+  for (const p of PERSONAS) for (const v of ["v1", "v3", "edpbase"]) {
     const d = docOf(p.id, v);
     let e = P.emptyEdit(d);
     e = P.withKnot(e, { need: "repair", term: 0 }, 2, 0.95);
@@ -101,6 +107,70 @@ test("diff: names the model.ts values, is empty when nothing moved, and carries 
   assert.match(d3diff.text, /\+ {4}\["build", "onCov", -0\.1, 0\.5,/);
 });
 
+test("edpbase: a document with its own table; the diff writes an edpBaseEdits row, not an edits row", () => {
+  const d = docOf("wanderer", "edpbase");
+  assert.equal(d.variant, "edpbase");
+  assert.equal(d.policy, "gam-session-v3-edpbase");
+  assert.equal(d.session.edpBaseEdits.length, 1);
+  assert.equal(d.session.coefficients.base, d.session.edpBaseEdits[0].to);
+  assert.deepEqual({ ...d.session.coefficients, base: 0 }, { ...d.session.v3, base: 0 }, "edpbase is v3 apart from base");
+  const none = P.codeDiff(d, P.emptyEdit(d));
+  assert.equal(none.changes, 0);
+  const diff = P.codeDiff(d, P.withCoef(P.emptyEdit(d), "base", 0.05));
+  assert.equal(diff.changes, 1);
+  assert.match(diff.text, /COMPOSER_SESSION\.edpBaseEdits/);
+  assert.doesNotMatch(diff.text, /@@ COMPOSER_SESSION\.edits/);
+  assert.match(diff.text, /\+ {4}\["session", "base", 1, 0\.05,/);
+  assert.match(diff.text, /- {4}\["session", "base", 1, 0\.033,/);
+  // any other coefficient is not an edpbase edit (VP record 2.4): said so, no row written
+  const other = P.codeDiff(d, P.withCoef(P.emptyEdit(d), "onCov.build", 0.5));
+  assert.equal(other.changes, 1);
+  assert.match(other.text, /Not an edpbase edit/);
+  assert.doesNotMatch(other.text, /^\+ {4}\[/m);
+  assert.equal(P.isEdited(d, P.withCoef(P.emptyEdit(d), "onCov.build", 0.5)), true);
+});
+
+// The port test for the >= operator (model-v0.4.4, W-2008, VP record 7). Real sandbox documents never hit an exact tie, so the drift
+// tests above cannot tell > from >=. This hand document ties exactly in floats: base 0, no costs, one need .5, one departure with addr .5,
+// so the departure's whole margin over the default card is need:build = 1 x .5 x .5 = .25 and the reason's value is the same number.
+// Removing the reason would only TIE the default, a tie keeps the default, so the reason carries the move: true. Port and reference agree.
+function tieDoc() {
+  const flat = (v) => ({ signal: "x", bps: [0, 1], vals: [v, v], w: 1, why: "hand fixture" });
+  const addr = (b) => ({ repair: 0, build: b, breadth: 0, stretch: 0 });
+  const cand = (slug, i, b) => ({ slug, concept: slug, domain: "d", level: "l", defaultRank: i, addr: addr(b), stretchBlocked: false, surprise: 0, novelty: 0 });
+  const zero = { repair: 0, build: 0, breadth: 0, stretch: 0 };
+  const coef = { base: 0, onRem: { ...zero, build: 1 }, onCov: { ...zero }, slotDecay: 0, attentionCost: 0, addrUse: 1 };
+  return {
+    schema: "personalization-hq-sandbox-v0", modelVersion: "hand", persona: { id: "hand", name: "hand" }, variant: "v1", fingerprint: { x: 0.5, historySize: 99 },
+    needShapes: { repair: [flat(0)], build: [flat(0.5)], breadth: [flat(0)], stretch: [flat(0)] },
+    dampener: { signal: "historySize", bps: [0, 1], vals: [1, 1], why: "hand fixture" },
+    session: { size: 1, coefficients: coef, off: [], v1: coef, v3: coef, edits: [], why: {} },
+    candidates: [cand("default-card", 0, 0), cand("departure", 1, 0.5)],
+    constraints: { personalisationOn: true, dueRevisits: [], antiBubbleStreak: 0, antiBubbleFloor: { everyN: 4, fromDefaultRoundRobin: 1 }, stretchNeedsSomePrereq: false, surpriseGateActive: false, noveltyGateActive: false, fixedForSession: "" },
+  };
+}
+test("reasonCarriesMove: an exact tie (reason value == margin) is true under >=, and reason() is the operator itself", () => {
+  const d = tieDoc();
+  assert.equal(P.sandboxRefusal(d), null);
+  const out = P.recompose(d), ref = refRecompose(d);
+  assert.equal(out.slots[0].margin, 0.25, "the fixture really ties: margin is exactly the reason's value");
+  assert.deepEqual(out.picks.map((x) => [x.slug, x.moved, x.reason]), [["departure", true, "build"]]);
+  assert.equal(out.picks[0].reasonCarriesMove, true, "port: >= makes an exact tie true");
+  assert.equal(out.slots[0].reasonCarriesMove, true);
+  assert.equal(ref.picks[0].reasonCarriesMove, true, "reference agrees");
+  // the operator in isolation, with a margin one ulp above the reason's value: false
+  const terms = [{ name: "need:build", value: 0.25 }, { name: "cov:build", value: 0 }];
+  assert.equal(P.reasonCarries("build", terms, 0.25), true);
+  assert.equal(P.reasonCarries("build", terms, 0.25 + Number.EPSILON), false);
+  assert.equal(P.reasonCarries("build", terms, 0.2), true);
+  // not moved: null on pick and slot
+  const stay = tieDoc(); stay.candidates[1].addr.build = 0;
+  const o2 = P.recompose(stay);
+  assert.equal(o2.picks[0].moved, false);
+  assert.equal(o2.picks[0].reasonCarriesMove, null);
+  assert.equal(o2.slots[0].reasonCarriesMove, null);
+});
+
 test("knots: values clamp to 0..1 and breakpoints never move", () => {
   const d = docOf("wanderer", "v1");
   const e = P.withKnot(P.emptyEdit(d), { need: "repair", term: 0 }, 0, 1.7);
@@ -122,10 +192,10 @@ test("refusal: an open surprise or novelty gate (or a nonzero term) stops the sa
   assert.match(P.sandboxRefusal(w), /unknown sandbox schema/);
 });
 
-test("precomputed: the committed sandbox documents are the CLI's output (6 personas x v1, v3)", () => {
+test("precomputed: the committed sandbox documents are the CLI's output (6 personas x v1, v3, edpbase)", () => {
   const dir = path.join(ROOT, "src/data/hq-personalization");
   const m = JSON.parse(fs.readFileSync(path.join(dir, "manifest.json"), "utf8"));
-  assert.equal(m.sandboxes.length, PERSONAS.length * 2);
+  assert.equal(m.sandboxes.length, PERSONAS.length * 3);
   for (const e of m.sandboxes) {
     const stored = JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(dir, e.file))).toString("utf8"));
     assert.deepEqual(stored, docOf(e.persona, e.variant), `${e.file} is current`);

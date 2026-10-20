@@ -28,6 +28,8 @@ export type PersonaView = {
 export type SessionCoefs = { base: number; onRem: Record<string, number>; onCov: Record<string, number>; slotDecay: number; attentionCost: number };
 export type SessionMeta = {
   version: string; size: number; servingMode: string; recompute: string; v1: SessionCoefs; v3: SessionCoefs;
+  /** model-v0.4.2: v3 with base = beta; absent in a stale precomputed meta. */
+  "v3-edpbase"?: SessionCoefs; edpBaseEdits?: { target: string; path: string; from: number; to: number; reason: string }[]; sandboxVariants?: Record<string, string>;
   edits: { target: string; path: string; from: number; to: number; reason: string }[]; why: Record<string, string>;
   ablations: Record<string, string[]>; circularLabel: string;
 };
@@ -35,7 +37,7 @@ export type SimMeta = {
   schema: "personalization-hq-meta-v0"; unscored: string; criterion: string; provisional: string; simulatedOnly: string;
   modelVersion: string; personasVersion: string; composerVersion: string; decision: string;
   model: ModelView; personas: PersonaView[];
-  policies: { model: string[]; all: string[]; ablations: Record<string, string[]>; session?: Record<string, { variant: "v1" | "v3"; off: string[] }> };
+  policies: { model: string[]; all: string[]; ablations: Record<string, string[]>; session?: Record<string, { variant: "v1" | "v3" | "v3-edpbase"; off: string[] }> };
   /** model-v0.3.0: the session composer's coefficients, v1 and v3, and the v3 edit table. Absent in a stale precomputed meta. */
   session?: SessionMeta;
   sim: Record<string, unknown> & { defaultDays: number };
@@ -90,7 +92,7 @@ export type SimRequest =
   | { op: "run"; persona: string; policy: string; seed: number; days: number }
   | { op: "saved"; file: string }
   | { op: "compare"; persona: string; seeds: number; set: "main" | "all"; days: number }
-  | { op: "sandbox"; persona: string; variant: "v1" | "v3"; seed: number };
+  | { op: "sandbox"; persona: string; variant: "v1" | "v3" | "edpbase"; seed: number };
 
 const ID = /^[a-z0-9-]{1,48}$/;
 const SAVED = /^[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.json$/;
@@ -131,7 +133,7 @@ export function parseSimRequest(q: { get(k: string): string | null }): SimReques
     const variant = q.get("variant") ?? "";
     const seed = intIn(q.get("seed"), 1, 1, 999);
     if (!ID.test(persona)) return "persona must be an id";
-    if (variant !== "v1" && variant !== "v3") return "variant must be v1 or v3";
+    if (variant !== "v1" && variant !== "v3" && variant !== "edpbase") return "variant must be v1, v3 or edpbase";
     if (seed === null) return "seed must be an integer 1..999";
     return { op, persona, variant, seed };
   }

@@ -11,13 +11,15 @@ import hq from "../hq.module.css";
 import { NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, type SimMeta } from "@/lib/hq-personalization";
 import {
   CIRCULAR_LABEL, COEF_KEYS, eligibility as elig, resolvableGain, NEEDS, SANDBOX_BADGE, SESSION_LAB_TITLE, VAL_STEP, codeDiff, emptyEdit, explainNeeds, getCoef, isEdited, pwl, recompose, sandboxRefusal, withCoef, withKnot,
-  type CoefKey, type SCurve, type SNeed, type SandboxDoc, type SandboxEdit,
+  type CoefKey, type SCurve, type SNeed, type SandboxDoc, type SandboxEdit, type SandboxVariant,
 } from "@/lib/hq-personalization-sandbox";
 import s from "./personalization.module.css";
 
-type Variant = "v1" | "v3";
+type Variant = SandboxVariant;
+const VARIANTS = ["v1", "v3", "edpbase"] as const;
+const VARIANT_NOTE: Record<Variant, string> = { v1: " (hand-set start)", v3: " (v1 + edits)", edpbase: " (v3 + EDP prior)" };
 type Tab = "flow" | "gallery" | "variants" | "curves";
-const TABS: [Tab, string][] = [["flow", "Composition Flow"], ["gallery", "Lesson gallery"], ["variants", "v1 ↔ v3"], ["curves", "Curves sandbox"]];
+const TABS: [Tab, string][] = [["flow", "Composition Flow"], ["gallery", "Lesson gallery"], ["variants", "v1 ↔ v3 ↔ v3 + EDP prior"], ["curves", "Curves sandbox"]];
 const W = 200, H = 110;
 type Full = Required<SandboxEdit>;
 
@@ -97,6 +99,7 @@ function SlotCard({ slot, base }: { slot: ReturnType<typeof recompose>["slots"][
         <div><dt>default card</dt><dd>{slot.defaultCard}</dd></div>
         <div><dt>decided by</dt><dd>{slot.constraint ?? "score (no hard constraint applied)"}</dd></div>
         <div><dt>margin of best departure over default</dt><dd>{fmt(slot.margin)}</dd></div>
+        {slot.moved && <div><dt>reason carries the move</dt><dd>{slot.reasonCarriesMove === null ? "–" : slot.reasonCarriesMove ? "yes" : "no"}{slot.reasonCarriesMove === false ? " (the named reason alone is below the margin; other terms did the work)" : ""}</dd></div>}
         <div><dt>score of the winner · resolvable need</dt><dd>{fmt(slot.winnerScore)} · {fmt(slot.gain, 3)}</dd></div>
       </dl>
       <p className={s.mono}>remaining: {NEEDS.map((n) => `${n} ${fmt(slot.remainingBefore[n], 3)}→${fmt(slot.remainingAfter[n], 3)}`).join(" · ")}</p>
@@ -221,18 +224,22 @@ function Gallery({ doc, edit }: { doc: SandboxDoc; edit: Full }) {
 }
 
 function Variants({ docs, variant, setVariant }: { docs: Partial<Record<Variant, SandboxDoc>>; variant: Variant; setVariant: (v: Variant) => void }) {
-  const a = docs.v1, b = docs.v3;
+  const a = docs.v1, b = docs.v3, e3 = docs.edpbase;
   const ra = useMemo(() => (a ? recompose(a) : null), [a]);
   const rb = useMemo(() => (b ? recompose(b) : null), [b]);
-  if (!a || !b || !ra || !rb) return <p className={s.muted}>Loading both variants…</p>;
+  const re = useMemo(() => (e3 ? recompose(e3) : null), [e3]);
+  if (!a || !b || !ra || !rb) return <p className={s.muted}>Loading the variants…</p>;
   const edits = b.session.edits;
+  const eEdits = e3?.session.edpBaseEdits ?? [];
+  const eCoefs = e3?.session["v3-edpbase"] ?? e3?.session.coefficients;
+  const cell = (r: ReturnType<typeof recompose> | null, i: number) => { const q = r?.picks[i]; return q ? <><span className={s.slug}>{q.slug}</span> <span className={s.muted}>{q.moved ? `moved: ${q.reason}` : q.reason}{q.moved && q.reasonCarriesMove !== null ? ` · reason carries the move: ${q.reasonCarriesMove ? "yes" : "no"}` : ""}</span></> : "–"; };
   return (
     <div>
       <fieldset className={s.radio}>
         <legend>Variant composed in the other tabs</legend>
-        {(["v1", "v3"] as const).map((v) => <label key={v}><input type="radio" name="session-variant" checked={variant === v} onChange={() => setVariant(v)} /> {v}{v === "v3" ? " (v1 + edits)" : " (hand-set start)"}</label>)}
+        {VARIANTS.map((v) => <label key={v}><input type="radio" name="session-variant" checked={variant === v} onChange={() => setVariant(v)} disabled={!docs[v]} /> {v}{VARIANT_NOTE[v]}</label>)}
       </fieldset>
-      <p className={s.muted}>v3 is v1 with the edit table applied (EDP&apos;s EDITS_V3 mechanism). No edit was chosen from a simulator result; every reason is a guess until reviewed. An edit&apos;s &quot;from&quot; must equal the current value or applying it throws.</p>
+      <p className={s.muted}>v3 is v1 with the edit table applied (EDP&apos;s EDITS_V3 mechanism). No edit was chosen from a simulator result; every reason is a guess until reviewed. An edit&apos;s &quot;from&quot; must equal the current value or applying it throws. The third column, v3 + EDP prior (variant edpbase), is v3 with a small positive base (EDP&apos;s need-widget base spread, scaled), written as one row of a separate table, edpBaseEdits; its base is a guess until reviewed.</p>
       <div className={s.scroll} tabIndex={0} role="region" aria-label="v3 edits table">
         <table className={`${s.table} ${s.wrap}`}>
           <caption className={s.cap}>Edits: [target, path, from, to, reason]</caption>
@@ -240,25 +247,33 @@ function Variants({ docs, variant, setVariant }: { docs: Partial<Record<Variant,
           <tbody>{edits.map((e) => <tr key={e.target + e.path}><td>{e.target}</td><td>{e.path}</td><td>{fmt(e.from, 2)}</td><td><strong>{fmt(e.to, 2)}</strong></td><td>{e.reason}</td></tr>)}</tbody>
         </table>
       </div>
+      {e3 ? (
+        <div className={s.scroll} tabIndex={0} role="region" aria-label="edpBaseEdits table">
+          <table className={`${s.table} ${s.wrap}`}>
+            <caption className={s.cap}>edpBaseEdits (variant edpbase = v3 + this row): [target, path, from, to, reason]</caption>
+            <thead><tr><th scope="col">target</th><th scope="col">path</th><th scope="col">from</th><th scope="col">to</th><th scope="col">reason</th></tr></thead>
+            <tbody>{eEdits.map((e) => <tr key={e.target + e.path}><td>{e.target}</td><td>{e.path}</td><td>{fmt(e.from, 2)}</td><td><strong>{fmt(e.to, 3)}</strong></td><td>{e.reason}</td></tr>)}</tbody>
+          </table>
+        </div>
+      ) : <p className={s.muted}>The edpbase document is not available in this lab (a stale precomputed set; regenerate it).</p>}
       <div className={s.scroll} tabIndex={0} role="region" aria-label="Coefficients by variant">
         <table className={s.table}>
           <caption className={s.cap}>Coefficients</caption>
-          <thead><tr><th scope="col">term</th><th scope="col">v1</th><th scope="col">v3</th></tr></thead>
-          <tbody>{COEF_KEYS.map((k) => { const x = getCoef(a.session.v1, k), y = getCoef(b.session.v3, k);
-            return <tr key={k} className={x !== y ? s.win : undefined}><th scope="row"><code>{k}</code></th><td>{x}</td><td>{y}</td></tr>; })}</tbody>
+          <thead><tr><th scope="col">term</th><th scope="col">v1</th><th scope="col">v3</th><th scope="col">v3 + EDP prior</th></tr></thead>
+          <tbody>{COEF_KEYS.map((k) => { const x = getCoef(a.session.v1, k), y = getCoef(b.session.v3, k), z = eCoefs ? getCoef(eCoefs, k) : null;
+            return <tr key={k} className={x !== y || (z !== null && z !== y) ? s.win : undefined}><th scope="row"><code>{k}</code></th><td>{x}</td><td>{y}</td><td>{z ?? "–"}</td></tr>; })}</tbody>
         </table>
       </div>
       <h4 className={s.h5}>The same persona&apos;s session under each variant</h4>
-      <div className={s.scroll} tabIndex={0} role="region" aria-label="Session under v1 and v3">
+      <div className={s.scroll} tabIndex={0} role="region" aria-label="Session under v1, v3 and v3 plus EDP prior">
         <table className={`${s.table} ${s.wrap}`}>
-          <thead><tr><th scope="col">slot</th><th scope="col">v1</th><th scope="col">v3</th></tr></thead>
+          <thead><tr><th scope="col">slot</th><th scope="col">v1</th><th scope="col">v3</th><th scope="col">v3 + EDP prior</th></tr></thead>
           <tbody>{ra.picks.map((p, i) => { const q = rb.picks[i]; return (
-            <tr key={i} className={q && q.slug !== p.slug ? s.win : undefined}><th scope="row">{i + 1}</th>
-              <td><span className={s.slug}>{p.slug}</span> <span className={s.muted}>{p.moved ? `moved: ${p.reason}` : p.reason}</span></td>
-              <td>{q ? <><span className={s.slug}>{q.slug}</span> <span className={s.muted}>{q.moved ? `moved: ${q.reason}` : q.reason}</span></> : "–"}</td></tr>); })}</tbody>
+            <tr key={i} className={(q && q.slug !== p.slug) || (re?.picks[i] && re.picks[i].slug !== p.slug) ? s.win : undefined}><th scope="row">{i + 1}</th>
+              <td>{cell(ra, i)}</td><td>{cell(rb, i)}</td><td>{cell(re, i)}</td></tr>); })}</tbody>
         </table>
       </div>
-      <p className={s.circ} role="note">{CIRCULAR_LABEL}: session need coverage v1 {fmt(ra.circular.coverageRate, 3)} · v3 {fmt(rb.circular.coverageRate, 3)}. Not a pass score; simulated recall is in the policy comparison below. {UNSCORED_LABEL}.</p>
+      <p className={s.circ} role="note">{CIRCULAR_LABEL}: session need coverage v1 {fmt(ra.circular.coverageRate, 3)} · v3 {fmt(rb.circular.coverageRate, 3)}{re ? ` · v3 + EDP prior ${fmt(re.circular.coverageRate, 3)}` : ""}. Not a pass score; simulated recall is in the policy comparison below. {UNSCORED_LABEL}.</p>
     </div>
   );
 }
@@ -359,14 +374,14 @@ export default function ComposerLab({ meta, personaIds, initialPersona }: { meta
     setBusy(true); setErr(null); setDocs({});
     (async () => {
       try {
-        const got = await Promise.all((["v1", "v3"] as const).map(async (v) => {
+        const got = await Promise.all(VARIANTS.map(async (v) => {
           const q = new URLSearchParams({ op: "sandbox", persona: personaId, variant: v, seed: "1" });
           const r = await fetch(`/api/hq/personalization?${q}`);
           const j = await r.json();
-          if (!r.ok) throw new Error(j.error ?? r.statusText);
+          if (!r.ok) { if (v === "edpbase") return null; throw new Error(j.error ?? r.statusText); } // a stale set may lack edpbase until regenerated
           return [v, j as SandboxDoc] as const;
         }));
-        if (live) setDocs(Object.fromEntries(got));
+        if (live) setDocs(Object.fromEntries(got.filter((x) => x !== null)));
       } catch (e) { if (live) setErr((e as Error).message); } finally { if (live) setBusy(false); }
     })();
     return () => { live = false; };
@@ -398,7 +413,7 @@ export default function ComposerLab({ meta, personaIds, initialPersona }: { meta
         </label>
         <fieldset className={s.radio}>
           <legend>Variant</legend>
-          {(["v1", "v3"] as const).map((v) => <label key={v}><input type="radio" name="lab-variant" checked={variant === v} onChange={() => setVariant(v)} /> {v}</label>)}
+          {VARIANTS.map((v) => <label key={v}><input type="radio" name="lab-variant" checked={variant === v} onChange={() => setVariant(v)} disabled={!docs[v]} /> {v}</label>)}
         </fieldset>
       </div>
       {busy && <p className={s.muted} aria-live="polite">Loading the session document for {name}…</p>}

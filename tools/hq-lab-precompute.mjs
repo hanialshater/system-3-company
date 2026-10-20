@@ -73,7 +73,7 @@ for (const persona of personas) for (const policy of policies) for (const seed o
 // Session sandbox documents (founder decision 2026-10-20 Q2, W-1998): one per persona x variant, seed 1, exactly the
 // CLI's `sandbox` output (unrounded, so the browser port can be held equal to the CLI's own composed session).
 // The session policies get no precomputed runs; the session lab recomputes from these documents in the browser.
-const SANDBOX_VARIANTS = ["v1", "v3"];
+const SANDBOX_VARIANTS = ["v1", "v3", "edpbase"];
 const sandboxes = [];
 for (const persona of personas) for (const variant of SANDBOX_VARIANTS) for (const seed of SEEDS) {
   const d = cli(["sandbox", `--persona=${persona}`, `--variant=${variant}`, `--seed=${seed}`]);

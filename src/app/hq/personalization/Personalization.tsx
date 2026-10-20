@@ -270,7 +270,7 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
           </table>
           <p className={s.circ} role="note">
             {CIRCULAR_LABEL}: need coverage and domain diversity are EDP-style numbers graded by the model&apos;s own detect() and addr(), not by the simulated learner. They are never a pass score and always sit beside simulated recall.
-            The session policies (gam-session, gam-session-v3, gam-session-no-cov) are offline and {UNSCORED_LABEL}; a higher circular number is not evidence that a policy helps a learner.
+            The session policies (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) are offline and {UNSCORED_LABEL}; a higher circular number is not evidence that a policy helps a learner.
           </p>
           <ul className={s.legend}>
             {Object.entries(res.columns).map(([k, v]) => <li key={k}><code>{k}</code>: {v}</li>)}
