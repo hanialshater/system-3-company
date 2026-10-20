@@ -1,5 +1,7 @@
 # Changelog
 
+2026-10-20 · tools-lead: new tools/reconcile.mjs (W-1998, EXP-009): deterministic reconciliation of events.jsonl/ledger.jsonl against an independent list (dispatch requests, role memory, run labels in records, role commits, founder quotes, meta.json publishes, releases.json, mailboxes when present), coded gap causes and a ±10/±60 min spread; tests in tests/reconcile/; first run in company/experiments/EXP-009/run-2026-10-20.json. Read-only; tier 1 (company/engineering/readiness/2026-10-20-reconcile-exp009.md).
+
 2026-10-20 · personalization-engineer: Merged PR13 into default: explicit account-saved feed preferences, ordinary main-feed matching, profile edit/off/reset and export/delete, synthetic HQ and later-round admission tooling. AMD016 ratified; bounded exact candidate admitted. Compiled feature checks passed; inherited aggregate failures disclosed. Source only: no external schema/environment/deployment change. Receipt company/ops/delivery/2026-10-20-account-preferences-source.json.
 
 ## 2026-10-18: PR #8 merged into the default branch via PR #9 (merge a6333dd0); nothing deployed
