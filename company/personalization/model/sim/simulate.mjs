@@ -50,7 +50,12 @@ export const SESSION_VARIANTS = {
   "gam-session": { variant: "v1", off: [] },
   "gam-session-v3": { variant: "v3", off: [] },
   "gam-session-no-cov": { variant: "v1", off: M.COMPOSER_SESSION.ablations["no-cov"] },
+  // model-v0.4.2 (W-2003, VP record company/decisions/2026-10-20-vp-personalization-session-base.md §2): v3 + one row,
+  // session base 1.0 -> beta (M.COMPOSER_SESSION.edpBaseEdits; beta a placeholder pending W-2004). The only variant that record adds.
+  "gam-session-v3-edpbase": { variant: "v3-edpbase", off: [] },
 };
+/** hq-cli `sandbox --variant=<key>`: the sandbox variant -> its session policy (model-v0.4.2 adds edpbase). */
+export const SANDBOX_VARIANTS = { v1: "gam-session", v3: "gam-session-v3", edpbase: "gam-session-v3-edpbase" };
 export const ALL_POLICIES = [...PHASE_A_POLICIES, ...Object.keys(SESSION_VARIANTS)];
 export const CIRCULAR_LABEL = M.COMPOSER_SESSION.circularLabel;
 export { sandboxPool };
@@ -347,21 +352,24 @@ export function firstComposeInput(persona, seed, cat) {
  * Unrounded on purpose.
  */
 export function sandboxDocument(persona, variant, seed, cat) {
-  if (variant !== "v1" && variant !== "v3") throw new Error(`variant must be v1 or v3, not ${variant}`);
-  const pol = variant === "v1" ? "gam-session" : "gam-session-v3";
+  if (!Object.hasOwn(SANDBOX_VARIANTS, variant)) throw new Error(`variant must be one of ${Object.keys(SANDBOX_VARIANTS).join(", ")}, not ${variant}`);
+  const pol = SANDBOX_VARIANTS[variant];
   const { at, input } = firstComposeInput(persona, seed, cat);
   const pool = sandboxPool(input, M.COMPOSER, { pilotConcepts: cat.pilotConcepts });
   const comp = composeSessionFor(pol, input, cat);
   const g = M.COMPOSER.constraints.antiBubbleFloor;
-  const edits = M.COMPOSER_SESSION.edits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason }));
+  const row = ([target, path, from, to, reason]) => ({ target, path, from, to, reason });
+  const edits = M.COMPOSER_SESSION.edits.map(row);
   return {
     circularLabel: CIRCULAR_LABEL,
     note: "browser-only sandbox input (founder decision 2026-10-20 Q2): recompute with sim/sandbox-reference.mjs; nothing is saved; a change goes into model.ts under the change rule",
     modelVersion: M.MODEL_VERSION, composerVersion: M.COMPOSER_SESSION.version,
     persona: { id: persona.id, name: persona.name }, seed, variant, policy: pol, at, historyCount: input.history.length,
     fingerprint: input.fingerprint, needShapes: M.NEED_SHAPES, dampener: M.DAMPENER, needs: input.needs,
-    session: { size: M.COMPOSER_SESSION.sessionSize, coefficients: M.sessionCoefficients(variant), off: SESSION_VARIANTS[pol].off,
-      v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"), edits, why: M.COMPOSER_SESSION.why },
+    session: { size: M.COMPOSER_SESSION.sessionSize, coefficients: M.sessionCoefficients(SESSION_VARIANTS[pol].variant), off: SESSION_VARIANTS[pol].off,
+      v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"), edits, why: M.COMPOSER_SESSION.why,
+      // model-v0.4.2 (W-2003): only in the edpbase document, so the v1 and v3 documents are unchanged in shape.
+      ...(variant === "edpbase" ? { "v3-edpbase": M.sessionCoefficients("v3-edpbase"), edpBaseEdits: M.COMPOSER_SESSION.edpBaseEdits.map(row) } : {}) },
     candidates: pool.candidates,
     constraints: { personalisationOn: input.personalisationOn, dueRevisits: input.dueRevisits, antiBubbleStreak: pool.antiBubbleStreak,
       antiBubbleFloor: { everyN: g.everyN, fromDefaultRoundRobin: g.fromDefaultRoundRobin }, stretchNeedsSomePrereq: M.COMPOSER.constraints.stretchNeedsSomePrereq,

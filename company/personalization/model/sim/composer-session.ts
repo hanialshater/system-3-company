@@ -1,5 +1,5 @@
 /**
- * Session composer (composer-v0.3-session, model-v0.4.0): a faithful port of EDP's compose()
+ * Session composer (composer-v0.3-session, model-v0.4.0; model-v0.4.2 adds the trace field reasonCarriesMove): a faithful port of EDP's compose()
  * (company/personalization/reference/edp-orchestrator/src/orchestrator-inline.js compose/scoreModule,
  * policies.js applyAddr, edp-engine.js compose's attention budget), BESIDE the phase A composer
  * (./composer.ts, which is unchanged and still serves every existing policy).
@@ -49,7 +49,15 @@ const ENGAGEMENT = "inactive: phase B (needs aggregate reveal completion, W-706)
 export const SESSION_TRACE_SCHEMA = "personalization-sim-trace-v1" as const;
 
 export type SessionTerm = { name: SessionTermName; value: number };
-export type SessionPick = { slug: string; moved: boolean; reason: PickReason; terms: SessionTerm[]; score: number; slot: number };
+/**
+ * model-v0.4.2 (W-2003, VP record company/decisions/2026-10-20-vp-personalization-session-base.md §3 and §5):
+ * reasonCarriesMove, on every pick and slot of every session policy. For a moved card it is true iff the named reason's
+ * term value (for a need reason n: the winner's need:n + cov:n terms; for surprise or novelty: that term; for a moved card
+ * with no positive named term: 0) is strictly greater than score(winner) − score(default card), i.e. without that reason's
+ * terms the default card would have won the comparison. null for every pick that did not move (default, breadth-floor,
+ * due revisits, unpersonalised sessions): there is no move for a reason to carry.
+ */
+export type SessionPick = { slug: string; moved: boolean; reason: PickReason; terms: SessionTerm[]; score: number; slot: number; reasonCarriesMove: boolean | null };
 export type SessionCandidate = {
   slug: string; concept: string; domain: string; level: string; isDefault: boolean;
   score: number; gain: number; addr: NeedScores; terms: SessionTerm[]; eligibleToMove: boolean; note?: string;
@@ -70,6 +78,8 @@ export type SessionSlotTrace = {
   margin: number | null;
   /** winner's score − the best other candidate that could have filled the slot. */
   runnerUpMargin: number | null;
+  /** model-v0.4.2: does the named reason alone carry the move (see SessionPick)? null when the slot did not move. */
+  reasonCarriesMove: boolean | null;
   rejected: { slug: string; why: string }[];
   /** the top K candidates that lost, with every term, so a reader can see why each lost. */
   rejectedTop: { slug: string; score: number; gain: number; terms: SessionTerm[]; why: string }[];
@@ -98,6 +108,14 @@ export type SessionOpts = {
 
 const zero = (): NeedScores => ({ repair: 0, build: 0, breadth: 0, stretch: 0 });
 const sum = (ts: SessionTerm[]) => ts.reduce((s, t) => s + t.value, 0);
+
+/** The value of the terms a pick reason names (model-v0.4.2): need reason n -> need:n + cov:n; surprise/novelty -> that term; else 0. */
+export function reasonTermValue(reason: PickReason, terms: SessionTerm[]): number {
+  const names = reason === "surprise" || reason === "novelty" ? [reason] : (NEEDS as string[]).includes(reason) ? [`need:${reason}`, `cov:${reason}`] : [];
+  let v = 0;
+  for (const t of terms) if (names.includes(t.name)) v += t.value;
+  return v;
+}
 const prereqsAllUnseen = (l: LessonDims, ctx: Ctx) => {
   const p = ctx.prereqsOf[l.concept] ?? [];
   return p.length > 0 && p.every((c) => !ctx.doneConcepts.has(c));
@@ -150,9 +168,9 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
 
   // Constraint 1: due revisits first, untouched (AMD-008 F2).
   for (const slug of input.dueRevisits) {
-    picks.push({ slug, moved: false, reason: "due-revisit", terms: [], score: 0, slot: picks.length });
+    picks.push({ slug, moved: false, reason: "due-revisit", terms: [], score: 0, slot: picks.length, reasonCarriesMove: null });
     slots.push({ slot: slots.length, sessionSlot: null, kind: "due-revisit", defaultCard: null, defaultScore: null, constraint: "dueRevisitsFirst",
-      candidates: [], candidatesConsidered: 0, winner: slug, moved: false, reason: "due-revisit", margin: null, runnerUpMargin: null,
+      candidates: [], candidatesConsidered: 0, winner: slug, moved: false, reason: "due-revisit", margin: null, runnerUpMargin: null, reasonCarriesMove: null,
       rejected: [], rejectedTop: [], remainingBefore: { ...remaining }, remainingAfter: { ...remaining },
       coverageBefore: { ...coverage }, coverageAfter: { ...coverage }, ...base });
   }
@@ -203,6 +221,7 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
     let moved = false;
     let reason: PickReason = "default";
     let margin: number | null = null;
+    let carries: boolean | null = null;
     const rejected: { slug: string; why: string }[] = [];
 
     if (!personalised) {
@@ -226,6 +245,7 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
         const named = best!.terms.filter((x) => (x.name.startsWith("need:") || x.name.startsWith("cov:") || x.name === "surprise" || x.name === "novelty") && x.value > 0)
           .sort((a, b) => b.value - a.value)[0];
         reason = named ? (named.name.includes(":") ? (named.name.split(":")[1] as Need) : (named.name as PickReason)) : "default";
+        carries = reasonTermValue(reason, best!.terms) > best!.score - def.score;
         rejected.push({ slug: defaultCard, why: `default card, ${(best!.score - def.score).toFixed(3)} below the winner` });
       } else {
         winner = def;
@@ -239,15 +259,18 @@ export function composeSession(input: ComposeInput, model: Model, session: Sessi
     streak = moved ? streak + 1 : 0;
     taken.add(winner.slug);
     queuedConcepts.push(wl.concept);
-    picks.push({ slug: winner.slug, moved, reason, terms: winner.terms, score: winner.score, slot: picks.length });
+    picks.push({ slug: winner.slug, moved, reason, terms: winner.terms, score: winner.score, slot: picks.length, reasonCarriesMove: carries });
     const top = cands.slice(0, K);
     if (!top.some((x) => x.isDefault)) { const d = cands.find((x) => x.isDefault); if (d) top.push(d); }
+    // model-v0.4.2: the winner is always in the slot's candidates. Under a flat base (v3-edpbase) the best ELIGIBLE departure
+    // can rank below K ineligible ones (stretch-blocked, over budget); before, its row (terms, gain, addr) was then missing.
+    if (!top.some((x) => x.slug === winner.slug)) top.push(winner);
     const others = cands.filter((x) => x.slug !== winner.slug && (x.eligibleToMove || x.isDefault));
     const defScore = cands.find((x) => x.isDefault)?.score ?? null;
     const whyOf = (slug: string) => rejected.find((r) => r.slug === slug)?.why ?? "lower score";
     slots.push({ slot: slots.length, sessionSlot: s, kind: "new", defaultCard, defaultScore: defScore, constraint, candidates: top,
       candidatesConsidered: cands.length, winner: winner.slug, moved, reason, margin,
-      runnerUpMargin: personalised && others.length ? winner.score - others[0].score : null, rejected,
+      runnerUpMargin: personalised && others.length ? winner.score - others[0].score : null, reasonCarriesMove: carries, rejected,
       rejectedTop: cands.slice(0, K).filter((x) => x.slug !== winner.slug).map((x) => ({ slug: x.slug, score: x.score, gain: x.gain, terms: x.terms, why: whyOf(x.slug) })),
       remainingBefore, remainingAfter: { ...remaining }, coverageBefore, coverageAfter: { ...coverage }, ...base });
   }

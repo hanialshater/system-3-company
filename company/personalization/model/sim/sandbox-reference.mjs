@@ -10,7 +10,9 @@
 // What the document fixes for one session (sandbox --persona --variant --seed): the fingerprint (from the persona's
 // seeded pre-history), the eligible pool in default order with addr[lesson][need] (relational, fixed for the
 // session), the gated surprise/novelty values (0 while both gates are shut), the anti-bubble streak, and the
-// coefficients (from model-v0.4.0 they include addrUse). What the sandbox may change: needShapes (curves), dampener, coefficients. Changing anything else
+// coefficients (from model-v0.4.0 they include addrUse). model-v0.4.2 (W-2003): the edpbase document
+// (--variant=edpbase, gam-session-v3-edpbase) needs no new arithmetic, only its coefficients (base = beta); every pick
+// and slot gains reasonCarriesMove (see recompose). What the sandbox may change: needShapes (curves), dampener, coefficients. Changing anything else
 // (history, pool, gates) needs a new document from the CLI.
 
 const NEEDS = ["repair", "build", "breadth", "stretch"];
@@ -42,6 +44,9 @@ export function detect(fp, shapes, dampener) {
  * Recompose the session from a sandbox document. `over` replaces needShapes, dampener or coefficients (the drag).
  * Returns { needs, picks: [{slug, moved, reason, score}], remaining, coverage, slots: [{slug, margin, gain, terms}] }
  * (gain: the winner's resolvable need mass, the attention budget's quantity; added at model-v0.4.0).
+ * model-v0.4.2: picks and slots carry reasonCarriesMove: for a moved card, true iff the named reason's terms (need reason n:
+ * need:n + cov:n; surprise/novelty: that term; none: 0) sum to more than the winner's score minus the default card's
+ * score (the margin); null when the slot did not move.
  */
 export function recompose(doc, over = {}) {
   const shapes = over.needShapes ?? doc.needShapes;
@@ -79,7 +84,7 @@ export function recompose(doc, over = {}) {
       const ok = isDefault || (!(k.stretchNeedsSomePrereq && l.stretchBlocked) && gain > c.attentionCost);
       return { l, isDefault, terms: t, score: t.reduce((q, x) => q + x.value, 0), gain, ok };
     });
-    let winner, moved = false, reason = "default", margin = null;
+    let winner, moved = false, reason = "default", margin = null, carries = null;
     if (!personalised) winner = scored[0];
     else {
       const sorted = [...scored].sort((a, b) => b.score - a.score || (a.l.slug < b.l.slug ? -1 : 1));
@@ -94,6 +99,11 @@ export function recompose(doc, over = {}) {
         const named = best.terms.filter((x) => (x.name.startsWith("need:") || x.name.startsWith("cov:") || x.name === "surprise" || x.name === "novelty") && x.value > 0)
           .sort((a, b) => b.value - a.value)[0];
         reason = named ? (named.name.includes(":") ? named.name.split(":")[1] : named.name) : "default";
+        // model-v0.4.2: the named reason's terms, summed left to right in term order (as composer-session.ts reasonTermValue).
+        const names = reason === "surprise" || reason === "novelty" ? [reason] : NEEDS.includes(reason) ? [`need:${reason}`, `cov:${reason}`] : [];
+        let rv = 0;
+        for (const x of best.terms) if (names.includes(x.name)) rv += x.value;
+        carries = rv > best.score - d.score;
       } else winner = d;
     }
     if (personalised) for (const need of NEEDS) {
@@ -103,8 +113,8 @@ export function recompose(doc, over = {}) {
     }
     streak = moved ? streak + 1 : 0;
     taken.add(winner.l.slug);
-    picks.push({ slug: winner.l.slug, moved, reason, score: winner.score });
-    slots.push({ slug: winner.l.slug, margin, gain: winner.gain, terms: winner.terms });
+    picks.push({ slug: winner.l.slug, moved, reason, score: winner.score, reasonCarriesMove: carries });
+    slots.push({ slug: winner.l.slug, margin, gain: winner.gain, terms: winner.terms, reasonCarriesMove: carries });
   }
   return { needs, personalised, picks, remaining, coverage, slots };
 }

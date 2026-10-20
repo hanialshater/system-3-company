@@ -11,11 +11,12 @@
 //   node company/personalization/model/sim/hq-cli.mjs run --persona=<id> --policy=<name> --seed=<1..999> [--days=1..14]
 //   node company/personalization/model/sim/hq-cli.mjs compare --persona=<id|all> [--seeds=1..10] [--set=main|all] [--days=1..14]
 //   node company/personalization/model/sim/hq-cli.mjs saved --file=<persona>.<policy>.seed<k>.json   (a run.mjs trace in out/traces)
-//   node company/personalization/model/sim/hq-cli.mjs sandbox --persona=<id> --variant=v1|v3 [--seed=1..999]
+//   node company/personalization/model/sim/hq-cli.mjs sandbox --persona=<id> --variant=v1|v3|edpbase [--seed=1..999]
 //        (model-v0.3.0: everything a browser needs to recompute detect() + one session compose without the model,
 //         plus the CLI's own composed session for a drift test; schema personalization-hq-sandbox-v0; the algorithm
 //         is sim/sandbox-reference.mjs)
-// Session policies (gam-session, gam-session-v3, gam-session-no-cov) are in policies.all and policies.session, not in
+// (model-v0.4.2: --variant=edpbase is gam-session-v3-edpbase, W-2003; its document adds session["v3-edpbase"] and session.edpBaseEdits.)
+// Session policies (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) are in policies.all and policies.session, not in
 // policies.model; their `run` trace schema is personalization-sim-trace-v1 (sim/README.md "Session policies").
 //
 // SIMULATED PERSONAS ONLY. Nothing here reads, or can be pointed at, real learner data: the only inputs are
@@ -27,7 +28,7 @@ import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { PERSONAS, PERSONAS_VERSION } from "../personas.ts";
 import { loadCatalog, STRENGTH_PLACEHOLDER } from "./catalog.mjs";
-import { runEpisode, ALL_POLICIES, GAM_VARIANTS, SIM, SESSION_VARIANTS, CIRCULAR_LABEL, sandboxDocument } from "./simulate.mjs";
+import { runEpisode, ALL_POLICIES, GAM_VARIANTS, SIM, SESSION_VARIANTS, SANDBOX_VARIANTS, CIRCULAR_LABEL, sandboxDocument } from "./simulate.mjs";
 import { BASE_PARAMS } from "./learner.ts";
 import { mean, sd } from "./score.ts";
 
@@ -71,6 +72,10 @@ if (cmd === "meta") {
     session: { version: M.COMPOSER_SESSION.version, size: M.COMPOSER_SESSION.sessionSize, servingMode: M.COMPOSER_SESSION.servingMode,
       recompute: M.COMPOSER_SESSION.recompute, v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"),
       edits: M.COMPOSER_SESSION.edits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
+      // model-v0.4.2 (W-2003): gam-session-v3-edpbase = v3 + edpBaseEdits (one row, base 1.0 -> beta, placeholder pending W-2004).
+      "v3-edpbase": M.sessionCoefficients("v3-edpbase"),
+      edpBaseEdits: M.COMPOSER_SESSION.edpBaseEdits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
+      sandboxVariants: SANDBOX_VARIANTS,
       why: M.COMPOSER_SESSION.why, ablations: M.COMPOSER_SESSION.ablations, circularLabel: CIRCULAR_LABEL },
     sim: { ...SIM, defaultDays: 7, learnerParams: BASE_PARAMS, misconceptionStrength: STRENGTH_PLACEHOLDER },
     saved: savedFiles(),
@@ -130,11 +135,11 @@ if (cmd === "meta") {
     }, circularLabel: CIRCULAR_LABEL };
 } else if (cmd === "sandbox") {
   const p = persona(args.persona);
-  const variant = args.variant === "v1" || args.variant === "v3" ? args.variant : fail("--variant must be v1 or v3");
+  const variant = Object.hasOwn(SANDBOX_VARIANTS, args.variant ?? "") ? args.variant : fail(`--variant must be one of ${Object.keys(SANDBOX_VARIANTS).join(", ")}`);
   const seed = int("seed", 1, 1, 999);
   out = { schema: "personalization-hq-sandbox-v0", ...LABEL, personasVersion: PERSONAS_VERSION, ...sandboxDocument(p, variant, seed, loadPinnedCatalog()) };
 } else {
-  fail("usage: hq-cli.mjs meta | run --persona= --policy= --seed= [--days=] | compare --persona=<id|all> [--seeds=] [--set=main|all] | saved --file= | sandbox --persona= --variant=v1|v3 [--seed=]");
+  fail("usage: hq-cli.mjs meta | run --persona= --policy= --seed= [--days=] | compare --persona=<id|all> [--seeds=] [--set=main|all] | saved --file= | sandbox --persona= --variant=v1|v3|edpbase [--seed=]");
 }
 // sandbox is not rounded: a browser re-implementation must see the exact numbers the CLI composed with (drift test).
 process.stdout.write(JSON.stringify(out, cmd === "sandbox" ? undefined : round));

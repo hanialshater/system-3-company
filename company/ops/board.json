@@ -22414,10 +22414,11 @@
       "id": "W-2003",
       "title": "Session composer: add variant gam-session-v3-edpbase = v3 + edit [session, base, 1.0, beta] kept apart from COMPOSER_SESSION.edits (v3 byte-identical, not in model.ts POLICIES); add reasonCarriesMove to every moved session slot for all session variants (named reason's term value > score(winner) - score(default)); tests: coefficients = v3 except base, golden + c2 fingerprint unchanged, reasonCarriesMove true/false fixtures. Beta from the applied-scientist item. Spec: company/decisions/2026-10-20-vp-personalization-session-base.md §5",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-20"
     },
     {
       "id": "W-2004",
@@ -22432,6 +22433,24 @@
       "id": "W-2005",
       "title": "Session criterion (W-1996/W-1988): before freezing, include arm gam-session-v3-edpbase (if built and hashed; else freeze without it, vp withdraws it) and the vp keep/kill roles K1-K5 (company/decisions/2026-10-20-vp-personalization-session-base.md §4: vs default-order gate, per-persona harm veto, K3 attribution contrasts, served subject-mix guardrail, reasonCarriesMove copy gate), or record why one cannot be measured. Statistics stay eval's",
       "owner": "personalization-eval",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2006",
+      "title": "Sync the HQ session port to model-v0.4.2 (W-2003): reasonCarriesMove on recomposed picks/slots (formula and order in sim/sandbox-reference.mjs), optional edpbase variant (parseSimRequest, Variant types, codeDiff writes an edpBaseEdits row, ComposerLab, precompute SANDBOX_VARIANTS), winner always in candidates; 'drift after a drag' and precomputed sandbox docs fail until synced and regenerated after commit. Exact list: company/personalization/policies/gam-session-build-note.md §9.5",
+      "owner": "hq-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2007",
+      "title": "reasonCarriesMove equality edge (W-2003): VP record §5 says 'greater than'; at exact equality removing the reason leaves a tie the default card wins, so by §5's own justification >= is the honest test. Built as > (conservative for K5); rule > or >=. company/personalization/policies/gam-session-build-note.md §9.4",
+      "owner": "vp-personalization",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-20",

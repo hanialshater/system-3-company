@@ -1,4 +1,4 @@
-// Session composer tests (composer-v0.3-session, model-v0.4.0). Run by gate.mjs in `npm run test:personalization`.
+// Session composer tests (composer-v0.3-session, model-v0.4.0; model-v0.4.2 tests 10-12). Run by gate.mjs in `npm run test:personalization`.
 //   node --test company/personalization/model/sim/composer-session.test.mjs
 // owner: learner-model-engineer (Ifeoma) · offline only · no dependencies (node:test), Node 22.18 or later.
 // Build note: company/personalization/policies/gam-session-build-note.md.
@@ -8,7 +8,10 @@
 // 3. residual need and on_cov sign on a hand-built pool, and the default card carries no cov terms; 4. the attention
 // budget (EDP's resolvable-need gain) falls back to the default card; 5. hard constraints hold; 6. v1/v3/applyEdits; 7. forbidden-input invariance (N3 shape);
 // 8. existing policies byte-identical (golden) and the GAM still model-v0.2.2 (c2 fingerprint);
-// 9. sandbox drift: sim/sandbox-reference.mjs, which imports nothing, recomposes the CLI's session exactly.
+// 9. sandbox drift: sim/sandbox-reference.mjs, which imports nothing, recomposes the CLI's session exactly (every sandbox variant,
+// reasonCarriesMove included); 10. gam-session, -v3, -no-cov composed outputs pinned at model-v0.4.1 (702e4588);
+// 11. v3-edpbase = v3 + one base row, beta > 0 (model-v0.4.2, W-2003); 12. reasonCarriesMove fixtures (true, true only via
+// need+cov, false, the equality edge, null) and the formula on every real composition.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -18,9 +21,9 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { PERSONAS } from "../personas.ts";
-import { composeSession, applyAddr, resolvableGain } from "./composer-session.ts";
+import { composeSession, applyAddr, resolvableGain, reasonTermValue } from "./composer-session.ts";
 import { loadPinnedCatalog } from "./catalog-pin.mjs";
-import { runEpisode, ALL_POLICIES, PHASE_A_POLICIES, SESSION_VARIANTS, composeSessionFor, sandboxDocument, firstComposeInput } from "./simulate.mjs";
+import { runEpisode, ALL_POLICIES, PHASE_A_POLICIES, SESSION_VARIANTS, SANDBOX_VARIANTS, composeSessionFor, sandboxDocument, firstComposeInput } from "./simulate.mjs";
 import { goldenHashes, GOLDEN_FILE } from "./policy-golden.mjs";
 import { recompose } from "./sandbox-reference.mjs";
 
@@ -276,7 +279,7 @@ test("7. forbidden inputs attached anywhere change nothing (N3 shape) and are ne
 test("8. existing policies byte-identical to the golden; the GAM is still model-v0.2.2 (c2 fingerprint)", () => {
   const golden = JSON.parse(readFileSync(GOLDEN_FILE, "utf8"));
   assert.deepEqual(PHASE_A_POLICIES, Object.keys(golden.hashes));
-  assert.deepEqual(ALL_POLICIES, [...PHASE_A_POLICIES, "gam-session", "gam-session-v3", "gam-session-no-cov"]);
+  assert.deepEqual(ALL_POLICIES, [...PHASE_A_POLICIES, "gam-session", "gam-session-v3", "gam-session-no-cov", "gam-session-v3-edpbase"]);
   assert.ok(!M.POLICIES.some((p) => p.startsWith("gam-session")), "session policies stay out of model.ts POLICIES (phase A harness, HQ main set)");
   // The full byte-identity check (goldenHashes(cat) deep-equals golden.hashes, ~1 s) runs once, in review-timing.test.mjs
   // (gate.mjs runs both files); set S3_SESSION_FULL=1 to repeat it here.
@@ -290,9 +293,11 @@ test("8. existing policies byte-identical to the golden; the GAM is still model-
 
 test("9. sandbox drift: sandbox-reference.mjs (no model import) recomposes the CLI's session exactly", () => {
   const near = (a, b) => Math.abs(a - b) < 1e-12;
-  for (const p of PERSONAS) for (const variant of ["v1", "v3"]) {
+  for (const p of PERSONAS) for (const variant of Object.keys(SANDBOX_VARIANTS)) {
     const doc = sandboxDocument(p, variant, 1, cat);
     const r = recompose(doc);
+    assert.deepEqual(r.picks.map((x) => x.reasonCarriesMove), doc.composed.picks.map((x) => x.reasonCarriesMove), `${p.id} ${variant} reasonCarriesMove`);
+    assert.deepEqual(r.slots.map((x) => x.reasonCarriesMove), doc.composed.slots.filter((x) => x.kind === "new").map((x) => x.reasonCarriesMove));
     assert.deepEqual(r.needs, doc.needs, `${p.id} ${variant}: detect`);
     assert.deepEqual(r.picks.map((x) => [x.slug, x.moved, x.reason]), doc.composed.picks.map((x) => [x.slug, x.moved, x.reason]), `${p.id} ${variant}`);
     r.picks.forEach((x, i) => assert.ok(near(x.score, doc.composed.picks[i].score)));
@@ -322,7 +327,7 @@ test("9. sandbox drift: sandbox-reference.mjs (no model import) recomposes the C
     const cq = { ...dq.session.coefficients, attentionCost: 0.3, base: 0.05 };
     const rq = recompose(dq, { coefficients: cq });
     const realq = composeSession(qi, M.COMPOSER, M.COMPOSER_SESSION, cq, { pilotConcepts: cat.pilotConcepts });
-    assert.deepEqual(rq.picks.map((x) => [x.slug, x.moved, x.reason]), realq.picks.map((x) => [x.slug, x.moved, x.reason]), `${q.id} cost .3`);
+    assert.deepEqual(rq.picks.map((x) => [x.slug, x.moved, x.reason, x.reasonCarriesMove]), realq.picks.map((x) => [x.slug, x.moved, x.reason, x.reasonCarriesMove]), `${q.id} cost .3`);
     rq.slots.forEach((x, i) => assert.equal(x.margin, realq.slots.filter((y) => y.kind === "new")[i].margin, `${q.id} cost .3 margin ${i}`));
   }
 });
@@ -334,4 +339,153 @@ test("9b. the CLI's sandbox document is the in-process one (one spawn)", () => {
   assert.equal(doc.schema, "personalization-hq-sandbox-v0");
   const mine = JSON.parse(JSON.stringify(sandboxDocument(PERSONAS.find((x) => x.id === "wanderer"), "v3", 1, cat)));
   for (const k of Object.keys(mine)) assert.deepEqual(doc[k], mine[k], k);
+  // model-v0.4.2: --variant=edpbase reaches gam-session-v3-edpbase, and only its document carries the edpbase rows
+  const e = JSON.parse(execFileSync(process.execPath, [join(here, "hq-cli.mjs"), "sandbox", "--persona=wanderer", "--variant=edpbase"],
+    { env: { NODE_NO_WARNINGS: "1" }, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }));
+  assert.equal(e.policy, "gam-session-v3-edpbase"); assert.equal(e.variant, "edpbase");
+  assert.deepEqual(e.session.coefficients, M.sessionCoefficients("v3-edpbase"));
+  assert.deepEqual(e.session["v3-edpbase"], M.sessionCoefficients("v3-edpbase"));
+  assert.equal(e.session.edpBaseEdits.length, 1);
+  assert.ok(!("edpBaseEdits" in doc.session) && !("v3-edpbase" in doc.session), "the v3 document keeps its shape");
+});
+
+// 10. The pre-existing session policies' composed outputs are pinned at model-v0.4.1 (commit 702e4588, before W-2003).
+// Hash over: compositions of every CASE, both sandbox documents' composed sessions per persona, and whole session
+// episodes (trace steps and score, seed 1, 3 days) per persona. The hash was computed by this code on a git archive of 702e4588. `reasonCarriesMove` (added at model-v0.4.2) is dropped
+// before hashing, so the pin says the new trace field is the only change to these policies' outputs. The episode step
+// carries no modelVersion, so the version bump does not enter the hash. A deliberate change to these policies rewrites
+// PIN_V041 under the change rule, never silently.
+const PINNED_POLICIES = ["gam-session", "gam-session-v3", "gam-session-no-cov"];
+const PIN_V041 = "9399c3abf0298d0e7677ea751efbbc35d36834eac3a61313c78dfc7c63e67f6b";
+const dropNew = (_k, v) => (_k === "reasonCarriesMove" ? undefined : v);
+function sessionPin() {
+  const h = createHash("sha256");
+  for (const c of CASES) for (const pol of PINNED_POLICIES) h.update(JSON.stringify(composeSessionFor(pol, inputOf(c), cat), dropNew));
+  for (const p of PERSONAS) for (const v of ["v1", "v3"]) h.update(JSON.stringify(sandboxDocument(p, v, 1, cat).composed, dropNew));
+  for (const p of PERSONAS) for (const pol of PINNED_POLICIES) for (const seed of [1]) {
+    const e = runEpisode({ persona: p, policy: pol, seed, cat, trace: true, days: 3 });
+    h.update(JSON.stringify({ steps: e.trace.steps, score: e.score }, dropNew));
+  }
+  return h.digest("hex");
+}
+
+test("10. existing session policies (gam-session, -v3, -no-cov): composed outputs identical to model-v0.4.1", () => {
+  assert.equal(sessionPin(), PIN_V041);
+});
+
+// 11. gam-session-v3-edpbase (model-v0.4.2, W-2003; VP record company/decisions/2026-10-20-vp-personalization-session-base.md §2, §5).
+test("11. v3-edpbase: v3 plus exactly one base row kept apart from edits; beta > 0 enforced by checkModel; wired as a session policy", () => {
+  const v3 = M.sessionCoefficients("v3"), e = M.sessionCoefficients("v3-edpbase");
+  const rows = M.COMPOSER_SESSION.edpBaseEdits;
+  assert.equal(rows.length, 1);
+  const [target, path, from, beta, why] = rows[0];
+  assert.deepEqual([target, path, from], ["session", "base", 1.0]);
+  assert.equal(v3.base, 1.0, "v3 keeps base 1.0");
+  assert.ok(beta > 0 && beta < 1);
+  assert.match(why, /^placeholder pending W-2004 \(rule in the VP record §2\.3\)/, "beta is marked as a placeholder until applied-scientist-personalization sets it");
+  // equal to v3 except base, field by field
+  assert.equal(e.base, beta);
+  assert.deepEqual({ ...e, base: v3.base }, v3);
+  assert.deepEqual(e, M.applyEdits(v3, rows));
+  // apart from the v3 edit table: no base row in edits, so v3 (and gam-session-v3) cannot move with beta
+  assert.ok(!M.COMPOSER_SESSION.edits.some(([, p]) => p === "base"));
+  // checkModel requires beta > 0 and exactly one [session, base, 1.0, beta, reason] row (mutate, check, restore)
+  assert.deepEqual(M.checkModel(), []);
+  const keep = rows[0][3];
+  try {
+    for (const bad of [0, -0.01, Number.NaN]) {
+      rows[0][3] = bad;
+      assert.ok(M.checkModel().some((x) => /edpBaseEdits: beta must be > 0/.test(x)), `beta ${bad} refused`);
+    }
+  } finally { rows[0][3] = keep; }
+  rows.push(["session", "slotDecay", M.COMPOSER_SESSION.v1.slotDecay, 0.02, "a second row is refused by the VP record §2.4"]);
+  try { assert.ok(M.checkModel().some((x) => /exactly one row/.test(x))); } finally { rows.pop(); }
+  assert.deepEqual(M.checkModel(), []);
+  // wiring
+  assert.deepEqual(SESSION_VARIANTS["gam-session-v3-edpbase"], { variant: "v3-edpbase", off: [] });
+  assert.ok(ALL_POLICIES.includes("gam-session-v3-edpbase") && !M.POLICIES.includes("gam-session-v3-edpbase"));
+  assert.equal(SANDBOX_VARIANTS.edpbase, "gam-session-v3-edpbase");
+  assert.deepEqual(M.inspect().composerSession.coefficients["v3-edpbase"], e);
+  const t = runEpisode({ persona: PERSONAS[1], policy: "gam-session-v3-edpbase", seed: 2, cat, trace: true, days: 2 });
+  assert.deepEqual(t.trace.session.coefficients, e);
+  assert.equal(t.trace.session.variant, "v3-edpbase");
+  assert.equal(JSON.stringify(t), JSON.stringify(runEpisode({ persona: PERSONAS[1], policy: "gam-session-v3-edpbase", seed: 2, cat, trace: true, days: 2 })), "deterministic");
+  // the floor still holds for the flat prior (VP record §3 Drift): never three moved cards in a row
+  for (const c of CASES) { let run = 0; for (const p of composeSessionFor("gam-session-v3-edpbase", inputOf(c), cat).picks) { run = p.moved ? run + 1 : 0; assert.ok(run <= 2, c.id); } }
+});
+
+// A hand pool for reasonCarriesMove: handPool's lessons plus x1, a successor of t:a in another domain (build addr 1 and breadth addr 1).
+function twoNeedPool(order) {
+  const { input, pilot } = handPool(order.filter((s) => s !== "x1"));
+  const x1 = { slug: "x1", domain: "cs", concept: "t:x", level: "intro", prerequisites: ["t:a"], successors: [] };
+  for (const l of input.pool) if (l.concept === "t:a") l.successors = [...l.successors, "t:x"];
+  const pool = [...input.pool, x1];
+  const dims = Object.fromEntries(pool.map((l) => [l.slug, l]));
+  const fingerprint = M.fingerprintFrom(input.history, dims, NOW);
+  const needs = M.detect(fingerprint);
+  return { input: { ...input, pool, fingerprint, needs, remaining: { ...needs }, defaultOrder: [...input.history.map((h) => h.slug), ...order] },
+    pilot: new Set([...pilot, "t:x"]) };
+}
+
+test("12. reasonCarriesMove: true iff the named reason's terms exceed score(winner) − score(default); null when not moved", () => {
+  const val = (pick, name) => pick.terms.find((t) => t.name === name).value;
+  // (a) TRUE, one need: b1 moves for build alone
+  { const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
+    const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0, { base: 0.01, addrUse: 1 }), { pilotConcepts: pilot, size: 2 });
+    assert.deepEqual([r.picks[0].slug, r.picks[0].moved, r.picks[0].reason], ["b1", true, "build"]);
+    assert.ok(val(r.picks[0], "need:build") > r.slots[0].margin);
+    assert.equal(r.picks[0].reasonCarriesMove, true); assert.equal(r.slots[0].reasonCarriesMove, true);
+    assert.equal(r.picks[1].moved, false); assert.equal(r.picks[1].reasonCarriesMove, null, "a default pick is null, not false"); }
+  // (b) TRUE only through the sum need:build + cov:build: the larger single term alone is below the margin
+  { const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
+    const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0.5, { base: 0.01, addrUse: 0.3 }), { pilotConcepts: pilot, size: 3 });
+    const p = r.picks[1], m = r.slots[1].margin;
+    assert.deepEqual([p.slug, p.moved, p.reason], ["c1", true, "build"]);
+    assert.ok(Math.max(val(p, "need:build"), val(p, "cov:build")) < m, "no single term carries it");
+    assert.ok(val(p, "need:build") + val(p, "cov:build") > m);
+    assert.equal(reasonTermValue("build", p.terms), val(p, "need:build") + val(p, "cov:build"));
+    assert.equal(p.reasonCarriesMove, true); }
+  // (c) FALSE: x1 wins on build + breadth; it is named for breadth (the larger term), and breadth alone is below the margin
+  { const { input, pilot } = twoNeedPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1", "x1"]);
+    const co = handCoeffs(0, { base: 0.01, addrUse: 1, onRem: { repair: 0.5, build: 1.0, breadth: 1.0, stretch: 0 } });
+    const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, co, { pilotConcepts: pilot, size: 2 });
+    const p = r.picks[0], m = r.slots[0].margin;
+    assert.deepEqual([p.slug, p.moved, p.reason], ["x1", true, "breadth"]);
+    assert.ok(val(p, "need:build") > 0 && val(p, "need:breadth") >= val(p, "need:build"));
+    assert.ok(reasonTermValue("breadth", p.terms) < m);
+    assert.equal(p.reasonCarriesMove, false); assert.equal(r.slots[0].reasonCarriesMove, false);
+    // control: switch build off and the same move is carried by breadth alone
+    const r2 = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, co, { pilotConcepts: pilot, size: 2, off: ["need:build"] });
+    assert.deepEqual([r2.picks[0].slug, r2.picks[0].reason, r2.picks[0].reasonCarriesMove], ["x1", "breadth", true]); }
+  // (f) the equality edge, exact in floats (base 0, no cost, no decay: the margin IS the reason's value). The VP record §5
+  // says "greater than", so equality is FALSE here, although without the reason the winner would only tie the default card,
+  // and a tie keeps the default. Built to the text; the edge is routed to vp-personalization (build note §9.4).
+  { const { input, pilot } = handPool(["f1", "f2", "f3", "f4", "f5", "f6", "b1", "c1"]);
+    const r = composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0, { base: 0, attentionCost: 0, slotDecay: 0, addrUse: 1 }), { pilotConcepts: pilot, size: 1 });
+    assert.deepEqual([r.picks[0].slug, r.picks[0].moved, r.picks[0].reason], ["b1", true, "build"]);
+    assert.equal(reasonTermValue("build", r.picks[0].terms), r.slots[0].margin);
+    assert.equal(r.picks[0].reasonCarriesMove, false, "strictly greater, as specified"); }
+  // (d) due revisits are null (breadth-floor picks, a move the floor refused, are counted null in (e))
+  { const { input, pilot } = handPool(["b1", "c1", "f1", "f2", "f3", "f4", "f5", "f6"]);
+    const r = composeSession({ ...input, dueRevisits: [input.history[0].slug] }, M.COMPOSER, M.COMPOSER_SESSION, handCoeffs(0.5, { base: 0.01, addrUse: 0.2 }), { pilotConcepts: pilot });
+    assert.equal(r.picks[0].reason, "due-revisit"); assert.equal(r.picks[0].reasonCarriesMove, null); assert.equal(r.slots[0].reasonCarriesMove, null); }
+  // (e) every real composition of every session policy: the field is the spec's formula, recomputed here from the trace
+  let moved = 0, nulls = 0, floors = 0;
+  for (const c of CASES) for (const pol of Object.keys(SESSION_VARIANTS)) {
+    const r = composeSessionFor(pol, inputOf(c), cat);
+    r.picks.forEach((p, i) => {
+      const s = r.slots[i];
+      assert.equal(s.reasonCarriesMove, p.reasonCarriesMove, `${c.id} ${pol} slot ${i}: slot and pick agree`);
+      if (!p.moved) { assert.equal(p.reasonCarriesMove, null, `${c.id} ${pol} slot ${i} (${p.reason})`); nulls++; if (p.reason === "breadth-floor") floors++; return; }
+      const names = /^(repair|build|breadth|stretch)$/.test(p.reason) ? [`need:${p.reason}`, `cov:${p.reason}`] : [p.reason];
+      const rv = p.terms.filter((t) => names.includes(t.name)).reduce((q, t) => q + t.value, 0);
+      assert.equal(p.reasonCarriesMove, rv > p.score - s.defaultScore, `${c.id} ${pol} slot ${i}`);
+      assert.equal(p.score - s.defaultScore, s.margin);
+      moved++;
+    });
+  }
+  assert.ok(moved > 5 && nulls > 5 && floors > 0, `moved ${moved}, null ${nulls}, breadth-floor ${floors}`);
+  // and in an episode trace (every served step's slot carries the field)
+  const ep = runEpisode({ persona: PERSONAS[0], policy: "gam-session-v3-edpbase", seed: 1, cat, trace: true, days: 1 });
+  for (const st of ep.trace.steps.filter((x) => x.kind === "new")) assert.ok("reasonCarriesMove" in st.slots[0] && (st.moved ? typeof st.slots[0].reasonCarriesMove === "boolean" : st.slots[0].reasonCarriesMove === null));
 });

@@ -31,8 +31,15 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.4.1" as const;
+export const MODEL_VERSION = "model-v0.4.2" as const;
 /**
+ * model-v0.4.2 is additive (W-2003, learner-model-engineer; decision company/decisions/2026-10-20-vp-personalization-session-base.md):
+ * a separate edit list COMPOSER_SESSION.edpBaseEdits (one row, session base 1.0 -> beta) and the coefficient variant
+ * "v3-edpbase" = applyEdits(v3, edpBaseEdits), for the one new session policy gam-session-v3-edpbase. beta is a PLACEHOLDER
+ * pending W-2004 (applied-scientist-personalization sets it by the rule in the VP record section 2.3). v1, v3 and the edit
+ * table COMPOSER_SESSION.edits are unchanged, so gam-session, gam-session-v3 and gam-session-no-cov compose exactly as at
+ * model-v0.4.1 (composer-session.test.mjs test 10); their traces gain only the field reasonCarriesMove. Nothing a phase A
+ * policy reads moved.
  * model-v0.4.1 changes four session numbers only (W-2000, applied-scientist-personalization; reasons in COMPOSER_SESSION.why,
  * the edit rows and company/personalization/policies/gam-session-params.md): addrUse .35 -> .45, attentionCost .1 -> .06,
  * slotDecay .02 -> .01, and the v3 synergies build.onCov +.15 -> +.28, repair.onCov +.15 -> +.35. Each is scaled from
@@ -631,6 +638,19 @@ export const COMPOSER_SESSION = {
     ["build", "onCov", -0.1, 0.28, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .28 (model-v0.4.1; was .15) = .71 x onRem.build .4: EDP's v3 synergy widgets carry on_cov at .50 to 1.43 of their own on_rem, median .71 (EDITS_V3: easy_returns_promise, style_bridge, occasion_lookbook, material_deep_dive, price_history, wishlist_save, size_guide, recently_viewed). After one addr-1 build pick (coverage .45) the term is .28 x .45 = .13: below a typical unaddressed need's primary pull (build .4 x .46 = .18, repair .5 x .41 = .21), so other needs still come first as in EDP, and above the slot-4 move bar (.06 + .01 x 4 = .10). The chain then ends where EDP's does, at the attention budget: the follow-on must still resolve more than .06 of need mass"],
     ["repair", "onCov", -0.2, 0.35, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card). .35 (model-v0.4.1; was .15) = .71 x onRem.repair .5, the same EDP scale rule as build: .35 x .45 = .16 after one addr-1 repair pick, below a typical unaddressed primary pull and above the move bar to slot 4; the budget ends the chain"],
   ] as SessionEdit[],
+  /**
+   * model-v0.4.2 (W-2003): the EDP-base variant's edit list, kept APART from `edits` so v3 stays byte-identical.
+   * v3-edpbase = applyEdits(v3, edpBaseEdits): v3 with the default-order base lowered from 1.0 to beta, so need terms decide
+   * the order and the default order mostly breaks ties ("an EDP-shaped flat prior with the default order as tie-break",
+   * VP record company/decisions/2026-10-20-vp-personalization-session-base.md section 2). Exactly one row; checkModel()
+   * requires beta > 0, so the default order stays the tie-break among cards with equal need terms.
+   * beta is applied-scientist-personalization's number (W-2004), by the rule in the VP record section 2.3, read off EDP's
+   * need-widget base spread and our need medians, never off a layout probe or a recall field. The value below is NOT
+   * that number: it is the VP's stated, non-binding expectation (section 2.3, "near .02"), used only so the variant runs.
+   */
+  edpBaseEdits: [
+    ["session", "base", 1.0, 0.02, "placeholder pending W-2004 (rule in the VP record §2.3): not a derived value; .02 is the VP's non-binding expectation in company/decisions/2026-10-20-vp-personalization-session-base.md §2.3, entered only so the variant runs. applied-scientist-personalization replaces this row's value and reason with beta = (EDP need-widget base spread / typical primary pull, about .1, orchestrator-inline.js makeModulesV1) x our typical primary pull (onRem x median need, about .18 to .21), and adds a model-version row"],
+  ] as SessionEdit[],
   /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
   ablations: { "no-cov": ["cov:repair", "cov:build", "cov:breadth", "cov:stretch"] as SessionTermName[] },
   /**
@@ -662,11 +682,14 @@ export function applyEdits(base: SessionCoefficients, edits: SessionEdit[]): Ses
   return m;
 }
 
-export type SessionVariant = "v1" | "v3";
-/** The session coefficients by variant. v3 is computed, never hand-copied, so the edit table is the only diff. */
+export type SessionVariant = "v1" | "v3" | "v3-edpbase";
+export const SESSION_COEFFICIENT_VARIANTS: SessionVariant[] = ["v1", "v3", "v3-edpbase"];
+/** The session coefficients by variant. v3 is computed, never hand-copied, so the edit table is the only diff.
+ *  model-v0.4.2: v3-edpbase = applyEdits(v3, edpBaseEdits), so its only diff from v3 is the edpBaseEdits row. */
 export function sessionCoefficients(variant: SessionVariant): SessionCoefficients {
   if (variant === "v1") return JSON.parse(JSON.stringify(COMPOSER_SESSION.v1));
   if (variant === "v3") return applyEdits(COMPOSER_SESSION.v1, COMPOSER_SESSION.edits);
+  if (variant === "v3-edpbase") return applyEdits(applyEdits(COMPOSER_SESSION.v1, COMPOSER_SESSION.edits), COMPOSER_SESSION.edpBaseEdits);
   throw new Error(`unknown session variant ${variant}`);
 }
 
@@ -743,7 +766,14 @@ export function checkModel(): string[] {
   }
   let v3: SessionCoefficients | null = null;
   try { v3 = sessionCoefficients("v3"); } catch (e) { errs.push(`session edits: ${(e as Error).message}`); }
-  for (const c of [S.v1, ...(v3 ? [v3] : [])]) {
+  // model-v0.4.2 (W-2003): v3-edpbase = v3 + exactly one row, session base 1.0 -> beta, with beta > 0 (VP record §2.3).
+  let edp: SessionCoefficients | null = null;
+  try { edp = sessionCoefficients("v3-edpbase"); } catch (e) { errs.push(`session edpBaseEdits: ${(e as Error).message}`); }
+  const eb = S.edpBaseEdits;
+  if (eb.length !== 1 || eb[0][0] !== "session" || eb[0][1] !== "base" || eb[0][2] !== 1.0) errs.push("session edpBaseEdits: exactly one row [\"session\", \"base\", 1.0, beta, reason] (VP record §2.2)");
+  else if (!(Number.isFinite(eb[0][3]) && eb[0][3] > 0)) errs.push("session edpBaseEdits: beta must be > 0, so the default order stays the tie-break (VP record §2.3)");
+  for (const e of eb) if (e.length !== 5 || e[4].length < 20) errs.push(`session edpBaseEdits ${e[0]}.${e[1]}: needs [target, path, from, to, reason]`);
+  for (const c of [S.v1, ...(v3 ? [v3] : []), ...(edp ? [edp] : [])]) {
     if (!(c.base > 0)) errs.push("session: base must be > 0 (the default order is the base)");
     if (c.slotDecay < 0 || c.attentionCost < 0) errs.push("session: slotDecay and attentionCost are costs (>= 0)");
     if (!(c.addrUse > 0 && c.addrUse <= 1)) errs.push("session: addrUse must be in (0, 1] (a share of the relational addr a pick consumes)");
@@ -779,7 +809,7 @@ export function inspect() {
     signals: (Object.keys(SIGNAL_INPUTS) as (keyof typeof SIGNAL_INPUTS)[]).map((s) => ({ signal: s, inputs: SIGNAL_INPUTS[s], privacy: signalPrivacy(s) })),
     curves: curveViews(), composer: COMPOSER, objective: OBJECTIVE, policies: POLICIES,
     // model-v0.3.0: the session composer beside composer-v0.2 (v1, v3 = applyEdits(v1, edits), the edit table).
-    composerSession: { ...COMPOSER_SESSION, coefficients: { v1: sessionCoefficients("v1"), v3: sessionCoefficients("v3") } },
+    composerSession: { ...COMPOSER_SESSION, coefficients: { v1: sessionCoefficients("v1"), v3: sessionCoefficients("v3"), "v3-edpbase": sessionCoefficients("v3-edpbase") } },
     forbiddenInputs: FORBIDDEN_INPUTS,
     privacyRuling: PRIVACY_RULING,
     inputPrivacy: (Object.keys(INPUT_PRIVACY) as RawInput[]).map((i) => ({ input: i, status: INPUT_PRIVACY[i], conditions: INPUT_PRIVACY_CONDITIONS[i] })),
