@@ -1,3 +1,7 @@
+## 2026-10-20 · chief-of-staff · Copy-release snapshot readmitted
+
+Preserved concurrent default be3a6d58b; exact snapshot fc663bbcab56c209 independently readmitted under AMD-016. 146 stale observations stay fixed; all33 underlying disputes remain unresolved. No new ratings or app changes. Focused57/57, HQprivacy2/2 and independent actual-manifest2/2 passed. Company check remains117errors/5warnings, identical to be3 baseline; earlier smaller counts are historical. No deployment, environment mutation or real database writes. Source receipt: company/ops/delivery/2026-10-20-account-preference-readmission.json. RolloutW-1982 and baseline triageW-1983 remain backlog.
+
 ## 2026-10-20 · chief-of-staff · Account preferences merged into actual default
 
 PR13 merged at14ec87ad5ce181bd32cc90209ffa48d156cedfa7 into remote default ccr-4c6c7654-ew9ko1. Optional subject/experience/challenge choices persist to signed-in accounts and drive the ordinary All feed; explicit Save/Edit/Off/Reset, export/delete, canonical fallback, private paging, account isolation and synthetic HQ inspection included. Founder Confirm AMD-016 plus required Board/owner dispositions recorded; exact protected patch3be5a518e and approved source admission885cdf385. No real-data learning; future evaluation remains append-only with exact readmission. Dataset0e5513073d5b6eca:1621total/954observed/921current/33disputed/667unknown.
