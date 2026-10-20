@@ -995,6 +995,37 @@
           "Claim-quoted text in ai, history, lifehacks and algorithms unchanged (W-1992)."
         ]
       }
+    },
+    {
+      "version": "r18",
+      "date": "2026-10-20T21:30:00.000Z",
+      "commit": "21e70ac7",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-20-founder-r18-deploy.md"
+      },
+      "summary": "Calmer lesson card: no scrollbars inside cards, smaller type, the stage sits on the card without a frame, and shared lesson links use the feed's dark look.",
+      "added": {
+        "features": [],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Long reveals in the feed can be scrolled by hand (the card body was overflow: hidden).",
+          "No scrollbars drawn inside lesson cards; type one step smaller; locked-stage pictures shorter so controls stay on screen."
+        ],
+        "known_issues": [
+          "Design checked on 8 lessons only; tall custom stages (books, algorithms) unchecked."
+        ]
+      }
     }
   ],
   "historical_deployments": [
