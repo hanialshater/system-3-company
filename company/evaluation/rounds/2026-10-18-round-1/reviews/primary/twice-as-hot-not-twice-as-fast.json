@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "twice-as-hot-not-twice-as-fast",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twice-as-hot-not-twice-as-fast",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "twice-as-hot-not-twice-as-fast",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/twice-as-hot-not-twice-as-fast/meta.json",
+    "metaSha256": "7c6da60ad724638ff84ed2495212c948b665d2375fb92b83f2a965cb639e15dd",
+    "demoSha256": "86da6b2fb013cc1255557a603187ad287bef01e2347e94708078927eb67d0132",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/twice-as-hot-not-twice-as-fast",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/twice-as-hot-not-twice-as-fast.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 2 times as fast and locked it in.",
+    "exploration": "Baseline 300 K typical speed 508 m/s in text, rounded 510 on visual bar. At 600 K text 719 and visual 720 with 1.41 times. At 1200 K text 1016. Home reached 150 K and 359; restored 600 K before reveal.",
+    "reveal": "Corrected to 1.4 times, used visited 600 and 1200 K cases, and explained energy grows with speed squared, giving square root of two for doubled kelvins.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Pink moving particles above speed bar with 300 K baseline and dashed two-times marker. Rounded numbers agreed with precise text to displayed precision. Reveal text fit below controls.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Defines kelvin before asking a clear ratio prediction.",
+      "evidence": "300 to 600 K and 2 versus 1.4 versus unchanged.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two heat presets and lower slider limit reveal nonlinear scaling.",
+      "evidence": "600 K 719; 1200 K 1016; 150 K 359.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects observed ratios with squared-speed energy.",
+      "evidence": "Fourfold temperature doubles speed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Reference marks make the speed ratio explicit.",
+      "evidence": "Bar labels 1.41 times and two-times target.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General scaling principle is explained with same-system contrasts only.",
+      "evidence": "No fresh gas or new application attempted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard boundary and text values observed; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Doubling absolute temperature produces a smaller speed ratio.",
+      "evidence": "1.41 instead of 2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Particles give motion context while bar supplies reliable comparison.",
+      "evidence": "Baseline and dashed two-times marker.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Temperature control changes molecular animation.",
+      "evidence": "Heat presets and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies meaning of temperature and molecular motion.",
+      "evidence": "Kelvin linked to energy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects temperature, kinetic energy and square roots.",
+      "evidence": "Energy proportional to squared speed.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls support a square-root scaling explanation.",
+    "conceptualDemand": "Distinguish motion energy from speed and reverse a squared relation.",
+    "interfaceBurden": "One temperature slider and two heat buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Kelvin introduced before prediction; molecular energy introduced at reveal.",
+    "notationRepresentationBurden": "Kelvin, Celsius, m/s, multipliers and square-root notation."
+  },
+  "whyCool": "Four times the kelvins is needed to reach twice the typical speed.",
+  "caveat": "Animation alone cannot quantify the speed ratio; bar and numbers carry the comparison. No fresh application was attempted.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:19:28.584386+00:00"
+}

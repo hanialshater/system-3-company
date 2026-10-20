@@ -1,0 +1,103 @@
+{
+  "slug": "show-the-file-extension",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/show-the-file-extension",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook says extensions distinguish names; chose extension.",
+    "Hide extensions made all report,unique1,but right column still visibly pdf/docx/txt. Show extensions made report.pdf/docx/txt,unique3.",
+    "Reveal correctly cautions extension doesn't verify contents. Both screenshots readable; hook says two names but there are three."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three filenames.",
+    "conceptualDemand": "Base name versus extension.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A small suffix can distinguish otherwise identical names,while still being only a claim about file contents.",
+  "caveat": "Remove persistent format column for a real identification challenge;fix two-versus-three hook.",
+  "effort": "Prediction,hide/show,reveal,both screenshots.",
+  "provisionalBucket": "revise-context-hook",
+  "bucketReason": "Useful caveat but comparison leaks distinction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook supplies answer.",
+      "evidence": "Extensions appear to distinguish.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Name contrast observable but formats visible in both modes.",
+      "evidence": "Right-column pdf/docx/txt retained.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains base/extension and content-verification limit.",
+      "evidence": "Extension not contents proof.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Two versus three mismatch; hidden condition still reveals format.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete naming-field inspection with verification limit.",
+      "evidence": "Show suffix,don't infer contents conclusively.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Same basename different formats.",
+      "evidence": "Three report variants.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Filename field changes visibly.",
+      "evidence": "Unique1\u21923.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed toggles.",
+      "evidence": "No file identification task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "File format visibility central.",
+      "evidence": "Full filename.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Naming versus content truth.",
+      "evidence": "Explicit caveat.",
+      "confidence": "medium"
+    }
+  }
+}

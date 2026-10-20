@@ -1,0 +1,104 @@
+{
+  "slug": "rate-up-one-point",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rate-up-one-point",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted1%relativeincrease forloanrate4to5%;alternatives25/5.",
+    "Slider4.5from4:+0.5points/+12.5%;5from4:+1/+25%. Start8auto9:+1/+12.5%;Start1auto2:+1/+100%. Barsmarkabsoluteadditionagainstbaseline.",
+    "Revealrecallsoriginalandbothnewbaselines,explainsdifference dividedbystart,percentagepointsversusrelativepercent andcarefulwording.",
+    "1280x720light bars/readouts andfullreveal readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simplefractions andbarcomparison.",
+    "conceptualDemand": "Relativeversusabsolutechange.",
+    "interfaceBurden": "One slider,fourbaselinepresets."
+  },
+  "whyCool": "The added slice stays one point tall while its size relative to the starting bar changes dramatically.",
+  "caveat": "Rateitselfchange,notloanpaymentorinterestcostchange. Noexternalapplicationexercise;positivebaselinesonly.",
+  "effort": "Prediction,fractionalchange,originalcase,twootherbaselines,reveal,two screenshots.",
+  "provisionalBucket": "launch-candidate",
+  "bucketReason": "Readableconcretedenominatorcontrastwithpracticalwording.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Directterminology/denominatorconfusion withspecifiednumbers.",
+      "evidence": "4to5rateitselfincrease.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiplebaselinecontrasts holdpointincreasefixed while relativechangevaries.",
+      "evidence": "4to5,8to9,1to2;fractional4to4.5.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconcilesactualcaseswithsimpledenominatorrule.",
+      "evidence": "1of4quarter;1of8eighth;1of1whole.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Barsandtwounitreadouts clearacrosschangedstates,prosefullyreadable.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalreportingrulewithinrateexamples,noindependentapplicationtask.",
+      "evidence": "Carefulwriterssaypercentagepoint.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same1pointcanmean12.5,25or100%.",
+      "evidence": "Threebaselinecontrasts.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Sameaddedbarheight comparedwithdifferentbaselinebars.",
+      "evidence": "8,4,1startingrates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetbaselinesandslider supportquickcomparisons.",
+      "evidence": "Fourchangedstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralreading/writingratechangeaccuracy.",
+      "evidence": "Pointsversuspercentchange.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Onefoundationaldenominator distinction.",
+      "evidence": "Difference/startformula.",
+      "confidence": "medium"
+    }
+  }
+}

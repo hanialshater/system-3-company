@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "same-push-twice-the-mass",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-push-twice-the-mass",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-push-twice-the-mass",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/same-push-twice-the-mass/meta.json",
+    "metaSha256": "69d4c6f1f40a5bbe605fc5e4fde0634e2931fa400bb287bf6097f3f90e7d5eca",
+    "demoSha256": "0e14ad9c663a4ade85782c4663e123dd03bb74db2f3e8336e131d365c265ce70",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-push-twice-the-mass",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-push-twice-the-mass.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected10m/s against5 and2.5 for4kg atsame10N and2s;locked it in.",
+    "exploration": "Baseline2kg10N:10m/s,acceleration5. MassEnd8kg:2.5m/s,1.25 acceleration. Home1kg:20m/s,10 acceleration. ThreeRights4kg:5m/s,2.5 acceleration. ForceEnd20N at4kg:10m/s,5 acceleration.",
+    "reveal": "Corrected5m/s for10N/4kg. Explainedsteadypush givesspeedgain notsteadyspeed;doublemass halvesacceleration;force/mass formula andlargerpush steepensline.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Speed-time graphshowscurrent4kg20N lineoverlappingbaseline2kg10N,endpoint10m/s. Sliders,counters andfullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives distinguishsameforce fromsamemotion.",
+      "evidence": "10 prediction versus5 atdoublemass.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Massrange andforcecontrast exposeinverse/direct accelerationdependencies.",
+      "evidence": "Mass1/2/4/8 at10N;4kg20N restoresbaseline.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualmasscontrast andforcechange tospeed-time slope andF/m.",
+      "evidence": "10/4=2.5 eachsecond;largerforce steepens.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units,slopegraph andlivefigures clearlycommunicate testeddesktop path.",
+      "evidence": "Actual4kg20N endpoint10 andacceleration5.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "ReusableNewtonlaw withfrictionless/fromrestcondition,butno concrete newapplication.",
+      "evidence": "a=F/m definition andinitialtrackassumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sliderkeys alone insufficient audit.",
+      "evidence": "Home,End,arrows worked;otheraccessmodes unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedsame-speedprediction contradicted byhalf-speed atdoublemass.",
+      "evidence": "4kg10N5m/s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Speed-time slopes showacceleration andratio compensation.",
+      "evidence": "Current4kg20N overlapsbaseline2kg10N.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Twosliders permit independentmass andforce contrasts.",
+      "evidence": "Fourmasses anddoubledforce.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteunderstanding ofpush,mass andspeedgain.",
+      "evidence": "Needdoubleforce fordoublemass sameacceleration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Inverse mass,directforce andspeed/acceleration distinction linked.",
+      "evidence": "Boundarymasses andrestoredslope.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links force/mass ratio tospeed-time slope andfixedtime speed.",
+    "conceptualDemand": "Distinguish speedfromspeedgain andholdforce/time whilechangingmass.",
+    "interfaceBurden": "Low:twolabeledsliders andcomparisonline.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:acceleration andNewtonlaw.",
+    "notationRepresentationBurden": "moderate:N,kg,m/s andratioformula."
+  },
+  "whyCool": "Doublingbothmass andpush makes thelargercart line landexactlyontheoriginalspeedtrace.",
+  "caveat": "Frictionlessconstantforcefromrest only;nofriction orvariablepush boundary tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Zero/minimumforce nottested.",
+    "Focusorder,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:00:47.369324+00:00"
+}

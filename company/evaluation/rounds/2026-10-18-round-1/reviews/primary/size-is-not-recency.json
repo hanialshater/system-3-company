@@ -1,0 +1,103 @@
+{
+  "slug": "size-is-not-recency",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/size-is-not-recency",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title large not recent and day legend precede choice modified day versus size.",
+    "Size sort movie90MB d1,slides8MB d5,notes2MB d9; day sort reverses movie/notes.",
+    "Reveal explains selecting relevant field but reports3 order,an uninformative count. Screenshot readable; fixed data,no custom sorting choice."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three sizes and dates.",
+    "conceptualDemand": "Different attributes answer different questions.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A file can be the most visually prominent by size and still be the oldest.",
+  "caveat": "Replace generic order count with actual latest-file task; unspoil hook.",
+  "effort": "Prediction,both sorts,reveal,inline screenshot.",
+  "provisionalBucket": "revise-hook-metric",
+  "bucketReason": "Useful simple contrast,weak challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title rejects distractor and definition gives answer.",
+      "evidence": "Latest means modified day.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Concrete distinct orders but mandatory preset sequence.",
+      "evidence": "Movie-first versus notes-first.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct attribute-to-question explanation.",
+      "evidence": "Size and day disagree.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable legend but order3 metric awkward and fixture jargon.",
+      "evidence": "Reports3 order.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit choose sort field matching question.",
+      "evidence": "Recency uses modification day.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Largest can be oldest.",
+      "evidence": "90MB d1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Ordered rows expose attribute contrast.",
+      "evidence": "Three files.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two preset sorts.",
+      "evidence": "No learner data.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "File finding strategy central.",
+      "evidence": "Sort relevant field.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single attribute distinction.",
+      "evidence": "No ties or timestamp caveat.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "rising-price-stops-at-second",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rising-price-stops-at-second",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "rising-price-stops-at-second",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/rising-price-stops-at-second/meta.json",
+    "metaSha256": "aed41166f3bdad3dd0602072c128a67bccc411b3e13538ff0ae7a3ab0f3ce328",
+    "demoSha256": "8bcc2b38ed6cf7706f0dcda2db5731e61331d7cdb82ff3ca630af646fb6613d5",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/rising-price-stops-at-second",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/rising-price-stops-at-second.json"
+  },
+  "date": "2026-10-18T20:46:51.898480+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose70andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Raised30to40withtwo5increments,all3in;41with1incrementCal40quits,2in;runend56Ben55quits,Ana70wins. Inspectedprice line/valuationbars andquitlabels."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read56correction,runnerupsetsprice,winnerretains14;any55to70exclusive-lowpriceclears,rising1stops56;sealedsecondpricewould55;knownprivatevaluations/dropoutmodelboundary."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,41quit,56endpointandscrolledreveal inspected. Bars,price,quitlabels,countersandtext legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specifiedbiddingruleenablespriceforecast.",
+      "evidence": "70/55/40values,quitabovevalue,1dollarincrements.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Thresholdstepsandterminalpriceexposecompetition.",
+      "evidence": "40allin,41Calout,56Benoutoneleft.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainswinneridentityversuspricesetteranddiscreteincrement.",
+      "evidence": "Anaown70wins,Ben55determines56;sealed55comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Horizontalpricecrossingvaluationbarsmakesdropoutsobvious.",
+      "evidence": "Visiblequitat41/56andstillbiddingcounts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Distinctsealedsecond-priceapplicationwithassumptionsandcontrast.",
+      "evidence": "Sameprivatevaluesbutsealedformatwouldcharge55ratherthan56;no newtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Winnerpaysnearcompetitorvalue,notownmaximum.",
+      "evidence": "56versus70guess.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pricecrossingsshowwhyothersquit.",
+      "evidence": "Two valuationthresholdsobserved.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Incrementandruncontrols.",
+      "evidence": "Manual40/41andterminalrun.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulauctionpriceintuition.",
+      "evidence": "Runnerupdetermineswinningpaymentinmodel.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Allocation,price,surplusandformatlinked.",
+      "evidence": "14surplus,clearingrangeandsealedcomparison.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Trackwillingbuyersacrosspriceanddistinguishwinnerfrompricesetter.",
+    "interfaceBurden": "Twoincrementbuttonsandrun;terminalresetdisabled.",
+    "prerequisiteNovelty": "Privatevalueauctionmodelbrieflydefined.",
+    "notationRepresentationBurden": "Dollarvaluesandbarthresholds;simple subtraction."
+  }
+}

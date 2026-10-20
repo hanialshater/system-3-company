@@ -1,0 +1,104 @@
+{
+  "slug": "worth-something-alone",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/worth-something-alone",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction gives price sixteen cents and keenest user's standalone value ten cents; launch from zero stayed at zero.",
+    "Twenty-cent standalone preset auto-launched and reached eighty-five percent with no tipping threshold.",
+    "Zero standalone value also stayed at zero, with tipping threshold twenty percent versus 7.3 percent at ten cents.",
+    "Screenshot overlays value curves and price line. Reveal explains positive standalone value can lower critical mass without eliminating the zero-start trap."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Value depends on adoption share and marginal-user type.",
+    "conceptualDemand": "Separate easier growth from spontaneous launch.",
+    "interfaceBurden": "Launch and three value presets."
+  },
+  "whyCool": "Adding solo value can make a network easier to grow without giving its first user a reason to join.",
+  "caveat": "Exact thresholds and uptake depend on an unspecified toy value curve; not an empirical launch forecast.",
+  "effort": "Prediction, zero-start launch, all three standalone presets, overlay screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear nontrivial threshold counterexample with practical conditional insight.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise threshold question with plausible positive-value and high-adoption alternatives.",
+      "evidence": "Keenest initial value ten below price sixteen.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three standalone values separate lower threshold from actual bootstrapping.",
+      "evidence": "Zero, ten and twenty cents; zero versus eighty-five percent adoption.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains both failed positive-value launch and successful above-price case.",
+      "evidence": "Critical mass twenty to 7.3 percent; trap removed only when standalone value exceeds price.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Price intersection is legible, but exact adoption dynamics and curve assumptions are not exposed.",
+      "evidence": "Eighty-five-percent outcome and value-curve shape supplied without model equation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete product-launch condition and counterexample.",
+      "evidence": "Some solo value is insufficient; first buyers need value above price.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "An improvement can reduce critical mass yet leave launch stuck.",
+      "evidence": "Ten cents lowers threshold but adoption remains zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Overlaid curves and fixed price show why initial buyers appear or not.",
+      "evidence": "Ten-cent intercept below price; twenty above.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three fixed value presets.",
+      "evidence": "No starting-share or price control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete network-product bootstrapping distinction.",
+      "evidence": "Solo usefulness versus initial willingness to pay.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Critical mass, initial incentives and stable uptake differ.",
+      "evidence": "Threshold reduction does not ensure self-start.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -37,6 +37,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import zlib from "node:zlib";
+import { createHash } from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -101,6 +102,15 @@ const IMPORT_ALLOW = new Set([
 ]);
 /** Ruling L1: the module list. Update when the accounts module lands (ruling line 39). */
 const FORBIDDEN_MODULE = /account|auth|session|events-intake|progress/i;
+// Independent privacy review: one synthetic fixture page, with its entire reviewed graph pinned.
+const FIXTURE_CLOSURE = JSON.parse(fs.readFileSync(path.join(REPO,
+  "company/reviews/_privacy/2026-10-20-account-preferences-hq-closure.json"), "utf8"));
+const FIXTURE_IMPORTS = new Set([
+  "@/lib/catalog", "@/lib/server/personalization/catalog-prerequisites", "@/lib/feed-index",
+  "@/lib/server/personalization/account-feed", "@/lib/preference-match",
+  "@/data/editorial-profiles.account.json", "@/lib/editorial-display",
+]);
+
 
 const ROUTE = "/api/hq/personalization";
 // fetch( <literal route, optionally "?" + query> ) — a quote of any kind, nothing interpolated before the "?".
@@ -148,6 +158,11 @@ const lineOf = (text, i) => text.slice(0, i).split("\n").length;
 export function scanLab(root = REPO) {
   const findings = [];
   let allowedFetches = 0;
+  for (const [file, expected] of Object.entries(FIXTURE_CLOSURE.sha256)) {
+    const abs = path.join(root, file);
+    if (!fs.existsSync(abs) || createHash("sha256").update(fs.readFileSync(abs)).digest("hex") !== expected)
+      findings.push({ file, line: 0, rule: "reviewed fixture closure changed", text: "Independent privacy rereview required" });
+  }
   for (const rel of REQUIRED) if (!fs.existsSync(path.join(root, rel))) findings.push({ file: rel, line: 0, rule: "missing scoped file", text: "" });
   const files = listFiles(root);
   for (const file of files) {
@@ -170,6 +185,7 @@ export function scanLab(root = REPO) {
     // in stored JSON a key such as "from":"phase-B" is data, not an import (data files get every other rule).
     if (!/\.(?:[cm]?[jt]sx?|css)$/.test(file)) continue;
     const checkSpec = (i, spec) => {
+      if (file === FIXTURE_CLOSURE.pageOnly && FIXTURE_IMPORTS.has(spec)) return;
       if (FORBIDDEN_MODULE.test(spec)) hit(i, "forbidden module import");
       else if (!IMPORT_ALLOW.has(spec)) hit(i, "import not on the allowlist");
     };
@@ -257,11 +273,19 @@ export const BREAKS = [
 ];
 
 function copyLab(dest) {
-  for (const rel of listFiles(REPO)) {
+  for (const rel of new Set([...listFiles(REPO), ...Object.keys(FIXTURE_CLOSURE.sha256)])) {
     fs.mkdirSync(path.dirname(path.join(dest, rel)), { recursive: true });
     fs.copyFileSync(path.join(REPO, rel), path.join(dest, rel));
   }
 }
+
+BREAKS.push(
+  ["fixture cannot import account client", FIXTURE_CLOSURE.pageOnly, 'import x from "@/lib/account-client";', "forbidden module import"],
+  ["fixture cannot import settings store", FIXTURE_CLOSURE.pageOnly, 'import x from "@/lib/server/personalization/settings-store";', "import not on the allowlist"],
+  ["pure fixture helper exception is page only", "src/app/hq/personalization/Personalization.tsx", 'import x from "@/lib/server/personalization/account-feed";', "forbidden module import"],
+  ["reviewed pure helper cannot add fetch", "src/lib/server/personalization/account-feed.ts", 'fetch("/api/account/settings");', "reviewed fixture closure changed"],
+  ["reviewed pure helper cannot add storage", "src/lib/server/personalization/account-feed.ts", 'localStorage.getItem("x");', "reviewed fixture closure changed"],
+);
 
 test("break check: every forbidden pattern planted in a temp copy fails the scan", () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "hq-lab-privacy-"));

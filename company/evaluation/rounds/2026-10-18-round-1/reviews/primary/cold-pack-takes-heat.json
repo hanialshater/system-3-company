@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "cold-pack-takes-heat",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cold-pack-takes-heat",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose11\u00b0Cwarmer;prompt1molammoniumnitrateabsorbs25.7kJin500gwaterat20\u00b0C.",
+    "E:scoops0.25mol17.0\u00b0C,0.5mol14.3\u00b0C;Addall1mol9.4\u00b0C;EmptythenAddallreturns9.4\u00b0C. Screenshot arrowheatoutofwater, thermometerdrops.",
+    "R:Notquite11\u00b0Ccolder;dissolvingtakesheatfromsurroundingwater;25,700J/(580g\u00d74.18J/g/\u00b0C)=10.6\u00b0C;instantcoldpack.",
+    "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablebeaker/thermometer."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Cleardirectionquestion but heatabsorption clue givesdirection, magnitude needsunexplainedheatcapacity.",
+      "evidence": "P: chose11\u00b0Cwarmer;prompt1molammoniumnitrateabsorbs25.7kJin500gwaterat20\u00b0C.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Dosecontrast andreset showconsistentcooling.",
+      "evidence": "E:scoops0.25mol17.0\u00b0C,0.5mol14.3\u00b0C;Addall1mol9.4\u00b0C;EmptythenAddallreturns9.4\u00b0C. Screenshot arrowheatoutofwater, thermometerdrops.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explainsdirectionandcalculation;580gsolutionheatcapacityassumptionunexplained.",
+      "evidence": "R:Notquite11\u00b0Ccolder;dissolvingtakesheatfromsurroundingwater;25,700J/(580g\u00d74.18J/g/\u00b0C)=10.6\u00b0C;instantcoldpack.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Temperatureandheatflowvisible.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablebeaker/thermometer.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Coldpackapplicationexplicit;modelassumptionslimited.",
+      "evidence": "R:Notquite11\u00b0Ccolder;dissolvingtakesheatfromsurroundingwater;25,700J/(580g\u00d74.18J/g/\u00b0C)=10.6\u00b0C;instantcoldpack.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablebeaker/thermometer.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Dissolvingsaltcoolswater.",
+      "evidence": "E:scoops0.25mol17.0\u00b0C,0.5mol14.3\u00b0C;Addall1mol9.4\u00b0C;EmptythenAddallreturns9.4\u00b0C. Screenshot arrowheatoutofwater, thermometerdrops.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Heatflowarrowandthermometercarrydirection.",
+      "evidence": "E:scoops0.25mol17.0\u00b0C,0.5mol14.3\u00b0C;Addall1mol9.4\u00b0C;EmptythenAddallreturns9.4\u00b0C. Screenshot arrowheatoutofwater, thermometerdrops.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Scoops,allandreset.",
+      "evidence": "E:scoops0.25mol17.0\u00b0C,0.5mol14.3\u00b0C;Addall1mol9.4\u00b0C;EmptythenAddallreturns9.4\u00b0C. Screenshot arrowheatoutofwater, thermometerdrops.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Instantcoldpackconnection.",
+      "evidence": "R:Notquite11\u00b0Ccolder;dissolvingtakesheatfromsurroundingwater;25,700J/(580g\u00d74.18J/g/\u00b0C)=10.6\u00b0C;instantcoldpack.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Heattransferandquantitativedrop.",
+      "evidence": "R:Notquite11\u00b0Ccolder;dissolvingtakesheatfromsurroundingwater;25,700J/(580g\u00d74.18J/g/\u00b0C)=10.6\u00b0C;instantcoldpack.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Heatsignrelationaccessible;quantitativeanswerrequiressupportedunits/calculation.",
+    "conceptualDemand": "Connectabsorptiontocoolingandheatcapacity.",
+    "interfaceBurden": "Lowlabelleddosecontrols.",
+    "prerequisiteNovelty": "moderate:mol,kJ,heatcapacity",
+    "notationRepresentationBurden": "moderate:compoundunitsanddivision"
+  },
+  "whyCool": "Eachscooplowerswater temperatureandresetreproducesthefull10.6\u00b0Cdrop.",
+  "caveat": "Revealuses580gandwaterheatcapacitywithoutstatingtheapproximation.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

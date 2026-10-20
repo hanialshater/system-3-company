@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "markup-fifty-margin-third",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/markup-fifty-margin-third",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "markup-fifty-margin-third",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/markup-fifty-margin-third/meta.json",
+    "metaSha256": "f59c324209a27f8b026d08ef25d9aa1fc7ff913e53e1eb9a4d7c11c567b33276",
+    "demoSha256": "43def51e3dc1a0b9e4041789466166a992f6b2ce86ef2dcc3346b549bcac99db",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/markup-fifty-margin-third",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/markup-fifty-margin-third.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected50% against33% and25% margin for50% markup; locked it in.",
+    "exploration": "Initial0% markup: price60,profit0,both percentages0. Preset50:price90,profit30,margin33.3%. Preset100:price120,profit60,margin50%. Preset200:price180,profit120,margin66.7%.",
+    "reveal": "Corrected33%; compared30/60 versus30/90,then60/120. Explained different bases and margin=markup/(1+markup),under100%; always name base.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Price bar partitions cost60 andprofit120 at200% with paired200%/66.7% counters. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear choice tests confusing percent bases.",
+      "evidence": "50% commitment versus33.3% observed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three markup values show same profit divided by changing bases.",
+      "evidence": "50\u219233.3,100\u219250,200\u219266.7.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual money amounts to explain denominator change and limit.",
+      "evidence": "30/60 versus30/90;under100% margin.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled cost/profit bar and definitions make desktop task clear.",
+      "evidence": "Actual screenshot180 split60/120.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable name-the-base rule but no concrete new application.",
+      "evidence": "Margin formula andunder100% condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed50% margin contradicted by33.3%.",
+      "evidence": "Same30 profit yieldsdifferentpercentages.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cost/profit bar carries part-versus-whole denominator.",
+      "evidence": "Actual60 cost plus120 profit bar.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Three presets allow reversible ratio contrasts.",
+      "evidence": "50,100,200 markup states.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete retail pricing distinction central.",
+      "evidence": "Markup andmargin onjacket.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Denominator distinction andboundedmargin linked.",
+      "evidence": "Formula and200% markup only66.7% margin.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compares one numerator againsttwo differentbases.",
+    "conceptualDemand": "Distinguish costbase fromwhole sellingprice andratio formula.",
+    "interfaceBurden": "Low: threepresets andlabeledbar.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: markup/margin terminology.",
+    "notationRepresentationBurden": "moderate: percentages andratioformula."
+  },
+  "whyCool": "A200% markup occupiesonlytwo-thirds ofthe sellingprice bar asprofit.",
+  "caveat": "Fixedcost andnoothercosts;no tax,discount ornewproduct application tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Sliderintermediates/reset nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:44:56.344265+00:00"
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "maze-depth-first",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/maze-depth-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specified three-nodegraph and alphabeticaldepthfirst;selecteddirectS,G.",
+    "SteppedS->AthenG,stackS,A,G. ShowshortestdisplayedS,G1link versusDFS2.",
+    "Biggermaze action ran automatically:DFS S,A,C,D,G4links,shortestS,E,G2,Bdeadend noted.",
+    "Reveal compared both testedmaps,explained depth commitment/backtracking and recommended breadthfirst forfewestlinks.",
+    "Inline1280x720 light screenshot showedstack,pathoverlay and prose,right-edge textclipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Graph traversal and stack but clear smallcase.",
+    "conceptualDemand": "Depthfirst versus distance layers.",
+    "interfaceBurden": "Several namedbuttons; proseclipping."
+  },
+  "whyCool": "A three-nodecounterexample makes the gap between finding any route and finding the shortest unavoidable.",
+  "caveat": "Largercase autoruns rather than requiring freshprediction; finite-graph setup assumed; accessibility unknown; proseclips.",
+  "effort": "Prediction,two manualsteps,shortestoverlay,largercase,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Clear minimalcounterexample and largerapplication; repairprose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete graph and neighbor-order rule determine path.",
+      "evidence": "Three routealternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping smallgraph and contrasting shortest pluslargergraph demonstrate failureof shortest guarantee.",
+      "evidence": "2versus1and4versus2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual paths to algorithm rule and alternative objective.",
+      "evidence": "Breadthfirst forfewestlinks.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearstack androutecomparisons but prose clips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete largergraph applies same rule and gives algorithm choice condition.",
+      "evidence": "Fewestlinks requires breadthfirst.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Finding a path does not guarantee shortest.",
+      "evidence": "DFS4versus2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stack and routeoverlay support algorithm contrast.",
+      "evidence": "Largermaze screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step/run/overlay controls.",
+      "evidence": "Smallgraph manualsteps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Algorithm choice forshortest unweightedroute central.",
+      "evidence": "Breadthfirst condition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Searchorder,backtracking andguarantees.",
+      "evidence": "DeadendBnoted.",
+      "confidence": "medium"
+    }
+  }
+}

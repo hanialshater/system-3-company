@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "up-then-down-trap",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/up-then-down-trap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "up-then-down-trap",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/up-then-down-trap/meta.json",
+    "metaSha256": "3f9bf3740e445153576e4c3d055a1a1f4e312e345659eadb9d34761dcea03f84",
+    "demoSha256": "35e3f45ac3eef9331038e3a90d2499479d8fe11dbf67d080595e64e81e8d15e3",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/up-then-down-trap",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/up-then-down-trap.json"
+  },
+  "date": "2026-10-18T21:14:14.162714+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected75 for100up50%thendown50%."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Applied+50then\u221250:100\u2192150\u219275. Restarted;applied+50then\u221233\u2153:100\u2192150\u2192100,backexactly success andunlockedreveal."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read changingbase explanation, inverse\u221233\u2153for+50 and+100for\u221250, multiplicativechanges andorderindependence, fictionalnumbersnotmarketclaim caveat."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected100/150/75bars then100/150/100bars withdashed100baseline andpercentage labels readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simple symmetric percentages expose changing-base misconception.",
+      "evidence": "100/75/125 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Inverse-pairgoal requires applying correction rather than viewinganswer.",
+      "evidence": "Found+50then\u221233\u2153returns100.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains testedbasechange andinverse relation with generalmultiplicationrule.",
+      "evidence": "150\u00d72/3=100.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Historybars andbaseline make statechanges easy tofollow.",
+      "evidence": "150then75versus150then100.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Additionalinverse examples stay within same percentage toy.",
+      "evidence": "No newapplicationcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equalgain/loss percentages failtocancel.",
+      "evidence": "Final75.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Historybars reveal changingbase andrestoredvalue.",
+      "evidence": "Dashed100reference.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Findtwotaps goal,undo andreset support experimentation.",
+      "evidence": "Restartedandfoundinversepair.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful arithmetic warning for percentage changes.",
+      "evidence": "Explicit fictionalmarket caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects bases,inverses andcommutingmultipliers.",
+      "evidence": "Orderdoesnotmatterstatement andtwoinversepairs.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: successive multipliers andinversepercentage",
+    "interfaceBurden": "gentle: fourchangebuttons,undo/reset",
+    "prerequisiteNovelty": "multiplicativeversusadditivechanges",
+    "notationRepresentationBurden": "moneyhistorybars,percentages andfraction2/3"
+  }
+}

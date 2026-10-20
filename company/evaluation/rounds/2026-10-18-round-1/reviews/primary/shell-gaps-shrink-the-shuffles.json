@@ -1,0 +1,104 @@
+{
+  "slug": "shell-gaps-shrink-the-shuffles",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shell-gaps-shrink-the-shuffles",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Opening defines a shift as one card copied one gap and specifies reverse sixteen-card input and gaps eight-four-two-one.",
+    "Plain insertion completed with 120 shifts.",
+    "Each gap pass used eight shifts; farthest displacement dropped fifteen to seven, three and one, then zero after final pass.",
+    "Screenshots show long-gap movement arcs and near-sorted final lane; reveal explains early long carrying and why final gap-one insertion establishes sorted output."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Gapped insertion and operation-count convention.",
+    "conceptualDemand": "Track residue-class passes and movement distance.",
+    "interfaceBurden": "Baseline plus four animated pass buttons."
+  },
+  "whyCool": "Doing long moves first can make the final ordinary insertion pass almost trivial.",
+  "caveat": "One reverse input and one gap sequence; counted shifts are not full comparison counts or measured runtime.",
+  "effort": "Prediction, plain baseline, all four gap passes, settled totals, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear coarse-to-fine movement mechanism with explicit counted unit.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact work count is burdensome without tracing the supplied gap passes.",
+      "evidence": "120, about sixty or thirty-two shifts.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Separate baseline and four passes expose staged displacement reduction.",
+      "evidence": "120 versus four times eight; shrinking maximum displacement.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains work reduction through actual displacement history and a correctness invariant.",
+      "evidence": "Long jumps prepare final insertion; last gap one sorts regardless of prior passes.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shift unit, gap and displacement are explicitly distinguished.",
+      "evidence": "Copy one card one gap; maximum distance from final place.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General preparation principle with final correctness condition.",
+      "evidence": "Far moves reduce local shuffles; final ordinary insertion guarantees order.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Extra passes can reduce total counted moves.",
+      "evidence": "Thirty-two versus 120.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Movement arcs and two lanes show why coarse preparation helps.",
+      "evidence": "Long-distance copies followed by adjacent cleanup.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Four fixed passes and baseline.",
+      "evidence": "No editable input or gap sequence.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete algorithmic optimization mechanism.",
+      "evidence": "Prepare large displacements before local sorting.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Work metric, displacement and correctness connect.",
+      "evidence": "Performance preparation distinct from final sorting guarantee.",
+      "confidence": "medium"
+    }
+  }
+}

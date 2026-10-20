@@ -1,0 +1,103 @@
+{
+  "slug": "jacket-last-first",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/jacket-last-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted shoes first given jacket,sweater,shoes use order.",
+    "Three items: in-use packing leaves2 above jacket,reversed0. Seven items leaves6 versus0.",
+    "Reveal explains top-opening last-in-first-out and excludes side pockets/open-flat cases. Screenshot stack visible,prose right clipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Everyday sequence reversal.",
+    "conceptualDemand": "Last in first out.",
+    "interfaceBurden": "Two modes and count slider."
+  },
+  "whyCool": "Reversing the packing sequence makes the first-needed object the first accessible one.",
+  "caveat": "Top-opening stack idealization; viewport prose clips.",
+  "effort": "Prediction,A/B,count variation,reveal,inline screenshot.",
+  "provisionalBucket": "solid-viewport-followup",
+  "bucketReason": "Concrete interaction and bounded rule.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear use-versus-packing order distinction.",
+      "evidence": "Shoes/jacket/order irrelevant.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Order and count contrast show stack access.",
+      "evidence": "3\u21927 gives2\u21926 above versus0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and counterconditions explicit.",
+      "evidence": "Top-opening bag versus pockets/open-flat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear table but clipping at tested viewport.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Actionable general packing rule with applicability conditions.",
+      "evidence": "Pack reverse use order in top-opening bag.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Desired first out means last in.",
+      "evidence": "Reversed packing.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stack and blocking count central.",
+      "evidence": "Seven-item stack.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Order and count exploration.",
+      "evidence": "Two layouts,slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete packing strategy.",
+      "evidence": "Jacket accessible.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Stack discipline and exceptions.",
+      "evidence": "Top access assumption.",
+      "confidence": "medium"
+    }
+  }
+}

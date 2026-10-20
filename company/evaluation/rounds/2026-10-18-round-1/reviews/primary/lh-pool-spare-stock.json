@@ -1,0 +1,103 @@
+{
+  "slug": "lh-pool-spare-stock",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-pool-spare-stock",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Pooled lower for ten required, two local and five freely transferable units elsewhere.",
+    "Tests gave order gaps 8 and 3. Minimum requirement one gave zero in both, without negative order.",
+    "Screenshot showed aggregate inventory cards. Reveal preserved input context and required free transferable stock."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple subtraction and zero floor.",
+    "conceptualDemand": "Count usable transferable inventory.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A usable spare elsewhere can replace a new purchase.",
+  "caveat": "Assumes no transfer cost or delay and all remote stock uncommitted.",
+  "effort": "Prediction, both tests, minimum boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear inventory arithmetic and availability conditions.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple supplied-stock comparison with strong cue.",
+      "evidence": "Two local plus five available.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Minimum boundary shows nonnegative order and equality.",
+      "evidence": "10\u21921 required.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains available-stock subtraction and conditions.",
+      "evidence": "Other units free and transferable.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Usability, commitment and transfer cost explicit.",
+      "evidence": "Zero modeled transfer cost.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete availability constraints distinguish applicable stock.",
+      "evidence": "Uncommitted and transferable.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected pooled shortfall reduction.",
+      "evidence": "8 versus 3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Aggregate marks support quantities without transfer flow.",
+      "evidence": "Zero inventory-order cards at boundary.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and requirement slider.",
+      "evidence": "Available stock fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Procurement shortfall central.",
+      "evidence": "Avoid buying available stock.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Availability constraints and nonnegative gap.",
+      "evidence": "max zero after subtraction.",
+      "confidence": "medium"
+    }
+  }
+}

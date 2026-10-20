@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "antibiotic-already-there",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/antibiotic-already-there",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust7/7 ignored. PredictedAbout100 from10billion\u00d71in100million; locked."
+    },
+    {
+      "id": "E",
+      "text": "Add drug:100survive. Let survivors regrow:everycell descends from resistantone, expected all. Back beforedrug:same100alreadyhere(ringed).10million:0.1expected,usuallynone; reveal unlocked."
+    },
+    {
+      "id": "R",
+      "text": "Drug did not make them; killed everythingelse;survivorsregrew. Big populations raremutants versus10million expected0.1. Toynumbers,real mutationratesvary,counts expectedvalues. Inline screenshot inspected; right reveal textclips and dish top outside internal scroll area; none saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete count prediction connects rare frequency to big population.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Drug/regrowth/rewind and population contrast expose selection rather than creation.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "References tested sequence and expected-value boundary.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear stage captions; right-edge reveal clipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable population-times-frequency and selection distinction with toy-number caveat; editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Survivors visibly preexist drug exposure.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Ringedcells and regrowth imagery support caption-driven mechanism.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rewind and population controls permit discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Antibiotic-resistance interpretation under explicit toy model.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Selection,descent,rare-event counts and expectation boundary.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links rare-frequency arithmetic, selection and expected count; terms explained in prediction.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;mutation and expectedvalues",
+    "notationRepresentationBurden": "moderate;large numbers/fractional expectation"
+  },
+  "whyCool": "Rewinding after regrowth identifies the same100resistantcells before any drug arrived.",
+  "caveat": "Toy expected counts rather than sampled variability; right-edge reveal clipping.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Small-population drug outcome not tested"
+  ]
+}

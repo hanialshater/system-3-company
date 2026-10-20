@@ -1,0 +1,104 @@
+{
+  "slug": "euclid-three-steps",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/euclid-three-steps",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook saysEuclidfindsaprimeyoumissed, revealing predictionanswer. Predictionmultiply2,3,5,7,11,13addoneanddivide:missingprime/listeddivisor/nothing; chose listeddivisor.",
+    "Selectedlistto13,product30030;Add1=>30031;Dividebyeach leavesremainder1forall;Findprimes=>59x509.",
+    "Reveal noneoflistedprimesdivides,butcomposite30031hasnewprimefactors;anyfinitelist sameprocedure,infinitelymanyprimes.",
+    "Screenshot three-stepcards,divisionbarsandremainder1s;fullprose andcontrols readable."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Primes,factors,remainder,andgeneralproof requirepriorconcepts.",
+    "conceptualDemand": "Distinguish constructednumber fromitsprimefactors;arbitrarylistargument.",
+    "interfaceBurden": "Guidedcards easy; no layoutblockerobserved."
+  },
+  "whyCool": "Evenwhenmultiply-and-add-one gives acomposite,it stillforcesprimefactors outsideyourlist.",
+  "caveat": "Predictionanswer leaked byhook; formalproofnotation simplified; single reviewer.",
+  "effort": "Prediction,longlist,multiply/add/divide/factor,reveal.",
+  "provisionalBucket": "specialist",
+  "bucketReason": "Goodproofvisualization withstrongdepth;hookspoilerweakensprediction andprerequisitesmatter.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hookdirectlygivesawaytheanswer.",
+      "evidence": "Needs threemoves tofindoneyoumissed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stagedconstruction makes remainderinvariant visible.",
+      "evidence": "Multiply,addone,divide,andfactorcontrols.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Compositeexample avoidsfalseclaim productplusone alwaysprime.",
+      "evidence": "30031=59x509 notlisted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable stagedcardsanddivisionbars;primeknowledge assumed.",
+      "evidence": "Allsixremainder1 rows.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for constructiveproof beyondfiniteexamples.",
+      "evidence": "Anyfinitelist canbeextended.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Compositeconstructednumber stilldefeatslist.",
+      "evidence": "Newfactors59and509.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Divisionbars showoneleftover foreachprime.",
+      "evidence": "Sixrowsr1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guidedproofcards withlistpresets.",
+      "evidence": "Threecards andfactorbutton.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstractnumbertheory insight.",
+      "evidence": "Infiniteprimes proof.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Constructivecontradiction over arbitraryfinitelists.",
+      "evidence": "Newprimefactor guaranteed evenifcomposite.",
+      "confidence": "medium"
+    }
+  }
+}

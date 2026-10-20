@@ -1,0 +1,104 @@
+{
+  "slug": "lh-cents-euros-conversion",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-cents-euros-conversion",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected divide by100 rather than10 for125 cents; prompt explicitly labels B deliberately wrong before asking.",
+    "TestA125/100=1.25\u20ac, B125/10=12.5\u20ac.",
+    "Changed cents300: A3\u20ac,B30\u20ac, preserving tenfold error. Matched visual scales reflected amounts.",
+    "Reveal accurately separated original125 from current300 and grounded the conversion in100 cents per euro."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Division by100 versus10.",
+    "conceptualDemand": "Unit denominator.",
+    "interfaceBurden": "Two tests and amount slider."
+  },
+  "whyCool": "The decimal shift follows the unit definition instead of a memorized movement rule.",
+  "caveat": "The prediction should ask for the amount before naming one method wrong; visual could explicitly group100 cents into one euro.",
+  "effort": "Completed prediction,both methods,two amounts,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical explanation, but very low prediction challenge and limited exploration.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Correctness is explicitly disclosed in setup.",
+      "evidence": "B deliberately wrong and hook rejects12.50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Amount scaling illustrates constant-factor error, but no new decision or boundary.",
+      "evidence": "125\u2192300,ratio10 unchanged.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original/current expressions explain the unit-defined denominator.",
+      "evidence": "100 cents/\u20ac supplies conversion.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units,expressions and wrong-method status clear.",
+      "evidence": "No ambiguity about B's deliberate error.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete unit-carrying procedure gives decimal movement a reason.",
+      "evidence": "Use defined units rather than arbitrary digit shifting.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Common factor-of-ten error.",
+      "evidence": "Wrong amount tenfold larger.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Meters show magnitude difference but no100-cent grouping.",
+      "evidence": "Numeric division carries concept.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Preset calculations and amount slider.",
+      "evidence": "No correction challenge.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful elementary unit conversion.",
+      "evidence": "Euro-cent definition explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic decimal denomination.",
+      "evidence": "No multiunit chain.",
+      "confidence": "medium"
+    }
+  }
+}

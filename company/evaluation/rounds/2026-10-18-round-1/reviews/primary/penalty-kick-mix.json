@@ -1,0 +1,104 @@
+{
+  "slug": "penalty-kick-mix",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/penalty-kick-mix",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted less than50% left after the wrong-side left-shot scoring probability rises from.9 to1, holding both matched-side probabilities at.5 and right wrong-side.9.",
+    "Baseline showed both mixes50%, scoring.700. Perfect left shot changed kicker left44.4%, keeper left55.6%, scoring.722.",
+    "Keep50% left made the keeper dive left100%, holding scoring.700 versus.750 if diving right.",
+    "Reveal accurately separated the optimal mixed state from current fixed50% state and explicitly called the numbers toy rates."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Expected probabilities and opponent adaptation require careful reasoning.",
+    "conceptualDemand": "Mixed equilibrium and best responses.",
+    "interfaceBurden": "One parameter and two comparison buttons."
+  },
+  "whyCool": "A better shot is used less because its threat changes the opponent's incentives.",
+  "caveat": "Only the unmatched left-shot payoff changes; this is a toy matrix, not a claim about real kickers.",
+  "effort": "Completed prediction, baseline, optimal improved mix, fixed old mix, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Precisely specified surprise with a convincing strategic counterfactual.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Fully specified opposing incentives support a precise counterintuitive direction prediction.",
+      "evidence": "All four payoffs and the changed cell are visible; more/same/less alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "The optimal adjustment and exploitable old strategy provide a causal comparison.",
+      "evidence": ".722 mixed outcome versus.700 under old50% mix.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Numerical indifference and best response explain the observed reversal.",
+      "evidence": "Either dive concedes.722 at optimum; old mix invites left dive.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Matrix and separate player bars distinguish strategies and outcomes.",
+      "evidence": "Labels specify conditional payoff changed, not all left-shot skill.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General indifference reasoning is explained without a new game to solve.",
+      "evidence": "Same toy payoff matrix.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Improving one action reduces its equilibrium use, and the exploitable alternative explains why.",
+      "evidence": "Counterintuitive44.4% plus best response to50%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matrix and player mixes make the strategic adjustment visible.",
+      "evidence": "Separate scoring values for keeper choices.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Preset strategy and skill changes support exploration.",
+      "evidence": "Slider plus two contrasting actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "An abstract game-theory lesson rather than real penalty advice.",
+      "evidence": "Explicit toy-number caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links skill changes, best response and mutual indifference.",
+      "evidence": "Both players' expected outcomes explained.",
+      "confidence": "medium"
+    }
+  }
+}

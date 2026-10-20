@@ -1,0 +1,104 @@
+{
+  "slug": "box-handle-clearance",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/box-handle-clearance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted no fit at42 cm from the visibly protruding handles around a40 cm body.",
+    "Body-only measured40 cm with+2 clearance; including handles measured46 with\u22124 clearance.",
+    "Changed shelf opening to52: body+12 and full width+6, both fit.",
+    "Reveal kept Your prediction held while citing both current fitting outcomes without recalling original42 cm. It gave a useful outer-envelope measurement rule and noted soft handles may flex."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple widths and subtraction.",
+    "conceptualDemand": "Body dimensions versus external envelope.",
+    "interfaceBurden": "Two views and opening slider."
+  },
+  "whyCool": "The advertised body dimension and the dimension that decides fit become visibly different.",
+  "caveat": "Reveal should reference the original42 cm case before reporting changed52 cm clearances.",
+  "effort": "Completed prediction, both measurement views, changed opening and reveal; initial screenshot inspected.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful practical lesson with a recurring changed-state verdict problem.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Visible protrusions support the fit judgment even though handle dimensions are hidden.",
+      "evidence": "Handles visibly extend beyond opening.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Opening adjustment crosses the fit threshold while body and envelope stay fixed.",
+      "evidence": "42 fails full46;52 fits.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "The general rule is sound but held verdict lacks original-versus-current reconciliation.",
+      "evidence": "No-fit prediction followed by both current cases fitting.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Measured widths and clearances are clear; generic held wording is ambiguous after changing opening.",
+      "evidence": "Current52 cm outcomes differ from original42.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete measurement procedure includes a condition limiting the rigid model.",
+      "evidence": "Measure outermost points; soft handles may flex.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "An everyday overlooked dimension.",
+      "evidence": "Body fits while handles do not.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Envelope and opening comparison make the hidden width constraint visible.",
+      "evidence": "Body and protrusions against shelf sides.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Opening slider changes clearance.",
+      "evidence": "A/B views and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly useful storage measurement rule.",
+      "evidence": "Measure the actual outer envelope.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single geometric clearance distinction.",
+      "evidence": "No flexible or rotational fit analysis.",
+      "confidence": "medium"
+    }
+  }
+}

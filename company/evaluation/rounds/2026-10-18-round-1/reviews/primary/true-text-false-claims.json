@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "true-text-false-claims",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/true-text-false-claims",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "b62b7e0718267f47625d140db31c81217a2ee96b39b752ea3ade9d676fa74dc4",
+    "demoSha256": "e71ba9fc238feccc45aec9498fd4a6edb201966d3438b3b01d2cd7052c374505",
+    "metaPath": "src/demos/ai/true-text-false-claims/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Never and locked the false-completion prediction for a one-word-memory model trained on three true capital sentences.",
+    "exploration": "Asked thirty times with one word of memory: 22 false. Changed to two words and asked again: 20 false. Changed to five words, which retained Rome and offered only Italy, then asked thirty times: zero false.",
+    "reveal": "The reveal corrected the answer to about two thirds and explained that of and capital of occur before all three countries equally. With all five words, the toy repeats the Rome sentence. It connected fluent false output to real model hallucinations.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with one word memory. Only of was boxed in the prompt; three country options each had count one. A thirty-cell result grid showed 22 red false cells among green true cells, with a fluent false example below.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt tests whether true training sentences guarantee true completions.",
+      "evidence": "Selected never before sampling the deliberately limited-memory model.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Memory settings isolate the missing context and a condition that resolves it.",
+      "evidence": "One and two words generated many errors; five words retained the city and generated none.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the exact ambiguity and why the longer context changes this toy.",
+      "evidence": "It contrasts of, capital of and the full Rome prefix.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The boxed context, candidate counts and result grid expose the mechanism.",
+      "evidence": "All countries were equally available when the subject was absent.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending connects the toy failure to a distinct real model interpretation with a limitation.",
+      "evidence": "Fluent text can be false, and this toy's truth depends on context retaining the relevant subject.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A model can recombine entirely true source material into fluent false claims.",
+      "evidence": "One-word memory produced 22 false answers from thirty.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighting retained words explains the failure better than error counts alone.",
+      "evidence": "Only of remained available when all three countries were candidates.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Asking repeatedly and changing memory makes the failure easy to investigate.",
+      "evidence": "Three settings create a clear counterexample and resolution.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It undermines treating fluency or clean training data as a truth guarantee.",
+      "evidence": "The reveal identifies fluent false output and hallucination.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The toy separates data truth, available context and next-word selection.",
+      "evidence": "Two words still fail because the decisive city remains outside memory.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The sentences are familiar, but limited-context frequency prediction is a new model of text generation.",
+    "conceptualDemand": "Moderate: distinguish source sentence truth from conditional next-word frequency.",
+    "interfaceBurden": "Low: one sample button and three memory settings.",
+    "conceptualChallenge": "Losing the subject merges distinct factual contexts into the same continuation distribution.",
+    "prerequisiteNovelty": "Context windows and next-word prediction are introduced.",
+    "notationRepresentationBurden": "Low: ordinary words, candidate counts and colored result cells."
+  },
+  "whyCool": "The error is visible as a missing word in memory, even though every source sentence was true.",
+  "caveat": "This is a tiny frequency model. Its statement that truth survives only when context pins it down should not be treated as a complete account of real model factuality.",
+  "missingEvidence": [
+    "No new sentence set or real language model was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

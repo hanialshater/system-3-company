@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "meaning-without-the-word",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/meaning-without-the-word",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "meaning-without-the-word",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/ai/meaning-without-the-word/meta.json",
+    "metaSha256": "9e9ae2714fa1b0109d4184ad913b22f16cde79c896a4fc415c958c92eecc73fd",
+    "demoSha256": "4a081c6ff28e6cf9e69eb56b52f46bd5369574661eff2c31243d1eb9c9a28ef6",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/meaning-without-the-word",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/meaning-without-the-word.json"
+  },
+  "date": "2026-10-18T19:21:42.923320+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. SelectedYesbestmatch andlocked. Exactkeywordruleandtieorderstated.",
+    "exploration": "Words top2:Parisnot sent,score0,fourdecoys1andfirstRome/wineabove cutoff. Wordstop3stillno. Meaningtop3:Parisfirst0.91andyes;Top1stillParisyes. Revealunlocksafterboth methods.",
+    "reveal": "Correctno sharedkeyword. FrenchversusFrance,nocapital;tieskeeporderandoriginaltop2Rome/wine. Meaningscoreshandset,realembeddingslearned;inthissetupmodelonlyusesretrievedcontext.",
+    "visual": "Inline1257x936 dark screenshots inspected: reorderedchunkcards,scores,greenretainedchunks,redcutline andpurpleParishighlight. Wordrankingcaptionclippedleft/right atlongphrase; meaningcaption/reveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete literalversussemanticmatch question withdeclaredties/cutoff; alternativesdiscriminatemisconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "MethodandtopKcontrasts showrankingratherthancutoffalonecontrolsansweraccess;top1meaningversustop3wordsboundary.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Citesexactobservedtokens/scores/cutoff andexplicitlydistinguisheshandsetsemantictoyfromlearnedsystems,context-onlycondition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Chunk/scores/cutlineclear;longword-rankingcaptionvisiblyclippedin testeddesktop.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete retrievaldiagnostic:correctKBpassagecanbeuselessbelowcutoffwhenmodelrestrictedtoretrievedcontext;methodversusKcontrastconditionsspecified.",
+      "evidence": "reveal;exploration",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenanswerisbestmatchfailsliteralretrievalevenwithtop3;semanticrank1restoresit.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Rankedcards,coloredretainedarea andmovingcutlinecarrymechanismacrossmethod/cutoffcontrasts.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblemethod/topKchoicesenablecontrolledcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteknowledge-baseretrievalfailurediagnosisandcontextboundary.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Lexicalmismatch,ties,cutoff,budgetversusrankingandhandset-scorelimit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trackkeywordscore,ranking/ties andcontextcutoff,separatingknowledgeavailabilityfrommodelinput.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; clippedlongcaption",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: retrievalpipeline/semanticranking",
+    "notationRepresentationBurden": "low: rankedtextcards,integers/decimalsandcutline"
+  },
+  "whyCool": "Top3wordsearchstillmissesParis,buttop1meaningsearchfindsitbecausechangingrankbeatsaddingmoredecoys.",
+  "caveat": "Semanticscoreshandsetandnogeneratedanswer;longkeywordcaptionclipped."
+}

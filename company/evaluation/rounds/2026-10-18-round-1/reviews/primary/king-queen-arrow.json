@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "king-queen-arrow",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/king-queen-arrow",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "king-queen-arrow",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/ai/king-queen-arrow/meta.json",
+    "metaSha256": "a48e65aa2f2fe78f2e82ba84caf31646dc0706e9c1a771b9b05883de3bf0e3f1",
+    "demoSha256": "759d9f862488806c0758e32eada635949d440a6fa480e1dcb3f0e5032664671f",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/king-queen-arrow",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/king-queen-arrow.json"
+  },
+  "date": "2026-10-18T19:09:29.582553+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. SelectedAlways on messy-map nearest-queen claim and locked. Tidy coordinates/result supplied in prompt.",
+    "exploration": "Measure man-woman gives(0,1). Carry toking queen0,crown0.60,prince1.50. Carry man-king towoman(1,0)alsoqueen0. Messiermap automatically selects original relation(-0.1,1),crown0.36versusqueen0.45; reveal unlocks.",
+    "reveal": "CorrectNotalways. Recaps tidy(1,1)queen and messy(0.9,1.1)crown distances; both maps placed byhand, real learned word-vector analogies onlyrough.",
+    "visual": "Inline1257x936 dark screenshots inspected: dotted original relation, translated purple arrow and endpoint ring; green nearest queen switches crown on visibly perturbed map. Map hand-placed labels explicit; reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Prediction concerns robustness rather than supplied tidy answer; always/notalways/never plausible clear choices.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Two relation orientations on tidy map and perturbed nearest flip expose arithmetic geometry and failure boundary.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Exact observed distances resolve always prediction and explicitly limit hand-placed toy versus rough learned analogy.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Relation buttons,endpoint,nearest and distances explicit; map toggle resets relation but state labels show it.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General position arithmetic and real-vector caveat; no concrete different application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed always fails when crown becomes closer than queen.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Translated arrows and endpoints across orientations/maps carry mechanism and failure.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible map/arrow choices support comparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation and caution for word-vector analogies.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Translation,commuted analogy,nearest geometry and perturbation failure.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Subtract positions to form relation then translate and compare nearest candidates; explicit arrows support linked steps.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low labelled buttons/counters",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: vectors as relational displacement",
+    "notationRepresentationBurden": "moderate: coordinate pairs,negative decimal and distances"
+  },
+  "whyCool": "A tiny map change turns the same analogy arrow from queen into nearest crown.",
+  "caveat": "Both maps are hand-built examples; no learned embedding or fresh analogy tested."
+}

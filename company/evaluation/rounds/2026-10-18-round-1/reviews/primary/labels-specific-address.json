@@ -1,0 +1,104 @@
+{
+  "slug": "labels-specific-address",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/labels-specific-address",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Unique box address narrows search to one box; option name directly implies uniqueness.",
+    "Eight boxes/two categories gave four candidates in broad mode versus one unique.",
+    "Twelve boxes gave six broad versus one unique. Broad drawing used numbered two-column grid and one highlighted box, while unique used a row; category membership and an actual searched address were not shown.",
+    "Reveal accurately described current six candidates and the rule, including that labels do not enforce correct put-away. Held verdict duplicated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple counts and label concepts.",
+    "conceptualDemand": "Category versus specific location.",
+    "interfaceBurden": "Two modes and count slider."
+  },
+  "whyCool": "A location label can identify one place while a category still leaves several places to inspect.",
+  "caveat": "Needs actual category/address labels, a named target and highlighted candidate sets to substantiate the search count; duplicate verdict needs polish.",
+  "effort": "Completed prediction, both modes at two counts, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Practical rule but weak prediction and unrelated generic visualization.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Unique address versus broad category labels supply the answer.",
+      "evidence": "No concrete label or search query to interpret.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Count changes modeled candidates, but category membership and target query remain hidden.",
+      "evidence": "8\u219212 gives4\u21926 broad; unique1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Rule is sound but numeric candidate assumptions are asserted rather than visually established.",
+      "evidence": "Two equally sized categories assumed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counts clear, but changing grid orientation is unrelated to category/address distinction.",
+      "evidence": "One highlighted box under broad mode despite six candidates.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete labeling rule includes the storage-maintenance condition.",
+      "evidence": "Category versus location; correct put-away still needed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Specific labels reduce candidates.",
+      "evidence": "Simple search scope.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Drawing does not show the claimed candidate set or category labels.",
+      "evidence": "Generic numbered rectangles.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Preset modes and count scaling.",
+      "evidence": "No actual search choice.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful storage-labeling habit.",
+      "evidence": "Address must correspond to correctly returned item.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic category versus identity distinction.",
+      "evidence": "No indexing or retrieval model.",
+      "confidence": "medium"
+    }
+  }
+}

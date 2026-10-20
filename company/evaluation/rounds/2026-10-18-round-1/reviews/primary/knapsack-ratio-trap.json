@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "knapsack-ratio-trap",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/knapsack-ratio-trap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "knapsack-ratio-trap",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/knapsack-ratio-trap/meta.json",
+    "metaSha256": "0a89a78ee1113980db8b5e12b60a164b331f2c7b8d2d714b4584eea90a21e5de",
+    "demoSha256": "0a2cf17e8235c8c57b0e4cd286be0a6084d17e3aebd297166b16e850312279fb",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/knapsack-ratio-trap",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/knapsack-ratio-trap.json"
+  },
+  "date": "2026-10-18T20:57:56.489286+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected$220 as best whole-item value for50kg capacity and10/20/30kg items valued60/100/120."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial ratio-first10+20kg packed30kg/$160. Removed10 and added30:50kg/$220. Enabled cutting: automated10+20+20of30kg filled50kg/$240, preserving best whole-item record220."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Explained20kg gap cannot fit30kg whole,20+30 wins220, fractiontwo-thirds30kg adds80 for240. Combination search contrasted ratio first; dynamic programming named without demonstration."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots showed whole50kg220 and fractional50kg240 stacked bag,20of30kg/$80 label and readable reveal after scroll; final interior top caption slightly clipped during scroll."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Small explicit item set makes the greedy counterexample assessable.",
+      "evidence": "160/220/240 choices separate greedy, whole optimum and fraction optimum.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Remove/add actions and cutting toggle expose the condition change.",
+      "evidence": "160\u2192220 whole\u2192240 fraction.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal uses actual best packing to explain leftover-space failure.",
+      "evidence": "20kg gap versus indivisible30kg item.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Capacity stack and value labels explain the packing distinction.",
+      "evidence": "20of30kg/$80 explicit; algorithm term only briefly named.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Condition change remains the same item set, without new application.",
+      "evidence": "Cutting toggle changes rule but no fresh packing case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Best value per kilo first loses when items are indivisible.",
+      "evidence": "160 versus220.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stacked capacity makes unused and fractional space concrete.",
+      "evidence": "Full bag20+30, then10+20+20of30.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Direct item selection creates a better packing.",
+      "evidence": "Removed10 and added30.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful warning about greedy choices under capacity constraints.",
+      "evidence": "Whole versus divisible items.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Counterexample and divisibility boundary establish when ratio rule changes.",
+      "evidence": "Same items yield220whole and240cut.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: local value density versus total combination and divisibility",
+    "interfaceBurden": "gentle: three item toggles and cutting switch",
+    "prerequisiteNovelty": "greedy ratio and dynamic programming named; latter not developed",
+    "notationRepresentationBurden": "kilograms, dollars, ratios and stacked capacity drawing"
+  }
+}

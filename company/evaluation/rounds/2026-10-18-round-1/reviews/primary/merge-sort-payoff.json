@@ -1,0 +1,143 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "primary",
+  "reviewer": "r1",
+  "slug": "merge-sort-payoff",
+  "demoVersion": 5,
+  "batchId": "round1-07",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "B0",
+      "text": "Preview banner confirms learning history/analytics are not saved."
+    },
+    {
+      "id": "B1",
+      "text": "Prediction maximum comparisons for two sorted four-card piles: 7 / 16 / 28; chose 16 and locked."
+    },
+    {
+      "id": "B2",
+      "text": "\u201cWhere did the piles come from?\u201d showed split singles (0), pairs (4), piles (6), and prematurely stated \u201cThe last merge adds at most 7.\u201d"
+    },
+    {
+      "id": "B3",
+      "text": "Clicked Take 10 instead of Take 4: \u201cThe other top card is smaller\u201d; counters stayed 0. Taking 4 made comparisons 1 and placed 1/8."
+    },
+    {
+      "id": "B4",
+      "text": "Finish for me animated row to 4 5 10 18 20 21 23 36; \u201cMerged with 7 comparisons\u201d; total 0+4+6+7=17 against 28."
+    },
+    {
+      "id": "B5",
+      "text": "Reveal: each comparison puts smaller top card into row for good; empty pile means rest free; interleaving needs all 7; 1,000 cards/10 rounds/fewer than 10,000 versus 499,500."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Maximum-cost commitment has plausible numeric distractors before exploration.",
+      "evidence": [
+        "B1"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Wrong and correct card choices visibly produce contrasting feedback and placement.",
+      "evidence": [
+        "B3"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Reveal connects counted result to permanent placement, free remainder, worst case and larger scale.",
+      "evidence": [
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core path is usable but rounds panel exposes answer before merging and requires inner scrolling.",
+      "evidence": [
+        "B2"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Thousand-card example offers a concrete scaling use with sorted-pile conditions.",
+      "evidence": [
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient multi-mode accessibility checks; D slider Home key is only a partial keyboard observation.",
+      "evidence": [
+        "Observed DOM accessible names, desktop screenshots; no comprehensive check."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Observed merge cost contradicts committed 16 prediction.",
+      "evidence": [
+        "B4"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Piles, placed row and counters explain the procedure centrally.",
+      "evidence": [
+        "B4"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Card choices permit experiment but wrong choices are rejected and sampled finish was automatic.",
+      "evidence": [
+        "B3"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains a concrete disciplinary sorting efficiency advantage.",
+      "evidence": [
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Splitting, repeated merging, interleaving and scaling supply multiple distinct states and mechanisms.",
+      "evidence": [
+        "B5"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Track two ordered piles, top-card comparisons and sum round costs.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain theory assumed."
+  },
+  "whyCool": "Taking the smaller top card builds a sorted row while the counter reaches only seven comparisons.",
+  "caveat": "Only one pile instance tested; rounds panel leaks maximum before hands-on merge.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r1.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

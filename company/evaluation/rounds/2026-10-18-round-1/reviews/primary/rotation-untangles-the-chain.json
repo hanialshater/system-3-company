@@ -1,0 +1,104 @@
+{
+  "slug": "rotation-untangles-the-chain",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rotation-untangles-the-chain",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Sorted keys one through seven are compared with plain and rotating search trees.",
+    "Inserting key three rotated middle key two above one and three, with two levels and one rotation; ghost positions showed the old chain.",
+    "Full rotating run ended root four, three levels and four rotations.",
+    "Switching to plain replayed all inserts and settled at seven levels; reveal retains both outcomes and explains unchanged left-to-right ordering while keys move vertically."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Search-tree ordering, height imbalance and rotation.",
+    "conceptualDemand": "Understand shape changes preserving in-order relationships.",
+    "interfaceBurden": "Insert, finish and mode switch; animated replay."
+  },
+  "whyCool": "A tree can lift a middle key to shorten paths without changing the ordering that makes search work.",
+  "caveat": "Sorted fixed keys show single rotations; double-rotation cases and deletions are not tested.",
+  "effort": "Prediction, first rotation, complete balanced run, settled plain replay, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent local-repair visualization with an explicit search-order invariant.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete height comparison, but balancing rule alone does not fully introduce search-tree mechanics.",
+      "evidence": "Seven, five or three levels after sorted inserts.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single repair, full run and controlled plain-tree contrast show effect.",
+      "evidence": "First three-key rotation and seven-key chain comparison.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed middle-key promotion, ordering invariant and height consequence.",
+      "evidence": "Two rises over one/three; fixed columns preserve search order; four rotations versus chain.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ghost positions, stable columns and retained totals clarify local repair.",
+      "evidence": "Plain seven versus rotating three shown together.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General maintained invariant and use condition.",
+      "evidence": "Rotating after imbalance keeps search validity and logarithmic-scale height.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sorted input need not create a tall chain if the structure repairs itself.",
+      "evidence": "Three levels instead of seven.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Ghost chain and fixed horizontal columns reveal order-preserving rotation.",
+      "evidence": "Vertical promotion without left-to-right key rearrangement.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and auto-run two fixed modes.",
+      "evidence": "No editable insertion order or manual rotation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete search-tree balancing mechanism.",
+      "evidence": "Height controls search path length.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local repair, invariant and asymptotic height connect.",
+      "evidence": "Balance changes shape without invalidating search.",
+      "confidence": "medium"
+    }
+  }
+}

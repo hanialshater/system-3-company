@@ -1,0 +1,104 @@
+{
+  "slug": "towel-thickness-hidden-volume",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/towel-thickness-hidden-volume",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "At base thickness two millimetres, both towels showed 10,000 square centimetres face; volumes 1,000 and 2,000 cubic centimetres and ratios ten and five.",
+    "Both presets and the five-millimetre boundary were tested; volumes became 2,500 and 5,000 and ratios four and two.",
+    "Screenshot shows a towel cross-section with outward arrows, alongside the comparison table.",
+    "Reveal restates the changed values and explicitly says surface per volume alone does not set drying time."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires understanding a ratio with area and volume units.",
+    "conceptualDemand": "Hold face fixed while scaling cloth volume.",
+    "interfaceBurden": "Two presets and one slider."
+  },
+  "whyCool": "Doubling a towel's thickness adds cloth without adding its two large drying faces.",
+  "caveat": "An illustrative slab model, not a measured towel-drying prediction.",
+  "effort": "Prediction, both presets, maximum thickness, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Coherent comparison with a useful explicit physical limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise ratio question with plausible same, twice and half choices.",
+      "evidence": "Same width and length with doubled thickness.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Thickness and preset contrasts preserve the inverse ratio.",
+      "evidence": "Two and five millimetres tested across both cases.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains unchanged two faces versus doubled volume using current values.",
+      "evidence": "Four versus two at the final setting, with drying-time limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Table and reveal distinguish face, volume and ratio.",
+      "evidence": "Units and model qualification visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Correct mechanism and limit, but no explicit new application.",
+      "evidence": "Ratio alone cannot determine drying time.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same face can mean less face per cloth volume.",
+      "evidence": "Ratio halves.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Cross-section supports the numerical table.",
+      "evidence": "Towel rectangle and outward arrows; no physical drying simulation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjustable thickness and comparison.",
+      "evidence": "Presets plus slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Relevant to towel intuition with explicit limits.",
+      "evidence": "Does not predict drying time by itself.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates geometry from a physical outcome.",
+      "evidence": "Surface-volume relation and drying caveat.",
+      "confidence": "medium"
+    }
+  }
+}

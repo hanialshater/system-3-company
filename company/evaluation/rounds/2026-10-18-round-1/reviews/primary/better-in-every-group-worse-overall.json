@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "better-in-every-group-worse-overall",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/better-in-every-group-worse-overall",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust6/6 ignored. Predicted B overall despite A93/73 versusB87/69;locked."
+    },
+    {
+      "id": "E",
+      "text": "InitialA263hard/B80:overall78.0/82.6. Combine changesbarview. Equalhard172/171:overall83.2/77.9,Aahead. SliderEnd343/0:73.4/86.7,Bahead."
+    },
+    {
+      "id": "R",
+      "text": "Realdataoverall82.6B/78A;groupwidths weightaverages. A220orfewerhardcases winswithsamegrouprates.1986openversuskeyholesurgery;medicalchoiceoutside lesson,arithmeticfocus. Fullstageafterupscroll bars/readoutsvisible,normalverticalscroll,no horizontalissueestablished in inspectedportion. Screenshotinlineonly."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear subgroupwinner versus overallwinner alternatives with allocation visible.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Equalandextreme reallocations reverseoverallwinnerwhilefixedrateshold.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsweightedaverage,casesizeimbalance andexplicitmedicalscope limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Barwidth/filllegend,allocationcounter andoverallreadouts readable.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Weightedcase-mix principle statedand testedwithinonecase;newcontextapplicationnotobserved.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Treatmentwinsbothgroups yetlosesoverall.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Widthversusfill andcombinedbars carryweightedaverages.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibleallocation andbarview.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Outcomecomparison/casemixinterpretation central;medicaldecisionexcluded.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Subgroup/aggregate reversal,weighting,allocationthreshold,causalinterpretationlimit.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core requires holdingconditionalratesfixed whiletrackingdifferentgroupweights andaggregateoutcome.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "low;normalverticalscroll",
+    "prerequisiteNovelty": "moderate;conditionalaggregation",
+    "notationRepresentationBurden": "moderate;twoencodings/multiplepercentages"
+  },
+  "whyCool": "Sharinghardcases evenly flips thewinnerwithout changing either treatment\u2019s smallorlarge-stone successrate.",
+  "caveat": "Exact220thresholdnotindependentlytested;allocationchangesillustratearithmetic,not medicalcausality.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Exactthreshold",
+    "Newdataset"
+  ]
+}

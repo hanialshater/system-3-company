@@ -1,0 +1,103 @@
+{
+  "slug": "sieve-stops-at-five",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sieve-stops-at-five",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 15. Tap 2 crossed 14 numbers, leaving five composites; tap 3 crossed four, leaving 25; tap 5 crossed one, leaving zero.",
+    "Tap 7 explicitly listed 14,21,28 as already crossed; tap 11 likewise 22 and no new removal. Ten prime survivors remained.",
+    "Screenshot showed crossed-out grid cells, distinct tested-prime outlines, current 11 selection and zero counter. Reveal retained original prediction and explained any two factors at least six would give at least 36."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple multiplication followed by factor-pair reasoning.",
+    "conceptualDemand": "Primes, multiples and square-root stopping bound.",
+    "interfaceBurden": "Low: direct number grid and counter."
+  },
+  "whyCool": "The last stubborn composite is 25; removing it makes every later attempted sieve step visibly redundant.",
+  "caveat": "Fixed 30-number range; wording 'largest number you ever need to tap' assumes ascending sieve order. No independent range for transfer.",
+  "effort": "Browser prediction, taps 2/3/5/7/11, counter checks, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear useful-versus-redundant contrast with a concise mathematical reason.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear stopping question with plausible unnecessary-work answers.",
+      "evidence": "Choices 29,15,5 on grid 2\u201330.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Learner witnesses useful and redundant crossings.",
+      "evidence": "Counts 14,4,1,0,0 from primes 2,3,5,7,11.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed boundary and counterexample tied to factor argument.",
+      "evidence": "25 removed at five; seven adds nothing; six squared exceeds 30.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Grid and counter make remaining work legible.",
+      "evidence": "Crossed cells, surviving primes and explicit nothing-new messages.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General square-root principle given without a new tested range.",
+      "evidence": "Only grid 2\u201330 available.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Can stop far below half the range.",
+      "evidence": "Five suffices while seven and eleven add nothing.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Progressive elimination exposes the mechanism.",
+      "evidence": "Crossed-out numbers and ten surviving primes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Tapping grid offers hands-on discovery.",
+      "evidence": "Select each remaining candidate.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful introductory prime-generation method.",
+      "evidence": "Sieve and avoiding redundant work.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Explanation supplies a bound rather than merely reporting answer.",
+      "evidence": "Both factors at least six implies product at least 36.",
+      "confidence": "medium"
+    }
+  }
+}

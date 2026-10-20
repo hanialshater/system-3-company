@@ -1,0 +1,153 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "capped-doubling-game",
+  "domain": "probability",
+  "batchId": "round1-02",
+  "demoVersion": 3,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "0bb6882310c58825de2a5a5b61db51181af046e0f64086a13e7f24b1e1232164",
+  "demoSha256": "23a8b222c23ca8212464c4a08b4ce4a8296b3b35b7b5017b9ca3b6a4a0b3c199",
+  "reviewedAt": "2026-10-18T18:33:41.995606+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/capped-doubling-game",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "8/8 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Selected $20 and locked prediction",
+      "outcome": "Controls unlocked; instruction to play 50 then 500 more"
+    },
+    {
+      "id": "o2",
+      "action": "Selected Price $20; played 50",
+      "outcome": "50 games, average $4.4, median $2, biggest $32, profit -$780; line below price"
+    },
+    {
+      "id": "o3",
+      "action": "Played 500 more",
+      "outcome": "550 games, average $25.8, median $4, biggest $8192, profit +$3182; visible spike and outlying flip-13 contribution"
+    },
+    {
+      "id": "o4",
+      "action": "Changed price to $2",
+      "outcome": "Same 550 games and payout average retained; profit +$13082 and dashed price line lowered"
+    },
+    {
+      "id": "o5",
+      "action": "Opened Show me why and scrolled",
+      "outcome": "Prediction held; reveal ties $8192 to 58% of payouts, each flip contributes $1 expected, 20 flips $20; nine unseen outcomes gave zero sample contribution and 75% pay $4 or less"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear finite rule and plausible price commitments.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "More games exposes rare-outcome jump; changing price isolates profit from payout.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual sample and contribution strip to connect expectation to unstable averages and typical low outcomes.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rules, counters and highlighted controls legible; vertical scroll reaches explanation.",
+      "evidence": "o1-o5; inline screenshots",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Expected contribution principle stated, but no new application or applicability exercise.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic accessibility mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committed fair price holds but typical outcomes and sample jump provide expectation tension.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Running average and per-flip contribution bars carry rare-event explanation.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Repeated sampling and price switching enable exploration; no reset observed.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Distinguishes entry cost, expected payout and typical outcome for this game.",
+      "evidence": "o4-o5",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Expectation, median, sample instability and price-dependent profit are linked.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links probability times payout, sums across 20 outcomes, and contrasts median with expectation.",
+    "conceptualDemand": "balanced: supported linked relations; fractions and averages required",
+    "interfaceBurden": "low: labelled discrete controls; no notation input",
+    "provisional": true
+  },
+  "whyCool": "Adding 500 games makes a rare $8192 win visibly dominate the contribution strip and move the running average above the entry price.",
+  "caveat": "One random path; changing price recomputes profit over retained games, and there is no new-case transfer task.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested",
+    "No repeated independent sampling reset"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "screenshots": [
+    "Inline observed browser screenshots at 50 games and revealed 550-game state; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

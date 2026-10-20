@@ -1,0 +1,104 @@
+{
+  "slug": "two-eggs-hundred-floors",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-eggs-hundred-floors",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted7dropsalwayssufficefor100floorswith2eggs,brokenegg gone.",
+    "Testedfirstbreak:halvingA50drops,shrinkinggapB14. Second26/14,third15/14,fourth9/14,never7/12;historytablepreservedallfive.",
+    "VisualfirstcaseAstarts50thenegg2floors1-49,Bstarts14then1-13. Revealexplaineddecreasing14,13,12gaps,14covers105versus13covers91,andno-breaktradeoff.",
+    "Inline1280x720 light screenshots: towers/table readable;right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Adaptiveworstcasestrategyandcapacityargumentbeyondbasicbinarysearch.",
+    "conceptualDemand": "Shrinkinggapminimaxreasoning.",
+    "interfaceBurden": "Simplepresetsandtable;proseclips."
+  },
+  "whyCool": "Usinguponeegg-dropbudgeteachtimeforcesgapstoshrink,balancingthecostofeverypossiblebreak.",
+  "caveat": "Numericpredictionhard;fivepresetsillustratebutdonotexhausteverybreakfloor;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,allfivebreaktimings,visualplaninspection,reveal andinline screenshots.",
+  "provisionalBucket": "strong-technical-with-viewport-fix",
+  "bucketReason": "Goodresource/worstcasetradeoffandcapacityexplanation;repairproselayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearresourceconstraintbutoptimalnumericanswerrequires substantialpriorstrategicderivation.",
+      "evidence": "7,14,50choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fivebreaktimingscontrastworstcasebalancingandno-breakcost.",
+      "evidence": "A50to7versusB14or12.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualworstcaseandoppositeno-breakcaseconnecttoshrinkinggapcapacityargument.",
+      "evidence": "105versus91floors and12versus7tradeoff.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usefulhistory/towersbutproseclips;strategiesnamedvisuallyratherthanAX.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Differentbreakconditionsshowwhystrategydepends onresourceandworstcaseobjective.",
+      "evidence": "Neverbreakcasereverseswhichplanfaster.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Halvingcanrequire50dropswhilecarefulnonhalvingcaps14.",
+      "evidence": "Firstbreakcontrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Towersshowtestfloorsandlinearcleanupafterbreak.",
+      "evidence": "Firstcase1-49versus1-13.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fiveconditionpresetscomparestrategies.",
+      "evidence": "Alltested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Resource-constrainedsearchandworstcaseplanningintuition.",
+      "evidence": "Brokeneggscarcity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Minimaxresourceallocationandtriangularcapacity.",
+      "evidence": "14+13+...coverage.",
+      "confidence": "medium"
+    }
+  }
+}

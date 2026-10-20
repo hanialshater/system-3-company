@@ -1,0 +1,103 @@
+{
+  "slug": "keep-the-error-feedback",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keep-the-error-feedback",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted only marked item helps. Count mode showed3tries still locked; marked showed right/wrong/right.",
+    "Tapped digit2 changed7\u21929; Try again opened492 on try4 with all right.",
+    "Reveal correctly describes original wrong7 and corrected success. Screenshot readable. Only two choices per digit observed; reveal unlocked before retry."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three binary digit edits.",
+    "conceptualDemand": "Diagnostic versus aggregate feedback.",
+    "interfaceBurden": "Mode buttons,digit taps,retry."
+  },
+  "whyCool": "A single marked error turns a failed attempt into a targeted correction.",
+  "caveat": "Only marked is too absolute; this is a pedagogical lock model. Reveal can be reached before instructed retry.",
+  "effort": "Prediction,both modes,wrong-digit correction,retry,reveal,inline screenshot.",
+  "provisionalBucket": "solid-with-choice-wording",
+  "bucketReason": "Actual corrective interaction,minor prediction framing.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Useful contrast but only marked wording overstates necessity; count plus search can still solve.",
+      "evidence": "Either versus only marked.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Feedback guided actual correction and visible success.",
+      "evidence": "472\u2192492 open.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains information difference using own trace.",
+      "evidence": "Count no location,marks position2.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable current and historical feedback.",
+      "evidence": "Try3 versus current4 labels.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General comparison principle without fresh application.",
+      "evidence": "Same lock exercise.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Specific errors more informative than attempt count.",
+      "evidence": "Right/wrong/right.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-position marks make correction concrete.",
+      "evidence": "Three boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Editable code and retry central.",
+      "evidence": "Corrected unlocked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Feedback design principle supported.",
+      "evidence": "Not real bike-lock behavior.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes outcome count from diagnostic information.",
+      "evidence": "Correction location.",
+      "confidence": "medium"
+    }
+  }
+}

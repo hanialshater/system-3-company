@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "saturated-enzyme",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/saturated-enzyme",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "saturated-enzyme",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/life/saturated-enzyme/meta.json",
+    "metaSha256": "9d9f090b2b9971e014d9ef2c4c82d4918f128b083ff4ddf6fcfd1da44234f5a0",
+    "demoSha256": "34c00ee36274d6f3667ddc053e716d169115638c1cb41a3916034801e93f937a",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/saturated-enzyme",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/saturated-enzyme.json"
+  },
+  "date": "2026-10-18T20:25:57.254539+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chosedouble100%faster andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial10concentration91busy,caption5to10busy83to91gain10%. Double10to20:91to95busy,gain4%. Double1to2:50to67busy,gain34%. Inspectednewbrighterstationsandwaitingdots."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read4%correction,capacityoneperenzyme,extrasubstratewaitsnearbusyceiling;one-substratekineticsandstation simplification."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,10to20,1to2andscrolledreveal inspected. Stationoccupancy,newbrightness andpercentcounters legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Constraineddoublingforecast withcapacitydefinition.",
+      "evidence": "Eachenzymeoneatatime,halfwayconcentrationdefined,10timesbaseline.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Low/highdoublingcontrastshowsdiminishingreturns.",
+      "evidence": "50to67+34%versus91to95+4%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Limitedstationcapacityexplainssaturation.",
+      "evidence": "Extrasubstratewaits,topratewhenallbusy;modelsimplificationstated.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Occupancyandrelativegainseparatedandcountable.",
+      "evidence": "100stations,speedpercentoftopversusgainfromdoubling;roundedvaluesexplicitvisually.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Mechanismwithin sameenzymetoy.",
+      "evidence": "No new application orfreshcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twicesubstratenearcapacitybarelyhelps.",
+      "evidence": "10to20only4%gain.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Brighternewlybusystationsshowavailablecapacity.",
+      "evidence": "Fewnewathighconcentration,manynewatlow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Doublingpresetsandslider.",
+      "evidence": "Bothpresetscompared.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulreactioncapacityintuition.",
+      "evidence": "Singleenzymeone-substratemodel.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relativerateandoccupancyceilinglinked.",
+      "evidence": "Low/highconcentrationcontrastsandreactionboundaries.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Relateconcentrationtofractionbusyandrelativechangeinrate.",
+    "interfaceBurden": "Twopresetsandoneconcentrationslider.",
+    "prerequisiteNovelty": "Enzyme/substratedefined,halfwayrelativeunitsnew.",
+    "notationRepresentationBurden": "Busycounts,percentoftopandpercentgain;two kindspercentrequiretracking."
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "two-names-one-list",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-names-one-list",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedastays[1,2]afterb=a;b.append3.",
+    "Sharedappendthroughbgavea=b[1,2,3]. Copyaintobthenappendb4gavea[1,2,3],b[1,2,3,4].",
+    "Appendeda4:equalcontentsbuttwolists;appendeda5:afiveitems,bfouritems. Revealcorrectlyrecalledindependentmutationandcopycondition.",
+    "Inline1280x720 light screenshot: separatearrow/listboxes,contents andfullprose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requiresbasiclist/codevocabulary butclearobjectmodel.",
+    "conceptualDemand": "Referencesversuscopies.",
+    "interfaceBurden": "Clearcode-labelledbuttonsandreadablelayout."
+  },
+  "whyCool": "Twoidenticallookinglistvaluescanbeeitheroneobjectortwo,andthearrowsmake thedifferencevisible.",
+  "caveat": "Simpleflatlists,notnested/shallowcopylimits;accessibilityunknown.",
+  "effort": "Prediction,sharedappend,copy,independentmutationsincludingequalcontents,reveal andinline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readableconstructivealiasing/copycontrastwithstate-awarepayoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "PrecisePython-styleprogramwithplausiblecopy-versusreferencealternatives.",
+      "evidence": "b=aandappend3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sharedmutation,copy,independentmutationsandequal-contentsboundarydistinguishidentity.",
+      "evidence": "Equalfouritemsbutseparateobjects thena5alone.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "State-awareexplanationconnectsoriginalsurprisetoexplicitcopyrequirement.",
+      "evidence": "Currentbstayedfouritems.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablearrows,listboxes,metrics andprose.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Copy-and-mutatecaseappliesconcretepreventionandtestsbothdirections.",
+      "evidence": "Usecopyforindependentlist.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Changingonevariable'slistchangesanothernameuntilcopy.",
+      "evidence": "Sharedappendthenindependentappend.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Names/arrowsdistinguishobjectsfromcontents.",
+      "evidence": "Twoseparateboxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Appendbothwaysandcopy/referencecontrols.",
+      "evidence": "Severalmanualmutations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Commonmutable-referenceprogrammingpitfall.",
+      "evidence": "Explicitcopycondition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Identity,aliasing andcontentsequality.",
+      "evidence": "Equalcontentsnotsharedobject.",
+      "confidence": "medium"
+    }
+  }
+}

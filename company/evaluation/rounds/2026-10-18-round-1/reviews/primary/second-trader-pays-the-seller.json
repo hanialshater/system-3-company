@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "second-trader-pays-the-seller",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/second-trader-pays-the-seller",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "second-trader-pays-the-seller",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/second-trader-pays-the-seller/meta.json",
+    "metaSha256": "ca6bd0c70558be88239e3a291fa450d2cabe86b6733027fd3aa4ff7ce938028a",
+    "demoSha256": "5736b1556481061bed11d727f4d440687904ef42fd34caa4eef1960f0f5b8abe",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/second-trader-pays-the-seller",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/second-trader-pays-the-seller.json"
+  },
+  "date": "2026-10-18T21:01:36.890585+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected seller gets dollar when second trader with own1dollar buyer reaches seller."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "AloneT1seller0/trader1. AddedT2;1centbid gave seller.01/T2.99;10outbids gave.11/.89;toend gave seller1/bothtraders0 and stopped further bids."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read profitable outbid incentive up to1, sellercaptureswhole dollar, buyers chargedfull1 and cent-step simplified-model condition."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected at.11and1: highlighted winning path, seller bid meter and retained endpoint1, trader zero summaries visible. Reveal read through AX."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete rival-entry question targets profit-splitting intuition.",
+      "evidence": "Seller versus tradersplit versus buyer.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incremental and endpoint bids expose surplus movement.",
+      "evidence": ".01/.99 to1/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains incentives and stopping point with explicit pricing assumptions.",
+      "evidence": "Each prefers profitable outbid to losing; above1losesmoney.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph and money counters track who receives value.",
+      "evidence": "Winning path and seller meter1.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Competition interpretation remains this fixed model.",
+      "evidence": "No new market case or fresh buyer values.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rival entry transfers surplus to seller rather than splitting it.",
+      "evidence": "Bothtraders0 atendpoint.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted trading route and meter show bargaining shift.",
+      "evidence": "Seller0to1 while traderprofit falls.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Outbid controls make a simple auction sequence.",
+      "evidence": "1cent,10bids,toend tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides bounded intuition about competing intermediaries.",
+      "evidence": "Ownbuyers andfull1pricing assumptions explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links network access, incentive and price ceiling.",
+      "evidence": "Second sellerconnection drives bids to resalevalue.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: competing offers move surplus under fixed resale value",
+    "interfaceBurden": "gentle: add rival and bidding shortcuts",
+    "prerequisiteNovelty": "intermediary surplus and competitive bidding introduced",
+    "notationRepresentationBurden": "five-node graph and cent-valued counters"
+  }
+}

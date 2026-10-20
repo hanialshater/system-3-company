@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "helium-leaks-first",
+  "domain": "chemistry",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "173d07aa16f267e1fcf573fea54968d64e17931f592881c7f444ae164e0c44e5",
+  "demoSha256": "1170cd174a51976b1ca85a7d6e70b461a66d1878e7da6e595086861d4e83f066",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/helium-leaks-first",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected7 times faster; Lock it in",
+      "outcome": "Retained prediction; gas buttons unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Ran He, N2, then Ar",
+      "outcome": "Counts1166,441,362; prior bars retained; reveal unlocked after He/N2."
+    },
+    {
+      "id": "v",
+      "action": "Inspected screenshot after Ar",
+      "outcome": "Particle arrows, pinhole and retained comparison bars visible in dark1257x936; labels clear; vertical scrolling for lower content, no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "2.6 times faster; uses1166/441 same-window comparison and equal average energy, inverse square root mass; states simplified2D no-collision limitation."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Mass-ratio and equal-rate alternatives discriminate plausible beliefs.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three mass choices visibly change counts while comparison bars persist.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed He/N2 counts tied to square-root relation and model limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Gas masses, counts, arrows and persistent bars make comparison usable.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Mass-rate principle stated; no explicit new-use task or conditions beyond same temperature.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "7-times prediction reversed by measured2.6 ratio.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrows and retained bars carry mass/speed contrast.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Selectable gas trials provide comparative discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Pinhole use is disciplinary; no concrete everyday application offered.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Counts, mass, energy and square-root speed connected with model limitation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links equal energy to speed and square-root mass ratio with count support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Molar mass and molecular energy unfamiliar."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "g/mol and square-root notation supported by numbers."
+    }
+  },
+  "whyCool": "Switching from He to nitrogen retains1166 versus441 pinhole counts, making the square-root mass relation visible.",
+  "caveat": "Simplified collision-free2D model; counts are not a tested real balloon emptying time.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Ne and repeat-run behavior untested; accessibility modes and phone untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

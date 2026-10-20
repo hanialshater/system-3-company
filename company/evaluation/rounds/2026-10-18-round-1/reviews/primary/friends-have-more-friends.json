@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "friends-have-more-friends",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/friends-have-more-friends",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "friends-have-more-friends",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/probability/friends-have-more-friends/meta.json",
+    "metaSha256": "9ebd6caf25da439718b466cf521bf6a6f6023ed18090b5b4529b18375650076a",
+    "demoSha256": "ae16225221f345ce540ee04cefc0d11f07f19ca17dd304ee436ac64c989337c7",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/friends-have-more-friends",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/friends-have-more-friends.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Chose 1.6 against 2.5 and 3.4; locked it in.",
+    "exploration": "Pick someone selected Ana then Hub, four friends. Pick 100 more: 101 picks average 3.32, hub 78/101. Second 100: 201 picks average 3.43, hub 163/201. Population average retained 1.6.",
+    "reveal": "Corrected to 3.4; connected actual 3.43 mean and 163 hub selections to four leaves and one hub, 0.2 \u00d7 1 + 0.8 \u00d7 4. Stated five-person toy and connected unequal-degree network condition.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Star graph labels friend counts, selected person dashed outline, hub gold and selected edge bright. Counters and explanation readable; reveal bottom extends to viewport edge.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "5/5 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear numerical choice tests treating friend sample as population sample.",
+      "evidence": "1.6 versus 3.4 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single selection shows path and batches reveal sampling difference.",
+      "evidence": "Ana to Hub; 101 mean3.32 and 201 mean3.43.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual sample counts to exact weighted mean and limits generalization.",
+      "evidence": "163/201 hub; weighted3.4; unequal counts in connected networks.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph, selected edge and paired averages explain tested desktop path.",
+      "evidence": "Actual screenshot and explicit pick status.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable biased friend-sampling principle with conditions, but no concrete new application.",
+      "evidence": "Connected network with unequal friend counts statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same-as-population prediction contradicted by repeated friend averages.",
+      "evidence": "1.6 compared with3.32 and3.43.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Star structure shows why leaves repeatedly lead to hub.",
+      "evidence": "Four leaf edges to gold Hub screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Repeated sampling allows observing fluctuation but structure is fixed.",
+      "evidence": "Single pick plus two batches.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Shows concrete sampling bias in comparing friends popularity.",
+      "evidence": "Population versus friend averages.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two-stage selection, sample fluctuation and degree-condition limit.",
+      "evidence": "201 samples and exact3.4 explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes two sampling distributions and their weighted averages.",
+    "conceptualDemand": "Follow person then friend selection and compare weighted friend count to population mean.",
+    "interfaceBurden": "Low; two clearly labeled sampling buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: two-stage sampling and weighted mean.",
+    "notationRepresentationBurden": "moderate: decimal averages and weighted sum."
+  },
+  "whyCool": "Repeated picks keep landing on the hub, pushing the friend average toward 3.4 while everyone average stays1.6.",
+  "caveat": "Fixed extreme star network; no alternative network or fresh application tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternative topology and reset not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 2 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:07:54.595255+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "lh-capacity-batch-count",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-capacity-batch-count",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted eight-object capacity needs fewer batches than six for20 indivisible identical objects.",
+    "TestAceil20/6=4, Bceil20/8=3.",
+    "Reduced count1: both capacities need one batch. Visual shows equal output levels, expressions preserve rounding.",
+    "Reveal explicitly distinguished original20 from current1 and explained partial final batch plus excluded volume,weight and carrying safety constraints."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Division and upward rounding.",
+    "conceptualDemand": "Whole batches and remainders.",
+    "interfaceBurden": "Two tests and count slider."
+  },
+  "whyCool": "A larger carrier's benefit appears in steps rather than continuously.",
+  "caveat": "Carrier graphics encode output count rather than actual packing; does not verify stated physical capacity.",
+  "effort": "Completed prediction,both capacities,one-object equality,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear whole-batch rule and accurate original/current framing.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete usable capacities and indivisibility support a concrete batch comparison.",
+      "evidence": "20 objects,6 versus8 capacity.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Object count crosses a meaningful equality boundary.",
+      "evidence": "4/3 batches to1/1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct changed-state explanation and ceiling rule with model limits.",
+      "evidence": "Partial batch counts as whole trip.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Quantity-only assumptions and expressions explicit; singular grammar rough.",
+      "evidence": "1batches.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete batch-count method includes applicability limits.",
+      "evidence": "Divide then round up; separate volume/weight constraints.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A remainder requires a trip, but greater capacity need not reduce trip count for small loads.",
+      "evidence": "20 different,1 equal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Output level compares batch counts but does not show objects assigned to individual batches.",
+      "evidence": "No remainder-bin diagram.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Count slider changes discrete totals.",
+      "evidence": "Two tests.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful capacity arithmetic.",
+      "evidence": "Usable capacity assumed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Indivisibility and boundary effects.",
+      "evidence": "Quantity-only model.",
+      "confidence": "medium"
+    }
+  }
+}

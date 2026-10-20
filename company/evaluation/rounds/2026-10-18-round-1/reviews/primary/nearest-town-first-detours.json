@@ -1,0 +1,105 @@
+{
+  "slug": "nearest-town-first-detours",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/nearest-town-first-detours",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictednearestunvisitedrouteoptimalfortowns-15,-3,2,8from0returnhome.",
+    "Firststep0to2cost2. Completedgreedy0,2,-3,8,-15,0withlegs2+5+11+23+15=56.",
+    "Outto8firstrouteactually0,2,8,-3,-15,0cost46. All24ordersrange46to56;greedytiedlongest.",
+    "Revealrecalledlongcrossinganddeferredfar-towncost,explainedlocalgreedfailure androuteimprovementapplication.",
+    "Inline1280x720 light screenshot: legarcs,numbers,history andfullprose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distancearithmetic androuteordertracking.",
+    "conceptualDemand": "Greedyoptimizationcounterexample.",
+    "interfaceBurden": "Cleartraceandbuttons,readablelayout."
+  },
+  "whyCool": "Everycheapnextstepcombinesintooneofthelongestcompletetours.",
+  "caveat": "Singleline-mapcounterexample;routeplannerpracticeassertedratherthan demonstrated;accessibilityunknown.",
+  "effort": "Prediction,singlestep,greedy/alternative/allorders,reveal andinline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readableminimalgreedycounterexamplewithfullcosttrace.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullyspecifiedlinepositions andreturncondition determinecomparison.",
+      "evidence": "Yesor5/10kmimprovement alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step,fullgreedy,alternative andexhaustivecomparisonexposefailure.",
+      "evidence": "56versus46and24-order range.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsobservedlongcrossing tolocalversusglobalobjective.",
+      "evidence": "Deferredfar-towncost.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readabletraceandlegsum;outto8firstmeansdirection,passes2first.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrouteplanningapplicationwithoutfreshroute/problem.",
+      "evidence": "Samefourtowns.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nearestfirsttiesforworstamongall24orders.",
+      "evidence": "56maximum.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Legarcs andnumbers showexpensivecrossing.",
+      "evidence": "23kmlongleg.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepandcomparepreset tours.",
+      "evidence": "Threecomparisonactions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Routingheuristiclimitations central.",
+      "evidence": "Repairgreedytours.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Localdecision versusglobaltourcost.",
+      "evidence": "Exhaustiveverification.",
+      "confidence": "medium"
+    }
+  }
+}

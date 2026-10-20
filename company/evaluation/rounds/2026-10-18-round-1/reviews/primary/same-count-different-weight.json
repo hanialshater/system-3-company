@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-count-different-weight",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-count-different-weight",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-count-different-weight",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/same-count-different-weight/meta.json",
+    "metaSha256": "0ce92ff3f9afcf16e702156ba43cb2015a7afce2134ef26029a10290002dfea0",
+    "demoSha256": "d6f30920110f7fe8ae6b1b349e6234345732f48b3cdaac0e0112599ae028284a",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-count-different-weight",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-count-different-weight.json"
+  },
+  "date": "2026-10-18T19:46:26.902426+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Preview isolation confirmed;trust6/6 ignored. Chosewater andlocked. Atomcarbon/moleculewater countedoneparticleeach.",
+    "exploration": "Initial6gcarbon0.5mol/3.01e23/50%. Carbonpreset12g=>1mol/6.02e23/100%;water18g=>same. Ironselectionretains18g=>0.32mol/1.94e23/32%;End60g=>1.07mol/6.47e23/107%;set56=>1molrounded/6.04e23/100%. Revealunlockaftercarbon/water.",
+    "reveal": "Correctsame;actual12/18samebox,count6.02e23calledmole. Watermoleculesheavier18versus12. Molar massone-moleweight,iron~56g;chemistweighstocount.",
+    "visual": "Inline1257x936 dark screenshots inspected: identicalfullboxdotgridswater/56iron,particlenumberandmasscounter;allcontrols/reveallegible. Boxfill107numericalboundaryobservedbutoverflowdotsnotseparatelyinspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concreteheavier-versusmoreparticles alternativesandparticledefinitionclear.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Equalcountdifferentmass, equalmassironfewerandnear-one-moleironcontrastsexposerelationplusupperboundary.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualfullboxcomparison tiedtoper-particlemass,molecount andnewironexamplewithapproximation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mass,particles,boxfillandmolelabeldistinct;rounding56iron6.04versus6.02consistentwithabout language.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretechemistweigh-to-countuseandiron~56gcasewithmolar-masscondition;nofreshindependenttask.",
+      "evidence": "reveal;exploration",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenheavierwateractuallyequalcount;18gironmuchlesscount.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sharedboxfillrepresentssameparticlecountdespitemassandsubstancechanges.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Substanceandmasschoicesenablemeaningfulreversiblecontrasts.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteweighing-to-countchemicalamountpractice.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Countversusmass,molarmass,equalmasscontrastandapproximation.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separateparticlecountfrommassandcompareparticletypes,moleunit scaffoldedbybox/dozen analogy.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:substancebuttons/massslider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: mole/molar mass",
+    "notationRepresentationBurden": "moderate: scientificparticlecount,mol,g"
+  },
+  "whyCool": "18gwaterfillsthesameparticleboxas12gcarbon,but18gironfills only32%.",
+  "caveat": "Fixedparticletypesandroundedmasses;boxfillabove100%notvisuallyaudited."
+}

@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified;5/5trust ignored. ChoseFell70%vsFell95%/Rose15%;locked. Two equal time windows1900–1958/1959–2017."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "All disasters=>25.2M→7.4M;Earthquakes=>1.21M→1.37M;Per million/year=>9.7→4.5;Threebiggestyears=>53%. Prior results retained; allfourunlockedreveal."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteRose15%; connects count rise with population morethandoubled hence per-person risk fell; three years53%; singleyear can change half-century trend. Screenshot chart marks1976/2004/2010. At1280×720card inner scroll, reveal lines visibly extend/cut at right edge (1900-... and 'per...' clipped), though AX contains full text. Screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible aggregate-to-subgroup extrapolation commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four views directly expose raw/rate/concentration distinctions.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Cites observations and explicit rare-event trend limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Controls clear but reveal prose visibly clips right side at testeddesktop.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable normalize/check subgroups/check outliers principles.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Aggregatefall/subgrouprise/ratefall contrast central.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two-window bars and highlighted years support mechanism.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible view presets.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete statistical interpretation central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Aggregation, denominator and concentration linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare aggregate/subgroup totals, population normalization and rare-event concentration.",
+    "conceptualDemand": "Three linked data interpretation relations; arithmetic represented in retained summaries.",
+    "interfaceBurden": "Four buttons clear; reveal text clipping in desktop card materially burdens reading."
+  },
+  "whyCool": "Switching from raw earthquake totals to per-person rates flips the apparent trend, then three highlighted years expose concentration.",
+  "caveat": "Desktop reveal prose clips at right edge in tested screenshot; supplied historical data not independently verified; no causal trend conclusion warranted.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "No revisit/reset; keyboard/focus/phone/zoom/contrast/motion untested."
+  ],
+  "screenshots": [],
+  "slug": "earthquakes-did-not-fall",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/earthquakes-did-not-fall",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "ef377d9ec070dc51123de99a4f9f7b0d4df8b63eb48c047946b8cc54d8fc053f",
+    "metaSha256": "36398b5f3d017f9f8faae2d31830e9e5ebbd8928371ae205c0e92f3a7b316c20"
+  }
+}

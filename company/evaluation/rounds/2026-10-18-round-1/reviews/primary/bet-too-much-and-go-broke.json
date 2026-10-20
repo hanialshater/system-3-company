@@ -1,0 +1,104 @@
+{
+  "slug": "bet-too-much-and-go-broke",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bet-too-much-and-go-broke",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction favorable60/40coin evenmoney,100rounds middleplayer richest with5,20,60%; chose60.",
+    "31players sameflips:60% medianx0.00021,1above start;5%x2.40,31above;20%x7.49,27above.",
+    "Reveal citesallthree actualtestedresults,1.6x0.4=0.64, Kelly2p-1=20% for modelcoin,realbetsdiffer and Notadvice.",
+    "Screenshot loggrid and boldmedianline, topchart and rightedge reveal clipped; tinygridlabels."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Logscale and typical versus average outcomes add statistical abstraction.",
+    "conceptualDemand": "Multiplicativewealth,median,modeloptimalfraction.",
+    "interfaceBurden": "Simplebuttons but denseclippedchart andtext."
+  },
+  "whyCool": "Winningodds do not save a player who risks too much: the same flips turn growth into near-ruin.",
+  "caveat": "31toyplayers and fixedmodeledodds; not investment/gambling guidance; single reviewer.",
+  "effort": "Prediction,60/5/20% contrasts,reveal andvisualcheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Powerful controlledcontrast and explanatorypayoff; numeracypresentation demanding.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Direct stake-growth misconception with controlledchance.",
+      "evidence": "5vs20vs60%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sameflip paths isolate stakeeffect and dispersion.",
+      "evidence": "Medianandabove-start counts vary.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Personalizedresults linked to multiplicative lossmechanism.",
+      "evidence": "1.6x0.4 and threeobserved medians.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Logscale,median,percentages and clippedchart are demandingrepresentation.",
+      "evidence": "Screenshot tinylogticks and croppedtop.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to understand repeatedmultiplicative risk, with modelcaveat.",
+      "evidence": "Realbetsdiffer; Notadvice.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Favorableodds can collapse typicalwealth.",
+      "evidence": "60% medianx0.00021.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Manypaths andboldmedian show distribution.",
+      "evidence": "31paths onlogscale.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switch stake tocompare repeatabletoyoutcomes.",
+      "evidence": "Sixstakebuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Risk-size intuition potentiallyuseful but toyassumptionsmatter.",
+      "evidence": "Explicitmodelcoin caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Median,compounding,volatility,and optimalfraction.",
+      "evidence": "Kellyrule plus pathdistribution.",
+      "confidence": "medium"
+    }
+  }
+}

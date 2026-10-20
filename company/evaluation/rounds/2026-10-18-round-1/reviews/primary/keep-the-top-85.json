@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "keep-the-top-85",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keep-the-top-85",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "keep-the-top-85",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/keep-the-top-85/meta.json",
+    "metaSha256": "800f544c5b68dcda441e4f0e715f5ed3a4e881beb5767c6759eb8dbcee2dbfce",
+    "demoSha256": "1bd0de261ab9f6e777958a8194a47cd8c1d2db16513332f78a7650b3eb7c9ea9",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/keep-the-top-85",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/keep-the-top-85.json"
+  },
+  "date": "2026-10-18T19:06:59.335221+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case",
+    "Independent visual sample-count verification"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust4/4 ignored. SelectedStill45% and locked; tasktop85from45,30,15,6,4.",
+    "exploration": "Initialp75 keeps2,pizza60%; set85keeps3,pizza50%; Draw20clicked at85 unlocks reveal. End100keeps5,pizza45%. Draw output not separately inspected before changing cutoff.",
+    "reveal": "Correct50%. Historicalp85 top3sum90so cake/gluecut;45/90=50%. Says inyour20draws at85cutwords0; explanation cutwords cannotcomeup and realtexttop-p removes tail/rescales.",
+    "visual": "Inline1257x936 dark screenshot inspected: current100allfive purplebar45/30/15/6/4anddrawset1caption; original task screenshot same bars. Revealp85 historical label explicit; draw composition not independently verified visually."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete alternatives45/50/85distinguish unchanged odds,rescaling and threshold confusion.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threshold choices change retained count and pizza chance;100boundary restoresoriginal. Drawclicked but sample composition not independently observed.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicit90massdenominator explains observed50% and original85threshold; historical draw count asserted by reveal.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold,keptcount,currentchance clear; historicalp85identified separately fromcurrent100.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names realtext generator top-p use; no new application or applicability conditions beyond same sampling rule.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed45becomes50aftertailcut,thenreturns45at100.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Bars represent odds; tested count/chance readouts carry rescaling contrast;85bar screenshot not captured.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible cutoff anddrawcontrol support sampling exploration.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete text-sampler setting interpretation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Cumulative overshoot85to90,renormalization and100boundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Select fewest cumulative words then divide by retainedmass; two linked probability operations.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:slideranddraw",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:cumulative cutoff/normalization",
+    "notationRepresentationBurden": "moderate:p,percent,ratioandbars"
+  },
+  "whyCool": "Keepingatleast85%actuallykeeps90%mass,whichraisesthepizzachanceto50%.",
+  "caveat": "Drawcompositionnotindependentlyinspected; onlyreveallogreportedcutwords0."
+}

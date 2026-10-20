@@ -1,0 +1,103 @@
+{
+  "slug": "mail-minus-noise",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mail-minus-noise",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Topic minus newsletter removes newsletters rather than OR.",
+    "Find train selectedm1 train notes,m2 train newsletter,m4 train draft;Exclude newsletter removedm2 leavingm1/m4.",
+    "Screenshot kept excludedm2 and unrelatedm3 visible grey. Reveal named two results and limited local matcher versus Gmail conversation grouping."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Four short records and simple rule.",
+    "conceptualDemand": "Keep desired topic while excluding term.",
+    "interfaceBurden": "Two sequential buttons."
+  },
+  "whyCool": "You can keep the topic while removing a recurring source of noise.",
+  "caveat": "Fixed local fixture,not actual Gmail search; no query entry or reset.",
+  "effort": "Prediction,both operations,screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear record-level contrast and explicit provider limitation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Straightforward exclusion versus OR semantic question.",
+      "evidence": "Minus newsletter cue.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Meaningful membership contrast but fixed sequential operations without editable query.",
+      "evidence": "3\u21922 matches.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains keep topic and lack excluded word,with provider limit.",
+      "evidence": "Leaves Gmail conversation grouping out.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Records visibly retain reasons for inclusion/exclusion.",
+      "evidence": "m1/m4 highlighted.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete distinction from real provider grouping constrains application.",
+      "evidence": "Local field matcher only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected exclusion behavior.",
+      "evidence": "Newsletter removed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighting shows exact removed record while preserving topic matches.",
+      "evidence": "m2 grey,m1/m4selected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two prescribed operations.",
+      "evidence": "No independent query.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Search filtering central.",
+      "evidence": "Remove recurring noise.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Conjunction with negation,not OR.",
+      "evidence": "Topic AND NOT newsletter.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "overlap",
+  "slug": "current-same-around-loop",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/current-same-around-loop",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "f73a32eb8ba1ba8fbcd5f348307c729f0307617c01ea2c9cb5b6c06c2cc7c19d",
+  "demoSha256": "d82208bc5045a99a4d048f45ab8b4cc88f10c76d6da42069917afddf35462472",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose Less than0.50A from less/same/zero.",
+    "exploration": "At6V measured afterbulb2,bottomwire,betweenbulbs:all.50A; message same all4spots. Battery12V madebetween1.00A;beforebulb1 also1.00A.",
+    "reveal": "Original6V between.50A same asbefore;one loop nowherecharge piles/leaks,unchangingdensity.12V1A everywhere;bulbs takeenergy,eachhalf12V=6V.",
+    "visual": "Screenshotdark1257x936:two bulb circuit,meter between.50A,each takes3V;chargedots fade aroundloop,positionbuttons and batteryslider readable.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit leftover-current misconception with clear alternatives.",
+      "evidence": "Less/same/zero prediction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Meterposition invariance contrasted with voltage sensitivity.",
+      "evidence": "Fourspots.50A;12V two spots1A.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses tested voltage and position changes to distinguish charge andenergy.",
+      "evidence": "6V.5A,12V1A,eachbulb6V;noaccumulationcondition.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Circuit and meter location have direct controls and numericfeedback.",
+      "evidence": "Labeledfourspots,.50A readout and batteryvalue.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable single-loop rule and condition; no newcircuitapplication.",
+      "evidence": "One loop nowherepile/leak condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedcurrentloss overturned acrosspositions.",
+      "evidence": "Allfourspots.50A.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dots and circuit locate measurement and energy drop.",
+      "evidence": "Fadingdots,3Veachbulb and same.50A.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible meter and battery controls central.",
+      "evidence": "Fourpositions and6\u219212V.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete circuitmeasurement interpretation.",
+      "evidence": "Currentpreserved versusenergytaken.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Spatialinvariant,voltagechange andenergy/currentdistinction.",
+      "evidence": "Samepositioncurrent,doublevoltagecurrent,bulbhalves.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes conservedchargeflow and transferredenergy withtworelatedmeasures.",
+    "conceptualDemand": "Supported current/voltage distinction and single-loop condition.",
+    "interfaceBurden": "low;direct labeledpositionbuttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Amps,volts,currentversusenergynewforboundary."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Circuitdiagram,A/Vanddecimalreadings."
+    }
+  },
+  "whyCool": "Moving the meter pastbothbulbs leaves.50A unchanged whiledotbrightness falls, separatingcurrent fromenergy.",
+  "caveat": "Onlysingleseriesloop;notestedbranch/leakorrealbulbresistanceboundary.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

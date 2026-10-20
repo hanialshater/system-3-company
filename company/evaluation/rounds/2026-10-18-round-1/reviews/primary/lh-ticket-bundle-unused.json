@@ -1,0 +1,103 @@
+{
+  "slug": "lh-ticket-bundle-unused",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-ticket-bundle-unused",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Singles lower for6 trips at\u20ac2 single versus\u20ac8 indivisible five-pack,unused value zero.",
+    "Tests gave12 versus16;5 trips gave10 versus8 reversal.",
+    "Screenshot showed receipt icons,not individual unused tickets. Reveal preserved context and said sixth requires second bundle under rule; no explicit all-or-nothing purchase constraint despite singles being available."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small fares and pack ceiling.",
+    "conceptualDemand": "Unused tickets still cost money.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "A sixth trip can trigger a whole extra bundle in an all-bundles comparison.",
+  "caveat": "Mixed bundle-plus-single option excluded implicitly; should be stated before claiming a second bundle is required.",
+  "effort": "Prediction, both tests, adjacent bundle boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Good discontinuity but important purchasing constraint unstated.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Specific comparison but hook gives second-bundle consequence.",
+      "evidence": "Six trips.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adjacent trip count exposes bundle jump and reversal.",
+      "evidence": "6\u21925.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains pack ceiling but unqualified second-bundle statement omits cheaper mixed purchase.",
+      "evidence": "One pack plus one single would be\u20ac10 if mixing permitted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "All-singles versus all-bundles restriction should be explicit.",
+      "evidence": "Cannot split bundle does not prohibit supplementing singles.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Denominator principle but missing purchase-option constraint.",
+      "evidence": "Used and purchased counts differ.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Extra trip can reverse apparent bulk savings.",
+      "evidence": "Bundle jumps8\u219216.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "No used/unused ticket partition.",
+      "evidence": "Receipt icons only.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Boundary invites exploration.",
+      "evidence": "Five/six reversal.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Ticket package comparison central.",
+      "evidence": "Indivisible bundle cost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Discrete purchase jump and effective use.",
+      "evidence": "Ceiling pack count.",
+      "confidence": "medium"
+    }
+  }
+}

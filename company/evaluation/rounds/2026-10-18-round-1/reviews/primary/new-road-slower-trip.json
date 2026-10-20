@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "new-road-slower-trip",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/new-road-slower-trip",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "new-road-slower-trip",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/cs/new-road-slower-trip/meta.json",
+    "metaSha256": "df7cdfb313e71948be52667108e46e68cf52b3997456a803dddd0ff47f6de208",
+    "demoSha256": "c1f905bcd0188fed874373cd382bbf58adf408168c8a2392e031f650eb487c77",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/new-road-slower-trip",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/new-road-slower-trip.json"
+  },
+  "date": "2026-10-18T21:08:47.877553+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected80minutes after free link;4000drivers, congestioncars/100 andfixed45minute roads stated."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Before split2000/route65min. Openlink newroute40versusreturn65;1000switch new50versusreturn70;runall4000 new80versusreturn85, baseline65 retained."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Bothbusyroads now4000cars/40minutes, route40+0+40=80, unilateralreturn85 so nobody leaves;alllose15minutes; explicit not-all-networks caveat."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected1000and4000newroute: loadlabels2500/4000,roadcost25/40,free0link andcurrent/return/baseline counters readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit small network supports a counterintuitive equilibrium commitment.",
+      "evidence": "40/65/75/80 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incremental switching exposes congestion and individual incentives.",
+      "evidence": "Newroute50versusreturn70 then80versus85.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains stable worse outcome through unilateral route comparison.",
+      "evidence": "Nobody leaves80for85 althoughbefore65.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Loadcost labels and retained baseline make mechanism traceable.",
+      "evidence": "4000/100=40 onbothbusyroads.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General new-road caveat without newnetwork application.",
+      "evidence": "Onlyfixednetworknumbers explored.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Freeextra road makes everyone slower.",
+      "evidence": "65before80after.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Network labels connect shared-roadloads to trip costs.",
+      "evidence": "Bothbusylinks40atendpoint.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Switch1000andrun enable focused route-choice simulation.",
+      "evidence": "Two migrationstates checked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Separates individualbestresponse from collective traffic outcome.",
+      "evidence": "80beats85butworse65.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Causal congestion feedback andequilibrium withboundary caveat.",
+      "evidence": "Modelcanbutdoesnotalways worsen.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "demanding: routecosts depend on sharedloads and unilateral alternatives",
+    "interfaceBurden": "gentle: before/after,increment andrun",
+    "prerequisiteNovelty": "selfish-routing equilibrium andBraessparadox",
+    "notationRepresentationBurden": "four-node network withloads,costs andthree tripcomparisons"
+  }
+}

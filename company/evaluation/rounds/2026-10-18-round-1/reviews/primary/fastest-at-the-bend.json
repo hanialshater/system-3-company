@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "fastest-at-the-bend",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fastest-at-the-bend",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "b525442fadc5dd8d64791ba7fa3c80d329703ece7864b65e34b28d65f9fc935b",
+  "demoSha256": "d1a7a1b1b8c3f742e47a2e25a283617b0b155535380c90267b4ad2ac3241d191",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose900 fish from100/500/900.",
+    "exploration": "Initial100\u219245new;500\u2192125;900\u219245; revisited100 to unlock reveal. Slider1000\u21920new/0room boundary.",
+    "reveal": "500 correct; parents and room; new=.5\u00d7fish\u00d7share room,maximumhalf capacity; S-curve bend. Made-up rate/fixed limit;real populations can lag,overshoot,crash.",
+    "visual": "Screenshot500 dark1257x936: pond grid green fish,white born,dim room with explicit legend;125counter and slider readable.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Population choices distinguish parent-count intuition from balance.",
+      "evidence": "900prediction versus100/500.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sparse/half/crowded and full boundary show competing factors.",
+      "evidence": "45/125/45/0new.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicit product connects observed symmetry and maximum; names model limit.",
+      "evidence": "Parents\u00d7room,half-capacity and fixed limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels,legend and count make task clear.",
+      "evidence": "500fish,room500,new125;disabled preset marks state.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General logistic principle and conditions; no new application.",
+      "evidence": "Half-capacity maximum only for stated logistic model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More parents intuition reversed by crowding.",
+      "evidence": "90045 versus500125.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot types illustrate parents/new/room.",
+      "evidence": "Green/white/dim grid with legend.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible population slider and presets allow boundary discovery.",
+      "evidence": "100/500/900/1000.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of constrained population growth.",
+      "evidence": "Full pond0new.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two-factor balance,symmetry,and full-capacity boundary.",
+      "evidence": "100and900both45;500125;10000.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two linked competing factors and their product with support.",
+    "conceptualDemand": "Balance parent count and remaining room;optional S-curve terminology.",
+    "interfaceBurden": "low;presets and slider clear;must actively revisitinitial100 to satisfy phase gate.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Logistic relation and carrying capacity."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Concrete fish counts and simple product;S-curve phrase explained."
+    }
+  },
+  "whyCool": "Moving from900 to500 fish increases births45\u2192125 even as parent count falls, making room visibly matter.",
+  "caveat": "Only fixed-capacity toy logistic pond; no second-case application.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

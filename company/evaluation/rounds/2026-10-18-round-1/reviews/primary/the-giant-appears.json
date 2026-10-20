@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "the-giant-appears",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-giant-appears",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e797c7af66c660800b4f8ce5851a5af0ab5a3fb15ac96adeb6886033663c1adf",
+    "demoSha256": "c94ec7e47bf0e6f5f5cabf3c8ff093b7d304672bed7ae4973fe659f548dfae50",
+    "metaPath": "src/demos/probability/the-giant-appears/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected about 36% and locked the largest-group prediction after doubling random friendships from 100 to 200 among 200 people.",
+    "exploration": "Tested all density choices in order. Biggest groups were 9 at 0.5 average friends, 36 at 1.0, 76 at 1.25, 110 at 1.5, 148 at 2.0 and 183 at 3.0. Second group shrank from 23 at 1.25 to three at 2.0.",
+    "reveal": "The reveal corrected the answer to about 75%, accurately listed every visited density and group size, and explained that links can merge already large groups. It disclosed one invented random crowd rather than a real network measurement.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at density two. Most nodes and edges were gold for the 148-person component, while a tiny green component represented the second largest. The tangled edge picture required the numeric readouts to quantify it.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question challenges proportional scaling of a connected structure.",
+      "evidence": "Selected double the original 18% share.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Density choices expose rapid merging across a transition and contrast the second group.",
+      "evidence": "Biggest share reached 74% at density two while the runner-up had only three nodes.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal accurately uses all explored cases and gives a merging mechanism.",
+      "evidence": "It names the full sequence and distinguishes invented random links from real data.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Colors and counts distinguish a dominant component despite edge clutter.",
+      "evidence": "Gold largest and green second components have explicit sizes.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The connectivity principle is explained without a new network application.",
+      "evidence": "Only one fixed crowd and link realization are tested.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Doubling links more than quadruples the biggest group's share.",
+      "evidence": "The largest component grows from 36 to 148 people.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Coloring reveals dominance, but the dense edge drawing obscures individual mergers.",
+      "evidence": "The two-connection screenshot is a tangled gold network.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Density choices invite watching components merge.",
+      "evidence": "Six stages span sparse groups to a nearly connected crowd.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives intuition for network connectivity thresholds.",
+      "evidence": "The reveal explains why new links can combine entire groups.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The second-largest group adds evidence beyond a rising maximum.",
+      "evidence": "Its size falls as one dominant group absorbs others.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple buttons control a graph, while indirect connectivity and nonlinear merging require a new abstraction.",
+    "conceptualDemand": "Moderate: track connected groups rather than individual friend counts.",
+    "interfaceBurden": "Low: six density choices.",
+    "conceptualChallenge": "One new link can combine two entire components.",
+    "prerequisiteNovelty": "Connected components and random network transitions are introduced.",
+    "notationRepresentationBurden": "Moderate: a dense node-link view and average-degree readouts."
+  },
+  "whyCool": "A modest number of extra friendships can suddenly connect most people through chains of acquaintances.",
+  "caveat": "The toy uses one made-up crowd with random links and no fresh seed control.",
+  "missingEvidence": [
+    "No new network or application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

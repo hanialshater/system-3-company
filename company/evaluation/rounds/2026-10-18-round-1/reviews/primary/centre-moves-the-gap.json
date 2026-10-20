@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust5/5 ignored. Chose same258° versus100/180 after Greenwich→Pacific recenter; locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Pacific button: center180°,gap102° versus initial258°,realroute8810km unchanged; revealunlocked. Keyboard Home:center-180, stillPacific102°/8810; Greenwich reset:center0gap258°/8810. Screenshot initial red widthbar and map labels viewed inline."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteAbout100;102°. Greenwich oppositeedges258,Pacific seamAtlantic102,about2.5timescloser onmap; nothingEarthmoved,shortestroute8810constant; cutchoice decides visualgap,Greenwichconvention."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear apparent-distance commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Recenter/reset/boundary preserve realdistance while gap flips.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Directly explains own values and seam convention.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mapgap versus realroute labels distinguish units.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable inspectmapcut principle.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cities become visualneighbors without moving.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Mapcut and redbar carry gap mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible recentering.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Map distance interpretation useful.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Representation seam versus invariant distance.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Single map seam changes visual adjacency while real distance invariant.",
+    "conceptualDemand": "Degrees of map width versus physical distance explicitly separated.",
+    "interfaceBurden": "Two buttons/range; clear realroute and mapgap readouts."
+  },
+  "whyCool": "Recentring cuts displayed separation258°to102°while realroute stays8810km.",
+  "caveat": "One city pair and equirectangular map only; physical distance displayed, not independently measured or validated.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only sliderHome keyboard tested; intermediatecenters/accessibility modes unknown."
+  ],
+  "screenshots": [],
+  "slug": "centre-moves-the-gap",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/centre-moves-the-gap",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "aea02e772d217c97318b713943673353f0e3ea500fe39856274f375a487c6159",
+    "metaSha256": "519dcccd47227ca7f0e5f6b5e4f7117d5d6e7e190061e26a162ae435fdf74d59"
+  }
+}

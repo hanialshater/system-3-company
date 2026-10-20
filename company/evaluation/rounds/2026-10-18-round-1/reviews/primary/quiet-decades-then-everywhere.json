@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "quiet-decades-then-everywhere",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/quiet-decades-then-everywhere",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "quiet-decades-then-everywhere",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/quiet-decades-then-everywhere/meta.json",
+    "metaSha256": "38e484389edcb7863338e13ca3fc11d91d13b2d24724f37e810098ca6c8ae6c9",
+    "demoSha256": "f7ac0a1b9bf96870141f77db20a9d59e1a617bf6877969f9bc0479ec461f0c1b",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/quiet-decades-then-everywhere",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/quiet-decades-then-everywhere.json"
+  },
+  "date": "2026-10-18T20:15:49.923277+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose50%athalfway and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial100/.01%;year25=9540/.95%withunder4squares;year40=146977/15%;year45=365726/37%;year51=1million/100%. Inspected sparse halfway map and fullendpoint."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read1%correction,3.8year doubling at20%,eachdoubling adds entireprevious population,lastfewdoublings dominate filling."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline0,25,51andscrolledreveal inspected. Count/share captions,selectedyears and squarefilling readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear half-time versus half-quantity misconception.",
+      "evidence": "100start,20%growth,1millioncapacity,51yearend,year25forecast.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Several time contrasts expose late concentration of growth.",
+      "evidence": ".95%year25,15%40,37%45,100%51.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Doubling mechanism explains late acceleration.",
+      "evidence": "3.8yeardoubling andlastfewdoublings dominate.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Constant percentage toy and mapscale explicit.",
+      "evidence": "2500persquare andcount/sharecaptions;capacitycapdeclared.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General exponential spread caution within same plant toy.",
+      "evidence": "No new application or task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Half-time underonepercent.",
+      "evidence": "50%guess versus.95%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid sparse-to-full makes scale visible.",
+      "evidence": "Under4squaresat25 versus400at51.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetyearjumps.",
+      "evidence": "Fourcontrastingyears explored.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful early-growth complacency intuition.",
+      "evidence": "Constantpercentage canlookharmless until late.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single exponential mechanism.",
+      "evidence": "Doubling andcapacitytoy,not feedback model.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "conceptualDemand": "Repeatedpercentage growth creates nonlinear counts over time.",
+    "interfaceBurden": "Fiveyearbuttons andreadablecaptions.",
+    "prerequisiteNovelty": "Doublingtime introduced after visual evidence.",
+    "notationRepresentationBurden": "Percent,years,counts andfilledsquares;noformula."
+  }
+}

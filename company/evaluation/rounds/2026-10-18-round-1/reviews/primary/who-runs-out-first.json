@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "who-runs-out-first",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/who-runs-out-first",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "who-runs-out-first",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/who-runs-out-first/meta.json",
+    "metaSha256": "42491afb4aa3d02955e72f7d4872d3edc67e11928ba48cd0a233c29f0856149d",
+    "demoSha256": "c1dc372c2555f9d2359e1d41efe78f5afd1c392e109779e9165688033672963f",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/who-runs-out-first",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/who-runs-out-first.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected four water molecules and locked it in.",
+    "exploration": "One set changed six H2/four O2 to four H2/three O2/two water. Until exhausted produced zero H2/one O2/six water. Added one H2: still disabled reaction. Added second H2: enabled; reacted to eight water and zero remaining reactants. Start over restored original six/four, then exhausted to original six-water result.",
+    "reveal": "Corrected to six, explained two-to-one recipe means six H2 need three O2 and H2 limits despite larger initial count. Emphasized matching recipe ratio rather than choosing smaller pile.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Separate labeled molecular rows, reaction equation, leftover oxygen pair and six water clusters visible. Disabled reaction controls and no-full-set message agreed with counts. Reveal readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete recipe and counts support a meaningful limiting-resource commitment.",
+      "evidence": "Four, six and eight yield alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single sets, exhaustion, adding one versus two molecules and reset test complete-set boundary.",
+      "evidence": "One extra H2 insufficient; second unlocks two more water.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains ratio-limited yield using observed leftovers.",
+      "evidence": "Six H2 need three O2 with four available.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Molecule drawings and recipe ratio align with counter changes.",
+      "evidence": "Two H2 plus one O2 makes two water.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General recipe principle stated without a concrete new application.",
+      "evidence": "Same chemical recipe throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text molecule counts and disabled states available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More numerous starting reactant runs out first.",
+      "evidence": "Hydrogen six versus oxygen four, but hydrogen exhausted.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Leftover rows and product clusters make the ratio visible.",
+      "evidence": "One oxygen pair remains beside six water.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "React, add and restart controls support boundary experimentation.",
+      "evidence": "One-versus-two added hydrogen contrast.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains limiting reagents through recipe matching.",
+      "evidence": "Resource counts normalized by recipe.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links stoichiometry and discrete complete sets.",
+      "evidence": "Odd extra molecule cannot form a full set.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple counts support unfamiliar chemical symbols and stoichiometric ratio.",
+    "conceptualDemand": "Normalize available molecules by recipe coefficients rather than raw pile size.",
+    "interfaceBurden": "Five clear buttons with contextual disabled states.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Chemical molecule notation and reaction sets.",
+    "notationRepresentationBurden": "Subscripts, reaction arrow and two-to-one ratio."
+  },
+  "whyCool": "The smaller pile can have leftovers when the recipe consumes the larger pile faster.",
+  "caveat": "This is a discrete recipe model; no alternate reaction or fresh limiting-resource application was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:49:41.481399+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "work-in-process-limit",
+  "demoVersion": 4,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/work-in-process-limit",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Jobs A ten, B fifteen, C five minutes run in fixed order with deadline fifty.",
+    "Five-minute turns first finished C at fifteen; whole jobs first finished A at ten.",
+    "Screenshots depict split execution blocks versus contiguous blocks accurately.",
+    "Reveal names both first completions, A's delayed completion at twenty under turns, and unchanged total execution thirty."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Must track interleaved execution segments.",
+    "conceptualDemand": "Separate start, individual completion and total workload.",
+    "interfaceBurden": "Two schedule modes and run button."
+  },
+  "whyCool": "Starting every task quickly can leave you waiting longer for the first finished result.",
+  "caveat": "Fixed-order single-worker example; no switching overhead or general optimality claim.",
+  "effort": "Prediction, run rotating schedule, whole-job comparison, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Accurate concrete visual contrast and scoped explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise fixed-order comparison, but title cues whole jobs.",
+      "evidence": "Which plan first completes any job sooner.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed modes isolate preemption without editable job sizes.",
+      "evidence": "Five-minute turns versus whole jobs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains first-completion versus total-work distinction with exact cases.",
+      "evidence": "C fifteen, A ten or twenty; total thirty unchanged.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Execution blocks make the two schedules legible.",
+      "evidence": "Split versus contiguous timeline bars.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "States a useful starts-versus-finishes principle without a new case.",
+      "evidence": "Starting and finishing are different counts.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "More started tasks can delay the first completion.",
+      "evidence": "First finish fifteen instead of ten.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Actual execution segments explain the delay.",
+      "evidence": "A split around other jobs versus contiguous ten minutes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed scheduling views.",
+      "evidence": "No duration or turn-size adjustment.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete work-priority distinction.",
+      "evidence": "Finishing a task versus starting several.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes first completion, specific-job completion and total work.",
+      "evidence": "All require thirty minutes despite different completion times.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "overlap",
+  "reviewer": "r2",
+  "slug": "merge-sort-payoff",
+  "demoVersion": 5,
+  "batchId": "round1-07",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+    "B1: Preview banner: \u201cEvaluation preview \u00b7 learning history and analytics are not saved.\u201d",
+    "B2: Prediction: two already-sorted piles of four cards, \u201cwhat is the most comparisons you could ever need?\u201d; choices7/16/28; selected16 and locked.",
+    "B3: Exploration: \u201cWhich top card is smaller?\u201d with Take10from pileA and Take4from pileB; opened \u201cWhere did the piles come from?\u201d; rounds show singles0comparisons, pairs4, sorted piles6; \u201cThe last merge adds at most7.\u201d",
+    "B4: Deliberately clicked Take10 instead of4: \u201cThe other top card is smaller, so it goes first. Each card placed while both piles have cards is one comparison.\u201d; no placement or counter change observed.",
+    "B5: Took4 then5 fromB then10 fromA; merged row4 5 10; COMPARISONS3 PLACED3/8; clicked Finish for me; intermediate5/8 and comparisons5, then final sorted4 5 10 18 20 21 23 36; \u201cMerged with7comparisons.\u201d; whole sort0+4+6+7=17 against28.",
+    "B6: Desktop screenshot after rounds opened showed top rounds clipped inside scrolling stage while active piles/counters and bottom instruction remained visible.",
+    "B7: Reveal: \u201cNot quite: it was \u20187\u2019.\u201d; each comparison looks at two top cards and places smaller permanently; at most7 for8cards; \u201conce a pile empties, the rest slides over free\u201d; interleaving needs all7; whole sort17 vs28; 1,000cards under10,000comparisons vs499,500."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The maximum-comparison question offers plausible competing counts and makes the already-sorted prerequisite explicit.",
+      "evidence": [
+        "B2"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Choosing smaller top cards visibly advances a sorted row and counter, with specific correction for an incorrect choice.",
+      "evidence": [
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects the seven counted placements to the empty-pile bound and the whole-sort saving.",
+      "evidence": [
+        "B5",
+        "B7"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core actions are clear, but the additional rounds produce clipped content and the maximum answer appears before the merge is performed.",
+      "evidence": [
+        "B3",
+        "B6"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The reveal extends the same merging principle to1,000cards with explicit comparison costs, an editorial application rather than observed learning.",
+      "evidence": [
+        "B7"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No keyboard, phone, contrast, zoom/reflow or reduced-motion checks were performed.",
+      "evidence": [
+        "Desktop AX snapshots and screenshots only; accessible labels observed but insufficient for an accessibility rating."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The committed16 guess is contradicted by a seven-comparison visible merge and supported bound.",
+      "evidence": [
+        "B2",
+        "B5",
+        "B7"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving values from two piles into a growing ordered row centrally exposes the merge operation.",
+      "evidence": [
+        "B3",
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The learner can test a wrong top card and choose cards, but the successful sequence is tightly constrained.",
+      "evidence": [
+        "B4",
+        "B5"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "The experience gives disciplinary value in reasoning about sorting cost rather than an everyday action.",
+      "evidence": [
+        "B7"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It connects local comparisons, empty-pile completion, prior rounds and larger-input costs.",
+      "evidence": [
+        "B3",
+        "B7"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Against the declared boundary, the learner must distinguish maximum versus observed counts, sorted-input invariants, pairwise baselines and multiple sorting rounds.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no map-projection, sorting-algorithm or sound-propagation theory assumed."
+  },
+  "whyCool": "Taking the smaller top cards builds a full sorted row with seven comparisons while the whole-sort ledger totals17against28.",
+  "caveat": "Only one generated pile pair was observed; the early-exhaustion boundary is explained in text and the final five cards were auto-completed.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r2.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

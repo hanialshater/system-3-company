@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "two-springs-end-to-end",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-springs-end-to-end",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-springs-end-to-end",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/two-springs-end-to-end/meta.json",
+    "metaSha256": "dd4a39fa5a193eac4cffb65ed1545cbcc55003723be18b3a7e00263e9fa032eb",
+    "demoSha256": "75478c6e30542fdbca336d1896ec35cd8b09936f9c843f2a5fdcba1a20d70273",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-springs-end-to-end",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-springs-end-to-end.json"
+  },
+  "date": "2026-10-18T20:55:29.582842+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected10cm for two identical end-to-end springs when one stretches5cm under1kg."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "One spring5cm/9.81N; side by side2.5cm/4.91N each; end to end10cm/9.81N each. Both comparisons required before reveal."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Full weight through the chain means each stretches5cm and stretches add; parallel shares weight. Pair half versus twice as stiff. Identical weightless springs within elastic range stated."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Inspected actual1257x936 dark viewport showing two series springs,9.81N labels on both,10cm bracket and readable full reveal after scroll."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simple alternatives probe the arrangement misconception.",
+      "evidence": "2.5/5/10cm choices for same weight.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three arrangements isolate how load is carried.",
+      "evidence": "5,2.5,10cm with force per spring.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Force accounting explains the observed stretch difference.",
+      "evidence": "Full weight in chain, shared parallel.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Illustration and force labels support plain explanation.",
+      "evidence": "9.81N repeated on both series springs.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General arrangement rule with limits but no fresh application.",
+      "evidence": "Half and twice stiffness; elastic range caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Adding a spring can make the pair softer.",
+      "evidence": "Series10cm versus single5cm.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Changing arrangement and drop bracket supports comparison.",
+      "evidence": "Two9.81N labels and10cm bracket.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three quick arrangement toggles.",
+      "evidence": "Tested all three.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful mechanical intuition within ideal spring limits.",
+      "evidence": "Weightless identical elastic springs.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Contrasts series and parallel through one load.",
+      "evidence": "No variable weight or unequal stiffness.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "gentle: compare full versus shared pull and add extensions",
+    "interfaceBurden": "gentle: three arrangement buttons",
+    "prerequisiteNovelty": "newton introduced as unit of pull; stiffness described by extension",
+    "notationRepresentationBurden": "centimetres and force labels on spring drawing"
+  }
+}

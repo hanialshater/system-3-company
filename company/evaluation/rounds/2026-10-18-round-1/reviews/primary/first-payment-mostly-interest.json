@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "first-payment-mostly-interest",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/first-payment-mostly-interest",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "first-payment-mostly-interest",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/first-payment-mostly-interest/meta.json",
+    "metaSha256": "137b83749591ef820647d683d1531720440038876d220720c796ceab20258f66",
+    "demoSha256": "a0bac3f5eeb660dba6b3d950e0ed5b374f47f7574f9c4259a2c012f8182dd1ff",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/first-payment-mostly-interest",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/first-payment-mostly-interest.json"
+  },
+  "date": "2026-10-18T19:01:19.710031+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed;trust8/8 visible ignored. Selected about72000 and locked.",
+    "exploration": "Next5years:60payments71946paid in13891paid off,interest932. Next5years:120payments143892paid in32629off,interest839. Startover resets0. Onepayment:1199paid in199off,1000interest.",
+    "reveal": "Correct14000; explicitly historical60payments71946in13891off186109owed versus33333even pace. Interest0.5% outstanding monthly; first1000interest199principal and60th932interest; fixed illustrative6%,level payments,no fees,not advice.",
+    "visual": "Inline screenshot1257x936 dark: first-payment interest/principal segmented bar visible, loan dashed outline, counters. Lower-left even pace label appears clipped to en pace within chart. Reveal text legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Alternatives distinguish payments,linear amortization and actual principal.",
+      "evidence": "prediction;reveal",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "First payment,5/10year contrasts and reset show interest decreases while principal payoff accelerates.",
+      "evidence": "exploration",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Historical observed60payment data tied to outstanding-balance interest mechanism and explicit fixed-model limits.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counters and payment split clear but even-pace chart label visibly clipped in tested desktop.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Outstanding balance rule and conditions reusable; no fresh loan application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen72000 repaid overturned by13891 despite71946paid in.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Payment split and remaining loan bars distinguish money paid from principal reduction.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible timeline with year/month increments supports comparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of loan payment breakdown and remaining balance.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "First/later payments, cumulative versus principal,even pace and fixed model assumptions.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Track cumulative payments versus principal and monthly interest on changing balance.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; clipped chart label",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: principal/interest split",
+    "notationRepresentationBurden": "moderate: several monetary counters and0.5%monthly"
+  },
+  "whyCool": "Five years of71946payments moves the paid-off counter only13891, while the first payment makes the missing interest visible.",
+  "caveat": "Even-pace label clipped in chart; only one fixed loan model tested."
+}

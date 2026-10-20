@@ -1,0 +1,103 @@
+{
+  "slug": "lh-merge-overlapping-lists",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-merge-overlapping-lists",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Unique items lower for lists of 8 and 6 with exactly 3 shared.",
+    "Tests gave added 14 versus unique 11; minimum A=3 gave 9 versus 6.",
+    "Screenshot showed aggregate stock bars rather than item identities or overlap. Reveal explained subtract overlap once and required no duplicates within each list."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small addition and subtraction.",
+    "conceptualDemand": "Shared items counted twice in sum.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A merged list needs each shared item once, even though it appears in both requests.",
+  "caveat": "Prediction is answered by the hook and diagram does not show overlap membership.",
+  "effort": "Prediction, both tests, minimum valid list size, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct formula and scope, weak prediction and visual mechanism.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook explicitly states adding lengths overcounts.",
+      "evidence": "Adding the list lengths overcounts.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "List-size change preserves fixed overlap and valid lower boundary.",
+      "evidence": "A 8\u21923 with overlap 3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains double counting and within-list assumption.",
+      "evidence": "Subtract shared count once.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Sizes and overlap are explicit.",
+      "evidence": "Each list distinct items.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific no-internal-duplicates condition constrains formula.",
+      "evidence": "Individual lists already have no duplicates.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Answer disclosed before prediction.",
+      "evidence": "Unique count lower.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "No actual overlapping sets or matching items shown.",
+      "evidence": "Aggregate bars only.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and list-size slider.",
+      "evidence": "Overlap fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Merging requests without double counting central.",
+      "evidence": "Unique item total.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Inclusion-exclusion with prerequisite.",
+      "evidence": "Within-list versus across-list duplicates.",
+      "confidence": "medium"
+    }
+  }
+}

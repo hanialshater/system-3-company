@@ -1,0 +1,104 @@
+{
+  "slug": "one-crowded-bucket",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-crowded-bucket",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Spread hand used nine buckets, with only sixty-four and seventy sharing one, requiring one comparison.",
+    "Switching to the clumped preset automatically demonstrated dropping and sorting all ten values into bucket forty-one to fifty.",
+    "Clumped sort reported thirty comparisons with per-value counts and the sum 1+1+3+3+2+6+3+6+5.",
+    "Screenshot shows one tall sorted stack with individual comparison labels; reveal explains distribution dependence and reduction to the inner sort."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires range bucketing and insertion-sort comparison counts.",
+    "conceptualDemand": "Connect distribution to residual sorting work.",
+    "interfaceBurden": "Drop, sort and two preset hands; animations settle automatically."
+  },
+  "whyCool": "A supposedly tiny local sort becomes the whole problem when every value lands in one bucket.",
+  "caveat": "Two fixed hands and a specific comparison-count convention; not a runtime benchmark.",
+  "effort": "Prediction, spread drop and sort, automatic clumped comparison, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concrete distribution-dependent failure case with observable work accounting.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A meaningful magnitude comparison, but exact insertion-sort effort assumes prior knowledge.",
+      "evidence": "About one, ten or thirty from a specified ten-number hand.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two controlled hands expose occupancy and comparison cost.",
+      "evidence": "Nine buckets/one versus one bucket/thirty.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects actual occupancy and per-insertion work to the limiting case.",
+      "evidence": "All values in one bucket leaves one full insertion sort.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled bucket ranges and per-item counts make the contrast explicit.",
+      "evidence": "Forty-one to fifty stack and summed comparisons.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit condition and failure case for using the method.",
+      "evidence": "Work splits only when values distribute over buckets; clumping inherits inner-sort cost.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Avoiding global comparisons does not guarantee little work.",
+      "evidence": "Thirty times as many comparisons with the same number of values.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Occupancy makes the reason for cost visible.",
+      "evidence": "Nine sparse buckets versus one tall stack.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed-hand comparison with animated placement and sort.",
+      "evidence": "No user-authored distribution or bucket width.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete algorithm selection caveat.",
+      "evidence": "Data distribution and inner sort matter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates partitioning from work inside partitions.",
+      "evidence": "Occupancy, insertion costs and limiting case.",
+      "confidence": "medium"
+    }
+  }
+}

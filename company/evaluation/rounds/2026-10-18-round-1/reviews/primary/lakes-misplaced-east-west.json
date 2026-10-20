@@ -1,0 +1,105 @@
+{
+  "slug": "lakes-misplaced-east-west",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lakes-misplaced-east-west",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted east-west error would exceed north-south error on Coronelli's 1688 Great Lakes map.",
+    "Viewed four positional overlays: Coronelli59/363 km N-S/E-W, Popple62/224, Mitchell48/46, Melish24/41.",
+    "The 11-map bar chart reported east-west worse on nine of eleven, visibly preserving exceptions rather than a universal claim.",
+    "Reveal matched the observed numbers and explained latitude versus longitude measurement; it noted the 39 points per map were read by hand.",
+    "At 1280\u00d7720 the lower numerical summary was partially hidden inside the fixed visualization area, though AX and the reveal exposed the values."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Spatial comparison and simple bar charts require little prior knowledge.",
+    "conceptualDemand": "Latitude versus longitude measurement.",
+    "interfaceBurden": "Five chart selectors; partially clipped summary."
+  },
+  "whyCool": "The difficulty of longitude becomes visible as a whole region misplaced sideways.",
+  "caveat": "Historical values were observed in the demo, not independently audited; the dataset uses manually read points.",
+  "effort": "Completed prediction, all four map views, full chart, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strong explanatory visuals with a small layout limitation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A concrete historical comparison invites a meaningful prior belief.",
+      "evidence": "Directional alternatives for the same 39 locations.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four map overlays and the combined error chart allow comparisons over time and exceptions.",
+      "evidence": "Mitchell48/46 contrasts Coronelli59/363.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate observed numbers connect to a measurement explanation with a data limitation.",
+      "evidence": "Longitude requires time difference; hand-read point caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Map connectors and bar chart are clear, but the numerical footer is clipped within the card.",
+      "evidence": "Partial summary visible beneath controls at tested viewport.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains a historical measurement principle without a new application task.",
+      "evidence": "No second learner problem.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Large directional asymmetry becomes visible geographically.",
+      "evidence": "363 km east-west versus59 north-south.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Point displacements and directional bars jointly explain magnitude and change across maps.",
+      "evidence": "Four overlays and eleven-map summary.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mainly a sequence of historical chart views.",
+      "evidence": "Map selector buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Historical understanding rather than a practical procedure.",
+      "evidence": "No concrete modern task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects geographic errors, timekeeping and dataset limits.",
+      "evidence": "Nine-of-eleven scope and manually read coordinates.",
+      "confidence": "medium"
+    }
+  }
+}

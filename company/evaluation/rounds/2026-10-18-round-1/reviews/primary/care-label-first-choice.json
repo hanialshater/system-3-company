@@ -1,0 +1,104 @@
+{
+  "slug": "care-label-first-choice",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/care-label-first-choice",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted none of three jumpers labeled dry flat comply if hung on a line.",
+    "A hanging gave0/3, B flat gave3/3. Count maximum6 changed compliance0/6 versus6/6.",
+    "Visual changes from hanging garment to a supported horizontal garment; count only changes table values.",
+    "Reveal accurately retained the relative prediction and stated compatible method must precede space optimization; read the actual label because garments differ."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Literal language and simple counts.",
+    "conceptualDemand": "Follow process constraints before optimizing convenience.",
+    "interfaceBurden": "Two modes and count slider."
+  },
+  "whyCool": "It makes the care instruction a constraint on the optimization problem.",
+  "caveat": "The demo measures compliance, not damage, shape retention or drying performance; the count slider is largely cosmetic.",
+  "effort": "Completed prediction, both modes, count change, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful advice but low challenge, surprise and causal exploration.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "A literal instruction with an implausible alternative provides little genuine prediction.",
+      "evidence": "Dry flat versus All3 dry is dry.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Support modes visibly differ, but count scaling adds no new causal contrast.",
+      "evidence": "0 versus count compliance.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurate compliance rule without showing why support matters or a physical consequence.",
+      "evidence": "Only instruction satisfaction is modeled.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Support mode, count and compliance are explicit.",
+      "evidence": "Hanging0, flat6 at final count.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete method-selection rule includes garment-specific limits.",
+      "evidence": "Read real label before optimizing space.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Restates the supplied instruction.",
+      "evidence": "Flat means flat.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Shows two support arrangements.",
+      "evidence": "Horizontal support versus line.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mostly selector and redundant count slider.",
+      "evidence": "No actual layout challenge.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful care-label habit.",
+      "evidence": "Garment-specific process caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic compatibility check.",
+      "evidence": "No material or stretching model.",
+      "confidence": "medium"
+    }
+  }
+}

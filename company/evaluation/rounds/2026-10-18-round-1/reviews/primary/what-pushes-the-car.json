@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "what-pushes-the-car",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/what-pushes-the-car",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "19233a60be206a3d79c1da8219d147d0f2c7d8b4e0061c9fefd2ea62b3edd69a",
+    "demoSha256": "53441829de23399263d2ee75c4b35b15bd532592c1e7f096b5e5ad18886b0ee2",
+    "metaPath": "src/demos/physics/what-pushes-the-car/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Its engine and locked the prediction for what pushes an accelerating car forward.",
+    "exploration": "Tested dry road: 2,400 N forward and 2.0 m/s\u00b2. Tested ice: maximum 1,177 N and 0.98 m/s\u00b2 with slipping. Tested frictionless road: zero forward force and acceleration while wheels spin. Returned to dry road to inspect the contact arrows.",
+    "reveal": "The reveal corrected the answer to the road and accurately quoted dry and ice forces. It explained the engine turns wheels, tyres push backward on the road, and the road pushes forward on tyres; the frictionless case retains wheel turning without translation.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots on frictionless and dry roads. The frictionless state showed wheel-spin marks and zero acceleration. The dry state showed forward orange road-on-tyre arrows and backward grey tyre-on-road arrows at both contact points, with a displaced car outline.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question separates the power source from the external forward force.",
+      "evidence": "Selected the engine before testing road grip.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three surfaces isolate friction strength and its zero boundary.",
+      "evidence": "Dry acceleration fell on ice and vanished without friction despite wheel turning.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the action-reaction contact mechanism using observed cases.",
+      "evidence": "It names the tyre's backward push and road's forward push.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicitly labelled contact arrows distinguish the interacting objects.",
+      "evidence": "Dry view labels road on tyre forward and tyre on road backward.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The force principle is explained within the original car scenario.",
+      "evidence": "No new locomotion case or application is developed.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The road supplies the forward push while the engine alone cannot translate the car.",
+      "evidence": "The frictionless car's wheels spin with no forward acceleration.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paired contact arrows and the zero-grip contrast expose the mechanism.",
+      "evidence": "The dry arrows are absent in the frictionless state.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Surface buttons offer a useful controlled comparison.",
+      "evidence": "Three preset road conditions preserve the car and engine setup.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies why traction matters for acceleration.",
+      "evidence": "Ice limits forward force even though the engine can turn the wheels.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes engine action, contact force and acceleration.",
+      "evidence": "The frictionless boundary rules out the engine as a direct external push.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The familiar car makes the controls easy, while distinguishing internal actuation and external force adds conceptual demand.",
+    "conceptualDemand": "Moderate: identify the object exerting a force rather than the energy source.",
+    "interfaceBurden": "Low: three surface buttons.",
+    "conceptualChallenge": "Tyres must push backward on something to receive the external forward force.",
+    "prerequisiteNovelty": "Frictional traction and action-reaction force pairs are introduced.",
+    "notationRepresentationBurden": "Low to moderate: force arrows, newtons and acceleration units."
+  },
+  "whyCool": "Taking grip away leaves the engine working but removes the external push that actually accelerates the car.",
+  "caveat": "The model fixes an all-wheel-drive 1,200 kg car and omits air drag and rolling resistance.",
+  "missingEvidence": [
+    "No different vehicle or locomotion application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

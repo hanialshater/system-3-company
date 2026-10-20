@@ -1,0 +1,104 @@
+{
+  "slug": "mouse-vs-elephant",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mouse-vs-elephant",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted160000 total energy ratio for160000mass ratio, given rough3/4-power resting-energy rule; alternatives8000and400.",
+    "Elephant3200kg showed mass160000,total8000,pergram1/20; slider200kg showed10000,1000,1/10;20kg1000,178,1/5.6;mouse20g reset1,1,1.",
+    "Animal schematic glow and summary ratios shown. Reveal connects total and pergram exponents,explicitly rough cross-mammal rule,debated exponent andspecies deviations.",
+    "Light1280x720 screenshot reveal rightedge clipped; diagram partly above internal scroll afterreveal."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Outputs concrete but fractionalpower relation adds demand.",
+    "conceptualDemand": "Total versuspergram; exponents.",
+    "interfaceBurden": "Simple slider andpresets; revealcutoff."
+  },
+  "whyCool": "The elephant grows in total energy while fading dramatically per gram.",
+  "caveat": "Given rough scaling rule ratherthan mechanistic physiological derivation; scientificclaims not independently audited. Prosecutoff.",
+  "effort": "Prediction,fourmass comparisons,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Explainable normalization with honest model limit; fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific total-versusmass comparison with assumedrule stated.",
+      "evidence": "160000mass ratio and3/4power.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple controlled masses plus baseline expose total andnormalized responses.",
+      "evidence": "3200kg,200kg,20kg,20g outputs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Reconciles original answer,total/pergram relation andmodel uncertainty.",
+      "evidence": "8000/160000=1/20;\u22121/4 exponent;debate/specieslimit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Ratio outputs clear; prose clipped in testedviewport.",
+      "evidence": "Final screenshot rightedge.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General scaling rule without new-use challenge.",
+      "evidence": "Tenfoldstep explanation within same model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Large animal farbelow mass-proportional energy.",
+      "evidence": "160000mass versus8000energy.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Size/glow and three ratio readouts track scaling.",
+      "evidence": "Mass,total,pergram changedtogether.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Preset anddiscrete slider support contrast.",
+      "evidence": "Fourmass states.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Animal energy intuition ratherthan immediate task.",
+      "evidence": "Cross-mammal comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Power law,normalization andscientific modeluncertainty.",
+      "evidence": "3/4total versus\u22121/4pergram anddebatedexponent.",
+      "confidence": "medium"
+    }
+  }
+}

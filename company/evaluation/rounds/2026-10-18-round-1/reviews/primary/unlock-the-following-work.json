@@ -1,0 +1,104 @@
+{
+  "slug": "unlock-the-following-work",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/unlock-the-following-work",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial polish-input-build order finished the build at minute 42 with total waiting 22.",
+    "Swapping input first but keeping polish before build reduced waiting to 14 yet still finished build at 42.",
+    "Target input-build-polish finished build at 32 while total waiting rose to 34; screenshot showed correctly ordered timeline bars.",
+    "Reveal explicitly compares 12 more waiting minutes with ten minutes earlier build completion, distinguishing objectives."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Several scheduling metrics must be distinguished.",
+    "conceptualDemand": "Optimize a target completion rather than total waiting.",
+    "interfaceBurden": "Three fixed arrangement buttons."
+  },
+  "whyCool": "The order that finishes an important dependent task sooner can make the overall queue wait longer.",
+  "caveat": "Fixed whole-job single-worker example; not a general scheduling optimizer.",
+  "effort": "Prediction, all three orders, screenshot and comparative reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concrete competing-objective counterexample with a precise comparative payoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise outcome prediction with a plausible total-work distractor.",
+      "evidence": "Same jobs finish versus build-specific finish.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three controlled orders distinguish releasing a dependency from merely moving its input earlier.",
+      "evidence": "42 with waiting 22, 42 with 14, then 32 with 34.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains current and baseline outcomes and a meaningful competing objective.",
+      "evidence": "Earlier build sacrifices summed waiting; explicitly not least waiting.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Timeline and named metrics make the tradeoff legible.",
+      "evidence": "Total waiting defined as summed start times; build done shown separately.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Useful dependency principle without a separate application.",
+      "evidence": "Unrelated work delays release even when useful.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A faster important job can mean more total waiting.",
+      "evidence": "Build 32 while waiting rises to 34.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Reordered timeline exposes dependency and completion.",
+      "evidence": "Input before build with polish later.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three fixed scheduling arrangements.",
+      "evidence": "Run, swap, target.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete distinction between work priority objectives.",
+      "evidence": "Finish a dependent build sooner.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dependency, target completion and aggregate waiting differ.",
+      "evidence": "Three orders separate these metrics.",
+      "confidence": "medium"
+    }
+  }
+}

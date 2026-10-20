@@ -1,0 +1,104 @@
+{
+  "slug": "two-public-clues-break-the-herd",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-public-clues-break-the-herd",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedBluewithcrowdaftertwoinitialbluechoices,98followers,twopublishedredclues andownredclue. Headerclueaccuracy2/3,lead2rule;priorandconditionalindependence notexplicit.",
+    "Countclues reduced100choicesto2blueversusown1red,blue67%,bestblue. Publishtworedgave2blue3red,blue33%,bestred;before/afterpersisted.",
+    "Revealaccuratelyexplainedfollowersaddnoindependentcluesandthreeversustworeverseschoice.",
+    "Inline1280x720 light screenshot: crowd,cluebuckets,beforeafter andfullprose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Hiddenurnmodel,Bayesianweight andsequentialactioninference requirecontext.",
+    "conceptualDemand": "Conditionalindependence andcascadebeliefs.",
+    "interfaceBurden": "Twoeasycontrolsandreadablelayout."
+  },
+  "whyCool": "A hundredvotescollapseintotwocluesoncethefollowers'copiedinformationisremoved.",
+  "caveat": "Clarifyurnprior andindependentclueassumptions;onefixedcascade;accessibilityunknown.",
+  "effort": "Prediction,countoriginalclues,publishnewclues,reveal andinline screenshot.",
+  "provisionalBucket": "strong-technical-with-setup-fix",
+  "bucketReason": "Clearvisualevidenceweightcontrast;modelsetupneedsmorecontext.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "StrongdirectionalcontrastbutBayesianbalance/equalprior assumptions notfullyexplainedbeforechoice.",
+      "evidence": "2/3cluesand100followers withurnpriorunstated.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Separatescrowdchoicesfromindependentevidence thenaddsnewclues.",
+      "evidence": "67%to33%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observedcountsandchoiceflip supportcascadefragility.",
+      "evidence": "98followersnotnewclues.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablecluebucketsandpersistentcomparison.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalherdinterpretationwithoutfreshsocialscenario.",
+      "evidence": "Sameurncase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twonewcluesoutweigh100publicchoices.",
+      "evidence": "Onlytwoinitialindependentclues.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Largecrowdshrinksintotwoevidencechips.",
+      "evidence": "Blueandredbuckets.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Countandpublishtwostepreveal.",
+      "evidence": "Twoactions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Distinguishingrepeatedopinionfromindependentevidencecentral.",
+      "evidence": "Followersaddnoinformation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "InformationcascadeandBayesianevidenceweight.",
+      "evidence": "67/33posteriorflip.",
+      "confidence": "medium"
+    }
+  }
+}

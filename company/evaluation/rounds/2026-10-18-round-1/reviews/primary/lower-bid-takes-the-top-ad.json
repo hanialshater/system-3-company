@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "lower-bid-takes-the-top-ad",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lower-bid-takes-the-top-ad",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "lower-bid-takes-the-top-ad",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/lower-bid-takes-the-top-ad/meta.json",
+    "metaSha256": "3a83cae9ebf30f330887106e8ac2a5c330aa1404388d07d03c11fea1238ec15c",
+    "demoSha256": "22bf0d778d2e24916f4d564b15cff88e1e8bfce9e19826916ca5d965f8adbbf1",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/lower-bid-takes-the-top-ad",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/lower-bid-takes-the-top-ad.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected AdA against AdB and tie under bid\u00d7quality;locked it in.",
+    "exploration": "Bid alone A wins. Switched weighted rule:B wins at1.50,pays1.00. Bbid1.20 stillwins,pays1.00. Bbid1.00 tie,no payment. Bbid0.80 A wins,pays1.60. History retained four trials.",
+    "reveal": "CorrectedB for original bids;computed scores1.5 versus1.0. Explained next score divided by ownquality sets payment,includingB1.00 atboth bids andA1.60 after reversal. SaidAwould needmorethan3 tobeatB1.50. Simplified invented model,not realengine.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Ranked cards,scorebars,dashed threshold andretained history visible. Internal scroll moves title partly out ofview toshow fullreveal.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear highest-bid misconception versus explicit weightedscore.",
+      "evidence": "AdA choice versusinitialB score1.5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rulechange andallfour bids expose winner,threshold andpayment invariance.",
+      "evidence": "B1.50/1.20 pays1;1tie;0.80Awins1.60.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact trials toscoredivision andquality-dependent threshold.",
+      "evidence": "Ownquality0.5 doubles0.8 to1.6.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls/history usable,but dense reveal requires internal scroll andpacks several formulas.",
+      "evidence": "Actualscreenshot title partlyscrolled andlong payment paragraph.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "New bid requirement within same auction isexplained,no distinctapplication.",
+      "evidence": "Aneedsmorethan3 againstB1.50.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "CommittedA winner contradicted bylower bidderB,thenreversed belowthreshold.",
+      "evidence": "Bwin at1.50;Awin at0.80.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scorebars andrankedcards carryweighted comparison.",
+      "evidence": "Actualcards scores1.0 and0.8,dashedline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rule andbidpresets enable reversible threshold exploration.",
+      "evidence": "Allfourbidlevels plusrulecontrast.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete rank-versus-payment distinction in toyauction.",
+      "evidence": "Winnerpayment setbycompeting score.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Qualityweighting,tieboundary,paymentinvariance andwinnerreversal connected.",
+      "evidence": "Fourretained trials.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Links two rankingrules withthreshold payment dividedbyquality.",
+    "conceptualDemand": "Track bid,weightedscore,rankandpayment asdistinct quantities across winnerchange.",
+    "interfaceBurden": "Moderate:densehistory andlong internal-scroll reveal.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:quality-adjusted auction andthresholdpricing.",
+    "notationRepresentationBurden": "moderate:decimalproducts,division andcurrency."
+  },
+  "whyCool": "LoweringB from1.50 to1.20 changesits scorebutleavesits price1.00,then0.80 handsthe slotbacktoA.",
+  "caveat": "Fixedtwo-ad toy;tiepayment undefined andrealauctiondetails explicitlyexcluded.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Returntobid-only aftercontrasts nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:41:08.781874+00:00"
+}

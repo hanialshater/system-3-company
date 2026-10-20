@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "three-day-doubling",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-day-doubling",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "three-day-doubling",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/three-day-doubling/meta.json",
+    "metaSha256": "315ecd5c0f09e30852bff1aabc4398b51200c38817be82249d8bfbb704387208",
+    "demoSha256": "d73ac3157a23267a15516789e692fb43a80199d518fc4e421d31b769b762b723",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/three-day-doubling",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/three-day-doubling.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected about 1000 and locked it in.",
+    "exploration": "Day zero one hundred cases. Plus three days gave two hundred and one doubling. Day thirty gave 102400 and ten doublings. Six days earlier gave 25600 and eight doublings with quarter-count caption. Home restored day zero and one hundred; restored day thirty.",
+    "reveal": "Corrected to about 100000, computed 100 times two to tenth, contrasted multiplicative and additive growth, and used six-day quarter comparison. Made-up disease and constant doubling caveat explicit, with real-world slowing described.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected at day thirty, day twenty-four and reveal. Lit dots expanded to full grid and shrank to quarter count; caption and cases/doublings chips readable. Each-dot unit introduced at start but not repeated in later view.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete time and doubling rate support order-of-magnitude commitment.",
+      "evidence": "1000 versus 10000 versus 100000.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Forward steps, six-day reversal and start reset expose multiplicative time difference.",
+      "evidence": "Ten versus eight doublings and fourfold counts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal derives magnitude and timing consequence from visited states.",
+      "evidence": "100 times two to tenth and two-doubling delay.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Doubling and count chips align with dot representation and explicit model caveat.",
+      "evidence": "Made-up disease with constant rate disclosed.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Compounding and timing principle stated within same outbreak, no new application.",
+      "evidence": "No fresh non-outbreak example tested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard day reset worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A month produces roughly thousandfold growth.",
+      "evidence": "One hundred to 102400.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fixed dot unit makes late growth fill a grid.",
+      "evidence": "Quarter-count state compared to full grid.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Time slider and preset jumps support comparison.",
+      "evidence": "Plus three days and six days earlier.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains why delay matters under compounding.",
+      "evidence": "Six days equals factor four under stated rate.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects exponential magnitude and relative timing.",
+      "evidence": "Last interval versus prior growth and fixed-rate limitation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Easy timeline requires repeated doubling and exponent interpretation.",
+    "conceptualDemand": "Distinguish multiplicative growth from fixed increments and convert days to doubling count.",
+    "interfaceBurden": "One day slider and three buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Doubling model and exponential notation introduced.",
+    "notationRepresentationBurden": "Large counts, powers of two and quarter ratios."
+  },
+  "whyCool": "Two missed doublings turn a short delay into a fourfold difference.",
+  "caveat": "Constant growth is explicitly hypothetical; the review makes no real-outbreak prediction.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:50:54.190553+00:00"
+}

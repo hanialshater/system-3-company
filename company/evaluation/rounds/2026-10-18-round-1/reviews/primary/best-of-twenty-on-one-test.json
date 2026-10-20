@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historypreviewverified;5/5trustignored. ChoseAbout50%vs60/75for20pureguessers100questions,locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Run20=>winner56of100;Fresh=>49.7%,pinnedSeen seed1 20winner56fresh49.7.100models=>59freshblank,revealunlocked;Fresh=>49.7%.1model=>53;Run=>49, pinned20history retained."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteAbout60. Usesoriginal20winner56/fresh49.7and current1winner49;pickbestpicksluckiest;usingtesttochoosemodelsquietlytrains onit;keepfinaltestusedonceafterchoice. Initialscreen dotplot legend/shared100/fresh1000viewedinline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear noisy-winner misconception choice.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Pool-size/retest/repeat contrasts expose selection bias.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Storedtarget/currentcomparison and finaltest rule explicit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Pinned original trial prevents changed-state confusion.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete final holdout-use-once guidance.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "p",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unskilledwinner beats50thenregresses.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Score dots/sharedfresh rows support numerical comparison.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Run/retest/change pool/repeat discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Model evaluation holdout rule central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Noise, selection and evaluation reuse linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Selection among noisy estimates and independent retest linked; supported by direct comparisons.",
+    "conceptualDemand": "Chancevariation, winnerselection and fresh-versus-shared test distinction.",
+    "interfaceBurden": "Run/fresh/count controls; pinnedSeenhistory distinguishes target from current."
+  },
+  "whyCool": "A56%winner among pure guessers drops to49.7%on freshquestions, while more competitors lift displayed best to59.",
+  "caveat": "One tested seed for20and100not distribution evidence; About60answer can be approximate56;5modelmodeuntested.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard/focus/phone/reflow/contrast/motion untested."
+  ],
+  "screenshots": [],
+  "slug": "best-of-twenty-on-one-test",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/best-of-twenty-on-one-test",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "3279577cadfc4fced332106ed75d986dd8eea054d629cf7ca41638c9ffa0628d",
+    "metaSha256": "4ba8de00f6bd17204c8ea4c17cf81bc6e255d192f635b08db9cbbf5a1c1c7f4b"
+  }
+}

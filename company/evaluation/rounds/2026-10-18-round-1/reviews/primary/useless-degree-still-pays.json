@@ -1,0 +1,104 @@
+{
+  "slug": "useless-degree-still-pays",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/useless-degree-still-pays",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Invented model fixes wage one hundred thousand with degree and fifty without; earning costs twenty for high-productivity type and sixty for other type.",
+    "Initial net pay eighty versus fifty and forty versus fifty led only high-productivity workers to obtain the degree.",
+    "Reducing others' cost to forty led everyone to obtain it; raising both costs to sixty led no one to obtain it.",
+    "Screenshot shows cost segments and net-pay comparisons. Reveal explains initial separation, cheap-signal failure and explicitly says real degrees are not claimed to teach nothing."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires net payoff and selection reasoning.",
+    "conceptualDemand": "Distinguish signaling from productive learning.",
+    "interfaceBurden": "Two cost sliders and presets."
+  },
+  "whyCool": "A credential can reveal information because of who finds it worthwhile to earn, even if the credential itself adds no productivity in the model.",
+  "caveat": "Fixed wage offer and invented types/costs; no wage-adjustment equilibrium or empirical education estimate.",
+  "effort": "Prediction, separating case, cheap-for-both and expensive-for-both contrasts, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear incentive-regime contrasts with an explicit real-world interpretation limit.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete incentive comparison, but no-degree wage is mainly shown in the chart rather than the prompt.",
+      "evidence": "Fifty-thousand baseline visible in diagram.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Separating, pooling and no-adoption cases test the signal's incentive conditions.",
+      "evidence": "Only able, everyone, no one.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains differential-cost mechanism and cheap-signal failure with invented-model caveat.",
+      "evidence": "Eighty versus fifty; forty versus fifty, then both buy.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Pay bars and cost sliders distinguish costs from productivity.",
+      "evidence": "Cost segments and adoption outcomes shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "States when the signal carries information and limits empirical interpretation.",
+      "evidence": "Differential costs sustain separation; not a claim that actual degrees teach nothing.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A nonproductive credential can still convey useful information within the model.",
+      "evidence": "Firms' initial higher wage matches selected type.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Net-pay comparisons make incentives visible.",
+      "evidence": "Degree gross pay minus cost versus no-degree wage.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adjust two costs and compare regimes.",
+      "evidence": "Three qualitatively different adoption states.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful economic mechanism, not a real education recommendation.",
+      "evidence": "Invented wages and types.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Private incentives, selection and informational value connect.",
+      "evidence": "Cost differential changes separation.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "pencil-lead-vs-diamond",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pencil-lead-vs-diamond",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction supplied diamond3.51g/cm3,graphite2.26g/cm3 and asked more atoms/cm3; selectedsame.",
+    "Flat-sheets preset8atoms boxvolume1.55,1.13\u00d710^23atoms/cm3;4waynet boxvolume1.00,1.76\u00d710^23. Scatter reset outputtoquestionmark; returnednet.",
+    "Reveal connects identical atoms,larger sheet volume,lower number density and sliding versus rigidity; explicit flat schematic not to scale.",
+    "Three screenshots1280x720light readable including final reveal."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete same-atoms volume comparison; scientific notation secondary.",
+    "conceptualDemand": "Density andstructure.",
+    "interfaceBurden": "Three clear presets."
+  },
+  "whyCool": "The same eight atoms change how much space they occupy when rearranged.",
+  "caveat": "Schematic encodes given densities rather than deriving real crystal geometry. Hook calls pencil lead purecarbon; owner should check material wording against graphite idealization. No source fact-check performed.",
+  "effort": "Prediction,two structures,scatter reset,returnnet,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Readable concrete model; remove answer cue and review pencil wording.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Density numbers substantially reveal answer before experiment.",
+      "evidence": "Both purecarbon and3.51versus2.26 given.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Same atoms toggle between two arrangements with clear density effect and reset.",
+      "evidence": "Sheet1.55 versusnet1.00;scatter thennet.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects atom identity,volume and number density with schematic limit.",
+      "evidence": "1.55volume ratio andtwo atoms/cm3 counts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and reset state clear; schematic openly limited.",
+      "evidence": "Readable screenshots;scatterunknown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General structure-property link without fresh application.",
+      "evidence": "Density/sliding/rigidity described.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Identical atoms,different density; supplied numbers reduce reveal.",
+      "evidence": "Same8atoms innetandsheets.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrangement and enclosing box make comparison concrete.",
+      "evidence": "Sheet/net snapshots withreferencebox.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Snapping and scattering small constructive interaction.",
+      "evidence": "Three controls tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Familiar materials motivate structure-property idea.",
+      "evidence": "Pencil/diamond hook.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One structural contrast and property explanation.",
+      "evidence": "Packing versusnumberdensity.",
+      "confidence": "medium"
+    }
+  }
+}

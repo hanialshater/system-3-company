@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "overfitting",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/overfitting",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "overfitting",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/overfitting/meta.json",
+    "metaSha256": "c3bf41d5c43d7e849d0d3a2c9d7f504b4aa0d33bfc2d815692ae7357a3b867d7",
+    "demoSha256": "7a5360ddd9d1687ae2d76cb2584bdd0452fcda8c90bcf4c13d74a69cb06ebff1",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/overfitting",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/overfitting.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected up to6 bends, hits all8, against straight line and1\u20133 bends; locked it in.",
+    "exploration": "Tested each budget0\u20136. Solid/hollow misses:0:4.2/4.1\u00b0C;1:1.6/1.5;2:1.6/1.6;3:1.6/1.6;4:0.6/3.0;5:0.4/2.7;6:0.0/5.1. All hollow scores retained. A transient click timeout at2 resolved with one retry after unchanged-state check.",
+    "reveal": "Corrected1\u20133 bends; compared perfect training0.0 with held-out5.1 versus one-bend1.5 and straight4.1. Revealed smooth dashed signal plus random jitter; warned specific ranking versus straight line not universal and held-back data needed.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Flexible curve hits solid dots but swings away from hollow dots; dashed smooth signal revealed. Scores and explanation legible, final paragraph reaches bottom edge.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "10/10 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives contrast exact training fit with held-out performance.",
+      "evidence": "Six-bend commitment versus1\u20133 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "All seven budgets expose nonmonotone held-out error despite falling training error.",
+      "evidence": "0\u20136 error sequence recorded.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exact tested errors and revealed jitter mechanism with explicit sample-specific limit.",
+      "evidence": "0.0/5.1 versus1.5; random jitter and ranking caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Solid/hollow legend, retained scores and bend labels clarify desktop path.",
+      "evidence": "Actual screenshot chart and seven-score row.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable held-out evaluation principle and limits, no concrete new application.",
+      "evidence": "Only data held back from fitting can warn you.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Perfect training choice yields worst tested held-out error.",
+      "evidence": "Six-bend5.1 versus one-bend1.5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve, hollow misses and dashed signal carry fit/noise distinction.",
+      "evidence": "Actual screenshot oscillating curve versus smooth signal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Seven reversible budget choices permit fine comparison.",
+      "evidence": "All0\u20136 budgets tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete model-selection criterion central.",
+      "evidence": "Training score alone fails; held-out score discriminates.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Underfit, noise fitting, held-out ranking and sample variability linked.",
+      "evidence": "Straight4.1, gentle1.5, exact5.1 and ranking caveat.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links flexibility, training accuracy and held-out error with graphical support.",
+    "conceptualDemand": "Compare two error measures and distinguish signal from random jitter.",
+    "interfaceBurden": "Low: seven budget buttons and retained scores.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: train/held-out split and overfitting.",
+    "notationRepresentationBurden": "moderate: two decimal errors, temperature chart and bend budget."
+  },
+  "whyCool": "The curve hits every solid dot while its hollow-dot error jumps to5.1\u00b0C, visibly losing to the gentle curve.",
+  "caveat": "One fixed simulated dataset; no fresh random draw or different task tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset to previous budget after reveal not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:35:36.865663+00:00"
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "giving-up-lowers-unemployment",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/giving-up-lowers-unemployment",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "giving-up-lowers-unemployment",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/giving-up-lowers-unemployment/meta.json",
+    "metaSha256": "f42a72597e6cc39e497ed58a27eca8f1e4115423b8ae6e072a2ccb4b5607a8c6",
+    "demoSha256": "ffe222a3166d271a0c16ea9f9d47186b8bdd4a19b0d43b9773a7906fb8d3be86",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/giving-up-lowers-unemployment",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/giving-up-lowers-unemployment.json"
+  },
+  "date": "2026-10-18T19:16:47.100208+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected stays10% and locked. Rate definition shownbeforeprediction.",
+    "exploration": "Initial90working10looking10%.4stop:90working6looking4excluded6.25%;4findjobs:94working6looking0excluded6%. SliderEnd10resetsworking90,0looking10excluded0%; historicalpresetlogretained.",
+    "reveal": "Correctfalls. Compares actual6.25/90jobs and6/94jobs,topandbottomshrinkwhenstopsearching. Fallingratealonecannotdistinguish; numberjobs can. Toytown100.",
+    "visual": "Inline1257x936 dark screenshot inspected: countedbox90tealdots,excludedbox10greydots,current0%/jobs90; historicaltwo-presetresultsexplicit. Allcontrols/reveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear stays/rises/falls commitment against unchangedjobs; definition supports reasoningwithoutdirectoutcome.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Two nearlyequalrate/differentemploymentcases plusall-stoppingboundary expose numerator/denominatorcomposition.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualpresetvalues tied tocountmembership andneedforjobscontext; toymodelscope explicit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counted/excludedboxes,rate/jobs andretainedhistoricalcomparisons unambiguous.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete statistics-reading action:checkjobswheninterpretingfallingrate,withconditionthatratealoneconfoundsexitsandemployment.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenunchangedratefallswithoutjobs andcanreach0with90stillworking.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Movingpeopleoutofdenominatorboxversusintoworkingstate supportsdistinctpresetandboundarycontrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblepresets/exitcountslider expose misleadingmetric.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteinterpretationofunemploymentheadlines usingjobcount.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Numerator/denominatorchange,twoexplanations,extreme0rateboundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trackmembershipinratefractionandseparateworkingfromlookingandexcludedpopulations.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:twopresetsandslider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: unemploymentcountdefinition",
+    "notationRepresentationBurden": "low:percentanddotgroups,explicitfractionrule"
+  },
+  "whyCool": "The rate reaches0%when alltenseekersstop,even though nobody gainedajob.",
+  "caveat": "Toyfixedtown and simplifiedcountdefinition; nofreshheadlinecase."
+}

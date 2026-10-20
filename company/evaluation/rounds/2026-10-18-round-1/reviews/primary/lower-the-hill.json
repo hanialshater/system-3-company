@@ -1,0 +1,104 @@
+{
+  "slug": "lower-the-hill",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lower-the-hill",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction75to50kJ/molbarrier at298K,rate1.5/24000/3times; chose1.5. NoArrheniusrelation/prefactor providedbeforeprediction.",
+    "Catalyst50=>24113crossings/svs75baseline1;raise55=>3205;lower50=>24113.",
+    "Revealcollisionenergytail e^-Ea/RT,25kJabout10RT,ratioe^10.1;unchangedproductlevel/catalystnotusedup,sameprefactorassumed.",
+    "Screenshot hillprofile andcounter clear; actualrightedgeproseclipping,technicalexponents."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Energyper mole,Kelvin,exponentials,andRT prerequisites.",
+    "conceptualDemand": "Barrierheightaffectstailfraction ratherthanlinearrate.",
+    "interfaceBurden": "Simplecontrols;denserevealwithcutoff."
+  },
+  "whyCool": "Shavingone-thirdfromthehill releasesover24000times asmanysuccessfulcrossings inthetoyreaction.",
+  "caveat": "Absolute1crossing/sbaseline andsameprefactor assumed;exactprediction lacksneededrelation;notindependentkineticsaudit.",
+  "effort": "Prediction,catalyst50,raise55,lower50,reveal.",
+  "provisionalBucket": "needs-review",
+  "bucketReason": "Strongnonlinearityvisual butprediction/prerequisites andlayout needrevisionfornovicelaunch.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Exactmagnitudenotderivable fordeclarednovicewithoutthegoverningrelation.",
+      "evidence": "Onlybarrierandtemperaturegivenbeforecommit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changingbarrier causesvisibleratechanges withfixedtemperature.",
+      "evidence": "50=>24113,55=>3205crossings/s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsnonlinearcollisiontail andmodelcondition.",
+      "evidence": "Arrheniusratio andsameprefactor caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Hillmetaphorclearbutdenseequationsandrightedgecutoff.",
+      "evidence": "Ea/RTandEulerexponentintroducedinreveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Catalysisprinciple/endpointcaveat stated;newcase notpracticed.",
+      "evidence": "Fixed298Kandprefactoronly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Thirdlowerbarrier changesratebyordersofmagnitude.",
+      "evidence": "1to24113.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Adjustablehillandratecounter linkheighttoreactivity.",
+      "evidence": "50/55kJcounterfactual.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Hillheightadjustment andpresets.",
+      "evidence": "Catalyst/none/plusminus5.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingchemicalkineticsintuition.",
+      "evidence": "Whycatalystsacceleratewithoutchangingendpoints.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Activationenergy,temperature,exponentialtail,andprefactorcondition.",
+      "evidence": "e^-Ea/RTexplanation.",
+      "confidence": "medium"
+    }
+  }
+}

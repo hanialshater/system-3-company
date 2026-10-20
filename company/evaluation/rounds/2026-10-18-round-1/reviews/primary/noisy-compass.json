@@ -1,0 +1,104 @@
+{
+  "slug": "noisy-compass",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/noisy-compass",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted0.0625 SD for batch16 average when per-example noiseSD1; options1/0.25/0.0625. Independence of examples not explicitly stated in visible prediction.",
+    "Batch4 sampleSD0.58;batch1 1.18;batch16 0.23;batch64 0.13. Common-axis30dotcloud narrows around true slope1.",
+    "Reveal distinguishes sample spreads from theory1/sqrt(batch),reports2000seed5th\u201395thbatch16range0.20\u20130.30,and16timesworkfor4timessteadiness.",
+    "1280x720light screenshots showclearcommonaxis andreadablefullreveal."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Gradient,standarddeviation andaveraginglaw requirestatisticalprerequisites.",
+    "conceptualDemand": "Distributionofaverages,SDversusvariance.",
+    "interfaceBurden": "Simplepresets,clearplot."
+  },
+  "whyCool": "Sixteen times as much averaging work buys only four times the steadiness, and the dot clouds show the difference.",
+  "caveat": "Independence/uncorrelated-noisecondition shouldbeexplicit;correlatedexamplesneednotfollow1/sqrt(B).2000seedclaimnotindependentlyverified. Noresamplingtested.",
+  "effort": "Prediction,fourbatchsizepresets,reveal,two screenshots.",
+  "provisionalBucket": "needs-owner-review",
+  "bucketReason": "Clearstatisticalvisual;statekeyindependencecondition.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise variance-versus-SD distractor but requires unstated independence assumption and specialist vocabulary.",
+      "evidence": "Per-exampleSD1 alone doesnotdeterminebatchSD.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Severalbatchsizecontrasts expose narrowing dispersion withfixedaxis.",
+      "evidence": "1,4,16,64 clouds andsampleSDs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects originalanswer,samplevariation andtheory,butdoesnotstatecorrelationlimit orderive law.",
+      "evidence": "1/sqrt(B) andseedpercentiles.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Commonaxis,sampleSDlabels andtheory distinction readable throughouttestedpath.",
+      "evidence": "Finalscreenshotfullprosevisible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General work-versus-steadiness claim withoutfreshapplication.",
+      "evidence": "16timeswork buys4timessteadiness.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "SixteenexamplesreduceSDfourfoldratherthansixteenfold.",
+      "evidence": "0.25theory versus0.0625guess.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiplecloudwidths oncommonscale clearlyexposedispersionrelation.",
+      "evidence": "1.18,0.58,0.23,0.13 sampleSDs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fourpresets offerlimitedcontrolledcomparison.",
+      "evidence": "Noactualresamplingbutton observed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralbatchgradientnoisetradeoff.",
+      "evidence": "Workversussteadiness.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "SD/variance distinction andfinite-samplevariation.",
+      "evidence": "Theoretical0.25 versus0.23sample andseedrange.",
+      "confidence": "medium"
+    }
+  }
+}

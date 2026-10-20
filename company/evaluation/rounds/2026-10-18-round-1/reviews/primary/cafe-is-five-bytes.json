@@ -1,0 +1,152 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "cafe-is-five-bytes",
+  "domain": "cs",
+  "batchId": "round1-02",
+  "demoVersion": 2,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "af7c8541554182121feed66c7e925963cb456c652e66839a86966016d37e0d6f",
+  "demoSha256": "06017e35b2ee8828e95fb746259358a729e5e8136a42b0842e62c525e0d31de4",
+  "reviewedAt": "2026-10-18T18:41:08.286164+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cafe-is-five-bytes",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted4 and locked",
+      "outcome": "Empty text0 characters0of12bytes"
+    },
+    {
+      "id": "o2",
+      "action": "Added c,a,f,\u00e9",
+      "outcome": "caf\u00e94characters5bytes;\u00e9 boxes C3 A9 vs single boxes for c,a,f"
+    },
+    {
+      "id": "o3",
+      "action": "Added\u4e16 then\ud83d\ude00",
+      "outcome": "5characters8bytes then6characters12bytes;3 and4 boxes respectively; all adds disabled at12"
+    },
+    {
+      "id": "o4",
+      "action": "Deleted last character",
+      "outcome": "Emoji removed as whole;5characters8bytes; adds reenabled"
+    },
+    {
+      "id": "o5",
+      "action": "Opened reveal",
+      "outcome": "Corrects prediction to5, recalls exact caf\u00e9 and character encodings; ASCII1byte, other characters2\u20134; counting bytes differs from characters"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear byte-count alternatives expose one-byte-per-character misconception.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "ASCII/accent/Chinese/emoji additions show widths, full buffer and deletion boundary.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconstructs caf\u00e9 and each observed encoding width to explain count difference.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Byte boxes and separate counters make widths clear on tested desktop.",
+      "evidence": "o2-o5; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable variable-width rule stated; no concrete new applied task beyond preset examples.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed4 contradicted by5, with larger widths in subsequent examples.",
+      "evidence": "o1-o3",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-character grouped byte boxes directly explain unequal width.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Add/delete composition and12byte boundary support reversible experiment.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Distinguishes storage size from character count.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiple widths and buffer boundary explore single variable-width representation.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One core relation: different displayed characters occupy different numbers of boxes.",
+    "conceptualDemand": "gentle: addition and counting; optional hexadecimal byte codes unfamiliar",
+    "interfaceBurden": "low: preset character buttons and delete",
+    "provisional": true
+  },
+  "whyCool": "Adding one emoji raises the byte count byfour while the character count rises byone, filling the12byte buffer exactly.",
+  "caveat": "Preset characters avoid composed accents and multi-code-point emoji; the character-count rule is not tested on those cases.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed locked and revealed caf\u00e9\u4e16 states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

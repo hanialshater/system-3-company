@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-dose-of-acid",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-dose-of-acid",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "633938de680f075d9e2b80198169e00012eaceb2e19830242885cfeb5e653097",
+    "demoSha256": "284766fb1959e8253256e9dcb025eec2ce20b8eb6e73b093841526c9cc1a26c8",
+    "metaPath": "src/demos/chemistry/one-dose-of-acid/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Selected Water 5 units, buffer 5 and locked it in. Intro defines pH factor of ten and buffer resistance before prediction.",
+    "exploration": "Added first 0.001 mol dose: water 7.00 to 3.00, buffer 4.76 to 4.75, acetate 0.099/acetic acid 0.101. Add the rest ran sequentially to ten doses: water 2.00, buffer 4.67, acetate 0.090/acetic acid 0.110.",
+    "reveal": "Not quite identifies water five units, buffer under 0.1. Explains free hydrogen ions, acetate becoming acetic acid, changing ratio and blood pH 7.4.",
+    "visual": "Inline initial and completed screenshots inspected. White water curve plunges first dose; pink buffer curve nearly flat. Initial numeric badges partly clipped within stage; completed stage badges visible. Reveal text in same stage requires scrolling.",
+    "isolation": "No-history evaluation preview banner present. 7/7 trust counter ignored.",
+    "references": [
+      "CUA tab 543884107 snapshots and inline screenshots; no screenshot file saved."
+    ]
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Numerical alternatives are clear, but definition that buffer resists pH changes cues intended qualitative answer.",
+      "evidence": "Prediction prompt explicitly defines buffer before alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Dose sequence makes first-dose water plunge and buffer resistance visibly contrast.",
+      "evidence": "First dose and final tenth dose numbers, plotted curves.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed quantities to ion capture and acetate ratio.",
+      "evidence": "Reveal explicitly uses 0.100 to 0.090 and 0.110.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core path usable, but initial numeric badges partly clipped and chemistry-heavy prompt raises reading burden.",
+      "evidence": "Initial screenshot clipped badge row; completed chart legible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Blood offered as new example without conditions or a fresh task.",
+      "evidence": "Blood is buffered too, near pH 7.4.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Access modes not sufficiently audited.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed equal-drop prediction contradicted by sharply different outcomes.",
+      "evidence": "Five-unit water drop versus under 0.1 buffer.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Diverging plotted trajectories carry central comparison.",
+      "evidence": "Final screenshot white steep fall and pink nearly flat curve.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Single dose and auto remainder let learner choose pace.",
+      "evidence": "Both controls exercised; reset not exercised.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Blood example names relevance without concrete action.",
+      "evidence": "Final blood sentence.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dose response, early sharp change and acid/base inventory ratio connected.",
+      "evidence": "First/final dose and reveal inventory explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core explanation links logarithmic pH, hydrogen ions, acid/base conversion, mol quantities and ratio.",
+    "conceptualDemand": "Multiple unfamiliar dependent abstractions despite supported chart.",
+    "interfaceBurden": "Moderate: dense prompt and clipped initial readouts.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: pH, mol, acetate and acetic acid",
+    "notationRepresentationBurden": "high: decimal mol, mol/L, logarithmic scale and paired ratio"
+  },
+  "whyCool": "One acid click drops the water curve four pH units while the buffer barely moves, then the reveal connects resistance to disappearing acetate.",
+  "caveat": "No capacity-exhaustion boundary is available in tested ten-dose path; initial badges clip and fresh transfer was not tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset",
+    "Buffer exhaustion boundary",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "effort": "Approximately 2 minutes active browser walkthrough.",
+  "notApprovedForServing": true
+}

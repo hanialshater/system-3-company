@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "virulence-sweet-spot",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/virulence-sweet-spot",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "virulence-sweet-spot",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/life/virulence-sweet-spot/meta.json",
+    "metaSha256": "ef32fc19f5ebe6d6dc9a2b715bfbc078bb75498682831f6ceaddb5b0fec7ee0d",
+    "demoSha256": "6ac7aa3f243cbd3dfd452a96cfa0c774d4ed641a95557bf587c051c13242b0af",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/virulence-sweet-spot",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/virulence-sweet-spot.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected harm four and locked it in.",
+    "exploration": "Harm0.25 showed two cases daily for0.8 days, R0 1.6. Harm one showed four for0.5, R0 two. Harm four showed eight for0.2, R0 1.6. Home harm0.1 gave R0 1.1; End harm eight gave R0 1.3. Restored harm one.",
+    "reveal": "Corrected to harm one, listed all five actually visited points, supplied daily spread four times square root harm and duration one divided by one plus harm. Explicitly said square-root link chosen, real germs vary and theory debated.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Plot accumulated visited points on labeled logarithmic harm axis and formed rise-then-fall profile. Product explanation, current values and model caveat legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Tradeoff direction is meaningful but exact optimum underdetermined before functions are supplied.",
+      "evidence": "Only low-harm example and qualitative faster/shorter premise given initially.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Presets and endpoints build a genuine nonmonotonic contrast.",
+      "evidence": "R0 1.6,2.0,1.6 across three presets; lower at both range ends.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects observed optimum to rate-duration product and chosen functions.",
+      "evidence": "Square-root spread and reciprocal duration explained.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Toy label, R0 definition and selected-function caveat bound interpretation.",
+      "evidence": "Log harm axis labeled; real germs vary statement.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General tradeoff principle stated without a fresh application.",
+      "evidence": "Same hypothetical germ only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard endpoints and text product values observed; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More daily transmission can reduce total spread.",
+      "evidence": "High harm eight daily but R0 1.6 versus middle two.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Accumulated points show an interior maximum.",
+      "evidence": "Rise then fall across visited harm levels.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sampling harm settings builds plot.",
+      "evidence": "Three presets and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies a model-dependent evolutionary tradeoff.",
+      "evidence": "Chosen link and debated theory disclosed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Competing nonlinear functions produce an optimum.",
+      "evidence": "Rate times duration with explicit formulas.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Simple controls introduce epidemiological rate-duration and nonlinear function reasoning.",
+    "conceptualDemand": "Distinguish daily transmission from total secondary cases and compare competing scaling functions.",
+    "interfaceBurden": "Three presets and stepped slider.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "R0, harm-dependent removal and log-scaled axis.",
+    "notationRepresentationBurden": "Square roots,reciprocals,decimal durations and logarithmic harm."
+  },
+  "whyCool": "Faster per day can lose overall when the infectious window shrinks enough.",
+  "caveat": "Toy functions determine the optimum; rounded endpoint rate and duration may not multiply exactly to displayed R0. No real-germ inference is supported.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:01:46.703401+00:00"
+}

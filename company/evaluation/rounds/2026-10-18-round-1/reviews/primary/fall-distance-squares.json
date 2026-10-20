@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-historybanner;4/4trustignored.Predicted14.7m.",
+    "Time1→4.9m;2→19.6;3→44.1;4→78.5.Watchitfallanimatedfrom0.2mto78.5;sliderdisabledwhileanimating.",
+    "Revealfirstthreepersecondstrips4.9,14.7,24.5ratio1:3:5;constant9.81m/spersecondgain,time-squared9×,noairlimit.",
+    "Inline1257x936dark:verticalstripsgrowinglonger,labels eachsecondandtotal;final4thstrip34.3m;clearunits,largeverticalstage."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Linearversussquaredplausiblechoices,committedguess.",
+      "evidence": "14.7/29.4/44.1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fourtimecontrastsandanimationconnecttotalswithlongerpersecondstrips.",
+      "evidence": "1/2/3/4pluswatch",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsstripswithgainspeedandsquaredrelation,statesnoairlimit.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Persecondandtotallabelsdistinctandlegible.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Time-squaredruleandnoairconditiongiven,nonewapplication.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tripletimeproducesninefoldinsteadthreefolddistance.",
+      "evidence": "Prediction3secondresult",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Growingstripsandspeedingfallcarrymechanismacrossfourstates.",
+      "evidence": "Screenshotsandtimecontrasts",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Timesliderandanimationreversiblecomparison.",
+      "evidence": "1→4andwatch",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Distanceestimateforfreelydroppedobjectswithcondition.",
+      "evidence": "Noair/droppedfromrest",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Perintervalversustotal,speedgainandsquaredrelationship.",
+      "evidence": "Striplabelsandreveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishesintervaldistancefromtotalandlinksspeedgainwithtime-squared.",
+    "conceptualDemand": "linkedaccumulationrelations",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:acceleration",
+    "notationRepresentationBurden": "moderate:m/sand3²"
+  },
+  "whyCool": "Increasingtimeto3secondsmakesstrips1:3:5sumtoninetimesthefirstsecond.",
+  "caveat": "Onlyconstantgravityfromrestwithoutairistested.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "fall-distance-squares",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fall-distance-squares",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "0ee97c56ab2ccc4343c0bd8842ed99ca65c6c9de0175b448454e40ddbea35b94",
+    "metaSha256": "dd67f05a8114293317879ada74ddcf1479ffa8657e89e5c2bacea52260f8a1cc"
+  }
+}

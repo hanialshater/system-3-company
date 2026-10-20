@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "opposite-flows-swap-more",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/opposite-flows-swap-more",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "d2b15fed50679400279c53c92786a02f5b128c75053dc8c2c0f851f68c53b7dc",
+    "demoSha256": "c18db324a78e3930feb53bda09ff437a24789231fc0723f27174c5bda7098387",
+    "metaPath": "src/demos/life/opposite-flows-swap-more/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected50 for opposite-flow blood output with ten sections and locked it in. Same-way baseline50 given.",
+    "exploration": "Opposite flow10 sections gave91 versus same10 baseline50. Four sections gave80,one section50;history retained all. Reveal unlocked atfour and on opening automatically restoredopposite10/91.",
+    "reveal": "Corrected about90. Explains same-way levels equalise50,opposite keeps fresher water beside departing blood and water richer in every section. More sections approach100;toy model limit.",
+    "visual": "Inline initial/opposite10 screenshots inspected: numbered water/blood rows with opposing arrows,water18..100 versusblood0..82 atentry,91 output. Adjacent water values exceed blood along row. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear same-pipes direction contrast and plausible output alternatives.",
+      "evidence": "50 selected versus91.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Direction and section-count contrasts expose gradient persistence and one-section boundary.",
+      "evidence": "Same10=50,opposite1=50,4=80,10=91.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects local concentration differences to larger total exchange and toy limit.",
+      "evidence": "Freshest water meets outgoing blood;moresections approach100.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Entry-value legend,arrows and retained history clarify direction and counts.",
+      "evidence": "Inspected opposite10 screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable counterflow principle offered without concrete new exchange application.",
+      "evidence": "Opposite flows preserve local oxygen difference.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same-output prediction overturned bynear-doubling withdirection alone.",
+      "evidence": "50 versus91.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Numbered adjacent rows and arrows show maintained gradient over section contrasts.",
+      "evidence": "Opposite10 screenshot andone/four outputs.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Direction andsection presets support reversible discovery.",
+      "evidence": "Three opposite-section settings.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete biological oxygen exchange mechanism central.",
+      "evidence": "Water andblood pipes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local equalisation,flow arrangement andlength boundary linked.",
+      "evidence": "One/four/ten contrasts plusreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Tracks opposing flow directions,local equalisation andglobal steady-state output acrosssections.",
+    "conceptualDemand": "Multiple dependent spatial-flow relations.",
+    "interfaceBurden": "Low:direction andsection presets;reveal resetsstate.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:countercurrent exchange",
+    "notationRepresentationBurden": "moderate:numbered entryvalues andopposing arrows"
+  },
+  "whyCool": "Withone section both arrangements stopat50,butten opposing sections reach91 because each local water segment remains richerthanblood.",
+  "caveat": "Toy halfway-equilibration model only;reveal changescurrentstate backtoten sections.",
+  "missingEvidence": [
+    "Same-way fewer-section tests",
+    "Fresh exchange application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

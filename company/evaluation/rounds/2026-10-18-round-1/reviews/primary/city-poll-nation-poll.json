@@ -1,0 +1,147 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "city-poll-nation-poll",
+  "domain": "probability",
+  "batchId": "round1-02",
+  "demoVersion": 2,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "ae31086f4f8e2d9b4fab2052b53096addae8600f8bfe464f1cb9056d7e002093",
+  "demoSha256": "96aba0e3dd05ce6506f702d9cf46296b67ec7a105efdbfd293f07ac404410cea",
+  "reviewedAt": "2026-10-18T18:39:45.792805+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/city-poll-nation-poll",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "8/8 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted nation bigger margin and locked",
+      "outcome": "Nation1000 margin\u00b13.10 share0.00033%"
+    },
+    {
+      "id": "o2",
+      "action": "Changed population100000 then2000",
+      "outcome": "1000 sample margins\u00b13.08 at1% and\u00b12.19 at50%; band narrows"
+    },
+    {
+      "id": "o3",
+      "action": "Nation sample250 then4000",
+      "outcome": "Population resets300million; margin\u00b16.20 then\u00b11.55, visible dot spread and band change"
+    },
+    {
+      "id": "o4",
+      "action": "Opened reveal",
+      "outcome": "Corrects prediction using observed margins; number asked usually matters rather than share, exception substantial population fraction, assumes truly random picks"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct city/nation alternatives address share-of-population misconception.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Population, sample size and half-population boundary visibly distinguish effects.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual contrasts and finite-population/random-selection limits.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Chart and margin labels clear; nation buttons explicitly signal population reset.",
+      "evidence": "o1-o4; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explains concrete large-population use and substantial-fraction condition for exception.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nation-bigger prediction reversed despite drastic share difference.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot spread and confidence band expose precision changes.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Discrete comparisons support reversible discovery.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpreting poll sample size and random-selection condition is central.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sample size, population fraction exception and random-pick assumption linked.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compares sample count, population fraction and margin while holding dimensions fixed.",
+    "conceptualDemand": "balanced: fractions and interval plots with supported statistical labels",
+    "interfaceBurden": "low: discrete presets and labeled bands",
+    "provisional": true
+  },
+  "whyCool": "Shrinking the population from300million to100000 hardly changes the band, while asking4000 people halves the nation margin relative to1000.",
+  "caveat": "Ideal random picks and50% truth simplify polling; no bias or nonresponse case is explored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed population2000 boundary and revealed nation4000 state; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

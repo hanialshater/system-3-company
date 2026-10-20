@@ -1,0 +1,104 @@
+{
+  "slug": "rome-placed-too-far-east",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rome-placed-too-far-east",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted one of twelve historical estimates within2\u00b0 of the16.5\u00b0 Toledo\u2013Rome longitude difference.",
+    "True-value view showed1/12; closest G.Jansonius1605 at17.7\u00b0. Estimates range17.7\u201330.1\u00b0, all east of truth.",
+    "Middle25.8\u00b0 gave9.3\u00b0 excess, approximately780 km. Year sort showed AD15027.8\u00b0 versus161028.2\u00b0, no monotonic improvement.",
+    "Reveal matched results and explicitly said this record does not establish why every estimate was east-biased; two estimates probably came from maps."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple number-line comparisons and dates.",
+    "conceptualDemand": "Longitude differences and median error.",
+    "interfaceBurden": "Four views with clipped footer."
+  },
+  "whyCool": "Centuries of estimates cluster far from the truth in the same direction.",
+  "caveat": "Historical source values were not independently audited; the record does not prove the cause of shared eastward error.",
+  "effort": "Completed prediction, all four views, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Good evidence-aware historical explanation with a layout issue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise historical accuracy question with explicit tolerance.",
+      "evidence": "1/6/10 of12 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Truth overlay, closest, median and time sort expose distinct aspects of error.",
+      "evidence": "Magnitude, common direction and temporal pattern.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed counts connect to longitude measurement difficulty while avoiding an unsupported cause for shared bias.",
+      "evidence": "Explicit unknown reason for all-east errors.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Plot labels are clear, but the lower numerical footer is clipped inside the visualization at tested viewport.",
+      "evidence": "Year-sorted chart pushes summary below fixed area.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Historical measurement lesson without a fresh application.",
+      "evidence": "No second task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Every estimate falls on the same side, with a large median miss.",
+      "evidence": "Only1/12 within2\u00b0.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Truth band and median line make systematic displacement visible.",
+      "evidence": "One row per dated estimate.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Preset historical views.",
+      "evidence": "Four buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Historical perspective rather than practical procedure.",
+      "evidence": "No current mapping task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates accuracy, common bias, chronology and evidence limits.",
+      "evidence": "Some values map-read and bias mechanism unknown.",
+      "confidence": "medium"
+    }
+  }
+}

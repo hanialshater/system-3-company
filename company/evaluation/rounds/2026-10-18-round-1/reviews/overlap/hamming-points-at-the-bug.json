@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "hamming-points-at-the-bug",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hamming-points-at-the-bug",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "afb4afd3a902962fc5a053740dd2a126568602076f61bee45d749fa1be37fb78",
+    "demoSha256": "7623aa1d1c94560be2feaa398500c2962fdb8a240535185df40eac1ca01ea75c",
+    "metaPath": "src/demos/cs/hamming-points-at-the-bug/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected position 2 and locked the prediction for a single error with the second and third checks failing and the first passing.",
+    "exploration": "Selected bit 6: weights 2 and 4 failed, summing to 6. Selected bit 3: weights 1 and 2 failed, summing to 3. Selected bit 7: all three failed, summing to 7. Each selection replaced the single corrupted position rather than accumulating errors.",
+    "reveal": "The reveal corrected the answer to 6, accurately counted three different tested bits and named the current bit 7. It explained each position has a unique combination of checks and that flipping the identified bit back repairs a single error.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with bit 6 corrupted. Seven bit cells aligned over a three-row dotted membership matrix. The 2 and 4 rows were marked fail, the 1 row ok, and their sum 6 was shown below. The diagram occupied a small portion of a tall panel.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt requires interpreting overlapping check membership rather than mere detection.",
+      "evidence": "Selected position 2 before comparing the weighted check pattern.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Different single errors expose unique check combinations.",
+      "evidence": "Bits 6, 3 and 7 produced distinct failing sets with matching sums.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects actual tested cases to localization and repair.",
+      "evidence": "It quotes three tested bits and the current 1 + 2 + 4 = 7 result.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The aligned membership matrix makes the binary address readable.",
+      "evidence": "Each check row has dots under its covered positions and an explicit fail or ok label.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The localization rule is explained without a new message or application.",
+      "evidence": "All tests use one fixed seven-bit word and one corrupted position at a time.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Three yes or no checks identify where damage occurred.",
+      "evidence": "Each tested bit's failed weights sum to its own position.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Overlapping dot rows explain how an error acquires a unique signature.",
+      "evidence": "Bit 6 belongs to the 2 and 4 rows but not the 1 row.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choosing corrupted bits makes error localization a quick puzzle.",
+      "evidence": "Seven bit buttons support contrasting signatures.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It shows how redundancy can repair rather than merely detect damage.",
+      "evidence": "The reveal states the identified bit can be flipped back.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson connects check overlap to a general position encoding idea.",
+      "evidence": "Distinct membership combinations identify all seven single-error positions.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The controls are simple, but parity and binary-weight combinations introduce technical reasoning.",
+    "conceptualDemand": "Moderate: track parity changes across overlapping sets.",
+    "interfaceBurden": "Low: seven bit selection buttons.",
+    "conceptualChallenge": "Use a pattern of failed checks as an address rather than a count of errors.",
+    "prerequisiteNovelty": "Parity checks and weighted binary position coding are introduced.",
+    "notationRepresentationBurden": "Moderate: bit values, position numbers, set membership and check weights share a matrix."
+  },
+  "whyCool": "A few deliberately overlapping checks turn a vague alarm into the exact address of a damaged bit.",
+  "caveat": "Only single-bit corruption is available; the lesson does not show failure modes with multiple flipped bits or an actual repair action.",
+  "missingEvidence": [
+    "No multiple error boundary or fresh encoded message was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

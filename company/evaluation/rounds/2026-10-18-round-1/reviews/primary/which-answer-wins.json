@@ -1,0 +1,105 @@
+{
+  "slug": "which-answer-wins",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-answer-wins",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction supplied sigmoid preference formula and75%observed wins; chose gap0.75.",
+    "Gap0 predicted50%;0.75 gave67.9%too low;3gave95.3%too high;1.1gave75.0%match.",
+    "Reveal derived odds3:1,ln3=1.10,recalled tested gap3 and explained pairwise outcome fitting without reasons.",
+    "Reveal says model never stores anyone's score; ambiguous wording should distinguish human score labels from model reward outputs.",
+    "Inline1280x720 light screenshot showed sigmoid and match readout; explanation right edge clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Exponential and logarithm notation plus reward modeling prerequisites.",
+    "conceptualDemand": "Sigmoid and logodds.",
+    "interfaceBurden": "Simple controls; prose clipping."
+  },
+  "whyCool": "Moving one number along a sigmoid turns human pairwise choices into a calibrated reward gap.",
+  "caveat": "One fixedpair; ambiguous score-storage wording and right-edge clipping. Accessibility unknown.",
+  "effort": "Prediction,all candidate gaps,reveal and inline screenshot.",
+  "provisionalBucket": "solid-technical-with-wording-fix",
+  "bucketReason": "Useful mathematical comparison; clarify score wording and layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Formula and observed rate make answer mathematically determined.",
+      "evidence": "Probability,logodds,odds alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Candidate gaps clearly map to too-low,too-high and matching probabilities.",
+      "evidence": "67.9,95.3,75.0%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects match to logodds and limits of preference data.",
+      "evidence": "ln3 and observed-gap comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear graph but clipped prose and ambiguous score wording.",
+      "evidence": "Inline screenshot and never-stores-score claim.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names reward modeling application but no fresh use or application conditions beyond same pair.",
+      "evidence": "One fixed75%pair.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Reward gap is neither win probability nor odds.",
+      "evidence": "0.75and3fail.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sigmoid links gap and probability.",
+      "evidence": "75%reference and matching marker.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Slider and three candidate presets.",
+      "evidence": "Gap comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces interpretation of reward-model numbers.",
+      "evidence": "Pairwise fitting explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects sigmoid,odds,logarithm and preference fitting.",
+      "evidence": "ln3derivation.",
+      "confidence": "medium"
+    }
+  }
+}

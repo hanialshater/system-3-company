@@ -1,0 +1,103 @@
+{
+  "slug": "make-a-question-answerable",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/make-a-question-answerable",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Choose A or B defines decision better than What do you think.",
+    "Checklist Object proposal,Choice missing,Reply missing;two operations insertedChoice A/B andReply Friday,1/3\u21923/3.",
+    "Screenshot confirmed no actual alternatives named beyondA/B,or response experience. Reveal says named alternatives and room for objections,neither concretely exercised."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple recognition and two clicks.",
+    "conceptualDemand": "State requested choice.",
+    "interfaceBurden": "Autofill checklist."
+  },
+  "whyCool": "A request is easier to act on when it says which decision is needed.",
+  "caveat": "No concrete alternatives or complete rewritten question; Reply field is actually deadline.",
+  "effort": "Prediction,both field additions,screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful prose advice without meaningful interactive demonstration.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and binary wording give answer.",
+      "evidence": "Bound question versus vague request.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two autofill actions with no drafting or decision task.",
+      "evidence": "A/B thenFriday.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Principle explained but placeholder alternatives do not demonstrate concrete decision.",
+      "evidence": "No actual A/B content.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Reply label contains a deadline,not response content; generic proposal.",
+      "evidence": "Friday underReply.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General bounded-question advice without a new task.",
+      "evidence": "Leave room for objections stated only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "No unexpected outcome.",
+      "evidence": "Checklist completion.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Fields organize prompt components but no worked request.",
+      "evidence": "Object/Choice/Reply.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 0,
+      "reason": "Prescribed autofill only.",
+      "evidence": "No independent editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clearer requests useful supporting principle.",
+      "evidence": "Decision specificity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single communication rule.",
+      "evidence": "No ambiguity/objection contrast.",
+      "confidence": "medium"
+    }
+  }
+}

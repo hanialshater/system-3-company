@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "overfitting",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/overfitting",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "overfitting",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/overfitting/meta.json",
+    "metaSha256": "c3bf41d5c43d7e849d0d3a2c9d7f504b4aa0d33bfc2d815692ae7357a3b867d7",
+    "demoSha256": "7a5360ddd9d1687ae2d76cb2584bdd0452fcda8c90bcf4c13d74a69cb06ebff1",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/overfitting",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/overfitting.json"
+  },
+  "date": "2026-10-18T20:04:53.636646+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose6bends exactfit and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Tried every0through6. Solid/hollow misses:0=4.2/4.1,1=1.6/1.5,2and3=1.6/1.6,4=.6/3.0,5=.4/2.7,6=0/5.1degreesC. Visually inspected exactfit oscillation and hollow residuals."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read1to3 correction, jitter learning account, dashed smooth generating curve and heldback warning; other random sets need not lose to straight line caveat."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial/exactfit/scrolled reveal inspected. Legends,curve,counters and retained errors readable; dashed generating curve visible after reveal."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct training perfection versus withheld accuracy prediction.",
+      "evidence": "8solid learn and5hollow heldback clearly specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Full complexity sweep preserves quantitative contrasts.",
+      "evidence": "Training4.2to0 versus hollow minimum1.5 and final5.1; curve residuals visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains noise mechanism and bounds sample-specific claim.",
+      "evidence": "Dashed smooth source plus random jitter; other random datasets caveat; heldback data necessary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinct marker legend and error histories support comparison.",
+      "evidence": "Solidwhite/hollowpink,degreeC units and residuallines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General holdback rule provided without concrete new application.",
+      "evidence": "Same simulated temperature example; no fresh task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Perfect fit worse even than straight line here.",
+      "evidence": "0training5.1heldback versus4.1line.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Curve/residual and source reveal show fitted noise.",
+      "evidence": "Oscillating exactfit departs dashed smooth generating curve.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Seven complexity settings invite comparisons.",
+      "evidence": "Allsettings tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Strong model evaluation intuition.",
+      "evidence": "Training error alone cannot warn,holdback can.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Noise,generalization and sampling caveat linked.",
+      "evidence": "Specific dataset bounded and randomjitter explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Compare fit on two datasets across flexibility and infer noise fitting.",
+    "interfaceBurden": "Seven buttons with retained errors; scroll explanation.",
+    "prerequisiteNovelty": "Training/heldback distinction defined through markers.",
+    "notationRepresentationBurden": "Simple chart,time,degreeC averages and bends; no algebra."
+  }
+}

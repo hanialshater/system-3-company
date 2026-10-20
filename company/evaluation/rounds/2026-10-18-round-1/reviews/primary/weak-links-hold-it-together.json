@@ -1,0 +1,103 @@
+{
+  "slug": "weak-links-hold-it-together",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/weak-links-hold-it-together",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted fewest shared friends removal fragments60people6groups.",
+    "Network1 at20%=30/149links:strongfirst60connected,weakfirstlargest10,all12between-group links removed. At10strong still60.",
+    "Newnetwork2 at20%=27/134:weaklargest20,10/12between-group cuts;stronglargest60,0/12. Reveal accurately citesnetwork2 and mechanism. Screenshots readable,comparison chart tiny before reveal but enlarged after."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Graph components and shared-neighbor ranking.",
+    "conceptualDemand": "Local overlap versus cross-group connection.",
+    "interfaceBurden": "Two modes,cutslider,newnetwork."
+  },
+  "whyCool": "A link can be weak by shared-friend overlap and still be crucial for keeping groups connected.",
+  "caveat": "Synthetic clustered networks;between-group links called bridges here are not necessarily individual graph-theoretic cut edges or measured social ties.",
+  "effort": "Prediction,10/20%cuts,bothrankings,two networks,reveal,screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear controlled network contrast with reproducible variation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific same-fraction contrast with plausible strength misconception.",
+      "evidence": "Fewest/most/same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled ranking comparison across two network draws.",
+      "evidence": "60versus10,60versus20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate current-draw values and here-qualified mechanism.",
+      "evidence": "Low overlap between groups.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable network,count and final comparison chart.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Network principle stated,no distinct practical application.",
+      "evidence": "Same synthetic family.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Weak local overlap links preserve global connection.",
+      "evidence": "Strongcuts60,weakcuts10/20.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cluster graph and cut/connectivity chart central.",
+      "evidence": "Red between-group removals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Remove fraction,rank links,newnetwork.",
+      "evidence": "Two draws.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network robustness intuition.",
+      "evidence": "No real friendship measurement.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local redundancy versus global connectivity.",
+      "evidence": "Overlap-based strength.",
+      "confidence": "medium"
+    }
+  }
+}

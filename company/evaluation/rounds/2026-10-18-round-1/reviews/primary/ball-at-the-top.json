@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "ball-at-the-top",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ball-at-the-top",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseZeroacceleration at top; alternatives9.81m/s\u00b2down/up.",
+    "E:\u22120.1then3\u00d7+0.1:1.3s+1.95,1.4s+0.97,1.5s\u22120.02,1.6s\u22121.00m/s; seenrecord says\u22120.98each0.1s. Acceleration stays9.81down; velocity arrow flips.",
+    "R:Notquite9.81down. Acceleration is how fast velocity changes, not how fast ballgoes; record quoted actual1.4/1.6values; noairresistance.",
+    "No-history preview;5/5trust ignored. Screenshot1280x720 clear counters; ball/arrows relatively small."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targets velocity/acceleration confusion.",
+      "evidence": "P: choseZeroacceleration at top; alternatives9.81m/s\u00b2down/up.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Retains equal-time velocity changes across turning point.",
+      "evidence": "E:\u22120.1then3\u00d7+0.1:1.3s+1.95,1.4s+0.97,1.5s\u22120.02,1.6s\u22121.00m/s; seenrecord says\u22120.98each0.1s. Acceleration stays9.81down; velocity arrow flips.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual record to distinguish rate of change.",
+      "evidence": "R:Notquite9.81down. Acceleration is how fast velocity changes, not how fast ballgoes; record quoted actual1.4/1.6values; noairresistance.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counters and seenrecord clear; small arrows secondary.",
+      "evidence": "No-history preview;5/5trust ignored. Screenshot1280x720 clear counters; ball/arrows relatively small.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable velocity-change definition with model boundary.",
+      "evidence": "R:Notquite9.81down. Acceleration is how fast velocity changes, not how fast ballgoes; record quoted actual1.4/1.6values; noairresistance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;5/5trust ignored. Screenshot1280x720 clear counters; ball/arrows relatively small.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Stopped ball retains downward acceleration.",
+      "evidence": "E:\u22120.1then3\u00d7+0.1:1.3s+1.95,1.4s+0.97,1.5s\u22120.02,1.6s\u22121.00m/s; seenrecord says\u22120.98each0.1s. Acceleration stays9.81down; velocity arrow flips.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Arrows show contrast; numeric record carries precision.",
+      "evidence": "E:\u22120.1then3\u00d7+0.1:1.3s+1.95,1.4s+0.97,1.5s\u22120.02,1.6s\u22121.00m/s; seenrecord says\u22120.98each0.1s. Acceleration stays9.81down; velocity arrow flips.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible time stepping.",
+      "evidence": "E:\u22120.1then3\u00d7+0.1:1.3s+1.95,1.4s+0.97,1.5s\u22120.02,1.6s\u22121.00m/s; seenrecord says\u22120.98each0.1s. Acceleration stays9.81down; velocity arrow flips.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Common physics misconception.",
+      "evidence": "R:Notquite9.81down. Acceleration is how fast velocity changes, not how fast ballgoes; record quoted actual1.4/1.6values; noairresistance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Position,velocityandacceleration linked.",
+      "evidence": "R:Notquite9.81down. Acceleration is how fast velocity changes, not how fast ballgoes; record quoted actual1.4/1.6values; noairresistance.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguish speed from rate of change using supported numeric sequence.",
+    "conceptualDemand": "Linked motion quantities and signed direction.",
+    "interfaceBurden": "Low time controls.",
+    "prerequisiteNovelty": "moderate: acceleration introduced",
+    "notationRepresentationBurden": "moderate: m/s\u00b2 and signed values"
+  },
+  "whyCool": "The velocity arrow reverses while the acceleration arrow and equal-time decrement stay unchanged.",
+  "caveat": "Apex sampled nearzero rather than exactzero; arrows small in testedviewport.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "humidity-evaporation-gap",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/humidity-evaporation-gap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted a lot weaker at80 versus40 humidity; outputs drying push20 versus60.",
+    "Tested A/B then slider95: comparison automatically became95 versus55 with push5 versus45.",
+    "Reveal uses current9\u00d7 gap ratio and excludes temperature,airflow,fabric effects from model. Screenshot prose right clipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relative humidity and normalized deficit need interpretation.",
+    "conceptualDemand": "Complement and ratio,not direct drying time.",
+    "interfaceBurden": "Two modes,one slider affecting both rooms."
+  },
+  "whyCool": "A fixed difference in humidity can mean a much larger ratio in the remaining vapor-pressure gap near saturation.",
+  "caveat": "Qualitative prediction thresholds and linked comparison humidity should be explicit; push is simplified model,not drying-rate guarantee.",
+  "effort": "Prediction,A/B,humidity variation,reveal,inline screenshot.",
+  "provisionalBucket": "solid-with-label-followup",
+  "bucketReason": "Useful bounded model; linked slider explanation and viewport need polish.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Directional choice sensible but a bit/a lot thresholds undefined.",
+      "evidence": "Qualitative magnitude choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Humidity variation changes normalized deficit comparison.",
+      "evidence": "20/60 to5/45.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains current ratio and omitted factors.",
+      "evidence": "9\u00d7 model push;surface temperature/airflow/fabric.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Drier room changes along with slider; label doesn't disclose fixed40point difference, prose clips.",
+      "evidence": "95/55 and screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle and limits without new application.",
+      "evidence": "Same humidity comparison.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Fixed humidity difference yields changing ratio.",
+      "evidence": "3\u00d7 to9\u00d7.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Table carries normalized deficit explanation.",
+      "evidence": "Push columns.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Modes and humidity variation.",
+      "evidence": "80\u219295.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Drying context with no actual rate estimate.",
+      "evidence": "No room-control advice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Relative gap comparison under fixed temperature.",
+      "evidence": "Normalized saturation deficit.",
+      "confidence": "medium"
+    }
+  }
+}

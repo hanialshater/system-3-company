@@ -1,0 +1,104 @@
+{
+  "slug": "buffer-for-a-late-finish",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/buffer-for-a-late-finish",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted the25-minute call start avoids the five-minute draft overrun.",
+    "Touching layout draft0\u201320+5, call20\u201335, notes35\u201345 gave five-minute draft/call overlap.",
+    "Five-minute-gap preset gave call25\u201340, notes45\u201355 and zero overlap.",
+    "Moved call70\u201385 while notes stayed45\u201355; Yours reported nominal gap50 and zero overlap. Reveal correctly distinguished A,B,Yours and stated a buffer absorbs delay only up to its size."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar timeline and simple durations.",
+    "conceptualDemand": "Slack versus overlap.",
+    "interfaceBurden": "Two presets and start slider."
+  },
+  "whyCool": "The buffer becomes a visible capacity to absorb a delay rather than vague extra time.",
+  "caveat": "The model tests overlap only: moving the call after notes remains accepted, so it does not enforce any dependency between call and notes. The B preset also moves notes.",
+  "effort": "Completed prediction, both presets, late manual start, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear conditional rule and accurate explicit historical/current-state comparison.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit overrun and start alternatives permit a concrete schedule judgment.",
+      "evidence": "Call20 versus25 after draft ends25.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset and manual start show buffer and overlap changes.",
+      "evidence": "A5 overlap, B0, manual70 also0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Original cases and current state are explicitly separated with a conditional rule.",
+      "evidence": "A/B/Yours rows and delay-capacity caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named historical rows and current layout prevent changed-state ambiguity.",
+      "evidence": "Yours clearly identified at70.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete buffer rule includes its limit.",
+      "evidence": "Absorbs up to its duration, not a guarantee about real tasks.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Straightforward slack scheduling.",
+      "evidence": "Five-minute allowance absorbs five-minute delay.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Overrun extension and task blocks make overlap visible.",
+      "evidence": "Draft hatched extension and call location.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Moving call tests schedules.",
+      "evidence": "Presets and start slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct scheduling rule with explicit uncertainty limit.",
+      "evidence": "Buffer sized to stated delay.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single fixed delay rather than uncertainty model.",
+      "evidence": "No probability distribution.",
+      "confidence": "medium"
+    }
+  }
+}

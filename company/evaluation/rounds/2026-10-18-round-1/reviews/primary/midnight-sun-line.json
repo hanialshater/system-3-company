@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "midnight-sun-line",
+  "demoVersion": 6,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/midnight-sun-line",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "midnight-sun-line",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 6,
+    "metaPath": "src/demos/geography/midnight-sun-line/meta.json",
+    "metaSha256": "da1ec8505397beee1448e9814c86bfd6ec6e8fbd89e18e83d744bff43b530804",
+    "demoSha256": "5887b0d525405e00ebd38c55766a50fcbb41d97497c94eb6618a4eb66e8ffa27",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/midnight-sun-line",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/midnight-sun-line.json"
+  },
+  "date": "2026-10-18T19:50:49.636817+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Isolation banner confirmed;trust7/7 ignored. Selected80N andlocked.",
+    "exploration": "Initial60Nmidnight dark,19lit hours.65preset midnightdark/21lit.70preset midnightlit/24lit,revealunlocks. Set66.6Nmidnightlit/24lit;clockEnd24wraps00:00sameposition. Full-dayintermediateclocknotindividuallysampled;daystripall24yellow.",
+    "reveal": "Correct66.6;actual65sunset/66.6nonequoted.90-23.4tiltcomplement;orangepole-nightedgegap,latitudecircleinsidegaplitall day. DistinguishesArcticCirclefromTropicCancer23.4whereJuneNoonSunoverhead. Toynoaircaption.",
+    "visual": "Inline1257x936 dark screenshots inspected: globe shadednight,blue towncircle,orange23.4gap and24cell daylightstrip. Finaltext/controlslegible;clock24shows00:00bywrap."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Thresholdchoices66.6/23.4/80separatecomplement,tiltandextremenorthmisconceptions.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Below/above/exactthresholdlatitudes expose24hboundary withmap/daystrip;clockendpointwraptested.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actual65/66.6statesconnectedtotilt-gapgeometryandTropicversusArcticcondition,noairscoped.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Towncircle/night/daystripandtiltgapexplicit;controls/labelslegible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "ConcreteArcticversusTropicgeographicapplicationwithJune-solstice/noairconditions;nonewfreshcase.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen80thresholdalreadyfailsat70and66.6while65stilldark.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Globe nightboundary,latitudeorbitanddaystripcarrythresholdacrossseveralcontrasts.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Latitude/timecontrolsandpresetsenablecomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "ConcreteinterpretationofArcticCircleandmidnightsun.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Tiltcomplement,dayrotation,thresholdandArctic/Tropicdistinction.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate3Dlatitudeorbit,nightedgeandtiltcomplement;diagramand24hstripscaffold.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:twosliders/presets",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: solsticepolarillumination",
+    "notationRepresentationBurden": "low: latitude,degrees,24hourcells"
+  },
+  "whyCool": "At65Nthebluecirclecrossesnight,butat66.6itjustfitsinside thelitpolarcapall24hours.",
+  "caveat": "SingleJune-solsticeidealnoaircase;clockintermediatehoursnotindividuallysampled."
+}

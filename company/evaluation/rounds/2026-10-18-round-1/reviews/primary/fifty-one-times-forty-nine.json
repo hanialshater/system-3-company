@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "fifty-one-times-forty-nine",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fifty-one-times-forty-nine",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "fifty-one-times-forty-nine",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/fifty-one-times-forty-nine/meta.json",
+    "metaSha256": "4300166702a89bd486727ea343838da50babf169a18cfeb08499f97874163aab",
+    "demoSha256": "112c36126aaa5917d8e5c29c73441e54957e198ddf149d016c77a0e3bd387059",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/fifty-one-times-forty-nine",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/fifty-one-times-forty-nine.json"
+  },
+  "date": "2026-10-18T19:06:11.023170+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust4/4 ignored. SelectedExactlyequal and locked.",
+    "exploration": "Move strip width1:51x49=2500-1=2499 with1x1 hanging corner. WidthEnd10:60x40=2500-100=2400. Putstripback restores50x50square with10wide bottomstrip. Reveal remains unlocked.",
+    "reveal": "Correct1less. Recaps moved1wide block and1x1hang; explicitly cites width10hang10x10=100. General(a+d)(a-d)=a2-d2 and small square end does notfit.",
+    "visual": "Inline1257x936 dark screenshots inspected: moved thin golden strip and circled1x1corner, then restored square with wide gold bottomstrip. Labels/reveal legible; reveal refers historical moved states clearly."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete equal/1less/100less distinctions expose compensation misconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Stripmove,width1/10 and reverse arrangement expose leftover-square mechanism at two scales.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolves original answer and actual wider contrast through leftover area and general symmetric-factor condition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Lengths,strip toggle,arithmetic and hangingcorner labels legible across tested states.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General symmetric-factor identity supported by wider case; no new application beyond parameter variation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equal compensation prediction loses exactly squared stripwidth.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Rearranged strip and highlighted hanging square carry algebra across two widths/reset.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Move/back and width exploration reversible.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Mental multiplication near square practical example, general identity offered.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Area conservation,hanging-square loss,scale and symbolic identity.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Translate geometric rearrangement to symmetric-factor algebra with explicit numerical scaffolding.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: toggle and width slider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: area proof for algebra",
+    "notationRepresentationBurden": "moderate: a,d,squared notation after concrete cases"
+  },
+  "whyCool": "Moving the strip almost preserves the near-square rectangle, with the1x1hanging corner explaining2499.",
+  "caveat": "Wider strip remains same base50 example; no fresh mental multiplication application."
+}

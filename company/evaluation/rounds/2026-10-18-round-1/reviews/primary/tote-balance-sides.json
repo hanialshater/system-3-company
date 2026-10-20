@@ -1,0 +1,103 @@
+{
+  "slug": "tote-balance-sides",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tote-balance-sides",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedyes for3kgleft1right moving1. Initial balance\u221210cm versus2/2center0.",
+    "Left1 gives1/1both layouts center0;left5 gives5/1\u221213.3 versus3/3center0.",
+    "Reveal preserves total,explains center of mass and both3/1 and5/1 examples,excludes load safety. Full centered bag schematic inspected;long prose right clips."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Weighted center concept and signedoffset.",
+    "conceptualDemand": "Distribution distinct from weight.",
+    "interfaceBurden": "Two modes,mass slider."
+  },
+  "whyCool": "Changing where the weight sits can change balance without changing how much the bag weighs.",
+  "caveat": "Equal masses center only for symmetric positions in this model;numeric offsets need lever-distance labels.",
+  "effort": "Prediction,A/B,mass endpoints,reveal,full diagram inspection.",
+  "provisionalBucket": "solid-label-viewport-followup",
+  "bucketReason": "Useful redistribution contrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete redistribution versus total-weight misconception.",
+      "evidence": "Move1 from3/1.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mass/layout contrasts include already-balanced boundary.",
+      "evidence": "3/1,1/1,5/1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own current result and causal explanation with scope.",
+      "evidence": "5/1\u21923/3;totalunchanged.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable table but long clipped reveal and lever distances not numerically stated.",
+      "evidence": "Balance\u221213.3 calculation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete redistribute-to-center rule with symmetric-position model and safety limit.",
+      "evidence": "Equal halves and centered handle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same total can hang differently.",
+      "evidence": "Redistribution changes balance.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bag,masses and balance marker central.",
+      "evidence": "Full diagram inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mass and arrangement variation.",
+      "evidence": "Balanced boundary.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing balance central.",
+      "evidence": "No safe-load claim.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Center of mass versus total mass.",
+      "evidence": "Weighted position.",
+      "confidence": "medium"
+    }
+  }
+}

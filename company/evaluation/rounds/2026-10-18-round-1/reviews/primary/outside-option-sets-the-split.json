@@ -1,0 +1,103 @@
+{
+  "slug": "outside-option-sets-the-split",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/outside-option-sets-the-split",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted0.70 for A fallback0.40,B0 under named Nash model;equal-surplus rule only explained later.",
+    "Baseline0\u2192A0.50;fallback0.40\u2192A0.70/B0.30;maximum0.80\u2192A0.90/B0.10.",
+    "Reveal labels original0.40case and actual tried endpoints,explains fallback plus halfsurplus. Screenshot clearbar decomposition,prose rightclips. Alwaysdeal explicit and slider excludes fallback\u22651."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Bargaining rule and fallback accounting.",
+    "conceptualDemand": "Threat payoff versus realized agreement.",
+    "interfaceBurden": "Slider,presets,clearbar."
+  },
+  "whyCool": "An alternative can improve the deal you accept even when you never choose that alternative.",
+  "caveat": "Always-agree Nash toy with symmetric bargaining and money payoffs;not evidence all negotiations split gains equally.",
+  "effort": "Prediction,baseline/.4/.8contrasts,reveal,two screenshots.",
+  "provisionalBucket": "solid-model-primer-followup",
+  "bucketReason": "Clear model exploration,requires rule disclosure.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise answer depends on Nash rule/prior knowledge,not explained for novice.",
+      "evidence": "Fallbackplus halfrest revealed later.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled fallback contrasts and nearupperboundary.",
+      "evidence": "0/.4/.8\u2192.5/.7/.9.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original-case and endpoint explanation under explicit model.",
+      "evidence": "80centthreat moves40centdeal.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Bar clear but named model unexplained prechoice and clipped prose.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General leverage principle but no concrete new application.",
+      "evidence": "Same bargaining toy.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unused alternative changes agreed payoff.",
+      "evidence": "Aneveruses fallback.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bar decomposes fallback and shared surplus.",
+      "evidence": ".4+.3=.7.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fallbackslider and presets.",
+      "evidence": "Threecontrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Negotiation outside-option concept central.",
+      "evidence": "Modelnotreal guarantee.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Disagreement payoff versus agreement surplus.",
+      "evidence": "Equal surplus not equal totals.",
+      "confidence": "medium"
+    }
+  }
+}

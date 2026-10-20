@@ -1,0 +1,104 @@
+{
+  "slug": "news-comes-from-acquaintances",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/news-comes-from-acquaintances",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted either close/acquaintance for sole A\u2013B bridge between two close groups,under two-close-friends-must-have-tie rule.",
+    "Initial close A\u2013B displayed missing B\u2013C violation; checked C\u2013E and F\u2013H triangles. Changed A\u2013B to acquaintance then sent news; allnodes filled and Hnews reached Agroup.",
+    "Reveal reconciles close bridge contradiction,valid acquaintance andother missing cross ties; explicitly conditions result on AorB having close friend internally.",
+    "1280x720light diagram readable; final prose clipped at right edge."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Must trackconditional ties across graph.",
+    "conceptualDemand": "Localtriangle rule versusintergroupbridge.",
+    "interfaceBurden": "Small checktargets andtie pill; otherwise straightforward."
+  },
+  "whyCool": "A local friendship rule forces the sole bridge between groups to be an acquaintance.",
+  "caveat": "Toynetwork rule,not universal sociallaw; noalternativegraph challenge. Proseclip. Triangle checkbox description sayschecked withonevalue0afterstatechange; accessibilitynotaudited.",
+  "effort": "Prediction,two trianglechecks,close/acquaintance contrast,newssend,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clear networkmechanism; fix reveal layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific structural rule and two-group setup support deductive prediction.",
+      "evidence": "Close versusacquaintance bridge with internal closefriends.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Tests violation versusvalid tie andnews movement.",
+      "evidence": "Close B\u2013C missing versusacquaintance andallnodesheard.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains tested contradiction andcondition with observed news consequence.",
+      "evidence": "AcloseB,C requiresB\u2013C; solebridge mustbeacquaintance.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Diagram andstate feedback clear butrevealed proseclips.",
+      "evidence": "Final1280x720 screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General bridge claim within same graph, nosecondcase challenge.",
+      "evidence": "Other D,E,F,G,H implications described.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Only intergroup tie cannotbeclose under localrule.",
+      "evidence": "Closefails,acquaintanceworks.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted missing triangle andnewsfillednodes expose structure.",
+      "evidence": "B\u2013Ccross andallheardafterHnews.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Trianglechecks,tie toggle andnewssend invite mechanismtest.",
+      "evidence": "Threeinteractive operations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains acquaintances as novelinformation bridges.",
+      "evidence": "Hnews reachesoutsidegroup across A\u2013B.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localconstraint yieldsglobalnetwork consequence.",
+      "evidence": "Triadic rule forces weakbridge.",
+      "confidence": "medium"
+    }
+  }
+}

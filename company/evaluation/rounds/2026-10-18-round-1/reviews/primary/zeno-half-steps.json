@@ -1,0 +1,104 @@
+{
+  "slug": "zeno-half-steps",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/zeno-half-steps",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asks the infinite sum of one-half, one-quarter and successive halves.",
+    "After six shading actions the square showed labeled regions totaling 63/64 and a remaining 1/64 sliver.",
+    "At the ten-step cap, shaded area was 1023/1024 with 1/1024 remaining.",
+    "Reveal distinguishes finite observed sliver from the infinite total; reset restored counters zero and one while retaining the historical ten-step explanation."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Infinite limit differs from a finite step.",
+    "conceptualDemand": "Understand shrinking remainder without finite disappearance.",
+    "interfaceBurden": "Single, batch and reset buttons."
+  },
+  "whyCool": "An endless collection of shrinking pieces can fit exactly inside one whole.",
+  "caveat": "Ten finite steps illustrate a limit; they do not literally execute infinitely many additions.",
+  "effort": "Prediction, single and batch construction, ten-step cap, screenshot, reveal and reset.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Direct geometric explanation of a subtle finite-versus-infinite distinction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise infinite-sum question with plausible divergence and two-whole distractors.",
+      "evidence": "Unlimited, one or two.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single and batch steps demonstrate remaining-area halving, with reset.",
+      "evidence": "Six and ten-step states plus restart.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed remainder to bounded total and shrinking residual.",
+      "evidence": "Finite 1/1024 remains; infinite limit one.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Region labels and complementary counters explain what is shaded and left.",
+      "evidence": "63/64 plus 1/64, then 1023/1024 plus 1/1024.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Clear geometric-series principle without a second application.",
+      "evidence": "Repeatedly halve the remainder inside a unit square.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Infinitely many positive pieces have a finite total.",
+      "evidence": "Sum reaches one as a limit, never exceeds the square.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Repeated spatial partition makes the bound and remainder visible.",
+      "evidence": "Labeled halves and nested residual sliver.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Incremental construction with batch and reset.",
+      "evidence": "Ten-step construction and restart tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily mathematical intuition.",
+      "evidence": "No applied scenario.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates partial sums, boundedness and limit.",
+      "evidence": "Finite remainder versus infinite total.",
+      "confidence": "medium"
+    }
+  }
+}

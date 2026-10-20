@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "sum-seven-ignores-first-die",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sum-seven-ignores-first-die",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "a513e8301833abae52478edb0d5097fc306d90ba3c055479dc2f3e2460bf6bbd",
+    "demoSha256": "f0bf4f69719011583db47313811ef5aa43a7fad7636123e5784a1f3bd92f6276",
+    "metaPath": "src/demos/probability/sum-seven-ignores-first-die/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected It raises it and locked the chance of total seven after seeing first die three.",
+    "exploration": "For total seven, first die three, one and six each left the chance at one sixth, matching six of thirty-six before the clue. Switched to total eight: first die six raised chance from five of thirty-six to one sixth; first die one reduced it to zero of six.",
+    "reveal": "The reveal corrected the answer to unchanged and explained every row has exactly one completion to seven. It accurately quoted the original first-die-three case and the last impossible eight case, then distinguished independence for seven from dependence for eight.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with first die three and total seven. A six by six outcome grid dimmed all but the selected row; one bright 3+4 cell remained a success. Before and after fractions were readable below.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884179 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question tests whether learning part of an outcome must alter the event probability.",
+      "evidence": "Selected an increase after the first-die clue.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple clues and a contrasting target isolate event-specific independence.",
+      "evidence": "Seven remains one sixth; eight can become one sixth or impossible.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the structural row count and accurately references observed cases.",
+      "evidence": "One successful completion exists in every row for seven but not eight.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The grid shows numerator and denominator changing together.",
+      "evidence": "The selected six-cell row retains one bright success for seven.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The formal independence idea is named without a distinct new application.",
+      "evidence": "The contrast remains within the same two dice setup.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Knowing a die value can leave one sum's chance unchanged but alter another.",
+      "evidence": "Seven and eight respond differently to the same first-die clue.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "The row restriction and highlighted success cells explain both invariance and failure.",
+      "evidence": "The impossible eight row contains no successful completion.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Clue and total controls invite testing a counterexample.",
+      "evidence": "Several die values and two targets can be compared.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives a concrete definition of event independence.",
+      "evidence": "A clue matters only if it changes the relevant event's probability.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson prevents overgeneralizing independence from a single case.",
+      "evidence": "Total eight provides an explicit contrasting event.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple dice support a subtle distinction between conditional probability and event independence.",
+    "conceptualDemand": "Moderate: compare conditional and unconditional ratios.",
+    "interfaceBurden": "Low: first-die choices and two total targets.",
+    "conceptualChallenge": "Information can reduce the sample space without changing a particular event's fraction.",
+    "prerequisiteNovelty": "Conditional probability and independence are introduced.",
+    "notationRepresentationBurden": "Moderate: outcome grid and before-after fractions."
+  },
+  "whyCool": "A clue can shrink the possibilities dramatically while preserving one event's exact probability.",
+  "caveat": "The outcomes assume fair independent dice, and only two sum targets are available.",
+  "missingEvidence": [
+    "No fresh target event or different probability setup was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

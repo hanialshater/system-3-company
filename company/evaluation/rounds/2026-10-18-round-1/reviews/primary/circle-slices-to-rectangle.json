@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "circle-slices-to-rectangle",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/circle-slices-to-rectangle",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose78%of20\u00d720squarefilledbyradius10circle.",
+    "E: Unroll8slices:bumpy; End64slices:strip10tall31.4long,half62.8rim;Home4slices:bumpy;return64. Screenshotstripcovers3.14of4boxes.",
+    "R: Yourpredictionheld;half-rim\u00d7radius=\u03c0r\u00b2;more slicesstraightenbumps;anycirclefills\u03c0/4\u224878.5%ofits square.",
+    "No-history preview;5/5trust ignored. Screenshot1280x720 labelsandstripclear; keyboard sliderworked."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Areaestimatecommitmentclear.",
+      "evidence": "P: chose78%of20\u00d720squarefilledbyradius10circle.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Slicingcontrastandunrollconnectcircletoarea-preservingstrip.",
+      "evidence": "E: Unroll8slices:bumpy; End64slices:strip10tall31.4long,half62.8rim;Home4slices:bumpy;return64. Screenshotstripcovers3.14of4boxes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsgeneralformulaandconstantcoverage.",
+      "evidence": "R: Yourpredictionheld;half-rim\u00d7radius=\u03c0r\u00b2;more slicesstraightenbumps;anycirclefills\u03c0/4\u224878.5%ofits square.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dimensionsandfourboxesvisuallyclear.",
+      "evidence": "No-history preview;5/5trust ignored. Screenshot1280x720 labelsandstripclear; keyboard sliderworked.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Generalrformulaandratioexplicit.",
+      "evidence": "R: Yourpredictionheld;half-rim\u00d7radius=\u03c0r\u00b2;more slicesstraightenbumps;anycirclefills\u03c0/4\u224878.5%ofits square.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-history preview;5/5trust ignored. Screenshot1280x720 labelsandstripclear; keyboard sliderworked.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Curvedcirclebecomesnearrectangle.",
+      "evidence": "E: Unroll8slices:bumpy; End64slices:strip10tall31.4long,half62.8rim;Home4slices:bumpy;return64. Screenshotstripcovers3.14of4boxes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Geometricrearrangementcentral.",
+      "evidence": "E: Unroll8slices:bumpy; End64slices:strip10tall31.4long,half62.8rim;Home4slices:bumpy;return64. Screenshotstripcovers3.14of4boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibleslice/unrollchoices.",
+      "evidence": "E: Unroll8slices:bumpy; End64slices:strip10tall31.4long,half62.8rim;Home4slices:bumpy;return64. Screenshotstripcovers3.14of4boxes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Circleareaexplanation.",
+      "evidence": "R: Yourpredictionheld;half-rim\u00d7radius=\u03c0r\u00b2;more slicesstraightenbumps;anycirclefills\u03c0/4\u224878.5%ofits square.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Circumference,area,limitandscalingratio.",
+      "evidence": "R: Yourpredictionheld;half-rim\u00d7radius=\u03c0r\u00b2;more slicesstraightenbumps;anycirclefills\u03c0/4\u224878.5%ofits square.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkrearrangement,circumferenceandarea withsupportedlimit.",
+    "conceptualDemand": "Linkedgeometricrelations.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:\u03c0relationintroduced",
+    "notationRepresentationBurden": "moderate:r\u00b2andratio"
+  },
+  "whyCool": "Increasingto64slicesstraightenstheedgesuntilhalftherimbecomesrectanglelength.",
+  "caveat": "Fixedradius10;generalradiusclaimexplainedsymbolicallywithoutsizecontrol.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

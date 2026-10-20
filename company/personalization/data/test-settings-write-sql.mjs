@@ -63,9 +63,9 @@ const lit = (v) => {
   return `'${v}'`;
 };
 const PREPARE = [
-  `PREPARE su(text, boolean, text[], text[], boolean, boolean, boolean) AS ${St.SET_UPSERT_SQL};`,
-  `PREPARE sd(text, boolean, text[], text[], boolean, boolean, boolean) AS ${St.SET_UPDATE_SQL};`,
-  `PREPARE mg(text, boolean, text[], text[], boolean) AS ${St.MERGE_SQL};`,
+  `PREPARE su(text, boolean, text[], text[], text[], text, boolean, boolean, boolean, boolean, boolean) AS ${St.SET_UPSERT_SQL};`,
+  `PREPARE sd(text, boolean, text[], text[], text[], text, boolean, boolean, boolean, boolean, boolean) AS ${St.SET_UPDATE_SQL};`,
+  `PREPARE mg(text, boolean, text[], text[], text[], text, boolean) AS ${St.MERGE_SQL};`,
 ].join("\n");
 const NAME = { [St.SET_UPSERT_SQL]: "su", [St.SET_UPDATE_SQL]: "sd", [St.MERGE_SQL]: "mg" };
 const exec = (user, patch) => {
@@ -75,18 +75,19 @@ const exec = (user, patch) => {
 const raw = (body) => run("psql", psqlArgs, `${body}\n`);
 const sql = (body) => run("psql", psqlArgs, `${PREPARE}\n${body}\n`);
 const ROW = (u) =>
-  `SELECT coalesce(personalization_on::text,'null')||'|'||array_to_string(subjects,',')||'|'||array_to_string(less_of,',') FROM settings WHERE user_id='${u}';`;
-const asText = (s) => (s ? `${s.personalizationOn === null ? "null" : s.personalizationOn}|${s.subjects.join(",")}|${s.lessOf.join(",")}` : "");
+  `SELECT coalesce(personalization_on::text,'null')||'|'||array_to_string(subjects,',')||'|'||array_to_string(less_of,',')||'|'||array_to_string(experiences,',')||'|'||coalesce(challenge,'null') FROM settings WHERE user_id='${u}';`;
+const asText = (s) => (s ? `${s.personalizationOn === null ? "null" : s.personalizationOn}|${s.subjects.join(",")}|${s.lessOf.join(",")}|${(s.experiences ?? []).join(",")}|${s.challenge ?? "null"}` : "");
 const seed = (u, s) =>
-  s ? `INSERT INTO settings VALUES ('${u}', ${lit(s.personalizationOn)}, ${lit(s.subjects)}, ${lit(s.lessOf)});` : "";
+  s ? `INSERT INTO settings (user_id, personalization_on, subjects, less_of, experiences, challenge) VALUES ('${u}', ${lit(s.personalizationOn)}, ${lit(s.subjects)}, ${lit(s.lessOf)}, ${lit(s.experiences ?? [])}, ${lit(s.challenge)});` : "";
 
 try {
   run("initdb", ["-D", `${tmp}/db`, "-U", "postgres", "-A", "trust"]);
   run("pg_ctl", ["-D", `${tmp}/db`, "-o", `-p ${port} -k ${tmp} -c listen_addresses=''`, "-l", `${tmp}/log`, "-w", "start"]);
   raw(`CREATE TABLE auth_user (id text PRIMARY KEY);
        INSERT INTO auth_user SELECT 'u-fake-'||g FROM generate_series(1,400) g;`);
-  raw(fs.readFileSync(path.join(repo, "company/personalization/data/00N_settings.up.sql"), "utf8"));
-  ok("draft 00N_settings applies; the three statements prepare", sql("SELECT 1") === "1");
+  raw(fs.readFileSync(path.join(repo, "db/migrations/003_account_preferences.up.sql"), "utf8"));
+  raw(fs.readFileSync(path.join(repo, "db/migrations/004_account_preference_experiences.up.sql"), "utf8"));
+  ok("numbered 003/004 migrations apply; the three statements prepare", sql("SELECT 1") === "1");
 
   // ---- 1. Sequential matrix against applyWrite -------------------------------------------------------------------
   const rows = [
@@ -101,6 +102,8 @@ try {
     { mode: "set", personalizationOn: true },
     { mode: "set", personalizationOn: null },
     { mode: "set", subjects: ["history"] },
+    { mode: "set", experiences: ["surprise", "depth"], challenge: "demanding" },
+    { mode: "set", experiences: [], challenge: null },
     { mode: "set", subjects: [] },
     { mode: "set", lessOf: ["lesson:fake-lesson"] },
     { mode: "set", personalizationOn: null, subjects: [], lessOf: [] },
@@ -153,15 +156,15 @@ try {
   const MERGE_ON = { mode: "merge", personalizationOn: true, subjects: ["cs"] };
 
   let r = await race("u-fake-301", ON, SUBJ, OFF);
-  ok("race: subjects-only held, off blocks then lands -> off survives", r.row === "false|history|domain:cs" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
+  ok("race: subjects-only held, off blocks then lands -> off survives", r.row === "false|history|domain:cs||null" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
   r = await race("u-fake-302", ON, OFF, SUBJ);
-  ok("race: off held, subjects-only blocks then lands on the new row -> off survives", r.row === "false|history|domain:cs" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
+  ok("race: off held, subjects-only blocks then lands on the new row -> off survives", r.row === "false|history|domain:cs||null" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
   r = await race("u-fake-303", ON, OFF, MERGE_ON);
-  ok("race: off held, merge with device on blocks then lands -> off survives, account lists kept", r.row === "false|math|domain:cs" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
+  ok("race: off held, merge with device on blocks then lands -> off survives, account lists kept", r.row === "false|math|domain:cs||null" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
   r = await race("u-fake-304", ON, MERGE_ON, OFF);
-  ok("race: merge held, off blocks then lands -> off", r.row === "false|math|domain:cs", r.row);
+  ok("race: merge held, off blocks then lands -> off", r.row === "false|math|domain:cs||null", r.row);
   r = await race("u-fake-305", null, OFF, MERGE_ON);
-  ok("race: no row, off's insert held, merge's insert conflicts, waits, then keeps the off and the off's lists", r.row === "false||" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
+  ok("race: no row, off's insert held, merge's insert conflicts, waits, then keeps the off and the off's lists", r.row === "false||||null" && r.waited > 500, `${r.row} waited ${r.waited}ms`);
 
   // ---- 3. Control: the statement this change replaced, used the old way --------------------------------------------
   const OLD_UPSERT = (u, s) =>

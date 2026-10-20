@@ -1,0 +1,103 @@
+{
+  "slug": "lh-count-sheets-not-rolls",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-count-sheets-not-rolls",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction supplied A \u20ac6 for 6\u00d7120 sheets and B \u20ac5 for 4\u00d7240; selected B.",
+    "Tests displayed A 0.008 \u20ac/sheet and B 0.005. Minimum B sheets/roll 100 reversed comparison to B 0.013 versus A 0.008.",
+    "Screenshot showed stylized sheet forms and result cards. Reveal distinguished original 240 from current 100 and stated equal size and quality."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple multiplication and division with visible expressions.",
+    "conceptualDemand": "Normalize differing package quantities.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Changing sheets per roll flips which package is cheaper.",
+  "caveat": "Prices round to three decimals; quality differences are intentionally excluded.",
+  "effort": "Prediction, both tests, minimum boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful normalized-price comparison with clear assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific quantities support a meaningful unit-price judgment.",
+      "evidence": "Roll counts conceal total sheet count.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "One denominator change reverses ordering.",
+      "evidence": "B 240 to 100 sheets per roll.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Formula and scope explain reversal while preserving prediction context.",
+      "evidence": "Rolls multiplied by sheets per roll; equal quality.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and expressions trace the comparison.",
+      "evidence": "Displayed rounded prices with denominators.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit condition supports applying unit prices to comparable goods.",
+      "evidence": "Equal sheet size and quality required.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Smaller roll pack can offer cheaper sheets.",
+      "evidence": "Four rolls beat six at initial quantities.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Result cards support arithmetic; sheet drawings do not depict total quantity.",
+      "evidence": "Initial screenshot inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two tests and one slider.",
+      "evidence": "No independent challenge.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Shopping unit-price comparison is central.",
+      "evidence": "Price per usable sheet.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two-factor denominator and comparison reversal.",
+      "evidence": "Count times sheets per roll.",
+      "confidence": "medium"
+    }
+  }
+}

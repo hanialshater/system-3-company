@@ -1,0 +1,104 @@
+{
+  "slug": "five-day-generations",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/five-day-generations",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction20cases,R1.5,fivedaygenerations,gen6cases30/230/1000; chose30. Titlealreadyrejects50%moreinterpretation.",
+    "SteppedonegenerationthenGen6:R1.5=>228;changedR0.8atgen6=>5;R2=>1280.",
+    "Reveal20x1.5^6=227.8,repeated50%growthsix times;R0.8observeddecline;fixedR/nonoverlappinggenerationsversusrealbehavior/immunitycaveat.",
+    "Screenshot generationsequence andcount clear; actualrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkedgeneration/time/countrepresentations andmultiplicativegrowth.",
+    "conceptualDemand": "Factorrepeatspergeneration,below1reversestrend.",
+    "interfaceBurden": "Presetbuttons andjump;clippedreveal."
+  },
+  "whyCool": "Theextra50percenthappensagainineachgeneration,so20casesbecome228ratherthan30.",
+  "caveat": "FixedR/5daynonoverlappingtoy;notactualepidemiologicalforecastormedicalguidance;titlecuesprediction.",
+  "effort": "Prediction,onegeneration,gen6,R0.8/R2counterfactuals,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Stronggrowth/declinecontrast, butpredictioncueandlayoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Questionclearbuttitlecuesonewrongalternative beforecommit.",
+      "evidence": "TitleR1.5isnot50%more versus30option.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "ControlledRcontrasts includequalitativegrowth/declineboundary.",
+      "evidence": "R0.8=>5,R1.5=>228,R2=>1280 atsamegeneration.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesoriginalerror andusesobservedsubunitRcase withmodel-limit caveat.",
+      "evidence": "Sixmultiplications,below1shrinks;fixedRtoy.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Largecountsandsequenceusablebutactualrightedgecutoff.",
+      "evidence": "Screenshotlongfirstrevealline truncated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Compoundingprinciple andrealworldcaveat stated;newapplicationnotpracticed.",
+      "evidence": "OnlypresetRchanges sameinfectionsetup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Modestpergenerationgrowth becomesorderofmagnitudemonthlyincrease.",
+      "evidence": "20to228.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dotcountsandgenerationsequence showrepeatedmultiplication.",
+      "evidence": "R2sequence20to1280.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepgenerations andswitchRpresets.",
+      "evidence": "FourRsettingsandGen6jump.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingepidemicgrowthliteracy.",
+      "evidence": "Distinguishpergenerationfromtotalincrease.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Compounding,criticalfactor1,andmodelassumptions.",
+      "evidence": "Growthversusdeclinecounterfactual.",
+      "confidence": "medium"
+    }
+  }
+}

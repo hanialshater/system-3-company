@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified;6/6trust chrome ignored. North-up Panama map; choseWestvsSouth-east/South-westand locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Sail Pacific endpoint=>100%,142°south-east,58km; reset=>0%,not sailed yet,no distance; reveal stayed unlocked. Keyboard End then ArrowLeft=>95%,142°south-east,55km. AXmap description exposes142°even at0after lock."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quiteSouth-east.142°north0/east90;58kmstraight line,Pacific endpoint east ofAtlantic; isthmus east-west; canal winds so overall direction not every turn. Current95%55kmretained while explanation states endpoint58. Initial map screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible directional alternatives and commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Endpoint displacement reveals answer; intermediate travel repeats bearing.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains local orientation and overall/winding limitation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "North-up map and bearing convention explicit.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Local map checking principle implicit; geographical fact dominates.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode testing.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Atlantic/Pacific intuitivewest reverses southeast.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Map displacement supplies directional mechanism.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible journey and range.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Concrete geographic orientation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single direction with route caveat.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One spatial orientation correction with north-up map and numeric bearing.",
+    "conceptualDemand": "Compass directions and straight-line versus winding path distinction supported verbally.",
+    "interfaceBurden": "Two endpoint buttons and range; inner diagram scroll."
+  },
+  "whyCool": "Sailing fromAtlantictoPacific gives142°south-east rather than intuitive west, made concrete by endpoint displacement.",
+  "caveat": "Simulation labels constant overall bearing during travel; winding route explicitly outside scope; limited depth beyond one geographical correction.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only slider keyboard End/ArrowLeft tested; remaining accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "atlantic-to-pacific-heading",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/atlantic-to-pacific-heading",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "422c9c9cae7d0cc59fc206532983df1df62fbc69fd09df0fd4e972cb7db5c171",
+    "metaSha256": "1dc6acc09bf4813057a9189220f361f143ceaec2960a61801d940bdba4bef89f"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "fee-on-two-week-loan",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fee-on-two-week-loan",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionrepeat100loan15feeall year,every14days,yearlyshare15/390/100%; chose15.",
+    "14days26loans390%;7days52loans780%;91days4loans60%.",
+    "Reveal15x26=390,holdingfeefixedchangingrepeatcount,comparetimeperiods;simpleannualisingandrepeat-borrowassumptions;chartlabelwholeloans.",
+    "Screenshot segmentedyearbar andreadouts clear; actualrightedgeprosecutoff andnormalverticalscroll."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basicmultiplicationandpercentagewithfamiliar timeperiods.",
+    "conceptualDemand": "Ratebelongs toa statedperiod; repeatedfeesadd.",
+    "interfaceBurden": "Simplecontrols;whole-loanrounding andclippedreveal."
+  },
+  "whyCool": "The15dollarfeerepeats26times,so itsannualcost is390dollarsper100borrowed inthemodel.",
+  "caveat": "Whole-loancount/simpleannualizingtoy,notregulatoryAPRcalculationoractualfinancialguidance.",
+  "effort": "Prediction,14/7/91daycomparisons,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Practicalperiod-normalizationinsight;rounding/modeltermsandlayoutneedattention.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear period-rateversusannual-rate misconception withrepeatborrowingstated.",
+      "evidence": "15%twoweeks versus390%year.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Loanlengthpresets holdfee/principalfixed andchangerepetition.",
+      "evidence": "7/14/91days =>52/26/4fees.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsobservedfee-count toannualtotal andqualifiesmodel.",
+      "evidence": "26x15=390simpleannualization.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usefulsegmentedbar butactualrightedgecutoff;wholeloan conventionneedscare.",
+      "evidence": "91daysfourfees;simpleyearlyrate notcompoundrate.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Time-normalizationprinciple stated;newcomparisonproblem notpracticed.",
+      "evidence": "Samefee/principalfixedacrosspresets.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Smalltwo-weekfee maps tolargeannualizedrate.",
+      "evidence": "15becomes390per100.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Yearsegments expose repeatedcharges.",
+      "evidence": "4/26/52loanperiods.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Loanlengthpresets andslider.",
+      "evidence": "Fixedfee model.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Comparingcosts overcommontime centraltoexercise.",
+      "evidence": "Period-rate normalization.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Simpleannualizationwithexplicitnoncompoundingmodel.",
+      "evidence": "Fee,principal andtime only.",
+      "confidence": "medium"
+    }
+  }
+}

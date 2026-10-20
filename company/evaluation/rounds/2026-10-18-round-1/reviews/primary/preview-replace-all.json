@@ -1,0 +1,103 @@
+{
+  "slug": "preview-replace-all",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/preview-replace-all",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted all affected matches rather than first.",
+    "Preview highlighted both red tokens in red/blue/red without changing content; apply produced green/blue/green.",
+    "Reveal says exact matches all changed but appropriateness not determined. Both preview and final screenshots readable; no editable query,replacement or cancel option."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three word tokens.",
+    "conceptualDemand": "Scope of exact matches.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A preview turns an invisible broad operation into a visible list of affected items.",
+  "caveat": "Needs explicit query/replacement and a meaningful choice to inspect or cancel an unintended match.",
+  "effort": "Prediction,preview,apply,reveal,two inline screenshots.",
+  "provisionalBucket": "solid-low-challenge",
+  "bucketReason": "Correct observable contrast,limited agency.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple normative scope choice, limited plausible uncertainty.",
+      "evidence": "All versus only first.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Actual preview-to-edit contrast but fixed sequence.",
+      "evidence": "Two highlighted red\u2192two green.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurately explains scope and human judgment limitation.",
+      "evidence": "Exact matches,appropriateness not determined.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but target/replacement only inferred from output; fixture jargon and token metric.",
+      "evidence": "Red\u2192green not stated before.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit preview scope inspection before broad edits and appropriateness condition.",
+      "evidence": "Inspect every affected match.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected all-match replacement.",
+      "evidence": "Two matching tokens.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlights connect preview to changed tokens.",
+      "evidence": "Orange two-red preview.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed actions.",
+      "evidence": "No alternative edit.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Broad edit safety central.",
+      "evidence": "Inspect affected scope.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One exact-match replacement.",
+      "evidence": "No substring or case boundary.",
+      "confidence": "medium"
+    }
+  }
+}

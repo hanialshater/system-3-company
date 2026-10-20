@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-boss-moves-the-mean",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-boss-moves-the-mean",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-boss-moves-the-mean",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/one-boss-moves-the-mean/meta.json",
+    "metaSha256": "5c41b821afc21b42a8763759a0ca4a3a675672c1126b78aaec4f4bbab0c3c5ae",
+    "demoSha256": "2f286649bc901e6de01c3379a6247d6f01743cbcda8347d41455da90db3a6bcd",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-boss-moves-the-mean",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-boss-moves-the-mean.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose both mean and median against only mean and only median; locked it in.",
+    "exploration": "Initial boss50 gives mean40,median40. End on slider500 gives mean130,median40 and above four of five salaries feedback. Home50 restores40/40; End500 repeats130/40.",
+    "reveal": "Corrected only mean; computed(30+35+40+45+500)/5=130. Explained magnitude-sensitive sum versus unchanged middle rank,boss already last; median closer to typical person with few extremes.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Tall500 bar and mean130 line rise above four small salaries while dashed median40 stays. Full reveal and controls legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment separates average definitions under outlier change.",
+      "evidence": "Both prediction versus only-mean result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Extreme and reset contrasts visibly isolate mean sensitivity.",
+      "evidence": "50\u2192500\u219250\u2192500 yields40\u2192130 mean,median40 fixed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed lines to explicit sum and rank condition.",
+      "evidence": "130 calculation;boss already last.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bar labels,two lines and paired counters clearly distinguish metrics.",
+      "evidence": "Actual screenshot130 versus40.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General extreme-value use condition but no concrete new application.",
+      "evidence": "Median typical when few values extreme.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider endpoint keys only,insufficient access audit.",
+      "evidence": "Home/End work;focus order,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed both-shift prediction contradicted by invariant median.",
+      "evidence": "Mean130 while median40.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Outlier bar and reference lines carry magnitude/rank distinction.",
+      "evidence": "Actual500 bar and dashed40 line.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible slider changes show repeatable effect.",
+      "evidence": "Repeated endpoint/reset comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of typical salary central.",
+      "evidence": "Mean exceeds four of five wages.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Sum versus order mechanisms and outlier condition linked.",
+      "evidence": "Explicit mean calculation and boss-last invariant.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported contrast between total-based and middle-based average.",
+    "conceptualDemand": "Compare sum magnitude with unchanged ordering,definitions supplied.",
+    "interfaceBurden": "Low: one labeled slider and two counters.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low to moderate: mean/median definitions introduced.",
+    "notationRepresentationBurden": "low:whole salaries and division byfive."
+  },
+  "whyCool": "Raising one salary to500 pulls the mean above four workers while the median line stays exactly40.",
+  "caveat": "Only highest salary changes; no crossing-rank or even-sized dataset boundary tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Focus order,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:22:34.490972+00:00"
+}

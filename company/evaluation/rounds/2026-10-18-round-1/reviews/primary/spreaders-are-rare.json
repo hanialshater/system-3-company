@@ -1,0 +1,105 @@
+{
+  "slug": "spreaders-are-rare",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/spreaders-are-rare",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asked exact share infecting nobody given mean2 and qualitative very uneven spread; selected14%. No dispersion parameter supplied.",
+    "InitialUneven gave33zero,top10 caused38%,mean2. VeryUneven gave74zero,83%;Even gave14zero,24%,mean2.",
+    "Reveal compared all states and disclosed illustrative expected rounded shape,199to201total,not random outbreak or measured disease.",
+    "Even caption calls each case a random draw, while reveal says picture is expected shape not random outbreak: distinction needs clearer wording.",
+    "Inline1280x720 light screenshot showed circle grid and metrics; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple counts but expected distribution and sampling language require care.",
+    "conceptualDemand": "Mean versus heterogeneity.",
+    "interfaceBurden": "Three buttons; prose clipping."
+  },
+  "whyCool": "The same average hides radically different grids of empty circles and rare large spreaders.",
+  "caveat": "Exact prediction underdetermined; expected-shape versus random-draw wording; right-edge clipping. Accessibility unknown.",
+  "effort": "Prediction, all three modes, reveal and inline screenshot.",
+  "provisionalBucket": "revise-prediction",
+  "bucketReason": "Useful comparison but numerical question lacks determining model details.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Qualitative unevenness and mean do not determine exact zero percentage.",
+      "evidence": "No dispersion distribution supplied before14,40,74 choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fixed mean contrasts clearly show concentration changes.",
+      "evidence": "33,74,14zero and top10shares.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed comparisons and explicit illustrative-model limits support central lesson.",
+      "evidence": "Expected rounded shape caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Helpful metrics but random-draw versus expected-shape wording and clipping confuse.",
+      "evidence": "Even caption and reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General mean-versus-distribution lesson without fresh application.",
+      "evidence": "Same outbreak example.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Most cases transmit nothing despite mean2.",
+      "evidence": "74zero with mean2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Circle areas and empty circles reveal concentration.",
+      "evidence": "Three distribution modes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three comparison buttons.",
+      "evidence": "Even,Uneven,VeryUneven.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports interpreting aggregate rates cautiously.",
+      "evidence": "Average not typical.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Contrasts distribution shape at same mean and distinguishes illustration from observation.",
+      "evidence": "Top10share and zero count.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "work-back-from-a-deadline",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/work-back-from-a-deadline",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Three serial tasks last ten, fifteen and twenty minutes with deadline sixty.",
+    "Starting at fifty finished at ninety-five, thirty-five minutes late.",
+    "Backward preset started at fifteen and finished at sixty; earliest slider start zero finished at forty-five.",
+    "Reveal reports current early finish and separately derives latest start fifteen by subtracting the entire chain."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Addition and subtraction of familiar durations.",
+    "conceptualDemand": "Account for the full serial chain.",
+    "interfaceBurden": "Two buttons and start slider."
+  },
+  "whyCool": "A deadline constrains the start of the whole chain, not just the last task.",
+  "caveat": "Fixed known durations and a serial single-person plan; no uncertainty buffer.",
+  "effort": "Prediction, late test, backward preset, earliest start, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear boundary and accurate changed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise latest-start question with meaningful partial-chain distractors.",
+      "evidence": "Fifty for first task, forty for longest, fifteen for all.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Late, just-on-time and early cases show the boundary.",
+      "evidence": "Starts fifty, fifteen and zero tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects current state with general latest-start calculation.",
+      "evidence": "Sixty minus twenty minus fifteen minus ten.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Actual timeline and final explanation distinguish current from latest start.",
+      "evidence": "Current zero finishes forty-five; latest fifteen.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A reusable backward-planning principle, no new application.",
+      "evidence": "Whole chain must fit before deadline.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "The first task's own duration is insufficient.",
+      "evidence": "Whole forty-five-minute chain matters.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sequential bars and deadline show the scheduling constraint.",
+      "evidence": "Initial edit extends beyond minute sixty.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjustable start and helpful preset.",
+      "evidence": "Three start settings tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete planning procedure.",
+      "evidence": "Work backward through every serial task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes task length, chain length and latest start.",
+      "evidence": "Three alternatives and boundary.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "lh-indivisible-shares",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-indivisible-shares",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Available exceeds distributed for ten whole objects divided equally among three, remainders aside.",
+    "Tests gave distributed 9 versus available 10; nine objects gave 9/9; minimum one gave 0/1.",
+    "Screenshot showed filled-container comparison, not three recipients. Reveal explained floor division and one leftover while preserving original/current context."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small integer division; floor notation explained.",
+    "conceptualDemand": "Retain remainder outside equal allocation.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Equal shares do not make the leftover object disappear.",
+  "caveat": "Generic container picture misses the opportunity to show three groups and a remainder.",
+  "effort": "Prediction, both tests, divisible and minimum boundaries, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Correct discrete allocation and clear explanation, weak visual embodiment.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Title and remainder wording cue the gap; exact rule is supplied.",
+      "evidence": "Ten objects, three equal whole-number shares.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Checked remainder, divisible equality and too-few boundary.",
+      "evidence": "10, 9, 1 objects.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains floor share and retained inventory.",
+      "evidence": "Three each and one aside.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Whole-object and equal-share constraints clear; floor explained in reveal.",
+      "evidence": "Remainders kept aside.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Inventory principle without a new application.",
+      "evidence": "Remainder stays in inventory.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected remainder arithmetic.",
+      "evidence": "Ten cannot divide evenly by three.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Containers do not show recipients or leftover object.",
+      "evidence": "Numeric cards carry rule.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Divisibility patterns available through slider.",
+      "evidence": "Equality at nine, zero distributed at one.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Whole-object allocation is central.",
+      "evidence": "Equal shares and retained remainder.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Conservation alongside integer division.",
+      "evidence": "Available differs from distributed.",
+      "confidence": "medium"
+    }
+  }
+}

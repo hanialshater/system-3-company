@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "seesaw-mean",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seesaw-mean",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "979c1d3142055c33ce92291a673102c80da1dff8e1d7694390a9211b3d8556aa",
+    "demoSha256": "557a24dc12d7992b69f902b3205402791e5cbfccfedef692b457499cad780bba",
+    "metaPath": "src/demos/math/seesaw-mean/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 2.5 and locked the balance point prediction for equal weights at 1, 2, 3 and 10.",
+    "exploration": "Initial pivot 3 tipped right. Tried 2.5, which also tipped right, then 5.5, which tipped left. Set the pivot to 4 and the plank became level, unlocking the reveal.",
+    "reveal": "The reveal corrected the answer to 4 and showed signed distances -3, -2, -1 and 6 summing to zero. It gave the arithmetic mean calculation and contrasted the middle position 2.5 with balancing distances.",
+    "visual": "Inspected the dark 1257 by 936 inline screenshot at pivot 4. Three equal blue weights clustered on the left and one at 10 sat on a level numbered plank over a triangular pivot. Status and pivot readouts were clear.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The options separate median, mean and range midpoint intuitions.",
+      "evidence": "Chose 2.5 before the pivot was adjustable.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Moving the pivot gives directional feedback and an exact balanced state.",
+      "evidence": "2.5 tipped right, 5.5 tipped left, and 4 was level.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the balanced state with signed distances.",
+      "evidence": "Distances summed to zero and the mean equation equalled 4.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The physical analogy is readable and the reveal distinguishes two notions of middle.",
+      "evidence": "The plank, positions and equal weights remained visible alongside explicit feedback.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general meaning of mean is stated without testing a new distribution.",
+      "evidence": "Only one fixed set of four equal weights was available.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One far weight balances three nearer weights away from their median.",
+      "evidence": "The successful pivot 4 was right of the chosen 2.5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "A level plank represents cancellation of signed distances.",
+      "evidence": "The reveal's -3, -2, -1 and 6 corresponded to visible positions.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Finding the balance point is a simple physical puzzle.",
+      "evidence": "The pivot slider and two misleading presets supported exploration.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies what the mean measures.",
+      "evidence": "The ending contrasts counting weights with accounting for distance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It connects a physical balance to the algebraic zero sum property.",
+      "evidence": "Signed deviations and the sum divided by count were both explained.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "The balance metaphor and one slider are familiar; signed distances add a small conceptual step.",
+    "conceptualDemand": "Low to moderate: distinguish the median from the mean through distances.",
+    "interfaceBurden": "Low: one pivot slider and two preset buttons.",
+    "conceptualChallenge": "Understand why distant observations exert more pull on the average.",
+    "prerequisiteNovelty": "Negative signed distances appear in the reveal.",
+    "notationRepresentationBurden": "Low: numbered plank and a short arithmetic equation."
+  },
+  "whyCool": "The average becomes a place where unequal distances cancel, rather than just a calculation.",
+  "caveat": "Weights and locations stay fixed, so the learner cannot test how changing an outlier moves the mean.",
+  "missingEvidence": [
+    "No fresh weight arrangement was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

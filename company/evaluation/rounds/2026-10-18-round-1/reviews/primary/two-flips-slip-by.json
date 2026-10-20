@@ -1,0 +1,105 @@
+{
+  "slug": "two-flips-slip-by",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-flips-slip-by",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedparityalwayscatches twobitflips;even-countcheckrulegiven.",
+    "Initial4onesOKintact. Flipbit1:3onesERRORchanged. Flipbit2:4onesOKchanged.",
+    "Undidflips thenpresetbits1and6:2onesOKchanged,nonadjacenttwosamevaluedbitserroralsomissed.",
+    "Revealrecalledonecaught/twopassed,explainedparitytoggleandodd/evenflipguaranteesindependentofposition.",
+    "Inline1280x720 light screenshot: fullreadablebits,flipcount,messagechangedindicator andprose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Binarymessages andparitylogic supportedbycounts.",
+    "conceptualDemand": "Even/oddversuscorrectness.",
+    "interfaceBurden": "Clearbittogglesandstatus,readablelayout."
+  },
+  "whyCool": "Thegreengood-checklightturnsonwhilethemessageisstillvisiblywrong.",
+  "caveat": "Simpleparityonly,notgeneralerrorcorrectingcodes;accessibilityunknown.",
+  "effort": "Prediction,single/adjacentpair/distantpairerrors,undo,reveal andinline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clearconstructivefailurecaseandhonestguaranteelimit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearcheckruleandmeaningfulguarantee/adjacencyalternatives.",
+      "evidence": "Evenparitywithtwobiterrors.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Single/two,mixed/samevalueandadjacent/distantcontrastsisolateparity.",
+      "evidence": "3,4,2oneswithdetect/passoutcomes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsactualcontrasts toodd/evenmechanismandexplicitcoverage limit.",
+      "evidence": "Wrongmessagecanpass.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Checkresultandmessageintegritydistinctandreadable.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Distantpairanddifferentcountcaseapplyrulebeyondfirstpair andidentifyodd/evencondition.",
+      "evidence": "Bits1and6both1to0stillpasses.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "AnOKcheckcanaccompanywrongmessage.",
+      "evidence": "Twoflipschangedmessagepassed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bits,count,status andintegritycountershowdifference.",
+      "evidence": "2onesOKchanged.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Directbittoggles,undoandpairpreset.",
+      "evidence": "Manualandpreseterrors.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Error-detectionguaranteescentral.",
+      "evidence": "Paritylimit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Parityinvariantandnecessary/sufficientguarantees.",
+      "evidence": "Oddcaughtevenblind.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "buyers-who-would-pay-more",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/buyers-who-would-pay-more",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Prediction: five buyers willing to pay10,8,6,4,2; price5; total gains? options15,9,24. Chose9 and locked.",
+    "Tapped allfivebuyers; checked5of5, totalgain9. PriceEnd10 changedtotal0; Home1 changedtotal25.",
+    "Reveal: predictionheld; at5 threebuyers paid15 for value24; kept5+3+1=9. Names consumer surplus; inventedfivebuyer model.",
+    "Screenshot: readable complete reveal below interactivebars; atprice1 chart shows25 while explanation explicitly refers to originalprice5."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinguishes payment,totalworth,andgain.",
+      "evidence": "Alternatives15,9,24.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Buyer inspection and price control expose gain changing withprice.",
+      "evidence": "5=>9;10=>0;1=>25.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects arithmetic to named economicconcept.",
+      "evidence": "24minus15=9 consumer surplus.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear model and readable reveal; currentprice and originalprediction price can diverge.",
+      "evidence": "Chart1vsreveal5 after exploration.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Editorial potential for understanding value above purchaseprice.",
+      "evidence": "Difference between worth and price explicitly generalized.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual pointer and slider-key walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Common intuition sharpened by exactaccounting.",
+      "evidence": "9gainvs15payment.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bars and price line connect to summed gains.",
+      "evidence": "Price1 shown with perbuyer gainlabels.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple buyer taps and slider.",
+      "evidence": "Allfivebuyers inspected.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Relates to everyday purchasevalue.",
+      "evidence": "Worth versus paid distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single foundationalconcept with boundary exploration.",
+      "evidence": "Consumer surplus; no marketequilibrium.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple addition and subtraction in a familiar purchasing model.",
+    "conceptualDemand": "Separate totalvalue from moneyspent.",
+    "interfaceBurden": "Five taps and one slider; chart and reveal can show differentprices."
+  },
+  "whyCool": "One price hides different gains: threebuyers spend15 but receive24 of value.",
+  "caveat": "Invented model; single reviewer; no measured learning or accessibility claim.",
+  "effort": "Full prediction, fivebuyer inspection, bothpriceboundaries and reveal.",
+  "notApprovedForServing": true,
+  "provisionalBucket": "solid",
+  "bucketReason": "Readable concrete introduction to consumer surplus."
+}

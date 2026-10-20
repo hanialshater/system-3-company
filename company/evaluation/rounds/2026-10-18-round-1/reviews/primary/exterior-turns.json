@@ -1,0 +1,104 @@
+{
+  "slug": "exterior-turns",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/exterior-turns",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiontotalturnwalkingpolygon180/360/moreforsides; chosemore.",
+    "Triangle3x120=360;square4x90=360;12sidestested;gatherturnsandlopsidedtoggles produce12unequalturns360.",
+    "Revealactual3/4/12contrasts,irregularturnsstill360,centralcircleoneturn;scopeoutward-bulging(convex)shapes.",
+    "Scrolledpreviewtopandviewedfullirregularpolygonandcoloredturnsgatheredintocircle; actualrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishturnanglefrominteriorangle andtrackinvariance acrossshapes.",
+    "conceptualDemand": "Unequalparts canhavethesame360total.",
+    "interfaceBurden": "Simplecontrols;verticalscrollandactualprosecutoff."
+  },
+  "whyCool": "Pullunequalcornerturnsoffalopsidedpolygonandtheystillfitintooneperfectcircle.",
+  "caveat": "Onlyconvexcasesoffered;predictiondoesnotstateconvexscopeuntilreveal;noindependenttransfermeasurement.",
+  "effort": "Prediction,3/4/12sides,gather,lopsided,reveal,fullfigurecheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concreteinvariantvisualandusefulshapecontrasts;scope/layoutclarityneedsattention.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausibleinterior/exteriorturnandside-count confusion.",
+      "evidence": "180/360/moresides alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sidecount,irregularity,andgathering exposeinvariantwithunequal-turncontrast.",
+      "evidence": "3/4/12pluslopsidedcentralcircle.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Usesobservedcases toexplainfullspinandstatesconvexscope.",
+      "evidence": "Unequalturnsstillcircle;onlybulgesoutward.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Cleargeometrybutactualrightedgeprosecutoff;convexconditionarrivesinreveal.",
+      "evidence": "Fullfigurecheckedbyupscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalconvexturnsum stated;newapplicationproblem notexercised.",
+      "evidence": "No missing-angleorconcave-case task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Morecornersneednotmeanmoretotalturn.",
+      "evidence": "Triangleandtwelvesidesboth360.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Movablecoloredturnwedges makefullcirclevisible.",
+      "evidence": "Gathered12unequalwedges.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reshapepolygon andgathercorners.",
+      "evidence": "Sideslider,lopsided,gathertoggles.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportinggeometricreasoning.",
+      "evidence": "Exterioranglesum principle.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Invariant undernumber/equalityofcorners,convexscope.",
+      "evidence": "Lopsidedcase andonefullspin.",
+      "confidence": "medium"
+    }
+  }
+}

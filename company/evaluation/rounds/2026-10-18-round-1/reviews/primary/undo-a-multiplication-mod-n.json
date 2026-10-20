@@ -1,0 +1,105 @@
+{
+  "slug": "undo-a-multiplication-mod-n",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/undo-a-multiplication-mod-n",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asked7x=1mod26 with choices11,15,19; chose11.",
+    "Stepped26=3x7+5 then completed7=5+2,5=2x2+1,2=2x1+0. Backed up first1=5-2x2 then to1=3x26-11x7.",
+    "Read offx15 by -11+26,verified7x15=105=4x26+1. Times13 gavegcd13,onlyoutputs0/13,noinverse; original result andwrongguess77->25 retained.",
+    "Reveal explainedgcd1 criterion and successful/failed cases,including sign-specific feedback for11. Claimed12invertible nonzero residues not tested.",
+    "Inline1280x720 light screenshots: clock0/13 outcome visible after internal scroll; right-edge prose and long equation clipping. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Euclidean back-substitution,negative coefficients and modular arithmetic.",
+    "conceptualDemand": "Algebraic inverse construction and gcd condition.",
+    "interfaceBurden": "Many guided steps,internal scroll and clipped long equations."
+  },
+  "whyCool": "Backing up ordinary divisions produces a number that reverses a clock multiplication\u2014and explains why another multiplier cannot be reversed.",
+  "caveat": "Guided derivation rather than learner-entered algebra;12residuecount untested;clipped equations/prose;accessibility unknown.",
+  "effort": "Prediction,manual/automatic divisions,back-substitution,read-off,noninvertiblecase,reveal,clockinspection and inline screenshots.",
+  "provisionalBucket": "strong-technical-with-viewport-fix",
+  "bucketReason": "Complete constructive derivation and failure condition; repair long-line layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise modular condition with small candidates verifiable by arithmetic.",
+      "evidence": "7x remainder1.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Guided division/back-substitution and noninvertible contrast support construction.",
+      "evidence": "7inverse15 versus13none.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains actual sign error,constructed inverse and concrete failed-gcd boundary.",
+      "evidence": "1=3x26-11x7 andgcd13 cannotreach1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Explicit algebra but long lines/prose clip and substantial internal scroll.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "New13 case applies existence criterion and shows when undo fails.",
+      "evidence": "Only0and13 outputs.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Some multipliers scramble reversibly while others collapse many inputs.",
+      "evidence": "7allhours versus13twohours.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Clock outputs connect algebraicgcd to missing destinations.",
+      "evidence": "0/13 ring.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided algorithm steps and multiplier switch.",
+      "evidence": "Divide/back/read buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Modular inverse construction foundational technical skill.",
+      "evidence": "ExtendedEuclid.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "B\u00e9zout identity,congruence and inverse existence.",
+      "evidence": "gcd1exactcriterion.",
+      "confidence": "medium"
+    }
+  }
+}

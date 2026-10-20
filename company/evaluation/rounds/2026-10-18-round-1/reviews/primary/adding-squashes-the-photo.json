@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historypreviewverified;4/4trustignored. Chose8vs9/12andlocked;4by6photo face."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "+2=>6by8ratio1.33;×1.5=>6by9ratio1.5revealunlocked;+4=>8by10ratio1.25;×2=>8by12ratio1.5;Reset=>4by6ratio1.5and reveal retained."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite9;observed6by8corner left dashedline and6by9stayed;shape kept byratio/multiply every side samefactor; adding increases short side bigger share. Reveal screenshot shows guide line, trackedratio points1.25/1.33/1.5, face; text clips right at tested1280×720 (line ending '1.5' beyond card). Inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible additive misconception and precise commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four contrasts/reset expose invariant ratio.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses observed dimensions/guide relation with explanation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Controls clear but reveal prose clips right edge.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General same-factor rule explained with why addition distorts.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode testing.",
+      "evidence": "r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Equal addition changes face ratio.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Face shape and corner guide carry proportionality.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible presets and reset.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Photo scaling practical core.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Ratio invariant and relative additive shares.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One proportional scaling rule supported by ratios and face shape.",
+    "conceptualDemand": "Compare relative dimensions versus equal additions; division displayed.",
+    "interfaceBurden": "Four presets/reset straightforward; reveal right-edge clipping."
+  },
+  "whyCool": "Two enlargements make the same short side6but only6by9keeps ratio1.5and corner on guide line.",
+  "caveat": "Reveal text visibly clips right edge at tested desktop card; constrained presets rather than free shape exploration.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard/focus/phone/reflow/contrast/motion untested."
+  ],
+  "screenshots": [],
+  "slug": "adding-squashes-the-photo",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/adding-squashes-the-photo",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "7df1d78e9fe994374fd71802bd66f24a6cd1e6fd5e6d50f27c0c2e19f5fb6210",
+    "metaSha256": "9432da09a585220bb054ecf9552f8c63793077e7ee9b412041542dc373455fbb"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "desk-supply-near-use",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/desk-supply-near-use",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted48 m for six round-trip fetches to tape4 m away.",
+    "A reported8 m per round trip and48 total; B copy at desk0/0.",
+    "Increased distance to8 m: A16/96, B0/0. Visual keeps copy at desk while remote route scales.",
+    "Reveal retained held verdict for48 beside changed96 without original4 m context, but accurately explained repeated-route cost and excluded setup, clutter and productivity claims."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Multiply round-trip distance by count.",
+    "conceptualDemand": "Repeated retrieval costs.",
+    "interfaceBurden": "Two modes and slider."
+  },
+  "whyCool": "A small one-way distance becomes a much larger repeated walking total.",
+  "caveat": "Assumes six separate returns to the remote supply rather than bringing it once and keeping it nearby; changed-state verdict needs repair.",
+  "effort": "Completed prediction, both modes, changed distance, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Practical model with clear limits but confusing numeric verdict after parameter change.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete distance and repeated fetches permit an arithmetic prediction.",
+      "evidence": "Six round trips at4 m one way.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Distance scales repeated cost while local-copy mode removes route.",
+      "evidence": "4\u21928 m and48\u219296 total.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct mechanism and scope, but numeric prediction verdict needs original/current framing.",
+      "evidence": "Held48 beside current96.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Units and route are clear; original prediction comparison is ambiguous after changing distance.",
+      "evidence": "No original4 m restatement.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete placement rule includes setup/clutter and storage tradeoffs.",
+      "evidence": "Copy removes route at another storage location; not productivity measurement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Small trips accumulate to substantial distance.",
+      "evidence": "Six fetches48 m.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Room diagram and table show location and arithmetic.",
+      "evidence": "No actual six-trip trace.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Location mode and distance slider control outputs.",
+      "evidence": "Two factors.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful repeated-use placement habit.",
+      "evidence": "Explicit clutter/setup exclusions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Repeated route versus storage cost.",
+      "evidence": "Not full optimization.",
+      "confidence": "medium"
+    }
+  }
+}

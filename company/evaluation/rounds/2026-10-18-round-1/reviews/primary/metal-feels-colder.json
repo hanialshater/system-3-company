@@ -1,0 +1,103 @@
+{
+  "slug": "metal-feels-colder",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/metal-feels-colder",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted neither after both blocks in20\u00b0Croom allday.",
+    "Probe aluminium20 andwood20 read visually. Touch aluminium skin21\u00b0C/flow4.6\u00d7;woodskin30\u00b0C/1\u00d7. Swapmetal automaticallytouchessteel,skin21/flow4.4\u00d7.",
+    "Reveal accurately cites currentsteel and woodcontrast;diagram says perfectcontact,firstseconds. Screenshots readable,numericmeasurements absentfromAX."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Objecttemperature,skintemperature andheatflow differ.",
+    "conceptualDemand": "Thermalresponseversusequilibrium.",
+    "interfaceBurden": "Simplebuttons,visualnumbersnotAX."
+  },
+  "whyCool": "Two objects at the same temperature can cool your skin at very different rates.",
+  "caveat": "Perfectcontact/firstseconds model;exactskinvaluesdepend onunstatedinitialskin/materialparameters. Dedicatedaccessauditnotperformed.",
+  "effort": "Prediction,bothprobes,bothtouches,metalswap,reveal,multiple screenshots.",
+  "provisionalBucket": "strong-accessibility-followup",
+  "bucketReason": "Multiple clear causalcontrasts and readablevisuals.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear sensory-temperature misconception with equilibrium premise.",
+      "evidence": "Metal/wood/neither.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independent temperature probes,contact contrast and materialswap isolate distinction.",
+      "evidence": "20both,21versus30skin,4.6/4.4flows.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects equal objecttemperature to different transient contactresponse.",
+      "evidence": "Current4.4\u00d7 andskinvalues.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear probe/contact labels and perfectcontactscope visually.",
+      "evidence": "Screenshotsatallmeasurements.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete distinction for interpreting touch versus thermometer.",
+      "evidence": "Equilibratedobjects,differentheattransfer.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same temperature,different cold sensation.",
+      "evidence": "20both.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Probes,finger,heatflow arrows andskinreadouts support causalcomparison.",
+      "evidence": "Materialswap.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Probe andtouch experiments central.",
+      "evidence": "Fivecontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday perception versus measurement central.",
+      "evidence": "Touchnotobjectthermometer.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Equilibriumtemperature versus transient heattransfer.",
+      "evidence": "Contactandmaterialconditions.",
+      "confidence": "medium"
+    }
+  }
+}

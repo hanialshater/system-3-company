@@ -1,0 +1,104 @@
+{
+  "slug": "river-crossing-time",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/river-crossing-time",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted nevercross90mriver withboat3m/sacrosswater,current4m/s;alternatives18/30s. Initialstagecurrent2andtime30differsfromquestion.",
+    "CurrentEnd6:30s90macross180down. Resetthen10s:30across60down;twostepsfinished30s. CurrentHome0:30s90across0down;1:30down;returned4:30s120down.",
+    "Reveal recalls strongest6case180drift,explainsorthogonalcomponents90/3=30anduniform-currentmodel/realbankslimit.",
+    "1280x720light topviewpathandtimereadouts clear;proserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concreteorthogonalmotionwithsimpledivision.",
+    "conceptualDemand": "Alongstreamversusacrossstream components.",
+    "interfaceBurden": "Oneslider andtimebuttons."
+  },
+  "whyCool": "The current can carry the boat much farther downstream without changing how fast it crosses the river.",
+  "caveat": "Boatfixedheading,samewidth/uniformcurrent toy;notnavigationadvice. Initialstage/questionmismatch andprosecutoff.",
+  "effort": "Prediction,strongcurrent,time-stepcrossing,zero/intermediatecurrentcontrasts,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearcomponentindependence;aligninitialstateandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitrelativewaterheading andcrossingwidth targetcomponentconfusion.",
+      "evidence": "Currentfasterthanboat neednotpreventcrossing.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Timeprogression,currentextremes andtargetcase isolateacrossversusdownstream components.",
+      "evidence": "0,1,4,6m/scurrent,10and30s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Linksoriginalanswer toobservedcomponentincrements andmodelboundary.",
+      "evidence": "Every10s30macross;uniformcurrentassumption.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "State/pathclear;initial2currentdiffersfromquestion4andproseclips.",
+      "evidence": "Actualfinal4state,revealexplicit6case.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcomponentrulewithoutnewapplicationchallenge.",
+      "evidence": "Sameboat/riverwidth throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Strongerdownstreamflowdoesnotdelayreachingoppositebank.",
+      "evidence": "6currentstill30s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Differenttrajectoryslopes andsameacrossincrements showindependence.",
+      "evidence": "0versus6path,10sposition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Currentandtimecontrols supportcounterfactualexperiment.",
+      "evidence": "Reset,steps,currentcontrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralrelative-velocityintuition.",
+      "evidence": "Whenversuswhere boatlands.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Vectorcomponents andframe-relative speed.",
+      "evidence": "Boatwater-relative3across unchanged.",
+      "confidence": "medium"
+    }
+  }
+}

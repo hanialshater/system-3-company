@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "sieve-crossing-out",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sieve-crossing-out",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "dbec2f782553775ce5f615be57d332441d020621178558ecf9795fdf0af3506f",
+    "demoSha256": "29c467747c6211332399643c712840d9dba7edb6417f4cf8e1a59954f246b41c",
+    "metaPath": "src/demos/math/sieve-crossing-out/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 2, 3, 5, 7, 11, 13 and locked the primes needed to sieve through 100.",
+    "exploration": "Swept multiples of 2, crossing out 49 and leaving 50; 3 crossed 16 more, leaving 34; 5 crossed six, leaving 28; 7 crossed three, leaving 25. Sweeping 11 crossed nothing new.",
+    "reveal": "The reveal corrected the necessary list to 2, 3, 5 and 7. It accurately referenced the 25 survivors and empty 11 sweep, then explained the smaller factor must be at most the square root. Eleven's first new multiple, 121, lies beyond 100.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after the 11 sweep. A ten by ten number grid showed crossed composites, bright surviving primes and outlined multiples of 11 already crossed. The count 25 and nothing new message were readable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt asks where an exhaustive process can safely stop.",
+      "evidence": "Selected two extra primes beyond the necessary four.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Successive sweeps expose diminishing new removals and a meaningful no-op boundary.",
+      "evidence": "The 11 sweep removed nothing after the four smaller prime sweeps.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains why the observed stopping point is sufficient.",
+      "evidence": "The factor pair square root argument and 11 squared boundary connect to the empty sweep.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The grid and counts make both elimination and redundancy visible.",
+      "evidence": "Multiples of 11 were outlined over existing crossed cells.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general square root rule is stated but a fresh upper limit is not tested.",
+      "evidence": "All interaction remains on numbers through 100.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Four sweeps suffice for all primes through a hundred.",
+      "evidence": "The fifth sweep changes nothing.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The grid makes overlap between sweeps visible.",
+      "evidence": "Already crossed multiples of 11 illustrate redundant work.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Crossing out groups is a satisfying finite puzzle.",
+      "evidence": "Each prime button visibly removes a different set.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives an efficient method and stopping criterion for prime search.",
+      "evidence": "The reveal ties the stopping point to the square root of the limit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson supports the algorithm with a factor bound.",
+      "evidence": "Every composite has a small enough factor, so later sweeps are unnecessary.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Crossing out is easy, while the factor pair proof adds a conceptual bound.",
+    "conceptualDemand": "Moderate: understand why a smaller factor must be no greater than the square root.",
+    "interfaceBurden": "Low: five sweep buttons and reset.",
+    "conceptualChallenge": "Prove completeness without checking every possible divisor.",
+    "prerequisiteNovelty": "Prime factors and square roots are needed for the explanation.",
+    "notationRepresentationBurden": "Moderate: dense hundred-number grid and short factor equations."
+  },
+  "whyCool": "The empty sweep of 11 becomes evidence of a powerful stopping rule rather than a wasted click.",
+  "caveat": "Only the upper limit 100 is available, so transfer of the stopping condition is untested.",
+  "missingEvidence": [
+    "No fresh sieve limit was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "knapsack-ratio-trap",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/knapsack-ratio-trap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "0a89a78ee1113980db8b5e12b60a164b331f2c7b8d2d714b4584eea90a21e5de",
+    "demoSha256": "0a2cf17e8235c8c57b0e4cd286be0a6084d17e3aebd297166b16e850312279fb",
+    "metaPath": "src/demos/cs/knapsack-ratio-trap/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected $160 and locked the best whole-item bag value for capacity fifty kilograms and the three offered items.",
+    "exploration": "Initial ratio-first bag held ten and twenty kilogram items for $160 with twenty kilograms empty. Attempted thirty kilogram item and received insufficient-space feedback. Removed ten and added thirty, filling capacity for $220. Enabled cutting: ratio-first included ten, twenty and twenty of the thirty kilogram item, totaling $240.",
+    "reveal": "The reveal corrected the whole-item answer to $220 and accurately named my best combination. It explained why a two-thirds fraction fills the gap for $240 when cutting is allowed and connected whole-item combinations to dynamic programming.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots of the full whole-item and fractional bags. Stacked patterned blocks showed twenty plus thirty kilograms for $220, then ten plus twenty plus a clearly labelled twenty-of-thirty segment for $240. Capacity and best whole-item history stayed visible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884179 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question tests a plausible greedy optimality claim with a concrete counterexample.",
+      "evidence": "Selected the ratio-first result as best.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual packing and a divisibility toggle isolate why the heuristic fails or succeeds.",
+      "evidence": "The rejected item, better whole combination and fractional fill expose the constraint.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the gap and accurately cites the found combination.",
+      "evidence": "It distinguishes $220 whole-item optimum from $240 with cutting.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Weight-proportional blocks and explicit labels explain remaining capacity.",
+      "evidence": "The partial item is labelled twenty of thirty kilograms.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending connects the discovered limitation to a concrete algorithm choice and condition.",
+      "evidence": "Whole-item combinations motivate dynamic programming, while divisible goods permit ratio-first filling.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rejecting the best ratio item can improve the total.",
+      "evidence": "Twenty plus thirty kilograms beat ten plus twenty by sixty dollars.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "The bag directly exposes wasted capacity and the effect of cutting.",
+      "evidence": "The fractional top segment fills the exact gap left by the greedy whole bag.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Packing and unpacking forms a small genuine combination puzzle.",
+      "evidence": "The user can test a failing addition and replace items.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies when a locally best ratio is insufficient.",
+      "evidence": "Indivisible choices require considering combinations.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson includes a condition reversal rather than only a greedy counterexample.",
+      "evidence": "Allowing cuts restores the ratio rule's optimum.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Packing is familiar, while ratio optimality and combination search add algorithmic reasoning.",
+    "conceptualDemand": "Moderate: distinguish local value density from total feasible value.",
+    "interfaceBurden": "Low: three item toggles and a cutting switch.",
+    "conceptualChallenge": "A high-ratio choice can block a better combination under indivisibility.",
+    "prerequisiteNovelty": "Knapsack optimization and dynamic programming are introduced.",
+    "notationRepresentationBurden": "Low to moderate: kilograms, dollars, ratios and one fractional item."
+  },
+  "whyCool": "The same greedy rule changes from misleading to optimal when the items become divisible.",
+  "caveat": "Only three fixed items and one capacity are available. Dynamic programming is named rather than demonstrated.",
+  "missingEvidence": [
+    "No fresh item set or dynamic-programming process was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

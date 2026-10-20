@@ -1,0 +1,104 @@
+{
+  "slug": "copy-keeps-the-original",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/copy-keeps-the-original",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Original source for what copy preserves; title and hook explicitly give this answer.",
+    "Initial tokensA,B,C; Copy B immediately appendedB, producing4 tokens. Paste again appended anotherB, producing5.",
+    "Final source B remained in position2, and both duplicates remained visible.",
+    "Reveal accurately listedA,B,C,B,B and excluded operating-system clipboard rules, but still called Copy B a command creating destination content."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic token duplication.",
+    "conceptualDemand": "Source preservation.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "The original stays visible while destination instances accumulate.",
+  "caveat": "Copy B behaves like copy-and-paste; this could teach misleading clipboard behavior unless the label explicitly says duplicate.",
+  "effort": "Completed prediction, both commands, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Answer-spoiling prediction and a command-semantics mismatch.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Direct answer supplied in title and hook.",
+      "evidence": "Copy keeps the original.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Visible duplication preserves the source, but both actions are prescribed and Copy conflates copying with pasting.",
+      "evidence": "Copy B immediately appends.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Observed result is accurate but normal clipboard semantics are blurred despite a scope caveat.",
+      "evidence": "No separate initial copy-buffer step or move contrast.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Token counts are clear; operation label suggests clipboard copy while changing document content immediately.",
+      "evidence": "Copy B creates first duplicate.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General preservation idea stated without a concrete new task.",
+      "evidence": "Operating-system rules excluded.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "No unexpected result.",
+      "evidence": "Preset duplicates.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Tokens make preservation and new instances visible.",
+      "evidence": "Original and two B duplicates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed actions.",
+      "evidence": "No choice of source/destination.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic digital concept, limited by simplified command labels.",
+      "evidence": "Preserve source when duplicating.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single command distinction.",
+      "evidence": "No clipboard or identity model.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "web-map-cut-off-latitude",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/web-map-cut-off-latitude",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted square standard Mercator web map reaches90N rather than75or85.",
+    "Initial60degree cut height/width0.42;85.05degree gave1.00;89gave1.51;pole gaveendless.",
+    "Reveal linked square constraint to85.05N/S cutoff and unbounded projection height near poles, explicitly recalling89 and pole tests.",
+    "Inline1280x720 light screenshot showed map, square boundary and overflow shading; right-edge explanation clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple ratio and square condition with unfamiliar projection geometry.",
+    "conceptualDemand": "Map distortion and infinite limit intuition.",
+    "interfaceBurden": "Discrete buttons; clipped prose."
+  },
+  "whyCool": "The map keeps growing vertically while the square stays fixed, making its missing poles understandable.",
+  "caveat": "Approximate numeric prediction needs prior projection knowledge; prose clipping. Accessibility unknown.",
+  "effort": "Prediction, square-fit/overflow/pole contrasts, reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Effective visual limit explanation; improve hook and prose layout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Relevant surprise but precise cutoff needs projection knowledge unavailable in hook.",
+      "evidence": "75,85,90 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Square fit, overflow and pole limit give multiple meaningful contrasts.",
+      "evidence": "Ratios1.00,1.51,endless.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects prediction, square criterion and observed limiting case.",
+      "evidence": "85.05 cutoff versus89 andpole.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Boundary and ratios clear but prose clips.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains familiar web-map behavior without fresh application.",
+      "evidence": "Same square Mercator throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A world map omits polar regions and cannot extend to pole.",
+      "evidence": "Endless height limit.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Square overlay and overflow shading explain cutoff.",
+      "evidence": "Map at pole screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Discrete cutoff exploration.",
+      "evidence": "Five buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Helps interpret everyday web-map limits.",
+      "evidence": "Square tiles.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Projection geometry and limiting behavior.",
+      "evidence": "Unbounded height versus fixed width.",
+      "confidence": "medium"
+    }
+  }
+}

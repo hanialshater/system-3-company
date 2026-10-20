@@ -1,0 +1,104 @@
+{
+  "slug": "more-boys-christened",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/more-boys-christened",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted boys outnumbered girls in all82 annual London christening counts despite a modest total surplus.",
+    "Observed difference bars all above zero, annual sample sizes5612\u201316145. Overall ratio107 boys per100 girls; closest1703 ratio101; widest1661 ratio116.",
+    "The explicitly labeled100-per-year simulation showed girls ahead23 of82 years with the same underlying split.",
+    "Reveal accurately cited observed and simulated counts and limited inference to recorded London christenings, excluding never-christened babies."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple ratios and signed bar charts with explicit labels.",
+    "conceptualDemand": "Sample size and population coverage.",
+    "interfaceBurden": "Preset views and internal scrolling."
+  },
+  "whyCool": "A slight population imbalance becomes remarkably consistent when annual samples are large.",
+  "caveat": "One simulated realization does not quantify variability across simulations; historical counts were observed in the demo, not independently verified.",
+  "effort": "Completed prediction, all five views, historical and simulated screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear sampling contrast and an appropriate data-coverage limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Aggregate totals invite a nontrivial judgment about consistency across years.",
+      "evidence": "41,60,82 annual majorities.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Historical counts, ratios and small-sample simulation expose a sample-size contrast.",
+      "evidence": "All82 real majorities versus23 simulated reversals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Exact dataset results connect modest bias and sample size with a clear population caveat.",
+      "evidence": "Christenings are not all births.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Simulation and data are distinctly labeled; directions and ratios are clear.",
+      "evidence": "Zero line and simulated label.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Sampling principle is illustrated without a new learner application.",
+      "evidence": "One fixed simulated realization.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A small aggregate difference persists through every large annual sample.",
+      "evidence": "82 of82 versus modest107/100 overall.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Difference bars make consistency and small-sample reversals visible.",
+      "evidence": "Above-zero real counts versus crossing simulated counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Predominantly preset data views.",
+      "evidence": "Five selectors.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports interpreting sample size and coverage limits.",
+      "evidence": "Historical population caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines aggregate ratio, year variation, sample size and selection scope.",
+      "evidence": "Real versus simulated data distinguished.",
+      "confidence": "medium"
+    }
+  }
+}

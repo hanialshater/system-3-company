@@ -1,0 +1,104 @@
+{
+  "slug": "most-cases-vaccinated",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/most-cases-vaccinated",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted5% of cases vaccinated for town1000,90% vaccinated,risk50% versus5%; choices5,25,47,90.",
+    "Coverage90% showed95 total cases:45 vaccinated47%,50 unvaccinated. Tested0%:500/0/500;50%:275/25/250;100%:50/50/0.",
+    "Reveal corrected to47%, explicitly calculated900\u00d75%=45 and100\u00d750%=50, compared500 cases without vaccination to50 all vaccinated, and stated made-up numbers/equal exposure/uniform protection.",
+    "Light1280x720 screenshot showed counts and dotgrid; reveal prose cut off at right edge."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinguishing population and case denominators.",
+    "conceptualDemand": "Conditional proportions and counts.",
+    "interfaceBurden": "Simple buttons; prose cutoff."
+  },
+  "whyCool": "All remaining cases can be vaccinated while toy total cases fall90%.",
+  "caveat": "Invented fixed risks and equal exposure; this is a model walkthrough, not evidence about real medical outcomes. Right-edge prose cutoff.",
+  "effort": "Completed prediction, four coverage contrasts, reveal and visual inspection.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong denominator mechanism; correct clipped reveal layout before launch.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise denominator misconception with plausible alternatives.",
+      "evidence": "Chose5%; outcome47%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several controlled coverage contrasts including both boundaries.",
+      "evidence": "0,50,90,100% changed total cases and composition.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Reconciles prediction, personal risk and population case share with explicit toy limits.",
+      "evidence": "45/95 calculation;0/100% extremes; equal-exposure assumption.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counts clear but reveal prose clipped at viewport edge.",
+      "evidence": "Actual light1280x720 screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "States useful risk-comparison principle without second application.",
+      "evidence": "Compare risk per person instead of who fills case list.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Protected group can dominate remaining cases.",
+      "evidence": "100% vaccination leaves50 cases all vaccinated.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Counts and dotgrid distinguish denominators.",
+      "evidence": "Coverage buttons update group cases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Quick coverage experiments support idea.",
+      "evidence": "Four coverage settings tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Central interpretation lesson for group case shares.",
+      "evidence": "Risk per person versus list composition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects individual risk,population size and aggregate counts.",
+      "evidence": "90% worked calculation and boundary states.",
+      "confidence": "medium"
+    }
+  }
+}

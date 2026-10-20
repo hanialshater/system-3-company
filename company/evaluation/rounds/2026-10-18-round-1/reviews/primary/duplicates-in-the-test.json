@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected 60% and Lock it in",
+      "outcome": "Prediction retained; fresh-only checkbox and copy slider unlocked. Initial stage already displayed 4 copied items; full score 60%."
+    },
+    {
+      "id": "E",
+      "action": "Checked Score fresh items only; focused slider and pressed End then Home",
+      "outcome": "End produced 50% copies (10), full score 75%, fresh 50%; Home produced 0 copies, both scores 50%."
+    },
+    {
+      "id": "R",
+      "action": "Clicked Show me why",
+      "outcome": "Your prediction held; explanation counted 4 memorised plus 8 of 16 fresh answers at initial 20%; current zero-copy state explained explicitly."
+    },
+    {
+      "id": "V",
+      "action": "Inspected rendered screenshot",
+      "outcome": "1257x992 dark Chrome; entire card legible, 20 check/cross tiles, both scores, range and explanation visible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer is leaked in the locked stage summary before commitment.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fresh-only contrast and zero-copy boundary distinguish rising contaminated score from invariant fresh score.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves original answer with counts and explains current boundary, though final claim is broadly worded.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and instructions support the full visible path; scores and reveal are legible.",
+      "evidence": "P,E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable warning about training/test overlap; no concrete new application case.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic multimode checks.",
+      "evidence": "Only incidental range keyboard use; focus sequence, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Committed correct prediction was confirmed; no experienced reversal.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Item correctness tiles and paired scores embody contaminated versus fresh measurement.",
+      "evidence": "E,V",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible copy range and subset toggle invite controlled discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Fresh-only evaluation offers a useful assessment principle but no applied second task.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Both subset comparison and no-copy boundary support the distinction between memory and new-item performance.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines weighted counts and subset denominators with supported toy numbers.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Training versus test contamination introduced in plain language."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Percentages, counts and correctness tiles only."
+    },
+    "conceptualDemand": "Linked full-test and fresh-only rates; 4+8 correct out of 20.",
+    "interfaceBurden": "Low in tested desktop viewport."
+  },
+  "whyCool": "Raising copies to 50% pushes the full score to 75% while fresh performance remains 50%.",
+  "caveat": "Locked stage discloses the 60% prediction answer; transfer is stated rather than applied.",
+  "missingEvidence": [
+    "Systematic accessibility modes",
+    "Phone layout",
+    "Applied second transfer case"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "duplicates-in-the-test",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/duplicates-in-the-test",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "526838710b87812e5077492ad8bbde9356df7c74814e00edebea23a6346191c2",
+    "metaSha256": "7fc6b61ba9c2fce6a3dc9f98ae017d52c94661d1af780fe2e5d176e2a3346994"
+  }
+}

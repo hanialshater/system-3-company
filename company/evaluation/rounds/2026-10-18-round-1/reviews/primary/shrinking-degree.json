@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "shrinking-degree",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shrinking-degree",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "shrinking-degree",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/geography/shrinking-degree/meta.json",
+    "metaSha256": "79544e196d550bf7935477b30f4006d6856b72ad82c63d84e432092095b57c0f",
+    "demoSha256": "9edd429c681a177d4bed833fd66784a8cf2547f1c0be5b9a28c0d0d63376b7d3",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/shrinking-degree",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/shrinking-degree.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 111 km and locked it in.",
+    "exploration": "Equator showed longitude 111.2 km, latitude 111 km and ten-degree box 1112 km. At 60 N these were 55.6, 111 and 556. At 80 N they were 19.3, 111 and 193. Restored equator before reveal.",
+    "reveal": "Corrected to 56 km, used the retained Seen line for both visited latitudes, and explained converging longitude lines versus fixed latitude distance on this sphere.",
+    "visual": "Actual dark 1257 by 936 screenshot inspected. Globe grid and yellow box were visible above readable metric chips; explanation and Seen history remained in view. Current globe was at equator while reveal referred explicitly to prior observations.",
+    "previewIsolation": "Preview banner stated history and analytics are not saved.",
+    "blinding": "No source, builder notes or other review judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A concrete distance choice tests equal-degree intuition.",
+      "evidence": "111, 56 and 28 km alternatives at 60 N.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three latitude presets give reversible geometric and numerical contrasts.",
+      "evidence": "111.2 to 55.6 to 19.3 km; equator restored.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects recorded observations with converging meridians.",
+      "evidence": "Seen line supplies 60 N and 80 N values.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate longitude and latitude metrics clarify what changes.",
+      "evidence": "Latitude stayed 111 km throughout; spherical approximation stated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general distinction is explained without a fresh application.",
+      "evidence": "One degree east west is not a fixed distance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Mode coverage was insufficient for a score.",
+      "evidence": "Named controls and text available; screen reader, keyboard sequence, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The familiar angular unit halves in width.",
+      "evidence": "60 N longitude width 55.6 km.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid and shrinking box support the explanation.",
+      "evidence": "Globe with latitude-dependent yellow box.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Latitude presets invite comparison.",
+      "evidence": "Equator, 60 N and 80 N.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful when interpreting geographic coordinates.",
+      "evidence": "Distinguishes east west from north south degree distance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One geometric mechanism is explored clearly.",
+      "evidence": "Longitude convergence on a sphere.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One spatial distinction with simple comparisons.",
+    "conceptualDemand": "Distinguish angular separation from ground distance and longitude from latitude.",
+    "interfaceBurden": "One slider and three preset buttons.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Longitude and latitude meanings need the globe grid.",
+    "notationRepresentationBurden": "Degree symbols, kilometres and globe projection."
+  },
+  "whyCool": "A constant angular box visibly loses width as meridians converge.",
+  "caveat": "Spherical approximation is explicit; no coordinate-distance application was attempted.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:11:26.877366+00:00"
+}

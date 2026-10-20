@@ -1,0 +1,103 @@
+{
+  "slug": "shuffle-until-sorted",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shuffle-until-sorted",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about 25 shuffles for five cards, then manually shuffled and ran to completion: 183 shuffles.",
+    "Five-card 100-run experiment averaged 113, range 2 to 695. Three-card preset automatically ran and averaged 7 with one run 12; four-card preset averaged 22 with one run 43.",
+    "Screenshot showed individual cards, positional ticks and a retained comparison table; reveal tied all three observed averages to 6, 24 and 120 permutations and extended to ten cards."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple card task followed by probability and factorial reasoning.",
+    "conceptualDemand": "Expected waiting versus one trial; permutations.",
+    "interfaceBurden": "Low: buttons for card counts and experiment sizes."
+  },
+  "whyCool": "Random sorting makes factorial growth tangible while showing why one lucky or unlucky run is weak evidence.",
+  "caveat": "Only three to five distinct cards are simulated. The final 'cannot beat n!' phrase needs its random-shuffling scope; this is not a lower bound for ordinary sorting.",
+  "effort": "Browser prediction, manual shuffle, automatic five-card run, 100-run average, three/four-card automatic comparisons, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear causal comparison, retained stochastic evidence and explanation tied to the original prediction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise average question with plausible growth distractors.",
+      "evidence": "Five cards: about 5, 25 or 120.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled size contrasts preserve random-run variability.",
+      "evidence": "Three sizes, single runs and 100-run averages.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects original prediction, observed variation and factorial mechanism.",
+      "evidence": "Five-card range 2\u2013695, average 113, theoretical 120; three and four cards compared.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Run versus average and card counts remain distinct.",
+      "evidence": "Retained table and explicitly labeled 100 runs.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete extrapolation with equal-likelihood condition.",
+      "evidence": "Ten cards gives 3,628,800 orders; independent equally likely shuffles assumed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Small additions sharply increase waiting.",
+      "evidence": "Seven versus 113 mean shuffles.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Card ticks and run distribution support the mechanism.",
+      "evidence": "Partially ordered runs do not count; comparison table retained.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Random trials create suspense and repeatable comparison.",
+      "evidence": "Manual shuffle and automatic trials.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Mainly algorithmic intuition.",
+      "evidence": "No everyday sorting task or algorithm selection tool.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes stochastic variation from factorial expectation.",
+      "evidence": "Single runs, sample averages and permutation count.",
+      "confidence": "medium"
+    }
+  }
+}

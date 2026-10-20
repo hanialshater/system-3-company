@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "mild-preferences-sharp-divides",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mild-preferences-sharp-divides",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "mild-preferences-sharp-divides",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/economics/mild-preferences-sharp-divides/meta.json",
+    "metaSha256": "f8b00ac11e5fe0e56c08a46b75e880cbec56081b9f8acbdc8053440a1408d36c",
+    "demoSha256": "9522b380e5d9a58e0380e049d37be4450d8ea6c3bfde109d6ce326084b4da49c",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/mild-preferences-sharp-divides",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/mild-preferences-sharp-divides.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About50% unchanged against30% and75% final like-neighbor share;locked it in.",
+    "exploration": "Initial30% threshold:50% like neighbors,247 wantmove. Step1:60% like,127 wantmove,62 newly unsettled. Runsettled tick15:75% like,32% all-like,zero wantmove,157 cumulatively unsettled. Switched10% threshold:auto ran tick2,51% like,3% all-like,zero wantmove. Reveal restoredsaved30% run.",
+    "reveal": "Corrected75%;quotedactual30% and10% results. Explainedacceptance of70% othergroup andmoves changingneighbor composition,157 newlyunsettled. Explicitwhat-can-happen model,notcauseofrealcity pattern.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Initialmixed grid becomeslargegroup patches;30% curve reaches75%,10% comparison51%. Fullreveal legible butgrid shrinks inreveal layout.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "9/9 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives testmistaking individualminimum foraggregate outcome.",
+      "evidence": "50% commitment versus75% settled.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step,settledrun andweakerthreshold exposecascadingmoves andparametercontrast.",
+      "evidence": "62 newlyunsettled firststep;157 total;30%\u219275 versus10%\u219251.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualneighbor changes andrun outcomes withscope caveat.",
+      "evidence": "Movesunsettle others;notrealcitycausation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Thresholdlabels,counters andretainedrungraph supporttesteddesktop path.",
+      "evidence": "Actualscreenshot saved30% and10%comparison.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General micro-to-macro principlewithmodel limit,no concrete newapplication.",
+      "evidence": "Mildpreferences cansharpendivides;whatcanhappen only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedunchangedmixture contradicted by75% similaritydespiteminoritytolerance.",
+      "evidence": "30% threshold settles75%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Spatialpatches andtimecurve carryemergentclustering.",
+      "evidence": "Mixedinitial versussettledgrid screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step,run andthresholdcontrols offerreversible modelcomparison.",
+      "evidence": "30% and10% settledstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretecaution aboutinferringgroup outcomes fromindividualpreferences.",
+      "evidence": "Noone needsmajority yetclusters form.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localthreshold,neighbor externality andemergentsettlement linked.",
+      "evidence": "157 unsettled bymoves andthresholdcontrast.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links localmove rule torecursive neighborchanges andaggregatepattern.",
+    "conceptualDemand": "Distinguish satisfactionthreshold fromeventualaverage andfollowfeedback.",
+    "interfaceBurden": "Moderate:densegrid andseveral metrics;labels supportinterpretation.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:agent-basedsegregation model.",
+    "notationRepresentationBurden": "moderate:percentages,timecurve andspatialgrid."
+  },
+  "whyCool": "A household content beforea neighbormoves canbecomeunsettled,andthosecascades liftlikesimilarityfrom50% to75%.",
+  "caveat": "Single seed andtwo thresholds tested;modelcannotestablishcausesofactualsegregation.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Newmix and50%/70% thresholds nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:52:40.560447+00:00"
+}

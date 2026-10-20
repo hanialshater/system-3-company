@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected $10 and locked",
+      "outcome": "Prediction retained; stage buttons unlocked; chart began at $0."
+    },
+    {
+      "id": "E",
+      "action": "Added Baker first, then Farmer and Miller; toggled Count all sales and back",
+      "outcome": "Baker alone added $3; complete value-added total $6. Sales toggle produced $10, lower bar repeated wheat $1 three times and flour contribution $2 twice. Return restored $6, stage buttons retained disabled state."
+    },
+    {
+      "id": "R",
+      "action": "Clicked Show me why after returning to value-added view",
+      "outcome": "Not quite: it was $6; explained sale minus purchases gives $1,$2,$3 and double-counting wheat/flour; text asked to look at lower bar which was hidden in current view until toggled."
+    },
+    {
+      "id": "V",
+      "action": "Inspected stage and reveal screenshots; scrolled normally",
+      "outcome": "1257x992 dark Chrome; legible chart, labels and reveal; no horizontal clipping. Standard vertical scroll brought bottom into view."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment separates sales total from final output with plausible $10 misconception.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adding stages and contrasting repeated sales with contributions shows the counting mechanism.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains prediction and repeated components but refers to hidden lower bar after reversible return.",
+      "evidence": "R,V",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usable labeled controls and chart, but reveal has recoverable state-dependent reference to invisible lower bar.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable subtraction rule and repeated-component warning confined to same chain.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode testing.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual $10 prediction corrected to $6 through counting contrast.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Segmented $6 contributions and repeated $10 sales slices carry the core explanation across contrasting views.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Can add stages out of order and toggle accounting view; fixed amounts limit discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete output-accounting principle within toy chain.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Stage subtraction, sum invariant and repeated embedded components provide linked mechanisms.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links subtraction at each stage with a total and repeated embedded values.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "GDP and value added introduced with familiar bread chain."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Dollar counts and labeled bar segments."
+    },
+    "conceptualDemand": "Three subtractions plus distinction between sale totals and incremental production.",
+    "interfaceBurden": "Low, with reveal reference requiring return to sales view."
+  },
+  "whyCool": "The $10 sales bar repeats the wheat slice three times while the $6 bar counts each contribution once.",
+  "caveat": "Reveal directs attention to a lower bar hidden when I returned to the value-added view.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (5/5 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "count-the-bread-once",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/count-the-bread-once",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "d8abc691030659edef7a678d984f4157d5a841e631afc97576159b1277126548",
+    "metaSha256": "027e56f113c5cbf9cfc52b3370b9e6f4b9f0175aca865d20d3ddfa4e10ce7971"
+  }
+}

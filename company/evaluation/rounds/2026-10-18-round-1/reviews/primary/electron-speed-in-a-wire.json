@@ -1,0 +1,104 @@
+{
+  "slug": "electron-speed-in-a-wire",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/electron-speed-in-a-wire",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiononeelectron2mfromswitchtobulbsubmicrosecond/second/hours; chosesubmicrosecond. Stage1A/1mm2copper.",
+    "Switchonbulblit~10ns,dot0mm;Wait1s,1min=>4.4mm;1h=>26cm,trip7.6h.",
+    "Reveal freeelectronsalreadythroughoutwire,eachdrifts0.07mm/s;wordspushedallatonce alongside10nstiming;doesnotdistinguishnetdriftfromrandomelectronmotion.",
+    "Screenshot circuit,tinteddot,ruler,readouts,andallprose readable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Largeunit/timecontrast andcharge/current mentalmodel.",
+    "conceptualDemand": "Separatelampresponse fromrepresentativedrifttravel.",
+    "interfaceBurden": "Simplebuttons andclearreadouts."
+  },
+  "whyCool": "Thebulbcanlightwhilethemodeledelectrondot hasbarelymoved atall.",
+  "caveat": "Needsphysicsexpertclarificationofnetdriftversusliteralparticlemotionandall-at-oncewording; displayednumbersnotindependentlyaudited.",
+  "effort": "Prediction,switchon,1s/min/hourpresets,reveal.",
+  "provisionalBucket": "needs-review",
+  "bucketReason": "Memorabletimescalecontrast;mechanisticwordingneedsclarificationbeforelaunchselection.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear particletransitversuslamp-response timescale misconception.",
+      "evidence": "Submicrosecondversushours alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Timepresets revealfixedmodeloutput, no current/wireparametercontrast.",
+      "evidence": "Switchand1s/min/hour buttons.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Coreexisting-chargeidea given butsignalpropagation/netdrift distinction oversimplified.",
+      "evidence": "Allatoncewording,onlydrifts claim,finite10nstiming.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Visualsreadablebutliteralone-electron wordingdoesnotlabelrepresentative netdrift.",
+      "evidence": "Tinteddotoneelectron;hourtripmodel.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 1,
+      "reason": "No newapplication oroperationalconditionbeyondfixedcircuit.",
+      "evidence": "Existingcharges moveatbulb conclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fastlightresponse versusvery slowdrift.",
+      "evidence": "10nsvs7.6hours.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Circuit/ruler separateonstatefromdotdistance.",
+      "evidence": "26cmhour displacement.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Switchandwaitpresets.",
+      "evidence": "No freeparameter exploration.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supporting electricityintuition.",
+      "evidence": "Signal/mattertimescale distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two-timescaleconcept butfield/thermalmotion absent.",
+      "evidence": "Fixedcurrent/material assumptions.",
+      "confidence": "medium"
+    }
+  }
+}

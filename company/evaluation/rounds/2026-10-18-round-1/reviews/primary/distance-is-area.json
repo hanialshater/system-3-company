@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historybannerverified;trust4/4ignored. Chose200m versus100/20 forsteady0→20m/sin10s;locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "1strip200m;Right3strips133.3m;Right10strips110;End20strips105. Firststrip speed×duration units stated. Showtriangle exact100vsbars105,unlock. Screenshot overshootingrectangles/triangle and triedhistory,inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite100;allownestimatescited;strip speed×shorttime=distance;thinnerapproachtriangle½×10×20=100,alsoavg10m/s×10s;distancearea underspeedgraph."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible final-speed timeswhole-time misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four convergence contrasts and exactoverlay reveal mechanism.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ownestimate sequence linked to units/limit/exactarea.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Stripcounts/history/units and overshoot visual clear.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General speed-area principle stated; no concrete newcurve application.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Only range keys; systematicmodes untested.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Finalspeedproduct overcounts byfactor2.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Distinct rectanglecounts and exacttriangle visibly carry approximation/limit.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible subdivision/overlay.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Distancefromspeed concrete.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Units,approximationconvergence and average speed linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connect localrectangle distances, cumulativearea and limiting exacttriangle.",
+    "conceptualDemand": "Approximationlimit unfamiliar but explicitunits/overlay support.",
+    "interfaceBurden": "One range/fourcounts and overlay."
+  },
+  "whyCool": "More strips lower200→133.3→110→105toward the visible100mtriangle.",
+  "caveat": "One steadyacceleration nonnegativespeedcurve; no irregularcurve or signedvelocity boundary.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "missingEvidence": [
+    "Overlayhide/reset and systematicaccessibility untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "distance-is-area",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/distance-is-area",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "4bf4b8468f4e4212e7529bdbd54e20fc62d5ffb8c2d8ff5409611f23ded9a171",
+    "metaSha256": "7c3571319bcf26748172ba994bce251b33847049c4eac463a8746c6f5f1032e1"
+  }
+}

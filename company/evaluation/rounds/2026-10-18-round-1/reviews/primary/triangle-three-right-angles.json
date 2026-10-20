@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "triangle-three-right-angles",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/triangle-three-right-angles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "triangle-three-right-angles",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/geography/triangle-three-right-angles/meta.json",
+    "metaSha256": "64b0a47301bf2728debd7ca34690dcbe88352c34db5eefca8480fd933f55bab8",
+    "demoSha256": "15dfb987feafd4d1296dbc3b40f92cd74711a71e9abb30d47ce17498d8c0df56",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/triangle-three-right-angles",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/triangle-three-right-angles.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 180 degrees and locked it in.",
+    "exploration": "Initial explored 30 E gave sum 210, excess 30 and 4.2 percent Earth. Right step 60 E gave 240, excess 60 and 8.3 percent. At 90 E sum 270 and 12.5 percent with three visible right-angle labels. End 150 E gave 330 and 20.8 percent. Home restored 30 E.",
+    "reveal": "Corrected to 270 for the asked 90 E triangle, explained flat versus spherical geometry, related excess to area and used retained observations 30 and 90 degrees excess. Tiny triangles have negligible excess was stated.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. At 90 E three 90-degree labels and shaded spherical triangle visible. Reveal inner scroll clipped pole/top of current 30 E triangle, while metrics, history and explanation were readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A familiar rule is tested in a concretely different surface setting.",
+      "evidence": "180 selected for pole-equator triangle.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Discrete corner changes expose linked angle and area measures reversibly.",
+      "evidence": "30, 60, 90 and 150 E compared, Home restored.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains the counterexample and numerical area relation.",
+      "evidence": "Three right angles and one-eighth Earth at 90 E.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Angle labels and history are strong; spherical side definition is implicit and reveal clips top.",
+      "evidence": "Meridians and equator drawn; no explicit great-circle-side definition in visible explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Tiny-triangle approximation and excess principle are explained without a fresh application.",
+      "evidence": "School ruler approximation noted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard slider worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Three right angles violate the familiar flat triangle total.",
+      "evidence": "Visible 90 plus 90 plus 90.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Globe and shaded region show surface dependence.",
+      "evidence": "Corner angles and area change together.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Dragging a globe corner changes geometry.",
+      "evidence": "Five discrete longitude positions available.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies limits of school geometry at global scales.",
+      "evidence": "Small triangles approximate flat geometry.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Angle excess measures spherical area.",
+      "evidence": "One degree excess equals one seven-hundred-twentieth Earth.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "One slider supports a substantial shift from flat to spherical reasoning.",
+    "conceptualDemand": "Distinguish surface geometry and relate angular excess to enclosed area.",
+    "interfaceBurden": "Single stepped slider with trial history; inner scroll at reveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Spherical triangle and excess introduced through globe.",
+    "notationRepresentationBurden": "Longitude, degrees, area percentages and fraction of Earth."
+  },
+  "whyCool": "A triangle can have three right angles when its sides follow a curved world.",
+  "caveat": "Great-circle-side condition is visually implicit; reveal scroll clips the pole at the tested position.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:24:05.846226+00:00"
+}

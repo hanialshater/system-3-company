@@ -1,0 +1,104 @@
+{
+  "slug": "lh-buy-only-stock-gap",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-buy-only-stock-gap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted gap-only order smaller with12 required and7 usable uncommitted stock; title supplies subtraction strategy.",
+    "TestAmax(0,12\u22127)=5 versus B12.",
+    "Reduced requirement1: A0 rather than negative6, B1. Boundary visibly clamps shortage tozero.",
+    "Reveal explicitly separated original12 case from current1 and explained both usable stock and zero lower bound."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Subtraction withzero floor.",
+    "conceptualDemand": "Stock gap rather than gross demand.",
+    "interfaceBurden": "Two tests and demand slider."
+  },
+  "whyCool": "Buying zero is a valid result when the stock already covers the need.",
+  "caveat": "No reservations,pack sizes,safety stock or uncertain demand modeled; visual could show stock and shortage as distinct quantities.",
+  "effort": "Completed prediction,both methods,demand below stock,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful boundary-aware arithmetic and accurate changed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete quantities supplied, but comparative answer is obvious from gap label and title rather than asking shortage.",
+      "evidence": "Gap versus full requirement.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Demand slider crosses the stock-covering boundary and exposes clamping.",
+      "evidence": "12gap5 versus1gap0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original/current cases explain the zero boundary and stock accounting.",
+      "evidence": "No negative order.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Formula and no-hidden-commitments assumption explicit.",
+      "evidence": "Usable stock7.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete shortage procedure with applicability condition.",
+      "evidence": "Use available usable stock;max withzero.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Basic subtraction with a useful lower boundary.",
+      "evidence": "Stock can cover all demand.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Comparison boxes and expressions show outputs, but no clear seven-stock-plus-gap decomposition.",
+      "evidence": "Numeric formula carries explanation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Demand slider changes shortage.",
+      "evidence": "Two tests.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful purchasing arithmetic.",
+      "evidence": "Usable,uncommitted stock assumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates requirement,availability and nonnegative shortage.",
+      "evidence": "Boundary condition explicit.",
+      "confidence": "medium"
+    }
+  }
+}

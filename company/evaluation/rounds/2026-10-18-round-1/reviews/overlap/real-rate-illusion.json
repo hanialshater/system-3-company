@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "real-rate-illusion",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/real-rate-illusion",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "901f3504e2a3c6e101b87cec2c9193bcca1474a9a92d36f4da9ca68dbb9cd4b8",
+    "demoSha256": "f7301c0dedfd7c637adc7127dee302cb9a491d0e81623ed3368a06f574c06471",
+    "metaPath": "src/demos/economics/real-rate-illusion/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected More and locked the purchasing-power prediction for three percent interest and five percent price growth.",
+    "exploration": "At one percent price growth, purchasing power was up two percent. Set price growth to three percent: exactly unchanged. Set five percent: down 1.9%, with $103 savings compared against a $105 basket.",
+    "reveal": "The reveal corrected the answer to Less, gave the $98.10 present purchasing power equivalent, and explained the exact 1.03 divided by 1.05 minus one ratio versus the approximate three minus five percent subtraction. It accurately referenced the tested three-percent equality boundary and disclosed one year, one basket and no tax.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at five percent. A common number line placed the savings marker at $103 and basket price at $105, with a negative 1.9% readout. The growing balance and faster-growing cost were directly comparable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884175 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question separates nominal balance growth from purchasing power.",
+      "evidence": "Selected More despite price growth exceeding interest.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "The price slider exposes gain, equality and loss with a clear boundary.",
+      "evidence": "One, three and five percent price growth produce positive, zero and negative real changes.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the exact ratio and its small-rate approximation.",
+      "evidence": "It gives 1.03 divided by 1.05 and distinguishes -1.9% from about -2%.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Two prices on one scale make the comparison explicit.",
+      "evidence": "The $103 balance falls short of the $105 basket.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general real-rate rule is explained without a fresh application.",
+      "evidence": "Only the same savings and basket case is varied.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "An increasing balance can buy less.",
+      "evidence": "Three percent interest still leaves a purchasing-power loss at five percent inflation.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The shared number line makes the shortfall visible.",
+      "evidence": "The basket marker lies beyond the savings marker.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "One slider supports a straightforward boundary search.",
+      "evidence": "The three-percent equality point can be found directly.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies nominal versus real growth.",
+      "evidence": "The exact ratio and approximation are both supplied.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes approximate subtraction from the exact calculation.",
+      "evidence": "The final result is -1.9%, not exactly -2%.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar money and basket costs support the new real-rate distinction.",
+    "conceptualDemand": "Low to moderate: compare growth in money with growth in what it buys.",
+    "interfaceBurden": "Low: one slider and a five-percent preset.",
+    "conceptualChallenge": "A larger nominal amount need not represent more goods.",
+    "prerequisiteNovelty": "Real return and ratio adjustment are introduced.",
+    "notationRepresentationBurden": "Low to moderate: dollar markers, percentages and one ratio formula."
+  },
+  "whyCool": "A balance can grow while its buying power shrinks, and two marks on one scale make the contradiction disappear.",
+  "caveat": "The model fixes one year, one basket and a three-percent interest rate, omitting taxes and changing spending patterns.",
+  "missingEvidence": [
+    "No fresh nominal rate or distinct application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

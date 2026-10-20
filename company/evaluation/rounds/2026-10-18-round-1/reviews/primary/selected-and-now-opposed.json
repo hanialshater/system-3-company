@@ -1,0 +1,104 @@
+{
+  "slug": "selected-and-now-opposed",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/selected-and-now-opposed",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted not related among top14% selected by talent+looks from unrelated crowd.",
+    "Everyone1500 had r+0.01. Top-half preset admitted736(49%) with r-0.44; top14% admitted216 with r-0.63.",
+    "Reveal explicitly compared all three observed states and explained compensating traits under a sum threshold.",
+    "Inline1280x720 light screenshot showed small scatter plot, grey rejected points, yellow admitted points and diagonal threshold; explanation readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires scatter plot and signed correlation interpretation, with supporting labels.",
+    "conceptualDemand": "Conditional selection and correlation direction.",
+    "interfaceBurden": "Simple presets and one slider; small plot."
+  },
+  "whyCool": "The dots stay the same, but selecting a corner of the cloud creates a negative relationship.",
+  "caveat": "Single fixed population and small plot; no fresh transfer case or accessibility audit.",
+  "effort": "Prediction, two threshold contrasts, reveal and inline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear surprising selection mechanism with readable observed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear selection rule and plausible directional alternatives.",
+      "evidence": "Positive, none, negative correlation choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two selection thresholds visibly change the same population correlation.",
+      "evidence": "+0.01,-0.44,-0.63 observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains the causal selection mechanism using observed comparisons.",
+      "evidence": "Weak in one trait requires strength in other to clear sum.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Presets and numerical comparisons are clear; plot is small but legible.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General selection principle without a fresh use case.",
+      "evidence": "Same show admissions example throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Independent traits become opposed after selection.",
+      "evidence": "+0.01 to-0.63.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Threshold line and selected subset ground the correlation shift.",
+      "evidence": "Grey and yellow scatter points.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threshold manipulation offers simple exploration.",
+      "evidence": "Two presets and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Selection bias interpretation is the central lesson.",
+      "evidence": "Link created by selection rather than population relationship.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Contrasts population and conditioned relationships.",
+      "evidence": "Multiple selection intensities.",
+      "confidence": "medium"
+    }
+  }
+}

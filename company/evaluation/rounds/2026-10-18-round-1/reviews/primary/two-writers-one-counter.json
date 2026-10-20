@@ -1,0 +1,105 @@
+{
+  "slug": "two-writers-one-counter",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-writers-one-counter",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted2 for specified Aread,Bread,Aadd/write,Badd/write schedule from0.",
+    "Manually stepped reads: both copies0. Aadd/write madecounter1 and B0stale. Badd/write leftcounter1 aftersixsteps.",
+    "Serial preset ran Aread/add/write then B,endingcounter2 with Breading1. Reveal explainedlostupdate and named lock prevention.",
+    "Reveal asks to look at both-read trace while current table shows serial run; preset allows return but both traces not simultaneously visible.",
+    "Inline1280x720 light screenshot: counter and serial trace readable; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two actors and local/shared state, supported by trace.",
+    "conceptualDemand": "Lost update and non-atomic operation.",
+    "interfaceBurden": "Clear step controls and table; prose clipping and trace reference mismatch."
+  },
+  "whyCool": "A stale private zero explains exactly where a whole increment disappears.",
+  "caveat": "Lock prevention explained but not interactive; current trace reference can confuse; right-edge clipping; accessibility unknown.",
+  "effort": "Prediction,full manual lost-update schedule,serial contrast,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-clarity-fixes",
+  "bucketReason": "Clear concurrent-state experiment; repair layout and trace-reference wording.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit operation order and copy model determine result.",
+      "evidence": "Six-step interleaving specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual stale-copy trigger and serial contrast isolate schedule dependence.",
+      "evidence": "Counter1 versus2 with full traces.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed stale overwrite and concrete prevention principle.",
+      "evidence": "Lock excludes interleaving in critical section.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear trace but prose clips and refers to other trace than currently shown.",
+      "evidence": "Current serial table, both-read explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Lock cure named but not tested in a fresh locked execution.",
+      "evidence": "Only unlocked manual/serial schedules.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two increments produce only one net increase.",
+      "evidence": "Both copies read0.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Local copies,stale marker and shared-counter trace expose overwrite.",
+      "evidence": "B0stale afterAwrite.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual thread scheduling and presets.",
+      "evidence": "Six manual steps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concurrent update correctness central.",
+      "evidence": "Need protected read-modify-write.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Interleavings,local state and atomicity distinction.",
+      "evidence": "Increment decomposes into three steps.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "earliest-deadline-first",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/earliest-deadline-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted urgent10-minute job due10 is late if short5-minute job due30 runs first.",
+    "Short\u2192urgent gave total waiting5 and one late job.",
+    "Urgent\u2192short gave total waiting10 and zero late; target disabled at that ordering.",
+    "Reveal accurately compared five extra waiting minutes with zero lateness and limited the lesson to meeting due dates rather than minimizing waiting."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple addition and comparison.",
+    "conceptualDemand": "Deadline versus shortest-first.",
+    "interfaceBurden": "Run and swap."
+  },
+  "whyCool": "The quick job can wait safely while the urgent one cannot.",
+  "caveat": "Only two fixed jobs are tested; this is not a proof that earliest-deadline ordering minimizes the number of late jobs for arbitrary queues.",
+  "effort": "Completed prediction, both orders, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear objective tradeoff with accurate, limited explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete duration/deadline problem supports a clear forecast.",
+      "evidence": "Urgent completes15 versus due10 under shortest-first.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two orderings produce a real objective tradeoff.",
+      "evidence": "Waiting5/late1 versus10/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate case-specific explanation avoids a broad unsupported optimality claim.",
+      "evidence": "Due-date objective versus waiting.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Deadline markers and completion metric are explicit.",
+      "evidence": "Whole jobs,one at a time.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete objective-sensitive scheduling rule.",
+      "evidence": "Check completion against deadlines, not just shortest duration.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A shorter queue wait can conflict with deadlines.",
+      "evidence": "Extra five waiting minutes prevents miss.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Due markers and task blocks make lateness visible.",
+      "evidence": "Urgent finishes at due when first.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swap changes the measured schedule.",
+      "evidence": "Two orders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful basic scheduling comparison.",
+      "evidence": "Deadline-aware ordering.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates duration, due date and objective.",
+      "evidence": "Two fixed jobs.",
+      "confidence": "medium"
+    }
+  }
+}

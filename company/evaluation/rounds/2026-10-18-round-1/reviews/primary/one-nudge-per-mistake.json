@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-nudge-per-mistake",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-nudge-per-mistake",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-nudge-per-mistake",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/one-nudge-per-mistake/meta.json",
+    "metaSha256": "3ae1a6d3068fdb1bc5aa9165d9258a5f56b6eecdf02b2587af575aa9f50e412e",
+    "demoSha256": "f9fd13cfc36062512e8dc6e7297fc8057095e6cdc32b50210a242eea6633c1e6",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-nudge-per-mistake",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-nudge-per-mistake.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose5 against1 and2 nudges; locked it in.",
+    "exploration": "Check(1,1)+ score0 wrong:weights1,1,1,nudges1. Check(-1,0)\u2212 score0 wrong:weights2,1,0,nudges2. Check(2,-1)+ score3 right:weights unchanged. Rest sweep checked remaining2 correct. Full sweep2 clean with2 nudges,training done;reset disabled at completion.",
+    "reveal": "Corrected2;named actual update points(1,1),(-1,0),line between groups and clean next sweep. Explained mistake-only add/subtract update;already-correct points do nothing.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Shaded positive side,negative symbols outside,all point rings green,final line and nudge1/2 annotations visible. Bottom reveal extends to viewport edge.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Numerical commitment requires substantial coordinate bookkeeping before conceptual experience.",
+      "evidence": "Five signed coordinates and update order supplied;choices1,2,5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Individual wrong versus right checks visibly update or retain weights,then clean sweep confirms.",
+      "evidence": "Weights0\u21921,1,1\u21922,1,0;correct score3 no change.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual two mistake points to line and clean sweep.",
+      "evidence": "Named updates and unchanged correct cases.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls clear but coordinate/weight notation burdens no-maths framing.",
+      "evidence": "Prompt full signed-coordinate sequence;stage weights and scores.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable mistake-only correction principle,no new task or applicability conditions.",
+      "evidence": "One small correction per mistake.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed five-update estimate contradicted by onlytwo.",
+      "evidence": "Three checked points include right point with no nudge.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Line,shade and point rings carry correct-side mechanism.",
+      "evidence": "Final green rings and update annotations.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and sweep controls permit process inspection,fixed data.",
+      "evidence": "Three manual checks thenbulk sweeps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete mechanism of simple classifier training.",
+      "evidence": "Mistake update and clean sweep.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Wrong-point update,correct-point invariance and stopping check linked.",
+      "evidence": "Two nudges then clean second sweep.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Prediction demands signed-coordinate updating and classifier bookkeeping.",
+    "conceptualDemand": "Coordinate label sign,score,boundary,weight update and clean-sweep stopping.",
+    "interfaceBurden": "Moderate:several step/sweep controls and symbolic feedback;completion disables reset.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:perceptron and separating half-plane.",
+    "notationRepresentationBurden": "high:signed coordinate pairs,three weights and scores."
+  },
+  "whyCool": "The third checked point is already right,so the line stays still and the nudge counter remains2.",
+  "caveat": "Fixed separable dataset;no nonseparable case or failure boundary,and reset disabled after completion.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Start over not tested before completion.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:28:05.080346+00:00"
+}

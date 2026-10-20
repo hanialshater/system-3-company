@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "pcr-not-quite-doubling",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pcr-not-quite-doubling",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "97ae96bcb5e981d7d589da1ff508ee35e2a15eb46489b6ad598e1a2e59857687",
+    "demoSha256": "3d3947b7b2535cd13c94083e227bab7b6648f13e09a8810904bd9ad43881dcb8",
+    "metaPath": "src/demos/life/pcr-not-quite-doubling/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 90% final yield for 90% efficient copying across 30 cycles and locked it in.",
+    "exploration": "Perfect baseline 1.07 billion. Preset 90% gave 230 million, 21% of perfect. Preset 80% gave 46 million, 4%. Preset 95% gave 502 million, 47%. Reveal unlocked after 90 and restored current state from 95 to 90 on opening.",
+    "reveal": "Corrected about20%. Explains multiplier1.9 versus2 means0.95 of perfect per cycle; repeated thirty times yields0.21. Fixed efficiency and no plateau conditions explicit.",
+    "visual": "Inline80% screenshot inspected: short linear final-yield bar4% versus full perfect bar; log chart shows divergent straight lines, gridlines each1000-fold. Labels and controls legible. Trust3/3 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear per-cycle versus final-yield misconception with multiplier definition.",
+      "evidence": "90% selected versus21% final.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three efficiency contrasts expose nonlinear accumulated loss with linear/log views.",
+      "evidence": "80/90/95% yield4/21/47% ofperfect.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual90% result to relative multiplier and states idealised limits.",
+      "evidence": "0.95 repeated30 andno plateau.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate straight-scale final bar and labelled log chart prevent magnitude ambiguity.",
+      "evidence": "Inspected80% screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable compounding-loss principle andconditions given without concrete new process application.",
+      "evidence": "Small losses compound;fixed efficiency.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "90% prediction overturned by21% after30 cycles.",
+      "evidence": "230million versus1.07billion.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Final bar anddiverging log lines carry magnitude andgrowth contrast.",
+      "evidence": "80% screenshot andthree efficiency states.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Efficiency presets andslider allow reversible variation.",
+      "evidence": "Three presets exercised.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete amplification-yield interpretation central.",
+      "evidence": "ToyPCR copying.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Efficiency multiplier,relative loss andaccumulation acrosscycles linked.",
+      "evidence": "Three states and0.95 calculation.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "One compounding relation withrelative multiplier andtwo graphical scales.",
+    "conceptualDemand": "Supported multiplicative loss overrepetitions.",
+    "interfaceBurden": "Low:efficiency presets;reveal resetsstate.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:PCR andcompounding yield",
+    "notationRepresentationBurden": "moderate:logscale,largecounts,1.9/2 ratio"
+  },
+  "whyCool": "Onlyfive percentagepoints of copyingefficiency separate21% from47% ofperfect yield afterthirtycycles.",
+  "caveat": "Fixed30 cycles andconstant efficiency;realplateau omitted andno fresh application.",
+  "missingEvidence": [
+    "Slider interpolation",
+    "Different cyclecounts",
+    "Plateau",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "towel-over-two-bars",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/towel-over-two-bars",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Before prediction inspected screenshot and AX:width70 shown in controls but no towel length or total area;question asks exact0.98/1.96 more. Chose0.98.",
+    "Onebar touching0.98/open0.98;twobars touching0/open1.96. Width90 yields1.26 versus2.52open.",
+    "Reveal explains area bookkeeping and excludes measured drying time,still held with changed numeric result. Screenshot prose clips right."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Area and two contacting faces.",
+    "conceptualDemand": "Surface exposure versus cloth amount.",
+    "interfaceBurden": "Two modes,width slider."
+  },
+  "whyCool": "Separating touching cloth faces creates more exposed area without creating more cloth.",
+  "caveat": "State towel length or ask relative change;label original prediction versus changed width.",
+  "effort": "Pre-prediction visual inspection,prediction,A/B,widthvariation,reveal,screenshot.",
+  "provisionalBucket": "revise-numeric-hook",
+  "bucketReason": "Good model but underdetermined exact prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Exact area question lacks necessary length/area input.",
+      "evidence": "No length visible before lock.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Arrangement and width affect exposed-area count.",
+      "evidence": "0.98/1.96 to1.26/2.52.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct contact-area mechanism and evidence scope.",
+      "evidence": "Not drying-time prediction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Missing length and original/current distinction;clipped prose.",
+      "evidence": "0.98 predicted,current1.26more.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same exposure principle and limit,no new application.",
+      "evidence": "One towel only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same cloth can expose twice the face area.",
+      "evidence": "Separate inner faces.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Folded/separated schematic plus table.",
+      "evidence": "Two-bar air arrows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Modes and width variation.",
+      "evidence": "70\u219290.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Laundry exposure central.",
+      "evidence": "No time claim.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Material amount versus accessible surface.",
+      "evidence": "Contact bookkeeping.",
+      "confidence": "medium"
+    }
+  }
+}

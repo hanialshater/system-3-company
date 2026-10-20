@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "friends-split-more-than-chance",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/friends-split-more-than-chance",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "friends-split-more-than-chance",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/probability/friends-split-more-than-chance/meta.json",
+    "metaSha256": "c35269cef9a63e1f15b8a1f3c89ebc509d607691acc681a83fcd205a2be40605",
+    "demoSha256": "4179e298f2b10b52021a934ae5a289ad38eb9e1f1056dbabc750a0a2ff5169d3",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/friends-split-more-than-chance",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/friends-split-more-than-chance.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected About 33% against About 46% and About 20%; locked it in.",
+    "exploration": "Count possible pairs displayed 10 \u00d7 20 = 200 of 435, 46%. One random class had 26/45 crossing, 58%. Draw 1000 more: 1001 classes averaged 46%, none with nine or fewer, minimum 11. Last random class 30/45, 67%. Show real class restored nine/45,20% with simulation counters retained.",
+    "reveal": "Corrected to46%; connected actual1001-run mean and minimum to 200/435 baseline. Stated exact chance about1 in4000; explained pairs rather than people and large-group2/3,1/3 baseline about44%.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Network groups use circle/square nodes; gold cross links. Histogram of random crossing counts shows real-class9 marker far left. Counts and controls legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome visible and ignored. Image AX label in possible-pairs mode said200 of45 friendships despite text200 of435; recorded as naming discrepancy, no access score."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Separates person-share shortcut from pair baseline and observed20%.",
+      "evidence": "33%,46%,20% alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Pair count, random sampling and real-class contrast expose baseline and rarity.",
+      "evidence": "200/435;1001 random mean46%;real20%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual sample outcome and pair denominator to resolve prediction.",
+      "evidence": "Mean46%,minimum11 and pairs-not-people explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Histogram, network and retained counters clearly show comparison on desktop.",
+      "evidence": "Actual screenshot plus real-class restore.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General baseline principle and large-group formula offered, but same group composition and no concrete new use.",
+      "evidence": "2 \u00d72/3 \u00d71/3 expression and final gap statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient audit; one AX discrepancy observed.",
+      "evidence": "Possible-pair image label200 of45 differs from200 of435 text; other access modes unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed33% prediction contradicted by46% baseline and simulation.",
+      "evidence": "1001-class46% average.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Network and histogram carry between-group comparison and rarity.",
+      "evidence": "Real9 marker outside sampled histogram range.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Counting, drawing and restoring views support reversible discovery.",
+      "evidence": "Pair view, one draw,bulk draw,real-class restore.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete method for interpreting friendship sorting against group-size baseline.",
+      "evidence": "20% judged relative to46%.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combinatorial denominator, sampling variation and rare outcome connected.",
+      "evidence": "200/435,random histogram and0/1001 at or below9.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Combines pair counting, random baseline and rarity evidence.",
+    "conceptualDemand": "Coordinate unequal groups, pair denominator, simulated distribution and conditional interpretation.",
+    "interfaceBurden": "Low to moderate: several buttons and dense counters, all usable.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "moderate: unordered pairs and random comparison distribution.",
+    "notationRepresentationBurden": "moderate: fractions,percentages,multiplication and histogram."
+  },
+  "whyCool": "A thousand random classes create a histogram well above the real class nine crossings, giving20% a visible yardstick.",
+  "caveat": "Fixed class composition and uniform-random model; exact rare-event probability asserted rather than independently checked.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset and different group compositions not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:10:56.218265+00:00"
+}

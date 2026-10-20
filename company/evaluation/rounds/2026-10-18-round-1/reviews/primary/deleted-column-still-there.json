@@ -1,0 +1,104 @@
+{
+  "slug": "deleted-column-still-there",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/deleted-column-still-there",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction lenderhistoricalA80/B40,neighborhoodonly thresholdmodel with4in5group clustering:equal/lessunequal/asunequalormore; choseequal.",
+    "Trainwithoutgroup yieldedA80/B20; mixedlayout A100/B100;90%together A90/B10. Seenhistorypreserved allthree.",
+    "Reveal correctsasunequalormore; neighborhood proxyforgroup and biasedpastlabels; deletinglabelnotpattern; checkoutcomesbygroup.",
+    "Screenshot grouped circles/squares withapprovedfill, readableoutputhistory; longrevealrightedge cropped; current90/10 versus revealoriginal80/20."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires groupconditionalpercentages and a thresholdtrained on historicaldecisions.",
+    "conceptualDemand": "Separate inputomission from proxycorrelation and resultingoutcomes.",
+    "interfaceBurden": "Simplepresets; densesetup and clippedreveal."
+  },
+  "whyCool": "A model never sees the group label yet reconstructs its pattern from where people live.",
+  "caveat": "Toydeterministic lending model; no actualpeople or eligibilitydecisions; single reviewer.",
+  "effort": "Prediction,allthree layouts,reveal andvisualcheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Valuable causalproxy demonstration; denseonboarding and layoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Tests input-removal fairnessintuition with concretepolicy.",
+      "evidence": "Equalvsasunequalormore.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Changingcorrelation isolates proxyinformation.",
+      "evidence": "80/20=>100/100=>90/10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Mechanism and outcomecheck lesson tied to experiments.",
+      "evidence": "Deletingcolumn deleteslabel notpattern.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Dense threshold/group setup and clippedreveal.",
+      "evidence": "Modelrule plus threepercentagepairs.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Usefulgeneral principle for evaluating proxyvariables.",
+      "evidence": "Checkoutcomesbygroup notjustinputs.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Deletinggroup can widen disparity.",
+      "evidence": "Historical40pointgap becomes60points.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Group-shapes and fill encode modeloutputs.",
+      "evidence": "Two neighborhoods withcircles/squares.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three presetmodel/layout choices.",
+      "evidence": "Train,mixed,90% controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Strong AIevaluation insight.",
+      "evidence": "Proxyfeature and outputaudit lesson.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Biasedlabels,correlatedfeatures,thresholding,and outcomes.",
+      "evidence": "Mixedneighborhoods removeproxy distinction.",
+      "confidence": "medium"
+    }
+  }
+}

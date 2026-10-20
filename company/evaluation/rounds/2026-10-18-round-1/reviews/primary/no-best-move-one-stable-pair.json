@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "no-best-move-one-stable-pair",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/no-best-move-one-stable-pair",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e6f7a1c6118335e3e34eedb6350aa14ae0de7e2e863b3304a476c161b1a3bd0b",
+    "demoSha256": "0dea78e2a9a691b91ff745b14ee6363a8906e56ee355db50881d8d2a96527053",
+    "metaPath": "src/demos/economics/no-best-move-one-stable-pair/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected top-middle U,C as stable pair and locked it in.",
+    "exploration": "U,C said Row switches toD because2 exceeds0. D,C saidColumn switchesR because3 exceeds1. D,R saidRow switchesU because2 exceeds1. M,L saidNobody switches:Row4 bestinL,Column2 bestinM. Four ofninecellschecked,onestablefound,revealunlocked.",
+    "reveal": "CorrectedM,L. Usesactualthreeunstablechecks andmutualbestreplycell,definesNashequilibrium,no dominantmove required. Saysunique pureequilibrium,inventedone-roundpayoffs,mixedstrategiesexcluded.",
+    "visual": "Inline initial/stable screenshots inspected:3x3payofftable,Rowpayoffcolourdistinction,solid/dashedbestreplyoutlines,doubleoutlineandcheckatM,L,redcrossesforcheckedunstablecells. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearstablepairquestion,butunfamiliarpairedpayoffinterpretation andbest-replyreading largelyunscaffoldedbeforelock.",
+      "evidence": "U,C selectedwithRow0/Column3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Followingprofitabledeviations andfindingmutualreplyexposesstabilitycondition.",
+      "evidence": "Threeunstablecells andM,L stable.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualcellchecks toequilibriumdefinition andpure/mixedscope.",
+      "evidence": "FourbestincolumnL,twobestinrowM;uniquepurecaveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicitwho-switchesfeedback makespairedpayofftable understandableontestedpath.",
+      "evidence": "Inspectedstable screenshot andthreedeviationmessages.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablemutualbestreplycriterion withconditions suppliedwithoutfreshgameapplication.",
+      "evidence": "One-roundinventedpayoffs,mixedleftout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "PredictedU,C unstableandstablepairfoundwithoutdominantmove.",
+      "evidence": "Rowcanimprovefrom0to2;M,L nobodymoves.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bestreplyoutlines andcellmarks carrymutual-versus-one-sidedrelation.",
+      "evidence": "Stable screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Freelytappingcells encouragesstrategycomparison.",
+      "evidence": "Fourcellschecked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete strategicinteractionanalysis butinventedgame.",
+      "evidence": "Whohasincentivetoswitch.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dominance,bestreply,stability andpure/mixedscope distinguished.",
+      "evidence": "Deviationchain andstablecellreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Trackstwoagents'payoffs,held-fixedopponentactions andmutualbestreplies.",
+    "conceptualDemand": "Multipleconditionalcomparisons acrossmatrix.",
+    "interfaceBurden": "Low:celltaps anddirectfeedback.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:gamepayoffmatrix andNashequilibrium",
+    "notationRepresentationBurden": "high:pairedpayoffs,row/columnlabels,solid/dashedencodings"
+  },
+  "whyCool": "Acellwithoneplayer'shighest-lookingpayoffstillfailswhen theothercanimprove,whileM,L satisfiesthebestreplytestforboth.",
+  "caveat": "Onlyfourcellschecked;uniqueequilibriumclaimnotexhaustivelyverified,mixedstrategiesexcluded.",
+  "missingEvidence": [
+    "Remainingfivecells",
+    "Freshgame",
+    "Mixedstrategies",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

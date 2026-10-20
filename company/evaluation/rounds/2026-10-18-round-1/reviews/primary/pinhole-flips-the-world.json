@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "pinhole-flips-the-world",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pinhole-flips-the-world",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "pinhole-flips-the-world",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/pinhole-flips-the-world/meta.json",
+    "metaSha256": "593b16a4642eec6b387be0cfe90d95c349c820249e54f6af354b3a412f7e27de",
+    "demoSha256": "cc29dee555aa8cc0925df723a1dfaf37a532ee3123c53eb717976f9ce658b9c1",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/pinhole-flips-the-world",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/pinhole-flips-the-world.json"
+  },
+  "date": "2026-10-18T19:37:12.528421+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. SelectedUpright andlocked.",
+    "exploration": "Initialcandle30/screen15,image5inverted. Trace tipshowsorangeraycrossholelandslow. ScreenEnd30image10;CandleHome10image30. HoleEnd5mmwidensblurpatch,imageheightstill30. Revealunlockafterray/distancecontrast.",
+    "reveal": "CorrectUpsidedown. Actual10cmcandleat10tohole,screen30,image30quoted. Tipraylands low/baselandshigh,similartrianglesimageratio=screendistance/objectdistance. Widerholepatchesblur;diffractionatverytinyholeignored.",
+    "visual": "Inline1257x936 dark screenshots inspected: tiprayandbasecrossathole,largerinvertedcandleprojection;5mmaperturevisiblefuzzypatch. Revealinnerlayoutclipsupperpartofdiagramatcardboundary,butcontrolsandfulltextlegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Upright/inverted/blurreduprightchoices clearconcreteopticsmisconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Raytrace,twoindependentdistancecontrasts andapertureblurshowgeometryandboundary.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actual30cmimage tiedtostraightcrossingrays/triangleswithbluranddiffractionlimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distanceunits,imageorientationandrayidentityexplicit;revealdiagramtopclippedbutexplanationremainslegible.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretepinholecamera/cardapplicationanddistance/blurconditions,withignored-diffractionboundary;nofreshindependenttask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "ChosenUprightisalwaysinvertedacrossdistancechanges.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Tracedcrossingraysanddistance/apertureimagechangescarrymechanismacrosscontrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Threeindependentslidersandraytoggleenablemeaningfulexploration.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteunderstandingofpinholeconstruction,image-sizeandaperturetradeoff.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Inversion,similardistanceratios,finiteaperturebluranddiffractionlimit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinatecrossingraysanddistance-ratioimagescaling,thenapertureblur;visualsupportslinkedrelations.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "lowcontrols;revealcropsdiagramtop",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: geometricoptics/similartriangles",
+    "notationRepresentationBurden": "low: cm/mm,ratioandraydiagram"
+  },
+  "whyCool": "Movingthescreenfartherandcandleclosermakestheinvertedimagegrow5to30cmwhiletheraystillcrossesthehole.",
+  "caveat": "Geometricopticsonly,diffractionignored;revealclipsdiagramtop."
+}

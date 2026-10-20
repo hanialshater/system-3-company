@@ -1,0 +1,105 @@
+{
+  "slug": "range-min-in-four-nodes",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/range-min-in-four-nodes",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted four stored nodes for positions3\u201312 in a16-position minimum tree.",
+    "Selected3\u201312 and combined [3],[4\u20137],[8\u201311],[12], obtaining minimum2 from four nodes.",
+    "Changed From to0 and recombined:13 positions used three nodes, minimum2. Updating position9 from2 to8 rewrote five ancestors; recombining returned minimum3.",
+    "Reveal preserved the first query as an explicitly labeled Seen row while explaining the current update and logarithmic work.",
+    "The visible instruction said select, combine, drag; completing those left reveal locked until the additional value-update control was used. Controls below the visualization required scrolling."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires understanding hierarchical summaries and indexing.",
+    "conceptualDemand": "Segment-tree query and update.",
+    "interfaceBurden": "Several controls with an unstated unlock requirement and internal scrolling."
+  },
+  "whyCool": "The same hierarchy answers a range question quickly and repairs itself after a value changes.",
+  "caveat": "Fixed tree and fixed update; the prompt should explicitly request the update needed to unlock the explanation.",
+  "effort": "Completed prediction, original and changed queries, point update, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strong interaction and visuals with a recoverable instruction gap.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The visible aligned blocks allow a concrete decomposition prediction.",
+      "evidence": "Full tree and positions shown before answering.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independent query boundary and point update expose both query and maintenance behavior.",
+      "evidence": "Four-node original, three-node changed range, five-node update path.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate historical query and update trace support the logarithmic explanation.",
+      "evidence": "Seen row distinguishes original minimum2 from current minimum3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "State labeling is good, but the unlock requirement omits the necessary update action.",
+      "evidence": "Select/combine/drag instruction did not unlock; Change value did.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General complexity principle without a fresh application problem.",
+      "evidence": "Same fixed16-position tree.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Ten values need only four stored summaries.",
+      "evidence": "Changed13-value range needs only three.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Aligned block sizes, chosen nodes and update path explain both operations.",
+      "evidence": "Original and changed query plus point update.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Changing ranges and values drives the lesson.",
+      "evidence": "Two sliders and update control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Illustrates efficient data structure operations.",
+      "evidence": "No concrete production use case.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects decomposition and update ancestors to logarithmic cost.",
+      "evidence": "Ragged endpoints and root path.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "gray-code-one-flip",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/gray-code-one-flip",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "gray-code-one-flip",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/cs/gray-code-one-flip/meta.json",
+    "metaSha256": "0bc351e4935469ed16343d883c3eec478aad775fa50f3ee9092f6c0f21dada63",
+    "demoSha256": "271a11cf7618757ca02d0b20f80403031f126b5338b82ca53b892f354f26d5c1",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/gray-code-one-flip",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/gray-code-one-flip.json"
+  },
+  "date": "2026-10-18T20:08:44.259767+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose1and11 and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Stepped0to4 individually: binary cumulative1,3,4,7 versusGray1,2,3,4. Inspected3to4binary011to100 all3changes versusGray010to110one. Countto7 gave totals11versus7 and inspected all rows."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read1and7 correction,oneflip per step and rotary dial encoder case: halfway between marks can confuse adjacent positions rather than mixed bits."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,4,7and scrolled reveal inspected. Rings show changed lamps; rows and counters readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Useful transition question burdened by unexplained operations.",
+      "evidence": "XOR andrightshift supplied without definition before two-part forecast.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepwise retained rows make changes countable.",
+      "evidence": "011to1003changes versus010to110one; totals11and7.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains adjacency benefit through concrete sensor case.",
+      "evidence": "Dial halfway between marks and one-bit ambiguity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Lamp comparison clear but generation rule remains opaque.",
+      "evidence": "XOR/rightshift not explained; table allows observation without understanding construction.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete encoder use with boundary condition.",
+      "evidence": "Sensor reading halfway between adjacent marks limits ambiguity to adjacent position; no new task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Different encoding reduces all transitions to one flip.",
+      "evidence": "11versus7total.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Changed-bit rings and paired histories show property.",
+      "evidence": "All8rows inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step or fill counter.",
+      "evidence": "Nextnumber andcount7.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Connects coding to physical sensing ambiguity.",
+      "evidence": "Rotary encoder application.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Property and use shown,construction not derived.",
+      "evidence": "XOR formula asserted above lamps.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Separate numeric position from encoding and compare transition bit changes.",
+    "interfaceBurden": "Two buttons,retained table; scroll reveal.",
+    "prerequisiteNovelty": "Binary andGray coding,XOR,rightshift unfamiliar.",
+    "notationRepresentationBurden": "High initialXOR and>>notation; lamp states and threebit strings scaffold property."
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "say-seventy-mean-it",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/say-seventy-mean-it",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "say-seventy-mean-it",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/say-seventy-mean-it/meta.json",
+    "metaSha256": "79b5f4f7ed9d961181ac60bfe0cfa8ae5265f8bcdd5f1f4712979ed13f534de1",
+    "demoSha256": "bbc5bd40720e8b5ad8ca1b21f4c7f0eb4d03a12beb3cb7d2ee6a2c7bc51eba37",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/say-seventy-mean-it",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/say-seventy-mean-it.json"
+  },
+  "date": "2026-10-18T20:05:39.068511+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose90% and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Compared50%gap.250,90%gap.250,70%gap.210,100%gap.300. Inspected individual hit/miss bars shrink/grow and dashed average."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read70%correction,6misses cost.810 at90%,14hits cost.250 at50%, weighted quadratic0.7(1-r)^2+0.3r^2 and true-hit-rate minimum."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline50/90/70 and100 final scrolled reveal screenshots inspected. Labels,bar markers and full formula/prose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Scoring rule and fixed frequency make claim testable.",
+      "evidence": "14of20right and explicit squared gaps;50/70/90choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Several confidence contrasts show individual versus average penalties.",
+      "evidence": "50and90tie.250;70.210;100.300.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Weighted quadratic explains honesty incentive.",
+      "evidence": "Overconfidence expensive misses and hedging costly hits; minimum at.7.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Bars concrete but quadratic burden substantial for stated boundary.",
+      "evidence": "r proportion versus percent assumed; squaring and weighted formula not derived.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General truthful-frequency rule stated without new application.",
+      "evidence": "Only fixed70%toy, no new rate or task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "50and90tie despite different bar patterns.",
+      "evidence": "Both.250 versus calibrated.210.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-answer bars reveal asymmetric costs.",
+      "evidence": "90%tiny green and tall red versus equal50%bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Confidence slider gives quick numerical feedback.",
+      "evidence": "Three presets and endpoint test.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful probability honesty intuition under given score.",
+      "evidence": "Over/underconfidence both penalized.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects frequency,quadratic score and calibration.",
+      "evidence": "Weighted average minimum and individual costs.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Combine frequency-weighted right/wrong costs with confidence.",
+    "interfaceBurden": "Three presets and slider; scroll reveal.",
+    "prerequisiteNovelty": "Squared gap scoring unfamiliar and explicitly supplied.",
+    "notationRepresentationBurden": "High: r fraction,percent,exponents,weighted sum; bars partially scaffold."
+  }
+}

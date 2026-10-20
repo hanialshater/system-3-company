@@ -1,0 +1,104 @@
+{
+  "slug": "lh-area-scales-square",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-area-scales-square",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted B area four timesA when B side doubles, but title explicitly states this answer and question already names fourfold ratio.",
+    "Atbase2, A4m\u00b2 and B16m\u00b2 with products2\u00d72 versus2\u00d72\u00d72\u00d72.",
+    "Changedbase6: A36 and B144; drawing shows B divided into four A-sized squares.",
+    "Reveal accurately separated original2m from current6m and explained two doubled dimensions and ideal area-only material use."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple multiplication with spatial support.",
+    "conceptualDemand": "Two-dimensional scaling.",
+    "interfaceBurden": "Two tests and side slider."
+  },
+  "whyCool": "The larger square literally contains four copies of the smaller one.",
+  "caveat": "Prediction should ask for the area factor before revealing it in title; ideal material use excludes thickness,waste and package rounding.",
+  "effort": "Completed prediction,both tests,two base sizes,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Excellent direct area visual and accurate reveal, weakened by an answer-spoiling prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and four-times wording reveal the intended relationship before answering.",
+      "evidence": "Double side,quadruple area.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Base-size change preserves ratio while changing absolute area.",
+      "evidence": "2/4 sides then6/12.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct original/current values and two-factor argument explain the relation.",
+      "evidence": "2\u00d72 scale factor.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Four-cell partition and expressions are clear.",
+      "evidence": "Same unitm\u00b2.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete material-scaling implication includes ideal area-only condition.",
+      "evidence": "Fourfold area means fourfold material under that model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Linear size and surface amount scale differently.",
+      "evidence": "Twofold side gives fourfold area.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "FourA-sized regions directly explain the area ratio across sizes.",
+      "evidence": "Visible2\u00d72 subdivision.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Size slider changes both squares.",
+      "evidence": "Fixed ratio exploration.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful surface/material scaling intuition.",
+      "evidence": "Area-only scope stated.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects product dimensions and scale exponents.",
+      "evidence": "No waste/thickness model.",
+      "confidence": "medium"
+    }
+  }
+}

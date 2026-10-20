@@ -1,0 +1,103 @@
+{
+  "slug": "furniture-through-door",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/furniture-through-door",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "At opening75, predicted narrow face for object80\u00d760. Broad face showed clearance\u22125; narrow face15.",
+    "Opening65 gave narrow clearance5; opening95 gave35. Reveal said prediction held and current narrow35.",
+    "Inline screenshot showed clear schematic and readable reveal; model explicitly excludes corners/hands/trim. At95 both widths fit, but prediction-held wording does not distinguish original question."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple dimensions and subtraction.",
+    "conceptualDemand": "Everyday width comparison.",
+    "interfaceBurden": "Two choices and one slider."
+  },
+  "whyCool": "Turning one rigid object changes clearance without changing its volume.",
+  "caveat": "Prediction verdict needs original-versus-current framing when opening changes; no full moving-path simulation.",
+  "effort": "Completed prediction, orientation comparison, opening endpoints and reveal; inline visual inspection.",
+  "provisionalBucket": "solid-with-verdict-framing",
+  "bucketReason": "Useful bounded model; verdict ambiguity after changing opening.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete dimensional choice with given widths.",
+      "evidence": "Opening75 versus80\u00d760.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Orientation and opening create controlled comparisons.",
+      "evidence": "Broad\u22125,narrow15; narrow5 and35.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains blocking dimension and limitations, but held verdict ignores changed question state.",
+      "evidence": "Opening95 fits both; prediction held.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable diagram, controls and explicit straight-opening scope.",
+      "evidence": "Inline visual and current35.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Names concrete measurement extensions and conditions.",
+      "evidence": "Corners,hands and trim need further measurements.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar fit comparison.",
+      "evidence": "80 versus75.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Schematic makes blocking width visible.",
+      "evidence": "Orientation and opening drawing.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two orientations and opening slider invite comparison.",
+      "evidence": "Tested65/75/95.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Doorway measurement is central with limits.",
+      "evidence": "Measure clearance and further obstacles.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Simple width subtraction.",
+      "evidence": "35=95\u221260.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "temperature-reshapes",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/temperature-reshapes",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "88a6a6aff32934823c12ff9f1a15c0986f8e237cb363e6c235f3d49a96fbb195",
+    "demoSha256": "34efc95119587ed8c5e54340e4796e8f84b961dd01c59ff9273de0f48c223f4b",
+    "metaPath": "src/demos/ai/temperature-reshapes/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Still 67% and locked the prediction for the top word after lowering temperature from 1 to 0.5 with scores 2, 1 and 0.",
+    "exploration": "At 0.5, twenty draws were 17 mat, 2 sofa and 1 moon. At 4, they were 8, 6 and 6, with displayed probabilities 41.9%, 32.6% and 25.4%. At 1, twenty draws were 16, 2 and 2. Candidate words stayed unchanged.",
+    "reveal": "The reveal corrected the answer to about 87%, gave exact 86.7%, and explained dividing scores by temperature changes gaps. It accurately quoted the cool and hot samples, distinguished spreading choices from learning new information, and gave the exponential probability rule.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at temperature 4. Three colored horizontal bars showed the more even probabilities, with score divisions and sampled dot counts beneath each word.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt targets a specific misconception about probability scaling.",
+      "evidence": "Selected unchanged odds before trying the cooler setting.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Temperature changes expose the same candidates with different probability gaps and samples.",
+      "evidence": "Cool draws concentrated on mat, while hot draws spread across all three words.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal ties actual draws to score gap scaling and a clear limitation.",
+      "evidence": "It quoted both samples and explained that the menu did not change.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bars, score divisions and sample dots separate probabilities from realized draws.",
+      "evidence": "Hot probabilities and 8/6/6 draws were shown together.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending applies the rule to interpreting a real model sampling setting.",
+      "evidence": "Higher temperature spreads existing choices rather than teaching the model new information.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Hotter output can be explained without adding any knowledge or candidates.",
+      "evidence": "Only the probabilities changed across the fixed mat, sofa and moon menu.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bar flattening and transformed score gaps show the mechanism.",
+      "evidence": "At temperature 4 the scores became 0.5, 0.25 and 0.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sampling familiar sentence completions makes probability changes tangible.",
+      "evidence": "Each press produced a visible twenty word sample.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies what a generation temperature control does.",
+      "evidence": "The reveal connects the same rule to language model sampling.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It distinguishes candidate set, score scaling, probability and sample variability.",
+      "evidence": "The exact rule and actual samples appear in the reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The bars and familiar words are accessible, while exponential normalization and randomness add novelty.",
+    "conceptualDemand": "Moderate: separate score, probability and observed frequency.",
+    "interfaceBurden": "Low: three temperature buttons.",
+    "conceptualChallenge": "Dividing scores changes relative probability gaps without changing knowledge.",
+    "prerequisiteNovelty": "Sampling temperature and exponential probability are introduced.",
+    "notationRepresentationBurden": "Moderate to high in the final formula; the visual comparison works without calculating it."
+  },
+  "whyCool": "A creative sounding setting can be watched simply redistributing the same three choices.",
+  "caveat": "Only one fixed three word score vector is tested; sample counts are not the theoretical probabilities.",
+  "missingEvidence": [
+    "No fresh score vector or extended generated text was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "midnight-sun-line",
+  "demoVersion": 6,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/midnight-sun-line",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "da1ec8505397beee1448e9814c86bfd6ec6e8fbd89e18e83d744bff43b530804",
+    "demoSha256": "5887b0d525405e00ebd38c55766a50fcbb41d97497c94eb6618a4eb66e8ffa27",
+    "metaPath": "src/demos/geography/midnight-sun-line/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected80 north for first latitude with no June-solstice sunset and locked it in.",
+    "exploration": "Initial60 north had19 lit hours.65 north had21 andmidnightdark.70 north had24 andmidnightsun,reveal unlocked. Set latitude66.6:midnightsun and24 lit. Set time12:still sun. Reveal cites65 and66.6 observations.",
+    "reveal": "Corrected66.6. Explains90 minus23.4 tilt,orange pole-to-night-edge gap andtown's fullcircle stayinginside. Distinguishes ArcticCircle fromTropicofCancer overheadnoonSun.",
+    "visual": "Inline initial/70-north screenshots inspected. Globe hasblue towncircle andorange23.4-degree gaptopole;yellow24-hour strip andSunsetsNo at70. Controls andgeometry labelslegible. Trust7/7 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear boundary question withplausible tropic/polar alternatives.",
+      "evidence": "80 selected versus66.6.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Below/above andexact-boundary latitude plusnoon/midnight contrast expose full-circle illumination.",
+      "evidence": "65 dark/21hours,70and66.6 full24,66.6 noonlit.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects exact testedboundary totilt geometry anddistinguishes relevantgeographicline.",
+      "evidence": "90-23.4 andArcticversusTropic explanation.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Globelegend,daystrip andtime/latitude labels make pathfollowable.",
+      "evidence": "Inspected70 screenshot andthresholdreadouts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable tilt-complement rule suppliedwithoutconcretenewplanet/dateapplication.",
+      "evidence": "90minustilt andJunepolarcircle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "80-degreeprediction reversedbyfull daylightalreadyat66.6.",
+      "evidence": "Exactboundary readout.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Towncircle,nightedge andorangegapcarrygeometry acrosslatitudecontrasts.",
+      "evidence": "65/70/66.6 states andscreenshot.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Latitude andtime sliderspermitreversible illuminationdiscovery.",
+      "evidence": "Presets,threshold andnoontime tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete latitude/date daylightinterpretation.",
+      "evidence": "June-solstice24-hour boundary.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dailyrotation,axistilt,nightedge andtropicdistinctionlinked.",
+      "evidence": "Threshold/time tests andreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires3D globeillumination,circularrotation andtilt-complement geometry.",
+    "conceptualDemand": "Multipledependent spatialrelations.",
+    "interfaceBurden": "Low:presets andtwo sliders.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:solsticeilluminationgeometry",
+    "notationRepresentationBurden": "moderate:degrees,24-hourstrip andglobeprojection"
+  },
+  "whyCool": "At66.6 degrees thetown's entirebluecirclefitsbeyondthenightedge,sochangingmidnighttonoon nevermovesitintodarkness.",
+  "caveat": "OnlyJunetoygeometry withoutair;80preset andfulltime sweepuntested.",
+  "missingEvidence": [
+    "80degreepreset",
+    "Fulltime sweep",
+    "Otherseason",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

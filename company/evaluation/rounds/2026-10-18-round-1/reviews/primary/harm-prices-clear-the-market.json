@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "harm-prices-clear-the-market",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/harm-prices-clear-the-market",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "harm-prices-clear-the-market",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/harm-prices-clear-the-market/meta.json",
+    "metaSha256": "24f4a91e6bf99b8a025a79f7d0badb467a22680386db22949d27b4c3d85a95af",
+    "demoSha256": "d9549e9986eaeacb667642091b31650df1af2d2e63bb9f89a034e5328a506224",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/harm-prices-clear-the-market",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/harm-prices-clear-the-market.json"
+  },
+  "date": "2026-10-18T19:22:47.290802+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected Less than4 and locked. Raising-price market total4 supplied in prompt.",
+    "exploration": "Everyone best assignment23:xa12,yc6,zb5. Withoutx others14versus11 =>harm3. Withouty17versus17=>0. Withoutz19versus18=>1. Foundtotal4afterallthree. Everyoneinrestoresassignment,retains3harmrecords.",
+    "reveal": "CorrectExactly4;actualthreecounterfactualdifferencesrecapped. Peritema3,b1,c0matchharmpayments. Says harmpriceslowestclearingpricesinmatchingmarketslikethis,inventedvalues. Raising-priceprocessnotavailableontestedpath.",
+    "visual": "Inline1257x936 dark screenshots inspected: valuationtable,solidinitialassignmentanddashedcounterfactualoutlines;removedrowdimmed,harmlabelsaboveitemprices. Fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearless/equal/morecommitment,butmarketclearingtotalgivenwithout showingitsprocessorbuyerunitdemandruleexplicitly.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threebuyerremovalsvisiblyshowreassignmentandharm includingzero;marketpricesfixedratherthanexplorable.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Actualharmdifferencesexplainedandmatchdisplayedprices;generallowest-clearingequivalenceassertedwithouttestedprice-raisingpathorprecisematchingassumptions.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Tableandoutlineslegible;one-itemassignmentconstraintandfairnessharmdefinitionrequireinferencefromexamples.",
+      "evidence": "visual;prediction",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalmarket/harmconnectionstatedbutmatchingmarketslikethisconditionsunderspecifiedandnonewapplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenlowerpaymentsactuallymatchgiven4andindividualitemprices.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Reassignedtableoutlinesandharmlabelscarrycounterfactualallocationcomparison.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Remove/restorebuyerssupportscomparison,fixedvalues/prices.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstractpricingequivalencewithoutsupporteddecisiontask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Counterfactualotherswelfare,zeroharmanditempriceequivalence;priceprocessonlyasserted.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coreequivalencerequireswelfare-maximizingassignment,counterfactualotherswelfareandmarketclearingprices;severaldependentabstractruleswithlimitedsetup.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "lowbuttons;moderateimplicitassignmentrules",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: unitdemandmatching,counterfactualharm,clearingprices",
+    "notationRepresentationBurden": "moderate:3x3table,assignments,otherssubtotalandprices"
+  },
+  "whyCool": "Removingbuyerxletsothersgain3,exactlythe3priceoftheitemxgets.",
+  "caveat": "Price-raisingprocessandprecisematchingassumptionsnotdemonstrated;onlyfixedvaluationtable."
+}

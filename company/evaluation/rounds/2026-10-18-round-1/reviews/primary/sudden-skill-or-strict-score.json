@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "sudden-skill-or-strict-score",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sudden-skill-or-strict-score",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "d0874b014004c7d25f2c1bc9ecd1e258b25486295c2f1e2dce5dc3f1e728898e",
+    "demoSha256": "4750d27fcaf3894d5b71650d2c8728a78b140e3601ed2d10bb623763b54e9bf2",
+    "metaPath": "src/demos/ai/sudden-skill-or-strict-score/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Climb steadily and locked the prediction for six models with token accuracy from 50% to 95%, graded on completely correct ten token answers.",
+    "exploration": "Scored whole answers, then each token. XL showed 34.9% whole answers versus 90% tokens. The graph showed whole scores 0.1%, 0.6%, 2.8%, 10.7%, 34.9% and 59.9%, against token scores 50%, 60%, 70%, 80%, 90% and 95%. Selected one token answers and the XL scores became equal at 90%.",
+    "reveal": "The reveal corrected the answer to near zero then shooting up. It explained ten independent tokens all being correct as p to the tenth power and recommended checking a smoother score before calling an ability emergent.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with token scoring. Six filled purple bars rose smoothly, while dashed whole answer outlines were much shorter for small models. Every bar had numeric labels and the independent token toy assumption appeared below.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prediction targets how a metric transforms smooth underlying progress.",
+      "evidence": "Chose steady improvement before whole answer scores appeared.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Scoring modes isolate the mechanism and provide a boundary where it vanishes.",
+      "evidence": "Whole versus token scoring differed sharply; one token answers made them equal.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects the graph shape to the multiplicative scoring rule.",
+      "evidence": "It explains p to the tenth and warns against inferring sudden ability from the strict metric alone.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Overlay bars and numbers make the same models comparable across metrics.",
+      "evidence": "XL was explicitly 34.9% whole answers and 90% tokens.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending supplies an evaluation diagnostic with a condition.",
+      "evidence": "Before interpreting emergence, compare a smoother score on the same ability.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A score can look discontinuous while the stipulated underlying performance improves smoothly.",
+      "evidence": "Small whole answer scores contrasted with steadily rising token bars.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Overlays make metric distortion visible on common axes.",
+      "evidence": "Dashed strict scores sit inside the filled token score bars.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode toggles are analytic rather than playful.",
+      "evidence": "Three scoring modes provide controlled comparison.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It gives a useful way to interrogate benchmark claims.",
+      "evidence": "The reveal recommends a smoother metric comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The one token boundary and exponent explain rather than just illustrate.",
+      "evidence": "The score difference disappears for one token answers.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The chart is simple, but token accuracy, independence and powers introduce evaluation concepts.",
+    "conceptualDemand": "Moderate: distinguish latent progress from its scoring transformation.",
+    "interfaceBurden": "Low: three scoring modes and reset.",
+    "conceptualChallenge": "An all-or-nothing metric compounds several partial success probabilities.",
+    "prerequisiteNovelty": "Token scoring and independent trials are unfamiliar terms.",
+    "notationRepresentationBurden": "Moderate: percentages and p to the tenth, supported by numeric bars."
+  },
+  "whyCool": "Changing only the scoring rule makes gradual improvement look like a skill suddenly switching on.",
+  "caveat": "The independent token model is stipulated; the lesson does not establish that a particular real emergence claim has this cause.",
+  "missingEvidence": [
+    "No real model data or fresh answer length was tested beyond the one token boundary.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

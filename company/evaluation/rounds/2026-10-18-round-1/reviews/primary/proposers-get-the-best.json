@@ -1,0 +1,104 @@
+{
+  "slug": "proposers-get-the-best",
+  "demoVersion": 5,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/proposers-get-the-best",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "All six strict preference lists are visible on cards; receivers retain best offer.",
+    "Student proposals yielded Ann-X, Bea-Y, Cal-Z, with two student first choices and zero hospital first choices.",
+    "Hospital proposals yielded Ann-Y, Bea-Z, Cal-X, reversing first-choice counts to zero and two.",
+    "Both explicit stability checks reported zero of six unmatched pairs preferring one another; screenshot retained both results and current offer arrows. Reveal connects clashes, receiver choice, different outcomes and stability."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Six rankings, deferred offers and mutual blocking definition.",
+    "conceptualDemand": "Separate stable outcome from unique or equally beneficial outcome.",
+    "interfaceBurden": "Role switch, proposer cards and stability check; internal scroll."
+  },
+  "whyCool": "A process can produce a stable matching while giving a systematic advantage to the side allowed to propose.",
+  "caveat": "Fixed one-to-one strict complete lists; no real admissions or employment decision, and no independent proof of the general theorem.",
+  "effort": "Prediction, student proposals and stability check, hospital proposals and stability check, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich controlled role reversal with an explicit stability test.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete mechanism comparison with plausible invariance and receiver-advantage alternatives.",
+      "evidence": "Same rankings, switch proposing side.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Learner triggers offers on both sides and checks stability for both complete results.",
+      "evidence": "Two pairings and two blocking-pair checks.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed advantage and why both outcomes qualify as stable.",
+      "evidence": "Zero mutual blocking pairs despite different first-choice counts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ranked cards, arrows, first-choice stars and retained outcomes make comparison traceable.",
+      "evidence": "Student and hospital runs shown together.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General matching principle without a second preference instance or application exercise.",
+      "evidence": "Fixed three-by-three preferences only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same preferences admit different stable outcomes with different side benefits.",
+      "evidence": "Two versus zero first choices flips with proposer side.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Offer arrows and preference cards show conflicts and outcomes.",
+      "evidence": "Dashed rejected offer and retained best match.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose free proposer cards and switch roles.",
+      "evidence": "Both runs and swap checks tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful mechanism-design intuition.",
+      "evidence": "No real allocation policy or fairness assessment.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Stability and distributional advantage are separate.",
+      "evidence": "Both matchings stable despite side asymmetry.",
+      "confidence": "medium"
+    }
+  }
+}

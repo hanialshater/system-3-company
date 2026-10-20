@@ -1,0 +1,104 @@
+{
+  "slug": "why-seven-wins",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/why-seven-wins",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The prediction compared seven's probability with three's for two fair dice.",
+    "Dropping first-die rows built labeled ordered-pair stacks; halfway eighteen pairs gave three versus two ways, complete thirty-six gave six versus two.",
+    "One thousand rolls produced 171 sevens and 53 threes, with sampled frequency marks over the exact stacks.",
+    "Reveal enumerates the six and two pairs and explicitly distinguishes exact probability ratio from variable sampled counts; chart calls simulated draws 'real rolls'."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinguishing elementary outcomes from totals.",
+    "conceptualDemand": "Count ordered equally likely pairs.",
+    "interfaceBurden": "Six row actions and one batch button."
+  },
+  "whyCool": "The totals inherit their probabilities from how many equally likely pairs can make them.",
+  "caveat": "Simulation should be labeled as such rather than real rolls; only fair independent dice modeled.",
+  "effort": "Prediction, partial and complete pair construction, thousand-roll batch, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent sample-space visualization and exact-versus-sampled payoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise ratio question with meaningful equiprobability and count distractors.",
+      "evidence": "Equal, three times or six times.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Building the sample space and sampling expose exact versus observed distributions.",
+      "evidence": "Eighteen and thirty-six pairs, then one thousand rolls.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains the exact denominator and sample discrepancy using observed values.",
+      "evidence": "Six of thirty-six versus two; 171 versus 53 need not be exactly three-to-one.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Pair stacks are clear, but real-roll labeling overstates simulation provenance.",
+      "evidence": "Screenshot says one thousand real rolls.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Strong principle without a new case.",
+      "evidence": "Possible totals are not equally likely.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equal likelihood of die faces does not make sums equally likely.",
+      "evidence": "Seven has three times three's probability.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Labeled pair stacks directly construct the distribution.",
+      "evidence": "Triangular stacks and sampled overlay.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Build outcomes in rows and compare a batch.",
+      "evidence": "Six drop actions and sampling.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful sample-space reasoning.",
+      "evidence": "No application beyond dice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Ordered outcomes, aggregation and sampling variability connect.",
+      "evidence": "Exact ways versus noisy rolls.",
+      "confidence": "medium"
+    }
+  }
+}

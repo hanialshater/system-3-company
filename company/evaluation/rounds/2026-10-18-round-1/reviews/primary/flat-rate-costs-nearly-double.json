@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "flat-rate-costs-nearly-double",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flat-rate-costs-nearly-double",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "flat-rate-costs-nearly-double",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/flat-rate-costs-nearly-double/meta.json",
+    "metaSha256": "f55731274291e23937a1d951dcbd11aba3605d6a2a3735f0b281ec6ffea961c6",
+    "demoSha256": "54351c0a603d1b64410561fe96eb32514faf62e47f7f6e54c61e483357202094",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/flat-rate-costs-nearly-double",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/flat-rate-costs-nearly-double.json"
+  },
+  "date": "2026-10-18T19:05:24.333789+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust7/7 ignored. Selected10% and locked. Initial navigation/focus timeouts recovered through existing tab state; no lesson defect inferred.",
+    "exploration": "Flat2years500payment2000interest18.2true rate. True2years461payment1075interest10rate. TermEnd3years true323payment1616interest. Flat3years361payment3000interest17.9rate. Historical2yearcomparison retained.",
+    "reveal": "Showwhy resets current chart and slider toflat2years,500/2000/18.2. Correct18%; explains falling balance but83monthly flat interest fixed on full10000; true10charged on remaining balance1075interest,level payments/no fees.",
+    "visual": "Inline1257x936 dark inspected: stepped outstanding balance reaches0month24, fixed red83monthly bars, half-owed marker at12. All reveal and controls legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear nominal-flat versus actual-rate alternatives reveal plausible confusion.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Both charging methods and two terms contrast totals/rates with retained original comparison.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resets to original case and directly ties fixed interest bars to shrinking balance with explicit model limits.",
+      "evidence": "reveal;visual",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Historical comparison distinct; reveal restores original2year case, chart labels/counters clear.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable distinction in loan quotes and conditions but no distinct application task.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed10 becomes18.2 and nearly double interest versus true10.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shrinking balance versus fixed bars conveys denominator mismatch.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible method/term choices expose differences.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete loan quote interpretation with payment/total cost comparisons.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Interest base,shrinking balance,term sensitivity and rate/cost distinction.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Track charged interest base versus outstanding balance and compare rate,total cost,payment.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: two method buttons and term slider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: flat versus remaining-balance rate",
+    "notationRepresentationBurden": "moderate: percent/dollars/time chart"
+  },
+  "whyCool": "The flat interest bars remain83each month even as the amount owed halves.",
+  "caveat": "True-rate calculation is shown as output rather than derived; no independent new-loan task."
+}

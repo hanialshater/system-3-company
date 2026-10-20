@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "freezer-balloon",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/freezer-balloon",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose0.85L;27\u00b0C300Kand\u221218\u00b0C255Kconversionprovided,samepressure.",
+    "E: freezer0.85L255K;sliderHome\u221240\u00b0C0.78L233K;End40\u00b0C1.04L313K;graphdashedextrapolationzeroat\u2212273\u00b0C.",
+    "R:Yourpredictionheld;255/300=.85,15%shrink;Celsiuszeroarbitrary;realgasliquefiesbefore0K.",
+    "No-historypreview;6/6trustignored. Screenshot1280x720 countersandlineclear;normalinternalverticalscroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretevolumequestionwithunitconversion support.",
+      "evidence": "P: chose0.85L;27\u00b0C300Kand\u221218\u00b0C255Kconversionprovided,samepressure.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Temperaturecontrastsandzeroextrapolationlinkscale tovolume.",
+      "evidence": "E: freezer0.85L255K;sliderHome\u221240\u00b0C0.78L233K;End40\u00b0C1.04L313K;graphdashedextrapolationzeroat\u2212273\u00b0C.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsratioandrealgaslimit.",
+      "evidence": "R:Yourpredictionheld;255/300=.85,15%shrink;Celsiuszeroarbitrary;realgasliquefiesbefore0K.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Countersandgraphunderstandable.",
+      "evidence": "No-historypreview;6/6trustignored. Screenshot1280x720 countersandlineclear;normalinternalverticalscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Kelvinproportionalityandliquefactionboundaryexplicit.",
+      "evidence": "R:Yourpredictionheld;255/300=.85,15%shrink;Celsiuszeroarbitrary;realgasliquefiesbefore0K.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;6/6trustignored. Screenshot1280x720 countersandlineclear;normalinternalverticalscroll.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "NegativeCelsiusstillmostvolume.",
+      "evidence": "E: freezer0.85L255K;sliderHome\u221240\u00b0C0.78L233K;End40\u00b0C1.04L313K;graphdashedextrapolationzeroat\u2212273\u00b0C.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Linezeroextrapolationcentral.",
+      "evidence": "E: freezer0.85L255K;sliderHome\u221240\u00b0C0.78L233K;End40\u00b0C1.04L313K;graphdashedextrapolationzeroat\u2212273\u00b0C.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibletemperaturecontrols.",
+      "evidence": "E: freezer0.85L255K;sliderHome\u221240\u00b0C0.78L233K;End40\u00b0C1.04L313K;graphdashedextrapolationzeroat\u2212273\u00b0C.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Familiarballoon/gastemperature.",
+      "evidence": "R:Yourpredictionheld;255/300=.85,15%shrink;Celsiuszeroarbitrary;realgasliquefiesbefore0K.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Absolutescale,ratioandphysicalboundary.",
+      "evidence": "R:Yourpredictionheld;255/300=.85,15%shrink;Celsiuszeroarbitrary;realgasliquefiesbefore0K.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "LinkCelsiusoffset,absolute-temperature ratioandvolume.",
+    "conceptualDemand": "Supportedunitconversionandproportionality.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:Kelvinintroduced",
+    "notationRepresentationBurden": "moderate:twotemperaturescales"
+  },
+  "whyCool": "Thevolume lineheads toward\u2212273\u00b0CratherthanCelsiuszero.",
+  "caveat": "Pressureandamountfixed;balloonelasticitynotmodelled.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

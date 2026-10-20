@@ -1,0 +1,144 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "null-island-lat-lon",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/null-island-lat-lon",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "null-island-lat-lon",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/geography/null-island-lat-lon/meta.json",
+    "metaSha256": "6eb06a91890050515c86dd71bd449e8fd76fb64e6a5acd1238bd0a0a42b1e5e7",
+    "demoSha256": "0a2ffd15ebf44e411cdf681dd45fad951e607589a1ca001ad775f1dc3dff4e03",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/null-island-lat-lon",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/null-island-lat-lon.json"
+  },
+  "date": "2026-10-18T19:58:44.314716+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose small island and locked.",
+  "exploration": "Visited Quito0.2S78.5W/Ecuador and Nairobi1.3S36.8E/Kenya, then0,0 ocean/Ghana570km; initial Greenwich51.5N0UK.",
+  "reveal": "Read ocean correction, latitude north/south equator and longitude east/west Greenwich; angular grid independent of terrain.",
+  "screenshotInspection": "Actual1257x936 dark initial/map/reveal inline screenshots inspected. Labels and scrolled full reveal readable.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete plausible origin misconception.",
+      "evidence": "Island versus Sahara versus ocean before movement.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Distinct reference locations support two-coordinate comparison.",
+      "evidence": "Quito and Nairobi near zero latitude with opposite longitudes; origin ocean.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains convention behind unexpected origin.",
+      "evidence": "Grid angles do not depend on underlying land.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Map crosshairs and cardinal degree labels cohere.",
+      "evidence": "Ocean badge, Ghana570km, labeled controls and readable reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General coordinate rule supplied without new application task.",
+      "evidence": "North/south and east/west definitions only; preset targets explored.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Origin at sea contradicts island guess.",
+      "evidence": "Ocean badge570km from Ghana.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pin and crossing bold lines show geographic origin.",
+      "evidence": "Preset jumps move pin relative to equator/meridian.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Location hopping invites exploration.",
+      "evidence": "Three city presets and sliders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Foundational coordinate interpretation.",
+      "evidence": "Latitude/longitude directions and zeros explained.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One grid convention explored through several places.",
+      "evidence": "No further projections or angular construction.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "conceptualDemand": "Distinguish two directions on a map and their intersection.",
+    "interfaceBurden": "Presets avoid precise sliders; scroll for reveal.",
+    "prerequisiteNovelty": "Latitude/longitude definitions supplied.",
+    "notationRepresentationBurden": "Degrees plus N/S/E/W labels on familiar world map."
+  },
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose small island and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Visited Quito0.2S78.5W/Ecuador and Nairobi1.3S36.8E/Kenya, then0,0 ocean/Ghana570km; initial Greenwich51.5N0UK."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read ocean correction, latitude north/south equator and longitude east/west Greenwich; angular grid independent of terrain."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936 dark initial/map/reveal inline screenshots inspected. Labels and scrolled full reveal readable."
+    }
+  ]
+}

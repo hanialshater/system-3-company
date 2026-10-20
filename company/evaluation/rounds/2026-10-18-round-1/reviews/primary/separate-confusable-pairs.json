@@ -1,0 +1,103 @@
+{
+  "slug": "separate-confusable-pairs",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/separate-confusable-pairs",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Studied grey2m K417 and grey5m K471. Predicted about half versus always for ambiguous grey cable cue.",
+    "First answer taps gave K417 for grey cable and K471 for grey5m. Checks marked former wrong0/1,latterright1/1; only then disclosed K471 meant for ambiguous cue.",
+    "Reveal explains two versus one matching codes; screenshot readable. No stated equal random hidden-target process establishes half-time probability."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two code pairs.",
+    "conceptualDemand": "Disambiguate shared attributes.",
+    "interfaceBurden": "Two answer cycles and checks."
+  },
+  "whyCool": "A cue can be remembered perfectly and still fail because it matches two objects.",
+  "caveat": "Mark ambiguous response as underdetermined rather than memory error; specify random target process before claiming half-time success.",
+  "effort": "Studied setup,prediction,two answers/checks,reveal,inline screenshot.",
+  "provisionalBucket": "revise-ambiguity-scoring",
+  "bucketReason": "Good contrast,unfair hidden-intent scoring.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Ambiguity clear but numerical half requires unstated balanced target selection.",
+      "evidence": "Always versus about half.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actual two cue responses and scoring demonstrate missing discriminator.",
+      "evidence": "K417 marked wrong to hidden K471.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Mechanism clear but correct matching answer graded wrong for undisclosed intention.",
+      "evidence": "Grey cable fits both.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but scoring conflates ambiguous cue with learner error.",
+      "evidence": "Wrong mark despite valid cue match.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit add distinguishing attribute strategy.",
+      "evidence": "Length makes cue fit one code.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Remembered association insufficient to identify intended object.",
+      "evidence": "Two codes share cue.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Paired cards and cue-fit counts.",
+      "evidence": "2 versus1 codes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Answer selection and checks central.",
+      "evidence": "Two scored attempts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Discriminating notes central.",
+      "evidence": "Include differing length.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Ambiguity versus recall and hidden intent.",
+      "evidence": "Many-to-one cue.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "winner-word-evidence",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/winner-word-evidence",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "winner-word-evidence",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/winner-word-evidence/meta.json",
+    "metaSha256": "ca70038bb7747dd87f4b9b8fd947f039f49cb50aa4b9709c01ba57ce0ed98168",
+    "demoSha256": "e1664d198a502476b80e429e2d49564a86a5c05c53054ec2c223b519ba7070cd",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/winner-word-evidence",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/winner-word-evidence.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 60 percent and locked it in.",
+    "exploration": "Show winner emails at ten percent spam displayed six spam and nine real, forty percent posterior. End fifty percent spam displayed thirty spam and five real, eighty-six percent. Home restored ten and forty. Toggled all-email view then filtered again, restoring six/nine.",
+    "reveal": "Corrected to forty percent by six of fifteen, compared sixfold word likelihood with nine-to-one real-mail prevalence, referenced tested fifty-percent case and named naive Bayes use of both prior and evidence.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Hundred-dot grid used filled spam, hollow real and white matching rings, with dimmed nonmatches. Six/nine and thirty/five counts matched visible highlighted groups; compact reveal text legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete conditional-probability question targets reversing likelihood and posterior.",
+      "evidence": "Sixty percent word frequency versus forty percent posterior.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Filtering and reversible base-rate endpoints show denominator changes.",
+      "evidence": "Same word rates yield forty versus eighty-six percent.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal grounds calculation in natural frequencies and explains prevalence.",
+      "evidence": "Six of fifteen matching messages are spam.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shape and ring encodings plus explicit invented rates support interpretation.",
+      "evidence": "Filled, hollow and ring legend; hundred-email grid.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Spam-filter usefulness named, but no new application beyond same email case.",
+      "evidence": "Naive Bayes mention alone does not test transfer.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard prevalence endpoints and text counts observed; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A strongly spam-associated word can still match more real messages.",
+      "evidence": "Nine real matches versus six spam at low base rate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Natural-frequency grid exposes the competing sources of word matches.",
+      "evidence": "Ring subset across filled and hollow dots.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Filtering and prevalence slider support direct comparison.",
+      "evidence": "Two views and ten-to-fifty-percent range.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies evidence interpretation in classification.",
+      "evidence": "Prior prevalence matters despite predictive word.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Likelihood ratio, prior odds and posterior are connected without formula overload.",
+      "evidence": "Sixfold evidence versus nine-to-one starting odds.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Countable grid supports unfamiliar conditional-probability reasoning.",
+    "conceptualDemand": "Distinguish word given spam from spam given word and account for base rate.",
+    "interfaceBurden": "One filter toggle and one prevalence slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Prior prevalence and likelihood versus posterior.",
+    "notationRepresentationBurden": "Percentages, six-of-fifteen ratio and odds language."
+  },
+  "whyCool": "A predictive word can still occur in more real mail when real mail is common.",
+  "caveat": "Rates are invented and one word is isolated; no actual classifier or fresh application was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:45:36.489379+00:00"
+}

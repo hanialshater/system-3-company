@@ -1,0 +1,104 @@
+{
+  "slug": "inflation-falls-prices-still-rise",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/inflation-falls-prices-still-rise",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedless than100 for100basket with8,6,4,3,2% annualinflation; alternatives108andmorethan120.",
+    "Steppedyear1:108;Fiveyears125.08. Year6zero125.08;Year6\u22121%123.83. Chart labelspricelevels andannualrates.",
+    "After\u22121selected, statuscaption remained 'Year6at0%125.08,nochange' despite current123.83 and\u22121%chart. Reveal correctly explains bothcases and madeuprates notforecast.",
+    "Light1280x720 screenshot right prose cut off; internalverticalscroll."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concreteprices andsmallpercentages,clearboundarycases.",
+    "conceptualDemand": "Rateofchange versuslevel.",
+    "interfaceBurden": "Simplepresets; stale caption."
+  },
+  "whyCool": "A falling row of rates sits directly above a rising row of prices.",
+  "caveat": "Toy ratesnotforecast; stalezero-ratecaptionafternegativecase andright-edgeprosecutoff.",
+  "effort": "Prediction,yearstep,fiveyearrun,zeroandnegativecases,reveal,twoscreenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strongpracticalcontrast; fixchanged-statecaptionandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct falling-rate versus falling-level misconception.",
+      "evidence": "Positive decliningrates withthreecostalternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Compoundingsequence pluszero/negativeboundary discriminate mechanism.",
+      "evidence": "108,125.08,zero125.08,negative123.83.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explicit original prediction,rate-leveldistinction,zero/negativeboundary andtoyforecastlimit.",
+      "evidence": "Reveal explains allthreepaths withactualamounts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Chart clear but stalezero captionundernegativecase andprosecutoff.",
+      "evidence": "Actualnegativecase screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General interpretation principle; nofreshapplicationtask.",
+      "evidence": "Rate versuslevel explained inbasketsetup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fallinginflation still raisesbasket25%.",
+      "evidence": "100to125.08 despite8to2%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fallingratelabels above risingpricebars.",
+      "evidence": "Year0through6 chart.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Steppingandboundarypresets supportexplanation.",
+      "evidence": "Yearstep,0and\u22121 presets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Central everydayeconomicinterpretation.",
+      "evidence": "Inflationnews versusbasketcost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Compounding,rate-level andsignboundarylinked.",
+      "evidence": "Positive,zero,negativecases.",
+      "confidence": "medium"
+    }
+  }
+}

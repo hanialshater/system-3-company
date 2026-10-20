@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "which-question-splits",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-question-splits",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "which-question-splits",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/which-question-splits/meta.json",
+    "metaSha256": "0906cd39a5b73bf33cca61239794a2ed65eb3d971588edd2ac2ec6bdba374b2d",
+    "demoSha256": "25b96c6689c15a8fdd717dd90c04e5852393ecabe61e0ce63770882dec077ebc",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/which-question-splits",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/which-question-splits.json"
+  },
+  "date": "2026-10-18T20:45:37.721573+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose2|3 andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "2|3left2zerosGini0,right5ones1zeroGini.28,weighted.21.4|5left3zeros1oneGini.38,right4ones0,weighted.19.6|7left3eachGini.5,right2ones0,weighted.38. Initial1|2weighted.36. Inspectedgroups andretainedscorehistory."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read4|5correction,one-strayleftversusstrayinthesixmemberrightat2|3;treechooseslowestweightedmix."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,threecutsandscrolledreveal inspected. Dotlabels,groupcounts,Ginisandhistory legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concretechoicebutnewscoreonlypartlydefined.",
+      "evidence": "Gini0pure/.5equalandweightingdescribed;noformulaforintermediate mix beforeforecast.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Threecontrastswithgroupcountsandscoresmakeselectioninspectable.",
+      "evidence": "2|3.21,4|5.19,6|7.38;historyretained.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainswhyapureleafaloneisnotbest.",
+      "evidence": "Mixedgroupweightandstrayplacementversus4|5.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Countsandscoresalignwithvisiblecut.",
+      "evidence": "Label0/1,groupcomposition,Ginibydatasetandweightedtotal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcut-searchrulewithinsamedataset.",
+      "evidence": "No newdatasetorapplicationtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Smallpuregroupcutlosesnarrowly.",
+      "evidence": ".21versus.19despitebothonepureside.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Physicalcutandexplicitgroupcompositionexplainsweightedscores.",
+      "evidence": "Allthreecutsinspectedwithretainedhistory.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sliderandthreepresets.",
+      "evidence": "Allsuggestedcutstested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefuldecisiontreefirstsplitintuition.",
+      "evidence": "Scorebothgroupsweighted,notjustonepureleaf.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Purity,groupsizeandthresholdselectionlinked.",
+      "evidence": "Giniandweightedcomparisonwithoneoutlier.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Comparetwogroupspurityandsize-weightedscoreacrosscuts.",
+    "interfaceBurden": "Threepresetsandslider,automaticstats.",
+    "prerequisiteNovelty": "Giniimpuritynew,basicendpointsintroduced.",
+    "notationRepresentationBurden": "Binarylabels,decimalGini,weightedscoreandcutposition;countshelp."
+  }
+}

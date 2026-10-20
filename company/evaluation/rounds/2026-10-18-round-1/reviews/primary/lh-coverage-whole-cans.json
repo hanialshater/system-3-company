@@ -1,0 +1,103 @@
+{
+  "slug": "lh-coverage-whole-cans",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-coverage-whole-cans",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 3 for a 2.3-tin requirement.",
+    "Tests gave 3 L rounded and 2.3 L exact at 18.4 m\u00b2; minimum area 4 gave 1 L versus 0.5 L.",
+    "Screenshot showed comparative filled containers and expressions. Reveal separated original and current inputs and excluded losses/product variation."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic division and rounding.",
+    "conceptualDemand": "Exact volume differs from purchasable quantity.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Separates the paint needed from the whole containers bought.",
+  "caveat": "One-litre tin size is implicit while labels alternate between tins and litres.",
+  "effort": "Prediction, both tests, boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful arithmetic but container units should be explicit.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple rounding task with whole-container title cue.",
+      "evidence": "Choices 2.3, 2, 3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Area change contrasts exact volume and rounded order.",
+      "evidence": "18.4 to 4 m\u00b2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains division then rounding with practical scope.",
+      "evidence": "Reveal states arithmetic rather than application instructions.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Tins and litres are interchanged without an explicit one-litre can assumption.",
+      "evidence": "Prompt tins; result Whole litres 3 L.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit boundary conditions distinguish arithmetic from real application.",
+      "evidence": "Surface losses and product variation excluded.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected ceiling arithmetic.",
+      "evidence": "2.3 rounds to 3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Container fill comparison supports quantities.",
+      "evidence": "1 L versus 0.5 L screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and slider only.",
+      "evidence": "No open-ended task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Purchase rounding is central.",
+      "evidence": "Whole-container order.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates exact need from discrete purchase.",
+      "evidence": "Coverage division then ceiling.",
+      "confidence": "medium"
+    }
+  }
+}

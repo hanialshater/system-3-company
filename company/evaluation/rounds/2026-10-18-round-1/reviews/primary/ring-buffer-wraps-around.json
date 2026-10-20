@@ -1,0 +1,104 @@
+{
+  "slug": "ring-buffer-wraps-around",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ring-buffer-wraps-around",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction explicitly defines four indexed slots, sequential writes and oldest overwrite.",
+    "After four writes slots held one-two-three-four and next pointer zero.",
+    "Fifth write replaced one at slot zero; after ten slots held nine-ten-seven-eight with oldest seven at slot two.",
+    "Screenshot shows overwritten history, latest write and oldest marker. Reveal separates physical slot order from newest-four chronological order and derives next pointer ten modulo four equals two."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Circular indices versus chronological sequence.",
+    "conceptualDemand": "Track pointer modulo capacity rather than shifting items.",
+    "interfaceBurden": "Write, batch and restart."
+  },
+  "whyCool": "A fixed block of memory can keep the newest items forever by moving an index instead of moving the data.",
+  "caveat": "Fixed capacity and overwrite-oldest policy; other queue overflow policies are not compared.",
+  "effort": "Prediction, four single writes, first overwrite, batch to ten, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear physical-versus-logical state explanation with observed wrap and overwrite.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise storage-state question with chronological-order distractor.",
+      "evidence": "Latest four versus actual slots zero through three.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single writes through first wrap and batch through second wrap expose overwrite behavior.",
+      "evidence": "Four, five and ten writes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains exact physical layout, chronological contents and next overwrite without shifting.",
+      "evidence": "Five/nine slot zero, six/ten slot one; next replaces seven.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Indexed ring, oldest marker and previous-value history make state legible.",
+      "evidence": "Pointer next slot and oldest agree after full buffer.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete fixed-memory stream use with mechanism.",
+      "evidence": "One-slot writes retain latest capacity items without shifting; logs/audio examples.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Latest items need not begin at physical slot zero.",
+      "evidence": "Nine-ten-seven-eight holds chronological seven through ten.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Stationary slots and moving pointer directly explain reuse.",
+      "evidence": "Crossed prior occupants and oldest slot marker.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step or batch a fixed write sequence.",
+      "evidence": "No capacity or overwrite-policy editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete bounded-memory streaming pattern.",
+      "evidence": "One slot touched per write.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Logical order, physical indexing and modular wrap connect.",
+      "evidence": "Oldest equals next overwritten after full.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "tags-are-not-copies",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tags-are-not-copies",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title/hook says two tags one file; prediction asks how many documents have two labels,selectedone.",
+    "Count links3 across doc1/work,doc1/study,doc2/home. Count identities2.",
+    "Reveal says prediction held then reports2identities,doesn't explicitly distinguish totaldocuments2 from documentswithtwolabels1. Screenshot readable;no edit propagation or copy comparison."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Count repeated identifiers.",
+    "conceptualDemand": "Links versus identity versus qualifying count.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "An object can appear in several categories while remaining one underlying thing.",
+  "caveat": "Align prediction metric with result,and demonstrate changing one shared document across tags.",
+  "effort": "Prediction,both counts,reveal,inline screenshot.",
+  "provisionalBucket": "revise-metric-alignment",
+  "bucketReason": "Useful distinction,question/result mismatch.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title/hook supplies answer.",
+      "evidence": "Two tags one file.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Counts links versus identities, no tagging or shared-content action.",
+      "evidence": "3links/2identities.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct identity principle but result metric differs from question.",
+      "evidence": "Onewithtwolabels versus2total.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable records yet mismatched question/metric and fixture jargon.",
+      "evidence": "Both labels among3links.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General tag-versus-copy principle without concrete application.",
+      "evidence": "No actual duplicate-edit example.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Multiple references can share identity.",
+      "evidence": "Doc1 repeated.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Repeated identifier illustrates links.",
+      "evidence": "Three rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two count operations.",
+      "evidence": "No editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Avoiding duplicate-content divergence central.",
+      "evidence": "Tags versus copies.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Reference count versus unique object count.",
+      "evidence": "3versus2.",
+      "confidence": "medium"
+    }
+  }
+}

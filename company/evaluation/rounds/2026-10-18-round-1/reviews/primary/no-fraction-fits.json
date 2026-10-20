@@ -1,0 +1,104 @@
+{
+  "slug": "no-fraction-fits",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/no-fraction-fits",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted no exact whole-number fraction equals sqrt2.",
+    "Tested denominators1,2,3,5,12; squared approximations included1,2.25,1.7778,1.96,2.0069.",
+    "Atq12,2q\u00b2=288 versus17\u00b2=289; diagram counted five factors of2 in288 versus zero in289.",
+    "Reveal cited the actual Tried row and separately gave a general factor-count proof: a square has an even exponent of2 while2q\u00b2 has an odd exponent."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Understanding prime-factor exponent parity and proof beyond examples requires mathematical abstraction.",
+    "conceptualDemand": "Squares, prime multiplicity and irrationality.",
+    "interfaceBurden": "Simple controls; dense symbolic explanation."
+  },
+  "whyCool": "A one-unit miss becomes evidence for a universal obstruction, rather than merely a failed search.",
+  "caveat": "The proof assumes a nonzero denominator; the language no whole p and q should explicitly exclude p=q=0.",
+  "effort": "Completed prediction, five denominators, visual inspection and full proof reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "State-specific evidence followed by a genuine general proof.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Meaningful exact-versus-approximate distinction with a plausible large-number distractor.",
+      "evidence": "No finite exact rational versus large fraction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Denominators change approximation quality and factor parity while close-call jumps expose persistent integer gaps.",
+      "evidence": "q1,2,3,5,12.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actual finite observations lead to an explicit general proof that resolves the infinite-search limitation.",
+      "evidence": "Even exponent in p\u00b2 versus odd exponent in2q\u00b2.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Factor-count notation is explained and integer gap distinguished from approximate squared ratio.",
+      "evidence": "2s means multiplicative factors of2.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Proof principle is explained without a new irrationality problem.",
+      "evidence": "Only sqrt2.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Arbitrarily-looking close calls do not erase an exact parity obstruction.",
+      "evidence": "288 versus289, but exponent parity proves impossibility.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Number line and factor counts explain approximate closeness versus exact mismatch.",
+      "evidence": "Odd/even factor labels.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Denominator search and close-call jumps support experimentation.",
+      "evidence": "Slider and Next close call.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Foundational mathematical understanding.",
+      "evidence": "No applied task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Moves from finite experiments to a general invariant proof.",
+      "evidence": "Factor multiplicity argument applies to all positive denominators.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "ruler-start-not-zero",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ruler-start-not-zero",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title subtract starting mark gives answer; predicted subtractstart.",
+    "Start3,end18 endpoint reports18,subtract15;end12 subtract9.",
+    "Reveal explains unused ruler interval and damaged-zero application with scale check. Screenshot ruler visible after inner scroll,prose right clipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Single subtraction.",
+    "conceptualDemand": "Coordinate versus interval.",
+    "interfaceBurden": "Two methods,slider."
+  },
+  "whyCool": "The number at the end is a position; length is the difference between two positions.",
+  "caveat": "Title spoils prediction; use numeric choices before giving method.",
+  "effort": "Prediction,method comparison,endpointchange,reveal,inline screenshot.",
+  "provisionalBucket": "solid-revise-hook",
+  "bucketReason": "Useful causal model,spoiled prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title supplies method.",
+      "evidence": "Subtract starting mark.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Method and endpoint contrast expose fixed offset error.",
+      "evidence": "18versus15;12\u21929.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct interval mechanism and concrete application.",
+      "evidence": "Damagedzero use knownstart.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable values but clipping and diagram partially above scroll.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit damaged-zero use and condition.",
+      "evidence": "Knownstart,checkscale.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Everyday measurement misconception.",
+      "evidence": "Endpoint includesunused3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ruler and interval drawing central.",
+      "evidence": "Scale0\u201325.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Method choice,endpointslider.",
+      "evidence": "18\u219212.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Offset measurement central.",
+      "evidence": "Damagedzero.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Position versus length.",
+      "evidence": "Subtract origin.",
+      "confidence": "medium"
+    }
+  }
+}

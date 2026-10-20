@@ -1,0 +1,104 @@
+{
+  "slug": "rubber-band-hull",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rubber-band-hull",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Ten visible pins support prediction of four, six or ten touched by a stretched band.",
+    "Out-of-order pin three was rejected with instruction that pin one is next.",
+    "Adding pin four dropped pin three at a right turn; screenshot shows rejected turn and replacement segment.",
+    "Completed walk retained six boundary pins and dropped four interior pins. Reveal explains why four axis extremes omit two true corners, then names angle sorting plus turn scan."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Turn direction and angular order.",
+    "conceptualDemand": "Separate all extreme-in-some-direction points from four axis extrema.",
+    "interfaceBurden": "Nine numbered pin actions."
+  },
+  "whyCool": "A local right-turn test removes interior detours until a global enclosing boundary remains.",
+  "caveat": "Fixed nondegenerate point set; collinear points and editable geometry not tested.",
+  "effort": "Prediction, out-of-order check, incremental right-turn rejection, full walk, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visible local rejection with a concrete misconception resolved.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete geometric judgment with meaningful extreme-only and all-points distractors.",
+      "evidence": "Four, six or ten visible pins.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Guided pin sequence shows provisional inclusion and later rejection.",
+      "evidence": "Out-of-order correction and right-turn drop observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains actual rejected points and the axis-extreme misconception plus algorithm stages.",
+      "evidence": "Pins one/six are corners without being axis extremes; sort then turn checks.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered pins, rejected-turn symbols and final fill expose inclusion.",
+      "evidence": "Six boundary versus four interior points.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General construction with an explicit failed shortcut.",
+      "evidence": "Axis extrema insufficient; ordered turn scan finds convex boundary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "More than four directional extremes can support the band.",
+      "evidence": "Two additional non-extreme corners.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Turn rejection directly changes the drawn boundary.",
+      "evidence": "Concave candidate removed and segment tightened.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed nine-step pin walk.",
+      "evidence": "Can click out of order but not move pins or choose turn outcomes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete convex-boundary construction.",
+      "evidence": "Enclose point set with convex hull.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local orientation and global convex enclosure connect.",
+      "evidence": "Ordering prerequisite and failed axis shortcut.",
+      "confidence": "medium"
+    }
+  }
+}

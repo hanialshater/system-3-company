@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "two-ripples-cancel",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-ripples-cancel",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "eb58f73ae419ac6d3b25a9a83fdef21365db6af69c200f24ffbadd88da33b106",
+    "demoSha256": "ca413332e7ce9a7b3691795d4e73d9eaf8429fd4c59aaa26a5baee893926df7a",
+    "metaPath": "src/demos/physics/two-ripples-cancel/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected louder than one speaker and locked the prediction for equal speakers with a half-wavelength path difference.",
+    "exploration": "At equal paths the sum was twice one speaker's wave height. Moved listener to 0.69 m right, giving a quarter-wave path difference and 1.4 times height. At 1.44 m right, half-wave difference, the sum was zero. At 3.61 m right, a whole-wave difference restored twice the height.",
+    "reveal": "The reveal corrected the answer to almost nothing, accurately referred to cancellation at half a wave and restoration at a whole wave, and explained crest meeting trough. It disclosed equal source loudness and no echoes, distinguishing ideal cancellation from a real room's quiet spot.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at the half-wave setting. Opposed orange and grey waveforms sat above a flat A+B line. The lower diagram showed circular crest and trough paths from two sources to the listener, with the 0.50 m difference and zero sum readouts.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question challenges simply adding the loudness of two sources.",
+      "evidence": "Selected louder before exploring the half-wave condition.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Listener positions reveal partial addition, cancellation and periodic restoration.",
+      "evidence": "Quarter, half and full wavelength differences gave 1.4, zero and two times wave height.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the phase relationship and references the tested full-wave return.",
+      "evidence": "Crest-trough cancellation and whole-wave alignment are both described.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The waveform sum connects the spatial path difference to the local result.",
+      "evidence": "The half-wave screenshot shows a flat A+B line and zero readout.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The interference rule is explained without a new device or application.",
+      "evidence": "All tested cases remain the same two speaker geometry.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Adding an identical source can make a location quieter.",
+      "evidence": "The half-wave setting reduced the summed wave height to zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Spatial paths and local waveforms jointly expose cause and outcome across contrasts.",
+      "evidence": "The half-wave diagram aligns opposing waves; the full-wave case restores the sum.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Walking through constructive and destructive positions is a compact exploratory puzzle.",
+      "evidence": "The discrete listener slider reaches both a null and a renewed maximum.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It explains why sound varies across locations near coherent speakers.",
+      "evidence": "The real-room caveat qualifies the ideal silence.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson includes the periodic return and idealization limits.",
+      "evidence": "A full wavelength restores alignment, with equal loudness and no echoes assumed.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "One position control is simple, while connecting distance, phase and amplitude is conceptually new.",
+    "conceptualDemand": "Moderate: combine two wave heights based on relative timing.",
+    "interfaceBurden": "Low: one discrete listener slider.",
+    "conceptualChallenge": "A longer path can oppose rather than merely delay an additive signal.",
+    "prerequisiteNovelty": "Wavelength, crest, trough and phase cancellation are introduced.",
+    "notationRepresentationBurden": "Moderate: circular wavefronts, two waveforms, a sum line and fractional wavelengths."
+  },
+  "whyCool": "Walking sideways turns the same two speakers from reinforcement to cancellation and back again.",
+  "caveat": "The model assumes equal amplitude and no echoes. I inspected the visual wave sum; no audio listening was performed.",
+  "missingEvidence": [
+    "No audio output or fresh source geometry was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

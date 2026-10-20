@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "potassium-battery",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/potassium-battery",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "potassium-battery",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/life/potassium-battery/meta.json",
+    "metaSha256": "0cf289d34205dadafb7aa76b1d0a922ae6cf84b66cd43cd3d84cb6332ab099a6",
+    "demoSha256": "2f42455eb1572c79b7e4af2a688bf50149d639c04afbbf52887180dee10c040a",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/potassium-battery",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/potassium-battery.json"
+  },
+  "date": "2026-10-18T20:06:44.025921+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose-9mV and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "At140inside5outside,one leak-45mV,balanced-89mV. Outside140 gave0mV; outside70 reset voltage0 then balanced-19mV. Reveal restored5outside,-89mV."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read opposing concentration/electrical forces,no net flux,28:1ratio and61mVpertenfold; equal140concentrations need0voltage."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial/balanced/final scrolled reveal inspected. Charge signs,concentrations and counters readable; toy onlyK+ boundary initially disclosed."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact magnitude forecast poorly scaffolded for everyday learner.",
+      "evidence": "-9/-89/-890 alternatives before voltage-ratio relation supplied.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Concentration contrasts expose balance and zero boundary.",
+      "evidence": "5outside-89,70outside-19,140outside0; charge separation visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains concentration push versus electrical pull.",
+      "evidence": "No net movement despite concentration difference;61mVdecade relation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Qualitative model clear but units and numeric magnitude demanding.",
+      "evidence": "mM,mV,K+ and tenfold relation introduced with little unit explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General relation provided within same membrane toy.",
+      "evidence": "No different application or fresh task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Leakage stops without equal concentrations.",
+      "evidence": "140versus5 remains at-89mV.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Charge signs and voltage connect boundary buildup.",
+      "evidence": "Negativeinside/positiveoutside after leakage,almost unchanged concentrations.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Leak and concentration switches.",
+      "evidence": "Twoleak actions and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundational cell voltage intuition.",
+      "evidence": "Toyonlypotassium rather than full realcell.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Electrochemical equilibrium and logarithmic ratio linked.",
+      "evidence": "Equalconcentrationzero and61mVperfactor10.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Opposing concentration and electrical effects balance while concentrations remain unequal.",
+    "interfaceBurden": "Leak buttons,one slider,reset; reveal restores original case.",
+    "prerequisiteNovelty": "Ions,membrane voltage and equilibrium unfamiliar.",
+    "notationRepresentationBurden": "High:K+,mM,mV,negative sign and logarithmic tenfold relation."
+  }
+}

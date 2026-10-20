@@ -1,0 +1,103 @@
+{
+  "slug": "lh-deposit-checkout-net",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-deposit-checkout-net",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Equal to no deposit for \u20ac1 fully refunded.",
+    "Four containers gave \u20ac9.60 after return versus \u20ac10.60 checkout, at \u20ac2.40 plus \u20ac0.25 deposit each. Maximum 10 gave \u20ac24 versus \u20ac26.50.",
+    "Screenshot showed receipt-like forms and numeric cards. Reveal distinguished original and current quantities, different payment moments, and fictional law."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small monetary sums and multiplication.",
+    "conceptualDemand": "Distinguish checkout payment from refunded cost.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Separates money needed at checkout from money ultimately spent.",
+  "caveat": "Assumes full return and excludes effort or time costs; no actual regional rules.",
+  "effort": "Prediction, both tests, maximum boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical distinction with explicit fictional assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Refund arithmetic is fully supplied and straightforward.",
+      "evidence": "\u20ac1 refunded in full.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Quantity scales checkout difference while preserving refunded amount.",
+      "evidence": "4 to 10 containers.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains timing and cancellation clearly.",
+      "evidence": "After-return subtracts same deposits.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Expressions show per-container deposit and base price.",
+      "evidence": "\u20ac2.40 plus \u20ac0.25.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Timing distinction is explained without a new worked application.",
+      "evidence": "Different moments in arithmetic.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Full refund leads expected net result.",
+      "evidence": "Prediction held.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons mainly decorate numeric comparison.",
+      "evidence": "No visible refund flow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and quantity slider.",
+      "evidence": "No independent challenge.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Cash required now versus net cost is central.",
+      "evidence": "Checkout and after-return totals.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates cash outlay from final amount.",
+      "evidence": "Deposit cancellation under full return.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "flour-shock",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flour-shock",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "flour-shock",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/flour-shock/meta.json",
+    "metaSha256": "ef7e8968fb317986232ef2dda7ec39c75964e3a48674f285b0fad803cd64065f",
+    "demoSha256": "568e47d00ceacc4773806aae35d1a0a553df759ecdb27f2052fc800b7a49de0b",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/flour-shock",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/flour-shock.json"
+  },
+  "date": "2026-10-18T19:07:54.751997+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust6/6 ignored. Selected8dollars and locked. Equations100-10p buyers,10p-20bakers; cost2movesbakers10p-40.",
+    "exploration": "Baseline0cost6price40loaves;set2=>7price30loaves;End4=>8price20loaves;Home0restores6/40. Revealunlockedafter2andretainedafterreset.",
+    "reveal": "Correct7;historical2costshiftcrossing7/30versus6/40. At8buyers20,bakers40unsold drivesprice down;buyerspay1more,bakersnet5insteadof6. Equallysteeplinescauseeven split;straightlines,onemarketmodel.",
+    "visual": "Inline1257x936 dark inspected: buyers descending/bakers ascending,intersection6/40,current0cost;pricedollars/loavesaxes explicit. Revealciteshistorical2state,legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullpass-through versus sharedcost alternatives;equations available but answer not disclosed.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cost0/2/4andreset visibly changesequilibrium; onlyonefixedslopepair.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesactual7/30contrast andwrong8counterfactual throughunsoldquantity,costsharing andequal-slope limit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Axes,cost,price,quantity clear;original-case reveal separated fromcurrentreset through explicitcost2.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablecost-sharingprinciple withslopecondition;nofreshapplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen8fullpass-through reversed by7equilibrium.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Supply-demandcrossingcarriesmechanism;scaledprice/quantityaxes.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblecostslider exposespartialpass-through.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretepricechangeinterpretation inbreadmarket.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Equilibrium,costsharing,wrong-price surplus andequal-slope boundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinatebothsidesofmarket,intersection andnetpriceaftercost.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:singlelabelledslider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:supply-demand equilibrium",
+    "notationRepresentationBurden": "moderate:lineequations,p,price/quantitychart"
+  },
+  "whyCool": "Adding2dollarscostmovespriceonly1dollarwhileloavessoldfall40to30.",
+  "caveat": "Equal-slopeconditionstatedbutcannotbevaried; no fresh market case."
+}

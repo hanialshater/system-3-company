@@ -1,0 +1,103 @@
+{
+  "slug": "suitcase-layer-access",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/suitcase-layer-access",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction explicitly jacket under five items asks how many lift;chose5.",
+    "Six items bottom needs5,top0. Count10 bottom9,top0.",
+    "Reveal explains first-needed last-packed and counts blockers not time,pockets/side openings differ. Screenshot right-edge clipping;original5 versus current9 verdict not labeled."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Counting items above target.",
+    "conceptualDemand": "Position versus access cost.",
+    "interfaceBurden": "Modes,count."
+  },
+  "whyCool": "Packing order determines what must move before you can reach the first thing you need.",
+  "caveat": "Overlaps jacket-last-first concept;needs meaningful prediction or removal/repacking challenge.",
+  "effort": "Prediction,A/B,countvariation,reveal,inlinevisual.",
+  "provisionalBucket": "revise-challenge",
+  "bucketReason": "Correct useful model but almost no discovery.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Question states answer in plain count.",
+      "evidence": "Under five asks how many.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Computed blocker counts, no actual removal task.",
+      "evidence": "5/0 then9/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Clear mechanism and access-scope caveat.",
+      "evidence": "Pack last;side openings change.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear table but original prediction versus current count and clipped prose.",
+      "evidence": "5 predicted,9current.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete packing rule with access conditions.",
+      "evidence": "First needed last packed,top access.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Five blockers require lifting five.",
+      "evidence": "No unexpected result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Stack shows blockers.",
+      "evidence": "Ten items.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two modes,count slider.",
+      "evidence": "No rearrangement.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing access central.",
+      "evidence": "Jacket on top.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Simple blocker count.",
+      "evidence": "No multi-item access sequence.",
+      "confidence": "medium"
+    }
+  }
+}

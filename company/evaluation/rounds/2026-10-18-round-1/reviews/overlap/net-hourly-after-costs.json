@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "net-hourly-after-costs",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/net-hourly-after-costs",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "net-hourly-after-costs",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/net-hourly-after-costs/meta.json",
+    "metaSha256": "541273364fbcd5306fea6865a9fc07725e3b4e4e62bcc5b214ba7d1564c7bcd3",
+    "demoSha256": "057751ca0631b3245013c319f5260f1e37e2595f9038e88e607a2ba3676b98f5",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/net-hourly-after-costs",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/net-hourly-after-costs.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 22 dollars and locked it in.",
+    "exploration": "Initial 13 miles per hour at 0.50 per mile cost 6.50 and retained 15.50. Set 15 miles: cost 7.50, retained 14.50. Changed to 0.70: cost 10.50, retained 11.50. End 30 miles cost 21 and retained 1. Home zero miles retained all 22. Restored 15 miles and 0.50.",
+    "reveal": "Corrected to 14.50, referenced visited 0.70 contrast leaving 11.50, explained fuel and wear costs grow with mileage. No tax or tips and illustrative per-mile costs explicitly stated.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Stacked retained and driving-cost bar matched numeric chips. At 30 miles and 0.70 cost, one-dollar retained label extended left of its tiny segment and was partially clipped; restored original case rendered cleanly.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "Independent overlap: no primary review or other judgments inspected before freeze."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete retained-pay choice distinguishes gross from net.",
+      "evidence": "22 versus 14.50 versus 7.50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mileage and cost controls isolate two drivers and boundary cases.",
+      "evidence": "Zero miles retains 22; maximum tested cost leaves 1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal uses original arithmetic and observed alternative.",
+      "evidence": "15 times 0.50 is 7.50 cost, 14.50 kept.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear units and model caveat; retained bar label clips at tiny segment.",
+      "evidence": "One-dollar label partly outside bar at high-cost endpoint.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Useful general earnings principle is stated without a new application.",
+      "evidence": "Costs of earning come out of gross pay; same delivery job only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard mileage steps and endpoints worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Headline hourly pay exceeds money retained.",
+      "evidence": "22 gross versus 14.50 in asked case.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "A fixed total splits visibly into retained and cost segments.",
+      "evidence": "Two-part bar linked to chips.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Practical calculator-style exploration.",
+      "evidence": "Mileage slider and three cost choices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Directly supports comparing earnings after operating costs.",
+      "evidence": "Fuel and wear examples and explicit no-tax assumptions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One multiplication and subtraction model with assumptions.",
+      "evidence": "Miles times cost per mile subtracted from pay.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Everyday monetary arithmetic with simple controls.",
+    "conceptualDemand": "Distinguish revenue from earnings after variable costs.",
+    "interfaceBurden": "One mileage slider and three per-mile options.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Fuel and vehicle wear as earning costs.",
+    "notationRepresentationBurden": "Dollars per hour, miles per hour and dollars per mile."
+  },
+  "whyCool": "A headline hourly rate becomes a visibly divided cost-and-earnings bar.",
+  "caveat": "Illustrative fixed gross pay excludes tax, tips and other time costs; narrow retained segment clips its label at tested maximum cost.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:31:06.705908+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "drying-room-water-load",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drying-room-water-load",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted3000 g from12 shirts each holding250 g of water.",
+    "A one shirt250 g, B12 shirts3000 g. Increased count16 and total4000 g; all16 highlighted.",
+    "Reveal said held beside changed4000 g without original12-shirt explanation.",
+    "It explicitly called the calculation mass balance, not room-humidity forecast, and listed ventilation, temperature and condensation as other factors."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple mass multiplication.",
+    "conceptualDemand": "Conservation of water and aggregation.",
+    "interfaceBurden": "Two modes and count slider."
+  },
+  "whyCool": "Water that disappears from clothes becomes a visible load on their surroundings.",
+  "caveat": "Assumes stated retained mass evaporates during drying; does not model residual equilibrium moisture, drainage, room humidity or ventilation effectiveness. Original-versus-current numerical verdict needs polish.",
+  "effort": "Completed prediction, both views, changed count, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful mass accounting but limited interaction and recurring changed-number verdict issue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "All quantities given for a concrete aggregate estimate.",
+      "evidence": "12\u00d7250 g.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Count scaling and one/load view illustrate arithmetic but no environmental mechanism is manipulable.",
+      "evidence": "12\u219216 shirts,3000\u21924000 g.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Mass-balance distinction is sound, but numeric held verdict lacks original/current framing.",
+      "evidence": "Predicted3000, reveal reports4000.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Units and counts clear; original versus changed load needs explicit labeling.",
+      "evidence": "Current16 versus original12.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete retained-water accounting rule includes humidity-forecast limits.",
+      "evidence": "Temperature, ventilation and condensation not modeled.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Small per-item water becomes kilograms across laundry.",
+      "evidence": "3000 g for12 shirts.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Highlighted shirts explain one versus total.",
+      "evidence": "No actual water transport or room model.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mostly count slider and presets.",
+      "evidence": "No causal environment control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful awareness of indoor moisture load.",
+      "evidence": "Explicitly not a humidity forecast.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates mass released from resulting room conditions.",
+      "evidence": "Environmental caveat.",
+      "confidence": "medium"
+    }
+  }
+}

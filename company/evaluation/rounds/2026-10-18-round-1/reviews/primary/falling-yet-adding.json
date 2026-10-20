@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "falling-yet-adding",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/falling-yet-adding",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "38101d431a7beea9a0dda1256c46858b205140e7088c066b1c1f77a086caddb3",
+  "demoSha256": "b8ca55c915480f8becafeb871b18434e2191ef9719eeca2acddc7d2a95de58c4",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose About4000 from1000/4000/9000; locked.",
+    "exploration": "10% decline +10 days:day10 349 new,total5862,5.9 times today. To day90:0new rounded,total8999,9times. Changed Daily fall20:day90 total4000. Restart retained20% and cleared days; reveal remained enabled.",
+    "reveal": "About9000; original10% tail900+810+729...=900/.1=9000;5%19000,30%2333. Explicit made-up steady daily fall; real curves differ. Reveal still original10% after20% reset.",
+    "visual": "CUA screenshot day10 dark1257x936: outlined today row and accumulating green dots with pink current increment; counts and daily fall slider readable; lower button at viewport edge.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete estimate tests daily versus accumulated quantities.",
+      "evidence": "1000/4000/9000 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Day and decay-rate contrast makes accumulation causal.",
+      "evidence": "Day10 5862 versus90 8999;20% gives4000.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves original prediction and shows geometric tail with explicit model limit.",
+      "evidence": "900+810+729 and steady-fall assumption.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core controls clear but reveal speaks in original10% after rate/reset change.",
+      "evidence": "Stage20% today; reveal states by90 8999.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable falling-versus-finished principle with conditions; examples vary same model.",
+      "evidence": "5% and30% tails and steady-decline condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen4000 overturned by slow decline nearly9000.",
+      "evidence": "10% day90 8999.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Accumulating dots distinguish daily increment and cumulative burden.",
+      "evidence": "Today outline/current pink/green accumulated screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible day/rate experiments central.",
+      "evidence": "10%\u219220% and restart retained rate.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of declining outbreak burden.",
+      "evidence": "Daily349 but total5862.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Daily versus total, rate sensitivity and infinite-tail explanation.",
+      "evidence": "8999/4000 and geometric sum.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links shrinking increments, accumulating sum and decline rate.",
+    "conceptualDemand": "Supported linked relations; geometric-series formula optional explanation.",
+    "interfaceBurden": "low-moderate; static original10% guidance after parameter changes.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Multiplicative decline and tail sum."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Percentages,ellipsis and division900/.1."
+    }
+  },
+  "whyCool": "Advancing to day90 leaves almost no daily cases while9000 cumulative dots-worth have accumulated.",
+  "caveat": "Reveal retains original10% values after rate changes; no second-domain application observed.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

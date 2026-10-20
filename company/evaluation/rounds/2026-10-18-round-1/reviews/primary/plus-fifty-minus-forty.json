@@ -1,0 +1,104 @@
+{
+  "slug": "plus-fifty-minus-forty",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/plus-fifty-minus-forty",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted typicalplayergrows5%perround forfaircoin\u00d71.5/\u00d70.6 repeated100times;alternativesshrinks/breakeven.",
+    "10roundsmedian59,14of50above100.100roundsmedian1.29,8of50above100;showaverage430. Heads-tailspanel100\u2192150\u219290;logchartclearlylabels100\u00d7gridlines.",
+    "Reveal explainssamplemedian/mean,50balancedpairs\u00d70.9^50approximately0.5%start,56+headsneeded14%probability,rarehugewinnersdominateall-possibilitiesexpectation. Wording says theoreticalresultfaraboveaverageofany50drawn,anoverstronguniversalclaim.",
+    "1280x720light trajectorychartclear,finalproserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Severalaverages,logscaleandprobabilitytailsrequirecare.",
+    "conceptualDemand": "Arithmeticversusgeometricgrowth andheavy-tail sampling.",
+    "interfaceBurden": "Simplebuttonsbutdensetrajectories."
+  },
+  "whyCool": "The average payoff rises while most individual paths collapse, and one head-tail pair already shows the multiplicative reason.",
+  "caveat": "Oneobservedseeded50-playerdraw;noresamplingtested. Theoreticalmeanneednotexceedeverypossible50-samplemean;ownerreview'any50'wording. Prosecutoff;notactualwagering.",
+  "effort": "Prediction,10/100rounds,meanmedianoverlay,head-tailpanel,reveal,two screenshots.",
+  "provisionalBucket": "specialist-with-fix",
+  "bucketReason": "Richaverages-versuspathsmechanism;correctuniversalwordingandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitmultipliers,faircoin andtypical-versusaveragetarget.",
+      "evidence": "5%arithmeticmeanversustypical100roundresult.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Roundprogression,mean/medianoverlay andtwo-roundcycle exposegrowthmechanism.",
+      "evidence": "10/100rounds and100\u2192150\u219290panel.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Strongsample/typical/expectationdistinction,but'any50'wordingoverstatesfinite-samplemeanrelation.",
+      "evidence": "Actual1.29median,430mean,rare-winnerclaim.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Logscaleandtypicalmedianexplicit;denseproseclipsright.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalmeanversuscompoundgrowthprinciple,no newbet/applicationtask.",
+      "evidence": "Onefixedmultiplierpair.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Positivemeanroundgain accompaniescollapsingmedianandpositivesamplemean.",
+      "evidence": "Median1.29versusmean430from100start.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Manypaths,mean/medianoverlays andtwo-roundcycleexposetwotypesofaverage.",
+      "evidence": "Logtrajectoryfanand\u00d70.9cycle.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Roundbatches,overlays andcyclepanel supportinspection.",
+      "evidence": "10then100,showaverage,headstails.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralrepeated-riskgrowthintuition.",
+      "evidence": "Typicalexperienceversusexpectedvalue.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Multiplicativegrowth,median,samplemean andtail-dominatedexpectation.",
+      "evidence": "56+thresholdandrarehugewinners.",
+      "confidence": "medium"
+    }
+  }
+}

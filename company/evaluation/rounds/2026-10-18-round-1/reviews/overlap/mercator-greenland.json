@@ -1,0 +1,142 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "overlap",
+  "reviewer": "r2",
+  "slug": "mercator-greenland",
+  "demoVersion": 5,
+  "batchId": "round1-04",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+    "A1: Preview banner: \u201cEvaluation preview \u00b7 learning history and analytics are not saved.\u201d",
+    "A2: Prediction: Greenland drawn about15times Congo on map; \u201cOn the real Earth, how do their areas compare?\u201d; choices Greenland15\u00d7/Greenland1\u00d7/Congo4\u00d7; selected Greenland15\u00d7 and locked.",
+    "A3: Mercator at73\u00b0N:15.4\u00d7; set Slide south40:33\u00b0N and1.4\u00d7; screenshot shows small blue translated Greenland and dashed original outline.",
+    "A4: Clicked Slide to equator:73\u00b0south,0.9\u00d7; clicked Equal-area map: equal-area0.9\u00d7, orange compass-bearing line bent instead of straight; Show me why enabled.",
+    "A5: Returned slider0 on equal-area map:73\u00b0N still0.9\u00d7; Seen line retained \u201cMercator15.4\u00d7 at73\u00b0N,0.9\u00d7at the equator; equal-area0.9\u00d7\u201d.",
+    "A6: Reveal: \u201cNot quite: it was \u2018Greenland about1\u00d7Congo\u2019.\u201d; Congo slightly bigger2.17vs2.34million km\u00b2; \u201cThe land never changed; the map did.\u201d; Mercator stretches areas farther from equator and keeps angles true; orange compass-bearing line straight there and bent on equal-area; \u201cNo flat map can keep both.\u201d"
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question separates apparent map area from real land area with plausible alternatives and explicit commitment.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Latitude changes and projection switching expose both Mercator's changing scale and equal-area invariance across controlled contrasts.",
+      "evidence": [
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "The reveal resolves the original prediction using the retained observed ratios and explains the area-versus-angle trade-off shown by the orange line.",
+      "evidence": [
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The stepwise instruction and retained Seen line make the tested two-control sequence interpretable.",
+      "evidence": [
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The projection trade-off provides a relevant condition for comparing land areas versus maintaining compass directions.",
+      "evidence": [
+        "A6"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No keyboard, phone, contrast, zoom/reflow or reduced-motion checks were performed.",
+      "evidence": [
+        "Desktop AX snapshots and screenshots only; accessible labels observed but insufficient for an accessibility rating."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "The committed15\u00d7 guess reverses through intermediate1.4\u00d7, equator0.9\u00d7 and equal-area invariance.",
+      "evidence": [
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "The visibly shrinking translated shape and straight-versus-bent line carry multiple projection contrasts.",
+      "evidence": [
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "The reversible latitude slider and projection toggle make experimentation central.",
+      "evidence": [
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "The reveal supports better map interpretation with concrete area and navigation conditions.",
+      "evidence": [
+        "A6"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Distinct latitude scaling, equal-area invariance and compass-line geometry remain observable across multiple states.",
+      "evidence": [
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Against the declared boundary, learners coordinate geographic position, area ratios and two projections, with retained observations supporting the transition.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no map-projection, sorting-algorithm or sound-propagation theory assumed."
+  },
+  "whyCool": "Sliding Greenland south shrinks its drawn ratio from15.4\u00d7 to0.9\u00d7 while the equal-area map keeps0.9\u00d7 even back at73\u00b0N.",
+  "caveat": "The angle-versus-area explanation adds an unfamiliar compass-bearing concept without a separate learner application check.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r2.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

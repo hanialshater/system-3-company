@@ -1,0 +1,104 @@
+{
+  "slug": "base-rates",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/base-rates",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction1in1000disease,99%sensitivity1%falsepositive,chanceafterpositive99/90/50/9%; chose99.",
+    "Filled1000andtested:11positive,1sick. Switched1in100:20positive10sick; switched1in10thenrevealresetoriginalbase-rate.",
+    "Reveal9%,10falsealarms among999healthy; comparisons50%and92%; citeshistoricalmedicalstudy.",
+    "Screenshot small1000persongrid,clearlegendandcounts; revealrightedgeclipped; originalbase-rate restoredonreveal."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Countrepresentation avoidsformula butconditionaldenominator reasoning stillsubtle.",
+    "conceptualDemand": "Amongpositives,notamongallsick;prevalencechangesdenominator.",
+    "interfaceBurden": "Severalpresets;tinypopulationgrid andclippedreveal."
+  },
+  "whyCool": "Tenfalsealarms canoutnumbertheonesickperson evenwhen a test isexcellent.",
+  "caveat": "Educationaltoywithroundedpopulationcounts; medicalstudyandnumbersnotindependentlyaudited; noindividualmedicaladvice.",
+  "effort": "Prediction,populate,test,prevalencecomparisons,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "ClearcounterintuitiveBayesianreasoning withconcretecounts; presentationfriction.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Targets conditionalprobability reversal precisely.",
+      "evidence": "Testperformance versus positivepredictivevalue.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Populationcounts andprevalencecounterfactual exposefalsealarmdenominator.",
+      "evidence": "1of11vs10of20positive.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explicitnumerator/denominator andtestedcomparisons.",
+      "evidence": "10falsealarmsvs1truepositive.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Tinydots andclippedreveal; numericalcounts carryexplanation.",
+      "evidence": "Screenshot1000grid verysmall.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Generalbase-rate reasoning useful acrossclassification.",
+      "evidence": "Chance dependsonrarity aswellastestperformance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "99%test canyield9%positivepredictivevalue.",
+      "evidence": "1sickof11positive.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Populationgrid andlegend externalizefalsepositives.",
+      "evidence": "Countlabels morelegible thantinycells.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fill,test,compare presets.",
+      "evidence": "Populationandprevalencecontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Broadclassificationanddiagnosticliteracy.",
+      "evidence": "Base-rate effectexplicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Conditionalprobability,prevalence,sensitivity,specificity.",
+      "evidence": "Threeprevalencecounterfactuals.",
+      "confidence": "medium"
+    }
+  }
+}

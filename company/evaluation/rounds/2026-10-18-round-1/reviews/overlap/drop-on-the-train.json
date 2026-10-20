@@ -1,0 +1,136 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "drop-on-the-train",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drop-on-the-train",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "drop-on-the-train",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/drop-on-the-train/meta.json",
+    "metaSha256": "073d7a73108ff2dd4a44b4ac6093a25398df135db15e53044ae9e35d3782dbd2",
+    "demoSha256": "74f346f1d5dc26a8e044324e776cb5419fe488fa765927723fe29ac42212c976",
+    "batchId": "round1-02",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/drop-on-the-train",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/drop-on-the-train.json"
+  },
+  "date": "2026-10-18T18:58:51.342319+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Preview no-history banner; trust5/5 visible ignored. Selected Behind your feet; locked.",
+    "exploration": "Drop20m/s:0cm; platform view:12.1m curve logged. Drop40m/s:0cm logged; reveal unlocks.",
+    "reveal": "At your feet. Retains0cm both speeds, explains ball already shares train speed and nothing slows it; states steadily moving condition. Text says platform train and ball moved12.1m in0.61s.",
+    "visual": "Inline screenshot1257x936 dark shows current40m/s platform arc labelled train moved24.2m; ball moved24.2m, dashed initial and solid final passenger,0cm landing. Reveal text12.1m refers earlier20m/s case but says same drop without disambiguation."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear familiar landing choices with plausible behind misconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two speeds preserve relative landing; platform transformation exposes shared motion.",
+      "evidence": "exploration; visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Causal explanation resolves prediction, but12.1m text differs from current24.2m graphic after40m/s.",
+      "evidence": "reveal; visual",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls and retained log clear, current graphic versus reveal distance needs interpretation.",
+      "evidence": "visual; reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable steady-motion relation and condition, no concrete new application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion untested.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed behind prediction reversed by0cm landing at two speeds.",
+      "evidence": "prediction; exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Train-relative fall and platform arc, starting/final positions and equal travel labels show mechanism at contrasting speeds.",
+      "evidence": "exploration; visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switchable viewpoints and repeatable speed drops enable discovery.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains familiar object dropping on steady train.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relative/ground view and speed invariance; no acceleration contrast.",
+      "evidence": "exploration; reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate two viewpoints and shared horizontal motion with falling.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; moderate ambiguous distance reference",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: relative motion supported visually",
+    "notationRepresentationBurden": "low: metres/seconds, labelled trajectories"
+  },
+  "whyCool": "Switching to the platform turns the straight fall into a curve while the ball still lands0cm from the hand.",
+  "caveat": "After40m/s graphic says24.2m but reveal continues12.1m from20m/s without explicit reference.",
+  "fatalFindings": [],
+  "findings": [
+    "Current-state/reveal distance mismatch24.2m versus12.1m; historical20m/s result retained but text ambiguous."
+  ],
+  "missingEvidence": [
+    "Fresh transfer case",
+    "Acceleration/non-applicable case",
+    "Accessibility audit"
+  ],
+  "effort": "Approximately2minutes browser walkthrough",
+  "notApprovedForServing": true
+}

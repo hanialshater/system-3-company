@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "real-effect-missed",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/real-effect-missed",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "real-effect-missed",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/real-effect-missed/meta.json",
+    "metaSha256": "65478577d34e0bfef9672fe0519ba191affc7d9c81d8434c9754403601988069",
+    "demoSha256": "5d1fa37951093288c3417a4ef821e73ab9cfa3187b6de62bf2a3f29c46b98925",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/real-effect-missed",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/real-effect-missed.json"
+  },
+  "date": "2026-10-18T20:13:35.497671+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose90%catch and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "10experiments50flips caught6; full100caught28. Switched200flips,100experiments caught80; inspected histogram and threshold moving32of50 to113of200."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read34%correction,exact33.6%versus86.0% at200,actual28and80 tally; nonsignificant small test does not imply no effect."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,10,100short and200final scrolled reveal inspected. Histogram tails,color threshold and counts legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specified true effect and test rule separate detection from truth.",
+      "evidence": "60%heads,50flips,32threshold,faircoin3.2%tail.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sample-size contrast exposes missed true bias.",
+      "evidence": "28of100at50 versus80of100at200; threshold also updated.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Exact versus empirical rates support inference limit.",
+      "evidence": "33.6and86.0exact; no significant result is not no effect.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Concrete coin thresholds explain abstract test.",
+      "evidence": "Headspercentageaxis and green/redbins;5%headline consistent conservative3.2%specified threshold.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General testing caution without distinct application.",
+      "evidence": "No new effect size or application task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Real bias usually missed by short test.",
+      "evidence": "28of100caught despite60%heads.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Histograms show tighter results and shifted threshold.",
+      "evidence": "200flips majoritygreen versus50majorityred.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Run batches and toggle sample size.",
+      "evidence": "10and100runs then200flipsetting.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful significance interpretation caution.",
+      "evidence": "Absence of result does not establish absence of effect.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Effect truth,detection threshold and sample size linked.",
+      "evidence": "Two experiment sizes and exact/empirical distinction.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Separate true coin bias from probabilistic detection and false-positive threshold.",
+    "interfaceBurden": "Batch buttons and one toggle; auto tally.",
+    "prerequisiteNovelty": "Significance and power contextualized by coin rule.",
+    "notationRepresentationBurden": "Percentages,heads counts and histogram; no formula."
+  }
+}

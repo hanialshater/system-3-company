@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "one-beetle-a-generation",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-beetle-a-generation",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-beetle-a-generation",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/one-beetle-a-generation/meta.json",
+    "metaSha256": "39598de764c07df6f6e9acef6293084e51d5692731408bd3f4df1780970a4d12",
+    "demoSha256": "f5718432004e4e20db6862d48e402fb341f75a6bc296798ad2c7dbb7c131d68c",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-beetle-a-generation",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/one-beetle-a-generation.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About1runin4 against half andfewin100;locked it in.",
+    "exploration": "Alone:100of200 runs,50%,groups overhalfapart after200generations. Oneswapeachway:4of200,2%. Fiveswaps:1of200,0.5%. Eachsetting generatedscatterplot ofpaired redshares.",
+    "reveal": "Correctedfewin100;quotedactual100,4,1 outcomes. Explaineddrift towardfixation andmigrantsreintroducingothercolor,couplinggroups. Closingaboutonemigrant enough phrasing broaderthanfixedtoy evidence.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Paired-share scatterplot hasdiagonalband andshadedoppositecorners;fiveswapstate showsone redcornerpoint. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearprobability choices testunderestimating cumulative migrationeffect.",
+      "evidence": "Quarter prediction versus2% one-swap result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three migrationrates visiblyalterdistribution andraredivergence count.",
+      "evidence": "50%,2%,0.5% over200runs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explainsactualcounts andmechanism,butclosing one-migrant claim lacksstated applicabilityconditions beyondinitialtoy.",
+      "evidence": "Reintroducingcolor argument;fixed50beetles/200generations.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Settings andcounts clear ondesktop,scattercorners named.",
+      "evidence": "Actualfiveswap screenshot and0.5% feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable migration-coupling principle but no concrete new application orconditions.",
+      "evidence": "One migrant per generation conclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed25% prediction contradicted by2% withone exchange.",
+      "evidence": "100divergent isolatedruns versus4 withswap.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scatterdistribution andcornerregions carrydivergence mechanism.",
+      "evidence": "Actualdiagonalband andredoutlier.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threefixed migrationpresets providecomparison.",
+      "evidence": "Alone,one,five swaps tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete explanation ofpopulation coupling underneutraldrift toy.",
+      "evidence": "Migrationcounteractsindependentfixation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Drift,fixation andgene-flowcontrast linked.",
+      "evidence": "Three rates andpairedendstates.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links stochasticdrift toexchange andpairedpopulationoutcomes.",
+    "conceptualDemand": "Interpret across-runfrequency andpairedshareplot ratherthanone trajectory.",
+    "interfaceBurden": "Low:threepresetbuttons andexplicitfrequencies.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:neutraldrift andmigration.",
+    "notationRepresentationBurden": "moderate:two-axisfractions andpercentages."
+  },
+  "whyCool": "One beetle swapped eachway cutsthefar-apart outcomesfrom100of200 to4of200.",
+  "caveat": "Fixedmade-upgroups andtimehorizon;closingbroadmigrationclaim shouldnotbe readasguarantee forrealpopulations.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Differentpopulation sizes,times andrandomreruns nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:56:44.524773+00:00"
+}

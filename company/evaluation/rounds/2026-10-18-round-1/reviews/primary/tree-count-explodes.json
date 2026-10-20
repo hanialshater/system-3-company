@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "tree-count-explodes",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tree-count-explodes",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "tree-count-explodes",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/life/tree-count-explodes/meta.json",
+    "metaSha256": "b4e2249dbbd8022826371b5bd23197e0a5cad5b4a8d5b65198843c49a36a303b",
+    "demoSha256": "ede84e2d157188c7f51ed99310c39bfb741a5b59e1c8e2b149a12798829f60d0",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/tree-count-explodes",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/tree-count-explodes.json"
+  },
+  "date": "2026-10-18T21:00:10.849680+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected34million rooted branching trees for10named species; no count recurrence given yet."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "2species1tree/3joiningplaces; addedC gave3trees, movedC place3\u21921. AddedD gave15trees/5places. Addedto10 gave34459425 andJplace8of17; movedJto9."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read multiplication3\u00d75\u00d77\u00d79\u00d711\u00d713\u00d715\u00d717=34459425 and binary-fork condition; exhaustive checking becomes impractical."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots showed branch dots and changed topology at3 and10species; full count equation and reveal readable after scroll."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Large numerical alternatives elicit surprise but recurrence is unavailable before commitment.",
+      "evidence": "1000/100000/34million without branching-count scaffold.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adding and relocating species makes choices visible.",
+      "evidence": "Cthreepositions, Jseventeen.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects multiplying insertion choices to large count and search burden.",
+      "evidence": "Odd-factor product and binary-fork restriction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dots and explicit per-step count support the recurrence.",
+      "evidence": "3species3trees,4species15.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Search consequence remains in the same tree-count task.",
+      "evidence": "No new application or fresh count challenge.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Only ten named tips produce tens of millions of alternatives.",
+      "evidence": "34459425.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Insertion dots and moved newest branch support choice structure.",
+      "evidence": "Jplace8\u21929 changes tree.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Building and rearranging a tree invites exploration.",
+      "evidence": "Added and movedC andJ.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains why exhaustive tree search grows hard.",
+      "evidence": "Counting multiplies.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Insertion recurrence connects local choices to global count under explicit conditions.",
+      "evidence": "Binary rooted trees only.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: distinguish one displayed topology from count of alternatives and multiply choices",
+    "interfaceBurden": "gentle: add and move buttons",
+    "prerequisiteNovelty": "rooted binary family trees and insertion counting introduced",
+    "notationRepresentationBurden": "lettered tree, branch dots and long odd-factor product"
+  }
+}

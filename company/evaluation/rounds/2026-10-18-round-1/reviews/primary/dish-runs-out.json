@@ -1,0 +1,147 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "dish-runs-out",
+  "domain": "life",
+  "batchId": "round1-02",
+  "demoVersion": 3,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "95453884eb3d1bd237395ddb2e9f194064105fe5ff8987edf2b4732184cf7cb4",
+  "demoSha256": "9ec604b145303ac1d3437013ef93c13c06bc094099ce9da27430ff46646d4fb9",
+  "reviewedAt": "2026-10-18T18:35:33.782738+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dish-runs-out",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted about a million and locked",
+      "outcome": "Growth controls unlocked"
+    },
+    {
+      "id": "o2",
+      "action": "Jumped to 7h then 9h40 then 10h with food topped up",
+      "outcome": "2.1 million (0.2%), 537 million (50%), 1.07 billion (100%); visible dish fills"
+    },
+    {
+      "id": "o3",
+      "action": "Switched one batch at 10h",
+      "outcome": "91.5 million; smaller filled region; food feeds about 100 million so growth stalls"
+    },
+    {
+      "id": "o4",
+      "action": "Opened reveal",
+      "outcome": "Corrects prediction to billion; 30 doublings, half arrived last 20 minutes; finite food ends growth; E. coli rich broth condition, many slower, food batch made up"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear order-of-magnitude alternatives expose linear intuition.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time jumps show late doubling and fixed-time food contrast exposes growth condition.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconstructs observed counts, resolves wrong prediction and states biological/model limits.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls, counts and dish legible; ordinary scroll exposes full reveal.",
+      "evidence": "o1-o4; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Finite-resource principle and lab condition stated; no concrete separate use task.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual million prediction overturned by billion with half arriving in last interval.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dish fill changes expose time growth and finite-food contrast.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Time jumps and food switch support exploration.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Lab conditions contextualize growth but no everyday action.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Doubling, late acceleration and resource-limited condition compared.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links 30 intervals, repeated doubling, percentage fill and limited resource condition.",
+    "conceptualDemand": "balanced: supported linked growth relations; exponent notation introduced in reveal",
+    "interfaceBurden": "low: time jumps and two food modes",
+    "provisional": true
+  },
+  "whyCool": "The final 20-minute jump fills the other half of the dish, then switching food conditions shrinks the ten-hour population to 91.5 million.",
+  "caveat": "The finite food batch is explicitly made up; one tested desktop path provides no real bacterial prediction.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed ten-hour unlimited and revealed limited-food states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

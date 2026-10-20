@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "seven-odds-leave-one",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seven-odds-leave-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "19e6fdb37dbf2db4b1496e783f2a00bf3f4ceef500baffe35247419f7296e550",
+    "demoSha256": "23ca25e4a1e4b77bd2a02a9f16fe9ea2bc316556f980186dca059160171e64c0",
+    "metaPath": "src/demos/math/seven-odds-leave-one/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Depends on which numbers and locked the prediction about the parity of any seven odd numbers.",
+    "exploration": "The initial seven values summed to 49. Increased the first from 1 to 3, making 51, and the fifth from 9 to 11, making 53. Paired the seven leftover dots, exposing three pairs and one unpaired dot.",
+    "reveal": "The reveal corrected the answer to Odd and accurately listed all three totals, 49, 51 and 53. It explained each odd number as pairs plus one leftover and generalized to an even count of odd numbers producing an even total.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after pairing. Seven columns showed blue pairs and faded original leftover positions. A separate row highlighted three yellow pairs and one yellow dot alone with a distinct outline. Total 53 and the pairing toggle were readable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt asks for an invariant across freely changed odd values.",
+      "evidence": "Selected dependence on the values before changing them.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adding pairs changes magnitudes while retaining the structural leftovers.",
+      "evidence": "Totals changed 49 to 51 to 53, then seven leftovers paired into three pairs plus one.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal grounds a general proof in actual explored totals.",
+      "evidence": "It named all three totals and explained why the arbitrary internal pairs do not matter.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dot pairs make parity visible without formal notation.",
+      "evidence": "The final leftover row clearly contained one unpaired dot.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The even-count extension is stated but cannot be tested with the fixed seven columns.",
+      "evidence": "The ending describes even counts of odd numbers, while interaction retains seven numbers.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Changing values cannot change the total's parity.",
+      "evidence": "Both attempted changes left an odd total.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The regrouping isolates exactly the property relevant to parity.",
+      "evidence": "Seven leftovers form three pairs and one single dot.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Trying to defeat the invariant through repeated additions is inviting.",
+      "evidence": "Each number button adds a pair and the toggle regroups leftovers.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It builds a useful mental check for sums.",
+      "evidence": "Count odd addends rather than compute the full total.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson progresses from trials to an argument independent of values.",
+      "evidence": "All internal pairs are irrelevant and only the count of leftovers matters.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Counting pairs and a leftover is accessible with little notation or control burden.",
+    "conceptualDemand": "Low: identify an invariant under adding pairs.",
+    "interfaceBurden": "Low: seven number buttons and a pairing toggle.",
+    "conceptualChallenge": "Generalize beyond particular tested totals using the leftover structure.",
+    "prerequisiteNovelty": "Even and odd are familiar; invariant reasoning adds the main novelty.",
+    "notationRepresentationBurden": "Low: dot groups and ordinary integer totals."
+  },
+  "whyCool": "The exact numbers disappear from the proof; seven lonely leftovers settle every possible choice.",
+  "caveat": "The controls add pairs to fixed positive values and do not allow changing the number of addends.",
+  "missingEvidence": [
+    "The even-count extension was not tested interactively.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

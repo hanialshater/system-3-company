@@ -1,0 +1,104 @@
+{
+  "slug": "where-the-dew-forms",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/where-the-dew-forms",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asked dew range for30C50%RH air cooled retaining water; chose25to20C.",
+    "At30C water2.12kPa,max4.24,50%;20C water2.12,max2.33,91%,no dew;15C water=max1.70,100%,dew forming.",
+    "Reveal identified dew point about18C and explained fixed vapor pressure until saturation, falling maximum and condensation below threshold.",
+    "Inline1280x720 light screenshot showed droplets and readout, chart partly above internal scroll; right-edge prose clipped. No accessibility audit."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar dew but pressure units and ratio/curve interpretation.",
+    "conceptualDemand": "Saturation vapor pressure and relative humidity.",
+    "interfaceBurden": "Simple presets; plot and prose require scroll, right edge clips."
+  },
+  "whyCool": "The amount stays fixed while the saturation ceiling falls until droplets appear.",
+  "caveat": "Numerical prediction needs curve knowledge; kPa is vapor pressure, not an amount of water; right-edge clipping. Accessibility unknown.",
+  "effort": "Prediction, cooling contrasts, reveal and inline screenshot.",
+  "provisionalBucket": "solid-with-clarity-fix",
+  "bucketReason": "Good threshold model; numerical hook and labels could be clearer.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear setup but numerical threshold requires undisclosed saturation curve.",
+      "evidence": "Three temperature ranges without curve values before exploration.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cooling crosses saturation threshold with explicit numerical comparison.",
+      "evidence": "20C no dew versus15C forming.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains threshold, relative ratio and vapor decrease after condensation.",
+      "evidence": "2.12kPa intersects maximum around18C.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Useful readouts but prose clips and water label uses pressure units.",
+      "evidence": "Inline reveal screenshot and kPa labels.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same evening example and general humidity relation only.",
+      "evidence": "No fresh application.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Cooling alone increases relative fullness and causes dew.",
+      "evidence": "Fixed2.12 until saturation.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve intersection and droplets link threshold to numbers.",
+      "evidence": "Dew point marked18C.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Cooling slider and presets support exploration.",
+      "evidence": "20C and15C comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday dew and humidity interpretation are central.",
+      "evidence": "Cooling evening scenario.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes relative humidity, saturation and condensation.",
+      "evidence": "Water pressure versus maximum.",
+      "confidence": "medium"
+    }
+  }
+}

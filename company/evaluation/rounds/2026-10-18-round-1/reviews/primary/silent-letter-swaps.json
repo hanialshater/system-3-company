@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "silent-letter-swaps",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/silent-letter-swaps",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "silent-letter-swaps",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/silent-letter-swaps/meta.json",
+    "metaSha256": "91bfd8bf02f77c3e101fadbe3cc0c77c2705835dae8171058b86372e06475b07",
+    "demoSha256": "77a1ebd17ba46727296f3ea7872a3da05f2d825976cd69c139a0667e1f9fb9db",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/silent-letter-swaps",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/silent-letter-swaps.json"
+  },
+  "date": "2026-10-18T20:33:25.027671+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose2%silent andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Testedall9CTTLeuchanges:firstTTTPhe/ATTIle/GTTVal;secondCCTPro/CATHis/CGTArg;thirdCTC/CTA/CTGallLeu. Exhaustivetally134same24%,392new,23stop;silentbyposition8/0/126of183. NextcodonTATTyr,thirdAtoTAAstoptested."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read25%correction,CTT3of9versus134of549all;multiplecodonsnameaminoacid,usuallylastletterdifferent;standardcodeversusactualgene boundary."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,all9CTT,tallyandTAAstopscrolledreveal inspected. Buttonlabelsandcolorlegend readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearcountedpopulationbutexactcodefrequencyunavailableuntiltablelookup.",
+      "evidence": "549oneletterchangesand2/25/75%forecast;code redundancy not yetshown.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Completecodoncontrast,exhaustivetallyandstopboundarymakeoutcomesconcrete.",
+      "evidence": "CTTthirdallsilent,butTATthirdAstop;first/seconddifferent.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Redundantmappingexplainssilentchangeswithscopequalification.",
+      "evidence": "134of549,mostlythird;standardcodenotonegene.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Three-by-threegridandnamedoutcomes reduceabstractnotation.",
+      "evidence": "Same/different/stoplegend;codon/aminoaciddefinedinitially.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Secondcodonisanothercasewithinmappingtoy.",
+      "evidence": "No distinctapplicationornewtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Manyletterchangespreserveproteinbuildingblock.",
+      "evidence": "24%silentversus2%guess.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gridpositionandoutcomecolorsshowredundancy.",
+      "evidence": "ThirdrowCTTallgreenversusotherrowsorange,TAAredstop.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Tryeachmutationandnextcodon.",
+      "evidence": "Ninechangesplusstopcontrast.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulmutationconsequenceintuition.",
+      "evidence": "NotallDNAspellingchangesalteraminoacid.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mappingredundancy,positionbiasandstopcase linked.",
+      "evidence": "134same392new23stopandpositionbreakdown.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Distinguishgeneticwordfromitsaminoacidmappingandaggregatepossiblechanges.",
+    "interfaceBurden": "Ninebuttons,allchanges,nextcodon;lowprecision.",
+    "prerequisiteNovelty": "Codon/aminoaciddefined,geneticcodeunfamiliar.",
+    "notationRepresentationBurden": "DNAletters,aminoacidabbreviations,countsandpercent;gridscaffold."
+  }
+}

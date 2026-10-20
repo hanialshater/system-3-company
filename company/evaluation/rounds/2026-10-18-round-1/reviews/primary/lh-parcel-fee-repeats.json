@@ -1,0 +1,103 @@
+{
+  "slug": "lh-parcel-fee-repeats",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-parcel-fee-repeats",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Fresh recovery walkthrough predicted One parcel for four items with \u20ac3/parcel plus \u20ac0.50/item.",
+    "Both tests showed separate \u20ac14 versus combined \u20ac5; minimum one item gave equality \u20ac3.50.",
+    "Chrome dark screenshot showed receipt icons and totals. Reveal separated original/current values and explained which fee repeats."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small monetary sums and multiplication.",
+    "conceptualDemand": "Fixed cost repeats per parcel.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A fixed fee is only fixed relative to the thing it is charged for.",
+  "caveat": "Fictional unlimited shared parcel; no size or weight restrictions.",
+  "effort": "Fresh prediction, both tests, one-item boundary, screenshot and reveal after runtime recovery.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear cost-scope explanation with modest visual mechanism.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Straightforward fixed-fee comparison with title cue.",
+      "evidence": "One parcel versus four.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "One-item boundary removes consolidation savings.",
+      "evidence": "4\u21921 items.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains fixed per what and repeated item charges.",
+      "evidence": "Fixed parcel fee versus per-item charge.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Policy and expressions explicit.",
+      "evidence": "Shared parcel permitted, no other fees.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete rule for identifying cost scope.",
+      "evidence": "Name thing fixed per.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected consolidation savings.",
+      "evidence": "14 versus 5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not decompose fees.",
+      "evidence": "Numeric formulas carry mechanism.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and item slider.",
+      "evidence": "No packing or shipment task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Shipping-cost calculation central.",
+      "evidence": "Consolidating parcels.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fixed cost scope and repeated variable terms.",
+      "evidence": "Per parcel versus per item.",
+      "confidence": "medium"
+    }
+  }
+}

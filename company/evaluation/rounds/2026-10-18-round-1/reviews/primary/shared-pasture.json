@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "shared-pasture",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shared-pasture",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "shared-pasture",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/shared-pasture/meta.json",
+    "metaSha256": "02fd59f3e693cef07ddbe0c8166511344bb16ae6fa2e8441f24e507b4b81e8ff",
+    "demoSha256": "250c96d4f3d03edc464d611cb48efe80d0319b63a96dcad4d42541ad7a86bbb4",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/shared-pasture",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/shared-pasture.json"
+  },
+  "date": "2026-10-18T21:04:06.338442+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected18 for personal earnings after secondcow under20minus totalcows rule."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "10cows personal10/group100; addedcow11 personal18/group99. Otherschoose added7:18cows personal4/group36. Keptcows andotherschoose again: nobodyadded, same36."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Privategain18versus10 and sharedcrowdingcost explained; group100\u219236, no-rules madeup-number model caveat and realcommunity management counterpoint."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected11and18cows: ownyellowdots, darker pasture and readablepersonal/group counters."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit earnings rule makes private incentive calculable.",
+      "evidence": "2\u00d79=18 at11cows.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Own choice and others response separate private and shared outcomes.",
+      "evidence": "Personal18 then4/group36.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains shared cost and limits universal inference with governance caveat.",
+      "evidence": "Madeupnumbers,no rules; communities can manage resources.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Familiar setting and separate counters support social dilemma.",
+      "evidence": "Youearn versus allherders.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Shared-resource generalization without concrete new task and conditions.",
+      "evidence": "Realcommunity caveat but no freshcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Individually profitable addition accompanies collective decline.",
+      "evidence": "18personal at11 then4at18.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Crowding and darker field support outcome but counters carry mechanism.",
+      "evidence": "Dots show18cows; per-cowearnings2.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Alternating personal and others choices creates a small strategic simulation.",
+      "evidence": "Added thenkept,othersrounds tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Highlights external shared costs and governance limits.",
+      "evidence": "No-rules model explicitly bounded.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Private incentive, aggregate consequence and institutional boundary.",
+      "evidence": "Group100\u219236 despite sensible additions.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: distinguish private marginal gain from distributed costs",
+    "interfaceBurden": "gentle: alternating add/keep andotherschoose",
+    "prerequisiteNovelty": "commons dilemma introduced through explicit payoff rule",
+    "notationRepresentationBurden": "small counts,20\u2212total rule andtwo income counters"
+  }
+}

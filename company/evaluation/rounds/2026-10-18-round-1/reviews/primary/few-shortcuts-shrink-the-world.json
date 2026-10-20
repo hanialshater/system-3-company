@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "few-shortcuts-shrink-the-world",
+  "domain": "probability",
+  "demoVersion": 5,
+  "expectedVersion": 5,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "45354bd2552cdf2a1f36d66e18600c16958ab2e837eda26c70c41fa3c50f2ac6",
+  "demoSha256": "deda00d6607a2d4d6d6d867805c62e44913a55cfa62c7a59586daa5cde21df63",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/few-shortcuts-shrink-the-world",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "9/9 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected12 steps; Lock it in",
+      "outcome": "Prediction retained; shortcut controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Select1,5,20 then0 shortcuts",
+      "outcome": "A-B24/average12.9 baseline;1 gives9/10.3;5 gives5/6.8;20 gives4/4.9;0 restores24/12.9 and reveal remains unlocked."
+    },
+    {
+      "id": "v",
+      "action": "Inspected20 screenshot",
+      "outcome": "Ring local links and coloured cross-links; thick route and large dots distinguish shortest A-B path; dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why after0",
+      "outcome": "7steps; historical route/average values match; far-neighbourhood bridges help many pairs while local clustering stays comparatively high; added-links versus rewiring and seed1 limitation disclosed."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Small added-edge fraction versus route reduction alternatives support actual commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple shortcut counts and zero reset expose route/average changes.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Matches observed paths and averages; explains bridge sharing and local circles with seed/model limits.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Thick route, large dots and two distinct readouts identify individual path versus average.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Neighbourhood bridging principle stated; no new network use/task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "12step prediction reverses to6.8 with onlyfive shortcuts.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cross-links and highlighted shortest route carry mechanism.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Four reversible counts show comparative discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network connectivity interpretation central, but realpeople disclaimed.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Individual routes, all-pair average, local clustering and random-seed limitations linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes local links, global shortest routes and average with visual support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Network shortest paths and clustering introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Dense100node ring and decimal averages/clustering."
+    }
+  },
+  "whyCool": "Five cross-ring links cut the average from12.9to6.8 steps and visibly shorten A-B from24to5 without removing local links.",
+  "caveat": "One seed, added links rather than original rewiring model; no other seeds tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Other seeds/graphs and clustering measurement not interactively inspected;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

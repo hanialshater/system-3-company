@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "price-tag-or-auction",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/price-tag-or-auction",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "6804497512b7b04a82ded1b22aed2a6673216d408155aeb57ef3d1f4179bb0aa",
+    "demoSha256": "04bbc128af53a941136893f20c878e2fcffce610498d35be17adefaaa8b46f5e",
+    "metaPath": "src/demos/economics/price-tag-or-auction/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 2 and locked the fewest bidder count prediction for a second price auction beating the best price tag with random values from $0 to $100.",
+    "exploration": "Initial one bidder showed tag $25 and auction $0. At two bidders, tag $38.49 beat auction $33.33. At three, auction $50 beat tag $47.25. Simulated 1,000 three bidder sales: tag $45.93 and auction $50.30. At four bidders, auction $60 beat tag $53.50.",
+    "reveal": "The reveal corrected the answer to three and accurately compared the two and three bidder cases. It explained the tradeoff in choosing a fixed price and that a no reserve second price auction uses the second highest bid, which improves with more rivals.",
+    "visual": "Inspected the dark 1257 by 936 inline screenshot after the three bidder simulation. A mint best tag line and dashed white auction line crossed between two and three bidders. Numeric revenues and optimal tag prices were labelled, with simulation outcomes below.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt challenges the belief that competition immediately dominates a price tag.",
+      "evidence": "Selected two bidders before comparing revenue curves.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Bidder counts expose a crossover, and simulation distinguishes expectation from one sample.",
+      "evidence": "Tag won at two, auction won at three and four; 1,000 sales differed slightly from expected values.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the crossover using how prices are set.",
+      "evidence": "It names the second highest bidder and fixed price tradeoff.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The graph makes the winner change visible with explicit values.",
+      "evidence": "Two labelled lines crossed between the two and three bidder results.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The mechanism is explained but no new selling case or distribution is applied.",
+      "evidence": "The lesson stays within the fixed random value model.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two bidders are insufficient for the no reserve auction to beat the best tag.",
+      "evidence": "$33.33 auction revenue was below $38.49 at two bidders.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Revenue curves communicate both the crossover and growing advantage.",
+      "evidence": "The lines change ordering between bidder counts two and three.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adding bidders and simulating sales supports controlled experimentation.",
+      "evidence": "Three count buttons and one simulation button drive the model.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It shows why a selling method depends on competition and assumptions.",
+      "evidence": "The reveal specifies no reserve and second price rules.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It combines expected revenue, an optimal tag and sample variation.",
+      "evidence": "The simulation did not exactly match the theoretical curve.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Revenue comparison is straightforward, while auction rules and optimal price choice are new.",
+    "conceptualDemand": "Moderate: understand how fixed price and second highest bid generate revenue differently.",
+    "interfaceBurden": "Low: bidder count buttons and a simulation action.",
+    "conceptualChallenge": "Competition must become strong enough to overcome the fixed price's advantage.",
+    "prerequisiteNovelty": "Second price auctions, reserves and expected revenue are introduced.",
+    "notationRepresentationBurden": "Moderate: two revenue series, tag prices and simulation values share the chart."
+  },
+  "whyCool": "An auction's advantage appears only after enough rivals arrive, so the crossover can be watched directly.",
+  "caveat": "The value model and no reserve rule are fixed. This walkthrough does not establish the best selling method for a real item.",
+  "missingEvidence": [
+    "No alternative value distribution or reserve price was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

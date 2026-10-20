@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected $120 and locked",
+      "outcome": "Round0 saving $100; model fixed investment $100 and fixed prices disclosed."
+    },
+    {
+      "id": "E",
+      "action": "Next round then Run for $20 cut; selected $40 cut, Next round and Run",
+      "outcome": "$20 first-round saving120 then settled100 income900; $40 reset rounds, first saving140 then settled100 income800 shown in graphic. Earlier $20 summary retained."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal while $40 model active",
+      "outcome": "Corrected to100; explained lost spending becomes lost income and investment limit. Reveal only described $20 baseline120/900 while current chart showed140/800."
+    },
+    {
+      "id": "V",
+      "action": "Inspected settled40 and reveal screenshots",
+      "outcome": "1257x992 dark Chrome; curve, income800, saving100, controls and text legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment separates immediate saving increase from settled economy outcome.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step/run exposes feedback and larger cut preserves saving while lowering income further.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Causal feedback and investment condition explained, but reveal keeps baseline20 result beside active40 chart.",
+      "evidence": "R,V",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core labels readable; current chart income800 and reveal income900 create state-reference ambiguity.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conditional principle stated and investment caveat offered; no new applied case.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic modes checked.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual120 prediction briefly appears then falls back to100 after feedback.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve shows transient jump and convergence; income shown separately.",
+      "evidence": "E,V",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step/run and two cut sizes support reversible comparison.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Toy collective-saving caution with fixed investment limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Transient versus settled outcome, income feedback and investment condition linked.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result needs iterative economy-wide feedback and distinction between individual plans and aggregate realized saving.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Spending-income feedback, investment identity and equilibrium introduced together."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "80% previous-income recurrence, rounds and saving versus income metrics."
+    },
+    "conceptualDemand": "Reason across rounds and fixed-investment condition; immediate action differs from settled result.",
+    "interfaceBurden": "Retained baseline summary and reveal differ from active larger-cut chart."
+  },
+  "whyCool": "A $40 cut raises first-round saving to140 but eventually leaves saving at100 with income down to800.",
+  "caveat": "Reveal describes20-cut income900 even after larger-cut chart shows800.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (6/6 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "everyone-saves-nobody-does",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/everyone-saves-nobody-does",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "43782f84069a0a37fc22b90de382ff5996a7c178343ed403611e4d8669bcf0b6",
+    "metaSha256": "b47b24f9124cf7daa547ce85f2094d27b2eae1ed45e7dbf0978971e4acce2e32"
+  }
+}

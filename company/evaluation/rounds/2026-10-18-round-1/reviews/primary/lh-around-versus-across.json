@@ -1,0 +1,104 @@
+{
+  "slug": "lh-around-versus-across",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-around-versus-across",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted5 m diagonal for3\u00d74 room rather than7 along two walls or3.5.",
+    "TestA showed full perimeter14 with2\u00d7(4+3); Bdiagonal5 with squared relation.",
+    "Width8 changed perimeter22 and diagonal8.544; drawings showed boundary versus straight crossing.",
+    "Reveal explicitly separated original4m width and current8m, then distinguished all-three distances14/7/5 and advised naming the route."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires diagonal/Pythagorean understanding beyond simple perimeter.",
+    "conceptualDemand": "Path definition and squared lengths.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Three sensible distances belong to the same room, but answer different questions.",
+  "caveat": "The rounded8.544 should use an approximate equality when squared; ideal2D length does not establish real object maneuverability or cable routing.",
+  "effort": "Completed prediction,both measures,two widths,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear route distinction and accurate changed-state framing.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear geometric dimensions and plausible path distractors.",
+      "evidence": "Diagonal versus two-wall route.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Width changes both path measures and displayed expressions.",
+      "evidence": "4\u21928 width,14/5\u219222/8.544.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original/current states and three-route distinction resolve the initial confusion.",
+      "evidence": "Perimeter,half-boundary and diagonal separated.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Path drawings and units are clear; rounded diagonal is used in an equality expression.",
+      "evidence": "8.544 is rounded,not exact sqrt73.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete measurement rule identifies the required route before formula.",
+      "evidence": "Name route before measuring.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Across is shorter than adding two walls.",
+      "evidence": "5 versus7.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Boundary outline and diagonal distinguish measured objects.",
+      "evidence": "Two contrasting paths.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Width slider changes geometry.",
+      "evidence": "Two tests and variable width.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful route/measurement distinction.",
+      "evidence": "Ideal rectangle only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates different length concepts and Pythagorean relation.",
+      "evidence": "One fixed height.",
+      "confidence": "medium"
+    }
+  }
+}

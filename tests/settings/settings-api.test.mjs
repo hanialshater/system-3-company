@@ -74,7 +74,7 @@ test("B1/SS2: caps. subjects cannot exceed the domain count; more than 50 lessOf
 });
 
 test("B1: wrong types are malformed and the response never echoes the input", async () => {
-  for (const b of [[], "x", { personalizationOn: "yes" }, { subjects: "math" }, { lessOf: { a: 1 } }, { mode: "union" }]) {
+  for (const b of [[], "x", { experiences: [], challenge: null, personalizationOn: "yes" }, { subjects: "math" }, { lessOf: { a: 1 } }, { mode: "union" }]) {
     const res = await handleSettingsPut(put(b), deps(memoryStore()));
     assert.equal(res.status, 400);
     assert.deepEqual(await body(res), { error: "malformed" });
@@ -87,9 +87,9 @@ test("B1: wrong types are malformed and the response never echoes the input", as
 
 test("read path: ids that left the catalog are ignored, not rewritten in the background (SS3)", async () => {
   const store = memoryStore();
-  store.rows.set("u-fake-1", { personalizationOn: true, subjects: ["math", "retired-domain"], lessOf: ["lesson:gone", "lesson:fake-lesson"] });
+  store.rows.set("u-fake-1", { experiences: [], challenge: null, personalizationOn: true, subjects: ["math", "retired-domain"], lessOf: ["lesson:gone", "lesson:fake-lesson"] });
   const res = await handleSettingsGet(get(), deps(store));
-  assert.deepEqual((await body(res)).settings, { personalizationOn: true, subjects: ["math"], lessOf: ["lesson:fake-lesson"] });
+  assert.deepEqual((await body(res)).settings, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: ["lesson:fake-lesson"] });
   assert.equal(store.calls.put.length, 0, "a GET never writes");
   assert.deepEqual(store.rows.get("u-fake-1").subjects, ["math", "retired-domain"]);
 });
@@ -100,17 +100,17 @@ test("D1: no row and NULL both read as no choice; a no-choice write on an accoun
   const store = memoryStore();
   const res = await handleSettingsGet(get(), deps(store));
   assert.equal(res.status, 200);
-  assert.deepEqual((await body(res)).settings, { personalizationOn: null, subjects: [], lessOf: [] });
+  assert.deepEqual((await body(res)).settings, { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] });
   assert.equal(res.headers.get("cache-control"), "no-store");
   const w = await handleSettingsPut(put({ personalizationOn: null, subjects: [], lessOf: ["lesson:not-real"] }), deps(store));
   assert.equal(w.status, 200);
-  assert.deepEqual((await body(w)).settings, { personalizationOn: null, subjects: [], lessOf: [] });
+  assert.deepEqual((await body(w)).settings, { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] });
   assert.equal(store.calls.writes.length, 0, "nothing written");
   assert.equal(store.rows.size, 0);
   const m = await handleSettingsPut(put({ mode: "merge", personalizationOn: null }), deps(store));
   assert.equal(m.status, 200);
   assert.equal(store.rows.size, 0, "a no-choice merge creates no row either");
-  store.rows.set("u-fake-1", { personalizationOn: null, subjects: [], lessOf: [] });
+  store.rows.set("u-fake-1", { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] });
   assert.deepEqual(S.servingSettings(S.cleanStored(null, FAKE)), S.servingSettings(S.cleanStored(store.rows.get("u-fake-1"), FAKE)));
   assert.equal(S.servingSettings(S.cleanStored(null, FAKE)).mode, "no-choice");
 });
@@ -123,10 +123,10 @@ test("D2: an explicit false wins over subjects and lessOf, and the next read see
   const off = await handleSettingsPut(put({ personalizationOn: false }), d);
   assert.equal(off.status, 200);
   const after = (await body(await handleSettingsGet(get(), d))).settings;
-  assert.deepEqual(after, { personalizationOn: false, subjects: ["math"], lessOf: ["domain:cs"] }, "lists kept, off stored");
+  assert.deepEqual(after, { experiences: [], challenge: null, personalizationOn: false, subjects: ["math"], lessOf: ["domain:cs"] }, "lists kept, off stored");
   assert.deepEqual(S.servingSettings(after), { mode: "off" }, "off carries no filters to the serving code");
   // No cache: a change made directly in the store is what the very next request sees.
-  store.rows.set("u-fake-1", { personalizationOn: true, subjects: [], lessOf: [] });
+  store.rows.set("u-fake-1", { experiences: [], challenge: null, personalizationOn: true, subjects: [], lessOf: [] });
   assert.equal((await body(await handleSettingsGet(get(), d))).settings.personalizationOn, true);
   const reads = store.calls.get;
   await handleSettingsGet(get(), d);
@@ -134,7 +134,7 @@ test("D2: an explicit false wins over subjects and lessOf, and the next read see
   assert.equal(store.calls.get, reads + 2, "every GET reads the store");
 });
 
-test("D3: an arm, a timestamp or a score in the body is dropped unread; the store only ever receives the three choices", async () => {
+test("D3: an arm, a timestamp or a score in the body is dropped unread; the store only ever receives the five choices", async () => {
   const store = memoryStore();
   const res = await handleSettingsPut(
     put({ personalizationOn: null, subjects: ["cs"], arm: "test", exp: "EXP-1", updatedAt: 1, needScore: 0.9, fingerprint: { a: 1 }, ageBand: "13-15" }),
@@ -143,9 +143,9 @@ test("D3: an arm, a timestamp or a score in the body is dropped unread; the stor
   assert.equal(res.status, 200);
   assert.equal(store.calls.put.length, 1);
   assert.deepEqual(store.calls.put[0].keys, ["mode", "personalizationOn", "subjects"], "the request's two choices and the mode, nothing else");
-  assert.deepEqual(Object.keys(store.rows.get("u-fake-1")).sort(), ["lessOf", "personalizationOn", "subjects"]);
-  assert.deepEqual(Object.keys((await body(res)).settings).sort(), ["lessOf", "personalizationOn", "subjects"]);
-  assert.deepEqual(S.WRITABLE_KEYS, ["personalizationOn", "subjects", "lessOf"]);
+  assert.deepEqual(Object.keys(store.rows.get("u-fake-1")).sort(), ["challenge", "experiences", "lessOf", "personalizationOn", "subjects"]);
+  assert.deepEqual(Object.keys((await body(res)).settings).sort(), ["challenge", "experiences", "lessOf", "personalizationOn", "subjects"]);
+  assert.deepEqual(S.WRITABLE_KEYS, ["personalizationOn", "subjects", "lessOf", "experiences", "challenge"]);
 });
 
 test("set mode: keys not sent keep their stored values; an unchanged row is not rewritten", async () => {
@@ -153,7 +153,7 @@ test("set mode: keys not sent keep their stored values; an unchanged row is not 
   const d = deps(store);
   await handleSettingsPut(put({ subjects: ["math", "cs"], lessOf: ["lesson:fake-lesson"] }), d);
   await handleSettingsPut(put({ subjects: ["history"] }), d);
-  assert.deepEqual(store.rows.get("u-fake-1"), { personalizationOn: null, subjects: ["history"], lessOf: ["lesson:fake-lesson"] });
+  assert.deepEqual(store.rows.get("u-fake-1"), { experiences: [], challenge: null, personalizationOn: null, subjects: ["history"], lessOf: ["lesson:fake-lesson"] });
   const n = store.calls.writes.length;
   await handleSettingsPut(put({ subjects: ["history"] }), d);
   assert.equal(store.calls.writes.length, n, "an unchanged row is not rewritten");
@@ -170,26 +170,26 @@ test("G2: a merge into an account with no row writes the device's choices throug
     deps(store),
   );
   assert.equal(res.status, 200);
-  assert.deepEqual(store.rows.get("u-fake-1"), { personalizationOn: true, subjects: ["cs"], lessOf: ["lesson:fake-lesson"] });
+  assert.deepEqual(store.rows.get("u-fake-1"), { experiences: [], challenge: null, personalizationOn: true, subjects: ["cs"], lessOf: ["lesson:fake-lesson"] });
 });
 
 test("G3: the account row wins for the lists, no union, and the device takes it", async () => {
   const store = memoryStore();
-  store.rows.set("u-fake-1", { personalizationOn: true, subjects: ["math"], lessOf: [] });
+  store.rows.set("u-fake-1", { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: [] });
   const res = await handleSettingsPut(put({ mode: "merge", personalizationOn: true, subjects: ["cs"], lessOf: ["domain:history"] }), deps(store));
   const out = (await body(res)).settings;
-  assert.deepEqual(out, { personalizationOn: true, subjects: ["math"], lessOf: [] }, "a teen's lessOf on a shared device does not leak in");
+  assert.deepEqual(out, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: [] }, "a teen's lessOf on a shared device does not leak in");
   assert.deepEqual(store.rows.get("u-fake-1"), out);
 });
 
 test("G3: an explicit off on either side is never turned on by a merge", async () => {
   const cases = [
-    { account: { personalizationOn: true, subjects: [], lessOf: [] }, device: false, want: false },
-    { account: { personalizationOn: false, subjects: [], lessOf: [] }, device: true, want: false },
-    { account: { personalizationOn: null, subjects: [], lessOf: [] }, device: false, want: false },
+    { account: { experiences: [], challenge: null, personalizationOn: true, subjects: [], lessOf: [] }, device: false, want: false },
+    { account: { experiences: [], challenge: null, personalizationOn: false, subjects: [], lessOf: [] }, device: true, want: false },
+    { account: { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] }, device: false, want: false },
     { account: null, device: false, want: false },
-    { account: { personalizationOn: false, subjects: [], lessOf: [] }, device: null, want: false },
-    { account: { personalizationOn: null, subjects: [], lessOf: [] }, device: true, want: null },
+    { account: { experiences: [], challenge: null, personalizationOn: false, subjects: [], lessOf: [] }, device: null, want: false },
+    { account: { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] }, device: true, want: null },
   ];
   for (const c of cases) {
     const store = memoryStore();
@@ -227,7 +227,7 @@ test("access: 404 when accounts are off, 401 signed out, 403 for a missing or cr
   assert.equal((await handleSettingsPut(put({ subjects: ["cs"] }), deps(store))).status, 200);
 });
 
-test("the pg store: one parameterised statement per PUT, chosen by the request alone, four columns only", async () => {
+test("the pg store: one parameterised statement per PUT, chosen by the request alone, six columns only", async () => {
   const St = await import("./helpers.mjs").then((h) => h.storeMod());
   const { pgSettingsStore, writePlan, SET_UPSERT_SQL, SET_UPDATE_SQL, MERGE_SQL, SELECT_SQL } = St;
   const seen = [];
@@ -237,28 +237,28 @@ test("the pg store: one parameterised statement per PUT, chosen by the request a
     return { rows: text === SET_UPSERT_SQL ? [{ personalization_on: false, subjects: ["cs"], less_of: ["domain:math"] }] : [] };
   };
   const st = pgSettingsStore(q);
-  assert.deepEqual(await st.get("u-fake-1"), { personalizationOn: null, subjects: ["math"], lessOf: [] });
+  assert.deepEqual(await st.get("u-fake-1"), { experiences: [], challenge: null, personalizationOn: null, subjects: ["math"], lessOf: [] });
   seen.length = 0;
   // A write runs exactly one statement and no read before it (D2a).
   const out = await st.put("u-fake-1", { mode: "set", personalizationOn: false });
   assert.deepEqual(seen.map((c) => c.text), [SET_UPSERT_SQL]);
-  assert.deepEqual(seen[0].values, ["u-fake-1", false, [], [], true, false, false], "only personalizationOn is flagged as sent");
-  assert.deepEqual(out, { personalizationOn: false, subjects: ["cs"], lessOf: ["domain:math"] }, "answer comes from RETURNING");
+  assert.deepEqual(seen[0].values, ["u-fake-1", false, [], [], [], null, true, false, false, false, false], "only personalizationOn is flagged as sent");
+  assert.deepEqual(out, { experiences: [], challenge: null, personalizationOn: false, subjects: ["cs"], lessOf: ["domain:math"] }, "answer comes from RETURNING");
   // Nothing returned (unchanged, or no row): the answer is read after the write, never before it.
   seen.length = 0;
   await st.put("u-fake-1", { mode: "set", subjects: [] });
   assert.deepEqual(seen.map((c) => c.text), [SET_UPDATE_SQL, SELECT_SQL], "a no-choice set is a plain UPDATE: no row created (D1)");
-  assert.deepEqual(writePlan("u", { mode: "set", subjects: ["cs"] }).values, ["u", null, ["cs"], [], false, true, false]);
+  assert.deepEqual(writePlan("u", { mode: "set", subjects: ["cs"] }).values, ["u", null, ["cs"], [], [], null, false, true, false, false, false]);
   assert.deepEqual(writePlan("u", { mode: "merge", personalizationOn: true, lessOf: ["domain:cs"] }), {
     text: MERGE_SQL,
-    values: ["u", true, [], ["domain:cs"], true],
+    values: ["u", true, [], ["domain:cs"], [], null, true],
   });
-  assert.equal(writePlan("u", { mode: "merge" }).values[4], false, "a no-choice merge proposes no row");
+  assert.equal(writePlan("u", { mode: "merge" }).values[6], false, "a no-choice merge proposes no row");
   // The set statements write a column only when its key was sent; the merge statement only ever writes false.
   for (const sql of [SET_UPSERT_SQL, SET_UPDATE_SQL]) {
-    assert.match(sql, /personalization_on = CASE WHEN \$5::boolean THEN .+ ELSE s\.personalization_on END/);
-    assert.match(sql, /subjects = CASE WHEN \$6::boolean THEN .+ ELSE s\.subjects END/);
-    assert.match(sql, /less_of = CASE WHEN \$7::boolean THEN .+ ELSE s\.less_of END/);
+    assert.match(sql, /personalization_on = CASE WHEN \$7::boolean THEN .+ ELSE s\.personalization_on END/);
+    assert.match(sql, /subjects = CASE WHEN \$8::boolean THEN .+ ELSE s\.subjects END/);
+    assert.match(sql, /less_of = CASE WHEN \$9::boolean THEN .+ ELSE s\.less_of END/);
     assert.match(sql, /IS DISTINCT FROM/, "an unchanged row is not rewritten");
   }
   assert.match(MERGE_SQL, /DO UPDATE SET personalization_on = false WHERE EXCLUDED\.personalization_on IS FALSE/);
@@ -271,11 +271,11 @@ test("the pg store: one parameterised statement per PUT, chosen by the request a
   assert.equal(await none.get("u-fake-2"), null);
 });
 
-test("B3 export block: the stored row as is, D1 block when there is none, three keys only", () => {
-  assert.deepEqual(S.settingsExportBlock(null), { personalizationOn: null, subjects: [], lessOf: [] });
-  const row = { personalizationOn: false, subjects: ["math", "retired-domain"], lessOf: ["lesson:gone"] };
+test("B3 export block: the stored row as is, D1 block when there is none, five choice keys only", () => {
+  assert.deepEqual(S.settingsExportBlock(null), { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: [] });
+  const row = { experiences: [], challenge: null, personalizationOn: false, subjects: ["math", "retired-domain"], lessOf: ["lesson:gone"] };
   const block = S.settingsExportBlock(row);
   assert.deepEqual(block, row, "an export is the learner's copy of the row, stale ids included");
   assert.notEqual(block.subjects, row.subjects);
-  assert.deepEqual(Object.keys(block), ["personalizationOn", "subjects", "lessOf"]);
+  assert.deepEqual(Object.keys(block), ["personalizationOn", "subjects", "lessOf", "experiences", "challenge"]);
 });

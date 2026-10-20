@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-average-different-ride",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-average-different-ride",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-average-different-ride",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/same-average-different-ride/meta.json",
+    "metaSha256": "e26f61c44c09d476eb8fafb1729d2bbcd367015c67b9d2c5086b875801615a21",
+    "demoSha256": "c48ad4ce60d0b91cc47b890f9cc62aee849f70235ae2e8ac0c7c8084af14b37d",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-average-different-ride",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-average-different-ride.json"
+  },
+  "date": "2026-10-18T20:19:57.786484+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Choseequallyoften andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "InitialX20paths1behind,average106. SwitchedY5behindaverage142;new20Y8behind112. Thousandplayers eachgaveX15%behind,Y32%; inspected visibly broaderYpaths."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "ReadYcorrection,1000sample means94/105,exactbehind32%Y14%X;Yneedsatleast9winsof100,rarelargepayoffs create widerdistribution."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initialX,Y,newY1000 andscrolledreveal inspected. Rednegativeendpaths,axis andmean/behindcounters legible.20pathcounter remains112while1000mean105appearsinreveal,clearlyseparate populations."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Same expectedmean contrasts distinct outcome risk.",
+      "evidence": "X50%+10/-8,Y10%+55/-5,both+1,100plays.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Pathandlargerpopulation contrasts show variability.",
+      "evidence": "X1of20behind,Y5then8;1000X15%Y32%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and thresholds connect spread to downside.",
+      "evidence": "RareYwins,fewer9meansloss;means94/105near100butrisksdiffer.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Redpaths andseparate mean/count summarize outcomes.",
+      "evidence": "20playerchart versus1000label distinct;exact/observedrates identified.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General average/spread principle supplied without new application.",
+      "evidence": "Same two games;no different task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equalmean permits twiceasfrequentloss.",
+      "evidence": "Exact32%versus14%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Individual paths reveal differing spread.",
+      "evidence": "Ybroadstaircases andmore negativeends thanX.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switchgamesandresampletoyplayers.",
+      "evidence": "New20and1000actions tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful distinction between average payoff andindividualrisk.",
+      "evidence": "Sameexpectedvalue doesnotdetermine chanceofloss.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mean,spread,tailrisk andsampling linked.",
+      "evidence": "20versus1000andexactrates.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Distinguish expectedmean from probabilityofloss over repeatedrandomreturns.",
+    "interfaceBurden": "Game toggles andbatchbuttons;automaticpaths.",
+    "prerequisiteNovelty": "Expectedvalue stated;distribution introduced visually.",
+    "notationRepresentationBurden": "Dollars,percent,paths andmean;nosymbolicalgebra."
+  }
+}

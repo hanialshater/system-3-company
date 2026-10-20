@@ -1,0 +1,104 @@
+{
+  "slug": "wages-bought-more-wheat",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wages-bought-more-wheat",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted more than twice as much wheat purchasable in1810 despite price rising2.4\u00d7; wage growth was not visible before answering.",
+    "Playfair view added weekly wage5\u219230 shillings,6\u00d7. Ratio view gave0.12\u21920.30 quarters,2.5\u00d7.",
+    "Marked best1785 at0.55 and worst1595 at0.09, demonstrating nonmonotonic progress.",
+    "Reveal accurately explained wage/price ratio and the limitation of one trade and one food versus a full cost of living."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires interpreting ratios and different units.",
+    "conceptualDemand": "Nominal versus real purchasing power.",
+    "interfaceBurden": "Four chart controls."
+  },
+  "whyCool": "Dividing two familiar lines reveals a story that rising prices alone conceal.",
+  "caveat": "Historical figures are one source, trade and food; exact wage growth is withheld until after the prediction.",
+  "effort": "Completed prediction, nominal/ratio views, best/worst years, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strong transferable chart-reading lesson with a weakly informed initial estimate.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Tests a historical prior, but wage information needed for the numerical conclusion is initially withheld.",
+      "evidence": "Only price growth2.4\u00d7 supplied before answering.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Nominal series, ratio transformation and extrema reveal distinct aspects.",
+      "evidence": "Dual-axis source view versus purchasing-power line.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct ratio arithmetic and endpoint-versus-best distinction match observed values.",
+      "evidence": "6/2.4=2.5; best1785 not1810.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units and scope are explicit, with the ratio replacing two separate scales.",
+      "evidence": "Quarters of wheat per weekly wage.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "A concrete data-reading method includes its applicability limit.",
+      "evidence": "Divide wage by price; one food and trade not general living costs.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Higher prices coexist with substantially higher purchasing power.",
+      "evidence": "Wage growth outpaces price growth.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Switching to a ratio chart clarifies what separate scales obscure.",
+      "evidence": "Nominal and ratio views.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Preset chart transformations.",
+      "evidence": "Four buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful method for comparing money amounts with what they buy.",
+      "evidence": "Explicit warning against treating one item as total cost of living.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates nominal values, purchasing power, endpoint change and extrema.",
+      "evidence": "Historical chart and normalized ratio.",
+      "confidence": "medium"
+    }
+  }
+}

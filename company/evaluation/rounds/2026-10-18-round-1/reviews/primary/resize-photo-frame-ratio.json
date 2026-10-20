@@ -1,0 +1,103 @@
+{
+  "slug": "resize-photo-frame-ratio",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/resize-photo-frame-ratio",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted keep ratio versus stretch; option name repeats goal.",
+    "30\u00d720 frame,4:3 photo:stretch0empty,keep66.67. Width24 gives48empty with preserved photo ratio.",
+    "Styled screenshots show stretched versus contained triangle image; final readable reveal explains uniform scaling,margins,cropping third option omitted."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple visual proportion comparison.",
+    "conceptualDemand": "Uniform versus independent scaling.",
+    "interfaceBurden": "Two modes,one width slider."
+  },
+  "whyCool": "Filling the frame and preserving the picture can require different choices.",
+  "caveat": "Prediction labels spoil challenge; a less explicit pair of images would test recognition better.",
+  "effort": "Prediction,mode contrast,width boundary,reveal,two screenshots.",
+  "provisionalBucket": "solid-revise-prediction",
+  "bucketReason": "Working visual comparison,weak question.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Keep ratio choice directly restates preserve proportions.",
+      "evidence": "Question and answer synonyms.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Frame width and fit mode change visible distortion/margins.",
+      "evidence": "30/24 width,0/66.67/48 area.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and third alternative explicit.",
+      "evidence": "Uniform scaling,margins,cropping excluded.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable diagram and controls; duplicate verdict minor.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete image-fitting choice with tradeoff and alternative.",
+      "evidence": "Preserve ratio versus margins,or crop.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar distortion tradeoff.",
+      "evidence": "Stretch versus contain.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Image geometry visibly changes.",
+      "evidence": "Triangle and frame.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode and width variation.",
+      "evidence": "30\u219224.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Photo fitting central.",
+      "evidence": "Ratio and margins.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two constraints and area tradeoff.",
+      "evidence": "Frame/photo ratios differ.",
+      "confidence": "medium"
+    }
+  }
+}

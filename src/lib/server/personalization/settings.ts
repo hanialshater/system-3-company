@@ -1,13 +1,18 @@
 // The learner's feed settings: shape, validation and the read rules (W-1717). Pure: no I/O, no logging.
 // Owner: learner-data-engineer. Privacy ruling: company/reviews/_privacy/2026-10-16-personalization-batch-reads.md
-// §3 (B1–B4), §3.1 (D1–D3), §3.2 (G1–G4). Schema: company/personalization/data/00N_settings.up.sql (W-1942 draft).
+// §3 (B1–B4), §3.1 (D1–D3), §3.2 (G1–G4). Schema: db/migrations/003_account_preferences.up.sql and 004_account_preference_experiences.up.sql.
 // Design note for this API: company/personalization/data/2026-10-16-settings-api-note.md
 //
 // Every value here is a choice the learner stated (SS3). Nothing derived is stored (D20): no fingerprint, need
 // score, composer term, ability or mastery state, no arm (D3), no timestamp. Imported by relative path only, so the
 // node:test loader can run it without the Next alias.
 
-/** The three stated choices, in the shape of the s3c-export-v1 `settings` block and the local key D22. */
+export const EXPERIENCE_KEYS = ["surprise", "visualExplanation", "playfulness", "practicalValue", "depth"] as const;
+export type Challenge = null | "gentle" | "balanced" | "demanding";
+const challenges = new Set(["gentle", "balanced", "demanding"]);
+const cleanExperiences = (raw: readonly unknown[]) => keepMembers(raw, v => (EXPERIENCE_KEYS as readonly string[]).includes(v));
+
+/** The stated choices, in the shape of the s3c-export-v1 `settings` block. */
 export type FeedSettings = {
   /** AMD-008 P4. null = the learner has made no choice (D1); false always wins (D2). */
   personalizationOn: boolean | null;
@@ -15,10 +20,12 @@ export type FeedSettings = {
   subjects: string[];
   /** Typed catalog references: "domain:<id>" | "concept:<id>" | "lesson:<slug>". */
   lessOf: string[];
+  experiences: string[];
+  challenge: Challenge;
 };
 
 /** D1: a missing row and a NULL column mean the same thing, "no choice". */
-export const NO_CHOICE: Readonly<FeedSettings> = Object.freeze({ personalizationOn: null, subjects: [], lessOf: [] });
+export const NO_CHOICE: Readonly<FeedSettings> = Object.freeze({ personalizationOn: null, subjects: [], lessOf: [], experiences: [], challenge: null });
 
 /** What the write path checks membership against (B1). Built from content/ and the lesson registry by the wiring. */
 export type SettingsCatalog = {
@@ -27,7 +34,7 @@ export type SettingsCatalog = {
   lessons: ReadonlySet<string>;
 };
 
-/** SS2 database backstops (00N_settings.up.sql). The app cap for subjects is the live domain count, lower. */
+/** SS2 database backstops (numbered settings migrations). The app cap for subjects is the live domain count, lower. */
 export const DB_MAX_SUBJECTS = 32;
 export const MAX_LESS_OF = 50;
 /** A raw array longer than this is refused before any work: no real settings screen sends it. */
@@ -36,7 +43,7 @@ export const MAX_RAW_ITEMS = 200;
 export const MAX_RAW_ITEM_CHARS = 220;
 
 /** The only keys a write may carry. Any other key (an arm, a timestamp, a score) is dropped unread (gate 2.3, D3). */
-export const WRITABLE_KEYS = ["personalizationOn", "subjects", "lessOf"] as const;
+export const WRITABLE_KEYS = ["personalizationOn", "subjects", "lessOf", "experiences", "challenge"] as const;
 
 const LESS_OF_KINDS = ["domain", "concept", "lesson"] as const;
 
@@ -82,11 +89,13 @@ export function cleanLessOf(raw: readonly unknown[], catalog: SettingsCatalog): 
  * background (SS3).
  */
 export function cleanStored(row: FeedSettings | null, catalog: SettingsCatalog): FeedSettings {
-  if (!row) return { ...NO_CHOICE, subjects: [], lessOf: [] };
+  if (!row) return { ...NO_CHOICE, subjects: [], lessOf: [], experiences: [] };
   return {
     personalizationOn: row.personalizationOn === true || row.personalizationOn === false ? row.personalizationOn : null,
     subjects: cleanSubjects(row.subjects ?? [], catalog),
     lessOf: cleanLessOf(row.lessOf ?? [], catalog),
+    experiences: cleanExperiences(row.experiences ?? []),
+    challenge: challenges.has(row.challenge ?? "") ? row.challenge : null,
   };
 }
 
@@ -98,6 +107,8 @@ export type SettingsPatch = {
   personalizationOn?: boolean | null;
   subjects?: string[];
   lessOf?: string[];
+  experiences?: string[];
+  challenge?: Challenge;
 };
 
 export type ParseResult = { ok: true; patch: SettingsPatch } | { ok: false; error: "malformed" | "too_many" };
@@ -120,13 +131,18 @@ export function parseSettingsWrite(body: unknown, catalog: SettingsCatalog): Par
     if (v !== true && v !== false && v !== null) return { ok: false, error: "malformed" };
     patch.personalizationOn = v;
   }
-  for (const key of ["subjects", "lessOf"] as const) {
+  if (Object.hasOwn(body, "challenge")) {
+    const value = body.challenge;
+    if (value !== null && (typeof value !== "string" || !challenges.has(value))) return { ok: false, error: "malformed" };
+    patch.challenge = value as Challenge;
+  }
+  for (const key of ["subjects", "lessOf", "experiences"] as const) {
     if (!Object.hasOwn(body, key)) continue;
     const raw = body[key];
     if (!Array.isArray(raw)) return { ok: false, error: "malformed" };
     if (raw.length > MAX_RAW_ITEMS) return { ok: false, error: "too_many" };
-    const clean = key === "subjects" ? cleanSubjects(raw, catalog) : cleanLessOf(raw, catalog);
-    const cap = key === "subjects" ? subjectsCap(catalog) : MAX_LESS_OF;
+    const clean = key === "experiences" ? cleanExperiences(raw) : key === "subjects" ? cleanSubjects(raw, catalog) : cleanLessOf(raw, catalog);
+    const cap = key === "experiences" ? 5 : key === "subjects" ? subjectsCap(catalog) : MAX_LESS_OF;
     if (clean.length > cap) return { ok: false, error: "too_many" };
     patch[key] = clean;
   }
@@ -139,6 +155,8 @@ export function freshRow(patch: SettingsPatch): FeedSettings {
     personalizationOn: patch.personalizationOn ?? null,
     subjects: patch.subjects ?? [],
     lessOf: patch.lessOf ?? [],
+    experiences: patch.experiences ?? [],
+    challenge: patch.challenge ?? null,
   };
 }
 
@@ -169,18 +187,23 @@ export function applyWrite(row: FeedSettings | null, patch: SettingsPatch): Feed
   }
   if (patch.mode === "merge") {
     const off = row.personalizationOn === false || patch.personalizationOn === false;
-    return { personalizationOn: off ? false : row.personalizationOn, subjects: row.subjects, lessOf: row.lessOf };
+    return { personalizationOn: off ? false : row.personalizationOn, subjects: row.subjects, lessOf: row.lessOf, experiences: row.experiences ?? [], challenge: row.challenge ?? null };
   }
   return {
     personalizationOn: patch.personalizationOn !== undefined ? patch.personalizationOn : row.personalizationOn,
     subjects: patch.subjects ?? row.subjects,
     lessOf: patch.lessOf ?? row.lessOf,
+    experiences: patch.experiences ?? row.experiences ?? [],
+    challenge: patch.challenge !== undefined ? patch.challenge : row.challenge ?? null,
   };
 }
 
 export function sameSettings(a: FeedSettings, b: FeedSettings): boolean {
   return (
     a.personalizationOn === b.personalizationOn &&
+    (a.challenge ?? null) === (b.challenge ?? null) &&
+    (a.experiences ?? []).length === (b.experiences ?? []).length &&
+    (a.experiences ?? []).every((v, i) => v === b.experiences?.[i]) &&
     a.subjects.length === b.subjects.length &&
     a.subjects.every((v, i) => v === b.subjects[i]) &&
     a.lessOf.length === b.lessOf.length &&
@@ -227,10 +250,12 @@ export function buildSettingsCatalog(
  * view); no row gives the D1 "no choice" block. Same shape as the local key D22, so the file imports unchanged.
  */
 export function settingsExportBlock(row: FeedSettings | null): FeedSettings {
-  if (!row) return { personalizationOn: null, subjects: [], lessOf: [] };
+  if (!row) return { ...NO_CHOICE, subjects: [], lessOf: [], experiences: [] };
   return {
     personalizationOn: row.personalizationOn === true || row.personalizationOn === false ? row.personalizationOn : null,
     subjects: [...row.subjects],
     lessOf: [...row.lessOf],
+    experiences: [...(row.experiences ?? [])],
+    challenge: row.challenge ?? null,
   };
 }

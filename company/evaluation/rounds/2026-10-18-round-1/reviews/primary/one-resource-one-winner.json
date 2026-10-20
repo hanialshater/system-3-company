@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-resource-one-winner",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-resource-one-winner",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "c1d3960569ad1e600334da981321fcbbec8a5e03a2044bf7d3978861329780f1",
+    "demoSha256": "92c222e588d043a39440d3b067963a19c574169a476111aed72f757866b14015",
+    "metaPath": "src/demos/life/one-resource-one-winner/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected B takes over, starting eight times as common with break-even five versus A two, and locked it in.",
+    "exploration": "Day20 gave A26, B35, nutrient3.9. Day400 gave A80, B0, nutrient2. Changing B need to3 still A80/B0/nutrient2. Changing B need to1 reversed to A0/B90/nutrient1 and unlocked reveal.",
+    "reveal": "Corrected original A winner, cites both day400 outcomes. Explains winner draws nutrient to own break-even, below rival's threshold causes decline regardless starting abundance. One limiting nutrient condition, several nutrients may allow coexistence.",
+    "visual": "Inline initial/final reversed screenshots inspected: species dots switch from mostly red initial to all red at B-needs1, nutrient bar ends at B1 below A2 markers. Readout text and buttons legible. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Starting abundance versus resource efficiency creates plausible competition alternatives.",
+      "evidence": "B selected despite higher break-even requirement.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Time progression and requirement contrasts expose unchanged and reversed winners around threshold.",
+      "evidence": "B needs5/3 loses,needs1 wins;nutrient follows winner2/1.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects exact resource/winner observations to mechanism and coexistence condition.",
+      "evidence": "Day40080/0 versus0/90,one nutrient versusseveral.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Defined break-even,numbered markers,dots and readouts make mechanism legible.",
+      "evidence": "Successful time/requirement path and screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General resource-efficiency principle and condition offered without concrete new species/resource case.",
+      "evidence": "One limiting nutrient lower requirement wins;several may coexist.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Initial abundance prediction reversed by low-resource competitor,then winner flips when requirement changes.",
+      "evidence": "A80 despiteB initial40 versusA5;B winsneeds1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Dots and nutrient threshold bar carry mechanism over three requirement states.",
+      "evidence": "Time progression and final reversed screenshot.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time presets and requirements support reversible experiment.",
+      "evidence": "Day20/400 andneeds5/3/1.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete ecological resource competition central.",
+      "evidence": "Two plants one nutrient.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Starting abundance,long-run resource threshold and coexistence condition linked.",
+      "evidence": "Multiple requirement states and reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links break-even threshold to resource depletion and competing population changes.",
+    "conceptualDemand": "Several linked relations supported by defined threshold and bar.",
+    "interfaceBurden": "Low:time andrequirement presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:resource competition andbreak-even",
+    "notationRepresentationBurden": "low:units,days anddot counts"
+  },
+  "whyCool": "Reducing B's requirement from three to one flips the winner and pulls the nutrient bar below A's survival threshold.",
+  "caveat": "Only one nutrient and fixed requirements tested; coexistence extension is stated rather than simulated.",
+  "missingEvidence": [
+    "Day100",
+    "Equal requirements",
+    "Multiple nutrients",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "momentum-sweet-spot",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/momentum-sweet-spot",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionplain51steps,momentum0.8nineteen,0.9fewer19/about30/about51; chosefewer19. Geometry/update/step-size details notgivenfor exactcount inference.",
+    "Testedallpresets:0=>51,0.5=>21,0.8=>19,0.9=>30.",
+    "Revealmemoryhelpsvalleyprogressbut0.9overshootsthreetimes;inventedtoyvalley,real loss surfaces differ.",
+    "Screenshot0.9trajectoryzigzagsaroundbottom,comparisoncounts clear;actualrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Physicalball-memoryanalogy supportscorecomparison;technicalgradientdescent interpretationadds prerequisites.",
+    "conceptualDemand": "Tradeprogressagainstovershoot ratherthanmaximizeoneparameter.",
+    "interfaceBurden": "Fourclearbuttons;prosecutoff."
+  },
+  "whyCool": "Theballwithmorememorykeepssailingpastthebottom,soitneedsmoresteps tosettle.",
+  "caveat": "Fixedinventedvalleyandunshownoptimizerconfiguration;notageneralbestmomentumrecommendation.",
+  "effort": "Prediction,allfourmomentumsettings,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clearcounterexampletomore-is-better;exactpredictionandmodelscope needcare.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Goodmore-is-betterbelief butexactstepcountalternativesdependonunspecifiedoptimizerdetails.",
+      "evidence": "Only0and0.8counts givenbeforecommit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fixedvalleywithfourmomentumsettingsshowsnonmonotonicperformance.",
+      "evidence": "51=>21=>19=>30steps.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectscountstoovershootmechanism andqualifiestoygeometry.",
+      "evidence": "Threeovershootsat0.9statedwithtrajectory.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Countsandpathusable,butactualrightedgecutoff andgradienttermsassumed.",
+      "evidence": "Screenshotrevealtruncatedlines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Tuningprinciple stated,nonewvalley/optimizerproblem practiced.",
+      "evidence": "Onlyoneinventedlosssurface.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Keepingmorespeed canmakedescent slower.",
+      "evidence": "0.9takes30versus0.8nineteen.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Trajectoryoverlayshowsovershooting.",
+      "evidence": "0.9zigzagsaroundminimum.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fourpresetoptimizertraces.",
+      "evidence": "No freegeometry/step-sizecontrol.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingoptimizer-tuningintuition.",
+      "evidence": "Too-muchmomentumcaveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Memory,zigzags,overshoot,andnonmonotonicoptimum.",
+      "evidence": "Fourcoefficientcomparisons.",
+      "confidence": "medium"
+    }
+  }
+}

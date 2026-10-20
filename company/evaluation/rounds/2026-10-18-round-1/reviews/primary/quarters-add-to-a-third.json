@@ -1,0 +1,104 @@
+{
+  "slug": "quarters-add-to-a-third",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/quarters-add-to-a-third",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted1/2 limit for1/4+1/16+1/64...;alternatives3/8and1/3.",
+    "Level1 solid/hatched/dotted each0.25,leftover0.25;level2each0.3125,leftover0.0625;level6each0.3333,leftover0.0002. Recursivecorner splits visiblymatchthreepatternareas.",
+    "AttemptedresetthenStepbeforeShowwhy;revealfinalstagereturnslevel6,soresetintermediatestatenotindependentlyobserved. Reveal explainsthreeequalpatternareasandvanishingleftover implythirds.",
+    "1280x720light three screenshots fullyreadable,patternsandresidualvisible."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concreteareas supportabstractinfinite-limitargument.",
+    "conceptualDemand": "Equalareaandvanishingremainder.",
+    "interfaceBurden": "Simplebuttons;resetintermediatestateunverified."
+  },
+  "whyCool": "Three different patterns collect exactly the same sequence of areas, and together they fill the square as the leftover corner vanishes.",
+  "caveat": "Fixedratioonly;finitelevel6approximateslimit,whichrevealexplains. Resetfollowedbyrevealforcedlevel6;noisolatedresetverification.",
+  "effort": "Prediction,levels1/2/6,reveal,three screenshots.",
+  "provisionalBucket": "launch-candidate",
+  "bucketReason": "Readableconstructiveproofwithclearfinite/infinitedistinction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitconvergentserieswithplausiblefractionalternatives.",
+      "evidence": "Quarterrecurrenceandlimitquestion.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepandjumplevels expose recursiveequal-area invariant.",
+      "evidence": "Levels1,2,6observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Derivesoriginalanswerfromequalpartitions plusfinite/infiniteresidualdistinction.",
+      "evidence": "Threeequalpatterns,remainingcornershrinkstozero.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Patternlegends,roundedsums andresidual explicit;fullprose readable.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Specificseriesproof,no newratio/applicationexercise.",
+      "evidence": "Fixedquarterconstruction.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Infinitelymanyquartersofquartersfillone-third.",
+      "evidence": "0.3333atlevel6.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple recursivelevels prove equalarea ratherthanjustnumericaltrend.",
+      "evidence": "Solid,hatched,dottedallmatchwhilecorner shrinks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Constructionsteps/jumpinvitevisualdiscovery.",
+      "evidence": "Level1to2to6.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Mathematicalinfinite-seriescuriosity.",
+      "evidence": "Noexternalconcretetask.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometricseries,equal-partinvariant andlimitingresidual.",
+      "evidence": "Threepatternspartitionallbutvanishingcorner.",
+      "confidence": "medium"
+    }
+  }
+}

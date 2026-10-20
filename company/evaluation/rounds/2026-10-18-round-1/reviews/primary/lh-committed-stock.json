@@ -1,0 +1,104 @@
+{
+  "slug": "lh-committed-stock",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-committed-stock",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted free stock smaller than physical stock with ten on shelf and six committed.",
+    "A calculated max(0,10\u22126)=4 free; B counted ten physical.",
+    "Reduced shelf count to minimum six, exactly covering commitments: zero free, six physical.",
+    "Reveal accurately separated original ten from current six and explained that commitments change availability without making objects disappear."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Subtraction with a zero boundary.",
+    "conceptualDemand": "Reserved versus available stock.",
+    "interfaceBurden": "Two tests and shelf slider."
+  },
+  "whyCool": "The shelf can look full while nothing is available for a new request.",
+  "caveat": "Fixed commitments and no incoming stock,damaged units or timing; drawing could partition actual reserved/free quantities more explicitly.",
+  "effort": "Completed prediction,both counts,all-committed boundary,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical state distinction and accurate changed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear quantities but title and comparative wording make the answer straightforward.",
+      "evidence": "Free versus physical after reservations.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stock slider reaches the all-committed boundary.",
+      "evidence": "Ten/four free versus six/zero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate states explain physical existence versus allocation.",
+      "evidence": "Commitments constrain requests,not object count.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fixed six commitments and no incoming stock are explicit.",
+      "evidence": "Separate free and physical expressions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete availability rule grounded in reservations.",
+      "evidence": "Subtract committed units before accepting new requests.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Visible inventory can provide no availability.",
+      "evidence": "Six physical but zero free.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Outputs show the distinction, but no explicit reserved/free partition.",
+      "evidence": "Formulas carry meaning.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Shelf count controls availability.",
+      "evidence": "Two tests and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful reservation-aware inventory habit.",
+      "evidence": "No incoming stock assumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates existence and commitment state.",
+      "evidence": "Static allocation only.",
+      "confidence": "medium"
+    }
+  }
+}

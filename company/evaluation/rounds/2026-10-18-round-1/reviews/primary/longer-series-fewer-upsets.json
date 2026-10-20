@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "longer-series-fewer-upsets",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/longer-series-fewer-upsets",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "bc66f0e3a6453af5281a15ddc78e2b1cc1a80f0b08e7c6d0c524f29e1b505006",
+    "demoSha256": "0b3e9c4bde4602b0dc6da567ab9a6fe36a7016bcf67b3b8ec9ec2add88534ac3",
+    "metaPath": "src/demos/probability/longer-series-fewer-upsets/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected40% for best-of-seven underdog with independent40% per-game chance and locked it in.",
+    "exploration": "Initial best-of-one392 of1000,exact40%. Seven gave298 of1000,exact29%.101 gave29 of1000,exact2.1%,unlocking reveal.",
+    "reveal": "Corrected about29%; cites observed seven,one and101 counts but also says 'best-of-21 166' although21 never selected. Explains longer series washes out luck; independent steady40% condition and real-team variability.",
+    "visual": "Inline initial/101 screenshots inspected.1000-square grid has29 yellow cells at101,exact2.1% shown separately. Controls and series definition legible. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear single-game versus series probability misconception with independence condition.",
+      "evidence": "40% selected versus29% result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Series length directly changes empirical/exact upset probabilities.",
+      "evidence": "One392,seven298,10129 of1000.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains tested trend and conditions,but 'your' results includes untested21-series count.",
+      "evidence": "Reveal says best-of21 gave166 despite no21 action.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Each-square legend,series presets and separate exact chance clearly distinguish measures.",
+      "evidence": "Inspected101 screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Longer samples reduce upset principle and conditions offered without concrete new application.",
+      "evidence": "Independent steady40%,real teams vary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "40% prediction falls to29% for seven and2.1% for101.",
+      "evidence": "Three lengths and exact values.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Filled grid cells show diminishing upset frequency.",
+      "evidence": "101 screenshot29 yellow cells.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Length presets offer limited reversible comparisons.",
+      "evidence": "One,seven,101 tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete sports-format implication central.",
+      "evidence": "Underdog series chances.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Single-game versus series probability,simulation variation and independence linked.",
+      "evidence": "Empirical29/1000 versus exact2.1% and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks per-game chance versus majority series result across repeated trials.",
+    "conceptualDemand": "Nested probability with supported grid.",
+    "interfaceBurden": "Low: series presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: independence and series aggregation",
+    "notationRepresentationBurden": "moderate: counts versus percentages"
+  },
+  "whyCool": "Increasing the series to101 leaves only29 yellow upset squares out of1000 despite40% chances in every individual game.",
+  "caveat": "Reveal includes an untested21-game result as if observed; no varying-strength or dependence case.",
+  "fatalFindings": [
+    "Observation attribution: reveal lists best-of21 count166 although reviewer never selected21; specific feedback overstates performed path."
+  ],
+  "missingEvidence": [
+    "Best of3",
+    "Best of21",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

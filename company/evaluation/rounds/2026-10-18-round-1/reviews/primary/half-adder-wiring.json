@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "half-adder-wiring",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/half-adder-wiring",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "half-adder-wiring",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/cs/half-adder-wiring/meta.json",
+    "metaSha256": "d128b630ac351db79d985081b190cd3bb95fe03dfeba589186de87a3b10bcd60",
+    "demoSha256": "a4e1e26f21eb57d3d3994f32595e062ac981cb0914f0d6edffeb4b051ebddbbe",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/half-adder-wiring",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/half-adder-wiring.json"
+  },
+  "date": "2026-10-18T20:14:42.977480+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "ChoseORsum and locked; prediction defines each gate andbinary1+1=10."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "InitialORsum/XORcarry correct1of4. SetA=B1,wrong01; changed sumXOR gave00stillwrong; carryAND gave10and4of4truthrows. ToggledA0showed0+1thenrestored1+1."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "ReadXORcorrection,sumdigits0110 versuscarry0001; ORfails1+1; two gates formhalfadder."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,correctcircuit and scrolled reveal inspected. Litwires,outputdigits,truthrows and explanation legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Gate definitions and binary place roles scaffold inference.",
+      "evidence": "CarrythenSum and1+1=10 stated; OR/AND/XOR meanings supplied.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Debugging gate choices gives immediate four-case evidence.",
+      "evidence": "1of4to4of4 and1+1output10;0+1checked directly.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Truth patterns explain both gates and failure case.",
+      "evidence": "Sum0110=XOR,carry0001=AND;ORfailsdouble1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Wiring and table support binary distinction.",
+      "evidence": "Sum/carryoutputs separated,matching goal/circuit rows and illuminated wires.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Built requested halfadder without a new problem.",
+      "evidence": "No carry-in,multibit or fresh logic application.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Simple gates implement arithmetic.",
+      "evidence": "Correcttwo-gatewiring producesallfourcases.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Lit wires and truth table show logic outcome.",
+      "evidence": "A=B1sumdark0,carrylit1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Repair wrong circuit and flip inputs.",
+      "evidence": "Gatecycling andautomatictruthchecks.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful foundation for digital arithmetic.",
+      "evidence": "Halfadder links gates tosum.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Complete twoinputtruthspace but limited extension.",
+      "evidence": "No carry-inor fulladder.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Separate sum/carry bits and select two Boolean functions.",
+    "interfaceBurden": "Gatecycle andinputflip buttons; tableautomatic.",
+    "prerequisiteNovelty": "Binary carry andlogicfunctions introduced explicitly.",
+    "notationRepresentationBurden": "Binarypairs,truthrows andgate names; definitions supplied."
+  }
+}

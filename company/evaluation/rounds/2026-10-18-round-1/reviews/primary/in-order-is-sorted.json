@@ -1,0 +1,104 @@
+{
+  "slug": "in-order-is-sorted",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/in-order-is-sorted",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specified insertion5,3,8,1,4,9,7 and left-node-right rule; chose preorder alternative.",
+    "Clicking root5 first was rejected with left-side-first feedback. Manually visited1,3,4,5,7,8,9; ordered output and node badges updated.",
+    "Reveal acknowledged all7 manual visits and explained subtree ordering invariant and in-order traversal.",
+    "Inline1280x720 light screenshot showed tree and output clearly but title left and prose right clipped by horizontal layout. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tree ordering and recursive walk require attention but feedback supports learning.",
+    "conceptualDemand": "Nested left-node-right traversal.",
+    "interfaceBurden": "Clickable nodes, output badges; horizontal clipping."
+  },
+  "whyCool": "The learner unfolds a branching shape into a sorted list one node at a time.",
+  "caveat": "One fixed tree; horizontal clipping in tested viewport; accessibility unknown.",
+  "effort": "Prediction, wrong-step feedback, seven manual visits, reveal and inline screenshot.",
+  "provisionalBucket": "solid-with-viewport-fix",
+  "bucketReason": "Constructive traversal and invariant explanation; fix horizontal layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete insertion and traversal rule with plausible alternative sequences.",
+      "evidence": "Three order choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual construction plus targeted wrong-step feedback supports rule following.",
+      "evidence": "Root rejected then7 correct visits.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Links constructed output to recursive search-tree invariant.",
+      "evidence": "Smaller left, larger right at every node.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Useful feedback and badges but horizontal clipping affects text.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains general invariant without new tree/application.",
+      "evidence": "Same seven keys throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Jumbled insertion unfolds into sorted output.",
+      "evidence": "Seven-key sequence.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tree shape, visit badges and growing output connect representation to order.",
+      "evidence": "Completed traversal screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Learner chooses each next node with corrective feedback.",
+      "evidence": "Seven manual choices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces a useful traversal principle.",
+      "evidence": "In-order search tree.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Recursive invariant behind a basic algorithm.",
+      "evidence": "Every subtree has ordered children.",
+      "confidence": "medium"
+    }
+  }
+}

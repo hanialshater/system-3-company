@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "same-push-twice-the-mass",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-push-twice-the-mass",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-push-twice-the-mass",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/same-push-twice-the-mass/meta.json",
+    "metaSha256": "69d4c6f1f40a5bbe605fc5e4fde0634e2931fa400bb287bf6097f3f90e7d5eca",
+    "demoSha256": "0e14ad9c663a4ade85782c4663e123dd03bb74db2f3e8336e131d365c265ce70",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-push-twice-the-mass",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/same-push-twice-the-mass.json"
+  },
+  "date": "2026-10-18T20:35:30.119707+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose10m/s andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Baseline2kg10Nspeed10at2s,accel5. Set4kg10Nspeed5,accel2.5.20N4kgrestoredspeed10accel5.20N8kgspeed5accel2.5. Inspectedgraphslopesanddashedreference."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read5m/scorrection,steadyforcegivessteadilygrowingspeed,accelerationforce/mass,10/4=2.5m/spersecond,defineda/F/msymbols."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,4kg10N,4kg20Nand8kgfinalscrolledreveal inspected. Reference/currentlabels,slopes,countersandprose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Constrainedmasscontrastwithbaselinegivens.",
+      "evidence": "Rest,frictionless,same10Nand2s,2to4kg.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Massandforcecontrastsdemonstrateratioandcompensation.",
+      "evidence": "4kg10Nhalfspeed,4kg20Nrestore,8kg20Nhalfagain.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Causalquantityandgraphmeaningexplicit.",
+      "evidence": "Accelerationisspeedgainpersecond,force/mass;steadyforceisnotsteadyspeed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Plainaccelerationunitsanddefinedsymbols scaffoldformula.",
+      "evidence": "m/seachsecondcaption,a/F/mdefined,dashedbaseline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Severalparametercontrastswithinsamecart.",
+      "evidence": "No newapplicationorfreshcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Sameforcegivesdifferentaccelerationratherthansamespeed.",
+      "evidence": "10to5m/saftermassdoubles.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Slopeandreferencelinesconnectaccelerationtofinalspeed.",
+      "evidence": "Mass/forcechangesalterlineinclinationandendpoint.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twosliderscompareparameters.",
+      "evidence": "Foursettingsobserved.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Foundationalforce/massintuition.",
+      "evidence": "Doublingforcecompensatesdoublingmass.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Ratio,rateandtimegraphlinked.",
+      "evidence": "Accelerationversusspeedandforce/masslaw.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Distinguishspeedfromspeedchangeandcoordinateforce/massratio.",
+    "interfaceBurden": "Twosliders,automaticplotandreference;lowburden.",
+    "prerequisiteNovelty": "Accelerationdefinedasgainpersecond.",
+    "notationRepresentationBurden": "N,kg,m/s,ratioandformula;symbolsdefined."
+  }
+}

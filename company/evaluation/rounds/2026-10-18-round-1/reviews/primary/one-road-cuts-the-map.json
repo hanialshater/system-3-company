@@ -1,0 +1,104 @@
+{
+  "slug": "one-road-cuts-the-map",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-road-cuts-the-map",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted one of seven road closures disconnects the six-town graph.",
+    "Closed and reopened each of all seven roads independently: only 3\u20134 reduced reachability to three of six; the other six retained all towns.",
+    "Restored all roads and ran Walk depth-first. The graph labeled visit order and earliest reachable ancestor, with dotted back roads.",
+    "Reveal accurately summarized seven tests, six redundant roads and the unique bridge 3\u20134, then linked the low-link labels to the absence of a bypass."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connectivity is intuitive; interpreting low-link order adds conceptual work.",
+    "conceptualDemand": "Cycles, bridges and traversal order.",
+    "interfaceBurden": "Seven toggles and one traversal control; vertical scrolling."
+  },
+  "whyCool": "A complete set of road experiments leads directly into how an efficient bridge-finding algorithm works.",
+  "caveat": "One fixed undirected graph; no second case to apply the algorithm.",
+  "effort": "Completed prediction, seven independent closures, traversal, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Exceptional controlled interaction and visual explanation on the tested graph.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A visible graph supports a precise structural prediction.",
+      "evidence": "Seven road identities and four candidate counts.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Every single-edge closure was testable with immediate connectivity feedback, followed by an algorithmic explanation.",
+      "evidence": "Seven independent closures and reopening; depth-first traversal.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual tested counts connect to loops and the depth-first bridge criterion.",
+      "evidence": "Only 3\u20134 disconnected towns 4,5,6.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Road state and reachability are clear; the later algorithm labels require attention.",
+      "evidence": "Distinct visit and loop-back numbers on each node.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A general bridge criterion is explained but no second graph is offered.",
+      "evidence": "Same six-town graph throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Road degree does not determine redundancy.",
+      "evidence": "Both bridge endpoints touch three roads.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Closures, reachability and traversal labels jointly explain the graph across all contrasts.",
+      "evidence": "Seven roads plus depth-first overlay.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Systematically breaking and restoring a network is the central action.",
+      "evidence": "Toggle roads and watch connectivity.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Illustrates network vulnerability and bridge detection.",
+      "evidence": "No external application case.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links an intuitive bypass test with a graph algorithm.",
+      "evidence": "Visit order and low-link comparison.",
+      "confidence": "medium"
+    }
+  }
+}

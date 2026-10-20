@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-two-drop-cliff",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-two-drop-cliff",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-two-drop-cliff",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/the-two-drop-cliff/meta.json",
+    "metaSha256": "d5a843bb8be31c2376fe08149088ed562bfeb3a51266707d430e9219a6292672",
+    "demoSha256": "6705f48cf43f1a2ea0f7c975c4883aae600faef6855cabf76f4105cbdbcac5fd",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-two-drop-cliff",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-two-drop-cliff.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 0.2 units and locked it in.",
+    "exploration": "Ran from zero pH 1.0 to 24.90 mL pH 3.7; four drops reached 25.10 mL pH 10.3. Empty reset to zero. Repeated approach and added individual drops: 24.95 mL pH 4.0, 25.00 pH 7.0 and 25.05 pH 10.0.",
+    "reveal": "Corrected to 6 to 7 units, compared the 6.6 unit jump with the first 24.90 mL producing only 2.7 units, explained powers of ten and acid-base matching.",
+    "visual": "Actual dark 1257 by 936 screenshot inspected. Pink trace showed a nearly vertical cliff at 25 mL; numeric pH and volume, step controls and explanation were visible. Scientific notation rendered legibly.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviewers judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A concrete numerical prediction is present but assumes unfamiliar chemical setup.",
+      "evidence": "HCl, NaOH, mol/L and titrated appear before explanation.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Coarse approach, fine drops and reset enable a genuine boundary test.",
+      "evidence": "Individual drops crossed 4.0 to 7.0 to 10.0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects the abrupt curve to matching acid and base.",
+      "evidence": "6.6 units over four drops versus 2.7 over previous 24.90 mL.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Visual result is clear but novice vocabulary burden remains.",
+      "evidence": "pH powers of ten explained only after chemical prediction.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Titration usefulness and matching condition are explained without a new case.",
+      "evidence": "Sharp matching point can locate equivalence.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Mode audit incomplete.",
+      "evidence": "Textual pH and volume observed; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A tiny addition changes the displayed pH dramatically.",
+      "evidence": "Four drops move 3.7 to 10.3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Accumulated curve exposes the local cliff.",
+      "evidence": "Fine-step points around 25 mL.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Drop controls and Empty support experimentation.",
+      "evidence": "Coarse run and individual additions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains why an analytical measurement can locate a point sharply.",
+      "evidence": "Titration equivalence mentioned.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines logarithmic measurement and chemical balance.",
+      "evidence": "Residual acid concentration and excess base explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Simple button controls mask substantial chemistry and logarithm prerequisites.",
+    "conceptualDemand": "Relate logarithmic pH to residual acid, excess base and equivalence.",
+    "interfaceBurden": "One coarse approach, three increment buttons and reset.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Acid/base names, concentration, titration and pH are not all introduced before prediction.",
+    "notationRepresentationBurden": "Decimal millilitres, mol/L, H plus and scientific powers of ten."
+  },
+  "whyCool": "Fine drops turn a smooth-looking accumulation into a sharp chemical boundary.",
+  "caveat": "The specified strong acid/base setup carries substantial assumed vocabulary for an everyday-numeracy learner.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:13:26.062806+00:00"
+}

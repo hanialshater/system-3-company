@@ -1,0 +1,104 @@
+{
+  "slug": "cm-to-inches",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cm-to-inches",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected exact2.54 for a question asking which factor avoids the rounding shortcut; title supplies the answer.",
+    "At30 cm rough gave12 in, exact11.81. At40 cm exact15.75 and rough16.",
+    "Aligned rulers show the same physical length and differing inch scale; numerical footer partially clipped at1280\u00d7720.",
+    "Reveal accurately identified current rough factor and16 in, explained dividing cm by2.54 and distinguished exact definition from measurement uncertainty. Your prediction held appeared twice."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple division and aligned ruler units.",
+    "conceptualDemand": "Exact factor versus approximation.",
+    "interfaceBurden": "Two factor buttons and one slider."
+  },
+  "whyCool": "An exact unit definition removes one source of error while leaving measurement uncertainty intact.",
+  "caveat": "Displayed inch values are rounded; exact conversion factor does not imply exact decimal output. Duplicate verdict and clipped footer need polish.",
+  "effort": "Completed prediction, both factors at two lengths, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful conversion exploration with a weak prediction and minor presentation issues.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and exact-versus-rough labels directly answer the question.",
+      "evidence": "No numerical estimate requested.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Factor and length changes expose increasing absolute approximation error.",
+      "evidence": "30cm difference.19in,40cm.25in.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct formula and uncertainty distinction explain the observed contrast.",
+      "evidence": "Exact factor does not remove measurement uncertainty.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Rulers and values are readable but footer clips and verdict is duplicated.",
+      "evidence": "Two identical held lines in reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete conversion procedure includes its precision limit.",
+      "evidence": "Divide cm by2.54; actual measurement remains uncertain.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Small familiar conversion error.",
+      "evidence": "Rough factor overstates inches.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned scales illustrate unit conversion.",
+      "evidence": "Centimeter and inch rulers.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Length and factor controls change output.",
+      "evidence": "Two modes and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly usable conversion rule.",
+      "evidence": "Exact definition and measurement caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates exact unit relationship from uncertain measurement.",
+      "evidence": "Rounding versus input uncertainty.",
+      "confidence": "medium"
+    }
+  }
+}

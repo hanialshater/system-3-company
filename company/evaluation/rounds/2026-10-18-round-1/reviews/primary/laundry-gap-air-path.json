@@ -1,0 +1,104 @@
+{
+  "slug": "laundry-gap-air-path",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/laundry-gap-air-path",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted2 cm after shortening a rail60\u219248 while five shirts retain the same occupied width; the prompt gives initial5 cm neighbor gaps but does not state end-margin assumptions.",
+    "At48 cm, both layouts leave8 cm after shirts; pushed0 neighbor gap versus spread2 across four gaps.",
+    "At minimum45 cm, leftover5 and spread1.25; pushed remains0.",
+    "Reveal accurately used current45/40/5/four gaps/1.25 and stated each shirt8 cm, plus no airflow or real drying-time calculation. Original numeric prediction2 was marked held without original48 cm framing."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple subtraction and four-gap division.",
+    "conceptualDemand": "Item count versus gap count.",
+    "interfaceBurden": "Two layouts and rail slider."
+  },
+  "whyCool": "A little loss of rail length is shared across every gap, even with unchanged shirts.",
+  "caveat": "State no end margins and equal spacing explicitly; reconcile original48 cm prediction with changed45 cm reveal.",
+  "effort": "Completed prediction, both layouts, changed rail width, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful spacing model with implicit prediction assumptions and changed-number verdict issue.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A useful gap-count calculation, but shirt width and no-end-margin/even-distribution assumptions are implicit before answering.",
+      "evidence": "Initial60 cm/five5 cm gaps imply occupied40 only if four gaps and no outer margin.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Arrangement changes how leftover space is distributed; rail width changes gap size.",
+      "evidence": "48 spread2 versus45 spread1.25; pushed0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Current arithmetic and scope are correct, but held numeric verdict does not reconcile changed width.",
+      "evidence": "Prediction2 beside current1.25.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Table clear; geometric assumptions appear late and drawing is schematic rather than scaled.",
+      "evidence": "Eight-centimeter shirts only explicit in reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete leftover-space rule includes mechanism limits.",
+      "evidence": "Subtract occupied width then divide by gaps; no drying-time model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same items leave much smaller gaps on a modestly shorter rail.",
+      "evidence": "60gap5 to48gap2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Touching versus open paths are shown, but numeric proportions are schematic.",
+      "evidence": "Open-arrow gaps.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rail and arrangement controls.",
+      "evidence": "Two independent variables.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful spacing arithmetic with honest physical limits.",
+      "evidence": "Fabric/ventilation matter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates total spare length and distribution among gaps.",
+      "evidence": "No airflow simulation.",
+      "confidence": "medium"
+    }
+  }
+}

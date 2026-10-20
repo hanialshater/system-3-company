@@ -1,0 +1,129 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "call-stack-depth",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/call-stack-depth",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "587ce46bcd83dba58b0bbd6b72d432ac7b76b06c5d68374fab3ec07e4277742e",
+  "demoSha256": "1d92344d4b7d99d021e954f289150f5b1bcd8348ec175a9bc58624ce9b5e2d21",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparison and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose 3 then Lock it in, among 1/3/4.",
+    "exploration": "Called factorial(2), factorial(1), factorial(0): open calls rose 1\u21922\u21923\u21924, previous boxes waited. Return1,Return1,Return2,Return6 reduced open calls to0 while most-at-once stayed4; answer6 and Start again appeared.",
+    "reveal": "Show me why said Not quite 4; each box keeps its own n, base case answers without calling again, return values1,1,2,6. Without base case stack overflow.",
+    "visual": "CUA screenshot at four calls: stacked dark waiting boxes, green active factorial0 and Return1; counters4/4, text legible at1257x936. Lower continuation partly beyond viewport; AX path remained operable.",
+    "chrome": "Evaluation no-history banner verified; 5/5 trust count visible and ignored; panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear count commitment tests whether old calls persist.",
+      "evidence": "Choices1/3/4 and observed four boxes.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Call/return contrast makes retained frames and answer propagation visible.",
+      "evidence": "Open counts1\u20134 then4\u20130; maximum retained4.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitly resolves wrong prediction using visited calls and base case.",
+      "evidence": "Reveal lists four calls and return sequence; stack overflow described but not explored.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels show which call runs or waits and next action.",
+      "evidence": "Call factorial0,Return1 and labeled frames in screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable base-case principle offered without a new application.",
+      "evidence": "Reveal describes stack overflow without base case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit performed.",
+      "evidence": "Only desktop mouse/AX and screenshot observed.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committed3 overturned by base-case fourth frame.",
+      "evidence": "Prediction3; maximum4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stacked retained boxes carry explanation.",
+      "evidence": "Screenshot four frames, active green top.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Manual progression and reset afford small exploration; only fixed input.",
+      "evidence": "Seven call/return actions and Start again.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete program-crash implication.",
+      "evidence": "Base-case absence explains stack overflow.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Call retention and return propagation are linked contrasts.",
+      "evidence": "Open/maximum counters and returned sequence.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks nested pending work and reverse-order arithmetic with visual support.",
+    "conceptualDemand": "Multiple linked steps, waiting state and base case.",
+    "interfaceBurden": "low; one enabled action at a time; tall panel requires scrolling.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Function calls and recursion new for common boundary."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "factorial(n),n\u22121 and recursive expression require interpretation."
+    }
+  },
+  "whyCool": "Returning1 removes the top box while retaining the maximum4, making pending work visible.",
+  "caveat": "Fixed factorial3 path; no second input or absent-base-case experiment observed.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard, phone, contrast, zoom/reflow and motion audit",
+    "Second application"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "ribbon-around-box-length",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ribbon-around-box-length",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Question asks which includes both crossed loops; option literally Crossed loops selected.",
+    "At20\u00d710\u00d78 plusbow20 one-loop76,crossed112. Length30 crossed132.",
+    "Reveal counts height four times and adds bow separately,real knots/routing caveat. Screenshot shows tiny box,prose clipped at right."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Rectangle perimeter addition.",
+    "conceptualDemand": "Count repeated height segments.",
+    "interfaceBurden": "Modes and slider."
+  },
+  "whyCool": "Two crossing ribbon loops use the same box height four times.",
+  "caveat": "Replace tautological prediction with numeric or segment-count choice; diagram could label route dimensions.",
+  "effort": "Prediction,layout contrast,length variation,reveal,inline screenshot.",
+  "provisionalBucket": "revise-prediction-visual",
+  "bucketReason": "Useful working calculation,poor prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer option restates question instead of predicting length.",
+      "evidence": "Crossed loops includes crossed loops.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Layout and length vary numeric routing requirement.",
+      "evidence": "76/112/132.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and allowance scope explicit.",
+      "evidence": "Four heights plus bow.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Tiny schematic,clipped prose,and width term ambiguously used for length/width loops.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete routing calculation principle with allowance condition.",
+      "evidence": "Count each loop,add chosen bow.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Height counted four times.",
+      "evidence": "Two orthogonal loops.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Small box shows routes but lengths not labeled on edges.",
+      "evidence": "Inline diagram.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode and box-length variation.",
+      "evidence": "20\u219230.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Ribbon budgeting central.",
+      "evidence": "Knot allowance explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Perimeter decomposition across shared height.",
+      "evidence": "Two loops plus allowance.",
+      "confidence": "medium"
+    }
+  }
+}

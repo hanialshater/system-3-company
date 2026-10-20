@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "miami-or-lima-west",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/miami-or-lima-west",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "miami-or-lima-west",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/geography/miami-or-lima-west/meta.json",
+    "metaSha256": "ded1129e7a816bbb043a9c95b7568ca61ff0c51c0d0561989b125be4a6412e02",
+    "demoSha256": "43a0640c10da638eff0c6bc6ab4c49676c6fb62dc8d94191e7b3f641cee92a37",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/miami-or-lima-west",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/miami-or-lima-west.json"
+  },
+  "date": "2026-10-18T19:47:33.285392+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Preview isolation confirmed;trust5/5 ignored. ChoseLima andlocked. Citiesunmarkedbeforecommitment.",
+    "exploration": "Miamimeridian80.2WcrossUS,Cuba,Panama,Ecuador,Peru;Limalocatedeastvisually. Limameridian77WcrossBahamas,Cuba,Jamaica,Colombia,Ecuador,Peru. SliderEnd65WcrossVenezuela,Brazil,Bolivia. Revealunlocksafterbothcitylines.",
+    "reveal": "CorrectMiami;3.1degreegapstated,80.2Wversus77Wroundvalues. MiamimeridianPacificsideofSouthAmerica;mostcontinent east exceptEcuador/Perucoasttips.",
+    "visual": "Inline1257x936 dark screenshots inspected: north-southredlineandcitydotsmakeMiamiwestofLimaexplicit. Current65lineversushistoricalMiamirevealclearbynames;fulltextlegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Pacific/Atlanticcoastintuitionversuslongitudeclear,plausibleLima/Miami/samemeridianchoices.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Twocitymeridiansand65boundaryrevealcontinentoffset;onefixedmapbutmeaningfulcrossingschange.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "ActualcitylongitudesandMiamilinecountriesconnecttogeographicreasoncoastlabels donotdeterminerelativewestness.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Meridiandefinition,citylabels,longitudeandcountrycrossingslegible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablemeridiancomparisonimplicit,butnonewcity/applicationconditionexplained.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "ChosenPacificLimalieseastofAtlanticMiami.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Verticalreferenceandcitypositionscarrywest-eastcomparison.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblemeridiansandcountrycrossingexploration.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretegeographicorientation/mapreading.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Citylongitudeandcontinentoffset;noadditionalmechanismbeyondmeridianalignment.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Onevisualreference-linecomparisonresolvesrelativewestposition;countrylistoptionalextension.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low:twopresetsandslider",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low:longitude/meridiandefined",
+    "notationRepresentationBurden": "low: westdegreesandmap"
+  },
+  "whyCool": "Miami'snorth-southlinepasseswestofLimaeventhoughMiamiisontheAtlanticandLimathePacific.",
+  "caveat": "Onefixedcitypair;noindependentnewmeridiancomparison."
+}

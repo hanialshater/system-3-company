@@ -1,0 +1,104 @@
+{
+  "slug": "read-the-bone-clock",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/read-the-bone-clock",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted46000years for1/8carbon14 remaining withhalf-life5700years; alternatives5700/17000.",
+    "Sliderstep570years93%;tensteps5700years50%;twentysteps11400years25%. Automaticclock resetstartthenran17100years,3half-lives,rounded13%remaining;graphpins at1/2,1/4,1/8.",
+    "Reveal explains1/8=half\u00d7half\u00d7half,3not8half-lives,recalls5700/11400/17100pins,andstatesninehalf-livesapproximately50000years nearmeasurementlimit.",
+    "1280x720light graphandpinlabels clear;revealrightedgeclipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Repeatedhalvingandmultiplicationwithconcretefractionpins.",
+    "conceptualDemand": "Fractiondenominatorversusnumberofhalvings.",
+    "interfaceBurden": "Slider570yearsteps;autorunresetsstart."
+  },
+  "whyCool": "The bone's age is the number of halvings needed to reach its remaining fraction, not the fraction's denominator.",
+  "caveat": "Simplifieddatingmodel:knownoriginalamount,closed-system/calibrationconditionsnotdeveloped. Scientificmeasurementlimitnotindependentlyverified. Rounded13%andprosecutoff.",
+  "effort": "Prediction,fractionalstep,twohalf-lifeboundaries,autoruntothird,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearinverse-decaymechanism;precision/layoutfixanddatingassumptionreview.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Half-lifedefinition andremainingfraction supportrepeated-halving misconceptiontest.",
+      "evidence": "1/8versus8half-lives distractor.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Severalhalvingboundaries plusfractionalstep exposeexponentialclock.",
+      "evidence": "570,5700,11400,17100years;automaticresettested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsactualpins,originalerror andmeaningfulmeasurementlimit.",
+      "evidence": "Threehalves versus8\u00d75700;1/512limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graphclear;rounded13%couldbe12.5%for1/8 precision andprosecutoff.",
+      "evidence": "At3half-liveslabel13%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteadditionalnine-half-lifecase anddatingprocedure withmeasurementcondition.",
+      "evidence": "1/512after9half-livesapproximately50000years,too littlemeasurewell.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Eighthremainingmeans3half-lives,not8.",
+      "evidence": "17100versus46000guess.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Curve,pinnedfractioncrossings andtime readouts exposeequal-timehalving.",
+      "evidence": "1/2,1/4,1/8at5700intervals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Age slider andautorun supportboundedexploration.",
+      "evidence": "Manualboundariesthenautorun.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteagedatingtaskcentral.",
+      "evidence": "Remainingisotopefractiontoduration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Exponentialdecay,inverseagecalculation andmeasurementfloor.",
+      "evidence": "Halvingcount andninehalf-lifeextension.",
+      "confidence": "medium"
+    }
+  }
+}

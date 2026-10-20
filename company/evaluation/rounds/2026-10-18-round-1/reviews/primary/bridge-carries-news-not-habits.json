@@ -1,0 +1,103 @@
+{
+  "slug": "bridge-carries-news-not-habits",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bridge-carries-news-not-habits",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction nooneB under half-friends adoption;preprediction screenshot shows two5nodecliques,onebridge and2seedsA.",
+    "Habitstep1 adds2,run fillsA5byround2 then stalls,Ben1/5belowhalf. Newsstep1 fillsA5,runall10byround3.",
+    "Reveal accurately cites both traces and threshold condition. Screenshot graph afternews showsBen5/5while habit summary1/5,mode distinction not visually labeled on graph;rightclippedprose."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Neighbor fractions and synchronous rounds.",
+    "conceptualDemand": "Simple versus complex contagion toy.",
+    "interfaceBurden": "Fourrun/stepcontrols;sharedgraphmodeunclear."
+  },
+  "whyCool": "A bridge can carry information while failing to carry a behavior that needs reinforcement from several friends.",
+  "caveat": "News/habit are stipulated threshold rules,not universal social laws;label graph's currentmode.",
+  "effort": "Prediction,pregraphinspection,bothstep/runtraces,reveal,screenshots.",
+  "provisionalBucket": "strong-mode-label-followup",
+  "bucketReason": "Clear causal threshold contrast,sharedgraphclarityissue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Given threshold and visible graph support causal prediction.",
+      "evidence": "Ben1of5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Same topology,seeds,different adoption rules produce contrasting cascades.",
+      "evidence": "Habit5versusnews10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate trace-specific mechanism and condition.",
+      "evidence": "20%shortofhalf;onecontactenoughfornews.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph shows mostrecent mode but simultaneous summaries can confuse;clippedprose.",
+      "evidence": "5/5graph versus1/5habit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General diffusion principle without distinct application.",
+      "evidence": "Toynews/habitlabels.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Connected network need not support threshold cascade.",
+      "evidence": "Singlebridgefailsforhalf.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two cliques and one bridge make bottleneck visible.",
+      "evidence": "Benneighbors.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Parallel stepped/run cascades.",
+      "evidence": "Tworules.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network spread intuition,not empirical habitprediction.",
+      "evidence": "Fixedthresholdmodel.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connectivity versus reinforcement and threshold.",
+      "evidence": "Samegraphdifferentdynamics.",
+      "confidence": "medium"
+    }
+  }
+}

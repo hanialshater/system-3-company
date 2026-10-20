@@ -1,0 +1,104 @@
+{
+  "slug": "lh-annual-label-cost",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-annual-label-cost",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted360\u20ac difference over8 years for annual costs60 versus105.",
+    "TestA200kWh/year\u00d78\u00d70.30=480; B350\u00d78\u00d7.30=840.",
+    "Changed years to1, yielding60/105 with same-scale cumulative line charts.",
+    "Reveal explicitly separated original8-year480/840 and360 gap from current1-year60/105, and assumed unchanged use/tariff rather than a named product forecast."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Multiplication and subtraction with supplied rates.",
+    "conceptualDemand": "Rate versus cumulative amount.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "An annual label becomes a growing cost gap over the years it is used.",
+  "caveat": "Excludes purchase price,maintenance,changing tariffs,discounting and actual-use variation; only energy arithmetic.",
+  "effort": "Completed prediction,both calculations,eight/one-year comparison,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear arithmetic and excellent original/current-state framing with explicit assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete annual amounts and horizon support a clear cumulative-gap calculation.",
+      "evidence": "45 annual gap versus360 total distractor.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Year slider exposes linear accumulation and one-year boundary.",
+      "evidence": "8 versus1 year.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original/current values, gap calculation and stable-tariff condition explain the result.",
+      "evidence": "360=45\u00d78.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units, expressions and horizon are clear; comparison scales match.",
+      "evidence": "kWh/year\u00d7years\u00d7\u20ac/kWh.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete energy-to-cost procedure includes forecast limits.",
+      "evidence": "Unchanged use and tariff, no named product prediction.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Small annual difference accumulates substantially.",
+      "evidence": "45 to360.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matched cumulative charts show different slopes.",
+      "evidence": "Same1050\u20ac vertical scale.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Horizon slider changes cumulative totals.",
+      "evidence": "Two tests and years.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful label-cost calculation under stated assumptions.",
+      "evidence": "Not total ownership cost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates annual rate and cumulative cost.",
+      "evidence": "Energy use and price units explicit.",
+      "confidence": "medium"
+    }
+  }
+}

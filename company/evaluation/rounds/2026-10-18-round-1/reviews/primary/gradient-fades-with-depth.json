@@ -1,0 +1,104 @@
+{
+  "slug": "gradient-fades-with-depth",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/gradient-fades-with-depth",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiontenlayers eachslope0.25,originalshare25/2.5/0.0001%; chose2.5.",
+    "10sigmoid=>0.0001%;10ReLU=>100%;3sigmoid=>1.6% withcomparisonhistory.",
+    "Reveal repeatedquarterproduct,smallgradientbarelychangesweights,activeReLUslope1;toystatesweights1/everyunitsteepest.",
+    "Screenshot logscalegradientbars andcomparisondashes; actualrightedgeoutputhistory/proseclipping."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires gradients,activationfunctions,slopes,andlogscale interpretation.",
+    "conceptualDemand": "Repeatedderivativeproducts affectearly-layerupdates.",
+    "interfaceBurden": "Simplepresets;densejargon andclippedtext."
+  },
+  "whyCool": "Eveneachlayeratitsbest canquarterthemessage untilalmostnothingreaches thefirstlayer.",
+  "caveat": "Weightsfixed1,allunitsatsteepestslope; no actualnetworklearning or inactiveReLUcase observed.",
+  "effort": "Prediction,allthreestacks,reveal.",
+  "provisionalBucket": "specialist",
+  "bucketReason": "UsefulcontrolledAImechanism butprerequisite-heavy andlimitedboundarycoverage.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear multiplicativeversuslinear attenuation alternatives.",
+      "evidence": "0.25 repeatedten times.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Depthandactivationpresets isolate twofactors.",
+      "evidence": "10sigmoid/10ReLU/3sigmoid comparison.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Links observedattenuation to slopesandtrainability, trainingitselfnotshown.",
+      "evidence": "Smallgradient barelymovesweights stated.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Technicalterms/logscale plusactualtextcutoff.",
+      "evidence": "Gradient,slope,sigmoid,ReLU allintroducedquickly.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Architectureimplication offered butnewapplication/limitsnotexercised.",
+      "evidence": "Depthhelpsonlyifsignalsurvives;activeReLUassumption.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Quarter-perlayer becomesmillionth-scale afterten.",
+      "evidence": "0.0001%result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Logbars showmultiplicativeattenuation andreferencecomparison.",
+      "evidence": "Dotted10sigmoid versus3sigmoidbars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threepresetcomparisonstacks.",
+      "evidence": "Activation/depthbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supporting intuition for neuralnetworktraining.",
+      "evidence": "Architectureconceptnotactualtrainingtool.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Chainmultiplication,activationchoice,anddepthinteraction.",
+      "evidence": "Threecontrastingstacks.",
+      "confidence": "medium"
+    }
+  }
+}

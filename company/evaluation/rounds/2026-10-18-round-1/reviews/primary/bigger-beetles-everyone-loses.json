@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bigger-beetles-everyone-loses",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bigger-beetles-everyone-loses",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Higher than6; payofftable small6/2,large8/4; allsmallaverage6.",
+    "E:+5generation:4.1%large/average5.9;run30:100%large/4.0;turn5%smallandrun5:mutants2.2versus4.2,returns100%large at35. Screenshot99%atgen24curve.",
+    "R:NotquiteLowerthan6;largebeats smallagainsteitheropponent;mutantscannotinvade; evolutionary stability/armsrace; chosenpayoffs,nobaseline,notrealbeetles.",
+    "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablepayofftableandcurve; lowercontrolsneedinternal scroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Contrasts individual advantage with group average.",
+      "evidence": "P: chose Higher than6; payofftable small6/2,large8/4; allsmallaverage6.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Generations and invasion probe expose stability despite decline.",
+      "evidence": "E:+5generation:4.1%large/average5.9;run30:100%large/4.0;turn5%smallandrun5:mutants2.2versus4.2,returns100%large at35. Screenshot99%atgen24curve.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains dominance and actual mutant failure with model boundary.",
+      "evidence": "R:NotquiteLowerthan6;largebeats smallagainsteitheropponent;mutantscannotinvade; evolutionary stability/armsrace; chosenpayoffs,nobaseline,notrealbeetles.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Payofftable and curve support sequence.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablepayofftableandcurve; lowercontrolsneedinternal scroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Armsrace principle and stability criterion explicit.",
+      "evidence": "R:NotquiteLowerthan6;largebeats smallagainsteitheropponent;mutantscannotinvade; evolutionary stability/armsrace; chosenpayoffs,nobaseline,notrealbeetles.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readablepayofftableandcurve; lowercontrolsneedinternal scroll.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Winning strategy lowers everyone\u2019s average.",
+      "evidence": "E:+5generation:4.1%large/average5.9;run30:100%large/4.0;turn5%smallandrun5:mutants2.2versus4.2,returns100%large at35. Screenshot99%atgen24curve.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Curve shows spread; numericaverage and table explain decline.",
+      "evidence": "E:+5generation:4.1%large/average5.9;run30:100%large/4.0;turn5%smallandrun5:mutants2.2versus4.2,returns100%large at35. Screenshot99%atgen24curve.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mutant invasion and generations.",
+      "evidence": "E:+5generation:4.1%large/average5.9;run30:100%large/4.0;turn5%smallandrun5:mutants2.2versus4.2,returns100%large at35. Screenshot99%atgen24curve.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Armsrace intuition with toy caveat.",
+      "evidence": "R:NotquiteLowerthan6;largebeats smallagainsteitheropponent;mutantscannotinvade; evolutionary stability/armsrace; chosenpayoffs,nobaseline,notrealbeetles.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dominance,populationcomposition,meanpayoffand invasion.",
+      "evidence": "R:NotquiteLowerthan6;largebeats smallagainsteitheropponent;mutantscannotinvade; evolutionary stability/armsrace; chosenpayoffs,nobaseline,notrealbeetles.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core payoff requires conditional opponent comparison, population average and mutant invasion reasoning.",
+    "conceptualDemand": "Multiple dependent strategic relations.",
+    "interfaceBurden": "Some controls below panel viewport.",
+    "prerequisiteNovelty": "moderate: payoffmatrix and stability",
+    "notationRepresentationBurden": "moderate: conditional table"
+  },
+  "whyCool": "Reintroducing small beetles fails even though the all-large outcome gives fewer offspring.",
+  "caveat": "Chosen payoff matrix and no baseline; not evidence about biological beetles.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

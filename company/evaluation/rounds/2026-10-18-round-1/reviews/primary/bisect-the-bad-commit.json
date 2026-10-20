@@ -1,0 +1,104 @@
+{
+  "slug": "bisect-the-bad-commit",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bisect-the-bad-commit",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionfirstbrokenamong1000versions withpersistentbreak,maximumtests10/500/1000; chose500.",
+    "Sequentialv2works shrank999to998;middlev501works=>499suspects;autohalving foundv737 in11totaltests.",
+    "Reveal accurately cites11actualtests andoff-middlewastedstep,optimal10 because2^10=1024;monotonicbreakassumptionexplicit.",
+    "Screenshot rangehistory andtestcounts; upperrangebar andrightedge revealclipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Repeatedhalving intuitive;worstcase andpowersof2 addabstraction.",
+    "conceptualDemand": "Validsearchrequires orderedpersistentbreak.",
+    "interfaceBurden": "Simplebuttons,longrangehistory andclippedreveal."
+  },
+  "whyCool": "Onecareless test wastesastep, but goodhalving still finds a badversion amongathousand almostimmediately.",
+  "caveat": "Fixedtoyfirstbadversion; no realrepository actions; single reviewer.",
+  "effort": "Prediction,sequentialtest,midpoint,autohalving,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Choice-sensitive explanation and broadly usefulalgorithmicprinciple.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Exposes linearversuslogarithmic search intuition.",
+      "evidence": "500vs10tests.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Can compare sequential andmidpoint choices.",
+      "evidence": "One sequentialtest caused11vsoptimal10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Handles suboptimalactualpath honestly and explainsbound.",
+      "evidence": "Tests offmiddle canwasteastep.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Longhistory andclippedreveal addburden.",
+      "evidence": "11observed vs10optimal carefullyexplained.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "General searchstrategy tied to realdebugging method.",
+      "evidence": "Persistentbreak prerequisite; gitbisect.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Thousandversions needabouttenwell-chosentests.",
+      "evidence": "1024possibilities covered10halvings.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shrinkingrange andcountsequence showsearch.",
+      "evidence": "999=>998=>499=>...=>1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose next ormiddle andfinishsearch.",
+      "evidence": "Sequentialvsbinarychoices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Useful debugging andorderedsearch insight.",
+      "evidence": "gitbisect application.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Worstcasebound,informationgain,and monotonicassumption.",
+      "evidence": "Offmiddlewastestep;breakstaysbroken.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "hidden-third-cause",
+  "demoVersion": 4,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hidden-third-cause",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted staysstrong for icecreamsales/sunburn link afterconditioningtemperature in simulated365daytown; baseline0.83strong.",
+    "Same-temperature button selected26\u201329C39days\u22120.02none. Cool10\u201313C35days0.07none;slider11\u201314C40days0.02none. Highlighted band andflatlocalfit versusrisinggraycloud.",
+    "Reveal accurately includesallthreevisitedbands,explainscommoncause,states townbuilt withtemperatureonlylink andrealhidden causes notannounced.",
+    "1280x720light plotclear; finalprose rightedge clipped. Prompt sayssametemperature butcontrolsuse4degreebands."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Needsunderstandingaggregate versuswithinbandscatter.",
+    "conceptualDemand": "Commoncause andconditionalassociation.",
+    "interfaceBurden": "Simplefilter,readableplot; clippedprose."
+  },
+  "whyCool": "One rising cloud becomes several almost-flat slices when the common cause is held roughly steady.",
+  "caveat": "Simulatedtownonlytemperaturelink;4degreebands approximate same-temperature wording. Prosecutoff. No causalclaimaboutrealobservations established.",
+  "effort": "Prediction,aggregateandthreebands,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong conditioningvisual withstate-aware explanation; fixlayoutandbandwording.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear association-versusconditioning prediction with simulatedcontext.",
+      "evidence": "Baseline0.83 andtemperaturecolorcue.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several conditioningbands contrast aggregate andlocalassociation.",
+      "evidence": "Hot\u22120.02,cool0.07,nearby0.02 versus0.83all.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Usesactualvisitedstates,explainscommoncause andimportant toy/real limitation.",
+      "evidence": "Threebandreadouts recalled;onlylinkbyconstruction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graphandreadouts clear butsame-temperature language approximatesband andproseclips.",
+      "evidence": "26\u201329Cband notsingletemperature;reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General confounderwarning withoutnewapplicationexercise.",
+      "evidence": "Realdatahidden causes requirethought.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Strongaggregateassociation nearlyvanishes ineachband.",
+      "evidence": "0.83toapproximatelyzero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Severalhighlightedsubclouds andfittedlines expose conditioning mechanism.",
+      "evidence": "Hot,cool,nearbyband contrasts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Filteringandcontinuousbandchoice invitedcomparison.",
+      "evidence": "Twopresets andslider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralcorrelation/causationinterpretation.",
+      "evidence": "Commoncauseversusdirectlink.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Conditionalassociation,confounding andmodelidentification limits.",
+      "evidence": "Onlylinkbyconstruction versusrealdata.",
+      "confidence": "medium"
+    }
+  }
+}

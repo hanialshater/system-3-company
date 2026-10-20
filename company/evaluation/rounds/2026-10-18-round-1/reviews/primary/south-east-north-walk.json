@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "south-east-north-walk",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/south-east-north-walk",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "south-east-north-walk",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/geography/south-east-north-walk/meta.json",
+    "metaSha256": "30bcf7edef49e314a0dc863c0caf187816e79dd1e4ce1a5a2e450af992f264c1",
+    "demoSha256": "72e5d1fc76433cdffb4c86681a5e387646ecef98717698005f91536d4a6cd8f5",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/south-east-north-walk",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/south-east-north-walk.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected None: only the North Pole and locked it in.",
+    "exploration": "Default 1.500 km from South Pole showed 0.32 laps and 2.52 km miss. Presets 1.159, 1.080 and 1.053 km showed one, two and three complete laps and back at start. Slider End reached 1.600 km, 0.27 laps and 2.37 km miss.",
+    "reveal": "Corrected to infinitely many, explained complete eastward laps and northward retracing, then every whole number of laps and whole rings of starting points.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. One-lap route visibly returned along blue radial segment around yellow circle. Reveal introduced an inner scroll region; at failing 1.600 km the route top and left label were clipped, while controls, metrics and explanation remained readable.",
+    "previewIsolation": "Evaluation preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A crisp puzzle commits to the number of valid places.",
+      "evidence": "None, one and infinitely many choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Working presets and a failing endpoint distinguish integer laps from arbitrary starts.",
+      "evidence": "One, two, three laps close; 0.27 laps misses.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains both repeated laps and rotational families of starts.",
+      "evidence": "Whole ring for every whole number of laps.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Route and metrics clarify the puzzle but reveal layout clips part of the diagram.",
+      "evidence": "Inner scroll screenshot lost route top and left label.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General construction is stated within the same puzzle, with no new application.",
+      "evidence": "Every whole number of laps works.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No complete mode audit conducted.",
+      "evidence": "Keyboard endpoint worked; screen reader, contrast, reduced motion and full keyboard sequence unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Unique-looking polar answer becomes infinitely many rings.",
+      "evidence": "Three different southern presets all return.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Radial legs and circular east leg explain closure.",
+      "evidence": "Blue retracing and yellow loop.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Puzzle with precise presets and continuous counterexamples.",
+      "evidence": "Slider and lap count.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily a spatial reasoning puzzle.",
+      "evidence": "Idealized walk around Antarctic pole.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Moves from examples to integer and continuous infinities.",
+      "evidence": "Whole-number laps and whole rings.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls require nested geometric reasoning.",
+    "conceptualDemand": "Understand polar circles, whole laps, retracing and families of starting points.",
+    "interfaceBurden": "Three exact presets plus slider; inner scroll at reveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "South-pole orientation and circular eastward paths.",
+    "notationRepresentationBurden": "Three-decimal kilometre distances and fractional lap counts."
+  },
+  "whyCool": "One complete circle turns the eastward leg into no net displacement, and many circles work.",
+  "caveat": "Idealized geometry is understandable but the reveal scroll region clips part of the route at the tested viewport.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Complete keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:14:28.452823+00:00"
+}

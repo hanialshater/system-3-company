@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "lower-the-hill",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lower-the-hill",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "lower-the-hill",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/lower-the-hill/meta.json",
+    "metaSha256": "32c9d8b7fff13edba62260c8bf72aee8c62f8403a6596ddc6efeb56d7b7299d4",
+    "demoSha256": "782e4205fada521cd672309630f661e9f64075349387870d91b941ad636e1b58",
+    "batchId": "round1-02",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/lower-the-hill",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/lower-the-hill.json"
+  },
+  "date": "2026-10-18T18:59:41.209185+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 visible ignored. Selected1.5times and locked; choices24000 and3times.",
+    "exploration": "Catalyst50 reduced hill75 to50kJ/mol, counter1.0 to24113crossings/s. Raise5 produced55,3205. None75 restored1.0. Reveal stayed unlocked after reset.",
+    "reveal": "Not quite24000times; explicitly You saw75 to50 comparison, exponential reacting share and e^-Ea/RT.298K,25kJ/mol about10RT; same pre-factor assumed, catalyst not consumed and product endpoint same.",
+    "visual": "Inline screenshots1257x936 dark inspected: pink reaction hill, reactants/products distinct levels, draggable peak and buttons; all reveal text legible, counter not literal simulated collision count."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Linear alternatives versus dramatic rate response require clear commitment.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset and5unit contrast visibly change hill/counter; reset confirms baseline.",
+      "evidence": "exploration",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Relates observed rate contrast to exponential energy threshold, states fixed temperature/pre-factor condition and endpoint limit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Legible labelled hill/control/counter and historical comparison after reset. Scientific notation raises prerequisites, not UI failure.",
+      "evidence": "visual; reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable threshold principle and assumptions but no fresh concrete application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient accessibility checks.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion untested.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed1.5times reversed by24113counter.",
+      "evidence": "prediction; exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Hill height depicts barrier but numeric counter and prose carry exponential explanation.",
+      "evidence": "visual; reveal",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible presets and5unit increments expose nonlinear rate.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Catalyst rate effect and unchanged endpoint concretely interpreted.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Barrier/rate relation plus endpoint and fixed pre-factor boundaries; no variable temperature.",
+      "evidence": "exploration; reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links barrier reduction to nonlinear reacting fraction; qualitative threshold supported by hill, full quantitative explanation uses exponential notation.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: labelled buttons and live counter",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: reaction barrier and energy threshold",
+    "notationRepresentationBurden": "high: kJ/mol,298K,Ea,RT,e superscripts; RT not unpacked in visible reveal"
+  },
+  "whyCool": "A25kJ/mol lower hill changes the counter from1 to24113, then a5unit increase collapses it to3205.",
+  "caveat": "Exponential notation and RT are assumed more than explained; no new application case.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Fresh transfer application",
+    "Accessibility mode audit",
+    "Drag interaction not tested"
+  ],
+  "effort": "Approximately2minutes browser walkthrough",
+  "notApprovedForServing": true
+}

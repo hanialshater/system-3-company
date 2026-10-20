@@ -1,0 +1,103 @@
+{
+  "slug": "only-the-needed-trader-profits",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/only-the-needed-trader-profits",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedT3 from network withT1/T2 alternativeS1B1 routes,T3soleS2B2;values0/1,pricing rules not stated.",
+    "RemovedT1 thenT2 individually:2trades/$2 remain. RemovedT3:1trade/$1. Full network visually inspected.",
+    "Reveal infersT1/T2undercut tozero,T3cancharge. No price competition or bargaining action tested;prose right clipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Network alternatives and economic interpretation.",
+    "conceptualDemand": "Essentiality versus degree versus pricing power.",
+    "interfaceBurden": "Three removal controls,one reset."
+  },
+  "whyCool": "Having the same number of connections does not mean being equally replaceable.",
+  "caveat": "State zero-cost price competition assumptions before profit prediction;actual interaction establishes lost trade value,not realized fees.",
+  "effort": "Prediction,allthree removals,reveal,fullgraph screenshot.",
+  "provisionalBucket": "revise-profit-assumptions",
+  "bucketReason": "Strong network exploration,overextended pricing inference.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Network essentiality identifiable but profit requires unstated competition assumptions.",
+      "evidence": "Who profits versus route structure.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled single-node removals expose redundancy.",
+      "evidence": "T1/T2no loss,T3loss1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Removal evidence strong,zero-profit pricing conclusion asserted without model rules or test.",
+      "evidence": "Undercutting untilzero only reveal.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear graph but trade loss versus realized profit distinction missing and clipped prose.",
+      "evidence": "Full screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General essentiality claim without concrete new application.",
+      "evidence": "Same network.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same degree can yield different indispensability.",
+      "evidence": "Alltwo links,T3sole path.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Network and lost-trade labels central.",
+      "evidence": "Alternative paths versus isolated pair.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Remove traders and compare outcomes.",
+      "evidence": "Three removals.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network bargaining insight,not actual market prediction.",
+      "evidence": "Ideal0/1values.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Degree,substitution,marginal value and competition.",
+      "evidence": "Profit inference assumptions.",
+      "confidence": "medium"
+    }
+  }
+}

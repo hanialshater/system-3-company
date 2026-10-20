@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust5/5 ignored. Chose Aboutsame same3hours versusA/B;locked. Calendar A3hoursday0, B1hourdays-2/-1/0."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Immediate test A93/B90%;monthlater A23/B37%;bothstored/unlockedreveal. SliderHome thenRight=>day1A82/B85, crossover alreadyoccurred; alltestresultsretained. Toy/chosennotmeasuredmemory label explicit."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquitePlanB. Own93/90 immediate and37/23 delayed; illustrativetoy notforecast; verbalrecallstudies same qualitative shape, spacing usuallywinsdelay; oneexplanation revisitinghalf-forgotten strengthens morethan fresh rereading. Initial screenshot calendar/graph inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible equal-time misconception commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Immediate/delayed/day1 contrast exposes reversal.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ownresults and toy caveat connected to explanation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Calendar and retained test labels clear.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete spacing/time-horizon principle with forecast limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Immediateleader loses afterdelay.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Calendars and crossingcurves carry time relation.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible tests/time.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Studyschedule interpretation central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Timehorizon and schedule with verbal memory mechanism.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One schedule-versus-delayed-outcome relation with immediate contrast.",
+    "conceptualDemand": "Distinguish equal totaltime from timing and testdelay; percentages simple.",
+    "interfaceBurden": "Two tests/range; explicit stored results."
+  },
+  "whyCool": "The plan leading immediately loses by day1 and month30 despite equal3hours, visible in reversible time comparison.",
+  "caveat": "Chosen toy curves are not measured learner outcomes or memory forecast; mechanism presented as one explanation.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only sliderHome/Right tested; accessibility modes unknown."
+  ],
+  "screenshots": [],
+  "slug": "spaced-beats-cram",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/spaced-beats-cram",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "769f8b293a4cf18ce47c3443a0a820e4662490b4272e821b9f0e2fda29923dab",
+    "metaSha256": "3b2ed33255539dffefc13798929769a5b755e4710f8e9b47be5c494171a7ba45"
+  }
+}

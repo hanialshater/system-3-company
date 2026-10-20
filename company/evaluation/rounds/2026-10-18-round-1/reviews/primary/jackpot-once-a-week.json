@@ -1,0 +1,104 @@
+{
+  "slug": "jackpot-once-a-week",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/jackpot-once-a-week",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted56000years expectedfirstwin for1weeklyticket with1/292201338 odds; alternatives5600/5.6million.",
+    "80years4174tickets0wins,0.0014%chance;100000years5217857tickets0wins1.8%;meanpoint5.6millionyears292201338tickets0wins63%;seededfirstwin6.6millionyears343820670tickets1win69%.",
+    "Logtimeaxis explicitlyeach tick10timeslonger;lifetimemarker andfirstwinpoint. Reveal recalls80yearcase,meanpoint andactualfirstwin;statesexpectationnotpromise.",
+    "1280x720light screenshot finalreadouts clear; earlier63%cardbelowinternalfold,revealprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requireslarge-number/logscale andexpectationversusguarantee distinction.",
+    "conceptualDemand": "Independent repeatedchance andmeanwait.",
+    "interfaceBurden": "Simplepresets;logaxisneedsread."
+  },
+  "whyCool": "Even the average waiting time is millions of years, and reaching it still leaves a substantial chance of no win.",
+  "caveat": "Fixedindependentodds andweeklyrate toy;lotteryoddsnotindependentlycurrentverified. Noactualpurchase. Prosecutoff andonecardbelowfold.",
+  "effort": "Prediction,lifetime,100000years,meanwait,seededfirstwin,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strongrare-eventscale anduncertaintycontrast;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitweeklyrate andticketodds makeexpectedwait testable.",
+      "evidence": "Threeordersofmagnitude alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several timescales andmeanversusrealization contrast exposesrare-eventwait anduncertainty.",
+      "evidence": "80,100000,5.6m,6.6myears.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconcilesoriginalanswer andactualrun,meanpointonly63%chance.",
+      "evidence": "Expected292201338tickets notguarantee.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Logaxisexplained butcardfold andprosecutoff limitlayout.",
+      "evidence": "Actualtwo screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrare-odds intuition,nootherapplicationtask.",
+      "evidence": "Humanlifetimescale conclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Multiplelarger-than-lifetime spansstillrare,andmeanwaitnotguarantee.",
+      "evidence": "100000years1.8%;5.6myears63%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Logaxis makeslifetimemarker tiny againstexpectedwait.",
+      "evidence": "10\u00d7ticks and6.6mfirstwinpoint.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Timespan andfirstwinbuttons invitecounterfactualcomparison.",
+      "evidence": "Fourtimespanstates tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralinterpretationofextremelysmall repeatedodds.",
+      "evidence": "Weeklyplayversushumanlifetime.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometricwaitingtime,expectation andcumulativechance distinguished.",
+      "evidence": "Expectedwait63%versusseededfirstwin69%point.",
+      "confidence": "medium"
+    }
+  }
+}

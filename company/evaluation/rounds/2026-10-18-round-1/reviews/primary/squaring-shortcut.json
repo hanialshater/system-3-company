@@ -1,0 +1,103 @@
+{
+  "slug": "squaring-shortcut",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/squaring-shortcut",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted15 multiplications. Both methods reach exponent2 in one step; after two steps squaring reaches4 while multiply-by-three reaches3.",
+    "Completed both exponent paths: four squarings to16 versus15 multiply-by-three steps. Screenshot showed doubling arcs1\u21922\u21924\u21928\u219216 above15unit arcs below.",
+    "Reveal explained four-step construction and lower bound: a multiplication of available numbers cannot more than double maximum exponent, so three steps reach at most8; non-power-of-two exponents need extra multiplies."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Exponent notation introduced through repeated multiplication.",
+    "conceptualDemand": "Exponent addition under multiplication and doubling bound.",
+    "interfaceBurden": "Low: independent step/finish buttons."
+  },
+  "whyCool": "Reusing a result doubles the progress each time, and the diagram also explains why four is the minimum.",
+  "caveat": "Only target16 is interactive; general exponent method is described without a worked non-power-of-two case. Counts multiplications, not growing-number bit cost.",
+  "effort": "Browser prediction, two individual steps per method, completion, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Strong causal visual and a real minimality explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise minimal-work task with legal reuse rule.",
+      "evidence": "Start3, multiply any two available numbers, target3^16.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepped and completed two methods with shared start/target.",
+      "evidence": "At two operations exponents4 versus3; final4 versus15.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Construction and lower bound justify fewest, not merely faster.",
+      "evidence": "No step doubles exponent by more than two; three steps max8.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Exponent notation scaffolded and operation count distinguished.",
+      "evidence": "3^k means k threes; arc labels count operations.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Generalizes with power-of-two condition and explicit limitation.",
+      "evidence": "Halving exponent plus extra multiplies when not power of two.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Reuse collapses15 operations to four.",
+      "evidence": "Four doubling leaps.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Exponent-line geometry directly shows doubling versus unit increments.",
+      "evidence": "Doubling arcs over equal unit arcs with step counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two guided paths, no free multiplication choices.",
+      "evidence": "Square or multiply-by-three controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete efficient power computation strategy.",
+      "evidence": "Millions-size exponent discussed with operation-count scope.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Minimality argument plus limitation of pure squaring.",
+      "evidence": "Three-operation bound and non-power-of-two caveat.",
+      "confidence": "medium"
+    }
+  }
+}

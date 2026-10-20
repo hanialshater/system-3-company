@@ -1,0 +1,144 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "ramp-same-work",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ramp-same-work",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "ramp-same-work",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/physics/ramp-same-work/meta.json",
+    "metaSha256": "7053046b55d6b60223c08b007e91896f96632d5574339f9768b5fed81c3a4a9b",
+    "demoSha256": "f7ab51eefee9c3b54d6b0291a07e769ba22f6e5aa8e6a3b58fa80bc1d9eb16ac",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/ramp-same-work",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/ramp-same-work.json"
+  },
+  "date": "2026-10-18T19:59:53.507544+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose Less and locked.",
+  "exploration": "Pushed4m ramp122.6N to490.5J, direct1m lift490.5N to490.5J, then6m ramp81.8N to490.5J; observed animation and retained history.",
+  "reveal": "Read same-work correction using current6m values; force component weight times height divided length, work force times distance, mgh, real friction caveat.",
+  "screenshotInspection": "Actual1257x936dark initial, finished4m and final6m reveal inline screenshots inspected; history wraps and full explanation readable after scroll.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targets force versus work confusion under explicit conditions.",
+      "evidence": "Frictionless steady4m ramp compared with1m straight lift.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple meaningful contrasts retain quantitative evidence.",
+      "evidence": "4m122.6N,1m490.5N,6m81.8N all490.5J; histories visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Current values, causal tradeoff and real boundary converge.",
+      "evidence": "Force decreases inversely with length; distance cancels; friction adds work.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counters and history make force/work distinction concrete.",
+      "evidence": "N andJ clearly separated; formula symbols less defined than prose.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conditioned mechanism supplied but no distinct application.",
+      "evidence": "Real friction caveat remains same ramp problem.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Large force reduction preserves total work.",
+      "evidence": "81.8N versus490.5N but both490.5J.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Slope, arrow and animated counter support tradeoff.",
+      "evidence": "Longer ramp and retained products inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjust length and replay pushes.",
+      "evidence": "Slider plus lift comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies everyday moving loads.",
+      "evidence": "Lower force and real friction explicitly distinguished.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometry, multiplication and idealization linked.",
+      "evidence": "Height/length force relation and mgh boundary.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Coordinate inverse force with greater distance and fixed height.",
+    "interfaceBurden": "One slider, push and direct lift; history automatic.",
+    "prerequisiteNovelty": "Force/work distinction taught; components unfamiliar.",
+    "notationRepresentationBurden": "N,J,products and mgh; prose supports units."
+  },
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose Less and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Pushed4m ramp122.6N to490.5J, direct1m lift490.5N to490.5J, then6m ramp81.8N to490.5J; observed animation and retained history."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read same-work correction using current6m values; force component weight times height divided length, work force times distance, mgh, real friction caveat."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark initial, finished4m and final6m reveal inline screenshots inspected; history wraps and full explanation readable after scroll."
+    }
+  ]
+}

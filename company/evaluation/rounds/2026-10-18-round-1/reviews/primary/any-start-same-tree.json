@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified;4/4trustignored. ChoseYourfriend'svsYours/Thesameandlocked. Weighted5town2networkdiagrams."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "IncorrectAB4rejected:'a cheaper cable leaves your towns',0totals. AC1=>you1friendDE3;BC2=>you3friend8;BD5=>you8friend10;DE3=>both11same4cables. FriendB=>BC,AC,BD,DE11unlockedreveal;FriendD=>DE,BD,BC,AC11."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteThe same. CitesAC,BC,BD,DEversusEreverse andBandDsame11. Cheapest cable across dashed line always part cheapest network; different prices yields unique11among40possible networks. Start changes order only. CurrentfriendDwhile reveal specifically recounts initialE. Initial screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear comparison commitment and plausible cost difference.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incorrect action feedback and multiple starts show order-versus-result invariant.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses own sequences and explains crossing rule; proof asserted.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled edges/totals and specific incorrect-action message support path.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Greedy network principle stated but applicability/tie boundary limited.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "p",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different intermediate bills converge to same result.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paired networks and growing connected sets carry mechanism.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose edges, encounter rejection, switch starts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Cable network minimization concrete.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Greedy growth, cut and uniqueness linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Core links greedy crossing rule, connected town set and start-independent final network; uniqueness proof is unsupported extension.",
+    "conceptualDemand": "Track partial networks and cheapest crossing versus cheapest global edge; graph labels require orientation.",
+    "interfaceBurden": "Eight edge buttons/four start switches; diagrams and totals aid tracking."
+  },
+  "whyCool": "The two construction orders have different running totals yet converge to the same four cables and11cost fromthreefriendstarts.",
+  "caveat": "Reveal asserts cut property and40networks without interactive verification or proof; tested graph has distinct costs, no ties.",
+  "effort": {
+    "approxMinutes": 3
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "FriendCuntested; tie-case unavailable; accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "any-start-same-tree",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/any-start-same-tree",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "970c26c4e94694914c2b33168ec6a1350e403de58818ef065f7e4cf70cff60ab",
+    "metaSha256": "f07b9b25ea1fb09bf28166265f3fc7ad220a883efaee1448fa441ae42c8b5377"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "switch-half-off",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/switch-half-off",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "3930fa3c4fb92e78d2ece6f6647747cbf201b1ed539fe05a70c3b0aa07cdb7c7",
+    "demoSha256": "8497537d3eb949518415eed8168a514b682a9f3f031854507b5e6886427fa1d5",
+    "metaPath": "src/demos/ai/switch-half-off/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 2 and locked the average total prediction for four units, each kept with 50% chance and doubled when kept.",
+    "exploration": "Ran one pass: total and average 2. Ran 20 more: 21 passes, last total 2, average 4.48. Ran 200 more: 221 passes, last total 2, average 3.96. The average line settled close to the all-on reference at 4.",
+    "reveal": "The reveal corrected the answer to 4 and accurately quoted 221 passes and average 3.96. It explained each unit contributes 1 on average and described seed variation, giving a 3.78 to 4.23 percentile range for this sample size. It additionally claimed dropout prevents dependence on particular partners, which this fixed-output toy does not demonstrate.",
+    "visual": "Inspected the dark 1257 by 936 inline screenshot after 221 passes. Three dashed zero units and one purple 2 represented the last mask. Scatter totals ranged from 0 to 8 and a purple running average approached the dashed all-on line at 4.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question separates individual masks from their average under compensation.",
+      "evidence": "Selected 2 despite the stated doubling of surviving units.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Increasing sample size shows variability and average stabilization.",
+      "evidence": "The average moved from 2 to 4.48 to 3.96 across 1, 21 and 221 passes.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the expectation and qualifies finite sample variation.",
+      "evidence": "It uses my exact count and average and gives a seeded percentile range.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The mask view and running average distinguish last result from aggregate.",
+      "evidence": "Last total stayed 2 while the average approached 4.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The scaling principle is explained, but the training benefit is asserted beyond the toy.",
+      "evidence": "Fixed output units cannot demonstrate reduced partner dependence.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Switching off half the units need not halve the average when survivors double.",
+      "evidence": "221 passes averaged 3.96 versus all-on 4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-pass masks and aggregate graph show two levels of behavior.",
+      "evidence": "The final mask output 2 and average near 4 were visible together.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sampling buttons offer repeated random trials.",
+      "evidence": "One, 20 and 200 passes provide progressively larger samples.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It explains the purpose of compensation in dropout.",
+      "evidence": "Each unit averages its original contribution under the specified rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It distinguishes expected value from finite sample outcomes.",
+      "evidence": "The reveal states per-unit reasoning and a distribution over seeds.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Averages are familiar, while random masking and expectation require a new distinction.",
+    "conceptualDemand": "Moderate: distinguish a particular pass, a sample average and theoretical expectation.",
+    "interfaceBurden": "Low: three sample count buttons.",
+    "conceptualChallenge": "Random deletion and scaling can preserve an average while increasing variability.",
+    "prerequisiteNovelty": "Dropout and random seeds are introduced.",
+    "notationRepresentationBurden": "Moderate: unit outputs, scatter outcomes, running average and percentile language."
+  },
+  "whyCool": "A noisy collection of partial networks can preserve the full output on average through a simple scaling rule.",
+  "caveat": "This toy verifies expected output, not dropout's effect on learning or partner dependence. The keep probability and scaling stay fixed.",
+  "missingEvidence": [
+    "No trained model, alternative keep rate or scaling comparison was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "leaky-vaccine-threshold",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/leaky-vaccine-threshold",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "leaky-vaccine-threshold",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/leaky-vaccine-threshold/meta.json",
+    "metaSha256": "40b05893415e7969f7c66b5aebcd26e7b9b771c372c495c8f189c453c6494779",
+    "demoSha256": "aad9219de9b8a7608fa2c2e6b7388d14a2250b909843050773a1a7805794ea13",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/leaky-vaccine-threshold",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/leaky-vaccine-threshold.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose 75% against About 94% and Impossible over 100%; locked it in.",
+    "exploration": "Perfect efficacy at 75% coverage showed R 1.00. Clicked efficacy 80%: needed 93.8%, current 75% coverage R 1.60. End on coverage slider set 100%, R 0.80. Efficacy 70% then showed even 100% coverage R 1.20, not enough alone.",
+    "reveal": "Corrected to About 94%; explained 0.75/0.8 = 0.9375. Acknowledged 70% efficacy requiring 107% coverage and R 1.2 at full coverage. Caveated random mixing, made-up disease and initial outbreak R.",
+    "visual": "Actual dark 1257 \u00d7 936 screenshot inspected: dot town shows vaccination fill as protection; clear full-coverage limit status and two sliders; full reveal visible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives distinguish unchanged coverage from adjusted and impossible thresholds.",
+      "evidence": "75%, About 94%, Impossible choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Efficacy and coverage contrasts expose weaker protection and impossible limit.",
+      "evidence": "80% efficacy at 75% coverage R 1.60; full coverage R 0.80; 70% full R 1.20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Relates actual state to division and full-coverage limit with assumptions.",
+      "evidence": "0.75/0.8 and 107% requirement.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels, feedback and limit badge make tested desktop path clear.",
+      "evidence": "Actual screenshot plus named sliders.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable division rule and conditions offered without concrete new application.",
+      "evidence": "Coverage depends on R0 and efficacy; toy limits.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One slider endpoint key is insufficient access audit.",
+      "evidence": "End worked on coverage; focus order, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed unchanged threshold contradicted by 93.8% requirement.",
+      "evidence": "75% prediction versus About 94% correction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot fill depicts weaker protection and coverage limit.",
+      "evidence": "Full vaccinated dot town with R 1.20.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two controls support contrasting coverage and efficacy.",
+      "evidence": "80% versus 70% with full-coverage boundary.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete threshold interpretation within toy model.",
+      "evidence": "Coverage alone can become insufficient.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Efficacy scaling and saturation boundary both central.",
+      "evidence": "93.8% possible versus 107% impossible.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links coverage times efficacy to effective protection and threshold.",
+    "conceptualDemand": "Two linked proportional relations and 100% coverage limit.",
+    "interfaceBurden": "Low: two labeled sliders and preset buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: R and effective protection.",
+    "notationRepresentationBurden": "moderate: percentages, decimal division and R."
+  },
+  "whyCool": "With everyone vaccinated, dropping efficacy from 80% to 70% visibly pushes R from 0.8 to 1.2.",
+  "caveat": "One fixed R0; no fresh disease application or full accessibility audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Focus order, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:13:31.432274+00:00"
+}

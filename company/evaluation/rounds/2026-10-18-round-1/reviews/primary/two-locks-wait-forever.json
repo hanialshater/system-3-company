@@ -1,0 +1,105 @@
+{
+  "slug": "two-locks-wait-forever",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-locks-wait-forever",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedonealwaysfinishesforP:AthenB,Q:BthenA,waitiftaken.",
+    "StepPthenQgaveAheldP,BheldQ,bothwaitandstepbuttonsdisabled. SerialPallthenQcompletedbothandpreservedjamtrace.",
+    "ChangedQtoAfirstandranalternating:bothfinished,Qwaited;historypreservedbothcontrasts.",
+    "Revealexplainedcircularwaittriggerandconsistentglobalorderingpreventionusingactualtrials.",
+    "Inline1280x720 light screenshot: workersteps/locks/historyclear,right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Twoactorsandtwolocks manageablebutconcurrencyunfamiliar.",
+    "conceptualDemand": "Circularwaitversusordinarywaiting.",
+    "interfaceBurden": "Clearsteps,presetsandhistory;proseclips."
+  },
+  "whyCool": "Twoworkerseachdoingareasonablethingcanfreeze,andoneagreedorderingbreaksthecycle.",
+  "caveat": "Toytwo-locksystem;right-edgeproseclipping;accessibilityunknown.",
+  "effort": "Prediction,manualjam,serialsuccess,same-orderinterleaving,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Excellenttrigger/preventioncontrast;repairproselayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificlockordersandwaitingrulewithsometimes/alwaysdistinction.",
+      "evidence": "Threeguaranteealternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manualjam,serialsuccess andsame-orderinterleaving isolatecircularwaitcondition.",
+      "evidence": "Threecontrolledschedules.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsjamtoexacttrigger andobservedpreventivechange.",
+      "evidence": "Bothfirstlocksbeforesecond;globalordercure.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearstatesandhistorybutproseclips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Changedlockordercaseappliespreventionunderinterleaving andnamesconcretepractice.",
+      "evidence": "Sameorderbothfinish.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Politewaitingalonecanfreezeallworkers.",
+      "evidence": "Bothholdonewaitforother.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Lockownershipandworkerchecklistsmakecyclevisible.",
+      "evidence": "Jamandcompletedstates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manualscheduleandorderchangeexperiments.",
+      "evidence": "StepP/Qandrunpresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Deadlockpreventioncentralprogrammingpractice.",
+      "evidence": "Globalagreedlockorder.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Concurrencyinterleavingandstructuralprogressguarantee.",
+      "evidence": "Serialsuccessdoesnotprovesafety.",
+      "confidence": "medium"
+    }
+  }
+}

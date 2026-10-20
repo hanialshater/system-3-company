@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "which-answer-wins",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-answer-wins",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "997c1dd0f47a7ad0ece6d0357fda13c7aefb88ef5a919a00119fe7b1e67c3a50",
+    "demoSha256": "487df6e4055a898c15c6a66c4d0322441137e1e9e59e59a180e3ba5b8a1a9f50",
+    "metaPath": "src/demos/ai/which-answer-wins/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 0.75 and locked the reward-gap prediction for a seventy-five-percent pairwise preference under the stated logistic rule.",
+    "exploration": "At gap zero the predicted preference was fifty percent. Tested 0.75: 67.9%; three: 95.3%; 1.1: 75.0%, a match. Set -1.1: 25.0%, checking the reversal symmetry.",
+    "reveal": "The reveal corrected the answer to 1.1, accurately recognized the matched gap and the tested gap three, and explained three-to-one preference odds correspond to log three. It described fitting reward differences from comparison wins rather than receiving explicit scores or reasons.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at gap 1.1. A purple sigmoid intersected a green dashed seventy-five-percent reference at a highlighted point. Reward-gap and probability axes were distinct, and the matching readout said yes.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884179 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question separates preference probability from a latent score difference.",
+      "evidence": "Selected 0.75 for a seventy-five-percent preference.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Gap changes expose the nonlinear mapping and its reversal.",
+      "evidence": "Positive 1.1 gives seventy-five percent while negative 1.1 gives twenty-five.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the fitted difference using odds and the actual trials.",
+      "evidence": "It quotes the match and the overconfident gap three.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The graph and reference line make fitting visible despite technical notation.",
+      "evidence": "The observed frequency is a horizontal target rather than the reward-gap axis.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A real training method is named, but no new comparison set or application is developed.",
+      "evidence": "Only one fixed observed preference is fitted.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A reward number is a fitted gap rather than a directly observed preference score.",
+      "evidence": "Seventy-five-percent preference corresponds to about 1.1 under this rule.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The sigmoid and target line explain why the candidate values differ.",
+      "evidence": "The highlighted intersection identifies the correct gap.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The slider supports a small fitting puzzle.",
+      "evidence": "Presets and a negative-gap test expose the mapping.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies what a pairwise reward-model target represents.",
+      "evidence": "The reveal distinguishes comparison outcomes from explicit quality scores or reasons.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson connects probability, odds and a latent difference.",
+      "evidence": "Log three explains the seventy-five-to-twenty-five odds.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The controls are easy, but logistic probability, odds and logarithms exceed the everyday learner boundary.",
+    "conceptualDemand": "High: infer a latent difference through a nonlinear probability model.",
+    "interfaceBurden": "Low: three presets and one signed slider.",
+    "conceptualChallenge": "Reward gaps are transformed parameters, not raw preference percentages.",
+    "prerequisiteNovelty": "Reward models, logistic functions, odds and natural logarithms are introduced.",
+    "notationRepresentationBurden": "High: exponential formula, signed gap and logarithm explanation."
+  },
+  "whyCool": "Human comparison wins can determine a numerical gap even when nobody ever gives a numerical score.",
+  "caveat": "The toy fixes one answer pair and observed frequency. It does not show multi-pair fitting, uncertainty or general reward-model behavior.",
+  "missingEvidence": [
+    "No fresh preference frequency or multiple-answer fit was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

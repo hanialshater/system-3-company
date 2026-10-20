@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "longer-loan-cost",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/longer-loan-cost",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "longer-loan-cost",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/longer-loan-cost/meta.json",
+    "metaSha256": "c2bf1b16c82991ff6a39a5a1ac68fa5950628593a87b56db78d8d08222eec57a",
+    "demoSha256": "c51fab5532fe22ce349ff55bf53c288e7b30f752908f9c957b160f98ba0f2349",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/longer-loan-cost",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/longer-loan-cost.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About $200 against About $1300 and About $5000; locked it in.",
+    "exploration": "Five years showed interest $3199. End on slider gave eight years, $5232 interest and +$2032 versus five. Left to seven gave $4542 interest, +$1343. Home gave two years, $1274 interest and \u2212$1925. Screenshot at two years showed monthly payment $886.41.",
+    "reveal": "Corrected About $1300. Compared five years $386.66 monthly/$3199 interest with seven years $292.17/$4542. Explained slower principal repayment leaves balance charged 0.5% monthly longer. Fixed illustrative 6%, level payments, no fees.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Principal block stays $20000 while interest segment and monthly figure change; dashed five-year total retained. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "7/7 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete commitment tests underestimating cost of lower monthly payment.",
+      "evidence": "About $200 choice versus $1343 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Duration contrasts visibly change total interest and payment.",
+      "evidence": "Five/seven/eight/two-year interest values.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains tested five/seven totals through slower repayment and fixed monthly rate.",
+      "evidence": "0.5% charged longer; $3199 versus $4542.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Duration label, total comparison and monthly figure clear on tested desktop.",
+      "evidence": "Actual two-year screenshot and five-year baseline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable longer-balance principle and conditions, no concrete new application.",
+      "evidence": "Fixed rate, level payments, no fees caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider keys alone insufficient audit.",
+      "evidence": "Home, End and Left worked; other access modes untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed $200 estimate contradicted by $1343 extra interest.",
+      "evidence": "Seven-year versus five-year comparison.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fixed principal and changing interest block carry total-cost contrast.",
+      "evidence": "Actual block and dashed baseline screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Duration slider permits reversible range comparison.",
+      "evidence": "Two, five, seven and eight years.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete payment-versus-total-cost decision central.",
+      "evidence": "Monthly relief paired with added interest.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Payment, outstanding balance and duration linked.",
+      "evidence": "Slower repayment and more charged months.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links repayment duration to monthly affordability and cumulative interest.",
+    "conceptualDemand": "Distinguish monthly flow from total cost and retained principal balance.",
+    "interfaceBurden": "Low: one slider and labeled figures.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: amortization and outstanding balance.",
+    "notationRepresentationBurden": "moderate: monthly percentage and currency totals."
+  },
+  "whyCool": "Stretching five years to seven cuts the monthly bill while the interest block grows by $1343.",
+  "caveat": "Fixed hypothetical rate and no fees; reveal describes five/seven comparison while stage can show another duration.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Focus order, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:32:43.638600+00:00"
+}

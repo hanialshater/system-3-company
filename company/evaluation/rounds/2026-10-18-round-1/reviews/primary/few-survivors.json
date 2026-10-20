@@ -1,0 +1,104 @@
+{
+  "slug": "few-survivors",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/few-survivors",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction1%variant,20randomsurvivingcopies,loss10/50/82%; chose50.",
+    "Firstjar1redof20,notlost;21jars16lost,mostrecent1redsurvived.",
+    "Reveal16/21=76%vsapprox82%theory,0.99^20andfinitejar81.6%;regrowthcopiesexistingvariants,mutation/migrationexcluded;survivingredregrows5or10%not1%.",
+    "Screenshot tinyjarredmarkers butlargelegiblecounts,allprose readable; ordinaryverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Countmodel concrete;rare-event probability andgenecopies requirelinkedreasoning.",
+    "conceptualDemand": "20genecopies for10individuals;samplingloss persistsafterregrowth.",
+    "interfaceBurden": "Simplebuttons;tinyparticles supplementlargercounts."
+  },
+  "whyCool": "Youcanregrowallathousandanimalsandstillnevergetbackavariantthatmissedthetwentysurvivinggenecopies.",
+  "caveat": "Randomsurvivaltoy excludesselection,mutation,migration;one21jarbatch isnotpopulationevidence.",
+  "effort": "Prediction,onejar,20additionaljars,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clearbottleneckmechanism andhonestfinite-batch/assumptioncaveats.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblefrequencyalternatives expose rarityandsmall-sampleloss.",
+      "evidence": "1%variant,20copies,50vs82%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Repeatedbottlenecks show survivalandloss outcomes.",
+      "evidence": "Firstsurvived,16of21lost.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalprobability andobservedfinite-samplevariation,plusmodelboundary.",
+      "evidence": "76%sampleversus82%theory;nomutation/migration.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clearcounts andmodelqualifications despite tinyparticleview.",
+      "evidence": "16of21andchanceformula legible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Populationversusdiversityprinciple explained butnewapplicationnotexercised.",
+      "evidence": "Regrowingsurvivorscannotrestoremissingvariants.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Populationrecoveryneednotrestoregeneticdiversity.",
+      "evidence": "Rarelostinmostcrashes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bottleneckandregrownjars illustratecopyingconstraint.",
+      "evidence": "Surviving1of20regrows5%.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Squeezejars repeatedly andcompareoutcomes.",
+      "evidence": "Onejarand20jarcontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingconservation/geneticliteracy.",
+      "evidence": "Headcountversusdiversity recovery.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Randomsampling,absorbingloss,anddriftwithoutselection.",
+      "evidence": "Survivalchangesfrequency;nomigration/mutation.",
+      "confidence": "medium"
+    }
+  }
+}

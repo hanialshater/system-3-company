@@ -1,0 +1,104 @@
+{
+  "slug": "euclid-leftover-rectangle",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/euclid-leftover-rectangle",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted9by9 largest identical squaretile for48by18floor; alternatives3and6.",
+    "Cut18left30\u00d718;cut18left12\u00d718;cut12left12\u00d76;finish gave18,18,12,6,6 andno remainder. Finaltilebutton overlaid6squaregrid8across3down24tiles.",
+    "Reveal recaps actualfivecuts,explainscommondivisor preserved inremainder andcallsEuclidalgorithm. Hookpromisestrysizes,butonlycutcontrolsvisible.",
+    "1280x720light three screenshots:geometryclear; finalprose clippedright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concretegeometrybutmaximality/invariant explanationrequiresreasoning.",
+    "conceptualDemand": "Commondivisors preservedby subtraction.",
+    "interfaceBurden": "Simplecutbuttons;nofreshsizecontrols."
+  },
+  "whyCool": "The last little square left by greedy cuts tiles the entire original floor.",
+  "caveat": "Noalternatefloor orsize experiment;hooktrysizesoverpromisesobservedcontrols. Rightedgeprosecutoff.",
+  "effort": "Prediction,threeindividualcuts,finish,uniformtileoverlay,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "StronggeometricGCDmechanism;alignhookandfixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete largestcommonunit question withplausibledivisor distractors.",
+      "evidence": "9divides18butnot48;6both.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Successivesquarecuts andfinalgrid show constructive algorithm.",
+      "evidence": "18,18,12,6,6 then24uniformtiles.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainscommondivisor invariant andoriginal answer usingobservedcuts.",
+      "evidence": "Tilethatfitsfloorandsquarefitsremainder.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Geometricstateclear;hooksize-testingpromisenotvisible andproseclips.",
+      "evidence": "Onlycutbuttons;reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalalgorithm named withreason,butnonewrectangleapplication.",
+      "evidence": "One48\u00d718case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different-sizedcutspointtooneuniformtilesize.",
+      "evidence": "Last6squaretileswholefloor.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple remainderrectangles anduniformgrid overlay expose invariant.",
+      "evidence": "30\u00d718,12\u00d718,12\u00d76,final6grid.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Cutting sequence andtilingoverlay areconstructive.",
+      "evidence": "Stepandfinishbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete no-cuttingfloor task central.",
+      "evidence": "Largest identicalsquaretile.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Remainderinvariant andalgorithmicefficiency.",
+      "evidence": "Fivecutsversustestingall sizes.",
+      "confidence": "medium"
+    }
+  }
+}

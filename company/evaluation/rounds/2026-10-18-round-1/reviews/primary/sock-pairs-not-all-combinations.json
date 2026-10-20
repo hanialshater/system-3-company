@@ -1,0 +1,103 @@
+{
+  "slug": "sock-pairs-not-all-combinations",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sock-pairs-not-all-combinations",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction explicitly says unique true pairs from different people;6socks15 candidatepairs,asks10. Chose45.",
+    "At6 no marks15,marked3;at10 no marks45,marked5.",
+    "Reveal triangular sum,not all pairs tested since matches leave pile,and truly identical socks arbitrary pairs. Screenshot long prose clips right; candidate versus true-pair meaning shares same label."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Unordered pair counting and changing candidate meaning.",
+    "conceptualDemand": "Avoid double counting;candidate versus true pair.",
+    "interfaceBurden": "Two modes,one slider,long reveal."
+  },
+  "whyCool": "Adding one more object creates a possible pairing with every object already there.",
+  "caveat": "Distinguish candidate combinations from marked true pairs in labels; improve long reveal layout.",
+  "effort": "Prediction,A/B,countchange,reveal,inline screenshot.",
+  "provisionalBucket": "solid-label-viewport-followup",
+  "bucketReason": "Strong conceptual scope with readability issue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete plausible linear/double-count distractors with clear unique-pair premise.",
+      "evidence": "25/45/90.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Count and marking compare combinatorial candidates with known partners.",
+      "evidence": "6:15/3;10:45/5.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains sum and operational limits.",
+      "evidence": "9+8+...+1;not tries.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Long clipped reveal and possible-pair label shifts from candidates to true pairs.",
+      "evidence": "45versus5.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General incremental count principle but no new application.",
+      "evidence": "Same sock example.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Candidate combinations grow faster than objects.",
+      "evidence": "6\u219210 socks15\u219245.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Marked pairs and table support comparison.",
+      "evidence": "Pair diagram partly above scroll.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Modes and count.",
+      "evidence": "6\u219210.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Marking personal pairs useful with explicit identical-sock exception.",
+      "evidence": "Not actual search-time claim.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combinatorics versus operational search and identity.",
+      "evidence": "Triangular sum,removal caveat.",
+      "confidence": "medium"
+    }
+  }
+}

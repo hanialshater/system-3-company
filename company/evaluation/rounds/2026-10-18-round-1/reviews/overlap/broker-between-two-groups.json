@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "overlap",
+  "slug": "broker-between-two-groups",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/broker-between-two-groups",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust4/4 ignored. Predicted Bo for more shortest paths despite fewerfriends; locked."
+    },
+    {
+      "id": "E",
+      "text": "Hana:5friends,0strangerpairs,on0pairs paths. Bo:4friends,4strangerpairs,on24pairs paths. Nextpath1and2 both throughBo; revealunlockedafterfirst."
+    },
+    {
+      "id": "R",
+      "text": "Densefriends bypassHana; all24crossgroup pairs throughBo. Two6-friendpeople score10 sharinghalfpaths; structuralhole named. Internalupscroll fullnetworkvisible:greenpath throughblueBo acrossclusters;rightrevealclipping. Inline screenshotonly."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblefriendcount versus structuralbridge contrast.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Twopeople and two tracedpaths expose degree/brokerage distinction.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains observedcontrast but expands to6-friend fractionalpathcounts without interactive verification or explicit applicabilitylimit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Network and metrics readable;shortestpath count semantics initiallyunexplained andproseclips.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Structuralhole principle stated;no newnetwork application tested. Editorialpotentialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fewerfriends yieldsfar more shortestpathrole.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlightedcrosscluster paths carrybridge mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Nextpath discovery andpersonswitches.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Socialnetwork brokerageinterpretation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Degreeversusbetweenness and sharedpath extension.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Shortestpaths andlocalversusglobalcounts linked ononegraph;fractionalpath extensionoptional.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;horizontalclipping",
+    "prerequisiteNovelty": "moderate;shortestpaths",
+    "notationRepresentationBurden": "moderate;network/metrics"
+  },
+  "whyCool": "Tracingdifferentcrossgroup routes repeatedly lightsBo even thoughHanahasmorefriends.",
+  "caveat": "Onlytwoof24paths traced;claim nobodyneedsHana is broader than testedshortestpathmetric.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "All24paths",
+    "Alternative network"
+  ]
+}

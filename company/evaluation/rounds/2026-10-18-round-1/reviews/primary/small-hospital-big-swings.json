@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "small-hospital-big-swings",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/small-hospital-big-swings",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "small-hospital-big-swings",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/small-hospital-big-swings/meta.json",
+    "metaSha256": "4ced7d115546540788c395843f066436151e2f484a2c883f91401dd614cb3753",
+    "demoSha256": "ece41c93d41d710583b7a4c36045426bd950be34e0ac6c542b592fdf52b7fb50",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/small-hospital-big-swings",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/small-hospital-big-swings.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About the same and locked it in.",
+    "exploration": "Hospital A fifteen births per day showed 53 days over sixty percent boys, expected 55. B forty-five showed 30, expected 25. Returned A. Home five births showed 73, expected 68; End one hundred showed three, expected six.",
+    "reveal": "Corrected to smaller A, distinguished seeded year from expectations, explained ten of fifteen versus at least twenty-eight of forty-five, and stated real births about fifty-one percent while model uses fifty.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Daily-share dots, fifty and sixty percent lines, extreme-color dots and retained A/B counts legible. At one hundred births dots visibly clustered near midpoint; explanation readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Equal probability with different sample sizes creates a meaningful qualitative commitment.",
+      "evidence": "Same selected against smaller and larger hospitals.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two presets and broad size range expose spread differences.",
+      "evidence": "Fifteen, forty-five, five and one hundred tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal separates sampled count from expected rate and explains threshold counts.",
+      "evidence": "53/30 seeded versus 55/25 expected.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dot meaning, strict over-sixty threshold and expectation are explicit.",
+      "evidence": "Each dot is one day; fifty-percent model caveat.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General small-sample principle stated without a concrete new application.",
+      "evidence": "Most extreme percentages come from smallest samples.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard sample-size endpoints worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same underlying chance yields different frequency of extremes.",
+      "evidence": "Smaller hospital more than twice expected extreme days.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot-cloud width shows sample-size effect.",
+      "evidence": "Tighter cluster at one hundred births.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Size slider recalculates a seeded year.",
+      "evidence": "Presets and five-to-one-hundred range.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Supports interpreting percentages from unequal sample sizes.",
+      "evidence": "Small groups swing wider.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines sampling variation and expectation versus realization.",
+      "evidence": "Seeded counts differ from long-run averages.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple graph supports probability-of-proportion reasoning.",
+    "conceptualDemand": "Separate equal event probability from variability of sample proportions.",
+    "interfaceBurden": "Two hospital presets and one size slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Sampling variation and expected counts explained with examples.",
+    "notationRepresentationBurden": "Percentages, sample sizes and daily dot chart."
+  },
+  "whyCool": "Equal odds do not make small and large groups equally stable.",
+  "caveat": "One seeded year illustrates variation; no fresh sample-domain application was attempted.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:41:09.740286+00:00"
+}

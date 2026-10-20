@@ -244,7 +244,7 @@ test("S17. PC3: the account tag is opaque, stable per account and secret, and di
 });
 
 test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeacon argument reaches the device key or the account tag, except the PC10 header to our own write routes", async () => {
-  const { scanSource, codeOnly, CLIENT_FILE, WRITE_ROUTES } = await import("./tag-scan.mjs");
+  const { scanSource, codeOnly, CLIENT_FILE, PREFERENCES_CLIENT_FILE, WRITE_ROUTES } = await import("./tag-scan.mjs");
   // 1. The whole of src/: every request argument, followed through locals, assignments, parameters and returns.
   const hits = SRC.flatMap((f) => scanSource(rel(f), read(f)));
   assert.deepEqual(hits, [], "a request can carry the device key or the tag");
@@ -268,6 +268,20 @@ test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeac
   // ...and the header to an allowed route, in the client file only, is the one exception.
   assert.deepEqual(scanSource(CLIENT_FILE, `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true), body: "{}" });`), []);
   assert.notDeepEqual(scanSource("src/components/Feed.tsx", `fetch("/api/account/merge", { method: "POST", headers: boundHeaders(me.tag, true) });`), [], "only account-client.ts");
+  // The new explicit preference writer has one separate, literal route/header shape.
+  const preferenceWrite = `fetch("/api/account/settings", { method: "PUT", headers: {"content-type":"application/json", "x-s3c-account":tag}, body:JSON.stringify(patch) });`;
+  assert.deepEqual(scanSource(PREFERENCES_CLIENT_FILE, preferenceWrite), []);
+  for (const badWrite of [
+    preferenceWrite.replace('/api/account/settings', '/api/events'),
+    preferenceWrite.replace('/api/account/settings', 'https://third.example/api/account/settings'),
+    preferenceWrite.replace('"PUT"', '"GET"'),
+    preferenceWrite.replace('method: "PUT"', 'method: "PUT", method: "GET"'),
+    preferenceWrite.replace('method: "PUT"', '...options, method: "PUT"'),
+    preferenceWrite.replace('"x-s3c-account":tag', '"x-s3c-account":tag, "extra":tag'),
+    preferenceWrite.replace('JSON.stringify(patch)', 'JSON.stringify({tag})'),
+    preferenceWrite.replace('"x-s3c-account":tag', '"x-s3c-account":DEVICE_KEY'),
+  ]) assert.notDeepEqual(scanSource(PREFERENCES_CLIENT_FILE, badWrite), [], "preference header exception cannot leak identity");
+  assert.notDeepEqual(scanSource("src/components/Feed.tsx", preferenceWrite), [], "exact preferences client only");
   // 3. Backstop by name across files (the scan does not follow imports): the tag's helpers and the device key live
   // only in these files (code, not comments); the only other use of `.tag` is AccountView's React key (never
   // rendered, never sent).
@@ -277,19 +291,19 @@ test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeac
     DEVICE_KEY: ["src/lib/account-client.ts"],
     boundHeaders: ["src/lib/account-client.ts"],
     ACCOUNT_HEADER: ["src/lib/account-client.ts", "src/lib/server/http.ts"],
-    accountTag: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
-    sameAccountHeader: ["src/lib/server/account-api.ts", "src/lib/server/http.ts"],
+    accountTag: ["src/app/api/account/feed/route.ts", "src/components/Feed.tsx", "src/components/account/AccountFeedController.tsx", "src/components/account/PreferenceEditor.tsx", "src/components/account/preferences-client.ts", "src/lib/server/account-api.ts", "src/lib/server/http.ts", "src/lib/server/personalization/account-feed-handler.ts", "src/lib/server/personalization/account-feed.ts", "src/lib/server/personalization/settings-handler.ts", "src/lib/server/personalization/settings-wiring.ts"],
+    sameAccountHeader: ["src/lib/server/account-api.ts", "src/lib/server/http.ts", "src/lib/server/personalization/settings-handler.ts"],
     "s3c:account-device:v1": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
-    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts", "src/components/account/preferences-client.ts"],
   };
   for (const [name, files] of Object.entries(homes)) {
     const found = SRC.filter((f) => code.get(f).includes(name)).map(rel).sort();
     assert.deepEqual(found, [...files].sort(), `${name} appears only in its home files`);
   }
-  // Of the files that can hold a /me answer (account-client.ts and its importers), only AccountView reads `.tag`.
+  // Exact account-view key, bound preference bridge and ephemeral controller bookmark use tags; no telemetry reader is admitted.
   const holders = SRC.filter((f) => rel(f) === CLIENT_FILE || /from\s+["']@\/lib\/account-client["']|import\(["']@\/lib\/account-client["']\)/.test(read(f)));
   const tagUsers = holders.filter((f) => /\.tag\b/.test(code.get(f))).map(rel).sort();
-  assert.deepEqual(tagUsers, ["src/components/account/AccountView.tsx", "src/lib/account-client.ts"]);
+  assert.deepEqual(tagUsers, ["src/components/account/AccountFeedController.tsx", "src/components/account/AccountView.tsx", "src/components/account/preferences-client.ts", "src/lib/account-client.ts"]);
   const viewTag = [...code.get(path.join(ROOT, "src/components/account/AccountView.tsx")).matchAll(/\S*\.tag\b\S?/g)].map((m) => m[0]);
   assert.deepEqual(viewTag, ["key={me.tag}"], "AccountView uses the tag only as a React key");
   // 4. The client and server name the same header, and the server binds exactly the routes the exception allows.

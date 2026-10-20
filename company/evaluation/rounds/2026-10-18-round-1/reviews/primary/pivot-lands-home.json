@@ -1,0 +1,104 @@
+{
+  "slug": "pivot-lands-home",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pivot-lands-home",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction defines smaller-left/larger-right partition and zero-based position for pivot five.",
+    "A learner-chosen placement order happened to sort both sides, producing 1 2 3 5 7 8 9 before recursive partition.",
+    "Reset and input-order placement produced genuinely unsorted sides 2 1 3 and 7 9 8 while pivot remained at position three.",
+    "Partitioning sides yielded sorted row without moving five; reveal explains smaller-value count, independent subproblems and bad first-pivot sorted-input case."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Rank and recursive partitions need abstraction.",
+    "conceptualDemand": "Distinguish one fixed element from an ordered whole.",
+    "interfaceBurden": "Six placement buttons, partition and reset."
+  },
+  "whyCool": "Counting what belongs on each side fixes one card forever, even while its neighbors remain scrambled.",
+  "caveat": "Unique fixed values; duplicate handling and editable pivot choice are not explored. Some placement orders accidentally pre-sort the sides.",
+  "effort": "Prediction, two full placement orders with reset, unsorted-side screenshot, recursive partition and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Tested rank invariant across placement order and clear recursive explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise rank question with clear indexing.",
+      "evidence": "Position two, three or four; exactly three smaller values.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Different placement orders and reset test invariant despite side-order variation.",
+      "evidence": "Already-sorted sides versus unsorted sides, same pivot rank.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains rank, recursive independence and a meaningful performance condition.",
+      "evidence": "Three smaller values fix pivot; balanced splits versus empty-side quadratic case.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Indexed row and fixed pivot make the partial-result distinction visible.",
+      "evidence": "Unsorted sides around final five before recursive step.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General recursive rule with a specific limiting input.",
+      "evidence": "Nothing crosses pivot; sorted input with first pivot creates empty pile.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A final position can be established before sorting the rest.",
+      "evidence": "Five fixed while two-one and nine-eight remain inverted.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two-stage row directly shows partial then complete order.",
+      "evidence": "Pivot marked home before side partition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Learner controls card-processing order and can reset.",
+      "evidence": "Two complete placement orders tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete divide-and-conquer mechanism.",
+      "evidence": "Partition reduces independent sorting problems.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Rank invariant, recursion and split balance connect.",
+      "evidence": "Correctness distinct from performance.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "three-points-more-payment",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-points-more-payment",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "three-points-more-payment",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/three-points-more-payment/meta.json",
+    "metaSha256": "82b9fad77f56aac0d7b0068b4f507a669ff7e3e6b3ea94bda2ef2364d738b4c6",
+    "demoSha256": "6c6b05ddf27101e0c1454ed18a4514cd7396011f19d130a3f85103e6862f91fc",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/three-points-more-payment",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/three-points-more-payment.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed about 3% monthly-payment rise when rate goes from 4% to 7% for a $300000 thirty-year loan.",
+    "exploration": "At 7% payment was 1995.91, rate ratio up 75%, payment up 39%. At 10% payment 2632.71 and up 84%. Home reached 1%, payment 964.92 and down 33%; End reached 10%. Returned through 4% baseline 1432.25 to 7%.",
+    "reveal": "Corrected to about 39%; compared rate ratio 75% with payment 39%. Explained repeated interest on remaining debt and first-month interest 1000 versus 1750. Scoped fixed-rate thirty-year level-payment model and illustrative rates, not forecast.",
+    "visual": "Actual dark 1257 by 936 inline screenshots inspected. Payment bar with baseline marker and separate rate/payment ratio badges. Reveal readable; no principal-versus-interest decomposition shown.",
+    "previewIsolation": "Preview banner excluded history and analytics saves.",
+    "blinding": "No source, metadata or other judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear numerical commitment targets confusion between points and payment percentage.",
+      "evidence": "Fixed principal and term supplied.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rate slider and baseline preset allow controlled comparisons.",
+      "evidence": "Tested 1%, 4%, 7% and 10%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Reveal gives correct contrast and interest intuition but does not explain level-payment amortization.",
+      "evidence": "First-month interest shown only in prose.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate ratios and model scope reduce ambiguity.",
+      "evidence": "75% rate change versus 39% payment change.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Useful fixed-model insight without a fresh borrower case.",
+      "evidence": "Only rate adjustable; principal and term fixed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit completed.",
+      "evidence": "Slider endpoints worked by keyboard; other modes untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Three percentage points imply a much larger payment change.",
+      "evidence": "About 39% at 7% rate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Bar displays magnitude rather than underlying repayment mechanism.",
+      "evidence": "Baseline and larger payment visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rate exploration is responsive but plain.",
+      "evidence": "Presets and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies a consequential percentage comparison within stated model.",
+      "evidence": "Fixed principal and thirty-year level payments.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Shows sensitivity without deriving amortization.",
+      "evidence": "No balance timeline or payment components.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar money quantities with two distinct percentage comparisons.",
+    "conceptualDemand": "Separate percentage points, rate ratio and payment response.",
+    "interfaceBurden": "One slider and three presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Level-payment loan model.",
+    "notationRepresentationBurden": "Dollar values and two percentage-change badges."
+  },
+  "whyCool": "The rate ratio and payment ratio are visibly different even for the same loan.",
+  "caveat": "Payment mechanism remains mostly a computed output; fixed term and principal limit transfer.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Full keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:14:19.181397+00:00"
+}

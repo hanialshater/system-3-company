@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "stop-at-epoch-sixty",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stop-at-epoch-sixty",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "c648b301656ee7dd89b8b827204f785efdf620aa8a5b5429a4bb66e3c2f6fedc",
+    "demoSha256": "3b69bae153b7505f5da84c6acdcfb802ec5cbbf3c16dcbf5474b7bfba55324d4",
+    "metaPath": "src/demos/ai/stop-at-epoch-sixty/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected At the end (step 20,000) and locked the prediction for a degree 7 curve trained on 8 noisy dots and checked on 200 held-out dots.",
+    "exploration": "At step 0, training and held-out errors were 0.793 and 0.751. At 100 they were 0.204 and 0.320. At 20,000 training improved to 0.170 but held-out worsened to 0.693. Moving the slider to an earlier point, step 59, gave 0.253 training and 0.300 held-out error.",
+    "reveal": "The reveal corrected the prediction to early within 100 steps and accurately named my lowest found error, 0.300 at step 59. It explained broad shape versus fitting noise, disclosed the chosen illustrative run, and said 483 of 500 seeded toy runs reached their lowest held-out error before the end.",
+    "visual": "Inspected the inline 1257 by 936 dark screenshot at step 20,000. The purple curve ran through the large training dots among many faint held-out dots. A small second graph showed declining dashed training error and a held-out curve that dipped then rose. Values and preset controls were legible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question makes a consequential distinction between fitting and generalization.",
+      "evidence": "Chose the final step as best before either error was disclosed.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time controls expose opposing error trends and allow locating the dip.",
+      "evidence": "Compared 0, 100 and 20,000 steps, then found step 59 with lower held-out error.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects actual exploration to overfitting with useful caveats.",
+      "evidence": "It quoted my step 59 result and disclosed the selected run and variation across seeds.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The two errors and two dot groups make the comparison understandable.",
+      "evidence": "Training fell from 0.204 to 0.170 while held-out rose from 0.320 to 0.693.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending gives an actionable stopping criterion with the necessary held-out condition.",
+      "evidence": "Stop where error on data never used for training is lowest; the location varies across runs.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More optimization visibly damages the held-out outcome.",
+      "evidence": "The final model had the best training number but much worse held-out error than step 59.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The paired curve and error graph show both fit and its cost.",
+      "evidence": "The error graph separates a falling training line from the rising later held-out line.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The slider is responsive but mainly an analytic control.",
+      "evidence": "Preset buttons and slider let me compare the chosen run.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It supplies a concrete model training decision rule.",
+      "evidence": "Use held-out error rather than training error alone to choose the stop.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It explains why and limits the claim beyond a single chosen trajectory.",
+      "evidence": "Noise fitting, seed variation and the 483 of 500 disclosure appear in the reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The central comparison is readable from numbers and charts, but training and held-out data introduce unfamiliar model concepts.",
+    "conceptualDemand": "Moderate: distinguish performance on used data from performance on unseen data.",
+    "interfaceBurden": "Low: presets and a single training step slider.",
+    "conceptualChallenge": "Understand why fitting noise can improve training while worsening generalization.",
+    "prerequisiteNovelty": "Held-out evaluation, noisy data and gradient descent are introduced or named.",
+    "notationRepresentationBurden": "Moderate: degree 7 terminology and two charts require interpretation, though no equations are required."
+  },
+  "whyCool": "The best looking training score can belong to a worse model, and the two error curves expose the conflict.",
+  "caveat": "This is one chosen toy run. The lesson discloses that the minimum moves across runs, and I did not inspect a fresh seed.",
+  "missingEvidence": [
+    "No fresh seeded run was available in this walkthrough.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

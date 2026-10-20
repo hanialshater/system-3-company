@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "everyone-gets-hats-back",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/everyone-gets-hats-back",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "everyone-gets-hats-back",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/everyone-gets-hats-back/meta.json",
+    "metaSha256": "9a166cc0fae4c8d7400e0c17a3ce87d431f8b150e67a0518344ba232ea9238ec",
+    "demoSha256": "7c048e64398916af9caf3f4a734ba415c97b3a8b1504cf34f74d9f373ec9aa35",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/everyone-gets-hats-back",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/everyone-gets-hats-back.json"
+  },
+  "date": "2026-10-18T19:27:52.517390+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust4/4 ignored. Selected About10% and locked for at least one match among10.",
+    "exploration": "Ran1000shuffles each crowd:3=>66.9%,10=>63.5%,100=>62.0%,1000=>62.1%. Repeat1000crowd=>62.9%; first-run values retained for reveal whilechart updates.",
+    "reveal": "Correct63%. Recaps first runs accurately and exact66.7/63.2/63.2/63.2. Morepeople give morechances but each1/nsmaller,limit1-1/e=63.2%;1000runscatter1or2points.",
+    "visual": "Inline1257x936 dark screenshot inspected: fourpercentbars near63,latest1000bar62.9,currentresult andhistoricalfirst62.1explicit. Allcontrols/reveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Atleastoneversusindividual1/10 distinction clear and numerical alternatives plausible.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fourcrowdsizes and independent repeatedlargestbatch expose stableeventrate andsamplevariation.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurateactualruns/exactlimits andvariationboundexplained;morechances times1/n cancellation alone doesnotderiveatleastone63.2ratherthanexpectedmatchcount.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Atleastoneevent,perbatchsize andfirstversuslatestresults explicit.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablemore-opportunities/smallerchanceintuitionbutnofreshapplicationorconditions distinguishingdependence.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen10% becomes63.5% and staysnear63despitethousandpersoncrowd.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallelpercentbarsmakecrowd-sizeinvarianceandrerunvariationvisible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Crowdselection/rerunallowrepeatedcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstractpermutationprobabilitywithnofurtherapplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Individualversusunionchance,crowdlimit andsamplingvariation;derivationlimited.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separateindividualmatchprobabilityfromatleastoneeventandcompareincreasingsamplecrowds;exactlimitnotderived.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:batchbuttonsandbars",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: randompermutationandunionprobability",
+    "notationRepresentationBurden": "moderate: n,1/n,eandpercent"
+  },
+  "whyCool": "A thousandpeople still produceanown-hatmatch inabout63%ofshuffles,almostthesameasten.",
+  "caveat": "Cancellationintuitiondoesnotexplainexact1-1/elimit; nofreshapplication."
+}

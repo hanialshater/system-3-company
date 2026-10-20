@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "net-hourly-after-costs",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/net-hourly-after-costs",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "541273364fbcd5306fea6865a9fc07725e3b4e4e62bcc5b214ba7d1564c7bcd3",
+    "demoSha256": "057751ca0631b3245013c319f5260f1e37e2595f9038e88e607a2ba3676b98f5",
+    "metaPath": "src/demos/economics/net-hourly-after-costs/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected22 dollars kept per hour and locked it in for15 miles at0.50 dollars per mile. Initial slider instead13 miles.",
+    "exploration": "Set15 miles: cost7.50,kept14.50. Setcost0.70: cost10.50,kept11.50. Setmiles0: cost0,kept22. Reveal stayedunlocked andrecapped originalcase plus0.70 contrast.",
+    "reveal": "Corrected14.50. Explains fuel/wear as costs ofearning,net pay aftercosts. States no tax/tips andexample rates notofficial.",
+    "visual": "Inline initial/higher-cost screenshots inspected:22-dollar bar split greenkept11.50 andredcost10.50,matchingbadges. Controls legible. Trust4/4 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simpleconcrete gross-versus-net alternatives surfacecost omission.",
+      "evidence": "22 selected versus14.50 originalcase.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Mileage,costrate andzero-driving contrasts exposeproductandremainingpay.",
+      "evidence": "15x0.50,15x0.70 andzero miles.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual originalandhigher-rate states tocost-of-earning principle andlimits.",
+      "evidence": "7.50/14.50 and10.50/11.50,example rates.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Stackedbar,currentbadges andlabelledcontrols followable.",
+      "evidence": "Inspectedhigher-cost screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable net-pay principle suppliedwithoutconcretenewjobapplication.",
+      "evidence": "Payleftaftercostsofearning.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Gross-pay prediction reversedbyvisiblecostslice.",
+      "evidence": "22becomes14.50.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Splitbar carriesgross-cost-net relation acrosscontrasts.",
+      "evidence": "Higher-cost screenshot andzero boundary.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Mileageandcostcontrols permitreversible comparisons.",
+      "evidence": "Bothcontroltypes andzero tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete work-income comparison central.",
+      "evidence": "Fuel/wear costs perpaid hour.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiplicativecost andgross/net distinction linked.",
+      "evidence": "Two rates andzero boundary.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar multiplydistancebyunitcost,subtractfromfixedpay.",
+    "conceptualDemand": "One supported two-step arithmeticrelation.",
+    "interfaceBurden": "Low:slider andthreecostchoices.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low:grossversusnetpay",
+    "notationRepresentationBurden": "low:dollars,miles,per-hour/per-mile"
+  },
+  "whyCool": "Raisingdrivingcostfrom50to70centspermilegrows theredcostslice andreduceskeptpayfrom14.50to11.50.",
+  "caveat": "Fixedgrosspay,no tax/tips,examplevehiclecosts;freshjobcaseuntested.",
+  "missingEvidence": [
+    "25cent rate",
+    "Fresh jobcase",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

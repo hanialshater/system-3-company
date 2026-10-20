@@ -1,0 +1,104 @@
+{
+  "slug": "check-confidence-with-output",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/check-confidence-with-output",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted unknown correctness before checking the supplied attempt; the app claimed I had studied words but no study or actual confidence response occurred.",
+    "A Feels familiar reported not checked; B revealed target map,key,route versus authored attempt route,map,key, scoring0/3.",
+    "Swapped1/2 to map,route,key, scoring1/3; swapped2/3 to target, scoring3/3.",
+    "Reveal accurately distinguished original0/3, unverified familiarity and corrected3/3, and explicitly denied estimating retention or general ability from one attempt."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three-word matching with simple controls.",
+    "conceptualDemand": "Evidence versus subjective familiarity.",
+    "interfaceBurden": "Two checks and two swap buttons."
+  },
+  "whyCool": "Correctness becomes inspectable through a visible output rather than an asserted feeling.",
+  "caveat": "This does not actually test the user's calibration or memory: both target and initial error are authored, with target hidden until checking.",
+  "effort": "Completed prediction, both modes, two corrections, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear verification/correction with appropriately limited inference, though confidence premise is artificial.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Useful evidence distinction, but the premise assigns familiarity and study that were not elicited.",
+      "evidence": "Unknown is the only justified answer without viewing the hidden target.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actual reorder actions receive position-level feedback and can reach the target.",
+      "evidence": "Scores0,1,3 after two swaps.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate separate states and an explicit inference limit support the comparison.",
+      "evidence": "No retention or ability claim.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Target, attempt, mismatches and A/B/Yours are clearly labeled.",
+      "evidence": "Red mismatch marks and matching-position count.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete output-checking rule includes an important inference limit.",
+      "evidence": "A single check does not estimate future retention or ability.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "The zero score is pre-authored rather than a surprising outcome of my memory.",
+      "evidence": "Initial supplied order is a derangement.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned word positions make mismatch and correction visible.",
+      "evidence": "Three target/attempt pairs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swapping words provides a small correction task.",
+      "evidence": "Two adjacent swaps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful verification habit.",
+      "evidence": "Compare actual output against a known target.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates confidence, current correctness and future retention.",
+      "evidence": "One-case inference caveat.",
+      "confidence": "medium"
+    }
+  }
+}

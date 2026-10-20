@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "two-routes-to-co2",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-routes-to-co2",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-routes-to-co2",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/two-routes-to-co2/meta.json",
+    "metaSha256": "ba2485fcc0a48a30fd8804ece4a6359e1bbd0915102a6c4e2dde1500b36973c6",
+    "demoSha256": "37138b56d895b39e8990eae06ecfe0acb5a72770d3f78cf8b37a273875db9e1d",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-routes-to-co2",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-routes-to-co2.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected the two-step route and locked it in.",
+    "exploration": "Added Direct, Via CO and Via diamond. Direct total minus 393.51. CO steps minus 110.53 and minus 282.98 gave same total. Diamond steps plus 1.90 and minus 395.41 also gave same total. All three paths accumulated on the same ladder; buttons then disabled with no visible reset.",
+    "reveal": "Corrected to both the same, referenced all three totals, used downhill height-loss analogy and explained adding measurable steps for otherwise hard-to-measure reactions.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected for all paths and reveal. Three pink arrow paths shared baseline and final level; uphill diamond step was tiny but explicitly labeled plus 1.90. Labels and explanation were legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete route comparison requires a clear commitment.",
+      "evidence": "Direct versus two-step versus same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Accumulating three paths supports comparison, but action is prescribed and one-way.",
+      "evidence": "All buttons disabled after additions; no visible reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Common endpoints and arithmetic support the state-function idea.",
+      "evidence": "All totals minus 393.51 despite uphill detour.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Ladder and analogy are clear; units and general heat claim lack introductory conditions.",
+      "evidence": "kJ/mol appears without definition; heat depends only on endpoints stated without pressure/work qualification.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Usefulness for indirect measurement is stated without a new application or conditions.",
+      "evidence": "Chemists add measured steps claim.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Path values and totals exposed as text; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "An uphill detour still leaves the same total release.",
+      "evidence": "Diamond plus 1.90 then minus 395.41.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shared vertical endpoints make summed drops tangible.",
+      "evidence": "Three routes finish on one line.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three paths are progressively drawn.",
+      "evidence": "Direct and two intermediates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Shows how indirect heat calculations work.",
+      "evidence": "Measured steps can be added.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "State-function reasoning connects chemistry with path-independent height loss.",
+      "evidence": "Same start and finish across three paths.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Clear height analogy supports unfamiliar chemical units and signed values.",
+    "conceptualDemand": "Add signed energy changes and distinguish route from endpoint difference.",
+    "interfaceBurden": "Three one-way route buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Carbon monoxide and diamond intermediate states; per-mole energy units.",
+    "notationRepresentationBurden": "CO2, CO, kJ/mol, signed decimals and sum symbols."
+  },
+  "whyCool": "Even a small uphill detour cannot change the shared endpoint difference.",
+  "caveat": "The general heat statement omits thermodynamic conditions in visible learner text, and kJ/mol is not defined.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Visible reset unavailable"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:22:48.347288+00:00"
+}

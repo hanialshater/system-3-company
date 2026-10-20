@@ -1,0 +1,104 @@
+{
+  "slug": "which-coin-is-it",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-coin-is-it",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "With equal random selection of fair and two-headed coins, three heads raised the displayed probability from fifty through sixty-seven and eighty to eighty-nine percent.",
+    "One thousand pulls produced 578 HHH sequences, of which 505 were two-headed, displayed as 87 percent.",
+    "A second drawn coin produced tails within three flips and probability zero; prior batch evidence remained labeled.",
+    "Reveal explains odds doubling from one-to-one to eight-to-one, eight of nine probability, and the decisive tails countercase."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Conditional probability and odds need care.",
+    "conceptualDemand": "Update relative hypothesis support rather than raw head frequency.",
+    "interfaceBurden": "Flip, triple flip, batch and new-coin controls."
+  },
+  "whyCool": "Each head doubles the odds without proving the coin's identity, while one tail can settle it.",
+  "caveat": "Exactly two ideal coin hypotheses and equal selection; simulated batch is not empirical coin data.",
+  "effort": "Prediction, three-head trajectory, thousand-pull batch, second coin with tails, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich evidence paths and precise posterior explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise posterior question with plausible prior and intermediate alternatives.",
+      "evidence": "Fifty, seventy-five or eighty-nine percent after HHH.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sequential updates, repeated selection and a falsifying tail provide multiple controlled evidence paths.",
+      "evidence": "HHH progression, batch conditional count, then tails zero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed progression, conditional denominator and decisive limit.",
+      "evidence": "Odds eight-to-one; 505 of 578; tails impossible for two-headed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph and actual batch denominators distinguish belief from sample.",
+      "evidence": "Coin two current zero and prior HHH batch retained explicitly.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A clear Bayesian updating principle without a new applied case.",
+      "evidence": "Likelihood ratios double odds; impossible evidence eliminates a hypothesis.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Three heads strongly favor but do not prove a special coin.",
+      "evidence": "Eighty-nine rather than certainty; a tail drops to zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Flip sequence and posterior trace show updates directly.",
+      "evidence": "Fifty to sixty-seven to eighty to eighty-nine.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Draw, flip and batch-test hypotheses.",
+      "evidence": "Second coin and batch evidence tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "General evidence-updating intuition.",
+      "evidence": "No application beyond the coin model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Prior, likelihood, odds and conditional frequency connect.",
+      "evidence": "Incremental support versus impossible observation.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "lopsided-tree",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lopsided-tree",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "d6298daff71e5ed47b07c5dab68d86c5072b9d4fb859a091795a1d13bea7c209",
+    "demoSha256": "5c2e51bd92fcf48db930cce41e9833a6137081ef0edd93a0a426756031d06483",
+    "metaPath": "src/demos/cs/lopsided-tree/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected three levels and locked the depth prediction for inserting keys one through seven in ascending order.",
+    "exploration": "Inserted all seven keys in ascending order, producing a rightward chain with seven levels and seven steps to find seven. Cleared it and used the 4,2,6,1,3,5,7 preset, producing a balanced tree with three levels and three steps to find seven.",
+    "reveal": "The reveal corrected the original answer to seven and accurately listed both constructed orders and depths. It explained smaller keys go left and larger right, so sorted input makes a chain, then connected the problem to self-balancing library trees.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots of both completed trees. Ascending input made a diagonal seven-node chain; the preset made a symmetric three-level tree. The green path to seven and level and lookup counters visibly shortened.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question challenges assuming every search tree automatically halves the work.",
+      "evidence": "Selected three levels for ascending insertion.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "The same keys under two orders isolate shape as the cause of search cost.",
+      "evidence": "The seven-level chain becomes a three-level tree without changing the key set.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal accurately summarizes both constructions and explains the comparison rule.",
+      "evidence": "Every ascending key is greater, so it attaches right of the previous one.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tree shape and a highlighted search path directly match the counters.",
+      "evidence": "The path to seven shrinks from seven nodes to three.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The reveal applies the failure mode to a concrete library design choice.",
+      "evidence": "It explains why libraries use self-balancing trees when insertion order can make ordinary trees deep.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sorted input can make a tree behave like a list.",
+      "evidence": "The expected three levels become seven under ascending insertion.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "The side-by-side-in-time constructions and paths expose the exact structural cost.",
+      "evidence": "Chain versus balanced branching changes levels and lookup steps together.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual insertion and an alternate preset invite constructing contrasting shapes.",
+      "evidence": "Seven direct insertions are followed by a clear balanced rebuild.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It explains why tree guarantees require balancing.",
+      "evidence": "The ending connects insertion sensitivity to self-balancing implementations.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson relates insertion rule, structure and search effort.",
+      "evidence": "The same keys produce different worst-case depths through ordering alone.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The visual construction is direct, while search-tree rules and complexity implications add a new abstraction.",
+    "conceptualDemand": "Moderate: connect local insert decisions to global depth.",
+    "interfaceBurden": "Low: seven insertion buttons, clear and a preset.",
+    "conceptualChallenge": "A data structure's performance depends on maintained shape, not its name alone.",
+    "prerequisiteNovelty": "Binary search trees and self-balancing trees are introduced.",
+    "notationRepresentationBurden": "Moderate: node-link tree, level guides and highlighted search path."
+  },
+  "whyCool": "The same seven values become either a useful branching shortcut or a disguised list solely through insertion order.",
+  "caveat": "Only seven keys and one lookup target are shown. Self-balancing operations are named but not demonstrated.",
+  "missingEvidence": [
+    "No rotations or fresh key set was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "hawks-never-take-over",
+  "domain": "life",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "0d0de68a8834a5ba3650d058e3b123bd32992344cac897c49848c57dd84afef0",
+  "demoSha256": "ae7cf4605b32320926f4b50eb1105851cc43a34075db1741e0173dca19e523a7",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hawks-never-take-over",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "SelectedNearly100%hawks; Lock it in",
+      "outcome": "Prediction retained; start controls unlocked default30to67%."
+    },
+    {
+      "id": "e",
+      "action": "Start10;Start90;sliderEnd99",
+      "outcome": "All converge67%gen150;10hawk3.5/dove1.8grows;90hawk-.5/dove.2shrinks;99hawk-.9/dove.0shrinks; endpointscores.7/.7."
+    },
+    {
+      "id": "v",
+      "action": "Inspected90% screenshot",
+      "outcome": "Current descending green curve and prior dashed rising curves converge67%; payofftable and scores legible;1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why at99",
+      "outcome": "67%; dynamic10and99endpoints; rarehawkswin4/commonhawksfightaverage-1; equal scores atprize/cost4/6; randomhugepopulationchosenpayoffs toy not realanimals."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Takeover,stablemix and initial-share alternatives separate plausible beliefs.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three contrasting starts and retained curves expose frequency-dependent convergence.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Current99andprior10 traced to payoff reversal and equal-score mix; explicit toy limitation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Payofftable, grow/shrink feedback and final-score distinction clear.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Frequency-dependent success principle stated with toy assumptions; no newuse.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Takeover prediction reverses tosame67%fromnear-extremes.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Retained contrasting curves carry stablemix explanation.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Starting-share range and presets invite reversible contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Toy evolutionary interpretation with no concrete action.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Payoffs,frequency-dependent scores and equilibrium boundary linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links opponent frequency,payoff averages and convergence with table/curve support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Evolutionary payoff game and equilibrium introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Negative expected scores,2x2table,timecurve and4/6ratio."
+    }
+  },
+  "whyCool": "Starting with10%hawks makes them grow while99%makes them shrink, yet both curves reach67%where their scores match.",
+  "caveat": "Chosen-payoff,random-meeting toy explicitly disclaims real-animal generality; payoff variation unavailable.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Minimumshare and alternativepayoffs; phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "file-fold-see-each-shirt",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/file-fold-see-each-shirt",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted vertical row exposes each edge.",
+    "Horizontal-stack mode reported one visible edge but drew eight separate numbered rectangles in a two-column grid, with all eight outlines visible.",
+    "Vertical row drew eight upright adjacent rectangles and reported eight; reducing count to five reported five.",
+    "Reveal claimed the horizontal drawing hides lower tops, which the observed grid did not show. It correctly limited intended benefit to selection rather than volume reduction, and advised suitable depth/stability. Held verdict duplicated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic visual count; difficulty comes from contradictory rendering.",
+    "conceptualDemand": "Visibility versus volume.",
+    "interfaceBurden": "Two modes and slider."
+  },
+  "whyCool": "The intended idea is to make each garment selectable without disturbing a stack.",
+  "caveat": "Needs a genuinely occluded stack rendered from a consistent viewpoint before claiming only one visible edge; duplicate verdict also needs polish.",
+  "effort": "Completed prediction, both layouts, count change, multiple screenshots and reveal.",
+  "provisionalBucket": "needs-fix",
+  "bucketReason": "Central visual explanation contradicts the reported visibility count.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Reasonable arrangement comparison, but initial diagram contradicts claimed hidden baseline.",
+      "evidence": "All horizontal-grid outlines visible.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Mode and count change drawings and counters, but counter's visibility rule not supported by baseline geometry.",
+      "evidence": "One reported versus eight visibly separate rectangles.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "Central explanation asserts occlusion absent from the displayed horizontal layout.",
+      "evidence": "Says drawing hides lower tops.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Visual evidence conflicts with the counted property.",
+      "evidence": "Horizontal stack depicted as two-column grid.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Intended selection rule includes stability/depth and no-volume-magic limits.",
+      "evidence": "Benefit framed as selection,not volume reduction.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected orientation benefit, weakened by baseline.",
+      "evidence": "Vertical exposes all.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Baseline fails to illustrate the claimed occlusion.",
+      "evidence": "Eight separate visible rectangles.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode and count controls.",
+      "evidence": "Two layouts and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Potentially useful selection arrangement with caveats.",
+      "evidence": "Not demonstrated reliably.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Simple visibility claim.",
+      "evidence": "No capacity or stability model.",
+      "confidence": "medium"
+    }
+  }
+}

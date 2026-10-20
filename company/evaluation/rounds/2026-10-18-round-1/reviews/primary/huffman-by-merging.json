@@ -1,0 +1,104 @@
+{
+  "slug": "huffman-by-merging",
+  "demoVersion": 4,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/huffman-by-merging",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10bits for4A,2B,1C,1D versus16fixed;prefix/uniquedecodabilityconditionnotexplicitbeforechoice.",
+    "Try10bitcodes A0,B1,C00,D01 shows00ambiguousCversusAA. Backtree,rarestmergeC+D2 thenwithB4 androot8 gives14bits;codesA1,B01,C000,D001.",
+    "ResetthenmanualB+Amerge6,rarestC+D2,root8 gives16bitsandfour2bitcodes. Reveal recallsboth14/16and10ambiguity,explainsmergecostequalsweight,prefix-freecondition,andHuffmanoptimalityassertion.",
+    "1280x720light treesandcosts clear;finalproserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concretelettercounts andtreepaths,butcodingconstraintisnew.",
+    "conceptualDemand": "Variablelengthdecoding andweighteddepth.",
+    "interfaceBurden": "Tap-two merges,modeandreset;initialrulesneedclarity."
+  },
+  "whyCool": "A shorter code is useful only if it can still be decoded, and the tree makes both the cost and that constraint visible.",
+  "caveat": "Unique-decodability/prefixconditionmustbeexplicitintheprediction. Globalgreedyoptimalityassertednotprovedbythese twotrees. Prosecutoff.",
+  "effort": "Prediction,10bitambiguity,greedytree,reset,manualalternativetree,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Richconstructivemechanism;clarifypredictionconstraintandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concretefrequencyquestion,butcriticaldecodabilityconstraintintroducedaftercommitment.",
+      "evidence": "10bitassignmentpossibleunlessambiguityexcluded.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Constructiblealternative trees andinvalidshortcodeboundary isolatecostversusdecodability.",
+      "evidence": "14optimal,16alternative,10ambiguous.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Usesactualtrees andfailedprediction toexplainweightedmergecost andprefixcondition.",
+      "evidence": "2+4+8 versus6+2+8;00ambiguity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Treesandbitmathclear;prefixconditionlate andprosecutoff.",
+      "evidence": "Actualthree screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalgreedyrule stated butnootherfrequencysetapplication.",
+      "evidence": "Samefourlettermessage throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Unequalcodes compress,butapparentlyshorter10bitcodescannotdecode.",
+      "evidence": "14versus16versus10ambiguity.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Differenttreesmapdepthtoweightedbitcost withactualcodes.",
+      "evidence": "Adepth1versusdepth2 andmergeweights.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Manualmerging,automaticgreedy,invalidcode andresetgiveconstructivedistinctpaths.",
+      "evidence": "Two completedtreesand10bitmode.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralcompressionanddecodabilityintuition.",
+      "evidence": "Commonlettersgetshortcodes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Weightedpathcost,prefixfreedom andgreedyoptimality.",
+      "evidence": "Costsumandambiguitycounterexample.",
+      "confidence": "medium"
+    }
+  }
+}

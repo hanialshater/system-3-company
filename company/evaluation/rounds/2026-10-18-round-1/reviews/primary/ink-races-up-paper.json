@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "ink-races-up-paper",
+  "domain": "chemistry",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "8f981392e22993c21159f03e7f5e26244723834f13a41084a797f446cfee7a06",
+  "demoSha256": "4167f5fe3ede954b7d7e001fc719b61194750b70e7d98152616abeadaa06da96",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ink-races-up-paper",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected higher than dyeA; Lock it in",
+      "outcome": "Prediction retained; water and stickiness controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Send water10cm withB3; stickinessHome1 thenEnd5",
+      "outcome": "A5/B2.5cm default;B1 gives5cm equalA;B5 gives1.7cm;A stays5."
+    },
+    {
+      "id": "v",
+      "action": "InspectedB5 screenshot",
+      "outcome": "Two coloured spots on paper with water10cm and start boundary; labelsA1/B5 and heights visible;1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why atB5",
+      "outcome": "Lower thanA correct; reveal saysB2.5cm/fraction.25 although currentstageB1.7cm at5. Explanation refers defaultB3 without clearly labeling historical state; carried-water/held-paper mechanism stated."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commitment works but wording clings-more strongly cues lower answer.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled stickiness contrasts include equal-height boundary.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Mechanism explained, but numerical reveal remains defaultB2.5 while currentstage1.7 without history label.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls clear; current/reveal numerical mismatch needs reconstruction of default trial.",
+      "evidence": "r,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Separation carried-versus-held principle stated without new task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Chosen higher prediction reversed; lower outcome largely cued by cling wording.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paper spot heights carry separation and equal boundary.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Stickiness range enables reversible comparative discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Separation principle disciplinary; no concrete new use.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single carried-versus-held relation plus equal boundary.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported relation between stickiness and travel distance.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "moderate",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": {
+      "level": "low",
+      "reason": "Clinging and carrying familiar, paper separation introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "cm and simple travel fractions."
+    }
+  },
+  "whyCool": "SettingBstickiness to1 aligns both dyes at5cm, then increasing it to5 leavesBbehind at1.7cm whileA stays5.",
+  "caveat": "Reveal quotes defaultB2.5cm despite tested currentB1.7cm and lacks a labelled historical log.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Dry/reset and repeat-run behavior; phone/accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "margin-before-cut",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/margin-before-cut",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Include two folds for blank with two2 cm allowances;initial screenshot face-only ruler rectangle.",
+    "Finished mode20 cm;include folds24. Maximum face30 gave34; screenshot showed two vertical fold lines and wider ruler span.",
+    "Reveal duplicated prediction held,explained one allowance per edge,ideal paper geometry excluding stretch and cutting safety."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two small margins added.",
+    "conceptualDemand": "Finished face excludes folded material.",
+    "interfaceBurden": "Two modes and slider."
+  },
+  "whyCool": "The visible finished face is smaller than the material blank that makes it.",
+  "caveat": "Prediction is label-matching; simplified paper model only.",
+  "effort": "Prediction screenshot,both modes,maximum face,screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear geometric embodiment despite weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Option repeats question,explicit title cue.",
+      "evidence": "Which includes folds? Include folds.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and face change distinguish fixed margins from finished size.",
+      "evidence": "20/24 then30/34.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains face versus blank and material consumption.",
+      "evidence": "One allowance each edge.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ruler and fold lines make changed state clear despite duplicated verdict.",
+      "evidence": "Face30,folds2\u00d72,blank34.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete ideal-paper/stretch boundary constrains application.",
+      "evidence": "Stretch outside scope.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected allowance addition.",
+      "evidence": "20+4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Actual fold lines and ruler show added material.",
+      "evidence": "34 blank over30 face.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Switch modes and vary face.",
+      "evidence": "Fixed edge allowance.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Blank sizing central.",
+      "evidence": "Include folds before layout.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Finished versus source dimensions.",
+      "evidence": "Two edge terms.",
+      "confidence": "medium"
+    }
+  }
+}

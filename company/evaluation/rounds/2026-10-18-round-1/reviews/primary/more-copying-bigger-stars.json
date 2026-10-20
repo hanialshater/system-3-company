@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "more-copying-bigger-stars",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/more-copying-bigger-stars",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e23a2131655d0b7d03ff105da0239fdd8ea37f8254a03ea13372a3a8b663114d",
+    "demoSha256": "18c16c7973144138cb678dd3297c7e083c1f1cfe5e8f7058915fd07eaa57592c",
+    "metaPath": "src/demos/probability/more-copying-bigger-stars/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected About double and locked it in for 0% versus 90% copying among 10000 new pages.",
+    "exploration": "Run0% produced leader12 links,top1% share7%,last1000 to leader0. Run90% produced leader6278,top1%84%,last1000 to leader576. Slider5 changed heading to5000 pages; retained table explicitly remains at10000. Reveal unlocked after two runs.",
+    "reveal": "Corrected hundreds of times,523-fold for exact tested seed1. Explains probability proportional to existing links and late arrivals reinforcing leader. No next-seed comparison performed.",
+    "visual": "Inline initial/final10000 screenshots inspected. Huge yellow90% bar versus tiny baseline with numeric labels; table shows both rows and late-link counts. Slider earlier-state graph not inspected separately. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Quantitative scale alternatives test linear-copying intuition.",
+      "evidence": "Double selected versus523-fold result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled copying contrast reveals concentration and reinforcing arrivals.",
+      "evidence": "12 versus6278 leader links;0 versus576 late links.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual seed table to explain proportional copying feedback.",
+      "evidence": "Leader with500 links500 times more likely; late-link counts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bar labels,seed and explicitly10000-page table distinguish outputs.",
+      "evidence": "Inspected final screenshot and heading change.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable cumulative-advantage principle without concrete new case or applicability conditions.",
+      "evidence": "Copying points to random existing link destination.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Double prediction reversed by hundreds-fold concentration.",
+      "evidence": "523-fold seed1 contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bar-length contrast centrally shows magnitude.",
+      "evidence": "Yellow6278 versus12 screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Copying presets,time slider and seeds offer variation.",
+      "evidence": "Two presets and time slider tested;seed not tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete link-popularity mechanism central.",
+      "evidence": "Late links go to existing leader.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Leader count,top-percent concentration and reinforcement rate linked.",
+      "evidence": "Two table rows and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Tracks copying via random links,preferential reinforcement,top-percent share and time accumulation.",
+    "conceptualDemand": "Multiple linked distributions and feedback abstraction.",
+    "interfaceBurden": "Moderate: current-time graph and fixed-endpoint table differ.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: preferential attachment",
+    "notationRepresentationBurden": "moderate:percentages,top1%,ratios and counts"
+  },
+  "whyCool": "At90% copying,576 of the last1000 links reinforce the leader,while none do in the no-copy baseline.",
+  "caveat": "Only seed1 and0/90% contrast tested; broad winner-size claim lacks tested seed variation.",
+  "missingEvidence": [
+    "50% copying",
+    "Next seed",
+    "Earlier graph visual inspection",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

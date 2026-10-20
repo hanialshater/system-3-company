@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-historybanner;6/6trustignored.Predictedyes everyatom.",
+    "Draw10→7Cl35/3Cl37;Draw100→110total85/25,zero35.45,sampleaverage35.42inscreenshot;Draw10→120total93/27,stillzero.",
+    "Revealexplicitfirst100:76at34.97,24at36.97,average35.45noneindividual;17protons18/20neutrons,isotopes,natures76/24mix;toy1000bagfixedseed.",
+    "Inline1257x936dark:two dotpilesat35and37,dashedtable35.45andgreenaverage35.42between;clearcounts,largeemptyspace."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Cleardistinctionbetweenindividualandaveragemass.",
+      "evidence": "Every/none/fewchoices",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Growingsamplekeepsseparateisotopepilesandemptymeanposition.",
+      "evidence": "10/110/120",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsweightedmeanwithactualfirst100identifiedhistorically,thenisotopesandtoyseedlimit.",
+      "evidence": "Revealfirst100",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dotpiles,tablelineandsampleaveragelabeleddistinctly.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Averageversusindividualprincipleandisotopeapplicationexplained,butnofreshcase.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Everyatomguesscontradictedbyzeroatmean.",
+      "evidence": "Predictionandzero count",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Meanfallsbetweenemptyspaceofdistinctpiles.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Incrementaldrawingonly,nocompositioncontrolorresetobserved.",
+      "evidence": "Drawbuttons",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interpretsperiodictablemassandisotopes.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distribution,weightedmean,andneutroncompositionlinked.",
+      "evidence": "Revealandsampleaverage",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linksdistributiontoaverageandatomtypes;representationdirectlysupportsmean distinction.",
+    "conceptualDemand": "linkedindividual/aggregate distinction",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:protons/neutrons/isotopes",
+    "notationRepresentationBurden": "moderate:uandisotopenumbers"
+  },
+  "whyCool": "Theaveragepointerlandsbetween twoatomclusterswhere therearenoatoms.",
+  "caveat": "Samplingusesafixedtoybag;learnerscannotchangemixorapplymeanreasoningtoanewcase.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Fresh application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "no-atom-weighs-35-45",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/no-atom-weighs-35-45",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "b5550eb16b3fa22af69d56b2987bcba83da7e0d4da27dfe577a780d594f9ed82",
+    "metaSha256": "2da065f5e1f9b7f2c7c3a734d80d4dc67cd590f56e90cea1983cbf789448aa08"
+  }
+}

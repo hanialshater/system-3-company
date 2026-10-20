@@ -1,0 +1,104 @@
+{
+  "slug": "magnet-still-in-coil",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/magnet-still-in-coil",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted steady current for stationary magnet inside coil; alternativeszero andoppositecurrent.",
+    "Pushin completed withmagnetinside,meter0;trace negativepulse visible. Heldstill1s thenpulledout;trace negativepulse,flat segment,positivepulse;currentmeter0outside.",
+    "Reveal reportsillustrativepeaks\u2212123/+123mV,zero during1sinsidehold; explainschangingflux versusflux andillustrativevalues distinction.",
+    "1280x720light trace readable; revealprose clipped at rightedge. Didnotcapture instantaneous peaknumeral duringmotion."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishesfieldfromtimechange;tracehelps.",
+    "conceptualDemand": "Temporalderivative;voltage/currentdistinction.",
+    "interfaceBurden": "Threepresets,fasttransientsretainedintrace."
+  },
+  "whyCool": "Leaving the magnet inside does nothing; moving it briefly makes a pulse that reverses on withdrawal.",
+  "caveat": "Currentpredictionversusvoltagemetercouldbeclarified. Instantaneouspeakreadoutnotobservedduringmotion;peaksfromrevealonly. Rightedgeprosecutoff.",
+  "effort": "Prediction,push,1shold,pull,reveal,threevisualinspections.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Goodtime-changecontrast; unifymeasurementlanguageandfixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific stationary-field versuschange misconception.",
+      "evidence": "Heldstillinside question andthreealternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Push,hold,pull produceoppositetransient pulses andzerohold.",
+      "evidence": "Actualtrace negative,flat,positive;still0mV.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Reconciles prediction withallthreephases andillustrativemagnitude limit.",
+      "evidence": "Changingflux law,stationaryzero,peaks illustrative.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Trace preservestransients butpredictionusescurrent whilemeterlabelsvoltage; proseclips.",
+      "evidence": "mVmeter andcurrentoptions;final screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General change-versuslevel principle withoutfreshapplication.",
+      "evidence": "Faradaylaw statedwithinsamecoil.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Strong magnetpresentbutzerostill;directionreversalchangespulse.",
+      "evidence": "Flatinsidehold andoppositepulses.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Magnetposition andpersistenttrace make temporalcontrastvisible.",
+      "evidence": "Pushnegative,holdflat,pullpositive.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Physicaloperationbuttons drivepulseexperiment.",
+      "evidence": "Push,hold,pull.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundationfor induction butnonewdeviceapplication.",
+      "evidence": "Coil/magnetmeter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fieldversuschange,direction andmeasurementmodel limits.",
+      "evidence": "Fluxrate equation andillustrativepeaks.",
+      "confidence": "medium"
+    }
+  }
+}

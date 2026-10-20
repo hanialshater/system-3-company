@@ -1,0 +1,104 @@
+{
+  "slug": "ethanol-and-its-twin",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ethanol-and-its-twin",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionC2H6O46u ethanol78C,ether78/35/-25C; chose78.",
+    "Ethanol6hydrogenbonds;Pulloneout=>4;Otomiddle=>dimethylether0bonds withsameatoms.",
+    "Reveal -25C,twobondsbroken versusnone;O-H neighborO grip,boilingseparatesmolecules,structureversusmass.",
+    "Screenshot atomlegend,ringdiagram,comparisonreadout andentirerevealreadable; smalllegendtext andinternalverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "No calculation, but requires newmolecularnotation andbondconcepts.",
+    "conceptualDemand": "Separateatomiccomposition,intramolecularstructure,andintermolecularattraction.",
+    "interfaceBurden": "Twoclearcontrols; smalllegend andscroll."
+  },
+  "whyCool": "Moveoxygenwithoutchanging a singleatomcount, andthe molecules lose theirgrip ononeanother.",
+  "caveat": "Exactboilingvalues andsimplifiedelectronwording observed,not independentlyfactchecked; single reviewer.",
+  "effort": "Prediction,pullmolecule,moveoxygen,revealandvisualcheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Simplemanipulations expose a strongstructure-property mechanism.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Good sameformula misconception but exacttemperature requiresknowledge beyondatoms.",
+      "evidence": "78,35,-25 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Two controls isolateintermolecularbonding fromcomposition.",
+      "evidence": "6=>4=>0hydrogenbonds.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observedbrokencontacts tied to boilingmechanism.",
+      "evidence": "Twobrokenethanolcontacts vsnoneether.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablediagramlegend and compactexplanation, chemistryterms demandcare.",
+      "evidence": "O-H,Hbond,electronpull explainedbriefly.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for structure-property rather than mass-only reasoning.",
+      "evidence": "Boilingbreaksintermoleculargrip.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Sameatoms differ byover100C.",
+      "evidence": "78vs-25C.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Bondsdashes appear/disappear withconnectivity.",
+      "evidence": "6,4,0contacts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Pullmolecule andrelocateoxygen.",
+      "evidence": "Twotoggles.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Chemicalproperty understanding.",
+      "evidence": "Molecularstructure affectsboiling.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Isomers andintermolecularbondmechanism.",
+      "evidence": "Sameformula,differentO-Hconnectivity.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "half-size-two-towels",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/half-size-two-towels",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted same combined face area. Width80 A one towel and B two halves both1.92m\u00b2.",
+    "Tested A/B, then width100: both2.40m\u00b2, pieces1 versus2.",
+    "Reveal preserves front/back area, distinguishes added edges from unfolded layers, excludes thickness. Screenshot has slight right-edge prose clipping."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Elementary area conservation.",
+    "conceptualDemand": "Combined area rather than piece count.",
+    "interfaceBurden": "Two choices and one slider."
+  },
+  "whyCool": "More pieces and edges do not create more large faces.",
+  "caveat": "Does not predict drying time; tested viewport clips some prose.",
+  "effort": "Prediction,A/B,width variation,reveal,inline visual.",
+  "provisionalBucket": "solid-viewport-followup",
+  "bucketReason": "Clear bounded area model.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear piece-count versus area contrast.",
+      "evidence": "Double/same/half choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Same area under split and width change.",
+      "evidence": "1.92 and2.40 equal across A/B.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains invariant and explicitly limits interpretation.",
+      "evidence": "Edges versus faces; folded layers different.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Simple table but slight clipped prose at tested viewport.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names different operation without testing new application.",
+      "evidence": "Folded layers mentioned only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Separates more pieces from more face area.",
+      "evidence": "Two pieces equal area.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Split rectangles and table show conservation.",
+      "evidence": "A/B at two widths.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode and width exploration.",
+      "evidence": "80\u2192100.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Laundry framing useful but no drying-rate model.",
+      "evidence": "Area only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes area,edges and thickness.",
+      "evidence": "Explicit limitations.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "tape-mark-same-spacing",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tape-mark-same-spacing",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted origin method avoids repeated bias with pitch10,bias0.2.",
+    "Count5 step error1,origin0.2. Count10 step2 after comparing origin.",
+    "Reveal explains systematic additive bias and other tool errors,explicit hypothetical. Full diagram inspected after scrolling:green marks and faint references along ruler,readable prose."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Systematic bias and repeated error.",
+    "conceptualDemand": "Additive biased steps versus independent origin reference.",
+    "interfaceBurden": "Two modes,count slider."
+  },
+  "whyCool": "A tiny error can become large when every new measurement inherits the last one.",
+  "caveat": "Toy assumes fixed additive bias;not a claim all tool errors vanish with one origin.",
+  "effort": "Prediction,method contrast,countchange,reveal,full diagram screenshot.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful controlled model and explicit limitation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete method comparison but title strongly cues accumulated error.",
+      "evidence": "Small step errors accumulate.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Method/count contrasts isolate accumulation.",
+      "evidence": "5step1,origin0.2;10step2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct mechanism and scope.",
+      "evidence": "Avoids this accumulation,not all error.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable controls and scoped reveal.",
+      "evidence": "Full diagram inspected.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit common-origin measurement method with tool-error condition.",
+      "evidence": "Measure chosen positions from one origin.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Small repeated bias grows while common-origin error stays bounded in toy.",
+      "evidence": "1\u21922 versus0.2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Small offset marks support cumulative drift.",
+      "evidence": "Green versus reference ticks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Method and count variation.",
+      "evidence": "Two counts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Layout marking technique central.",
+      "evidence": "Hypothetical bias only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Systematic accumulation versus other measurement errors.",
+      "evidence": "Scope qualification.",
+      "confidence": "medium"
+    }
+  }
+}

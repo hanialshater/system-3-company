@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "second-speaker-decibels",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/second-speaker-decibels",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "second-speaker-decibels",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/second-speaker-decibels/meta.json",
+    "metaSha256": "3ed69f64e23e49f75e4b1c4593c8ab8f4c1d39dd9cb697c5d456f0a960ac93c3",
+    "demoSha256": "3997329a2ee37fe14d9112fafb43280c57486f59a33f77a868b54e752dbd7091",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/second-speaker-decibels",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/second-speaker-decibels.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected120dB against63 and90 aftersecond60dB speaker;locked it in.",
+    "exploration": "Baselineone speaker1\u00b5W/m\u00b2,60dB. Twospeakers2\u00b5W/m\u00b2,63dB. Four4\u00b5W/m\u00b2,66dB. Ten10\u00b5W/m\u00b2,70dB. Allthree comparisonsretainedinSeenhistory.",
+    "reveal": "Corrected63dB andquotedactual2/4/10 speakerresults. Explaineddecibels encodepower ratios:doubleadds3,tenfoldadds10. Stated120dB requiresmillionfoldpower relative60dB.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Speakericons,linearintensitybar anddBmeter distinguishamountfromloglevel;fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear additive-decibel misconception withplausiblealternatives.",
+      "evidence": "120commitment versus63.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple sourcecounts expose linearpower andnonlinearlevel.",
+      "evidence": "2/4/10 power gives63/66/70dB.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualcounts toexplainratioencoding andwrong120 interpretation.",
+      "evidence": "Doubling3dB,tenfold10dB,millionfold60dB.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Intensityunits,levelmeter andSeenhistory clarifytesteddesktop path.",
+      "evidence": "Actualten-speaker screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalratio rule andsame-distance/noecho condition,butno distinct newapplication.",
+      "evidence": "120dB extensionwithin samesoundexample.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committeddoublingofdecibelnumber contradicted byonly3dB gain.",
+      "evidence": "60\u219263 withdoublepower.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Linearbar versusmeter carriesdifference betweenpower andlevel.",
+      "evidence": "10unitbar versus70dB.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threefixed sourcecountpresets permitcomparison.",
+      "evidence": "Two,four,ten tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation ofcombining soundsources central.",
+      "evidence": "dB figuresdo notadd directly.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Poweraddition,logratio andlargeleveldifference linked.",
+      "evidence": "Doublingandtenfoldcontrasts plusmillionfoldextension.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates additiveintensity fromlogarithmiclevel.",
+    "conceptualDemand": "Comparemultiplicativepowerchanges withadditivedB increments.",
+    "interfaceBurden": "Low:threebuttons andpairedvisualmetrics.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:decibelratio scale.",
+    "notationRepresentationBurden": "moderate:dB,\u00b5W/m\u00b2 andmultipliers."
+  },
+  "whyCool": "Ten speakers fillthepowerbar tenfold,butthemeter risesonlyfrom60 to70dB.",
+  "caveat": "Same-distance,noecho additivepower model;phase/coherence conditions notexplored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Returntopreviouscounts afterreveal nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:05:04.125873+00:00"
+}

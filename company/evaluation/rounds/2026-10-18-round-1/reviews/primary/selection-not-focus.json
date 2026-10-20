@@ -1,0 +1,103 @@
+{
+  "slug": "selection-not-focus",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/selection-not-focus",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted selection identifies command target. No particular command stated.",
+    "Focus right changed underline to right while thick selected border remained A. Select B moved thick border right; AX explicitly tracked both.",
+    "Reveal says inspect selected item and app behavior varies. Screenshots readable but no legend for underline/border and no command executed."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Abstract UI states need interpretation.",
+    "conceptualDemand": "Panel focus versus persistent selection.",
+    "interfaceBurden": "Two controls but unlabeled visual encoding."
+  },
+  "whyCool": "The active panel and selected item can point to different places.",
+  "caveat": "Name and run a command,show target result,and label focus/selection visually; command semantics vary.",
+  "effort": "Prediction,both operations,reveal,two screenshots.",
+  "provisionalBucket": "revise-command-test",
+  "bucketReason": "State contrast works but prediction not verified.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Target rule is not specified for unnamed command; hook strongly cues selection.",
+      "evidence": "Which item command affects here.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Independent state changes visible, no actual target action.",
+      "evidence": "Focus right/selection A then B.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "State distinction demonstrated but command-target prediction not tested.",
+      "evidence": "No command execution.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but visual encodings lack legend and fixture jargon.",
+      "evidence": "Underline versus thick border.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General inspection caution without concrete command case.",
+      "evidence": "Applications vary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Focus can move while selection stays elsewhere.",
+      "evidence": "Right focus with A selected.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Separate border and underline show states.",
+      "evidence": "Two tokens.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed operations.",
+      "evidence": "No target command.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "UI state awareness relevant but abstraction underspecified.",
+      "evidence": "Inspect selected item.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two independent state variables.",
+      "evidence": "Focus and selection.",
+      "confidence": "medium"
+    }
+  }
+}

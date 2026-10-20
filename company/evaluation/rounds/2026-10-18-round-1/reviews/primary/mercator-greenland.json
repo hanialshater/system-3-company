@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "primary",
+  "reviewer": "r1",
+  "slug": "mercator-greenland",
+  "demoVersion": 5,
+  "batchId": "round1-04",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "A0",
+      "text": "Preview banner: \u201cEvaluation preview \u00b7 learning history and analytics are not saved.\u201d"
+    },
+    {
+      "id": "A1",
+      "text": "Prediction: real areas? \u201cGreenland about 15\u00d7 Congo\u201d, \u201cGreenland about 1\u00d7 Congo\u201d, \u201cCongo about 4\u00d7 Greenland\u201d; chose 15\u00d7 and locked."
+    },
+    {
+      "id": "A2",
+      "text": "At 73\u00b0N: 15.4\u00d7; clicked Slide to equator: 0.9\u00d7; Equal-area map retained 0.9\u00d7 and changed orange compass line from straight to bent."
+    },
+    {
+      "id": "A3",
+      "text": "Reveal: \u201cNot quite: it was \u2018Greenland about 1\u00d7 Congo\u2019\u201d; 2.17 vs 2.34 million km\u00b2; \u201cThe land never changed; the map did.\u201d"
+    },
+    {
+      "id": "A4",
+      "text": "Reveal links Mercator latitude stretching to sailing/angles and states \u201cNo flat map can keep both.\u201d"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear real-versus-drawn commitment separates plausible size beliefs.",
+      "evidence": [
+        "A1"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Moving latitude and switching projection visibly contrast area and compass bearing.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Reveal resolves prediction using observed ratios and explains the angle/area limit.",
+      "evidence": [
+        "A3"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicit instructions and Seen record made the sequence followable.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Map choice is linked to area comparison versus compass-bearing navigation.",
+      "evidence": [
+        "A4"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient multi-mode accessibility checks; D slider Home key is only a partial keyboard observation.",
+      "evidence": [
+        "Observed DOM accessible names, desktop screenshots; no comprehensive check."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed 15\u00d7 belief is reversed by the equatorial 0.9\u00d7 result.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Map shape, ratio and bearing-line changes carry two linked contrasts.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Slider and projection toggle invite reversible experimentation.",
+      "evidence": [
+        "A2"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Projection choice supports geographic comparison and navigation.",
+      "evidence": [
+        "A4"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Latitude distortion and bearing/area trade-off are distinct mechanisms.",
+      "evidence": [
+        "A4"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare ratios, understand latitude movement, and distinguish area from compass bearing.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain theory assumed."
+  },
+  "whyCool": "Moving Greenland south shrinks its drawn ratio from 15.4\u00d7 to 0.9\u00d7 while the land stays the same.",
+  "caveat": "No reset, phone viewport or accessibility suite tested.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r1.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

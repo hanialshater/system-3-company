@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bid-what-its-worth",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bid-what-its-worth",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose$50;paintingvalue70,highestbidwins,payssecond-highest,tiesrival.",
+    "E: rival60:bid50loses0,70/90winprofit10; rival75:90wins\u22125,70loses0; sliderEnd120loses5atrival75;Home0misses30gainatrival40. Lowerchartcomparesallrivalbids.",
+    "R: Notquite70; reveal resetsstage torival60/own50,explainsunderbidmissedgainsand overbidloss;inventednumbersandtiesstated.",
+    "No-historypreview;7/7trustignored. Screenshot1280x720 barsclear,lowerall-rivalchartsmall."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Strongconditionalnever-worsecommitment.",
+      "evidence": "P: chose$50;paintingvalue70,highestbidwins,payssecond-highest,tiesrival.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rivalandownbidcontrastmissedgainswithlosses.",
+      "evidence": "E: rival60:bid50loses0,70/90winprofit10; rival75:90wins\u22125,70loses0; sliderEnd120loses5atrival75;Home0misses30gainatrival40. Lowerchartcomparesallrivalbids.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualcontrasts toconditionalreasoningandpriceindependence.",
+      "evidence": "R: Notquite70; reveal resetsstage torival60/own50,explainsunderbidmissedgainsand overbidloss;inventednumbersandtiesstated.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Barsclearbutall-rivalcharttiny.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 barsclear,lowerall-rivalchartsmall.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusabletruthfulbiddingrulewithformattiecondition.",
+      "evidence": "R: Notquite70; reveal resetsstage torival60/own50,explainsunderbidmissedgainsand overbidloss;inventednumbersandtiesstated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 barsclear,lowerall-rivalchartsmall.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Higherbidcanwinwithoutincreasingprofit,andcanaddloss.",
+      "evidence": "E: rival60:bid50loses0,70/90winprofit10; rival75:90wins\u22125,70loses0; sliderEnd120loses5atrival75;Home0misses30gainatrival40. Lowerchartcomparesallrivalbids.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Payoffbarsandall-rivallinescentral.",
+      "evidence": "E: rival60:bid50loses0,70/90winprofit10; rival75:90wins\u22125,70loses0; sliderEnd120loses5atrival75;Home0misses30gainatrival40. Lowerchartcomparesallrivalbids.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Twoinputspermitconditionalexperiments.",
+      "evidence": "E: rival60:bid50loses0,70/90winprofit10; rival75:90wins\u22125,70loses0; sliderEnd120loses5atrival75;Home0misses30gainatrival40. Lowerchartcomparesallrivalbids.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Auctionincentiveunderstanding.",
+      "evidence": "R: Notquite70; reveal resetsstage torival60/own50,explainsunderbidmissedgainsand overbidloss;inventednumbersandtiesstated.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Winning,payment,profitanddominance.",
+      "evidence": "R: Notquite70; reveal resetsstage torival60/own50,explainsunderbidmissedgainsand overbidloss;inventednumbersandtiesstated.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coreclaimquantifiesoverrivalbidsandcomparesconditionalwins/losses.",
+    "conceptualDemand": "Multipledependentstrategiccases.",
+    "interfaceBurden": "Smalllowerchart.",
+    "prerequisiteNovelty": "moderate:second-priceauction",
+    "notationRepresentationBurden": "moderate:payofffunctionchart"
+  },
+  "whyCool": "At rival75a90bidwinsbutloses5,whiletruthful70losesandkeeps0.",
+  "caveat": "All-rivalchartissmall;privatevaluationandauctionconditionsarefixed.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

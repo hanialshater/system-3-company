@@ -1,0 +1,103 @@
+{
+  "slug": "long-cord-knots-itself",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/long-cord-knots-itself",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted About half for3 m strings after10-second box tumbling; experiment setup supplied before guess.",
+    "Tumbled0.3 m and3 m; settled screenshot showed20 glyphs each,0/20 short and13/20 long knotted.",
+    "Reveal explicitly distinguished this simulated13/20 from stated study55% (~11/20), explained longer free end weaving through loops, and limited55% to stated box/motion rather than drawer."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Sample frequencies and experimental generalization.",
+    "conceptualDemand": "Distinguish simulation,study rate and mechanism.",
+    "interfaceBurden": "Two tumble buttons."
+  },
+  "whyCool": "A long loose string can knot through random motion, without anyone tying it.",
+  "caveat": "Study figures are claims presented by artifact,not independently fact-checked here; glyphs illustrate outcomes rather than a physical knotting simulation.",
+  "effort": "Prediction screenshot,both tumbles,settled outcome screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Compelling controlled contrast with explicit simulation/study/generalization limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible never/half/always beliefs for specified experiment; exact historical rate cannot be derived but uncertainty is meaningful.",
+      "evidence": "Specific box,motion and length context.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two controlled length samples visibly contrast outcomes.",
+      "evidence": "0 versus13 of20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains causal hypothesis, simulation variability and setup limits.",
+      "evidence": "13/20 simulation versus55% study.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Simulation and claimed experiment are explicitly separated.",
+      "evidence": "Each drawing simulated at study rate.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete setup boundary prevents drawer probability extrapolation.",
+      "evidence": "55% belongs to box/motion,not drawer.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Untied strings knot without intentional tying.",
+      "evidence": "13/20 long versus0 short.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Twenty marks show comparative frequency and variation.",
+      "evidence": "Knot versus plain cord glyphs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Tumbling samples reveals outcomes.",
+      "evidence": "No repeat/reset observed after both buttons disabled.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Cord storage relevance supports experiment.",
+      "evidence": "Plain cord,storage only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mechanism,random sample and experiment-specific probability.",
+      "evidence": "Simulated count differs from empirical rate.",
+      "confidence": "medium"
+    }
+  }
+}

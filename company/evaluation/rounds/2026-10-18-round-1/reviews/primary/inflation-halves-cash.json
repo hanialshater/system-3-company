@@ -1,0 +1,104 @@
+{
+  "slug": "inflation-halves-cash",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/inflation-halves-cash",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted28dollars purchasingpower after24years3%inflation for100cash; alternatives49,72.",
+    "At24years3%:49.19remaining,1.48lostthisyear;2%62.17/1.24;5%31.01/1.55. Returned3%,Home thenyear1:97.09/2.91. Goodsgrid tracks remainingunits.",
+    "Reveal discusses49after24years,shrinkingannualloss,rule72/3 andconstant-rate-notforecast limit. Wording 'eachyears3%takenfromvalu ealreadysmaller' blurspricegrowth withreciprocal purchasingpower decline.",
+    "1280x720light screenshot gridandoutputs clear;proseclippedright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Mustseparatepricegrowthfromcashpurchasingpower andcompoundover time.",
+    "conceptualDemand": "Reciprocal percentagechange.",
+    "interfaceBurden": "Simplepresets;smallgrid."
+  },
+  "whyCool": "The same100dollar note buys fewer squares of goods, but the number lost each year also shrinks.",
+  "caveat": "Ownerreview:pricegrowth3%doesnotexactlymeanpurchasingpowerdrops3%;UIreadoutuses97.09year1whileproseblursdistinction. Constant-rateillustrationnotforecast. Prosecutoff.",
+  "effort": "Prediction,three24yearrates,firstyearcontrast,reveal,two screenshots.",
+  "provisionalBucket": "needs-owner-review",
+  "bucketReason": "Goodvisual;precisereciprocal-rateexplanationneeded.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblelinear-versuscompounding alternatives withfullyspecifiedconstant rate.",
+      "evidence": "100,3%,24years;28versus49.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlledrateandtimecontrasts plusbaseline/firstyear reveal reciprocalcompounding.",
+      "evidence": "2,3,5%at24years;3%year1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Shrinkingloss explained but3%takenwording imprecise versus100/1.03 rule.",
+      "evidence": "Actualyear1loss2.91,not3;stated3%takenfromcurrentvalue.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Goodsunitgrid clear; imprecisepercentagewording andprosecutoff.",
+      "evidence": "Finalscreenshot andyear1readout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Rule72shortcut withinoriginalcase; nofreshapplication.",
+      "evidence": "72/3=24shown.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cashroughlyhalvesratherthanlosing72dollars.",
+      "evidence": "49.19after24years.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Remaininggoodsgrid andannuallossreadout makelevelandchangeconcrete.",
+      "evidence": "49squares versus97inyear1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Ratepresets andyearslider supportcomparisons.",
+      "evidence": "Threerates andtwochangedyears.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Purchasingpowerinterpretationcentral.",
+      "evidence": "Cashversustodaysgoods.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reciprocalgrowth,variableannualloss andapproximatehalflife.",
+      "evidence": "Firstyear2.91versusyear24onepoint48.",
+      "confidence": "medium"
+    }
+  }
+}

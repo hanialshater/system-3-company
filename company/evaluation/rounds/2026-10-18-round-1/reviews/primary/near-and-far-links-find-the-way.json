@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "near-and-far-links-find-the-way",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/near-and-far-links-find-the-way",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "783b1d1a6f95897d849656ba851520290077f0ba42c9cac61f44a2f1f4c3cf4f",
+    "demoSha256": "63a841c1142372b7f948e9be63eabd384ec032a282b8203776da6112b983272c",
+    "metaPath": "src/demos/probability/near-and-far-links-find-the-way/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Uniformly random and locked it in for greedy routing on a 2000-person ring.",
+    "exploration": "Uniform: mean38.3 steps, first message29, links near1%, middle10%, far89%. Inverse distance: mean28.5, first30, shares41/30/29%. Inverse square: mean212.6, first210, shares95/5/1%. Next message changed inverse-square path to97 steps while mean stayed212.6. Ring-only reference500. Reveal unlocked after all rules.",
+    "reveal": "Corrected inverse distance. Uses tested means and link tallies to explain uniform links fail near target, inverse-square lacks far jumps, balanced scales help throughout. States exponent must match network dimension, one for ring.",
+    "visual": "Inline inverse-square screenshot inspected: yellow route around ring, start/target dots, mean212.6 centered, link tallies and all four means legible. Legend states only50 links shown. Trust7/7 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear rule comparison but inverse-distance distributions and greedy routing are unfamiliar without much initial scaffolding.",
+      "evidence": "Uniform versus1/d versus1/d squared alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three controlled distributions and another message expose mean versus individual route behavior.",
+      "evidence": "38.3,28.5,212.6 means and210 to97 individual contrast.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed length tallies to scale-dependent routing and dimensional condition.",
+      "evidence": "Uniform89% far,inverse-square95% near,balanced1/d.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear but densely packed and near/middle/far bin boundaries not explicit in tested view.",
+      "evidence": "Inspected screenshot with three tally rows androute.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General exponent/dimension principle offered without fresh network application.",
+      "evidence": "Exponent matchesdimension,one forring.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Uniform prediction reversed by faster inverse-distance routing.",
+      "evidence": "38.3 versus28.5 means.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Route andlink-length tallies support scale mechanism.",
+      "evidence": "Inverse-square route screenshot plusmeans.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rule buttons andnext-message permit different distribution/path inspection.",
+      "evidence": "Three rules andtwo inverse-square messages.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete decentralized message-routing idea central.",
+      "evidence": "Greedy closest-to-target forwarding.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Long-link scale,local search anddimension-dependent exponent linked.",
+      "evidence": "Three distributions andreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires stochastic link distributions,greedy local routing,mean versuspath anddimension exponent relation.",
+    "conceptualDemand": "Multiple dependent network/probability abstractions.",
+    "interfaceBurden": "Moderate:dense tallydisplay.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:network routing anddistance laws",
+    "notationRepresentationBurden": "high:1/d,1/d squared,dimension andmeans"
+  },
+  "whyCool": "The longest-reaching random contacts lose to a mix of near andfar contacts because the final approach needs useful shortcuts too.",
+  "caveat": "One fixed ring setup; near/middle/far thresholds andotherdimensions untested.",
+  "missingEvidence": [
+    "Other networkdimension",
+    "Repeated networks",
+    "Bin thresholds",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "wheel-needs-four-colours",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wheel-needs-four-colours",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction center plus five outer regions,each touching center and two neighbors; chose3 rather than2or4. Visible map inspected.",
+    "Manually colored center red; assigning neighboring region1 red rejected with named clash. Backtracking with3colors found6deadends,outer5uncolored.",
+    "Four colors completed odd rim using4. Switched to rim4:completedusing3;selected3availablecolors and success persisted.",
+    "Reveal deliberately restored labeled original failed3color/rim5state,retained runhistory,and explained odd alternating rim versus even-rim exception.",
+    "Inline1280x720 light screenshots: readable map and full explanation,controls collapsed for reveal. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple coloring puzzle with parity proof.",
+    "conceptualDemand": "Oddcycle alternation and universalneighbor.",
+    "interfaceBurden": "Clear region/color controls and readable reveal."
+  },
+  "whyCool": "One odd region forces a whole extra color,and removing it makes alternation work again.",
+  "caveat": "Wheel family only,not general map-color theorem; automated backtracking completeness not independently checked; accessibility unknown.",
+  "effort": "Prediction,manual clash,odd-rim3/4runs,even-rim3case,reveal and inline screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readable constructive puzzle with clear obstruction and changed-case application.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete adjacency description and map support minimum-color reasoning.",
+      "evidence": "Oddwheel with universal center.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual conflict,exhaustive3failure,4success and even-rim3success isolate structural condition.",
+      "evidence": "Oddversuseven rim.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed search results connect to concise parity proof and explicit changed-case exception.",
+      "evidence": "Center consumes one,odd rim needs third outercolor.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable map,clash feedback,runhistory and labeled reveal snapshot.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Fresh even-rim case applies alternating-color logic and shows when original4color conclusion fails.",
+      "evidence": "Rim4workswith3.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Six simple regions need4colors while one fewer outer region needs3.",
+      "evidence": "Odd/even contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Region map,failed last region and successful boundary cases explain parity constraint.",
+      "evidence": "Namedclashandrunhistory.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manualcoloring plus constraint-solving controls.",
+      "evidence": "Centerredandneighborconflict.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Mapcoloring and constraint feasibility intuition.",
+      "evidence": "Adjacencyconstraints.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Oddcycle obstruction,constructive upper bound and structural exception.",
+      "evidence": "4necessaryandsufficienthere.",
+      "confidence": "medium"
+    }
+  }
+}

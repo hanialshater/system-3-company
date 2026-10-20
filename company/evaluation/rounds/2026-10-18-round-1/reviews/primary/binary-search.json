@@ -1,0 +1,104 @@
+{
+  "slug": "binary-search",
+  "demoVersion": 5,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/binary-search",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionhigher/lower1to1000smartmaximum10/50/100/500; chose50.",
+    "Initial250guess higher,750left; feedbackWeakguess:middlealwaysrulesoutatleasthalf. Pickmiddle625thenautofinish found269 in11guesses.",
+    "Reveal accuratelyrecords11path thenexplainsoptimal10,worstcasesequence,doublingrangeaddsoneguess;million20,billion30.",
+    "Screenshot numberline topaboveviewportafterinternalscroll; revealreadable; chosenbadfirstguess causesactual11vsoptimal10."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplegame butworstcasebound/logarithmicgrowth addabstraction.",
+    "conceptualDemand": "Choosemiddleofremainingrange,notoriginalrange.",
+    "interfaceBurden": "Sliderandbuttons; longhistory/verticalscroll."
+  },
+  "whyCool": "Youcanfindanumberamongabillion withonly30carefulhigher-or-lowerquestions.",
+  "caveat": "Singletoyround; noindependenttestofalltargetvalues; actual11includesweakfirstguess.",
+  "effort": "Prediction,off-center250,midpoint625,autofinish,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Engagingsearchgame withtransferableguarantee; explanationcouldflagwastedstepmoreexplicitly.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Clear familiar guessinggame withlargeefficiencygap.",
+      "evidence": "50vs10maximum.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Freeguess andmidpointhelper show costofdifferentchoices.",
+      "evidence": "250leaves750,weakguessfeedback.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualpath andgeneralbound shown; couldmoreexplicitlyconnect11tooff-centerfirstguess.",
+      "evidence": "11observedversusnevermore10underoptimalplay.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablehistory andprose; optimal-versusactual distinction requirescare.",
+      "evidence": "Repeated1atendmeansidentifythenconfirm.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Broadorderedsearch andlogarithmicgrowth insight.",
+      "evidence": "Doublingrangeaddsoneguess.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Billionpossibilities needonly30goodguesses.",
+      "evidence": "Generalization inreveal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Numberline andremainingcount encodeelimination.",
+      "evidence": "1000=>750=>374=>...1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Actualguessinggame withchoiceandautomation.",
+      "evidence": "Guessslider,midpoint,newnumber.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Efficientsearch intuition.",
+      "evidence": "Halve remainingpossibilities.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Worstcaseguarantee andgrowthrate.",
+      "evidence": "Optimal10versusactual11.",
+      "confidence": "medium"
+    }
+  }
+}

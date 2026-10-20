@@ -1,0 +1,104 @@
+{
+  "slug": "twenty-then-ten-off",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twenty-then-ten-off",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Twenty percent of one hundred removed twenty, leaving eighty; ten percent then removed eight, leaving seventy-two and total discount twenty-eight percent.",
+    "Screenshot shows a proportionate price bar and explicit dollar bases for both cuts.",
+    "Swap order retained seventy-two but changed cuts to ten then eighteen; both Seen lines remained.",
+    "Reveal explains changed percentage bases, multiplication and order independence for two percentage discounts."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar prices and two percentage operations.",
+    "conceptualDemand": "Apply each percentage to its current base.",
+    "interfaceBurden": "Two discount buttons, swap and reset."
+  },
+  "whyCool": "Reversing two percentage discounts changes the dollars removed at each step but leaves the same final price.",
+  "caveat": "Fixed illustrative prices; no fees, coupon restrictions or intermediate rounding rules.",
+  "effort": "Prediction, both percentage steps, screenshot, reversed order and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear two-part surprise with explicit numerical mechanism.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise percentage-base trap with plausible additive distractor.",
+      "evidence": "Thirty, twenty-eight or twenty-five percent.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepwise discounts and reversed order test both changing bases and invariance.",
+      "evidence": "Twenty/eight versus ten/eighteen.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains both observed paths and why total is invariant but not additive.",
+      "evidence": "0.8 times 0.9 equals reversed product.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dollar bases and retained paths make the reasoning explicit.",
+      "evidence": "Ten percent of eighty is eight, not ten.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General rule with explicit scope.",
+      "evidence": "One item and two percentage discounts; changes multiply.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Discounts do not add, yet reversing them preserves the price.",
+      "evidence": "Twenty-eight not thirty; same seventy-two reversed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Price bar and labeled cuts expose bases.",
+      "evidence": "Remaining price and two proportional cut segments.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed step sequence and order reversal.",
+      "evidence": "No editable percentages or initial price.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete sale-price interpretation.",
+      "evidence": "Stacked percentage discounts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Changing base and commutative multiplication.",
+      "evidence": "Different dollar cuts, same final product.",
+      "confidence": "medium"
+    }
+  }
+}

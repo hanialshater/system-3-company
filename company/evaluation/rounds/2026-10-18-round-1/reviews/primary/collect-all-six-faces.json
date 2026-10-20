@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "collect-all-six-faces",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/collect-all-six-faces",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "d9c538a6b15c9b1019d0084862e350d37cc0f18327027578d9f2673b7c3323b1",
+  "demoSha256": "07df39e1af7599642c2db0df71103d65737af5ec2efbdee35014a232f5ef24d1",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose About9, alternatives6/15; locked.",
+    "exploration": "Roll gave2,one face. Roll until all six finished12 rolls. Run1000 gave14.9 average. Screenshot per-face waits1,1,1,2,6,1 versus dashed increasing averages. New collection reset0/0 retained14.9 and reveal availability. Second collection11 rolls.",
+    "reveal": "About15; current collection11, sample14.9 versus exact14.7. Last missing face1/6 helps; waits6/6...6/1 sum14.7. Only13/1000 finished in6.",
+    "visual": "CUA screenshot1257x936 dark: six gold face tiles, per-discovery bars and dashed mean outlines clearly distinguished; caption and counters readable.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible average alternatives.",
+      "evidence": "6/9/15 commitments.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single versus many collections and reset reveal variability.",
+      "evidence": "12 then11, sample14.9 retained after reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed sample and current state to decreasing success chance.",
+      "evidence": "11/14.9/14.7 and last-face1/6 explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls and actual versus average chart distinct.",
+      "evidence": "Gold bars/dashed outlines, labeled counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General collection mechanism but no new application or conditions beyond fair die.",
+      "evidence": "Only1/6 helps with one face missing.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Prediction9 versus average14.9 reverses underestimate.",
+      "evidence": "Committed9 and sample14.9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-face waiting bars explain rising expected waits.",
+      "evidence": "Dashed averages compared with actual1,1,1,2,6,1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible random collections support discovery.",
+      "evidence": "Reset and repeated12/11 collections.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Probability calculation with no concrete outside use.",
+      "evidence": "Fair die collection only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Single variability, sample average and exact decomposition.",
+      "evidence": "12/11,14.9/14.7,6/6...6/1.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links missing-face probability to average waiting and total.",
+    "conceptualDemand": "Several related probabilities and averages supported by chart.",
+    "interfaceBurden": "low; explicit controls, long card.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Expected waiting time and distinction of sample/exact mean."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Fractions6/6 through6/1 and actual-versus-average bars."
+    }
+  },
+  "whyCool": "Resetting a12-roll collection while preserving14.9 average makes individual luck visibly different from typical waiting.",
+  "caveat": "No second type of collection task or applicability boundary tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

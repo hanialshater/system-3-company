@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "fair-game-still-ruins",
+  "domain": "probability",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "3de70adee7d8416b930f751d001e827b110d45645f90f09d03cd5216000fe76f",
+  "demoSha256": "9c2b3ade3f296fb2bc0a469f1e88d1d6110f63b8ba1525804d247ad392674776",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fair-game-still-ruins",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "7/7 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected 50%; Lock it in",
+      "outcome": "Prediction retained; simulation controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Start with $10; Play 300 more; Start with $50",
+      "outcome": "$10: 2/30 took all, then 24/330; $50 resets current sample to 13/30. More-games disabled after first addition until new stake."
+    },
+    {
+      "id": "v",
+      "action": "Inspected $50 screenshot",
+      "outcome": "30 red/green bankroll paths, $0/$50/$110 axis and aggregate outcome bar with stake/total tick visible; bets compressed disclosed. Dark1257x936, no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "About9%; retained $10 24/330=7.3% versus exact9.1%; $50 13/30 versus45.5%. Expected money stays $10; final0or110 implies110*chance=10."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fair single bet versus final bankroll alternatives expose plausible misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stake contrast and larger sample reveal unequal ruin outcomes despite fair steps.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Exact stake/total derived through expected final money and linked to retained simulations.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Paths versus aggregate sample distinguished; compressed time and final endpoints labelled.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Stake/total rule reusable for fixed-total fair game, but no new task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "50% prediction reverses to9.1% despite fair coin.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Absorbing bankroll paths and outcome bar show asymmetry.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two stakes and sample extension support comparisons.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete limited-bankroll risk interpretation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fair steps, absorbing endpoints, expectation and sampling variability linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates step fairness from terminal chance using expected-money support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Expected value and gambler ruin introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Many paths, ratios and expectation equation."
+    }
+  },
+  "whyCool": "The fair-coin paths usually hit zero from $10, and the reveal derives the small winning chance from unchanged expected money.",
+  "caveat": "Fixed total, fair independent $1 bets until absorption; other stopping rules and stakes not explored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Repeat $10/reset details and further sample extension; phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

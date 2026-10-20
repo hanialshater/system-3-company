@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "middle-of-three-takes-all",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/middle-of-three-takes-all",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "middle-of-three-takes-all",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/middle-of-three-takes-all/meta.json",
+    "metaSha256": "9c72d44fffbdc01cfe0c1c34078f876b7a3c59de8b6262451d2591b83fe3ad5f",
+    "demoSha256": "c4e286008e96197702fa81af553cf07ab55cd86a63e1fba3e46c7262480f7b04",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/middle-of-three-takes-all",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/middle-of-three-takes-all.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About half against two thirds and all/nearly all; locked it in.",
+    "exploration": "Two people split0.50/0.50. Added Cy. Next round:Cy asks0.40,Bo switches andgets0.60. Next:Ann asks0.30,Bo gets0.70. All rounds ended round5,Bo1.00,asks0,stable. Two-people button restoredBo0.50 while six-step trace retained.",
+    "reveal": "Corrected all/nearly all;recounted actual0.50\u20131.00 trace in0.10 increments. Explained excluded partner undercuts,zero floor and stable one-deal outcome. Compared two-person even split;explicit simplifying rules.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Two-person network and0.50 split currently shown;retained three-person trace rises0.50 to1.00. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives test assuming symmetry survives an extra dependent partner.",
+      "evidence": "Half commitment versusall result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Network addition,individual rounds andremoval expose alternative-partner mechanism.",
+      "evidence": "Bo0.50\u21920.60\u21920.70\u21921.00;returntwo restores0.50.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed undercuts andtrace tostructural bargaining power with assumptions.",
+      "evidence": "Sparepartner,0 floor,one-deal rule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named people,asks andretained trace clarify tested desktop comparison.",
+      "evidence": "Actualscreenshot two-person state plusthree-person trace.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General alternatives-give-power principle,but no concrete new application.",
+      "evidence": "Power fromsparepartner ratherthan bargaining skill.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedhalf split contradicted bymiddleperson takingall.",
+      "evidence": "Thirdperson turns0.50 into1.00.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Network andtrace carry outside-option mechanism.",
+      "evidence": "Namednodes andsix risingtraceblocks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Add/removepartner androundcontrols support reversible causal contrast.",
+      "evidence": "Two\u2192three\u2192two andmanualrounds.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete explanation ofnetwork bargaining advantage.",
+      "evidence": "Onlycentre hasalternative partners.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Competition,zero floor,stability andtopology contrast linked.",
+      "evidence": "Undercuts andtwo-person counterfactual.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links outsideoptions toiterated offers andstableendpoint.",
+    "conceptualDemand": "Track left-outparty,ask andcentre payoff acrossalternatingdealpartners.",
+    "interfaceBurden": "Low tomoderate:two scenarios andretainedtrace clearlylabeled.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:network bargaining andstability.",
+    "notationRepresentationBurden": "low:currency andlinear trace."
+  },
+  "whyCool": "One extra partner letsBo switch between shrinking asks untilthecentre keeps thewhole dollar.",
+  "caveat": "Scripted0.10 undercuts andassumed two-person equalsplit;not evidence ofreal bargaining behavior.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternative network shapes/undercut sizes notavailable/tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:48:50.844544+00:00"
+}

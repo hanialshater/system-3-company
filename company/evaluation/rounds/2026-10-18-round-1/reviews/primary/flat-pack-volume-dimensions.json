@@ -1,0 +1,104 @@
+{
+  "slug": "flat-pack-volume-dimensions",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flat-pack-volume-dimensions",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted same outer envelope for assembled box versus stacked ideal panels; setup lists four40x30 and two30x30 panels at1cm.",
+    "Assembled envelope36000cm3;stacked7200 at1cm. Increased thickness to3cm:stack21600;assembled remained36000.",
+    "Reveal explained hollow outside dimensions versus retained panel material,explicitly noted ideal panels and real hardware/edges. Current-state value updated after switching stack post-reveal.",
+    "Inline1280x720 light screenshots: assembled and stacked schematics plus full readable prose. Stack drawing remains highly schematic. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar packing and volume comparison with explicit units.",
+    "conceptualDemand": "Outside envelope versus material.",
+    "interfaceBurden": "Two switches and one slider,readable layout."
+  },
+  "whyCool": "Disassembly changes the space around the material without making any of the panels disappear.",
+  "caveat": "Idealized panel assembly and envelope;schematic not an assembly guide;accessibility unknown.",
+  "effort": "Prediction,layout comparison at1and3cm,reveal,post-reveal stack inspection and inline screenshots.",
+  "provisionalBucket": "solid-gentle",
+  "bucketReason": "Useful model distinction and parameter contrast with explicit limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearly defined envelope comparison with panel geometry available.",
+      "evidence": "Assembled versus flat stack,not material amount.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Layout and thickness contrasts expose different envelope dependencies.",
+      "evidence": "7200to21600stack,assembled36000.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains hollow-volume removal and model limits using current result.",
+      "evidence": "Retains material,changes outside dimensions.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable units,inputs and illustrative-model label.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General packing principle without fresh item/dimension exercise.",
+      "evidence": "Same six panels.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same material occupies very different outside volume.",
+      "evidence": "36000versus7200.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Box and thin-stack schematic support comparison but omit dimensions and assembly detail.",
+      "evidence": "Simple silhouettes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Layout switch and thickness slider.",
+      "evidence": "Two thicknesses tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Storage/transport envelope distinction central.",
+      "evidence": "Flat packing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Material volume versus bounding envelope and parameter dependence.",
+      "evidence": "Hollow space.",
+      "confidence": "medium"
+    }
+  }
+}

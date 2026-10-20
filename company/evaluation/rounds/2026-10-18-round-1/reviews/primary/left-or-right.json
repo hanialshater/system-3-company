@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "left-or-right",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/left-or-right",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "left-or-right",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/math/left-or-right/meta.json",
+    "metaSha256": "d230eb02a7a3780b2f7dfdc4e043b53f77074cb7d6c5b8175f51675c28153890",
+    "demoSha256": "9aa798e532c734ca6704a9580c3d8eb9fd22c91d56d9fb65d1609dd914df577e",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/left-or-right",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/left-or-right.json"
+  },
+  "date": "2026-10-18T19:20:44.488363+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust8/8 ignored. SelectedOnlyturningover andlocked.",
+    "exploration": "Trefoilfrontminus3. Turnoverretainsminus3. Mirrorafterturnoversettlesplus3,righthanded;initialAXduringanimationstale,screenshotandsettledAXconfirmed. Figureeight resetsfrontsum0;mirrorreversesindividualsignsbuttotals0. Revealunlocksaftertrefoilcontrast.",
+    "reveal": "CorrectNonever. Says physicalturnoverpreserveshand,mirrorflipssigns;nowigglinggetsback,Dehnproof1914attribution. Figureeight0bothwaysandownmirror. Turnover/mirrorcontrolsremovedafterreveal.",
+    "visual": "Inline1257x936 dark screenshots inspected: trefoil3signedcrossings,mirroredplus3;figureeight4crossingsalternatingsigns,sum0. Front/turnover/mirrorhistoryexplicit. Fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Turnoverversusmirror alternatives targetconcretechiralitymisconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Turnover/mirror contrast changescrossingsandhandness;figureeight boundarymeaningful,butnoarbitrarywigglingpossible.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explainsobservedturnoverversusmirror, butgeneralimpossibilityofallwigglingassertedwithhistoricalproofattribution;signassignment/invarianceunderwigglingnotestablished.",
+      "evidence": "reveal;exploration",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controlsandstateslegible;crossingsignsintroducedwithoutvisibleassignmentrule,mayseemproofratherthanillustration.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Concretefigureeightcomparisonandchiralityprinciple,butnonewapplicationconditionexplainedbeyondtheseknots.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenphysicalturnoverdoesnotswaphandwhilemirror does.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Over/underlinegaps,signedcrossingsandtransformationsshowhandnesscontrast.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibletransformsandtwoknotchoicesexploreboundarybeforereveal.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstractknotsymmetryunderstanding;noeverydayapplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Physicalrotationversusreflection,trefoilchiralityandfigureeightcontrast.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separate3Dphysicalturnoverfrommirrorimageandinterpretcrossingsignrepresentation,withsupportedtwo-knotcontrast.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "lowcontrols;animationrequiressettledstate",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "high: knothandnessandcrossingsigns",
+    "notationRepresentationBurden": "moderate: over/undergaps,signedcrossings,sumwithoutassignmentrule"
+  },
+  "whyCool": "Turningthetrefoiloverkeepsminus3,whilemirroringchangesallthreemarksplus.",
+  "caveat": "Observedtransformationsillustratebutdonotproveimpossibilityofeverywiggle;crossingsignruleunexplained.",
+  "findings": [
+    "Owner should assess whether displayed crossing-sum contrast may be read as a proof of arbitrary-wiggle invariance; tested UI establishes only turnover/mirror cases."
+  ]
+}

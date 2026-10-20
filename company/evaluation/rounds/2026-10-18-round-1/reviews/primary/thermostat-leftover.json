@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "thermostat-leftover",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/thermostat-leftover",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "thermostat-leftover",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/thermostat-leftover/meta.json",
+    "metaSha256": "4caf2d787d00ef901c4f728128ab9885790b8313eb9e7a676d4ded234fbd2391",
+    "demoSha256": "de6a2b2aa3dbd10f95f026675fee5e618effb1df5be2d3b6aa2f9f2f727067e1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/thermostat-leftover",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/thermostat-leftover.json"
+  },
+  "date": "2026-10-18T20:56:43.064430+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected36 for gain4, target37 and room32. Heating proportional to gap stated, but heat-loss relationship not specified before prediction."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Gain0 room32; gain4 settles36 gap1; gain9 settles36.5 gap.5; gain19 settles36.75 gap.25. Curve approached below dashed37 target."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read that heater needs a gap to keep running, leakage balances heating at gap5/(1+gain), stronger feedback shrinks but cannot erase gap, toy one-loop no-delay limit."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected at prediction,gain4 andgain19; solid curve stayed under dashed37 and numeric settled-temperature caption readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact numerical choice lacks the heat-loss rule needed to calculate it.",
+      "evidence": "Only heater proportional rule given; leakage relationship appears in reveal.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Presets expose diminishing residual error clearly.",
+      "evidence": "Gaps1,.5,.25 at4,9,19.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Causal explanation links nonzero error to continued heating.",
+      "evidence": "Heater requires gap and leakage balances power.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Plain explanation and graph support the feedback mechanism.",
+      "evidence": "Target dashed37 and explicit residual captions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General proportional-feedback rule without another application.",
+      "evidence": "One-loop no-delay boundary stated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A stronger heater rule still never reaches its set point.",
+      "evidence": "Gain19 remains.25below.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve and target line make residual visible.",
+      "evidence": "Solid endpoint below dashed37.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Quick gain presets and slider.",
+      "evidence": "Compared0,4,9,19.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful feedback intuition within explicit toy assumptions.",
+      "evidence": "No actual incubator guidance evaluated.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects equilibrium, residual formula and increasing gain.",
+      "evidence": "Gap5/(1+gain) with leakage mechanism.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: equilibrium between heating and leakage and persistent error",
+    "interfaceBurden": "gentle: gain presets and one slider",
+    "prerequisiteNovelty": "proportional feedback and steady state introduced with household-temperature toy",
+    "notationRepresentationBurden": "temperature graph and single rational formula"
+  }
+}

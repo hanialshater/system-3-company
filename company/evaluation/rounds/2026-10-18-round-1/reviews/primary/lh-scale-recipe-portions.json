@@ -1,0 +1,103 @@
+{
+  "slug": "lh-scale-recipe-portions",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-scale-recipe-portions",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted450 g to preserve equal portions from300 g for4 to6.",
+    "Tests showed450 versus unchanged300 g. Minimum1 portion gave75 versus300, reversing total comparison.",
+    "Screenshot showed aggregate common-scale fills. Reveal preserved original/current context and explained75 g/portion, explicitly limiting quantity arithmetic; stage warned cooking time not proportional."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple division and multiplication.",
+    "conceptualDemand": "Hold amount per person constant.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Finding the per-portion amount makes any batch size straightforward.",
+  "caveat": "Only quantity arithmetic; not pan geometry, cooking time or nutritional sufficiency.",
+  "effort": "Prediction, both tests, minimum portion, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear proportional reasoning and explicit nonproportional limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear exact scaling question with plausible unchanged/double alternatives.",
+      "evidence": "450,300,600 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Smaller target distinguishes proportional amount from unchanged batch.",
+      "evidence": "6\u21921 portions.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains unit rate then multiplication and limits.",
+      "evidence": "75 g per portion.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rate, unit and quantity-only assumptions explicit.",
+      "evidence": "No cooking/nutrition advice.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete cooking-time nonproportionality distinguishes where scaling does not apply.",
+      "evidence": "Stage warns cooking times do not scale in proportion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected proportional arithmetic.",
+      "evidence": "300\u00d76/4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Common fills show total amounts, not equal individual portions.",
+      "evidence": "75 versus300 screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and portion slider.",
+      "evidence": "No portion allocation task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Recipe quantity scaling central.",
+      "evidence": "Maintain grams/person.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Unit rate and scope boundary.",
+      "evidence": "Ingredient quantity versus cooking time.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "skater-pulls-arms",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/skater-pulls-arms",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "skater-pulls-arms",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/skater-pulls-arms/meta.json",
+    "metaSha256": "2fdf1dd59c27374d58c2e59f373bc7c4a92af60554b0d29d158010b9aa686c31",
+    "demoSha256": "34eb88dd361ba95a689f26d20c7b2a5e8b8d84d9856b57eafffbdedf2e8e818f",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/skater-pulls-arms",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/skater-pulls-arms.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 1 turn per second and locked it in.",
+    "exploration": "Arms out showed inertia 3.0, spin 1 and product 3.0. One keyboard step gave halfway inertia 2.0, spin 1.5 and product 3.0. End tucked arms with inertia 1.0, spin 3 and product 3.0. Home restored arms out and spin 1.",
+    "reveal": "Corrected to 3 turns per second, referenced the halfway trial, named the constant product angular momentum and stated no outside twist, frictionless ice, no air and illustrative inertia values.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected at tucked and restored extended arms. Top view animation showed orange masses moving around axis, changing arm radius, numeric inertia and product. Explanation was legible in the reveal card.",
+    "previewIsolation": "Preview banner stated history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical prediction defines the unfamiliar quantity before commitment.",
+      "evidence": "Moment of inertia described as mass spread about the axis.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three discrete reversible states reveal the inverse relation.",
+      "evidence": "Products 3 times 1, 2 times 1.5 and 1 times 3 all 3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal names the invariant after the learner observes it.",
+      "evidence": "Angular momentum and no outside twist condition.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Animation, state labels and arithmetic agree.",
+      "evidence": "Arm extent, inertia and spin linked visibly.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conservation condition is explicit but no new application is attempted.",
+      "evidence": "No external twisting condition stated for skater.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard steps and endpoints worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Familiar speedup becomes a precise factor.",
+      "evidence": "Threefold speed from one-third inertia.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Changing mass radius and animated spin reinforce arithmetic.",
+      "evidence": "Top view, inertia and invariant product.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Direct control over a spinning figure.",
+      "evidence": "Three arm positions and reversible animation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains a familiar sports motion.",
+      "evidence": "Skater pulling arms in.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Introduces a conservation law through an invariant.",
+      "evidence": "Angular momentum with explicit external-twist condition.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Easy interface introduces an unfamiliar physical quantity through ratios.",
+    "conceptualDemand": "Relate mass distribution and spin inversely through a conserved product.",
+    "interfaceBurden": "One slider with three positions.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Moment of inertia and angular momentum explicitly introduced.",
+    "notationRepresentationBurden": "I, kg metre squared, multiplication and turns per second."
+  },
+  "whyCool": "A changing spin can preserve the same product at every arm position.",
+  "caveat": "The moments are illustrative and outside torque is excluded; no fresh transfer case was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:15:28.063676+00:00"
+}

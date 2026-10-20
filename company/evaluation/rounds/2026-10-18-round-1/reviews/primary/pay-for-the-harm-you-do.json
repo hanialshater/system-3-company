@@ -1,0 +1,104 @@
+{
+  "slug": "pay-for-the-harm-you-do",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pay-for-the-harm-you-do",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted $35 given 10/5 clicks, values X7 Y6 Z1 and a harm-based payment.",
+    "Honest bid7 gave top slot, payment35 and profit35: other bidders' value fell from65 to30.",
+    "Bid3 gave second slot, payment5 and profit30; bid10 tied honest profit35; bid0 gave no slot/payment/profit.",
+    "The visual shows the externality gap and profit at each integer bid. Reveal explicitly refers back to honest7 even while the current control remained at0."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Arithmetic is simple but distinguishing bid, value, payment and profit needs attention.",
+    "conceptualDemand": "Externality pricing and utility.",
+    "interfaceBurden": "Three presets and one slider."
+  },
+  "whyCool": "Trying to game the price visibly shows why truthful bidding can be optimal.",
+  "caveat": "The observed fixed opponents support this example; the general dominant-strategy claim requires the mechanism's broader argument, not just this one utility curve.",
+  "effort": "Completed prediction, four bid states, visual inspection and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich controlled comparisons and a clear externality visualization.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit values permit calculating the externality rather than guessing an unknown pricing convention.",
+      "evidence": "65 without X minus30 with X.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Bid comparisons and a losing boundary expose allocation, payment and utility separately.",
+      "evidence": "Tested bids0,3,7,10 and the plotted integer utility profile.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correctly connects original prediction, observed harm and incentive to report value.",
+      "evidence": "Honest7 and inflated10 both profit35 versus low3 profit30.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Current bid and historical honest-bid explanation are clearly distinguished.",
+      "evidence": "Reveal says At the honest $7 while current bid remains0.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A pricing principle is stated without a different valuation case.",
+      "evidence": "Fixed Y/Z values and clicks.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Paying less can leave less profit; inflating a bid does not improve this allocation.",
+      "evidence": "Bid3 pays5 but keeps30 versus honest keeps35.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Externality bars and full utility profile explain price and incentives together.",
+      "evidence": "Without/with X bars plus integer bid profits.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Bid manipulation is the core experiment.",
+      "evidence": "Preset bids and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies an auction design principle.",
+      "evidence": "Simplified fixed-click model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links externalities, allocation and incentive compatibility.",
+      "evidence": "Payment determined by others' lost value.",
+      "confidence": "medium"
+    }
+  }
+}

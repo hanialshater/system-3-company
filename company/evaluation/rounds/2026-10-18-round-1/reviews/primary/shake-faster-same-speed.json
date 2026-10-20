@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "shake-faster-same-speed",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shake-faster-same-speed",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "shake-faster-same-speed",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/shake-faster-same-speed/meta.json",
+    "metaSha256": "7cade57d7da0cab6f22ad15e6ebee4a3d976b0364f10d7894416db95d195faa1",
+    "demoSha256": "bb26826d3eb55e4243465c974c2e75ba2f3c9aa17f431eb6483f6be5af5a5770",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/shake-faster-same-speed",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/shake-faster-same-speed.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Twice as fast and locked it in.",
+    "exploration": "Ran 2 per second and 1 per second at normal tension. Both completed the 4 m trip in 2.0 s; visible history showed spacing 1 m versus 2 m. Four times tighter at 1 per second completed in 1.0 s and showed 4 m spacing.",
+    "reveal": "Corrected to In the same time, calculated 2 m/s in both frequency trials and explained wavelength equals speed divided by frequency. Contrasted the tighter rope result.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected during both normal trials and reveal. Animated crest marker, trip time, rope shape, spacing bracket and trial history were visible. Early exploration card required the lower action area near viewport bottom; reveal compacted to fit.",
+    "previewIsolation": "Evaluation preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct arrival-time prediction targets frequency versus speed confusion.",
+      "evidence": "Twice as fast selected before unlocked controls.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent frequency and tension controls distinguish causes.",
+      "evidence": "Both frequencies took 2.0 s; tighter rope took 1.0 s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal uses actual measured trials and explains spacing.",
+      "evidence": "2 m versus 1 m at equal 2 m/s.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Time and spacing history provide a persistent comparison.",
+      "evidence": "Trial labels retained below the animated rope.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A general relation is stated without a new application.",
+      "evidence": "Wavelength equals speed divided by frequency.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Actual mode audit incomplete.",
+      "evidence": "Textual trip result available; screen reader, keyboard, contrast and reduced motion not audited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Faster hand movement leaves arrival unchanged.",
+      "evidence": "1 and 2 shakes per second both 2.0 s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tagged crest and spacing separate motion from pattern density.",
+      "evidence": "Orange marker and wavelength bracket.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Animated rope invites direct experimentation.",
+      "evidence": "Frequency presets and tension switch.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful basic wave distinction.",
+      "evidence": "Rope medium determines modeled speed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two controls reveal a three-quantity relation.",
+      "evidence": "Frequency, speed and wavelength contrasted.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls support distinct frequency and propagation concepts.",
+    "conceptualDemand": "Track a crest rather than count waves and separate medium properties from driving frequency.",
+    "interfaceBurden": "Three frequency buttons and two tension buttons; wait for trip completion.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Frequency, wavelength and tension need the visible demonstration.",
+    "notationRepresentationBurden": "Fractions per second, metres, seconds and verbal division relation."
+  },
+  "whyCool": "Following one crest exposes why more waves need not mean faster waves.",
+  "caveat": "Only the ideal rope and selected tension contrast were tested; reduced motion behavior remains unknown.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:12:14.389111+00:00"
+}

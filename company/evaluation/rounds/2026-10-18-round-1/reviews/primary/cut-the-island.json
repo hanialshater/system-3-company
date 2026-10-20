@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "cut-the-island",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cut-the-island",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simplecharts;no subject theory assumed.",
+  "viewport": "1257\u00d7936 Chrome darktheme;inline screenshot only",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust5/5 ignored. Predicted56%species at10%area with exponent0.25;locked."
+    },
+    {
+      "id": "E",
+      "text": "Keep10:56of100species. Keep50:84of100. SliderHome returns10minimum/56. Revealenabledafterbothpresets."
+    },
+    {
+      "id": "R",
+      "text": "Nonlineararea^0.25,wide-ranging species;90%forestlossstill44%speciesloss. Empiricalregularitynotlaw,exponents0.15\u20130.35,lossesyears/decades. Screenshotfull10\u00d710areaand100speciesgridwith56circles,readableprose. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete alternatives but exponentcalculation unfamiliarunderlearnerboundary.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Area/speciesgrids showtwooutputs;model fixed,limited causalmechanism.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsobservedoutputs todistributionintuition andexplicit empirical/exponent/time limits.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Pairedgrids,percentages andproseclearindarkdesktop.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Species-area principle andconditionsstated;no newhabitat/exponentapplication.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "SliderHomeonly,nomodeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "90%arealoss leaves56%speciesratherthan10%.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Pairedgridscompareoutputsbutdonotshowspatialspeciesoverlapcause.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Areaadjustmentandpresets.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Habitatlossinterpretationwithtime/exponentlimits.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Nonlinearscaling,remainingversusloss,empiricallimits.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Supportednonlinearcomparison;fractionalexponentnotationnovelbutcalculationnotrequiredforexploration.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "moderate;species-arearelationship",
+    "notationRepresentationBurden": "high;proportionality/fractionalpower"
+  },
+  "whyCool": "Aforestgridloses90of100cellswhilethespeciesgridloses44,visiblyseparatingarealossfromspeciesloss.",
+  "caveat": "Fixedexponentandtinygrid;modeloutputsnotrealhabitatforecast.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Exponentcontrast",
+    "Zeroareaboundary"
+  ]
+}

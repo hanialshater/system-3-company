@@ -1,0 +1,104 @@
+{
+  "slug": "mirror-half-height",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mirror-half-height",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted1.80m mirror for1.80mwomaneyes1.70m; alternatives0.45/0.90.",
+    "Initial0.75\u20131.85mirror1.10shows100%;shrank0.80\u20131.80to1.00still100;0.85\u20131.75to0.90at2.50mdistance100%. Raisedbottom0.90makes0.85mirror94%,feetcut;distanceHome0.50still94%.",
+    "Raydiagram showsreflectionequaldepth andglassintersectionheights0.85/1.75. Revealexplainsmidpoints,halfheight,distanceinvariance,flatmirror/pointeyelimit;recalls earlierworkingstatewhilecurrentfailedstatevisible.",
+    "1280x720light raygeometryclear; finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simpledimensions,butvirtualimageandintersectionsrequiregeometryreasoning.",
+    "conceptualDemand": "Equaldepth,midpoints andinvariance.",
+    "interfaceBurden": "Threesliders,5cmsteps."
+  },
+  "whyCool": "Moving away changes the ray slopes while the required mirror endpoints stay fixed.",
+  "caveat": "Flatmirror/pointeyeidealization;failedcurrentstatepersistswhilerevealrecallspriorworkingcase,whichisdescribedhistorically. Prosecutoff.",
+  "effort": "Prediction,twoedgeshrinksteps,distanceextremes,tooshortboundary,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Stronggeometricexperiment;fixreveallayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitbody/eyeheight andflatmirror supporttestablegeometric misconception.",
+      "evidence": "Fullheightversushalfheight alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independentedgeanddistancecontrasts plusfailureboundary isolateinvariance.",
+      "evidence": "0.90works2.5m;0.85fails0.5/2.5m.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer withraymidpoints andmeaningfulidealization.",
+      "evidence": "Equalreflectiondepth,halfwayintersections,flatmirror/pointeye.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Raylabels andstatefeedbackclear; clippedprose.",
+      "evidence": "Workingandfailedstates screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalhalfheight rule withoutnewpersonapplication.",
+      "evidence": "Only1.80m personparameterization.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Halfheightworks andsteppingcloser/farthercannotrescuebadedge.",
+      "evidence": "0.90full versus0.85feetcutatbothdistances.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Controllededgeanddistancechanges visiblypreserveraymidpoints.",
+      "evidence": "Reflectedvirtualperson,intersections andfeetcut.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Threesliders supportgeometricpuzzle.",
+      "evidence": "Independenttop,bottom,distance.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete mirrorsizingandplacementquestion.",
+      "evidence": "Minimumheightandmountingboundaries.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Virtualimagegeometry anddistanceinvariance.",
+      "evidence": "Midpointderivationwithlimitingassumptions.",
+      "confidence": "medium"
+    }
+  }
+}

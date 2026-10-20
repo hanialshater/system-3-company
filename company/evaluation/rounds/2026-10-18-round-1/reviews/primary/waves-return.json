@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "waves-return",
+  "demoVersion": 4,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/waves-return",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "0a98f5d7219d387b39f1148e242a7e08ee52c8723ce0a668fcebc9eddd56b471",
+    "demoSha256": "de0611d4a2d20b4fef963304360ce7e4c4fa5ce0ff1bfbf979f7dcb7c9197747",
+    "metaPath": "src/demos/life/waves-return/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Almost none and locked the late susceptible-share prediction for a made-up R0 two infection with immunity fading after about one hundred days.",
+    "exploration": "Jumped to the first peak, day 34: 50.7% susceptible and 16.0% sick. At day 900 with hundred-day immunity: 50.00% susceptible and 2.4% sick. At fifty-day immunity: 50.00% and 4.5%. At two-hundred-day immunity: 49.8% and 1.3%, still slowly shrinking.",
+    "reveal": "The reveal corrected the answer to about half, accurately quoted the first peak and original hundred-day final state, and explained R0 times susceptible share equals one at balance. It distinguished immunity duration changing sick share and wave spacing from the equilibrium susceptible threshold. It disclosed no births, deaths, seasons or vaccines.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at day 900 with hundred-day immunity. A grey susceptible curve oscillated toward the dashed 50% line while a red sick curve damped to a small positive level. A dot population and explicit legend separated susceptible, immune and sick.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes lasting removal from replenishment of susceptibility.",
+      "evidence": "Selected almost none before exploring fading immunity.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time and immunity modes expose transient waves and different late sick shares.",
+      "evidence": "Susceptible share stays near half while sick share changes from 4.5% to 1.3%.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the balance threshold and accurately recalls original conditions.",
+      "evidence": "With R0 two and half susceptible, each case replaces itself with one.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate curves and explicit percentage labels distinguish susceptibility from illness.",
+      "evidence": "The hundred-day screenshot reports 50% susceptible but only 2.4% sick.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general reciprocal threshold is stated without a new R0 or external application.",
+      "evidence": "Only one fixed transmission rate is explored.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fading immunity does not leave almost everyone susceptible at equilibrium.",
+      "evidence": "The model settles near half despite changing immunity duration.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Damped oscillations around a threshold support the feedback explanation.",
+      "evidence": "The grey curve approaches the dashed half line.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Peak jumps and immunity presets provide guided exploration.",
+      "evidence": "A timeline and three duration choices expose contrasts.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies a mechanism of endemic balance in an idealized model.",
+      "evidence": "The reveal carefully lists omitted real-world factors.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes transient waves, equilibrium threshold and prevalence.",
+      "evidence": "Different duration choices alter sick share while preserving the susceptible target.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The controls are straightforward, but feedback, equilibrium and population compartments require domain reasoning.",
+    "conceptualDemand": "High: distinguish susceptible, sick and immune stocks and their feedback.",
+    "interfaceBurden": "Low to moderate: timeline, peak jump and immunity presets.",
+    "conceptualChallenge": "Waning immunity replenishes susceptibles while transmission depletes them around a replacement threshold.",
+    "prerequisiteNovelty": "R0, endemic balance and susceptibility compartments are introduced.",
+    "notationRepresentationBurden": "Moderate: time curves, percentages, population dots and 1/R0."
+  },
+  "whyCool": "Changing how quickly immunity fades changes the burden of illness while leaving a different quantity near the same balance point.",
+  "caveat": "The toy fixes R0 and omits births, deaths, seasons and vaccines. Its deterministic equilibrium is not a forecast for a real infection.",
+  "missingEvidence": [
+    "No fresh R0 or real outbreak data was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

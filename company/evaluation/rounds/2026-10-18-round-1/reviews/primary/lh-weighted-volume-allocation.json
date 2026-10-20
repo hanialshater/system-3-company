@@ -1,0 +1,103 @@
+{
+  "slug": "lh-weighted-volume-allocation",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-weighted-volume-allocation",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Weighted assigns more to first tray for2:1:1 weights and8 L total.",
+    "Tests showed4 versus2.667 L; maximum16 total showed8 versus5.333.",
+    "Screenshot showed two first-tray fills, not all three allocations. Reveal preserved inputs and explained2 of4 units equals half total versus equal thirds."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Ratios and simple fractions.",
+    "conceptualDemand": "Sum weights rather than number of recipients.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Three recipients can represent four weight units.",
+  "caveat": "No visual of all allocations summing to total; fixed declared ratio.",
+  "effort": "Prediction, both tests, maximum total, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear ratio normalization with limited exploration.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear comparison of two allocation rules.",
+      "evidence": "2:1:1 versus equal shares.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Total scaling preserves assigned fractions.",
+      "evidence": "8\u219216 L.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains sum of weights and first-tray fraction.",
+      "evidence": "2/4=1/2.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Targets first tray explicitly, arithmetic-only scope.",
+      "evidence": "Empty trays and stated weights.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General ratio principle without new case or condition.",
+      "evidence": "Weights normalized by sum.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected larger first-tray share.",
+      "evidence": "Weight2 versus1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Common-scale fills show first-tray difference but omit complete ratio.",
+      "evidence": "8 versus5.333 L.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and total slider.",
+      "evidence": "Weights fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Allocation arithmetic central.",
+      "evidence": "Divide resource by stated weights.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Normalize ratios versus count recipients.",
+      "evidence": "Four weight units,three trays.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history banner verified, trust5/5 ignored. ChosePrinterA vsB/tie;locked. Given60+.10/page versus150+.03 at2000pages."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "1000:A160B180,Aby20;2000:A260B210,Bby50;4000:A460B270,Bby190. Home0:A60B150,butCHEAPER? insteadofA. Allresultsvisible;revealunlock2000."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteB;own1000/2000contrast;tie1286 from90premium/.07saving;usage-dependenttotalcost;inventedconstantprices,norepairs/resale. Screenshotprice/runningstackedbars at0,inlineonly."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete total-cost commitment with plausible sticker-price trap.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Usage contrasts reveal crossover; zero cheaper-status omits answer.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own totals and break-even mechanism explained.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Labeled bars clear; CHEAPER? at zero contradicts evaluable60vs150.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General price-plus-use principle stated; no concrete new product case demonstrated.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode tests.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Higher purchasepricewins at2000.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stacked upfront/runningcostbars carry mechanism.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Usagepresets/range reversible.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete purchase-use costcomparison central.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fixed/variable costs and crossover.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Link fixedcost and recurringcost with usage crossover.",
+    "conceptualDemand": "Two linear totals, difference/savings relationship supported.",
+    "interfaceBurden": "Simple presets/range; zero-status omission."
+  },
+  "whyCool": "The winner flips fromAby20at1000pages toBby50at2000.",
+  "caveat": "Zero-usage CHEAPER? despite clearprice difference; inventedprices, no repairs/resale.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "missingEvidence": [
+    "Exacttie and systematicaccessibility untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "cheap-printer-dear-ink",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cheap-printer-dear-ink",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "3884bfcc791a6ee4a57c2d5c4491a031c01595ad7347f80714493f664cc7dd2d",
+    "metaSha256": "f751f853e5935527510641df4d316e566affb769be37fb28d1b94697934dad0f"
+  }
+}

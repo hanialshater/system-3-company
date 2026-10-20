@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "four-queens-pruning",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-queens-pruning",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "990dab82a93a9f9d72747b44cacd9bb3c996d8ad266f8c1a013a37c68f51e0c3",
+    "demoSha256": "7561d29fe72e0630c7d65dcd7965fbad52c3ad720d12d41c0331fa2812823bb5",
+    "metaPath": "src/demos/cs/four-queens-pruning/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected over150 tries for safe-square search versus256 blind boards and locked it in.",
+    "exploration": "Placed queen row1 column1,leaving row2 columns3/4 safe. Placed row2 column3: row3 no safe square. Clicked that queen to back up. Run from empty then Finish run found16 placements,two solutions,first at8; thumbnails columns2/4/1/3 and3/1/4/2; reveal unlocked.",
+    "reveal": "Corrected under30. Connects actual16 tries and clash marks to discarding every completion of a bad prefix. Gives untested eight-queen extension2056 placements versus16777216 full boards and92 solutions.",
+    "visual": "Inline first-queen and completed-search screenshots inspected. Red cross cells show attacks,green borders safe next-row choices. Final two smallsolution thumbnails andcounts legible. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete search comparison but 'tries' counts safe placements versus blind complete boards,requiring metric clarification.",
+      "evidence": "16 placement tries compared with256 wholeboards.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual dead-end/backtrack and full search expose pruning locally andglobally.",
+      "evidence": "Two handplacements,backtrack,16 allsolutions.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed attack marks anddeadprefix to saved completions.",
+      "evidence": "Every board startingclash skipped;actual16 andtwo results.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Safe-square controls,attack crosses andexplicit dead-end instruction make path followable.",
+      "evidence": "Inspected firstqueen screenshot andbacktrack state.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Concrete eight-queen extension stated but notexercised andcostmetrics differ.",
+      "evidence": "Untested2056 placements versusfullboards.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Over150 prediction overturned by16 placements forbothsolutions.",
+      "evidence": "Search count andtwo thumbnails.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Attack crosses andsafe borders show early rejection mechanism.",
+      "evidence": "Manual branch screenshot anddeadend.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual placements,backtracking andautomated search allow multiple paths.",
+      "evidence": "Handdeadend thencomplete run.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete combinatorial search technique central.",
+      "evidence": "Earlypruning avoidsfullboard enumeration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Constraint propagation,backtracking andbranch pruning linked.",
+      "evidence": "Localdeadend andcomplete enumeration.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Tracks queenattack constraints,partialboards,backtracking andsearch-tree elimination.",
+    "conceptualDemand": "Several dependent discrete-search abstractions.",
+    "interfaceBurden": "Low:board andruncontrols.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:queens constraints andbacktracking",
+    "notationRepresentationBurden": "moderate:board placements andsearchcounts"
+  },
+  "whyCool": "Two manuallyplaced queens create a dead thirdrow,andbacktracking rejects every fullboard thatwouldextend thatbadprefix.",
+  "caveat": "Trycounts comparepartialplacements withcompleteblindboards;largerboard extension onlytext.",
+  "missingEvidence": [
+    "Manual solution",
+    "Eight-queen simulation",
+    "Reset",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

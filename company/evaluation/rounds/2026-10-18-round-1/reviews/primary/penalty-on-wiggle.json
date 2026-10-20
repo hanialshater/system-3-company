@@ -1,0 +1,103 @@
+{
+  "slug": "penalty-on-wiggle",
+  "demoVersion": 7,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/penalty-on-wiggle",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted larger training miss when ridge discourages wiggly coefficients.",
+    "Set1 none training0/heldout0.44;lambda0.0001 training0.08/heldout0.41;lambda10 training0.50/heldout0.72. Graph shows flattened fit and dashed unpenalized comparator.",
+    "Newdata set2 lambda10 training0.72/heldout0.64 versusnone0.58. Reveal accurately cites small penalty set1 improvement and large penalty set2 loss. Screenshots readable,training/heldout dot legend."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Training/heldout distinction,ridge coefficients and log-spaced lambda.",
+    "conceptualDemand": "Optimization tradeoff and generalization.",
+    "interfaceBurden": "One slider,preset,new data;clear readouts."
+  },
+  "whyCool": "Making a model deliberately worse at fitting its training data can make it better on data it has not seen\u2014but too much penalty loses again.",
+  "caveat": "Small finite synthetic data exercise,not evidence this penalty helps every dataset;lambda steps are highly nonlinear.",
+  "effort": "Prediction,none/small/large penalties,newdata,reveal,two screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Controlled causal comparisons,accurate state-specific payoff and observed limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific training-versus-penalty choice with plausible misconception.",
+      "evidence": "Exact interpolating curve and ridge defined.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple controlled penalty contrasts plus overpenalization and new dataset.",
+      "evidence": "Small improvement,large loss,two datasets.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Ties original training prediction to observed heldout benefit and failure boundary.",
+      "evidence": "Own0.41/0.44 and0.64/0.58.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable legend,baseline comparison and state-specific trace.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle demonstrated but no distinct new application task.",
+      "evidence": "Same curve model across datasets.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Worse training fit can improve unseen-data fit.",
+      "evidence": "0.08training but0.41heldout.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve,dots and unpenalized comparator explain tradeoff.",
+      "evidence": "Flattened purple line,dashed fit.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Penalty experimentation and new data central.",
+      "evidence": "Multiple scales.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Model selection tradeoff central.",
+      "evidence": "Heldout versus training.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Regularization,overfit and underfit with data variation.",
+      "evidence": "Not universally better.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "cheapest-is-not-shortest",
+  "demoVersion": 4,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cheapest-is-not-shortest",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "aa7170b6d80a73b67d62188237f01a6d56b392f593f4050951c7099f30052112",
+  "demoSha256": "77bc421872811baec6140353129164259de73050b8d0e7f895428dde25f53a9f",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose It stays the same from same/down/up before settlement.",
+    "exploration": "Premature G rejected: infinity bigger than S0. S set G10,A3,B8. A reducedB8\u21927. B reducedG10\u21929. G settled9; reverse toB11>7.",
+    "reveal": "G10 then9, three roads cheaper than direct; smallest label safe because alternate route passes at least as large label and costs only add. Run-specific reverse comparison11>7.",
+    "visual": "Screenshot dark1257x936: four labeled nodes, five edge costs, clear compact graph; explanatory label and single next-step instruction. Bottom continuation extends beyond viewport.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Prediction distinguishes tentative from final label.",
+      "evidence": "Same/down/up thenG10\u21929.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Settlement plus wrong-action feedback exposes update rule.",
+      "evidence": "PrematureG rejection; B8\u21927 thenG10\u21929.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exact run to explain update and safety invariant.",
+      "evidence": "Three-road9 versus direct10; reverse11>7.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Arithmetic and current-best labels keep path understandable.",
+      "evidence": "Infinity defined; rejectedG namesS0.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable algorithm condition is described but no new application.",
+      "evidence": "Smallest-label safe when costs only add.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committed constant label reversed.",
+      "evidence": "G10\u21929.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Graph and numeric label change central.",
+      "evidence": "Four-node weighted graph and route update.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Can choose wrong town with feedback; fixed graph constrains exploration.",
+      "evidence": "RejectedG and Start again available.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete cheapest route procedure.",
+      "evidence": "Three-road route beats direct edge.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Tentative labels, relaxation and settlement invariant.",
+      "evidence": "B update,G update,reverse comparison.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Supported multi-step arithmetic and tentative-versus-final invariant.",
+    "conceptualDemand": "Track several best costs and safety condition.",
+    "interfaceBurden": "low; town buttons with feedback and step text.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Settlement and cheapest-so-far labels unfamiliar."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Weighted graph,infinity and inequality."
+    }
+  },
+  "whyCool": "Settling B replaces G10 with9, making a longer chain visibly cheaper than the straight road.",
+  "caveat": "Only one fixed positive-cost graph; no altered-cost or second-case application.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

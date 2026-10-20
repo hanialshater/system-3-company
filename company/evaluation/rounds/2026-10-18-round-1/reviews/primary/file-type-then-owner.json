@@ -1,0 +1,104 @@
+{
+  "slug": "file-type-then-owner",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/file-type-then-owner",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook explicitly asked which record matches both; prediction then asked whether adding owner filter means both or either. Chose either.",
+    "Four records: Ana plan.pdf/note.txt, Bo map.pdf/list.txt. PDF-only action showed two PDFs; Ana-only action then left plan.pdf only. Controls were sequential and disabled after use.",
+    "Reveal reported one matching plan.pdf and named intersection rather than adding sets. Prose called the exercise a fixture and said one matches.",
+    "Inline 1280x720 light screenshot: selected record clear, rejected rows faded, full prose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar files and two simple attributes.",
+    "conceptualDemand": "Both conditions versus either.",
+    "interfaceBurden": "Two sequential buttons; owner label ambiguous."
+  },
+  "whyCool": "The remaining file satisfies two independent attributes at once.",
+  "caveat": "Prediction is cued by hook; limited exploration; replace fixture terminology and clarify additive owner filter; accessibility unknown.",
+  "effort": "Prediction, both sequential filters, reveal and inline screenshot.",
+  "provisionalBucket": "revise-hook-and-interaction",
+  "bucketReason": "Usable visual intersection, but cued question and fixed clicks weaken learning experiment.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The hook already supplies the both-conditions answer to the prediction.",
+      "evidence": "Which one matches both appears before both/either choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed sequential operations demonstrate intersection but allow little experimentation.",
+      "evidence": "Four to two to one records; no reset/toggle visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct result and principle, but shallow explanation and implementation terminology.",
+      "evidence": "Fixture counts intersection.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable records but Ana-only label actually adds a condition, and fixture wording is technical.",
+      "evidence": "Sequential filtered state and reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same four-record example only.",
+      "evidence": "No new query or OR comparison.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Straightforward intersection with answer cued.",
+      "evidence": "Two to one matches.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Faded rows show excluded records.",
+      "evidence": "Plan.pdf highlighted.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed clicks.",
+      "evidence": "Sequential disabled controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic file-filtering idea.",
+      "evidence": "Type and owner conditions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single AND versus OR distinction.",
+      "evidence": "Intersection named.",
+      "confidence": "medium"
+    }
+  }
+}

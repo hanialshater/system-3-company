@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust5/5 ignored. Chose1 versus10/19corn for lastfield;locked. Farm10fields each1wheat/somecorn."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "+1wheat:1wheat99corn,lastcost1;+1:2wheat96corn,last3;All10:10wheat0corn,last19,revealunlocked;-1:9wheat19corn,last17."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite19;recalls10wheat0cornlast19;drops1,3,5…19;worstcornfieldfirst/bestlast explains bend;madeupnotrealdata. Screenshot stairs and fieldnumbers/crossouts; reveal prose visibly clipped at right ('best,' then continuation next line with missing tail); topchart offscreen due normal inner scroll. Inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Direction plausible but exact numerical answer lacks fieldyield data beforecommitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Early/late marginal costs and reverse step meaningful.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains own drops through fieldheterogeneity and toy limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Controls clear but revealprose clips right edge.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable increasing opportunity-cost principle with resource heterogeneity.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Marginalcost grows1to19.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Steps/fieldyield labels show lostoutput.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible production allocation.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Resource trade-off concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Heterogeneity, marginal and total curves linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links heterogeneous fields, marginal lost corn and bent total frontier.",
+    "conceptualDemand": "Marginal versus total trade-off; numeric sequence supported.",
+    "interfaceBurden": "Plus/minus/range/all controls simple; reveal rightedge clipping."
+  },
+  "whyCool": "The first wheat sacrifices1corn while the last sacrifices19, matching increasingly steep chart steps.",
+  "caveat": "Initial prompt does not disclose actual fieldyield distribution, so exact19cannot be deduced beforeexploration; toydata; desktopright-edge proseclipping.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Slider/accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "bending-frontier",
+  "demoVersion": 5,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bending-frontier",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "d2fab6bc3f124ebec0bd465e4e478403f7f9726b3530b19786a54761bb387fd2",
+    "metaSha256": "d0eddb7dd189cd7b01425cf1ab011d5ef710bd9d1609de3e68814a4c6a2f9284"
+  }
+}

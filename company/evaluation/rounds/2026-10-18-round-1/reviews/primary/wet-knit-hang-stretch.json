@@ -1,0 +1,104 @@
+{
+  "slug": "wet-knit-hang-stretch",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wet-knit-hang-stretch",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The title asks hanging versus flat drying, but the actual comparison is two versus six pegs.",
+    "At 0.6 kg, equal-share loads were 0.3 kg and 0.1 kg; at 0.9 kg they became 0.45 kg and 0.15 kg.",
+    "Screenshot shows six support points and a downward arrow; it does not depict flat support or calculated fabric deformation.",
+    "Reveal says the 0.3 kg prediction held beside changed values, then explicitly limits the model to equal load sharing and directs readers to garment instructions."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple equal sharing.",
+    "conceptualDemand": "Divide mass across supports while respecting model limits.",
+    "interfaceBurden": "Two presets and mass slider."
+  },
+  "whyCool": "A few small support points can carry a surprisingly large share of a wet garment.",
+  "caveat": "No flat-drying or knit-stretch simulation; ideal equal load sharing only.",
+  "effort": "Prediction, both support presets, maximum mass, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful model, but title and prediction feedback overstate the demonstrated comparison.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise simple division, but later feedback loses original input context.",
+      "evidence": "0.6 kg on two points; final display 0.9 kg.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Support count and mass expose equal-share dependence.",
+      "evidence": "Two and six pegs at 0.6 and 0.9 kg.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Good model limits but does not resolve the title's flat-versus-hanging comparison.",
+      "evidence": "Flat drying is advice from the label, not a modeled alternative.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Actual scope narrower than title; verdict lacks original value context.",
+      "evidence": "Prediction held while two-peg load is now 0.45 kg.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific use boundary for garment care.",
+      "evidence": "Load sharing cannot predict stretch; follow drying instructions including dry-flat labels.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Additional supports reduce each assigned load.",
+      "evidence": "Two pegs 0.45 versus six 0.15 kg.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Support points illustrate sharing without deformation.",
+      "evidence": "Six points and a downward arrow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mass and support presets.",
+      "evidence": "Both presets and maximum mass tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Garment care context with explicit limits.",
+      "evidence": "Care labels override inference from this diagram.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates ideal load assignment from fabric behavior.",
+      "evidence": "Deformation is not calculated.",
+      "confidence": "medium"
+    }
+  }
+}

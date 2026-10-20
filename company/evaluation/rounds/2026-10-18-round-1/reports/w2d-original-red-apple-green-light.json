@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "red-apple-green-light",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/red-apple-green-light",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "red-apple-green-light",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/red-apple-green-light/meta.json",
+    "metaSha256": "bf864b9e132e1e171f2aa434a256705b66cc72d36b4e89d92731704ae6a323e5",
+    "demoSha256": "6900e233aed202d853fcb7f359694603fd4997dfbac7b9fc0525e42c8e5d8931",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/red-apple-green-light",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/red-apple-green-light.json"
+  },
+  "date": "2026-10-18T20:02:29.896124+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose Green and locked.",
+  "exploration": "Tried green/red/blue after white. Apple returned30%white,5%green,80%red,5%blue. Visually inspected banana70%green80%red10%blue and leaf45%green8%red6%blue with corresponding dim/bright shapes.",
+  "reveal": "Read almost-black correction, arriving light times reflected portion mechanism, absorption and smooth real spectra caveat.",
+  "screenshotInspection": "Actual1257x936dark white/green/red/blue and final scrolled reveal inline screenshots inspected. Objects,bars,percent labels and explanation readable.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise illumination condition probes object-color misconception.",
+      "evidence": "Dark room,pure green lamp,bright red/almost black/green.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple lights and objects provide strong contrast evidence.",
+      "evidence": "Apple5%green80%red; banana70%green and80%red; leaf45%green8%red.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism resolves missing red and limited reflection.",
+      "evidence": "No light of its own; absorbs rest;5%dim green almost black; toy-spectrum caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled fractions complement color-dependent display.",
+      "evidence": "Lamp labels and percentages explain dark shapes; smooth spectra boundary stated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Additional objects compare within same toy without new application task.",
+      "evidence": "Banana/leaf contrasts observed, no conditional outside use assessed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Green illumination yields near-black red apple.",
+      "evidence": "5%green versus80%red.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Color changes and band bars explain differing reflection across objects.",
+      "evidence": "Four lights with apple/banana/leaf inspected and percentages consistent.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Quick switches produce varied visible outcomes.",
+      "evidence": "Allfourlamps tried across three objects.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains perceived colors under colored lighting.",
+      "evidence": "Arriving spectrum and material return both matter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects illumination,reflection,absorption and model boundary.",
+      "evidence": "Band toy versus smooth real spectra.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Combine incoming color with selective reflection and perceived brightness.",
+    "interfaceBurden": "Four lamp switches and automatic displays; scroll reveal.",
+    "prerequisiteNovelty": "Absorption and spectrum introduced in prose.",
+    "notationRepresentationBurden": "Three colored bands and percent bars; toy values explicit."
+  }
+}

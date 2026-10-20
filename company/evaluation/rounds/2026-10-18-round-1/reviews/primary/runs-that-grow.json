@@ -1,0 +1,104 @@
+{
+  "slug": "runs-that-grow",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/runs-that-grow",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specifies count-then-letter coding and alternating eight-pixel row.",
+    "Alternating B/W encoded as sixteen characters; painting second pixel black merged a three-black run and reduced code to twelve characters.",
+    "All-white row shrank; changing to sixteen white pixels produced 16W, three characters.",
+    "Reveal retains best sixteen-to-three and worst eight-to-sixteen observed cases, explains per-run overhead and gives the counting argument that not every input can shrink."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Encoding overhead and counting argument.",
+    "conceptualDemand": "Compare encoded character count with raw symbolic length.",
+    "interfaceBurden": "Clickable pixels, size toggle and presets."
+  },
+  "whyCool": "Compression works by exploiting structure, so removing that structure can turn the same method into expansion.",
+  "caveat": "Compares textual character counts with symbolic pixels, not a complete binary file format including headers.",
+  "effort": "Prediction, alternating preset, manual pixel merge, all-white and sixteen-pixel boundary, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Highly manipulable success/failure contrast with an explicit overhead mechanism.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise specified-code comparison with direct plausible alternatives.",
+      "evidence": "Shorter, same or longer for alternating row.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Free pixel painting, size change and presets test both compression and expansion.",
+      "evidence": "Alternating, merged run, all-white eight and sixteen.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains actual best/worst cases, overhead and a broader impossibility principle.",
+      "evidence": "Every singleton needs count plus letter; fewer short codes than inputs.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Raw pixels, literal code and counts make encoding overhead visible.",
+      "evidence": "Sixteen characters versus eight pixels; 16W has three characters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General applicability condition plus failed case.",
+      "evidence": "Long runs help; alternating inputs grow; no universal shrinking code.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A compression method can make data larger.",
+      "evidence": "Alternating row doubles textual size.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Painted runs and literal code directly map input structure to output cost.",
+      "evidence": "Merged black run changes several code pairs into 3B.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Free painting and size changes let learners construct cases.",
+      "evidence": "Manual edit plus eight/sixteen-pixel contrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete compression-selection intuition.",
+      "evidence": "Match representation to data redundancy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Run overhead and global coding limit connect.",
+      "evidence": "Local compression success versus universal impossibility.",
+      "confidence": "medium"
+    }
+  }
+}

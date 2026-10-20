@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "someone-has-to-swerve",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/someone-has-to-swerve",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "someone-has-to-swerve",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/someone-has-to-swerve/meta.json",
+    "metaSha256": "8f6061d0cb66f3b440c899292253e934f542b97a28ffea153ab3574595972ab7",
+    "demoSha256": "13133abd337383f9a6eb35a99acccaa432276fe4ebd910363422f51ec66b9f8b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/someone-has-to-swerve",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/someone-has-to-swerve.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed Both swerve before exploration.",
+    "exploration": "Selected all four outcomes. Both swerve showed unilateral gains of 2; both straight showed gains of 10. Each asymmetric outcome said neither wants to switch. Reversible outcome buttons allowed comparison.",
+    "reveal": "Correction named One of each and traced every unilateral comparison: 1 to 3, -10 to 0, and the asymmetric players refusing 3 to 1 or 0 to -10. Scope stated invented payoffs, one round, simultaneous choices.",
+    "visual": "Actual dark 1257 by 936 inline screenshots inspected. Readable four-cell matrix, highlighted selected cell and red gain arrows. Reveal and table fit the viewport.",
+    "previewIsolation": "Preview banner explicitly said learning history and analytics are not saved.",
+    "blinding": "No source, metadata or other reviewers judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A concrete commitment is elicited, but stable is not defined until exploration.",
+      "evidence": "Selected Both swerve.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "All four outcomes expose the causal unilateral-switch test.",
+      "evidence": "Compared stable asymmetric cells with both symmetric cells.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explanation resolves the symmetry intuition with explicit comparisons.",
+      "evidence": "Reveal traces 1 to 3 and -10 to 0.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Arrows and numbers make stability legible with a clear toy scope.",
+      "evidence": "Invented, simultaneous, one-round qualifier remains visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A reusable unilateral-switch principle appears without a new application.",
+      "evidence": "Only the original four outcomes are assessed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No full accessibility mode audit performed.",
+      "evidence": "Visual screenshots and ordinary click interaction only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Identical players have different stable actions.",
+      "evidence": "Both asymmetric cells stable.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gain arrows show why players leave a cell.",
+      "evidence": "Both straight showed two +10 arrows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Exploring a familiar confrontation is moderately engaging.",
+      "evidence": "Four reversible outcome choices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Offers a basic stability test in a constrained toy.",
+      "evidence": "No applied decision task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates symmetry of players from symmetry of outcomes.",
+      "evidence": "All unilateral deviations explained.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Reading a payoff matrix and holding the other player fixed requires a new reasoning habit.",
+    "conceptualDemand": "Compare personal payoffs while changing only one action.",
+    "interfaceBurden": "Four plainly labeled outcome buttons with no setup.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Unilateral stability may be unfamiliar.",
+    "notationRepresentationBurden": "Two numbers per matrix cell and directional arrows."
+  },
+  "whyCool": "The same symmetric table yields two asymmetric stable outcomes.",
+  "caveat": "Prediction uses stable before defining it; no fresh application tests generalization.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:06:57.988728+00:00"
+}

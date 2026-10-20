@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "pixel-nudges-add-up",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pixel-nudges-add-up",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "pixel-nudges-add-up",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/pixel-nudges-add-up/meta.json",
+    "metaSha256": "bf6f4f220be4025b8fe8c2ca8640bd2cf326cd2a95b30526ee641e3dfd038edd",
+    "demoSha256": "89e54c3a23bc53eac39d0f9c8ca6843c6d13c8a3d0f5a6b474950ef0d7509b8e",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/pixel-nudges-add-up",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/pixel-nudges-add-up.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Stays cat against Flips and undefined; locked it in.",
+    "exploration": "Darken all100 by1% changed sum50.50 cat to49.50 notcat,totalchange1.00. Home on pixelcount set0:sum50.50 cat. Restored100,Home on per-pixel amount then five Right steps:0.5% each,sum50.00 notcat,total0.50. One Left:0.4%,sum50.10 cat,total0.40.",
+    "reveal": "Corrected Flips for original1% experiment. Explained100\u00d70.01=1 exceeding0.5 margin; stated0.5% each suffices and50 pixels need1%. Extended same-margin arithmetic to224\u00d7224 colour inputs; caveated toy additive classifier versus real models.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Grayscale grid,threshold50 marker,current50.10 cat label and sliders legible. Full reveal visible. Current0.4% stage differs from original1% recalled explanation.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear stability-versus-threshold choice with quantitative toy rule.",
+      "evidence": "Stayscat prediction versus original49.50 flip.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Count and amount contrasts expose accumulation and exact boundary.",
+      "evidence": "Zero pixels unchanged;100\u00d70.5%=50.00 flip;0.4%=50.10 cat.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects original result and tested0.5% boundary to margin arithmetic and limitations.",
+      "evidence": "100\u00d70.01 and0.5 margin; additive-model caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold marker,amount/count labels and live sum clear on desktop.",
+      "evidence": "Actual current50.10 screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete larger-image application with fixed-margin additive-model condition.",
+      "evidence": "150528 inputs andsame0.5 margin calculation; realmodel caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider keys alone insufficient access audit.",
+      "evidence": "Home,End,arrows worked;focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiny individual changes contradict stable-label prediction through aggregate sum.",
+      "evidence": "Original1% yieldsnotcat.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sum marker and label cross threshold whilegrid changes subtly.",
+      "evidence": "Actual50 marker andcurrentcat position.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two sliders support reversible count/amount threshold hunt.",
+      "evidence": "Zero count,0.5% flip,0.4% stable.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete explanation of additive high-dimensional sensitivity.",
+      "evidence": "Same margin needsless perinput withmore inputs.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Accumulation,margin,exactthreshold anddimensional scaling linked.",
+      "evidence": "100\u00d70.005=0.5 boundary andlargerimage extension.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links small perinput effects tosum andthreshold.",
+    "conceptualDemand": "Multiply inputcount byperturbation,comparewithdecisionmargin,andholdmodel assumptions.",
+    "interfaceBurden": "Low:two sliders andclear numeric threshold.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:classifier threshold andadversarial perturbation.",
+    "notationRepresentationBurden": "moderate:percent/decimalconversion andlargeinputcount."
+  },
+  "whyCool": "At0.5% per pixel the sumlands exactly50 andflips,while0.4% stayscat at50.10.",
+  "caveat": "One additive toy andfixedmargin;visual imperceptibility notexperimentally measured,andfreshimage extension notinteractive.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "50-pixel1% example notdirectly tested.",
+    "Focus order,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:43:52.087781+00:00"
+}

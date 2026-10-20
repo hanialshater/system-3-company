@@ -1,0 +1,103 @@
+{
+  "slug": "lh-jug-rounding-extra",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-jug-rounding-extra",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Whole litres is larger for five cups at 250 mL each.",
+    "Tests gave exact 1.25 L versus rounded 2 L. Four cups gave equality at 1 L.",
+    "Screenshot showed matching graduated fills at equality. Reveal preserved original/current inputs and explained conversion followed by coarse increment."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Quarter-litre arithmetic and rounding.",
+    "conceptualDemand": "Exact requirement differs from coarse fill.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A coarse litre mark can add much more than the cups actually need.",
+  "caveat": "Predicted ordering is heavily cued and no reason is given to require whole-litre fills.",
+  "effort": "Prediction, both tests, exact-litre boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear quantity comparison and rounding explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Specific quantities but title/hook disclose rounding excess.",
+      "evidence": "Whole-litre rounding gap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single cup change exposes exact-increment equality.",
+      "evidence": "5\u21924 cups.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains sequence and excess as difference.",
+      "evidence": "Multiply, convert, round up.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units and volume-only scope clear.",
+      "evidence": "Empty cups; no heating guidance.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General coarse-increment principle without another task.",
+      "evidence": "Exact need and fill increment differ.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected rounding excess.",
+      "evidence": "1.25 rounds to 2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Common-scale fills depict quantity and equality.",
+      "evidence": "1 L each screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and cup-count slider.",
+      "evidence": "No pouring task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Quantity planning is central.",
+      "evidence": "Cup allocation versus fill increment.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Unit conversion and quantization.",
+      "evidence": "250 mL increments versus litres.",
+      "confidence": "medium"
+    }
+  }
+}

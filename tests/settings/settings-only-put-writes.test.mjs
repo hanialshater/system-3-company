@@ -33,6 +33,8 @@ const WIRING = "src/lib/server/personalization/settings-wiring.ts";
  * and of the store's write statements (throwaway cluster, never a real database). */
 const SQL_WRITERS = new Set([
   STORE,
+  "db/migrations/004_account_preference_experiences.up.sql",
+  "db/migrations/004_account_preference_experiences.down.sql",
   "company/personalization/data/test-00N-settings.sh",
   "company/personalization/data/test-settings-write-sql.mjs",
 ]);

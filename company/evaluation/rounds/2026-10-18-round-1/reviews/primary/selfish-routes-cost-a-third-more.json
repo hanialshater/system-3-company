@@ -1,0 +1,105 @@
+{
+  "slug": "selfish-routes-cost-a-third-more",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/selfish-routes-cost-a-third-more",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted planner average45 versus selfish60 with road A fixed60 and B60 times traffic share.",
+    "All B and all A both averaged60. Try every split swept allocations and settled at50% B, average45, with a U-shaped trace.",
+    "At50% B, B takes30 and A60; adding five drivers to B saves those drivers135 total minutes but costs existing50 drivers150.",
+    "Reveal accurately cited the optimum and externality, then stated60/45=4/3 and the affine-road worst-case result.",
+    "The fixed-height view used internal scrolling; longer reveal prose clipped at the right edge in IAB1280\u00d7720."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Weighted average and congestion externality require some numerical reasoning.",
+    "conceptualDemand": "Selfish equilibrium versus social optimum.",
+    "interfaceBurden": "Slider, sweep and internal scrolling."
+  },
+  "whyCool": "A simple two-road model separates what is best for one driver from what is best for all.",
+  "caveat": "The general4/3 bound is stated rather than proved; applies under the model's routing and latency assumptions. Viewport clipping needs polish.",
+  "effort": "Completed prediction, boundaries, sweep, settled optimum, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Good causal economics with a readable curve and a prose layout issue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete cost rules support a precise coordination prediction.",
+      "evidence": "Choices60,45,30 minutes.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Boundary allocations and sweep expose both the optimum and unilateral incentive.",
+      "evidence": "0/50/100% allocations; full split trace.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual individual savings and imposed delays explain the aggregate inefficiency.",
+      "evidence": "135 saved versus150 imposed, ratio4/3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Current-state numbers are clear but reveal text clips right in the tested viewport.",
+      "evidence": "Long externality and worst-case prose exceeds visible width.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The congestion externality is explained without a second network or intervention.",
+      "evidence": "One parallel-road model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Individually faster choices produce a worse collective average.",
+      "evidence": "Selfish60 versus coordinated45.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Average-time curve makes the interior optimum visible.",
+      "evidence": "Trace rises on both sides of50%.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Allocation slider and sweep explore outcomes.",
+      "evidence": "Share changes and automatic search.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains a general congestion coordination problem.",
+      "evidence": "No real traffic recommendation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links individual incentives, external costs and price of anarchy.",
+      "evidence": "Affine latency class stated.",
+      "confidence": "medium"
+    }
+  }
+}

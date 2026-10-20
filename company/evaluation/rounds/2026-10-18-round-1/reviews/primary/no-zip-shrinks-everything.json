@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "no-zip-shrinks-everything",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/no-zip-shrinks-everything",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "no-zip-shrinks-everything",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/cs/no-zip-shrinks-everything/meta.json",
+    "metaSha256": "7231830af452a3a1adc1b666fccb24ceb5005bac5e2fa230153c788860e91998",
+    "demoSha256": "aec53e09bd48bddb2a1e2ba17949abf27e40b29545e6f39aab8ed9a8e0e950f4",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/no-zip-shrinks-everything",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/no-zip-shrinks-everything.json"
+  },
+  "date": "2026-10-18T21:11:36.943844+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected insufficient shorterstrings for8threebitfiles withuniquedecompression."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Assigned7files toempty,0,1,00,01,10,11;111leftout. Took000back,put111inemptyslot;now000leftout. Capacity7unchanged."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read1+2+4=7versus8 andno sharedcodebecause ambiguousdecompression; general2^nversus2^n\u22121 count andrealfile repetition explanation."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspectedfullslots:7greenassignments,red111waiting,allslotlabels and7of7counter readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit recoverabilitycondition makes counting limit accessible.",
+      "evidence": "8filesversusshortercodes0/1/2bits.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Direct assignments andchangingexcludedfile expose structuralshortage.",
+      "evidence": "111then000leftoutafter reassignment.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Generalcount explains failure independentofassignment orspeed.",
+      "evidence": "2^ninputs,2^n\u22121shorterstrings;uniquenessrequired.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Slot metaphor andexplicitcodes make abstractcount concrete.",
+      "evidence": "Emptycodeincluded plus2onebit/4twobitcodes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Ziprepetition consequence remainssamecompressiondomain withoutnewapplicationtask.",
+      "evidence": "No freshlength exercise.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cleverness cannot avoid a one-slotshortage.",
+      "evidence": "Swappingchangesloserbutnotcapacity.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Finitecode slots makepigeonholelimit visible.",
+      "evidence": "Sevenfilledslots,eighthfilewaiting.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Packingandreassigningfiles embodiesproof.",
+      "evidence": "Moved000outand111in.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful limitation onuniversal losslesscompression claims.",
+      "evidence": "Correctdecompressionrequiresdistinctcodes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Concreteexperiment extends toarbitrarylength count.",
+      "evidence": "2^nversus2^n\u22121 generalization.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: injectivecodes andcountingimpossibility",
+    "interfaceBurden": "gentle: selectfile thenslot;autoadvance",
+    "prerequisiteNovelty": "bits,losslesscompression andpigeonholeargument",
+    "notationRepresentationBurden": "binarystrings,emptycode andpowersoftwo"
+  }
+}

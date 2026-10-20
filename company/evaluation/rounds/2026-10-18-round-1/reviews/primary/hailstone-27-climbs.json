@@ -1,0 +1,103 @@
+{
+  "slug": "hailstone-27-climbs",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hailstone-27-climbs",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted over100 for fully stated evenhalve/odd3n+1 rule. Stepped27\u219282\u219241,then ran to1:111steps,peak9232at77.",
+    "Run-to1 mode remained active on newstarts:26automatically finished10steps/peak40;28finished18/52;97finished118/9232,joins27at94onstep13.",
+    "Reveal accurately references all completed runs and experiment-versus-proof distinction. Screenshots show27baseline plusothertrace without clear legend;right-edge clipping. Step staysdisabled afterscrubbing completedrun,which made reset semantics unclear."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple arithmetic produces complex long behavior.",
+    "conceptualDemand": "Trajectory versus starting magnitude;experimentversusproof.",
+    "interfaceBurden": "Several controls with unclear persistent runmode."
+  },
+  "whyCool": "Starting at27 sends a tiny arithmetic rule up to9232,while its immediate neighbors settle quickly.",
+  "caveat": "Explain baseline trace and autoplay/scrub states;finite observed starts do not prove universal termination.",
+  "effort": "Prediction,twosteps,27run,scrub,threeotherautoruns,reveal,multiple screenshots.",
+  "provisionalBucket": "solid-controls-followup",
+  "bucketReason": "Compelling trajectories and scope,controlclarityneedswork.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete broad run-length alternatives,complete rule.",
+      "evidence": "Under30/30\u2013100/over100.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping,fullrun,neighbors and mergingpath expose nonmonotone behavior.",
+      "evidence": "26/27/28/97 comparisons.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate own-run summaries and explicit finite-check versus universal-proof limit.",
+      "evidence": "Unknown untilrun;conjecture statement.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph overlays and persistent autoplay/scrub semantics underexplained,clipped prose.",
+      "evidence": "Newstartautoruns,Stepdisabledonscrub.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General experimentation principle without distinct application.",
+      "evidence": "Same sequence family.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Tiny neighboring starts differ dramatically and larger start merges into same tall path.",
+      "evidence": "10/111/18steps,9232peak.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Run curve and merging-path ring central.",
+      "evidence": "94intersection.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step,run,scrub,choosestarts.",
+      "evidence": "Four actualcompletedruns.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily mathematical exploration.",
+      "evidence": "No practical task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Determinism,nonmonotonicity,sharedtails and proofboundary.",
+      "evidence": "Finiteexamplesnotuniversal.",
+      "confidence": "medium"
+    }
+  }
+}

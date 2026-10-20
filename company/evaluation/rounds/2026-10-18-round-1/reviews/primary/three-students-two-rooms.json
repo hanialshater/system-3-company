@@ -1,0 +1,104 @@
+{
+  "slug": "three-students-two-rooms",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-students-two-rooms",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction suppliedA12,B13,C23,D13 fourstudentsfourrooms;selectedYes.",
+    "ManuallyA1,B3,C2,D4attempt rejected asunaccepted. Tryall24found0;groupviewshowedfourstudents onlyrooms1,2,3.",
+    "EnabledDaccept4thenTryall24:4housed,2of24ways. Reveal distinguishedoriginalimpossibility andmodifiedcase,explained constrictedset/Halltheorem.",
+    "Inline1280x720 light screenshot: graph partiallyabove internalviewport,controls andcounts clear; right-edge proseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small concreteassignment supportsabstractsubsetcondition.",
+    "conceptualDemand": "Unionofacceptablechoices andmatching.",
+    "interfaceBurden": "Severalbuttons but targetedfeedback; proseclips."
+  },
+  "whyCool": "The failure is caused by a group bottleneck,not by anyone lacking individual choices.",
+  "caveat": "Singleconstrictedgroup example does not prove fulltheorem; right-edge clipping; accessibilityunknown.",
+  "effort": "Prediction,manualassignments,invalidroom,exhaustivechecks,groupview,modifiedcase,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Constructive bottleneck andrepair demonstration; repairprose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete preferences and feasibility question expose local-versus-group constraint.",
+      "evidence": "Allaccepttwo but uniononlythree.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual failedassignment,exhaustivecheck,bottleneckhighlight andfeasiblemodification.",
+      "evidence": "0/24then2/24.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed impossibility and repair through groupcapacity.",
+      "evidence": "Hallconstrictedset andD4extension.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usefulgroupview andcounts but revealinitiallypastcase whilecurrentfeasible,proseclips.",
+      "evidence": "Explicitfinalmodifiedcase sentence resolves historicalcomparison.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete modifiedcase applies criterion and shows when obstruction disappears.",
+      "evidence": "D4allows2matchings.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twooptions each and enoughrooms globally still fail.",
+      "evidence": "Fourstudents onlythree acceptable rooms.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Preferenceedges andgroupcapacity expose bottleneck.",
+      "evidence": "Groupview.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manualassignment and preferencechange support constructive search.",
+      "evidence": "Student/roombuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Resourceassignment feasibility intuition.",
+      "evidence": "Matchingconstraint.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Movesfrom enumeration tostructural necessary/sufficient theorem.",
+      "evidence": "Hallcriterion named.",
+      "confidence": "medium"
+    }
+  }
+}

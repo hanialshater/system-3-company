@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-shy-rioter-stops-the-riot",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-shy-rioter-stops-the-riot",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-shy-rioter-stops-the-riot",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/one-shy-rioter-stops-the-riot/meta.json",
+    "metaSha256": "6072b6904daa404584144115b18477ce58ff7bd9e1e55b5ec681f7a8a32fb874",
+    "demoSha256": "0799056d638100c692b887bf42f9a7cc7a21a8935eba422b8358e4094b2f15fd",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-shy-rioter-stops-the-riot",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-shy-rioter-stops-the-riot.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About 50 against 100 and 1 after threshold 1 changes to 2; locked it in.",
+    "exploration": "Step initial crowd: one joined, next needs at most one. Run to end reached 100 in 100 rounds, average threshold49.50. Changed 1 to2: automatically recomputed stuck at1, average49.51. Reset retained changed threshold, count0; one Step again stalled at1.",
+    "reveal": "Corrected1. Explained original sequential chain and changed crowd missing a threshold1 person. Average barely changes but every remaining person needs at least two others; named threshold model.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Hundred threshold cells show lone active0 and highlighted changed2 beside another2. Counters and full explanation readable.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives test proportional response to one-person change.",
+      "evidence": "About50 choice versus1 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Original chain and repeated changed-crowd step expose missing-link mechanism.",
+      "evidence": "100/100 original;1/100 changed and reset repeat.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact average change and missing threshold to observed stall.",
+      "evidence": "49.50\u219249.51 with missing1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold grid and next-person feedback clear on desktop.",
+      "evidence": "Actual screenshot lone active0 and two2 cells.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable cascade condition but no concrete new application.",
+      "evidence": "Needs next person at every count; average hides gap.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiny average change causes collapse rather than predicted partial participation.",
+      "evidence": "100 to1 with average increase0.01.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Numbered grid visibly exposes missing next threshold.",
+      "evidence": "Active0 and highlighted2.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Threshold toggle,step,bulk run and reset enable contrasting tests.",
+      "evidence": "Original run and reset changed case.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete warning about using averages for threshold-dependent behavior.",
+      "evidence": "Nearly equal averages,different aggregate result.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sequential threshold chain,bottleneck and insufficient average connected.",
+      "evidence": "One-per-round chain and missing1 stall.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links individual thresholds to cascading aggregate behavior.",
+    "conceptualDemand": "Track current participation and next eligible person rather than average threshold.",
+    "interfaceBurden": "Low: grid labels and explicit step feedback.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: threshold cascade.",
+    "notationRepresentationBurden": "low: counts and simple average difference."
+  },
+  "whyCool": "Changing one cell from1 to2 leaves a visible gap after the first mover and stops the whole chain.",
+  "caveat": "Stylized fixed-threshold crowd; no arbitrary threshold distribution or real crowd validation tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Restore threshold1 after changed case not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:33:54.714989+00:00"
+}

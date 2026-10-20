@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "why-the-poles-get-less-sun",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/why-the-poles-get-less-sun",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "bbea7b607046d11da4e4db4028c167733921a88e675b34f1a60d7c06eac15014",
+    "demoSha256": "053127c1f680372985d333d0d70aa641a9a6931d536e4ddef6c2f0e5df92b0c4",
+    "metaPath": "src/demos/geography/why-the-poles-get-less-sun/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected About 99% and locked the annual top-of-atmosphere polar sunlight prediction relative to the equator.",
+    "exploration": "Selected the equator: beam ground width factor 1.00 and annual sunlight 100%. At 60 north, the equinox noon beam spread over twice the width, extra distance was 3,186 km or 0.002%, and annual sunlight was 57%. At the North Pole, the beam grazed the horizon, extra distance was 6,371 km or 0.004%, and annual sunlight was 41%, with a summer all-day-sun note.",
+    "reveal": "The reveal corrected the answer to about 40%, gave 41%, and distinguished the negligible distance effect from angle-driven spreading. It explained that low all-day summer sun prevents the annual polar total from being zero.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at 60 north. A fixed-width band of parallel rays touched a longer highlighted ground segment on a circular Earth. The diagram was labelled equinox noon, while a separate readout explicitly said year's sunlight versus equator.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The quantitative options require distinguishing a tiny distance effect from a large angular effect.",
+      "evidence": "Selected 99% before testing latitude states.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Latitude presets compare beam spreading with distance and annual energy.",
+      "evidence": "Equator, 60 north and pole show increasing spread and sharply lower annual totals despite tiny distance fractions.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains both the lower total and why it remains substantial.",
+      "evidence": "It contrasts negligible distance with angle and summer daylight.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicit labels separate instantaneous geometry from yearly totals.",
+      "evidence": "Equinox noon appears under the diagram and annual sunlight has its own readout.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The geometric principle is explained but no new application is worked.",
+      "evidence": "All comparisons concern the same Earth latitude question.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The pole still gets about two fifths of equatorial annual sunlight despite low angles.",
+      "evidence": "The polar state reports 41% with months of all-day summer sun.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The same beam covering more ground makes reduced energy density visible.",
+      "evidence": "At 60 north the highlighted ground segment is twice the reference width.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Latitude choices allow controlled comparison rather than open experimentation.",
+      "evidence": "Four presets move the highlighted beam location.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies a common cause of climate differences.",
+      "evidence": "The reveal rejects distance as the important driver of the polar gap.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It distinguishes distance, angle and seasonal duration.",
+      "evidence": "The ending explains both the large gap and the nonzero polar annual total.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The beam analogy is accessible, but comparing equinox geometry with annual integration requires care.",
+    "conceptualDemand": "Moderate: separate energy density, distance and duration across seasons.",
+    "interfaceBurden": "Low: four latitude buttons.",
+    "conceptualChallenge": "Low sunlight angle spreads energy while seasonal daylight partly compensates.",
+    "prerequisiteNovelty": "Latitude, equinox and top-of-atmosphere annual totals are introduced.",
+    "notationRepresentationBurden": "Moderate: degrees, width factors, distance percentages and yearly ratios."
+  },
+  "whyCool": "A tiny change in distance accompanies a large energy change because geometry spreads the same sunlight across more ground.",
+  "caveat": "The diagram shows equinox noon while the readout is annual; the labels distinguish them, but the seasonal integration is not visualized.",
+  "missingEvidence": [
+    "No seasonal animation or fresh latitude was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

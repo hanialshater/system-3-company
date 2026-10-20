@@ -1,0 +1,152 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected $1,000 and locked",
+      "outcome": "Retained prediction; directional conversion controls unlocked."
+    },
+    {
+      "id": "E",
+      "action": "To euros then Back to dollars; tried1.11; range Home/End; Start over",
+      "outcome": "1000 dollars became900 euros then945 dollars, loss55;1.11 returned999 loss1; minimum1.00 returned900 loss100; reset restored1000 but kept1.11 quote and exploration history."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal after reset",
+      "outcome": "Corrected to945; explicitly described initial1.05 and tried1.11 results, explained buy/sell gap and reciprocal1/0.90=1.1111 needed for no loss; toy/no-fees limit."
+    },
+    {
+      "id": "V",
+      "action": "Inspected1.11 and revealed reset screenshots",
+      "outcome": "1257x992 dark Chrome; bar, multiplication, controls and reveal legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear two-rate round-trip question with plausible unchanged-total and first-leg distractors.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Two directional steps, improved quote, minimum boundary and reset reveal multiplicative round trip.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolves original and tried contrast with reciprocal no-gap condition and explicit toy limits.",
+      "evidence": "E,R",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Directional labels, dollar/euro units and retained quote make path understandable.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable reciprocal/spread principle stated; no new currency pair or real quote task.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Incidental range keyboard only; focus,contrast,phone,zoom/reflow,motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual unchanged1000 prediction corrected to945 despite no market movement.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Holding bar and arithmetic track shrinking amount; precise near-break-even loss mainly numeric.",
+      "evidence": "E,V",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Directional conversion, reversible quote and reset support several contrasts.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete exchange-spread interpretation with conditions and no-advice scope.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sequential multiplication, buy/sell spread and reciprocal break-even condition linked.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links two exchange directions and multiplicative inverse with supported amounts.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Different booth buying/selling quotes and reciprocal rate."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Dollars per euro versus euros per dollar and decimal reciprocal."
+    },
+    "conceptualDemand": "Track units through two multiplications; understand nearinverse is notexactinverse.",
+    "interfaceBurden": "Low in tested viewport."
+  },
+  "whyCool": "A return quote of1.11 almost restores the original money but still leaves a visible one-dollar loss.",
+  "caveat": "Range stops short of exact reciprocal, so zero-gap outcome is explained rather than tested.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Exact reciprocal interactive boundary",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (5/5 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "exchange-round-trip",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/exchange-round-trip",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "ee59458c15f3d5f489c74b2ad879ddea61d8e2ee47ab4ac50cadf5853029fffe",
+    "metaSha256": "39adee3b03a80c3604be505c89da2b42ba2e7885d30f324549ed55dccedabc60"
+  }
+}

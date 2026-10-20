@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "free-rider-pot",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/free-rider-pot",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "free-rider-pot",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/free-rider-pot/meta.json",
+    "metaSha256": "54107e6ef0634616e69eb2bcd809fa35728a00956d7a01ab47caf24efee7b952",
+    "demoSha256": "dd6c8db9eee4369e4c4d40029a7bebd523400f285772c29c225417e375d722ef",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/free-rider-pot",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/free-rider-pot.json"
+  },
+  "date": "2026-10-18T19:13:37.619659+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust7/7 ignored. Selected30dollars and locked.",
+    "exploration": "Initialgive8/othersnothing:you4.40/group116. Give10alone:you3/group120. Othersall10:you30/group300. Keepall10:you37/group280; reveal unlocks.",
+    "reveal": "Correct3; cites tested alone/all/free-riding sequence,each neighbour13alone then27whenyoukeep. Marginalgive1returns0.30toyou,holdbackadds0.70personally butgroup loses2. One round,no talking,no punishment; people sometimesgiveinlabs caveat.",
+    "visual": "Inline1257x936 dark screenshot inspected: ten payoffbars,you37versusnine27,baseline dotted10,group280. Inner verticalscrollbar appears in demo and all reveal text fits; single slider track reaches close to scrollbar."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete payoff choices distinguish multipliedpot fromequalshare andretainedendowment.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Alone,universal cooperation andunilateralholdback isolate individual/group incentiveconflict.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Cites exactactualstates,derives marginal0.70versusgroup2loss and states social/game assumptions.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Personal/group counters,other-contributioncontrols andbars clear across path; inner scrollbar visible but didnotblock task.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable public-good incentive distinction withconditions; no concrete new application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen30alone yields3;holdingbackthenraisespersonalpayoff37whilegroupfalls.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tenbars display unequalfree-riderpayoff andgroupcountertracks collectivecost.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibleown/othercontributionchoices allow causalcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete collectivecontributiondilemma interpreted without realdecisiontask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Individual/social returns,otherschoices andsingle-roundassumptions.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Track retainedmoney,sharedpotreturns andgroupversusindividualpayoff underotherschoices.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; innerverticalscrollbar",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: individualversuscollective incentive",
+    "notationRepresentationBurden": "low: dollars/tenbarcomparison"
+  },
+  "whyCool": "Keeping your10raises your payoff30to37while reducing the group's300to280.",
+  "caveat": "One-round model lacks communication,punishment or repeated cooperation; no fresh application."
+}

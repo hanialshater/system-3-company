@@ -1,0 +1,105 @@
+{
+  "slug": "uphill-finds-a-peak",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/uphill-finds-a-peak",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction seven unordered hidden cards,local-peak definition and halving rule; chose7 maximum flips rather than5 or3.",
+    "Turnedcard4=4,card5=7. Wrongkeepleft rejected asdownhill; kept right5-7. Turnedcard6=3,card7=6; kept right,endpoint6peak after4flips.",
+    "Reveal distinguishedlocalpeak6fromlargervalue7 and claimed exhaustive5040ordersmaximum5,not rerun interactively.",
+    "Reveal says uphill must reachpeak beforeedge,while actual solutionisatrightendpoint; wording should allow atedge.",
+    "Inline1280x720 light screenshot: full readable cardstate and prose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Localpeak definition and halving invariant need careful distinction.",
+    "conceptualDemand": "Existence on uphill side without sortedness.",
+    "interfaceBurden": "Clear guided buttons and readable layout."
+  },
+  "whyCool": "The algorithm leaves unknown cards untouched because it only needs a nearby peak,not the biggest value.",
+  "caveat": "Clarify endpoint convention and beforeedge phrase; exhaustive5040claim not verified here; accessibility unknown.",
+  "effort": "Prediction,full manual reveal/half trace,wrong-half feedback,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-wording-fix",
+  "bucketReason": "Readable selective-search experiment; endpoint wording needs precision.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise rule but maximum-distinct-flips bound requires subtle trace analysis; endpoint convention implicit.",
+      "evidence": "5bound versus actual4.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual reveals and wrong/right half choices show safe elimination.",
+      "evidence": "Two uphill comparisons and endpointsolution.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualtrace explains local-versusglobal distinction and halving principle.",
+      "evidence": "6peak though7bigger.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable layout but beforeedge wording conflicts with endpointexample.",
+      "evidence": "Endpointcard7actualpeak.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General halving condition without fresh array or contrasting objective test.",
+      "evidence": "Same seven cards.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Halving can find an answer in unsorted data when objective is localpeak.",
+      "evidence": "Threecardsneveropened.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Hidden/eliminated cards and heights ground selective search.",
+      "evidence": "4,7,3,6visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual card reveals and half choices with feedback.",
+      "evidence": "Wronghalfrejected.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Search invariant and objective choice intuition.",
+      "evidence": "Any localpeak versusmaximum.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Existence guarantee,localoptimum and worst-case bound.",
+      "evidence": "5040orderclaim.",
+      "confidence": "medium"
+    }
+  }
+}

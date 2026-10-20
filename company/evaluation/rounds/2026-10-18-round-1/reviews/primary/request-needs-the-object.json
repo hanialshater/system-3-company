@@ -1,0 +1,103 @@
+{
+  "slug": "request-needs-the-object",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/request-needs-the-object",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook declares document ambiguous; predicted version plus scope.",
+    "Fixed AddVersion fillsv3,AddScope figures for report;fields1\u21923.",
+    "Reveal explains target and inspection,excludes permission/acceptance assumptions. Screenshot readable; no actual alternative drafts or review task."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three simple fields.",
+    "conceptualDemand": "Target identity and inspection scope.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A request gets easier to act on when it names both the version and what to inspect.",
+  "caveat": "Needs actual competing drafts and a target-selection challenge rather than passive field filling.",
+  "effort": "Prediction,two field operations,reveal,inline screenshot.",
+  "provisionalBucket": "revise-interaction",
+  "bucketReason": "Useful advice,weak learner agency.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook supplies distinction.",
+      "evidence": "Ambiguous document versus version scope.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two mandatory preset field additions.",
+      "evidence": "v3 and figures.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains checklist with scope caveat but no demonstrated target resolution.",
+      "evidence": "No drafts selectable.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable fields but generic report/figures and fixture jargon.",
+      "evidence": "No actual document identity.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable checklist without concrete new application.",
+      "evidence": "Artifact,Version,Scope.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer explicit.",
+      "evidence": "Hook.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Text rows only.",
+      "evidence": "Checklist.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Preset sequence.",
+      "evidence": "Two clicks.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Actionable review request template central.",
+      "evidence": "Version and scope.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single request schema.",
+      "evidence": "No ambiguity challenge.",
+      "confidence": "medium"
+    }
+  }
+}

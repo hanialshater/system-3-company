@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "flour-on-the-moon",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flour-on-the-moon",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "ceef9a18a6736189828d78cd17d74a167c082a3af3fb3b0d6a095dc3de0cbb10",
+    "demoSha256": "f770017036fd7e36de43e5486c6bb62b73ec1452262a2a6b0efafe7ae40390cc",
+    "metaPath": "src/demos/physics/flour-on-the-moon/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Selected Both change and Lock it in. Earth initially 9.81 N, spring 1.00 kg, balance level.",
+    "exploration": "Moon changed pull to 1.62 N and spring to 0.17 kg while balance stayed level. Jupiter changed to 23.12 N and 2.36 kg while balance remained level. Show me why unlocked after Moon.",
+    "reveal": "Correct answer hanging spring reads less; explains equally shrinking balance arrows, unchanged mass, W = m g and Earth-calibrated bathroom scale reading about one sixth on Moon.",
+    "visual": "Inline screenshots inspected: spring stretched substantially on Jupiter, equal red downward arrows under both balance pans; bag remains labelled 1 kg. Orange active planet and numeric state legible.",
+    "isolation": "Evaluation preview no-history banner present. 7/7 claims checked chrome ignored.",
+    "references": [
+      "CUA tab 543884107 snapshots and inline prediction/Jupiter screenshots, no screenshot file saved."
+    ]
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible mass-versus-weight alternatives.",
+      "evidence": "Committed Both change before Moon comparison.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Weak and strong gravity contrast preserves balance while spring moves.",
+      "evidence": "Earth/Moon/Jupiter numeric states and screenshot.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicit force explanation connects spring change and invariant balance to original prediction.",
+      "evidence": "Reveal explains two arrows shrinking together and Earth scale calibration.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labelled bag, force, spring and balance let controls and output be read directly.",
+      "evidence": "Inspected screenshot with Jupiter selected and level balance.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete bathroom-scale use includes Earth-calibration condition.",
+      "evidence": "Reveal says bathroom scale marked in kg for Earth shows one sixth on Moon.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient access modes not audited.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Both-change prediction fails while spring changes markedly.",
+      "evidence": "Moon 0.17 kg with level balance.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Spring length, equal force arrows and invariant balance carry mechanism across weak and strong gravity.",
+      "evidence": "Earth, Moon and Jupiter observations plus Jupiter screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Planet choices enable reversible discovery of varying force with invariant balance.",
+      "evidence": "Moon and Jupiter choices exercised.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday scale reading is central and explicitly conditioned on calibration.",
+      "evidence": "Bathroom scale reveal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Contrasts force, indicated mass and actual mass with paired balance forces.",
+      "evidence": "Moon/Jupiter and W = m g reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates mass, force and calibrated reading while tracking equality on a balance.",
+    "conceptualDemand": "Two linked representations of gravity with invariant mass.",
+    "interfaceBurden": "Low: named planets, numeric readouts and labelled graphics.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: newtons and mass-versus-weight distinction",
+    "notationRepresentationBurden": "moderate: N, kg, percentages and W = m g"
+  },
+  "whyCool": "Selecting Jupiter stretches the spring to a 2.36 kg reading while the two 1 kg balance pans remain level.",
+  "caveat": "Mars and return-to-Earth paths not tested; no fresh application exercise or accessibility audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Mars",
+    "Return to Earth",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "effort": "Approximately 2 minutes active browser walkthrough.",
+  "notApprovedForServing": true
+}

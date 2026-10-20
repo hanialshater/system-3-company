@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "hemoglobin-s-curve",
+  "domain": "life",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "1a8c1d6319d44aa191f41fcb41741a16305ec5beafb70dc08a548fcdfb306e38",
+  "demoSha256": "bc796c67fa5fc7bd5925952c40e656c5e3ecf3265e7bd202411c80415034fa1c",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hemoglobin-s-curve",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected The same; Lock it in",
+      "outcome": "Prediction retained; pressure controls unlockedat100."
+    },
+    {
+      "id": "e",
+      "action": "Rest40; Work20; sliderHome10",
+      "outcome": "40real74.7/one59.9%;20real31.2/one42.7;loss43.5vs17.1points;minimum10real6.5/one27.2loss68.1vs32.7."
+    },
+    {
+      "id": "v",
+      "action": "Inspected20screenshot",
+      "outcome": "SolidS anddashedsingle-sitecurves,verticalwork/restmarkers,andthreepercentreadouts visible;dark1257x936 nohorizontalcutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why at10",
+      "outcome": "2.5times; explicitlyreferences40to20historical74.7to31.2drop43.5vs17.1;site release easesotherrelease;steepmiddle tissueoxygen interpretation."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Matched half-point comparison with three plausible release ratios.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Pressure contrasts show cooperative curve cross and differential release; lowerboundarytested.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Historical40to20 interval explicit evenafter10state; links numericaldrop tositecooperation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls/curves clear, but saturation,halfpoint andmmHg impose substantial unexplained prerequisite burden.",
+      "evidence": "p,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Tissueoxygen interpretation stated, no newuse task or varyingconditions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equalreleaseprediction reversed by2.5ratio andcurvecontrast.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two curves and movingpressuremarker carry release comparison.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Presets andrange allow reversible exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains biological oxygendelivery, not actionable guidance.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Curve shape,cooperativity andtissuepressure linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compares nonlinearcurves andpercentagepointchanges with numericalsupport; unfamiliar biological relation.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Carrier saturation,oxygenpressure,halfpoint/cooperativity assumed orbrieflyintroduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "mmHg,percent versuspoints,two curves."
+    }
+  },
+  "whyCool": "Moving pressure40to20 drops the cooperativecarrier43.5points while thesingle-sitecarrier loses17.1, matching thesteepSregion.",
+  "caveat": "InitialtoyassumptionspH/CO2fixed disappear into activefeedback; no varyingphysiology tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "High-endrange andvaryingmodelconditions;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

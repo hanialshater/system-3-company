@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "squeeze-the-brown-gas",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/squeeze-the-brown-gas",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "b8ddcc28f7af3af44a47d4297bd2c9e2cbeb69926c045dd29a9b8d4ebfec06c2",
+    "demoSha256": "8449ee761e97daf6b0543eabf2644adbca2d0b127700325ef66f31bc3f9cecf6",
+    "metaPath": "src/demos/chemistry/squeeze-the-brown-gas/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Higher for NO2 molecular share after halving volume and waiting, then locked it in.",
+    "exploration": "Initial 22 NO2 and49 N2O4,31% share,total71. Push in reached16 NO2 and52 N2O4,24%,total68. Pull back restored22/49,31%,71 after brief pending share. Reveal stayed unlocked. Tool capture did not resolve immediate compression-darkening transient separately from final state.",
+    "reveal": "Corrected Lower. States immediate darkening then partial fading,31% to24% as NO2 pairs into N2O4. Explains two molecules becomeone,fewer wall collisions partially opposecompression,final concentration stilldarker in smaller space.",
+    "visual": "Inline compressed andrestored screenshots inspected:plunger halvesvisible volume,particlescrowded andbrownfield darker compressed;expandedfield lighter. Specieslegend and25C label visible. Trust6/6 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearly distinguishes molecular share from simplecolour observation.",
+      "evidence": "Higher selected versus31to24%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Compression andexpansion reversibly changeequilibrium counts andvolume.",
+      "evidence": "22/49 to16/52 andback.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observedcomposition andmolecule-count decline tostoichiometry andpartialresponse.",
+      "evidence": "Two NO2 toone N2O4,total71to68.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Speciescounts andshare clear,butcolour/transientversuscomposition requirescarefulinterpretation;immediatephase notcaptured.",
+      "evidence": "Finalcompressedcolour and24% share;reveal claimstransient.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable fewer-gas-molecules pressureprinciple suppliedwithoutfreshreaction orconditions beyond25C.",
+      "evidence": "Squeeze favorssidewithfewermolecules.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Higher-share prediction overturned evenwhilecompressedgaslooks darker.",
+      "evidence": "24% share versus31% baseline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Plunger,pairedparticles andcolour supportcomposition/volume distinction.",
+      "evidence": "Compressed/restored screenshots.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Push/pull controls permitreversibleequilibrium comparison.",
+      "evidence": "Onefullcompression/expansion cycle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete chemical-equilibrium interpretation.",
+      "evidence": "Pressurechangesgascomposition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Volume,concentration,molecularshare andstoichiometry linked.",
+      "evidence": "Counts,colour andreveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Separates concentrationcolour frommolecularfraction whiletracking reversibletwo-toone reaction.",
+    "conceptualDemand": "Multipledependentchemicalrepresentations.",
+    "interfaceBurden": "Low:two controls;transientrapid.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:chemicalequilibrium andpressure response",
+    "notationRepresentationBurden": "high:NO2/N2O4,shares andmoleculecounts"
+  },
+  "whyCool": "Compression reduces thebrown-species share from31% to24% yetthegas remainsdarkerbecauseitoccupieshalfthevolume.",
+  "caveat": "Immediatecolourtransient notseparatelyobserved;onlyonevolumechange at25Ctested.",
+  "missingEvidence": [
+    "Immediate transient",
+    "Temperature variation",
+    "Fresh reaction",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

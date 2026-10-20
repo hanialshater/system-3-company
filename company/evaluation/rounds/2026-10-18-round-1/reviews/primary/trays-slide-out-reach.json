@@ -1,0 +1,104 @@
+{
+  "slug": "trays-slide-out-reach",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/trays-slide-out-reach",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "At shelf depth 50 cm, fixed back item reported reach 50 cm; slide-out position used 30 cm travel and reported 20 cm reach.",
+    "At depth 65 cm, slide-out reach rose to 35 cm with the same 30 cm travel.",
+    "Screenshots show the tray moving toward the shelf front with a reach line, but without a measured scale on the drawing.",
+    "Reveal describes depth minus travel, unchanged shelf volume, and horizontal-distance-only scope."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar storage and subtraction.",
+    "conceptualDemand": "Separate access distance from capacity.",
+    "interfaceBurden": "Two modes and one slider."
+  },
+  "whyCool": "You can bring a back item within reach without enlarging its shelf.",
+  "caveat": "Schematic distance model, not a load or ergonomic assessment.",
+  "effort": "Prediction, fixed and slide-out positions, deep-shelf boundary, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear causal model despite an answer-revealing title.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and labels give the answer.",
+      "evidence": "Move the tray, shorten the reach.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and depth establish a controlled geometric comparison.",
+      "evidence": "50 versus 20 cm, then 35 cm at depth 65.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains the operation and unchanged property.",
+      "evidence": "Subtract travel from depth without changing shelf volume.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Inputs, travel and reach are labeled.",
+      "evidence": "Travel 30 cm, depth 65 cm, reach 35 cm.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Concrete principle but limited guidance for a new situation.",
+      "evidence": "Use trays within limits; models horizontal distance only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected movement relationship.",
+      "evidence": "Pulling forward reduces reach.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Schematic movement supports the arithmetic.",
+      "evidence": "Tray moves toward front; no scale.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two positions and variable shelf depth.",
+      "evidence": "Both positions and maximum depth tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "A specific storage access technique.",
+      "evidence": "Reach changes without shelf volume changing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single subtraction relationship.",
+      "evidence": "Depth minus travel.",
+      "confidence": "medium"
+    }
+  }
+}

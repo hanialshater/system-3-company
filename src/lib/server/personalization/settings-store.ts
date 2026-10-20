@@ -17,12 +17,6 @@
 // checks the model and company/personalization/data/test-settings-write-sql.mjs checks this SQL on a throwaway local
 // Postgres (fake rows only), including a two-session race.
 //
-// UNVERIFIED against the accounts branch (not fetchable in this clone on 2026-10-16):
-// - `Query` is shaped like pg's Pool#query (company/decisions/2026-10-15-dep-pg.md). The real helper on the accounts
-//   branch, its name and whether it is per-request, are backend-engineer's to confirm. Each statement here is a single
-//   autocommit statement; no transaction or client checkout is needed.
-// - The table name `settings`: one constant below (principal-engineer kept it, review 2026-10-16 ruling 2).
-//
 // No cache anywhere: every read goes to the database, so an explicit off applies on the next request (D2).
 // Errors are rethrown untouched; the handler turns them into a fixed response and never logs them (B4), because a
 // pg constraint error's `detail` carries the failing row.
@@ -43,45 +37,26 @@ export interface SettingsStore {
   put(userId: string, patch: SettingsPatch): Promise<FeedSettings | null>;
 }
 
-const COLS = "personalization_on, subjects, less_of";
-
+const COLS = "personalization_on, subjects, less_of, experiences, challenge";
 export const SELECT_SQL = `SELECT ${COLS} FROM ${SETTINGS_TABLE} WHERE user_id = $1`;
-
-// $1 user_id, $2 personalization_on, $3 subjects, $4 less_of (the freshRow values),
-// $5/$6/$7: whether the request carries personalizationOn / subjects / lessOf.
-const SET_COLUMNS = (v: { on: string; sub: string; less: string }) =>
-  `personalization_on = CASE WHEN $5::boolean THEN ${v.on} ELSE s.personalization_on END, ` +
-  `subjects = CASE WHEN $6::boolean THEN ${v.sub} ELSE s.subjects END, ` +
-  `less_of = CASE WHEN $7::boolean THEN ${v.less} ELSE s.less_of END`;
-const CHANGED = (v: { on: string; sub: string; less: string }) =>
-  `(($5::boolean AND s.personalization_on IS DISTINCT FROM ${v.on}) OR ` +
-  `($6::boolean AND s.subjects IS DISTINCT FROM ${v.sub}) OR ` +
-  `($7::boolean AND s.less_of IS DISTINCT FROM ${v.less}))`;
-const EXCL = { on: "EXCLUDED.personalization_on", sub: "EXCLUDED.subjects", less: "EXCLUDED.less_of" };
-const PARAM = { on: "$2::boolean", sub: "$3::text[]", less: "$4::text[]" };
-
-export const SET_UPSERT_SQL =
-  `INSERT INTO ${SETTINGS_TABLE} AS s (user_id, ${COLS}) VALUES ($1::text, $2::boolean, $3::text[], $4::text[]) ` +
-  `ON CONFLICT (user_id) DO UPDATE SET ${SET_COLUMNS(EXCL)} WHERE ${CHANGED(EXCL)} RETURNING ${COLS}`;
-
-export const SET_UPDATE_SQL =
-  `UPDATE ${SETTINGS_TABLE} AS s SET ${SET_COLUMNS(PARAM)} WHERE s.user_id = $1::text AND ${CHANGED(PARAM)} ` +
-  `RETURNING ${COLS}`;
-
-// $1 user_id, $2..$4 the device's choices (freshRow), $5 whether they are a choice at all (D1).
-export const MERGE_SQL =
-  `INSERT INTO ${SETTINGS_TABLE} AS s (user_id, ${COLS}) SELECT $1::text, $2::boolean, $3::text[], $4::text[] ` +
-  `WHERE $5::boolean ON CONFLICT (user_id) DO UPDATE SET personalization_on = false ` +
-  `WHERE EXCLUDED.personalization_on IS FALSE AND s.personalization_on IS DISTINCT FROM false RETURNING ${COLS}`;
+const columns = ["personalization_on", "subjects", "less_of", "experiences", "challenge"];
+const types = ["boolean", "text[]", "text[]", "text[]", "text"];
+const param = (i: number) => `$${i + 2}::${types[i]}`;
+const sets = (excluded: boolean) => columns.map((c, i) => `${c} = CASE WHEN $${i + 7}::boolean THEN ${excluded ? `EXCLUDED.${c}` : param(i)} ELSE s.${c} END`).join(", ");
+const changed = (excluded: boolean) => columns.map((c, i) => `($${i + 7}::boolean AND s.${c} IS DISTINCT FROM ${excluded ? `EXCLUDED.${c}` : param(i)})`).join(" OR ");
+const values = columns.map((_, i) => param(i)).join(", ");
+export const SET_UPSERT_SQL = `INSERT INTO ${SETTINGS_TABLE} AS s (user_id, ${COLS}) VALUES ($1::text, ${values}) ON CONFLICT (user_id) DO UPDATE SET ${sets(true)} WHERE (${changed(true)}) RETURNING ${COLS}`;
+export const SET_UPDATE_SQL = `UPDATE ${SETTINGS_TABLE} AS s SET ${sets(false)} WHERE s.user_id = $1::text AND (${changed(false)}) RETURNING ${COLS}`;
+export const MERGE_SQL = `INSERT INTO ${SETTINGS_TABLE} AS s (user_id, ${COLS}) SELECT $1::text, ${values} WHERE $7::boolean ON CONFLICT (user_id) DO UPDATE SET personalization_on = false WHERE EXCLUDED.personalization_on IS FALSE AND s.personalization_on IS DISTINCT FROM false RETURNING ${COLS}`;
 
 export type WritePlan = { text: string; values: unknown[] };
 
 /** Which single statement a request runs, and its parameters. Depends on the request only, never on a read. */
 export function writePlan(userId: string, patch: SettingsPatch): WritePlan {
   const row = freshRow(patch);
-  const base = [userId, row.personalizationOn, [...row.subjects], [...row.lessOf]];
+  const base = [userId, row.personalizationOn, [...row.subjects], [...row.lessOf], [...row.experiences], row.challenge];
   if (patch.mode === "merge") return { text: MERGE_SQL, values: [...base, !isNoChoice(row)] };
-  const has = [patch.personalizationOn !== undefined, patch.subjects !== undefined, patch.lessOf !== undefined];
+  const has = [patch.personalizationOn !== undefined, patch.subjects !== undefined, patch.lessOf !== undefined, patch.experiences !== undefined, patch.challenge !== undefined];
   return { text: isNoChoice(row) ? SET_UPDATE_SQL : SET_UPSERT_SQL, values: [...base, ...has] };
 }
 
@@ -94,6 +69,8 @@ function toSettings(r: Record<string, unknown> | undefined): FeedSettings | null
     personalizationOn: on === true || on === false ? on : null,
     subjects: strings(r.subjects),
     lessOf: strings(r.less_of),
+    experiences: strings(r.experiences),
+    challenge: r.challenge === "gentle" || r.challenge === "balanced" || r.challenge === "demanding" ? r.challenge : null,
   };
 }
 

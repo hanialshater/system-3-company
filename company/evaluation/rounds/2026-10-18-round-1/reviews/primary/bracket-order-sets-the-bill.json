@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "bracket-order-sets-the-bill",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bracket-order-sets-the-bill",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simplecharts;no subject theory assumed.",
+  "viewport": "1257\u00d7936 Chrome darktheme;inline screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust5/5 ignored. ActuallypredictedA(BC)about2xdearer;locked."
+    },
+    {
+      "id": "E",
+      "text": "MultiplyAB1500;thenABC3000,total4500. MultiplyBC9000;thenABC18000,total27000. Fourstagedbuttonsallrequired."
+    },
+    {
+      "id": "R",
+      "text": "Notquite:6xdearer. Same10\u00d760answer,butintermediate10\u00d75versus30\u00d760;9000firstslabalone2\u00d7topbill. Associativitystated,longerchainshortestsubchainsfirstsplitsearch extension. Screenshotfullcostbarandprose readable;intermediates replacedbyfinaloutput aftercompletion. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Explicitcostformula allowsarithmeticcommitment,butmatrixoutputshape ruleassumed.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Fourcoststeps exposecontrast butfixedbuttonsequence,nochangedshapes orreversal.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Incorrectpredictioncorrectedwith6\u00d7,intermediateshapeexplanationandconcretecomparison.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Twoorders,formulas,costbars readable atdarkdesktop.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Longerchainstrategy statedbutnotapplied;no newchain.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Observed6\u00d7costsamefinalshape correctsactual2\u00d7prediction.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Intermediateboxsizesandcostbars supportcostmechanism.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Fixedfoursteppricing.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Computationorderingoptimization.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Intermediategeometry,costproduct,associativity,subchainextension.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requiresmatrixdimensions,compatiblemultiplicationoutputs,andmultistagecostcomparison withoutprevioustheory.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "high;matrixmultiplication",
+    "notationRepresentationBurden": "high;p\u00d7q,q\u00d7r,brackets"
+  },
+  "whyCool": "The30\u00d760intermediatecosts9000beforethesecondmultiplication,alreadytwicetheentireotherorder.",
+  "caveat": "Associativityandoutputdimensionrulesmostlyassumed;longerchainextensionuntested.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Newdimensions",
+    "Longerchain"
+  ]
+}

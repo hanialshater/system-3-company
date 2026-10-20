@@ -1,0 +1,104 @@
+{
+  "slug": "summit-kettle",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/summit-kettle",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted100C boiling at Everest0.3atm,alternatives70/40. Initialsealevel1atm100C.",
+    "SliderEnd8850m0.31atm69C;graphpressurehorizontal intersects risingwater-vapourcurveatlowerT. ReturnedHome then20steps1000m0.89atm97C.",
+    "Reveal recalls summitapproximately70C,explains vapourpressurematchingambientpressure,slowercookinginboilingwaterataltitude;standardatmosphere/constant40.7kJmolheatofvaporisation model limits.",
+    "1280x720light graphandintersection clear;finalprosecutoffright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concretealtitudebutvapourpressurecurve addsconceptualdemand.",
+    "conceptualDemand": "Boilingcondition aspressurematch.",
+    "interfaceBurden": "Onealtitudeslider,cleargraph."
+  },
+  "whyCool": "The boiling point is where two pressures meet, so lowering the air-pressure line moves that point left.",
+  "caveat": "Standard-atmosphere/constant-latent-heatapproximation;scientificvaluesnotindependentlyaudited. Prosecutoff;newcookingapplicationdescribednotinteractive.",
+  "effort": "Prediction,summitandintermediatealtitudecontrasts,graphinspection,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Visiblephysicalmechanismandpracticalextension;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Targets100C-universalbelief butexactchoice requires priorpressure-boiling relation notsupplied.",
+      "evidence": "0.3atm given,relationrevealedlater.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sea/summit/intermediatealtitude contrasts isolatepressurelineandintersection shift.",
+      "evidence": "1atm100C;0.31atm69C;0.89atm97C.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects originalprediction,visibleintersection andmeaningfulthermodynamicapproximation.",
+      "evidence": "Vapourpressureequalair;standardatmosphere,constlatentheat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Curveandlabels clear;rounded70versus69 consistentapproximation;proseclips.",
+      "evidence": "Actualsummitandfinalscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitnewcookingapplication withcondition:foodinboilingwaterataltitudecooks slower becausewatercooler.",
+      "evidence": "Boilingtemperatureversuscookingrate stated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Boilingwaterneednotbe100C.",
+      "evidence": "Summit69C.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Movingpressureline againstvapourcurve explainswhytemperaturechanges.",
+      "evidence": "Multiplealtitudesamecurveintersections.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Altitudecontrol andpresets supportcomparison.",
+      "evidence": "Summitand1000m tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Boilingandhigh-altitudecookingcentral.",
+      "evidence": "Coolerboilingwater slowscooking.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Pressureequilibrium andmodelapproximationlinked.",
+      "evidence": "Constantheatofvaporisation disclosed.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "two-bulges",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-bulges",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-bulges",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/geography/two-bulges/meta.json",
+    "metaSha256": "43c1eacf3683687bf7b7f15bec3b9ea02e37f7fca64247881929eebbfb296f86",
+    "demoSha256": "7f5e659bb40198f4b251141691ce80674d32a960dbb8c3264c2a8ceaff64f757",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-bulges",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-bulges.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 1 and locked it in.",
+    "exploration": "Default 6 hours was low tide. Moon-facing preset at zero was high; opposite at 12 h 25 min high; quarter turn at 6 h 12 min low. Slider End at 24 h 48 min returned high.",
+    "reveal": "Corrected to two, described two bulges and coast crossing both, 12 h 25 min spacing and 24 h 50 min lunar day. Explained near water pulled harder than centre and far water less, so differential attraction stretches ocean.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Two exaggerated blue bulges, coast dot, Moon and three differently sized same-direction arrows visible. Toy no-continents caveat and lunar-day definition legible. Slider endpoint showed 24 h 48 while prose used 24 h 50.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simple count targets one Moon one tide intuition.",
+      "evidence": "One selected against two and four.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three orientations and full-day boundary distinguish both high states and low state.",
+      "evidence": "Zero and opposite high; quarter low; endpoint high.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains far-side bulge through differential pull.",
+      "evidence": "Near, centre and far attraction ordering.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dot and force arrows support explanation with explicit toy limits.",
+      "evidence": "No continents, exaggerated bulges and lunar-day definition shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Differential-force principle stays in the same tidal example.",
+      "evidence": "No new application or coast-specific case tested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard endpoint and tide text worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "High tide also occurs facing away from Moon.",
+      "evidence": "Opposite-side preset high.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two bulges and unequal pull arrows explain spatial pattern.",
+      "evidence": "Earth-centred view with coast dot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rotation control moves a coast through the cycle.",
+      "evidence": "Presets and lunar-day slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains common tide count in ideal model.",
+      "evidence": "Most-coasts qualifier but no local prediction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes attraction from differential attraction.",
+      "evidence": "Centre pulls away from far-side water relative to near side.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls support relative-force reasoning.",
+    "conceptualDemand": "Compare attraction across Earth and relate fixed bulges to rotating coastline.",
+    "interfaceBurden": "Three presets and time slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Lunar day and tidal differential introduced.",
+    "notationRepresentationBurden": "Hours and minutes, high/low labels and arrow lengths."
+  },
+  "whyCool": "The far-side high tide becomes understandable when pull is compared across Earth.",
+  "caveat": "No continents model cannot predict a specific coast; displayed endpoint 24 h 48 differs slightly from explanatory 24 h 50.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:27:28.446217+00:00"
+}

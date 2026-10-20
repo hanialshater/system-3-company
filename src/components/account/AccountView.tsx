@@ -77,14 +77,14 @@ export default function AccountView() {
     );
   if (!me.signedIn) return <SignUp />;
   return (
-    <SignedIn
+    <><p style={box}><Link href="/preferences">Edit feed preferences</Link></p><SignedIn
       key={me.tag}
       me={me}
       ask={"ask" in state ? state.ask : null}
       fromLink={"fromLink" in state && !!state.fromLink}
       onAnswered={setState}
       onSignedOut={() => void accountMe(true).then((m) => setState(m && !m.signedIn ? { me: m } : { me: null }))}
-    />
+    /></>
   );
 }
 
@@ -141,7 +141,7 @@ function SignUp() {
             Email <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email" />
           </label>
           <p style={{ opacity: 0.8, fontSize: 14 }}>
-            We store your email, an age group, and your lesson progress. Nothing else. Policy version {POLICY_VERSION}.
+            We store your email, an age group, lesson progress, and any feed preferences you explicitly save. Policy version {POLICY_VERSION}.
           </p>
           <button
             style={btn}

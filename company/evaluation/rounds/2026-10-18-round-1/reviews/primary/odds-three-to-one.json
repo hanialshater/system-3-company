@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "odds-three-to-one",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/odds-three-to-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "1b38f4ac3d55d76147b2e2c7b98ae010df4b8eea1bc973b6a39b0f3f9c34f71a",
+    "demoSha256": "c73adb4e93fbd8fc9c72e8d66bb2fdac0b138829ccb51f2dbe8decdfd4c1c109",
+    "metaPath": "src/demos/probability/odds-three-to-one/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 33% for three-to-one against and locked it in.",
+    "exploration": "Moved one block from Lose to Win: three losses, one win, 25%. Moved second: two and two, 50%, reveal unlocked. Moved third: one loss, three wins, 75%. Four-block total remained constant.",
+    "reveal": "Corrected 25% for original three-to-one case. Explains one win out of all four, not one in three. Uses tested two/two to explain evens and distinguishes odds denominator from chance denominator.",
+    "visual": "Inline initial and two/two screenshots inspected: two labelled boxes, four movable blocks and four-segment share bar. Two green segments at 50%, ratio and fraction readouts legible. Trust count 5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear odds-against wording with plausible denominator and direction confusions.",
+      "evidence": "33% selected versus one-of-four 25%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Moving blocks exposes ratio and total-share distinction across three states.",
+      "evidence": "Three/one25%, two/two50%, one/three75%.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual block states to denominator distinction and equivalent odds.",
+      "evidence": "One out of four, two/two equals evens.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labelled boxes, constant four blocks and explicit ratios/fractions make path clear.",
+      "evidence": "Inspected two/two screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable odds-versus-probability rule provided, but no concrete fresh denominator or new application.",
+      "evidence": "Odds compares wins/losses, chance wins/all.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "33% prediction overturned by visible four-part total.",
+      "evidence": "One green out of four gives25%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Movable blocks and segmented share bar carry denominator mechanism.",
+      "evidence": "Three states and screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Independent reversible block moves permit ratio exploration.",
+      "evidence": "Three moved blocks and retained total.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of quoted odds central.",
+      "evidence": "Three-to-one against conversion.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Ratio direction, whole denominator and equivalent evens linked.",
+      "evidence": "25/50/75 states and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported part-to-part versus part-to-whole comparison using four objects.",
+    "conceptualDemand": "Familiar counting with denominator distinction.",
+    "interfaceBurden": "Low: tap blocks to move.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low: odds terminology",
+    "notationRepresentationBurden": "low: ratios, fractions and percentages"
+  },
+  "whyCool": "Moving a single block to Win turns three-to-one against into a visible one-in-four chance rather than one-in-three.",
+  "caveat": "Four-block system only; no other total, pricing margin or fresh conversion task.",
+  "missingEvidence": [
+    "All-win boundary",
+    "Different total",
+    "Fresh conversion",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

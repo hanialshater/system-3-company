@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "drop-the-losing-start",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drop-the-losing-start",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "drop-the-losing-start",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/cs/drop-the-losing-start/meta.json",
+    "metaSha256": "ed4c0598bca521c021770a6b3c4b87db29516e666cdf39c40d75129d9ee3d216",
+    "demoSha256": "4bce62013a6d5b2981f8c2c52bf37fa073bff18909d5505063b5c922554d5ee9",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/drop-the-losing-start",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/drop-the-losing-start.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected 4 against 6 and 12 for the nine-day consecutive-run total; locked it in.",
+    "exploration": "Next day showed day 1 total \u22122, best \u22122. Start over cleared total to 0 while best remained \u22122. Enabled Auto start over below 0. Play to day 9 ended total 5, best 6 on days 4\u20137, compared with kept-everything best 2. Check all 45 stretches confirmed largest total 6 and unlocked reveal.",
+    "reveal": "Corrected to 6 and named actual drops \u22122 after days 1 and 3. Explained negative prefix drags down following stretch and compared one pass over nine days with all 45 stretches; named Kadane algorithm.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Triangular table of all stretch sums highlights 6, live status and reveal readable. Internal stage scrolled so upper line chart partly cropped in reveal view.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete numerical choice distinguishes best single day from best consecutive run.",
+      "evidence": "4 commitment against 6 and 12.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual negative-prefix drop and auto continuation connect rule to final optimum, checked exhaustively.",
+      "evidence": "\u22122 to 0; best 6 versus kept-everything 2; all 45 match.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exact drops and best days to explain why discarding a negative prefix works.",
+      "evidence": "Days 1 and 3 drops; days 4\u20137 total 6.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Action labels and feedback usable, but internal scrolling clips the upper chart when reveal opens.",
+      "evidence": "Actual screenshot cropped line chart with table and reveal below.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General negative-prefix principle offered but no new application or applicability boundary.",
+      "evidence": "Negative stretch drags down what follows.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Best-run total exceeds committed best-single-day guess.",
+      "evidence": "4 prediction versus6 observed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Running-total chart and exhaustive triangle carry comparison.",
+      "evidence": "Best6 status and highlighted table cell.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual reset and automatic rule allow active strategy choice.",
+      "evidence": "Manual day1 drop then auto continuation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete efficient method for best consecutive gains.",
+      "evidence": "One nine-day pass versus45 candidates.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local discard rule, saved historical best and exhaustive comparison linked.",
+      "evidence": "Total reset retained best\u22122; final best6 and all45 check.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires separating current total, best-so-far and safe discard proof.",
+    "conceptualDemand": "Coordinates negative-prefix invariant, consecutive-subarray objective and single-pass versus exhaustive search.",
+    "interfaceBurden": "Moderate: several controls, two totals and internal stage scroll.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "moderate: algorithmic invariant and consecutive optimization.",
+    "notationRepresentationBurden": "moderate: signed numbers, chart and triangular table."
+  },
+  "whyCool": "Dropping the first negative stretch lets the running strategy find6, and the full45-stretch table visibly confirms it.",
+  "caveat": "One fixed mixed-sign row tested; no all-negative or different input boundary available in tested path.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Walk again and alternative manual strategy not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:12:07.190264+00:00"
+}

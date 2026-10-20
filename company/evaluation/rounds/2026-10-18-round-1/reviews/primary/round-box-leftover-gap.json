@@ -1,0 +1,103 @@
+{
+  "slug": "round-box-leftover-gap",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/round-box-leftover-gap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title says round leaves corners before asking which shape leaves corners; selectedcircle.",
+    "Side20 squareunused0,circle85.84;side30 circle193.14.",
+    "Reveal distinguishes touching four sides from filling region and2Darea from capacity. Screenshot shows small circle/square and clipped right prose."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Visual shape comparison.",
+    "conceptualDemand": "Boundary contact versus occupied area.",
+    "interfaceBurden": "Two modes and side slider."
+  },
+  "whyCool": "Touching every side of a space does not mean filling it.",
+  "caveat": "Prediction spoiled by title; percentage gap or packing challenge would add value.",
+  "effort": "Prediction,shape contrast,scale change,reveal,inline screenshot.",
+  "provisionalBucket": "revise-prediction",
+  "bucketReason": "Correct visual model,weak challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title supplies answer.",
+      "evidence": "Round inside square leaves corners.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Shape contrast works; size changes count without new causal insight.",
+      "evidence": "0/85.84/193.14.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Clear geometric distinction and scope.",
+      "evidence": "Touching not filling;2Dnotcapacity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Diagram small and prose clips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle and limitation,no concrete new application.",
+      "evidence": "Same footprint example.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar corner gaps.",
+      "evidence": "Circle not square.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shape visibly leaves four corners.",
+      "evidence": "Circle inscribed in square.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two shapes and scale slider.",
+      "evidence": "No placement puzzle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Container footprint relevance with limits.",
+      "evidence": "Not full capacity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Contact versus coverage and area scaling.",
+      "evidence": "Two side values.",
+      "confidence": "medium"
+    }
+  }
+}

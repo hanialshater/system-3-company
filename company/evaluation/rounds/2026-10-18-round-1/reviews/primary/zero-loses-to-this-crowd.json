@@ -1,0 +1,104 @@
+{
+  "slug": "zero-loses-to-this-crowd",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/zero-loses-to-this-crowd",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The stated simulated population mixes 30% random guesses, 40% near 33 and 30% near 22; I predicted About 23 rather than equilibrium zero.",
+    "Set my guess to zero, showed the crowd and marked zero. The graph showed average 34.3 and target 22.9.",
+    "After showing the crowd, the guess slider was disabled, preventing a second guess against the same crowd.",
+    "Reveal accurately said zero missed by 22.9 and 84 simulated guesses were closer; it explicitly distinguished this generated population from real players."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple averaging supports a subtler strategic distinction.",
+    "conceptualDemand": "Equilibrium versus a response to actual guesses.",
+    "interfaceBurden": "Sequentially gated guess and reveal controls."
+  },
+  "whyCool": "The theoretically special zero loses visibly when the crowd stops reasoning earlier.",
+  "caveat": "A fixed simulated crowd, and the slider locks before trying the near-target alternative.",
+  "effort": "Completed prediction, zero-guess exploration, graph inspection and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear strategic contrast with limited repeat exploration.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The equilibrium distractor tests whether the learner models the stated crowd.",
+      "evidence": "Three plausible guesses with explicit population assumptions.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "One chosen guess can be compared with the revealed target, but subsequent guesses are locked.",
+      "evidence": "Slider disabled after Show the crowd.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed average and error support the distinction between equilibrium and best response to this population.",
+      "evidence": "34.3 average, 22.9 target, zero misses by 22.9.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Population assumptions, target and simulation boundary are visible.",
+      "evidence": "Number line labels average, target and zero error.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The conditional principle is explained without another population to apply it to.",
+      "evidence": "No editable crowd mix or second case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The equilibrium answer visibly loses to a finite-depth population.",
+      "evidence": "84 generated guesses closer than zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Distribution, average and target appear together.",
+      "evidence": "Dot plot and distance brackets.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "A guessing game gives an outcome to inspect.",
+      "evidence": "Guess slider and crowd reveal.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily an abstract strategic reasoning example.",
+      "evidence": "No concrete external application.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates equilibrium reasoning from behavior under a specified population.",
+      "evidence": "Finite reasoning steps and best response.",
+      "confidence": "medium"
+    }
+  }
+}

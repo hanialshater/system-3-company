@@ -1,0 +1,104 @@
+{
+  "slug": "three-cards-one-red-face",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-cards-one-red-face",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction three RR,BB,RBcards,randomcard and visible red; selected1/2. Random orientation only clarified after lock as any six faces equally likely.",
+    "Kept three red faces then turned them over:2of3redbacks,RRcard contributes two distinct visible faces.",
+    "Two60draw batches accumulated23red18redback78%,then53red41redback77%. Reveal accurately cited120draws and sampling wobble around2/3.",
+    "Inline1280x720 light screenshot: face/back enumeration clear but titleleft and proseright clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small sample space but weighted conditioning is counterintuitive.",
+    "conceptualDemand": "Equallylikely faces versus cards.",
+    "interfaceBurden": "Three clear controls; horizontal clipping."
+  },
+  "whyCool": "The red/red card gets two tickets into the red-face sample space,so it wins twice as often.",
+  "caveat": "Specify random face orientation in hook; horizontal clipping; accessibility unknown.",
+  "effort": "Prediction,facefilter/turn,two60drawsamples,reveal and inline screenshot.",
+  "provisionalBucket": "solid-with-hook-and-layout-fix",
+  "bucketReason": "Strong conditional enumeration,needs explicit sampling assumption.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Meaningful misconception but random orientation assumption clearer only after lock.",
+      "evidence": "Drawrandomcard wording versus equallylikelyfaces later.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Face filtering,turning and sampled comparison make conditioning concrete.",
+      "evidence": "2of3 and120draws.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains counting faces rather than cards and reconciles actual noisy sample.",
+      "evidence": "77%observed versus2/3theory.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Good enumeration but horizontal clipping.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sample-space correction without fresh problem.",
+      "evidence": "Same threecards.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two remaining cards are not equally likely after seeing red.",
+      "evidence": "RRhas two eligiblefaces.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Face/back rows show conditional weighting.",
+      "evidence": "Three redfaces and their backs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Filter,turn and sample controls.",
+      "evidence": "Two sample batches.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports conditional probability reasoning.",
+      "evidence": "Count eligibleoutcomes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Conditioning plus theoretical/sample distinction.",
+      "evidence": "77%short-run wobble.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "file-modified-not-created",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/file-modified-not-created",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected modified date for recent edits; title/hook explicitly distinguish dates.",
+    "Records old:C1M9,new:C8M8,past:C1M2. Created\u22658 selected new only; Modified\u22658 selected old and new.",
+    "Screenshot showed excluded past greyed and included old/new legible, so actual membership changed rather than just count label.",
+    "Reveal accurately reported two matches and explained an old-created file can be recently modified."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple numeric comparisons with a legend.",
+    "conceptualDemand": "Different date fields answer different questions.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "A recent edit can be found even when the file itself is old.",
+  "caveat": "Fixed abstract dates and no real filesystem semantics; title gives away the prediction.",
+  "effort": "Completed prediction, both filters, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Actual membership contrast and accurate practical explanation despite a weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "An obvious field-name question repeats the supplied lesson.",
+      "evidence": "Recent edits versus modified date.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Different metadata fields genuinely change inclusion on fixed data.",
+      "evidence": "One created match versus two modified matches.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate selected records illustrate the intended distinction.",
+      "evidence": "Old fileC1M9 included by modification.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "C/M legend and visible membership make filter behavior clear.",
+      "evidence": "Excluded row greyed.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete search-field rule is tied to a practical question.",
+      "evidence": "Choose date field matching creation versus editing.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "An old file can be a recent edit.",
+      "evidence": "oldC1M9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Table and inclusion state show metadata difference.",
+      "evidence": "Three records.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two sequential fixed filters.",
+      "evidence": "No editable threshold.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful file-search habit.",
+      "evidence": "Recent edits use modification field.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic metadata distinction.",
+      "evidence": "No filesystem timestamp behavior modeled.",
+      "confidence": "medium"
+    }
+  }
+}

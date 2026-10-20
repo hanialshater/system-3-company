@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "fewest-exits-first-tour",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fewest-exits-first-tour",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "fewest-exits-first-tour",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/fewest-exits-first-tour/meta.json",
+    "metaSha256": "4b7cc36e10cc3cd70cf9fc63657d5415dc75b33097a0abd44174ca3e66386c8c",
+    "demoSha256": "d35b5fc2773dd1a5830e8c161a6f74e6dc0c9bf0c7d954c6b91bff60ca973829",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/fewest-exits-first-tour",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/fewest-exits-first-tour.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected A25/B25 against A21/B25 and A25/B21; locked it in.",
+    "exploration": "Moved twice manually: both visited3, different current squares and onward-count choices visible. Move until stuck completed5\u00d75:A21 with4 unvisited,B25 complete. Board toggle8\u00d78 automatically ran:A36 with28 unvisited,B64 complete. Both result rows retained.",
+    "reveal": "Corrected A21/B25; explained A stranded bottom-left corner and B uses awkward low-exit squares while reachable. Included actual8\u00d78 result and explicit heuristic-not-guarantee caveat.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Two boards show numbered visited squares,hatched unvisited squares,red stuck ring and onward-choice counts during stepping. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact21 versus25 choices require predicting long fixed-order path; conceptual rulecontrast still clear.",
+      "evidence": "Three exact outcome options before walkthrough.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual steps plus two completed board sizes expose heuristic contrast.",
+      "evidence": "5\u00d75:21/25;8\u00d78:36/64;onward counts visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects stranded corner and low-exit priority to actual results,states failure limit.",
+      "evidence": "Use awkward squares before inaccessible;not guarantee.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Side-by-side labeled boards and retained results support tested desktop comparison.",
+      "evidence": "Actual two-board screenshot and result table.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete larger-board case actually tested with explicit heuristic applicability limit.",
+      "evidence": "8\u00d78 completion andcanfail onotherboards/starts.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed both-complete prediction contradicted by fixed-order failure.",
+      "evidence": "A21 versusB25.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visited/hatched cells and onward counts carry stranded-square mechanism.",
+      "evidence": "Actual stuck Aboard andcomplete Bboard.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and board-size controls permit limited fixed-rule exploration.",
+      "evidence": "Two manual moves andtwo boardcases.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete search heuristic prioritizing constrained choices.",
+      "evidence": "Fewestonwardmoves avoids stranded corners here.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Moveordering,constraintpriority,largercase andfailurelimit linked.",
+      "evidence": "Two board outcomes andnot-guarantee caveat.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires knight-move geometry andmulti-step constraint heuristic.",
+    "conceptualDemand": "Track legalmoves,visitedcells andremaining-degree choice acrosspath.",
+    "interfaceBurden": "Moderate:smallboard labels/dense numbered traces;rule labels clear.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:knighttour andonward-degree heuristic.",
+    "notationRepresentationBurden": "moderate:boardcoordinates/pathnumbers andcandidatecounts."
+  },
+  "whyCool": "The fixed-order knight leaves28 squares untouched on8\u00d78 while the fewest-exits knight numbers everycell.",
+  "caveat": "Two fixed starts andtie orders;no observed heuristic failure case ormanualchoice tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Toggle back after8\u00d78 nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:58:21.170825+00:00"
+}

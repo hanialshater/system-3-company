@@ -1,0 +1,104 @@
+{
+  "slug": "heads-after-heads-trap",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heads-after-heads-trap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted50% for equal-weight average of within-sequence shares across14 eligible fair-coin4-flip sequences; prompt suppliedHHHT2of3 example.",
+    "OpenedHHHT2of3:average66.7%,pooled2of3. TTTT andTTTH no such flip; addedHHHH3of3 andHTTT0of1:average55.6%,pooled5of7.",
+    "Opened all16 tiles:14 eligible,average40.5%,pooled12of24. Reveal distinguished equal sequence votes versus pooled flips and cited hot-hand study counting trap.",
+    "All tiles and reveal readable in light1280x720 screenshot with internal vertical scroll."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Conditional selection and average-of-ratios distinction require sustained reasoning.",
+    "conceptualDemand": "Two estimators over selected short sequences.",
+    "interfaceBurden": "16 simple taps; understandable once prompt read."
+  },
+  "whyCool": "The coin stays fair while the precisely defined average drops below half.",
+  "caveat": "Research citation not independently verified here; learner must track two denominators. No new-case transfer test.",
+  "effort": "Prediction,all16 sequence tiles with intermediate comparisons,reveal,screenshot.",
+  "provisionalBucket": "specialist-candidate",
+  "bucketReason": "Strong exhaustive mechanism; demanding probability lesson.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precisely specifies estimator and example to avoid ambiguous fair-coin question.",
+      "evidence": "14 eligible sequence-share average versus pooled flips.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Exhaustive finite sample and controlled additions expose denominator weighting.",
+      "evidence": "Ineligible tiles,2of3,3of3,0of1 then all16.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconciles40.5% with50% pooled fairness through weighting.",
+      "evidence": "14 equal votes versus12of24 flips.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Eligible states and two aggregate outputs clear through tested path.",
+      "evidence": "No-such-flip tiles and readable reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names research context without a new application exercise or detailed conditions.",
+      "evidence": "Hot-hand study attribution only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Several intermediate aggregates culminate in fair flips but40.5% average.",
+      "evidence": "66.7%,55.6%,40.5% versus final pooled50%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Enumerated tiles externalize every denominator.",
+      "evidence": "16 visible sequence outcomes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Opening all combinations drives discovery.",
+      "evidence": "Tap16 tiles with changing aggregates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Research measurement connection secondary.",
+      "evidence": "Early hot-hand study example.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Contrasts estimators,selection and independence across exhaustive space.",
+      "evidence": "Equal sequence weighting versus count-weighted pooling.",
+      "confidence": "medium"
+    }
+  }
+}

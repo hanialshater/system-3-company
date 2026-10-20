@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust6/6 ignored. Chose100 versus10/1024;locked. Finger values hidden until commitment."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Count16 animation observed early3/4numbers then16/17numbers; message fourrightfingers0–15,next16restarts. Raisedremaining9fingers=>1023,26numbersmade; +1disabled. All down=>0,26visited retained, revealavailable. Screenshot grid marks visitednumbers and labeled powers, inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite1024. Ownmax1023and26lit; unique0–1023patterns,include0+1;eachfinger doubles oldnumbers down/upplusvalue;ten2multiplications;binary."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible finger-count versus combinations commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Countcarry,allup/reset and visitedgrid demonstrate doubling.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses own16/max/26visited and recursive explanation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Currentnumber/visitedcount clearly separated.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General two-state doubling rule explained.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tenfingersencode1024patterns.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fingerstates/visitedgrid carry doubling.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Freefinger combinations and countanimation.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Binarycounting withfamiliarobjects.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Representation,capacity,carry andvisiteddistinction.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Placevalue, doubling combinations and count-versus-maximum linked with sample counter.",
+    "conceptualDemand": "Patterns versus raisedfinger count; recursive doubling explained.",
+    "interfaceBurden": "Ten labeled toggles/countanimation/reset; visited count distinct currentnumber."
+  },
+  "whyCool": "At16a new finger restarts fourlower fingers' sixteenpatterns, and alltenreach1023with1024possiblepatterns.",
+  "caveat": "Only26patterns actually visited, not all1024; real finger dexterity not tested; +1stops atmax rather than overflow.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Individual+1 and accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "binary-fingers",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/binary-fingers",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "2c330a4dce06236b637eadb08f18fc34ba58acbdfb57c3a09871bc2b88444f45",
+    "metaSha256": "2d2bcd87a6f6abe653cb070ae80bb7ab3ab4501546c3230a11330d5024cd8884"
+  }
+}

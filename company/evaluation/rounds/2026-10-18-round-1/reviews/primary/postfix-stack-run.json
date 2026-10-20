@@ -1,0 +1,104 @@
+{
+  "slug": "postfix-stack-run",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/postfix-stack-run",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Opening defines pushing numbers and combining top two, but does not specify subtraction operand order before prediction.",
+    "After three tokens stack bottom-to-top was five, one, two; plus reduced top pair to three and multiplication with four to twelve.",
+    "Final steps produced seventeen minus three equals fourteen; operation history retained every reduction.",
+    "Reveal connects actual execution to bracketed expression five plus (one plus two) times four minus three and notes maximum stack height three."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "New notation and stack order.",
+    "conceptualDemand": "Track partial results and operand order.",
+    "interfaceBurden": "Nine sequential token buttons."
+  },
+  "whyCool": "The expression's order can carry all the grouping information that brackets normally supply.",
+  "caveat": "Only one valid expression; subtraction operand order is not explained before the prediction.",
+  "effort": "Prediction, all nine tokens, intermediate stack screenshot, reduction history and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear stack execution with limited variation and an operand-order wording gap.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Well-defined push/pop idea but subtraction order is not initially specified.",
+      "evidence": "Top-two result could be ambiguous for a novice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Guided fixed token execution makes state changes concrete.",
+      "evidence": "Only next token enabled; no alternate expression or operand choice.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains how token order encodes grouping using actual execution.",
+      "evidence": "Four reductions and equivalent bracketed expression.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Stack is clear, but noncommutative operand order needs an explicit rule.",
+      "evidence": "Final caption supplies seventeen minus three only at execution.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Introduces postfix and stack mechanism without a second expression.",
+      "evidence": "One fixed expression.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Grouping can be encoded without brackets or precedence.",
+      "evidence": "Token order evaluates nested sum before multiplication.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visible stack and reduction history show the mechanism.",
+      "evidence": "Three operands collapse to a partial result, then final fourteen.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepwise execution with reset.",
+      "evidence": "Nine fixed token actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic interpreter mechanism.",
+      "evidence": "No programming task or new expression.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Representation order and execution storage connect.",
+      "evidence": "Postfix expression and bounded stack.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "straight-across-saves",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/straight-across-saves",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "straight-across-saves",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/straight-across-saves/meta.json",
+    "metaSha256": "b965284e20192f155dcd007df1407f537e2e461e6792093f50adc7472ebcc0f2",
+    "demoSha256": "1910f208713aceceee62268d3b692a338acc24f3781e8fb2e8119a98c4f5094d",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/straight-across-saves",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/straight-across-saves.json"
+  },
+  "date": "2026-10-18T21:07:24.619806+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected200m saved for300east400north."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial100/200: L300,straight224,saved76. Set300/400:L700,straight500,saved200. Seteast0,north400:both400,saved0."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read original300/400 arithmetic and29% saving; final says c always shorter than a+b and flatground assumed. Strict always-shorter wording contradicts allowed zero-leg case just observed."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected300/400 grid,dashedL,soliddiagonal and700/500bars; counters200saved readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete route comparison tests difference between summed legs and diagonal.",
+      "evidence": "700versus500 gives200.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two sliders permit ordinary and degenerate boundary contrasts.",
+      "evidence": "Zeroeast gives equal400lengths.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains original arithmetic but overstates strict inequality at allowed boundary.",
+      "evidence": "Alwaysshorter versusobserved0saving.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core geometry is clear; final generalization needs positive-leg condition.",
+      "evidence": "Sliderto0allowed yet c alwaysshorter claim.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Flatground condition stated but no new application task.",
+      "evidence": "Same walkingroute parameters only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Diagonal saves substantial distance in ordinary case.",
+      "evidence": "200of700about29%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Route overlay and length bars support comparison.",
+      "evidence": "DashedL and solid500diagonal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two sliders allow destination changes.",
+      "evidence": "Checked300/400and0/400.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful flat-route geometry with boundary wording limitation.",
+      "evidence": "Flatground assumed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Formula applied across parameters without proof.",
+      "evidence": "Pythagorean identity stated.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: squared lengths,square root and saving difference",
+    "interfaceBurden": "gentle: east andnorth sliders",
+    "prerequisiteNovelty": "Pythagorean relation introduced but notproved",
+    "notationRepresentationBurden": "grid,routebars,squares andsquare root"
+  }
+}

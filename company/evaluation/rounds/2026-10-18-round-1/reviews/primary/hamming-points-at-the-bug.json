@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "hamming-points-at-the-bug",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hamming-points-at-the-bug",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "hamming-points-at-the-bug",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/cs/hamming-points-at-the-bug/meta.json",
+    "metaSha256": "afb4afd3a902962fc5a053740dd2a126568602076f61bee45d749fa1be37fb78",
+    "demoSha256": "7623aa1d1c94560be2feaa398500c2962fdb8a240535185df40eac1ca01ea75c",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/hamming-points-at-the-bug",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/hamming-points-at-the-bug.json"
+  },
+  "date": "2026-10-18T20:17:44.453392+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Choseposition2 and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Flipped6:checks2and3fail,weights2+4=6. Selected3:checks1and2fail,sum3. Selected7:allfail,sum7. Each selection replaced prior singleerror. Reclicked7afterrevealrestoredsentword,allchecksok."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read6correction,uniquecheckmix encodes position,repairbyflippingback;current7example1+2+4=7."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,6error andscrolled7reveal inspected. Dottedmembership,rowfailstatus,bitlabels and prose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete set-intersection inference under singleerror condition.",
+      "evidence": "Threepositionsets,checks2and3fail1passes,chooseposition.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several distinct syndromes plus restoration test explain code.",
+      "evidence": "6weights2+4,3weights1+2,7allweights;restoreallok.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Unique memberships explain location and correction.",
+      "evidence": "Eachpositionownmix,flipbackrepairs;singleerror premise explicit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Membership matrix makes overlaps countable.",
+      "evidence": "Rowsweighted1,2,4 while prose numberschecks1,2,3; distinctionexplicit2+4=6.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General repair mechanism in same sevenbit toy.",
+      "evidence": "No distinct message/application or new task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Threechecks locate rather than merely detect error.",
+      "evidence": "Sumsalwaysselectedpositionacrossthreecases.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Matrix highlights exact membership and weighted decoding.",
+      "evidence": "Threecontrastsandallpassrestorationobserved.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Clickbitsandcomparecheckpatterns.",
+      "evidence": "6,3,7andrestoretested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful digital-error-correction foundation.",
+      "evidence": "Singlebitcanbeidentifiedandrepaired.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Parity,overlappingchecks andlocationcode linked.",
+      "evidence": "Uniquecombinationsweighted1/2/4.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Track overlapping subsets,odd/even parity and weighted syndrome.",
+    "interfaceBurden": "Sevenbitbuttons,replacederrors,automaticchecks.",
+    "prerequisiteNovelty": "Parityanderror-correctionintroducedwithmatrix.",
+    "notationRepresentationBurden": "Positionsets,binaryword,weightedrows andchecknumbers;matrixsupports."
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "two-thirds-of-the-average",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-thirds-of-the-average",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Players choose any real number zero to one hundred, targeting two-thirds of the average.",
+    "First reasoning round reduced the displayed upper bound to 66.7; round five to 13.2 and round nine to 2.60.",
+    "Screenshot retains earlier bound marks and crosses out guesses twenty-two and thirty-three once excluded.",
+    "Reveal explains repeated multiplication by two-thirds, zero surviving all rounds, and the requirement of iterated mutual knowledge of rationality."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Recursive beliefs and infinite elimination.",
+    "conceptualDemand": "Reason about what others know repeatedly.",
+    "interfaceBurden": "Single and batch rounds plus reset."
+  },
+  "whyCool": "Every extra layer of reasoning removes another band of guesses until only zero can survive them all.",
+  "caveat": "Idealized rationality model with real-valued choices, not measured human play.",
+  "effort": "Prediction, rounds one, five and nine, screenshot and assumption-aware reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear recursive visualization with essential belief assumptions stated.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A concrete recursive-belief puzzle with plausible finite-depth guesses.",
+      "evidence": "Thirty-three, twenty-two or zero.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single and batch reasoning rounds show elimination and shrinking bound.",
+      "evidence": "Rounds one, five and nine inspected.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed bounds, infinite-round conclusion and essential assumption.",
+      "evidence": "Only zero survives all rounds; without repeated rationality knowledge best guess changes.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ceiling bar and excluded guesses show what each reasoning round changes.",
+      "evidence": "Prior 19.8 to 13.2, then 3.90 to 2.60.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Gives the result's applicability and explicit failure of the assumption.",
+      "evidence": "Common rationality reasoning is required; not a prediction of arbitrary people.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Reasoning beyond the obvious thirty-three repeatedly lowers the answer.",
+      "evidence": "Zero rather than a finite-step guess.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Contracting ceiling and eliminated markers make recursion tangible.",
+      "evidence": "Earlier bounds retained on the number line.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Iterate a fixed reasoning process.",
+      "evidence": "Single or four-round steps and reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful strategic-belief intuition.",
+      "evidence": "No actual player study or behavior data.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Finite reasoning, limiting survival and mutual beliefs connect.",
+      "evidence": "Nine rounds still positive, all-round survivor zero.",
+      "confidence": "medium"
+    }
+  }
+}

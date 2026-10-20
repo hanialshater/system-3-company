@@ -1,0 +1,105 @@
+{
+  "slug": "undo-a-bad-push",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/undo-a-bad-push",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specified five directed unit-capacity pipes,first zigzag push and no cancellation; chose2 rather than stuck1.",
+    "Pushed s-a-b-t:total1. Tried s-a-t blocked at s-a,then s-b-t blocked at b-t.",
+    "Send one back along a-b automatically augmented s-b-a-t,endingtotal2. Final graph showed s-a,s-b,a-t,b-t1/1,central a-b0/1,and dashed source cutcapacity2.",
+    "Reveal explained cancellation,residual rerouting and source-cut upper bound. Other reverse-pipe outcomes were explained but not tested.",
+    "Inline1280x720 light screenshots: full graph inspected after internal scroll; explanation readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small flow graph but residual cancellation is conceptually unfamiliar.",
+    "conceptualDemand": "Capacity conservation and rerouting.",
+    "interfaceBurden": "Several explicit buttons,internal scroll,readable prose."
+  },
+  "whyCool": "Undoing a central choice repairs both blocked routes and reaches a visibly provable maximum.",
+  "caveat": "Reverse action performs full augmenting path automatically; alternate reverse pipes untested; accessibility unknown.",
+  "effort": "Prediction,zigzagpush,two blocked alternatives,central reverse augmentation,reveal,final graph inspection and inline screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear constructive reroute with visible optimality bound.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete capacities,initial route and no-backtracking condition.",
+      "evidence": "1versus2versus3 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Blocked alternatives and central cancellation show why rerouting improves flow.",
+      "evidence": "Total1 then2 with exact blocked pipes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects observed blockage and reroute to visible capacity-cut proof of optimality.",
+      "evidence": "Two saturated pipes leave source.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable capacities,arrows,cut and explanation.",
+      "evidence": "Inline graph and reveal screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General residual-flow principle without fresh network.",
+      "evidence": "Samefour-node graph.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Taking flow back lets more reach destination.",
+      "evidence": "Cancel central edge increases total.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pipe capacities and source cut make both repair and limit visible.",
+      "evidence": "0/1central,outer1/1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Route choices and reverse-pipe actions.",
+      "evidence": "Manual blocked-route experiments.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network flow optimization intuition.",
+      "evidence": "Residual rerouting.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Augmenting paths and cut upper bound.",
+      "evidence": "Constructive optimum proof.",
+      "confidence": "medium"
+    }
+  }
+}

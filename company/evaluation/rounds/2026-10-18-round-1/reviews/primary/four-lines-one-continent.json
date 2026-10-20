@@ -1,0 +1,104 @@
+{
+  "slug": "four-lines-one-continent",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-lines-one-continent",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionwhichcontinentallfourequator/tropics/primemeridian:Asia,Africa,SouthAmerica; choseSouthAmerica.",
+    "SouthAmerica2equator/Capricorn;Asia2equator/Cancer;Africa4;clickedEurope,NorthAmerica,Australia tocompleteallalternatives;Australia1Capricorn.",
+    "RevealAfrica4,Asia/SouthAmerica2,othersthree1;explicitowncountrylistconventionandcoarsemapcaveat.",
+    "Screenshot labeledworldmap redlines andhighlightedcontinent,readoutandfullprose readable; ordinaryverticalscroll."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Readsimplemap andcountlinecrossings.",
+    "conceptualDemand": "Conjunctionoffourgeographicconditions.",
+    "interfaceBurden": "Sixbuttons;readablemap/counts."
+  },
+  "whyCool": "Africastraddlesbothhemispheres andbothsidesoftheprimemeridian,soallfourfamouslines crossit.",
+  "caveat": "Country-to-continent conventions andcoarseoutlineexplicit; noexternalgeography audit.",
+  "effort": "Prediction,all sixcontinents,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Readablequickgeographicdiscovery withlimitedmechanism/transferdepth.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear spatialcomparison withplausiblecontinentalalternatives.",
+      "evidence": "Equator/tropics/meridian conjunction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Presetcontinentselection revealscounts ratherthanchangingmechanism.",
+      "evidence": "Allsixbuttoncomparisons.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualcounts andqualifiesmapconvention.",
+      "evidence": "4vs2vs1 withcountry-list caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Maplabels,highlighting,andcountreadoutlegible.",
+      "evidence": "Redlines andselectedAustralia visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 1,
+      "reason": "Mainlygeographicfact;nogeneralapplication exercisefollows.",
+      "evidence": "OnlyAfricacrossesallfour conclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Notablecontinentalpositionfact.",
+      "evidence": "Africafour,SouthAmericatwo.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Directline-continentintersection visible.",
+      "evidence": "Highlightedcontinentagainstfourredlines.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Clickcontinentstoexplore.",
+      "evidence": "Sixpresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Incidentalgeographicliteracy.",
+      "evidence": "Memorizepositionrelativetofourlines.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Oneintersectioncomparison.",
+      "evidence": "No underlyingmechanismbeyondmapgeometry.",
+      "confidence": "medium"
+    }
+  }
+}

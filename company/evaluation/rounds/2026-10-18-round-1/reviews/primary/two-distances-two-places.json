@@ -1,0 +1,104 @@
+{
+  "slug": "two-distances-two-places",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-distances-two-places",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedoneplace forParis1000/Rome800km. Initialstage600/400zero differs.",
+    "Signal1000/800gives2places;Madrid602ringreduces1;Paris200withRome800/Madrid602gives0. EqualEarthmap showsrings/dots.",
+    "Reveal explainsAustria/Baleariccrossings,Madrid602versus1804,3Dsatelliteanalogy;unqualified 'two circles cross twice' conflictswithtestedzerocase.",
+    "Light1280x720 mapringstiny,readoutclear,revealprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Circleloci andgeographicdistanceconditions.",
+    "conceptualDemand": "Measurementdefineslocus,notpoint.",
+    "interfaceBurden": "Twoslidersandpreset;tinymap."
+  },
+  "whyCool": "Two distance circles can cross in two places, and a third measurement can select one.",
+  "caveat": "Twocirclesneednotcrosstwice;qualifyrevealusingtestedzero-case. Noiselesssphericaltoy,notfullsatelliteclockmodel. Prosecutoff.",
+  "effort": "Prediction,signal,thirdring,inconsistentboundary,reveal,two screenshots.",
+  "provisionalBucket": "needs-owner-review",
+  "bucketReason": "Usefulgeometry;correctintersectiongeneralizationandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concreteexact-distanceambiguityquestion.",
+      "evidence": "One/two/linechoices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Tworing,thirdring andinconsistentboundary testidentifiability.",
+      "evidence": "2\u21921\u21920places.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Originalcaseexplained butintersectionconditionomitted.",
+      "evidence": "Generalcross-twiceclaimdespiteobservedzero.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counts clear,smallmap andclippedprose.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Satelliteanalogy withoutnewapplicationconditions.",
+      "evidence": "Only3Dextensionmentioned.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twoexactdistancesleavetwopossiblelocations.",
+      "evidence": "AustriaandMediterranean.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rings anddots exposeconstraintintersection.",
+      "evidence": "2/1/0cases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Distancesandthirdring supportcounterfactualtests.",
+      "evidence": "Preset,thirdring,Parisboundary.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Position-fixingintuitioncentral.",
+      "evidence": "Phone/satellitehook.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Ambiguity,consistency andmultipleconstraints.",
+      "evidence": "Twotoonetozerofits.",
+      "confidence": "medium"
+    }
+  }
+}

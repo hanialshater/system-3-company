@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "torch-underwater-tilt",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/torch-underwater-tilt",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "a4693a05591059896b9b6d35a26ca70598ee339a8c55fab0cb5ac30af1ad3274",
+    "demoSha256": "1390920e23b848364f6f84531f1abfc775e641f8a81acf9bd86d4e98cdd3bbcc",
+    "metaPath": "src/demos/physics/torch-underwater-tilt/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Mostly leaves into the air at a wide angle and locked the prediction for an underwater beam tilted 60 degrees from straight up.",
+    "exploration": "Started at 45 degrees: exit 70.5 degrees, 86% escaping and 14% reflected. Stepped to 47 degrees: exit 77.1, 74% escaping; 48 degrees: exit 82.1, 57% escaping. At 48.6 degrees the exit direction lay along the surface and escaping fraction was zero. Jumped to 60 degrees: no exit ray, 100% reflected.",
+    "reveal": "The reveal corrected the answer to all reflected back down, accurately recounted the 45, 48.6 and 60 degree states, and explained that refraction away from the normal reaches a limit at a surface-parallel direction. It disclosed still flat water and one color of light.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at 60 degrees. A yellow incident beam and reflected beam stayed below a flat blue surface, with no ray in the air. A dashed normal, 60 degree arc and 100% back label supported the readouts.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt challenges extrapolating a wider emerging ray indefinitely.",
+      "evidence": "Selected mostly escaping at 60 degrees.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fine preset steps expose the approach to the boundary and the beyond-boundary state.",
+      "evidence": "Escaping light declined from 86% through 74% and 57% to zero before the 60 degree test.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal uses observed boundary states to explain total reflection.",
+      "evidence": "It names the surface-grazing direction and absence of an exit direction beyond it.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The ray diagram and fractions make the changing outcomes explicit.",
+      "evidence": "The final screenshot shows both beams below the surface and no transmitted ray.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general optical condition is explained without a distinct new application.",
+      "evidence": "No other material, device or fresh case is explored.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tilting more eventually prevents light escaping rather than spreading it farther.",
+      "evidence": "At 60 degrees the surface reflects everything back into water.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The normal, ray directions and energy fractions support the explanation.",
+      "evidence": "At the final state the incident and reflected rays share the underwater side.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Small tilt steps make the critical transition discoverable.",
+      "evidence": "The one-step button exposes 47, 48 and 48.6 degrees before the jump.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It builds intuition for total internal reflection.",
+      "evidence": "The reveal states the boundary condition under ideal water assumptions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It includes partial reflection approaching the critical angle.",
+      "evidence": "The original 14% reflection grows before complete reflection.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "One angle control is easy, while refraction relative to a normal and a critical angle require new spatial reasoning.",
+    "conceptualDemand": "Moderate: distinguish incident and exit angles and understand their limiting relation.",
+    "interfaceBurden": "Low: slider, step button and 60 degree shortcut.",
+    "conceptualChallenge": "The emerging direction reaches 90 degrees before the incident angle does.",
+    "prerequisiteNovelty": "Refraction, partial reflection and total internal reflection are introduced.",
+    "notationRepresentationBurden": "Moderate: angle arcs, normal line, rays and percentage fractions."
+  },
+  "whyCool": "A transparent surface becomes a mirror purely because of the direction of the incoming light.",
+  "caveat": "The lesson assumes a still flat surface and one light color, with fixed materials.",
+  "missingEvidence": [
+    "No different medium or real optical application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

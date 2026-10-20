@@ -1,0 +1,104 @@
+{
+  "slug": "rolling-hash-window",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rolling-hash-window",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Five-letter toy sum hash starts FEBCD at twenty against ABCDE pattern sum fifteen.",
+    "First slide subtracts outgoing F six and adds incoming A one, yielding EBCDA sum fifteen; diagram marks four kept letters.",
+    "Checking that candidate rejects E versus A, demonstrating collision. Next-flag batch reaches true ABCDE, then direct check confirms all five letters.",
+    "Eight slides use five initial values plus sixteen boundary values, twenty-one versus forty-five full-window reads; reveal distinguishes constant-cost updates from required collision verification."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Letter coding and reusable summaries.",
+    "conceptualDemand": "Separate updating a hash from verifying a match.",
+    "interfaceBurden": "Slide, verify and next-candidate controls."
+  },
+  "whyCool": "A window can reuse almost all its work, while a cheap summary still needs a careful final check.",
+  "caveat": "Simple order-insensitive sum is deliberately collision-prone; work counters cover sum updates, not all verification operations.",
+  "effort": "Prediction, manual slide, false flag check, batched advance, true match check, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent incremental-work mechanism paired with an explicit correctness failure case.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise update-work question with a fully specified sum.",
+      "evidence": "Five, two or three letter values.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual update, false-candidate check, batched advance and true check expose both benefit and limit.",
+      "evidence": "EBCDA collision and ABCDE match.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains exact saved work and why equal hashes cannot prove equality.",
+      "evidence": "Twenty-one versus forty-five; same-sum reorder rejected by letter check.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Outgoing/incoming marks and kept-letter brace explain incremental reuse.",
+      "evidence": "Twenty minus six plus one equals fifteen.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General constant-update principle with concrete non-equivalence case.",
+      "evidence": "Wider window still changes only two boundary values; equal sum still requires exact verification.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Most work can be reused, but same summary can describe a wrong string.",
+      "evidence": "Fast update plus EBCDA false flag.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Moving window and marked boundaries directly explain reuse.",
+      "evidence": "Four kept letters, one out and one in.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step, jump and explicitly verify candidates.",
+      "evidence": "False and true candidates require checks.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete search optimization with correctness safeguard.",
+      "evidence": "Cheap rolling filter followed by exact match check.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Incremental computation, collision and work accounting connect.",
+      "evidence": "Update cost independent of width but equality not guaranteed.",
+      "confidence": "medium"
+    }
+  }
+}

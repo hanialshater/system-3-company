@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "more-detail-less-likely",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/more-detail-less-likely",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e71fb3afc5f1660e4717e0e0c89a16403ef45c289d1430ca2e680e8cb1cc12bf",
+    "demoSha256": "1e6f927fac376f6208ef138f900eb06395091317f576e9f6bd9c94bc04b55c67",
+    "metaPath": "src/demos/probability/more-detail-less-likely/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected librarian who runs book club and locked it in. Initial librarian share10%,club share50%.",
+    "exploration": "Tried club100%,input rejected because maximum90; no change. Read control max90 then set90:100 librarians,90 club. Set librarian share20%:200 librarians,180 club,reveal unlocked.",
+    "reveal": "Corrected librarian. Uses current180 inner versus200 outer to explain subset inclusion; added detail removes people,never raises probability.",
+    "visual": "Inline initial/final screenshots inspected:1000-dot grid,outer librarian border contains smaller club border;180 coloured dots inside200-member extent. Sliders/readouts legible. Trust4/4 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible fitting-description conjunction choice with clear commitment.",
+      "evidence": "Detailed librarian-club story selected.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Club share and base-rate changes preserve subset relation with numeric contrast.",
+      "evidence": "100/50 to100/90 to200/180.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact current sets to general inclusion rule.",
+      "evidence": "180 club inside200 librarians and added-detail explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named sliders,current counts and visible nested borders clarify comparison.",
+      "evidence": "Inspected final screenshot; maximum90 discovered after rejected100 attempt.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General more-specific-story principle offered without concrete new story application.",
+      "evidence": "Added detail never more likely.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fitting detailed-story prediction reversed by subset counts.",
+      "evidence": "180 cannot exceed200.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Nested dot-set borders carry inclusion mechanism.",
+      "evidence": "Final200/180 screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two independent share sliders support relation exploration.",
+      "evidence": "Club90 and librarian20 tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete narrative-probability judgement central.",
+      "evidence": "Sam description versus conjunctive story.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Subset inclusion survives changing conditional share and base rate.",
+      "evidence": "Two slider contrasts.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates conditional club share from population librarian share and subset probability.",
+    "conceptualDemand": "Nested categories with two proportions.",
+    "interfaceBurden": "Low: two sliders;max90 not visually numeric before action.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: conjunction probability",
+    "notationRepresentationBurden": "low:percentages andcounts"
+  },
+  "whyCool": "Even pushing club membership to its allowed maximum leaves the detailed-story group inside the larger librarian group.",
+  "caveat": "Equality boundary100% is unavailable; no fresh narrative application.",
+  "missingEvidence": [
+    "100% equality boundary",
+    "Fresh story case",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

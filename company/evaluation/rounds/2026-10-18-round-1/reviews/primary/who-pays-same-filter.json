@@ -1,0 +1,104 @@
+{
+  "slug": "who-pays-same-filter",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/who-pays-same-filter",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted a filter would be fitted under free bargaining despite the factory's right to pollute, given damage300 and filter100 per year.",
+    "Offer50 was marked rejected; offer200 installed filter with factory+100/laundry\u2212200, total\u2212100. Offer350 was marked rejected and did not replace the accepted200 outcome.",
+    "Under clean-air rights, damages gave factory\u2212300/laundry0; filter gave\u2212100/0, total\u2212100.",
+    "Reveal accurately explained the mutual-gain interval and equal aggregate costs with different distribution, and stated costly bargaining or many parties can break the result."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires tracking transfers, resource costs and legal entitlement separately.",
+    "conceptualDemand": "Bargaining surplus and incidence.",
+    "interfaceBurden": "Five controls with internally scrolling model."
+  },
+  "whyCool": "Changing who owns the right changes the money flow while leaving the efficient physical outcome unchanged.",
+  "caveat": "Illustrative free bargaining with known costs, not a prediction of real-world pollution disputes.",
+  "effort": "Completed prediction, all five actions, two screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent controlled distinction between economic outcome and distribution.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Costs and free-bargaining assumptions support a meaningful rights-versus-efficiency prediction.",
+      "evidence": "Filter100 avoids damage300.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three offers test both sides of the beneficial interval, and liability changes incidence separately.",
+      "evidence": "50/200/350 plus damages/filter comparison.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The accepted offer and both totals explain efficient outcome versus distribution.",
+      "evidence": "Both totals\u2212100 with different parties paying.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rights, costs and model assumptions are explicit; rejection preserves the prior accepted state.",
+      "evidence": "Rejected offers marked separately on the payment line.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "A concrete externality bargaining principle includes explicit failure conditions.",
+      "evidence": "Costly bargaining and many parties caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The same filter is installed under opposite initial rights.",
+      "evidence": "Aggregate cost unchanged, individual balances differ.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Payment band, transfer arrow and side-by-side totals expose efficiency and incidence.",
+      "evidence": "Three offers and two rights cases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Making offers and choosing compliance actions drives the lesson.",
+      "evidence": "Five meaningful actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies externality negotiation under restrictive assumptions.",
+      "evidence": "Not a real legal or bargaining recommendation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates allocation efficiency from wealth distribution and transaction costs.",
+      "evidence": "Coase-style model with scope conditions.",
+      "confidence": "medium"
+    }
+  }
+}

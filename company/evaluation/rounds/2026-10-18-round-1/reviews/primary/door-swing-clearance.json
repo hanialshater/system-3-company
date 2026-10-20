@@ -1,0 +1,104 @@
+{
+  "slug": "door-swing-clearance",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/door-swing-clearance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Beyond swing; labels themselves state inside/outside the obstacle zone.",
+    "Atdoor80 cm, In swing used basket radial position65, margin\u221215; Beyond used90,margin+10.",
+    "Changing door width to100 also moved basket position to110, preserving margin+10. It was not a fixed-basket width experiment.",
+    "Reveal correctly described the current10 cm margin and arc, included real shape/handle clearance and keep-exits-clear limits; held verdict duplicated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic circle radius and placement.",
+    "conceptualDemand": "Swept region versus opening.",
+    "interfaceBurden": "Two modes and width slider."
+  },
+  "whyCool": "The space a door occupies while moving becomes visible as a region.",
+  "caveat": "Slider changes door width and basket position together; margin ignores detailed basket/handle geometry and is not a real installation clearance specification.",
+  "effort": "Completed prediction, both layouts, changed width, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful diagram but answer-spoiling labels and a coupled control weaken the experiment.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Choice labels largely contain the answer.",
+      "evidence": "In swing versus Beyond swing.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Mode contrast is visible, but width slider secretly co-adjusts basket position and cannot test a fixed placement boundary.",
+      "evidence": "Door80/basket90\u2192door100/basket110.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate current geometric principle with explicit real-object limits.",
+      "evidence": "10cm positive margin, handles/shapes need extra.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Basket radius wording can mean object size rather than hinge distance; coupled slider behavior unstated, verdict duplicated.",
+      "evidence": "Basket radius110 means radial position.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete swept-area check includes extra-clearance and exit conditions.",
+      "evidence": "Opening alone insufficient; real shapes matter.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Door needs swept space beyond wall opening.",
+      "evidence": "Simple spatial reminder.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Top-down swept sector makes collision zone visible.",
+      "evidence": "Basket inside versus outside sector.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two layouts and a coupled slider.",
+      "evidence": "No actual swing animation or free placement.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful spatial planning principle with stated limits.",
+      "evidence": "Keep exits unobstructed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Simplified radial check.",
+      "evidence": "No full shape collision model.",
+      "confidence": "medium"
+    }
+  }
+}

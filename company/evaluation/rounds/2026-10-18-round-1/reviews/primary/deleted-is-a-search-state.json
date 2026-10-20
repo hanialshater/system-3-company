@@ -1,0 +1,104 @@
+{
+  "slug": "deleted-is-a-search-state",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/deleted-is-a-search-state",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted trash-state notes excluded by an active-only search.",
+    "A kept map/draft active and left notes out:2 matches,1 excluded.",
+    "B included notes still marked trash:3 matches,0 excluded.",
+    "Reveal correctly described changing search scope, not restoring the note, and noted real products have varying retention periods."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple filtering with explicit status.",
+    "conceptualDemand": "Scope versus existence.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "A note can disappear from results while remaining in the retained dataset.",
+  "caveat": "Fixed example assumes recoverable deletion; inclusion is not restoration and cannot recover permanently purged content.",
+  "effort": "Completed prediction, both scopes, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical distinction with an appropriate retention caveat.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit state and scope support a concrete membership prediction.",
+      "evidence": "Deleted note versus active-only list.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Scope toggle reveals membership without changing underlying state, but only a fixed preset dataset.",
+      "evidence": "A/B on three records.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correctly distinguishes finding retained deleted content from restoring it.",
+      "evidence": "Notes remains trash under expanded search.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Status labels and counts make state versus scope clear.",
+      "evidence": "Trash label retained.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete search-scope rule includes product retention limits.",
+      "evidence": "Including deleted works here; retention varies.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "An everyday hidden search filter.",
+      "evidence": "Missing from results does not mean no retained record.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Record list and counts show exclusion.",
+      "evidence": "No more complex state transition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two views.",
+      "evidence": "No editable search or deletion.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful missing-item search habit.",
+      "evidence": "Check scope and retention.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates record status, visibility and restoration.",
+      "evidence": "No restore action.",
+      "confidence": "medium"
+    }
+  }
+}

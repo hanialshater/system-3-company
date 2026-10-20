@@ -1,0 +1,103 @@
+{
+  "slug": "sketch-the-counts",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sketch-the-counts",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted five. After nine items, first-row cat counter read eight against true five; stream explicitly contained five cats, three dogs and one eel.",
+    "Added row: cat estimates 8/5, minimum five; dog 8/4, minimum four against true three. Third row changed dog to 8/4/3, minimum three. Eel 1/4/6 retained minimum one.",
+    "Screenshot showed outlined queried bucket in each row, selected minimum and true-count comparison. Reveal returned to original cat collision, explained only overestimates and min(8,5)=5."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small arithmetic makes an unfamiliar approximate data structure approachable.",
+    "conceptualDemand": "Hash collisions and minimum of upper estimates.",
+    "interfaceBurden": "Low: next/play, add/remove rows, three query choices."
+  },
+  "whyCool": "An extra row helps different animals differently, making the minimum rule feel necessary rather than arbitrary.",
+  "caveat": "Fixed tiny stream and chosen hashes; 'usually close' is asserted without an error-probability experiment. Positive increments only; broader update models not tested.",
+  "effort": "Browser prediction, two manual stream steps then play all, two/three-row comparisons, three queried keys, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Useful contrasting collision cases and clear query visualization, with limited transfer.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Collision is fully supplied, leaving mostly addition.",
+      "evidence": "States cat and dog share counter two and stream contains five plus three.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Rows and keys expose exact, overestimated and corrected cases.",
+      "evidence": "Cat fixed at two rows, dog still high until three, eel exact despite other inflated rows.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed counts support collision and minimum explanation.",
+      "evidence": "Five plus three gives eight; every row only adds other positive counts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Highlighted queried counters and true counts stay legible.",
+      "evidence": "Dog 8/4/3 and eel 1/4/6 visibly linked to minimum.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names and generalizes method without another stream.",
+      "evidence": "Only fixed nine-item stream; no accuracy or memory parameter experiment.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Shared counters recover useful estimates despite collisions.",
+      "evidence": "Second row solves cat but not dog.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned rows make minimum selection visible.",
+      "evidence": "Highlighted counter per hash and outlined minimum.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Alternate queried keys and added rows reveal different collision patterns.",
+      "evidence": "Three keys, one to three rows tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Introduces compact stream counting with a stated directional error.",
+      "evidence": "Count-min sketch, never too low for positive updates.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Shows uneven benefit of additional hashes and why taking minimum is safe.",
+      "evidence": "Dog remains four after second row; eel uses a different best row.",
+      "confidence": "medium"
+    }
+  }
+}

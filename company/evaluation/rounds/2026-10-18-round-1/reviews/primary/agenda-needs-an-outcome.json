@@ -1,0 +1,103 @@
+{
+  "slug": "agenda-needs-an-outcome",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/agenda-needs-an-outcome",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted agenda doesn't say who decides what from Topic:plan versus assumedgroup/owner decisions.",
+    "A onlytopic,1/3fields;B addsOutcome choose,OwnerBo,3/3. Table claims roomknowschoice.",
+    "Reveal limits completeness to intended output,not effectiveness. Screenshot readable;choose has no object/options and thus does not actually state which choice."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar agenda fields.",
+    "conceptualDemand": "Avoid inferring missing decision responsibility.",
+    "interfaceBurden": "Two modes."
+  },
+  "whyCool": "An agenda can name what to discuss while leaving both the decision and decision-maker unspecified.",
+  "caveat": "Replace choose with a concrete outcome such as choose between named plans;test learner selecting an adequate agenda.",
+  "effort": "Prediction,A/B,reveal,inline screenshot.",
+  "provisionalBucket": "revise-outcome-specificity",
+  "bucketReason": "Good epistemic prediction,abstract example.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Good underspecification question with plausible unstated assumptions.",
+      "evidence": "Groupagrees/ownerpicks/doesn'tsay.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two preset informational states,no learner-written outcome.",
+      "evidence": "A/B.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Useful scope limit but claims choice known from vague choose.",
+      "evidence": "Outcomechoose.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but missing actual decision object.",
+      "evidence": "Plan/choose/Bo.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Checklist and limitation without new application.",
+      "evidence": "Topic,outcome,owner.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "A topic doesn't identify decision authority.",
+      "evidence": "Owner absent.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Fields and comparison table show added information.",
+      "evidence": "1/3\u21923/3.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed modes.",
+      "evidence": "No scenariochoice.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Meeting preparation central.",
+      "evidence": "Outcomeandowner.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Information completeness versus effectiveness.",
+      "evidence": "Explicit scope.",
+      "confidence": "medium"
+    }
+  }
+}

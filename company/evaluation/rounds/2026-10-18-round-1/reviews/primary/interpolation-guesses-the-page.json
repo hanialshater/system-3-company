@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "interpolation-guesses-the-page",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/interpolation-guesses-the-page",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "interpolation-guesses-the-page",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/interpolation-guesses-the-page/meta.json",
+    "metaSha256": "e5ffe3b3a307971952d81826da7b13ebaebe6e15e7d0e25ab10add0dff1f9e54",
+    "demoSha256": "6a030fc0a75c71b8e7a3fbcc9c2ae44958e63b8bff6599012ce7396988aeb30a",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/interpolation-guesses-the-page",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/interpolation-guesses-the-page.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 7 looks and locked it in.",
+    "exploration": "Even values 10 through 1000 found 730 at position 73 in one guess; halving comparison six. Switched to cubes, chose 1000: first guess left range 2 to 100, automatic completion took ten looks versus six halving. Chose 9261 and completed in 21 looks versus five. Target changes reset current search while retaining trial history.",
+    "reveal": "Corrected to one, explained aim line matching even dots versus lying above curved cube values and repeatedly undershooting. Gave dictionary W near back analogy and explicit condition that even spread helps while uneven spread can lose to halving.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Value-versus-position dots, dashed straight aim line and target line showed shape mismatch. Trial history legible. Reveal inner scrolling clipped top metric header and final line of prose at current viewport, though AX exposed complete visible-page text.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete evenly spaced list supports exact first-guess reasoning.",
+      "evidence": "730 in arithmetic progression versus one, seven or ten looks.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step and automatic controls plus distribution and target changes expose performance reversal.",
+      "evidence": "One versus six on even list; 21 versus five on cubes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal ties repeated undershoot to geometric mismatch.",
+      "evidence": "Straight aim above upward-bending dots.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph and history explain result; cubes and halving need inference and reveal clips some text.",
+      "evidence": "No explicit cube definition before switching; top metrics outside current reveal view.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete dictionary application accompanies explicit distribution condition.",
+      "evidence": "Open near back for W; even spread helps, uneven spread can be worse than halving.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text target, looks and history available; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A one-look winner can become worse than halving.",
+      "evidence": "21 looks against five on uneven cubes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Aim line against value-position curve shows why the method succeeds or fails.",
+      "evidence": "Straight versus curved dots and repeated short guesses.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Targets and distributions support repeated search experiments.",
+      "evidence": "Manual guess and finish controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Connects search choice to data distribution.",
+      "evidence": "Dictionary analogy and conditional performance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sorted order is separated from regular value spacing.",
+      "evidence": "Same order property, different search costs.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls require graph and numerical-distribution interpretation.",
+    "conceptualDemand": "Use endpoint interpolation and understand why nonlinear spacing causes repeated undershoot.",
+    "interfaceBurden": "Distribution toggle, target buttons and step/finish controls.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Interpolation, cubes and halving search illustrated but partly implicit.",
+    "notationRepresentationBurden": "Large cube values, value-position graph and look counts."
+  },
+  "whyCool": "Aiming by value is powerful only when value tells you where to look.",
+  "caveat": "Dictionary transfer is an analogy with stated even-spread condition; no actual fresh dictionary case or complete transfer test was performed.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Actual fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:38:39.358665+00:00"
+}

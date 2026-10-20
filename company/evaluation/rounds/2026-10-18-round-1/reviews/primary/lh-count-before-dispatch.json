@@ -1,0 +1,103 @@
+{
+  "slug": "lh-count-before-dispatch",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-count-before-dispatch",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Counted would be lower given record 10, shelf 8 and dispatch 3.",
+    "Test A showed 5 (10-5), Test B 7 (10-3). Moving Record to its minimum 5 changed these to 0 and 2.",
+    "Screenshot showed comparison boxes and scaled quantity marks. Reveal explicitly separated original 10 results from current 5, explaining the persistent two-unit error."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Single-digit subtraction and one slider.",
+    "conceptualDemand": "Track a two-unit error through subtraction.",
+    "interfaceBurden": "Two tests and labelled slider."
+  },
+  "whyCool": "Makes an inventory error persist visibly into the next transaction.",
+  "caveat": "The counted expression combines discrepancy and dispatch as minus five rather than showing both steps.",
+  "effort": "Full prediction, both tests, minimum boundary and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical arithmetic with a useful error-propagation principle.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Fully supplied but simple comparison, with corrective title cue.",
+      "evidence": "Chose Counted before tests.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled record change preserves the discrepancy and reaches zero corrected stock.",
+      "evidence": "10 gives 5/7; 5 gives 0/2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains propagation of the error and preserves prediction context.",
+      "evidence": "Reveal says subtract discrepancy before dispatch.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Expressions and constant assumptions make arithmetic traceable.",
+      "evidence": "Count difference 2, dispatch 3, no receipts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General corrected-observation principle without a new application.",
+      "evidence": "Final sentence generalizes to next calculation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected difference follows arithmetic.",
+      "evidence": "Counted stays two below recorded.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Quantity marks support numeric comparison.",
+      "evidence": "Screenshot shows 0 versus 2 markers.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two tests and one slider.",
+      "evidence": "No further challenge.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Central inventory reconciliation application.",
+      "evidence": "Record, shelf and dispatch quantities.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates discrepancy correction from transaction update.",
+      "evidence": "Constant error persists after dispatch.",
+      "confidence": "medium"
+    }
+  }
+}

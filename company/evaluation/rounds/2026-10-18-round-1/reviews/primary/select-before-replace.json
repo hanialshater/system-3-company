@@ -1,0 +1,103 @@
+{
+  "slug": "select-before-replace",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/select-before-replace",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook explicitly says selection affects selection, not every matching word; predicted selected replacement.",
+    "Replace selected changed cat/cat/dog to fox/cat/dog. Replace remaining changed to fox/fox/dog.",
+    "Reveal calls second operation replace-all, unlike button label. Screenshots readable; learner never chooses selection or replacement, and selection is not retained visibly after first edit."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar words.",
+    "conceptualDemand": "Occurrence versus all exact matches.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "Identical words can be different edit targets when the command is bounded by a selection.",
+  "caveat": "Let learner select target and show selection; make second command label consistent with reveal.",
+  "effort": "Prediction,selected edit,remaining edit,reveal,two inline screenshots.",
+  "provisionalBucket": "revise-hook-selection",
+  "bucketReason": "Working contrast but no actual selection agency.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook and answer repeat each other.",
+      "evidence": "Selected replacement limits selected occurrence.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two observable edit scopes, fixed target and sequence.",
+      "evidence": "One cat then remaining cat.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains exact-match scope and preview caution.",
+      "evidence": "Selected versus all.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable output but command terminology differs and target not chosen.",
+      "evidence": "Replace remaining versus replace-all.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit scope-inspection rule before broad editing.",
+      "evidence": "Inspect every affected match.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer disclosed in hook.",
+      "evidence": "Selection affects selection.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Token changes illustrate scope.",
+      "evidence": "One then two fox tokens.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two predetermined edits.",
+      "evidence": "No selection control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Editing scope central.",
+      "evidence": "Avoid broad accidental edits.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single scope distinction.",
+      "evidence": "No substring or multi-match boundary.",
+      "confidence": "medium"
+    }
+  }
+}

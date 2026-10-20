@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "shrinking-degree",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shrinking-degree",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "shrinking-degree",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/geography/shrinking-degree/meta.json",
+    "metaSha256": "79544e196d550bf7935477b30f4006d6856b72ad82c63d84e432092095b57c0f",
+    "demoSha256": "9edd429c681a177d4bed833fd66784a8cf2547f1c0be5b9a28c0d0d63376b7d3",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/shrinking-degree",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/shrinking-degree.json"
+  },
+  "date": "2026-10-18T20:38:01.567458+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose111kmconstant andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Equatorlongitude111.2km,10degbox1112;60N55.6/556;80N19.3/193. Latitude1deg111constant. Inspectednarrowingbox,dashedequatorreference andretainedSeenline."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read56kmcorrection,meridiansmeetpolesandgapshrinks,longitudeisnotfixedlinear distance,latitude111inexplicit6371kmspheremodel."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,60,80andscrolledreveal inspected. Mapbox,counters,labelsandfulltextreadable;finalmapsmallerbutclear."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Quantitativefixed-angleversusdistanceforecast.",
+      "evidence": "Equator111kmprovided,60N111/56/28alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Latitudecontrastsandfixednorthsouthcontrolisolategeometry.",
+      "evidence": "0/60/80longitude111.2/55.6/19.3whilelatitude111.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Convergenceexplainscounterchanges.",
+      "evidence": "Meridiansmeetpoles,boxnarrows,degreeeastwestnotfixed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinctlongitude/latitudecountersandSeenhistorysupportcomparison.",
+      "evidence": "10degboxdisclosed,sphereradiusstated,1degvaluesseparate.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generaldegree-distancecautionwithinsameglobe.",
+      "evidence": "No freshmapdistanceapplication.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Longitudeanglecovershalfwidthat60N.",
+      "evidence": "55.6versus111.2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Movingboxandmeridianconvergenceexplainwidth.",
+      "evidence": "Threepositionsanddashedreferenceboxinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetlatitudesandslider.",
+      "evidence": "60and80visited.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulcoordinate-distanceintuition.",
+      "evidence": "Cannotuseonedegreefixedkmforlongitude.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Singlegeometricrelationwithsphereboundary.",
+      "evidence": "No cosine derivation orapplication.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "conceptualDemand": "Compareconstantanglewithconvergingmeridianphysicalspacing.",
+    "interfaceBurden": "Twopresetsandslider;Seenhistoryautomatic.",
+    "prerequisiteNovelty": "Longitude/latitudedistinctionbrieflylabeled.",
+    "notationRepresentationBurden": "DegreeN,km,10degboxand1degcounters;labelshelp."
+  }
+}

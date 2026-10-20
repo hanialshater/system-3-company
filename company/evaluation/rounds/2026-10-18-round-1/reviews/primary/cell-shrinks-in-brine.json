@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "cell-shrinks-in-brine",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cell-shrinks-in-brine",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust3/3 ignored. Predicted halfvolume forbath0.60fromcell0.30,wateronlycrosses;locked."
+    },
+    {
+      "id": "E",
+      "text": "0.60bath\u2192volume0.50;0.15\u21922.00;0.90\u21920.33;0.30\u21921.00 restoredbaseline. Revealavailableafter0.60."
+    },
+    {
+      "id": "R",
+      "text": "Reveal lists alltestedbaths correctly; conserved0.30units,0.30/0.50=0.60;onlywaterleaves;realcells shrinkless,ignoredwallsandbulk. Scrollup showedfullcell/bath;normalverticalscroll. Rightedgeofproseclipped in screenshot. Inlineonly."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretevolume alternatives with explicitwateronlyconstraint.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fourconcentrations show inversevolume relation and baseline restoration.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actualtestedbaths,conservedstuff arithmetic and model limits.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Plainstuffpervolume labels and captions;righttextclipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Conservedamount/concentrationvolume relation with physical limits;editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Strongerbathshrinks cell,weakerbathdoublesvolume.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cellsizeagainststartingoutline supports inversevolume.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversiblebathpresets.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interpretationofcellresponseinconcentratedbath.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Conservation,inverseproportion,physicalmodel limits.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Amountversusconcentrationandvolume arelinked,supportedbynumbers.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;horizontalclipping",
+    "prerequisiteNovelty": "moderate;selectivemembrane",
+    "notationRepresentationBurden": "low-to-moderate;decimalratios"
+  },
+  "whyCool": "Bathpresetsmake thesameconservedstuffoccupyhalf,double,orone-thirdvolume.",
+  "caveat": "Toyignoreswallsandcellbulk;rightrevealclipping.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Continuoussliderboundaries"
+  ]
+}

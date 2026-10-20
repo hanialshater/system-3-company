@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "ninety-five-percent-of-what",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ninety-five-percent-of-what",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "a699260d71d726f07583de2032c756ded623b9c3826e266788860a60f0443076",
+    "demoSha256": "8ba721599c98ebed3cfeee809cba8055c9e604bdba699336a01cdc098962d082",
+    "metaPath": "src/demos/probability/ninety-five-percent-of-what/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected zero missed intervals and locked it in for 100 pollsters using 95% intervals.",
+    "exploration": "First batch had seven misses out of 100. Pressed 100 new pollsters: six misses in second batch, retained total 13 of 200, 6.5%. Reveal unlocked after first batch.",
+    "reveal": "Corrected about five. Uses first seven and aggregate 13 of 200, then states exact miss chance 5.4% for these intervals. Explains coverage belongs to method over repetitions, not certainty about one interval; pollster cannot see true line.",
+    "visual": "Inline first-batch screenshot inspected: horizontal intervals across fixed vertical 50% line, seven red bars fail to cross. Axis 40-60%, batch and cumulative counters legible. Trust count 4/4 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear repeated-interval frequency question with plausible certainty misconception.",
+      "evidence": "Zero selected versus seven first-batch misses.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two new batches show variability while preserving cumulative coverage.",
+      "evidence": "Seven then six misses, total 13/200.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual batch counts to repeated-method interpretation and exact model discrepancy.",
+      "evidence": "5.4% exact miss chance and pollster cannot see true line.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fixed truth line, red miss encoding and separate batch/total labels are legible.",
+      "evidence": "Inspected first-batch screenshot and second tally.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General interval interpretation supplied without concrete new poll or decision case.",
+      "evidence": "95% belongs to method across many polls.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Zero-miss prediction reversed by ordinary-looking intervals missing known truth.",
+      "evidence": "Seven misses first batch.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Intervals crossing or missing fixed truth line carry coverage mechanism.",
+      "evidence": "Inspected screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Repeated batch button allows sample variation, with fixed model settings.",
+      "evidence": "Two batches performed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of polling intervals is central.",
+      "evidence": "Method coverage and unknown truth to pollster.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sampling variation, cumulative frequency and method-versus-single-interval distinction linked.",
+      "evidence": "Two batches and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Separates fixed true parameter, random intervals and repeated-method coverage.",
+    "conceptualDemand": "Nested sampling and uncertainty interpretation.",
+    "interfaceBurden": "Low: one batch button.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: confidence interval coverage",
+    "notationRepresentationBurden": "moderate: 95%, true 50%, batch frequencies"
+  },
+  "whyCool": "Seven red intervals miss the known truth in the first batch even though every pollster used the same 95% method.",
+  "caveat": "Fixed support and sample size; no fresh interval interpretation task or alternate method.",
+  "missingEvidence": [
+    "Other support values",
+    "Other sample sizes",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

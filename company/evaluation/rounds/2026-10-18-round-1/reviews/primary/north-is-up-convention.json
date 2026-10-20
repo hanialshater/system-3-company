@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "north-is-up-convention",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/north-is-up-convention",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "north-is-up-convention",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/geography/north-is-up-convention/meta.json",
+    "metaSha256": "69a664ba47c5fdc73841c8b14d7df736a681ad4d58af24a5c6b438d000c935f4",
+    "demoSha256": "4f6400a2ad47edb1aca0ff1992167c1e3cfcfcbe1960c78d35d8d26ca39843a3",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/north-is-up-convention",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/north-is-up-convention.json"
+  },
+  "date": "2026-10-18T19:54:34.992054+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Isolation confirmed;trust8/8 ignored. ChoseNorth andlocked aboutHereford1300map.",
+    "exploration": "InitialnorthupmodernJerusalemglobe. Turn180=>Southtop;Turnright90=>Easttop,Asiaabove/Europelowerleft/Africalowerright,matchmessageandrevealunlock. Turnleft90=>Southagain;revealretainsunlock.",
+    "reveal": "CorrectEast. RecapquarterturnleftfrominitialnormgivesHerefordlayout;east/sunrise/Orientterm. South-upal-Idrisi1154exampleandballhasnotop,maporientationchoice. Currentmodelcaptionexplicitmodernnotmedievalmap.",
+    "visual": "Inline1257x936 dark screenshots inspected: rotatedcontinentlabels,compassnorthpointerandtopdirectioncounter;EastmatchlayoutandcurrentSouthclear. Fullreveallegible;historicalmapitselfnotshown."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "ClearhistoricalNorth/South/Eastquestiontargetstoday'snorthupassumption.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "North/South/Eastrotations visiblypreservegeographywhilereorientingframe;historicalmatch targetsuppliedafterprediction.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsobservedrotatedlayouttoorientationconventionandadditionalhistoricalexample;actualhistoricalartifactabsent.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Modern-globe disclaimer,rotationbuttons,compassanddirectionlabelsunambiguous.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteal-IdrisiSouth-upcaseandmap-framechoiceprincipleexplainorientationconvention;nofreshindependentmaptask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "ChosenNorthhistoricalanswerreversedbyEastmatchinglayoutandSouthalternative.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rotatedcontinentsandcompasscarryframe-versusgeographydistinction.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblequarter/halfturnsalloworientationexploration.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretehistoricalmapinterpretationandorientationawareness.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Frameconventionandtwohistoricalinstances,nomoremechanismthanrotation.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Onevisibleframe-rotationrelation;historicalnamesoptionalcontextnotneededforcorechoice.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low:threebuttons",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low:compassdirectionsdefinedbylabels",
+    "notationRepresentationBurden": "low:quarter/halfturns,degrees"
+  },
+  "whyCool": "The sameEarthlooks unfamiliarEast-up,butitsAsia/Europe/AfricalayoutmatchesthesuppliedHerefordtarget.",
+  "caveat": "Modernrotatedglobestandsinforhistoricalmaps;noactualHerefordartifactornewmaptask."
+}

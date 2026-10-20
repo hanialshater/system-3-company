@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "four-in-a-row-two-thirds",
+  "demoVersion": 5,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-in-a-row-two-thirds",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "four-in-a-row-two-thirds",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/economics/four-in-a-row-two-thirds/meta.json",
+    "metaSha256": "3000ef98e1d76b6b338a3720dba6fe75814f284209629cf6a9d036b9872490a8",
+    "demoSha256": "5d3686cc06270de243fddee336a31df1f872df78b09b1710a584bb9a1871d718",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/four-in-a-row-two-thirds",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/four-in-a-row-two-thirds.json"
+  },
+  "date": "2026-10-18T19:10:31.825032+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust8/8 ignored. Selected0.90 and locked. A-B-C-D line,AB/CDsplit1fairlygivenoutsideoptions.",
+    "exploration": "Round0halves. Next1:Bfallback1-C0.5=0.5,Bgets0.75. Next2:fallback0.25,B0.625. Runsettledround9:B0.667,fallback0.334; oscillating trace. Resetcurrentround0all0.5 whiletraceandrowsremain; reveal stays enabled.",
+    "reveal": "Correct0.67. Citesactual0.750/0.625/0.688 sequence to0.667round9,A0.333. Explains C share subtracts from Bfallback and mirrored feedback; power depends network; model not forecast.",
+    "visual": "Inline1257x936 dark screenshots inspected: line4nodes,dashedBCfallback,pair splitbars and hatchedfallback; trace oscillates to2/3. Afterreset current labels0.5 but historicaltrace retained; all reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete equal versus nearall versus2/3choices surface network intuition.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping and run reveal coupled feedback convergence; reset retains trace whilecurrentstate resets.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicit actualround values link reciprocal outsideoptions tolimited innerpower; model caveat stated.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Rule caption terse for unfamiliar outsideoptions; reset leaves settledtrace underround0labels without explicit historical marker.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Network-dependentpower principle but no concrete new network/application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen0.90 ends0.667; feedbackreversal after0.75 demonstrates limit.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Topology,hatchedfallbackbars and oscillatingtrace carry feedback progression.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step/run/reset reveal fixedprocess; no network or rule choices.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Bargaining interpretation present but illustrativefixednetwork not actionable forecast.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reciprocal outsideoptions,oscillation,convergence and model limit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result requires recursively dependent outsideoptions,simultaneous mirrored updating and equilibrium split rule,with only terse fallback/halving support.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "low buttons; moderate currentversushistorical reset ambiguity",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: outsideoptions and bargaining surplus rule",
+    "notationRepresentationBurden": "moderate: four shares,fallback,tracerows and decimal rounds"
+  },
+  "whyCool": "B's first advantage0.75 weakens its own fallback next round and oscillates toward2/3.",
+  "caveat": "Fixed network cannot be changed; reset retains historical trace beneathround0labels."
+}

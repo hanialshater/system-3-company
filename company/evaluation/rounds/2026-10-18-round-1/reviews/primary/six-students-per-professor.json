@@ -1,0 +1,105 @@
+{
+  "slug": "six-students-per-professor",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/six-students-per-professor",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asked which equation represents six times as many students as professors; chose 6S=P.",
+    "Initial ratio4 and P2 gave S8 and all three equations false. Ratio6 gave S12 and only S=6P true.",
+    "Changed P to5 at ratio6: S30, S=6P remained true. Ratio1 gave S5 and only 6S=6P true.",
+    "Reveal correctly used current ratio1 and 5=30 false, contrasted earlier six-per-professor states, and explained letters count people.",
+    "Inline 1280x720 light screenshot: equation rows readable; right edge of explanation clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple counts but symbolic reversal requires attention.",
+    "conceptualDemand": "Variables and multiplication equality.",
+    "interfaceBurden": "Two sliders; explanation clips at right in tested viewport."
+  },
+  "whyCool": "A wrong-looking equation can become true at equal counts, exposing why one numerical match is insufficient.",
+  "caveat": "Right-edge explanation clipping in tested IAB viewport; no accessibility audit.",
+  "effort": "Full prediction, ratio and population contrasts, reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Good causal algebra comparison and state-aware explanation; readability needs repair.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible reversal alternatives test equation interpretation.",
+      "evidence": "Three equations for one verbal relationship.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlled ratio and population contrasts distinguish structure from accidental equality.",
+      "evidence": "Ratio4,6,1 and P2,5 tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explanation reconnects prediction to tested invariance and an explicit nonmatching boundary.",
+      "evidence": "Current ratio1 false contrasted six-per-professor states.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear equations but current viewport cuts explanation text at right.",
+      "evidence": "Inline screenshot of reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains a general translation principle without a fresh application.",
+      "evidence": "Multiply smaller group by6; same college case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Equation reversal can challenge label matching.",
+      "evidence": "6S=P selected and disproved.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grouped people and evaluated equations connect counts to symbols.",
+      "evidence": "P5 S30 then S5.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Small manipulable population model.",
+      "evidence": "Two sliders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports translating verbal ratios into equations.",
+      "evidence": "Counts versus labels explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Tests invariance and accidental equality within elementary algebra.",
+      "evidence": "Ratio1 boundary.",
+      "confidence": "medium"
+    }
+  }
+}

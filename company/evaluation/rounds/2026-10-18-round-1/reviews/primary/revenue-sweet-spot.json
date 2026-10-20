@@ -1,0 +1,104 @@
+{
+  "slug": "revenue-sweet-spot",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/revenue-sweet-spot",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specified demand100-10price and prices3,5,8;selected8.",
+    "Initial3gave70loaves210revenue;5gave50and250;8gave20and160;sliderEnd10gave0and0.",
+    "Reveal compared three candidate revenues and gain-versus-lost-sales mechanism,explicitly distinguished revenue from profit and stated straight-line model.",
+    "Inline1280x720 light screenshot at10showed zero-area rectangle and demandline; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Multiplication and simple demand formula.",
+    "conceptualDemand": "Price-quantity tradeoff and revenue versus profit.",
+    "interfaceBurden": "Simple slider and presets; prose clipping."
+  },
+  "whyCool": "The revenue rectangle grows then disappears as higher prices drive away buyers.",
+  "caveat": "Fixed illustrative linear demand; right-edge clipping; accessibility unknown.",
+  "effort": "Prediction,three candidate prices and zero-demand boundary,reveal and inline screenshot.",
+  "provisionalBucket": "solid-with-viewport-fix",
+  "bucketReason": "Clear modeled tradeoff with revenue/profit limit; repair prose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete demand formula and clear revenue objective.",
+      "evidence": "Three prices specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Price changes demand and revenue with meaningful zero-demand boundary.",
+      "evidence": "3,5,8,10tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed optimum and model limits.",
+      "evidence": "Revenue versus profit caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear metrics but right-edge prose clipping.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General pricing tradeoff without new demand or cost case.",
+      "evidence": "Same bakery model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Higher price can reduce total revenue.",
+      "evidence": "8earns160versus5earns250.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Revenue rectangle connects price and quantity.",
+      "evidence": "Area collapses at10.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Pricing slider and presets.",
+      "evidence": "Four price contrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Business pricing and revenue/profit distinction central.",
+      "evidence": "Explicit profit caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Competing marginal gains and losses under linear demand.",
+      "evidence": "Peak5.",
+      "confidence": "medium"
+    }
+  }
+}

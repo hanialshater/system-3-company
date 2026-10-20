@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "one-good-link-beats-many",
+  "demoVersion": 5,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-good-link-beats-many",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-good-link-beats-many",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/cs/one-good-link-beats-many/meta.json",
+    "metaSha256": "3e1f135e3b0484fc6cd42df450f0f3399a2c1a170d7bcb3166fc687cb424743d",
+    "demoSha256": "6e7f5bb8cc6ccea0527b9ca25a7bf3a8cd1d63d4c09cd14d45fc43eccbbcb473",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-good-link-beats-many",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-good-link-beats-many.json"
+  },
+  "date": "2026-10-18T21:13:38.366812+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "SelectedYwithoneincominglink fromH versusXwiththree;tenpagenetwork and85%propagation/1.5%base rule visible."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Round0both.100. Step1X.270Y.100,arrows.085each. Run51X.053Y.374,threeXarrows.013each,HtoY.359."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read initialleadreversal;Xlinkersreceive no links,HreceivesfiveincludingYbacklink,weightedrecursive importance andtenpagetoylimit."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspectedround1and51:circle sizes andarrowthickness change,annotated.085/.013/.359 andscorecounters readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Graph enables intuition but recursive equilibrium is demanding without an example update.",
+      "evidence": "Oneversusthreeincominglinks requires tracingHfeedback.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping thenconvergence shows initialcountadvantage reverses.",
+      "evidence": "X.270lead thenY.374.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains actualarrowcontributions andlinkerimportance.",
+      "evidence": "Three.013versusone.359.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Arrowamounts,circlesizes andfirst/finalsummary support recursion.",
+      "evidence": "Weightedlinks explicitlydefined.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Realweb analogy remains same PageRank task.",
+      "evidence": "No newnetwork application.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Oneimportantlink beats threeweaklinks afterupdates.",
+      "evidence": "Y.374versusX.053.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Thickness andnumbers showwhy sourcequality outweighscount.",
+      "evidence": "HtoY.359dominates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step/run provideslimitedfixednetworkexploration.",
+      "evidence": "No topology editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful intuition forrecursive ranking.",
+      "evidence": "Tenpagetoy caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Base score,feedback andconvergence extend rawlinkcounts.",
+      "evidence": "Ybacklink toH reinforcesflow.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "demanding: recursive weighted scores andfixedpoint convergence",
+    "interfaceBurden": "gentle: step andrun buttons",
+    "prerequisiteNovelty": "PageRank,base score andrecursive importance",
+    "notationRepresentationBurden": "directedtennodegraph,decimals andvaryingcircles/arrows"
+  }
+}

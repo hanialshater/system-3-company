@@ -1,0 +1,103 @@
+{
+  "slug": "tortoise-meets-hare",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tortoise-meets-hare",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted fast runner jumps over. Tailboxes1,2 then five-cycle3\u20137. Tick1 slow2fast3; ticks2/3/4 gave gaps3/2/1; tick5 bothbox6gap0.",
+    "Screenshot directly showed triangular fast and circular slow markers at same box, prior ghosts and directed cycle.",
+    "Changed last arrow to nowhere: fast reached terminalbox7at tick3, reported no loop. Reveal restored explicitly labeled prior loop run, retained no-loop contrast and relative-speed reason."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Graph traversal and cyclic relative distance.",
+    "conceptualDemand": "One-step relative gain modulo cycle length.",
+    "interfaceBurden": "Low: ordered ticks and last-arrow toggle."
+  },
+  "whyCool": "The fast marker cannot skip a meeting because its lead changes by only one box relative to the slow marker.",
+  "caveat": "Fixed seven-box topology; other loop/tail lengths are asserted. No cycle-entry locating phase or alternate speed test.",
+  "effort": "Browser prediction, ticks1\u20135 individually, cycle screenshot, terminal-arrow toggle and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visible invariant with a meaningful no-loop boundary.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible jump-over misconception.",
+      "evidence": "One versus two boxes per tick, loop condition.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepwise gap plus topology change tests essential boundary.",
+      "evidence": "Cycle meeting versus no-cycle termination.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Gap sequence explains why collision cannot be skipped.",
+      "evidence": "3\u21922\u21921\u21920, gain one per tick; acyclic end contrasted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinct marker shapes and gap labels preserve state.",
+      "evidence": "Slow-before-loop label, no-loop dash, prior run identified on reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Other tail/cycle lengths asserted rather than editable.",
+      "evidence": "0\u201310 tails and1\u201310cycles not tested through visible controls.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two different speeds guarantee meeting without history list.",
+      "evidence": "Odd-length five-cycle refutes even-only distractor too.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Directed gap arc encodes relative progress into collision.",
+      "evidence": "Arc decreases one per tick; distinct markers converge.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Stepping race plus severing cycle.",
+      "evidence": "Two topology states and tick progression.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete constant-state loop detection.",
+      "evidence": "Two markers rather than list of visited boxes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relative speed mechanism plus termination case.",
+      "evidence": "Loop collision versus terminal pointer.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "flip-and-add-one",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flip-and-add-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "f07d543be75358f3aec4b2afef8e8a66f1d8cf08ea64bb0a31fe3862bebb6be2",
+    "demoSha256": "696765c4195ab7de2568fa7e9da826abb293beab32c95b7540e3e0961890f260",
+    "metaPath": "src/demos/cs/flip-and-add-one/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected11111010 for flipping five then adding one, and locked it in.",
+    "exploration": "Flip all produced11111010 interpreted as minus six. Plus one produced11111011, minus five. Add five showed zero with carry falling off eighth bit, unlocking reveal. Add nine showed four while minus-five bit pattern stayed fixed.",
+    "reveal": "Corrected11111011. Recaps exact actions, negative weight minus128 plus123, discarded carry, and subtraction via adding complement. Contrasts sign-bit pattern10000101 which reads minus123 in this representation.",
+    "visual": "Inline initial and minus-five screenshots inspected: eight weighted columns, left weight minus128 red, original five row and interactive complemented row aligned. Long blank stage area but bits and controls legible. Trust count5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Explicit procedure clear but requires binary increment before scaffolding that operation.",
+      "evidence": "Flip-only pattern selected before plus-one result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Flip,increment,cancellation and different addend expose representation and shared addition mechanism.",
+      "evidence": "Minus six to minus five,plus five zero,plus nine four.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects exact actions,weight interpretation,carry and alternate subtraction use with sign-bit counterexample.",
+      "evidence": "Action recap and9-minus5 equals4.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Columns labelled but signed weights and several row meanings demand interpretation.",
+      "evidence": "Inspected minus-five screenshot andsum readouts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new addend demonstrates subtraction by same representation with fixed-width carry condition.",
+      "evidence": "Nine plus minus-five gavefour andeighth-bit carry discarded.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Flip-only prediction corrected; same addition mechanism produces subtraction.",
+      "evidence": "11111010 minus6,thenminus5 andzero/four sums.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned bit columns andcarry explanation show representation mechanism.",
+      "evidence": "Screenshot andsum outputs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Bit toggles,flip,increment andaddend choices support reversible exploration.",
+      "evidence": "Four operation types tested;manualbits nottested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete machine subtraction via addition central.",
+      "evidence": "Same adder explanation andnine-minusfive.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Complement,signed weights,wraparound andsubtraction linked through distinct tested operations.",
+      "evidence": "Flip/increment/two sums andreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires binary positional values,negative high bit,carry wrap andadditive inverse.",
+    "conceptualDemand": "Several dependent representation/arithmetic abstractions.",
+    "interfaceBurden": "Moderate:multiple rows andoperation meanings.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:two's complement",
+    "notationRepresentationBurden": "high:eight-bit strings andsigned weights"
+  },
+  "whyCool": "The same minus-five bit pattern cancels five and turns adding nine into four,showing subtraction implemented by addition.",
+  "caveat": "Fixed eight-bit representation andfive operand;manualbit andoverflow extremes untested.",
+  "missingEvidence": [
+    "Manual bits",
+    "Reset",
+    "Overflow extremes",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

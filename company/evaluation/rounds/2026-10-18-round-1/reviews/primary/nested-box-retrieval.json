@@ -1,0 +1,104 @@
+{
+  "slug": "nested-box-retrieval",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/nested-box-retrieval",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "With five boxes, deep nesting reported four blockers; separate boxes reported zero.",
+    "At eight boxes, separate storage reported zero blockers and deep nesting seven.",
+    "Screenshots in deep nesting showed separate rectangles in a two-column grid, including the highlighted target, rather than nested or occluding boxes.",
+    "The reveal explains shared space versus removal effort, with a use-frequency caveat."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple object storage and counts.",
+    "conceptualDemand": "Compare access and footprint.",
+    "interfaceBurden": "Two layout buttons and a count slider."
+  },
+  "whyCool": "Compact storage can create hidden work when retrieving an inner object.",
+  "caveat": "The diagram does not actually show nesting, shared space, or blockers.",
+  "effort": "Prediction, both modes at five and eight boxes, two screenshots, and reveal.",
+  "provisionalBucket": "needs-fix",
+  "bucketReason": "The defining visual relationship is missing.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A meaningful but title-cued comparison.",
+      "evidence": "Separate boxes selected against deep nesting and same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and count expose the intended causal contrast.",
+      "evidence": "Four versus zero blockers at five; seven versus zero at eight.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "The explanation states the tradeoff but the drawing does not demonstrate it.",
+      "evidence": "Reveal refers to storage space and access in this drawing.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "The central diagram contradicts the nesting representation.",
+      "evidence": "Eight separated rectangles shown while seven blockers reported.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Provides a conditional storage decision.",
+      "evidence": "Choose based on use frequency and available space rather than a universal ranking.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Introduces an access cost to compact storage.",
+      "evidence": "Seven reported blockers.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "The central nesting relationship is absent.",
+      "evidence": "Deep mode still displays separated boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Count and layout can be changed.",
+      "evidence": "Two layouts and eight-box boundary tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "A concrete storage tradeoff.",
+      "evidence": "Frequently used inner targets versus space saving.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two costs and a conditional choice.",
+      "evidence": "Footprint versus retrieval effort.",
+      "confidence": "medium"
+    }
+  }
+}

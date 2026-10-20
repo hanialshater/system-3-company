@@ -1,0 +1,104 @@
+{
+  "slug": "note-gap-check",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/note-gap-check",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The initial card showed room B4, Friday, and code 627; prediction contrasted uncertainty with all three.",
+    "Locking the prediction covered the original; one tap on each reconstruction selected B4, Friday, and 672.",
+    "Check uncovered the original and correctly reported two of three, identifying code 627 rather than 672.",
+    "Reveal explicitly describes a local completeness check rather than a general memory result."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar fields.",
+    "conceptualDemand": "Distinguish visible completeness from recall.",
+    "interfaceBurden": "Cycle three buttons then check once."
+  },
+  "whyCool": "A full-looking note can conceal a missing detail until you reconstruct it.",
+  "caveat": "Finite choices and a single immediate trial do not establish memory performance.",
+  "effort": "Prediction, covered reconstruction, screenshot, check and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Concrete reconstruction and exact corrective feedback.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "The alternatives cue the intended epistemic answer.",
+      "evidence": "Cannot tell until trying versus all three because it is there.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "A genuine covered reconstruction, but finite cycling choices and one check.",
+      "evidence": "Three taps produced two correct and one incorrect field.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal identifies the exact missing detail.",
+      "evidence": "627 versus 672 and two of three right.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Covered and checked states are explicit.",
+      "evidence": "Original hidden until check; original and chosen code then visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The principle is clear but lacks a concrete new application.",
+      "evidence": "Local completeness check only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Filled notes and recall differ.",
+      "evidence": "Three filled versus two reconstructed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Parallel fields make the comparison visible.",
+      "evidence": "Covered card and reconstruction row.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reconstruct and check.",
+      "evidence": "Three cycling fields.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "A useful checking idea with limited application guidance.",
+      "evidence": "Reconstruct details to expose gaps.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One distinction.",
+      "evidence": "Note completeness versus reconstruction.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "one-bad-label-knn",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-bad-label-knn",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-bad-label-knn",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/one-bad-label-knn/meta.json",
+    "metaSha256": "5c9ceb99ab1ba18d7e0e939dfb5f434f915c74d3904bb4f2d2f7c38f2a97b4d8",
+    "demoSha256": "6a542e6f5a28d28905073d0669dc53f095f802bc00970afd1d874aff838f82ee",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-bad-label-knn",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/one-bad-label-knn.json"
+  },
+  "date": "2026-10-18T20:03:50.162382+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose Blue and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initialk1 orange0blue1orange; k5 blue4blue1orange; k13 orange6blue7orange. Moved dot with13, samevote and visible new location; switched5 at moved location2blue3orange."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read correct original prediction account, single error outvoted, k13 entire dataset ignores location and small-k noise versus large-k boundary tradeoff."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,k5,k13moved and scrolled reveal screenshots inspected. Voter rings/lines and counts legible. Final currentk5orange differs from clearly retrospective originalk5blue prose."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific majority inference before experiment.",
+      "evidence": "Wrong nearest label inside blue group; predictk5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Neighbor and query contrasts reveal both benefit and boundary.",
+      "evidence": "k1orange,k5blue,k13orange everywhere; movedk5orange2to3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Mechanism plus demonstrated failure condition.",
+      "evidence": "Single mistake outvoted; all13 erase location; noise/border tradeoff.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counts and rings make vote interpretation visible.",
+      "evidence": "4to1 and6to7; retrospective reveal matches original position even after moved.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General tradeoff stated without new application.",
+      "evidence": "Same dot toy and k changes; no distinct case task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More neighbors eventually reverses repair.",
+      "evidence": "k5blue then13orange across positions.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Voter links and moving query expose locality boundary.",
+      "evidence": "All13 link both clusters; k5 selects nearer subset.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Quick k and position exploration.",
+      "evidence": "Five choices and move button.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful noisy-label model choice intuition.",
+      "evidence": "Avoid both single-error sensitivity and excessive smoothing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Noise and boundary tradeoff demonstrated.",
+      "evidence": "Three k values and changed query location.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Combine distance ranking and majority vote, then varying locality.",
+    "interfaceBurden": "Buttons and fixed move action; no precision.",
+    "prerequisiteNovelty": "Nearest neighbor voting defined before prediction.",
+    "notationRepresentationBurden": "k numbers, dot colors and vote counts; diamond query identified."
+  }
+}

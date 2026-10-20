@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust3/3 ignored. Chose Both grow to1000 versus40dies/60grows/bothdie; locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Release40: under1animal byyear54;60: growsabout1000, unlocksreveal;20:under1byyear35;80:growsabout1000. Screenshot four retained trajectories, red falling/green rising, dashed50matesfound line, log scale1/10/100/1000."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite40dies60grows. Lists all four own results; below50matefinding reduces growth, above grows to food limit1000; threshold/rate invented toy. Inline screenshots only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible recovery assumption tested by commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four retained trajectories reveal threshold contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses own outcomes and explains both mate and food limits.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear presets, labeled threshold/log scale and textual results.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable threshold-not-automatic-recovery principle with toy limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Small starting difference produces opposite fates.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Retained lines and threshold carry split mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible release presets.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Population recovery interpretation concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mate feedback and resource limit linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links mate-finding feedback and food limit to opposite population fates.",
+    "conceptualDemand": "Threshold relation and nonlinear feedback; log scale is unfamiliar representation burden.",
+    "interfaceBurden": "Four clear presets; log scale explicit."
+  },
+  "whyCool": "40and60start close on the graph yet split toward extinction versus1000, and20/80confirm both sides.",
+  "caveat": "Threshold and rates invented; log scale may need explanation; no exact threshold50boundary control.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Clear/reset and accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "below-the-threshold-crash",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/below-the-threshold-crash",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "df66184241669c35de771d549a09453e9232762f7bed628c5d380e5ee1756f6f",
+    "metaSha256": "fabca309c5e82875712365463c920da70d672ca96067e9e31c2115f633a47e97"
+  }
+}

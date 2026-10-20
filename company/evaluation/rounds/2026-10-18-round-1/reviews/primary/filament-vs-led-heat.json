@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-historybanner;6/6trustignored.Predicted30W.",
+    "Filament60:light3W5percent,heat57W;LED9:light3W33percent,heat6W;backfilamentrestored3/57.",
+    "Revealenergychangednotusedup,everywattlightorheat,whitehotfilamentmostlywarmth,LEDsame lightlessonesixthpower;typicalfiguresvary.",
+    "Inline1257x936dark:LEDsplitbar3yellow+6orangeon60Wdashedreference,bigemptyspacestage;controlsandpowerunitsclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Threeplausiblepowersplitswithcommitment.",
+      "evidence": "3/30/57choices",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Matchedlightoutputwithverydifferentheatandinputrevealedbytoggle.",
+      "evidence": "Filament→LED→filament",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolvespredictionandconservationaccountwithmechanismandvariabilitylimit.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fixed60referenceandsplitlabelslegible.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Efficiencyandconservationprinciplesgivenwithbulbcomparison,butnofreshuseorconditions beyondtypicalfigures.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "30guessoverturnedby3lightand57heat.",
+      "evidence": "Prediction/result",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matched3Wsegmentandshrinkingheatcarryefficiencycomparison.",
+      "evidence": "Screenshot/toggle",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twostatecomparisononly.",
+      "evidence": "Toggle",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteeverydaylightingenergydifference.",
+      "evidence": "60vs9same light",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Conservationandefficiencywithtwopreparedstates.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Oneinputsplitandmatchedoutputcomparison,arithmeticpercentssupported.",
+    "conceptualDemand": "oneconservationrelation",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low:wattdefinedenergypersecond",
+    "notationRepresentationBurden": "low:W/percent"
+  },
+  "whyCool": "TheLEDkeepsthe3Wlightsegmentwhilecuttingheatfrom57Wto6W.",
+  "caveat": "Twofixedtypicalbulbs,nofreespecificationorbrightnessselectiontask.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Freshapplication"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "filament-vs-led-heat",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/filament-vs-led-heat",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "e7443874dae39624a30ce19ebfdb414f6b062fbad3a8399e08f31ed2fa07047a",
+    "metaSha256": "6a078dbe23a7ca5cb5f5fd2cbf56185cd3b2e4824dcc97725837d776f259e63d"
+  }
+}

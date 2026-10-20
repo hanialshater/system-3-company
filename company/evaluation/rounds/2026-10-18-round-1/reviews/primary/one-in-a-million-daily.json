@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-in-a-million-daily",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-in-a-million-daily",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "acd915a220d567d34e70234a4a9c20c5e9a6958ff3d247ca182ec5d9a95cf86f",
+    "demoSha256": "91fdd476b76af8c4d034119b783933c44ca5d969f1a8b95e1c858cb989af4ca2",
+    "metaPath": "src/demos/probability/one-in-a-million-daily/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Almost never for a one-in-a-million daily event across eight million people and locked it in.",
+    "exploration": "Set eight million, stepped one day: nine events. Run year gave 2946 events, average8.1 per day, no zero-event days. Changed to10000 people, resetting day counters, then ran year: six events,359 zero days,average0.02. Reveal retained original eight-million history.",
+    "reveal": "Corrected about eight per day. Uses2946 yearly count and eight-million times one-in-million expectation. States zero-day probability about0.03%,equal independent chances each day assumption.",
+    "visual": "Inline eight-million year screenshot inspected:1000 grey population dots labelled each8000,ten red event dots for day365,year totals andzero-day tally legible. Trust count6/6 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear individual rarity versuspopulation exposure question.",
+      "evidence": "Almost never selected versusabout eightdaily.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Single day,full year andsmall-population contrast reveal repeated exposure andrare zeros.",
+      "evidence": "Nine dayone,2946 large-city events versus six small-town events.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual count to expected product andexplicit independence/equal-risk conditions.",
+      "evidence": "Eight-million chances timesone-in-million,eightaverage.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Per-person-per-day label,scaled dots anddistinct daily/year counters make path readable.",
+      "evidence": "Inspected year screenshot andpopulation reset.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable exposure-times-risk principle withconditions butno concrete new event application.",
+      "evidence": "Sameindependentchance eachday.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Almost-never prediction reversed byevents everytestedlarge-cityday.",
+      "evidence": "2946 events,zero emptydays.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Population dots contextualise scale;mechanism mainly count/product.",
+      "evidence": "Scaled-dot screenshot andnumeric contrasts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Population choices,day step andyear run support comparisons.",
+      "evidence": "Two populations,two durations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of rare events inlarge populations central.",
+      "evidence": "Individual versuscity risk distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Individual risk,expected count andzero-event likelihood linked.",
+      "evidence": "Large/small population contrast andreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines tiny per-person probability withlarge exposure andexpected frequency.",
+    "conceptualDemand": "Supported risk-times-count relation withindependencecondition.",
+    "interfaceBurden": "Low:population presets andrunbuttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:population risk aggregation",
+    "notationRepresentationBurden": "moderate:largecounts,tinyprobability,averages"
+  },
+  "whyCool": "The eight-million-person year has no empty day,whilethe10000-person year has359,despiteidentical individual daily risk.",
+  "caveat": "Equal independent daily risk assumed;no correlated-event case ornewrisklevel.",
+  "missingEvidence": [
+    "100000 population",
+    "One-million population",
+    "Correlated risk",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "sofa-diagonal-room",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sofa-diagonal-room",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted diagonal for140rod in120\u00d790. Edge margin\u221220,diagonal10.",
+    "Roomwidth100 diagonal margin\u22125.46; neither layout can fit.",
+    "Reveal still says prediction held and general rod can fit on diagonal,without explicitly saying current rod doesn't. Screenshot negative margin visible but line green; prose clipped. Thin rod not sofa guarantee explicit."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Diagonal length and negative margin.",
+    "conceptualDemand": "Length geometry distinct from area and moving path.",
+    "interfaceBurden": "Modes and width slider."
+  },
+  "whyCool": "A rectangle can accommodate a thin object longer than either side\u2014but only up to its diagonal.",
+  "caveat": "Make current nonfit explicit and distinguish original prediction; color should reflect negative clearance.",
+  "effort": "Prediction,edge/diagonal contrast,nonfit boundary,reveal,inline screenshot.",
+  "provisionalBucket": "revise-fit-feedback",
+  "bucketReason": "Strong boundary model,misleading current-state framing.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete dimensions but title cues diagonal answer.",
+      "evidence": "Diagonal hides more length.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actually crosses fit boundary by reducing room.",
+      "evidence": "10\u2192\u22125.46.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "General principle and scope correct,current failure not explained alongside held verdict.",
+      "evidence": "Negative margin yet held.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Negative value visible but green line and clipped prose weaken fit feedback.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete length-fit method with thickness/entry-path limitations.",
+      "evidence": "Not area or sofa maneuver guarantee.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Rod can exceed both room edges yet fit diagonally.",
+      "evidence": "140 in120\u00d790.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rectangle and diagonal central.",
+      "evidence": "Width change.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Orientation and room-size variation.",
+      "evidence": "Fit/nonfit.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Fit geometry useful but excludes real thick furniture paths.",
+      "evidence": "Thin rod only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Diagonal comparison with boundary and geometric scope.",
+      "evidence": "Pythagorean length.",
+      "confidence": "medium"
+    }
+  }
+}

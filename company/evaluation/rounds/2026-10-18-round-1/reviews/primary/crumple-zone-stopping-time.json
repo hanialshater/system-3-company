@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "crumple-zone-stopping-time",
+  "demoVersion": 4,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/crumple-zone-stopping-time",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chosehalf asbigfor0.20sversus0.10sstop,1000kg15m/s.",
+    "E:0.10s150kN/0.75m;End0.30s50kN/2.25m;Left0.25s60kN/1.88m;Left0.20s75kN/1.50m. Barwidensandshortenswithdashedinitialreference.",
+    "R:Yourpredictionheld;barareamomentumconstant;moretime lessforcebutmoredistance;steady-forcemodel,realforcesrise/fall.",
+    "No-historypreview;7/7trustignored. Screenshot1280x720 bar,countersandreferenceclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearinverseforce/timequestion.",
+      "evidence": "P: chosehalf asbigfor0.20sversus0.10sstop,1000kg15m/s.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiplecontrastsandreferenceshowconstantareaanddistancecost.",
+      "evidence": "E:0.10s150kN/0.75m;End0.30s50kN/2.25m;Left0.25s60kN/1.88m;Left0.20s75kN/1.50m. Barwidensandshortenswithdashedinitialreference.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsactualforce/distanceandmodelboundary.",
+      "evidence": "R:Yourpredictionheld;barareamomentumconstant;moretime lessforcebutmoredistance;steady-forcemodel,realforcesrise/fall.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bargeometryandweightcomparisonclear.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 bar,countersandreferenceclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Generalspreading-stopprinciplewithtradeoff.",
+      "evidence": "R:Yourpredictionheld;barareamomentumconstant;moretime lessforcebutmoredistance;steady-forcemodel,realforcesrise/fall.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 bar,countersandreferenceclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Crumplingreducesforce.",
+      "evidence": "E:0.10s150kN/0.75m;End0.30s50kN/2.25m;Left0.25s60kN/1.88m;Left0.20s75kN/1.50m. Barwidensandshortenswithdashedinitialreference.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Constantareabarcentral.",
+      "evidence": "E:0.10s150kN/0.75m;End0.30s50kN/2.25m;Left0.25s60kN/1.88m;Left0.20s75kN/1.50m. Barwidensandshortenswithdashedinitialreference.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibledurationchoices.",
+      "evidence": "E:0.10s150kN/0.75m;End0.30s50kN/2.25m;Left0.25s60kN/1.88m;Left0.20s75kN/1.50m. Barwidensandshortenswithdashedinitialreference.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Carsafetymechanism.",
+      "evidence": "R:Yourpredictionheld;barareamomentumconstant;moretime lessforcebutmoredistance;steady-forcemodel,realforcesrise/fall.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Impulse,averageforceanddistancecost.",
+      "evidence": "R:Yourpredictionheld;barareamomentumconstant;moretime lessforcebutmoredistance;steady-forcemodel,realforcesrise/fall.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkinverseforce/timeandproportionalcrushdistance.",
+    "conceptualDemand": "Supportedinvariantplus tradeoff.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:momentumintroduced",
+    "notationRepresentationBurden": "moderate:force-timearea"
+  },
+  "whyCool": "Doublingstoppingtimehalvesthebarheightwhilepreservingitsareaanddoublingcrushdistance.",
+  "caveat": "Steadyforceandfixedmass/speed;notcrashsimulation.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

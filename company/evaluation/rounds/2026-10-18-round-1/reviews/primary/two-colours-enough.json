@@ -1,0 +1,104 @@
+{
+  "slug": "two-colours-enough",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-colours-enough",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asks two, three or four colours for pieces formed by straight lines.",
+    "Each of three fixed lines creates a red clash; flipping one side removes it while retaining earlier alternating regions.",
+    "Final screenshot shows seven pieces in two colours with no edge clashes.",
+    "Reveal explains older neighbors flip together and parity of flipped sides, then contrasts curved map borders."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Parity and boundary preservation extend beyond the picture.",
+    "conceptualDemand": "Understand why a whole-side flip preserves old differences.",
+    "interfaceBurden": "Six guided one-use actions."
+  },
+  "whyCool": "Every new line can be repaired by one whole-side colour flip, however many pieces it cuts.",
+  "caveat": "Fixed three-line example; adjacency should explicitly mean a shared edge rather than point contact.",
+  "effort": "Prediction, all three draw/flip pairs, multiple screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visual construction and explanatory invariant, with an adjacency wording caveat.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise plausible challenge without the title supplying the number.",
+      "evidence": "Two, three or four.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three successive draw-and-flip steps test preservation of previous boundaries.",
+      "evidence": "Two, four and seven pieces; final two colours and no clashes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects repeated observations to the invariant and a domain boundary.",
+      "evidence": "Older neighbors flip together; odd/even side parity; curved maps differ.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The word touching needs an edge-sharing qualification.",
+      "evidence": "Same-colour regions can meet at a line intersection even when every shared edge differs.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "States a general construction and contrasts its scope.",
+      "evidence": "Any number of straight lines versus general curved-border maps.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "More regions do not require additional colours.",
+      "evidence": "Seven pieces still use two.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Successive clashes and whole-side flips directly demonstrate the invariant.",
+      "evidence": "Three additions preserve earlier proper edges.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Repeated constructive steps create a visible pattern.",
+      "evidence": "Draw then repair each line.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily mathematical insight.",
+      "evidence": "No practical workflow application.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local repair yields a global invariant.",
+      "evidence": "Parity explains arbitrarily many straight lines.",
+      "confidence": "medium"
+    }
+  }
+}

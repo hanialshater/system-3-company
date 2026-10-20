@@ -1,0 +1,103 @@
+{
+  "slug": "sorted-input-sinks-quicksort",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sorted-input-sinks-quicksort",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted less work. Shuffled first pivot3 left [1,2] and [4,6,5] after five comparisons; sorted first pivot1 left only [2,3,4,5,6], also five.",
+    "Completed both: shuffled nine comparisons, sorted15. Switched views to inspect retained split ladders; sorted had zero smaller cards at every split.",
+    "Reveal returned to sorted view and original answer, added5+4+3+2+1, n(n\u22121)/2, worst-case claim and random-pivot remedy. Exhaustive720 check is asserted, not separately run in this review."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires pivot/recursive split reasoning, shown with six numbers.",
+    "conceptualDemand": "Repeated partition shapes determine total comparisons.",
+    "interfaceBurden": "Low: step, switch, finish."
+  },
+  "whyCool": "A sorted hand repeatedly sheds just one card, and the comparison ladder visibly grows longer.",
+  "caveat": "Title leaks the intended surprise. Fixed first-pivot toy on distinct values; random-pivot remedy and exhaustive720 check are stated, not interactive tests.",
+  "effort": "Browser prediction, one split per input, finish both, screenshots of both ladders, reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visual causal explanation with clearly scoped pivot behavior.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Rule scoped but title directly cues the answer.",
+      "evidence": "Title 'Sorted input sinks quicksort' before less/same/most question.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fixed input contrast with step and retained switching.",
+      "evidence": "Compared first splits then finished and inspected both ladders.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Exact observed structural cause and maximal imbalance boundary.",
+      "evidence": "Sorted zero-sided splits imply15 versus9; no split can be more lopsided.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Toy pivot rule and comparison unit explicit.",
+      "evidence": "First card pivot, one comparison per checked card, separate counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "New-size formula and concrete pivot-policy remedy with condition.",
+      "evidence": "n(n\u22121)/2 and random pivot makes worst case unlikely on long hands.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Already sorted input costs more under this explicit policy.",
+      "evidence": "15 versus9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Partition ladders and comparison squares directly encode cost.",
+      "evidence": "Repeated zero-side sorted splits versus smaller shuffled subproblems.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and switch two hands.",
+      "evidence": "No free hand or pivot edit.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Illustrates input and pivot policy dependence.",
+      "evidence": "Explicit toy scope plus random-pivot mitigation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects partition shape, sum and worst-case bound.",
+      "evidence": "5+4+3+2+1; worst-case assertion beyond displayed contrast.",
+      "confidence": "medium"
+    }
+  }
+}

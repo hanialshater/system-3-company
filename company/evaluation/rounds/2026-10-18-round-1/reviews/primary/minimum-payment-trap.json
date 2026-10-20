@@ -1,0 +1,104 @@
+{
+  "slug": "minimum-payment-trap",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/minimum-payment-trap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted33months for3000balance,20%annual/1.667%monthly,90fixedpayment,nonewspending;alternatives50/never.",
+    "90payment:50months,1415interest,firstmonth50interest40principal.50payment:never,50monthlyinterestforever,0principal.300payment:12months309interest,firstmonth250principal.",
+    "Chartinterestpath versusno-interest33monthreference. Reveal explicitlyrecalls90and50cases,explainsfallinginterestbentcurve,andfixedrate/no fees/no newspending/differentrealmethods limits;omits300extension.",
+    "1280x720light chart/readouts clear;finalprose rightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplepaymentsbutcompoundingrecurrenceandthreshold.",
+    "conceptualDemand": "Paymentportionversusprincipalreduction.",
+    "interfaceBurden": "One slider,twopresets."
+  },
+  "whyCool": "The first50dollars of every90dollar payment initially pay interest, while paying exactly50never moves the balance.",
+  "caveat": "Fixedpaymenttoy,notactualdecliningcardminimumrule;20%fixedrate,no fees/spending. Realcalculationsvary. Prosecutoff;300extensionnotinreveal.",
+  "effort": "Prediction,90and50presets,300boundary,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Usefulinterest-onlyboundarymechanism;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullyspecifiedmodel andlinear-division distractor.",
+      "evidence": "3000/90versusmonthlyinterest recurrence.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Repayment,interest-onlyboundary andlargerpayment contrast isolateprincipalchange.",
+      "evidence": "90,50,300payment outputs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsoriginalanswerandinterest-onlyboundarywithmodellimits;largerextensionnotdiscussed.",
+      "evidence": "50interestfirst,40principal;no-feesconstant-rate.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Chartandreadoutsclear;prosecutoff.",
+      "evidence": "90paymentandfinal300state screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalpaymentmechanismwithinonebalance,nonewusecaseexercise.",
+      "evidence": "Interestfirstandshrinkingbalance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Paymentcanleavebalanceunchangedforever.",
+      "evidence": "50coversinterestonly.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Balancecurvatureversusstraightno-interestreference.",
+      "evidence": "50monthcurveand33monthline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Paymentchoices permitboundaryandpayofftradeoffexploration.",
+      "evidence": "Threepaymentsettings.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralrepaymentcost/timeintuition.",
+      "evidence": "Fixedpaymentversusinterest/principal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Recurrence,threshold andchangingpaymentallocation.",
+      "evidence": "Interestshrinksasbalancedoes.",
+      "confidence": "medium"
+    }
+  }
+}

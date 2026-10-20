@@ -1,0 +1,103 @@
+{
+  "slug": "lh-same-energy-new-tariff",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-same-energy-new-tariff",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected No: same kWh, lower price; title and assumptions explicitly state same energy.",
+    "Tests gave \u20ac1.20/\u20ac0.60 at3 kWh; maximum12 gave \u20ac4.80/\u20ac2.40.",
+    "Screenshot showed common-energy-axis cost lines with different slopes. Reveal preserved initial/current context, isolated price multiplier and limited actual time-shifting practicality."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple rates times quantity.",
+    "conceptualDemand": "Monetary saving differs from energy reduction.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A cheaper tariff changes euros without changing the kilowatt-hours.",
+  "caveat": "Prediction is answered by the title; fictional tariffs do not establish actual feasible scheduling.",
+  "effort": "Prediction, both tests, maximum energy, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Clear distinction but no meaningful uncued prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and assumptions supply answer before commitment.",
+      "evidence": "Same energy, different tariff.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Energy quantity scales both prices consistently.",
+      "evidence": "3\u219212 kWh.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains price versus energy and application limit.",
+      "evidence": "Not every load can move time safely/practically.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tariffs and equal quantity explicit.",
+      "evidence": "\u20ac0.40 versus \u20ac0.20 per kWh.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete distinction and time-shifting constraint support application.",
+      "evidence": "Cost saving not energy saving.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Answer explicitly given.",
+      "evidence": "Same kWh.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Different slopes on same energy axis support price effect.",
+      "evidence": "12 kWh yields differing euro totals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and energy slider.",
+      "evidence": "Tariffs fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Separating energy and money central.",
+      "evidence": "Tariff arithmetic.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Quantity versus price multiplier.",
+      "evidence": "Equal energy, unequal cost.",
+      "confidence": "medium"
+    }
+  }
+}

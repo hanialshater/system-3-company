@@ -1,0 +1,103 @@
+{
+  "slug": "mail-or-vs-and",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mail-or-vs-and",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted OR includes either condition;hook definesOR/AND before guess.",
+    "Fixturem1 Ana PDF,m2 Ana TXT,m3 Bo PDF,m4 Bo TXT. OR selectedm1/m2/m3,ANDonlym1.",
+    "Screenshot retained excluded rows; no explicit displayed conditions Ana andPDF or actual query text. Reveal explained union/intersection and individual records versus Gmail conversations."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Four records,two binary attributes.",
+    "conceptualDemand": "Either condition versus simultaneous satisfaction.",
+    "interfaceBurden": "Simplebuttons,but hidden predicate naming."
+  },
+  "whyCool": "Changing OR to AND can remove records that match only one of your conditions.",
+  "caveat": "Should explicitly label predicates and query; fixed fixture only.",
+  "effort": "Prediction,both operations,screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful visible set contrast but missing condition labels and cued prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook supplies operator definitions.",
+      "evidence": "OR broadens,ANDboth.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Fixed two-button membership contrast,no query construction.",
+      "evidence": "3\u21921.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct set explanation but actual two predicates never explicitly named.",
+      "evidence": "Learner infersAna/PDF from memberships.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Conditions and query syntax missing despite concrete fixture.",
+      "evidence": "Buttons onlyUseOR/AND.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit record-versus-conversation scope constrains provider application.",
+      "evidence": "Not Gmail conversations.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected union/intersection.",
+      "evidence": "Rule supplied.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Selected/excluded records visibly distinguish union and intersection.",
+      "evidence": "m1 remains,m2/m3removed.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two prescribed operations.",
+      "evidence": "No editableconditions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Searchlogic central.",
+      "evidence": "Either versusboth.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Set operations and provider grouping distinction.",
+      "evidence": "Union/intersection.",
+      "confidence": "medium"
+    }
+  }
+}

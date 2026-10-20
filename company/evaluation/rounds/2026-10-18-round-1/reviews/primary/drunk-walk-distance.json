@@ -1,0 +1,104 @@
+{
+  "slug": "drunk-walk-distance",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drunk-walk-distance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction100fairleft/right1msteps averageabsolutedistance1/8/50m; chose1.",
+    "30walkers:10stepsmean2.8max8;100stepsmean7.3max24;1000stepsmean24.9max70;100xsteps8.9xdistanceactualsample.",
+    "Revealstepsmostlybutnotperfectlycancel,100stepbenchmarkdisplayedexactly8.0overpossiblewalks,square-rootgrowthrule;1000/100roughlytriplesdistance.",
+    "Screenshot legibledotpile,absolutedistancebar/counts,allprose readable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishsignedposition fromabsolutedistance andsamplefromexpectation.",
+    "conceptualDemand": "Partialcancellation andsublineargrowth;rootrelationship.",
+    "interfaceBurden": "Threepresetsandreadablechart."
+  },
+  "whyCool": "Athousandrandomsteps produceonlyabout25metersofaverageprogress becausetheymostlycancel.",
+  "caveat": "One30walkerbatch;benchmark8.0displayroundedwhilecalledexactly;noindependentstochasticderivationchecked.",
+  "effort": "Prediction,10/100/1000stepcomparisons,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Readablecontrastwithreusablestatisticalintuition;rootlawstatedwithoutderivation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinguishes cancellation,typicalspread,andlinearpathlength.",
+      "evidence": "1/8/50m alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threewalklengths contrast spread whilefixedstepmodel.",
+      "evidence": "10/100/1000 outputs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsoriginalwrongbeliefs topartialcancellation andstates scalingrule.",
+      "evidence": "Not1perfectcancel;not50mostlycancel.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Absolute-distance directionqualification andsample/benchmark distinguishable.",
+      "evidence": "Eitherdirectionlabel;30walkers versusallwalks.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Square-rootprinciple statedbutnovelapplicationnotexercised.",
+      "evidence": "100xsteps10xdistance theoreticalrule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Manyrandomsteps go fartherthanzero butmuchlessthanpathlength.",
+      "evidence": "1000steps24.9maverage.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dotpilewidens whileaverage-distancebar summarizes.",
+      "evidence": "Symmetricpositions aroundstart.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetwalklengths.",
+      "evidence": "Threebuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Statisticaldiffusionintuition.",
+      "evidence": "Spreadversusnumberofsteps.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Absolutedistance,cancellation,finitebatch,androotgrowth.",
+      "evidence": "Actual8.9xvsrule10xcomparison.",
+      "confidence": "medium"
+    }
+  }
+}

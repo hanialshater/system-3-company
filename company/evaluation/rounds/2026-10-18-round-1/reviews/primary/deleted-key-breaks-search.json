@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "deleted-key-breaks-search",
+  "demoVersion": 4,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/deleted-key-breaks-search",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "deleted-key-breaks-search",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/cs/deleted-key-breaks-search/meta.json",
+    "metaSha256": "54d872efe97786ee7f5efbcb04d884806b00773e067eca4a264413c4198462bc",
+    "demoSha256": "eddf78b423a72a32f310b39f499cda30d42358054deb999fca7017a0e9466c53",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/deleted-key-breaks-search",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/deleted-key-breaks-search.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected C is found in slot 3 and locked it in; alternatives included not there and finding B.",
+    "exploration": "Deleted B: slot 2 became empty while C remained slot 3. Search C reported stopped at slot 2, not found. Switched to gone marker: slot 2 became gone and search automatically reported passed slot 2, found in slot 3. Both outcome summaries retained.",
+    "reveal": "Explained empty slot as run ends here because insertion uses first free slot; gap breaks keys whose probe path crosses it; marker says keep looking. Mentioned marker accumulation slowing searches and occasional rebuild.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Indexed eight-slot row, hatched gone cell, probe arcs and highlighted C visibly explain successful traversal. Full reveal fits tested viewport.",
+    "previewIsolation": "Evaluation no-history banner visible.",
+    "blinding": "6/6 claims checked visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment tests distinction between physical presence and search reachability.",
+      "evidence": "C found versus not-there choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Deletion-policy contrast changes visible search path and outcome.",
+      "evidence": "Empty stops at 2; marker passes 2 to C at 3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed stop rule and consequence, with marker maintenance cost.",
+      "evidence": "First-free-slot invariant and rebuild caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Slot labels, probe path and retained outcomes make tested contrast easy to follow.",
+      "evidence": "Screenshot and two search summaries.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General probe-path condition is explained, but no concrete new application tested or proposed.",
+      "evidence": "Any key whose probe path crosses the gap.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Access audit not performed.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "C remains stored but committed found prediction fails.",
+      "evidence": "C at slot 3 with not-found result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Slot state and probe arcs carry stop versus continue mechanism.",
+      "evidence": "Hatched gone cell and C highlight in screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Deletion policy toggle gives reversible experiment.",
+      "evidence": "Switched empty to marker.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Shows a concrete hash-table deletion implementation issue.",
+      "evidence": "Marker prevents premature search stop.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Search stopping invariant and marker accumulation cost add linked mechanisms.",
+      "evidence": "Reveal invariant and rebuild limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects collision placement, stop rule and deletion policy.",
+    "conceptualDemand": "Tracks insertion invariant and how deletion invalidates it; all supported by eight slots.",
+    "interfaceBurden": "Low; one delete, one search and one labeled toggle.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: hashing and linear probing introduced in prompt.",
+    "notationRepresentationBurden": "low: letters and integer slot indices."
+  },
+  "whyCool": "Turning the empty gap into a gone marker makes the same search visibly pass slot two and find C.",
+  "caveat": "One fixed three-key collision chain tested; no insertion or rebuild interaction.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternate keys and larger collision chains not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 2 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:05:57.675888+00:00"
+}

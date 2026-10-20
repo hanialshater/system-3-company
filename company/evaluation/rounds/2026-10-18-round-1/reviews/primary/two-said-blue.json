@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "two-said-blue",
+  "demoVersion": 5,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-said-blue",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-said-blue",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/probability/two-said-blue/meta.json",
+    "metaSha256": "bd74a59b926a183cbe9fb25c2993b76a6339f52cc198709d7d0cd1e857e72726",
+    "demoSha256": "dd81bfcd6b9c50a72a044afe588467c67f8f1cd6eafd276625713dcaba098b34",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-said-blue",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-said-blue.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed Almost never under 1 in 100 for the explicitly described lead-of-two copying rule, 100 people and two-thirds reliable clues.",
+    "exploration": "Ran 1 then 100 then 10000, totaling 10101 crowds: 2009 wrong, 19.9%, versus pooled clues 2 wrong, 0.02%. Last run had 62 blue clues but 1 blue pick; toggling views exposed 61 people opposing their clues. Reliability changes reset run counters: 60% gave 30.9% wrong versus pooled 1.63%; 80% gave 5.9% versus pooled zero over 10000 runs.",
+    "reveal": "Corrected prediction to about one in five, exact 20%. Explained lead-of-two absorption, including wrong leads after split starts. Distinguished single-person error 33.3% from cascade and pooled errors. Reveal retains original two-thirds run snapshot while stage notes identify later parameter values.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Blue circles/red squares encode colours with shape; rings mark first lead of two and outlines mark picks against clues. Pooled view replaces almost all-red choices with majority-blue signals. Dense dot field but readable legend and counters.",
+    "previewIsolation": "Preview banner excluded history and analytics saves.",
+    "blinding": "No source, metadata or other reviewer judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit rule and concrete error choices support a meaningful commitment.",
+      "evidence": "Lead-of-two copying and clue accuracy provided.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Batch runs, pooled comparison and reliability parameters expose information loss.",
+      "evidence": "Same run: 62 blue clues but 1 blue pick; 60% and 80% contrasts tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains why many copied actions are not independent evidence.",
+      "evidence": "Ring marks absorbing lead; split starts can also reach wrong lead.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shapes, outlines and explicit rates make the mechanism legible.",
+      "evidence": "Original run snapshot and current stage notes label their clue accuracy separately.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General crowd-information principle without a new application task.",
+      "evidence": "Only toy urn rule and reliability variants offered.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit completed.",
+      "evidence": "Visual shapes and ordinary clicks inspected; assistive modes untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "A nearly unanimous wrong crowd hides a majority of correct private signals.",
+      "evidence": "99 red picks despite 62 blue clues.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Same-run toggle directly reveals evidence discarded by copying.",
+      "evidence": "Outlined dissenting clues and lead-of-two ring.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Fast simulations and reversible evidence views invite comparison.",
+      "evidence": "One, hundred, ten-thousand runs plus accuracy controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful distinction between copied choices and independent information.",
+      "evidence": "Pooled evidence strongly outperforms copying in the stated rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links individual reliability, stopping event and aggregate failure.",
+      "evidence": "Exact 20% differs from two immediate wrong clues at 11.1%.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simulation supports a probabilistic mechanism without requiring a derivation.",
+    "conceptualDemand": "Separate choices from signals and recognize dependence after a lead.",
+    "interfaceBurden": "Three batch controls, three accuracy options and one view toggle.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Information cascades and dependent observations.",
+    "notationRepresentationBurden": "A hundred symbols, outlines, ring and percentage counters."
+  },
+  "whyCool": "A single toggle reveals that apparent consensus can conceal contrary private evidence.",
+  "caveat": "Fixed toy copying rule; no fresh real-world application or independence audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:12:33.551585+00:00"
+}

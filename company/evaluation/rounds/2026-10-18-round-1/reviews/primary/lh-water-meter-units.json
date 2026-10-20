@@ -1,0 +1,103 @@
+{
+  "slug": "lh-water-meter-units",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-water-meter-units",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted1500 L from1.5 m\u00b3; initial slider already displayed1500 L and1000 L=1 m\u00b3.",
+    "Tests ran reverse direction:1500 L\u21921.5 m\u00b3 versus deliberately wrong1500 m\u00b3. Maximum3000 gave3 versus3000 m\u00b3.",
+    "Screenshot common-scale fills emphasize thousandfold difference. Reveal preserved contexts, explained division L\u2192m\u00b3 but did not explicitly restate inverse prediction conversion."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Multiply/divide by1000.",
+    "conceptualDemand": "Number changes with unit to preserve amount.",
+    "interfaceBurden": "Simple controls; inverse task direction."
+  },
+  "whyCool": "Keeping the digits while changing the unit can make the quantity a thousand times wrong.",
+  "caveat": "Initial slider gives answer; exploration and reveal reverse original conversion direction.",
+  "effort": "Prediction, both tests, maximum input, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct conversion but prediction leakage and direction mismatch.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Correct answer visible in initial slider before commitment.",
+      "evidence": "1500 L display.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Input scaling preserves correct/wrong thousandfold contrast.",
+      "evidence": "1500\u21923000 L.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct principle but explanation runs inverse direction to original question.",
+      "evidence": "Asked m\u00b3\u2192L, demonstrates L\u2192m\u00b3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Unit meaning clear but direction shift and pre-revealed answer weaken path.",
+      "evidence": "B deliberately wrong labelled.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit warning against swapping units without number gives condition.",
+      "evidence": "Same digits represent different volume.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Thousandfold mistake is large.",
+      "evidence": "3 versus3000 m\u00b3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Common-scale fills reinforce magnitude error.",
+      "evidence": "Tiny correct versus full wrong fill.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and litre slider.",
+      "evidence": "Conversion rule fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Meter unit interpretation central.",
+      "evidence": "L versus m\u00b3.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Unit invariance versus numeric representation.",
+      "evidence": "Conversion preserves volume.",
+      "confidence": "medium"
+    }
+  }
+}

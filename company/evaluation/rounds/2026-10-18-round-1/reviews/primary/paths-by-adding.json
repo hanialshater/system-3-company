@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "paths-by-adding",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/paths-by-adding",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "paths-by-adding",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/paths-by-adding/meta.json",
+    "metaSha256": "e2c0d981a93abf589084d4b0b0936872b5564aa387f4a2051487118a09933c72",
+    "demoSha256": "a235b72ff0ef1bcd656ae0d95f1f0c08b5c02a4bb2ed243ac80755f2684f33a6",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/paths-by-adding",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/paths-by-adding.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected9 against6 and20 shortest routes; locked it in.",
+    "exploration": "Destination initially disabled; attempted click had no effect. Filled edges, all1. Filled nine interiors in dependency order:2,3,4;3,6,10;4,10,20. Each click named west and south addends; final10+10=20.",
+    "reveal": "Corrected20; explained every route arrives west or south, so adding disjoint predecessor counts. Connected tilted grid to Pascal triangle and choosing3 of6 east moves.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Completed grid labels and highlighted two final incoming edges show10+10=20. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear count alternatives test counting blocks versus routes.",
+      "evidence": "9 commitment versus20 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Dependency-gated sums expose recurrence across boundaries and interiors.",
+      "evidence": "Edges1;first1+1=2;central3+3=6;final10+10=20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual construction to incoming-route partition and combinatorial representation.",
+      "evidence": "West/south argument and3 of6 moves.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Enabled dependencies and explicit arithmetic guide desktop path.",
+      "evidence": "Actual labeled grid and addend feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Alternate Pascal representation of same problem,no concrete new application.",
+      "evidence": "Tilt grid and choose3 of6 moves.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed9 contradicted by20 without route listing.",
+      "evidence": "Final additive count20.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid and highlighted predecessor edges carry counting mechanism.",
+      "evidence": "Final two10 predecessors visibly connect to20.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Corner choices permit exploring valid dependency order,fixed grid.",
+      "evidence": "Manual nine interior fills and disabled destination check.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete efficient shortest-route counting method.",
+      "evidence": "No listing required.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Boundary base case,recurrence and Pascal/binomial connection linked.",
+      "evidence": "Edges1,interior sums,row6 middle.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Builds recursive counts from base cases with graphical support.",
+    "conceptualDemand": "Distinguish route count from path length and sum mutually exclusive last-step cases.",
+    "interfaceBurden": "Low: several clicks but valid prerequisites visibly gated.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: recurrence and combinatorial choice.",
+    "notationRepresentationBurden": "low to moderate: grid coordinates and Pascal row reference."
+  },
+  "whyCool": "Two neighboring counts of10 combine into20 at the final corner without drawing twenty routes.",
+  "caveat": "One fixed unobstructed grid; no obstacles,different dimensions or reset tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:38:53.184243+00:00"
+}

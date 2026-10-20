@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import ts from 'typescript';
+// Execute the production bridge with only account identity and browser transport injected.
+async function bridge(){
+ globalThis.__preferencesMe={signedIn:true,tag:'a'};
+ globalThis.__preferencesChanged=()=>{};
+ globalThis.__preferencesMeCalls=[];globalThis.__preferencesMeReader=null;
+ globalThis.window=new EventTarget();
+ const stub='data:text/javascript,'+encodeURIComponent('export const accountMe=async fresh=>{globalThis.__preferencesMeCalls.push(fresh===true);return globalThis.__preferencesMeReader?globalThis.__preferencesMeReader(fresh):globalThis.__preferencesMe;};export const onAccountChanged=cb=>{globalThis.__preferencesChanged=cb;return()=>{}};');
+ const code=ts.transpileModule(fs.readFileSync('src/components/account/preferences-client.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText.replace(/['"]@\/lib\/account-client['"]/,JSON.stringify(stub));
+ return import('data:text/javascript;base64,'+Buffer.from(code+`\n// instance ${Math.random()}`).toString('base64'));
+}
+const settings={personalizationOn:true,subjects:['physics'],experiences:['surprise'],challenge:null,lessOf:[]};
+const response=tag=>new Response(JSON.stringify({settings,accountTag:tag}),{status:200});
+test('reads are no-store and reject a different response account',async()=>{const m=await bridge();globalThis.fetch=async(path,init)=>{assert.equal(path,'/api/account/settings');assert.equal(init.cache,'no-store');assert.equal(init.credentials,'same-origin');return response('b');};assert.equal(await m.readAccountPreferences(),null);});
+test('a delayed read is discarded after sign-out/session reset',async()=>{const m=await bridge();let release;globalThis.fetch=()=>new Promise(r=>release=r);const pending=m.readAccountPreferences();await new Promise(r=>setImmediate(r));window.dispatchEvent(new Event('s3c:account-session-reset'));release(response('a'));assert.equal(await pending,null);});
+test('writes carry account binding and only the explicit patch',async()=>{const m=await bridge();globalThis.fetch=async(path,init)=>{assert.equal(init.headers['x-s3c-account'],'a');assert.equal(init.method,'PUT');assert.deepEqual(JSON.parse(init.body),{subjects:['physics']});return response('a');};assert.equal((await m.writeAccountPreferences('a',{subjects:['physics']})).accountTag,'a');});
+test('delayed save cannot outlive reset; 409 clears pending private choices',async()=>{const m=await bridge();let release;globalThis.fetch=()=>new Promise(r=>release=r);const old=m.writeAccountPreferences('a',{subjects:['physics']});m.withdrawPreferenceMatching();release(response('a'));assert.equal(await old,null);assert.equal(m.matchingWithdrawn(),true);globalThis.fetch=async()=>new Response(null,{status:409});assert.equal(await m.writeAccountPreferences('a',{personalizationOn:true}),null);});
+test('failed disable stays locally withdrawn across fresh reads',async()=>{const m=await bridge();m.withdrawPreferenceMatching();globalThis.fetch=async()=>new Response(null,{status:503});assert.equal(await m.writeAccountPreferences('a',{personalizationOn:false}),null);assert.equal(m.matchingWithdrawn(),true);});
+
+test('a delayed JSON body cannot restore save success after session invalidation',async()=>{const m=await bridge();let release;globalThis.fetch=async()=>({ok:true,status:200,json:()=>new Promise(r=>release=r)});const pending=m.writeAccountPreferences('a',{subjects:['physics']});await new Promise(r=>setImmediate(r));window.dispatchEvent(new Event('s3c:account-session-reset'));release({settings,accountTag:'a'});assert.equal(await pending,null);});
+test('fresh account B read invalidates a late settings GET for A without session event',async()=>{const m=await bridge();let release;globalThis.fetch=()=>new Promise(r=>release=r);const old=m.readAccountPreferences();await new Promise(r=>setImmediate(r));globalThis.__preferencesMe={signedIn:true,tag:'b'};globalThis.fetch=async()=>response('b');assert.equal((await m.readAccountPreferences()).accountTag,'b');release(response('a'));assert.equal(await old,null);});
+test('fresh account B read invalidates a late PUT for A without session event',async()=>{const m=await bridge();let release;globalThis.fetch=()=>new Promise(r=>release=r);const old=m.writeAccountPreferences('a',{subjects:['physics']});globalThis.__preferencesMe={signedIn:true,tag:'b'};globalThis.fetch=async()=>response('b');assert.equal((await m.readAccountPreferences()).accountTag,'b');release(response('a'));assert.equal(await old,null);});
+
+test('initial off-null probe preserves cached404 without forced identity/settings request',async()=>{const m=await bridge();globalThis.__preferencesMe=null;globalThis.fetch=()=>{throw Error('settings must not be requested');};assert.equal(await m.readAccountPreferences(false),null);assert.deepEqual(globalThis.__preferencesMeCalls,[false]);});
+test('initial cached A probe is freshly checked as B before settings can be admitted',async()=>{const m=await bridge();globalThis.__preferencesMeReader=fresh=>({signedIn:true,tag:fresh?'b':'a'});globalThis.fetch=async()=>response('b');assert.equal((await m.readAccountPreferences(false)).accountTag,'b');assert.deepEqual(globalThis.__preferencesMeCalls,[false,true]);});
+test('normal and focus reads retain direct forced freshness',async()=>{const m=await bridge();globalThis.fetch=async()=>response('a');assert.equal((await m.readAccountPreferences()).accountTag,'a');assert.deepEqual(globalThis.__preferencesMeCalls,[true]);});
+test('enabled signed-out initial probe is freshly checked rather than treated as accounts-off',async()=>{const m=await bridge();globalThis.__preferencesMeReader=fresh=>fresh?{signedIn:true,tag:'b'}:{signedIn:false};globalThis.fetch=async()=>response('b');assert.equal((await m.readAccountPreferences(false)).accountTag,'b');assert.deepEqual(globalThis.__preferencesMeCalls,[false,true]);});

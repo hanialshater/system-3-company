@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "when-the-water-is-full",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/when-the-water-is-full",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "when-the-water-is-full",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/when-the-water-is-full/meta.json",
+    "metaSha256": "a6774d00b814d3e83ebc125496dc8d6e8c19882b756516be76ced5e27b7d9915",
+    "demoSha256": "927b0484dae87867bc4506bd0b0b7aece7fbe2d94913ee49f9421dff32148ef4",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/when-the-water-is-full",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/when-the-water-is-full.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected None and locked it in.",
+    "exploration": "Added 20 g: all dissolved, no crystals. Filled to 50 g: 36 dissolved and 14 crystals. Stirred twice; totals stayed fixed. Empty reset all totals to zero; refilled to 50 g with same 36/14 result.",
+    "reveal": "Corrected to about 14 g, referenced two stirring rounds, distinguished faster dissolving from increased capacity, explained equal ion exchange at saturation and limited 36 g value to 20 C.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Liquid contained two colors of ions, bottom crystal row and opposing arrows labeled as many each way. Totals, controls and explanation were legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete arithmetic commitment exists but capacity statement gives the answer directly.",
+      "evidence": "36 g capacity and 50 g addition imply 14 g remainder.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Below-limit addition, saturation, repeated stirring and reset distinguish capacity from rate.",
+      "evidence": "20 all dissolved; 50 leaves 14 despite two stirs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal adds dynamic exchange beyond the subtraction answer.",
+      "evidence": "Ions leave and return equally despite constant pile.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Capacity conditions and ion notation are explained.",
+      "evidence": "20 C qualification and charged specks definition.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Temperature caveat and saturation principle supplied without a new application.",
+      "evidence": "Warmer water holds a little more salt.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text totals available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "More stirring cannot remove equilibrium crystals.",
+      "evidence": "14 g remains unchanged.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Static pile with opposing exchange arrows illustrates dynamic equilibrium.",
+      "evidence": "As many each way label.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adding, stirring and emptying make a small experiment.",
+      "evidence": "Two increment sizes, fill and reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies familiar kitchen dissolving behavior.",
+      "evidence": "Rate versus amount dissolved.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Simple capacity leads into dynamic equilibrium.",
+      "evidence": "Equal microscopic traffic behind unchanged total.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple masses and household operation introduce dynamic equilibrium.",
+    "conceptualDemand": "Distinguish solubility ceiling, dissolving rate and continuing microscopic exchange.",
+    "interfaceBurden": "Five plainly labeled buttons.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Ions and saturation defined in reveal.",
+    "notationRepresentationBurden": "Grams and Celsius; subtraction and particle arrows."
+  },
+  "whyCool": "An unchanged crystal pile can still exchange ions with the water.",
+  "caveat": "Prediction mainly tests subtraction from a stated capacity; temperature variation is described but not controlled.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:29:51.285648+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "clear-the-lowest-one",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/clear-the-lowest-one",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction10110repeatedxAND(x-1):5bitpositions/3onebits/2zerobits; chose5. ANDmeaning notdefinedbeforecommit.",
+    "Oneapplication10110=>10100;repeattozero3total;10000presettozero1;11111111presettozero8.",
+    "Reveal binaryborrow10100-1=10011,ANDkeepssharedones,clearslowest1;positivepoweroftwo iff oneiterationzero;actualthreefinishedruns cited.",
+    "Screenshot bitrows andfinishedruns,historyandreadout clear; actualrightedgeprosecutoff andnormalverticalscroll."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Binarynotation,borrow,andbitwiseAND assumedbeforequestion.",
+    "conceptualDemand": "Trackdigitpatterns andintersection under subtraction.",
+    "interfaceBurden": "Manybitcontrols andlonghistory;clippedreveal."
+  },
+  "whyCool": "Subtractingone makes a pattern thatANDs away exactlythelowestonebit\u2014so repeatscountones.",
+  "caveat": "Noviceprerequisitegap; presetsautomaticallyfinish two contrastingruns, notindependenttransferassessment.",
+  "effort": "Prediction,singleoperation,finishoriginal,twopresetruns,reveal.",
+  "provisionalBucket": "specialist",
+  "bucketReason": "Strongbitmechanism andusefulcondition;requiresbinaryknowledge andlayoutfix.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Plausibledistractors butAND/binary prerequisites notsupplied fordeclarednovice.",
+      "evidence": "0b10110 andampersandoperation assumed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Single-step andcontrolledbitpatterncontrasts exposelowest-one mechanism andsingle-bitboundary.",
+      "evidence": "3repeats versus1versus8.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsborrow/sharedbits andtiesobservedone-stepcase tonewpositivepower-of-two condition.",
+      "evidence": "10000oneiteration;requiresx>0.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Bitrows useful butactualprosecutoff andsymbolheaviness.",
+      "evidence": "Screenshotrightedge truncatedlines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteadditionaluse withcondition explained.",
+      "evidence": "Positivepoweroftwo detection byonerepeat; noindependentnovelcaseapplication tested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twooperationscountones ratherthanpositions.",
+      "evidence": "10110threeversusfive.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "BinaryborrowandANDrowchanges explainbitclearing.",
+      "evidence": "10100-1=10011 sharedbits10000.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Flipbits andrunspecialpatterns.",
+      "evidence": "Eightbitbuttons andpresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concretebitcount/poweroftwoprogramminguse.",
+      "evidence": "x>0condition andoneoperationtest.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Borrow,bitwiseintersection,popcount,andpoweroftwo.",
+      "evidence": "Threecontrastingpatterns.",
+      "confidence": "medium"
+    }
+  }
+}

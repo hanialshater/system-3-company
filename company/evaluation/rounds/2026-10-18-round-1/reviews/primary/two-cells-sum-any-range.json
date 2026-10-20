@@ -1,0 +1,105 @@
+{
+  "slug": "two-cells-sum-any-range",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-cells-sum-any-range",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted5readsfor3to7rangeafterrunningtotalsprecomputed.",
+    "NexttotalandBuildrestproducedprefix3,4,8,9,14,23,25,31with7additions. Range1to6read1total23;3to7read2,25-4=21.",
+    "Day3+1flagged6of8totalsstale,querystaleexplicit. Rebuildchangedprefixesfromday3;3to8read2,32-4=28. Historicaloriginal3to7tracepreserved.",
+    "Revealexplainedsubtractingprefixbeforerange,buildcost,atmostonesubtractionandupdateinvalidationcost.",
+    "Inline1280x720 light screenshot: alignedarraysandhistoricaltrace clear,prose rightedgeclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Cumulativearithmeticandindexboundarieswithclearrows.",
+    "conceptualDemand": "Prefixsubtractionandstaledata.",
+    "interfaceBurden": "Severalcontrolsandgating;proseclips."
+  },
+  "whyCool": "Twohighlightedtotalsreplacealongsum,butchangingoneearlydayexposeswhatthatshortcutcoststomaintain.",
+  "caveat": "Singleeightdayexample;historicaloriginalnumberspersistafterrebuildbutlabelledtrace;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,build,threequeryranges,update/staleflag,rebuild,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Richquery/updatecomparison;repairproselayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearprecomputationcondition andspecificrange costquestion.",
+      "evidence": "5versus2versus7reads.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Construction,multipleranges,prefixboundary anddataupdate/rebuild demonstratebenefitandlimit.",
+      "evidence": "1versus2reads;6staletotals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsactualquery,buildcost andobservedupdateinvalidationtradeoff.",
+      "evidence": "7additions,2reads,6stale.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usefulstale/historicallabelsbutproseclips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "New3to8rangeandupdatecaseapplyqueryruleandshowwhenstoredtotalssufficeno longer.",
+      "evidence": "Rebuildrequiredafterdaychange.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Longerrangequeryneedsnoextra readsbutoneupdateinvalidatesmanytotals.",
+      "evidence": "3to8still2reads.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Alignedsales/prefixrowsandhighlightedcellsgroundsubtraction.",
+      "evidence": "6staleentries.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Build,query,modify,rebuildexperiment.",
+      "evidence": "Multiplecontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Precomputationversusupdatescentralcomputationaltradeoff.",
+      "evidence": "Rangequerycost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Construction,querycomplexity andcacheinvalidation.",
+      "evidence": "Explicitupdateprice.",
+      "confidence": "medium"
+    }
+  }
+}

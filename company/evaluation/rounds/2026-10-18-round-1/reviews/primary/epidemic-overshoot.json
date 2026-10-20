@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "primary",
+  "slug": "epidemic-overshoot",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/epidemic-overshoot",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "ce06e46f26da3757cc106a8129c25eb98e93ca1808c476f01ff6d5adff8005d9",
+  "demoSha256": "0f236b9935f99607484a3f2fdec645975e41b832300b640089a284346f3dc697",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose About67% then locked; alternatives About94%,100%.",
+    "exploration": "Peak(R0 3):day19,65% had it,30% sick. Day100:94%,0% sick. R0 2 atday100:80%; R0 4:98%. Buttons remain labeled R0 3 while alternative radio selected.",
+    "reveal": "Not quite About94%; threshold means fewer than one new infection, not stopping. Still-sick30% continue transmission. Explicit made-up/random-mixing/lasting-immunity/no-behaviour-change/vaccine/treatment limitations. Reveal describes R0 3 while graph currently R0 4.",
+    "visual": "CUA screenshot peak: grid green/pink/empty dots and dashed67% threshold, legend, slider and R0 controls; legible dark1257x936; lower reveal button near bottom.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible threshold versus final-size misconception.",
+      "evidence": "67%,94%,100% alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time and R0 contrasts expose overshoot.",
+      "evidence": "Peak65%/30%; final94%; lower80/higher98.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects peak active cases to continued transmission and names model limits.",
+      "evidence": "Reveal30% sick and explicit assumptions; original-R0 explanation despite changed stage.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core path clear but changing R0 leaves shortcut labels and reveal tied to originalR0.",
+      "evidence": "SelectedR0 4 graph98% beside Peak(R0 3); reveal94%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable threshold principle with applicability assumptions; no new application.",
+      "evidence": "Model limits and falling-versus-stopping principle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Selected threshold answer overturned.",
+      "evidence": "67% prediction to94% end.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot states and threshold carry explanation.",
+      "evidence": "Peak screenshot30%pink remaining at line.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible time and reproduction number controls support exploration.",
+      "evidence": "R0 2/3/4 final80/94/98.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Shows how to interpret epidemic thresholds with clear toy-model limits.",
+      "evidence": "Cases fall without immediate stop.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Time state, active cases and parameter contrast linked.",
+      "evidence": "Peak/end plusR0 variants.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes cumulative from currently sick and threshold from final size.",
+    "conceptualDemand": "Linked time and transmission relations, supported by labeled dot grid.",
+    "interfaceBurden": "low-moderate: tall card and original-model shortcut labels after R0 changes.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "R0 and immunity threshold unfamiliar."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "R0, percentages and two state encodings."
+    }
+  },
+  "whyCool": "Jumping from peak to day100 turns the still-sick pink population into infections beyond the dashed line.",
+  "caveat": "OriginalR0 shortcuts/reveal need careful distinction after switching parameters; toy model only.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

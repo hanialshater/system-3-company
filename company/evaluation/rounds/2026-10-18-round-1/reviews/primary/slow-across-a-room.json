@@ -1,0 +1,104 @@
+{
+  "slug": "slow-across-a-room",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/slow-across-a-room",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10seconds tospread1mm from10micrometres0.1sbaseline;alternatives17minutes/3hours. Squaredlawnotbeforequestion.",
+    "Baseline10\u00b5m0.1s;1mm1000s17min;returnedcellthen1mmunlockedreveal;sliderprevious700\u00b5m490s8min. Plotrandomwanderingtraces andcurvedspreadenvelope versusverticaltime.",
+    "Reveal explains100distance\u219210000time,distancesquared=2Dt,D5e\u221210m2/sforsugarwater,individualarrivaltimesvariable,andlargeanimalsusebloodflowoverbodydistances.",
+    "1280x720light traceplot smallbutcurvedenvelopeclear;revealrightedgecutoff. Initialcellstatehadtoexplicitlyrevisitforgate."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simpledistancecomparisonbutrandomwalkspreadandunitsscales.",
+    "conceptualDemand": "Typicaldisplacementversuspathlengthandelapsedtime.",
+    "interfaceBurden": "One slider,presets;gatecountsvisitnotinitialview."
+  },
+  "whyCool": "Molecules keep wandering, so reaching100times farther takes10000times longer rather than100times.",
+  "caveat": "One-dimensionaltypicalspread,constantsugar-waterD;notfirst-arrivaltimeguarantee. NumericalDnotindependentlyaudited. Prosecutoff.",
+  "effort": "Prediction,cell/1mmcontrasts,700\u00b5mintermediate,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Cleartransportscaleandbiologicalapplication;fixgate/layout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exactscalingchoice requiresrandom-walklawnotprovideduntilreveal.",
+      "evidence": "100foldfarther butno t\u221dL\u00b2beforechoice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Baseline,target andintermediatedistancecontrast showcurvedspread/time relation.",
+      "evidence": "10\u00b5m0.1s,700\u00b5m490s,1mm1000s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalcalculation,plotshape andtypical-versusindividualmodelcondition.",
+      "evidence": "100\u00b2time,one-direction2Dt,arrivalsvary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear;smallplot,initialstateexplicitrevisitgate andclippedprose.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitnewbiologicaltransportapplication withdistancecondition.",
+      "evidence": "Diffusionquickacrosscell,insufficientacrossbody;bloodflowinstead.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "100timesfartherneeds10000timestime.",
+      "evidence": "0.1sto17min.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Wanderingpaths andcurvedenvelopevisualizenonlinearspread.",
+      "evidence": "Verticaltimetraceswithdistance-boundcrossingline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Distancepresetsandslider supportlimitedcomparison.",
+      "evidence": "Three distances.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralbiologicaltransportscaleintuition.",
+      "evidence": "Whycirculationmattersforlargeanimals.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Randomwalkscaling,typicalspread andtransportregimes.",
+      "evidence": "One-directionDmodelandvariablearrivals.",
+      "confidence": "medium"
+    }
+  }
+}

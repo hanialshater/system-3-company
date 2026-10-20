@@ -1,0 +1,103 @@
+{
+  "slug": "lh-turn-container-volume",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-turn-container-volume",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Equal for20\u00d710\u00d715 cm inner box versus exchanged last dimensions.",
+    "Tests gave3 L each; maximum third side30 gave6 L each.",
+    "Screenshot showed tall and wide box wireframes. Reveal preserved context and explained commutative product while noting orientation can affect fitting."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three-factor volume and conversion supplied.",
+    "conceptualDemand": "Product unchanged by factor order.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Turning a box changes its shape on screen without changing the space inside.",
+  "caveat": "Prediction answered by title; no actual fit constraint demonstrated.",
+  "effort": "Prediction, both tests, maximum dimension, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Good visual invariant but prediction fully disclosed.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and hook explicitly give invariant volume.",
+      "evidence": "Turn it; volume stays same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Dimension scaling preserves equality across distinct shapes.",
+      "evidence": "15\u219230 cm.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains product order and separates fitting constraint.",
+      "evidence": "Real fitting can depend on orientation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Internal dimensions and conversion explicit.",
+      "evidence": "1000 cm\u00b3/L.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete distinction between volume and fitting limits application.",
+      "evidence": "Orientation preserves capacity but not fit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Invariant result disclosed.",
+      "evidence": "No uncued conservation judgment.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Different box orientations embody same dimensions.",
+      "evidence": "Tall versus wide wireframes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and one dimension slider.",
+      "evidence": "No free rotation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Container capacity/fitting distinction supports concept.",
+      "evidence": "Ideal inner volume.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Commutativity versus geometric fitting.",
+      "evidence": "Same product, different orientation.",
+      "confidence": "medium"
+    }
+  }
+}

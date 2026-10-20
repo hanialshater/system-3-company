@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "two-tugs-right-angle",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-tugs-right-angle",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-tugs-right-angle",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/two-tugs-right-angle/meta.json",
+    "metaSha256": "8e28fcc05edaf1f4d5f000905cb3e9eecdb74a6cf394928d0dc190cff6bd6e99",
+    "demoSha256": "47c611f0115c6c986adbabd6fc1bc119cc02f4f910536b96cb52c2d5fe69cb20",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-tugs-right-angle",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-tugs-right-angle.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected seven newtons and locked it in.",
+    "exploration": "At ninety degrees resultant five N and fifty-three degrees north of east. Home zero degrees gave seven N east; End one-eighty gave one N west. Swapped tip-to-tail order; metrics unchanged. Stepped back through angle range, observed one-sixty-five degrees with one-point-three N at one-thirty degrees, then restored ninety and five N.",
+    "reveal": "Corrected to five N, explained tip-to-tail addition and right-triangle formula. Described aligned seven and opposed one boundaries, plus a supplied one-oh-five-degree four-point-three N comparison. Frictionless ice and only two horizontal pulls stated.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Opposed arrows gave westward orange resultant; swapped right-angle construction showed north then east with same diagonal endpoint. Labels and explanation readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete simultaneous-force prediction targets adding magnitudes without direction.",
+      "evidence": "Seven chosen against five and one.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Angle endpoints and order swap distinguish direction and commutativity.",
+      "evidence": "Seven aligned, one opposed, five perpendicular; swap unchanged.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects arrows and right-triangle arithmetic with tested boundaries.",
+      "evidence": "Square root of three squared plus four squared.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tip-to-tail labels and resultant magnitude/direction align.",
+      "evidence": "Order swapped same single force caption; frictionless assumption.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General arrow-addition rule stated without a new application.",
+      "evidence": "Same two-force crate model throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard angle endpoints and steps worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Three plus four can give five when directions differ.",
+      "evidence": "Perpendicular resultant five.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrow construction shows both magnitude and direction.",
+      "evidence": "Orange diagonal with swapped gray components.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rotating force and swapping order invite geometric exploration.",
+      "evidence": "Angle slider and swap button.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies combining physical pulls.",
+      "evidence": "Direction-dependent total.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links vector addition, commutativity and Pythagorean magnitude.",
+      "evidence": "Different angle, same component magnitudes, different resultant.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "One geometric control introduces vector magnitude and direction.",
+    "conceptualDemand": "Add directed quantities rather than their lengths and interpret tip-to-tail construction.",
+    "interfaceBurden": "One stepped angle slider and order swap.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Resultant force, newtons and vector addition.",
+    "notationRepresentationBurden": "Degrees from east, N and squared-root relation."
+  },
+  "whyCool": "The total follows the arrow endpoint, not the sum of rope magnitudes.",
+  "caveat": "Two-force frictionless model excludes other forces; supplied one-oh-five-degree reveal value was not separately inspected in a settled exploration state.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:48:10.100396+00:00"
+}

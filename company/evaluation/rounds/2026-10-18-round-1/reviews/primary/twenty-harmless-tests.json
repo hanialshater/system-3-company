@@ -1,0 +1,104 @@
+{
+  "slug": "twenty-harmless-tests",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twenty-harmless-tests",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction20nulltests,5%falsealarm each,atleastonechance;selected5%. Independence notstateduntilreveal.",
+    "Test1thenRunall20 produced2alarms. Run1000batches produced638withalarm,64%rounded.",
+    "Revealusedactual64%,derived1-0.95^20,contrastedoneexpectedalarm versusprobabilityany,andexplicitlystatedindependence andreporting/correctionadvice.",
+    "Inline1280x720 light screenshot: alarmtiles,counts andfullprose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Percentagesandcompoundeventprobability supportedbybatchcounts.",
+    "conceptualDemand": "Atleastoneversusindividualrisk.",
+    "interfaceBurden": "Simplebuttons andreadableprose."
+  },
+  "whyCool": "A wallofmostlyquiettests canstillproduceafindinginmostbatches.",
+  "caveat": "Addindependence tohook;raisingbarneedsspecificmethodforrealanalysis;accessibilityunknown.",
+  "effort": "Prediction,individualtest,fullbatch,1000batches,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-hook-fix",
+  "bucketReason": "Readablemultiple-testingcomparison;statecriticalassumptionearlier.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Relevantquestionbutindependence requiredfor64%iswithhelduntilreveal.",
+      "evidence": "Onlymarginal5%rates specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Individualbatchandaggregatebatchesdistinguishcountfromeventfrequency.",
+      "evidence": "2/20versus638/1000.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualsampleandcomplementcalculationexplainedwithassumption.",
+      "evidence": "Allquiet0.95^20andindependence.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readabletiles,counts andexplicitdenominators.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretepracticeconditions:manytestsrequiredisclosingcountorraisingper-testbar.",
+      "evidence": "Independencecaveatandmultipletestingresponse.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Manysmallfalsealarmrisksyieldlargeany-alarmrisk.",
+      "evidence": "64%versus5%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Alarmgridandbatchcounter showlevels.",
+      "evidence": "2alarmsinglebatch and638aggregate.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Individualtests,batchandreplicationcontrols.",
+      "evidence": "Test1thenrunall.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpretingmanysignificancetestscentral.",
+      "evidence": "Reportingtestedcount.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Complementprobability,expectation andindependence.",
+      "evidence": "Oneexpectedalarmversus64%any.",
+      "confidence": "medium"
+    }
+  }
+}

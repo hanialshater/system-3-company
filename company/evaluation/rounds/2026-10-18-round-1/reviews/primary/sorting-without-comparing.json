@@ -1,0 +1,103 @@
+{
+  "slug": "sorting-without-comparing",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sorting-without-comparing",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted nine comparisons. Manually dropped scores3,0,5,2,2,1,4,5,0,3 into six addressed buckets.",
+    "Read buckets0\u20135 in order; output0,0,1,2,2,3,3,4,5,5 with zero comparisons and10/10 read out.",
+    "Screenshot showed bucket tallies retained above sorted output. Reveal explicitly limited method to small whole-number range and noted huge range needs bucket per possible value."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small familiar scores and direct counting.",
+    "conceptualDemand": "Value as bucket address versus comparing pairs.",
+    "interfaceBurden": "Low but16 repetitive taps."
+  },
+  "whyCool": "Each score supplies its own address, so tallying and ordered readout replace asking which card is larger.",
+  "caveat": "Fixed tiny range; automatic routing and ordered enabled buttons reduce learner choice. Zero pairwise comparisons does not mean zero computational work.",
+  "effort": "Browser prediction, ten individual drops, six bucket readouts, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear scoped explanation; exploration is mostly a fixed procedure.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear unit but supplied tallying method and title cue zero.",
+      "evidence": "Comparisons between scores, not all machine operations.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Learner triggers fixed routing and compulsory ordered readout.",
+      "evidence": "No chosen destination, alternate range or stream.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Concrete output tied to value-as-address mechanism and limit.",
+      "evidence": "Six buckets, ten outputs, zero pairwise comparisons.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counters distinguish comparisons from output work.",
+      "evidence": "Zero comparisons versus10/10 read out.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Conditions discriminate applicability to other data.",
+      "evidence": "Small whole-number range works; huge range needs excessive buckets.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Sorting without pairwise comparison challenges common assumption.",
+      "evidence": "Zero recorded comparisons.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tallies map directly into duplicate counts in output.",
+      "evidence": "Six numbered buckets and ten sorted cards.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Hands-on card dropping.",
+      "evidence": "Fixed score sequence and ordered readout.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete restricted-domain sorting strategy.",
+      "evidence": "Exam scores in a bounded integer range.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Mechanism and range limit, little complexity exploration.",
+      "evidence": "No range-size contrast or total-work model.",
+      "confidence": "medium"
+    }
+  }
+}

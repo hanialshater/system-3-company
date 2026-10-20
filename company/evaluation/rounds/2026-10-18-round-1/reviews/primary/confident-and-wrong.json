@@ -1,0 +1,104 @@
+{
+  "slug": "confident-and-wrong",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/confident-and-wrong",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionln(1/p),50%loss0.69,1%loss1.4/4.6/50; chose50.",
+    "Halve50to25=>1.39,2timesbaseline;10%=>2.30,3.3times;1%=>4.61,6.6times.",
+    "Reveal actualhalvingadds0.69,6.6halvings to1%,unboundedpenalty,crossentropytraining;otherpenaltiesexist.",
+    "Screenshot smoothcurve,probabilityslider andreadouts; actualrevealrightedgeclipped,uppercurve viewrequiresinternalscroll."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Logarithms andprobabilisticprediction loss outsideeverydaynumeracy.",
+    "conceptualDemand": "Functionoftruthprobability,additivehalvingsteps,unboundedlimit.",
+    "interfaceBurden": "Simplecontrols butmultipleabstractreadouts andclippedreveal."
+  },
+  "whyCool": "Everyhalving ofthechanceassignedtothetruthadds thesamepenalty,so sure mistakesnevergetacheapceiling.",
+  "caveat": "Provisionalnoviceboundary; exactprediction depends onmathknowledge; noobservedlearningclaim.",
+  "effort": "Prediction,halving,10/1%presets,reveal.",
+  "provisionalBucket": "specialist",
+  "bucketReason": "UsefulAI/mathdepth butweaknoviceprediction andhighconceptualdemand.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exactlnvalue is hardtoinfer withoutlogknowledge orcalculator.",
+      "evidence": "Prompt giveslnkey explanation butnocalculator inUI.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Halvingcontrol makes logarithmicincrements observable.",
+      "evidence": "50=>25adds0.69.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects equalhalvingsteps to penaltygrowth andtraining.",
+      "evidence": "6.6halvings corresponds6.6baselinepenalty.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Abstractfunction,ratio,halving andclippedprose.",
+      "evidence": "Severalnumericrepresentations simultaneously.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for interpretingprobabilisticmodel losses.",
+      "evidence": "Confidentwrongpredictions heavily penalized.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nearzeroassignedtruthprobability incursunboundedloss.",
+      "evidence": "1%loss4.61 vs50%0.69.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve andreadouts show steepnearzero region.",
+      "evidence": "Probabilityslider pluslossratio.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Numericalfunction exploration.",
+      "evidence": "Halvebutton andpresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful AItrainingmetric literacy.",
+      "evidence": "Crossentropy namedwithotherpenaltiescaveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Logarithms,confidence,and lossfunctionchoice.",
+      "evidence": "Equalhalvings additivepenalty.",
+      "confidence": "medium"
+    }
+  }
+}

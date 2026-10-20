@@ -1,0 +1,103 @@
+{
+  "slug": "lh-sequential-discounts",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-sequential-discounts",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted30% once lower for20% followed by10% off reduced price.",
+    "Tests gave\u20ac72/\u20ac70 at100; maximum150 gave108/105.",
+    "Screenshot showed receipt icons and formulas. Reveal preserved input context and explained0.8\u00d70.9=0.72 rather than0.70."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar percentages with displayed arithmetic.",
+    "conceptualDemand": "Successive percentages use different bases.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Twenty percent off followed by ten percent off leaves more than a single thirty-percent discount.",
+  "caveat": "Title cues non-equivalence; no visual intermediate price or alternate percentage case.",
+  "effort": "Prediction, both tests, maximum price, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear changed-base example with modest exploration.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear common misconception but title says discounts do not add.",
+      "evidence": "Three ordering choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Starting price scales gap consistently.",
+      "evidence": "100\u2192150.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains changed base and product.",
+      "evidence": "Second percentage acts on remainder.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Order, percentages and fictional scope clear.",
+      "evidence": "No other fees.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General changed-base principle without fresh application.",
+      "evidence": "Multiply remaining fractions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Non-additive discounts central.",
+      "evidence": "28% total rather than30%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not show intermediate reduced base.",
+      "evidence": "Formula carries mechanism.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and starting-price slider.",
+      "evidence": "Discount rates fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Offer calculation central.",
+      "evidence": "Stacked discounts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiplicative percentage changes.",
+      "evidence": "Changing base.",
+      "confidence": "medium"
+    }
+  }
+}

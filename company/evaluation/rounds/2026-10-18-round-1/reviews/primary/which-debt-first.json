@@ -1,0 +1,104 @@
+{
+  "slug": "which-debt-first",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-debt-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Fixed-rate no-minimum-payment model compares balances four thousand at twenty-four percent and one thousand at six percent with three hundred paid monthly.",
+    "High-rate-first run reported 793 interest and twenty months; small-balance-first gave 1,095 and twenty-one months.",
+    "Screenshot overlays both cumulative interest curves and retains totals.",
+    "Reveal reports 302 difference and explains two percent monthly versus half percent, explicitly stating APR divided by twelve and excluding real-world minimums/new spending."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Monthly interest accumulation over a payoff schedule.",
+    "conceptualDemand": "Compare marginal interest avoided rather than balance size.",
+    "interfaceBurden": "Two order buttons."
+  },
+  "whyCool": "The same monthly outlay can buy different amounts of interest relief depending on which balance it reduces.",
+  "caveat": "Fixed illustrative model excludes minimum payments, fees and new borrowing; no personal recommendation or independent schedule audit.",
+  "effort": "Prediction, both complete repayment runs, overlay screenshot and scoped reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear cost mechanism and limits, with limited interaction and a hard-to-estimate prediction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Meaningful magnitude choice but requires an undisclosed detailed repayment calculation.",
+      "evidence": "About thirty versus three hundred versus zero; monthly rate convention explained only later.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed complete runs compare order.",
+      "evidence": "No rates, balances or payments editable.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed cost and duration difference through marginal interest avoided and model scope.",
+      "evidence": "793 versus 1,095; each high-rate dollar stops four times the monthly interest.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Overlay and retained totals make the order contrast legible.",
+      "evidence": "Both curves and current duration shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete marginal-interest principle with explicit applicability limits.",
+      "evidence": "Fixed monthly rates and no minimums; model arithmetic only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same monthly payment can yield materially different totals.",
+      "evidence": "302 interest and one month difference.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cumulative curves show divergence over repayment.",
+      "evidence": "Both orders on one graph.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed runs.",
+      "evidence": "No additional parameter exploration.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interest-cost mechanism.",
+      "evidence": "Different rates imply different savings from reducing principal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Payment order, interest accumulation and duration connect.",
+      "evidence": "Higher marginal rate compounds differently.",
+      "confidence": "medium"
+    }
+  }
+}

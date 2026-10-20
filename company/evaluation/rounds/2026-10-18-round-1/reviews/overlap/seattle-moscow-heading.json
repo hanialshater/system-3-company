@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "seattle-moscow-heading",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seattle-moscow-heading",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "seattle-moscow-heading",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/geography/seattle-moscow-heading/meta.json",
+    "metaSha256": "8c7208acd627f291d1299ca5e8804c7707e4c145d083a61f5954a6fe53203336",
+    "demoSha256": "49ef5849a6738f5373e95215297bb1f4d74a6ab56457b7d7c352009232f0cbce",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/seattle-moscow-heading",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/seattle-moscow-heading.json"
+  },
+  "date": "2026-10-18T20:37:03.219834+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "ChoseEast andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "East90miss7940km,NE45miss3590,north0miss1240. Turn10miss160,11miss50within2deg;exact11.5bearing8370kmshown. SwitchedflatmapandsawroutebendingnorthversusstraightSeattlecentred."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Readalmostnorthcorrection,11.5eastofnorth,8370km,northernCanada/Greenland/Arctic/Norway/Finlandrouteandprojectioncomparison."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlinecentredinitial,near11heading,flatrouteandscrolledreveal inspected. Routes,countersandfulltext readable;finalnestedscroll present."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificinitialdirectionforecastchallengesflatmapintuition.",
+      "evidence": "SeattletoMoscowshortestroute,east/NE/almostnorth.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multipleheadingcontrastsandprojectioncomparisonexplainbearing.",
+      "evidence": "90/45/0/10/11missdistancesandstraightversuscurvedsamepath.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Sphereandfar-northgeometryreconcileeastlongitudeandnorthstart.",
+      "evidence": "11.5bearing,routeoverArcticandtwoprojectedsamepath.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Missdistanceandpresetsguideprecisionwithoutmath.",
+      "evidence": "Within2degthresholdandexact11.5label;finalnestedscrollbuttextreadable.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principlewithinonecitypaironly.",
+      "evidence": "No freshrouteapplication.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Far-eastdestinationrequiresalmostnorthdeparture.",
+      "evidence": "Eastmiss7940kmbut11degmiss50.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Twoprojectionsandcontrolledheadingsexposegreat-circleintuition.",
+      "evidence": "Samepathstraightcentred,highnorthcurveflat.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Steerrouteandwatchmissdistance.",
+      "evidence": "Presetsandfine1degcontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulnavigationandmapinterpretationintuition.",
+      "evidence": "Initialbearingnotflatlongitudecomparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sphere,bearingandprojectionlinked.",
+      "evidence": "Headingcontrastsandroutegeometry.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Distinguishflat-mapdirectionfrominitialgreat-circletangentandcompareprojections.",
+    "interfaceBurden": "Presetsplusincrementbuttons;finalnestedscroll.",
+    "prerequisiteNovelty": "Greatcirclerouteimplicitlyintroducedgeometrically.",
+    "notationRepresentationBurden": "Degreesfromnorth,km andtwomapviews;labelshelp."
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "flaw-to-lawn",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flaw-to-lawn",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "99299ca835faff215ac78b0c33636ff5f3c9296e0cf07da65a7426125b8d78d3",
+    "demoSha256": "f83e36d0a977dd655c726191b5b77598d7c5c67718ad803fbb8464a907e24b85",
+    "metaPath": "src/demos/cs/flaw-to-lawn/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected four edits for FLAW to LAWN and locked it in; insert, delete and replace rules supplied.",
+    "exploration": "Next cell computed F to L cost one. Row F completed four cells, row L eight, row A twelve, row W all sixteen with corner two. Trace back highlighted delete F, keep L A W, insert N, unlocking reveal.",
+    "reveal": "Corrected two. Explains positional mismatch count misses shifting alignment, uses actual corner recurrence and prefix reuse, then names spell checking and DNA alignment.",
+    "visual": "Inline initial and traced-grid screenshots inspected. Green path goes down deletion, diagonal matching LAW, then right insertion. Numeric grid and operation-direction legend legible. Trust count 9/9 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear edit rules contrast positional mismatch with flexible alignment.",
+      "evidence": "Four selected versus two-edit traced path.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cell/row progression and traceback reveal prefix recurrence and concrete minimal edits.",
+      "evidence": "Sixteen cells, corner two, delete/keep/insert path.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed corner and path to alignment shift and reuse of smaller problems.",
+      "evidence": "Delete F aligns LAW, insert N; exact corner text quoted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Grid legible but unfamiliar prefix semantics and recurrence require substantial interpretation.",
+      "evidence": "Initial cheapest-neighbour instruction versus later detailed explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Spell checking and DNA are concrete new uses, but conditions and scoring differences are unexplained.",
+      "evidence": "Final application sentence only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Four-mismatch prediction overturned by two operations.",
+      "evidence": "Delete F and insert N.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted grid path carries alignment mechanism.",
+      "evidence": "Traced screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Cell or row pacing permits limited procedural discovery on fixed words.",
+      "evidence": "Single cell then four row actions and trace.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete spelling and biological sequence uses named.",
+      "evidence": "Final application sentence.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Alignment shifts, minimal edit path and prefix dynamic programming linked.",
+      "evidence": "Grid progression and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates prefix states, three transition types, minimum costs and traceback.",
+    "conceptualDemand": "Several dependent dynamic-programming abstractions.",
+    "interfaceBurden": "Low: cell/row controls, dense but legible grid.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: edit-distance recurrence",
+    "notationRepresentationBurden": "moderate: prefix arrows, numeric matrix and path"
+  },
+  "whyCool": "Deleting one leading letter makes three apparent mismatches line up, leaving only an inserted N to finish the transformation.",
+  "caveat": "Fixed word pair and equal edit costs; no fresh word or DNA scoring task.",
+  "missingEvidence": [
+    "Fresh word pair",
+    "Different edit costs",
+    "Reset",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

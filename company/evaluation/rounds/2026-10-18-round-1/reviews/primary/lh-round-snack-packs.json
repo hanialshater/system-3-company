@@ -1,0 +1,103 @@
+{
+  "slug": "lh-round-snack-packs",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-round-snack-packs",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Purchased larger at7 guests,3 items each,indivisible ten-packs.",
+    "Tests gave30 purchased versus21 required. Ten guests gave equality30/30.",
+    "Screenshot showed aggregate fills, not packs or individual portions. Reveal preserved original/current inputs and explained exact requirement then pack ceiling, surplus separate from portions."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Multiply by3 then round to ten.",
+    "conceptualDemand": "Purchased quantity may exceed requirement.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Buying enough packs creates leftovers without changing anyone\u2019s portion.",
+  "caveat": "No pack partition or explicit leftover number; generic fill graphic.",
+  "effort": "Prediction, both tests, exact-pack equality, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear pack arithmetic with limited surprise.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple package rounding with supplied counts.",
+      "evidence": "Purchased versus required ordering.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Guest count exposes exact pack equality.",
+      "evidence": "7\u219210.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains ordering and remainder without changing portion assumption.",
+      "evidence": "Three each remains fixed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Portion and pack constraints explicit.",
+      "evidence": "Whole ten-packs.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General arithmetic sequence without new application.",
+      "evidence": "Requirement then packs.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected discrete-pack surplus.",
+      "evidence": "21 rounds to30.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Common fills support totals, omit pack structure.",
+      "evidence": "Equal30 screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and guest slider.",
+      "evidence": "Pack and portion fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Quantity planning central.",
+      "evidence": "Indivisible purchases.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes portions, requirement and purchased quantity.",
+      "evidence": "Ceiling produces surplus.",
+      "confidence": "medium"
+    }
+  }
+}

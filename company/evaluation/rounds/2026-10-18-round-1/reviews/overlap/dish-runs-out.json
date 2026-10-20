@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Preview no-history banner;trust6/6 ignored.Predicted aboutmillion.",
+    "Food topped up:7h=2.1million(0.2%);9h40=537million50%;10h=1.07billion100%.One-batch mode at10h=91.5million,growth stalls near100million.",
+    "Reveal30doublings,half final cells in last20min,finite food limit;E.coli rich broth caveat,other bacteria slower,food batch invented.",
+    "Screenshot1257x936dark:green disk in dish shows food-limited occupancy,clear time and cells;reveal says curve bent but visual is disk,not plotted curve."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Three distinct magnitude guesses with commitment.",
+      "evidence": "30thousand/million/billion",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Milestones and food toggle reveal accumulation and resource boundary.",
+      "evidence": "7h→9h40→10h→onebatch",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves exact counts and food boundary with biological limitation;curve wording mismatches disk representation.",
+      "evidence": "Reveal and screenshot",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Milestone controls and current state clear.",
+      "evidence": "Screenshot/time feedback",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Doubling plus finite-resource principle provided without new application.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Billion outcome overturns million guess and highlights final20minutes.",
+      "evidence": "Prediction and milestones",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dish filling carries population fraction.",
+      "evidence": "Screenshot and milestone occupancy",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time and food modes give reversible causal exploration.",
+      "evidence": "Milestones and toggle",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Biological growth applicability qualified.",
+      "evidence": "Lab broth limitation",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Exponential growth contrasted with finite-food leveling.",
+      "evidence": "Two food modes",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links number of doublings,large magnitudes and resource limitation.",
+    "conceptualDemand": "supported exponential/limiting relations",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:exponential growth",
+    "notationRepresentationBurden": "moderate:2^30 andmillion/billion"
+  },
+  "whyCool": "The last20minutes add as many cells as all previous9hours40minutes together.",
+  "caveat": "Finite-food model is invented;the reveal refers to a curve where the visible representation is a disk.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "dish-runs-out",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dish-runs-out",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "9ec604b145303ac1d3437013ef93c13c06bc094099ce9da27430ff46646d4fb9",
+    "metaSha256": "95453884eb3d1bd237395ddb2e9f194064105fe5ff8987edf2b4732184cf7cb4"
+  }
+}

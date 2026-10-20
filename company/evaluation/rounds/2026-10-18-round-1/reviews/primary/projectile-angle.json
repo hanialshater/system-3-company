@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "projectile-angle",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/projectile-angle",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "projectile-angle",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/physics/projectile-angle/meta.json",
+    "metaSha256": "607e01c5a8edd5003ab8d622961f4319a186896a5a8a90cda7d6010438d48f5f",
+    "demoSha256": "53c0f2c3c2b2a1217980b3cbbb2b32790af61539b49526b233d9fd6e6189bc2a",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/projectile-angle",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/projectile-angle.json"
+  },
+  "date": "2026-10-18T19:45:03.967665+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed;trust10/10 ignored. Selectedsteeper60throw andlocked. Groundlaunch20m/s,noair explicit.",
+    "exploration": "Launch30:35.3m,peak5.1,time2.0,sideways17.3. Partner60:same35.3,peak15.3,time3.5,sideways10. Launch45:40.8,peak10.2,time2.9,sideways14.1. End85launch7.1,peak20.2,time4.1,sideways1.7;partner5launchsame7.1,peak0.2,time0.4,sideways19.9. Alltracesretained.",
+    "reveal": "Correctsame. Citesoriginal30/60time-speedtradeoff,actual5/85and45max40.8;anycomplementaryangles time*sidewaysspeedequal. Noairdraglimit;realairpenalizeslongsteeppathmorestated.",
+    "visual": "Inline1257x936 dark screenshots inspected: allfive trajectoryarcs,sharedlandingmarkers30/60and5/85,45farther;currentcounters andfullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausibleflat/steep/samechoiceswithfixedspeed/height/airconditionsclear.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Twocomplementarypairsplus45boundaryisolatevertical-timeversushorizontalspeedtradeoff;multipletracecontrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualpairs and45maxconnectedtotime*sidewaysspeedandairdraglimit,resolvesoriginalprediction.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Trajectorylabels,counters,partnerbutton andretainedtraces legibleacrossfiveangles.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretepredictothercomplementarypair5/85plusconditionssamegroundspeed/noair,airdragcounterconditionexplained;nofreshindependentapplication.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Steeperpredictionfailsatboth30/60and5/85despitelargeheightdifference.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Simultaneouslyretainedarcsandsharedlandingscarrytradeoffacrossfivecontrasts.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Sliderlaunch/partnerchoices supportmultiplemeaningfulreversibleexperimentsandextremes.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteidealthrowrangeinterpretationwithrealaircaution.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Complementaryinvariant,45optimum,extremepair,time/speeddecompositionanddragboundaryacrossmultiplecontrasts.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate timealoftandhorizontalspeedtocancelrange,thencomplementaryangleandoptimum;counterssupportrelations.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:angle slider/partner andtracelabels",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: velocitycomponents/projectilerange",
+    "notationRepresentationBurden": "moderate: degrees,m/s,seconds,multiplelabelledarcs"
+  },
+  "whyCool": "The85degreeballclimbs20mbutlandswhere5degreeballlands,while45degreestravelfarthest.",
+  "caveat": "Fixedspeedandgroundheight;airdragcomparisontextonly,nodragcontrol."
+}

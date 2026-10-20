@@ -1,0 +1,104 @@
+{
+  "slug": "fit-before-fixed-slot",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fit-before-fixed-slot",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted task0-25 across fixed call20-30 could fit, versus start30 or anywhere; task contiguous and free-until60 specified.",
+    "Test plan at0 gave overlap5 and no valid finish. Place after call set30-55,overlap0,finish55; free50minutes,longestgap30.",
+    "Moved Start to End70:task70-95,overlap0,finish95. Reveal positively described final no-overlap layout finishing95 without flagging that it exceeds stated free-until60 window.",
+    "Inline1280x720 light screenshot: schedule,free-gap metrics and full prose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar scheduling and basic minute arithmetic.",
+    "conceptualDemand": "Contiguous availability versus total free time.",
+    "interfaceBurden": "Simple slider and clear timeline."
+  },
+  "whyCool": "An hour can contain enough free minutes while its first gap is still too short for the job.",
+  "caveat": "Enforce or explicitly qualify the free-until60 constraint; current95-minute finish is not flagged; accessibility unknown.",
+  "effort": "Prediction,overlapping plan,after-call plan,outside-window start,reveal and inline screenshot.",
+  "provisionalBucket": "revise-availability-boundary",
+  "bucketReason": "Useful interval comparison but accepts a final layout beyond stated availability.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear duration,appointment and continuity constraints with plausible alternatives.",
+      "evidence": "25minutes versus20minute initialgap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Overlap and valid placement contrast works; adjustable start exposes unhandled availability boundary.",
+      "evidence": "0-25invalid,30-55valid,70-95outsidewindow.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct overlap principle but final-state explanation ignores stated availability endpoint.",
+      "evidence": "Finish95 described without invalid-window warning.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable timeline but distinguishes overlap only,not feasibility within available hour.",
+      "evidence": "Final95 versusfreeuntil60.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same fixed task/call; no fresh scheduling problem.",
+      "evidence": "General occupied-interval principle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Total free minutes do not alone determine contiguous fit.",
+      "evidence": "50free,initial20gap insufficient.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Task/call intervals and gap metrics show overlap.",
+      "evidence": "Overlap5versus0.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two presets and start slider.",
+      "evidence": "Adjustable task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Scheduling around fixed appointments is central.",
+      "evidence": "Contiguous work block.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Total availability versus contiguous interval and deadline.",
+      "evidence": "Boundarycase exposes missing check.",
+      "confidence": "medium"
+    }
+  }
+}

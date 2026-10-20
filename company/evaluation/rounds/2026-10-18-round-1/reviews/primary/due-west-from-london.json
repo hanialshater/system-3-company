@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "due-west-from-london",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/due-west-from-london",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseCanadafor51.5\u00b0NwestfromLondonacrosswholeAtlantic.",
+    "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+    "R:Yourpredictionheld;Europefarthernorththanfeels;coarsemapstage skipsIrelandwhichrealLondonlatitudetouches.",
+    "No-historypreview;8/8trustignored. Screenshot1280x720 maplinesanddestinationsclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretegeographiccommitmentwithroutecondition.",
+      "evidence": "P: choseCanadafor51.5\u00b0NwestfromLondonacrosswholeAtlantic.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Citypresetsrevealparallels;limitedmechanismexploration.",
+      "evidence": "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectscomparisonsanddisclosescoastlineapproximation.",
+      "evidence": "R:Yourpredictionheld;Europefarthernorththanfeels;coarsemapstage skipsIrelandwhichrealLondonlatitudetouches.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Horizontalparallelsanddestinationsclear.",
+      "evidence": "No-historypreview;8/8trustignored. Screenshot1280x720 maplinesanddestinationsclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Latitudecomparisonprincipleimplicit;noindependenttask.",
+      "evidence": "R:Yourpredictionheld;Europefarthernorththanfeels;coarsemapstage skipsIrelandwhichrealLondonlatitudetouches.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;8/8trustignored. Screenshot1280x720 maplinesanddestinationsclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "LondonlinesupwithCanada.",
+      "evidence": "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallelsonmapcarrycomparison.",
+      "evidence": "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Fixedcitydisclosures.",
+      "evidence": "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Geographicmentalmapcorrection.",
+      "evidence": "R:Yourpredictionheld;Europefarthernorththanfeels;coarsemapstage skipsIrelandwhichrealLondonlatitudetouches.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Singlelatituderelation.",
+      "evidence": "E:London51.5Canada56\u00b0W;Madrid40.4US74\u00b0W;Lisbon38.7US75\u00b0W;NewYork40.7Portugal9\u00b0W. Mapshowsdashedlevelparallel.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Onehorizontal-latitudecomparison.",
+    "conceptualDemand": "Supportedmapreading.",
+    "interfaceBurden": "Lowfourcitycontrols.",
+    "prerequisiteNovelty": "low:latitudegiven",
+    "notationRepresentationBurden": "low:degreesandmap"
+  },
+  "whyCool": "London\u2019slevellinehitsCanada whileNewYork\u2019sruns intoPortugal.",
+  "caveat": "CoarsecoastlineintentionallyskipsIreland;routeisconstantlatitude.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

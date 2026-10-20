@@ -1,0 +1,105 @@
+{
+  "slug": "sticky-cart-merge",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sticky-cart-merge",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Chose3m/s for 2kg cart at3m/s sticking to parked1kg cart on frictionless track.",
+    "Step+0.5s showed collision and speed2.00m/s; massB4kg changed speed to1.00m/s and enabled reveal.",
+    "Reveal contrasted original1kg and selected4kg, invariant6kg m/s momentum and9J versus6J energy for1kg case.",
+    "Reset returned t0 and speed? while revealed explanatory comparison remained visible; wording described prior trials.",
+    "Inline1280x720 light screenshot: carts and speed clear, explanation right edge clipped. No accessibility audit."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar collision with mass-speed arithmetic and momentum units.",
+    "conceptualDemand": "Multiplication and energy distinction.",
+    "interfaceBurden": "Step, one slider and reset; explanation clipping."
+  },
+  "whyCool": "A heavier parked cart slows the merged pair while their momentum bar stays unchanged.",
+  "caveat": "Right-edge prose clipping in tested viewport; accessibility unknown.",
+  "effort": "Prediction, collision step, mass contrast, reveal, reset and inline screenshot.",
+  "provisionalBucket": "solid-with-viewport-fix",
+  "bucketReason": "Clear physical contrast; repair explanation layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear physical setup and plausible speed alternatives.",
+      "evidence": "Frictionless sticking collision with masses and velocity specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing stationary mass gives clear causal speed contrast.",
+      "evidence": "1kg2m/s versus4kg1m/s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed speed to conserved momentum and lost motion energy.",
+      "evidence": "6kg m/s and original energy comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable model but explanation clips in tested viewport.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Provides conservation principle and condition without fresh application.",
+      "evidence": "Nothing outside pushes; same carts.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Speed and energy loss challenge naive speed conservation.",
+      "evidence": "Selected3m/s versus2m/s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cart motion and invariant bar support quantitative contrast.",
+      "evidence": "Mass4kg and speed1m/s.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepping collision and changing mass offer direct exploration.",
+      "evidence": "Step and mass slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful introductory momentum distinction.",
+      "evidence": "Momentum versus energy explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One-dimensional inelastic collision with two conservation distinctions.",
+      "evidence": "Momentum unchanged, energy decreases.",
+      "confidence": "medium"
+    }
+  }
+}

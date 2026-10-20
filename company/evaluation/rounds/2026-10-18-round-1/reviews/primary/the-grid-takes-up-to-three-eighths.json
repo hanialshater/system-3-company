@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-grid-takes-up-to-three-eighths",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-grid-takes-up-to-three-eighths",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-grid-takes-up-to-three-eighths",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/the-grid-takes-up-to-three-eighths/meta.json",
+    "metaSha256": "bee2d99439415b3d1982c5c5ddd61b728abb88389a2fdffd3b5a9bb012cd30a4",
+    "demoSha256": "e860d145c01b173d5aa67495addd9df3cee31d0b51c5bb8d1635b6006946de22",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-grid-takes-up-to-three-eighths",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-grid-takes-up-to-three-eighths.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected one-half and locked it in.",
+    "exploration": "Ran five-by-five grid at one-half: twenty-five remained, newcomers at most three neighbors but need four. Selecting three-eighths completed all 1521 in round51; two-fifths stalled25, quarter completed all in34, three-fifths stalled25 and needed five. Seven-by-seven at three-fifths and half stalled49. Line at half completed201 in100 rounds. Reset line returned two adopters; Step produced four.",
+    "reveal": "Corrected to three-eighths and explained three side neighbors, two near corner and one diagonal. Compared larger-block failure and successful line with one of two neighbors. Named cascade capacity. Prose said above three-eighths needs four, although three-fifths control had correctly required five.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Neighbor counts around block made boundary visible; line showed growing frontier. Finished-run table retained all comparisons. Some lower table content clipped during exploration, full table and explanation readable after reveal.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete neighbor rule and block support a meaningful threshold commitment.",
+      "evidence": "Half versus three-eighths versus quarter.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple thresholds, larger seed, line topology and reset separate size from local geometry.",
+      "evidence": "Grid three-eighths succeeds, half fails; line half succeeds.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects cascade limit to frontier neighbor counts.",
+      "evidence": "Three of eight versus one of two.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Neighbor numbers are strong; broad four-neighbor statement is imprecise for tested three-fifths.",
+      "evidence": "Control required five at three-fifths, prose says above three-eighths needs four.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Topology contrast generalizes within the same adoption model, no concrete external application.",
+      "evidence": "Cascade-capacity definition only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text totals and finished-run table available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A larger starting block cannot beat local frontier limit.",
+      "evidence": "Seven-by-seven stalls at half.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Frontier neighbor counts directly expose mechanism.",
+      "evidence": "Side three, near corner two, corner one.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Threshold and topology controls invite many experiments.",
+      "evidence": "Five q values, two block sizes and line.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies how network structure limits cascades.",
+      "evidence": "Ideal grid and line only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Links discrete thresholds, topology and finite-seed propagation.",
+      "evidence": "Same fraction behaves differently across networks.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Many controls support a nontrivial local-to-global cascade argument.",
+    "conceptualDemand": "Convert fractional thresholds to integer neighbors and infer propagation from frontier geometry.",
+    "interfaceBurden": "Run,step, five thresholds, size toggle, topology and reset controls.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Threshold adoption and cascade capacity.",
+    "notationRepresentationBurden": "Fractions,neighbor counts and finished-run matrix."
+  },
+  "whyCool": "The frontier geometry can matter more than how large the initial crowd is.",
+  "caveat": "Ideal regular networks and irreversible adoption only; above-threshold prose should say at least four rather than exactly four.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:58:25.295313+00:00"
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-sugar-more-water",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-sugar-more-water",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-sugar-more-water",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/chemistry/same-sugar-more-water/meta.json",
+    "metaSha256": "360c62b1456196d459275723d28e261f670947f28431fdaffe8128b0cc65694d",
+    "demoSha256": "e68b482ee0c143eb2147e4847c04dbc60a5bfb543df07b45ede8a5f5b9e50625",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-sugar-more-water",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-sugar-more-water.json"
+  },
+  "date": "2026-10-18T19:53:25.496332+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Isolation confirmed;trust6/6 ignored. Selected0.25mol/L andlocked,100mLsyrup+400water.",
+    "exploration": "100mL:20dots/0.10mol,1.00M,bottom100contains20. Set200:0.50M,bottom10. Addallbuttonsets500:0.20M,bottom4,20totalretained. Home100restores1.00/bottom20. Revealunlock500retainedafterreset.",
+    "reveal": "Correct0.20. Historical500explicit;conserved20dots/0.10mol,volume5x,bottom20to4;0.10/.500=.20. Directlyexplainschosen.25usesadded400ratherthantotal500;waterdoesnotremovesugar.",
+    "visual": "Inline1257x936 dark screenshots inspected: graduatedjar,20spread dots,dashed100mLsamplebandanddotcount4at500. Fullcontrol/reveallegibleafterreset."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precisechoicescapturetotal-volume versus added-volumeerror;unitsdefined.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Double/quintuplevolumeandresetshowconservedamountanddecreasingfixed-volumeconcentration.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualdotcounts/finalvolumeusedtoderiveconcentrationandexplicitlyresolvechosenwrongdenominator.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Totalvolume,constantamountandbottom100sampleclearlydistinguished;historicalrevealclearafterreset.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusableamount/totalvolumerulebutnonewapplicationorlimitbeyondsyrupdilution.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Chosen.25corrected.20throughdenominator;conserveddotsmakeadjustmentconcrete.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Fixed20dotsand100mLbandacrossmultiplevolumescarryconservation/densitymechanism.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblevolumesliderandfullwaterpresetallowcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteingredientdilutioncalculationandtotalmixturedenominator.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Amountconservation,localdensity,totalversusaddedvolumeandlinearvolume/inversestrength.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "KeepamountfixedwhileconvertingmLtoLanddistinguishingtotalfromaddedvolume;samplebandscaffoldsdensity.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:sliderandpreset",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: molarconcentration",
+    "notationRepresentationBurden": "moderate: mol,mL/Landdivision"
+  },
+  "whyCool": "The same20dotsoccupyfive timesmoreliquid,soonly4remainineach100mLsample.",
+  "caveat": "Onlywateradditionwithadditivevolumemodel;nonewsolution/applicationcase."
+}

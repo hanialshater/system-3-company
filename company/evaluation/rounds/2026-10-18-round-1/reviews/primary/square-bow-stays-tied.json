@@ -1,0 +1,103 @@
+{
+  "slug": "square-bow-stays-tied",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/square-bow-stays-tied",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted twisted bow comes undone first.",
+    "Walk25:twistedundone,flat12.5mm. Reset0 both20;endpoint40 twisted0,flat8.",
+    "Reveal correctly reports40 and states loss illustrative,not measured walking data,both can fail,not tutorial. Scrolled to inspect full two-shoe bow schematic;revealed prose right clipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two schematic bows.",
+    "conceptualDemand": "Crossing orientation and modeled loop loss.",
+    "interfaceBurden": "Walk and step slider."
+  },
+  "whyCool": "Two bows in the same laces can differ because the crossing directions combine differently.",
+  "caveat": "Authored linear loop loss illustrates a claim,not evidence for actual walking performance;not a tying tutorial.",
+  "effort": "Prediction,walk,initial and endpoint states,reveal,two inline screenshots.",
+  "provisionalBucket": "solid-illustration-only",
+  "bucketReason": "Useful distinction with honest modeling limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete structural outcome choice.",
+      "evidence": "Flat/twisted/neither.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Step slider animates authored loop-loss rates,no tying or physical test.",
+      "evidence": "20\u21920 versus20\u21928.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Current result,structural distinction and evidence limitation explicit.",
+      "evidence": "Illustrative not measured.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable labels but clipped long reveal;loop-loss mechanism not demonstrated.",
+      "evidence": "Schematic and prose.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete inspect-own-bow guidance with tutorial and failure caveats.",
+      "evidence": "Same versus opposite crossing stages.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Knot handedness changes modeled persistence.",
+      "evidence": "Flat versus twisted.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Two loops visibly disappear differently.",
+      "evidence": "Full schematic inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Walk action and step variation.",
+      "evidence": "0/25/40.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday bow orientation central.",
+      "evidence": "Inspect crossing direction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Knot structure versus empirical failure rate.",
+      "evidence": "Model limits explicit.",
+      "confidence": "medium"
+    }
+  }
+}

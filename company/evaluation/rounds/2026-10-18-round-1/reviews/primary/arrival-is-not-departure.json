@@ -1,0 +1,105 @@
+{
+  "slug": "arrival-is-not-departure",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/arrival-is-not-departure",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted latest departure20 for a20-minute trip arriving40.",
+    "Initial travel30\u201350 overlapped visit40\u201355 by10; Test plan reported no valid finish.",
+    "Move departure changed travel to20\u201340, zero overlap and on-time arrival.",
+    "Set start70: travel70\u201390 overlapped return55\u201375 by5. The visual and reveal accurately flagged the current invalid plan.",
+    "Reveal stated start equals arrival minus journey duration and explicitly excluded real traffic uncertainty."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple subtraction and familiar time blocks.",
+    "conceptualDemand": "Arrival deadline versus departure.",
+    "interfaceBurden": "Test, corrective preset and slider."
+  },
+  "whyCool": "A calendar makes the difference between departure time and required arrival physically visible.",
+  "caveat": "Fixed journey duration; realistic uncertainty and buffers are excluded.",
+  "effort": "Completed prediction, initial/corrected/boundary plans, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear and practical with accurate changed-state feedback.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A clear everyday deadline problem supports a concrete arithmetic prediction.",
+      "evidence": "Arrival40 minus travel20.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "The corrective preset and slider expose both feasible and infeasible layouts.",
+      "evidence": "Start30,20,70 produced overlaps10,0,5.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Final-state feedback remains accurate after changing away from the correct layout.",
+      "evidence": "Reveal identified travel/return overlap5 and stated the deadline rule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Timeline and current overlap make the plan readable.",
+      "evidence": "Travel, visit and return are separately labeled.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "A concrete reusable departure rule includes the condition that traffic uncertainty is excluded.",
+      "evidence": "Start equals required arrival minus journey duration; real traffic caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Mostly familiar arithmetic made explicit.",
+      "evidence": "Earlier departure resolves overlap.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned blocks expose simultaneous demands and deadlines.",
+      "evidence": "Changed travel positions against fixed visit/return.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Dragging a departure tests the calendar.",
+      "evidence": "Preset and start slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly supports planning backward from an arrival deadline.",
+      "evidence": "Explicit formula and uncertainty condition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One simple scheduling relationship.",
+      "evidence": "No stochastic travel or multiple dependencies.",
+      "confidence": "medium"
+    }
+  }
+}

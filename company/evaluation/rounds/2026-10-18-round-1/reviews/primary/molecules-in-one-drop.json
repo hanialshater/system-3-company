@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-history banner;6/6trust ignored.Predicted10^15.",
+    "Unlock immediately shows0.05g÷18g/mol×6×10^23=1.7×10^21.Groupby1000step1→1.7×10^18tiles;ungroup→step0.Autogroup→step7,1.7tiles,each10^21molecules.",
+    "Reveal says at10^12pertile still1.7×10^9tiles;at10^21pertile1.7tiles;2.1×10^11Earthpopulations.",
+    "Inline1257x936dark screenshot:1full+0.7pinktile,each tile10^21label;large empty stage,numeric counters clear,showwhy belowfold."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Magnitude alternatives clear with fixed drop assumption.",
+      "evidence": "10^9,10^15,10^21",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Grouping changes exponent/count;quantity interpretation supported,actualcount result given immediately.",
+      "evidence": "Step0/1/7 andformula",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Connects grouping to answer but derivation sits before experimentation and intermediates are summarized.",
+      "evidence": "Reveal andunlockformula",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Count andgroup-size labels clear on tested screen.",
+      "evidence": "Screenshot1.7tiles",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 1,
+      "reason": "Magnitude comparison only;no application procedure beyond thisdrop.",
+      "evidence": "Earthpopulation comparison",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Count vastly exceeds committed10^15guess.",
+      "evidence": "1.7×10^21result",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Finalfractionaltile supports grouping but exponentcounters carryscale.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible group/ungroup,automaticpath.",
+      "evidence": "Step1→0→7",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Scale comparison without concreteuse.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Repeatedbase1000grouping andmass-to-mole conversion,one fixedcase.",
+      "evidence": "Formula andgrouping",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links repeatedthousandfold grouping with scientific notation;mass/mole conversion introduces prerequisites.",
+    "conceptualDemand": "supported grouping invariant",
+    "interfaceBurden": "low;large stage pushesrevealbelowfold",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "high:mole,molar mass,Avogadronumber introduced compactly",
+    "notationRepresentationBurden": "high:exponents andg/mol"
+  },
+  "whyCool": "Seven thousandfold regroupings turn an uncountable displayedtotal into1.7tiles.",
+  "caveat": "The exact answer andmole calculation appear as soon as exploration unlocks,so grouping mostly illustrates a suppliedvalue.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "molecules-in-one-drop",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/molecules-in-one-drop",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "50ac7bb269e06a336a0cbf5ed44417cbc6ea3557970c568ee8e47ea5e1675e76",
+    "metaSha256": "f6db49e90cdbcea9867d10dec814293fc8528006da10262afa407a2459b0cb68"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "rabbit-ratio",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rabbit-ratio",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "3ec3f34a1a5fb43e5591e0b02fc4c7188849563a4a1c2723cc186f0851b10651",
+    "demoSha256": "e398c1f19df93a62ff84500755b96f9988f7701ba7ee85e07948a2a6eaa8b2af",
+    "metaPath": "src/demos/math/rabbit-ratio/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected two as limiting ratio for sum-of-previous-two sequence and locked it in.",
+    "exploration": "Start1,1 at12 ratios gave1.6181. Start1,3 at12 gave1.6180 and unlocked reveal. Changed shown ratios tothree: sequence1,3,4,7,latest1.7500. Reveal retained each prior12-ratio endpoint despite currentearlystate.",
+    "reveal": "Corrected1.618. Cites both tested endpoints,explains alternating overshoot/undershoot andfixed-point equation x=1+1/x withpositive golden-ratio root. Statesanytwo positive starts converge.",
+    "visual": "Inline1,3 endpoint screenshot inspected: ratio values onhorizontal0-4 axis,stepsdownward,connected dots oscillate thenalignnear1.618. Earlierstart dots faintly retained. Controls legible. Trust4/4 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear recurrenceandratio definition withplausiblelimiting values.",
+      "evidence": "Two selected versus1.618 endpoints.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two starts andearly/late slidercontrast expose convergence ratherthanjustgrowth.",
+      "evidence": "1.6181/1.6180 andearly1.75.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects testedstarts tofixed-point recurrence andpositive-start condition.",
+      "evidence": "x=1+1/x andpositive root.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Downwardtime plot labelled onlybyinstruction;unfamiliar ratioequation addsburden.",
+      "evidence": "Read dotsdownwards instruction andhorizontalvalueaxis.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General positive-start condition suppliedwithoutconcretenewapplication orfreshstart task.",
+      "evidence": "Anypositive startingnumbers converge.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two prediction overturned;different starts shareendpoint.",
+      "evidence": "Two12-ratio results near1.618.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Oscillating dots converging tocommonverticalalignment carrymechanism.",
+      "evidence": "Inspected1,3 screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Startpresets andstepcount allowreversibleearly/late comparison.",
+      "evidence": "Two starts andslider tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstractrecurrence withoutconcreteuse.",
+      "evidence": "Goldenratio explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sequencegrowth,ratio convergence andfixedpoint linked.",
+      "evidence": "Two starts,earlystate andequation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Separatessequence terms fromratios,tracks convergence andderives reciprocalfixedpoint.",
+    "conceptualDemand": "Multipledependent sequence/algebra abstractions.",
+    "interfaceBurden": "Low:presets andslider.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:limits andrecurrence fixedpoints",
+    "notationRepresentationBurden": "high:ratios,x=1+1/x,square-rootformula"
+  },
+  "whyCool": "Starting1,3 makeslargeearlyratio swings,butits12th ratio landson1.6180 almostexactlyliketheclassic1,1 start.",
+  "caveat": "Onlytwo positive starts tested;thirdpreset andnonpositiveboundary untested.",
+  "missingEvidence": [
+    "Start3,1",
+    "Nonpositive starts",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

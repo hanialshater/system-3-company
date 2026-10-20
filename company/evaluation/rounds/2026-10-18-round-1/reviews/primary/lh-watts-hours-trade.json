@@ -1,0 +1,103 @@
+{
+  "slug": "lh-watts-hours-trade",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-watts-hours-trade",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Equal for100 W\u00d71 h versus20 W\u00d75 h, B duration five times A.",
+    "Both tests showed0.1 kWh; maximum A8h/B40h showed0.8 each.",
+    "Screenshot showed equal height lines with separate time-axis endpoints8 and40 hours. Reveal preserved input context and explained offsetting factors."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Power-energy units and coupled durations.",
+    "conceptualDemand": "Combine power and duration rather than either alone.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "A five-times smaller power draw can use the same energy by running five times longer.",
+  "caveat": "Constant illustrative power and fixed duration ratio; not actual appliance performance.",
+  "effort": "Prediction, both tests, maximum duration, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear product misconception with labelled time axes.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear competing power-duration factors.",
+      "evidence": "A,B,equal choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time scaling preserves energy equality.",
+      "evidence": "1\u21928 A-hours.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains product and watt-alone limitation.",
+      "evidence": "Fivefold time offsets power.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate time axes labelled, assumptions explicit.",
+      "evidence": "A8h,B40h at same energy.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete watt-alone caveat guides comparison.",
+      "evidence": "Need duration before energy ranking.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Lower watts need not lower energy.",
+      "evidence": "Equal0.1/0.8 kWh.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Equal endpoints with labelled different durations support tradeoff.",
+      "evidence": "8 versus40 hour axes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and coupled duration slider.",
+      "evidence": "Power ratio fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Energy comparison central.",
+      "evidence": "Power versus consumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Unit product and compensating factors.",
+      "evidence": "Power-time tradeoff.",
+      "confidence": "medium"
+    }
+  }
+}

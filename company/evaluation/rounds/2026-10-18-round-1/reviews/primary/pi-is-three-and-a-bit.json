@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "pi-is-three-and-a-bit",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pi-is-three-and-a-bit",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "pi-is-three-and-a-bit",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/pi-is-three-and-a-bit/meta.json",
+    "metaSha256": "bae69b56dc287e64480cf162ef94da6dbfd1cf4be295ec60abea65696db09f8d",
+    "demoSha256": "275f5da8b48e1066c1e5f1a1f6cdf561c443bacc3b5a5ed1c9a012c8ee858e07",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/pi-is-three-and-a-bit",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/pi-is-three-and-a-bit.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected4m against2m andabout3.14m;locked it in.",
+    "exploration": "Quarter steps rolled0.79,1.57,2.36,3.14m for1m diameter. Fullturn showedthree widths plus0.14m. Half-metre wheel fullturn rolled1.57m but3.14 wheel-widths;both tracks retained.",
+    "reveal": "Correctedabout3.14m;comparedactual1m/3.14m andhalfmetre/1.57m. Explainedrim laid onground,constantcircle ratio,\u03c0 andcircumference=\u03c0\u00d7diameter.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Markedrim contact,ruler,largeandsmallwheels anddiameter-sized tracksegments showratio. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear distance choices testdiameter versusrimlength.",
+      "evidence": "4m commitment versus3.14m.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Quartersteps anddifferentdiameter exposeproportionaldistance andinvariantratio.",
+      "evidence": "1m\u21923.14m;0.5m\u21921.57m,both3.14 widths.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualtracks tofullrimandformula.",
+      "evidence": "Rolling layswhole rim;\u03c0\u00d7diameter.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Gatedquartersteps,ruler andpairedunits cleardesktoppath.",
+      "evidence": "Actualscreenshot twowheeltracks.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretehalf-sizewheel applicationtested withcircle/fullturnconditions.",
+      "evidence": "Same3.14 widths underhalveddiameter.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed4m contradicted bythree-and-bit distance.",
+      "evidence": "3.14m fullturn.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rimunrolling andwidthsegments carryratio.",
+      "evidence": "Actualruler andtwotracks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sequentialquarterturns andonealternatewheel offerlimitedexploration.",
+      "evidence": "Foursteps thensmallwheel.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete wheel-travel calculation.",
+      "evidence": "Circumference formula fromdiameter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Partialturn accumulation andscaleinvariance linked.",
+      "evidence": "Quarterdistances andhalfsizecomparison.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supportedproportionalcircle relation withvisualmeasure.",
+    "conceptualDemand": "Relateonerimturntodistance andcomparewheelwidthunits.",
+    "interfaceBurden": "Low:gatedsequence andclearruler.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "moderate:\u03c0 andcircumference vocabulary.",
+    "notationRepresentationBurden": "low tomoderate:fractions,metres and\u03c0symbol."
+  },
+  "whyCool": "Thehalf-sizedwheel travels halfasfar,butits trackstillholds3.14 ofitsownwidths.",
+  "caveat": "Prescribedanimationwithtwocircles;no slipconditionorexperimentalmeasurementerror explored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset andadditionaldiameters notavailable/tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:46:13.231339+00:00"
+}

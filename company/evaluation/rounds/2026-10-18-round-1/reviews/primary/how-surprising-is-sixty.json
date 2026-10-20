@@ -1,0 +1,104 @@
+{
+  "slug": "how-surprising-is-sixty",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/how-surprising-is-sixty",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted30% for60or more heads in100fairflips,options0.3/3/30%.",
+    "250batches5tailcases2%;500batches16cases3.2%. MarkerHome50:286of50057.2%;End75:0of5000%. Histogramtailhighlightmoves.",
+    "Reveal recalls60threshold16/500,exact2.8%,current75zero;explainsone-sidedtailunderfairmodel versusprobabilitycoinfair requiringprior. Stagecalls empiricalsharepvalue withoutfinite-samplezero caveat.",
+    "Light1280x720 histogramclear;reveal clippedright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplecoinsettingbutconditionaldirectionandtailprobabilityneedcare.",
+    "conceptualDemand": "Samplingdistribution andnullversusposterior.",
+    "interfaceBurden": "Onebuttonandmarker."
+  },
+  "whyCool": "A visible tail count answers how often a fair coin would do this, while leaving whether the coin is fair unresolved.",
+  "caveat": "0of500isfiniteMonteCarloestimate,notproofprobabilityzero;stagelabelcouldclarify. One-sidedalternativeimplicit. Prosecutoff;noindependentexactvalueaudit.",
+  "effort": "Prediction,two250batchruns,threethresholds,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strongtailvisual;clarifyempiricalestimationandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullyspecifiedeventandnullmodel,targetingtailintuition.",
+      "evidence": "60+heads of100fairflips.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Repeatedsimulation andthresholdboundaries distinguishsamplevariation andeventextremeness.",
+      "evidence": "250to500batches,50/60/75 thresholds.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsoriginalempiricalandexacttail andinverseconditional limit,butnozero-estimatequalification.",
+      "evidence": "3.2%versus2.8%;notprobabilityfair;75zero.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Histogram andcounts clear;empiricalsharelabeledpvalue couldimplyzeroprobability;proseclips.",
+      "evidence": "0of5000.0% at75.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalpvalueinterpretation withoutfreshapplicationtask.",
+      "evidence": "Faircoinposteriorwarning.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "60headsrarerthan30%butnotimpossibleunderfairness.",
+      "evidence": "500runs3.2%tail.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Histogramgrowth andmovingtailcut exposeeventcounting.",
+      "evidence": "50largearea,60small,75emptyempiricaltail.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Batchgeneration andmarkerexplorationcentral.",
+      "evidence": "Repeatedrunsandthresholdslider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralstatisticalevidenceinterpretation.",
+      "evidence": "Pvalue versusposteriorprobability.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Nullmodel,tail,MonteCarlo andconditionaldirection.",
+      "evidence": "Exact2.8%versussimulated3.2%.",
+      "confidence": "medium"
+    }
+  }
+}

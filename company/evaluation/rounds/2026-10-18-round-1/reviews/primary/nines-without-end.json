@@ -1,0 +1,104 @@
+{
+  "slug": "nines-without-end",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/nines-without-end",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted tinypositivegap for0.999forever; alternativesexactzero andzeroonlyatunreachableend.",
+    "Added3then3nines:0.9999gap0.0001 then0.9999999gap0.0000001;zoomalwaysleavesgapone-tenthview. GapchooserHome0.01reports3ninesbeatit;End0.(30zeros)1reports32nineswouldbeatit,whileactualbuilt7ninesunchanged.",
+    "Allforeverbuttonputsvalueon1,gap0;stagecheck3\u00d70.333\u2026=0.999\u2026and3\u00d71/3=1. Reveal accuratelyrecalls6addednines,explainsnogapbelowallpositivechoices,finiteversusinfinite distinction. Claimsnamedgapbeaten by32asformula,notactual32stepwalkthrough.",
+    "1280x720light lineandlabels clear; finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Simplearithmetic masks conceptualinfinity/limit distinction.",
+    "conceptualDemand": "Arbitrarypositivebound versusfiniteprocess.",
+    "interfaceBurden": "Simplebuttons/slider;zoomrequiresreadinglabels."
+  },
+  "whyCool": "Zoom never removes the gap for finite nines, but an infinite decimal is a value rather than a process waiting to finish.",
+  "caveat": "Namedgap32nines bound assertedbyformula,notactuallybuilt32inthispath. Real-numberlimitconvention implicit;rightedgeprosecutoff.",
+  "effort": "Prediction,two3nine additions,twochosenbounds,foreverboundary,reveal,four screenshots.",
+  "provisionalBucket": "specialist-with-fix",
+  "bucketReason": "Stronglimitintuition;fixlayoutandclarifytheoreticalboundversusvisitedstate.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitnever-stoppingdefinition distinguishescommonlimit misconceptions.",
+      "evidence": "Tinygap versuszeroonlyatend versuszero.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Finitezoom,chosen-gaps andinfiniteboundary contrastprocessandvalue.",
+      "evidence": "4/7nines,gap0.01/10^-31,foreverzero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Originalprediction andactualsteps reconciled withmeaningful finite/infinite limitdistinction.",
+      "evidence": "No positivegap smallerthanallbounds;no lastnine.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Zoomandlabels clear;namedgapbeatenwordingmayimplyactual32nines andproseclips.",
+      "evidence": "Actual7nines whileformula32;finalscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Equivalentthirds example supportsreasoning butnonewapplicationchallenge.",
+      "evidence": "3\u00d71/3identitycheck.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Never-endingnines exactlyequal1despiteeveryfinitegap.",
+      "evidence": "Foreverbuttonzero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Repeatedzoom makesfinitegap persistwhilelabels shrink,andexplicitinfinitecasecontrasts.",
+      "evidence": "0.0001to0.0000001 then0.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Addnines,namegap andforeverboundary invitation.",
+      "evidence": "Multiplegapchoices andninessteps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Foundationalnumberrepresentation curiosity.",
+      "evidence": "Noexternalconcretetask.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Finiteapproximation,arbitraryerrorbound andinfinitevalue distinguished.",
+      "evidence": "Namedgap32nines bound plusno-positive-remainder argument.",
+      "confidence": "medium"
+    }
+  }
+}

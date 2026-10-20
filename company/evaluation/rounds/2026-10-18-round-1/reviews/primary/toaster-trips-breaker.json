@@ -1,0 +1,104 @@
+{
+  "slug": "toaster-trips-breaker",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/toaster-trips-breaker",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted600Wblender would not trip ideal15A120V circuit already running1500Wheater.",
+    "TV+heater gave14.2A,held. RemovedTV then addedblender:17.5A,tripped; reset disabled while overload remained.",
+    "Removingblender left tripped12.5A and enabledreset; reset restored circuit. Reveal recalledTV andblender trials, watts/volts calculation and real-breaker time-curve caveat.",
+    "Inline1280x720 light screenshot showed gauge and appliance states; prose clipped at right. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar appliances with division and electrical units.",
+    "conceptualDemand": "Power,current,voltage relationship.",
+    "interfaceBurden": "Clear named buttons and reset gating; prose clipping."
+  },
+  "whyCool": "A circuit becomes a visible current budget, and resetting cannot work until the overload is removed.",
+  "caveat": "Ideal illustrative circuit; prose clipping in tested viewport; accessibility unknown.",
+  "effort": "Prediction, two controlled loads, overload removal/reset, reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Effective experiment with useful explicit model limit; layout repair needed.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete electrical model and plausible appliance options.",
+      "evidence": "Voltage, ideal threshold, powers specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlled held/tripped comparison and overload-removal/reset boundary.",
+      "evidence": "TV14.2A versusblender17.5A; reset gating tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed trials, headroom arithmetic and ideal-versus-real limit explained.",
+      "evidence": "2.5A room and actual trip time caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear gauge/states but explanation clips.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sum-current principle without fresh circuit application.",
+      "evidence": "Same120V15A setup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Plug count matters less than total power.",
+      "evidence": "Different added devices hold or trip.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gauge and appliance states show load and trip.",
+      "evidence": "12.5,14.2,17.5A.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Plug/unplug/reset afford combinations.",
+      "evidence": "Controlled appliance trials.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Household load interpretation central, ideal-model caveat explicit.",
+      "evidence": "Watts divided by volts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Current budget and time-curve limitation.",
+      "evidence": "Threshold versus real breaker.",
+      "confidence": "medium"
+    }
+  }
+}

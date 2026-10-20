@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "head-on-is-a-wall",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/head-on-is-a-wall",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "a93ad0ae8268cf47a4e7104b583f20760e9233bde2526e9a1b6c6ab5f3799571",
+    "demoSha256": "7a5003e8d4fa8f04e8ea2775fe80988157fdaf9c12fdd5a9c91f24f532d417fe",
+    "metaPath": "src/demos/physics/head-on-is-a-wall/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Selected 100 km/h for equivalent wall speed, then locked it in.",
+    "exploration": "Into a car at 50 produced 145 kJ and car A 50 to 0 at fixed meeting point. Into a wall at 50 retained 145 kJ; wall at 100 produced 579 kJ. Retained comparison labels car 50:145, wall 50:145, wall 100:579; reveal unlocked.",
+    "reveal": "Corrected to 50 km/h. Explains fixed meeting point, each car stopping in its own crumple zone, total two-car energy shared, speed-squared crush energy.",
+    "visual": "Inline screenshots inspected for initial, car50, wall50, wall100. Colored energy bar stayed same for car50 and wall50 then lengthened about fourfold at wall100; comparison markers retained. Cars stop at centre; rigid wall replaces second car.",
+    "isolation": "Preview no-history banner present; 5/5 trust counter ignored.",
+    "references": [
+      "CUA tab 543884107 snapshots and four inline screenshots; no screenshot file saved."
+    ]
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise identical-car setup surfaces closing-speed misconception.",
+      "evidence": "Committed 100 versus actual equivalent 50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlled target contrast and doubled-speed comparison expose equality and quadratic difference with retained markers.",
+      "evidence": "Car50 and wall50 both145 kJ; wall100579 kJ screenshots.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitly links observed energy bars and meeting point to each crumple zone.",
+      "evidence": "Reveal cites all three measurements and equal-car symmetry.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named target/speed controls and retained labels make comparison legible.",
+      "evidence": "Three successful contrasts and screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable squared-speed principle offered, but no new application or conditions beyond identical cars and rigid wall setup.",
+      "evidence": "Speed-squared reveal sentence and initial assumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient access audit absent.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "100 prediction contradicted by equal car50/wall50 bars.",
+      "evidence": "Committed prediction and three contrasts.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Fixed meeting point and retained bar comparisons carry mechanism over three states.",
+      "evidence": "Car50, wall50, wall100 screenshots.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Target and speed buttons permit reversible crash comparisons.",
+      "evidence": "Three tested combinations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Speed-risk comparison concrete, without a separate decision task.",
+      "evidence": "579 versus145 kJ at doubled speed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Equal-car symmetry and quadratic speed dependence are distinct linked relations.",
+      "evidence": "Three contrasts plus reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks per-car energy versus total energy and squared-speed relation with visual support.",
+    "conceptualDemand": "Two linked energy comparisons and symmetry.",
+    "interfaceBurden": "Low: target and speed buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: crush energy and crumple zones",
+    "notationRepresentationBurden": "moderate: kJ, km/h and factor-of-four comparison"
+  },
+  "whyCool": "Changing only the target from identical car to wall leaves the 145 kJ bar unchanged, while doubling speed stretches it to 579 kJ.",
+  "caveat": "No unequal-car or non-rigid-wall case tested; equivalence depends on the stated identical-car setup.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "25 km/h",
+    "Unequal cars",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "effort": "Approximately 3 minutes active browser walkthrough.",
+  "notApprovedForServing": true
+}

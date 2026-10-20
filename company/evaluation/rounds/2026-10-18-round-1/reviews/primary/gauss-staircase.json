@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "gauss-staircase",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/gauss-staircase",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "gauss-staircase",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/gauss-staircase/meta.json",
+    "metaSha256": "3a80db60fa6ecec000f644faaeac77e1a448f090128a66446a058fb1a345de19",
+    "demoSha256": "fd9beb779692fc5f27817cea32a949c7b41159a3615f7d810fdf093b2538f1c8",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/gauss-staircase",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/gauss-staircase.json"
+  },
+  "date": "2026-10-18T19:08:44.093231+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust4/4 visible ignored. Selected5000 and locked.",
+    "exploration": "Steps8 initially. Set10 and add flipped copy:10x11=110,half55. Reveal unlocks already at10 despite instruction then jump100. Jump100 gives100x101=10100,half5050. Remove copy restores single staircase; reveal stays unlocked.",
+    "reveal": "Correct5050. Two100-step staircases make100x101rectangle; one half. Says same with100steps because current count100. General n(n+1)/2 because copy fills empty space.",
+    "visual": "Inline1257x936 dark screenshots inspected:10step blue/green dots fill dashed rectangle10wide11tall;100single staircase becomes dense triangular fill. Reveal bottom extends beyond viewport; visible DOM contains full explanation."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "5000/5050/10100 separate average approximation and missing halving.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Ten and100step cases plus copy removal expose rectangle doubling mechanism and scaling.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Direct rectangle count and halving explain original answer and general any-step relation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Diagram and arithmetic clear, but reveal unlocks before required-by-instruction jump100; final text extends below viewport.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General any-step sum formula with numerical contrasts; no distinct application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "5000 prediction corrected by extra101st row/column relation and halving.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Complementary colored staircase fills rectangle at10 and scales100; removing copy confirms original half.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible copy and step controls support pattern discovery.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Efficient consecutive-number sum calculation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometric doubling,off-by-one dimension and general n relation.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relate staircase sum to doubled rectangle and halve product, then generalize n.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; instruction gate mismatch",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "low: dot counting and multiplication supported",
+    "notationRepresentationBurden": "moderate: n(n+1) follows numerical examples"
+  },
+  "whyCool": "A flipped staircase fills every gap and turns ten additions into half of10x11.",
+  "caveat": "Jump100 instruction is not enforced by reveal gate; no separate application case."
+}

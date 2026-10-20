@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "dilute-until-none-left",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dilute-until-none-left",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose22steps;1:10transfer and fewerthan1molecule onaverage.",
+    "E: step1mean6.0\u00d710\u00b2\u2070;sliderEnd30mean0.00;keyboardback22mean0.60;21mean6.02;step22and draw another tubes. Screenshot this tube0molecules,20tubes12empty.",
+    "R: Your prediction held;21mean6.02,22mean0.60;eachstep divides10;0.60mean about55%empty,others oneormore;12/20emptythisbatch,anotherdiffers.",
+    "No-history preview;7/7trust ignored. Inline screenshot1280x720 tube text verysmall; counters/controlsclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitexpectedcountthresholdandchoices.",
+      "evidence": "P: chose22steps;1:10transfer and fewerthan1molecule onaverage.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepcontrastanddiscretetubedrawsconnectmeantorealizations.",
+      "evidence": "E: step1mean6.0\u00d710\u00b2\u2070;sliderEnd30mean0.00;keyboardback22mean0.60;21mean6.02;step22and draw another tubes. Screenshot this tube0molecules,20tubes12empty.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsaverageversusactualandbatchvariation.",
+      "evidence": "R: Your prediction held;21mean6.02,22mean0.60;eachstep divides10;0.60mean about55%empty,others oneormore;12/20emptythisbatch,anotherdiffers.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Keycountersclearbutsampled-tubetextverytiny.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 tube text verysmall; counters/controlsclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Serialtenfolddecreaseandexpectedcountboundary.",
+      "evidence": "R: Your prediction held;21mean6.02,22mean0.60;eachstep divides10;0.60mean about55%empty,others oneormore;12/20emptythisbatch,anotherdiffers.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardtested;othermodesunknown.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 tube text verysmall; counters/controlsclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Repeateddilutioncrossesdiscretemoleculeboundary.",
+      "evidence": "E: step1mean6.0\u00d710\u00b2\u2070;sliderEnd30mean0.00;keyboardback22mean0.60;21mean6.02;step22and draw another tubes. Screenshot this tube0molecules,20tubes12empty.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Tube/logscaleandnumberssupportthreshold;smalltextlimits.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 tube text verysmall; counters/controlsclear.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepandredrawcontrols.",
+      "evidence": "E: step1mean6.0\u00d710\u00b2\u2070;sliderEnd30mean0.00;keyboardback22mean0.60;21mean6.02;step22and draw another tubes. Screenshot this tube0molecules,20tubes12empty.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Dilutionandexpectedcountinterpretation.",
+      "evidence": "R: Your prediction held;21mean6.02,22mean0.60;eachstep divides10;0.60mean about55%empty,others oneormore;12/20emptythisbatch,anotherdiffers.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Exponentialdecrease,discretenessandprobability.",
+      "evidence": "R: Your prediction held;21mean6.02,22mean0.60;eachstep divides10;0.60mean about55%empty,others oneormore;12/20emptythisbatch,anotherdiffers.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Connectscientificnotation,serialreductionandfractionalexpectationwithdiscreterealizations.",
+    "conceptualDemand": "Multipledependentabstractrepresentations.",
+    "interfaceBurden": "Tinytext;sliderworksbykeyboard.",
+    "prerequisiteNovelty": "high:molandexpectedmoleculecount",
+    "notationRepresentationBurden": "high:scientificnotationandlogscale"
+  },
+  "whyCool": "Atstep22theaverageis0.60yetindividualtubescontainwholemoleculesornone.",
+  "caveat": "Tinyactual-tubetext;rounded0.00at30doesnotmeanexactzero.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

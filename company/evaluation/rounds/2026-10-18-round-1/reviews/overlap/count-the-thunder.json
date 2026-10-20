@@ -1,0 +1,136 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "overlap",
+  "reviewer": "r2",
+  "slug": "count-the-thunder",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+    "C1: Preview banner: \u201cEvaluation preview \u00b7 learning history and analytics are not saved.\u201d",
+    "C2: Prediction: \u201cYou see a lightning flash and hear the thunder 6 s later. How far away did it strike?\u201d; choices about200m/about2km/about20km; selected about200m and locked.",
+    "C3: Exploration initially0s: \u201cFlash and thunder together: the strike is right here.\u201d; set slider6s: \u201cThunder after 6 seconds: strike 2.06 kilometres away\u201d, \u201cCount \u00f7 3 = 2\u201d; screenshot shows six expanding arcs, each343m, strike near2km.",
+    "C4: Changed slider12s: \u201cThunder after 12 seconds: strike 4.12 kilometres away\u201d; \u201cCount \u00f7 3 = 4\u201d; FLASH TOOK0.0000137s.",
+    "C5: Reveal at12s: \u201cNot quite: it was \u2018about 2 km\u2019.\u201d; \u201cYour 12 s count put the strike 4.12 km away: 12 arcs of 343 m each (6 s is2.06km).\u201d; explains delay is almost all thunder's trip, sound343m/s, every3s about1km, \u201cDivide your count by3 for kilometres.\u201d"
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A concrete delay and three distinct distance scales establish a clear numeracy commitment.",
+      "evidence": [
+        "C2"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "The zero-delay boundary and6/12-second contrast visibly connect delay, equal-distance arcs and proportional distance.",
+      "evidence": [
+        "C3",
+        "C4"
+      ],
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "The explanation resolves the original six-second prediction while correctly preserving the changed twelve-second state and contrasting light with sound.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The slider instruction, labelled distance and state-specific reveal make the tested sequence easy to follow.",
+      "evidence": [
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The divide-by-three rule offers a concrete reusable way to estimate another strike, without observing learning or a new independent application.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No keyboard, phone, contrast, zoom/reflow or reduced-motion checks were performed.",
+      "evidence": [
+        "Desktop AX snapshots and screenshots only; accessible labels observed but insufficient for an accessibility rating."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The committed200m guess is replaced by2.06km through an observable ruler contrast.",
+      "evidence": [
+        "C2",
+        "C3",
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Spatial arcs and strike position carry the zero, six and twelve-second distance contrasts.",
+      "evidence": [
+        "C3",
+        "C4"
+      ],
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "A reversible slider invites exploring timing changes but the task remains a guided measurement.",
+      "evidence": [
+        "C3",
+        "C4"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Estimating lightning distance from a counted delay is the task's central concrete action.",
+      "evidence": [
+        "C2",
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The experience links a zero boundary, proportional sound travel and negligible light delay.",
+      "evidence": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Against the declared boundary, learners coordinate seconds, metres/kilometres, repeated arcs and two messenger speeds, supported by labels.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no map-projection, sorting-algorithm or sound-propagation theory assumed."
+  },
+  "whyCool": "Doubling the slider from six to twelve seconds doubles the strike distance from2.06km to4.12km.",
+  "caveat": "The headline remains a six-second question while exploring another delay, though the reveal explicitly distinguishes the two.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r2.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

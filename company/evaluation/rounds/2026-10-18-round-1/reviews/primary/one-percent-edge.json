@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-percent-edge",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-percent-edge",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "f343fbf6089203c803c9685ac61c9efbddca6a77058f664d759bd3357c5baa7c",
+    "demoSha256": "b201b0f4a1db80e575c2b607e3da2cc367c219708bdab553ca869e340eb3cef5",
+    "metaPath": "src/demos/life/one-percent-edge/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected about20 generations for starting1% type with5% offspring edge to reach half; locked it in.",
+    "exploration": "Ten generations gave1.6%. Run to half gave95 generations,with generation48 only9.5%. Switching edge10 at completed state auto-ran to49 generations,halfway25 had9.9%. Edge1 auto-ran462 generations,halfway231 had9.1%. Reveal unlocked after alternate edge.",
+    "reveal": "Corrected95. Explains ratio new/old multiplied1.05 each generation,1:99 to1:1. Cites tested10%49 and1%462,rough inverse edge-timescale relation.",
+    "visual": "Inline initial/final1% screenshots inspected: ring of dots with filled new-type portion,central50%,generation462 and textual halfway comparison. Toy huge population,no sex stated initially. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise starting share and offspring advantage distinguish additive from compounding intuition.",
+      "evidence": "20 selected versus95.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time stepping and three edges expose slow early growth and inverse timescale contrast.",
+      "evidence": "1.6% at10,95/49/462 tohalf.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact tested outcomes to ratio multiplication and starting odds.",
+      "evidence": "1:99 to1:1 via1.05,alternate edges cited.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear,but changing edge after completion automatically runs to half rather than resetting,requiring inference of retained mode.",
+      "evidence": "10% and1% selection instantly produced completed results.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General edge-timescale principle given without concrete new application and full applicability discussion.",
+      "evidence": "Double edge about half time; huge population,no sex setup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "20-generation prediction overturned by95 and long early low share.",
+      "evidence": "At48 only9.5%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Dot ring shows share but compounding mechanism relies on text and numeric comparisons.",
+      "evidence": "Ring50%,time values and ratio reveal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Generation stepping,edge presets and reset allow variation.",
+      "evidence": "Ten-step,run-half andthree edges tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete evolutionary advantage-timescale interpretation.",
+      "evidence": "Offspring5% edge.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relative advantage,odds compounding and nonlinear share growth linked.",
+      "evidence": "Three edge times and halfway shares.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Separates relative offspring advantage,share and odds ratio over generations.",
+    "conceptualDemand": "Compounding ratio transforms into nonlinear population share.",
+    "interfaceBurden": "Moderate: completed-state edge auto-run behavior.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: selection dynamics and odds growth",
+    "notationRepresentationBurden": "moderate: percentages,1.05,1:99"
+  },
+  "whyCool": "At halfway through the95-generation journey,the new type is still only9.5%,then it reaches half during the remaining time.",
+  "caveat": "Huge asexual deterministic population only; reset and drift effects untested.",
+  "missingEvidence": [
+    "Reset",
+    "Small population drift",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-history banner;4/4trust ignored.Predicted30.Title explicitly saysR1.5isnot50percentmore.",
+    "Nextgeneration1R1.5→30day5;Gen6→228day30;switch0.8atgen6→5;switch2→1280.Generation retained across rate changes.",
+    "Reveal remembersR1.5 and0.8:20×1.5^6=227.8;50percentincrease repeats6times;below1shrinks;fixedR/nonoverlap model limit andrealbehavior/immunity.",
+    "Inline1257x936dark:dot grid at1280,sequence20→40→80→160→320→640→1280;clear rate buttons,reveal partly below viewport."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Question clear but title directly signals30answer wrong.",
+      "evidence": "TitleR1.5isnot50percentmore",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Generation andR contrasts show repeated multiplication versus decline.",
+      "evidence": "30→228;0.8→5;2→1280",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects exact prediction outcome and decline contrast with explicit model limit.",
+      "evidence": "Reveal formula/trial memory",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counts,generation/day,and sequence clear;long reveal needs scroll.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable compounding and conditions given but no separate application.",
+      "evidence": "Reveal below1 andfixedR",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "30guess overturned but title cues reversal beforecommitment.",
+      "evidence": "Title and228outcome",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dotcount andnumber chain express multiplication.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rates switch preservinggeneration for direct comparison.",
+      "evidence": "0.8/1.5/2contrasts",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Outbreak framing qualified as toy.",
+      "evidence": "FixedR/nonoverlap caveat",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Repeated growth versus decline andrate sensitivity.",
+      "evidence": "ThreeRstates",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "LinksR,generationcount,andnew rather than cumulativecases.",
+    "conceptualDemand": "repeated multiplication withthreshold",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:R terminology/newcases",
+    "notationRepresentationBurden": "moderate:exponent"
+  },
+  "whyCool": "Keepingday30fixed andchangingRfrom1.5to0.8replaces228newcaseswith5.",
+  "caveat": "The title gives away the main misconception before prediction;no changingR or overlappinggenerations.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "five-day-generations",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/five-day-generations",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "fa5ee514332d8a04d33a97c82ddae045ed77ed5d41d400a294a3934864b6b91b",
+    "metaSha256": "75c81a1b317e730d3af808db01cebad584c72816ff40ed42b1eb53f1643d0d20"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "order-of-the-bad-year",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/order-of-the-bad-year",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e6f0bb620765907369cc3d003515428b5e1e4367122c0041e2cd83e81c6bf420",
+    "demoSha256": "7023d9afb10593e339627e59ac8b7a4693903825df49012b2ee3cecce6178ac7",
+    "metaPath": "src/demos/economics/order-of-the-bad-year/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Same either way and locked the prediction for $100k with one +25% year, one -20% year, and $20k withdrawn at each year end.",
+    "exploration": "Loss first ended at $55k; switching to gain first ended at $64k. Setting cash flow to zero made both end at $100k. Depositing $20k instead reversed the advantage: gain first $136k, loss first $145k. Selected loss first to inspect that path.",
+    "reveal": "The reveal corrected the withdrawal prediction to gain first. It explained that multiplication order alone does not change the final balance, but withdrawals remove money from a smaller pot after a loss; deposits reverse the advantage.",
+    "visual": "Inspected the dark 1257 by 936 inline screenshot with deposits. A solid mint loss first path ended at $145k above a dashed gain first path at $136k. The comparison history preserved all three cash flow conditions below the chart.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The apparent symmetry invites a specific testable commitment.",
+      "evidence": "Selected same either way for equal annual withdrawals.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "A single cash flow control exposes the boundary and reverses the result.",
+      "evidence": "Withdrawals favored gain first, zero tied, deposits favored loss first.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The explanation connects each observed condition to money available for recovery.",
+      "evidence": "Reveal included $64k, $55k and the deposit reversal to $145k.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The paths and persistent comparison history make the contrast easy to follow.",
+      "evidence": "Selected solid path and dashed alternative had explicit endpoint labels.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The lesson supplies a usable condition for interpreting return sequences.",
+      "evidence": "Cash flows make order matter; withdrawals and deposits can favor opposite sequences.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The same returns can favor either ordering depending on cash flow.",
+      "evidence": "Changing withdrawal to deposit reversed the winner.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The two paths support comparison across identical start and end times.",
+      "evidence": "Solid and dashed lines shared the $100k starting point and labelled endpoints.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sliding through a tie to a reversal makes a compact exploration.",
+      "evidence": "Cash flow zero and positive values changed the relationship immediately.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "The mechanism is relevant to saving and withdrawing decisions.",
+      "evidence": "The reveal distinguishes contribution timing from withdrawal timing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It reaches beyond one outcome to explain the condition and reversal.",
+      "evidence": "The zero cash flow equality and opposite deposit result were both explored.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Percent growth and annual cash flows need careful ordering, while the controls are straightforward.",
+    "conceptualDemand": "Moderate: separate return multiplication from intervening additions or withdrawals.",
+    "interfaceBurden": "Low: two ordering buttons and one cash flow slider.",
+    "conceptualChallenge": "Cash flow changes the amount exposed to the following year's return.",
+    "prerequisiteNovelty": "Basic percentages and compounding are required.",
+    "notationRepresentationBurden": "Low to moderate: dollar chart and multiplier notation."
+  },
+  "whyCool": "A tie becomes one winner or the opposite winner simply by changing whether money enters or leaves.",
+  "caveat": "The toy fixes two annual returns and cash flow timing; it does not model uncertain real returns or costs.",
+  "missingEvidence": [
+    "No fresh return pair was available.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

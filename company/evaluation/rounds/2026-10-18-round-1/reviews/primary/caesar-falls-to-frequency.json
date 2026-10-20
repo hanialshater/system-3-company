@@ -1,0 +1,152 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "caesar-falls-to-frequency",
+  "domain": "cs",
+  "batchId": "round1-02",
+  "demoVersion": 1,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "0709e0296f495ff1a84b7a4ca9d3a9ffd279ac490a5e4822dd0d975626a1c5f4",
+  "demoSha256": "ebb8e3dd297354b60aece810464427ed220e3497e1c3ee8edf505d46a07a84c8",
+  "reviewedAt": "2026-10-18T18:37:45.436738+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/caesar-falls-to-frequency",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted shift 19 and locked",
+      "outcome": "Shift 0 has X tallest; E reference visible even before commitment"
+    },
+    {
+      "id": "o2",
+      "action": "Clicked +1",
+      "outcome": "Shift 1 peak W; message remains gibberish"
+    },
+    {
+      "id": "o3",
+      "action": "Clicked Tallest bar to E",
+      "outcome": "Shift 19 gives peak E and readable MEET ME AT THE OLD BRIDGE message"
+    },
+    {
+      "id": "o4",
+      "action": "Clicked +1 to20 then -1 to19",
+      "outcome": "20 yields peak D and gibberish; 19 restores English"
+    },
+    {
+      "id": "o5",
+      "action": "Opened reveal",
+      "outcome": "Counts 3 tried shifts, names 19 and text; explains renaming preserves frequencies, E probably disguised, only25 candidate shifts; historical attribution"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Answerable, but E-labelled reference and peak X already cue the answer strongly.",
+      "evidence": "o1; locked screenshot",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Shift changes move frequency peak and simultaneously change readability; adjacent wrong contrast reversible.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed peak/readability to preserved frequencies and probabilistic E assumption.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Chart, letter labels and shift controls legible with immediate text feedback.",
+      "evidence": "o1-o5; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable frequency principle stated for Caesar English messages; no new cipher application or failure case.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Correct prediction confirms that pattern can expose key despite renamed letters.",
+      "evidence": "o1-o5",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving peak against E reference carries key-finding mechanism.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible wrong/right shifts let text turn between gibberish and English.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete attack on simple substitution cipher.",
+      "evidence": "o3-o5",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single preserved-frequency mechanism plus finite search observation.",
+      "evidence": "o5",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links alphabet offset, frequency ranking and readability as verification.",
+    "conceptualDemand": "balanced: supported chart and alphabet representation changes",
+    "interfaceBurden": "low: step buttons and peak alignment shortcut",
+    "provisional": true
+  },
+  "whyCool": "Moving the tallest bar from X to E turns the entire ciphertext into a readable bridge rendezvous, while one further shift destroys readability.",
+  "caveat": "The E reference strongly cues the prediction and the example does not test a short message where the most common letter differs.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed locked and revealed shift19 states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "price-floor-glut",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/price-floor-glut",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "20792e8857786bce17da44835cd828acfdc545ea265abe282895d3e8d562a0e8",
+    "demoSha256": "f48a6154cdb455050fc06a4a66f29fb0d50ac148ced6d7202835d525b15943b4",
+    "metaPath": "src/demos/economics/price-floor-glut/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 20 unsold loaves and locked the prediction for a legal minimum price of $8 in the stated linear bread market.",
+    "exploration": "At the initial $6 crossing, 40 were bought and baked with zero unsold. At $8, bought fell to 20, baked rose to 60 and unsold became 40. At $4 the floor did not bind and the market stayed at 40 bought and baked. At $9, bought 10 and baked 70 left 60 unsold.",
+    "reveal": "The reveal corrected the answer to 40 and explained the two opposing responses at $8. It explicitly noted that below $6 the rule changes nothing, and disclosed straight lines, one market and bakers producing for the floor price.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at $8. The horizontal floor intersected falling buyer and rising baker lines. A thick red gap labelled 40 unsold connected the intersections; bought 20 and baked 60 were shown below.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The numerical question requires combining supply and demand responses.",
+      "evidence": "Selected 20 rather than the full 60 minus 20 gap.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "The slider exposes both a nonbinding boundary and an increasing surplus.",
+      "evidence": "$4 preserved the crossing outcome; $8 and $9 generated gaps of 40 and 60.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the observed surplus and qualifies the model.",
+      "evidence": "It identifies fewer desired purchases, more production and the below $6 boundary.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The graph connects the surplus to a horizontal quantity gap.",
+      "evidence": "The screenshot marks both intersections and their 40 loaf difference.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The mechanism is general but no concrete new application is developed.",
+      "evidence": "The ending defines a surplus and stresses this is not a claim about a real rule.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A higher guaranteed price can coexist with fewer sales and unsold output.",
+      "evidence": "At $8 only 20 loaves sold despite 60 baked.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The surplus is shown as a gap between quantities at the same price.",
+      "evidence": "The red segment spans demand and supply intersections.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "One slider provides controlled model exploration.",
+      "evidence": "Adjusting the legal floor updates chart and counts.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies the conditional mechanics of a price floor.",
+      "evidence": "The nonbinding threshold and quantity gap are visible.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It includes both the mechanism and assumptions limiting it.",
+      "evidence": "The reveal discloses production behavior and one-market linearity.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two response curves and legal versus actual price require interpretation, but one control is simple.",
+    "conceptualDemand": "Moderate: track opposing quantity responses and distinguish a nonbinding floor.",
+    "interfaceBurden": "Low: one price slider.",
+    "conceptualChallenge": "A minimum price does not force buyers to purchase the amount supplied.",
+    "prerequisiteNovelty": "Supply, demand, surplus and binding constraints are introduced.",
+    "notationRepresentationBurden": "Moderate: two linear equations and a price-quantity graph."
+  },
+  "whyCool": "The unsold bread is exactly the distance between two groups responding differently to the same higher price.",
+  "caveat": "The lesson assumes bakers produce at the floor and does not model adaptation, government purchases or a real policy.",
+  "missingEvidence": [
+    "No fresh market functions were tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

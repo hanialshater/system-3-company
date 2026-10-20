@@ -1,0 +1,104 @@
+{
+  "slug": "told-the-sum-is-eight",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/told-the-sum-is-eight",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedunconditional31%rather than40or50 for at leastonesix given sum8.",
+    "Noclue36cells11six31%;sum8left5cells2six40%;sum7left6cells2six33%;sumatleast10left6cells5six83%.",
+    "Reveal enumerated sum8pairs and accurately recalled both other clues,explaining probability as share of remaining outcomes.",
+    "Inline1280x720 light screenshot: gridandfilteredcells readable; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple dice sums with conditional counting.",
+    "conceptualDemand": "Orderedpairs and fractions.",
+    "interfaceBurden": "Clear presets and counts; prose clipping."
+  },
+  "whyCool": "A clue fades away impossible cells,so the probability visibly changes with what remains.",
+  "caveat": "Assumes fair independentdice convention; right-edge prose clipping; accessibility unknown.",
+  "effort": "Prediction,allfourcluestates,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Useful multiple-condition comparison; repair textlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete conditional task with plausible denominator mistake alternatives.",
+      "evidence": "Sum8andatleastonesix.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several clues distinguish changes in both denominator and favorable count.",
+      "evidence": "5/6versus2/6same denominator,newnumerator.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Enumerates original sample space and explains actual changed conditions.",
+      "evidence": "Fiveeligiblepairs and bothfreshclues.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear counts and grid but prose clips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Learner applies same filtering principle to concrete new sum clues with observed counts.",
+      "evidence": "Sum7andatleast10 compared tosum8.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Clues change chanceof six in different ways.",
+      "evidence": "31,40,33,83%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gridfilters make conditional denominator visible.",
+      "evidence": "Highlightedeligiblecells.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Switchable clues.",
+      "evidence": "Fourstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Conditional probability foundation.",
+      "evidence": "Shareofremainingoutcomes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Denominator and favorable-outcome counts both change.",
+      "evidence": "Same6eligiblebut2or5favorable.",
+      "confidence": "medium"
+    }
+  }
+}

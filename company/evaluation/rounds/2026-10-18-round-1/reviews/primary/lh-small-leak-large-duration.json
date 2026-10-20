@@ -1,0 +1,103 @@
+{
+  "slug": "lh-small-leak-large-duration",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-small-leak-large-duration",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about7 L/day from5 mL/min versus options0.3 and70.",
+    "Tests gave7.2 L/day versus0.3 L/hour; maximum15 mL/min gave21.6/0.9 L.",
+    "Screenshot showed common-scale fills with large day/hour difference. Reveal preserved original/current inputs and explained1440/60 minutes plus mL/L conversion."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic multiplication and conversion, values supplied.",
+    "conceptualDemand": "Small rate accumulates over many minutes.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "A barely noticeable flow can add up to several litres in a day.",
+  "caveat": "Illustrative constant rate, not measurement of an actual leak.",
+  "effort": "Prediction, both tests, maximum flow, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear magnitude surprise and supporting visual contrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete magnitude estimate with plausible time/unit alternatives.",
+      "evidence": "0.3,7,70 L.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rate scaling preserves duration ratio.",
+      "evidence": "5\u219215 mL/min.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains time conversion and accumulation.",
+      "evidence": "Multiply relevant minutes then convert litres.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Constant illustrative rate and units explicit.",
+      "evidence": "24 h/day,1000 mL/L.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General rate-duration principle without fresh task.",
+      "evidence": "Small rate and long duration together.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiny per-minute flow becomes litres daily.",
+      "evidence": "7.2 L/day.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shared fill scale makes24-fold contrast visible.",
+      "evidence": "21.6 versus0.9 L screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and flow slider.",
+      "evidence": "Duration choices fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Leak-volume estimation central.",
+      "evidence": "Accumulated water quantity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Rate-time and unit conversion.",
+      "evidence": "Minute/day distinction.",
+      "confidence": "medium"
+    }
+  }
+}

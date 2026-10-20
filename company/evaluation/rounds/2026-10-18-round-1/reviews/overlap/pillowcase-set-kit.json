@@ -1,0 +1,133 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "overlap",
+  "reviewer": "r2",
+  "slug": "pillowcase-set-kit",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+    "D1: Preview banner: \u201cEvaluation preview \u00b7 learning history and analytics are not saved.\u201d",
+    "D2: Prediction: \u201cWhich setup uses fewer container visits for a complete set?\u201d Choices \u201cScattered pieces\u201d, \u201cOne set kit\u201d, \u201cSame outcome\u201d; selected Same outcome and locked.",
+    "D3: Initial exploration: \u201cScattered pieces; Location visits 3\u201d, Locations 4; selected One set kit and changed Locations to6; result \u201cOne set kit; Location visits 1\u201d; Show me why enabled.",
+    "D4: Desktop screenshot: six numbered container outlines with only first filled; Location visits figure sat at lower clipped edge of inner stage while controls remained visible.",
+    "D5: Reveal: \u201cNot quite: it was \u2018One set kit\u2019.\u201d; \u201cThe current one set kit setting gives 1. The example counts separate locations, not seconds. Keeping the chosen set\u2019s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification. It is an organisation trade-off, not proof that every object should be grouped.\u201d"
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "The alternatives permit a clear commitment but the title and obvious kit framing cue the answer.",
+      "evidence": [
+        "D2",
+        "Title: \u201cOne set, one retrieval\u201d"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Switching layouts visibly changes visit count, but varying places alongside the layout does not isolate the effect of the place count.",
+      "evidence": [
+        "D3",
+        "D4"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal corrects the commitment and links one visit to grouping pieces while identifying the model's limit.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The path is usable, but the main visit result is partly clipped in the observed desktop exploration stage.",
+      "evidence": [
+        "D3",
+        "D4"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The grouping rule and identification trade-off are reusable editorial potential, but no concrete second task tests their applicability.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No keyboard, phone, contrast, zoom/reflow or reduced-motion checks were performed.",
+      "evidence": [
+        "Desktop AX snapshots and screenshots only; accessible labels observed but insufficient for an accessibility rating."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "The chosen same-outcome prediction is contradicted, though the setup already strongly hints at the kit advantage.",
+      "evidence": [
+        "D2",
+        "D3",
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Numbered containers and a highlighted retrieval location support the visit-count explanation, with the count carrying much of the meaning.",
+      "evidence": [
+        "D3",
+        "D4"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The layout toggle and locations slider allow reversible small experiments.",
+      "evidence": [
+        "D3"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Keeping a chosen household set together is the central action explained by the task.",
+      "evidence": [
+        "D2",
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "The task includes grouping and identification trade-offs but the tested model exposes only one retrieval relation.",
+      "evidence": [
+        "D3",
+        "D5"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Against the declared boundary, compare two familiar storage layouts and count locations for a three-piece set.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no map-projection, sorting-algorithm or sound-propagation theory assumed."
+  },
+  "whyCool": "Selecting One set kit changes the visible retrieval cost from three locations to one.",
+  "caveat": "The diagram does not visibly identify the three separate set pieces, and place-count variation was not isolated from layout change.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r2.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

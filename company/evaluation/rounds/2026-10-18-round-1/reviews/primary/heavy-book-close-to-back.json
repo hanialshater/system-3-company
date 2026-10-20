@@ -1,0 +1,103 @@
+{
+  "slug": "heavy-book-close-to-back",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heavy-book-close-to-back",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted near back; mass2 far30cm gave5.89Nm,near10cm1.96Nm.",
+    "Changed mass4 near gave3.92Nm; reveal current3.92 and same-weight distance principle.",
+    "Screenshot schematic visible, right-edge scope prose clipped. Reveal says drawing changes distance not mass although slider changed mass."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Torque units and support abstraction.",
+    "conceptualDemand": "Moment distinct from weight.",
+    "interfaceBurden": "Two layouts and mass slider."
+  },
+  "whyCool": "The same book can exert three times the turning moment simply by sitting farther away.",
+  "caveat": "Clarify sentence about unchanged mass as placement comparison; no ergonomic outcome demonstrated.",
+  "effort": "Prediction,placement contrast,mass change,reveal,inline visual.",
+  "provisionalBucket": "revise-reveal-framing",
+  "bucketReason": "Sound bounded physics, wording conflicts with explored mass.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific physical comparison.",
+      "evidence": "Far versus near same mass.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Distance and mass independently controllable.",
+      "evidence": "2kg both offsets;4kg near.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct mechanism and scope, but mass sentence conflicts with slider exploration.",
+      "evidence": "Drawing changes distance not mass after4kg.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Terminology unexplained before prediction and clipped scope prose.",
+      "evidence": "Static turning moment; screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle and exclusions without fresh use.",
+      "evidence": "No posture/comfort/injury inference.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same mass different moment.",
+      "evidence": "5.89 versus1.96.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Support,force and offset schematic central.",
+      "evidence": "Observed diagram.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Placement toggle and mass slider.",
+      "evidence": "2\u21924kg.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing placement central with explicit limits.",
+      "evidence": "Follow pack limits.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Mass times gravity times offset.",
+      "evidence": "Two parameter contrasts.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "fence-for-biggest-pen",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fence-for-biggest-pen",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "fence-for-biggest-pen",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/fence-for-biggest-pen/meta.json",
+    "metaSha256": "b5e16d2cf808a631b1709b9d8697c68d22a2dd7cd40427bd68d98f161d6f10a2",
+    "demoSha256": "2e5b83617ff441227ca68b5528e78c1908147a49d46cc13bad3a0e4f39a0d41d",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/fence-for-biggest-pen",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/fence-for-biggest-pen.json"
+  },
+  "date": "2026-10-18T19:02:21.391065+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust5/5 ignored. Selected1x9 and locked.",
+    "exploration": "Initial3x7=21m2.1x9=9,5x5=25,9x1=9 while fence20. Reveal unlocked after widths both sides5.",
+    "reveal": "Correct5x5, cites built9to25m2; width+height10, distance4 fromsquare costs16m2; area25minus square ofdistance from5, fixed fence square maximizes.",
+    "visual": "Inline1257x936 dark screenshots inspected. Unit grid and outlined rectangle show changed shape/count, width/height labels and constant fence. Reveal legible near bottom; no clipping observed."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Three concrete equal-perimeter shapes separate long versus balanced beliefs.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Square versus both rotated extreme rectangles exposes optimum and symmetric loss with fixed fence.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Cites tested range and derives area-loss relation; fixed fence condition explicit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Unit squares,side lengths,fence total and area are explicit across tested shapes.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General fixed-fence rectangle rule but no new application beyond same pen.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed longest shape loses9versus25area despite same fence.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Unit grid shows area gain and symmetric elongated shapes across three contrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Nine reversible width choices encourage shape exploration.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete pen area optimization example.",
+      "evidence": "prediction;reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Invariant perimeter,optimum,symmetry and quadratic loss.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate fixed perimeter and changing area with distance-squared loss explanation.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: labelled shape buttons",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "low: rectangle/grid familiar; fixed-sum relation supported",
+    "notationRepresentationBurden": "moderate: m2 and squared-distance relation"
+  },
+  "whyCool": "The same20m fence holds9squares as1x9 but25when made5x5.",
+  "caveat": "Only rectangular shapes and fixed20m fence explored; no fresh application."
+}

@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-historybanner;7/7trustignored.Predicted1670km/h.",
+    "Equator40030km/1670kmh;Helsinki19910/830;pole0/0;London24910/1040.PresetLondon51.5rounds52slider,Helsinki60.2rounds60.",
+    "Revealonceper23h56min,sameperiodsmallercircle,cos60half,poleturnsonspot.",
+    "Inline1257x936dark:top-downpolar globe,yellowlatitude circle,redspeedarrow;controlsandreadable explanation."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblesameperiod/samespeedconfusion.",
+      "evidence": "1670/830/0",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Equator,twocities,andpoleexposecircumference-speedrelationandzero boundary.",
+      "evidence": "Fourpresets",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolvessameperiodwithdifferentcircumferences,cosineandpolelimit.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Circle,speedandunitsclear;roundedslidercitylatitudes minor.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcosineruleandconditionsgiven,nofreshapplication.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "1670guesscontrastedwithHelsinki830,polezero.",
+      "evidence": "Prediction/presets",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Circleandarrowshrinkacrossmultiplelatitudesincludingzero.",
+      "evidence": "Fourpresets/screenshots",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Citypresetsandsliderallowreversibleexploration.",
+      "evidence": "Controls",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretegeographicalspeedcomparison.",
+      "evidence": "Cityoutputs",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Period,circumference,speed,andpoleboundarylinked.",
+      "evidence": "Fourstatesandreveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separateangularperiodfromlineartravelwithsupportedcirclecomparison.",
+    "conceptualDemand": "linkedcircumference/periodrelation",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:latitudeandcosine",
+    "notationRepresentationBurden": "moderate:degrees/cos60"
+  },
+  "whyCool": "Everyonecompletesthesameturn,buttheNorthPolecirclecollapsestozeroeastwardtravelspeed.",
+  "caveat": "Cosineisnamedcompactly;noindependentcalculationtask.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Freshapplication"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "helsinki-spin-speed",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/helsinki-spin-speed",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "e30c16f33c156efe614c8d0110e071f490081060fc06f93516afa64cfc07d5c0",
+    "metaSha256": "3fc7769860cecbce5465375820c256f004b361eb9f42cd3e5efa34de7cbaeb55"
+  }
+}

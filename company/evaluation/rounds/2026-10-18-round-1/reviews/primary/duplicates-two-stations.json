@@ -1,0 +1,104 @@
+{
+  "slug": "duplicates-two-stations",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/duplicates-two-stations",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted one tool at each desk removes the shown alternating shuttle trips.",
+    "One shared tool at5 m separation gave four transfers/20 m; two tools gave0 travel.",
+    "At9 m, two tools still0; switching back to shared gave36 m. Visual shows four alternating directed routes.",
+    "Reveal accurately identified current shared36 m and explained reduced route versus more stored tools; did not claim duplicates always improve organization. Held verdict duplicated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Count transfers times distance.",
+    "conceptualDemand": "Route-specific duplication benefit.",
+    "interfaceBurden": "Two layouts and slider."
+  },
+  "whyCool": "A small stock increase removes an entire repeated route.",
+  "caveat": "Assumes alternating work and four one-way transfers; does not model acquisition cost, clutter or shared-tool constraints. Duplicate verdict needs polish.",
+  "effort": "Completed prediction, both layouts at two distances, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear route accounting and honest tradeoff with minor presentation issues.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete route shown, but layout labels make answer easy.",
+      "evidence": "Shared tool versus one at each.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Distance and tool count independently alter shuttle travel.",
+      "evidence": "5m20 versus9m36, duplicate0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate current output and explicit resource tradeoff explain the scenario.",
+      "evidence": "More stored tools versus zero chosen-route transfers.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Routes and counts clear; duplicate verdict and terse transfer/tool labels need polish.",
+      "evidence": "Two held lines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete layout strategy includes scenario dependence.",
+      "evidence": "Chosen alternating route, not universal duplicate benefit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Straightforward removal of repeated transfers.",
+      "evidence": "Local tools eliminate route.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Four arrows and desk tools show the exact counted travel.",
+      "evidence": "Alternating transfers.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Distance and layout controls.",
+      "evidence": "Two factors.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful work-layout reasoning with a resource caveat.",
+      "evidence": "Storage count tradeoff.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates travel reduction and resource cost.",
+      "evidence": "No purchase/clutter optimization.",
+      "confidence": "medium"
+    }
+  }
+}

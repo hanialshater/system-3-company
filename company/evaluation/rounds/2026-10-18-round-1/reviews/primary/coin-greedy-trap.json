@@ -1,0 +1,105 @@
+{
+  "slug": "coin-greedy-trap",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coin-greedy-trap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiongreedy1/3/4coinchangefor6uses2/3/4coins; chose2. Hookhintsgreedywrongbutdoesnotgivecount.",
+    "Built6with3+3two coins;cashier4+1+1three;fewest3+3two.",
+    "Changedtarget8,built4+4two andretainedcomparisonshowedgreedyalsooptimal. Changed10,built4+3+3three;greedy4+4+1+1four.",
+    "Revealoriginalpred3,explains4leaves2ones,8greedysuccessand10secondtrap;earlychoicecanblockbestcombination.",
+    "Screenshot comparisoncoinrows clear;actualrightedgeprosecutoff,normalverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simpleadditionbutmustdistinguishalgorithmbehaviorfromoptimalcombinationacrosscases.",
+    "conceptualDemand": "Earlychoicecanconstrainlaterchoices;greedynotalwayswrong.",
+    "interfaceBurden": "Severalcoin/targetcontrols;comparisonpersistsontargetchange,clippedreveal."
+  },
+  "whyCool": "Takinga4firstfor6forcesyoutopaytwomorecoins,whiletwo3s finish thejob.",
+  "caveat": "Toy1/3/4denominations;transfer4describeso\ufb00eredandperformedadditionalcases,notactuallearningeffectiveness.",
+  "effort": "Prediction,handbuilt6/8/10,greedy/optimalcomparisons,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Goodagencyandgenuineadditionalcase/boundarycoverage;layoutfixrequired.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear actualpolicycountversusoptimalcount distinction withplausibledistractors.",
+      "evidence": "Chose2optimalbutcashieruses3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Handbuildingandthreecontrolledtargetcontrasts exposemechanismandsuccessboundary.",
+      "evidence": "6fails,8succeeds,10fails undergreedy.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesprediction andusesobservedsuccesscase toavoidblanketgreedyfailureclaim.",
+      "evidence": "For8bestpossible,notalwayswrong;10anothertrap.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readablecoins butactualrightedgeexplanationcutoff.",
+      "evidence": "Screenshottruncatedlonglines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Visibleadditionalcases letuserapplyideaanddistinguishwheregreedyisnotwrong.",
+      "evidence": "Personallybuilt8with4+4and10with4+3+3beforetheirreveal.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Largestavailablecoin canincreasecoin-count.",
+      "evidence": "4firstforces1+1for6.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallelcoinrows makewasteconcrete.",
+      "evidence": "3+3versus4+1+1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Buildsolutions andcompareacrossthreetargets.",
+      "evidence": "Coinbuttons,undo,targetswitches.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingoptimization/algorithmintuition.",
+      "evidence": "Toycoindenominations notrealcheckoutscenario.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localversusglobalchoice andconditionalgreedysuccess.",
+      "evidence": "Counterexampleandnoncounterexample.",
+      "confidence": "medium"
+    }
+  }
+}

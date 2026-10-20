@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "crate-wont-budge",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/crate-wont-budge",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose98.1Nfrictionat50Npushandnomotion;98.1Nmaximumgiven.",
+    "E: start20push/friction20;End120slipping;Home/Right10still/friction10;arrowsupthrough30,40,50yield50still/friction50. Slider10Nsteps.",
+    "R:Notquite50N;quotes10,20,30testedpushes;frictioncancelsuntil98.1ceiling;\u03bc0.50illustrative,floorsvary.",
+    "No-historypreview;4/4trustignored. Screenshot1280x720 arrows,ceilingmarkandtextclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targetsmaximum-versus-actualfriction.",
+      "evidence": "P: chose98.1Nfrictionat50Npushandnomotion;98.1Nmaximumgiven.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Subthresholdmatchesandabove-thresholdslipcausalcontrast.",
+      "evidence": "E: start20push/friction20;End120slipping;Home/Right10still/friction10;arrowsupthrough30,40,50yield50still/friction50. Slider10Nsteps.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualpusheswithforcebalanceandceiling.",
+      "evidence": "R:Notquite50N;quotes10,20,30testedpushes;frictioncancelsuntil98.1ceiling;\u03bc0.50illustrative,floorsvary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counter,arrowsandgriplimitclear.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 arrows,ceilingmarkandtextclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusableceilingdistinctionwithmateriallimit.",
+      "evidence": "R:Notquite50N;quotes10,20,30testedpushes;frictioncancelsuntil98.1ceiling;\u03bc0.50illustrative,floorsvary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 arrows,ceilingmarkandtextclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Frictionadjuststomatchpush.",
+      "evidence": "E: start20push/friction20;End120slipping;Home/Right10still/friction10;arrowsupthrough30,40,50yield50still/friction50. Slider10Nsteps.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Opposingarrowsandlimitmarkcarrymechanism.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 arrows,ceilingmarkandtextclear.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversiblepushslider.",
+      "evidence": "E: start20push/friction20;End120slipping;Home/Right10still/friction10;arrowsupthrough30,40,50yield50still/friction50. Slider10Nsteps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Familiarpushing-frictionintuition.",
+      "evidence": "R:Notquite50N;quotes10,20,30testedpushes;frictioncancelsuntil98.1ceiling;\u03bc0.50illustrative,floorsvary.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Balanceversusthreshold.",
+      "evidence": "R:Notquite50N;quotes10,20,30testedpushes;frictioncancelsuntil98.1ceiling;\u03bc0.50illustrative,floorsvary.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connectforcebalancewithmaximumconstraint.",
+    "conceptualDemand": "Supportedconditionalrelation.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:staticfrictionforcebalance",
+    "notationRepresentationBurden": "moderate:\u03bcformulaoptional"
+  },
+  "whyCool": "Frictiongrowsalongwithyourpushuntilthegripceilingispassed.",
+  "caveat": "Slippingforceisnotquantified;staticmodelonly.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "rsa-lock-with-public-key",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rsa-lock-with-public-key",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "For original message seven, public exponent three modulo fifty-five encrypted to thirteen; reapplying public exponent gave fifty-two.",
+    "Trial divisors exposed five times eleven, phi forty and private exponent twenty-seven; private operation recovered seven.",
+    "At slider maximum message fifty-four, public encryption and public reapplication both returned fifty-four; live caption correctly says this message happens to come back.",
+    "After private operation on fifty-four, reveal incorrectly says public reapplication produced something new rather than the message, contradicting the tested boundary state."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Modular powers, factorization and private exponent derivation.",
+    "conceptualDemand": "Separate arithmetic inverse from computational security.",
+    "interfaceBurden": "Message slider, operations and three factor tests."
+  },
+  "whyCool": "A public arithmetic transformation can have a different inverse operation derived from hidden structure.",
+  "caveat": "Final reveal fails to preserve its own fixed-message caveat; security wording needs qualification beyond a large modulus.",
+  "effort": "Prediction, original public failure, trial factors, private recovery, fifty-four public/private boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-fix",
+  "bucketReason": "Final explanation contradicts a tested message boundary despite correct live special-case handling.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Overstates factorization as the only route and mixes tiny known example with hypothetical large modulus.",
+      "evidence": "Only someone who can find factors versus public key or nobody; message and ciphertext already given.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Public/private paths, factor derivation and alternate-message boundary allow real counterexample testing.",
+      "evidence": "Seven differs under public repeat, fifty-four does not.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "Final explanation contradicts the explicitly handled alternate-message result.",
+      "evidence": "Says public e did not return message while current fifty-four path did.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Live caveat is lost in final universal narrative.",
+      "evidence": "Special-case caption correct, final description false for tested current message.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Introduces public/private arithmetic but general security account is incomplete.",
+      "evidence": "Large factors alone do not establish a secure encryption scheme.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different exponents invert the transformation, with special fixed messages.",
+      "evidence": "Seven-thirteen-seven versus fifty-four fixed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Input/ciphertext/output boxes show outcomes but not modular-power mechanism.",
+      "evidence": "Three labeled numeric boxes and factor text.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Message slider and competing operations.",
+      "evidence": "Original and maximum message tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Conceptual public-key introduction.",
+      "evidence": "Not an implementation or security assessment.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Factor-derived inverse and exceptional message behavior are available.",
+      "evidence": "Phi forty, exponent twenty-seven, fixed boundary.",
+      "confidence": "medium"
+    }
+  }
+}

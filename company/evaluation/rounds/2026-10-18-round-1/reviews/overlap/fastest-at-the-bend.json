@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-history banner;5/5trust ignored.Predicted900fish.",
+    "Initial100fish45new;clicked500→125new;900→45new;100→45new;slider1000→0new.Visited all three presets to unlock reveal.",
+    "Reveal parents×room product0.5×fish×share left,maximum halfway;real populations lag,overshoot,crash;rate invented andcapacityfixed.",
+    "Inline1257x936dark screenshot:grid fish/room/newborn legend,current1000 allgreen;clear controls and readable reveal.No S-curve graph visible."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear misconception more parents versus available room.",
+      "evidence": "100/500/900guess",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Contrasts both sides of peak plus capacity-zero boundary.",
+      "evidence": "100,500,900,1000outputs",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains parent-room product and states model limits;S-curve bend asserted without visible trajectory.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and metrics clear;three-preset completion requires clicking initial state too.",
+      "evidence": "Screenshot and gate",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General logistic relation and conditions offered without new case.",
+      "evidence": "Fixedcapacity model caveat",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "900guess overturned by peak500 and symmetric45outputs.",
+      "evidence": "Prediction and contrasts",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid distinguishes parents,newborns and room.",
+      "evidence": "Screenshot legend",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Presets and slider permit reversible population trials.",
+      "evidence": "Four states",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Models population growth with explicit real-world caveats.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Parent-room tradeoff,halfway peak,andfullcapacity boundary.",
+      "evidence": "Four states",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two opposing factors multiply;numeric comparisons support model.",
+    "conceptualDemand": "two linked factors and peak",
+    "interfaceBurden": "low;initialpreset must be clicked",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:logistic/S-curve terminology",
+    "notationRepresentationBurden": "moderate:product formula"
+  },
+  "whyCool": "100 and900fish both add45,while500adds125 because parents androom must coexist.",
+  "caveat": "S-curve bend is explained verbally but no time trajectory is shown.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "fastest-at-the-bend",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fastest-at-the-bend",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "d1a7a1b1b8c3f742e47a2e25a283617b0b155535380c90267b4ad2ac3241d191",
+    "metaSha256": "b525442fadc5dd8d64791ba7fa3c80d329703ece7864b65e34b28d65f9fc935b"
+  }
+}

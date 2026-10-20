@@ -1,0 +1,104 @@
+{
+  "slug": "wetter-cloth-more-water",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wetter-cloth-more-water",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "One 200 g water load at 100 g per step required two steps.",
+    "Double-load mode was tested, then base water raised to 500 g; effective water 1,000 g required ten steps.",
+    "Screenshot showed a cloth and evaporation arrows but no depicted water inventory or duration sequence.",
+    "Reveal states the fixed-rate doubling relationship and warns real drying rates change over time; slider label 500 g differs from effective 1,000 g in double mode."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Amount divided by fixed rate.",
+    "conceptualDemand": "Distinguish retained water from removal rate.",
+    "interfaceBurden": "Two modes and a base-water slider."
+  },
+  "whyCool": "Changing how much water remains and changing how fast it leaves are different ways to affect drying.",
+  "caveat": "No measured drying-time prediction; weak visual encoding and ambiguous base-water labeling.",
+  "effort": "Prediction, both modes, maximum base water, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct scoped arithmetic but weak visual explanation and cued prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The answer follows immediately from the stated fixed rate.",
+      "evidence": "Which needs more steps: one load or double load.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Base amount and doubled mode expose proportional duration.",
+      "evidence": "200 g takes two; effective 1,000 g takes ten.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains the equation and limits of constant-rate drying.",
+      "evidence": "Water amount and removal rate address different parts of the relationship.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Base and effective amounts could be labeled more explicitly.",
+      "evidence": "Water slider 500 g while Water readout says 1,000 g.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete distinction between spreading cloth and reducing retained water.",
+      "evidence": "Different interventions affect different parts of the equation; actual rate varies.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected proportional arithmetic.",
+      "evidence": "More water at fixed rate requires more steps.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Cloth icon does not explain quantity or time.",
+      "evidence": "Evaporation arrows without a water or duration representation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjust amount and mode.",
+      "evidence": "Both modes and maximum water tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful drying distinction with limited quantitative applicability.",
+      "evidence": "Constant rate is illustrative.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates quantity from removal rate.",
+      "evidence": "Real drying need not remain constant.",
+      "confidence": "medium"
+    }
+  }
+}

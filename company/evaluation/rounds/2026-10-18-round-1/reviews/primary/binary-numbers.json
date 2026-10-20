@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust8/8 ignored. Chose128 versus8/16/256counting0;locked. Eight labeled doubling-value switches."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "All8on=>255/11111111,feedback256numbersincluding0; +1=>0/00000000 with ninthswitchneeded message,revealunlocked. Set7lowbits=>127/01111111; +1=>128/10000000,8switchesflip carrylike9+1=10."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite256. Ownbiggest255/alloff0/everypatternone number0–255; eachswitch one morethan allrightcombined128=127+1,explainsown8flip;bit/byte8bits labels. Initial screenshot inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible largestvalue/count confusion.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Allon plus distinct carry and overflow boundaries directly reveal representation.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Ownmax/zero/8flip linked to value-sum invariant.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Values,patterntotal and boundaryfeedback clear.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable placevalue/bitbyte principle.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One incrementflips8bits oroverflows.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Switchpatterns carry mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Freecombinations and two distinct boundarycontrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Binarycomputerrepresentation connection.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Placevalue,capacity,carry and overflow linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links place values, count-versus-maximum and carry/overflow boundaries.",
+    "conceptualDemand": "Binaryrepresentation and two different boundarycarries; explicit labeledvalues support.",
+    "interfaceBurden": "Eight clear switches and +1/reset, patternstring linked numeric total."
+  },
+  "whyCool": "127+1flips all eight switches to128, while255+1cannot fit and rolls to0.",
+  "caveat": "Counting capacity explained by uniqueness assertion rather than exhaustive pattern proof; keyboard and resetbutton untested.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alloff button and accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "binary-numbers",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/binary-numbers",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "fb0f84893a3f852c37cbe8fd8557baf18aee8ba73a1fa581c4923b73b3a322c7",
+    "metaSha256": "071747487781443aed476a6d693d89328f51892f174ef5493a1c4b3f2b3426bb"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "turnstile-remembers-state",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/turnstile-remembers-state",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial screenshot supplied locked/unlocked transition diagram with push/coin loops. Predictedthree.",
+    "Event1coin unlocked, event2push passedone andlocked, event3push blocked; events4/5coin left unlocked withonepassed and explicit nochange; event6push passedsecond andlocked.",
+    "Final screenshot highlighted unlocked\u2192locked push edge, counttwo. Reveal explained extra coin lost because model stores onlytwo states, not accumulated credits."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar coin/push actions andtwo states.",
+    "conceptualDemand": "Event outcome depends on currentstate, not totalcoins.",
+    "interfaceBurden": "Low: sixeventbuttons."
+  },
+  "whyCool": "The same push can pass or block you, and a coin can matter or do nothing\u2014the state supplies the missing context.",
+  "caveat": "Illustrative two-state rule, not every real turnstile. Fixedsequence and external passedcounter; 'turnstile counts nothing' refers to internal rule memory.",
+  "effort": "Browser prediction, initialdiagram, allsixevents, final screenshot and reveal; one transient command timeout recovered.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear gentle state-trace lesson with limited exploration andtransfer.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete event trace with rules visible in diagram.",
+      "evidence": "Six events, initiallocked, choices2/3/4.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Fixed events reveal deterministic transitions.",
+      "evidence": "Replay-prefix buttons but no editable sequence.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Specific nochange and blocked events explain originalcount miss.",
+      "evidence": "Duplicatecoin event5lost, lockedpush event3blocked.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Current state, lasttransition and passage count clear.",
+      "evidence": "Highlighted edge and explicit text at each event.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Defines finite-state machine without second application.",
+      "evidence": "Fixedstates and per-event rules, no new scenario.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Three coins do not buythreepassages in this model.",
+      "evidence": "Duplicatecoin has no memorycredit.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "State circles, selfloops and active transition encode memory.",
+      "evidence": "Lockedpush versus unlockedcoin selfloops.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step through familiar machine events.",
+      "evidence": "Fixedsix-eventtrace.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic state-machine modeling intuition.",
+      "evidence": "Illustrative turnstile only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Limited memory versus counting introduced.",
+      "evidence": "Two-state mechanism, no addedcreditstate experiment.",
+      "confidence": "medium"
+    }
+  }
+}

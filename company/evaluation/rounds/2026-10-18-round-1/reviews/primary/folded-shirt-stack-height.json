@@ -1,0 +1,104 @@
+{
+  "slug": "folded-shirt-stack-height",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/folded-shirt-stack-height",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted2cm for five once-folded shirts initially4cm high after another fold; correct alternative8cm.",
+    "Selected once-folded A and twice-folded B. Table showed2versus4layers and4versus8cm for5shirts. At12shirts values9.6versus19.2;atminimum4shirts3.2versus6.4.",
+    "Reveal described current4shirt values,halved footprint/doubled height and ideal incompressible material-volume conservation,with real compression/air caveat.",
+    "Inline1280x720 light screenshots: stack height/width schematic and table clear; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Doubling and simple proportional dimensions.",
+    "conceptualDemand": "Footprint-height tradeoff.",
+    "interfaceBurden": "Clear two modes and slider; prose clipping."
+  },
+  "whyCool": "Making each shirt occupy half the shelf footprint makes the ideal stack twice as tall.",
+  "caveat": "Ideal sheet model,not realistic compressed shirt thickness;changed count versus baseline answer could be labeled;right-edge clipping;accessibility unknown.",
+  "effort": "Prediction,A/Bfolds,count5/12/4contrasts,reveal and inline screenshots.",
+  "provisionalBucket": "solid-gentle-with-viewport-fix",
+  "bucketReason": "Useful dimensional tradeoff and explicit idealization;repair prose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Initial measured height and extra-fold operation support scaling question.",
+      "evidence": "4cm baseline and half-height misconception.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fold mode and shirt-count changes test proportionality.",
+      "evidence": "5,12,4counts with persistent2xratio.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Current values connect to ideal conservation and real-material limit.",
+      "evidence": "Half footprint,twice height.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear table but clipped prose; baseline answer8 versus changed current6.4 needs context.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Changed shirt counts apply same scaling relation beyond original five.",
+      "evidence": "12and4cases.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Smaller footprint creates taller stack.",
+      "evidence": "4to8atbaseline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Narrower/taller stack illustrates dimensional tradeoff.",
+      "evidence": "Both fold modes and count extremes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fold toggle and count slider.",
+      "evidence": "Three counts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Storage dimension tradeoffs,not a full folding guide.",
+      "evidence": "Ideal fabric model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Volume conservation and proportionality with material caveat.",
+      "evidence": "Incompressible-sheet assumption.",
+      "confidence": "medium"
+    }
+  }
+}

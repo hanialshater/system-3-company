@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "mercator-greenland",
+  "demoVersion": 5,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mercator-greenland",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "mercator-greenland",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/geography/mercator-greenland/meta.json",
+    "metaSha256": "d55c4b5e3c1e512fd09b01ce5337925c2dd789255d8061807fa9b3c4a7b21b83",
+    "demoSha256": "b951f0f4996cb7337ed0fb7c5501faafb6ac828a014f18b7fa47832115f9c15b",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/mercator-greenland",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/mercator-greenland.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "date": "2026-10-18T19:43:47.242265+00:00",
+  "notApprovedForServing": true,
+  "canonical": false,
+  "reason": "Canonical exclusive write refused: existing r1 primary/version5. No judgments read, metadata only. Supplemental not independent canonical count.",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "No-history banner confirmed; trust11/11 ignored. Chose Greenland15xCongo, locked.",
+    "exploration": "Mercator73N ratio15.4; moved40south to33N ratio1.4; equator ratio0.9. Equal-area0.9; returned73N still0.9. Orange bearing line straight Mercator, bent equal-area; seen log retained.",
+    "reveal": "Correct about1x. Areas2.17/2.34millionkm2, Congo slightly bigger. Actual seen ratios tied to latitude distortion and sailors angle/area tradeoff.",
+    "visual": "Actual inline1257x936 dark screenshots inspected. Greenland shrinks south with original ghost outline; equal-area73N clips most blue Greenland above map top. Controls/ratio/reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit map versus real-area alternatives.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple latitude and projection contrasts expose distortion and equal-area invariance.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actual ratios connected to area/angle tradeoff and compass-bearing line.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Most Greenland outline clipped in equal-area north state.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete map choice for sailing angles versus area comparison with tradeoff conditions.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen15x collapses0.9 at equator.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Moving shape, ghost and projection/bearing contrast carry explanation.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible latitude and projection discovery.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete map purpose choice.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Latitude distortion, area invariant and angle-area tradeoff.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separate land area from representation and compare properties across latitude.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate: northern outline clipped",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: map projections",
+    "notationRepresentationBurden": "low: ratios,latitude,km2"
+  },
+  "whyCool": "Moving Greenland to the equator shrinks its drawn ratio15.4 to0.9 while equal-area keeps0.9 back north.",
+  "caveat": "Equal-area north73N clips most Greenland outline; two fixed lands only.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Fresh independent application",
+    "Accessibility audit"
+  ],
+  "effort": "Approximately2minutes active walkthrough"
+}

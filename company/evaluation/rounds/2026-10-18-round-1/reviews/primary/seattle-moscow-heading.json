@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "seattle-moscow-heading",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seattle-moscow-heading",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "seattle-moscow-heading",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/geography/seattle-moscow-heading/meta.json",
+    "metaSha256": "8c7208acd627f291d1299ca5e8804c7707e4c145d083a61f5954a6fe53203336",
+    "demoSha256": "49ef5849a6738f5373e95215297bb1f4d74a6ab56457b7d7c352009232f0cbce",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/seattle-moscow-heading",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/seattle-moscow-heading.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected East against Northeast and Almost due north;locked it in.",
+    "exploration": "Faceeast90\u00b0 missedMoscow7940km. Northeast45\u00b0 missed3590km. North0\u00b0 missed1240km. Right10\u00b0 missed160km andunlockedexact11.5\u00b0/8370km. Right1\u00b0 to11 missed50km. Switchedsamepath toordinaryflatmap;revealunlocked.",
+    "reveal": "Correctedalmostnorth;quotedexact11.5\u00b0 eastofnorth andeastwardmiss7940km. Explainednorthern endpoints andglobe routeacrosstop;contrastedstraightSeattle-centredpath andcurvedflatmap.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Flatworldmap patharchesnorthfromSeattletoMoscow. Controls andnumericmisses readable;longreveal usesinternalscroll andbottomtext clippedinviewport.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "8/8 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear compasschoices testmap-east intuitionagainstgreatcircle heading.",
+      "evidence": "Eastcommitment versus11.5\u00b0northbearing.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multipleheadings visiblyreduce missandprojectiontoggle changesrepresentation.",
+      "evidence": "7940\u21923590\u21921240\u2192160\u219250kmmiss;twomaps.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsexacttestedheading,misshistory andtwo projections toglobegeometry.",
+      "evidence": "Far-north endpoints andstraight/curved representations.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Headingcontrols andfeedback clear,butlongreveal requiresinternalscroll.",
+      "evidence": "Actualscreenshot bottomexplanation clipped.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusableglobe-versus-flat-route principle butno concrete newdestinationapplication.",
+      "evidence": "Bothfar-north endpoints explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "CommittedEast choice missesby7940km whilenearNorth approacheswithin50km.",
+      "evidence": "90\u00b0 versus11\u00b0 experiments.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Projectioncontrast carriesdifference betweeninitialdirection andmapcurve.",
+      "evidence": "Actualnorthernarchonflatmap.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Compasspresets,fineheadingandprojectiontoggle supportguidedsearch.",
+      "evidence": "Fiveheadings andmaptoggle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete routebearinginterpretation onglobe.",
+      "evidence": "Seattle\u2013Moscow shortestinitialheading.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Initialbearing,route missandprojectionrepresentation linked.",
+      "evidence": "Coarse/finebearing andtwomaps.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links sphericalroutegeometry tocompassheading andmaprepresentation.",
+    "conceptualDemand": "Distinguishlongitudinaldestinationdirection frominitialgreatcircle tangent.",
+    "interfaceBurden": "Moderate:severalheadingbuttons,longinternalscroll reveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:greatcircleroute andazimuthalmap.",
+    "notationRepresentationBurden": "moderate:degreesfromnorth,km,andtwo projections."
+  },
+  "whyCool": "Turningfromeasttonorthcutstheroutemissbythousands ofkilometres,andtheflatmap thenreveals astrongnorthernarch.",
+  "caveat": "Onefixedcitypair;sphericalmodel,notoperationalflightplanning orconstant-compass navigation.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Left1 andtoggleback nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:03:50.666564+00:00"
+}

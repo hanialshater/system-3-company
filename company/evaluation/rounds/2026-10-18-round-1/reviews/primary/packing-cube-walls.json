@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "Preview no-history banner verified. Chose Outer volume versus Usable volume/Same outcome; locked.6/6trust chrome ignored. Title 'A cube has an inside and an outside' and hook already cue distinction."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Initial30×20×10cm wall1cm outer6000cm³; Usable volume toggle4032cm³, reveal unlocked before width variation. Slider Home24cm=>3168cm³ with prior4032comparison; End36cm=>4896cm³ with prior3168comparison. Keyboard Home/End worked, focus AX slider observed."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite: it was Usable volume. Current4896cm³ cited; outer dimensions count material; subtract both walls each direction for ideal capacity; seams/zips/curved corners change further. Initial screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commitment present, but hook and labels make answer readily apparent.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and width changes produce meaningful capacity contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains current result, both walls and real-world limits.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear labels; generic second-layout instruction and repeated old volume less precise.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete container capacity rule with seams/corners caveat.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider keyboard alone insufficient.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Capacity loss shown; distinction telegraphed.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Container illustration supports outer/inner distinction.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Toggle and range variation reversible.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Practical storage capacity interpretation central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Ideal geometry and real seams/corners boundary.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Single distinction between external size and internal capacity using familiar container.",
+    "conceptualDemand": "Volume multiplication and two-wall subtraction explained verbally.",
+    "interfaceBurden": "Two toggles/one labeled slider; numerical prior-result duplication needs reading."
+  },
+  "whyCool": "Switching from outer6000to usable4032makes wall material visible as missing capacity, then width changes update the usable result.",
+  "caveat": "Hook/options strongly cue the answer; reveal unlocked after only mode switch despite instruction to vary input; visual geometry clarity after variation not screenshot-checked.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "missingEvidence": [
+    "Only slider keyboard Home/End tested; full keyboard/focus, phone, reflow, contrast/motion untested."
+  ],
+  "fatalFindings": [],
+  "screenshots": [],
+  "slug": "packing-cube-walls",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/packing-cube-walls",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "36801817c29532132d175526126e4dfee74d292ca1a7fcaa38a0f2945c3f0234",
+    "metaSha256": "3d57a191d4835217172d641406d31078b211e214153fa40f9d5ed7b95e1b4c66"
+  }
+}

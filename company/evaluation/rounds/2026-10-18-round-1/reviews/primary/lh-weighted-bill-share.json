@@ -1,0 +1,103 @@
+{
+  "slug": "lh-weighted-bill-share",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-weighted-bill-share",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Weighted assigns more to full portion for two full and one half portion,\u20ac30 bill.",
+    "Tests gave\u20ac12 weighted full share versus\u20ac10 equal-person; maximum bill60 gave24/20.",
+    "Screenshot aggregate fills,not three allocated shares. Reveal preserved inputs, explained2.5 units and half-unit share, explicitly agreed rule not recommendation."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Divide money by2.5 or3.",
+    "conceptualDemand": "Choose denominator matching agreed weights.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Three people need not mean three equal portion units.",
+  "caveat": "No graphic of all three shares summing to bill; fixed agreed weights only.",
+  "effort": "Prediction, both tests, maximum bill, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear denominator comparison and non-normative scope.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific denominator comparison with supplied portion weights.",
+      "evidence": "2.5 units versus3 people.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Bill scaling preserves relative allocation.",
+      "evidence": "30\u219260.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains full and half unit meaning with agreed-rule scope.",
+      "evidence": "Half portion half unit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Question targets full-portion share, not whole bill.",
+      "evidence": "Agreed weights explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Agreed rule versus fairness recommendation is concrete limit.",
+      "evidence": "Not recommendation for bill splitting.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Equal people versus portion units changes share.",
+      "evidence": "12 versus10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Aggregate containers do not show proportional allocation or conservation.",
+      "evidence": "No full/half shares drawn.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and bill slider.",
+      "evidence": "Weights fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Allocation arithmetic central.",
+      "evidence": "Shared bill by portions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Denominator meaning and agreed policy.",
+      "evidence": "People versus units.",
+      "confidence": "medium"
+    }
+  }
+}

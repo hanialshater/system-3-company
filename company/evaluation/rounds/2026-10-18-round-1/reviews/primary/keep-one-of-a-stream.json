@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "keep-one-of-a-stream",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keep-one-of-a-stream",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "keep-one-of-a-stream",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/keep-one-of-a-stream/meta.json",
+    "metaSha256": "b78a61ef64ffc03a0f5ddd3bd12f6d8535a91ee53cf19e1b048a4d61c3c55b56",
+    "demoSha256": "4e2a89825ba4e9ec01ad354e26cd5f12c73d640d4c37047bc6266b36318c04b1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/keep-one-of-a-stream",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/keep-one-of-a-stream.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 1/8 and locked it in.",
+    "exploration": "Stepped item two, three and four: equal theoretical chances one-half, one-third and one-quarter. Seed-one retained item three. Thousand four-item streams counted 236,250,257,257. Fifth arrival changed each exact chance to one-fifth and reran counts 195,197,191,214,203. No restart control visible after final state.",
+    "reveal": "Corrected to one-quarter through survival product one-half times two-thirds times three-quarters. Explained entry versus survival and equal bars, then fifth item and one-item memory without known stream length.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Exact fraction bars, current retained item, stochastic counts and dashed former quarter markers visible. Long formula and trial-draw lines clipped horizontally; final reveal lines extended below viewport. Development issue badge appeared but was not opened or used.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes, development issue details or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete survival probability requires a meaningful sequential commitment.",
+      "evidence": "One-eighth chosen against one-quarter and one-half.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential arrivals, repeated trials and unexpected fifth item reveal fairness invariant.",
+      "evidence": "Equal probabilities before and after fifth, with near-equal empirical counts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains cancellation of survival factors and entry-survival tradeoff.",
+      "evidence": "First-item product equals one-quarter.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Exact versus empirical labels help, but long formula lines clip.",
+      "evidence": "Right ends of survival product and draw line not visible in screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General streaming invariant and memory usefulness explained without a concrete new application.",
+      "evidence": "Unknown length and one stored item only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text probabilities and counts available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Early and late items end with equal chances despite different arrival rules.",
+      "evidence": "All four bars one-quarter, all five one-fifth.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bars and factor labels connect selection and survival.",
+      "evidence": "Dashed quarter level versus fifth current bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sequential arrivals and thousand-run check invite experimentation.",
+      "evidence": "Next, finish, fifth and repeated streams.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Demonstrates uniform sampling with tiny memory.",
+      "evidence": "One item retained without knowing final length.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Combines sequential probability, invariance and empirical validation.",
+      "evidence": "Telescoping survival product across unknown stream length.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Small interface requires conditional survival probability and fraction products.",
+    "conceptualDemand": "Separate chance to enter from surviving later replacement draws and distinguish one run from a distribution.",
+    "interfaceBurden": "Four sequential contextual buttons; no visible final reset.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Reciprocal replacement probabilities and stream sampling.",
+    "notationRepresentationBurden": "Indexed i, fractions, chained products and empirical frequencies."
+  },
+  "whyCool": "One memory slot can remain fair to every item even when the stream keeps growing.",
+  "caveat": "Horizontal formula clipping weakens the detailed explanation; empirical counts are seeded examples, not proof.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Visible final reset unavailable"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:42:21.183825+00:00"
+}

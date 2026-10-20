@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-slowing-half-life",
+  "demoVersion": 7,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-slowing-half-life",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-slowing-half-life",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 7,
+    "metaPath": "src/demos/chemistry/the-slowing-half-life/meta.json",
+    "metaSha256": "ee978a6918409f8e30b3fa45984e6648d36b5bebfd0c47fbb36db3934caf6b2c",
+    "demoSha256": "31a3d83fea44bc292998cc5b2d2a8da728b1a63fddcd9a2dfc2092565dc650d1",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-slowing-half-life",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-slowing-half-life.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected10min against5 and20 forsecond-order40\u219220 after80\u219240 takes10;locked it in.",
+    "exploration": "Secondorder slideronehalving:10min,40mmol/L,ratequarter. Twohalvings:30min total,20mmol/L,waits10/20,ratesquarter/sixteenth. Endthird:70min total,10mmol/L,waits10/20/40,rates1/4,1/16,1/64. Switchedfirstorder atthird:30min,totalwaits10/10/10,rates1/2,1/4,1/8. Bothhistories retained.",
+    "reveal": "Corrected20min;usedactualwait/rate histories. Explainedhalfamount tolose atquarterrate doubleswait;firstorder halfamount at halfrate keepswaitconstant.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Solidfirstorder anddashedsecondorder concentrationcurves withhalvingtimes;table retainsboth waits/rates. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives testovergeneralizingconstant half-life.",
+      "evidence": "10min commitment versus20min secondwait.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Successivehalvings andordercontrast exposechangingversusconstantwaits.",
+      "evidence": "Second10/20/40 versusfirst10/10/10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualrate scaling toamount-to-remove andelapsedwait.",
+      "evidence": "Halfamount/quarterrate\u2192doubletime;halfrate\u2192sametime.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Concentration,time andretainedtable makecomparison clear ondesktop.",
+      "evidence": "Actualscreenshot twohistories andcurves.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General order-dependenthalf-life rulebutno concrete newreactionapplication orlimit.",
+      "evidence": "Pairmeeting versusfirstorder explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sliderkeys insufficient access audit.",
+      "evidence": "Right/End worked;focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedconstantwait contradicted bydoublingwaits.",
+      "evidence": "Secondhalving20 not10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve andtimeintervalsegments carryslowingconcentration mechanism.",
+      "evidence": "Actualsolid/dashedcurves and10/10/10 segments.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Ordertoggle andhalvingsteps permitcontrolledcomparison.",
+      "evidence": "Threehalvings thenfirstorder.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretation ofreaction-order half-life.",
+      "evidence": "Constant half-life isnotuniversal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Amountloss,ratescaling andtime linkedacross twoorders.",
+      "evidence": "Halfversusquarterrate withdifferentwaitsequences.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Combines concentration,nonlinearrate andsuccessiveelapsedintervals.",
+    "conceptualDemand": "Distinguishcumulativetime fromintervalwait andcompareamount/rateratios.",
+    "interfaceBurden": "Moderate:severalunits andretainedcomparison table,labels clear.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:reactionorder andconcentration-dependent rate.",
+    "notationRepresentationBurden": "moderate:mmol/L,fractionalrates andtimecurve."
+  },
+  "whyCool": "Threehalvings take70minutes forsecondorder butonly30 forfirstorder,withbothwaitsequences preserved.",
+  "caveat": "Idealizedorder mechanisms;no differentinitialconcentration orrateconstanttested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Toggleback andsliderreset nottested.",
+    "Focusorder,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:02:23.165184+00:00"
+}

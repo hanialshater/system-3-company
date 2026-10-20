@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "overshoot-from-delay",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/overshoot-from-delay",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "bb050ddca6f6692953d904cea0395953c7ef1b44800d9e871203329a3aab6666",
+    "demoSha256": "2ce31f453c37d7990a75239bdacd4ec028306d152828abd12b8c1c9ef1c3c6cf",
+    "metaPath": "src/demos/life/overshoot-from-delay/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected settles at food limit for growth 0.5 and four-year delayed feedback; locked it in. Initial locked graph instead showed one-year delay settling.",
+    "exploration": "Delay four at growth 0.5 produced repeated swings, late-period maximum 2.9 times limit and minimum 0.07. Slower growth 0.2 with same delay settled, high and low near one. Reveal unlocked after both settings.",
+    "reveal": "Corrected repeated swings for original case. Cites tested 2.9/0.07 and slower-growth stability. Explains reacting to old food causes overshoot, threshold growth times delay about 1.6, contrasting products two and 0.8.",
+    "visual": "Inline initial and four-year fast-growth screenshots inspected. Green curve repeatedly crosses dashed limit over 60 years, peaks near three, with labelled late-period extrema. Controls legible. Trust count 5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete delay/growth setup and distinct long-run outcomes make clear commitment.",
+      "evidence": "Settling selected versus repeated swings.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled delay and growth contrasts reveal stability depends on their combination.",
+      "evidence": "One-year fast stable, four-year fast swings, four-year slow stable.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact observed extrema to lag and product threshold.",
+      "evidence": "2.9/0.07, products two versus 0.8.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph, limit line and late-period extrema make tested behavior legible.",
+      "evidence": "Inspected oscillation screenshot and slower-state readout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable delay-times-growth principle offered without concrete new feedback system application.",
+      "evidence": "Product threshold about 1.6 in this toy model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Settling prediction reversed by large swings, then restored by slower growth at same delay.",
+      "evidence": "Fast and slow four-year comparison.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Time curve carries overshoot and persistent-oscillation mechanism.",
+      "evidence": "Four-year screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Delay slider and growth presets support reversible stability exploration.",
+      "evidence": "Delay and growth controls exercised.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete population feedback interpretation central.",
+      "evidence": "Old food signal and overshoot.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Lag, growth speed, extrema and stability threshold linked.",
+      "evidence": "Three states and reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Tracks delayed population feedback, nonlinear trajectories and product threshold.",
+    "conceptualDemand": "Multiple dependent dynamic-system relations.",
+    "interfaceBurden": "Low: delay and growth controls.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: delayed feedback stability",
+    "notationRepresentationBurden": "moderate: growth rates, years, multiples and product"
+  },
+  "whyCool": "Keeping the same four-year delay but slowing growth turns enormous repeated crashes into a population that settles near its food limit.",
+  "caveat": "Only two growth rates and delays one/four tested; threshold not probed directly.",
+  "missingEvidence": [
+    "Delay two",
+    "Near-threshold cases",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

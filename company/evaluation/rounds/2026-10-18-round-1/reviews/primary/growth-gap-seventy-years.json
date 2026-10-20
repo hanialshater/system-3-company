@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "growth-gap-seventy-years",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/growth-gap-seventy-years",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "growth-gap-seventy-years",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/growth-gap-seventy-years/meta.json",
+    "metaSha256": "201db033fdc542cfca07b65cb7cf5abcb7afa1c6a74c1078c6bde890f682029c",
+    "demoSha256": "f68aab3bb28facc26fe030f0ec4fd6e2209d2b3c759a7eb18b657d3d5213341c",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/growth-gap-seventy-years",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/growth-gap-seventy-years.json"
+  },
+  "date": "2026-10-18T19:19:29.786039+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selectedabout1.4times andlocked.",
+    "exploration": "Year0both1. Jump70at3/2:7.92versus4,ratio1.98. Gap0.5:5.63versus4,ratio1.41. Gap2:15.57versus4,ratio3.89. Revealunlocksat70andretainedacrossgaps.",
+    "reveal": "Correctabout2. Original3/2case1.98andactual0.5/2gapcontrastsquoted. Annualratio1.03/1.02=1.0098to70power;steadygrowth,inventedrates,noshocks,notcountryrecordorforecast.",
+    "visual": "Inline1257x936 dark screenshot inspected: current4/2bars15.57and4,currentratio3.89;large15.57labeloverlapsincome-startcaptionatupperleft. Reveallegiblethoughbottomfootnoteextendsnearviewportedge."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific70yearrelativewealthchoices distinguishsmallgapfromcompounding;clearoriginalrates.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Timejumpandthreegapcomparisons showcompoundedratio;fixedsecondrateandsteadyassumption.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualoriginalandchangedgaps connectedtoannualratioandpower,explicitsteady/no-shocklimits.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Currentversusoriginalratesexplicitbut15.57barlabeloverlapsincome-startcaptionat2pointgap.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablecompoundingrelationwithconditions;nofreshapplicationoutsidecountrygrowth.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen1.4becomes1.98atonepointgap,3.89attwopoints.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Relativebarheightandratioillustratelong-runseparation.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibletime/gapcontrols exposegrowthsensitivity.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretationoflong-rungrowthratedifferences.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Annualrelativefactor,70yearcompounding,gapsensitivityandfixed-modelscope.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishpercentagepointgapfromannualgrowthfactorratioandcompoundit.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls; labelcollisionatlargebar",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: compoundrelativegrowth",
+    "notationRepresentationBurden": "moderate: percentages,points,factorsand70thpower"
+  },
+  "whyCool": "Aonepointannualgapnearlydoublestherelativebarafter70years;twopointsnearlyquadruplesit.",
+  "caveat": "Steadyinventedratesonly;largebarlabeloverlapin2pointcase."
+}

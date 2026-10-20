@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "prices-sort-the-buyers",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/prices-sort-the-buyers",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "982657716e5194fc23b252300550d1688b9b931dc767080cc7f5c1ecdf937632",
+    "demoSha256": "9c2cb4ff3d997e2ecc757be910f5853ea1a6e6af4b068b8cc32504b143779faf",
+    "metaPath": "src/demos/economics/prices-sort-the-buyers/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected a middling total value and locked the prediction for the allocation reached by raising prices on over-wanted houses.",
+    "exploration": "Pressed Raise twice. House a rose to 1 then 2; buyer y shifted toward b and buyer z tied a and b. Ran to round 3, with prices a 3, b 1, c 0 and allocation x-a, y-c, z-b, total 23. Compared all six matches: totals 21, 23, 14, 17, 15 and 16.",
+    "reveal": "The reveal corrected the answer to highest total, accurately described three raises and the final joint rise of a and b, and linked clearing prices to the best match. It generalized existence and highest total value to other values and disclosed invented data.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after Compare. A 3 by 3 value-minus-price grid showed wanted cells and selected assignments; the winning 23 chip was highlighted among six possible matches. Price labels and round total were readable, though the many marks required attention.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes decentralized choices from total allocation quality.",
+      "evidence": "Selected a middling outcome before running the price process.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Price steps expose changing preferred options and a final comparison against all alternatives.",
+      "evidence": "Two manual raises, one run step and six totals established the observed winner.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the over-demanded group and accurately summarizes the path.",
+      "evidence": "It described the joint a and b rise and final total 23.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The dense grid asks the learner to track values, prices, net values, wants and assignments at once.",
+      "evidence": "Dots, outlines, fills and six compact assignment chips share the panel.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The generalization is stated but no new values or allocation case can be tried.",
+      "evidence": "The ending says the result holds for any values, while the toy stays fixed.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Local price responses produce the highest of six total values.",
+      "evidence": "The observed 23 exceeded every compared alternative despite z preferring a before price.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The grid shows how prices change net preferences and resolve conflicts.",
+      "evidence": "At round 3, y wanted b or c and z wanted a or b, allowing separate choices.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and run controls support investigation, but the puzzle is largely predetermined.",
+      "evidence": "Only the fixed price process and comparison are available.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives intuition for prices as coordination signals.",
+      "evidence": "Prices rose on over-wanted groups until distinct wanted houses could be assigned.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson includes group over-demand and comparison with the full small solution space.",
+      "evidence": "The final raise includes a and b together, beyond a simple individual price story.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The control count is small, but interpreting the multi-layer matching process requires sustained attention.",
+    "conceptualDemand": "High: coordinate individual net preferences, group over-demand and total raw value.",
+    "interfaceBurden": "Moderate: four buttons are simple, but the matrix has multiple simultaneous encodings.",
+    "conceptualChallenge": "A price-adjusted individual choice can support a globally best raw-value matching.",
+    "prerequisiteNovelty": "Market clearing, matching and over-demanded groups are introduced.",
+    "notationRepresentationBurden": "High: 3 by 3 arithmetic grid, prices, desire marks, assignment marks and compact match codes."
+  },
+  "whyCool": "Raising only contested prices sorts conflicting preferences into the best small matching without directly optimizing the displayed total.",
+  "caveat": "The general theorem is asserted after one fixed invented example; no new value matrix or proof is explored.",
+  "missingEvidence": [
+    "No fresh assignment values were tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "widget-marginal-cost",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/widget-marginal-cost",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Model states one hundred fixed cost plus two per widget; prediction asks incremental cost of widget fifty-one.",
+    "At fifty, total two hundred and average four; adding one changed total to 202 and average 3.96.",
+    "At one hundred, total three hundred and average three while next-unit cost remained two.",
+    "Screenshot contrasts descending average-cost curve with flat marginal-cost line. Reveal recalls fifty-to-fifty-one and adds a three-dollar extra-order example with capacity-cost caveat."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes total, average and marginal quantities.",
+    "conceptualDemand": "Avoid assigning historical fixed costs to the next decision.",
+    "interfaceBurden": "Output slider and one-unit controls."
+  },
+  "whyCool": "The next unit can cost less than the average because it does not bring the fixed costs all over again.",
+  "caveat": "Constant variable-cost model with no capacity step or demand effects.",
+  "effort": "Prediction, fifty baseline, fifty-one increment, hundred-unit boundary, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear dual-curve mechanism and concrete conditional transfer.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A useful distinction but the stated per-widget cost directly supplies the answer.",
+      "evidence": "Two per widget versus average four.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Original discrete increment and output boundary separate average from marginal cost.",
+      "evidence": "Fifty, fifty-one and one hundred with fixed next-unit cost.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed total change, fixed-cost allocation and a concrete incremental decision limit.",
+      "evidence": "Three-dollar extra order adds one here; real costs may rise with capacity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Curve and horizontal line make quantities distinct.",
+      "evidence": "Average 3.96 versus next one plus two.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new-use example and applicability condition.",
+      "evidence": "Extra order below average can contribute if fixed costs do not rise; busy workshop limit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A price below average cost can still add profit at the margin.",
+      "evidence": "Three-dollar additional order versus four average.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Two different curve shapes expose why averages and increments diverge.",
+      "evidence": "Descending average versus flat marginal line across output.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Incremental buttons and output slider.",
+      "evidence": "Discrete original increment and larger production tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete incremental-decision principle.",
+      "evidence": "Additional order contribution under fixed-cost assumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fixed cost dilution, marginal cost and contribution connect.",
+      "evidence": "Average falls while incremental cost stays constant.",
+      "confidence": "medium"
+    }
+  }
+}

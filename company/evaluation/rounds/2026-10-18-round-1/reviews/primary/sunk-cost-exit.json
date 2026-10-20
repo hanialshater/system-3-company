@@ -1,0 +1,105 @@
+{
+  "slug": "sunk-cost-exit",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sunk-cost-exit",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedfinishbecause80kspent;futurecost30k,benefit20k.",
+    "Initialstopbetter10k. Changedpast80kto0:stopstillbetter10k. Changedbenefitto60k:finishbetter30k. Changedpastto150k:finishstillbetter30k.",
+    "Reveal gaveoriginal80/90klosses andstopinstruction despitecurrentfinishstate,thenexplainedchoiceflipsabove30kbenefit andpastcostmovesbothbars.",
+    "Reveal says10kgapneverchangedwhenpastmoneydragged,thoughsecondpastcostdragoccurredat30kgap;needsstate/historyprecision.",
+    "Inline1280x720 light screenshot: readablefullprose,currentbars-150k/-120kandfinish30k. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplecashflowsbutincrementalversustotallossdistinction.",
+    "conceptualDemand": "Counterfactualcashflowcomparison.",
+    "interfaceBurden": "Twoeasy sliders;historicalproseambiguity."
+  },
+  "whyCool": "Both options can losemoneyoverallwhilefinishingisstillthebetterfuturechoice.",
+  "caveat": "Revealneedsoriginal/currentstatelabelsandprecisegaphistory;illustrativedollars-onlymodel;accessibilityunknown.",
+  "effort": "Prediction,pastcostinvarianceunderlossandgain,reveal andinline screenshot.",
+  "provisionalBucket": "revise-state-aware-reveal",
+  "bucketReason": "Strongexperimentbutcurrentdecisionandhistoricalproseconflict.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear sunkcosttemptation andcompleteforwardcashflows.",
+      "evidence": "80kpast,30kmore,20kincome.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Past-costinvariance testedunderbothfutureloss andfuturegain.",
+      "evidence": "0/80/150kpastand20/60kbenefit.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correctgeneralprinciplebutoriginalstopinstructionandunqualified10kgaphistoryconflictwithcurrentstate.",
+      "evidence": "Currentfinish30kversusrevealsstopand10kgapneverchanged.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readablebutinsufficientlylabelsoriginalversuscurrentdecision.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalprincipleandmodelcaveatswithoutfreshproject.",
+      "evidence": "Dollars-onlyexcludesreputation/learning.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Largepastlossdoesnotalterbestfuturechoice.",
+      "evidence": "150kpaststillfinishbetter30k.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bothbarsmovetogetherwhenpastcostchanges.",
+      "evidence": "Current-150k/-120k.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twoindependentcost/benefitsliders.",
+      "evidence": "Fourcontrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Forwarddecisionreasoningcentral.",
+      "evidence": "Pastcostcommon tooptions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separatesoveralllossfromincrementalchoice.",
+      "evidence": "Finishbetterdespiteoverallloss.",
+      "confidence": "medium"
+    }
+  }
+}

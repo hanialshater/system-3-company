@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "the-equals-sign-balances",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-equals-sign-balances",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-equals-sign-balances",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/the-equals-sign-balances/meta.json",
+    "metaSha256": "c32d4903241ae5427029abd3eea77507313220ba5a1f95b2976bca84e178a33e",
+    "demoSha256": "7ae38fcacdb6a8dfbc839803efa09db4722f50086ac11a59a93359b9ec4cf931",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-equals-sign-balances",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/the-equals-sign-balances.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed 7 for 8 + 4 = box + 5.",
+    "exploration": "Tested 12, 17 and 7. Right totals became 17, 22 and 12 while left stayed 12. Seven made the beam level. Reset cleared the selected box after reveal but retained the historical tried line.",
+    "reveal": "Confirmed prediction and explained that equals means same amount on both sides rather than answer comes next. Contrasted 12 giving right total 17 with 7 giving total 12.",
+    "visual": "Actual dark 1257 by 936 inline screenshots inspected. Block counts and a balance beam show two expressions; level beam at seven and readable reveal. Initial AX labels were briefly blank but later loaded fully.",
+    "previewIsolation": "Preview banner excluded history and analytics saves.",
+    "blinding": "No source, metadata or other reviewer judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear missing-value problem targets a common equals-sign interpretation.",
+      "evidence": "Choices 7, 12 and 17.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Candidate substitution immediately exposes both-side totals and balance.",
+      "evidence": "Tested all three candidates then reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal links the visual balance to relational equality.",
+      "evidence": "Same amount on both sides.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Small block counts and explicit totals align with the equation.",
+      "evidence": "Left 12 and right 12 at level.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable reading of equality without a fresh equation.",
+      "evidence": "Only 8 + 4 = box + 5 explored.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit performed.",
+      "evidence": "Ordinary clicks and screenshots only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Reframes an elementary symbol with a familiar misconception.",
+      "evidence": "Answer-next interpretation contrasted with balance.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Beam and counts make equality visible.",
+      "evidence": "Seven levels the beam.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple substitutions provide tactile exploration.",
+      "evidence": "Three values and reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Foundational arithmetic interpretation has clear educational use.",
+      "evidence": "Relational equality explained.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One elementary concept demonstrated cleanly.",
+      "evidence": "No variable equations or transformations.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small sums and a familiar balance analogy.",
+    "conceptualDemand": "Compare complete expressions rather than continue a sum.",
+    "interfaceBurden": "Three value buttons and reset.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Relational meaning of equals.",
+    "notationRepresentationBurden": "One missing-value box and counted blocks."
+  },
+  "whyCool": "The beam treats both sides as quantities rather than treating equals as a command.",
+  "caveat": "No fresh equation checks generalization; reset leaves the historical tried line.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:09:29.611452+00:00"
+}

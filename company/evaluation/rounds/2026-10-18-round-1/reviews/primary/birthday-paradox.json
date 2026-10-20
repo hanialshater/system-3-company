@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "birthday-paradox",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/birthday-paradox",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust10/10 ignored. Predicted About50% from6/25/50/90;locked."
+    },
+    {
+      "id": "E",
+      "text": "Newroom:1/1match.20rooms:10/21(48%),exact50.7%,yourbirthday5.9%. SliderHome2:1pair,any0.3%,yours0.3%;End60:1770pairs,any99.4%,yours14.9%. Reveal resets23anddisablesslider."
+    },
+    {
+      "id": "R",
+      "text": "Recalls21rooms/10matches,finite-samplewobble,anypairversusyourbirthday;253pairs from23,eachnewpersonpairswitheveryone;50people97%;365equallylikelydays,unevenbirthdayslimit. Fullringafterupscroll shows253lines,normalverticalscroll. Inline screenshotonly;nohorizontalissueestablished."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearprobabilityalternatives captureyourbirthdayversusanypairconfusion.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Singlesample,21rooms and2/60boundaries showvariabilityandpairgrowth.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Referencesactualsample,distinguishesquestionsandstatesbirthdaymodelassumptions.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separateexact,observed andyourbirthdayreadoutsclear;explicitBackto23reset.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Any-paircomparisonprinciplestated;no newcollisioncontexttested.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Keyboardsliderused,nomodeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Anybirthdaymatch50.7%versusyourbirthday5.9%.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ringlinesandpaircountercarrycombinatorialgrowth.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Roomdrawingandpopulationexploration.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interpretingcollisionprobability.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Pairgrowth,samplevariation,referencepersoncontrast,distributionassumption.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Paircountandcomplementintuitionlinkedvisually;exactformulaunneeded.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low;normalverticalscroll",
+    "prerequisiteNovelty": "moderate;any-pairprobability",
+    "notationRepresentationBurden": "moderate;densepairring/percentages"
+  },
+  "whyCool": "Increasingroomsizefrom2to60raisesanymatchchance0.3%to99.4%whileyourbirthdaychanceremainsonly14.9%.",
+  "caveat": "Smallseeded21-room sample;no independentverificationofexactformulaorrealbirthdaydistribution.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Newcollisioncontext"
+  ]
+}

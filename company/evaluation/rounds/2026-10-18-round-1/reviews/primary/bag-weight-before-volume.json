@@ -1,0 +1,104 @@
+{
+  "slug": "bag-weight-before-volume",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bag-weight-before-volume",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted over limit for a2 kg bag with4 kg contents and5 kg limit, despite half its20 L space free.",
+    "A judging by space showed10/20 L and unweighed looks fine; B weighing showed total6 kg and1 kg over.",
+    "Reduced Contents to minimum2 kg: same10/20 L, total4 kg and0 kg within limit.",
+    "Reveal said Your prediction held while citing the changed within-limit case, without explicitly restoring or explaining the original6 kg prediction. It explained volume versus mass and labeled5 kg as illustrative."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple addition and threshold comparison.",
+    "conceptualDemand": "Tare weight versus unused capacity.",
+    "interfaceBurden": "A/B selectors and contents slider."
+  },
+  "whyCool": "Unused space visibly fails to cancel the weight of a bag and its contents.",
+  "caveat": "Reveal needs explicit original-versus-current framing; the within-limit display shows excess zero rather than spare allowance.",
+  "effort": "Completed prediction, both views, changed contents, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful practical comparison with a confusing held verdict after changing mass.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit tare, contents and threshold permit a clear practical judgment.",
+      "evidence": "2+4 exceeds5 despite unused volume.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing contents distinguishes mass from fixed occupied volume.",
+      "evidence": "6 kg over to4 kg within at same10 L.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Principle is sound but original held verdict is juxtaposed with the now-passing state without numerical reconciliation.",
+      "evidence": "Current within-limit outcome follows original over-limit answer.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls and table are readable, but threshold output0 kg within hides the1 kg spare margin and changed-state verdict needs framing.",
+      "evidence": "4 kg against5 kg shown0 kg within.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitly distinguishes two practical constraint checks and limits the chosen threshold's applicability.",
+      "evidence": "Litres and weight answer different questions;5 kg is no airline rule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "A simple overlooked tare-weight issue.",
+      "evidence": "Half-empty can still be overweight.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Table and bag connect unchanged space with changed mass.",
+      "evidence": "Fixed10/20 L across mass adjustment.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "A contents slider crosses the threshold.",
+      "evidence": "A/B views and adjustable mass.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct packing check with a useful scope caveat.",
+      "evidence": "Include bag mass and check actual weight limit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One distinction between volume and mass.",
+      "evidence": "No density or packing model.",
+      "confidence": "medium"
+    }
+  }
+}

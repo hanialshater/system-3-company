@@ -1,0 +1,104 @@
+{
+  "slug": "natural-selection",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/natural-selection",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10of100dark after100generations from1%,with10%moreyoung andinheritedcolour; alternatives2,50,99. Model100iconsstandforhugepopulation,newindividualseachgeneration.",
+    "10generations10%edge:2.6%dark,ratio1:38;100gen99%,139:1. Changededge1%at100gen2.7%;150gen4.3%.",
+    "Reveal reset100gen10%anddisabledcontrols,explainsratio1.1^100approximately14000,nonechangescolour,newgenerations;recalls1%edge3%at100gen;realpepperedmothillustration andignoreschancelimit.",
+    "1280x720light beetleicons/sparkline small;readoutsvisible;proserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concreteinheritancebutratio-versussharegrowth addsdemand.",
+    "conceptualDemand": "Compoundingrelativefitness overnewgenerations.",
+    "interfaceBurden": "Simplecontrols;smalltrendplot,lockedreveal."
+  },
+  "whyCool": "Every beetle keeps its colour, yet repeated unequal reproduction transforms the population.",
+  "caveat": "Deterministichugepopulationmodelignoreschance;historicalmothclaimnotindependentlyverified. Forcedbaseline resetonreveal andprosecutoff.",
+  "effort": "Prediction,timeandedgecontrasts,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearselectionmechanism andexplicitlimit;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitinheritance,advantage,baseline andduration supportcompoundingprediction.",
+      "evidence": "1in100,10%moreyoung,100generations.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Timeandadvantagecontrasts distinguish weakselection speed andpopulationreplacement.",
+      "evidence": "10/100/150generations and10/1%edges.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects originalprediction,ratio growth,visitedlowedgecase andstochasticlimit.",
+      "evidence": "1.1^100,newbeetles,1%edge3%,ignoreschance.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "State/readoutsclear butforcedreset lockscontrols;smallplot/prosecutoff.",
+      "evidence": "Revealscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Historicalillustration without independentnewcaseapplication.",
+      "evidence": "Pepperedmothcaseillustrationonly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Smallinheritedadvantage becomesalmostuniversal withoutindividualcolourchange.",
+      "evidence": "1%to99%at10%edge.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Populationgrid andratio/sparkline showchangingcomposition.",
+      "evidence": "99darkiconsversusinitial1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Generationsteps andedgechoices supportmodeltesting.",
+      "evidence": "Multiple time/edge contrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundational evolutionaryreasoning,notimmediatetask.",
+      "evidence": "Inheritance versusindividualadaptation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Oddscompounding,selection timescale andignoredchance.",
+      "evidence": "1.1ratio multiplier and1%contrast.",
+      "confidence": "medium"
+    }
+  }
+}

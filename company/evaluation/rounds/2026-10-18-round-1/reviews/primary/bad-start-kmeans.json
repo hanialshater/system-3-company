@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bad-start-kmeans",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bad-start-kmeans",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose{0,4}/{6,10}; prompt nearest-centre then mean rule, points0,4,6,10start0,4.",
+    "E: Step moves0,4to0,6.67and settles{0}/{4,6,10},distance18.7; start2,8settles{0,4}/{6,10},16.0. Customcentre1rightto3thenrun returns2,8,16.0. Ends retained all3runs.",
+    "R: Not quite{0}/{4,6,10};4is2.67from6.67versus4from0so stays; algorithm only improves existing guess; multiple starts usual.",
+    "No-history preview;4/4trust ignored. Inline screenshot1280x720 has internal verticalscroll and rightclipped reveal text."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specified algorithm supports meaningful grouping commitment.",
+      "evidence": "P: chose{0,4}/{6,10}; prompt nearest-centre then mean rule, points0,4,6,10start0,4.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two presets plus customstart retain different stable outcomes.",
+      "evidence": "E: Step moves0,4to0,6.67and settles{0}/{4,6,10},distance18.7; start2,8settles{0,4}/{6,10},16.0. Customcentre1rightto3thenrun returns2,8,16.0. Ends retained all3runs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains exact sticking point and multiple-start consequence.",
+      "evidence": "R: Not quite{0}/{4,6,10};4is2.67from6.67versus4from0so stays; algorithm only improves existing guess; multiple starts usual.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls clear but reveal right edge clips.",
+      "evidence": "No-history preview;4/4trust ignored. Inline screenshot1280x720 has internal verticalscroll and rightclipped reveal text.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Multiple starts justified by local improvement limitation.",
+      "evidence": "R: Not quite{0}/{4,6,10};4is2.67from6.67versus4from0so stays; algorithm only improves existing guess; multiple starts usual.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;4/4trust ignored. Inline screenshot1280x720 has internal verticalscroll and rightclipped reveal text.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same points settle in worse grouping.",
+      "evidence": "E: Step moves0,4to0,6.67and settles{0}/{4,6,10},distance18.7; start2,8settles{0,4}/{6,10},16.0. Customcentre1rightto3thenrun returns2,8,16.0. Ends retained all3runs.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Line positions and groups support mechanism; score numeric.",
+      "evidence": "E: Step moves0,4to0,6.67and settles{0}/{4,6,10},distance18.7; start2,8settles{0,4}/{6,10},16.0. Customcentre1rightto3thenrun returns2,8,16.0. Ends retained all3runs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Custom reversible centre starts produce retained experiments.",
+      "evidence": "E: Step moves0,4to0,6.67and settles{0}/{4,6,10},distance18.7; start2,8settles{0,4}/{6,10},16.0. Customcentre1rightto3thenrun returns2,8,16.0. Ends retained all3runs.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clustering initialization practice.",
+      "evidence": "R: Not quite{0}/{4,6,10};4is2.67from6.67versus4from0so stays; algorithm only improves existing guess; multiple starts usual.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mean update, nearest assignment, stability and objective.",
+      "evidence": "R: Not quite{0}/{4,6,10};4is2.67from6.67versus4from0so stays; algorithm only improves existing guess; multiple starts usual.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result requires iterating nearest assignment, group means and squared-distance comparison.",
+    "conceptualDemand": "Multiple dependent rules with local stability reasoning.",
+    "interfaceBurden": "Internal scrolling and right clipping.",
+    "prerequisiteNovelty": "moderate: mean and squared objective",
+    "notationRepresentationBurden": "moderate: sets, decimals and squared distances"
+  },
+  "whyCool": "A worse stable grouping refuses to improve until the starting centres change.",
+  "caveat": "Reveal clips right edge; objective comparison requires squared-distance familiarity.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

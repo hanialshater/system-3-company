@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "iss-never-over-moscow",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/iss-never-over-moscow",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "5c94fd88f137836c63b21b41d0fd4eca3b20aacbe98d83ede4a94a059b1cd167",
+    "demoSha256": "84d2c105606917375e3b00498ee1b0dade10e7fead7c090efc9f60cdab95d4af",
+    "metaPath": "src/demos/geography/iss-never-over-moscow/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected London as unreachable by ISS and locked it in. Initial tilt30 degrees placed all cities out of reach.",
+    "exploration": "ISS tilt51.6 gave Rome and London in reach, Moscow out. Slider56 made all three in reach and unlocked reveal. Polar90 reached90 north/south, all cities remained in reach.",
+    "reveal": "Corrected Moscow; circular inclination51.6 bounds latitude to51.6 north/south, London51.5 inside, Moscow55.8 outside, needed near56. Distinguishes latitude reach from overflight on a specific day, which depends on timing.",
+    "visual": "Inline screenshot inspected at56: blue three-lap sinusoidal ground tracks, dashed northern/southern limits, all city dots green and statuses in reach. Caption idealised circular orbit. Trust7/7 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Close London latitude offers plausible boundary misconception.",
+      "evidence": "London selected versus Moscow result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Inclination changes expose threshold and polar boundary.",
+      "evidence": "30 all out,51.6 Moscow out,56 all in,90 polar.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses tested56 threshold, resolves close-city prediction and explains reach-versus-timing limit.",
+      "evidence": "Reveal cites needed near56 and daily overflight timing.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named presets,city latitudes and explicit reach statuses legible.",
+      "evidence": "56 screenshot and slider/preset path.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable inclination/latitude rule and timing condition supplied without concrete fresh application.",
+      "evidence": "Latitude reach differs from overflight on given day.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "London prediction reversed by close numerical inclusion.",
+      "evidence": "51.5 inside51.6,55.8 outside.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dashed latitude bounds and ground-track curves carry mechanism.",
+      "evidence": "Inspected56 screenshot and contrast states.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Tilt slider and polar preset allow reversible boundary discovery.",
+      "evidence": "ISS,56,polar tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete satellite overflight reasoning and timing caveat.",
+      "evidence": "Three city reach statuses and reveal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Inclination boundary,city threshold and time-dependent overflight distinguished.",
+      "evidence": "51.6/56/90 and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links orbital tilt to latitude bound while distinguishing reach from exact timing.",
+    "conceptualDemand": "Supported bound comparison with orbital representation.",
+    "interfaceBurden": "Low: slider and two presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: inclination and ground track",
+    "notationRepresentationBurden": "moderate: degrees,N/S and world-map projection"
+  },
+  "whyCool": "Raising tilt from51.6 to56 turns Moscow's reach indicator green while London was already just inside the original limit.",
+  "caveat": "Exact overflight timing not simulated; only idealised circular three-lap tracks tested.",
+  "missingEvidence": [
+    "Exact timing",
+    "Fresh city application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

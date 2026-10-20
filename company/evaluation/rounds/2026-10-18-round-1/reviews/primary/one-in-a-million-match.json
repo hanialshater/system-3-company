@@ -1,0 +1,104 @@
+{
+  "slug": "one-in-a-million-match",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-in-a-million-match",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted almostnone innocentmatches for5millionsearch at1inmillionfalse-matchrate;alternatives5/5000.",
+    "Fullsearch5million:5innocent,6total,'chanceamatchisguilty1in6'. Home1000:0innocent,1total,'1in1'. Intermediate500000:0innocent,1total,'1in1'. Noresamplingcontrol observed.",
+    "Reveal explains5million/1million=5andconditionalinversion,assumesculpritindatabase/alwaysmatches;statesyoursearchfound5whilecurrent500000zero. Noexpected-countversusrealizationclarification;probabilityreadout usesintegercount.",
+    "1280x720light squaregridverydense;readouts clear,finalrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simpleexpectedcount,butposterior/selectionconditioningdelicate.",
+    "conceptualDemand": "Conditionaldirectionandexpectedversusobservedcounts.",
+    "interfaceBurden": "Oneslider;densegrid."
+  },
+  "whyCool": "Searching millions of people turns a tiny per-person false-match probability into several expected innocent matches.",
+  "caveat": "Needsstatisticalownerreview:500000state0falsematchesand'chance1in1' canimplycertaintyfromroundedexpectedcount. Clarifyfixedrealizationversusexpectation andguiltassumptions. No legalassessment intended;prosecutoff.",
+  "effort": "Prediction,fullsearch,smallandintermediatesearch,reveal,two screenshots.",
+  "provisionalBucket": "needs-owner-review",
+  "bucketReason": "Importantlessonbutprobabilitysemanticsneedcorrectionbeforelaunch.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitsearchsizeandfalse-matchrate supportexpectedcountreasoning.",
+      "evidence": "5million\u00d7one-in-million.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Searchsizeeffect visible butintegerfalse-matchcountsconvertedto' chance1in1' evenat500000,withoutuncertaintyqualification.",
+      "evidence": "500000expected0.5falsematches butdisplay0andcertaintylabel.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correctconditionaldirectionlesson,butmixesexpectedcounts,foundmatches andguiltprobabilitywithoutclearconditioning.",
+      "evidence": "About5versusyoursearchfound5;smallsearch1in1readout.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Assumptionsstatedlate;expectedversusrealizedsemanticsunclear andprosecutoff.",
+      "evidence": "Final500000stateversus5millionprose.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Namesprosecutorfallacywithsamecase,noapplicationchallenge.",
+      "evidence": "Innocentgivenmatchversusmatchgiveninnocent.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rareindividualmatch notrarep opulationfalsematch.",
+      "evidence": "5innocentmatchesfromlargepool.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Gridscalesearchsize butcompressedcounts obscureuncertainty.",
+      "evidence": "Eachsquare1000people,ringmeanssomeone.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Database-slidercomparisonlimited.",
+      "evidence": "1000,500000,5millionstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralconditionalprobabilityinterpretation.",
+      "evidence": "Rarematchversusculpritinference.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Searchmultiplicity,base-rate andsensitivityassumptions.",
+      "evidence": "Culpritpresent/alwaysmatches assumption.",
+      "confidence": "medium"
+    }
+  }
+}

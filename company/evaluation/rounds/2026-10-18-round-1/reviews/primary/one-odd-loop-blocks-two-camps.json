@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-odd-loop-blocks-two-camps",
+  "demoVersion": 5,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-odd-loop-blocks-two-camps",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-odd-loop-blocks-two-camps",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/math/one-odd-loop-blocks-two-camps/meta.json",
+    "metaSha256": "bdcfcdb7f69b5402dd2f6026255d05cb281a716e8028a2670e8a3ad5e0cd6a20",
+    "demoSha256": "7a0bd4f437d4aa9ec4a6132316bc2157a051a9a13a69b6810680794baca6e393",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-odd-loop-blocks-two-camps",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-odd-loop-blocks-two-camps.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose Yes against No and cannot tell from loops; locked it in.",
+    "exploration": "Big ring had2 enemy links,returned same camp. Right and left loops each1 enemy,returned opposite camp clash. Try all64 gave0 valid,best still breaks1 link. Moved enemy fromD-E toC-D:2/64 valid,one split with swapped names;left loop0,right loop2 enemies.",
+    "reveal": "Corrected No for initial arrangement; connected even outer ring but two odd smaller loops to0/64. Compared changed placement with all even loops and2/64; stated every loop even criterion.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Colored/dashed links,filled/dotted camp nodes and highlighted selected loop visually distinguish relationships. History retains both arrangements. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Choice tests overlooking internal loops when outer cycle is even.",
+      "evidence": "Yes commitment versus initial0/64.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Loop walks,exhaustive check and changed enemy location expose parity criterion.",
+      "evidence": "2 outer but1/1 inner;0/64 versus2/64 after move.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains camp switching and compares failing/succeeding arrangements.",
+      "evidence": "Odd return clash versus all-even loops.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Legend,loop buttons and retained history clarify tested desktop path.",
+      "evidence": "Actual screenshot filled/dotted nodes and full history.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General all-loop condition given,but no concrete new network application.",
+      "evidence": "Network splits exactly when every loop has even enemy count.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Even outer cycle still fails,contradicting Yes prediction.",
+      "evidence": "Outer2 yet0/64 due inner1/1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Loop highlight and camp-switch patterns carry contradiction.",
+      "evidence": "Highlighted right loop and camp styles.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Selectable loops and enemy relocation support reversible tests.",
+      "evidence": "Three initial loop walks plus changed placement.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete consistency test for two-camp relationship constraints.",
+      "evidence": "All-loop even criterion.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local/global parity,exhaustive validation and assignment symmetry linked.",
+      "evidence": "0/64 versus2/64 representing label swap.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires global consistency over overlapping signed cycles.",
+    "conceptualDemand": "Coordinate friendship equality,enemy switching,cycle parity and all-loop condition.",
+    "interfaceBurden": "Moderate: multiple loops and retained two-arrangement history.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: signed-graph balance and parity invariant.",
+    "notationRepresentationBurden": "moderate:letter vertices,cycle counts and64 assignments."
+  },
+  "whyCool": "Moving one enemy link turns two odd inner loops into even ones and changes zero valid splits into two.",
+  "caveat": "One fixed network with two sign placements;reveal initial No correction appears while changed arrangement can be valid.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternate networks and manual node assignments not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:26:56.109311+00:00"
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "pentagon-gap",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pentagon-gap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "pentagon-gap",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/pentagon-gap/meta.json",
+    "metaSha256": "d53e559740429c2c1feed4b30fd883d660b0df449068a9ae51b5644c359edb02",
+    "demoSha256": "e7957760a01e8960588a084ca58b9b93267ee2146530c06f728b64404fe9b5ac",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/pentagon-gap",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/pentagon-gap.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Only if some are rotated against Yes and No; locked it in.",
+    "exploration": "Pentagons showed three corners324\u00b0, gap36\u00b0. Squeeze one more showed432\u00b0, overlap72\u00b0, visibly red overlapping fourth tile. Squares showed4\u00d790=360; hexagons3\u00d7120=360; triangles6\u00d760=360.",
+    "reveal": "Corrected No. Recounted all actual contrasts. Full-turn360 criterion and straight-edge180 condition explained;108 divides neither. Rotation preserves108\u00b0 corners.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected for gap,overlap and finaltriangle closure. Colored gap wedge and translucent fourth pentagon show failure; full explanation readable to bottom edge.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Rotation option captures plausible geometric repair misconception.",
+      "evidence": "Rotated prediction versus unchanged108\u00b0.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Gap,forced overlap and three closing shapes expose angle constraint.",
+      "evidence": "324 gap36;432 overlap72;three360 closures.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact observed angles and directly resolves rotation with boundary condition.",
+      "evidence": "360 and180 divisibility;rotation preserves corner.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shape controls,angle feedback and wedges communicate tested path.",
+      "evidence": "Actual gap andoverlap screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new shape cases tested with vertex/straight-edge applicability conditions.",
+      "evidence": "Squares,hexagons,triangles versuspentagon;360/180 rule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rotation prediction contradicted byfixedcorner gap andoverlap.",
+      "evidence": "No integer number108\u00b0 closes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gapwedge andoverlaid polygon carry geometric obstruction.",
+      "evidence": "Actual fourthtile overlap screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Fourshape presets andextra-tile toggle support reversible discovery.",
+      "evidence": "Allfourshapes andforcedfourth tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete constraint forregularpolygon tiling.",
+      "evidence": "Angleclosure test.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Undershoot,overshoot,successfulangles andstraight-edge case linked.",
+      "evidence": "36gap,72overlap,360closures,180limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links angle arithmetic togeometric closure androtation invariance.",
+    "conceptualDemand": "Compare fullturn withinteger multiples anddistinguish localcorner conditions.",
+    "interfaceBurden": "Low:shape buttons andsingleextra-tile toggle.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:regularpolygon angle andtiling condition.",
+    "notationRepresentationBurden": "low tomoderate:degrees,multiplication anddivisibility."
+  },
+  "whyCool": "Threepentagons leavea36\u00b0 wedge,andforcingthefourth visiblycovers72\u00b0 twice.",
+  "caveat": "Onlyregular shapes aroundonevertex tested;no fullfloor layout orirregularpentagons.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Extra-tile removal andextras onclosing shapes nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:42:41.297953+00:00"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "tax-who-pays",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tax-who-pays",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "tax-who-pays",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/tax-who-pays/meta.json",
+    "metaSha256": "c4c40ea90c63aef1d9dfe9c398d57b06a21a89c3d599ad56b2c345a6415bdaae",
+    "demoSha256": "b29d516fb671f1165deb0283ec3c623dbc169e04f386060402b67aae7847fdc3",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/tax-who-pays",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/tax-who-pays.json"
+  },
+  "date": "2026-10-18T21:08:01.700882+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected buyers pay1dollar more under2dollar baker tax; linear demand100\u221210p andsupply10p\u221220 given."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Baseline6/40loaves; baker collection buyers7,bakers5,30loaves; buyercollection same. Littlebuyerreaction7.33/5.33,33.3loaves; lots6.67/4.67,26.7loaves."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read taxwedge2, legalremitter invariance, lessresponsive buyerscarry1.33 versus.67 more responsive, straightline/everythingelsefixed model caveat."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected buyercollection: dashed6baseline, upper7/lower5wedge labelled\u00b11,30loaves andselectedremitter visible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit market equations support a concrete incidence commitment.",
+      "evidence": "0/1/2dollar increase alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Remitter and reaction toggles isolate two distinct mechanisms.",
+      "evidence": "Same7/5bothremitters;different7.33/5.33versus6.67/4.67.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Wedge explanation connects burden to responsiveness under model limits.",
+      "evidence": "Not whohandsmoneyover;who backsawayfaster.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Price wedge and baseline show split burden plainly.",
+      "evidence": "\u00b11around6 and2totalgap.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General incidence statement within samebreadmarket only.",
+      "evidence": "No concrete newtaxcase task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Legal payer does not determine who bears burden.",
+      "evidence": "Bothcollectionmethods sameprices.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Wedge relative to baseline shows economic burden.",
+      "evidence": "Buyerprice7,bakerreceipt5.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two sets of toggles enable focused comparisons.",
+      "evidence": "Bothremitters andthreereactionlevels.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Distinguishes statutory tax payment from price burden with limits.",
+      "evidence": "Straightline supplydemandmodel caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines remittance invariance and relative-response effects.",
+      "evidence": "Burden1.33versus.67.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "demanding: equilibrium, net versus gross prices and responsiveness",
+    "interfaceBurden": "gentle: remitter andreaction toggles",
+    "prerequisiteNovelty": "taxincidence andlinearsupply/demand",
+    "notationRepresentationBurden": "twomarket equations andpricewedgechart"
+  }
+}

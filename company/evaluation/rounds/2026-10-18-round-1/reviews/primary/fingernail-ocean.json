@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "fingernail-ocean",
+  "domain": "geography",
+  "demoVersion": 4,
+  "expectedVersion": 4,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "89be1ee1a9a57f851bfea42e61707c981097ba8bff9f176167cb678aacaa3316",
+  "demoSha256": "1393d01f08d560f7c86f852ee0ffc78f1fd3c1e2a37ee802edcccbfe8ab3ec42",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fingernail-ocean",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected12million years; Lock it in",
+      "outcome": "Prediction retained; time controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "+1million; Run to3000km; Back to today",
+      "outcome": "1million25km;120million3000km; reset0/0 while Seen120million3000km retained and reveal stays available."
+    },
+    {
+      "id": "v",
+      "action": "Inspected120million screenshot",
+      "outcome": "Solid South America shifted west from dashed present outline; rate and Seen line legible; dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why after reset",
+      "outcome": "120million; explicitly references retained Seen line;3000km300millioncm divided2.5cm/year,25km/million; tiny lifetime speed accumulates."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Order-of-magnitude options test timescale intuition with actual commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Small increment, target run and reset show accumulation plus retained observation.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains unit conversion and remembered target after reset, matching observations.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rate, dashed present outline and Seen distinction support reset comprehension.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Slow-rate-times-long-duration principle stated without new application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "12million prediction reversed by120million.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving continent versus dashed outline carries accumulation.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time increments and reversible reset central.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Geological scale interpretation, no concrete action offered.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One rate-times-time mechanism with units and lifetime contrast.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Constant-rate relation familiar but spans cm/km and million-year representation.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "low",
+      "reason": "Continents/plates introduced as supported toy."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Large timescales and cm-to-km conversion."
+    }
+  },
+  "whyCool": "One million years moves the continent only25km, but the target run visibly opens3000km and the Seen line survives reset.",
+  "caveat": "Explicit constant-westward toy, not a reconstruction of actual plate history.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Other time increments, phone and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

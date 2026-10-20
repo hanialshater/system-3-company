@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "praise-then-slump",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/praise-then-slump",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "praise-then-slump",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/praise-then-slump/meta.json",
+    "metaSha256": "ae2062734612bc92b13f99d6421b811408f068d43e998e94a79fd1e95106eefb",
+    "demoSha256": "9e46cc2bc3be497f887c836c7fc2e66c12628f3f24a51c56b59bf3062b0916e8",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/praise-then-slump",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/praise-then-slump.json"
+  },
+  "date": "2026-10-18T20:07:36.491312+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose aboutsame and locked before test2."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Top10%76to62; top1%89to72; bottom1%12to28. Inspected individual links and mean arrows across tests."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read lower correction for original top group plus current bottom values,stable skill/fresh ordinary luck, praise/slump and scold/improve causal caution."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,top1,bottom1 and scrolled reveal screenshots inspected. Selection highlight,links,averages and full explanation readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Forecast isolates unchanged skill and no coaching.",
+      "evidence": "Halfskill/halfluck top10% future average.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Both extremes and selection intensity show regression.",
+      "evidence": "76to62,89to72,12to28 with individual movement and mean arrows.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Fresh luck explains apparent change without intervention.",
+      "evidence": "Skill returns,selected luck does not; symmetric bottom rise.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Simple two-test chart and current values support mechanism.",
+      "evidence": "Original lower correction beside current bottom rise requires tracking, but prose clearly identifies bottom1%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete praise/scolding inference with stable-skill and fresh-luck conditions.",
+      "evidence": "Apparent slump/improvement can arise unchanged; no fresh transfer task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unchanged people move toward average in opposite directions.",
+      "evidence": "Top1falls17,bottom1rises16.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Links and means expose individuals versus selected average.",
+      "evidence": "Both extreme groups traced to new scores.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Selection slider and top/bottom switch.",
+      "evidence": "10to1percent then bottom.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful caution interpreting praise and punishment.",
+      "evidence": "No coaching yet regression occurs.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Selection on noisy performance and stable component linked.",
+      "evidence": "Greater extremes and symmetric contrast.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Separate stable skill from selected lucky outcomes across repeated tests.",
+    "interfaceBurden": "One run,one slider,top/bottom toggle.",
+    "prerequisiteNovelty": "Regression named after visual evidence.",
+    "notationRepresentationBurden": "Percent selection and averages on simple0to100chart."
+  }
+}

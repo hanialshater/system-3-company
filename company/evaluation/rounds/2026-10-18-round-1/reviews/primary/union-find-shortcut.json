@@ -1,0 +1,104 @@
+{
+  "slug": "union-find-shortcut",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/union-find-shortcut",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted7worst-casehops for8people always attaching smaller group below larger leader.",
+    "Manually mergedAB,CD,EF,GH:four groups height1;AC andEG:two size4groups height2;AE:one size8group height3.",
+    "1000randomorders reported maximumheight3 and preserved manually built tree/height. Reveal used doubling1to2to4to8 to justify bound.",
+    "Inline1280x720 light screenshots: final treeA with deepestE-G-Hbranch clearly visible after internal scroll; full explanation readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trees and size-based invariant, supported by small manual construction.",
+    "conceptualDemand": "Union-by-size doubling argument.",
+    "interfaceBurden": "Simple pair selection,clear tree; internal scroll."
+  },
+  "whyCool": "Every extra hop has to be paid for by doubling the group,so even a deliberately tall tree stays short.",
+  "caveat": "No path-compression demonstration despite slug;random sample alone is not proof,but doubling argument supplied;accessibility unknown.",
+  "effort": "Prediction,seven manual balanced merges,random-order comparison,reveal,full tree inspection and inline screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Constructive worst case with a readable structural proof.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete merging rule and smallsize make structural bound question meaningful.",
+      "evidence": "7,3,1hops alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Constructing balanced equal-size merges achieves worst case,random orders provide comparison.",
+      "evidence": "Height1,2,3 with doubling sizes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed worst-case construction connects to a general doubling proof bounding any merge order.",
+      "evidence": "Only3doublings fit8people.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear tree depth labels,manual-height metric and readable prose.",
+      "evidence": "Inline tree and reveal screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General connectivity benefit without fresh size or query exercise.",
+      "evidence": "Fixed8people.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Worst depth grows only with size doublings.",
+      "evidence": "7merges yield3hops.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tree levels show parent chains and height growth.",
+      "evidence": "Constructed3hopbranch.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Learner chooses person pairs to build tree.",
+      "evidence": "Seven manual merges.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Efficient group connectivity central.",
+      "evidence": "Findleader rather than searchall.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Structural invariant yields logarithmic bound intuition.",
+      "evidence": "Size at least doubles for extra depth.",
+      "confidence": "medium"
+    }
+  }
+}

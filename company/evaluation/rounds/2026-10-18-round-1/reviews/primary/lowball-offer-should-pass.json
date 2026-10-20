@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "lowball-offer-should-pass",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lowball-offer-should-pass",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "lowball-offer-should-pass",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/lowball-offer-should-pass/meta.json",
+    "metaSha256": "45254ffad11ae0730280353d4cc7d7a241d69f2bc1ebce94c06bcd6975932d4f",
+    "demoSha256": "29b9ebc9172f5bf925c368a8f78efded6d823722abb3164295823d54ae10e49e",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/lowball-offer-should-pass",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/lowball-offer-should-pass.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected $5 against $1 and $3 minimum worthwhile offer under money-only whole-dollar model; locked it in.",
+    "exploration": "Tested $5: accept gives5/5, reject0/0. $1: accept1/9, reject0/0, accept beats0. $0: accept0/10, reject0/0; own payoff equal, nothing to gain. Values observed directly in screenshots; AX names diagram but omits payoff contents.",
+    "reveal": "Corrected $1; explained positive payoff versus0 and indifference at0. Rejection costs self1 and proposer9. Derived proposer offers1 if knows money-only responder. Explicitly says fairness preference can justify rejection under different model.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected at5,1,0 and reveal. Coin split,paired outcome boxes and dashed indifference boxes show own/proposer payoffs. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment tests fair-split intuition against explicit monetary objective.",
+      "evidence": "$5 choice versus $1 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Positive offers and zero boundary expose accept/reject monetary comparison.",
+      "evidence": "5/5,1/9,0/10 accept outcomes versus0/0 reject.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects tested $1 and $0 to threshold and explicitly limits money-only assumption.",
+      "evidence": "Fairness caveat and zero indifference.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Outcome boxes and own/proposer labels clarify tested visual path.",
+      "evidence": "Actual screenshots at three offers.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete proposer application with knowledge and preference conditions explained.",
+      "evidence": "Proposer who knows money-only responder offers1; fairness changes model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit; diagram payoff values not in observed AX tree.",
+      "evidence": "Screenshot used for values; other access modes untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Fair-minimum prediction contradicted under stated money-only objective,which strongly cues answer.",
+      "evidence": "$5 prediction versus positive $1 preference.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Split coins and paired outcome boxes carry payoff comparison.",
+      "evidence": "Solid accept advantage versus dashed equal-zero boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Offer presets permit reversible comparison but no actual accept/reject choice.",
+      "evidence": "Selected5,1,0 offer levels.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete distinction between monetary objective and fairness preference.",
+      "evidence": "Model explicitly changes when fairness matters.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Positive incentive,zero boundary and proposer response linked.",
+      "evidence": "1/9 split,zero indifference,knowledge condition.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates self-payoff from fairness and adds conditional proposer reasoning.",
+    "conceptualDemand": "Compare two-player outcomes under fixed preference,then infer proposer response.",
+    "interfaceBurden": "Low for tested visual path: presets and two payoff boxes.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: ultimatum-game incentive and preference assumption.",
+    "notationRepresentationBurden": "low: dollar payoffs and ten coins."
+  },
+  "whyCool": "At zero both own-payoff boxes become equal,while at one dollar accepting still visibly beats rejecting.",
+  "caveat": "No real responder behavior or fairness utility tested; accept/reject boxes are displayed comparisons rather than active choices.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "$3 and slider endpoint beyond presets not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:36:48.313915+00:00"
+}

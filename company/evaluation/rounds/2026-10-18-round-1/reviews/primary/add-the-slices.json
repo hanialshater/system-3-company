@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "add-the-slices",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/add-the-slices",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose2/5for1/2+1/3; alternatives5/6and1/5.",
+    "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+    "R:Not quite5/6. Adding tops and bottoms mixes pieces of different sizes; fractions add once cut into same-sized pieces.",
+    "No-history preview;5/5trust ignored. Inline screenshot1280x720 shows bar, cut lines and labels clearly."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targets named misconception with concrete commitment.",
+      "evidence": "P: chose2/5for1/2+1/3; alternatives5/6and1/5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Failed and successful cuts expose common-unit mechanism.",
+      "evidence": "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Corrects actual choice and explains same-sized pieces.",
+      "evidence": "R:Not quite5/6. Adding tops and bottoms mixes pieces of different sizes; fractions add once cut into same-sized pieces.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Cut alignment and counts explicit.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 shows bar, cut lines and labels clearly.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General common-unit principle plus equivalent denominator.",
+      "evidence": "R:Not quite5/6. Adding tops and bottoms mixes pieces of different sizes; fractions add once cut into same-sized pieces.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 shows bar, cut lines and labels clearly.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "2/5cannot exceed half alone.",
+      "evidence": "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Invariant bar length with varying cuts carries mechanism.",
+      "evidence": "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Four reversible cut choices.",
+      "evidence": "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Basic fraction addition correction.",
+      "evidence": "R:Not quite5/6. Adding tops and bottoms mixes pieces of different sizes; fractions add once cut into same-sized pieces.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Common denominator and equivalent fractions.",
+      "evidence": "E:fourths:third ends mid-piece; fifths:2/5short of half alone; sixths:half3+third2=5/6;twelfths:6+4=10/12=5/6. Screenshot equal cut lines preserve bar lengths.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported same-sized-pieces relation.",
+    "conceptualDemand": "Everyday part-whole reasoning.",
+    "interfaceBurden": "Low four cut controls.",
+    "prerequisiteNovelty": "low: fractions depicted",
+    "notationRepresentationBurden": "low: symbolic fractions tied to bar"
+  },
+  "whyCool": "Twelfths double the counted pieces yet preserve exactly the same shaded length as sixths.",
+  "caveat": "Single fraction pair; no separate transfer task.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

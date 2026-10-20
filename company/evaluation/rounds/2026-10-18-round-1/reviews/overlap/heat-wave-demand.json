@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "heat-wave-demand",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heat-wave-demand",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "224446e9ba1d0bddbcf8312c6c068c5cee3a6ae2569b26b7c64a84a31741f444",
+    "demoSha256": "dfbd21135d73db3735439960c8ae90b0ede2188dcb6f43e4f42d4d22108e1958",
+    "metaPath": "src/demos/economics/heat-wave-demand/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected9 dollars for30 extra cones wanted at every price and locked it in. Initial crossing6 dollars,40 cones.",
+    "exploration": "Set demand shift30: crossing7.50 dollars,55 cones,reveal unlocked. Set60:9 dollars,70 cones. Earlier demand curve retained as dashed reference.",
+    "reveal": "Corrected7.50 for original30 shift and acknowledged also tried60 at9. Explains at9 with original30 shift sellers70 versus buyers40 creates leftovers; extra demand met partly quantity and partly price. Straight-line one-market model caveat.",
+    "visual": "Inline initial and30-shift screenshots inspected. Solid buyers curve moves right while sellers stays fixed; dashed before curve and crossing markers show both price and quantity rise. Controls/readouts legible. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical alternatives target all-price-change misconception in explicit model.",
+      "evidence": "9 selected versus7.50 for30 demand shift.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Demand shifts move crossing along fixed supply with both output changes visible.",
+      "evidence": "Shift0 gives6/40,30 gives7.50/55,60 gives9/70.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects original and extra tested state to price/quantity adjustment and counterfactual leftovers.",
+      "evidence": "Acknowledges60 test,explains original30 at9 surplus.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Before curve,current crossing and two readouts make graph comparison clear.",
+      "evidence": "Inspected30-shift screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General price/quantity principle offered with model condition but no concrete new market application.",
+      "evidence": "Extra demand met partly more cones,partly higher price; straight lines.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "9-dollar prediction reversed for30 shift,then reached only at60.",
+      "evidence": "7.50 at30 versus9 at60.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving demand curve and fixed sellers line carry mechanism.",
+      "evidence": "Dashed before curve and crossing screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Demand slider enables reversible shift experimentation.",
+      "evidence": "30 and60 tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete market-price interpretation central but toy setting.",
+      "evidence": "Ice cream heat wave.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Equilibrium,quantity response and surplus counterfactual linked.",
+      "evidence": "Three states and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core explanation coordinates two linear functions,shift,equilibrium and off-equilibrium surplus.",
+    "conceptualDemand": "Several dependent graph/algebra relations with support.",
+    "interfaceBurden": "Low: one slider.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: supply/demand equilibrium",
+    "notationRepresentationBurden": "high:100-10p,10p-20 and price/quantity axes"
+  },
+  "whyCool": "Adding30 wanted cones shifts the crossing both upward and rightward,so the extra demand becomes15 more sold cones plus a higher price.",
+  "caveat": "One fixed straight-line supply curve; no fresh market or changed-supply test.",
+  "missingEvidence": [
+    "Return to zero",
+    "Supply variation",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "cradle-two-in-two-out",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cradle-two-in-two-out",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseoneballatdoublespeedfortwoincomingballs.",
+    "E: one double:momentumYes/energyNo;oneoriginal:No/No;twooriginal:Yes/Yes. Barscomparebefore2momentum/1energywithafter.",
+    "R:Notquitetwooriginal;testedoutcomes2/1,2/2,1/0.5;onlytwooriginalkeepsbothtallies.",
+    "No-historypreview;5/5trustignored. Screenshot1280x720 showsbarsclearly;actualrightclippingofrevealtext. Stagecaptionidealidenticalballs,nolosses."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblemomentum-onlyalternative.",
+      "evidence": "P: choseoneballatdoublespeedfortwoincomingballs.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threeoutcomestesttwoconstraints.",
+      "evidence": "E: one double:momentumYes/energyNo;oneoriginal:No/No;twooriginal:Yes/Yes. Barscomparebefore2momentum/1energywithafter.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Clearcomparisonbutclaimtwoconstraintsleaveonewayonlysupportedamongthreechoices.",
+      "evidence": "R:Notquitetwooriginal;testedoutcomes2/1,2/2,1/0.5;onlytwooriginalkeepsbothtallies.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Barsclear;revealrightclipping.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 showsbarsclearly;actualrightclippingofrevealtext. Stagecaptionidealidenticalballs,nolosses.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Jointconstraintprinciple;outsidechoicesunexplored.",
+      "evidence": "R:Notquitetwooriginal;testedoutcomes2/1,2/2,1/0.5;onlytwooriginalkeepsbothtallies.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 showsbarsclearly;actualrightclippingofrevealtext. Stagecaptionidealidenticalballs,nolosses.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Doublespeedkeepsmomentumbutbreaksenergy.",
+      "evidence": "E: one double:momentumYes/energyNo;oneoriginal:No/No;twooriginal:Yes/Yes. Barscomparebefore2momentum/1energywithafter.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Before/afterbarscarrytwoconstraints.",
+      "evidence": "E: one double:momentumYes/energyNo;oneoriginal:No/No;twooriginal:Yes/Yes. Barscomparebefore2momentum/1energywithafter.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Tryalternativeoutcomes.",
+      "evidence": "E: one double:momentumYes/energyNo;oneoriginal:No/No;twooriginal:Yes/Yes. Barscomparebefore2momentum/1energywithafter.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Collisionconservationintuition.",
+      "evidence": "R:Notquitetwooriginal;testedoutcomes2/1,2/2,1/0.5;onlytwooriginalkeepsbothtallies.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Twodistinctinvariants.",
+      "evidence": "R:Notquitetwooriginal;testedoutcomes2/1,2/2,1/0.5;onlytwooriginalkeepsbothtallies.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Comparetwoconservationconstraintsacrossthreeoutcomes.",
+    "conceptualDemand": "Momentumlinearversusenergyquadratic.",
+    "interfaceBurden": "Revealrightclipping.",
+    "prerequisiteNovelty": "high:momentumandenergydefinitionsnotdeeplyintroduced",
+    "notationRepresentationBurden": "moderate:mvandmv\u00b2"
+  },
+  "whyCool": "Oneballatdoublespeedmatchesonebarbutovershootstheother.",
+  "caveat": "Onlythreecandidateoutcomes;idealequalballsandnolosses.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

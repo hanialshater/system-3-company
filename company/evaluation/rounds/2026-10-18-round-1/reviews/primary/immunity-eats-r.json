@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "immunity-eats-r",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/immunity-eats-r",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "immunity-eats-r",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/immunity-eats-r/meta.json",
+    "metaSha256": "f8e0c57cb696dd144c6acf8655b11ec352ff119df7aee00391f5d0086728df41",
+    "demoSha256": "3d7aa4540cb7357f765eb0cca151f063cbcf88da0819b0fe7f14a160ae7de745",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/immunity-eats-r",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/immunity-eats-r.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Chose About 4 and locked it in, against About 1.6 and Fewer than 1.",
+    "exploration": "Initial 0%: 40 infected contacts from ten cases, R 4.0. Clicked 60%: 24 of 40 contacts immune, 16 infected, R 1.6. Clicked 75%: 30 immune, ten infected, R 1.0. Attempted slider setValue 100 was rejected by browser input API and state stayed 75%; no lesson defect inferred.",
+    "reveal": "Show me why corrected prediction to About 1.6, connected 16 infections/10 cases to 4 \u00d7 0.4, stated smooth reduction before threshold and random mixing, perfect immunity, made-up disease limits.",
+    "visual": "Actual inline screenshot inspected at 1257 \u00d7 936 dark viewport. Dot town and contact lines visibly distinguish immune, susceptible, case and infected states. Lower reveal extends below viewport; visible DOM provided full text.",
+    "previewIsolation": "Evaluation preview no-history banner present.",
+    "blinding": "4/4 claims checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical alternatives distinguish no benefit from subthreshold reduction.",
+      "evidence": "About 4 commitment and About 1.6 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing immune share visibly changes contacts and R.",
+      "evidence": "0%, 60% and 75% states.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed contact counts to formula and explicitly limits toy model.",
+      "evidence": "16/10 = 1.6; random mixing and perfect immunity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Two preset controls and numerical feedback make tested sequence understandable.",
+      "evidence": "Screenshot labels and 60%/75% status.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable susceptible-share relation and conditions stated, but no new application.",
+      "evidence": "R0 \u00d7 susceptible share and toy-model caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient accessibility checks not performed.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "No-benefit prediction is contradicted before threshold.",
+      "evidence": "About 4 versus R 1.6 at 60%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Contact colors carry cancellation of infection opportunities.",
+      "evidence": "Dot town screenshot and contact totals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presets allow reversible comparison; slider not successfully exercised.",
+      "evidence": "0%, 60%, 75% comparisons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides concrete interpretation of subthreshold immunity in the stated toy setting.",
+      "evidence": "Reveal distinguishes reduction from R threshold.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Smooth reduction and threshold differ meaningfully, with model limits stated.",
+      "evidence": "60% R 1.6 versus 75% R 1.0.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects proportions to average infections and threshold.",
+    "conceptualDemand": "Two linked relations: susceptible share determines mean infection count; mean relative to one determines growth threshold.",
+    "interfaceBurden": "Low on tested desktop; reveal bottom requires more vertical space.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: R and herd threshold introduced.",
+    "notationRepresentationBurden": "moderate: percentages, R0 and multiplication."
+  },
+  "whyCool": "Changing immunity from 60% to 75% visibly removes six more infections while R falls from 1.6 to one.",
+  "caveat": "Only preset states tested; the reveal calls 75% both R=1 and the point where R drops below one, a small boundary wording ambiguity.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Slider endpoint attempt rejected by browser API; full boundary not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion checks not performed."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:03:27.625619+00:00"
+}

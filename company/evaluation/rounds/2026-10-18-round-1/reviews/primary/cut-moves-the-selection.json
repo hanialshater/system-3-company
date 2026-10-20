@@ -1,0 +1,104 @@
+{
+  "slug": "cut-moves-the-selection",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cut-moves-the-selection",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected source removal as the difference between cut and copy; title/hook cue the answer.",
+    "Cut B changedA,B,C toA,C and count3\u21922; Paste B appendedB at end, restoring count3 with orderA,C,B.",
+    "Both controls disabled after the two-step sequence; no alternate source, destination, copy mode or reset.",
+    "Reveal accurately listed final order and described relocation in this fixture."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple sequence of three tokens.",
+    "conceptualDemand": "Relocation versus duplication.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "The count returns to three while the content's location changes.",
+  "caveat": "No in-demo copy contrast or explicit clipboard state; minimal learner choice and prediction spoiled by title.",
+  "effort": "Completed prediction, cut, paste, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct basic behavior but limited challenge and exploration.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Concept is directly cued and distractor weak.",
+      "evidence": "Removal versus selected letters.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Actual source removal and destination addition are inspectable but fully prescribed.",
+      "evidence": "Two steps with count and order feedback.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurately connects unchanged final count with changed location.",
+      "evidence": "A,C,B after removing originalB.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Intermediate source removal and final order are clearly visible.",
+      "evidence": "Count3\u21922\u21923.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Basic operation principle without a new task or explicit clipboard boundary.",
+      "evidence": "Same token fixture only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Expected elementary editor behavior.",
+      "evidence": "No counterintuitive outcome.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Token order makes relocation visible.",
+      "evidence": "B removed then appended.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed actions.",
+      "evidence": "No free editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful basic digital literacy.",
+      "evidence": "Source mutation matters.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single operation distinction.",
+      "evidence": "No clipboard state or identity model.",
+      "confidence": "medium"
+    }
+  }
+}

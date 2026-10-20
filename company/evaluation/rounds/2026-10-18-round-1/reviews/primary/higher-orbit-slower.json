@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "higher-orbit-slower",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/higher-orbit-slower",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "65b3fbcaa1d898b70bdbeaed6634e451038abb7e3286033483875e36abeb9a67",
+    "demoSha256": "9ce2556e3aef2462e4708b2789fb32f4108a8ededa64777011e5d44ed9dfef20",
+    "metaPath": "src/demos/physics/higher-orbit-slower/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Faster and locked it in. ISS initial6771 km,7.67 km/s,92 min.",
+    "exploration": "Set Orbit radius slider3: geostationary42164 km,3.07 km/s,23.9 h. Set2:20000 km,4.46 km/s,7.8 h. Reveal unlocked after outer orbit, stayed unlocked returning middle.",
+    "reveal": "Corrected Slower. Cites ISS and geostationary values, gravity2.6% as strong, weaker bending needs less speed. Gains more height energy than lost speed energy. Conditions circular orbits, point-mass Earth,no air.",
+    "visual": "Inline screenshot inspected at middle radius: orange circular orbit, satellite white dot and tangent speed arrow, dotted geostationary reference, scale/time2000x caption. Readouts legible. Trust6/6 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Rocket-burn hook and faster/same/slower commitment surface useful misconception.",
+      "evidence": "Faster selected, speed falls outward.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three radius/speed/time states support causal contrast.",
+      "evidence": "ISS7.67, middle4.46,outer3.07 km/s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects speed and energy puzzle to weakening gravity, with clear model limits.",
+      "evidence": "2.6% gravity and height-energy explanation; circular/no-air conditions.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Single slider and named states/readouts are understandable.",
+      "evidence": "Inspected middle-radius screenshot and two slider changes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General circular-orbit rule and conditions given but no concrete new application.",
+      "evidence": "Less speed at higher circular orbit; point-mass/no-air conditions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Faster prediction reversed by slower outer orbit despite energy investment.",
+      "evidence": "7.67 to3.07 and reveal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Orbit size and speed arrow carry spatial relation alongside numbers.",
+      "evidence": "Middle screenshot and three radius states.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible radius changes reveal supported variation.",
+      "evidence": "Outer then middle slider path.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Satellite orbit reasoning is concrete disciplinary use.",
+      "evidence": "ISS versus geostationary lap time.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Radius-speed-period and potential/kinetic energy distinction linked.",
+      "evidence": "Three readout states and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links radius,gravity,speed,period and energy with plain-language support.",
+    "conceptualDemand": "Multiple linked relations, optional energy explanation adds abstraction.",
+    "interfaceBurden": "Low: one discrete slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: circular orbital motion and energy types",
+    "notationRepresentationBurden": "moderate: radius from centre,km/s,min/h"
+  },
+  "whyCool": "Moving the satellite outward enlarges its path while its speed drops and its lap time grows from92 minutes to nearly24 hours.",
+  "caveat": "Only circular model presets tested; energy balance remains explanatory text rather than manipulated quantity.",
+  "missingEvidence": [
+    "Return to ISS",
+    "Noncircular cases",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

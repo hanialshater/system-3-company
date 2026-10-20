@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "stack-of-cubes",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stack-of-cubes",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "stack-of-cubes",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/stack-of-cubes/meta.json",
+    "metaSha256": "2cd3773196c47cc40a818193c16e9d0cc1fe5cbc7a9c2e64d9b1367251887c32",
+    "demoSha256": "9d1d7272e68817b7fddb9120644b7a984ea8951aff70d66d2d51d0cf59108b07",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/stack-of-cubes",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/stack-of-cubes.json"
+  },
+  "date": "2026-10-18T20:48:13.881262+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose64 andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Placed1cube1cellside1;2cube8newtotal9side3,twosquaresonehalveddashed;3cube27newtotal36side6,three3squares;4cube64newtotal100side10,four4squaresonehalved. Actualtilingsinspectedateachstage."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read100correction,sides1,3,6,10triangularsums,sumcubes=squaresum;64lastcube,30sumsquares;allnclaimexplicitlyrequiresinductionandpictureonlyn4."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,2/3/4tilingsandscrolledreveal inspected. Coloredpieces,dashedhalfcuts,countersandtext readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Arithmeticforecastclearbutdoesnotprobeunexpectedshape.",
+      "evidence": "1+8+27+64readilycomputable,choices100/64/30.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequentialtilingsmakecubeaslayersandgrowing-squarepatternvisible.",
+      "evidence": "Totals1,9,36,100;sides1,3,6,10;evencubepiecehalfcutsdisclosed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectstriangularsidepatterntoidentitywithproofscopehonesty.",
+      "evidence": "Pictureonlyn4,generalninductionnotshown.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Cubequantityflatteningexplainedinlabels.",
+      "evidence": "4cube=four4by4squares,onecutinhalf;areaand side separate.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalnassertionwithoutnewapplicationorproof-task.",
+      "evidence": "Onlyn4constructed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sumcubesformsperfectsquarewithtriangularside.",
+      "evidence": "100cells10by10afterfourlayergroups.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coloredtilingsshowfiniteidentity.",
+      "evidence": "Allfourstagesandhalvedpiecesinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Placeeachcubebutton.",
+      "evidence": "Fourorderedplacements.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulmathematicalpatternintuition.",
+      "evidence": "Sumcubes=squaresumidentity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links3Dcount,2Dtilingandtriangularnumbers.",
+      "evidence": "Generalproofscopeexplicitratherthanclaimedvisualproofalln.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Reinterpretcubedaslayersandtracktilingareaandsidegrowth.",
+    "interfaceBurden": "Fourorderedbuttons,no spatialmanipulation.",
+    "prerequisiteNovelty": "Cubednotationandtriangularnumberpatternintroducednumerically.",
+    "notationRepresentationBurden": "Exponents,layerareas,sumandsquareidentity;labels scaffold."
+  }
+}

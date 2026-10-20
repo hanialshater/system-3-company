@@ -1,0 +1,103 @@
+{
+  "slug": "saved-or-die-same-600",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/saved-or-die-same-600",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asks can outcome-only model fit sure gain then risky loss;selected no sameprograms.",
+    "Deliberately selected200saved sure,then1/3nobodydies gamble. Normalize rewrote both rows identically while selections differed.",
+    "Reveal correctly cites choices,adds unless toss-up qualification and back-to-back limit,but says wording moved you causally. Screenshots readable with right-edge reveal clipping."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Probability distributions and preference-model inference.",
+    "conceptualDemand": "Same outcomes versus same expected value;indifference boundary.",
+    "interfaceBurden": "Two choices,normalization."
+  },
+  "whyCool": "Changing saved to die can make two identical options feel like different offers.",
+  "caveat": "Reviewer intentionally selected reversal;one adjacent hypothetical pair cannot establish wording caused change. Put indifference caveat in prediction.",
+  "effort": "Prediction,bothchoices,normalization,reveal,two screenshots.",
+  "provisionalBucket": "revise-causal-inference",
+  "bucketReason": "Strong equivalence interaction,overstated personal causal claim.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Equivalent programs clear but no option for indifference/stochastic choices allows outcome-only fit.",
+      "evidence": "No model fit wording too absolute.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actual choices and normalization expose equivalence.",
+      "evidence": "Sure then gamble,identical normalizedrows.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Good equivalence and toss-up caveat;causal wording exceeds one deliberately selected trace.",
+      "evidence": "The wording moved you.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear grids and wording but clipped reveal and confusing two chances are one chance phrase.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete rephrase outcomes identically to compare decisions.",
+      "evidence": "Normalize saved/die descriptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different verbal frames can describe identical outcome distributions.",
+      "evidence": "200saved=400die.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Outcome grids and normalized duplicate rows make equivalence visible.",
+      "evidence": "Same colored totals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two choices then rewording central.",
+      "evidence": "Learner trace.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Decision comparison via common framing.",
+      "evidence": "Normalize outcomes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Outcome invariance,framing and indifference caveat.",
+      "evidence": "Not all switch implies causal effect.",
+      "confidence": "medium"
+    }
+  }
+}

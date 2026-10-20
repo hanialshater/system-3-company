@@ -1,0 +1,104 @@
+{
+  "slug": "find-next-is-navigation",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/find-next-is-navigation",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title Find does not edit and hook explicitly state content stays unchanged before prediction asks highlighted match versus stored text. Chose stored text.",
+    "Local three tokens map,key,map. Find first highlighted first map; Find next highlighted third token; text and token count3 stayed unchanged.",
+    "Reveal correctly identified highlight position3 and unchanged tokens, but used local document fixture terminology.",
+    "Inline 1280x720 light screenshots showed both highlight states and full readable prose. AX reported step numbers rather than highlight until reveal. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar words and visible highlight change.",
+    "conceptualDemand": "Navigation versus mutation.",
+    "interfaceBurden": "Two sequential buttons, readable layout."
+  },
+  "whyCool": "The selected occurrence moves while every stored word remains unchanged.",
+  "caveat": "Answer cued; minimal fixed interaction; fixture terminology; highlight absent from intermediate AX text; accessibility unknown.",
+  "effort": "Prediction, first/next highlight comparison, reveal and inline screenshots.",
+  "provisionalBucket": "revise-hook-and-interaction",
+  "bucketReason": "Clear toy illustration but cued prediction and very limited agency.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and hook directly supply the answer.",
+      "evidence": "Find changes location, not content stated before choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed sequential highlights show navigation but no editable contrast or open exploration.",
+      "evidence": "First and next clicks, then disabled.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct restatement of observed invariant, limited explanation.",
+      "evidence": "Tokens unchanged, highlight3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable visuals but implementation fixture term and missing highlight description in AX.",
+      "evidence": "Inline screenshots and step-only AX.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 1,
+      "reason": "Only the same toy tokens; no concrete next action in a real editor.",
+      "evidence": "No search entry or shortcut exercise.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "The outcome is explicitly announced before interaction.",
+      "evidence": "Title gives answer.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Highlight position versus stable words is visible.",
+      "evidence": "First versus third map.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two prescribed clicks.",
+      "evidence": "No reset or repeated navigation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic distinction between search and editing.",
+      "evidence": "Find operation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single navigation/content distinction.",
+      "evidence": "Three tokens only.",
+      "confidence": "medium"
+    }
+  }
+}

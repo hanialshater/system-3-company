@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-dose-levels-off",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-dose-levels-off",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-dose-levels-off",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/same-dose-levels-off/meta.json",
+    "metaSha256": "35123603d8b64403189d9952719932ec8f6cd349841caffa03913ac76ab14c05",
+    "demoSha256": "5e509cbdf81163f7476212e283da4bb9db24a1e51e36f6500f01d64122947ca4",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-dose-levels-off",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-dose-levels-off.json"
+  },
+  "date": "2026-10-18T20:18:53.029812+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose2000units and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "6h100unit additions with6hhalfclearance:100,150,175,188,194then200peak.12hgave133,first100,125,131,133;3hgave341,first100,171,221,256,281. Inspected sawtoothcurves and retained reference traces."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read200correction,input/lossbalance:half200removes100;morefrequent3h341stillplateau. Fictionalsubstance boundary stated; revealrestored6h."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,6h,3h andscrolledreveal inspected. Endlabels,referencecurves,axis andprose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit input and proportional removal invite quantitative forecast.",
+      "evidence": "100every6h,halfclearance6h,40additions.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three intervals and retained traces expose stable peak contrasts.",
+      "evidence": "200at6h,133at12h,341at3h andfirstfive values.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Balance mechanism explains plateau.",
+      "evidence": "At200half-loss100equalsinput;3hstillplateaus.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Peak timing specified and sawteeth distinguish fluctuations.",
+      "evidence": "Justafteradditioncaption;fictionalsubstance boundary explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Mechanism generalized only across same toy intervals.",
+      "evidence": "No different application or new task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Repeated additions approach fixed peak.",
+      "evidence": "40inputs4000total but200peak.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Timecurves andintervaloverlays expose accumulation and losses.",
+      "evidence": "Three sawtooth plateaus andfirstfive numbers inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threeinterval buttons compare quickly.",
+      "evidence": "6,12,3h tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful generic input/removal intuition.",
+      "evidence": "Made-up substance,not actual medicine guidance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Proportional elimination and recurrence equilibrium.",
+      "evidence": "Halfcurrentamount grows absolute loss until balance.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Combine repeatedfixedinput with proportional decay and compare peak/trough equilibrium.",
+    "interfaceBurden": "Threebuttons,automaticchartandreferencecurves.",
+    "prerequisiteNovelty": "Half-life andsteady-state recurrence scaffolded numerically.",
+    "notationRepresentationBurden": "Hours,units andsawtoothchart,withoutalgebra."
+  }
+}

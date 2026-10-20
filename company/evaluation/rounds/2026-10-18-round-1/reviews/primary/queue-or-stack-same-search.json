@@ -1,0 +1,104 @@
+{
+  "slug": "queue-or-stack-same-search",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/queue-or-stack-same-search",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Opening defines queue FIFO and stack LIFO with the same add-unseen-neighbors search.",
+    "After first step queue visited A-B with C-D-E waiting; stack A-C with B-F waiting.",
+    "Complete traversals were A-B-C-D-E-F and A-C-F-E-B-D, both visiting all six nodes.",
+    "Screenshot and reveal contrast E's discovered route: two hops through B for queue, three through C/F for stack, explaining fewest-hop property."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Queue/stack ordering and graph routes.",
+    "conceptualDemand": "Track waiting-list policy and discovery path.",
+    "interfaceBurden": "Two shared execution buttons."
+  },
+  "whyCool": "Changing only which waiting item comes next can turn a deep search into a shortest-hop search.",
+  "caveat": "Fixed finite graph with unseen-neighbor tracking; no weighted edges or memory comparison.",
+  "effort": "Prediction, two single steps, full traversal, screenshots and E-route reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent controlled frontier comparison with concrete route consequence.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear controlled implementation-change question.",
+      "evidence": "Nothing, visit order or reachability.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step and batch views expose frontier mechanics on the same graph.",
+      "evidence": "Different waiting lists and complete traversal.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects observed order to a concrete path-quality consequence.",
+      "evidence": "E two versus three hops; ring-by-ring gives fewest hops.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Parallel graphs, visit numbers and explicit frontier ends make behavior legible.",
+      "evidence": "Front versus top marked, hop counts separate from order.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete choice implication with a precise objective.",
+      "evidence": "Queue for fewest-hop routes, not a generic weighted shortest-distance claim.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "One small list-policy change alters route found without changing coverage.",
+      "evidence": "Both reach all nodes; E route differs.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Parallel frontier and graph states expose causal difference.",
+      "evidence": "Queue breadth versus stack depth and E hop contrast.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed graph, step or finish.",
+      "evidence": "No graph editing or alternative neighbor order.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete search data-structure choice.",
+      "evidence": "Fewest-hop objective.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Frontier ordering, coverage and path quality connect.",
+      "evidence": "Same primitive steps, different global behavior.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -559,13 +559,13 @@ t("26. tools: --all-counts shows auth_account 0; migrations go down and up clean
   try {
     const c = await allCounts(client);
     assert.equal(c.auth_account, 0);
-    assert.deepEqual(await applied(client), [1, 2]);
-    assert.deepEqual(await migrateDown(client, { to: 0 }), [2, 1]);
+    assert.deepEqual(await applied(client), [1, 2, 3, 4]);
+    assert.deepEqual(await migrateDown(client, { to: 0 }), [4, 3, 2, 1]);
     const left = (await client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY 1")).rows.map((r) => r.table_name);
     assert.deepEqual(left, ["schema_migrations"]);
-    assert.deepEqual(await migrateUp(client), [1, 2]);
+    assert.deepEqual(await migrateUp(client), [1, 2, 3, 4]);
     const tables = (await client.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY 1")).rows.map((r) => r.table_name);
-    assert.deepEqual(tables, ["auth_account", "auth_session", "auth_user", "auth_verification", "deleted_account", "lesson_like", "lesson_save", "progress", "recall", "schema_migrations", "signup_intent"]);
+    assert.deepEqual(tables, ["auth_account", "auth_session", "auth_user", "auth_verification", "deleted_account", "lesson_like", "lesson_save", "progress", "recall", "schema_migrations", "settings", "signup_intent"]);
   } finally {
     client.release();
   }

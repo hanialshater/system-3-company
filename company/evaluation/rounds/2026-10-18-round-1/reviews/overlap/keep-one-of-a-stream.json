@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "keep-one-of-a-stream",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keep-one-of-a-stream",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "keep-one-of-a-stream",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/keep-one-of-a-stream/meta.json",
+    "metaSha256": "b78a61ef64ffc03a0f5ddd3bd12f6d8535a91ee53cf19e1b048a4d61c3c55b56",
+    "demoSha256": "4e2a89825ba4e9ec01ad354e26cd5f12c73d640d4c37047bc6266b36318c04b1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/keep-one-of-a-stream",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/keep-one-of-a-stream.json"
+  },
+  "date": "2026-10-18T21:06:45.441152+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected 1/4 for item1 surviving replacement at probabilities1/i through four items."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Item2 bars each1/2; after4 each1/4, kept item3. Ran1000:236,250,257,257. Added fifth: all bars1/5, counts195,197,191,214,203; dashed prior1/4 reference retained."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read item1 survival1/2\u00d72/3\u00d73/4=1/4, later entries need fewer survivals, current fifth sample counts, one-item memory and unknown length preserved."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected four andfive equal bars, sample counts and dashed previous levels. Long formula text on fifth-item view clipped at right edge; AX reveal readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit replacement rule supports a meaningful survival calculation.",
+      "evidence": "1/2,1/4,1/8 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Probability bars, empirical trials and extra item distinguish rule from outcome.",
+      "evidence": "Equal1/4 then1/5; sampled counts near equal.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Survival factors explain fairness without knowing stream length.",
+      "evidence": "Entry probability versus remaining draws.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core bars are clear but long live formula clips at viewport edge.",
+      "evidence": "Fifth-item survival product extends beyond right edge.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Extra stream item tests generality within same setting.",
+      "evidence": "No new sampling application or fresh-case task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Earlier and later items end equally likely despite different entry chances.",
+      "evidence": "All bars1/4 then1/5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Equal bars and dashed prior heights show invariant updating.",
+      "evidence": "Five bars shrink from quarter reference to fifth.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Advance, simulate and surprise extra item invite experiment.",
+      "evidence": "1000 trials and fifth item tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Demonstrates uniform sampling with minimal memory and unknown length.",
+      "evidence": "One-item memory explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Exact probabilities, telescoping survival and empirical frequencies.",
+      "evidence": "Entry times balanced by survival opportunities.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "demanding: conditional survival products and uniformity invariant",
+    "interfaceBurden": "gentle: advance, finish, simulate and add-fifth buttons",
+    "prerequisiteNovelty": "reservoir sampling and sequential probability products",
+    "notationRepresentationBurden": "per-item entry\u00d7survival fractions plus exact and sampled bars"
+  }
+}

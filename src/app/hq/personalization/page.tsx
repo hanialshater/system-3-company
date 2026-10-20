@@ -16,10 +16,10 @@ export default async function PersonalizationPage({ searchParams }: { searchPara
   const meta = await runSim<SimMeta>({ op: "meta" });
   const num = (v: string | null) => (v && /^\d{1,3}$/.test(v) ? Number(v) : null);
   return (
-    <Personalization
+    <><p style={{padding:"12px 24px"}}><a href="/hq/personalization/preferences">Stated-preference rubric inspector (synthetic)</a></p><Personalization
       meta={meta.ok ? meta.data : null}
       error={meta.ok ? null : meta.error}
       initial={{ persona: one(q.persona), policy: one(q.policy), seed: num(one(q.seed)), days: num(one(q.days)), step: num(one(q.step)) }}
-    />
+    /></>
   );
 }

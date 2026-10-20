@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "the-doctor-picks-the-patients",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-doctor-picks-the-patients",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "43317e5ea0c9f78eed801663fa39310905e68fe7ea9206299253b9c68c8689a2",
+    "demoSha256": "a6c3faeb46589e1a8642ee7937fac4e447c3a2522278e44d57706b61d49c8ad2",
+    "metaPath": "src/demos/probability/the-doctor-picks-the-patients/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected the doctor who knows the patients and locked the fair-assignment prediction for an ineffective drug and forty patients.",
+    "exploration": "Ran one coin assignment: expected recoveries 11.8 versus 12.2. Added twenty coin splits: current 11.5 versus 12.5, with twenty-one gaps ranging from -2.0 to +1.6. Selected Doctor picks: expected 15.1 versus 8.9, a gap of +6.2, while the drug remained ineffective.",
+    "reveal": "The reveal corrected the answer to random assignment, explained that the doctor selected the fittest so prognosis masquerades as a cure, and accurately quoted the twenty-one sampled gaps and +6.2 selected gap. It said a gap that large occurs by chance in fewer than one in a hundred splits.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots after random and doctor assignments. Two twenty-dot boxes used a prognosis gradient; random boxes mixed shades, while doctor selection separated brighter high-recovery patients from dimmer ones. A gap strip showed random marks near zero and the doctor mark far right.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes informed selection from fair causal comparison.",
+      "evidence": "Selected expert choice before seeing prognosis imbalance.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Holding efficacy fixed isolates assignment as the cause of the apparent benefit.",
+      "evidence": "The ineffective drug's expected gap rose from random near-zero values to +6.2 under selection.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains confounding and accurately references sampled splits.",
+      "evidence": "It names fitness as the selected factor and quotes the observed range.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The prognosis gradient and expected-recovery labels separate baseline chances from realized cures.",
+      "evidence": "The display consistently calls the totals expected recoveries.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The causal-design principle is shown within the original treatment toy without a new application.",
+      "evidence": "No different experiment or selection mechanism is developed.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "An expert's selection can create a strong treatment signal with no treatment effect.",
+      "evidence": "Doctor selection yields 15.1 versus 8.9 expected recoveries for a drug that does nothing.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shade separation makes the confounder visible before the summary explanation.",
+      "evidence": "The selected drug group contains higher-prognosis dots.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Repeated random splits and one selection mode support exploration.",
+      "evidence": "The twenty-split action builds a reference gap distribution.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It explains why treatment assignment matters for causal inference.",
+      "evidence": "Randomization mixes baseline prognosis instead of selecting likely recoverers.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The toy distinguishes systematic bias from finite random imbalance.",
+      "evidence": "Twenty-one random gaps differ slightly, while selection creates a much larger directional gap.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The two-group comparison is accessible, but expected outcomes and confounding add statistical distinctions.",
+    "conceptualDemand": "Moderate: distinguish prognosis imbalance from causal treatment benefit.",
+    "interfaceBurden": "Low: random split, twenty splits and doctor selection controls.",
+    "conceptualChallenge": "A treatment group can improve for reasons that preceded treatment.",
+    "prerequisiteNovelty": "Random assignment, confounding and expected recoveries are introduced.",
+    "notationRepresentationBurden": "Moderate: colored probability dots, expected counts and a signed-gap distribution."
+  },
+  "whyCool": "The drug can seem to work simply by changing who receives it, even though its effect is fixed at zero.",
+  "caveat": "The toy uses fixed twenty-per-group splits and one extreme prognosis-based selection rule; the prediction's coin-for-each phrasing is looser than the fixed group-size setup.",
+  "missingEvidence": [
+    "No actual recovery outcomes, new selection rule or distinct experiment was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

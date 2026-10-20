@@ -1,0 +1,103 @@
+{
+  "slug": "short-jobs-clear-a-queue",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/short-jobs-clear-a-queue",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title clear short jobs precedes prediction short-first versus long-first with all jobs ready.",
+    "Long30/quick5/small10 yields waiting65. Swap quick/long/small40. Target quick/small/long20; all finish45,none late.",
+    "Reveal defines total waiting as start-time sum and ignores deadlines; screenshot readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three durations and start-time sums.",
+    "conceptualDemand": "Aggregate waiting versus work duration.",
+    "interfaceBurden": "Run,swap,target."
+  },
+  "whyCool": "Changing who goes first can cut total waiting without finishing the whole queue any sooner.",
+  "caveat": "Title spoils prediction; rule applies to stated ready-job objective,not universal task prioritization.",
+  "effort": "Prediction,initial run,swap,target,reveal,inline screenshot.",
+  "provisionalBucket": "solid-revise-hook",
+  "bucketReason": "Clear tested scheduling contrast.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title supplies answer.",
+      "evidence": "Clear short jobs.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three orders expose total waiting while workload fixed.",
+      "evidence": "65\u219240\u219220.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own final order and objective limitation explicit.",
+      "evidence": "Start-time sum,deadlines ignored.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable durations,timeline and metric definition.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Conditioned rule for ready whole jobs and total waiting objective.",
+      "evidence": "All ready,one at time,ignore deadlines.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same final finish,different total waiting.",
+      "evidence": "65 versus20.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Order and start-time timeline central.",
+      "evidence": "Three schedules.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swap and target comparison.",
+      "evidence": "Three orders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Queue sequencing strategy central.",
+      "evidence": "Reduce aggregate wait.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Objective differs from makespan/deadline.",
+      "evidence": "Work45 unchanged.",
+      "confidence": "medium"
+    }
+  }
+}

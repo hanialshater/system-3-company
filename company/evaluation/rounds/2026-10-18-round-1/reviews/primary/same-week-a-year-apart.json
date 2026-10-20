@@ -1,0 +1,103 @@
+{
+  "slug": "same-week-a-year-apart",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-week-a-year-apart",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction conditional steady discounting and distant preference110week53 over100week52;chose waitagain.",
+    "Chose distant110,movedpair to today,then intentionally chose100today to test reversal. Model badge still wait.",
+    "Reveal accurately describes chosen reversal,no steady rate fits,labels present-bias model and limits imagined one-off choices with first choice visible. Full timeline and readable reveal inspected."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Conditional discounting and model comparison.",
+    "conceptualDemand": "Same gap under common delay versus immediate premium.",
+    "interfaceBurden": "Two choices,one timeline slider."
+  },
+  "whyCool": "A one-week tradeoff can feel different today than a year away,even though the amount and delay gap are unchanged.",
+  "caveat": "Reviewer deliberately selected reversal;not evidence user has present bias or that one-off hypothetical choices diagnose it.",
+  "effort": "Prediction,distant choice,timeline shift,reversed choice,reveal,full diagram inspection.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Real choice trace,clear model contrast,explicit inference limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific conditional model implication with plausible present-value distractor.",
+      "evidence": "Gap same oneweek/$10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actual choices at shifted dates expose model-versus-choice distinction.",
+      "evidence": "Distantwait,todaytake.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "State-specific explanation and measurement limitation explicit.",
+      "evidence": "No steady rate fits selected pair;not diagnosis.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable labels,chosen answers and explicit steady-model badge.",
+      "evidence": "Full screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle demonstrated without distinct practical application.",
+      "evidence": "Two temporal versions of same choice.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Preference can reverse despite identical gap.",
+      "evidence": "Chosenwaitthenimmediate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sliding pair preserves gap while moving timing.",
+      "evidence": "Oneweek bracket.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Personal choices and movable timeline central.",
+      "evidence": "Two choices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful preference reflection but no actual decision advice.",
+      "evidence": "Imagined money.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Stationarity versus present-biased model and inference limits.",
+      "evidence": "Conditional model fitting.",
+      "confidence": "medium"
+    }
+  }
+}

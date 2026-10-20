@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "heavy-but-floats",
+  "demoVersion": 5,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heavy-but-floats",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseSinksfor500g800cm\u00b3ball;water1g/cm\u00b3given.",
+    "E:800cm\u00b3floats,density0.625,62.5%underwater;500hovers1.0;400sinks1.25;sliderEnd1000floats0.50,50%submerged;mass500gfixed.",
+    "R:NotquiteFloats;masspervolumeflipsstatearound500cm\u00b3;shipslargevolumefortheirmass.",
+    "No-historypreview;6/6trustignored. Screenshot1280x720 ballpositionandcounterclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concreteheavy-versus-densitycommitment.",
+      "evidence": "P: choseSinksfor500g800cm\u00b3ball;water1g/cm\u00b3given.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fixedmassvolumecrossesfloat/hover/sinkboundary.",
+      "evidence": "E:800cm\u00b3floats,density0.625,62.5%underwater;500hovers1.0;400sinks1.25;sliderEnd1000floats0.50,50%submerged;mass500gfixed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesallactualstatesandgeneralratio.",
+      "evidence": "R:NotquiteFloats;masspervolumeflipsstatearound500cm\u00b3;shipslargevolumefortheirmass.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Densityandstatecountersclear.",
+      "evidence": "No-historypreview;6/6trustignored. Screenshot1280x720 ballpositionandcounterclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusablecomparisonwithwaterandshipapplication.",
+      "evidence": "R:NotquiteFloats;masspervolumeflipsstatearound500cm\u00b3;shipslargevolumefortheirmass.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;6/6trustignored. Screenshot1280x720 ballpositionandcounterclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Samemassswitchesallthreestates.",
+      "evidence": "E:800cm\u00b3floats,density0.625,62.5%underwater;500hovers1.0;400sinks1.25;sliderEnd1000floats0.50,50%submerged;mass500gfixed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ballpositionandsubmergedfractioncentral.",
+      "evidence": "E:800cm\u00b3floats,density0.625,62.5%underwater;500hovers1.0;400sinks1.25;sliderEnd1000floats0.50,50%submerged;mass500gfixed.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Presetsandcontinuousvolumeexperiment.",
+      "evidence": "E:800cm\u00b3floats,density0.625,62.5%underwater;500hovers1.0;400sinks1.25;sliderEnd1000floats0.50,50%submerged;mass500gfixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Floatingintuition.",
+      "evidence": "R:NotquiteFloats;masspervolumeflipsstatearound500cm\u00b3;shipslargevolumefortheirmass.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Densitythresholdandsubmergedfraction.",
+      "evidence": "R:NotquiteFloats;masspervolumeflipsstatearound500cm\u00b3;shipslargevolumefortheirmass.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkmass/volume,relative densityandsubmergedfraction.",
+    "conceptualDemand": "Supportedratiorelations.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:densitydefined",
+    "notationRepresentationBurden": "moderate:g/cm\u00b3"
+  },
+  "whyCool": "Squeezingthesame500gballthrough500cm\u00b3changesitfromfloatingtohoveringtosinking.",
+  "caveat": "Fixedwaterdensityandidealvariable-volumeobject;buoyantforcenotexplicitlyvisualized.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

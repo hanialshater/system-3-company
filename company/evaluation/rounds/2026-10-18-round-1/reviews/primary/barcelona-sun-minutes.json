@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "barcelona-sun-minutes",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/barcelona-sun-minutes",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history preview banner; trust6/6 ignored. Predicted23 minutes; locked."
+    },
+    {
+      "id": "E",
+      "text": "Sun highest over Barcelona: Madrid peaks in23.5min. Madridbutton: Barcelona peaked23.5minago, Madrid highestnow. SliderEnd30: Barcelona peaked30minago, Madrid6.5minago."
+    },
+    {
+      "id": "R",
+      "text": "Same officialclock, differentnoons;360degrees/24hours means4minutesperlongitude degree; cities5.9degreesapart. Screenshot inline map has noon line west ofMadrid; top map cut by internal scroll and right-edge reveal clips. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete time alternatives but distance505km alone gives little supported basis for estimate before exploration.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two presets and later boundary show distinct noons on one clock.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Derives4min/degree and connects5.9degrees to23.5minutes.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Buttons and paired readouts clear, internal map/reveal clipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable longitude-to-solar-time ratio; editorial potential only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "SliderEnd tested, not modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same officialtime does not synchronize solarnoon.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving noon line maps temporal gap to geography.",
+      "evidence": "E,R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible presets and time slider.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interprets local solar versus officialtime.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One rotation ratio plus clock/noon distinction.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links longitude, rotation rate and clock convention; no theory assumed.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;longitude",
+    "notationRepresentationBurden": "low-to-moderate;degrees/minutes"
+  },
+  "whyCool": "At Madrid noon, Barcelona readout says it peaked23.5minutesago despite sharing one officialclock.",
+  "caveat": "Prediction supplies distance rather than longitude; right-side reveal clipping and map top out of view.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Other latitudes/locations"
+  ]
+}

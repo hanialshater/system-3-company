@@ -1,0 +1,104 @@
+{
+  "slug": "enemies-allow-three-camps",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/enemies-allow-three-camps",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted zero forbidden triangles in camps ABC,DE,F, where only a two-friendly/one-hostile triangle is forbidden.",
+    "Checked all20 in three camps: zero forbidden and six all-enemy triangles. Six singleton camps gave zero/20; two camps gave zero/zero.",
+    "Returned to three camps and made B\u2013D friends: three forbidden triangles appeared, including A,B,D, and all-enemy count fell to five.",
+    "Reveal accurately distinguished original three-camp counts from the changed B\u2013D graph and explained the weaker rule versus also forbidding all-enemy triangles."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires tracking signed triangle patterns and a local-to-global distinction.",
+    "conceptualDemand": "Forbidden motifs and equivalence-class structure.",
+    "interfaceBurden": "Camp presets, full check and one edge toggle."
+  },
+  "whyCool": "A tiny change in which triangles are forbidden changes the whole network's possible structure.",
+  "caveat": "Stable here means satisfying the stated graph rule, not a tested prediction of real social dynamics; strict balance permits a single all-friendly camp as a degenerate case.",
+  "effort": "Completed prediction, all20 checks, three partitions, edge perturbation, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich structural contrasts and clear changed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit signed-edge rule supports reasoning from the graph.",
+      "evidence": "Zero, six or thirteen forbidden triangles.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three partitions and a single edge perturbation expose the rule's boundary.",
+      "evidence": "Two/three/six camps valid, cross-camp friendship creates three violations.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual counts and a named violating triangle explain the conditional structural result.",
+      "evidence": "A,B,D has two friendly edges and one hostile edge.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Edge styles, forbidden shading and historical Seen counts distinguish states.",
+      "evidence": "Red violation triangles after B\u2013D toggle.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General rule is explained but the learner does not construct a new partition.",
+      "evidence": "Preset graphs only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Allowing mutual enemies removes the apparent two-camp restriction.",
+      "evidence": "Six camps remain valid under the weaker rule.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Graph partitions and highlighted violations explain both valid and broken cases.",
+      "evidence": "Multiple partitions plus B\u2013D perturbation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Changing social ties and checking triangles is central.",
+      "evidence": "Camp presets and friendship toggle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstract network structure rather than a practical social prediction.",
+      "evidence": "No real-world behavior model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects local forbidden patterns to global partition structure.",
+      "evidence": "Strong versus weak balance conditions.",
+      "confidence": "medium"
+    }
+  }
+}

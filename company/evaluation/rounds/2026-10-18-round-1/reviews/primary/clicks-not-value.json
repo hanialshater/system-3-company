@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "clicks-not-value",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/clicks-not-value",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose0readervalue maximizingclicks; effort10split h/s,clicks2h+s,value=s.",
+    "E: start h2/s8clicks12/value8;Step h3/s7clicks13/value7;runendh10/s0clicks20/value0;switchvalueandrunendh0/s10clicks10/value10.",
+    "R: Yourpredictionheld. Eachsteptradesvalueforclick; optimizemeasurecanseparateitfromgoal; inventedformula,Goodhartlaw.",
+    "No-historypreview;5/5trustignored. Screenshot1280x720 clearbars; actualrightedgeclippingofrevealtextobservedbesideinternalverticalscroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitsimpleobjectivewithmeaningfulgoalconflict.",
+      "evidence": "P: chose0readervalue maximizingclicks; effort10split h/s,clicks2h+s,value=s.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepandobjectivecontrastmakecausaltradeoffvisible.",
+      "evidence": "E: start h2/s8clicks12/value8;Step h3/s7clicks13/value7;runendh10/s0clicks20/value0;switchvalueandrunendh0/s10clicks10/value10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsunittradeoffandtoyboundary.",
+      "evidence": "R: Yourpredictionheld. Eachsteptradesvalueforclick; optimizemeasurecanseparateitfromgoal; inventedformula,Goodhartlaw.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Bars/controls clear;revealrightclipping.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 clearbars; actualrightedgeclippingofrevealtextobservedbesideinternalverticalscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusableproxyoptimizationprincipleexplicit.",
+      "evidence": "R: Yourpredictionheld. Eachsteptradesvalueforclick; optimizemeasurecanseparateitfromgoal; inventedformula,Goodhartlaw.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 clearbars; actualrightedgeclippingofrevealtextobservedbesideinternalverticalscroll.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Clickmaximumdestroysvalue.",
+      "evidence": "E: start h2/s8clicks12/value8;Step h3/s7clicks13/value7;runendh10/s0clicks20/value0;switchvalueandrunendh0/s10clicks10/value10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Effortallocationandtwobarscarrytradeoff.",
+      "evidence": "E: start h2/s8clicks12/value8;Step h3/s7clicks13/value7;runendh10/s0clicks20/value0;switchvalueandrunendh0/s10clicks10/value10.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibleobjectivechoices.",
+      "evidence": "E: start h2/s8clicks12/value8;Step h3/s7clicks13/value7;runendh10/s0clicks20/value0;switchvalueandrunendh0/s10clicks10/value10.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Metricoptimizationwarning.",
+      "evidence": "R: Yourpredictionheld. Eachsteptradesvalueforclick; optimizemeasurecanseparateitfromgoal; inventedformula,Goodhartlaw.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Resourceconstraintandobjectiveconflict.",
+      "evidence": "R: Yourpredictionheld. Eachsteptradesvalueforclick; optimizemeasurecanseparateitfromgoal; inventedformula,Goodhartlaw.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connecteffortbudget,tworewardrulesandoptimization.",
+    "conceptualDemand": "Linkedlineartradeoff.",
+    "interfaceBurden": "Revealrightclipping.",
+    "prerequisiteNovelty": "low: hype/substance familiar",
+    "notationRepresentationBurden": "moderate: h/sformulas"
+  },
+  "whyCool": "Changingtheobjective reversesallocationandrestoresreadervaluewhileclicksfall.",
+  "caveat": "Inventedlinearformula; doesnotestablishactualclick/value relationship.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

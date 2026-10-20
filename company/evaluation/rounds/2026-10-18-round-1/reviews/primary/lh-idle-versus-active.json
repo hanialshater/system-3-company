@@ -1,0 +1,103 @@
+{
+  "slug": "lh-idle-versus-active",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-idle-versus-active",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Active for daily 60 W\u00d72 h versus idle 3 W\u00d722 h over five days.",
+    "Tests gave 0.6 versus 0.33 kWh; maximum 30 days gave 3.6 versus 1.98.",
+    "Screenshot showed common-scale line slopes, with active endpoint touching upper stage edge. Reveal preserved original/current values and stated idle remains lower only under supplied numbers."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Power-energy conversion and two products.",
+    "conceptualDemand": "Compare combined power and duration.",
+    "interfaceBurden": "Simple tests and day slider."
+  },
+  "whyCool": "A tiny idle draw adds up, but duration alone cannot tell you which load uses more.",
+  "caveat": "Fixed illustrative schedule prevents exploring a crossover; top graph endpoint touches stage edge at maximum.",
+  "effort": "Prediction, both tests, maximum days, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Good conditional energy comparison with clear quantities.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Two competing power-duration factors support a meaningful comparison.",
+      "evidence": "High power short time versus low power long time.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Days scale both contributions while preserving ratio.",
+      "evidence": "5\u219230 days.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains compare products rather than duration or power alone.",
+      "evidence": "Each power times its own duration.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "All illustrative powers, hours and units are explicit.",
+      "evidence": "No actual appliance rating implied.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Conditional comparison rule avoids universal idle-use claim.",
+      "evidence": "Under these stated numbers; check own ratings.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Long idle contributes materially but remains lower.",
+      "evidence": "Idle is 55% of active.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Common-scale line slopes support cumulative comparison.",
+      "evidence": "3.6 versus 1.98 kWh.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and days slider.",
+      "evidence": "Daily schedule fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Energy accounting is central.",
+      "evidence": "Active and idle contributions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Balances power and duration, then accumulates days.",
+      "evidence": "Distinct daily products.",
+      "confidence": "medium"
+    }
+  }
+}

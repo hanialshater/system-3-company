@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "the-long-tail-adds-up",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-long-tail-adds-up",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-long-tail-adds-up",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/the-long-tail-adds-up/meta.json",
+    "metaSha256": "d06f9769bc654f1ea8784eb87b152bba60d808148fb5902cb20bb6dfbfb428ef",
+    "demoSha256": "38a1f5ab3df4bbaf27efb6e42dbd6308e01ba557ecde68305b2492fa48c28309",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-long-tail-adds-up",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-long-tail-adds-up.json"
+  },
+  "date": "2026-10-18T21:04:40.138126+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected62% for top1000of100000 items under1/rank sales."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Top10share24.2%;top100042=notused. Actualtop1000share61.9/other38.1;top1000081/other19;top10042.9/other57.1. Decade bars24.2,18.7,19,19,19%."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read top1000/other99000 shares, near-equal totals across decades, stocking-all store consequence and explicit1/rank model-not-store-data caveat."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected top1000: five rank-rangebars with percentages, highlightedfirstthree andretainedtailbars; counters61.9/38.1 readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact harmonic total is difficult to infer from inverse-rank rule without aggregation scaffold.",
+      "evidence": "99/62/10% options beforebars revealed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cutoff slider contrasts individual rarity with aggregate tail share.",
+      "evidence": "Top10042.9,100061.9,1000081%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Equal-decade bar totals explain why many small sellers matter.",
+      "evidence": "19versus18.7% ranges and38.1%tail.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rank bins and aggregate shares distinguish item sales from totals.",
+      "evidence": "Eachtailitemunder1/1000yetcombined38.1%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete stocking application includes capacity condition and model caveat.",
+      "evidence": "Store able tostockall gains tail sales smallshelf drops;modelnotactualdata.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Individually tiny sellers collectively retain substantialshare.",
+      "evidence": "99000slowitems38.1%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Comparable decade bars reveal accumulation directly.",
+      "evidence": "Rangeswithverydifferentitemcounts near19%.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Cutoff slider offers focused exploration.",
+      "evidence": "10,100,1000,10000 checked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Connects distribution totals to shelf capacity decisions under statedmodel.",
+      "evidence": "Stockallversussmallshelf.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links rank law, aggregation and inventory condition.",
+      "evidence": "Equaldecade contribution despite fallingindividualsales.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: aggregate many inverse-rank quantities versus individual share",
+    "interfaceBurden": "gentle: one decadecutoffslider",
+    "prerequisiteNovelty": "Zipf inverse-rank model andlongtailintroduced",
+    "notationRepresentationBurden": "five rankranges,percentages andreciprocal rank label"
+  }
+}

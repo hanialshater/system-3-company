@@ -1,0 +1,103 @@
+{
+  "slug": "measure-diagonal-for-square",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/measure-diagonal-for-square",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Square corner has equal diagonals;diagram parallelogram70\u00d760 cm.",
+    "Sheared70\u00b0 difference31.63 cm;right-angle mode0. Larger side80 still0 at90\u00b0,sheared33.3.",
+    "Screenshots show crossing diagonals on skewed frame. Reveal duplicated verdict but explicitly states opposite-side lengths retained and parallelogram condition required; equal diagonals not enough for arbitrary quadrilateral."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Diagonals,opposite sides and shape condition.",
+    "conceptualDemand": "Diagnostic valid only within constrained family.",
+    "interfaceBurden": "Two modes and side slider."
+  },
+  "whyCool": "A frame can keep its side lengths while skewing,so its diagonals reveal what side checks miss.",
+  "caveat": "Title should say opposite sides to avoid all-sides-equal confusion;no arbitrary-shape counterexample drawn.",
+  "effort": "Prediction screenshot,both modes,larger side and sheared contrast,screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Good geometric diagnostic and explicit generalization limit.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Useful geometric comparison but option Square corner strongly cues answer.",
+      "evidence": "Equal-diagonal question.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Angle mode and side change distinguish equality from skew.",
+      "evidence": "70/60 then80/60,90\u00b0 versus70\u00b0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains diagonal diagnostic with essential shape condition.",
+      "evidence": "Parallelogram prerequisite.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Title Equal sides may imply all equal although fixture adjacent lengths60/70;reveal clarifies opposite sides.",
+      "evidence": "Square corner refers right angle,not square shape.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete non-applicable arbitrary-quadrilateral case stated.",
+      "evidence": "Equal diagonals alone not general rectangle proof.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Side lengths do not determine squareness.",
+      "evidence": "Skew preserves opposite lengths.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Crossed diagonals show skew versus right-angle mode.",
+      "evidence": "Actual frame geometry.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode switching and side variation.",
+      "evidence": "Difference changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Checking frame squareness central.",
+      "evidence": "Diagonal comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometric invariant and necessary assumption.",
+      "evidence": "Parallelogram versus arbitraryquadrilateral.",
+      "confidence": "medium"
+    }
+  }
+}

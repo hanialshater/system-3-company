@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "last-survivor-is-not-the-most-common",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/last-survivor-is-not-the-most-common",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "last-survivor-is-not-the-most-common",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/cs/last-survivor-is-not-the-most-common/meta.json",
+    "metaSha256": "2e8a7905d75d5ce19e2e884f5ce62352c0ed36d53fba4e622aaab0af26f27653",
+    "demoSha256": "db0b8755eef859c30b77b07d9aa3cef6ba1c8e3188b0d96ae638833b0d1fe44d",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/last-survivor-is-not-the-most-common",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/last-survivor-is-not-the-most-common.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected A and locked it in.",
+    "exploration": "One step on stream A A A B B C C made candidate A and counter one. Run stream one finished candidate C and counter one. Count again showed C two of seven, not majority, while A had three. Stream two A A B A C A A finished A, counter three, with five of seven confirmed. Reset returned original stream at zero processed while preserving both completed traces.",
+    "reveal": "Corrected to C, explained cancellation of unlike pairs, no guarantee without a more-than-half item, and true majority survival. Second pass verifies whether a majority exists.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Letter cards use distinct fills and outlines; per-position candidate-counter traces visible after run. Reveal after reset clearly retained historical counts and displayed current zero state, with readable explanation.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit candidate-counter rules support exact process prediction.",
+      "evidence": "A versus B versus C on seven-item stream.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step, complete run, verification, alternate stream and reset expose guarantee boundary.",
+      "evidence": "C survives without plurality; A survives with five-of-seven majority.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains cancellation and necessity of verification.",
+      "evidence": "More-than-half copies cannot all be cancelled.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Candidate, counter and verified frequency remain distinct.",
+      "evidence": "Counter one does not equal C frequency two; second pass reports actual count.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General majority condition explained with second stream but no new application.",
+      "evidence": "Same stream algorithm on two sequences.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text stream, candidate and verified counts available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Most frequent item can lose candidate cancellation.",
+      "evidence": "A three occurrences versus C two, final C.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-position counter trace exposes cancellation.",
+      "evidence": "A counter rises then drops before C selected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step and alternate stream support algorithm exploration.",
+      "evidence": "Run, count again and reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies what a low-memory majority detector guarantees.",
+      "evidence": "Candidate requires second-pass verification.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates plurality, majority, candidate and proof condition.",
+      "evidence": "True majority cannot be fully cancelled.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple letter stream requires an invariant and guarantee reasoning.",
+    "conceptualDemand": "Track a cancellation counter distinct from frequency and understand conditional majority guarantee.",
+    "interfaceBurden": "Five contextual buttons and retained traces.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Majority-candidate algorithm and second verification pass.",
+    "notationRepresentationBurden": "Letters, counters, plus/minus one and counts out of seven."
+  },
+  "whyCool": "A cancellation survivor is a candidate, not proof of being most common.",
+  "caveat": "Two fixed streams demonstrate the boundary; no fresh arbitrary stream or new application was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:56:28.192219+00:00"
+}

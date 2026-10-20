@@ -1,0 +1,103 @@
+{
+  "slug": "rectangular-bin-nesting",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rectangular-bin-nesting",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted nested shorter. Four10cm bins separate40,nested13 with1cm rim.",
+    "Minimumcount2 nested11; reveal says extra rims add increments.",
+    "Screenshot shows tapered nested bins,readable reveal; explicit real taper/rim caveat and solid boxes exclusion. Duplicate prediction-held wording."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple repeated increment.",
+    "conceptualDemand": "Shared hollow height and rims.",
+    "interfaceBurden": "Modes and count slider."
+  },
+  "whyCool": "Most height is paid once; every extra nested bin adds only its rim increment.",
+  "caveat": "Ideal tapered bins only; no claim all rectangular bins nest.",
+  "effort": "Prediction,mode comparison,count boundary,reveal,inline screenshot.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Readable bounded geometry model.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear outside-height choice with given geometry.",
+      "evidence": "Separate/nested/same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and count demonstrate incremental height.",
+      "evidence": "40\u219213 at4;11 at2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and geometry condition explicit.",
+      "evidence": "Hollow height shared,rims add;solid boxes excluded.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable schematic and values,minor repeated verdict.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit conditions for choosing actual nesting storage.",
+      "evidence": "Check taper and rims;not universal ratio.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar nesting effect.",
+      "evidence": "Four bins13 rather than40.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tapered shared-space schematic central.",
+      "evidence": "Two nested visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Layout and count variation.",
+      "evidence": "4\u21922.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Storage geometry central.",
+      "evidence": "Check nesting shape.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Base height plus marginal rim increment.",
+      "evidence": "10+(n\u22121).",
+      "confidence": "medium"
+    }
+  }
+}

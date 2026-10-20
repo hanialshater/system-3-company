@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "halved-risk-one-in-thousand",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halved-risk-one-in-thousand",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "halved-risk-one-in-thousand",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/halved-risk-one-in-thousand/meta.json",
+    "metaSha256": "e2cd770bc5c9c136ea05f5502dd4c8ccfc2a5f2e710b461eb8b894c3e3aea18c",
+    "demoSha256": "2da65d3d8843006677068bcb72ec074ee0db3024cda290005bd6cef7de3a1862",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/halved-risk-one-in-thousand",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reports/w1c-unplanned-independent-halved-risk-one-in-thousand.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose500 against1 and10 despite explicit2\u21921 per1000 setup; locked it in.",
+    "exploration": "Give pill at baseline2: cases1,spared1. Baseline20 while pill on:cases10,spared10. Baseline200:cases100,spared100. Removed pill:cases200,spared pill off.",
+    "reveal": "Corrected to1; connected2\u21921 with one spared per1000 and1000 treated per spared. Compared200 baseline yielding100 spared. Relative reduction is a share of starting risk; pill made up.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Thousand-dot grid and red case dots clearly show200 untreated; numerical counters and full explanation legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Answerable but numerical answer directly supplied as2\u21921, reducing misconception test strength.",
+      "evidence": "Prompt explicitly states2 in1000 to1 in1000.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three baselines and treatment reversal show fixed relative cut with different absolute effects.",
+      "evidence": "1,10,100 spared; removing pill restores200 cases.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual low/high comparisons to absolute benefit and denominator.",
+      "evidence": "One per1000 versus100 per1000.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dot grid,baseline buttons and counters clear on tested desktop.",
+      "evidence": "Actual screenshot and case/spared status.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General question to ask about relative claims, but no concrete new case with conditions.",
+      "evidence": "Ask from what; arithmetic same for treatment.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Absolute benefit differs sharply from large relative wording; prediction answer was already explicit.",
+      "evidence": "Halves risk but only1 spared at baseline2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot grid shows absolute count changes across fixed population.",
+      "evidence": "2/20/200 baseline comparisons and restored red cases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible pill toggle and risk presets enable comparisons.",
+      "evidence": "Three baselines plus removal.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of treatment benefit central.",
+      "evidence": "1000 treated per one spared in toy example.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Relative and absolute benefit plus treatment count connected.",
+      "evidence": "1 per1000 and100 per1000 contrasts.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates relative proportion from absolute population benefit.",
+    "conceptualDemand": "Track starting-risk denominator and distinguish share of cases from share of all people.",
+    "interfaceBurden": "Low: one treatment toggle and three preset risks.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: relative versus absolute risk and treated-per-benefit relation.",
+    "notationRepresentationBurden": "low: whole counts per1000."
+  },
+  "whyCool": "The same halving spares one dot at the rare baseline and100 at the high baseline.",
+  "caveat": "Prediction states its own subtraction answer; only hypothetical fixed-effect treatment, no side effects or real clinical decision tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:17:40.391314+00:00"
+}

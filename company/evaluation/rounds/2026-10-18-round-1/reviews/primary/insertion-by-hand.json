@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "insertion-by-hand",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/insertion-by-hand",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "insertion-by-hand",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/cs/insertion-by-hand/meta.json",
+    "metaSha256": "a235100a2492ca34bcf26629bfd25b0916b122b9d99d40c59e70fe144a8675aa",
+    "demoSha256": "b424f09f4581e73f87de372d4aa409881e5404ac7d2dbe6bbe61ba2216885db1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/insertion-by-hand",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/insertion-by-hand.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 4 slides and locked it in.",
+    "exploration": "Reverse hand began with ten out-of-order pairs. One manual slide changed 5,4 to 4,5 and counters to one slide/nine pairs. Finish animation completed sorted sequence in ten slides. Nearly sorted 12354 began with one pair and manual slide sorted it in one. Sorted 12345 immediately showed zero slides and pairs.",
+    "reveal": "Corrected to ten, used all three completed hands, summed one plus two plus three plus four, explained one pair fixed per slide and scaled reversed 100 cards to 4950 slides.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected during animation and reveal. Glowing card, per-card slid counts, remaining-pair counter and retained hand totals visible. Finish records total before animation completes; waited until sorted state was actually shown.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise one-place operation gives a meaningful work-count commitment.",
+      "evidence": "Four versus ten versus fifteen slides.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual step, automatic completion and contrasting hands expose input-dependent work.",
+      "evidence": "Ten, one and zero slides observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal derives work from inversion count using actual hand history.",
+      "evidence": "Each slide removes one wrong-order pair.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counters and per-card motion clarify what is counted.",
+      "evidence": "Slide operation distinguished from abstract sorting time.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Scaling to 100 cards extends same task without a new application.",
+      "evidence": "4950 slides stated, no fresh hand reasoning requested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text card order and counters available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same cards take radically different amounts of movement.",
+      "evidence": "Ten versus one versus zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Movement and inversion counters show one-for-one relation.",
+      "evidence": "Manual first slide lowers pairs from ten to nine.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Cards can be stepped or animated in multiple hands.",
+      "evidence": "Four preset hands and slide control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces input-sensitive algorithm work.",
+      "evidence": "Nearly sorted input requires fewer movements.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Concrete process reveals an exact combinatorial work measure.",
+      "evidence": "Inversions and triangular sum.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar cards support counting pairs and algorithm operations.",
+    "conceptualDemand": "Track insertion process and connect movement count to out-of-order pairs.",
+    "interfaceBurden": "One step, finish and four hand presets; wait for animation completion.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Inversion count explained without requiring terminology.",
+    "notationRepresentationBurden": "Ordered digit strings, counters and summed integers."
+  },
+  "whyCool": "Every local slide pays off exactly one out-of-order pair.",
+  "caveat": "Slides are the chosen work measure; zero slides on sorted input does not mean an implementation performs no comparisons.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:34:44.881313+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "monopolist-holds-back",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/monopolist-holds-back",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted100price optimum forlinear demand100\u2212q,cost20,uniformprice;alternatives20/60. Profitformula visible.",
+    "Price100:0units0profit. Fourlower10stepsreached60:40units1600profit.50:50units1500. Rivalsbuttonforces20:80units0profit butdisabledpricesliderstilldisplays50.",
+    "Reveal recallsvisitedpricepath,explainsmargin-versuslostbuyers andoutputrestriction;competitionundercutting20baseline andstraight-line/oneprice/model-notrealfirmlimit.",
+    "1280x720light profitrectanglegraph clear;competitionstatepricecontrolstale50andfinalprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplearithmeticbutinverse demandandarea interpretation.",
+    "conceptualDemand": "Margin\u00d7quantity optimum.",
+    "interfaceBurden": "Sliderandsteps;stalecompetitionprice label."
+  },
+  "whyCool": "Raising price makes each sale more valuable while shrinking the profit rectangle's width, so the best price sits in the middle.",
+  "caveat": "Stylizedcompetitionassumesundercuttingtocost,notgeneralmarketoutcome. Stale50pricelabelwhenrivalstate20. Prosecutoff;no realfirmclaim.",
+  "effort": "Prediction,maximumprice,stepdowntooptimum,nearbyprice,rivalbaseline,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearprofitareamechanism;fixchanged-statepriceandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Demand,cost,uniformprice andprofitrule explicit.",
+      "evidence": "Maximumpriceversusinteriorprofit optimum.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Boundary,interior,nearbyprice andcompetition contrasts isolatetradeoff.",
+      "evidence": "100,60,50thenrivals20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginaloptimum withobservedmargin/quantity andmodel/competitionlimits.",
+      "evidence": "(60\u221220)\u00d740=1600;20competitivebaseline.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph/readouts clear butrivalsstateleaves50pricecontrolwhileactual20;proseclips.",
+      "evidence": "Actualfinalscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalpricingtradeoff,noindependentnewdemand/costcase.",
+      "evidence": "Onefixedlinearcurve.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nocompetitiondoesnotmakemaximumpricebest.",
+      "evidence": "100zero versus60maximum.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Profitrectangle tradesheightagainstwidthacrossprices.",
+      "evidence": "Margin\u00d7quantityarea andcompetitionbaseline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Slider/stepbuttons andrivalstoggle supportprofitsearch.",
+      "evidence": "Multiplepricesandregimes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralprice-volume-profitintuition.",
+      "evidence": "Marginversuslostbuyers.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Optimization,marketpower andcompetitiveoutputcontrast.",
+      "evidence": "40monopolyversus80competitiveunits.",
+      "confidence": "medium"
+    }
+  }
+}

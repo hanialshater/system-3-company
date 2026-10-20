@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historybannerverified,trust5/5ignored. ChoseInfinity versus0/nonumberworks;locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Scoop3 screenshot6÷3=2;Scoop.1 screenshot6÷.1=60;Scoop0 emptyjug'0of6after1000';Check?×0 shows6×0=0,1000×0=0,1000000×0=0,unlock. AXcontainsonlyjug/controlnames,resultsobservedinscreenshots inlineonly. OnePlaywrightcheckboxlocatorhadnomatches;AXclickworked."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquitenonumberworks;own3/.1take2/60,zero1000triesnothing;anynumber×0=0never6,henceundefined. Wording'infinityscoopsofnothingstillnothing' stated."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targets plausible infinity misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Nonzero growth versus exactzero and inversecheck isolate distinction.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ownscoopcounts/zerotries connected to inverse-multiplication reason.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Visualresults clear, but AXsnapshot omits dynamic numericalstage results.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General inversecheck principle stated; no concrete newnumerator/case.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "AXomission alone not systematic mode test.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Increasingquotients do not yield infinityansweratzero.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scoop/jug and emptyzeroattempts carry distinction.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible scooppresets/check.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Arithmeticconcept only.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Limitinggrowth versus exactzero and inversecondition.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguish unbounded nearbyvalues from exactzero impossibility via multiplication.",
+    "conceptualDemand": "Infinity/undefined distinction, supported by familiar scoopmodel.",
+    "interfaceBurden": "Fourpresets/check/reset; dynamicresults notinAX."
+  },
+  "whyCool": "A.1scoop takes60, but1000zero-sizedscoops still fillnone, and multiplicationcheck explainswhy.",
+  "caveat": "Infinity wording is informal; zero-over-zero and negativeapproach untested; dynamicstage numbers requirevisualinspection.",
+  "effort": {
+    "approxMinutes": 3
+  },
+  "missingEvidence": [
+    "Scoop1/reset and systematicaccessibility untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "divide-six-by-zero",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/divide-six-by-zero",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "de7ed8aad11d6156784176bd1a9a7f64bae3a5586e80699d4d5f7eee2f53f8ee",
+    "metaSha256": "3c5a3c6d8315438ce1e29d2b5a5eb2e7285e2404af23f572895cff5469f91bb7"
+  }
+}

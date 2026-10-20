@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "overlap",
+  "slug": "deleted-column-still-there",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/deleted-column-still-there",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust4/4 ignored. Predicted As unequal as before, or more for neighborhood-only model; locked."
+    },
+    {
+      "id": "E",
+      "text": "Train withoutgroup: A80%,B20%, retained Seen80%together. Mixed neighborhoods:A100/B100. 90%together:A90/B10, allthree Seen retained."
+    },
+    {
+      "id": "R",
+      "text": "Explains historical80/40 versusmodel80/20, proxygroupthroughneighborhood, mixed100/100;delete label notpattern;checkoutcomesbygroup. Doesnotmentiontested90/10extension. Fullstageafterupscroll shows N1past76\u2192approve,N2past44\u2192reject andfilledgroupcells;rightrevealclips. Inline screenshotonly."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretegroupoutcome alternatives with modelmajorityrule andhistoricalrates.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mixing andstrongersegregation contrast proxystrength andoutcomegap.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains firsttwooutcomes butomits90%extensionand broadfairness claimwithoutmodel-limitstatement.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Stagepastapprovalthresholds and Seenhistoryhelp,proseclippedright.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Outcomeaudit principle stated;no newmodel/contextapplication tested. Editorialpotentialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Removinggroupcolumn widens40pointgap to60,then80withstrongerproxy.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Neighborhoodfilledcells andpastapprovalthresholds carryproxymechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three reversiblelayouts comparecorrelation.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Illustrates inputremovalversusoutcomeaudit inmodels.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Historicaldecisionlabels,proxycorrelation,thresholding,mixingboundary.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core links groupcomposition,pastapprovalrates,neighborhoodthreshold andgroupoutcomeaggregation.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "moderate;horizontalclipping",
+    "prerequisiteNovelty": "moderate;proxy/model",
+    "notationRepresentationBurden": "moderate;several conditionalpercentages"
+  },
+  "whyCool": "Mixingneighborhoods erasesgroupdifferencewithout everaddinggroupasinput;90%together widensgapagain.",
+  "caveat": "Toymajorityapprovalmodel;outcomeparityalone doesnotestablishallfairnessdimensions;90%contrastnotexplainedinreveal.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Reset",
+    "New model/rule"
+  ]
+}

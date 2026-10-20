@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "savings-outlast-the-division",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/savings-outlast-the-division",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "savings-outlast-the-division",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/savings-outlast-the-division/meta.json",
+    "metaSha256": "c4c6fae86731808fda873fefbefff199b3f56183e94c85ac8eee7af4131882e8",
+    "demoSha256": "c791207d7c2bbd39ba22fd1b1462ba416ba6e38ce5114b655717b8bc7ccaf758",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/savings-outlast-the-division",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/savings-outlast-the-division.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected twelve years and locked it in.",
+    "exploration": "Forty-thousand annual withdrawal at five percent showed 20.1 years. Twenty-five-thousand preset at five percent showed never runs out and flat balance. Zero-growth preset reset withdrawal to forty-thousand and showed 12.5 years. Restored forty-thousand at five percent, again20.1; all three traces retained.",
+    "reveal": "Corrected to twenty years, explained first-year twenty-five-thousand growth offsets withdrawal so balance shrinks fifteen-thousand, then growth falls as pot shrinks. Interest-matching withdrawal stays constant; steady return is made-up and real returns vary.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Three retained balance traces show flat, curved depletion and zero-growth line with labeled endpoints. Model order grows then withdraws explicit. Current and prior trace labels cluster near zero but readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete depletion estimate contrasts simple division with continuing growth.",
+      "evidence": "Twelve versus twenty versus never.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three presets isolate growth contribution and interest-matching boundary.",
+      "evidence": "20.1,12.5 and never compared with retained traces.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains changing annual net draw rather than only final number.",
+      "evidence": "First year shrinks fifteen-thousand, later shrinking earns less.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Growth-before-withdrawal order and fixed-rate limitation are explicit.",
+      "evidence": "Annual sequence label and real-returns caveat.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General depletion principle stays in same savings scenario.",
+      "evidence": "No fresh cash-flow application attempted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text durations and controls observed; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Continuing earnings add years beyond simple division.",
+      "evidence": "Twenty versus twelve-and-half model years.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Retained flat and depletion traces show three regimes.",
+      "evidence": "Interest-matching flat line versus accelerating decline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Preset and withdrawal calculator.",
+      "evidence": "Three comparisons and amount slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies interaction between withdrawals and ongoing earnings.",
+      "evidence": "Explicit hypothetical fixed-rate model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Balance-dependent growth creates nonlinear depletion.",
+      "evidence": "Lower balance earns less and depletion accelerates.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls require compounding cash-flow reasoning.",
+    "conceptualDemand": "Track growth on remaining balance followed by fixed withdrawal.",
+    "interfaceBurden": "Three presets and withdrawal slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Recurring withdrawal with compounding balance.",
+    "notationRepresentationBurden": "Thousands of dollars, percentages and time-series curves."
+  },
+  "whyCool": "A shrinking pot keeps earning, so division misses the changing cash flows.",
+  "caveat": "Fractional depletion-year convention is not explained despite end-of-year withdrawals; fixed returns exclude uncertainty, inflation and fees.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:53:26.134117+00:00"
+}

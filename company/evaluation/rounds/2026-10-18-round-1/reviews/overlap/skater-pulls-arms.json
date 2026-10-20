@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "skater-pulls-arms",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/skater-pulls-arms",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "skater-pulls-arms",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/skater-pulls-arms/meta.json",
+    "metaSha256": "2fdf1dd59c27374d58c2e59f373bc7c4a92af60554b0d29d158010b9aa686c31",
+    "demoSha256": "34eb88dd361ba95a689f26d20c7b2a5e8b8d84d9856b57eafffbdedf2e8e818f",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/skater-pulls-arms",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/skater-pulls-arms.json"
+  },
+  "date": "2026-10-18T20:39:12.260857+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose9turns/s andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "ArmsoutI3spin1product3;halfwayI2spin1.5product3;tuckedI1spin3product3. RestoredoutI3spin1. Actualanimatedarmsandradiiinspected. Rejectedout-of-rangeslidervalue50recoveredbyreadingDOMmax2thenusing1/2."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read3turns/s correction,conservedmomentofinertia-times-spinwithnoexternal twisting,illustrativemoments/frictionless/noairboundary."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineout/half/tuckedandscrolledoutreveal inspected. Armsradii,product,countersandfulltext readable;continuousspinningnotmodeaudited."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Quantitativeinertiacontrastanddefinition supplied.",
+      "evidence": "I3to1,spin1,1/3/9alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threepositionsandreturnexposeinvariantproduct.",
+      "evidence": "3*1=2*1.5=1*3=3;return1turn/s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Conservationconditionexplainsexactinversefactor.",
+      "evidence": "Nooutsidetwisting,thirdinertiatriplesspin;illustrativefrictionlessboundary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Plainmassspreaddefinitionandproductcaptionscaffoldquantity.",
+      "evidence": "Idefinedbeforeprediction;kgm2notationbutturns/sandnumbersclear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conservationconditionwithinsameskater.",
+      "evidence": "No differentapplicationorfreshtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Armtucktriplesspinwithconstantproduct.",
+      "evidence": "9guesscorrectedto3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Changingradiusandanimatedrotationconnectspreadtospin.",
+      "evidence": "Threepositions,countersandproductinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversiblearmpositioncontrol.",
+      "evidence": "Out/half/in/outtested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulrotationintuition.",
+      "evidence": "Conservationunderzeroexternaltwist.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Quantitativeinvariantandboundarylinked.",
+      "evidence": "Momentofinertiaxspinconstant;notonlyfaster/slower.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Interpretrotationalinertiaandcoordinateitsinversechangewithspin.",
+    "interfaceBurden": "Threedetentslider;range2neededDOMattributeafterinvalidguess.",
+    "prerequisiteNovelty": "Momentofinertiaandangularmomentumdefinedqualitatively.",
+    "notationRepresentationBurden": "I,kgm2,turns/sandproduct;numericexampleshelp."
+  }
+}

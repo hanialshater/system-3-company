@@ -1,0 +1,104 @@
+{
+  "slug": "tax-now-or-tax-later",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tax-now-or-tax-later",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedBfor10k,25%taxbeforeorafter4xgrowth;madeupflat-taxmodelexplicit.",
+    "Initial2xat25both15k. Set4xboth30k;later10%B36kversusA30k;later40%B24kversusA30k.",
+    "Revealexplainedcommutative10kx0.75x4at25%,thenactual40%exceptionandnotrealaccountadvice.",
+    "Inline1280x720 light screenshot: start/endbarswithtaxcutoutsandpreserved25%comparison clear;right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Percentagesandgrowthfactorswithtwosequences.",
+    "conceptualDemand": "Multiplicationorderandtaxbasis.",
+    "interfaceBurden": "Two presets,oneslider;proseclipping."
+  },
+  "whyCool": "Thetaxcutcancomeoffbeforeoraftergrowthandlandatthesamenumberuntiltheratechanges.",
+  "caveat": "Madeupflat-taxmodelnotactualaccountguidance;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,2x/4xgrowthand10/25/40%ratecomparisons,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Clearconditionalinvarianceexperiment;repairproselayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Equalstartingpre-taxfunds,rates,growthandtaxbasisclear.",
+      "evidence": "Before/afterflat25%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Growthcontrastandlower/equal/higherfuturerates testequivalenceconditions.",
+      "evidence": "15k/30ktiesversus36k/24kB.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsalgebraicorderinvarianceandobservedrateexceptionwithmodellimit.",
+      "evidence": "0.75x4and40%case.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Goodbarandhistorycomparisonbutproseclips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Changedratecasesletlearnerdistinguishwhenoriginaltieceasestoapply.",
+      "evidence": "10%and40%exceptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Largeruntaxedstartingbalancealonegivesnoadvantageatequalrates.",
+      "evidence": "Both30k.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Taxcutoutsandgrowthbarsgroundmultiplicationorder.",
+      "evidence": "A7500to30000,B10000to40000beforetax.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Growthpresetsandtaxslider.",
+      "evidence": "Fourcontrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Tax-timingmodelandrateconditioncentral.",
+      "evidence": "Explicitillustrativeaccountlimit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Commutativityandconditionalcomparativeoutcomes.",
+      "evidence": "Equalversuschangedtaxrates.",
+      "confidence": "medium"
+    }
+  }
+}

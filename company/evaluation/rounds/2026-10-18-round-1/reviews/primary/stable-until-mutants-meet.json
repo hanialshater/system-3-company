@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "stable-until-mutants-meet",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stable-until-mutants-meet",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "stable-until-mutants-meet",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/stable-until-mutants-meet/meta.json",
+    "metaSha256": "84160d08f4b57d54c5efdc606a4df61846e6ddc0c6d966388c9aa93c1f33b78b",
+    "demoSha256": "6e77da459d678d1c8107e5cbc79163c57f50442cdaec88bdefa045b3f3ee67a2",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/stable-until-mutants-meet",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/stable-until-mutants-meet.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected They stay at about 1 percent and locked it in.",
+    "exploration": "Generation zero B share 1.0 percent, average A 1.99 and B 2.01, edge 0.02. Ten generations gave 1.1 percent; twenty 1.2. Run to 120 gave displayed 100 percent and edge 2.00. Restart restored 1 percent and initial edge; rerun reproduced 100 percent.",
+    "reveal": "Corrected to slowly then fast, described 2 percent by gen 50, 21 by 100 and 99 by 111. Defined all-A Nash equilibrium but not evolutionary stability using B versus B advantage. Toy chosen payoffs and no real-species claim explicit.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Offspring payoff table, slow-then-steep share curve and numeric edge aligned. Reveal text and model caveat legible, with lower card extending to viewport edge.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete payoff table supports a nontrivial spread commitment.",
+      "evidence": "Tie against A but advantage in B encounters.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Early steps versus long run and restart reveal timescale contrast.",
+      "evidence": "1.1 at ten, 1.2 at twenty, 100 displayed at 120.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects accelerating share to frequency-dependent encounters.",
+      "evidence": "B-B advantage grows as B becomes common.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rows, opponent columns and score meaning are explicit.",
+      "evidence": "Surviving offspring and random meetings labels.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Definitions and conditions are explained within chosen game, no fresh application.",
+      "evidence": "Nash equilibrium versus evolutionary stability distinguished.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Payoff table and share summary exposed as text; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tying residents does not prevent eventual invasion.",
+      "evidence": "Tiny early edge becomes takeover.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve and changing average edge show positive feedback.",
+      "evidence": "Flat early share followed by steep rise.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepping and running a model reveals delayed behavior.",
+      "evidence": "Generation controls and restart.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies two stability concepts.",
+      "evidence": "Toy model explicitly not real species.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Separates unilateral equilibrium from evolutionary invasion under frequency dependence.",
+      "evidence": "Second-order encounter advantage and no baseline offspring.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Easy controls introduce payoff matrices and two distinct stability concepts.",
+    "conceptualDemand": "Compute opponent-weighted offspring and infer frequency-dependent invasion despite direct tie.",
+    "interfaceBurden": "Three generation and restart buttons.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Nash equilibrium and evolutionary stability introduced at reveal.",
+    "notationRepresentationBurden": "Two by two payoff table, percentages and average score differences."
+  },
+  "whyCool": "A mutant can creep almost invisibly until meeting its own kind makes growth accelerate.",
+  "caveat": "Chosen deterministic payoff model has no baseline offspring and does not establish real-population invasion behavior.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:32:22.123356+00:00"
+}

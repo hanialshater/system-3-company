@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "second-positive-test",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/second-positive-test",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "second-positive-test",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/second-positive-test/meta.json",
+    "metaSha256": "33279f336604b2745208432fbb17bd5d56f526a946c6e86bd5d92c43a74315b8",
+    "demoSha256": "63a07ee2f79a21b5bfe0289d4787e8f7bf5a3a13bc8fec6223405cbe0f007b5f",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/second-positive-test",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/second-positive-test.json"
+  },
+  "date": "2026-10-18T20:34:20.949771+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose81%aftersecondpositive andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Started1000with10sick990healthy. Testeveryone98positive,9sick89healthy9%. Retestpositive16remain,8sick8healthy50%. Inspectedactualringedredversusringedhealthy subsets aftereachstage."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read50%correction,odds10:990to9:89to8:8,eachpositive~10xratiofrom90/9;dependenterrorsrepetitionhelpsless."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,first/secondselectionandscrolledreveal inspected. Dot/ringle gend,counters andfullprose readable. InitialAXimagecallsall1000flaggedbeforetestwhilevisualringsabsent;notusedaspositive evidence."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numericalconditionsandindependenceexplicit.",
+      "evidence": "1%base,90%sensitivity,9%falsepositive,secondpositiveforecast.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actualsubsetfilteringmakesconditionaldenominatorsvisible.",
+      "evidence": "1000to98to16,10to9to8sick;healthy990to89to8.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Oddsupdateandindependenceboundaryexplainresult.",
+      "evidence": "~10xoddsperpositive;samerepeatederrorhelpsless.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Countsandratiossupportconditionalprobability.",
+      "evidence": "Positivecountandofthosesickseparate;initialAXflagwordingimprecisebutvisiblecaptionunambiguous.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrepeat-testconditionwithinsameexample.",
+      "evidence": "No differentdiagnosticcaseornewtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two positivesstillonlyabouthalfbutmuchmorethanone.",
+      "evidence": "9%to50%,not81%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ringsfilterpopulationwhilecolortrackscondition.",
+      "evidence": "Actualselecteddotsand8:8endpointinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twostagefilterbuttons.",
+      "evidence": "Testallthenpositives.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulrepeat-evidenceandbase-rateintuition.",
+      "evidence": "Independenceconditionexplicitlylimitsrepetitionbenefit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Baseodds,likelihoodratioanddependence linked.",
+      "evidence": "1:99to1:10to1:1withsame rates.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Trackconditionaldenominatorandmultiplyoddsacrossindependenttests.",
+    "interfaceBurden": "Two guidedbuttonsandreset;lowburden.",
+    "prerequisiteNovelty": "Sensitivity,falsepositiveandindependenceintroducednumerically.",
+    "notationRepresentationBurden": "Counts,percentandratios;frequencydisplayhelps."
+  }
+}

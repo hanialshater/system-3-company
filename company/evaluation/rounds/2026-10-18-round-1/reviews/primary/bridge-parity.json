@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust6/6 ignored. ChoseYes versusNo/onlyisland;locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Full map bridges1,2,3,4,5,6: stuck Island6of7, one remaining nonehere. Countbridges enabledrings/explains inoutpairs,revealunlocked. Close7 resets0of6; screenshot degreesNorth3Island5East2South2. Route3,4,1,2,5,6 completes6of6."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "NotquiteNo fromany start. Recalls stuckIsland1left and sixbridge success; inoutpairs require even interior degrees; onlystart/endodd; full5/3/3/3 fourodd two too many,closed7 twoodd. Screenshots inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear route existence alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Direct failed route, explanatory count overlay and successful changed-map contrast.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects both own paths to pairing invariant and endpoint exception.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Reachability-disabled buttons/counters make paths legible.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable even/odd endpoint condition explicitly explained.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Impossiblewalk becomes possible by closingbridge.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Map counts and rings reveal pairing.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Distinct failed/successful route discovery with changedmap.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Route planning applicability concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local pairing to global impossibility and boundary.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Supported invariant links local in/out pairing to global route impossibility; contrast demonstrates changed condition.",
+    "conceptualDemand": "Parity, endpoint exceptions and impossibility across all routes; direct counts/pairs support.",
+    "interfaceBurden": "Map bridge buttons only reachable enabled; state counters/count overlay support navigation."
+  },
+  "whyCool": "Closing just bridge7 changes four odd places to two, turning a stranded6of7attempt into a completed6of6walk.",
+  "caveat": "Only one full-seven attempted route; proof supplied by parity explanation, not exhaustive search. Newstart/restart untested.",
+  "effort": {
+    "approxMinutes": 4
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternative starts and accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "bridge-parity",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bridge-parity",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "569f51ed58b654749fb0b7e120a54767216a3dbeb6df36b59ff0547c5c2a6996",
+    "metaSha256": "66bd8e57c9a4ba2b240b9a1e364d35da5d66ca862ba28de6baaa9ef5e31e2709"
+  }
+}

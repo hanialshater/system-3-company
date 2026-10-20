@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "Preview banner: learning history and analytics are not saved. Chose 'about 8' from about 5/6/7/8; Lock it in enabled dilution controls. Trust chrome '8/8 claims checked' visible and ignored."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Clicked ×10: pH 6.00 acid 1.0×10⁻⁶ water 9.9×10⁻⁹; ×100:6.79 acid1.0×10⁻⁷ water6.2×10⁻⁸; ×1,000:6.98 acid1.0×10⁻⁸ water9.5×10⁻⁸; ×10,000:7.00 acid1.0×10⁻⁹ water1.0×10⁻⁷. Stored thousandfold and ten-thousandfold results remained visible; Show me why unlocked."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Clicked Show me why. 'Not quite: it was “about 7”.' Reveal cites own 6.98 and7.00 results, water supplying100times more H⁺ than acid, 25°C ion product10⁻¹⁴, approach to7 never past. Screenshot viewed inline only; log scale bars acid/water/total and pH7neutral line visible; inner card scroll at720px."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible extrapolation choices and locked commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four contrasts expose growing water share and retain two boundary results.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitly resolves wrong prediction using observed numbers and25°C limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls understandable; advanced notation and inner scroll burden general learner.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Dilution limit reusable but stated specifically for strong acid and25°C.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode testing.",
+      "evidence": "r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Extrapolated8reverses to near7.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Contribution bars show water dominance.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Discrete reversible dilution selections.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Concrete acid dilution context without applied task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Dilution, water contribution and equilibrium limit linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Core requires relating dilution and water contribution as a limiting floor; notation adds substantial prerequisite demand.",
+    "conceptualDemand": "Linked acid/water contributions and neutral limit; pH logarithmic representation and ion-product explanation unfamiliar under common boundary.",
+    "interfaceBurden": "Four clearly labeled controls; powers, ions and internal scrolling add burden."
+  },
+  "whyCool": "A further tenfold dilution changes pH from6.98to7.00 while the water bar dominates the remaining acid.",
+  "caveat": "Reveal introduces pH/log scale and ion-product notation without demonstrating these prerequisites; no independent factual validation.",
+  "effort": {
+    "approxMinutes": 3
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard/focus, phone, zoom/reflow, contrast and motion untested."
+  ],
+  "screenshots": [],
+  "slug": "acid-diluted-a-thousandfold",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/acid-diluted-a-thousandfold",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "bf97037f2c36e62fed7fa30ddc59c7f41f384b813dac86ee686d9fe9584830e8",
+    "metaSha256": "200cc04b6fe7f970b6c772ab16ce1441b1e20b6ccd98d0ab15b598c8891f42ca"
+  }
+}

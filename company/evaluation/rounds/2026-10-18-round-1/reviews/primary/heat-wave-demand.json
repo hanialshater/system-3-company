@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "heat-wave-demand",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heat-wave-demand",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "heat-wave-demand",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/heat-wave-demand/meta.json",
+    "metaSha256": "224446e9ba1d0bddbcf8312c6c068c5cee3a6ae2569b26b7c64a84a31741f444",
+    "demoSha256": "dfbd21135d73db3735439960c8ae90b0ede2188dcb6f43e4f42d4d22108e1958",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/heat-wave-demand",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/heat-wave-demand.json"
+  },
+  "date": "2026-10-18T19:25:35.968040+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected9dollars and locked. Buyer/seller linear equations and original6/40 given.",
+    "exploration": "Demand0:price6,cones40. Set30:7.50,55. End60:9,70. Home0 restores6/40; reveal remains enabled.",
+    "reveal": "Correct7.50,original30shift explicitly cited plus actual60/9 contrast. At9 under original30shift sellers70/buyers40 surplus drivespriceback;moreconesandhigherprice shareadjustment. Straightline,onemarket,toymodel limits.",
+    "visual": "Inline1257x936 dark screenshot inspected: descending buyers/ascending sellers with dollar/conesaxes and currentbaselinecrossing6/40; allcontrols,countersandhistoricalreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific6/7.5/9 choices contrast fixedprice,balancedadjustment andallpricechange.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Demand0/30/60/reset changespriceandquantitytogether,onefixedslopepair.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesactual30caseandwrong9throughquantifiedsurplus,connectssellerresponseandmodelconditions; citesothertriedshift.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Axes,statecounters andoriginalversuschangedcase references clear ontesteddesktop.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable demand-shiftresponse andmodelscope,butnofreshmarketapplicationorslopeconditionexplored.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen9at30shiftobserved7.5;9requires60shift.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Movingintersectionalongfixedsellersline showsjointprice/quantityresponse.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibleshiftcontrol supportscomparisonsandreset.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretationofmarketdemandshock.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Demandshift,quantityresponse,wrong-pricesurplus andmodelscope.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate twomarketrelationsanddistinguishdemandshiftfromquantitysoldresponse.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:onesliderandcounters",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: supply-demand equilibrium",
+    "notationRepresentationBurden": "moderate: linear equations,p,pricequantityplot"
+  },
+  "whyCool": "Wanting30moreconesat everyprice producesonly15more soldbecauseprice rises too.",
+  "caveat": "Onlyonefixedsupply/demand slopepair; nofreshapplicationcase."
+}

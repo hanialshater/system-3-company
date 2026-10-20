@@ -1,0 +1,104 @@
+{
+  "slug": "point-one-is-26-percent",
+  "demoVersion": 5,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/point-one-is-26-percent",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted1% hydrogen-ion increase for pH8.2to8.1; lower-pH direction stated, logarithmic conversion not supplied until reveal.",
+    "8.1 preset126dots/+26%;7.9preset200/+100%;Back8.2returns100/+0 while priorcase summaries persist. Dotlegend says equal tiny H+ amounts,boxbaseline.",
+    "Reveal recalls both visited cases and explains ten0.1steps make tenfold,each1.26 multiplier;0.3 roughly doubles. Historical ocean claim not independently checked.",
+    "1280x720 light screenshot: initial dotgrid partly scrolled above frame; outputs clear; reveal right-edge cutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concrete dot counts support fractional logarithm idea.",
+    "conceptualDemand": "Scale differences versus concentration ratios.",
+    "interfaceBurden": "Simple presets; tall internal dotgrid."
+  },
+  "whyCool": "A change in the second pH digit adds a visibly substantial number of equal-sized ion dots.",
+  "caveat": "Ocean historical values and chemistry idealization not independently audited. Round counts and pH approximations. Prose clips at right edge.",
+  "effort": "Prediction,two shift presets,baseline reset,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Concrete logarithmic comparison; fix reveal layout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Specific ratio question but exact conversion depends on unstated logarithmic definition.",
+      "evidence": "Only lower pH means more ions given before choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Baseline and two shifts make multiplicative change visible with reset.",
+      "evidence": "100,126,200dots and retained summaries.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains decimal-step multiplier and both cases using observed counts.",
+      "evidence": "1.26^10 approximately10;0.3doubling.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Equal-dot legend and summary labels clear; prose cutoff.",
+      "evidence": "Actual screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains general scale relation without separate application task.",
+      "evidence": "8.2/8.1/7.9 within same ocean context.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Small pH digit change means quarter more ions.",
+      "evidence": "0.1drop yields26%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Baseline box and extra equal dots concretize ratio.",
+      "evidence": "126and200 versus100.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presets and slider support simple comparisons.",
+      "evidence": "Two shifts and baseline reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpreting ocean-acidification numbers central.",
+      "evidence": "pH versus concentration percentage.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fractional logarithmic units and repeated multiplication linked.",
+      "evidence": "Ten0.1steps form oneunit.",
+      "confidence": "medium"
+    }
+  }
+}

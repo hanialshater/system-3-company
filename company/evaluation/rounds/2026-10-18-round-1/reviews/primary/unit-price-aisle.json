@@ -1,0 +1,104 @@
+{
+  "slug": "unit-price-aisle",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/unit-price-aisle",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Three same-rice packs cost 3.50 for 500 g, 5.10 for 750 g, and 8.40 for 1.2 kg.",
+    "Pouring each revealed normalized prices seventy, sixty-eight and seventy cents per hundred grams.",
+    "Lowering large-pack price to 7.20 changed its unit price to sixty cents and highlighted it as best.",
+    "Reveal recalls original cheapest medium pack and explicitly includes changed large-pack price, invented-price provenance, storage and waste caveat."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Everyday quantities and unit prices.",
+    "conceptualDemand": "Normalize grams and kilograms before comparison.",
+    "interfaceBurden": "Three pour buttons and a price slider."
+  },
+  "whyCool": "A bigger pack can have the same unit price as the smallest while the middle one wins.",
+  "caveat": "Invented prices and same product; unit price alone does not account for unused goods.",
+  "effort": "Prediction, all three pours, price reversal, screenshots and context-aware reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Practical, reversible normalized comparison with explicit consumption limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise unit comparison with plausible size and sticker-price biases.",
+      "evidence": "All quantities and prices supplied.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three normalized packs and editable large price demonstrate reversal.",
+      "evidence": "Medium cheapest initially; large cheapest at 7.20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original and changed cases plus a meaningful limit.",
+      "evidence": "Price divided by quantity; lower rate helps only if used.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Comparable per-hundred-gram bars and labels make ranking clear.",
+      "evidence": "Seventy, sixty-eight, seventy then sixty cents.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete shopping rule with usage condition.",
+      "evidence": "Normalize units and consider waste/storage.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "The largest pack ties the smallest rather than beating it.",
+      "evidence": "Medium best at initial prices.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Normalized columns expose comparable rates.",
+      "evidence": "Different pack sizes become common per-unit prices.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reveal each pack and adjust one price.",
+      "evidence": "No custom pack sizes or other goods.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Direct reusable comparison with tested ranking change and a usage caveat.",
+      "evidence": "Original medium winner versus changed large winner; waste/storage matter.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates sticker price, quantity, rate and use.",
+      "evidence": "Rate need not decrease with size.",
+      "confidence": "medium"
+    }
+  }
+}

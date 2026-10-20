@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-tail-that-reacts",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-tail-that-reacts",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-tail-that-reacts",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/the-tail-that-reacts/meta.json",
+    "metaSha256": "69940558dd761a1bc0d2e4261921a5c9ec5cbeeacf9dd4b5d4cfdb2f802bea07",
+    "demoSha256": "092fb0b6f1d1dbd96bb1b0a19645bb98b7b6e4c5de3ae3f0c98d336975182545",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-tail-that-reacts",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-tail-that-reacts.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 1.03 times and locked it in before controls opened.",
+    "exploration": "At 298 K the tail was 1.7 per billion and rate 1.00. Warm to 308 K produced 3.3 and 1.93. Keyboard Home reached 288 K, 0.9 and 0.50; End restored 308 K.",
+    "reveal": "Explanation corrected the prediction to 1.9 times, tied rate to the tail and stated that doubling per 10 K fits barriers near 50 kJ/mol rather than being a law.",
+    "visual": "Actual dark 1257 by 936 screenshot inspected. Main distribution, broken horizontal axis and pink barrier tail zoomed 250 million times were visible with dashed baseline; explanatory text fit the card.",
+    "previewIsolation": "Evaluation preview banner said learning history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviewers judgments were inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear numerical commitment exposes proportional warming intuition.",
+      "evidence": "Selected 1.03 against 1.9 and 10 before exploration.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Slider creates a meaningful reversible contrast with linked metrics.",
+      "evidence": "288 K gave 0.50; 308 K gave 1.93.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The explanation connects the visible rare tail to the rate correction.",
+      "evidence": "1.7 to 3.3 per billion compared with nearly unchanged crowd.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels explain the barrier and visibly disclose the large tail magnification.",
+      "evidence": "Barrier, collision energy axis, axis break and 250 million times zoom shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A conditional rule of thumb is supplied but no new application is attempted.",
+      "evidence": "Near 50 kJ/mol qualification accompanies doubling per 10 K.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "A complete mode audit was not performed.",
+      "evidence": "Keyboard endpoint operation observed; screen reader, contrast and reduced motion not audited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Small warming produces an almost doubled rate.",
+      "evidence": "3 percent and 1.93 times contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Magnified tail makes the causal comparison visible.",
+      "evidence": "Pink tail and dashed baseline beside nearly unchanged distribution.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Exploration is a direct slider experiment.",
+      "evidence": "Warm button and temperature range.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Helps qualify a common temperature rule.",
+      "evidence": "Rule explicitly limited to a barrier range.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relates distribution tails, threshold and rate.",
+      "evidence": "Barrier around twenty thermal energies explains steep sensitivity.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "A simple slider supports an unfamiliar distribution-tail argument.",
+    "conceptualDemand": "Relating a tiny shaded tail to a reaction rate requires distribution and threshold reasoning.",
+    "interfaceBurden": "One button and one slider with immediate numbers.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Energy barriers, kelvin and per-billion frequency are introduced.",
+    "notationRepresentationBurden": "kJ/mol, multiplicative rates and a broken magnified axis."
+  },
+  "whyCool": "A tiny change in the crowd can nearly double the rare events that matter.",
+  "caveat": "The tail is heavily magnified and the rate model holds the barrier fixed; no fresh reaction application was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:10:37.323090+00:00"
+}

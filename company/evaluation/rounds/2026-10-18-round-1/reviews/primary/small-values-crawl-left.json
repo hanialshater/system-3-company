@@ -1,0 +1,103 @@
+{
+  "slug": "small-values-crawl-left",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/small-values-crawl-left",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted same. X=2,3,4,5,6,1 and Y=6,1,2,3,4,5 both use left-to-right adjacent swaps.",
+    "First sweep: X's1 moved place6\u21925 while Y's6 crossed place1\u21926. Second sweep: X1at4, Y already done with one swapping sweep. Finish Xfive swapping sweeps versus Yone.",
+    "Screenshot retained row-by-row lanes and movement paths: X slow diagonal, Y single full-lane crossing. Reveal explicitly distinguishes swapping sweeps from final no-swap check and names comb-sort gap idea."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires tracing repeated adjacent comparisons but uses six familiar numbers.",
+    "conceptualDemand": "Within-sweep movement versus across-sweep progress.",
+    "interfaceBurden": "Low: two run controls."
+  },
+  "whyCool": "The two movement paths turn an abstract asymmetry into a visible fast crossing and slow staircase.",
+  "caveat": "Fixed examples and sweep direction; no freely edited input or alternate-direction run. Counts exclude terminal no-swap verification as clearly stated.",
+  "effort": "Browser prediction, two individual sweeps, finish, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Exceptional causal trace despite narrow interaction space.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise symmetric-looking inputs with specified direction and count.",
+      "evidence": "Question explicitly counts sweeps making at least one swap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Learner steps a fixed comparison without changing inputs.",
+      "evidence": "Sweep both and sweep-to-end only.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Visual trace supplies the exact directional cause of original miss.",
+      "evidence": "One left move per sweep versus repeated right moves within one sweep.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Swapping-only count avoids off-by-one ambiguity.",
+      "evidence": "Y done at one after no-swap check; Xfive.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalizes turtle weakness and names remedy without testing it.",
+      "evidence": "Comb sort mentioned but no gap comparison.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Mirror-looking misplaced extreme costs five versus one.",
+      "evidence": "Same cards and five-position displacement.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Retained paths directly encode the asymmetric mechanism.",
+      "evidence": "Full-lane Y path and multi-row X diagonal alongside card rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepping race makes trace engaging.",
+      "evidence": "Fixed parallel lanes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Algorithm input sensitivity and motivation for gaps.",
+      "evidence": "No actual comb-sort experiment.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Explains directional movement constraint rather than count alone.",
+      "evidence": "Left-to-right sweep revisits large value, not small value.",
+      "confidence": "medium"
+    }
+  }
+}

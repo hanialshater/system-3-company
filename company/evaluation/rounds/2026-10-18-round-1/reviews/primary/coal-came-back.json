@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "coal-came-back",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coal-came-back",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseOil; which biggerin2024afterOilpassedCoalin1968?",
+    "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+    "R: Not quite:Coal. Coal took lead back2005; fuel can lose first place and still burn more. Estimates rebuilt from fuel-use records; file revised yearly.",
+    "No-history preview;7/7trust ignored. Inline screenshot1280x720 labels source layers, million tonnes and retained shares."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear trend-extrapolation prediction.",
+      "evidence": "P: choseOil; which biggerin2024afterOilpassedCoalin1968?",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Share versus absolute representation exposes different conclusions.",
+      "evidence": "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Corrects prediction, explains share/quantity and source boundary.",
+      "evidence": "R: Not quite:Coal. Coal took lead back2005; fuel can lose first place and still burn more. Estimates rebuilt from fuel-use records; file revised yearly.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Chart labels and retained counters clear.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 labels source layers, million tonnes and retained shares.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable ranking versus absolute-growth distinction.",
+      "evidence": "R: Not quite:Coal. Coal took lead back2005; fuel can lose first place and still burn more. Estimates rebuilt from fuel-use records; file revised yearly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 labels source layers, million tonnes and retained shares.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Coal regains lead and absolute amount triples.",
+      "evidence": "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stacked chart redraw makes total growth visible.",
+      "evidence": "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Sequential timeline disclosure.",
+      "evidence": "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Climate-data share versus quantity interpretation.",
+      "evidence": "R: Not quite:Coal. Coal took lead back2005; fuel can lose first place and still burn more. Estimates rebuilt from fuel-use records; file revised yearly.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Rank, share and total growth linked.",
+      "evidence": "E: pressed1900,1968,2005,2024; shares coal1900 96%,coal/oil2024 41%/32%; tonnescontrol redraws absolute stacked chart, coal since1968\u00d73tonnes; bracket oil ahead1968\u20132004.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connect shares with absolute amounts and changing rank.",
+    "conceptualDemand": "Linked relative and absolute comparisons.",
+    "interfaceBurden": "Low labelled chronology.",
+    "prerequisiteNovelty": "low: emissions units explained",
+    "notationRepresentationBurden": "moderate: stacked area chart"
+  },
+  "whyCool": "Switching from shares to tonnes shows coal grew threefold despite its decades out of first place.",
+  "caveat": "Timeline disclosure offers fixed data contrasts without causal investigation.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

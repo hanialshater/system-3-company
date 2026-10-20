@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "three-giants-in-africa",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-giants-in-africa",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "three-giants-in-africa",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/geography/three-giants-in-africa/meta.json",
+    "metaSha256": "d112db64c9123f00c427ffa25a477bbd87db6dce7123308ee773fc122b13944c",
+    "demoSha256": "39c81d520f6a81134ba48824c9224308b87593429a9db586c7bad3e878ed97d3",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/three-giants-in-africa",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/three-giants-in-africa.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Africa is too small for them and locked it in.",
+    "exploration": "Moved US then China then India. Share rose 0 to 31 to 63 to 73 percent, with room left 30.0, 20.6, 11.2 and 8.0 million square kilometres. Each move became disabled; no reset or removal control was visible.",
+    "reveal": "Corrected to room to spare, gave total 22.0 versus Africa 30.0 million square kilometres and explained Equal Earth versus Mercator distortion. Claimed the countries fit inside Africa.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Three colored labeled outlines lay over blue Africa. Caption explicitly said pieces spill over a coast about 3 percent and totals use area. Reveal inner scroll clipped map top and lower explanation at current position, while area metrics remained visible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete familiar-country comparison elicits size intuition.",
+      "evidence": "Too small selected against fit and exact fill.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Three meaningful additions update cumulative area but are one-way prescribed steps.",
+      "evidence": "Disabled moved countries and no visible reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Area arithmetic and projection explanation are useful, but literal fit wording overstates the admitted coastal spill.",
+      "evidence": "Caption about 3 percent spill versus reveal fit inside.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Labels and totals are clear; packing wording and reveal clipping create friction.",
+      "evidence": "Map top clipped and caption qualifies fit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Mercator latitude distortion is explained without a new application.",
+      "evidence": "US and China stretched more than much of Africa.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text share and placed-country summary observed; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Three large countries occupy under three quarters of Africa by area.",
+      "evidence": "73 percent with 8.0 million square kilometres left.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Equal-area overlays expose scale through familiar outlines.",
+      "evidence": "US, China and India labeled in distinct colors.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple additive placement sequence.",
+      "evidence": "Three move buttons without free placement.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Challenges geographic size judgments from common maps.",
+      "evidence": "Equal Earth and Mercator contrast.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Area totals lead into projection distortion.",
+      "evidence": "Latitude-dependent stretching explained.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar shapes and additive percentages support the comparison.",
+    "conceptualDemand": "Separate land area from familiar map appearance and literal packing.",
+    "interfaceBurden": "Three sequential buttons; inner scrolling at reveal.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Equal-area projection and Mercator distortion introduced in prose.",
+    "notationRepresentationBurden": "Percentages and millions of square kilometres."
+  },
+  "whyCool": "Recognizable country outlines make a continental area comparison tangible.",
+  "caveat": "The coastal spill caption conflicts with a literal reading of fit inside; this is an area comparison rather than exact containment.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Reset unavailable in visible controls"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:17:26.590188+00:00"
+}
