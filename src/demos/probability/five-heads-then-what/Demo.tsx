@@ -45,7 +45,7 @@ export default function FiveHeads({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "A fair coin just landed heads five times in a row. How likely is heads on flip six?",
-        options: ["Below 50%", "Exactly 50%", "Above 50%"],
+        options: ["Below 50%", "About 50%", "Above 50%"],
         answer: 1,
       }}
       exploreHint={`Flip until you have caught ${NEED} runs of five heads. Look at what came next.`}
@@ -58,7 +58,7 @@ export default function FiveHeads({ slug }: { slug: string }) {
             <strong>half</strong>, as it is for every flip.
           </p>
           <p>
-            The coin does not know what it did before. Each flip is a fresh 50/50, so a streak is never &ldquo;due&rdquo;
+            Each flip is a fresh 50/50, so a streak is never &ldquo;due&rdquo;
             to end. Your share sits off 50% only by chance, and it wobbles less the more runs you catch.
           </p>
           <p className="muted">

@@ -103,19 +103,19 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "10,000 new pages each add one link. Raise copying (link to what another page links to) from 0% to 90%. The biggest page's links?",
+          "10,000 new pages each add one link. Raise the share that copy another page's link from 0% to 90%. The biggest page's links?",
         options: ["About the same", "About double", "Hundreds of times more"],
         answer: 2,
       }}
       exploreHint="Run 0% and 90% copying. Then slide back in time to watch the leader grow."
       minInteractions={2}
       reveal={() => {
-        if (pairSeed === undefined) return <p>Run both 0% and 90% copying in one seed to compare them.</p>;
+        if (pairSeed === undefined) return <p>Run both 0% and 90% copying in one world to compare them.</p>;
         const [z, , n] = RUNS[pairSeed];
         return (
           <>
             <p>
-              In your seed {pairSeed} runs (the table), the biggest page ended with {fmt(z.max[9])} links with no copying and{" "}
+              In world {pairSeed} (the table), the biggest page ended with {fmt(z.max[9])} links with no copying and{" "}
               {fmt(n.max[9])} with 90% copying: about {fmt(Math.round(n.max[9] / z.max[9]))} times more. The top 1% of pages went
               from holding {pct(z.top1[9])} of all links to {pct(n.top1[9])}.
             </p>
@@ -124,7 +124,6 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
               the lead; with none, {fmt(z.lead[9])}. A copier links to whatever a random link points at, so a page with 500 links is
               500 times more likely to be copied than a page with one.
             </p>
-            <p>The copying share does not nudge the winner. It decides how big the winners get.</p>
           </>
         );
       }}
@@ -150,7 +149,7 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.note}>
-                  Seed {seed} · {fmt(k * 1000)} pages so far
+                  World {seed} · {fmt(k * 1000)} pages so far
                 </p>
                 <svg viewBox={`0 0 ${W} 150`} className="stage-svg" role="img" aria-label="Links of the biggest page at each copying share">
                   <text x={X0} y={12} className={s.cap}>
@@ -225,7 +224,7 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
                 <Row>
                   <Readout label="Top 1% of pages hold" value={active === null ? "–" : pct(runs[active].top1[k - 1])} />
                   <Control disabled={locked} onClick={nextSeed}>
-                    Next seed
+                    Next world
                   </Control>
                 </Row>
                 {recs.length > 0 && (
@@ -246,7 +245,7 @@ export default function MoreCopyingBiggerStars({ slug }: { slug: string }) {
                           return (
                             <tr key={`${r.seed}-${r.si}`}>
                               <th>
-                                seed {r.seed}, {pct(SHARES[r.si])}
+                                world {r.seed}, {pct(SHARES[r.si])}
                               </th>
                               <td>{fmt(R.max[9])}</td>
                               <td>{pct(R.top1[9])}</td>

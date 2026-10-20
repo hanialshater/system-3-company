@@ -110,7 +110,7 @@ export default function FourRollsOneSix({ slug }: { slug: string }) {
           <p>
             Each roll removes about 1/6 of the players still left, not 1/6 of everyone: {LEFT.map(n).join(" → ")}. Adding 1/6 per
             roll predicted only {n(Math.round(addingNone(ROLLS)))} left ({pct(ROLLS / 6)} with a six) and would pass 100% by the
-            seventh roll. Count the ways to miss every time, then subtract.
+            seventh roll.
           </p>
         </>
       )}

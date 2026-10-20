@@ -121,7 +121,7 @@ export default function BaseRates({ slug }: { slug: string }) {
         options: ["About 99%", "About 90%", "About 50%", "About 9%"],
         answer: 3,
       }}
-      exploreHint="At 1 in 1,000, fill the town, test everyone and count the positives. Then compare."
+      exploreHint="At 1 in 1,000, fill the town, test everyone and count the positives. Then compare other rates."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

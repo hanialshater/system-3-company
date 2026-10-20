@@ -135,8 +135,7 @@ export default function AtLeastOneBoy({ slug }: { slug: string }) {
           </p>
           <p>
             &ldquo;The older is a boy&rdquo; is a different clue. It removes a whole row, leaving two kinds of family, so
-            the answer is {frac("olderBoy")} ({o.both} of {o.left} on the stage). The clue removes cases, not a particular
-            child.
+            the answer is {frac("olderBoy")} ({o.both} of {o.left} on the stage). A clue greys out whole boxes of families.
           </p>
           <p className="muted">The answer depends on how you learned it; here you learn only the clue itself.</p>
         </>

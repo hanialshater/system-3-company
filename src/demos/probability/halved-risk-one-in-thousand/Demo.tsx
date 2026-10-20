@@ -118,8 +118,7 @@ export default function HalvedRisk({ slug }: { slug: string }) {
             only {spared(LOW)} in 1,000, so 1,000 people take it for one to be spared.
           </p>
           <p>
-            At {HIGH} in 1,000 the same halving spared {spared(HIGH)}. A relative cut is a share of the starting risk, so
-            the first question to ask about &ldquo;halves your risk&rdquo; is: from what?
+            At {HIGH} in 1,000 the same halving spared {spared(HIGH)}. A relative cut is a share of the starting risk.
           </p>
           <p className="muted">The pill is made up; the arithmetic is the same for any treatment.</p>
         </>

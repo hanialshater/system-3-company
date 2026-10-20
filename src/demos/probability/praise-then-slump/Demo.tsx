@@ -37,7 +37,7 @@ export default function PraiseThenSlump({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A test score is half skill, half luck. The top 10% on test 1 sit test 2 with the same skill and no coaching. Their average on test 2 will be:",
+          "A test score is half skill, half luck. The top 10% on test 1 sit test 2 with the same skill and no coaching. What happens to their average on test 2?",
         options: ["About the same", "Lower", "Higher"],
         answer: 1,
       }}
@@ -54,7 +54,6 @@ export default function PraiseThenSlump({ slug }: { slug: string }) {
             the luck is drawn fresh, so on average it is ordinary. The bottom group rises for the same reason.
           </p>
           <p className="muted">
-            Praise a top performer and they &ldquo;slump&rdquo;; scold a bottom one and they &ldquo;improve&rdquo;.
             Galton named this regression toward the mean in 1886.
           </p>
         </>

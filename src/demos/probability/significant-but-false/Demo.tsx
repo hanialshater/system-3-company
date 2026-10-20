@@ -134,7 +134,7 @@ export default function SignificantButFalse({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "1,000 ideas tested; 10% truly work. Tests catch 80% of real effects; 5% of duds pass by fluke. What share of passes are flukes?",
+        question: "1,000 ideas tested; 10% work. Tests catch 80% of real effects; 5% of duds pass by fluke. What share of passing ideas are flukes?",
         options: ["About 5%", "About 20%", "About 35%"],
         answer: 2,
       }}

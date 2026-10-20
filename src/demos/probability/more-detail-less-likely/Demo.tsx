@@ -73,7 +73,7 @@ function Stage({ locked, reach, lib, setLib, club, setClub, seen, setSeen }: {
       </svg>
       <Row>
         <Slider
-          label="Run a club, of librarians"
+          label="Librarians who run a club"
           value={club}
           min={CLUB.min}
           max={CLUB.max}

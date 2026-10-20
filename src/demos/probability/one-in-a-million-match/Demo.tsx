@@ -56,7 +56,7 @@ export default function OneInAMillion({ slug }: { slug: string }) {
           </p>
           <p className="muted">
             This assumes the culprit is in the database and always matches. Search a small database and the 1-in-6
-            becomes much higher: the size of the search matters.
+            becomes much higher.
           </p>
         </>
       )}

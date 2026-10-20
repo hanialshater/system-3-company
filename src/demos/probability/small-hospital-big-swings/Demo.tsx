@@ -41,18 +41,17 @@ export default function SmallHospital({ slug }: { slug: string }) {
         options: ["A (smaller)", "B (larger)", "About the same"],
         answer: 0,
       }}
-      exploreHint="Compare hospital A with hospital B, then slide the size up and down."
+      exploreHint="Compare hospital A with B, then slide the size and watch how wide the dots spread."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            In this seeded year, hospital A had <strong>{countA}</strong> days over 60% boys and hospital B had{" "}
+            In this simulated year, hospital A had <strong>{countA}</strong> days over 60% boys and hospital B had{" "}
             <strong>{countB}</strong>. On average it is about 55 days against 25: a day at the small hospital is more
             than twice as likely to look lopsided.
           </p>
           <p>
-            With 15 babies, 10 boys is a small fluke. With 45, getting 28 or more boys needs a much bigger one. Small
-            groups swing wider, so the most extreme percentages come from the smallest samples.
+            With 15 babies, 10 boys is a small fluke. With 45, getting 28 or more boys needs a much bigger one.
           </p>
           <p className="muted">
             When Tversky and Kahneman asked this, most people said &ldquo;about the same&rdquo;. Real births are about 51% boys; this uses

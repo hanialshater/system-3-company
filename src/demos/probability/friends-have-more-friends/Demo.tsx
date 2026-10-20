@@ -110,7 +110,7 @@ export default function FriendsHaveMoreFriends({ slug }: { slug: string }) {
             The average person has only {MEAN.toFixed(1)}.
           </p>
           <p>
-            Four people in five are leaves, and a leaf&rsquo;s only friend is the hub, with 4 friends. So {toHub} of your{" "}
+            Four people in five know only the hub, who has 4 friends. So {toHub} of your{" "}
             {n} picked friends were the hub: 0.2 × 1 + 0.8 × 4 = 3.4. Popular people sit on many friend lists, so a friend
             you pick tends to be a popular one.
           </p>

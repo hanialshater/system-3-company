@@ -129,7 +129,7 @@ export default function SameAverage({ slug }: { slug: string }) {
         options: ["X", "Y", "Equally often"],
         answer: 1,
       }}
-      exploreHint="Switch to Game Y and watch the spread. Then run 1,000 players each."
+      exploreHint="Switch to Game Y and count the red lines. Then run 1,000 players each."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -142,7 +142,6 @@ export default function SameAverage({ slug }: { slug: string }) {
             Y pays through rare big wins. Most players lose $5 a time and wait; if fewer than 9 of 100 plays win, they end
             behind. X is steadier: small wins and losses, half the time each.
           </p>
-          <p className="muted">The average tells you where the crowd ends up. The spread tells you how many people get there.</p>
         </>
       )}
     >

@@ -95,7 +95,7 @@ export default function OneCircleFewerIntroductions({ slug }: { slug: string }) 
     <Lesson
       slug={slug}
       predict={{
-        question: `${FRIENDS} mutual friends, each ${pct(P)} likely to introduce you. Compare: friends in ${FRIENDS} separate circles, or all in one circle that meets some weeks.`,
+        question: `${FRIENDS} friends, each ${pct(P)} a week to introduce you. They are in ${FRIENDS} separate circles, or one circle that meets only some weeks. Which is better?`,
         options: ["Separate circles give better odds", "The same either way", "One circle gives better odds"],
         answer: 0,
       }}

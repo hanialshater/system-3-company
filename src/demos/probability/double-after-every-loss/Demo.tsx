@@ -89,7 +89,7 @@ function Stage({ locked, interact, played, setPlayed }: { locked: boolean; inter
         <Readout label="$1 wins" value={st.wins} />
         <Readout label={`$${BUST} busts`} value={st.busts} />
         <Readout label="Total" value={money(st.total)} />
-        <Readout label="Bust: 1 round in" value={st.busts ? Math.round(played / st.busts) : "–"} />
+        <Readout label="Rounds per bust" value={st.busts ? Math.round(played / st.busts) : "–"} />
         <Readout label="Average per round" value={played ? `${st.total / played < 0 ? "−" : "+"}$${Math.abs(st.total / played).toFixed(2)}` : "–"} />
       </Row>
     </div>
@@ -106,7 +106,7 @@ export default function DoubleAfterEveryLoss({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Fair coin, even money (you win or lose what you bet). Bet $1 and double after each loss; stop at the first win, or after ${MAX_LOSSES} losses in a row ($${BUST} lost). Your average profit per round is:`,
-        options: [`about +$${(1 - P_BUST).toFixed(2)}`, "exactly $0", `about −$${(1 - P_BUST).toFixed(2)}`],
+        options: [`about +$${(1 - P_BUST).toFixed(2)}`, "about $0", `about −$${(1 - P_BUST).toFixed(2)}`],
         answer: 1,
       }}
       exploreHint="Play until a bust, then play all the way to 5,000 rounds. Watch the average per round."

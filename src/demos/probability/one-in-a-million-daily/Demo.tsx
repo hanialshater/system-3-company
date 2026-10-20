@@ -116,15 +116,14 @@ export default function OneInAMillionDaily({ slug }: { slug: string }) {
           <p>
             In your year at {short(CITY)} people the event happened {fmt(CITY_YEAR.total)} times: about{" "}
             <strong>{CITY_YEAR.mean.toFixed(0)} a day</strong>, and {CITY_YEAR.none === 0 ? "not one day" : `only ${CITY_YEAR.none} days`} went
-            without. That is just {fmt(CITY)} chances times 1 in a million: {PER_DAY} a day on average.
+            without. That is {fmt(CITY)} chances times 1 in a million: {PER_DAY} a day on average.
           </p>
           <p>
-            For you, one in a million is rare. For a city it is routine. A day with none would itself be the oddity:
+            A day with none would itself be the oddity:
             its chance is about {(pNone(CITY) * 100).toFixed(2)}%.
           </p>
           <p className="muted">
-            Assumes everyone faces the same chance, independently, every day. Somewhere, a coincidence is always
-            happening.
+            Assumes everyone faces the same chance, independently, every day.
           </p>
         </>
       )}

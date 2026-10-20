@@ -144,7 +144,6 @@ export default function SmallGapBigExtremes({ slug }: { slug: string }) {
             growing: {pct(shareB(140))}, about {r1(ratio(140))} to 1.
             {cut < 130 && ` At your cutoff of ${cut} cm it is ${pct(shareB(cut))}.`}
           </p>
-          <p>A small gap between averages says little about the middle and a lot about the extremes.</p>
         </>
       )}
     >

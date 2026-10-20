@@ -70,7 +70,7 @@ function Stage({ locked, reach, stake, setStake, played, setPlayed }: {
             points={g.path.map((v, i) => `${px(Math.sqrt(((i / (g.path.length - 1)) * g.steps) / maxSteps)).toFixed(1)},${py(v).toFixed(1)}`).join(" ")}
           />
         ))}
-        <text x={W - 6} y={H - 2} textAnchor="end" className={s.lab}>bets (compressed) →</text>
+        <text x={W - 6} y={H - 2} textAnchor="end" className={s.lab}>bets →</text>
       </svg>
       <svg viewBox="0 0 320 34" className={`stage-svg ${s.tally}`} role="img" aria-label={stake ? `${k} of ${n} games took all, ${n - k} ruined` : "No games yet"}>
         {stake && (
@@ -79,7 +79,7 @@ function Stage({ locked, reach, stake, setStake, played, setPlayed }: {
             <rect x={PL + (W - PL - 6) * (k / n)} y={4} width={(W - PL - 6) * (1 - k / n)} height={14} className={s.tallyL} />
             <line x1={PL + (W - PL - 6) * (stake / TOTAL)} x2={PL + (W - PL - 6) * (stake / TOTAL)} y1={1} y2={21} className={s.tick} />
             <text x={PL} y={31} className={s.lab}>
-              {n} games: {k} took all (green), {n - k} ruined (red). Tick: stake / ${TOTAL}.
+              {n} games: {k} took all (green), {n - k} ruined (red). Tick: your share of ${TOTAL}.
             </text>
           </>
         )}

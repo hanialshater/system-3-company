@@ -65,7 +65,7 @@ function Stage({
           ? "Make a prediction to start."
           : n === 0
             ? `Each batch: ${FLIPS} flips of a fair coin. Run some.`
-            : "Shaded: batches at or past the marker. Their share is the p-value."}
+            : "Shaded: batches at or past the marker."}
       </p>
       <svg viewBox="0 0 360 186" className={`stage-svg ${s.svg}`} role="img" aria-label={`${n} batches; ${k} with ${mark} or more heads`}>
         <line x1={X0} y1={BASE} x2={X0 + W} y2={BASE} className={s.axisLine} />

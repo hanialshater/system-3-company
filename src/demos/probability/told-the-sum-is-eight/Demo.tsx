@@ -99,7 +99,7 @@ export default function ToldTheSumIsEight({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "You roll two dice and are told only that the total is 8. How likely is it that at least one die shows a six?",
-        options: [`about ${pct(N.six / N.left)}`, pct(E.six / E.left), "50%"],
+        options: [`${pct(N.six / N.left)}`, pct(E.six / E.left), "50%"],
         answer: 1,
       }}
       exploreHint="Give the clue “Total is 8”. Then try another clue."

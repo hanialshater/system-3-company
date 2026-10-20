@@ -131,7 +131,7 @@ export default function CityPollNationPoll({ slug }: { slug: string }) {
         options: ["The city's", "The nation's", "About the same"],
         answer: 2,
       }}
-      exploreHint={`Change who lives there: try ${n(CITY)}, then ${n(SMALL)}. Then change how many are asked.`}
+      exploreHint={`Shrink the population to ${n(CITY)}, then ${n(SMALL)}. Then change how many are asked.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

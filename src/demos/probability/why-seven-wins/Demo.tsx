@@ -134,7 +134,7 @@ export default function WhySevenWins({ slug }: { slug: string }) {
           <p>
             Every total is possible, but totals are not equally likely: the middle can be made in the most ways. Your{" "}
             {N_ROLLS.toLocaleString("en-US")} rolls gave {ROLLS[7]} sevens and {ROLLS[3]} threes, close to {RATIO} to 1 but
-            not exact; rolls wobble, the 36 ways do not.
+            not exact.
           </p>
         </>
       )}

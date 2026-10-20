@@ -91,9 +91,9 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       <p className={s.chip}>
         {show
           ? k === LAST
-            ? `Same 30 runs, ${fmt(CHECK[k])} draws each. Hollow: off chart. Farthest Cauchy dot ${far.val.toFixed(1)} holds one draw of ${fmt(Math.round(far.big))}.`
-            : `Same 30 runs, ${fmt(CHECK[k])} draw${k === 0 ? "" : "s"} each. Hollow: off the chart.`
-          : "Each dot: one run's average. Cauchy: rare, enormous draws."}
+            ? `Same 30 dots, ${fmt(CHECK[k])} draws each. Hollow: off chart. Farthest Cauchy dot ${far.val.toFixed(1)} holds one draw of ${fmt(Math.round(far.big))}.`
+            : `Same 30 dots, ${fmt(CHECK[k])} draw${k === 0 ? "" : "s"} each. Hollow: off the chart.`
+          : "Each dot is an average. Cauchy draws are sometimes enormous."}
       </p>
       <Row>
         {CHECK.map((n, i) => (
@@ -142,7 +142,7 @@ export default function AverageNeverSettles({ slug }: { slug: string }) {
           </p>
           <p className="muted">
             In theory, the average of any number of Cauchy draws is as spread out as one draw: beyond ±1 half the time (
-            {Math.round(cauchyTail(1) * 100)}%). These 30 dots are one seeded batch, not the rule.
+            {Math.round(cauchyTail(1) * 100)}%). These 30 dots are one sample.
           </p>
         </>
       )}

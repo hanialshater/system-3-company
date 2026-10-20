@@ -186,7 +186,7 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
                 </p>
                 <svg viewBox="0 0 320 78" className="stage-svg" role="img" aria-label={`Random classes drawn: ${tally.draws}`}>
                   <text x={HX0} y={10} className={s.cap}>
-                    random classes by number crossing · seed {SEED}
+                    random classes: how many friendships cross groups
                   </text>
                   {tally.hist.map((v, c) =>
                     c >= H_LO && c <= H_HI && v > 0 ? (

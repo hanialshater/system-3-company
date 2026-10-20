@@ -87,7 +87,7 @@ export default function TwoRandomWalksAgree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two completely independent random walks (${STEPS} coin-flip steps each) are drawn. How often is their correlation r stronger than 0.5 in either direction?`,
+        question: `Two lines each take ${STEPS} coin-flip steps, never affecting each other. How often is their correlation r stronger than 0.5 in either direction?`,
         options: ["about 5%", "about 40%", "about 80%"],
         answer: 1,
       }}

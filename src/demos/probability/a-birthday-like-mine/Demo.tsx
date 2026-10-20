@@ -68,7 +68,7 @@ export default function ABirthdayLikeMine({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In a room of ${SMALL} people, some two share a birthday about half the time. How many other people do you need before it is even odds that someone shares YOUR birthday?`,
+        question: `In a room of ${SMALL} people, some two share a birthday about half the time. How many other people do you need before the chance that someone shares YOUR birthday reaches 50%?`,
         options: [`${SMALL}`, `${MID}`, `${ANSWER}`],
         answer: 2,
       }}

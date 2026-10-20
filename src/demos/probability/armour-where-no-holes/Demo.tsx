@@ -98,7 +98,7 @@ export default function ArmourWhereNoHoles({ slug }: { slug: string }) {
           <Row>
             <Readout label="Came back" value={back.length} />
             <Readout label="Never came back" value={flown ? lost : "—"} />
-            <Readout label="Their engine holes" value={flown ? backHoles.filter((h) => h.engine).length : "—"} />
+            <Readout label="Returned engine holes" value={flown ? backHoles.filter((h) => h.engine).length : "—"} />
           </Row>
         </div>
       )}

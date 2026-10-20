@@ -114,7 +114,7 @@ export default function MontyHall100({ slug }: { slug: string }) {
         options: ["50%", "1%", "99%"],
         answer: 2,
       }}
-      exploreHint="Play 100 rounds with 100 doors and compare staying with switching. Then try the guessing host."
+      exploreHint="Play 100 rounds with 100 doors and compare staying with switching. Then try a host who opens doors at random."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -136,7 +136,6 @@ export default function MontyHall100({ slug }: { slug: string }) {
             car is, squeezed them all onto the one door he left shut.
           </p>
           <p className="muted">
-            His knowledge is the point.{" "}
             {guessed.length > 0
               ? `Your guessing host (opening doors at random, rounds where he hit the car thrown away): ${guessed
                   .map((n) => `${n} doors, kept ${guesses[n].kept} of ${fmtN(guesses[n].rounds)}, stay won ${guesses[n].stay}, switch won ${guesses[n].swap}`)

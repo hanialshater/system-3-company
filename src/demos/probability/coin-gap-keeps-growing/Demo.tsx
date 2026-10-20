@@ -62,7 +62,7 @@ export default function CoinGap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You flip a fair coin 10,000 times. On average, how far apart (heads minus tails) will the two counts end up?",
+          "You flip a fair coin 10,000 times. On average, how big will the gap between the heads and tails counts be?",
         options: ["Under 5", "About 80", "About 1,000"],
         answer: 1,
       }}

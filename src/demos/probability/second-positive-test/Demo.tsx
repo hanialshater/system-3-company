@@ -103,7 +103,7 @@ export default function SecondPositiveTest({ slug }: { slug: string }) {
           <p>
             The sick-to-healthy ratio went {C0.sick} : {C0.healthy} (1 to {Math.round(C0.healthy / C0.sick)}), then {C1.sick} :{" "}
             {C1.healthy} (about 1 to {Math.round(C1.healthy / C1.sick)}), then {C2.sick} : {C2.healthy}. Each positive multiplies it by
-            about {FACTOR} ({pct(SENSITIVITY)} &divide; {pct(FALSE_POS)}): a modest test gets convincing when repeated.
+            about {FACTOR} ({pct(SENSITIVITY)} &divide; {pct(FALSE_POS)}).
           </p>
           <p className="muted">
             This assumes the two tests err independently. A test that is fooled the same way twice by the same person helps less.

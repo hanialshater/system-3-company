@@ -106,7 +106,7 @@ export default function SameLineFourPictures({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Four sets of 11 points share the same means, spreads and correlation (r = ${RTXT}). One is a loose cloud, one a curve, one has an outlier, one hangs on a single extreme point. The best-fit line for the curved set is:`,
+        question: `Four sets of 11 points share the same means, spreads and correlation (r = ${RTXT}). One of them is curved. Its best-fit line is:`,
         options: ["Much flatter than the others", "The same as the others", "Steeper than the others"],
         answer: 1,
       }}

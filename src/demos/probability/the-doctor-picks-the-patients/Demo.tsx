@@ -151,7 +151,7 @@ export default function TheDoctorPicksThePatients({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "A drug that does nothing is tested on 40 patients, 20 get it. Who should choose those 20 for a fair test?",
-        options: ["The doctor, who knows the patients", "A coin flip for each", "Either: with 20 per group it evens out"],
+        options: ["The doctor, who knows the patients", "A coin decides", "Either: with 20 per group it evens out"],
         answer: 1,
       }}
       exploreHint="Let the coin choose a few times, then let the doctor choose."

@@ -92,7 +92,7 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "8 songs, all about as good (the best only 70% more appealing than the worst). 1,000 people in each of 8 separate worlds pick one, each person more likely to pick songs already picked by others. In the worst of the 8 worlds, the best song finishes:",
+          "8 songs (the best 70% more appealing than the worst). 1,000 people in each of 8 separate worlds pick one, each person more likely to pick songs already picked by others. In the worst of the 8 worlds, the best song finishes:",
         options: ["2nd of 8", "4th of 8", "7th of 8"],
         answer: 2,
       }}
@@ -104,7 +104,7 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
             With copying on, the best song finished anywhere from {span(on.high, on.low).replace("–", " to ")} across the 8 worlds (lowest in
             world {on.lowWorlds.join(", ")}). With copying off, same songs and same listeners, only {span(off.high, off.low).replace("–", " to ")}.
             Copying did not stop the best song winning as often: {on.first} of 8 worlds with copying on and {off.first} of 8
-            with it off. It made the result unpredictable: the top song in each world took {range(on.top)} of the
+            with it off. It made hits bigger: the top song in each world took {range(on.top)} of the
             picks, against at most {Math.max(...off.top.map(pct))}% with copying off.
           </p>
           {early && (
