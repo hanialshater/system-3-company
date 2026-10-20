@@ -1,0 +1,114 @@
+{
+  "slug": "story-trans-siberian",
+  "title": "Siberia: the route changed",
+  "family": "Infrastructure",
+  "hook": "Was the final railway the only route ever considered?",
+  "predict": {
+    "question": "Did an earlier route pass through Manchuria?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0
+  },
+  "frames": [
+    {
+      "date": "Early plans",
+      "heading": "Amur route",
+      "text": "Plans favor a route along the Amur.",
+      "active": [
+        "amur",
+        "vlad"
+      ]
+    },
+    {
+      "date": "Before 1916",
+      "heading": "A shortcut",
+      "text": "A line through Manchuria shortens the route.",
+      "active": [
+        "harbin",
+        "vlad"
+      ]
+    },
+    {
+      "date": "Early 1900s",
+      "heading": "Political exposure",
+      "text": "The Manchurian connection faces political conflict.",
+      "active": [
+        "harbin"
+      ]
+    },
+    {
+      "date": "1916",
+      "heading": "Amur completed",
+      "text": "The Amur line provides an all-Russian route.",
+      "active": [
+        "amur",
+        "vlad"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "west",
+      "name": "Western link",
+      "coordinates": [
+        113,
+        52
+      ]
+    },
+    {
+      "id": "amur",
+      "name": "Amur",
+      "coordinates": [
+        132,
+        49
+      ]
+    },
+    {
+      "id": "harbin",
+      "name": "Manchuria",
+      "coordinates": [
+        126.6,
+        45.8
+      ]
+    },
+    {
+      "id": "vlad",
+      "name": "Vladivostok",
+      "coordinates": [
+        131.9,
+        43.1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "west",
+        "amur",
+        "vlad"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "west",
+        "harbin",
+        "vlad"
+      ]
+    }
+  ],
+  "reveal": "Terrain and politics changed the railway’s path. The route through Manchuria shortened the journey but exposed it to political changes and conflict. Completion of the Amur line in 1916 supplied a route entirely within Russia’s territory at the time. Infrastructure routes reflect choices as well as distance.",
+  "limit": "Selected eastern corridors, not the complete railway or modern borders.",
+  "sources": [
+    {
+      "url": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/",
+      "section": "LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

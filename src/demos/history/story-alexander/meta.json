@@ -1,0 +1,150 @@
+{
+  "slug": "story-alexander",
+  "title": "Alexander: the return matters",
+  "hook": "Did the expedition keep moving east until it ended?",
+  "domain": "history",
+  "concept": "story-alexander",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Back west, at Babylon"
+    ]
+  },
+  "misconception": "In Greece",
+  "objective": "The map bends back west.",
+  "claims": [
+    {
+      "id": "history.story-alexander.frame1",
+      "text": "334 BCE: Crossing. The army crosses the Hellespont.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great — Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-alexander.frame2",
+      "text": "330s BCE: Conquests. Campaigns take in Egypt and Persia.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great — Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-alexander.frame3",
+      "text": "Later: Eastern reach. The expedition reaches the Indus region.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great — Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-alexander.frame4",
+      "text": "323 BCE: Return. The army turns back; Alexander dies at Babylon.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great — Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-alexander.reveal",
+      "text": "The map bends back west. The Macedonian army’s eastern reach did not become an endless advance: the soldiers insisted on returning. Alexander died at Babylon, and the conquests were divided among generals. Army decisions and succession mattered alongside the commander.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great — Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-alexander.limit",
+      "text": "Selected regional checkpoints; intermediate campaigns and exact marches omitted.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-alexander.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Where does the expedition end?",
+    "options": [
+      "Farther east",
+      "Back west, at Babylon",
+      "In Greece"
+    ],
+    "answer": 1,
+    "why": "The map bends back west. The Macedonian army’s eastern reach did not become an endless advance: the soldiers insisted on returning. Alexander died at Babylon, and the conquests were divided among generals. Army decisions and succession mattered alongside the commander."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-alexander",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great"
+    ],
+    "tags": [
+      "map-story",
+      "campaigns"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

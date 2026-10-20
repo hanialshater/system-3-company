@@ -1,0 +1,150 @@
+{
+  "slug": "story-german-unification",
+  "title": "Germany: who was left out?",
+  "hook": "Did unification include the other major German power?",
+  "domain": "history",
+  "concept": "story-german-unification",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Unification did not simply gather every German-speaking territory.",
+  "claims": [
+    {
+      "id": "history.story-german-unification.frame1",
+      "text": "1864: Denmark. Prussia wins a war against Denmark.",
+      "support": "source",
+      "source": "https://www.dhm.de/lemo/kapitel/reaktionszeit — Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion; https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung — Austria and unification after 1866",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.frame2",
+      "text": "1866: Austria. War excludes Austria from Prussia’s unification path.",
+      "support": "source",
+      "source": "https://www.dhm.de/lemo/kapitel/reaktionszeit — Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion; https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung — Austria and unification after 1866",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.frame3",
+      "text": "1870–71: France. War against France precedes the empire.",
+      "support": "source",
+      "source": "https://www.dhm.de/lemo/kapitel/reaktionszeit — Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion; https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung — Austria and unification after 1866",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.frame4",
+      "text": "1871: Empire. A German Empire forms without Austria.",
+      "support": "source",
+      "source": "https://www.dhm.de/lemo/kapitel/reaktionszeit — Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion; https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung — Austria and unification after 1866",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.reveal",
+      "text": "Unification did not simply gather every German-speaking territory. Prussia’s victory over Austria in 1866 made Austrian participation increasingly remote, and the empire formed after war against France. The outcome reflected conflicts between states as well as a national movement.",
+      "support": "source",
+      "source": "https://www.dhm.de/lemo/kapitel/reaktionszeit — Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion; https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung — Austria and unification after 1866",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.limit",
+      "text": "Lines mark wars between states, not troop routes or modern territorial claims.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-german-unification.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Was Austria included in the 1871 German Empire?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "Unification did not simply gather every German-speaking territory. Prussia’s victory over Austria in 1866 made Austrian participation increasingly remote, and the empire formed after war against France. The outcome reflected conflicts between states as well as a national movement."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-german-unification",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.dhm.de/lemo/kapitel/reaktionszeit",
+      "https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung"
+    ],
+    "tags": [
+      "map-story",
+      "revolutions & borders"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "slug": "story-italian-unification",
+  "title": "Italy: a kingdom before Rome",
+  "hook": "Was Rome part of the new kingdom from its first day?",
+  "domain": "history",
+  "concept": "story-italian-unification",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "The kingdom existed before Rome joined it.",
+  "claims": [
+    {
+      "id": "history.story-italian-unification.frame1",
+      "text": "Before 1861: Fragmented peninsula. The peninsula contains separate states.",
+      "support": "source",
+      "source": "https://history.state.gov/countries/italy/summary — Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871; https://history.state.gov/countries/papal-states — Incorporation into Italy and move of capital",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.frame2",
+      "text": "1861: Kingdom. Most of the peninsula forms a kingdom.",
+      "support": "source",
+      "source": "https://history.state.gov/countries/italy/summary — Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871; https://history.state.gov/countries/papal-states — Incorporation into Italy and move of capital",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.frame3",
+      "text": "1870: Rome incorporated. Rome joins the Kingdom of Italy.",
+      "support": "source",
+      "source": "https://history.state.gov/countries/italy/summary — Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871; https://history.state.gov/countries/papal-states — Incorporation into Italy and move of capital",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.frame4",
+      "text": "1871: Capital moves. The capital moves to Rome.",
+      "support": "source",
+      "source": "https://history.state.gov/countries/italy/summary — Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871; https://history.state.gov/countries/papal-states — Incorporation into Italy and move of capital",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.reveal",
+      "text": "The kingdom existed before Rome joined it. Most of the peninsula unified in 1861, Rome was incorporated in 1870, and the capital moved there in 1871. State formation and the choice of capital were separate steps, not one event.",
+      "support": "source",
+      "source": "https://history.state.gov/countries/italy/summary — Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871; https://history.state.gov/countries/papal-states — Incorporation into Italy and move of capital",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.limit",
+      "text": "City connections mark incorporation stages, not borders, consensus or a march route.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-italian-unification.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "When the kingdom formed in 1861, was Rome included?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "The kingdom existed before Rome joined it. Most of the peninsula unified in 1861, Rome was incorporated in 1870, and the capital moved there in 1871. State formation and the choice of capital were separate steps, not one event."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-italian-unification",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://history.state.gov/countries/italy/summary",
+      "https://history.state.gov/countries/papal-states"
+    ],
+    "tags": [
+      "map-story",
+      "revolutions & borders"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

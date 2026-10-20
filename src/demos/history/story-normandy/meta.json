@@ -1,0 +1,151 @@
+{
+  "slug": "story-normandy",
+  "title": "Normandy: beyond the landing",
+  "hook": "After D-Day, what kept the armies supplied?",
+  "domain": "history",
+  "concept": "story-normandy",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Beaches"
+    ]
+  },
+  "misconception": "Cherbourg alone",
+  "objective": "The landing was the start of a supply problem.",
+  "claims": [
+    {
+      "id": "history.story-normandy.frame1",
+      "text": "6 Jun: Landings. Allied forces land on Normandy beaches.",
+      "support": "source",
+      "source": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day — Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6; https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day — June 6, 1944 landings",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-normandy.frame2",
+      "text": "16 Jun: Artificial harbors. Mulberries begin unloading supplies.",
+      "support": "source",
+      "source": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day — Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6; https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day — June 6, 1944 landings",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-normandy.frame3",
+      "text": "19–21 Jun: Storm. A storm damages the American harbor.",
+      "support": "source",
+      "source": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day — Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6; https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day — June 6, 1944 landings",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-normandy.frame4",
+      "text": "Late Jun: Beaches endure. Beach supply continues; Cherbourg remains unusable.",
+      "support": "source",
+      "source": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day — Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6; https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day — June 6, 1944 landings",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-normandy.reveal",
+      "text": "The landing was the start of a supply problem. Artificial harbors helped, but the June storm damaged the American Mulberry. Beaches continued handling supplies while Cherbourg’s damaged port could not yet serve the armies. A captured port was not automatically a usable one.",
+      "support": "source",
+      "source": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day — Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6; https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day — June 6, 1944 landings",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-normandy.limit",
+      "text": "Schematic supply links, not ship tracks or a front line.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-normandy.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Which supply route still mattered at the end of June?",
+    "options": [
+      "Beaches",
+      "Cherbourg alone",
+      "Only artificial harbors"
+    ],
+    "answer": 0,
+    "why": "The landing was the start of a supply problem. Artificial harbors helped, but the June storm damaged the American Mulberry. Beaches continued handling supplies while Cherbourg’s damaged port could not yet serve the armies. A captured port was not automatically a usable one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-normandy",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day",
+      "https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day"
+    ],
+    "tags": [
+      "map-story",
+      "campaigns"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

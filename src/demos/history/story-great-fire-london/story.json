@@ -1,0 +1,122 @@
+{
+  "slug": "story-great-fire-london",
+  "title": "London: how the fire stopped",
+  "family": "Disease & disasters",
+  "hook": "What changed after the flames began spreading?",
+  "predict": {
+    "question": "What helped bring the fire under control?",
+    "options": [
+      "Firebreaks and weaker wind",
+      "The Thames dried up"
+    ],
+    "answer": 0
+  },
+  "frames": [
+    {
+      "date": "2 Sep 1666",
+      "heading": "Pudding Lane",
+      "text": "Fire starts in a bakery.",
+      "active": [
+        "pudding"
+      ]
+    },
+    {
+      "date": "2–5 Sep",
+      "heading": "Westward spread",
+      "text": "Strong winds drive fire through the City.",
+      "active": [
+        "pauls",
+        "temple"
+      ]
+    },
+    {
+      "date": "4 Sep",
+      "heading": "Firebreaks",
+      "text": "Gunpowder helps demolish buildings.",
+      "active": [
+        "city"
+      ]
+    },
+    {
+      "date": "5 Sep",
+      "heading": "Under control",
+      "text": "Weaker wind and firebreaks slow the spread.",
+      "active": [
+        "city"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "pudding",
+      "name": "Pudding Lane",
+      "coordinates": [
+        -0.0857,
+        51.51
+      ]
+    },
+    {
+      "id": "pauls",
+      "name": "St Paul’s",
+      "coordinates": [
+        -0.0983,
+        51.5138
+      ]
+    },
+    {
+      "id": "temple",
+      "name": "Temple",
+      "coordinates": [
+        -0.111,
+        51.5135
+      ]
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "coordinates": [
+        -0.093,
+        51.514
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "pudding",
+        "pauls",
+        "temple"
+      ]
+    }
+  ],
+  "reveal": "The changing conditions matter alongside the starting point. Closely packed buildings and strong winds helped the fire spread. Demolition created breaks, and weaker winds slowed it. London Museum places it under control by the fourth day; this schematic does not reconstruct each street’s burn time.",
+  "limit": "The line indicates broad spread, not an exact fire perimeter or daily extent.",
+  "sources": [
+    {
+      "url": "https://www.londonmuseum.org.uk/collections/london-stories/great-fire-of-london/",
+      "section": "Start, wind, landmarks and How was the Great Fire stopped?",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "spread",
+  "river": [
+    [
+      -0.13,
+      51.505
+    ],
+    [
+      -0.11,
+      51.508
+    ],
+    [
+      -0.09,
+      51.507
+    ],
+    [
+      -0.07,
+      51.502
+    ]
+  ]
+}

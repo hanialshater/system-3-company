@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-21",
+  "sourceCommit": "5aba4884285e82039c1411bd2e6d73117da35234",
+  "kind": "implementation verification; not independent editorial review",
+  "scope": "24 draft interactive history map stories, shared map engine, /history atlas, 200-topic research curriculum",
+  "results": {
+    "productionBuild": "pass",
+    "typescript": "pass",
+    "storyData": {
+      "pass": 26,
+      "fail": 0
+    },
+    "storyBrowserFlows": {
+      "pass": 48,
+      "fail": 0,
+      "viewports": [
+        "390x844",
+        "1280x800"
+      ],
+      "includes": [
+        "atlas and catalog navigation",
+        "repeated checkpoint cannot earn unseen checkpoints",
+        "slider skips count only selected checkpoint",
+        "reset preserves earned milestones",
+        "reveal pins final evidence",
+        "Suez closure",
+        "Panama elevation",
+        "map and full caption fit beside reveal",
+        "no page errors or horizontal overflow"
+      ]
+    },
+    "protectedBrowserContract": {
+      "startTime": "2026-10-20T23:11:07.032Z",
+      "duration": 68193.579,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "qaHarness": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "eb4bee7e2e55cf7730a78b78b0a2ef3c3290feb8",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 4
+    },
+    "mainFeed": {
+      "pass": 57,
+      "fail": 0,
+      "note": "On committed editorial profiles; standard build regeneration changes admission contents and correctly fails closed."
+    },
+    "deployTooling": {
+      "pass": 19,
+      "fail": 0
+    },
+    "companyCheck": {
+      "errorsBefore": 811,
+      "errorsAfter": 811,
+      "warnings": 4,
+      "newErrors": 0
+    },
+    "publicationSuite": {
+      "pass": 32,
+      "fail": 2
+    },
+    "hqSuite": {
+      "pass": 111,
+      "fail": 9,
+      "skipped": 1
+    }
+  },
+  "reviewLimitations": [
+    "All 24 lesson statuses draft; all new claims unverified; no independent fact/cultural/learner verdict fabricated.",
+    "Sensitive pre-build research/cultural route was not independently completed. Deviation and pending reviews recorded in W-2024.",
+    "No protected source, gates or visibility policy changed. Planned topics are not lesson links."
+  ],
+  "artifacts": {
+    "flowResultsSha256": "1d61a93058501a668ed16208184b2853ffec18f371a357d96ed0ce1e7b5f6fc7",
+    "contractReportSha256": "93026f15b0ddcb3373222ee18ffecdac095cbcb8b6ea1e0a6f3444456d43b476"
+  },
+  "deployment": "pending; actual production deployment and live checks recorded separately"
+}

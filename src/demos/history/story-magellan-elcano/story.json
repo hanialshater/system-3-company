@@ -1,0 +1,133 @@
+{
+  "slug": "story-magellan-elcano",
+  "title": "A voyage changes captains",
+  "family": "Exploration",
+  "hook": "Did Magellan complete the first circumnavigation?",
+  "predict": {
+    "question": "Who commanded Victoria on its return?",
+    "options": [
+      "Magellan",
+      "Elcano"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1519",
+      "heading": "Spain",
+      "text": "A fleet leaves to seek the Spice Islands.",
+      "active": [
+        "spain"
+      ]
+    },
+    {
+      "date": "1520",
+      "heading": "Strait",
+      "text": "Ships find a passage into the Pacific.",
+      "active": [
+        "strait"
+      ]
+    },
+    {
+      "date": "1521",
+      "heading": "Philippines",
+      "text": "Magellan dies; the voyage continues.",
+      "active": [
+        "philippines"
+      ]
+    },
+    {
+      "date": "1522",
+      "heading": "Homeward",
+      "text": "Elcano returns westward around Africa.",
+      "active": [
+        "cape",
+        "spain"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "spain",
+      "name": "Spain",
+      "coordinates": [
+        -6.3,
+        36.8
+      ]
+    },
+    {
+      "id": "strait",
+      "name": "Strait",
+      "coordinates": [
+        -71,
+        -53
+      ]
+    },
+    {
+      "id": "philippines",
+      "name": "Philippines",
+      "coordinates": [
+        124,
+        10
+      ]
+    },
+    {
+      "id": "cape",
+      "name": "Cape",
+      "coordinates": [
+        18,
+        -34
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "spain",
+        -30,
+        0,
+        -45,
+        -30,
+        "strait"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "strait",
+        -110,
+        -30,
+        -170,
+        -10,
+        "philippines"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "philippines",
+        110,
+        -15,
+        75,
+        -25,
+        "cape",
+        0,
+        0,
+        "spain"
+      ]
+    }
+  ],
+  "reveal": "The route continued after its first commander died in the Philippines. Elcano captained Victoria back across the Indian Ocean and around Africa to Spain in 1522. Circumnavigation was the outcome of a changing expedition and its crews, not one person sailing the whole loop.",
+  "limit": "Generalized sea corridors omit stopovers, ship separations and Indigenous perspectives.",
+  "sources": [
+    {
+      "url": "https://artsandculture.google.com/story/magellan-s-expedition-and-elcano-s-first-circumnavigation-of-the-globe/-gVBFYTKUG3YLg",
+      "section": "Fundación Elkano exhibition: departure, strait, Philippines, Elcano return",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "journey",
+  "world": true
+}

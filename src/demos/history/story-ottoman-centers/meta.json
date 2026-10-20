@@ -1,0 +1,149 @@
+{
+  "slug": "story-ottoman-centers",
+  "title": "Ottomans: more than one city",
+  "hook": "Did a new capital erase the empire’s other centers?",
+  "domain": "history",
+  "concept": "story-ottoman-centers",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No, it involved many centers"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Constantinople became an imperial capital, but the empire remained a network of places.",
+  "claims": [
+    {
+      "id": "history.story-ottoman-centers.frame1",
+      "text": "Early 1300s: Anatolia. A frontier principality expands.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 — Early principality, 1453, 1517 and provincial production centers",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.frame2",
+      "text": "1453: New capital. Ottoman forces capture Constantinople.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 — Early principality, 1453, 1517 and provincial production centers",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.frame3",
+      "text": "1517: Egypt. The conquest of Mamluk lands extends rule.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 — Early principality, 1453, 1517 and provincial production centers",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.frame4",
+      "text": "1500s: Many centers. Provincial cities remain artistic production centers.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 — Early principality, 1453, 1517 and provincial production centers",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.reveal",
+      "text": "Constantinople became an imperial capital, but the empire remained a network of places. Expansion incorporated Syria and Egypt, while cities such as Bursa, Cairo and Baghdad contributed distinct artistic industries. A capital’s prominence does not mean all production moved there.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 — Early principality, 1453, 1517 and provincial production centers",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.limit",
+      "text": "Schematic connections show selected centers, not conquest paths or settled borders.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-ottoman-centers.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "After 1453, was imperial activity confined to the capital?",
+    "options": [
+      "Yes",
+      "No, it involved many centers"
+    ],
+    "answer": 1,
+    "why": "Constantinople became an imperial capital, but the empire remained a network of places. Expansion incorporated Syria and Egypt, while cities such as Bursa, Cairo and Baghdad contributed distinct artistic industries. A capital’s prominence does not mean all production moved there."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-ottoman-centers",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600"
+    ],
+    "tags": [
+      "map-story",
+      "empires"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

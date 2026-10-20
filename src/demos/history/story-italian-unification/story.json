@@ -1,0 +1,110 @@
+{
+  "slug": "story-italian-unification",
+  "title": "Italy: a kingdom before Rome",
+  "family": "Revolutions & borders",
+  "hook": "Was Rome part of the new kingdom from its first day?",
+  "predict": {
+    "question": "When the kingdom formed in 1861, was Rome included?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "Before 1861",
+      "heading": "Fragmented peninsula",
+      "text": "The peninsula contains separate states.",
+      "active": [
+        "turin",
+        "naples",
+        "rome"
+      ]
+    },
+    {
+      "date": "1861",
+      "heading": "Kingdom",
+      "text": "Most of the peninsula forms a kingdom.",
+      "active": [
+        "turin",
+        "naples"
+      ]
+    },
+    {
+      "date": "1870",
+      "heading": "Rome incorporated",
+      "text": "Rome joins the Kingdom of Italy.",
+      "active": [
+        "rome"
+      ]
+    },
+    {
+      "date": "1871",
+      "heading": "Capital moves",
+      "text": "The capital moves to Rome.",
+      "active": [
+        "rome"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "turin",
+      "name": "Turin",
+      "coordinates": [
+        7.69,
+        45.07
+      ]
+    },
+    {
+      "id": "naples",
+      "name": "Naples",
+      "coordinates": [
+        14.27,
+        40.85
+      ]
+    },
+    {
+      "id": "rome",
+      "name": "Rome",
+      "coordinates": [
+        12.5,
+        41.9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "turin",
+        "naples"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "turin",
+        "rome"
+      ]
+    }
+  ],
+  "reveal": "The kingdom existed before Rome joined it. Most of the peninsula unified in 1861, Rome was incorporated in 1870, and the capital moved there in 1871. State formation and the choice of capital were separate steps, not one event.",
+  "limit": "City connections mark incorporation stages, not borders, consensus or a march route.",
+  "sources": [
+    {
+      "url": "https://history.state.gov/countries/italy/summary",
+      "section": "Political fragmentation, 1861 kingdom; Papal States page for 1870 and 1871",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    },
+    {
+      "url": "https://history.state.gov/countries/papal-states",
+      "section": "Incorporation into Italy and move of capital",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}
