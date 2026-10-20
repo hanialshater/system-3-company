@@ -47,7 +47,7 @@ export default function ProductPlusOne({ slug }: { slug: string }) {
             for each of them. Yet every whole number above 1 breaks into primes, so some prime divides it: one the list missed.
           </p>
           <p>
-            That works for any finite list, so no list holds every prime: the primes never run out (Euclid). Product + 1 is
+            That works for any finite list, so no finite list holds every prime: the primes never run out (Euclid). Product + 1 is
             not always prime itself; {ALL + 1} is not.
           </p>
         </>

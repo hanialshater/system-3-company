@@ -47,7 +47,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
             {log.length
               ? `Your ${log.length} flip${log.length > 1 ? "s" : ""} changed ${log.slice(0, 6).join(", ")}${log.length > 6 ? ", …" : ""} of the ${OUT_BITS} output bits (about ${mean} on average). `
               : ""}
-            One bit in, about half the output out: roughly {OUT_BITS / 2} of {OUT_BITS}, never a handful.
+            One input bit changed; about half the output bits changed: roughly {OUT_BITS / 2} of {OUT_BITS}, typically about half.
           </p>
           <p>
             A good hash is built so that each output bit flips with a chance of about one half, like a coin toss, whenever

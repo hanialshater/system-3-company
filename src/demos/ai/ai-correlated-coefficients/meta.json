@@ -15,7 +15,7 @@
       "linear-regression-fit"
     ],
     "doesNotKnow": [
-      "Changing only the second target2→2.01 makes the coefficients…"
+      "Changing only the second target from 2 to 2.01 makes the coefficients…"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-correlated-coefficients.c1",
-      "text": "Do nearby targets imply nearby weights? Fit two almost coincident feature columns, then probe away from them. Changing only the second target2→2.01 makes the coefficients… Options: Stay[2,0]; Move[1,1]; Move[0,2].",
+      "text": "Do nearby targets imply nearby weights? Fit two almost coincident feature columns, then probe away from them. Changing only the second target from 2 to 2.01 makes the coefficients… Options: Stay at [2,0]; Move to [1,1]; Move to [0,2].",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -64,8 +64,8 @@
     "question": "Why probe away from the relation between observed features?",
     "options": [
       "The two fitted coefficient pairs agree at [2,2] but disagree at [1,0]; on-support agreement alone conceals that difference.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "The training fit alone reveals every difference between the coefficient pairs.",
+      "Both coefficient pairs must agree at every new input."
     ],
     "answer": 0,
     "why": "The two fitted coefficient pairs agree at [2,2] but disagree at [1,0]; on-support agreement alone conceals that difference."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:correlated-coefficients",
     "also": [],

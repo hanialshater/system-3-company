@@ -19,7 +19,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodyPath": "/tmp/history-next15-source-bodies/berlin1878.txt",
         "bodySha256": "0dda493a7aa040d761af03f28a06f6ccb898a0d07cbabd41afc0ed0a3b71a1b3",
         "representation": "Inherited acquired normalized text; raw response identity retained in original fixture",
-        "makerCustodianEditor": "Treaty powers enumerated in1878 preamble; US Office of the Historian / FRUS",
+        "makerCustodianEditor": "Treaty powers enumerated in the 1878 preamble; US Office of the Historian / FRUS",
         "publicationOrDocumentDate": "1878-07-13",
         "sourceLevel": "Historical English diplomatic translation, enclosed with September28 report; treaty signed13July1878",
         "locator": "ArticlesXXV/XXXIV–XXXV normalized598–604,744–758",
@@ -71,11 +71,11 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "bosniaParliament",
         "url": "https://www.parlament.ba/Content/Read/180?lang=en",
-        "title": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation1918–1941",
+        "title": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation 1918–1941",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/bosniaParliament.body",
         "bodySha256": "cf40bb040b187d1915383691bb5b4ddad7ed5f5d88088654049eda2d075a0f9a",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
-        "makerCustodianEditor": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation1918–1941",
+        "makerCustodianEditor": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation 1918–1941",
         "publicationOrDocumentDate": "Institutional parliamentary retrospective; publication date not established",
         "languageMediationAndLimits": "English site edition; original1918 acts not collated",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
@@ -103,11 +103,11 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "bosniaParliament",
         "url": "https://www.parlament.ba/Content/Read/180?lang=en",
-        "title": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation1918–1941",
+        "title": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation 1918–1941",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/bosniaParliament.body",
         "bodySha256": "cf40bb040b187d1915383691bb5b4ddad7ed5f5d88088654049eda2d075a0f9a",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
-        "makerCustodianEditor": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation1918–1941",
+        "makerCustodianEditor": "Parliamentary Assembly of Bosnia and Herzegovina, Political representation 1918–1941",
         "publicationOrDocumentDate": "Institutional parliamentary retrospective; publication date not established",
         "languageMediationAndLimits": "English site edition; original1918 acts not collated",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
@@ -203,7 +203,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The 1878 treaty distinguishes Bosnia’s occupation from Serbia’s conditional recognition. Serbia’s later constitution describes its own joint lawmaking, not Bosnia’s institution. The acquired retrospectives separately identify Bosnia’s council, transfer and Šola government before the Belgrade union address. These are actual institutional links rather than a deduction from war or a single label. The museum’s unelected-committee qualification and conflicting membership counts prevent a universal-consent inference. Original acts remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

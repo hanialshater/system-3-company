@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "llm-judge-bias",
   "status": "draft",
-  "version": 4,
+  "version": 6,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-llm-judge-bias.c1",
-      "text": "Title: Which identity wins?. Hook: Keep identity separate from order and repetition.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: If the first response wins after each swap, is the same response identity winning? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "text": "Title: Which identity wins?. Hook: Keep identity separate from order and repetition.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: If the first response wins after each swap, is the same response identity winning? Choices: Yes; No. Explore instruction: Compare each case and its saved results.",
       "support": "derivation",
       "source": "Actual first-position, length and factual-equivalence scripts on task2+2. Separately historical GPT-4/default Table2:65% consistency,30% first,5% second,0 format errors; Table3 repetitive-list failure8.7% on23answers, unavailable endpoint revision. https://arxiv.org/html/2306.05685v4. No present LLM calls or reconstructed individuals. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -45,7 +45,7 @@
     },
     {
       "id": "ai.ai-llm-judge-bias.c3",
-      "text": "First-position preference changed winning identity after the swap. Length preference kept choosing repeated4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness.",
+      "text": "First-position preference changed winning identity after the swap. Length preference kept choosing repeated 4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness.",
       "support": "derivation",
       "source": "Actual first-position, length and factual-equivalence scripts on task2+2. Separately historical GPT-4/default Table2:65% consistency,30% first,5% second,0 format errors; Table3 repetitive-list failure8.7% on23answers, unavailable endpoint revision. https://arxiv.org/html/2306.05685v4. No present LLM calls or reconstructed individuals. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -55,7 +55,7 @@
     },
     {
       "id": "ai.ai-llm-judge-bias.c4",
-      "text": "Recall: B wins in both orders. What tests whether repetition drives its preference? Choices: Remove repetition with factual content fixed; Add more repetitions to both candidates; Treat order consistency as truth. Answer rationale: First-position preference changed winning identity after the swap. Length preference kept choosing repeated4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness.",
+      "text": "Recall: B wins in both orders. What tests whether repetition drives its preference? Choices: Remove repetition with factual content fixed; Add more repetitions to both candidates; Treat order consistency as truth. Answer rationale: First-position preference changed winning identity after the swap. Length preference kept choosing repeated 4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness.",
       "support": "derivation",
       "source": "Actual first-position, length and factual-equivalence scripts on task2+2. Separately historical GPT-4/default Table2:65% consistency,30% first,5% second,0 format errors; Table3 repetitive-list failure8.7% on23answers, unavailable endpoint revision. https://arxiv.org/html/2306.05685v4. No present LLM calls or reconstructed individuals. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -92,7 +92,7 @@
       "Treat order consistency as truth"
     ],
     "answer": 0,
-    "why": "First-position preference changed winning identity after the swap. Length preference kept choosing repeated4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness."
+    "why": "First-position preference changed winning identity after the swap. Length preference kept choosing repeated 4; removing repetition produced a tie. Content-only comparison tied throughout. These scripts illustrate audit controls. Historical judge results are separate evidence; consistency alone never establishes correctness."
   },
   "evidence": {
     "qa": [],

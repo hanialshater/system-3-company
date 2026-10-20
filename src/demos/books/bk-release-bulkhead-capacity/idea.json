@@ -7,7 +7,7 @@
   },
   "family": "payoff",
   "predict": {
-    "question": "B earns eight with 90% probability and loses ten otherwise. What is B’s toy result?",
+    "question": "B earns eight with 90% probability and loses ten otherwise. What is B’s expected net payoff?",
     "options": [
       "8",
       "7.2",
@@ -42,5 +42,5 @@
   "unit": "credits",
   "bookIdea": "Release It! treats failure containment as a design concern for production systems.",
   "modelBoundary": "A averages {A}; B averages {B}. The intervention gives up two credits in the normal branch but limits the failure loss from 100 to 10. Net branch values are stipulated; no circuit-breaker timing, bulkhead pool or real outage probability is simulated.",
-  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+  "doesItHoldUp": "Does it hold up? Real-world applicability and the connection to the book remain unverified."
 }

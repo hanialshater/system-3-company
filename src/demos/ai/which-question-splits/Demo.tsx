@@ -56,8 +56,7 @@ export default function WhichQuestionSplits({ slug }: { slug: string }) {
             At 2|3 the left is pure too, but the stray 0 at x = 4 sits in the big right group of six, which counts for more.
           </p>
           <p>
-            A tree picks its first question by trying cuts and keeping the one whose groups come out most alike: the lowest mix
-            score.
+            A tree picks its first question by trying cuts and keeping the cut with the lowest weighted mix within the resulting groups.
           </p>
         </>
       )}

@@ -3,7 +3,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "modernRouteSynthesis",
     "text": "Hajni Elias’s 2024 SOAS article identifies Chengdu–Dali connections within a route-network label explicitly used in modern scholarship.",
-    "requiredContext": "Actualretainedarticle sectionSouthwestSilkRoad; label is attributed modern synthesis, not original itinerary, single physical event or service timetable. Sourcepublication 2024 is evidence date, not selectedhistorical event.",
+    "requiredContext": "The retained article’s Southwest Silk Road section uses a modern scholarly label, not an original itinerary or service timetable. Its 2024 publication date is the evidence date, not the date of a historical journey.",
     "fieldAddresses": [],
     "claims": [
       "history.history-dali-chengdu-route-synthesis-evidence.c1",
@@ -20,14 +20,14 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "062aa0721fd3e91fbc3b4f54b332a421394d08051dad5b1e1ab9b2f1c8ef2288",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Hajni Elias, The Southwest Silk Road: artistic exchange and transmission in early China",
-        "publicationOrDocumentDate": "Bulletin of SOAS, online7March2024",
-        "languageMediationAndLimits": "Authored archaeological/route-network synthesis citing Yang2004/2009; not dated medieval journey",
+        "publicationOrDocumentDate": "Bulletin of SOAS, online 7 March 2024",
+        "languageMediationAndLimits": "Authored archaeological/route-network synthesis citing Yang 2004/2009; not dated medieval journey",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "sectionSouthwestSilkRoad; extraction250,modernlabel Chengdu/Kunming/Dali; web543–545",
         "transport": "system curl certificate verification enabled; no insecure override",
         "extractedTextPath": "/Users/hani/Documents/ChatGPT/system3-company/company/research/history-special-twelve/daliCambridge.txt",
         "extractedTextSha256": "6ad324721099a5141e033b1a4fed7ed630684792e184f6f56e08e69709f79533",
-        "terms": "Actualarticlebody statesCCBY4.0; thirdpartyimages have separatecredits. Noimageuse proposed."
+        "terms": "The article states CC BY 4.0; third-party images have separate credits. No image use is proposed."
       }
     ]
   },
@@ -51,14 +51,14 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "062aa0721fd3e91fbc3b4f54b332a421394d08051dad5b1e1ab9b2f1c8ef2288",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Hajni Elias, The Southwest Silk Road: artistic exchange and transmission in early China",
-        "publicationOrDocumentDate": "Bulletin of SOAS, online7March2024",
-        "languageMediationAndLimits": "Authored archaeological/route-network synthesis citing Yang2004/2009; not dated medieval journey",
+        "publicationOrDocumentDate": "Bulletin of SOAS, online 7 March 2024",
+        "languageMediationAndLimits": "Authored archaeological/route-network synthesis citing Yang 2004/2009; not dated medieval journey",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "sectionMuch later Ming dynasty; extraction259,1368–1644trade viaDali",
         "transport": "system curl certificate verification enabled; no insecure override",
         "extractedTextPath": "/Users/hani/Documents/ChatGPT/system3-company/company/research/history-special-twelve/daliCambridge.txt",
         "extractedTextSha256": "6ad324721099a5141e033b1a4fed7ed630684792e184f6f56e08e69709f79533",
-        "terms": "Actualarticlebody statesCCBY4.0; thirdpartyimages have separatecredits. Noimageuse proposed."
+        "terms": "The article states CC BY 4.0; third-party images have separate credits. No image use is proposed."
       }
     ]
   },
@@ -81,8 +81,8 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodyPath": "/Users/hani/Documents/ChatGPT/system3-company/company/research/history-final-two/daliGISfull.body",
         "bodySha256": "cee231224fdd6a07e2522a0efc38d247a3a01ee3bd27cb53e9f6394703a3973a",
         "representation": "Actual TLS-verified publisher HTML; normalized extraction separately pinned",
-        "makerCustodianEditor": "霍仁龙 (Huo Renlong), 任柳 (Ren Liu); 地理研究 / Geographical Research41(4),2022, pp1122–1135; DOI10.11821/dlyj020210210",
-        "publicationOrDocumentDate": "地理研究 / Geographical Research41(4),2022, pp1122–1135; DOI10.11821/dlyj020210210",
+        "makerCustodianEditor": "霍仁龙 (Huo Renlong), 任柳 (Ren Liu); 地理研究 / Geographical Research 41(4), 2022, pp. 1122–1135; DOI 10.11821/dlyj020210210",
+        "publicationOrDocumentDate": "地理研究 / Geographical Research 41(4), 2022, pp. 1122–1135; DOI 10.11821/dlyj020210210",
         "sourceLevel": "Modern scholarly route reconstruction; actual full article",
         "locator": "§4.2.1 normalized line134; §4.1 lines129–130; §2 line110 and §3.2 lines119–124 for method",
         "transport": "system curl certificate verification enabled; no insecure override",
@@ -149,7 +149,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Elias’s modern route label and Ming tea-network statement are distinct from an original journey. Huo and Ren’s reconstruction additionally identifies a Tang–Song Qingxi/Lingguan connection between Chengdu and Dali, overlapping the early selected period, then a Yuan–Ming–Qing reorientation toward Kunming. The study uses historical nodes, modern roads and interpolation. These attributed historical relationships do not prove unchanged direct service throughout 1200–1700, an exact dated journey or sovereignty. Original travel sources remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

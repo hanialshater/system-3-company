@@ -15,12 +15,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "haifaAWM",
         "url": "https://s3-ap-southeast-2.amazonaws.com/awm-media/collection/RCDIG1070091/document/5519420.PDF",
-        "title": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
+        "title": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/haifa-beirut-tripoli.pdf",
         "bodySha256": "b1ec704839e5880ae65f003d002e302c45cdc74ecbdd80711754a673bce34f6f",
         "representation": "rawverifiedsystemcurlPDF",
-        "makerCustodianEditor": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
-        "publicationOrDocumentDate": "Official Australian war history appendix;sourcepublicationyear notfixedhere; footnotederivesfromRoyalEngineersJournalJune1952",
+        "makerCustodianEditor": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
+        "publicationOrDocumentDate": "Official Australian war history appendix; publication year not established here; footnote cites Royal Engineers Journal, June 1952",
         "languageMediationAndLimits": "English officialmilitary retrospective;colonial/raciallanguage and militarypurposemustremainattributed;notaciviliantimetable",
         "sourceLevel": "Official military retrospective",
         "locator": "PDF2/printed824,December1941/August1942 Haifa–Beirut section",
@@ -46,12 +46,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "haifaAWM",
         "url": "https://s3-ap-southeast-2.amazonaws.com/awm-media/collection/RCDIG1070091/document/5519420.PDF",
-        "title": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
+        "title": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/haifa-beirut-tripoli.pdf",
         "bodySha256": "b1ec704839e5880ae65f003d002e302c45cdc74ecbdd80711754a673bce34f6f",
         "representation": "rawverifiedsystemcurlPDF",
-        "makerCustodianEditor": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
-        "publicationOrDocumentDate": "Official Australian war history appendix;sourcepublicationyear notfixedhere; footnotederivesfromRoyalEngineersJournalJune1952",
+        "makerCustodianEditor": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
+        "publicationOrDocumentDate": "Official Australian war history appendix; publication year not established here; footnote cites Royal Engineers Journal, June 1952",
         "languageMediationAndLimits": "English officialmilitary retrospective;colonial/raciallanguage and militarypurposemustremainattributed;notaciviliantimetable",
         "sourceLevel": "Official military retrospective",
         "locator": "PDF6–7/printed828–829,lastgap17December and ceremony three days later",
@@ -77,12 +77,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "haifaAWM",
         "url": "https://s3-ap-southeast-2.amazonaws.com/awm-media/collection/RCDIG1070091/document/5519420.PDF",
-        "title": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
+        "title": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/haifa-beirut-tripoli.pdf",
         "bodySha256": "b1ec704839e5880ae65f003d002e302c45cdc74ecbdd80711754a673bce34f6f",
         "representation": "rawverifiedsystemcurlPDF",
-        "makerCustodianEditor": "A.E.Field,The Haifa–Beirut–Tripoli Railway,Appendix2",
-        "publicationOrDocumentDate": "Official Australian war history appendix;sourcepublicationyear notfixedhere; footnotederivesfromRoyalEngineersJournalJune1952",
+        "makerCustodianEditor": "A. E. Field, The Haifa–Beirut–Tripoli Railway, Appendix 2",
+        "publicationOrDocumentDate": "Official Australian war history appendix; publication year not established here; footnote cites Royal Engineers Journal, June 1952",
         "languageMediationAndLimits": "English officialmilitary retrospective;colonial/raciallanguage and militarypurposemustremainattributed;notaciviliantimetable",
         "sourceLevel": "Official military retrospective",
         "locator": "PDF7/printed829,21December1942 military/wheat traffic",
@@ -149,7 +149,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Field’s military retrospective separates Haifa–Beirut construction and traffic opening from the later Beirut–Tripoli gap closure, ceremony and recorded military/wheat traffic. These dates describe different sections and acts. A completed track or ceremony is not a passenger timetable, uninterrupted civilian service or a sovereignty decision. The colonial military account does not supply everyone’s wartime experience; original operating records remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

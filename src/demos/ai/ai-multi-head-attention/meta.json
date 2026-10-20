@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "multi-head-attention",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-multi-head-attention.c1",
-      "text": "export function evaluate(weights:number[][]){const values=[0,10],heads=weights.map(row=>row.reduce((sum,w,i)=>sum+w*values[i],0));return {weights,values,heads,output:heads[0]-heads[1]};} export function run(mode:number){return evaluate(mode===1?[[.5,.5],[.5,.5]]:[[.8,.2],[.1,.9]]);}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Two heads, then one projection \\u2014 computed finite mechanism\"><text x=\"140\" y=\"16\" textAnchor=\"middle\">values [0,10]</text>{r.weights.map((w,i)=><g key={i}><text x=\"7\" y={43+i*28}>{i===0?'A':'B'}</text><text x=\"34\" y={43+i*28}>[{w.join(',')}]</text><path d={`M129 ${38+i*28} H160`} className={s.line}/><text x=\"174\" y={43+i*28}>{r.heads[i]}</text></g>)}<text x=\"6\" y=\"103\">[{r.heads.join(',')}] · [1,−1] = {r.output}</text></svg>;}\n\nLocked inputs: Token values [0,10]. Head A weights [.8,.2]; B [.1,.9]. Project concatenation with [1,−1].",
+      "text": "export function evaluate(weights:number[][]){const values=[0,10],heads=weights.map(row=>row.reduce((sum,w,i)=>sum+w*values[i],0));return {weights,values,heads,output:heads[0]-heads[1]};} export function run(mode:number){return evaluate(mode===1?[[.5,.5],[.5,.5]]:[[.8,.2],[.1,.9]]);}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Two heads, then one projection — worked example\"><text x=\"140\" y=\"16\" textAnchor=\"middle\">values [0,10]</text>{r.weights.map((w,i)=><g key={i}><text x=\"7\" y={43+i*28}>{i===0?'A':'B'}</text><text x=\"34\" y={43+i*28}>[{w.join(',')}]</text><path d={`M129 ${38+i*28} H160`} className={s.line}/><text x=\"174\" y={43+i*28}>{r.heads[i]}</text></g>)}<text x=\"6\" y=\"103\">[{r.heads.join(',')}] · [1,−1] = {r.output}</text></svg>;}\n\nLocked inputs: Token values [0,10]. Head A weights [.8,.2]; B [.1,.9]. Project concatenation with [1,−1].",
       "support": "derivation",
       "source": "[https://arxiv.org/html/1706.03762v7](https://arxiv.org/html/1706.03762v7). Acquired original paper HTML body §3.2 multi-head projection/concatenation. Local two-token weights are stipulated, not reproduced trained heads or semantic discoveries.",
       "status": "unverified",

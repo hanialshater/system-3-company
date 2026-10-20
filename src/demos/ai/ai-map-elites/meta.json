@@ -23,9 +23,9 @@
   "claims": [
     {
       "id": "ai.ai-map-elites.c1",
-      "text": "Integer genotype(a,b) in0\u20263 is also the behaviour descriptor; each axis bins at2, with2 assigned high. Qualityq=10\u2212|a\u22123|\u2212|b\u22121| is maximized.",
+      "text": "Integer genotype(a,b) in0…3 is also the behaviour descriptor; each axis bins at2, with2 assigned high. Qualityq=10−|a−3|−|b−1| is maximized.",
       "support": "convention",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#grid; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#grid; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "checkedBy": "",
       "checkedOn": "",
       "status": "unverified"
@@ -34,75 +34,75 @@
       "id": "ai.ai-map-elites.c2",
       "text": "A(0,0)6, B(1,0)7, C(2,0)8, D(3,1)10, E(0,2)6, F(3,3)8, G(2,1)9, H(1,1)8 form a fixed replay.",
       "support": "convention",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#stream; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#stream; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c3",
-      "text": "A initializes; B\u2190A+(1,0), C\u2190B+(1,0), D\u2190C+(1,1), E\u2190B+(\u22121,2), F\u2190D+(0,2), G\u2190D+(\u22121,0), H\u2190B+(0,1). Every parent is a current archive elite at mutation time.",
+      "text": "A initializes; B←A+(1,0), C←B+(1,0), D←C+(1,1), E←B+(−1,2), F←D+(0,2), G←D+(−1,0), H←B+(0,1). Every parent is a current archive elite at mutation time.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#lineage; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#lineage; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c4",
       "text": "B replacesA, D replacesC, G9 is rejected byD10, H8 replacesB7. Final archive H8/D10/E6/F8 covers4/4 with sum32. Global-best-only keepsD10 and covers one cell.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#archive; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#archive; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c5",
       "text": "Equal quality retains the incumbent: I(3,3)q8 does not replaceF8.",
       "support": "convention",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#tie; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#picture#tie; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c6",
       "text": "Archive replacement compares quality within the descriptor cell, retaining different kinds even when their quality is below the global best. Descriptors define those kinds; no universal superiority is claimed.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#reveal#rule; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#reveal#rule; src/demos/ai/ai-map-elites/model.ts + model.test.mjs finite author implementation reproduction; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c7",
       "text": "Keep a lower-scoring kind?",
       "support": "convention",
-      "source": "src/demos/ai/ai-map-elites/meta.json#title; model.ts finite rules; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/meta.json#title; model.ts finite rules; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c8",
       "text": "One archive cell can improve while other kinds survive.",
       "support": "convention",
-      "source": "src/demos/ai/ai-map-elites/meta.json#hook; model.ts finite rules; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/meta.json#hook; model.ts finite rules; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c9",
       "text": "A new empty behaviour cell scores 6; another cell already scores 10. Keep the 6? Options: Keep it / Reject it. Correct: Keep it.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-map-elites/Demo.tsx#predict; model.ts finite rules; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/Demo.tsx#predict; model.ts finite rules; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-map-elites.c10",
-      "text": "A cell has elite7 and receives candidate6; another cell has elite4. What happens to6? Keep6 / Reject6. Within-cell comparison rejects6 because its own incumbent scores7.",
+      "text": "A cell’s current best score is 7 and a new candidate scores 6. Another cell’s best score is 4. What happens to the new candidate? Keep it / Reject it. The candidate competes within its own cell: 6 loses to 7, regardless of the other cell’s score.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-map-elites/meta.json#recall; model.ts finite rules; https://arxiv.org/html/1504.04909 \u2014 Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
+      "source": "src/demos/ai/ai-map-elites/meta.json#recall; model.ts finite rules; https://arxiv.org/html/1504.04909 — Mouret and Clune (2015), MAP-Elites algorithm/behaviour-map description; body opened 2026-10-19. Fixed descriptors, quality, stream and mutation replay are local conventions.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A cell has elite7 and receives candidate6; another cell has elite4. What happens to6?",
+    "question": "A cell’s current best score is 7 and a new candidate scores 6. Another cell’s best score is 4. What happens to the new candidate?",
     "options": [
-      "Keep6",
-      "Reject6"
+      "Keep it",
+      "Reject it"
     ],
     "answer": 1,
-    "why": "Within-cell comparison rejects6 because its own incumbent scores7."
+    "why": "The candidate competes within its own cell: 6 loses to 7, regardless of the other cell’s score."
   },
   "evidence": {
     "qa": [],
@@ -110,7 +110,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "ai:map-elites",

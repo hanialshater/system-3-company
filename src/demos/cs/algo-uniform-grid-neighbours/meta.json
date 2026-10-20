@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-uniform-grid-neighbours.c8",
-      "text": "q=(.9,.9), radius1. A=(1.1,.9), B=(1.9,1.9), C=(2.1,.9). Which points are within the radius? Options A only / A and B / All three; correct A only.",
+      "text": "q=(.9,.9), radius 1. A=(1.1,.9), B=(1.9,1.9), C=(2.1,.9). Which points are within the radius? Options A only / A and B / All three; correct A only.",
       "support": "derivation",
       "source": "src/demos/cs/algo-uniform-grid-neighbours/Demo.tsx#predict; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-uniform-grid-neighbours.c9",
-      "text": "h=.5, radius1. Must the search allow offsets beyond one cell? ceil(1/.5)=2; one adjacent layer can miss nearby points.",
+      "text": "h=.5, radius 1. Must the search allow offsets beyond one cell? ceil(1/.5)=2; one adjacent layer can miss nearby points.",
       "support": "derivation",
       "source": "src/demos/cs/algo-uniform-grid-neighbours/meta.json#recall; model.ts; https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-32-broad-phase-collision-detection-cuda — Scott Le Grand, GPU Gems3 §32.1.2/32.2.2; body opened2026-10-19. Background for uniform cell subdivision/candidate versus exact tests. This point-radius floor/ceil variant and negative-coordinate convention are local derivations; the chapter's adjacent-cell rule has its own cell-size assumptions.",
       "status": "unverified"
@@ -94,10 +94,10 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "h=.5, radius1. Must the search allow offsets beyond one cell?",
+    "question": "h=.5, radius 1. Must the search allow offsets beyond one cell?",
     "options": [
-      "Yes: up to2",
-      "No: only1"
+      "Yes: up to 2",
+      "No: only 1"
     ],
     "answer": 0,
     "why": "ceil(1/.5)=2; one adjacent layer can miss nearby points."
@@ -108,7 +108,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-uniform-grid-neighbours",

@@ -15,7 +15,7 @@
       "vanishing-gradients"
     ],
     "doesNotKnow": [
-      "With multiplier.5 every tick, what remains of initial1 at tick4?"
+      "With multiplier .5 every tick, what remains of initial value 1 at tick 4?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-recurrent-memory-fades.c1",
-      "text": "What remains after four ticks? Follow the same initial signal through a repeated scalar multiplier. With multiplier.5 every tick, what remains of initial1 at tick4? Options: .0625; .25; .5; 1.",
+      "text": "What remains after four ticks? Follow the same initial signal through a repeated scalar multiplier. With multiplier .5 every tick, what remains of initial value 1 at tick 4? Options: .0625; .25; .5; 1.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §26; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -64,8 +64,8 @@
     "question": "How does changing the repeated multiplier change this signal?",
     "options": [
       "Four ticks multiply the initial signal by the fourth power: .5 shrinks it, 1 preserves it and 1.2 grows it in this scalar model.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "Every multiplier leaves the initial signal unchanged.",
+      "Four ticks add the multiplier four times instead of multiplying."
     ],
     "answer": 0,
     "why": "Four ticks multiply the initial signal by the fourth power: .5 shrinks it, 1 preserves it and 1.2 grows it in this scalar model."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:recurrent-memory-fades",
     "also": [],

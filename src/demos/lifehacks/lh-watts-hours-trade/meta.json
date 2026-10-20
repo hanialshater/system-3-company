@@ -24,19 +24,19 @@
   "claims": [
     {
       "id": "lifehacks.lh-watts-hours-trade.c1",
-      "text": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. Scaled model; illustrative:100W×h;20W×5h;tariff=€0.30/kWh.",
+      "text": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. Scaled model; Illustrative loads: 100 W for h hours, or 20 W for 5h hours; electricity costs €0.30/kWh.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c2",
-      "text": "The stage's two results are computed by the printed expressions. At A-hours=1h, A=0.1kWh and B=0.1kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by the printed expressions. At A hours=1h, A=0.1kWh and B=0.1kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
       "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -99,7 +99,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:energy-power-times-time",

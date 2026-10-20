@@ -24,10 +24,10 @@
   "claims": [
     {
       "id": "lifehacks.lh-standby-days-add-up.c1",
-      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; illustrative:2W;24h/day-or-1h/day.",
+      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; Illustrative constant 2 W load, running for either 24 hours or 1 hour a day.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): assumptions changed. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Formulas use 2 W and 24 h/day or 1 h/day (resource-specs.json); the rendered assumptions line is 'illustrative:2W;24h/day-or-1h/day.' (v2 dropped the unused €0.30/kWh). The trust-sheet text keeps 'Scaled model;', which the plain stage no longer prints; still true (the picture uses a fixed scale). Record: company/reviews/lh-standby-days-add-up/2026-10-14-fact-check.md, Pass 51.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15"
     },
@@ -108,7 +108,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:standby-power-cost",

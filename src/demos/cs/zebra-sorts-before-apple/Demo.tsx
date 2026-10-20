@@ -47,7 +47,7 @@ export default function ZebraSortsBeforeApple({ slug }: { slug: string }) {
         <>
           <p>
             You read the codes: B is {code("B")}, Z is {code("Z")}, a is {code("a")}. A computer stores each letter as a
-            number, and every capital ({code("A")} to {code("Z")}) comes before every small letter ({code("a")} to {code("z")}).
+            number, and each Latin capital A–Z ({code("A")} to {code("Z")}) comes before each lowercase letter a–z ({code("a")} to {code("z")}).
           </p>
           <p>
             So sorting by code put {ahead.join(" and ")} ahead of apple. With case ignored, {CASE_ORDER[0]} came first. Each

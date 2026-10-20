@@ -52,7 +52,7 @@ export default function PowerLineVoltageLoss({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "A village draws the same 10 kW through the same cable. Send it at 10 times the voltage. The cable's heat loss becomes...",
-        options: ["10 times more", "About the same", "100 times less"],
+        options: ["10 times more", "About the same", "one hundredth as much"],
         answer: 2,
       }}
       exploreHint="Send the power at each voltage and read the cable."
@@ -61,7 +61,7 @@ export default function PowerLineVoltageLoss({ slug }: { slug: string }) {
         <>
           <p>
             At 230 V your cable carried {rA(230)} A and wasted {rW(230)} W as heat. At 2,300 V the same 10 kW needed only{" "}
-            {rA(2300)} A, and the cable wasted <strong>{rW(2300)} W</strong>: 100 times less.
+            {rA(2300)} A, and the cable wasted <strong>{rW(2300)} W</strong>: one hundredth as much.
           </p>
           <p>
             Power is voltage times current, so a higher voltage delivers the same power with less current. Cable heating goes as

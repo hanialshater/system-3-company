@@ -69,10 +69,10 @@
     },
     {
       "id": "cs.shuffle-until-sorted.c6",
-      "text": "Shuffling and checking cannot beat n!.",
+      "text": "Independent uniform shuffling needs n! attempts on average, though one run can finish sooner or later.",
       "support": "derivation",
       "source": "Any sort that only shuffles uniformly at random and checks has expected n! shuffles (c2); counting the n - 1 comparisons of each check, bogosort's expected time is Theta(n x n!). Gruber, Holzer and Ruepp, 'Sorting the slow way: an analysis of perversely awful randomized sorting algorithms', FUN 2007 (check before citing). · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: uniform shuffles until sorted have expected n! shuffles whatever the history. Gruber, Holzer, Ruepp, FUN 2007, LNCS 4475 pp. 183-197 confirmed bibliographically by web search; paper body not opened (host blocked), so the verdict rests on the derivation.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -98,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:bogosort-expectation",
     "also": [

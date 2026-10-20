@@ -76,7 +76,7 @@
       "No, it always takes 24 questions"
     ],
     "answer": 1,
-    "why": "Each question at most halves the orders, so 4 questions tell apart at most 2^4 = 16 orders, fewer than 24. At least 5 are needed."
+    "why": "Four yes-or-no questions have at most 2^4 = 16 possible answer sequences, fewer than the 24 orders. At least 5 questions are needed."
   },
   "evidence": {
     "qa": [
@@ -88,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:sort-lower-bound",
     "prerequisites": [

@@ -18,7 +18,7 @@ export const DOCUMENTS = [
   },
   {
     "id": "maynila",
-    "text": "Rajah Soliman preexisting Maynila fort;1571 Spanish conquest/replacement",
+    "text": "Rajah Soliman preexisting Maynila fort; 1571 Spanish conquest/replacement",
     "requiredContext": "Do not call native place blank or use later occupation/prison history as 1500–1700 evidence.",
     "sourceUrl": "https://intramuros.gov.ph/fs/",
     "locator": "indexed89 and146 Fort Santiago",

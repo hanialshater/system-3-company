@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With offset1 and stride2, what is the last pooled value?", "options": ["3", "8", "9"], "answer": 1 }} minInteractions={4} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The shifted last window contained 3 and 8, producing 8. Both swapped pairs produced 9, although its original position changed. The maximum retained the value, not its within-window location. These valid-window examples do not establish translation invariance.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "With offset 1 and stride 2, what is the last pooled value?", "options": ["3", "8", "9"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>The shifted last window contained 3 and 8, producing 8. Both swapped pairs produced 9, although its original position changed. The maximum retained the value, not its within-window location. These valid-window examples do not establish translation invariance.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

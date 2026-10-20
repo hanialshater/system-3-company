@@ -1,7 +1,7 @@
 {
   "slug": "algo-potential-dsu",
   "title": "The groups remember differences",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Connectivity is known. What about the distance between the values?",
   "domain": "cs",
   "concept": "algo-potential-dsu",
   "status": "draft",
@@ -65,7 +65,7 @@
     },
     {
       "id": "cs.algo-potential-dsu.c7",
-      "text": "Run the question case, then inspect its steps and compare another case.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-potential-dsu.c9",
-      "text": "C−A 7; conflict. This is the retained result of the question case.",
+      "text": "For the original input: C−A 7; conflict.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-potential-dsu.c10",
-      "text": "Offsets add along parent chains. Merging solves the difference between roots; a later equation inside that component must agree with the already implied difference.",
+      "text": "For the original input: Offsets add along parent chains. Merging solves the difference between roots; a later equation inside that component must agree with the already implied difference.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -163,7 +163,7 @@
     },
     {
       "id": "cs.algo-potential-dsu.c21",
-      "text": "C−A 5; consistent. This is the retained result of the question case.",
+      "text": "For the original input: C−A 5; consistent.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#potential_dsu.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -230,7 +230,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-potential-dsu",

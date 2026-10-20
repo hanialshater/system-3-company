@@ -68,7 +68,7 @@ export default function StuckInTheShallowValley({ slug }: { slug: string }) {
             the valley it starts in.
           </p>
           <p>
-            Downhill steps find the nearest valley, not the lowest: the start decides. Gradient descent in real model training uses
+            On this curve, small downhill steps can settle in either valley depending on the start. Gradient descent in real model training uses
             the same rule, so its starting point can matter too.
           </p>
         </>

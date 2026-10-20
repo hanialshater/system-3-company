@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The French archive describes Fort-Lamy’s establishment after battle. Kano’s institutional account instead records Abbas’s probation, restrictions on palace and title appointments, and later British-supervised offices collecting tax. A post and retained local offices are different relations. These retrospectives do not merge Kano, Sokoto or Kanem-Bornu, establish empty land or turn surrender under conquest into popular consent.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

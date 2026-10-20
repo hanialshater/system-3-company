@@ -24,19 +24,19 @@
   "claims": [
     {
       "id": "lifehacks.lh-committed-stock.c1",
-      "text": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Scaled model; six committed; no incoming stock.",
+      "text": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Scaled model; Six units are already committed, and no new stock is arriving.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-committed-stock.c2",
-      "text": "The stage's two results are computed by the printed expressions. At On-shelf=10, A=4items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by the printed expressions. At On shelf=10, A=4items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
       "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -80,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:shop-available-stock",

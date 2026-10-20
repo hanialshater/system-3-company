@@ -64,8 +64,8 @@
     "question": "Which declared shape makes box and exact mask agree?",
     "options": [
       "The solid rectangle: both cover its nine foreground cells and include no background.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "The cross: its enclosing box includes no background.",
+      "Any shape: an enclosing rectangle always equals its exact mask."
     ],
     "answer": 0,
     "why": "The solid rectangle: both cover its nine foreground cells and include no background."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:segmentation-per-pixel",
     "also": [],

@@ -160,7 +160,7 @@ export default function LandHemisphere({ slug }: { slug: string }) {
                         go(BEST.lat, BEST.lon);
                       }}
                     >
-                      Give up? Show the landiest half a computer found
+                      Show the best half found
                     </Control>
                   </Row>
                 )}

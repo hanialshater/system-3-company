@@ -51,8 +51,8 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "7ca041ac9d3cbaad8f9fcd4420303087d4d23b1317666e9f9689575d1948c5b0",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "F.S.A.de Clercq, Ternate: The Residency and Its Sultanate",
-        "publicationOrDocumentDate": "Dutch1890; Taylor/Richards English translation, Smithsonian Institution Libraries digital edition1999",
-        "languageMediationAndLimits": "Colonial official history translated; no1683original collation; selected page now legible",
+        "publicationOrDocumentDate": "Dutch 1890; Taylor/Richards English translation, Smithsonian Institution Libraries digital edition 1999",
+        "languageMediationAndLimits": "Colonial official history translated; 1683 original not collated; selected page now legible",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "PDF123/printed116:1675/1680/1681/1683entries andnote68",
         "transport": "system curl certificate verification enabled; no insecure override",
@@ -83,7 +83,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Gowa Regency Government, Tentang Gowa",
         "publicationOrDocumentDate": "Institutional local history; publication date unstated",
-        "languageMediationAndLimits": "Indonesian retrospective; renewed1668war not treaty-as-final-peace",
+        "languageMediationAndLimits": "Indonesian retrospective; renewed 1668 war not treaty-as-final-peace",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "paragraph18November1667 Bungaya,9March1668 renewed fighting",
         "transport": "system curl certificate verification enabled; no insecure override",
@@ -149,7 +149,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Sagimun’s approximate summary describes Gowa trade restrictions, fort transfer and coerced indemnity. The local account’s renewed fighting distinguishes formal terms from continued compliance. De Clercq’s translated Ternate account instead describes a Company fief and payments to office groups after revolt and capture. The Dutch East India Company’s two recorded relationships are not identical obligations, original signed instruments or evidence of universal consent and uninterrupted rule.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

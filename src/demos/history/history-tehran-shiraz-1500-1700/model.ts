@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The accounts distinguish Tehran’s reported provincial governor residence from Shiraz’s governor-sponsored madrasa and invitation to teach. Later, Karim Khan Zand built government facilities at Tehran, while the Shiraz account places his capital there in 1766–67. Intended use of works is not proof of an actual capital. The explicitly extended selection retains both Safavid and Zand relationships without inventing Zand government before 1700 or continuous identical authority. Originals remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "Original proposal: 1500–1700. Selected comparison extends to 1767.";
 export const PERIOD_SCOPE = "Original1700 source-limit exclusions remain acquisition history; selected1760/1766–67 now within1767. Later1779/1791 excluded.";
 export const PERIOD_CLAIM = "history.history-tehran-shiraz-1500-1700.c18";

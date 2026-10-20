@@ -1,11 +1,11 @@
 {
   "slug": "ai-test-score-error-bars",
-  "title": "Does16 out of20 settle it?",
+  "title": "Does 16 out of 20 settle it?",
   "hook": "Compare two stipulated accuracies on fresh test samples.",
   "domain": "ai",
   "concept": "test-score-error-bars",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "ai.ai-test-score-error-bars.c2",
-      "text": "Does16 out of20 settle it?; Compare two stipulated accuracies on fresh test samples.; For independent identically distributed binary outcomes, could either stipulated accuracy,70% or80%, produce16 correct out of20?; options ['Only70%', 'Only80%', 'Either', 'Neither']; correct index 2",
+      "text": "Does 16 out of 20 settle it?; Compare two stipulated accuracies on fresh test samples.; For independent identically distributed binary outcomes, could either stipulated accuracy, 70% or 80%, produce 16 correct out of 20?; options ['Only 70%', 'Only 80%', 'Either', 'Neither']; correct index 2",
       "support": "derivation",
       "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-test-score-error-bars.c3",
-      "text": "Both stipulated accuracies gave positive probability to exactly 16 correct. For 16 or more, the chances were 62.96% at p=.8 and 23.75% at p=.7. That score did not identify its generator. At p=.8, increasing independent cases from 20 to 80 reduced score SD from 8.94% to 4.47%. Copying records adds no independent cases. For n20,p.8, the inclusive 12\u201319 sampling band covers 97.8489% of possible scores; it is not an interval for unknown accuracy.",
+      "text": "Both stipulated accuracies gave positive probability to exactly 16 correct. For 16 or more, the chances were 62.96% at p=.8 and 23.75% at p=.7. That score did not identify its generator. At p=.8, increasing independent cases from 20 to 80 reduced score SD from 8.94% to 4.47%. Copying records adds no independent cases. For n20,p.8, the inclusive 12–19 sampling band covers 97.8489% of possible scores; it is not an interval for unknown accuracy.",
       "support": "derivation",
       "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-test-score-error-bars.c4",
-      "text": "{\"question\": \"At stipulated accuracy80%, change25 independent cases to100. What happens to score SD?\", \"options\": [\"Halves\", \"Stays\", \"Doubles\"], \"answer\": 0, \"why\": \"sqrt(.8\\u00d7.2/25)=8%; for100 cases it is4%. Copying records is different.\"}",
+      "text": "{\"question\": \"At stipulated accuracy 80%, increase 25 independent cases to 100. What happens to score SD?\", \"options\": [\"Halves\", \"Stays\", \"Doubles\"], \"answer\": 0, \"why\": \"sqrt(.8\\u00d7.2/25)=8%; for 100 cases it is 4%. Copying records is different.\"}",
       "support": "derivation",
       "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-test-score-error-bars.c5",
-      "text": "Exact finite conditional probabilities, quantile smallest k whose CDF\u2265level, not posterior or confidence interval. Duplicates use20 independent outcomes repeated4times, not Binomial80. No fabricated new observed64/80. p is stipulated, not estimated from16/20. Vertical axis: probability mass. More independent cases differs from copying records. Controls: p=.8, p=.7, n=80, Duplicates, Reset. Milestones [0, 1, 2, 3]; witness preserved after Reset.",
+      "text": "Exact finite conditional probabilities, quantile smallest k whose CDF≥level, not posterior or confidence interval. Duplicates use20 independent outcomes repeated4times, not Binomial80. No fabricated new observed64/80. p is stipulated, not estimated from 16/20. Vertical axis: probability mass. More independent cases differs from copying records. Controls: p=.8, p=.7, n=80, Duplicates, Reset. Milestones [0, 1, 2, 3]; witness preserved after Reset.",
       "support": "convention",
       "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "At stipulated accuracy80%, change25 independent cases to100. What happens to score SD?",
+    "question": "At stipulated accuracy 80%, increase 25 independent cases to 100. What happens to score SD?",
     "options": [
       "Halves",
       "Stays",
       "Doubles"
     ],
     "answer": 0,
-    "why": "sqrt(.8\u00d7.2/25)=8%; for100 cases it is4%. Copying records is different."
+    "why": "sqrt(.8×.2/25)=8%; for 100 cases it is 4%. Copying records is different."
   },
   "evidence": {
     "qa": [],

@@ -1,7 +1,7 @@
 {
   "slug": "ai-single-source-influence",
-  "title": "Test single source influence",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "How much did one source change?",
+  "hook": "Remove one source. How much does the fitted answer move?",
   "domain": "ai",
   "concept": "single-source-influence",
   "status": "draft",
@@ -15,7 +15,7 @@
       "generative-memorisation"
     ],
     "doesNotKnow": [
-      "OLS intercept+slope. A:(0,0),(1,1); B close:(0,1),(1,2), far:(9,10),(10,11). Query10. Does moving B while preserving its +1 residual preserve leave-B-out influence?"
+      "OLS intercept+slope. A:(0,0),(1,1); B close:(0,1),(1,2), far:(9,10),(10,11). Query at x=10. Does moving B while preserving its +1 residual preserve leave-B-out influence?"
     ]
   },
   "misconception": "Yes",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-single-source-influence.c1",
-      "text": "Test single source influence Compare a declared mechanism with its changed case. OLS intercept+slope. A:(0,0),(1,1); B close:(0,1),(1,2), far:(9,10),(10,11). Query10. Does moving B while preserving its +1 residual preserve leave-B-out influence? Options: No; Yes",
+      "text": "Test single source influence Compare a declared mechanism with its changed case. OLS intercept+slope. A:(0,0),(1,1); B close:(0,1),(1,2), far:(9,10),(10,11). Query at x=10. Does moving B while preserving its +1 residual preserve leave-B-out influence? Options: No; Yes",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §25; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-single-source-influence.c3",
-      "text": "{\"question\": \"Can far but perfectly aligned points have zero leave-source-out influence?\", \"options\": [\"Yes: points on y=x leave the fit unchanged\", \"No: every far source changes the fit\"], \"answer\": 0, \"why\": \"A and aligned far B all lie on y=x, so removing B leaves the query prediction10 unchanged.\"}",
+      "text": "{\"question\": \"Can far but perfectly aligned points have zero leave-source-out influence?\", \"options\": [\"Yes: points on y=x leave the fit unchanged\", \"No: every far source changes the fit\"], \"answer\": 0, \"why\": \"A and aligned far B all lie on y=x, so removing B leaves the query prediction 10 unchanged.\"}",
       "location": "recall question/options/rationale",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §25; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -70,7 +70,7 @@
       "No: every far source changes the fit"
     ],
     "answer": 0,
-    "why": "A and aligned far B all lie on y=x, so removing B leaves the query prediction10 unchanged."
+    "why": "A and aligned far B all lie on y=x, so removing B leaves the query prediction 10 unchanged."
   },
   "evidence": {
     "qa": [],
@@ -78,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:single-source-influence",
     "also": [],

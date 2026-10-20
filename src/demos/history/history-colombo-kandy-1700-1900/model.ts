@@ -44,9 +44,9 @@ export const DOCUMENTS = [
       {
         "address": "v4.coast.recipient",
         "text": "Ceded to Britain",
-        "value": "ArticleV Batavian holdings ceded to British monarch",
+        "value": "Article V Batavian holdings ceded to British monarch",
         "source": "amiens1802",
-        "locator": "Amiens ArticleV normalized159–166",
+        "locator": "Amiens Article V normalized159–166",
         "claimStatus": "unverified",
         "support": "source",
         "openedWitness": {
@@ -59,7 +59,7 @@ export const DOCUMENTS = [
         }
       }
     ],
-    "attribution": "French Amiens edition plus Sri Lanka archival context; ArticleV does not itself name Colombo Mandatory transfer recipient: Britain/British monarch, not an unspecified transfer.",
+    "attribution": "French Amiens edition plus Sri Lanka archival context; Article V does not itself name Colombo. The specified transfer recipient is the British monarch.",
     "claims": [
       "history.history-colombo-kandy-1700-1900.c1",
       "history.history-colombo-kandy-1700-1900.c2",
@@ -123,7 +123,7 @@ export const DOCUMENTS = [
         }
       }
     ],
-    "attribution": "English reproduction; Sinhala original not collated; later resistance is independently attributed archive context Mandatory authority holder: British sovereign/Empire; reserved rights and promised protection are not universal equality or fulfilment.",
+    "attribution": "English reproduction; Sinhala original not collated; later resistance is independently attributed archive context. The specified authority holder is the British sovereign/Empire; reserved rights and promised protection are not universal equality or fulfilment.",
     "claims": [
       "history.history-colombo-kandy-1700-1900.c4",
       "history.history-colombo-kandy-1700-1900.c5",

@@ -1,7 +1,7 @@
 import type { AlgorithmFrame, AlgorithmRun, AlgorithmSpec } from '../types';
 const topic='boundary-search-selection';
 const row = (label: string, a: (number|string)[], active: number[] = []) => ({ label, cells: a.map((x,i) => ({text:String(x), tone: active.includes(i) ? 'active' as const : 'plain' as const})) });
-const spec = (slug:string, question:string, options:string[], answer:number, cases:AlgorithmSpec['cases'], idea:string):AlgorithmSpec => ({slug:`algo-${slug}`,topic,predict:{question,options,answer},exploreHint:'Run the question case, then inspect each boundary move.',cases,reveal:w => [w.proof,idea]});
+const spec = (slug:string, question:string, options:string[], answer:number, cases:AlgorithmSpec['cases'], idea:string):AlgorithmSpec => ({slug:`algo-${slug}`,topic,predict:{question,options,answer},exploreHint:'Press Run for the result, or Step to follow each update. Try another changes the input.',cases,reveal:w => [w.proof,idea]});
 export function bound(a:number[], target:number, strict=false):AlgorithmRun {
  const frames:AlgorithmFrame[]=[{caption:'Sorted input',rows:[row('values',a)],metrics:[{label:'target',value:String(target)}]}];let lo=0,hi=a.length;
  while(lo<hi){const m=Math.floor((lo+hi)/2);const right=strict?a[m]<=target:a[m]<target;if(right)lo=m+1;else hi=m;frames.push({caption:right?'Exclude middle left':'Keep middle and left',rows:[row('values',a,[m])],metrics:[{label:'lo',value:String(lo)},{label:'hi',value:String(hi)}]});}

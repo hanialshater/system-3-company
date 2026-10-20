@@ -20,7 +20,7 @@
   },
   "misconception": "Oxygen carriers fill and empty along a gentle curve.",
   "objective": "The learner can explain that cooperative binding makes the haemoglobin curve S-shaped, so a fall from 40 to 20 mmHg releases about 2.5 times as much oxygen as a one-site carrier would.",
-  "keyState": "Oxygen pressure set to 40 and then 20 mmHg: real carrier 74.7% to 31.2% (43.5 points) against one-site 59.9% to 42.7% (17.1 points).",
+  "keyState": "Oxygen pressure set to 40 and then 20 mmHg: four-site carrier 74.7% to 31.2% (43.5 points) against one-site 59.9% to 42.7% (17.1 points).",
   "claims": [
     {
       "id": "life.hemoglobin-s-curve.c1",
@@ -42,10 +42,10 @@
     },
     {
       "id": "life.hemoglobin-s-curve.c3",
-      "text": "From 40 to 20 mmHg the real carrier falls from 74.7% to 31.2% saturation, 43.5 points; the one-site carrier from 59.9% to 42.7%, 17.1 points; the ratio is 2.5.",
+      "text": "From 40 to 20 mmHg the four-site carrier falls from 74.7% to 31.2% saturation, 43.5 points; the one-site carrier from 59.9% to 42.7%, 17.1 points; the ratio is 2.5.",
       "support": "derivation",
       "source": "sat(p,n) = 100 / (1 + (26.8/p)^n) in Demo.tsx, node: 74.67, 31.21, 43.46; 59.88, 42.74, 17.15; ratio 2.535. Question, readouts and reveal all use this function. | FACT-CHECK 2026-10-13 (pass 9): node with the same formula: 74.67, 31.21, drop 43.46; 59.88, 42.74, drop 17.15; ratio 2.535. Stage f1() gives 74.7, 31.2, 43.5, 17.1, 2.5.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
@@ -90,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:oxygen-binding",
     "prerequisites": [

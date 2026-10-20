@@ -3,11 +3,11 @@ export const DOCUMENTS = [
     "id": "conquest",
     "text": "Portuguese conquest of Malacca 1511",
     "requiredContext": "Select year only; no exact conquest day. Local Malay municipal account, not Portuguese original.",
-    "citation": "Government of Melaka institutional historical account. Language/edition: Malay; agent minimal English paraphrase unreviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
+    "citation": "Government of Melaka institutional historical account. Language/edition: Malay; brief English paraphrase; not independently reviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://www.melaka.gov.my/kerajaan/info-negeri/sejarah.html",
     "locator": "text253/275 municipal chronology",
     "sourceLevel": "Government of Melaka institutional historical account",
-    "languageMediation": "Malay; agent minimal English paraphrase unreviewed",
+    "languageMediation": "Malay; brief English paraphrase; not independently reviewed",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.conquest.ordinaryFrame"
@@ -23,11 +23,11 @@ export const DOCUMENTS = [
     "id": "governor",
     "text": "Stadthuys 1650 governor residence and administrative centre",
     "requiredContext": "An administrative building/function, not all population’s consent or uniform regional control.",
-    "citation": "Government of Melaka institutional historical account. Language/edition: Malay; agent minimal English paraphrase unreviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
+    "citation": "Government of Melaka institutional historical account. Language/edition: Malay; brief English paraphrase; not independently reviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://www.melaka.gov.my/kerajaan/info-negeri/sejarah.html",
     "locator": "text300 municipal chronology",
     "sourceLevel": "Government of Melaka institutional historical account",
-    "languageMediation": "Malay; agent minimal English paraphrase unreviewed",
+    "languageMediation": "Malay; brief English paraphrase; not independently reviewed",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.governor.ordinaryFrame"
@@ -43,11 +43,11 @@ export const DOCUMENTS = [
     "id": "acehCourt",
     "text": "Iskandar Muda 1607–1636 and Darud Donya royal palace",
     "requiredContext": "No envoy quotation/translation copied; no unsupported European embassy chronology or gender-decline rhetoric.",
-    "citation": "Dinas Perhubungan Banda Aceh municipal institution. Language/edition: Indonesian; agent minimal English paraphrase unreviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Municipal account attributes Lombard and French-envoy mediation; their originals are not supplied.",
+    "citation": "Dinas Perhubungan Banda Aceh municipal institution. Language/edition: Indonesian; brief English paraphrase; not independently reviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Municipal account attributes Lombard and French-envoy mediation; their originals are not supplied.",
     "sourceUrl": "https://dishub.bandaacehkota.go.id/sejarah-aceh/",
     "locator": "text67/79 municipal account attributing Lombard and French envoy",
     "sourceLevel": "Dinas Perhubungan Banda Aceh municipal institution",
-    "languageMediation": "Indonesian; agent minimal English paraphrase unreviewed",
+    "languageMediation": "Indonesian; brief English paraphrase; not independently reviewed",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.acehCourt.ordinaryFrame"

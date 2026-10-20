@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-probing-classifiers.c5",
-      "text": "Declared finite stage data, operations and retained results, by case: Toy h=[topic,syntax] \u00b7 probe=h\u2081 h\u2081 \u2192 probe; h\u2082 \u2192 y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]\u2192[1,1]: 0\u21921 / 1\u21921 Use syntax Use topic Reset view 1. y=h2: probe 0\u21921; y 1\u21921 2. y=h1: probe 0\u21921; y 0\u21921 | Toy h=[topic,syntax] \u00b7 probe=h\u2081 h\u2081 \u2192 probe; h\u2082 \u2192 y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]\u2192[1,1]: 0\u21921 / 1\u21921 Use syntax Use topic Reset view 1. y=h2: probe 0\u21921; y 1\u21921 2. y=h1: probe 0\u21921; y 0\u21921",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy h=[topic,syntax] · probe=h₁ h₁ → probe; h₂ → y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]→[1,1]: 0→1 / 1→1 Use syntax Use topic Reset view 1. y=h2: probe 0→1; y 1→1 2. y=h1: probe 0→1; y 0→1 | Toy h=[topic,syntax] · probe=h₁ h₁ → probe; h₂ → y h Probe y [0,0] 0 0 [0,1] 0 1 [1,0] 1 0 [1,1] 1 1 Flip [0,1]→[1,1]: 0→1 / 1→1 Use syntax Use topic Reset view 1. y=h2: probe 0→1; y 1→1 2. y=h1: probe 0→1; y 0→1",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 13; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-probing-classifiers/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
       "status": "unverified"
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:probing-classifiers",
     "also": [],

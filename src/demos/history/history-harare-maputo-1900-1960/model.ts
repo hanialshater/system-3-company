@@ -2,7 +2,7 @@ export const DOCUMENTS = [
   {
     "id": "salisburyCity",
     "text": "Salisbury city status 1935; earlier municipality 1897",
-    "requiredContext": "1897antecedent; no1980/1982name-dispute answer. Study author/edition identity fromsource record, noemptylandinference.",
+    "requiredContext": "1897 is earlier context. No answer to the 1980/1982 naming dispute is asserted. The source record identifies the study’s author and edition; it does not imply empty land.",
     "citation": "George Masimba, Dialogue on Shelter Trust; African Cities Research Consortium custodian. Language/edition: English. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. George Masimba, Dialogue on Shelter Trust, June 2021 ACRC scoping study.",
     "sourceUrl": "https://www.african-cities.org/wp-content/uploads/2021/12/ACRC_Harare_City-Scoping-Study.pdf",
     "locator": "2021ACRC scoping study PDF2 visually inspected",
@@ -22,7 +22,7 @@ export const DOCUMENTS = [
   {
     "id": "federalCapital",
     "text": "Salisbury federation capital 1953–60 selected interval",
-    "requiredContext": "Originalscope1900–1960unchanged; later1961–63sourcecontextnotselectedendpoint. Federationrole notcurrentname.",
+    "requiredContext": "The selected period remains 1900–1960; the source’s later 1961–63 context is outside it. The federation role is distinct from the modern name.",
     "citation": "George Masimba, Dialogue on Shelter Trust; African Cities Research Consortium custodian. Language/edition: English. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. George Masimba, Dialogue on Shelter Trust, June 2021 ACRC scoping study.",
     "sourceUrl": "https://www.african-cities.org/wp-content/uploads/2021/12/ACRC_Harare_City-Scoping-Study.pdf",
     "locator": "PDF2; actualsource1953–63onlyselectedthrough1960",
@@ -41,13 +41,13 @@ export const DOCUMENTS = [
   },
   {
     "id": "colonialCapital",
-    "text": "Lourenço Marques colonial capital under 1907reorganization",
+    "text": "Lourenço Marques colonial capital under the 1907 reorganization",
     "requiredContext": "Portuguese scholarly/archival article;1907notOCR1901. Earlier1895/1898office transfers not silentlysameaslegaldesignation; no modernrenamingdate.",
-    "citation": "Arquivo Histórico de Moçambique; Universidade Eduardo Mondlane digital custodian. Language/edition: Portuguese; minimal English paraphrases by research agent, unreviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. 1987 Arquivo article; Universidade Eduardo Mondlane custodian.",
+    "citation": "Arquivo Histórico de Moçambique; Universidade Eduardo Mondlane digital custodian. Language/edition: Portuguese; brief English paraphrases; not independently reviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. 1987 Arquivo article; Universidade Eduardo Mondlane custodian.",
     "sourceUrl": "https://ahm.ghost.uem.mz/wp-content/uploads/sites/38/2025/10/Boletim-do-Arquivo-Historico-de-Mocambique-No2-Outubro-de-1987.pdf",
     "locator": "Arquivo1987 article PDF16/printed12,23May1907paragraph; visually inspected",
     "sourceLevel": "Arquivo Histórico de Moçambique; Universidade Eduardo Mondlane digital custodian",
-    "languageMediation": "Portuguese; minimal English paraphrases by research agent, unreviewed",
+    "languageMediation": "Portuguese; brief English paraphrases; not independently reviewed",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.colonialCapital.ordinaryFrame"

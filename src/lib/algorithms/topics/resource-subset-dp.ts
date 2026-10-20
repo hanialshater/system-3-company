@@ -4,7 +4,7 @@ const frame=(caption:string,rows:AlgorithmRow[]):AlgorithmFrame=>({caption,rows}
 const done=(frames:AlgorithmFrame[],result:number|string|boolean,proof:string):AlgorithmRun=>({frames,result,proof});
 type Detail={mechanism:string;hook:string;recall:{question:string;options:string[];answer:number;why:string}};
 export const lessonDetails:Record<string,Detail>={};
-function spec(id:string,question:string,options:string[],answer:number,a:()=>AlgorithmRun,b:()=>AlgorithmRun,mechanism:string,rq:string,ro:string[],ra:number,why:string):AlgorithmSpec{const slug=`algo-${id.replaceAll('_','-')}`;lessonDetails[slug]={mechanism,hook:'Predict the outcome, then inspect the state that makes it possible.',recall:{question:rq,options:ro,answer:ra,why}};return {slug,topic:'resource-subset-dp',predict:{question,options,answer},exploreHint:'Run the question case, then step through the contrasting input.',cases:[{label:'Question',run:a},{label:'Contrast',run:b}],reveal:w=>[w.proof,mechanism]};}
+function spec(id:string,question:string,options:string[],answer:number,a:()=>AlgorithmRun,b:()=>AlgorithmRun,mechanism:string,rq:string,ro:string[],ra:number,why:string):AlgorithmSpec{const slug=`algo-${id.replaceAll('_','-')}`;lessonDetails[slug]={mechanism,hook:'Predict the outcome, then inspect the state that makes it possible.',recall:{question:rq,options:ro,answer:ra,why}};return {slug,topic:'resource-subset-dp',predict:{question,options,answer},exploreHint:'Press Run for the result, or Step to follow each update. Try another changes the input.',cases:[{label:'Original input',run:a},{label:'Changed input',run:b}],reveal:w=>[w.proof,mechanism]};}
 export function knapsack(cap:number,items:[number,number,number][],unlimited=false):AlgorithmRun{
  const dp=Array(cap+1).fill(0) as number[],f=[frame('Capacity and stock',[row('w',items.map(i=>i[0])),row('v',items.map(i=>i[1])),row('stock',items.map(i=>unlimited?'∞':i[2])),row('C',[cap])])];
  for(const [w,v,stock]of items){const prev=dp.slice();for(let c=0;c<=cap;c++){let best=prev[c];for(let k=1;k<=Math.min(unlimited?Math.floor(cap/w):stock,Math.floor(c/w));k++)best=Math.max(best,prev[c-k*w]+k*v);dp[c]=best;f.push(frame(`Capacity ${c}`,[row('before',prev),row('best',dp,c)]));}}
@@ -32,13 +32,13 @@ export const tree_independent_set=spec('tree_independent_set','Path A–B–C ha
 export const resource_constrained_path=spec('resource_constrained_path','S→A costs/fuel 1/3 or 3/1; A→T 1/2; budget3. Cheapest?',['2','4','none'],1,()=>resourcePath(3),()=>resourcePath(5),'The cheapest arrival at a vertex may have exhausted the resource needed later. Keeping fuel usage in the state retains a more expensive arrival that can complete the route.','May a costlier arrival with more fuel remaining be discarded solely for its higher cost?',['Yes','No'],1,'Its remaining resource can make a later edge feasible when the cheaper arrival cannot continue.');
 
 // A short, lesson-specific invitation; retained with the model-owned claim ledger.
-lessonDetails["algo-unbounded-knapsack"].hook = "May the same item be used again? Follow the computed steps.";
-lessonDetails["algo-bounded-knapsack"].hook = "Only three copies remain. Follow the computed steps.";
-lessonDetails["algo-subset-sum-witness"].hook = "Which items built this total? Follow the computed steps.";
-lessonDetails["algo-equal-partition"].hook = "One target can split the whole set. Follow the computed steps.";
-lessonDetails["algo-held-karp"].hook = "Which towns and where are you? Follow the computed steps.";
-lessonDetails["algo-assignment-bitmask"].hook = "Who has already taken a job? Follow the computed steps.";
-lessonDetails["algo-digit-dp"].hook = "Has the prefix fallen below the limit? Follow the computed steps.";
-lessonDetails["algo-profile-domino"].hook = "What sticks into the next column? Follow the computed steps.";
-lessonDetails["algo-tree-independent-set"].hook = "A chosen parent forbids a child. Follow the computed steps.";
-lessonDetails["algo-resource-constrained-path"].hook = "The battery is part of the state. Follow the computed steps.";
+lessonDetails["algo-unbounded-knapsack"].hook = "May the same item be used again?";
+lessonDetails["algo-bounded-knapsack"].hook = "Only three copies remain.";
+lessonDetails["algo-subset-sum-witness"].hook = "Which items built this total?";
+lessonDetails["algo-equal-partition"].hook = "One target can split the whole set.";
+lessonDetails["algo-held-karp"].hook = "Which towns and where are you?";
+lessonDetails["algo-assignment-bitmask"].hook = "Who has already taken a job?";
+lessonDetails["algo-digit-dp"].hook = "Has the prefix fallen below the limit?";
+lessonDetails["algo-profile-domino"].hook = "What sticks into the next column?";
+lessonDetails["algo-tree-independent-set"].hook = "A chosen parent forbids a child.";
+lessonDetails["algo-resource-constrained-path"].hook = "The battery is part of the state.";

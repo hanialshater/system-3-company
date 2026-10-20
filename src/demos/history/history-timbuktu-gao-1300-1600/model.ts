@@ -203,7 +203,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "UNESCO identifies Al Aqib’s work as qadi and imam at Timbuktu’s mosques. Gao’s accounts describe royal submission, hostages and later court/capital authority. Those institutions differ, while conquest, pressure on scholars and merchants, and later enslavement and forced removal interrupt any picture of homogeneous consensual rule. The separately dated accounts do not turn Timbuktu into a modern university or scholarly office into Gao’s royal jurisdiction. Original manuscripts remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

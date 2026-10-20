@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-bitonic-subsequence.c4",
-      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-bitonic-subsequence.c6",
-      "text": "Bitonic length 5; peak counts 1,4,3,5,4,1. This remains the computed witness for the question case.",
+      "text": "For the original input: Bitonic length 5; peak counts 1,4,3,5,4,1.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-bitonic-subsequence.c7",
-      "text": "The increasing prefix length and decreasing suffix length meet at the same peak. Adding them counts that peak twice, so subtract one before comparing peaks.",
+      "text": "For the original input: The increasing prefix length and decreasing suffix length meet at the same peak. Adding them counts that peak twice, so subtract one before comparing peaks.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -205,7 +205,7 @@
     },
     {
       "id": "cs.algo-bitonic-subsequence.c27",
-      "text": "Bitonic length 4; peak counts 1,2,3,4. This remains the computed witness for the question case.",
+      "text": "For the original input: Bitonic length 4; peak counts 1,2,3,4.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#bitonic_subsequence.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -244,7 +244,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-bitonic-subsequence",

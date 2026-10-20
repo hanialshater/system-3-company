@@ -85,7 +85,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
 
       <div className={s.legend} aria-hidden>
         <span><i className={s.affected} />shows trait (2 copies)</span>
-        <span><i className={s.carrier} />carrier (1 copy, looks normal)</span>
+        <span><i className={s.carrier} />carrier (1 copy)</span>
       </div>
 
       <p className={s.msg} aria-live="polite">
@@ -117,7 +117,7 @@ export default function HiddenCarriers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a town with random mating, 1 in 10,000 people shows a made-up recessive trait: it appears only with two copies of a gene variant, one from each parent. About how many people carry just one copy and look normal?",
+          "In a town with random mating, 1 in 10,000 people shows a made-up recessive trait: it appears only with two copies of a gene variant, one from each parent. About how many people carry just one copy without showing the trait?",
         options: ["About 1 in 100", `About 1 in ${RARE_ONE_IN}`, "About 1 in 10,000"],
         answer: 1,
       }}

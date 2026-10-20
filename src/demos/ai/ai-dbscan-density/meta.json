@@ -32,7 +32,7 @@
     },
     {
       "id": "ai.ai-dbscan-density.c2",
-      "text": "Radius .15 formed two density-connected groups and left 5 as noise. Radius .05 left every point below the two-sample threshold. Radius 1 connected the first six into one group, still excluding 5. Density parameters request neighborhoods, not a chosen number of populations.",
+      "text": "Radius .15 formed two density-connected groups and left 5 as noise. Radius .05 left every point below the two-sample threshold. Radius 1 connected the first six into one group, still excluding 5. The parameters define neighborhoods and the minimum count needed for a core point; they do not specify how many groups to find.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §16; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
       "status": "unverified"
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:dbscan-density",
     "also": [],

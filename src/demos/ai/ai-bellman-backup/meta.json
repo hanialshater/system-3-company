@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "bellman-backup",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-bellman-backup.c4",
-      "text": "{\"question\": \"Reward0, gamma=.5, equally likely successor values6 and2: what is the backup?\", \"options\": [\"2\", \"3\", \"4\"], \"answer\": 0, \"why\": \".5 times the mean of6 and2 is2.\"}",
+      "text": "{\"question\": \"Reward 0, discount factor .5, equally likely successor values 6 and 2: what is the backup?\", \"options\": [\"2\", \"3\", \"4\"], \"answer\": 0, \"why\": \".5 times the mean of 6 and 2 is 2.\"}",
       "support": "derivation",
       "source": "https://www.incompleteideas.net/book/bookdraft2018mar21.pdf (Bellman policy-evaluation equation and terminal convention; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "Reward0, gamma=.5, equally likely successor values6 and2: what is the backup?",
+    "question": "Reward 0, discount factor .5, equally likely successor values 6 and 2: what is the backup?",
     "options": [
       "2",
       "3",
       "4"
     ],
     "answer": 0,
-    "why": ".5 times the mean of6 and2 is2."
+    "why": ".5 times the mean of 6 and 2 is 2."
   },
   "evidence": {
     "qa": [],

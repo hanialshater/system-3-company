@@ -65,7 +65,7 @@ function Stage({ locked, interact, drop, setDrop, rolled, setRolled }: {
         ))}
         {rolled && (
           <text x={W - L} y={12} textAnchor="end" className={s.legend}>
-            line: {N_ROLLS.toLocaleString("en-US")} real rolls, scaled to 36
+            line: {N_ROLLS.toLocaleString("en-US")} simulated rolls, scaled to 36
           </text>
         )}
       </svg>

@@ -1,7 +1,7 @@
 {
   "slug": "arrival-is-not-departure",
   "title": "Arrival time works backwards",
-  "hook": "A twenty-minute trip for a minute-forty arrival has a latest departure.",
+  "hook": "A 20-minute trip must end at minute 40. When do you need to leave?",
   "domain": "lifehacks",
   "concept": "work-back-from-deadline",
   "status": "review",
@@ -22,11 +22,11 @@
   "objective": "Compute a departure block ending at the required arrival.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A twenty-minute trip for a minute-forty arrival has a latest departure. Latest departure for this 20-minute trip? Correct option: Minute 20. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A 20-minute trip must end at minute 40. When do you need to leave? Latest departure for this 20-minute trip? Correct option: Minute 20. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
       "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.arrival-is-not-departure.c1",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -79,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:work-back-from-deadline",
     "prerequisites": [],

@@ -85,7 +85,7 @@
       "Replies whose every token is the most confident"
     ],
     "answer": 0,
-    "why": "Every extra token multiplies the whole by a number below 1, so long replies lose probability. Real decoders add a length correction, such as scoring per token."
+    "why": "Every extra token multiplies the whole by a number below 1, so long replies lose probability. Some decoders use a length correction, such as scoring per token."
   },
   "evidence": {
     "qa": [
@@ -97,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:sequence-length-bias",
     "also": [],

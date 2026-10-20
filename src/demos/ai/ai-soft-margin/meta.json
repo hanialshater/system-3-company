@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "soft-margin",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-soft-margin.c1",
-      "text": "export function candidate(w:number,C:number){const data=[[-1,-1],[1,1],[.2,-1]],hinges=data.map(([x,y])=>Math.max(0,1-y*w*x)),norm=.5*w*w,sum=hinges.reduce((a,b)=>a+b,0);return {w,hinges,norm,sum,total:norm+C*sum};}export function run(mode:number){const C=mode===1?1:mode===2?0:.1,rows=[1,.5].map(w=>candidate(w,C));return {C,rows,winner:rows[0].total<rows[1].total?1:.5};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Pay for the violation? \\u2014 computed finite mechanism\"><text x=\"6\" y=\"17\">C={r.C} · outlier(.2,−1): ywx&lt;0</text><text x=\"5\" y=\"40\">w</text><text x=\"47\" y=\"40\">norm</text><text x=\"113\" y=\"40\">Σhinge</text><text x=\"211\" y=\"40\">J</text>{r.rows.map((row,i)=><g key={i}><text x=\"5\" y={64+i*27}>{row.w}</text><text x=\"47\" y={64+i*27}>{f(row.norm,3)}</text><text x=\"119\" y={64+i*27}>{f(row.sum,1)}</text><text x=\"203\" y={64+i*27}>{f(row.total,3)}</text></g>)}</svg>;}\n\nLocked inputs: Data (x,y): (−1,−1),(1,1),(.2,−1). Compare w=1,.5; J=.5w²+CΣmax(0,1−ywx).",
+      "text": "export function candidate(w:number,C:number){const data=[[-1,-1],[1,1],[.2,-1]],hinges=data.map(([x,y])=>Math.max(0,1-y*w*x)),norm=.5*w*w,sum=hinges.reduce((a,b)=>a+b,0);return {w,hinges,norm,sum,total:norm+C*sum};}export function run(mode:number){const C=mode===1?1:mode===2?0:.1,rows=[1,.5].map(w=>candidate(w,C));return {C,rows,winner:rows[0].total<rows[1].total?1:.5};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Pay for the violation? — worked example\"><text x=\"6\" y=\"17\">C={r.C} · outlier(.2,−1): ywx&lt;0</text><text x=\"5\" y=\"40\">w</text><text x=\"47\" y=\"40\">norm</text><text x=\"113\" y=\"40\">Σhinge</text><text x=\"211\" y=\"40\">J</text>{r.rows.map((row,i)=><g key={i}><text x=\"5\" y={64+i*27}>{row.w}</text><text x=\"47\" y={64+i*27}>{f(row.norm,3)}</text><text x=\"119\" y={64+i*27}>{f(row.sum,1)}</text><text x=\"203\" y={64+i*27}>{f(row.total,3)}</text></g>)}</svg>;}\n\nLocked inputs: Data (x,y): (−1,−1),(1,1),(.2,−1). Compare w=1,.5; J=.5w²+CΣmax(0,1−ywx).",
       "support": "derivation",
       "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
       "status": "unverified",

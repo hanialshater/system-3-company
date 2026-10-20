@@ -7,7 +7,7 @@
   },
   "family": "feedback",
   "predict": {
-    "question": "B starts six writes behind, receives four and applies six each round for four rounds. What is B’s toy result?",
+    "question": "B starts six writes behind, receives four and applies six each round for four rounds. How many pending writes remain in B?",
     "options": [
       "10",
       "6",
@@ -45,5 +45,5 @@
   "unit": "pending writes",
   "bookIdea": "Designing Data-Intensive Applications distinguishes accepting writes from propagating and applying them across replicas.",
   "modelBoundary": "A ends with {A} pending writes; B with {B}. Six applications against four new writes drain the initial six-write backlog, then the zero floor stops depletion. A fixed backlog model; read visibility, ordering, consistency and replication delay in time are not represented.",
-  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+  "doesItHoldUp": "Does it hold up? Real-world applicability and the connection to the book remain unverified."
 }

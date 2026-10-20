@@ -93,7 +93,7 @@ export default function OneTenThousandthApart({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The runs stayed within 0.1 until step {n}, then wandered apart like strangers. A start 1,000 times more precise
+            The runs stayed within 0.1 until step {n}, then separated. A start 1,000 times more precise
             bought only {extra} more steps: the gap roughly doubles each step.
           </p>
           <p>Edward Lorenz found this in a weather model in 1963.</p>

@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "After filling both blanks with5, can numeric values distinguish the labels?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>Filling made every numeric value 5, scoring 2/4 under the declared tie rule. The missingness indicator scored 4/4 on the original labels, then 2/4 after their association changed. That association supplied information here; missingness was not shown causing the labels or guaranteeing deployment benefit.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "After filling both blanks with 5, can numeric values distinguish the labels?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Filling made every numeric value 5, scoring 2/4 under the declared tie rule. The missingness indicator scored 4/4 on the original labels, then 2/4 after their association changed. That association supplied information here; missingness was not shown causing the labels or guaranteeing deployment benefit.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

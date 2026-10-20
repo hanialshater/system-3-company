@@ -21,7 +21,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "representation": "raw downloaded bytes",
         "makerCustodianEditor": "Ulaanbaatar municipal museum; undated institutional page",
         "publicationOrDocumentDate": "undated",
-        "languageMediationAndLimits": "Mongolian; agent paraphrase unreviewed",
+        "languageMediationAndLimits": "Mongolian; paraphrase; not independently reviewed",
         "sourceLevel": "Inherited scholarly/institutional account; source level not upgraded by reuse",
         "locator": "normalized58 site/name periodization",
         "transport": "certificate verification disabled after local chain failure; identity not cryptographically authenticated",
@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The museum separates mobile settlement phases from the later Ulaanbaatar name. Wang’s abstract describes a specific Qing commercial office’s passport and monitoring remit, not all Mongol government. Kaplonski separately describes Sando’s expulsion and a new government in 1911. Name, site, office competence and regime change are different kinds of evidence; later diplomatic retrospectives cannot supply an uncollated original treaty or universal recognition.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

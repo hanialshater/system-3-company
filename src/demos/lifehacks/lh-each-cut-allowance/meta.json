@@ -27,7 +27,7 @@
       "text": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once. Scaled model; length-only model; no cutting instructions.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -54,7 +54,7 @@
       "text": "Each panel needs 1.20m plus its own 0.05m allowance. What total length do ten panels need? Correct: 12.50m. The allowance is per panel, so it is multiplied by ten too: 10 × 1.25m = 12.50m.",
       "support": "derivation",
       "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×(1.20+0.05) = 12.50 m (12.05 adds the allowance once); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -89,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:allowance-per-piece",

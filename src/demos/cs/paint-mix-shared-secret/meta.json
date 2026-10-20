@@ -104,7 +104,7 @@
       "Eve's numbers are averaged in"
     ],
     "answer": 0,
-    "why": "Each multiplies the other's public number by their own secret count, so both reach the base multiplied (A × B) times; the secrets never travel."
+    "why": "Each raises the other’s public value to their own secret power. Both compute the base to the power A × B, modulo the same number; neither sends their secret."
   },
   "evidence": {
     "qa": [
@@ -119,7 +119,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:public-key-crypto",
     "prerequisites": [],

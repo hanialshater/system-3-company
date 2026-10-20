@@ -125,7 +125,7 @@ export default function HighSatelliteView({ slug }: { slug: string }) {
         <>
           <p>
             From {km(GEO_KM)} the satellite sees about {Math.round(geo * 100)}% of the surface: everything within{" "}
-            {geoAngle.toFixed(0)}° of the point below it. The poles stay in the dark. {lowH !== null && (
+            {geoAngle.toFixed(0)}° of the point below it. The poles remain out of view. {lowH !== null && (
               <>
                 From {km(lowH)} it saw only {pct(share(lowH))}.
               </>

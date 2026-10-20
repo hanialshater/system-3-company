@@ -151,7 +151,7 @@ export const DOCUMENTS = [
         }
       }
     ],
-    "attribution": "MJP French edition of Anglo-Egyptian agreement; prescription, not Sudanese/Mahdist assent Mandatory loaded qualification: Khedive appoints on British recommendation; removal requires British consent.",
+    "attribution": "MJP French edition of Anglo-Egyptian agreement; prescription, not Sudanese/Mahdist assent. The Khedive appoints on British recommendation; removal requires British consent.",
     "claims": [
       "history.history-khartoum-cairo-1800-1900.c5",
       "history.history-khartoum-cairo-1800-1900.c6",

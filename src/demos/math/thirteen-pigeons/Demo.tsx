@@ -26,7 +26,7 @@ export default function ThirteenPigeons({ slug }: { slug: string }) {
         options: [String(N), String(N + 1), String(2 * N)],
         answer: 1,
       }}
-      exploreHint="Tap month tiles to seat people, one per month. The reveal opens once all 12 months are taken."
+      exploreHint="Tap month tiles to seat one person in each of the 12 months."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

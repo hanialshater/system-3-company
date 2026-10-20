@@ -1,11 +1,11 @@
 {
   "slug": "ai-policy-gradient-baseline",
   "title": "Three points: increase or decrease?",
-  "hook": "Compare one result with the state\u2019s usual return.",
+  "hook": "Compare one result with the state’s usual return.",
   "domain": "ai",
   "concept": "policy-gradient-baseline",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "ai.ai-policy-gradient-baseline.c2",
-      "text": "Three points: increase or decrease?; Compare one result with the state\u2019s usual return.; Left returns3. With baseline4, will this update raise or lower Left\u2019s probability?; options ['Raise it', 'Lower it', 'Leave it unchanged']; correct index 1",
+      "text": "Three points: increase or decrease?; Compare one result with the state’s usual return.; Left returns 3. With baseline 4, will this update raise or lower Left’s probability?; options ['Raise it', 'Lower it', 'Leave it unchanged']; correct index 1",
       "support": "derivation",
       "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (score-function/baseline method context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-policy-gradient-baseline.c3",
-      "text": "Left earned 3, but the baseline was 4. Its relative return was \u22121: Left\u2019s probability fell from .500 to .378. Without the baseline, that sample raised it to .818. The two-action table gives mean Left-coordinate gradient \u2212.5 in both cases. Individual updates changed; that expected gradient did not. The action-dependent case breaks this identity for the naive estimator shown.",
+      "text": "Left earned 3, but the baseline was 4. Its relative return was −1: Left’s probability fell from .500 to .378. Without the baseline, that sample raised it to .818. The two-action table gives mean Left-coordinate gradient −.5 in both cases. Individual updates changed; that expected gradient did not. The action-dependent case breaks this identity for the naive estimator shown.",
       "support": "derivation",
       "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (score-function/baseline method context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-policy-gradient-baseline.c4",
-      "text": "{\"question\": \"Right returns5, baseline4, initially equal probabilities. Does Right\\u2019s probability rise, fall or stay?\", \"options\": [\"Rise\", \"Fall\", \"Stay\"], \"answer\": 0, \"why\": \"Relative return+1 increases Right\\u2019s probability to about.622.\"}",
+      "text": "{\"question\": \"Right returns 5, baseline 4, initially equal probabilities. Does Right\\u2019s probability rise, fall or stay?\", \"options\": [\"Rise\", \"Fall\", \"Stay\"], \"answer\": 0, \"why\": \"Relative return +1 increases Right\\u2019s probability to about .622.\"}",
       "support": "derivation",
       "source": "https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf (score-function/baseline method context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "Right returns5, baseline4, initially equal probabilities. Does Right\u2019s probability rise, fall or stay?",
+    "question": "Right returns 5, baseline 4, initially equal probabilities. Does Right’s probability rise, fall or stay?",
     "options": [
       "Rise",
       "Fall",
       "Stay"
     ],
     "answer": 0,
-    "why": "Relative return+1 increases Right\u2019s probability to about.622."
+    "why": "Relative return +1 increases Right’s probability to about .622."
   },
   "evidence": {
     "qa": [],

@@ -70,8 +70,7 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
             Setting 90° was that assumption, and the sides stood parallel and never met.
           </p>
           <p>
-            The assumption leads to an impossible triangle, so it is false. That is proof by contradiction: assume it, follow
-            it, hit a wall.
+            The assumption leads to an impossible triangle, so it is false. That is proof by contradiction.
           </p>
         </>
       )}

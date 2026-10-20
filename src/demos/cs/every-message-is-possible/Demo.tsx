@@ -45,7 +45,7 @@ export default function EveryMessageIsPossible({ slug }: { slug: string }) {
             keys were different.
           </p>
           <p>
-            So {b4(CIPHER)} rules nothing out: if the key was random, every message is equally likely. Trying keys only
+            So {b4(CIPHER)} rules nothing out: with an independent uniformly random key, the ciphertext gives no evidence favouring one message over another. Trying keys only
             lists every message. This is a one-time pad, and it stays unbreakable only if the key is never used again.
           </p>
         </>

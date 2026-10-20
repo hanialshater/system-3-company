@@ -58,7 +58,7 @@ function Stage({ locked, interact, revealing }: { locked: boolean; interact: () 
     : balanced
       ? e === 0
         ? "Equal inside and outside: no push, so no pull needed. Nothing moves."
-        : "Balanced: the push out and the pull back are equal, so nothing moves net. Very few ions had to cross."
+        : "Balanced: the push out and the pull back are equal, so net flow stops. Very few ions had to cross."
       : v === 0
         ? `Nothing has leaked yet (outside ${out} mM). Let potassium leak and watch the voltage.`
         : `Potassium leaks out. The inside charge is ${MV(v)} and still changing.`;
@@ -116,7 +116,7 @@ export default function PotassiumBattery({ slug }: { slug: string }) {
         <>
           <p>
             You leaked to balance: the inside sat at <strong>{MV(E0)}</strong>. Potassium still wants to leave ({IN} against {OUT0} mM), but the
-            negative inside pulls it back just as hard, so nothing moves net.
+            negative inside pulls it back just as hard, so net flow stops.
           </p>
           <p>
             Why so large? The balance voltage follows the concentration ratio ({IN / OUT0} to 1 here), about 61 mV for each

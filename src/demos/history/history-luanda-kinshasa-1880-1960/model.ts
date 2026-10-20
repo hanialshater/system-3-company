@@ -144,7 +144,7 @@ export const DOCUMENTS = [
         }
       }
     ],
-    "attribution": "Luanda provincial government modern site account: Largo da Independência proclamation on 11November1975; not a collated historical proclamation or an account of every political actor.",
+    "attribution": "Luanda provincial government modern site account: Largo da Independência proclamation on 11 November 1975; not a collated historical proclamation or an account of every political actor.",
     "claims": [
       "history.history-luanda-kinshasa-1880-1960.c5",
       "history.history-luanda-kinshasa-1880-1960.c6"

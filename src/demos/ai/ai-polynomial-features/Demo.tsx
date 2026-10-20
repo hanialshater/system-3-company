@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Can an intercept plus one coefficient fit these squared values exactly?", "options": ["With raw x", "With x²", "With either", "With neither"], "answer": 1 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The raw feature fitted a horizontal2 with squared error14. Squaring the feature fitted these points exactly: coefficient1, intercept0. At x=3 predictions were2 and9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Can an intercept plus one coefficient fit these squared values exactly?", "options": ["With raw x", "With x²", "With either", "With neither"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The raw feature fitted a horizontal line at 2 with squared error 14. Squaring the feature fitted these points exactly: coefficient 1, intercept 0. At x=3 predictions were 2 and 9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

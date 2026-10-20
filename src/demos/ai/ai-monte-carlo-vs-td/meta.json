@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "monte-carlo-vs-td",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-monte-carlo-vs-td.c4",
-      "text": "{\"question\": \"Rewards2 then6, gamma=.5, next estimate2 and old0. Which targets are TD / completed MC?\", \"options\": [\"3 / 5\", \"5 / 3\", \"3 / 3\"], \"answer\": 0, \"why\": \"TD uses2+.5\\u00d72=3; completed MC uses2+.5\\u00d76=5.\"}",
+      "text": "{\"question\": \"Rewards 2 then 6, discount .5, next estimate 2 and old value 0. What are the TD and completed Monte Carlo targets?\", \"options\": [\"3 / 5\", \"5 / 3\", \"3 / 3\"], \"answer\": 0, \"why\": \"TD uses 2+.5\\u00d72=3; completed MC uses 2+.5\\u00d76=5.\"}",
       "support": "derivation",
       "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-monte-carlo-vs-td.c5",
-      "text": "Same old estimate for both updates; no general accuracy, bias or convergence guarantee. MC waiting is not a numeric zero target. Both updates start from old V(S)=0. The bootstrap estimate10 is deliberately inaccurate. Controls: First step, Finish, Accurate next, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
+      "text": "Same old estimate for both updates; no general accuracy, bias or convergence guarantee. MC waiting is not a numeric zero target. Both updates start from old V(S)=0. The bootstrap estimate 10 is deliberately inaccurate. Controls: First step, Finish, Accurate next, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
       "support": "convention",
       "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (Sutton1988 TD paper; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "Rewards2 then6, gamma=.5, next estimate2 and old0. Which targets are TD / completed MC?",
+    "question": "Rewards 2 then 6, discount .5, next estimate 2 and old value 0. What are the TD and completed Monte Carlo targets?",
     "options": [
       "3 / 5",
       "5 / 3",
       "3 / 3"
     ],
     "answer": 0,
-    "why": "TD uses2+.5\u00d72=3; completed MC uses2+.5\u00d76=5."
+    "why": "TD uses 2+.5×2=3; completed MC uses 2+.5×6=5."
   },
   "evidence": {
     "qa": [],

@@ -55,7 +55,7 @@ export default function SkaterPullsArms({ slug }: { slug: string }) {
           </p>
           <p>
             That product is angular momentum. With nothing outside twisting her, it cannot change, so a third of the moment of
-            inertia means three times the spin, not a vague bit more.
+            inertia means three times the spin.
           </p>
           <p className="muted">Frictionless ice, no air; the moments of inertia are illustrative.</p>
         </>

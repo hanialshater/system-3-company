@@ -170,7 +170,7 @@ export const ATTACHMENTS = {
 export const PREDICTION = {
   "question": "Does the Estonia treaty’s recognition alone establish Latvia’s recognition?",
   "options": [
-    "Yes, both areBaltic",
+    "Yes, both are Baltic",
     "No, check Latvia’s own treaty"
   ],
   "answer": 1

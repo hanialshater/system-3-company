@@ -64,8 +64,8 @@
     "question": "When does this grid spend a trial without exploring a new relevant value?",
     "options": [
       "When y changes while x repeats: the declared objective ignores y, so no new relevant coordinate is tested.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "When x changes while y repeats.",
+      "Every trial tests a new relevant value, even when x repeats."
     ],
     "answer": 0,
     "why": "When y changes while x repeats: the declared objective ignores y, so no new relevant coordinate is tested."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:random-vs-grid-search",
     "also": [],

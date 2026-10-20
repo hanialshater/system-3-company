@@ -2,7 +2,7 @@ export const DOCUMENTS = [
   {
     "id": "bek",
     "text": "Tashkent bek appointed by Kokand khan",
-    "requiredContext": "Do not normalize awkwardtranslatedoffice into exactmodernmayor; nooriginaldecreeorcalendarstylecollated.",
+    "requiredContext": "The translated office title does not establish equivalence to a modern mayor; original decree and calendar style not checked.",
     "citation": "Edited D.A. Alimova et al.; local Uzbek historians; TSUULL university custodian; publication year not established from acquired title. Language/edition: English edition; translator not named in selected pages; not collated with Uzbek/Russian. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Tashkent—2200; D. A. Alimova and other local historians; university custody. English edition translator and publication year unestablished.",
     "sourceUrl": "https://tsuull.uz/sites/default/files/tashkent3.pdf",
     "locator": "PDF24; actualEnglishbookedition; visually inspected",
@@ -22,7 +22,7 @@ export const DOCUMENTS = [
   {
     "id": "headquarters",
     "text": "1865 Russian capture;1867 governor-generalship creation; later Tashkent headquarters",
-    "requiredContext": "Capture differsfromadministrativeheadquarters. No uncritical praise or exactday/calendarassertion.",
+    "requiredContext": "Capture differs from establishing administrative headquarters. No uncritical praise or exactday/calendarassertion.",
     "citation": "Edited D.A. Alimova et al.; local Uzbek historians; TSUULL university custodian; publication year not established from acquired title. Language/edition: English edition; translator not named in selected pages; not collated with Uzbek/Russian. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Tashkent—2200; D. A. Alimova and other local historians; university custody. English edition translator and publication year unestablished.",
     "sourceUrl": "https://tsuull.uz/sites/default/files/tashkent3.pdf",
     "locator": "PDF27–28; visually inspected27",
@@ -43,11 +43,11 @@ export const DOCUMENTS = [
     "id": "verny",
     "text": "1854Vernyfort on earlierAlmatysite;1867citystatus",
     "requiredContext": "Actualfort/city acts not proof a Verny1867regionalgovernoroffice. ModernAlmatyorientation, nosamefoundation/governmentinference.",
-    "citation": "e-history.kz national history portal. Language/edition: Kazakh; agent paraphrase unreviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
+    "citation": "e-history.kz national history portal. Language/edition: Kazakh; paraphrase; not independently reviewed. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://e-history.kz/kz/calendar/show/26120",
     "locator": "Kazakh1854/1867paragraphs; Russiancorrectedaccountseparatelypinnedinbaseline",
     "sourceLevel": "e-history.kz national history portal",
-    "languageMediation": "Kazakh; agent paraphrase unreviewed",
+    "languageMediation": "Kazakh; paraphrase; not independently reviewed",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.verny.ordinaryFrame"

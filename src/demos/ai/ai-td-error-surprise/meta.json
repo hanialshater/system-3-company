@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "td-error-surprise",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "ai.ai-td-error-surprise.c2",
-      "text": "Which outcome changes the estimate?; Compare an outcome with the prediction it replaces.; Gamma=.5. Which produces a larger upward correction: current4,reward4,next4; or current10,terminal reward10?; options ['Reward4 case', 'Reward10 case', 'Equal correction']; correct index 0",
+      "text": "Which outcome changes the estimate?; Compare an outcome with the prediction it replaces.; Gamma=.5. Which produces a larger upward correction: current 4, reward 4, next 4; or current 10, terminal reward 10?; options ['Reward 4 case', 'Reward 10 case', 'Equal correction']; correct index 0",
       "support": "derivation",
       "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-td-error-surprise.c4",
-      "text": "{\"question\": \"Current3, reward1, next2, gamma=.5: what is the TD error?\", \"options\": [\"\\u22121\", \"0\", \"1\"], \"answer\": 0, \"why\": \"Target1+.5\\u00d72=2; subtract current3 to obtain\\u22121.\"}",
+      "text": "{\"question\": \"Current value 3, reward 1, next value 2, discount .5: what is the TD error?\", \"options\": [\"\\u22121\", \"0\", \"1\"], \"answer\": 0, \"why\": \"Target1+.5\\u00d72=2; subtract current3 to obtain\\u22121.\"}",
       "support": "derivation",
       "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "Current3, reward1, next2, gamma=.5: what is the TD error?",
+    "question": "Current value 3, reward 1, next value 2, discount .5: what is the TD error?",
     "options": [
-      "\u22121",
+      "−1",
       "0",
       "1"
     ],
     "answer": 0,
-    "why": "Target1+.5\u00d72=2; subtract current3 to obtain\u22121."
+    "why": "Target 1+.5×2=2; subtract current value 3 to obtain −1."
   },
   "evidence": {
     "qa": [],

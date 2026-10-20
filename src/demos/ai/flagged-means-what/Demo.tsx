@@ -91,7 +91,7 @@ export default function FlaggedMeansWhat({ slug }: { slug: string }) {
           </p>
           <p>
             The test still catches {pct(BASE.recall, 0)} of the ill (recall, {BASE.tp} of {BASE.ill}) and is right on{" "}
-            {pct(BASE.accuracy)} of all scans. Those answer &quot;of the ill, how many were flagged?&quot;. Precision answers
+            {pct(BASE.accuracy)} of all scans. Recall asks &quot;of the ill, how many were flagged?&quot;; accuracy counts correct results among all scans. Precision answers
             &quot;of the flagged, how many are ill?&quot;. With only {BASE.ill} ill people, even a small false-alarm rate on{" "}
             {N - BASE.ill} healthy ones swamps them.
           </p>

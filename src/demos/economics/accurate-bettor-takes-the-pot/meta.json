@@ -33,10 +33,10 @@
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c2",
-      "text": "Luck can lead for a long time: after race 50, the 50% bettor's best moment was 91.0% of the money at race 203 in run 2 (seed 2212) and 94.2% at race 176 in run 5 (seed 2215); runs 1, 3 and 4 never put the 50% bettor above half after race 50. The reveal quotes the circled low point of the run on screen: \"luck can lead for long: in run 5 the 50% bettor held 94.2% at race 176 (the circle)\".",
+      "text": "Luck can lead for a long time: after race 50, the 50% bettor's best moment was 91.0% of the money at race 203 in run 2 (seed 2212) and 94.2% at race 176 in run 5 (seed 2215); runs 1, 3 and 4 never put the 50% bettor above half after race 50. The reveal quotes the circled low point of the run on screen: \"the less accurate bettor can lead for many races: in run 5 the 50% bettor held 94.2% at race 176 (the circle)\".",
       "support": "simulation",
       "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable. | REWORDED v2 (demo-builder, 2026-10-14): v2 quotes the circled low point of the run the learner is looking at (lowPoint() over races 51..t, computed from state), not race 200. Builder's node replay of run(): run 2 min share 0.090 at race 203 (50% bettor 91.0%), run 5 min 0.058 at race 176 (94.2%); other runs' minima after race 50 are 0.716, 0.655, 0.553 (above half). Seeds 2211-2215 fixed by the brief. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own replay (fc24/bet.mjs, own mulberry32 copy, own pool update): run 2 (2212) min share after race 50 = 0.090 at race 203, 50% bettor 91.0%; run 5 (2215) 0.058 at race 176, 94.2%; runs 1, 3, 4 minima after race 50 are 0.716, 0.655, 0.553 (never below half). lowPoint() scans races 51..t, and the reveal needs milestone full-run, so t = 500 when it quotes the circle. Seeds fixed by the brief (consecutive). | v4 (demo-builder, 2026-10-14): learner r8: reveal reworded (\"held 94.2% at race 176 (the circle)\"); the chart is now on screen when the reveal opens (viewBox 340x176, plot y 10..150). Values unchanged. Needs re-check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read v4 Demo.tsx first. Own node replay of run() with mulberry32: after race 50 the lowest 60%-bettor share is 0.090 at race 203 in run 2 (50% bettor 91.0%) and 0.058 at race 176 in run 5 (94.2%). Runs 1, 3 and 4 never go below half after race 50. The reveal quotes lowPoint(quoteRun, t) at t = 500 (full-run is needed and t never decreases): the selected run if it dipped, else the first dipping run opened. Every dipping run is circled and the quoted one is labelled, so the quote is always on screen. Seeds 2211 to 2215 are consecutive in SEEDS.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -101,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "economics:market-selection-wealth",
     "also": [

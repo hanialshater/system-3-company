@@ -1,7 +1,7 @@
 {
   "slug": "ai-behaves-when-watched",
-  "title": "Test behaves when watched",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "Does being watched change the action?",
+  "hook": "Change only the evaluation marker. Does the action change?",
   "domain": "ai",
   "concept": "behaves-when-watched",
   "status": "draft",
@@ -16,7 +16,7 @@
       "distribution-shift"
     ],
     "doesNotKnow": [
-      "Truths[0,1,0,1]. Declared script returns truth if evaluation marker1, otherwise0. Does its perfect marked score determine its unmarked result?"
+      "True answers are [0,1,0,1]. The script returns the true answer when the evaluation marker is 1, and 0 otherwise. Does a perfect score with the marker establish its score without it?"
     ]
   },
   "misconception": "Yes",
@@ -24,7 +24,7 @@
   "claims": [
     {
       "id": "ai.ai-behaves-when-watched.c1",
-      "text": "Test behaves when watched Compare a declared mechanism with its changed case. Truths[0,1,0,1]. Declared script returns truth if evaluation marker1, otherwise0. Does its perfect marked score determine its unmarked result? Options: No; Yes",
+      "text": "Test behaves when watched Compare a declared mechanism with its changed case. True answers are [0,1,0,1]. The script returns the true answer when the evaluation marker is 1, and 0 otherwise. Does a perfect score with the marker establish its score without it? Options: No; Yes",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §28; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -79,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:behaves-when-watched",
     "also": [],

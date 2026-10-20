@@ -19,7 +19,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodyPath": "/tmp/history-next15c-source-bodies/somaliaGeledi.pdf",
         "bodySha256": "5e2d42a16dee2604ac22f27a2cd09968dbb7de3f4390bcf1e92d7d2efe806ee1",
         "representation": "raw downloaded bytes",
-        "makerCustodianEditor": "I.M.Lewis, Westview1988; Università Roma Tre repository custodian",
+        "makerCustodianEditor": "I. M. Lewis, Westview 1988; Università Roma Tre repository custodian",
         "publicationOrDocumentDate": "1988",
         "languageMediationAndLimits": "English scholarly account; nineteenth-century reports/treaty originals not collated",
         "sourceLevel": "Inherited scholarly/institutional account; source level not upgraded by reuse",
@@ -46,13 +46,13 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
       {
         "sourceId": "berberaOmar",
         "url": "https://arcadia.sba.uniroma3.it/bitstream/2307/2960/1/The%20scramble%20in%20the%20Horn%20of%20Africa.%20History%20of%20Somalia%20%281827-1977%29.pdf",
-        "title": "Mohamed Osman Omar, The Scramble in the Horn of Africa: History of Somalia1827–1977",
+        "title": "Mohamed Osman Omar, The Scramble in the Horn of Africa: History of Somalia 1827–1977",
         "bodyPath": "/private/tmp/history-special-twelve-source-bodies/berberaOmar.body",
         "bodySha256": "1c64d090e4afc6e1ae79de266cc8b207f6cc54b7cb38432447e2d72bc25fe289",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
-        "makerCustodianEditor": "Mohamed Osman Omar, The Scramble in the Horn of Africa: History of Somalia1827–1977",
-        "publicationOrDocumentDate": "Somali Publications2001, reprint2009; RomaTre repository",
-        "languageMediationAndLimits": "Authored historical book with documentary reprints; original British treaty uncollated; narrativeMarch5 conflicts appendixMarch15",
+        "makerCustodianEditor": "Mohamed Osman Omar, The Scramble in the Horn of Africa: History of Somalia 1827–1977",
+        "publicationOrDocumentDate": "Somali Publications 2001, reprint 2009; Roma Tre repository",
+        "languageMediationAndLimits": "Authored historical book with documentary reprints; original British treaty uncollated; narrative date 5 March differs from appendix date 15 March",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "PDF607–608/printed575–576 Appendix16 HabrAwal1886 ArtsI–III and signatories; PDF609ratification not selected",
         "transport": "system curl certificate verification enabled; no insecure override",
@@ -81,7 +81,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodyPath": "/tmp/history-next15c-source-bodies/somaliaGeledi.pdf",
         "bodySha256": "5e2d42a16dee2604ac22f27a2cd09968dbb7de3f4390bcf1e92d7d2efe806ee1",
         "representation": "raw downloaded bytes",
-        "makerCustodianEditor": "I.M.Lewis, Westview1988; Università Roma Tre repository custodian",
+        "makerCustodianEditor": "I. M. Lewis, Westview 1988; Università Roma Tre repository custodian",
         "publicationOrDocumentDate": "1988",
         "languageMediationAndLimits": "English scholarly account; nineteenth-century reports/treaty originals not collated",
         "sourceLevel": "Inherited scholarly/institutional account; source level not upgraded by reuse",
@@ -149,7 +149,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Lewis describes negotiated local relations, a lease and limited Zanzibar administration at Mogadishu. Omar’s appendix instead reprints a party-specific Habr Awal protection agreement, with obligations and jurisdiction bounded to its signers. The selected operative appendix date differs from the narrative date and is not the 1884 or Warsangali agreement. Treaty prescription neither supplies continuous city administration nor establishes all Somali assent; original instruments remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

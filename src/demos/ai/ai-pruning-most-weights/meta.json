@@ -1,7 +1,7 @@
 {
   "slug": "ai-pruning-most-weights",
   "title": "Which three weights can go?",
-  "hook": "Change the declared inputs; compare the earned evidence.",
+  "hook": "Remove three weights. Which test inputs notice?",
   "domain": "ai",
   "concept": "pruning-most-weights",
   "status": "draft",
@@ -46,7 +46,7 @@
     },
     {
       "id": "ai.ai-pruning-most-weights.c4",
-      "text": "recall: If only coordinate 2 is tested at scale 10, which supplied mask is exact? The coordinate-2 mask retains .1, producing the target 1.",
+      "text": "recall: For input [0,10,0,0], which supplied mask preserves the original output? The coordinate-2 mask retains .1, producing the target 1.",
       "support": "derivation",
       "source": "company/domains/briefs/2026-10-19-ai-next30d.md#6-pruning-most-weights; local model.ts and model-check.mjs. [PyTorch pruning tutorial](https://docs.pytorch.org/tutorials/intermediate/pruning_tutorial.html), opened body2026-10-19, pruning-by-magnitude and random-unstructured method discussion. Opened tutorial “Pruning a Module” discussion and l1_unstructured example (body lines510–512); pin the source version before generalized implementation claims. This fixed toy needs no library or retraining claim.",
       "status": "unverified"
@@ -68,12 +68,12 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "If only coordinate 2 is tested at scale 10, which supplied mask is exact?",
+    "question": "For input [0,10,0,0], which supplied mask preserves the original output?",
     "options": [
       "Magnitude mask",
       "Coordinate-2 mask"
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "The coordinate-2 mask retains .1, producing the target 1."
   },
   "evidence": {
@@ -82,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:pruning-most-weights",
     "also": [],

@@ -58,7 +58,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "rawToolResponseSha256": "c5ecca539aadc3331829b5b0b6253b6bd2b7f6032b70bea1f5b47ab88fd93f5b",
         "originPdfPath": null,
         "originPdfSha256": null,
-        "languageMediationAndLimits": "Use dated governor’s selection of capital and later Umayyad palace institutions. Claims of gentle conquest or uniform religious persecution not adopted; later caliphaltenthcentury court excluded."
+        "languageMediationAndLimits": "Use dated governor’s selection of capital and later Umayyad palace institutions. Claims of gentle conquest or uniform religious persecution not adopted; later caliphal tenth-century court excluded."
       }
     ]
   },
@@ -107,7 +107,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "rawToolResponseSha256": "c5ecca539aadc3331829b5b0b6253b6bd2b7f6032b70bea1f5b47ab88fd93f5b",
         "originPdfPath": null,
         "originPdfSha256": null,
-        "languageMediationAndLimits": "Use dated governor’s selection of capital and later Umayyad palace institutions. Claims of gentle conquest or uniform religious persecution not adopted; later caliphaltenthcentury court excluded."
+        "languageMediationAndLimits": "Use dated governor’s selection of capital and later Umayyad palace institutions. Claims of gentle conquest or uniform religious persecution not adopted; later caliphal tenth-century court excluded."
       }
     ]
   }
@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Gallego-Blanco distinguishes Toledo’s elite succession prescription from armed usurpation in practice. Cordoba’s account instead names a governor choosing a capital and later an independent Umayyad court, with separately situated repairs. A council rule, an appointment and a court are different relationships. These two city witnesses neither establish identical government throughout Iberia nor prove popular acceptance. The original instruments remain uncollated; the rule cannot be substituted for what actually happened.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

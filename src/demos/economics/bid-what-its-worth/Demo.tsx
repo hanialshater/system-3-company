@@ -46,7 +46,7 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
         options: ["$50", "$90", "$70"],
         answer: 2,
       }}
-      exploreHint="Pick a rival bid and read what each bid earns and pays. Slide your bid and watch the lower chart: it shows every rival bid at once. Do all three to unlock."
+      exploreHint="Try rival bids of $60 and $75, then slide your own bid. Compare profits on the lower chart, which shows every rival bid."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

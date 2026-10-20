@@ -15,7 +15,7 @@
       "accuracy-paradox"
     ],
     "doesNotKnow": [
-      "The feature rule gets9/10 right. How many extra correct cases over always0?"
+      "The feature rule gets 9/10 right. How many more correct answers is that than always predicting 0?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-baseline-first.c1",
-      "text": "How much did the rule gain? Ten labels; compare each prediction with the same truth. The feature rule gets9/10 right. How many extra correct cases over always0? Options: 0; 1; 2.",
+      "text": "How much did the rule gain? Ten labels; compare each prediction with the same truth. The feature rule gets 9/10 right. How many more correct answers is that than always predicting 0? Options: 0; 1; 2.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §18; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -32,7 +32,7 @@
     },
     {
       "id": "ai.ai-baseline-first.c2",
-      "text": "The feature rule gained one correct case over always0. Yet the two rules scoring 8/10 found different numbers of positives: zero versus two. Equal accuracy concealed different error types. Comparing their usefulness would require error costs, not accuracy alone in this construction.",
+      "text": "The feature rule gained one correct case over always predicting 0. Yet the two rules scoring 8/10 found different numbers of positives: zero versus two. Equal accuracy concealed different error types. Comparing their usefulness would require error costs, not accuracy alone in this construction.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §18; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -64,8 +64,8 @@
     "question": "What does equal accuracy leave unspecified?",
     "options": [
       "Which labels were missed and which negatives became false positives; those error types can have different costs.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "Only the total number of errors.",
+      "Which rule used fewer predictions."
     ],
     "answer": 0,
     "why": "Which labels were missed and which negatives became false positives; those error types can have different costs."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:baseline-first",
     "also": [],

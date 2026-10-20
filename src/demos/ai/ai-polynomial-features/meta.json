@@ -32,7 +32,7 @@
     },
     {
       "id": "ai.ai-polynomial-features.c2",
-      "text": "The raw feature fitted a horizontal2 with squared error14. Squaring the feature fitted these points exactly: coefficient1, intercept0. At x=3 predictions were2 and9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.",
+      "text": "The raw feature fitted a horizontal line at 2 with squared error 14. Squaring the feature fitted these points exactly: coefficient 1, intercept 0. At x=3 predictions were 2 and 9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -64,8 +64,8 @@
     "question": "Is this squared-feature predictor linear in its coefficient or its original input?",
     "options": [
       "It is linear in the coefficient multiplying x²; its input-space curve is quadratic.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "It is linear in x because it has only one coefficient.",
+      "It is quadratic in its coefficient because the input is squared."
     ],
     "answer": 0,
     "why": "It is linear in the coefficient multiplying x²; its input-space curve is quadratic."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:polynomial-features",
     "also": [],

@@ -4,13 +4,13 @@ const frame=(caption:string,rows:AlgorithmRow[]):AlgorithmFrame=>({caption,rows}
 const done=(frames:AlgorithmFrame[],result:number|string|boolean,proof:string):AlgorithmRun=>({frames,result,proof});
 type Detail={mechanism:string;hook:string;recall:{question:string;options:string[];answer:number;why:string}};
 export const lessonDetails:Record<string,Detail>={};
-function spec(id:string,question:string,options:string[],answer:number,a:()=>AlgorithmRun,b:()=>AlgorithmRun,mechanism:string,rq:string,ro:string[],ra:number,why:string):AlgorithmSpec{const slug=`algo-${id.replaceAll('_','-')}`;lessonDetails[slug]={mechanism,hook:'Predict the outcome, then inspect the state that makes it possible.',recall:{question:rq,options:ro,answer:ra,why}};return {slug,topic:'computational-geometry',predict:{question,options,answer},exploreHint:'Run the question case, then step through the contrasting input.',cases:[{label:'Question',run:a},{label:'Contrast',run:b}],reveal:w=>[w.proof,mechanism]};}
+function spec(id:string,question:string,options:string[],answer:number,a:()=>AlgorithmRun,b:()=>AlgorithmRun,mechanism:string,rq:string,ro:string[],ra:number,why:string):AlgorithmSpec{const slug=`algo-${id.replaceAll('_','-')}`;lessonDetails[slug]={mechanism,hook:'Predict the outcome, then inspect the state that makes it possible.',recall:{question:rq,options:ro,answer:ra,why}};return {slug,topic:'computational-geometry',predict:{question,options,answer},exploreHint:'Press Run for the result, or Step to follow each update. Try another changes the input.',cases:[{label:'Question',run:a},{label:'Contrast',run:b}],reveal:w=>[w.proof,mechanism]};}
 type P=[number,number]; type Seg=[P,P];
 const fmt=(x:number)=>String(Number(x.toFixed(4)));
 export const cross=(a:P,b:P,c:P)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
 function geometry(caption:string,points:P[],edges:[number,number][]=[],active:number[]=[],metrics:AlgorithmFrame['metrics']=[]):AlgorithmFrame{const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),minX=Math.min(...xs,0)-1,maxX=Math.max(...xs,1)+1,minY=Math.min(...ys,0)-1,maxY=Math.max(...ys,1)+1;return {caption,nodes:points.map((p,i)=>({id:String(i),label:String(i),x:20+260*(p[0]-minX)/(maxX-minX),y:160-140*(p[1]-minY)/(maxY-minY),tone:active.includes(i)?'active':'plain'})),edges:edges.map(([a,b])=>({from:String(a),to:String(b),tone:active.includes(a)&&active.includes(b)?'active':'plain'})),metrics};}
 const outline=(n:number):[number,number][]=>Array.from({length:n},(_,i)=>[i,(i+1)%n]);
-export function orientation(points:P[]):AlgorithmRun{const a:P=[0,0],b:P=[4,2],all=[a,b,...points],f=[geometry('Directed segment',all,[[0,1]])],signs:number[]=[];for(let i=0;i<points.length;i++){const c=cross(a,b,points[i]);signs.push(Math.sign(c));f.push(geometry('Cross product',all,[[0,1],[0,i+2],[1,i+2]],[0,1,i+2],[{label:'cross',value:String(c)},{label:'sign',value:String(Math.sign(c))}]));}return done(f,signs.join(','),`Signs=[${signs}]; +left, 0collinear, −right.`);}
+export function orientation(points:P[]):AlgorithmRun{const a:P=[0,0],b:P=[4,2],all=[a,b,...points],f=[geometry('Directed segment',all,[[0,1]])],signs:number[]=[];for(let i=0;i<points.length;i++){const c=cross(a,b,points[i]);signs.push(Math.sign(c));f.push(geometry('Cross product',all,[[0,1],[0,i+2],[1,i+2]],[0,1,i+2],[{label:'cross',value:String(c)},{label:'sign',value:String(Math.sign(c))}]));}return done(f,signs.join(','),`Signs=[${signs}]; + left, 0 collinear, − right.`);}
 const within=(a:P,b:P,c:P)=>c[0]>=Math.min(a[0],b[0])&&c[0]<=Math.max(a[0],b[0])&&c[1]>=Math.min(a[1],b[1])&&c[1]<=Math.max(a[1],b[1]);
 export function intersects(s:Seg,t:Seg):boolean{const[a,b]=s,[c,d]=t,o=[cross(a,b,c),cross(a,b,d),cross(c,d,a),cross(c,d,b)];return o[0]*o[1]<0&&o[2]*o[3]<0||o[0]===0&&within(a,b,c)||o[1]===0&&within(a,b,d)||o[2]===0&&within(c,d,a)||o[3]===0&&within(c,d,b);}
 export function intersectionRun(s:Seg,t:Seg):AlgorithmRun{const p=[...s,...t],o=[cross(s[0],s[1],t[0]),cross(s[0],s[1],t[1]),cross(t[0],t[1],s[0]),cross(t[0],t[1],s[1])],f=[geometry('Two segments',p,[[0,1],[2,3]])];f.push(geometry('Orientation signs',p,[[0,1],[2,3]],[0,1,2,3],[{label:'cross',value:o.join(',')}]));const result=intersects(s,t),left=Math.max(Math.min(s[0][0],s[1][0]),Math.min(t[0][0],t[1][0])),right=Math.min(Math.max(s[0][0],s[1][0]),Math.max(t[0][0],t[1][0]));f.push(geometry('Bounding overlap',p,[[0,1],[2,3]],result?[0,1,2,3]:[],[{label:'x',value:`[${left},${right}]`},{label:'hit',value:String(+result)}]));return done(f,result,`Intersection=${+result}; x-overlap=[${left},${right}].`);}
@@ -39,13 +39,13 @@ const kdPoints:P[]=[[1,1],[2,5],[4,2],[6,6],[8,3]];
 export const kd_nearest_pruning=spec('kd_nearest_pruning','Query (5,3), points 0:(1,1),1:(2,5),2:(4,2),3:(6,6),4:(8,3): nearest ID?',['1','2','4'],1,()=>kdNearest(kdPoints,[5,3]),()=>kdNearest(kdPoints,[8,5]),'A subtree box supplies a lower bound on every contained point distance. The traversal prunes only when that bound exceeds the best witnessed point, so a far side remains searchable when it could still improve.','A box bound is smaller than the current best distance. Can that subtree be pruned?',['Yes','No'],1,'It can still contain a closer point, so its candidates remain relevant.');
 
 // A short, lesson-specific invitation; retained with the model-owned claim ledger.
-lessonDetails["algo-segment-orientation"].hook = "Which side of the directed line? Follow the computed steps.";
-lessonDetails["algo-segment-intersection"].hook = "Crossing or merely sharing a line? Follow the computed steps.";
-lessonDetails["algo-sweep-active-segments"].hook = "Only active neighbours can cross next. Follow the computed steps.";
-lessonDetails["algo-closest-pair-strip"].hook = "Which neighbours inside the strip? Follow the computed steps.";
-lessonDetails["algo-rectangle-union-sweep"].hook = "How much width is covered now? Follow the computed steps.";
-lessonDetails["algo-sutherland-hodgman"].hook = "The border can create new corners. Follow the computed steps.";
-lessonDetails["algo-liang-barsky"].hook = "An interval along the line. Follow the computed steps.";
-lessonDetails["algo-ear-clipping"].hook = "Which corner can be removed? Follow the computed steps.";
-lessonDetails["algo-rotating-calipers"].hook = "The farthest pair need not be neighbours. Follow the computed steps.";
-lessonDetails["algo-kd-nearest-pruning"].hook = "Can the other room hide a closer point? Follow the computed steps.";
+lessonDetails["algo-segment-orientation"].hook = "Which side of the directed line?";
+lessonDetails["algo-segment-intersection"].hook = "Crossing or merely sharing a line?";
+lessonDetails["algo-sweep-active-segments"].hook = "An insertion or removal changes which segments are neighbours.";
+lessonDetails["algo-closest-pair-strip"].hook = "Which neighbours inside the strip?";
+lessonDetails["algo-rectangle-union-sweep"].hook = "How much width is covered now?";
+lessonDetails["algo-sutherland-hodgman"].hook = "The border can create new corners.";
+lessonDetails["algo-liang-barsky"].hook = "An interval along the line.";
+lessonDetails["algo-ear-clipping"].hook = "Which corner can be removed?";
+lessonDetails["algo-rotating-calipers"].hook = "The farthest pair need not be neighbours.";
+lessonDetails["algo-kd-nearest-pruning"].hook = "Can the other room hide a closer point?";

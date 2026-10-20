@@ -65,7 +65,7 @@
     },
     {
       "id": "cs.algo-word-break.c7",
-      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-word-break.c9",
-      "text": "Segmentation ca|rs. This remains the computed witness for the question case.",
+      "text": "For the original input: Segmentation ca|rs.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-word-break.c10",
-      "text": "A reachable prefix boundary is extended only by a dictionary word. The longest first word can strand the remaining text; retaining alternative boundaries permits a complete segmentation.",
+      "text": "For the original input: A reachable prefix boundary is extended only by a dictionary word. The longest first word can strand the remaining text; retaining alternative boundaries permits a complete segmentation.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -212,7 +212,7 @@
     },
     {
       "id": "cs.algo-word-break.c28",
-      "text": "Segmentation car|s. This remains the computed witness for the question case.",
+      "text": "For the original input: Segmentation car|s.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#word_break.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -272,7 +272,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-word-break",

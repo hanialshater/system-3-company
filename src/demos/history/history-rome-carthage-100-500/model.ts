@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Gaius distinguishes jurisdiction and the duration of a magistrate’s authority in Roman procedure. Victor’s later account describes Huneric’s succession, regulation of Carthage assemblies and persecution, including execution and sale overseas. A procedural limit and a coercive royal decree are different powers. Separately dated, translated legal and polemical witnesses do not make western fragmentation a simultaneous transfer of identical local government.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

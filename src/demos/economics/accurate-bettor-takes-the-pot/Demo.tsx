@@ -108,7 +108,7 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
         <>
           <p>
             In all five runs the {BELIEF_A * 100}% bettor ended with at least <strong>{pct(LOW_FINAL)}</strong> of the money, but
-            luck can lead for long
+            the less accurate bettor can lead for many races
             {q ? `: in run ${quoteRun + 1} the ${BELIEF_B * 100}% bettor held ${pct(1 - q.v)} at race ${q.race} (the circle).` : "."}
           </p>
           <p>

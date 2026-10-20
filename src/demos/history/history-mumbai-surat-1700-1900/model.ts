@@ -18,7 +18,7 @@ export const DOCUMENTS = [
   },
   {
     "id": "suratException",
-    "text": "ArticleVII: both parties Nawab relations/servants first referred to Nawab; others’ complaints against them initially via chief civil servant",
+    "text": "Article VII: both parties Nawab relations/servants first referred to Nawab; others’ complaints against them initially via chief civil servant",
     "requiredContext": "Both parties Nawab relations/servants: first-instance referral to Nawab; other such complaints initially via chief civil servant. Not all court business.",
     "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Treaties_andc._between_the_East-India_Company_and_the_States_bordering_on_the_Presidency_of_Bombay_%28IA_dli.granth.92505%29.pdf",
     "locator": "PDF94/printed92 ArticlesVI–VII and execution note; scan inspected",

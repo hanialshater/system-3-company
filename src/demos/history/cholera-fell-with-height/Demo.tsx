@@ -185,7 +185,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
           <g className={s.pool}>
             <line x1={xOf(80) - 4} x2={xOf(350) + 2} y1={yOf(R_HIGH)} y2={yOf(R_HIGH)} />
             <text x={PR} y={yOf(172)} textAnchor="end" className={`${s.poolText} ${s.halo}`}>
-              80 ft+: {R_HIGH}, about {TIMES}× fewer
+              80 ft+: {R_HIGH}; low/high ratio ≈{TIMES}
             </text>
           </g>
         )}
@@ -238,7 +238,7 @@ export default function CholeraFellWithHeight({ slug }: { slug: string }) {
         <>
           <p>
             The {LOW.length} districts under 20 ft lost {R_LOW} per 10,000; the {HIGH.length} at 80 ft or more lost{" "}
-            {R_HIGH}, about {TIMES} times fewer. The pattern in Farr&apos;s table is real.
+            {R_HIGH}, a rate about {TIMES} times lower. The pattern in Farr&apos;s table is real.
           </p>
           <p>
             But {LOW_B} of those {LOW.length} low districts drew their water from the Thames between Battersea and Waterloo,

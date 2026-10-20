@@ -3,7 +3,7 @@ const topic='transforms-convolution-bitsets';
 const row=(label:string,a:(string|number)[])=>({label,cells:a.map(x=>({text:String(x)}))});
 const f=(caption:string,rows:ReturnType<typeof row>[]):AlgorithmFrame=>({caption,rows});
 export const lessonDetails:Record<string,{hook:string;mechanism:string;recall:{question:string;options:string[];answer:number;why:string}}>={};
-function define(s:string,q:string,options:string[],answer:number,runs:(()=>AlgorithmRun)[],mechanism:string,rq:string,ro:string[],ra:number,why:string,hook:string):AlgorithmSpec{const slug='algo-'+s;lessonDetails[slug]={hook,mechanism,recall:{question:rq,options:ro,answer:ra,why}};return{slug,topic,predict:{question:q,options,answer},exploreHint:'Run the question case; Step exposes each transform update.',cases:runs.map((run,i)=>({label:i?'comparison':'question case',run})),reveal:w=>[w.proof,mechanism]};}
+function define(s:string,q:string,options:string[],answer:number,runs:(()=>AlgorithmRun)[],mechanism:string,rq:string,ro:string[],ra:number,why:string,hook:string):AlgorithmSpec{const slug='algo-'+s;lessonDetails[slug]={hook,mechanism,recall:{question:rq,options:ro,answer:ra,why}};return{slug,topic,predict:{question:q,options,answer},exploreHint:'Press Run for the result, or Step to follow each update. Try another changes the input.',cases:runs.map((run,i)=>({label:i?'comparison':'original input',run})),reveal:w=>[w.proof,mechanism]};}
 type Complex=[number,number];
 const clean=(x:number)=>Math.abs(x)<1e-9?0:Number(x.toFixed(6));
 const show=([a,b]:Complex)=>!clean(b)?String(clean(a)):`${clean(a)}${b>=0?'+':''}${clean(b)}i`;

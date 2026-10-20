@@ -3,7 +3,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "northernOpenings",
     "text": "The official railway table distinguishes construction from opening, including Keelung–Taipei in 1891 and Taipei–Hsinchu in 1893.",
-    "requiredContext": "Officialretrospectivetable 3; originalconstruction/operatingdocuments notcollated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
+    "requiredContext": "Official retrospective table 3; original construction and operating documents not collated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
     "fieldAddresses": [],
     "claims": [
       "history.history-taipei-tainan-rail-opening-evidence.c1",
@@ -34,7 +34,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "southernPostalService",
     "text": "Taiwan Historica’s custodial catalogue describes a Tainan–Dagou railway postal timetable ordered on 22 November 1900 and effective on 29 November.",
-    "requiredContext": "Actualcataloguerecord, notinspectedoriginalgazettepage/glyphs; precisetimesnotselected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
+    "requiredContext": "Catalogue record; original gazette page not inspected, and precise departure times not selected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
     "fieldAddresses": [],
     "claims": [
       "history.history-taipei-tainan-rail-opening-evidence.c5",
@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The railway table’s northern openings, the catalogue’s southern postal-service order and the later network account describe different places and acts. The 1900 catalogue does not supply original departure times or a direct Taipei–Tainan service before the later connection. Retain colonial-administration attribution and distinguish construction from opening and operation. Infrastructure connectivity is not a cross-strait sovereignty answer or proof of general consent; original operating records remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

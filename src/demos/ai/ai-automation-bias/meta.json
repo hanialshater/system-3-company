@@ -1,7 +1,7 @@
 {
   "slug": "ai-automation-bias",
-  "title": "Test automation bias",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "Who checks the recommendation?",
+  "hook": "Does a better recommendation help when nobody checks it?",
   "domain": "ai",
   "concept": "automation-bias",
   "status": "draft",
@@ -15,7 +15,7 @@
       "zero-failure-testing"
     ],
     "doesNotKnow": [
-      "1000 cases. Perfect independent review corrects errors without adding any. A:error.1,review.8; B:error.04,review.1. Residual=e(1−v). Which combined system has fewer residual errors?"
+      "In 1,000 cases, reviewers correct every error they check and add none. A has a 10% error rate and 80% review rate; B has a 4% error rate and 10% review rate. Which combined system leaves fewer errors?"
     ]
   },
   "misconception": "B",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-automation-bias.c1",
-      "text": "Test automation bias Compare a declared mechanism with its changed case. 1000 cases. Perfect independent review corrects errors without adding any. A:error.1,review.8; B:error.04,review.1. Residual=e(1−v). Which combined system has fewer residual errors? Options: A; B",
+      "text": "Test automation bias Compare a declared mechanism with its changed case. In 1,000 cases, reviewers correct every error they check and add none. A has a 10% error rate and 80% review rate; B has a 4% error rate and 10% review rate. Which combined system leaves fewer errors? Options: A; B",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-automation-bias.c3",
-      "text": "{\"question\": \"If review stays fixed, does B improve this comparison?\", \"options\": [\"Yes: B leaves 8 instead of A’s20\", \"No: B must leave 36\"], \"answer\": 0, \"why\": \"With review .8 held fixed, residual errors for B are 1000×.04×.2=8.\"}",
+      "text": "{\"question\": \"If review stays fixed, does B improve this comparison?\", \"options\": [\"Yes: B leaves 8 instead of A’s 20\", \"No: B must leave 36\"], \"answer\": 0, \"why\": \"With review .8 held fixed, residual errors for B are 1000×.04×.2=8.\"}",
       "location": "recall question/options/rationale",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §30; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -66,7 +66,7 @@
   "recall": {
     "question": "If review stays fixed, does B improve this comparison?",
     "options": [
-      "Yes: B leaves 8 instead of A’s20",
+      "Yes: B leaves 8 instead of A’s 20",
       "No: B must leave 36"
     ],
     "answer": 0,
@@ -78,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:automation-bias",
     "also": [],

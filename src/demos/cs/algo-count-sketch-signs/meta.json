@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-count-sketch-signs.c8",
-      "text": "a has count5, b count2; same bucket. Signs a=+1, b=−1. Can the signed estimate of a fall below5? Options Yes / No; correct Yes.",
+      "text": "a has count 5, b count 2; same bucket. Signs a=+1, b=−1. Can the signed estimate of a fall below 5? Options Yes / No; correct Yes.",
       "support": "derivation",
       "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#predict; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-count-sketch-signs.c9",
-      "text": "Target sign−1, counter−4. What is the corrected estimate? The target sign multiplies the bucket: (−1)×(−4)=4.",
+      "text": "Target sign −1, counter −4. What is the corrected estimate? The target sign multiplies the bucket: (−1)×(−4)=4.",
       "support": "derivation",
       "source": "src/demos/cs/algo-count-sketch-signs/meta.json#recall; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
       "status": "unverified"
@@ -94,7 +94,7 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Target sign−1, counter−4. What is the corrected estimate?",
+    "question": "Target sign −1, counter −4. What is the corrected estimate?",
     "options": [
       "−4",
       "4",
@@ -109,7 +109,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-count-sketch-signs",

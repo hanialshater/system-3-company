@@ -123,7 +123,7 @@ export const homeLessons: HomeSpec[] = [
       "Opposing wraps"
     ],
     "question": "Two bows tied in the same laces: one lies flat, one twists out of line. Which comes undone first?",
-    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat. To read your own: a flat bow lies flat, a twisted bow twists out of line.",
+    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat. The finished bow’s orientation gives you a way to tell the two apart.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
     "recall": "A bow twists out of line. Which knot step could you reverse?",
@@ -650,7 +650,7 @@ export const homeLessons: HomeSpec[] = [
       "Vertical row"
     ],
     "question": "Which arrangement exposes every coloured edge?",
-    "idea": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The benefit here is selection, not a magical volume reduction.",
+    "idea": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The row makes shirts easier to choose; it does not reduce their material volume.",
     "limit": "Choose a stable arrangement and drawer depth suited to the garments.",
     "formula": "Visible edges=1 for stack or N for row; hidden=N−visible. No claimed retrieval-time measurement.",
     "recall": "What does file folding improve even when it saves no material volume?",
@@ -2198,7 +2198,7 @@ export const homeLessons: HomeSpec[] = [
       "Assembled box",
       "Panels stacked"
     ],
-    "question": "Which empty-object envelope is smaller?",
+    "question": "Which arrangement takes up less space?",
     "idea": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
     "limit": "Real hardware and edges add volume; never dismantle furniture unless its instructions permit it.",
     "formula": "4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30.",
@@ -2208,7 +2208,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "flat-pack-volume-dimensions",
     "unit": "cm",
     "inputLabel": "Panel thickness",
-    "hook": "Which empty-object envelope is smaller?"
+    "hook": "Which arrangement takes up less space?"
   },
   {
     "slug": "rug-chair-pullback",
@@ -2720,7 +2720,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "cm-to-inches",
-    "title": "An inch is exactly 2.54cm",
+    "title": "An inch is exactly 2.54 cm",
     "model": "conversion",
     "view": "ruler",
     "initial": 30,

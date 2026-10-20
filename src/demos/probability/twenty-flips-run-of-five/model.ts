@@ -41,7 +41,7 @@ export interface Tally {
 }
 export const EMPTY: Tally = { n: 0, bins: [0, 0, 0, 0, 0, 0, 0], runs: new Array(FLIPS + 1).fill(0) };
 
-/** Add real sequences t.n + 1 .. t.n + count. */
+/** Add simulated sequences t.n + 1 .. t.n + count. */
 export function runMore(t: Tally, count: number): Tally {
   const bins = t.bins.slice();
   const runs = t.runs.slice();

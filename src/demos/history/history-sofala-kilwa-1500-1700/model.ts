@@ -58,7 +58,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "rawToolResponseSha256": "6f805c23007bd1934aaf5e2c07cbd3510860933f3df3c6dec20ec713d2056aa0",
         "originPdfPath": null,
         "originPdfSha256": null,
-        "languageMediationAndLimits": "Actual paragraph body read, not discovery snippet. Kilwa dynastic chronicle not independently collated. Own English facts only; no source images/prose reused. Wider sweeping statements about entirecoast not adopted."
+        "languageMediationAndLimits": "Actual paragraph body read, not discovery snippet. Kilwa dynastic chronicle not independently collated. Own English facts only; no source images/prose reused. Wider sweeping statements about entire coast not adopted."
       }
     ]
   },
@@ -90,7 +90,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "rawToolResponseSha256": "6f805c23007bd1934aaf5e2c07cbd3510860933f3df3c6dec20ec713d2056aa0",
         "originPdfPath": null,
         "originPdfSha256": null,
-        "languageMediationAndLimits": "Actual paragraph body read, not discovery snippet. Kilwa dynastic chronicle not independently collated. Own English facts only; no source images/prose reused. Wider sweeping statements about entirecoast not adopted."
+        "languageMediationAndLimits": "Actual paragraph body read, not discovery snippet. Kilwa dynastic chronicle not independently collated. Own English facts only; no source images/prose reused. Wider sweeping statements about entire coast not adopted."
       },
       {
         "sourceId": "sofala",
@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Roque describes a negotiated fort at Sofala involving Yusuf, Pedro de Anaia and local materials, knowledge and labour. OpenStax describes soldiers replacing Kilwa’s ruler and subsequent factional conflict. Shipping restrictions and merchants’ resistance further distinguish the relationships. A Portuguese establishment did not erase existing political or trading agency, establish full coastal control or prove popular consent. These are mediated accounts; the requested letter body was not acquired.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

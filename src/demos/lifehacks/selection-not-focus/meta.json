@@ -31,11 +31,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "The fixture records focus and selection separately. A command target requires inspecting the selected item; shortcuts and focus behaviour vary between applications.",
+      "text": "The exercise records focus and selection separately. A command target requires inspecting the selected item; shortcuts and focus behaviour vary between applications.",
       "support": "derivation",
       "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Fixture half holds: editResult records focus ('left' → 'right' after Focus right) and selection ('A' → 'B' after Select B) as separate fields, and the stage shows both. The last clause ('shortcuts and focus behaviour vary between applications') is a real-world claim resting on Microsoft Learn (keyboard accelerators), which could not be opened (DNS failure, proxy 403). Left unverified. Options: open the source, or mark that clause as a hedge by ruling. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Fixture half: studyModels.ts sets focus ('left' -> 'right' after Focus right) and selection ('A' -> 'B' after Select B) as separate fields. Real-world half, on the cited Microsoft Learn page via its GitHub source (raw GitHub MicrosoftDocs/windows-dev-docs, hub/apps/develop/input/keyboard-accelerators.md, opened 2026-10-14). It separates control accelerators, which run 'only if the focus is on the element', from app accelerators that each app defines. It describes scoped and app-wide accelerators, and says that with a TextBox focused 'Control+C ... only copies the currently selected text'. So shortcuts and focus behaviour depend on the application.",
       "id": "lifehacks.selection-not-focus.c2",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -79,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:ui-selection-vs-focus",
     "prerequisites": [],

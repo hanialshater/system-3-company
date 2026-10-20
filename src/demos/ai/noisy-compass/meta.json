@@ -69,7 +69,7 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A training step averages the gradients of 100 examples instead of 25 (four times the work), and each example's gradient has the same noise. The step's noise is about:",
+    "question": "A training step averages the gradients of 100 examples instead of 25 (four times the work), and the examples’ gradient noise is independent with the same variance. The step's noise is about:",
     "options": [
       "Half as big",
       "A quarter as big",
@@ -88,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:minibatch-noise",
     "prerequisites": [

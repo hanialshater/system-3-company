@@ -120,8 +120,8 @@ function revealParas(key: string): [string, string] {
     verdict =
       "Expected utility must answer it the same way both times, so no utility function fits your two choices: a departure from the model, not a slip.";
     if (key === "AB") {
-      verdict += " This lean to the sure thing is the certainty effect.";
-      if (HELD_LINE) verdict += " Re-run with 4,098 people in 19 countries, it held up, weaker than first reported.";
+      verdict += " This preference for the sure thing is the certainty effect.";
+      if (HELD_LINE) verdict += " A replication with 4,098 people in 19 countries found the effect, weaker than first reported.";
     } else {
       verdict += HELD_LINE
         ? " That is the reverse of the certainty effect, which held up with 4,098 people in 19 countries, weaker than first reported."
@@ -215,7 +215,7 @@ export default function SureMillionOrLongShot({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <p className={s.gloss}>Expected utility: any felt value, more is better, weighted by chance.</p>
+                <p className={s.gloss}>Expected utility: subjective value, more is better, weighted by chance.</p>
                 <div className={s.pair} role="group" aria-label="Pair 1">
                   {card(1, "A")}
                   {card(1, "B")}

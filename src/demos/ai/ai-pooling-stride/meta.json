@@ -15,7 +15,7 @@
       "convolution-weight-sharing"
     ],
     "doesNotKnow": [
-      "With offset1 and stride2, what is the last pooled value?"
+      "With offset 1 and stride 2, what is the last pooled value?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-pooling-stride.c1",
-      "text": "Where does the window start? Move a maximum window; keep track of which cells it includes. With offset1 and stride2, what is the last pooled value? Options: 3; 8; 9.",
+      "text": "Where does the window start? Move a maximum window; keep track of which cells it includes. With offset 1 and stride 2, what is the last pooled value? Options: 3; 8; 9.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -39,7 +39,7 @@
     },
     {
       "id": "ai.ai-pooling-stride.c3",
-      "text": "Can pooled9 alone distinguish [9,1] from [1,9]? No. Both declared width2 windows have maximum9; the original position is not recoverable from that output.",
+      "text": "Can a pooled value of 9 alone distinguish [9,1] from [1,9]? No. Both declared width-2 windows have maximum 9; the original position is not recoverable from that output.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-pooling-stride.c5",
-      "text": "Target / packet: `ai-pooling-stride` · `B2`. Prerequisites: `ai:convolution-weight-sharing`.\n\nNearest / distinct payoff: `convolution-weight-sharing` → `convolution-weight-sharing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike shared filter multiplication, this applies a maximum and loses within-window location under stride/offset changes.\n\nPrimary finite model: 1D activation[1,9,2,3,8], max window2. Offset0 stride2 gives[9,3]; offset1 gives[9,8]; stride1 offset0 gives[9,9,3,8].\n\nCountercase and boundary: Inputs[9,1] and[1,9] both pool to9: within-window location lost. No claim that pooling is strictly translation invariant.\n\nPredict and recall transfer: Predict output count and last maximum after offset change; recall which of the two positions can be recovered from pooled9 alone.\n\nRequired evidence: Show window membership and retain lost-location counterexample; labels distinguish offset from stride. Shipped local computations, all cases: Pool: window=2 · offset=0 · stride=2 1 9 2 3 8 [1,9]→9 [2,3]→3; o0 s2: [1,9] [2,3]→[9,3] | Shift: window=2 · offset=1 · stride=2 1 9 2 3 8 [9,2]→9 [3,8]→8; o1 s2: [9,2] [3,8]→[9,8] | Stride1: window=2 · offset=0 · stride=1 1 9 2 3 8 [1,9]→9 [9,2]→9 [2,3]→3 [3,8]→8; o0 s1: [1,9] [9,2] [2,3] [3,8]→[9,9,3,8] | Swap: window=2 · offset=0 · stride=2 9 1 [9,1]→9 [1,9]→9 = [9,1]→9; [9,1]→9; [1,9]→9. Initial neutral frame: window=2 · offset=0 · stride=2 1 9 2 3 8.",
+      "text": "Target / packet: `ai-pooling-stride` · `B2`. Prerequisites: `ai:convolution-weight-sharing`.\n\nNearest / distinct payoff: `convolution-weight-sharing` → `convolution-weight-sharing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike shared filter multiplication, this applies a maximum and loses within-window location under stride/offset changes.\n\nPrimary finite model: 1D activation[1,9,2,3,8], max window2. Offset0 stride2 gives[9,3]; offset1 gives[9,8]; stride1 offset0 gives[9,9,3,8].\n\nCountercase and boundary: Inputs[9,1] and[1,9] both pool to9: within-window location lost. No claim that pooling is strictly translation invariant.\n\nPredict and recall transfer: Predict output count and last maximum after offset change; recall which of the two positions can be recovered from a pooled value of 9 alone.\n\nRequired evidence: Show window membership and retain lost-location counterexample; labels distinguish offset from stride. Shipped local computations, all cases: Pool: window=2 · offset=0 · stride=2 1 9 2 3 8 [1,9]→9 [2,3]→3; o0 s2: [1,9] [2,3]→[9,3] | Shift: window=2 · offset=1 · stride=2 1 9 2 3 8 [9,2]→9 [3,8]→8; o1 s2: [9,2] [3,8]→[9,8] | Stride1: window=2 · offset=0 · stride=1 1 9 2 3 8 [1,9]→9 [9,2]→9 [2,3]→3 [3,8]→8; o0 s1: [1,9] [9,2] [2,3] [3,8]→[9,9,3,8] | Swap: window=2 · offset=0 · stride=2 9 1 [9,1]→9 [1,9]→9 = [9,1]→9; [9,1]→9; [1,9]→9. Initial neutral frame: window=2 · offset=0 · stride=2 1 9 2 3 8.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §16; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -61,14 +61,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Can pooled9 alone distinguish [9,1] from [1,9]?",
+    "question": "Can a pooled value of 9 alone distinguish [9,1] from [1,9]?",
     "options": [
-      "No. Both declared width2 windows have maximum9; the original position is not recoverable from that output.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "No. Both declared width-2 windows have maximum 9; the original position is not recoverable from that output.",
+      "Yes. The maximum tells you which position held 9.",
+      "Yes. Swapping the two inputs changes the maximum."
     ],
     "answer": 0,
-    "why": "No. Both declared width2 windows have maximum9; the original position is not recoverable from that output."
+    "why": "No. Both declared width-2 windows have maximum 9; the original position is not recoverable from that output."
   },
   "evidence": {
     "qa": [],
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:pooling-stride",
     "also": [],

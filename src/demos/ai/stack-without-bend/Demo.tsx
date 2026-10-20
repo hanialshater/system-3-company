@@ -60,7 +60,7 @@ export default function StackWithoutBend({ slug }: { slug: string }) {
           <p>
             With the bend on, negative h became 0 and the line kinked at x = −1/3. No single straight layer can do that.
           </p>
-          <p>A bend between layers is what lets extra layers add power; real neural networks put one after each hidden layer.</p>
+          <p>A bend between layers is what lets extra layers add power; neural networks commonly include nonlinear activation functions between hidden layers.</p>
         </>
       )}
     >

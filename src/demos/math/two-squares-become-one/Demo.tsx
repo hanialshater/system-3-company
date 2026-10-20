@@ -54,7 +54,7 @@ export default function TwoSquaresBecomeOne({ slug }: { slug: string }) {
           </p>
           <p>
             Nothing here used 3 and 4 in particular. Any right triangle with short sides a and b packs the same way, so
-            a² + b² = c². That is Pythagoras, and now you have seen why it holds.
+            a² + b² = c². That is Pythagoras’ theorem.
           </p>
         </>
       )}

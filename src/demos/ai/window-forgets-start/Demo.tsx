@@ -68,8 +68,7 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
               </p>
             )}
             <p>
-              Text before the window is not remembered faintly; for that answer it is not there at all. Real models have
-              windows of thousands of tokens or more, but the edge works the same way.
+              Text before the window is not remembered faintly; for that answer it is not there at all. A real system may retrieve or summarize older text. This model uses only the tokens inside its fixed window.
             </p>
           </>
         );

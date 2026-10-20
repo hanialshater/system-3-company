@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "agent-cost-growth",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-agent-cost-growth.c1",
-      "text": "export function ledger(turns:number,stateless=false){const rows=Array.from({length:turns},(_,i)=>stateless?10:10*(i+1)+2*i);return {rows,total:rows.reduce((a,b)=>a+b,0),outputs:2*turns};} export function run(mode:number){return {...ledger(6,mode===1),three:ledger(3,mode===1).total};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"The history comes back \\u2014 computed finite mechanism\"><text x=\"6\" y=\"18\">{mode===1?'Stateless':'Full history'} · input tokens</text>{r.rows.map((v,i)=><g key={i}><text x={22+i*46} y=\"44\" textAnchor=\"middle\">{i+1}</text><path d={`M${22+i*46} 49 V61`} className={s.line}/><text x={22+i*46} y=\"80\" textAnchor=\"middle\">{v}</text></g>)}<text x=\"140\" y=\"107\" textAnchor=\"middle\">Σ₃={r.three} · Σ₆={r.total}</text></svg>;}\n\nLocked inputs: Each turn adds 10 inputs and 2 outputs. Resend history; compare stateless turns.",
+      "text": "export function ledger(turns:number,stateless=false){const rows=Array.from({length:turns},(_,i)=>stateless?10:10*(i+1)+2*i);return {rows,total:rows.reduce((a,b)=>a+b,0),outputs:2*turns};} export function run(mode:number){return {...ledger(6,mode===1),three:ledger(3,mode===1).total};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"The history comes back — worked example\"><text x=\"6\" y=\"18\">{mode===1?'Stateless':'Full history'} · input tokens</text>{r.rows.map((v,i)=><g key={i}><text x={22+i*46} y=\"44\" textAnchor=\"middle\">{i+1}</text><path d={`M${22+i*46} 49 V61`} className={s.line}/><text x={22+i*46} y=\"80\" textAnchor=\"middle\">{v}</text></g>)}<text x=\"140\" y=\"107\" textAnchor=\"middle\">Σ₃={r.three} · Σ₆={r.total}</text></svg>;}\n\nLocked inputs: Each turn adds 10 inputs and 2 outputs. Resend history; compare stateless turns.",
       "support": "derivation",
       "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
       "status": "unverified",

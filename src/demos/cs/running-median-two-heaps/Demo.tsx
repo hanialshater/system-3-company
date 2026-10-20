@@ -181,8 +181,7 @@ export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
             nothing was ever re-sorted.
           </p>
           <p>
-            Keep the smaller half in a heap with its biggest on top and the larger half in a heap with its smallest on top,
-            equal in size. The median is one top or the mean of both. Each new number costs one heap insert and at most one
+            Keep the smaller half in a heap with its biggest on top and the larger half in a heap with its smallest on top, with sizes differing by at most one. The median is one top or the mean of both. Each new number costs one heap insert and at most one
             move, about log n steps: around {MILLION_LEVELS} levels for a million numbers.
           </p>
         </>

@@ -46,7 +46,7 @@ function Stage({ locked, edge, gen, half, onStep, onHalf, onEdge, onReset }: {
   const n = Math.round(DOTS * p);
   const mid = Math.round(gen / 2);
   const msg = locked
-    ? "Toy: huge population, no sex. Filled dots: the new type, 1% at the start."
+    ? "Toy: huge population, asexual reproduction. Filled dots: the new type, 1% at the start."
     : half
       ? `${edge}% edge: half after ${gen} generations. At generation ${mid} it was only ${pct(TRAJ[edge][mid])}.`
       : `${edge}% edge, generation ${gen}: new type is ${pct(p)}.`;
@@ -87,7 +87,7 @@ export default function OnePercentEdge({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy population, very large, no sex. A new type starts at 1% and leaves 5% more offspring than the old type each generation. About how many generations until it is half?`,
+        question: `Toy population, very large, asexual reproduction. A new type starts at 1% and leaves 5% more offspring than the old type each generation. About how many generations until it is half?`,
         options: ["About 20", `About ${HALF[5]}`, "About 500"],
         answer: 1,
       }}

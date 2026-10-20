@@ -80,11 +80,11 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A hiring model is trained on past applicants, 95% from one city. Nobody's city is in the data it sees. Where are its mistakes likely to fall?",
+    "question": "A hiring model is trained on past applicants, 95% from one city. Nobody’s city is in the data it sees, and the best rule differs by city. Which group can bear a higher error rate?",
     "options": [
-      "Mostly on applicants from other places",
+      "Applicants from other places",
       "Evenly on everyone, since it never sees the city",
-      "Mostly on the 95% majority"
+      "The 95% majority must have the higher rate"
     ],
     "answer": 0,
     "why": "Training minimises total mistakes, and the majority dominates the total. If the rare group differs, the rule fits the majority and the rare group carries the errors."
@@ -103,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "ai:training-data-bias",
     "prerequisites": [

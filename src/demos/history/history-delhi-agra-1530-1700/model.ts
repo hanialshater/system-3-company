@@ -47,7 +47,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "transport": "/usr/bin/curl with TLS verification enabled; no -k or bypass",
         "makerCustodianEditor": "Maulvi Muhammad Ashraf Husain, Archaeological Survey Northern Circle; Delhi Manager of Publications; IGNCA custodian",
         "publicationOrDocumentDate": "1937",
-        "languageMediation": "English colonial archaeological account; PDF6title,12preface,40/printed25 actual images inspected; image-onlytext extraction empty",
+        "languageMediation": "English colonial archaeological account; PDF page 6 (title), 12 (preface) and 40 (printed page 25) visually inspected; text extraction from the image-only pages was empty",
         "locator": "PDF 12 preface and PDF 40/printed 25,Diwan-i-Khas",
         "extractedTextPath": "/tmp/history-next15d-source-bodies/agraGuide.txt",
         "extractedTextSha256": "81ce26fe229a3498f531fd3d30720e4d477a72ad1b30a98690ea4fc8a2ee7a6a"
@@ -74,7 +74,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "transport": "/usr/bin/curl with TLS verification enabled; no -k or bypass",
         "makerCustodianEditor": "Maulvi Muhammad Ashraf Husain, Archaeological Survey Northern Circle; Delhi Manager of Publications; IGNCA custodian",
         "publicationOrDocumentDate": "1937",
-        "languageMediation": "English colonial archaeological account; PDF6title,12preface,40/printed25 actual images inspected; image-onlytext extraction empty",
+        "languageMediation": "English colonial archaeological account; PDF page 6 (title), 12 (preface) and 40 (printed page 25) visually inspected; text extraction from the image-only pages was empty",
         "locator": "Agra PDF 40/printed 25;Delhi PDF 2–3/printed 98–99",
         "extractedTextPath": "/tmp/history-next15d-source-bodies/agraGuide.txt",
         "extractedTextSha256": "81ce26fe229a3498f531fd3d30720e4d477a72ad1b30a98690ea4fc8a2ee7a6a"

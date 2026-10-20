@@ -128,9 +128,9 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "66210b7146eba21a4f86f0476ef5475e1244bb9cf9bbcccaa47a7c7ba8873f89",
         "representation": "Actual system-curl response bytes; HTML",
         "makerCustodianEditor": "Joana Torres and Sara Loureiro, Ceuta no Arquivo Municipal de Lisboa",
-        "publicationOrDocumentDate": "Cadernos do Arquivo Municipal secondseries4,December2015, DOCUMENTA; SciELOmirror",
+        "publicationOrDocumentDate": "Cadernos do Arquivo Municipal second series 4, December 2015, DOCUMENTA; SciELOmirror",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
-        "languageMediationAndLimits": "Portuguese archival edition with dated transcriptions/cotas; ownEnglish minimal paraphrase, originalmanuscripts not collated",
+        "languageMediationAndLimits": "Portuguese archival edition with dated transcriptions/cotas; brief English paraphrase, original manuscripts not collated",
         "locator": "items2and3:8July1415 Livro dos Pregosdoc305f216v;6Dec1415 Livro1provimentopão doc5",
         "transport": "system curl certificate verification enabled; no insecure override",
         "extractedTextPath": "/Users/hani/Documents/ChatGPT/system3-company/company/research/history-special-twelve/lisbonCeutaDocuments.txt",
@@ -223,7 +223,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Lisbon’s catalogue identifies Afonso II’s confirmation of an earlier foral; its date differs from a separate archive guide. Seville’s exhibition identifies later confirmations, fairs and a specified mills-for-water obligation. A royal grant does not give both cities identical duties. These custodial descriptions leave original clauses uncollated and do not establish universal municipal rights. Separately, the edition links Lisbon’s 1415 fleet preparations to Ceuta and tax relief; the museum dates Seville’s siege to 1247–48. These expansion acts are not charter confirmations.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

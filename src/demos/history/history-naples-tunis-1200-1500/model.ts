@@ -223,7 +223,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Treccani describes Naples’s unequal civic representation, with one popular representative against five nobles. TDV describes Tunis’s sultan-selected consultation, divans and qadi offices within the Hafsid setting. These are different constituencies and governing institutions, not powers supplied by a capital or dynasty label. The retrospectives leave originals uncollated and do not make every office unchanged across all reigns. The library dates Aragonese succession to 1442; the institute distinguishes arrival from 1443 rebuilding of the royal residence. These are separate acts.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

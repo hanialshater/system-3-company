@@ -184,7 +184,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
             Length is what sets the beat.{" "}
             {lengthSeen !== null
               ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s against ${T0.toFixed(2)} s). ${
-                  lengthSeen === 0.25 ? "Four times shorter, half the time." : ""
+                  lengthSeen === 0.25 ? "A quarter of the length, half the time." : ""
                 }`
               : "You did not try the string, so try it now on the stage: a different length drifts out of step with the ghost."}{" "}
             Galileo reported the same with lead and cork pendulums.

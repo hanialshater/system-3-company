@@ -1,7 +1,7 @@
 {
   "slug": "ai-ai-detector-false-positives",
-  "title": "Test ai detector false positives",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "When an AI detector flags human writing",
+  "hook": "A detector flags the text. What does that tell you about its author?",
   "domain": "ai",
   "concept": "ai-detector-false-positives",
   "status": "draft",
@@ -15,7 +15,7 @@
       "accuracy-paradox"
     ],
     "doesNotKnow": [
-      "Fictional10000 texts; prevalence.01, TPR.9,FPR.05. Are most flags necessarily machine-written? Abstention alternative flags high(.6/.01), abstains medium(.3/.04)."
+      "A fictional set of 10,000 texts has 1% machine-written texts. The detector flags 90% of machine texts and 5% of human texts. Are most flagged texts machine-written? The alternative flags only high scores and leaves medium scores undecided."
     ]
   },
   "misconception": "Yes",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-ai-detector-false-positives.c1",
-      "text": "Test ai detector false positives Compare a declared mechanism with its changed case. Fictional10000 texts; prevalence.01, TPR.9,FPR.05. Are most flags necessarily machine-written? Abstention alternative flags high(.6/.01), abstains medium(.3/.04). Options: No; Yes",
+      "text": "Test ai detector false positives Compare a declared mechanism with its changed case. A fictional set of 10,000 texts has 1% machine-written texts. The detector flags 90% of machine texts and 5% of human texts. Are most flagged texts machine-written? The alternative flags only high scores and leaves medium scores undecided. Options: No; Yes",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §23; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -78,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:ai-detector-false-positives",
     "also": [],

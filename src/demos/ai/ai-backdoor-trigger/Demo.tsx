@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "After adding the marker, which input class changes under the planted rule?", "options": ["0 only", "1 only", "Both", "Neither"], "answer": 0 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The marker changed predictions only for x=0 under the planted branch: score4/4 became2/4. Clean testing never took that branch; the marked control retained4/4. This constructed conditional rule demonstrates a dormant condition, not a trained attack or its prevalence.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "After adding the marker, which input class changes under the planted rule?", "options": ["0 only", "1 only", "Both", "Neither"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The marker changed predictions only for x=0 under the planted branch: score4/4 became2/4. Clean testing never took that branch; the marked control retained4/4. This constructed conditional rule demonstrates a dormant condition, not a trained attack or its prevalence.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

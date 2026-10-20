@@ -15,7 +15,7 @@
       "ai:adversarial-examples"
     ],
     "doesNotKnow": [
-      "f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to1 has no effect?"
+      "f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to 1 has no effect?"
     ]
   },
   "misconception": "Yes",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-saliency-maps.c1",
-      "text": "What can a local gradient miss? Compare infinitesimal sensitivity with finite edits. f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to1 has no effect? Options: No; Yes",
+      "text": "What can a local gradient miss? Compare infinitesimal sensitivity with finite edits. f(x,y)=x+10y² at (1,0). Gradient is (1,0). Does zero y-gradient mean changing y to 1 has no effect? Options: No; Yes",
       "location": "Demo.tsx predict; meta title/hook",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-saliency-maps.c3",
-      "text": "{'question': 'Does changing y from0 to−1 also change f by10?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'The squared term gives the same increase for either sign.'}",
+      "text": "{'question': 'Does changing y from 0 to −1 also change f by 10?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'The squared term gives the same increase for either sign.'}",
       "location": "meta.json recall",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §23; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
@@ -74,7 +74,7 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Does changing y from0 to−1 also change f by10?",
+    "question": "Does changing y from 0 to −1 also change f by 10?",
     "options": [
       "Yes",
       "No"
@@ -88,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:saliency-maps",
     "also": [],

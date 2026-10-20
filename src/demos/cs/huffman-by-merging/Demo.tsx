@@ -106,8 +106,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
             A A. {done && bits < FIXED
               ? `Your tree's codes: ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}. `
               : "The best tree gives A 1, B 01, C 000, D 001. "}
-            No code starts another (nothing else begins with A's 1), so the message decodes with no gaps. Huffman
-            proved that joining the two rarest first is never beaten.
+            No code starts another (nothing else begins with A's 1), so the message decodes with no gaps. Joining the two rarest first gives a minimum-length binary prefix code for these symbol counts.
           </p>
           <p className="muted">Short codes for common letters, long codes for rare ones.</p>
         </>

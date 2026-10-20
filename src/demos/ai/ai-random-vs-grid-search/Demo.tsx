@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With four trials each, which set gets the higher best score?", "options": ["Grid", "DrawA", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The grid tested two unique x values and reached .6. Fixed draw A tested four and reached 1; fixed draw B reached .55 and lost. Changing irrelevant y spent grid trials without adding x values. These four-trial examples do not guarantee that random search wins.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "With four trials each, which set gets the higher best score?", "options": ["Grid", "DrawA", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The grid tested two unique x values and reached .6. Fixed draw A tested four and reached 1; fixed draw B reached .55 and lost. Changing irrelevant y spent grid trials without adding x values. These four-trial examples do not guarantee that random search wins.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

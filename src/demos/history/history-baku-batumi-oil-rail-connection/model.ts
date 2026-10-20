@@ -107,7 +107,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The museum’s rail-segment date and the transport council’s dated oil shipment describe different pieces of a network. Together they support an attributed oil-transport connection, not a single direct train journey or pipeline. Both selected acts lie within the original period; no 1907 pipeline event is imported. Institutional retrospectives do not settle territorial legitimacy, and original timetables and manifests remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

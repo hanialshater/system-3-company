@@ -51,7 +51,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "makerCustodianEditor": "Peter Jackson; Encyclopaedia Iranica",
         "publicationOrDocumentDate": "1982-12-15",
         "sourceLevel": "Authored scholarly encyclopedia retrospective",
-        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Own minimal English proposed facts only.",
+        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Brief English summary proposed for review.",
         "locator": "web L32–33, L51–52",
         "rawToolResponsePath": "/tmp/history-next15e-source-bodies/abaqa.web.json",
         "rawToolResponseSha256": "db48b5b781ccbf0d4204fc7ac2a1ce526ff8b729c0733f14ef589e856cbebac9",
@@ -98,7 +98,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "makerCustodianEditor": "Peter Jackson; Encyclopaedia Iranica",
         "publicationOrDocumentDate": "1982-12-15",
         "sourceLevel": "Authored scholarly encyclopedia retrospective",
-        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Own minimal English proposed facts only.",
+        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Brief English summary proposed for review.",
         "locator": "web L51–52",
         "rawToolResponsePath": "/tmp/history-next15e-source-bodies/abaqa.web.json",
         "rawToolResponseSha256": "db48b5b781ccbf0d4204fc7ac2a1ce526ff8b729c0733f14ef589e856cbebac9",
@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Iranica distinguishes Baghdad’s appointed administrator from a superior Mongol governor after conquest. At Tabriz it describes Abaqa’s seasonal court and Shams al-Din Jovayni’s central office. These are different governing relations following coercive conquest, not an administrative system supplied by a new imperial label. The retrospective accounts and uncollated originals establish neither uniform recovery nor popular approval.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

@@ -18,7 +18,7 @@ export const DOCUMENTS = [
   },
   {
     "id": "localRuler",
-    "text": "Kawila appointed Chiang Mai ruler in tributary relation under RamaI",
+    "text": "Kawila appointed Chiang Mai ruler in tributary relation under Rama I",
     "requiredContext": "Thai institutional retrospective account working English paraphrase; no exact Monthon reform date or original appointment instrument collated.",
     "sourceUrl": "https://chiangmai.moc.go.th/th/content/category/detail/id/17/iid/1055",
     "locator": "indexed88 Kawila/RamaI paragraph",

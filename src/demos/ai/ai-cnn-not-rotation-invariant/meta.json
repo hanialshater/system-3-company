@@ -39,7 +39,7 @@
     },
     {
       "id": "ai.ai-cnn-not-rotation-invariant.c3",
-      "text": "What happens to the sum when both this input and its matching kernel rotate together by 90\u00b0? It returns to 2: the two ones align again. A fixed-kernel rotation and a joint rotation are different operations.",
+      "text": "What happens to the sum when both this input and its matching kernel rotate together by 90°? It returns to 2: the two ones align again. A fixed-kernel rotation and a joint rotation are different operations.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 15; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-cnn-not-rotation-invariant/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified"
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-cnn-not-rotation-invariant.c5",
-      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 valid cross-correlation \u00b7 one output Input 1 0 1 0 Kernel 1 0 1 0 \u03a3 products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] \u00d7 kernel [1,0,1,0] \u2192 2 2. input [1,1,0,0] \u00d7 kernel [1,0,1,0] \u2192 1 3. input [1,1,0,0] \u00d7 kernel [1,1,0,0] \u2192 2 | Toy \u00b7 valid cross-correlation \u00b7 one output Input 1 0 1 0 Kernel 1 0 1 0 \u03a3 products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] \u00d7 kernel [1,0,1,0] \u2192 2 2. input [1,1,0,0] \u00d7 kernel [1,0,1,0] \u2192 1 3. input [1,1,0,0] \u00d7 kernel [1,1,0,0] \u2192 2 | Toy \u00b7 valid cross-correlation \u00b7 one output Input 1 0 1 0 Kernel 1 0 1 0 \u03a3 products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] \u00d7 kernel [1,0,1,0] \u2192 2 2. input [1,1,0,0] \u00d7 kernel [1,0,1,0] \u2192 1 3. input [1,1,0,0] \u00d7 kernel [1,1,0,0] \u2192 2",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy · valid cross-correlation · one output Input 1 0 1 0 Kernel 1 0 1 0 Σ products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] × kernel [1,0,1,0] → 2 2. input [1,1,0,0] × kernel [1,0,1,0] → 1 3. input [1,1,0,0] × kernel [1,1,0,0] → 2 | Toy · valid cross-correlation · one output Input 1 0 1 0 Kernel 1 0 1 0 Σ products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] × kernel [1,0,1,0] → 2 2. input [1,1,0,0] × kernel [1,0,1,0] → 1 3. input [1,1,0,0] × kernel [1,1,0,0] → 2 | Toy · valid cross-correlation · one output Input 1 0 1 0 Kernel 1 0 1 0 Σ products = 1+0+1+0 = 2 Original Rotate input Rotate both Reset view 1. input [1,0,1,0] × kernel [1,0,1,0] → 2 2. input [1,1,0,0] × kernel [1,0,1,0] → 1 3. input [1,1,0,0] × kernel [1,1,0,0] → 2",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 15; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-cnn-not-rotation-invariant/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
       "status": "unverified"
@@ -61,7 +61,7 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "What happens to the sum when both this input and its matching kernel rotate together by 90\u00b0?",
+    "question": "What happens to the sum when both this input and its matching kernel rotate together by 90°?",
     "options": [
       "2",
       "1",
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:cnn-not-rotation-invariant",
     "also": [],

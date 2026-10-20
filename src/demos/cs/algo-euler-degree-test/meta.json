@@ -1,7 +1,7 @@
 {
   "slug": "algo-euler-degree-test",
   "title": "Can every road be used once?",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Which vertices can hold the two loose ends of an edge-by-edge walk?",
   "domain": "cs",
   "concept": "algo-euler-degree-test",
   "status": "draft",
@@ -65,7 +65,7 @@
     },
     {
       "id": "cs.algo-euler-degree-test.c7",
-      "text": "Complete this graph, then inspect steps and compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-euler-degree-test.c9",
-      "text": "Odd vertices C,D. This remains the computed question-case witness.",
+      "text": "For the original input: Odd vertices C,D.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-euler-degree-test.c10",
-      "text": "A trail pairs arrivals with departures at every internal vertex. Only its two endpoints have an unpaired edge; the connected input has exactly those odd-degree vertices.",
+      "text": "For the original input: A trail pairs arrivals with departures at every internal vertex. Only its two endpoints have an unpaired edge; the connected input has exactly those odd-degree vertices.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -163,7 +163,7 @@
     },
     {
       "id": "cs.algo-euler-degree-test.c21",
-      "text": "Odd vertices A,C. This remains the computed question-case witness.",
+      "text": "For the original input: Odd vertices A,C.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#euler_degree_test.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -222,7 +222,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-euler-degree-test",

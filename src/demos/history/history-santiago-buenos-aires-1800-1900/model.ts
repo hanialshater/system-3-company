@@ -88,7 +88,7 @@ export const DOCUMENTS = [
         }
       }
     ],
-    "attribution": "MJP French edition; 1 January textual date distinct from 21 February publication date The act orders Santiago deposit; performance/custody is not established.",
+    "attribution": "MJP French edition; 1 January textual date distinct from 21 February publication date. The act orders Santiago deposit; performance/custody is not established.",
     "claims": [
       "history.history-santiago-buenos-aires-1800-1900.c3",
       "history.history-santiago-buenos-aires-1800-1900.c4"

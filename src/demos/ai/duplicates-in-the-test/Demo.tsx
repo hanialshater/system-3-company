@@ -83,10 +83,10 @@ export default function DuplicatesInTheTest({ slug }: { slug: string }) {
               {other
                 ? `At ${other.share}% copies the full test read ${pct(other.all)}, but on fresh items the model ${sawFresh ? "still scored" : "scores"} ${pct(Q.fresh)}. `
                 : ""}
-              The copies measure memory, not skill. Every leaked item adds a free right answer, so the score climbs while the
+              The copies reward memorized answers rather than performance on new items. Every leaked item adds a free right answer, so the score climbs while the
               model gets no better at anything new.
             </p>
-            <p>A high test score means something only if nothing in the test also sat in training.</p>
+            <p>To measure performance on unseen items, keep the test items out of training.</p>
           </>
         );
       }}

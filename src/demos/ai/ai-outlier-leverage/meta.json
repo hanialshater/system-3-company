@@ -15,7 +15,7 @@
       "linear-regression-fit"
     ],
     "doesNotKnow": [
-      "Adding(10,10) to the three aligned points changes their fitted line?"
+      "Adding (10,10) to the three aligned points changes their fitted line?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-outlier-leverage.c1",
-      "text": "Does distance alone change the fit? Move one point while the axes and other three points stay fixed. Adding(10,10) to the three aligned points changes their fitted line? Options: Yes; No.",
+      "text": "Does distance alone change the fit? Move one point while the axes and other three points stay fixed. Adding (10,10) to the three aligned points changes their fitted line? Options: Yes; No.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §23; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -32,14 +32,14 @@
     },
     {
       "id": "ai.ai-outlier-leverage.c2",
-      "text": "The far mismatched point changed the slope to about−.076. Moving that far point onto the original line restored slope1 and intercept0. Distance gave potential leverage; mismatch mattered to actual influence. These four-point fits used fixed axes, not a universal influence rule.",
+      "text": "The far mismatched point changed the slope to about −.076. Moving that far point onto the original line restored slope 1 and intercept 0. Distance gave potential leverage; mismatch mattered to actual influence. These four-point fits used fixed axes, not a universal influence rule.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §23; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-outlier-leverage.c3",
-      "text": "Why is a distant point not necessarily disruptive? A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope1 and intercept0.",
+      "text": "Why is a distant point not necessarily disruptive? A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope 1 and intercept 0.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §23; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -63,12 +63,12 @@
   "recall": {
     "question": "Why is a distant point not necessarily disruptive?",
     "options": [
-      "A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope1 and intercept0.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope 1 and intercept 0.",
+      "Every point far from the others must change the fitted line.",
+      "Distance alone fixes the size of the slope change."
     ],
     "answer": 0,
-    "why": "A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope1 and intercept0."
+    "why": "A distant point on the existing line has no residual mismatch here, so adding (10,10) preserves slope 1 and intercept 0."
   },
   "evidence": {
     "qa": [],
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:outlier-leverage",
     "also": [],

@@ -117,11 +117,11 @@ export default function CalibratedButUnequalAlarms({ slug }: { slug: string }) {
           <>
             <p>
               The score was honest in both groups: 8 in 10 ringed dots reoffended. Yet with {c.re} reoffenders in B, A&apos;s
-              innocent people were flagged {pc(a.faPct)} of the time, B&apos;s {pc(c.faPct)}; B&apos;s misses were {pc(c.missPct)},
+              non-reoffenders were flagged {pc(a.faPct)} of the time, B&apos;s {pc(c.faPct)}; B&apos;s misses were {pc(c.missPct)},
               A&apos;s {pc(a.missPct)}.
             </p>
             <p>
-              A has more reoffenders, so more of A is ringed, guilty or not. The slider changed B&apos;s people, not the score: at{" "}
+              A has more reoffenders, so more of A is ringed, whether they later reoffend or not. The slider changed B&apos;s people, not the score: at{" "}
               {a.re}, base rates {atEqual ? "match" : "matched"}, and so {atEqual ? "do" : "did"} both errors. Otherwise no high/low score
               that makes mistakes is honest with matching errors.
             </p>

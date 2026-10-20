@@ -141,7 +141,7 @@ export default function ShuffleUntilSorted({ slug }: { slug: string }) {
             </p>
             <p>
               Each extra card multiplies the wait. With 10 cards there are 3,628,800 orders, so about 3.6 million
-              shuffles. Shuffling and checking cannot beat n!.
+              shuffles. Independent uniform shuffling needs n! attempts on average, though one run can finish sooner or later.
             </p>
           </>
         );

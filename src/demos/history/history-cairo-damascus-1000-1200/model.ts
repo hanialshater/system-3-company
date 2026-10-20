@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "TDV distinguishes Fatimid Cairo’s restricted palace and later citadel plan from Damascus’s atabeg government and Saladin’s military headquarters. The 1171 Cairo and 1174 Damascus changes supply different institutions and scopes. A plan is not completed construction; shared dynastic affiliation does not establish uniform administration, identical palace access or universal assent.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

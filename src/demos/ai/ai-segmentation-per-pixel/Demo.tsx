@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "How many background cells does this enclosing box include?", "options": ["0", "2", "4", "9"], "answer": 2 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The cross’s box enclosed nine cells, including four background cells; its exact mask enclosed five with none. The solid rectangle made both representations include zero background cells. These are constructed output geometries, not measurements of a trained segmentation model’s accuracy.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "How many background cells does this enclosing box include?", "options": ["0", "2", "4", "9"], "answer": 2 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The cross’s box enclosed nine cells, including four background cells; its exact mask enclosed five with none. The solid rectangle made both representations include zero background cells. These are constructed output geometries, not measurements of a trained segmentation model’s accuracy.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }
