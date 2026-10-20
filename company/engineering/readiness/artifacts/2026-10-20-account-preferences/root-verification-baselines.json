@@ -1,0 +1,113 @@
+{
+  "baseline": "ceb087f28",
+  "appSource": "461ab6afd",
+  "aggregateVerify": "FAILED: unchanged baseline algorithm assertions; later stages run separately, not represented as aggregate pass",
+  "logs": {
+    "/tmp/account-integrated-verify.log": {
+      "summaries": [
+        "# tests 19",
+        "# pass 19",
+        "# fail 0",
+        "# skipped 0",
+        "# tests 34",
+        "# pass 34",
+        "# fail 0",
+        "# skipped 0",
+        "# tests 133",
+        "# pass 133",
+        "# fail 0",
+        "# skipped 0",
+        "# tests 417",
+        "# pass 417",
+        "# fail 0",
+        "# skipped 0",
+        "# tests 417",
+        "# pass 413",
+        "# fail 4",
+        "# skipped 0"
+      ],
+      "failures": [
+        "R6(a): production with all 200 algorithm lessons draft shows no section, no planned title and no planned copy",
+        "R6(b): one published and one review lesson in topic 1 render one topic, one index entry and two rows; the draft does not",
+        "review-off follows visibleDemos filtering: only the published row renders, the review concept does not",
+        "every algo-* lesson directory is in the manifest, and every manifest lesson has one"
+      ]
+    },
+    "/tmp/account-remaining-verification.log": {
+      "summaries": [],
+      "failures": []
+    },
+    "/tmp/account-integrated-accounts-db-final2.log": {
+      "summaries": [
+        "# tests 66",
+        "# pass 62",
+        "# fail 0",
+        "# skipped 4"
+      ],
+      "failures": []
+    },
+    "/tmp/account-main-feed-final.log": {
+      "summaries": [
+        "# tests 51",
+        "# pass 51",
+        "# fail 0",
+        "# skipped 0"
+      ],
+      "failures": []
+    },
+    "/tmp/account-hq-privacy-final2.log": {
+      "summaries": [
+        "# tests 2",
+        "# pass 2",
+        "# fail 0",
+        "# skipped 0"
+      ],
+      "failures": []
+    },
+    "/tmp/account-default-algorithms-baseline.log": {
+      "summaries": [
+        "# tests 408",
+        "# pass 404",
+        "# fail 4",
+        "# skipped 0"
+      ],
+      "failures": [
+        "R6(a): production with all 200 algorithm lessons draft shows no section, no planned title and no planned copy",
+        "R6(b): one published and one review lesson in topic 1 render one topic, one index entry and two rows; the draft does not",
+        "review-off follows visibleDemos filtering: only the published row renders, the review concept does not",
+        "every algo-* lesson directory is in the manifest, and every manifest lesson has one"
+      ]
+    },
+    "/tmp/account-default-dims-dispatch.log": {
+      "summaries": [
+        "# tests 25",
+        "# pass 20",
+        "# fail 5",
+        "# skipped 0"
+      ],
+      "failures": [
+        "H2: the default spool is the main checkout's, found through the git common dir from a linked worktree",
+        "1. the committed index is what the generator builds, and rebuilds byte-identically",
+        "2. every lesson the feed lists is in the index, and nothing else",
+        "4. the order rule over pilot entries equals feedOrder(\"all\") with non-pilot lessons removed",
+        "5b. pilot entries equal the simulator's catalogue once successors are restricted to the pilot domains"
+      ]
+    },
+    "/tmp/account-default-release-baseline.log": {
+      "summaries": [
+        "# tests 2",
+        "# pass 0",
+        "# fail 2",
+        "# skipped 0"
+      ],
+      "failures": [
+        "company/ops/releases.json is valid and runs r1..r13 with the five backfilled releases first",
+        "retroactive deployment history preserves canonical r11 and branch-only aliases"
+      ]
+    },
+    "/tmp/account-default-check-baseline.log": {
+      "summaries": [],
+      "failures": []
+    }
+  }
+}

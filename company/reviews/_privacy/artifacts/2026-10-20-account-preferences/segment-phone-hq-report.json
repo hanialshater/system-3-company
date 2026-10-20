@@ -1,0 +1,180 @@
+{
+  "config": {
+    "configFile": "/tmp/account-prefs-privacy-qa/playwright.config.ts",
+    "rootDir": "/tmp/account-prefs-privacy-qa",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "8f90c4ca61cc879ff10636d7fc4dde17e1db5626",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/account-prefs-privacy-qa/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "8f90c4ca61cc879ff10636d7fc4dde17e1db5626",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "phone",
+        "name": "phone",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "8f90c4ca61cc879ff10636d7fc4dde17e1db5626",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "privacy.spec.ts",
+      "file": "privacy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3217,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-synthetic-hq-isolation\",\"project\":\"phone\",\"fixtureResultsAccountInvariant\":true,\"noSettingsOrPrivateFeedReads\":true,\"requestPaths\":[\"/hq/personalization/preferences\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/api/account/me\",\"/api/account/progress\",\"/api/account/progress\",\"/hq/personalization/preferences\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/api/account/me\",\"/api/account/me\",\"/api/account/progress\",\"/api/account/progress\"],\"limitation\":\"Existing global account sync may run; this asserts fixture-data independence, not zero whole-page account requests.\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:37:38.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-4d55b16a617de93605cc",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 74,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T07:37:36.554Z",
+    "duration": 6241.362,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

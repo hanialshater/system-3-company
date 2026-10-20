@@ -1,0 +1,370 @@
+{
+  "config": {
+    "configFile": "/tmp/account-prefs-privacy-qa/playwright.config.ts",
+    "rootDir": "/tmp/account-prefs-privacy-qa",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/account-prefs-privacy-qa/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "phone",
+        "name": "phone",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "privacy.spec.ts",
+      "file": "privacy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "explicit UI save follows account across reload/device; off/reset and anonymous remain default",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6643,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-account-save-lifecycle\",\"project\":\"desktop\",\"requests\":[{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"PUT\",\"bodyKeys\":[\"experiences\",\"challenge\",\"personalizationOn\"],\"snapshotHeader\":false},{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/feed\",\"query\":\"?page=0\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"PUT\",\"bodyKeys\":[\"personalizationOn\"],\"snapshotHeader\":false},{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"PUT\",\"bodyKeys\":[\"personalizationOn\",\"subjects\",\"lessOf\",\"experiences\",\"challenge\"],\"snapshotHeader\":false},{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false}],\"storageWrites\":[{\"key\":\"s3c:progress:v1\",\"keys\":[\"a-birthday-like-mine\"]}],\"errors\":[],\"secondClientPersisted\":true,\"exportContainsNewFields\":true,\"resetCleared\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:34:49.587Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-0e3bc67db910857ac619",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "title": "late GET and PUT for A cannot overwrite B editor; stale A write is409",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1515,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-delayed-account-isolation\",\"project\":\"desktop\",\"lateGETDiscarded\":true,\"latePUTDiscarded\":true,\"staleBinding409\":true,\"requests\":[{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/preferences\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3l-zln48xvo49.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"PUT\",\"bodyKeys\":[\"challenge\"],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false}],\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:34:56.795Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-31f3da4f8982a3f7a908",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 36,
+          "column": 5
+        },
+        {
+          "title": "unchanged focus preserves prediction; error and account switch quarantine public card and restart fresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2336,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-active-prediction-quarantine\",\"project\":\"desktop\",\"sameIdentityDOMPreserved\":true,\"errorNeutralInert\":true,\"oldPrivateReasonsRemoved\":true,\"restartRemounted\":true,\"accountBProgressUnchanged\":true,\"requests\":[{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/feed\",\"query\":\"?page=0\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/04hsxy5qs12_1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/41h89wukgjsbv.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/d/a-birthday-like-mine\",\"query\":\"?_rsc=5CB68i4pnAekjehf\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/d/a-birthday-like-mine\",\"query\":\"?_rsc=6B6cpzgbK3mu3bxJ\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/16maar8445jx6.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1go1zox1reje8.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/feed\",\"query\":\"?page=0\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false}],\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:34:58.334Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-1cc7c92ed7ade05f377d",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 49,
+          "column": 5
+        },
+        {
+          "title": "account A due recall selection never reappears in account B after explicit default continuation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2232,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-history-owner-isolation\",\"project\":\"desktop\",\"syntheticADuePresentBeforeSwitch\":true,\"oldARecallRemovedAfterRestart\":true,\"BProgressUnchanged\":true,\"requests\":[{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/feed\",\"query\":\"?page=0\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false}],\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:35:00.685Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-3c057c8a8ceb4182af95",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "title": "initial B-cookie load never reads A-owned due selections before account ownership resolves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1025,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-initial-history-ownership\",\"project\":\"desktop\",\"noRecallMetadataBeforeOwnership\":true,\"noARecallAfterBConfirmed\":true,\"requestPaths\":[\"/\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"/_next/static/chunks/01ihp-b1olyhk.js\",\"/_next/static/chunks/02eea210xoa-r.js\",\"/api/account/me\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"/_next/static/chunks/3xoozomh1s286.css\",\"/api/account/me\",\"/api/account/me\",\"/api/account/settings\",\"/api/account/progress\",\"/api/account/progress\"]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:35:02.940Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-d071ed8fc29026ea1d38",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 66,
+          "column": 5
+        },
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4535,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-synthetic-hq-isolation\",\"project\":\"desktop\",\"fixtureResultsAccountInvariant\":true,\"noSettingsOrPrivateFeedReads\":true,\"requestPaths\":[\"/hq/personalization/preferences\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/api/account/me\",\"/api/account/progress\",\"/api/account/progress\",\"/hq/personalization/preferences\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/api/account/me\",\"/api/account/me\",\"/api/account/progress\",\"/api/account/progress\"],\"limitation\":\"Existing global account sync may run; this asserts fixture-data independence, not zero whole-page account requests.\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:35:03.985Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-307514208e508a4c7adb",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 74,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T07:34:47.620Z",
+    "duration": 21076.08,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

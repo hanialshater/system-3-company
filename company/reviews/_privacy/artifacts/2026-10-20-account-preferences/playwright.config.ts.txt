@@ -1,0 +1,2 @@
+import base from '/private/tmp/s3-account-personalization/playwright.config';
+export default {...base,testDir:'/tmp/account-prefs-privacy-qa',testMatch:'privacy.spec.ts',outputDir:'/tmp/account-prefs-privacy-qa/output',reporter:[['list'],['json',{outputFile:'/tmp/account-prefs-privacy-qa/report.json'}]],workers:1,maxFailures:1,timeout:90000,webServer:undefined,use:{...base.use,actionTimeout:12000,baseURL:process.env.QA_BASE_URL},projects:base.projects?.map(p=>p.name==='phone'?{...p,use:{...p.use,viewport:{width:390,height:844}}}:p)};

@@ -1,0 +1,502 @@
+{
+  "config": {
+    "configFile": "/tmp/account-prefs-privacy-qa/playwright.config.ts",
+    "rootDir": "/tmp/account-prefs-privacy-qa",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/account-prefs-privacy-qa/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "phone",
+        "name": "phone",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "privacy.spec.ts",
+      "file": "privacy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "explicit UI save follows account across reload/device; off/reset and anonymous remain default",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 90768,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                        "column": 115,
+                        "line": 22
+                      },
+                      "message": "Error: locator.selectOption: Test timeout of 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Preferred challenge', { exact: true })\u001b[22m\n\n\n  20 |  await bind(context,'A');await put(context,empty);const observed=await instrument(page);\n  21 |  await page.goto('/preferences');await expect(page.getByRole('button',{name:'Save and enable',exact:true})).toBeVisible();const before=observed.requests.filter(r=>r.method==='PUT').length;\n> 22 |  await page.getByLabel('Surprise',{exact:true}).check();await page.getByLabel('Preferred challenge',{exact:true}).selectOption('gentle');expect(observed.requests.filter(r=>r.method==='PUT').length).toBe(before);\n     |                                                                                                                   ^\n  23 |  await page.getByRole('button',{name:'Save and enable',exact:true}).click();await expect(page.getByRole('status')).toContainText('Saved to your account');const saved=await getSettings(context);expect(saved.settings).toMatchObject({personalizationOn:true,experiences:['surprise'],challenge:'gentle'});\n  24 |  await page.reload();await expect(page.getByLabel('Surprise',{exact:true})).toBeChecked();await expect(page.getByLabel('Preferred challenge',{exact:true})).toHaveValue('gentle');\n  25 |  const second=await browser.newContext();await second.addCookies(cookies('A'));expect((await getSettings(second)).settings).toMatchObject(saved.settings);await second.close();\n    at /private/tmp/account-prefs-privacy-qa/privacy.spec.ts:22:115"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:28:27.451Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-explicit-UI-save-f-aa572-nd-anonymous-remain-default-phone/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-explicit-UI-save-f-aa572-nd-anonymous-remain-default-phone/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-explicit-UI-save-f-aa572-nd-anonymous-remain-default-phone/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "62491902cb946290adea-e83f044e6ba91cddd953",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "title": "late GET and PUT for A cannot overwrite B editor; stale A write is409",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8472,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Preferred challenge', { exact: true })\nExpected: \u001b[32m\"demanding\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Preferred challenge', { exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Preferred challenge', { exact: true })\nExpected: \u001b[32m\"demanding\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Preferred challenge', { exact: true })\u001b[22m\n\n    at /private/tmp/account-prefs-privacy-qa/privacy.spec.ts:39:524",
+                    "location": {
+                      "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                      "column": 524,
+                      "line": 39
+                    },
+                    "snippet": "  37 |  let releaseGet:any,signalGet:any;const heldGet=new Promise(r=>releaseGet=r),getStarted=new Promise(r=>signalGet=r);let captureGet=true;\n  38 |  await page.route('**/api/account/settings',async route=>{if(captureGet&&route.request().method()==='GET'){captureGet=false;const response=await route.fetch();signalGet();await heldGet;await route.fulfill({response});}else await route.continue();});\n> 39 |  await page.goto('/preferences');await getStarted;await bind(context,'B');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await expect(page.getByLabel('Visual explanations',{exact:true})).toBeChecked();const oldGetDelivered=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/account/settings'&&r.request().method()==='GET');releaseGet();await oldGetDelivered;await expect(page.getByLabel('Surprise',{exact:true})).not.toBeChecked();await expect(page.getByLabel('Preferred challenge',{exact:true})).toHaveValue('demanding');await page.unroute('**/api/account/settings');\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^\n  40 |  await bind(context,'A');await page.reload();await expect(page.getByLabel('Surprise',{exact:true})).toBeChecked();await page.getByLabel('Preferred challenge',{exact:true}).selectOption('balanced');\n  41 |  let releasePut:any,signalPut:any;const heldPut=new Promise(r=>releasePut=r),putStarted=new Promise(r=>signalPut=r);let capturePut=true;\n  42 |  await page.route('**/api/account/settings',async route=>{if(capturePut&&route.request().method()==='PUT'){capturePut=false;const response=await route.fetch();signalPut();await heldPut;await route.fulfill({response});}else await route.continue();});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                        "column": 524,
+                        "line": 39
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Preferred challenge', { exact: true })\nExpected: \u001b[32m\"demanding\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Preferred challenge', { exact: true })\u001b[22m\n\n\n  37 |  let releaseGet:any,signalGet:any;const heldGet=new Promise(r=>releaseGet=r),getStarted=new Promise(r=>signalGet=r);let captureGet=true;\n  38 |  await page.route('**/api/account/settings',async route=>{if(captureGet&&route.request().method()==='GET'){captureGet=false;const response=await route.fetch();signalGet();await heldGet;await route.fulfill({response});}else await route.continue();});\n> 39 |  await page.goto('/preferences');await getStarted;await bind(context,'B');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await expect(page.getByLabel('Visual explanations',{exact:true})).toBeChecked();const oldGetDelivered=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/account/settings'&&r.request().method()==='GET');releaseGet();await oldGetDelivered;await expect(page.getByLabel('Surprise',{exact:true})).not.toBeChecked();await expect(page.getByLabel('Preferred challenge',{exact:true})).toHaveValue('demanding');await page.unroute('**/api/account/settings');\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^\n  40 |  await bind(context,'A');await page.reload();await expect(page.getByLabel('Surprise',{exact:true})).toBeChecked();await page.getByLabel('Preferred challenge',{exact:true}).selectOption('balanced');\n  41 |  let releasePut:any,signalPut:any;const heldPut=new Promise(r=>releasePut=r),putStarted=new Promise(r=>signalPut=r);let capturePut=true;\n  42 |  await page.route('**/api/account/settings',async route=>{if(capturePut&&route.request().method()==='PUT'){capturePut=false;const response=await route.fetch();signalPut();await heldPut;await route.fulfill({response});}else await route.continue();});\n    at /private/tmp/account-prefs-privacy-qa/privacy.spec.ts:39:524"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:30:02.942Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-late-GET-and-PUT-f-5967c--editor-stale-A-write-is409-phone/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-late-GET-and-PUT-f-5967c--editor-stale-A-write-is409-phone/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-late-GET-and-PUT-f-5967c--editor-stale-A-write-is409-phone/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                    "column": 524,
+                    "line": 39
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "62491902cb946290adea-d89dd15d0d3cdd1e1a89",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 35,
+          "column": 5
+        },
+        {
+          "title": "unchanged focus preserves prediction; error and account switch quarantine public card and restart fresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "interrupted",
+                  "duration": 112,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:30:19.148Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-unchanged-focus-pr-aac1a-blic-card-and-restart-fresh-phone/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-77bc8fa5c9980b876c00",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 48,
+          "column": 5
+        },
+        {
+          "title": "account A due recall selection never reappears in account B after explicit default continuation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-3751364ee860f8a927a3",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "title": "initial B-cookie load never reads A-owned due selections before account ownership resolves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-da80f851d236d6532432",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-4d55b16a617de93605cc",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 73,
+          "column": 5
+        },
+        {
+          "title": "explicit UI save follows account across reload/device; off/reset and anonymous remain default",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-0e3bc67db910857ac619",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "title": "late GET and PUT for A cannot overwrite B editor; stale A write is409",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-31f3da4f8982a3f7a908",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 35,
+          "column": 5
+        },
+        {
+          "title": "unchanged focus preserves prediction; error and account switch quarantine public card and restart fresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-1cc7c92ed7ade05f377d",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 48,
+          "column": 5
+        },
+        {
+          "title": "account A due recall selection never reappears in account B after explicit default continuation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-3c057c8a8ceb4182af95",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "title": "initial B-cookie load never reads A-owned due selections before account ownership resolves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-d071ed8fc29026ea1d38",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-307514208e508a4c7adb",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 73,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T07:28:25.668Z",
+    "duration": 115680.77500000001,
+    "expected": 0,
+    "skipped": 10,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

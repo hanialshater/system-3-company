@@ -1,0 +1,356 @@
+{
+  "config": {
+    "configFile": "/tmp/account-prefs-privacy-qa/playwright.config.ts",
+    "rootDir": "/tmp/account-prefs-privacy-qa",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/account-prefs-privacy-qa/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "phone",
+        "name": "phone",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/tmp/account-prefs-privacy-qa/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "287d7535b21032ca9479eff721d42ffdb72496d3",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/tmp/account-prefs-privacy-qa",
+        "testIgnore": [],
+        "testMatch": [
+          "privacy.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "privacy.spec.ts",
+      "file": "privacy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "account A due recall selection never reappears in account B after explicit default continuation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3376,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-history-owner-isolation\",\"project\":\"phone\",\"syntheticADuePresentBeforeSwitch\":true,\"oldARecallRemovedAfterRestart\":true,\"BProgressUnchanged\":true,\"requests\":[{\"path\":\"/\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2ra52k1pgkjys.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/21d2ksq_nydfo.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/0ruz8asca2kzj.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xyfmc7d_t069.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/01ihp-b1olyhk.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/02eea210xoa-r.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xuubyae44ez0.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/_next/static/chunks/3xoozomh1s286.css\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/feed\",\"query\":\"?page=0\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/meta/a-birthday-like-mine\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/me\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/settings\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false},{\"path\":\"/api/account/progress\",\"query\":\"\",\"method\":\"GET\",\"bodyKeys\":[],\"snapshotHeader\":false}],\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:32:21.077Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-3751364ee860f8a927a3",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "title": "initial B-cookie load never reads A-owned due selections before account ownership resolves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1942,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"kind\":\"compiled-initial-history-ownership\",\"project\":\"phone\",\"noRecallMetadataBeforeOwnership\":true,\"noARecallAfterBConfirmed\":true,\"requestPaths\":[\"/\",\"/_next/static/chunks/1x6x8u6jivyqk.css\",\"/_next/static/chunks/2ra52k1pgkjys.js\",\"/_next/static/chunks/21d2ksq_nydfo.js\",\"/_next/static/chunks/1b-71rcl1-p6y.js\",\"/_next/static/chunks/0ruz8asca2kzj.js\",\"/_next/static/chunks/turbopack-2c3mg3r-05n1w.js\",\"/_next/static/chunks/3xyfmc7d_t069.js\",\"/_next/static/chunks/1-e_lv6v_3ob1.js\",\"/_next/static/chunks/01ihp-b1olyhk.js\",\"/_next/static/chunks/02eea210xoa-r.js\",\"/api/account/me\",\"/_next/static/chunks/3xuubyae44ez0.js\",\"/_next/static/chunks/2cx2xjlp_jp33.js\",\"/_next/static/chunks/3xoozomh1s286.css\",\"/api/account/me\",\"/api/account/me\",\"/api/account/settings\",\"/api/account/progress\",\"/api/account/progress\"]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:32:24.947Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "62491902cb946290adea-da80f851d236d6532432",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7316,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\u001b[22m\n\n    at /private/tmp/account-prefs-privacy-qa/privacy.spec.ts:74:285",
+                    "location": {
+                      "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                      "column": 285,
+                      "line": 74
+                    },
+                    "snippet": "  72 | });\n  73 | test('HQ fixture results stay synthetic and account invariant without settings/feed reads',async({page,context},info)=>{\n> 74 |  const requested:string[]=[];page.on('request',r=>requested.push(new URL(r.url()).pathname));await bind(context,'A');await page.goto('/hq/personalization/preferences?fixture=visual');await expect(page.getByRole('heading',{name:'Stated preferences: synthetic inspection',exact:true})).toBeVisible();await page.getByText('Editorial rubric and provenance',{exact:true}).first().click();const a=await page.locator('main').innerText();await bind(context,'B');await page.goto('/hq/personalization/preferences?fixture=visual');await page.getByText('Editorial rubric and provenance',{exact:true}).first().click();const b=await page.locator('main').innerText();expect(b).toBe(a);expect(requested.filter(p=>p==='/api/account/settings'||p==='/api/account/feed')).toEqual([]);await page.screenshot({path:`/tmp/account-prefs-privacy-qa/${info.project.name}-hq-synthetic-account-invariant.png`});console.log(JSON.stringify({kind:'compiled-synthetic-hq-isolation',project:info.project.name,fixtureResultsAccountInvariant:true,noSettingsOrPrivateFeedReads:true,requestPaths:requested,limitation:'Existing global account sync may run; this asserts fixture-data independence, not zero whole-page account requests.'}));\n     |                                                                                                                                                                                                                                                                                             ^\n  75 | });\n  76 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                        "column": 285,
+                        "line": 74
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Stated preferences: synthetic inspection', exact: true })\u001b[22m\n\n\n  72 | });\n  73 | test('HQ fixture results stay synthetic and account invariant without settings/feed reads',async({page,context},info)=>{\n> 74 |  const requested:string[]=[];page.on('request',r=>requested.push(new URL(r.url()).pathname));await bind(context,'A');await page.goto('/hq/personalization/preferences?fixture=visual');await expect(page.getByRole('heading',{name:'Stated preferences: synthetic inspection',exact:true})).toBeVisible();await page.getByText('Editorial rubric and provenance',{exact:true}).first().click();const a=await page.locator('main').innerText();await bind(context,'B');await page.goto('/hq/personalization/preferences?fixture=visual');await page.getByText('Editorial rubric and provenance',{exact:true}).first().click();const b=await page.locator('main').innerText();expect(b).toBe(a);expect(requested.filter(p=>p==='/api/account/settings'||p==='/api/account/feed')).toEqual([]);await page.screenshot({path:`/tmp/account-prefs-privacy-qa/${info.project.name}-hq-synthetic-account-invariant.png`});console.log(JSON.stringify({kind:'compiled-synthetic-hq-isolation',project:info.project.name,fixtureResultsAccountInvariant:true,noSettingsOrPrivateFeedReads:true,requestPaths:requested,limitation:'Existing global account sync may run; this asserts fixture-data independence, not zero whole-page account requests.'}));\n     |                                                                                                                                                                                                                                                                                             ^\n  75 | });\n  76 |\n    at /private/tmp/account-prefs-privacy-qa/privacy.spec.ts:74:285"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T07:32:26.911Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-HQ-fixture-results-c11a1-without-settings-feed-reads-phone/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-HQ-fixture-results-c11a1-without-settings-feed-reads-phone/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/account-prefs-privacy-qa/output/privacy-HQ-fixture-results-c11a1-without-settings-feed-reads-phone/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+                    "column": 285,
+                    "line": 74
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "62491902cb946290adea-4d55b16a617de93605cc",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 73,
+          "column": 5
+        },
+        {
+          "title": "account A due recall selection never reappears in account B after explicit default continuation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-3c057c8a8ceb4182af95",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "title": "initial B-cookie load never reads A-owned due selections before account ownership resolves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-d071ed8fc29026ea1d38",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "HQ fixture results stay synthetic and account invariant without settings/feed reads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "62491902cb946290adea-307514208e508a4c7adb",
+          "file": "../../private/tmp/account-prefs-privacy-qa/privacy.spec.ts",
+          "line": 73,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-20T07:32:19.480Z",
+    "duration": 14863.936000000002,
+    "expected": 2,
+    "skipped": 3,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
