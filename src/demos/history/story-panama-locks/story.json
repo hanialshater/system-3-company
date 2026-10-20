@@ -1,0 +1,128 @@
+{
+  "slug": "story-panama-locks",
+  "title": "Panama: a canal climbs",
+  "family": "Infrastructure",
+  "hook": "Does a ship simply sail through at sea level?",
+  "predict": {
+    "question": "How does the canal cross its inland section?",
+    "options": [
+      "At sea level throughout",
+      "Locks lift ships to a lake"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1914 · 1",
+      "heading": "Atlantic entrance",
+      "text": "A ship approaches the Atlantic locks.",
+      "active": [
+        "atlantic"
+      ]
+    },
+    {
+      "date": "1914 · 2",
+      "heading": "Gatun locks",
+      "text": "Locks lift the ship toward Gatun Lake.",
+      "active": [
+        "gatun"
+      ]
+    },
+    {
+      "date": "1914 · 3",
+      "heading": "Lake crossing",
+      "text": "The ship crosses the elevated lake.",
+      "active": [
+        "lake"
+      ]
+    },
+    {
+      "date": "1914 · 4",
+      "heading": "Pacific descent",
+      "text": "Locks lower the ship toward the Pacific.",
+      "active": [
+        "pacific"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "atlantic",
+      "name": "Atlantic",
+      "coordinates": [
+        -79.92,
+        9.4
+      ]
+    },
+    {
+      "id": "gatun",
+      "name": "Gatun",
+      "coordinates": [
+        -79.92,
+        9.27
+      ]
+    },
+    {
+      "id": "lake",
+      "name": "Gatun Lake",
+      "coordinates": [
+        -79.8,
+        9.17
+      ]
+    },
+    {
+      "id": "pacific",
+      "name": "Pacific",
+      "coordinates": [
+        -79.55,
+        8.95
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "atlantic",
+        "gatun"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "gatun",
+        "lake"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "lake",
+        "pacific"
+      ]
+    }
+  ],
+  "reveal": "Panama is a lock canal, not a sea-level trench. Ships are raised to Gatun Lake, about 26 meters above sea level, and lowered again on the other side. The canal opened in 1914. These steps explain the system rather than reconstructing one named ship’s exact passage.",
+  "limit": "Opening-era process diagram; generalized canal geometry, not a ship log.",
+  "sources": [
+    {
+      "url": "https://pancanal.com/en/history-of-the-panama-canal/",
+      "section": "Lock system, Gatun Lake elevation and Atlantic/Pacific locks",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    },
+    {
+      "url": "https://pancanal.com/en/panama-canal-turns-90/",
+      "section": "August 15, 1914 opening",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "connection",
+  "heights": [
+    0,
+    26,
+    26,
+    0
+  ]
+}

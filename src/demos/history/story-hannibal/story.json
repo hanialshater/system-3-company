@@ -1,0 +1,125 @@
+{
+  "slug": "story-hannibal",
+  "title": "Hannibal: invasion and return",
+  "family": "Campaigns",
+  "hook": "Did crossing the Alps settle the war?",
+  "predict": {
+    "question": "Where was the war’s decisive final battle?",
+    "options": [
+      "Italy",
+      "The Alps",
+      "North Africa"
+    ],
+    "answer": 2
+  },
+  "frames": [
+    {
+      "date": "218 BCE",
+      "heading": "From Iberia",
+      "text": "Hannibal’s army leaves Iberia for Italy.",
+      "active": [
+        "iberia"
+      ]
+    },
+    {
+      "date": "218 BCE",
+      "heading": "Alpine crossing",
+      "text": "The army crosses the Alps.",
+      "active": [
+        "alps"
+      ]
+    },
+    {
+      "date": "218–201 BCE",
+      "heading": "Italian campaign",
+      "text": "Many Roman allies remain with Rome.",
+      "active": [
+        "italy"
+      ]
+    },
+    {
+      "date": "202 BCE",
+      "heading": "Return to Africa",
+      "text": "Rome wins at Zama in North Africa.",
+      "active": [
+        "zama"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "iberia",
+      "name": "Iberia",
+      "coordinates": [
+        -0.98,
+        37.6
+      ]
+    },
+    {
+      "id": "alps",
+      "name": "Alps",
+      "coordinates": [
+        7,
+        45.4
+      ]
+    },
+    {
+      "id": "italy",
+      "name": "Italy",
+      "coordinates": [
+        12.5,
+        41.9
+      ]
+    },
+    {
+      "id": "zama",
+      "name": "North Africa",
+      "coordinates": [
+        9,
+        36.1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "iberia"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "iberia",
+        3,
+        43,
+        "alps"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "alps",
+        "italy"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "italy",
+        "zama"
+      ]
+    }
+  ],
+  "reveal": "An invasion route is not the whole war. Crossing the Alps brought Hannibal’s army into Italy, but many Roman allies stayed with Rome. A Roman campaign in Africa drew Hannibal back; Rome’s victory at Zama ended the contest on another shore.",
+  "limit": "The Alpine pass and exact march are uncertain; this line does not choose a pass.",
+  "sources": [
+    {
+      "url": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic",
+      "section": "Second Punic War paragraphs and Zama (202 BCE)",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "journey"
+}

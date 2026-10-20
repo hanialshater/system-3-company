@@ -1,0 +1,105 @@
+{
+  "slug": "story-golden-horde",
+  "title": "Golden Horde: a steppe center",
+  "family": "Empires",
+  "hook": "Was the Golden Horde simply a moving army?",
+  "predict": {
+    "question": "What became an administrative center?",
+    "options": [
+      "Sarai on the Volga",
+      "Rome",
+      "Beijing"
+    ],
+    "answer": 0
+  },
+  "frames": [
+    {
+      "date": "1236–40",
+      "heading": "Western conquests",
+      "text": "Batu’s forces conquer the western steppe.",
+      "active": [
+        "steppe"
+      ]
+    },
+    {
+      "date": "Mid-1200s",
+      "heading": "A center",
+      "text": "Sarai develops on the lower Volga.",
+      "active": [
+        "sarai"
+      ]
+    },
+    {
+      "date": "1359",
+      "heading": "Civil conflict",
+      "text": "Succession conflict fractures central authority.",
+      "active": [
+        "sarai"
+      ]
+    },
+    {
+      "date": "1400s",
+      "heading": "Successor states",
+      "text": "The Horde fragments into smaller states.",
+      "active": [
+        "crimea",
+        "kazan",
+        "sarai"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "steppe",
+      "name": "Steppe",
+      "coordinates": [
+        44,
+        48
+      ]
+    },
+    {
+      "id": "sarai",
+      "name": "Lower Volga",
+      "coordinates": [
+        47.3,
+        47.5
+      ]
+    },
+    {
+      "id": "crimea",
+      "name": "Crimea",
+      "coordinates": [
+        34.1,
+        45.1
+      ]
+    },
+    {
+      "id": "kazan",
+      "name": "Middle Volga",
+      "coordinates": [
+        49.1,
+        55.8
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "steppe",
+        "sarai"
+      ]
+    }
+  ],
+  "reveal": "Sarai anchors a history often pictured only as cavalry in motion. The Golden Horde developed an administrative center on the lower Volga. Later succession conflict and fragmentation changed that political network. A conquest map alone cannot show how authority was organized or lost.",
+  "limit": "Regional reference points, not exact city sites or successor-state borders.",
+  "sources": [
+    {
+      "url": "https://www.iranicaonline.org/articles/golden-horde/",
+      "section": "Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

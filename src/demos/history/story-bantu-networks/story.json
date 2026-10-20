@@ -1,0 +1,148 @@
+{
+  "slug": "story-bantu-networks",
+  "title": "Bantu: branches, not a column",
+  "family": "Migration",
+  "hook": "Can one arrow capture thousands of years of movement?",
+  "predict": {
+    "question": "Does Bantu name one migrating army?",
+    "options": [
+      "Yes",
+      "No, a language family"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "3000–2000 BCE",
+      "heading": "Origins",
+      "text": "Expansion begins near Nigeria and Cameroon.",
+      "active": [
+        "origin"
+      ]
+    },
+    {
+      "date": "c. 1500 BCE",
+      "heading": "Two streams",
+      "text": "Movements branch toward coasts and eastern lakes.",
+      "active": [
+        "congo",
+        "lakes"
+      ]
+    },
+    {
+      "date": "Early CE",
+      "heading": "Further branches",
+      "text": "Communities spread into southern regions.",
+      "active": [
+        "angola",
+        "mozambique"
+      ]
+    },
+    {
+      "date": "By 700 CE",
+      "heading": "Many communities",
+      "text": "Bantu-speaking communities span much of eastern and southern Africa.",
+      "active": [
+        "south"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "origin",
+      "name": "Cameroon",
+      "coordinates": [
+        11,
+        5
+      ]
+    },
+    {
+      "id": "congo",
+      "name": "Congo",
+      "coordinates": [
+        16,
+        -2
+      ]
+    },
+    {
+      "id": "lakes",
+      "name": "Great Lakes",
+      "coordinates": [
+        30,
+        -2
+      ]
+    },
+    {
+      "id": "angola",
+      "name": "Angola",
+      "coordinates": [
+        17,
+        -12
+      ]
+    },
+    {
+      "id": "mozambique",
+      "name": "Mozambique",
+      "coordinates": [
+        35,
+        -18
+      ]
+    },
+    {
+      "id": "south",
+      "name": "Southern Africa",
+      "coordinates": [
+        29,
+        -30
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "origin",
+        "congo"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "origin",
+        "lakes"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "congo",
+        "angola"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "lakes",
+        "mozambique"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "mozambique",
+        "south"
+      ]
+    }
+  ],
+  "reveal": "The branches represent many small movements and exchanges over millennia. “Bantu” refers to related languages, not a single army or a uniform people. Linguistic and archaeological evidence supports broad patterns, while the timing, motives and exact directions remain debated.",
+  "limit": "Broad regional summaries, not individual journeys or empty-land claims.",
+  "sources": [
+    {
+      "url": "https://openstax.org/books/world-history-volume-1/pages/9-2-the-emergence-of-farming-and-the-bantu-migrations",
+      "section": "The Bantu migrations: language, debated chronology and eastern/western streams",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "spread"
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "story-indian-ocean-textiles",
+  "title": "Cotton crosses the ocean",
+  "family": "Trade",
+  "hook": "How can a fragment in Egypt reveal an Indian Ocean connection?",
+  "predict": {
+    "question": "Where were many of these textiles made?",
+    "options": [
+      "Gujarat",
+      "Egypt"
+    ],
+    "answer": 0
+  },
+  "frames": [
+    {
+      "date": "Medieval",
+      "heading": "Production",
+      "text": "Gujarat produces dyed and printed cottons.",
+      "active": [
+        "gujarat"
+      ]
+    },
+    {
+      "date": "10th–13th c.",
+      "heading": "Exchange",
+      "text": "Genizah records document Gujarat–Egypt trade.",
+      "active": [
+        "redsea"
+      ]
+    },
+    {
+      "date": "13th–14th c.",
+      "heading": "Use and discard",
+      "text": "Indian textiles survive around Fustat.",
+      "active": [
+        "fustat"
+      ]
+    },
+    {
+      "date": "1920s–30s",
+      "heading": "Rediscovery",
+      "text": "Excavations reveal fragments in Egypt.",
+      "active": [
+        "fustat"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "gujarat",
+      "name": "Gujarat",
+      "coordinates": [
+        72.6,
+        22.3
+      ]
+    },
+    {
+      "id": "redsea",
+      "name": "Red Sea",
+      "coordinates": [
+        43,
+        14
+      ]
+    },
+    {
+      "id": "fustat",
+      "name": "Fustat",
+      "coordinates": [
+        31.23,
+        30
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "gujarat",
+        60,
+        12,
+        "redsea"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "redsea",
+        35,
+        25,
+        "fustat"
+      ]
+    }
+  ],
+  "reveal": "The route is reconstructed from objects and records, not a surviving ship’s track. Gujarati cottons reached Egypt through Indian Ocean and Red Sea connections. Fragments preserved in Egypt’s dry conditions, together with Genizah documents, reveal exchange that a political-border map would miss.",
+  "limit": "Exact excavation sites for the Met fragments are unknown; sea links are generalized.",
+  "sources": [
+    {
+      "url": "https://www.metmuseum.org/essays/red-sea-textile-trade",
+      "section": "Production, Genizah documents, Fustat fragments and 1920s–1930s excavations",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

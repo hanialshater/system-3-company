@@ -1,0 +1,150 @@
+{
+  "slug": "story-golden-horde",
+  "title": "Golden Horde: a steppe center",
+  "hook": "Was the Golden Horde simply a moving army?",
+  "domain": "history",
+  "concept": "story-golden-horde",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Sarai on the Volga"
+    ]
+  },
+  "misconception": "Rome",
+  "objective": "Sarai anchors a history often pictured only as cavalry in motion.",
+  "claims": [
+    {
+      "id": "history.story-golden-horde.frame1",
+      "text": "1236–40: Western conquests. Batu’s forces conquer the western steppe.",
+      "support": "source",
+      "source": "https://www.iranicaonline.org/articles/golden-horde/ — Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.frame2",
+      "text": "Mid-1200s: A center. Sarai develops on the lower Volga.",
+      "support": "source",
+      "source": "https://www.iranicaonline.org/articles/golden-horde/ — Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.frame3",
+      "text": "1359: Civil conflict. Succession conflict fractures central authority.",
+      "support": "source",
+      "source": "https://www.iranicaonline.org/articles/golden-horde/ — Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.frame4",
+      "text": "1400s: Successor states. The Horde fragments into smaller states.",
+      "support": "source",
+      "source": "https://www.iranicaonline.org/articles/golden-horde/ — Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.reveal",
+      "text": "Sarai anchors a history often pictured only as cavalry in motion. The Golden Horde developed an administrative center on the lower Volga. Later succession conflict and fragmentation changed that political network. A conquest map alone cannot show how authority was organized or lost.",
+      "support": "source",
+      "source": "https://www.iranicaonline.org/articles/golden-horde/ — Golden Horde: Batu, Sarai, 1359 conflict and fifteenth-century fragmentation",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.limit",
+      "text": "Regional reference points, not exact city sites or successor-state borders.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-golden-horde.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "What became an administrative center?",
+    "options": [
+      "Sarai on the Volga",
+      "Rome",
+      "Beijing"
+    ],
+    "answer": 0,
+    "why": "Sarai anchors a history often pictured only as cavalry in motion. The Golden Horde developed an administrative center on the lower Volga. Later succession conflict and fragmentation changed that political network. A conquest map alone cannot show how authority was organized or lost."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-golden-horde",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.iranicaonline.org/articles/golden-horde/"
+    ],
+    "tags": [
+      "map-story",
+      "empires"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

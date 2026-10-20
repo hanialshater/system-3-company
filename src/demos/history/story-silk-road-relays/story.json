@@ -1,0 +1,139 @@
+{
+  "slug": "story-silk-road-relays",
+  "title": "Silk Roads: the handoffs",
+  "family": "Trade",
+  "hook": "Could distant trade work without one end-to-end traveler?",
+  "predict": {
+    "question": "What connected the route?",
+    "options": [
+      "A single direct road",
+      "A network of trading posts"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "c. 1 CE",
+      "heading": "Eastern links",
+      "text": "Han and Central Asian worlds exchange goods.",
+      "active": [
+        "china",
+        "merv"
+      ]
+    },
+    {
+      "date": "c. 1 CE",
+      "heading": "Branch point",
+      "text": "Routes branch near Merv.",
+      "active": [
+        "merv"
+      ]
+    },
+    {
+      "date": "c. 1 CE",
+      "heading": "Mesopotamia",
+      "text": "Trading posts connect overland and river routes.",
+      "active": [
+        "ctesiphon"
+      ]
+    },
+    {
+      "date": "c. 1 CE",
+      "heading": "Mediterranean",
+      "text": "Caravan links reach eastern Mediterranean ports.",
+      "active": [
+        "palmyra",
+        "antioch"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "china",
+      "name": "China",
+      "coordinates": [
+        108.9,
+        34.3
+      ]
+    },
+    {
+      "id": "merv",
+      "name": "Merv",
+      "coordinates": [
+        62.2,
+        37.7
+      ]
+    },
+    {
+      "id": "ctesiphon",
+      "name": "Ctesiphon",
+      "coordinates": [
+        44.58,
+        33.09
+      ]
+    },
+    {
+      "id": "palmyra",
+      "name": "Palmyra",
+      "coordinates": [
+        38.27,
+        34.55
+      ]
+    },
+    {
+      "id": "antioch",
+      "name": "Antioch",
+      "coordinates": [
+        36.16,
+        36.2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "china",
+        75,
+        40,
+        "merv"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "merv",
+        65,
+        41
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "merv",
+        48.5,
+        34.8,
+        "ctesiphon"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "ctesiphon",
+        "palmyra",
+        "antioch"
+      ]
+    }
+  ],
+  "reveal": "Follow the handoffs rather than imagining one highway. Trading posts stored and exchanged goods, and routes branched between rivers, caravan cities and ports. Goods could move far through this network without the map proving that one merchant traveled its entire length.",
+  "limit": "This is a spatial walkthrough around 1 CE, not four successive historical dates.",
+  "sources": [
+    {
+      "url": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia",
+      "section": "Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

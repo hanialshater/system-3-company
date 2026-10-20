@@ -1,0 +1,134 @@
+{
+  "slug": "story-sahara-routes",
+  "title": "Sahara: a network that moved",
+  "family": "Trade",
+  "hook": "Were caravan routes fixed for centuries?",
+  "predict": {
+    "question": "What happened when new goldfields opened?",
+    "options": [
+      "Routes stayed fixed",
+      "Routes shifted east and south"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "Late 600s",
+      "heading": "Wider links",
+      "text": "Caravans expand trans-Saharan exchange networks.",
+      "active": [
+        "north",
+        "ghana"
+      ]
+    },
+    {
+      "date": "1100s",
+      "heading": "Goldfields",
+      "text": "Buré goldfields draw routes east and south.",
+      "active": [
+        "bure"
+      ]
+    },
+    {
+      "date": "1200s",
+      "heading": "Drought",
+      "text": "Drought contributes to Soninke dispersal.",
+      "active": [
+        "sahel"
+      ]
+    },
+    {
+      "date": "1324",
+      "heading": "Connections",
+      "text": "Mansa Musa travels via Cairo toward Mecca.",
+      "active": [
+        "cairo"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "north",
+      "name": "North Africa",
+      "coordinates": [
+        -6,
+        31
+      ]
+    },
+    {
+      "id": "ghana",
+      "name": "Ancient Ghana",
+      "coordinates": [
+        -9,
+        16
+      ]
+    },
+    {
+      "id": "bure",
+      "name": "Buré",
+      "coordinates": [
+        -9.3,
+        11.5
+      ]
+    },
+    {
+      "id": "sahel",
+      "name": "Sahel",
+      "coordinates": [
+        -4,
+        14
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "coordinates": [
+        31.24,
+        30
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "north",
+        "ghana"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "north",
+        "bure"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "ghana",
+        "sahel"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "sahel",
+        15,
+        25,
+        "cairo"
+      ]
+    }
+  ],
+  "reveal": "Caravan networks changed with goldfields, climate and political connections. The opening of Buré’s goldfields shifted routes; drought contributed to dispersal; the 1324 pilgrimage linked Mali with Cairo and beyond. These networks also carried enslaved people, alongside goods and ideas.",
+  "limit": "Lines summarize changing connections, not exact caravan tracks or complete trade volumes.",
+  "sources": [
+    {
+      "url": "https://www.metmuseum.org/exhibitions/sahel-art-empire-sahara/inside-the-exhibition",
+      "section": "Early networks; Soninke Diasporas; Trade and Islam",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

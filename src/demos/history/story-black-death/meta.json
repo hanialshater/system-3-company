@@ -1,0 +1,150 @@
+{
+  "slug": "story-black-death",
+  "title": "Black Death: read the reports",
+  "hook": "Can dated reports reveal a single precise infection route?",
+  "domain": "history",
+  "concept": "story-black-death",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "These dots show dated evidence, not a proven chain of infections.",
+  "claims": [
+    {
+      "id": "history.story-black-death.frame1",
+      "text": "1338–39: Central Asian record. Memorial stones near Issyk-Kul record plague deaths.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west — Dueling Voices: Ziegler and Green; London Museum for June and November 1348; https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/ — Arrival in Britain June 1348 and London by November",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-black-death.frame2",
+      "text": "1347–48: Western Eurasia. Evidence places plague around the Black Sea and Mediterranean.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west — Dueling Voices: Ziegler and Green; London Museum for June and November 1348; https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/ — Arrival in Britain June 1348 and London by November",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-black-death.frame3",
+      "text": "Jun 1348: Britain. Plague arrives in Britain.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west — Dueling Voices: Ziegler and Green; London Museum for June and November 1348; https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/ — Arrival in Britain June 1348 and London by November",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-black-death.frame4",
+      "text": "Nov 1348: London. Plague reaches London.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west — Dueling Voices: Ziegler and Green; London Museum for June and November 1348; https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/ — Arrival in Britain June 1348 and London by November",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-black-death.reveal",
+      "text": "These dots show dated evidence, not a proven chain of infections. Central Asian memorials, biological evidence and London’s records illuminate different parts of the pandemic. Historians debate its origins and pathways. A sequence of reports cannot establish who infected whom.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west — Dueling Voices: Ziegler and Green; London Museum for June and November 1348; https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/ — Arrival in Britain June 1348 and London by November",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-black-death.limit",
+      "text": "Report locations and broad regions only; no simulated infection front or blame.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-black-death.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Do these checkpoints establish every transmission path?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "These dots show dated evidence, not a proven chain of infections. Central Asian memorials, biological evidence and London’s records illuminate different parts of the pandemic. Historians debate its origins and pathways. A sequence of reports cannot establish who infected whom."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-black-death",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://openstax.org/books/world-history-volume-1/pages/16-3-the-black-death-from-east-to-west",
+      "https://www.londonmuseum.org.uk/collections/london-stories/great-pestilence-london/"
+    ],
+    "tags": [
+      "map-story",
+      "disease & disasters"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

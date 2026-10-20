@@ -1,0 +1,95 @@
+{
+  "slug": "story-great-migration",
+  "title": "Migration builds a metropolis",
+  "family": "Migration",
+  "hook": "What happened after migrants arrived in Chicago?",
+  "predict": {
+    "question": "Did migration end with arrival at the station?",
+    "options": [
+      "Yes",
+      "No, communities built new institutions"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1905",
+      "heading": "A newspaper",
+      "text": "The Chicago Defender begins publication.",
+      "active": [
+        "chicago"
+      ]
+    },
+    {
+      "date": "1910–20",
+      "heading": "Northward movement",
+      "text": "African Americans leave the South for Chicago.",
+      "active": [
+        "south",
+        "chicago"
+      ]
+    },
+    {
+      "date": "1920s",
+      "heading": "Building institutions",
+      "text": "Black-owned projects develop on the South Side.",
+      "active": [
+        "bronzeville"
+      ]
+    },
+    {
+      "date": "1929",
+      "heading": "Economic shock",
+      "text": "The Depression damages Black Metropolis businesses.",
+      "active": [
+        "bronzeville"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "south",
+      "name": "US South",
+      "coordinates": [
+        -90,
+        33
+      ]
+    },
+    {
+      "id": "chicago",
+      "name": "Chicago",
+      "coordinates": [
+        -87.63,
+        41.88
+      ]
+    },
+    {
+      "id": "bronzeville",
+      "name": "Bronzeville",
+      "coordinates": [
+        -87.62,
+        41.83
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "south",
+        "chicago"
+      ]
+    }
+  ],
+  "reveal": "A migration map should not stop at an arrival dot. The Chicago Defender encouraged northward migration, and Chicago’s Black community built businesses, banks and cultural institutions amid exclusion. Later economic shocks weakened that base. Movement and institution building belong to the same story.",
+  "limit": "The South dot is a regional anchor; this is not every migrant’s route.",
+  "sources": [
+    {
+      "url": "https://home.nps.gov/articles/chicago-s-black-metropolis-understanding-history-through-a-historic-place-teaching-with-historic-places.htm",
+      "section": "Reading on Black Metropolis: Defender, 1910–1920 migration, 1920s construction, Depression",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}
