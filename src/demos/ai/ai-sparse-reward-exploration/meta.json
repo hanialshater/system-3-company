@@ -1,0 +1,102 @@
+{
+  "slug": "ai-sparse-reward-exploration",
+  "title": "Rare, guided, or impossible?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "sparse-reward-exploration",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:mdp-basics"
+    ],
+    "doesNotKnow": [
+      "Doubling the required all-right path from 4 to 8 changes one-episode success how?"
+    ]
+  },
+  "misconception": "1/16→1/32",
+  "objective": "Use the distinct declared sparse-reward-exploration mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-sparse-reward-exploration.c1",
+      "text": "hook/predict: Doubling the required all-right path from 4 to 8 changes one-episode success how? Options: 1/16→1/256; 1/16→1/32; Unchanged",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sparse-reward-exploration.c2",
+      "text": "stage input operands: \"uniform independent L/R · terminal all-R→1 · 20 episodes\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-sparse-reward-exploration.c3",
+      "text": "reveal: Length 8 had one successful sequence among 256; guiding half the actions reduced possibilities to 16. Removing the goal made success impossible. The guide adds information. The 20-episode calculation assumes independent episodes; rare success is different from an unavailable transition.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-sparse-reward-exploration.c4",
+      "text": "recall: What is uniform one-episode success for length 6? Only one of 2⁶ equally likely action sequences succeeds.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-sparse-reward-exploration.c5",
+      "text": "stage computation: Binary left/right sequence of lengthL, only all-right earns terminal1; any wrong action yields terminal0 at end. Uniform independent actions give one successful sequence out of2^L: L4 probability1/16, L8 probability1/256. Independent20episodes give at-least-one success1−(1−2^(−L))^20. Enumerate all action sequences for bothL values, not a shaped progress reward.\n\n**Countercase / boundary:** A stipulated guide fixes the firstL/2 actions right, leaving uniform rest: atL8 success1/16 rather than1/256. Remove goal transition and success becomes0 even with all-right; rarity is not impossibility. Guide is additional information, not free random exploration.\n\n**Prediction / transfer recall:** Predict effect of doubling4 to8 required actions; recall L6 uniform chance1/64 perepisode and why independence matters for20episode formula.\n\n**Intervention / reachable witness:** Extend path, Guide half and Remove goal recompute successful-path count/probabilities and20trial event, retain original sparse witness. Do not require256tiny readable paths: show one successful path plus computed total and an accessible enumeration summary.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-sparse-reward-exploration.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: uniform independent L/R · terminal all-R→1 · 20 episodes ? Length 8 Guide half Remove goal Reset 1: L4 1/16→L8 1/256; 20=0.075 2: 1/16; 20=0.725 3: 0/256; 20=0.000 | inspection 0: uniform independent L/R · terminal all-R→1 · 20 episodes RRRRRRRR / 256 goal 1 Length 8 Guide half Remove goal Reset 1: L4 1/16→L8 1/256; 20=0.075 2: 1/16; 20=0.725 3: 0/256; 20=0.000 | inspection 1: uniform independent L/R · terminal all-R→1 · 20 episodes RRRRRRRR / 16 goal 1 Length 8 Guide half Remove goal Reset 1: L4 1/16→L8 1/256; 20=0.075 2: 1/16; 20=0.725 3: 0/256; 20=0.000 | inspection 2: uniform independent L/R · terminal all-R→1 · 20 episodes RRRRRRRR / 256 goal 0 Length 8 Guide half Remove goal Reset 1: L4 1/16→L8 1/256; 20=0.075 2: 1/16; 20=0.725 3: 0/256; 20=0.000",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#29-sparse-reward-exploration; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What is uniform one-episode success for length 6?",
+    "options": [
+      "1/64",
+      "1/6",
+      "1/32"
+    ],
+    "answer": 0,
+    "why": "Only one of 2⁶ equally likely action sequences succeeds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:sparse-reward-exploration",
+    "also": [],
+    "prerequisites": [
+      "ai:mdp-basics"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

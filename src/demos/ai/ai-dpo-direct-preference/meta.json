@@ -1,0 +1,102 @@
+{
+  "slug": "ai-dpo-direct-preference",
+  "title": "Which way does the pair push?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "dpo-direct-preference",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:rlhf-kl-leash"
+    ],
+    "doesNotKnow": [
+      "After one declared pair update preferring A, which way does P(A) move?"
+    ]
+  },
+  "misconception": "Below .5",
+  "objective": "Use the distinct declared dpo-direct-preference mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-dpo-direct-preference.c1",
+      "text": "hook/predict: After one declared pair update preferring A, which way does P(A) move? Options: Above .5; Below .5",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dpo-direct-preference.c2",
+      "text": "stage input operands: \"chosen A / rejected B · reference odds=1 · θ₀=0\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-dpo-direct-preference.c3",
+      "text": "reveal: The A-preferred pair gave gradient −.5, θ=.5 and P(A)=.622. Swapping labels gave P(A)=.378. With β=0, gradient vanished and loss stayed ln2. This single reference-normalized update fits supplied preferences; it does not recover uniquely correct human values.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-dpo-direct-preference.c4",
+      "text": "recall: For reference odds 4, which θ makes the preference log-ratio zero? The reference-normalized log odds are θ−ln4.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-dpo-direct-preference.c5",
+      "text": "stage computation: Chosen A, rejected B, reference odds qA/qB=1. Policy log odds theta gives pA=sigmoid(theta). DPO pair loss L=−log sigmoid(beta*(theta−log(qA/qB))). Set beta1, theta0, learning rate1. Gradient theta=−.5, new theta=.5, pA=.6224593, loss .474077 from ln2.\n\n**Countercase / boundary:** Swap chosen/rejected labels: gradient+.5, theta−.5,pA=.3775407. beta0 makes pair loss ln2 independent of theta and gradient0. This is one declared pair update, not a claim to recover uniquely correct human values or universal replacement of all RL.\n\n**Prediction / transfer recall:** Predict direction of pA under the chosenA pair; recall unequal reference odds4 requires theta=ln4 for an initial zero preference log-ratio, not theta0.\n\n**Intervention / reachable witness:** Update pair computes reference-normalized log ratio, loss, gradient and policy probability; Swap labels recomputes from same initialtheta while retaining both signed updates. Distinguish reference from policy, no hidden reward model.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-dpo-direct-preference.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: chosen A / rejected B · reference odds=1 · θ₀=0 ? Update A Swap pair β=0 Reset 1: ∇=-0.5; θ=0.5; P(A)=0.622; L=0.474 2: ∇=0.5; θ=-0.5; P(A)=0.378; L=0.474 3: ∇=0; θ=0; P(A)=0.500; L=0.693 | inspection 0: chosen A / rejected B · reference odds=1 · θ₀=0 qA=.5 policy A=0.622 Update A Swap pair β=0 Reset 1: ∇=-0.5; θ=0.5; P(A)=0.622; L=0.474 2: ∇=0.5; θ=-0.5; P(A)=0.378; L=0.474 3: ∇=0; θ=0; P(A)=0.500; L=0.693 | inspection 1: chosen A / rejected B · reference odds=1 · θ₀=0 qA=.5 policy A=0.378 Update A Swap pair β=0 Reset 1: ∇=-0.5; θ=0.5; P(A)=0.622; L=0.474 2: ∇=0.5; θ=-0.5; P(A)=0.378; L=0.474 3: ∇=0; θ=0; P(A)=0.500; L=0.693 | inspection 2: chosen A / rejected B · reference odds=1 · θ₀=0 qA=.5 policy A=0.500 Update A Swap pair β=0 Reset 1: ∇=-0.5; θ=0.5; P(A)=0.622; L=0.474 2: ∇=0.5; θ=-0.5; P(A)=0.378; L=0.474 3: ∇=0; θ=0; P(A)=0.500; L=0.693",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#17-dpo-direct-preference; local model.ts and model-check.mjs. [Rafailov et al. original DPO body](https://arxiv.org/html/2305.18290v3), opened2026-10-19 §4, DPO objective Eq7 and parameterization; use the explicitly reduced two-response log-odds derivative here. General empirical comparisons remain outside this toy. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For reference odds 4, which θ makes the preference log-ratio zero?",
+    "options": [
+      "ln4",
+      "0",
+      "4"
+    ],
+    "answer": 0,
+    "why": "The reference-normalized log odds are θ−ln4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:dpo-direct-preference",
+    "also": [],
+    "prerequisites": [
+      "ai:rlhf-kl-leash"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

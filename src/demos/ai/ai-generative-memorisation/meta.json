@@ -1,0 +1,109 @@
+{
+  "slug": "ai-generative-memorisation",
+  "title": "Does deduplication prevent exact copies?",
+  "hook": "Enumerate every center and noise branch.",
+  "domain": "ai",
+  "concept": "generative-memorisation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:diffusion-denoising",
+      "ai:training-data-dedup"
+    ],
+    "doesNotKnow": [
+      "Centers [0,0,0,2]; noise −h/0/+h has probability .25/.5/.25. Does deduplication eliminate exact outputs?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite generative-memorisation model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-generative-memorisation.c1",
+      "text": "Does deduplication prevent exact copies? Enumerate every center and noise branch. Centers [0,0,0,2]; noise −h/0/+h has probability .25/.5/.25. Does deduplication eliminate exact outputs? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §7; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-memorisation.c2",
+      "text": "Bandwidth zero made every generated value a training value. Deduplication redistributed exact copies between centers without removing all copies. Nontraining outputs prove no useful generalization; this finite mixture is not diffusion training, source identification, or a legal conclusion.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §7; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-memorisation.c3",
+      "text": "{'question': 'With deduplicated centers and h=0, what is exact-copy mass?', 'options': ['1', '.5'], 'answer': 0, 'why': 'Zero noise always returns a chosen training center.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §7; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-memorisation.c4",
+      "text": "Addressed visible stage operands and labels: centers=0,0,0,2 · h=.5 | noise −h/0/+h: .25/.5/.25. Controls: h=.5, h=0, Dedup, Reset. Changed computed rows: centers=0/0/0/2 · h=0.5 / outputs -0.5/0/0.5/1.5/2/2.5 / P(0)=0.375 · P(2)=0.125 / exact training-value mass=0.5 | centers=0/0/0/2 · h=0 / outputs 0/2 / P(0)=0.75 · P(2)=0.25 / exact training-value mass=1 | centers=0/2 · h=0.5 / outputs -0.5/0/0.5/1.5/2/2.5 / P(0)=0.25 · P(2)=0.25 / exact training-value mass=0.5. Retained computed witnesses: h0.5 exact=0.5 | h0 exact=1 | dedup exact=0.5. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst centers=mode===2?[0,2]:[0,0,0,2],h=mode===1?0:.5,d=new Map<number,number>();for(const c of centers)for(const[e,p]of[[-h,.25],[0,.5],[h,.25]])d.set(c+e,(d.get(c+e)??0)+p/centers.length);const exact=sum([...d].filter(([v])=>centers.includes(v)).map(([,p])=>p));return{values:[exact,d.get(0)??0,d.get(2)??0],rows:[`centers=${centers.join('/')} · h=${h}`,`outputs ${[...d.keys()].sort((a,b)=>a-b).map(f).join('/')}`,`P(0)=${f(d.get(0)!)} · P(2)=${f(d.get(2)!)}`,`exact training-value mass=${f(exact)}`],receipt:`${mode===2?'dedup':`h${h}`} exact=${f(exact)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §7; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-memorisation.c5",
+      "text": "generative-memorisation\n\n**Identity / target / source:** `ai:generative-memorisation` → `ai-generative-memorisation` → `src/demos/ai/ai-generative-memorisation`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/85`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#7-generative-memorisation`. **Packet:** G3. **Level / prerequisites:** core; `ai:diffusion-denoising`, `ai:training-data-dedup`.\n\n**Nearest / distinct payoff:** training-data-dedup reweights count predictions; here a fitted empirical mixture plus a bandwidth-controlled generation channel changes exact training-example reproduction.\n\n**Computed primary model:** Train a finite kernel generator on scalar multiset[0,0,0,2]: mixture-center weights are empirical counts. Choose a center then add noise−h,0,+h with probabilities.25,.5,.25. h=.5 yields exact-output masses at0=.375,2=.125 (total exact training-value reproduction.5); other outputs−.5,.5,1.5,2.5 are nontraining values. h0 yields exact reproduction1, with0 mass.75. Deduplicated[0,2] at h.5 retains exact total.5 but redistributes exact0/2 masses .25/.25.\n\n**Countercase / boundary:** Nontraining outputs under h.5 do not prove useful generalization; exact matches do not themselves identify a source or legal status. This declared empirical-mixture fitting/noise channel is not a diffusion-model training simulation. Duplicates change per-example reproduction, while bandwidth independently changes exact-copy probability.\n\n**Prediction / transfer recall:** Predict whether deduplication necessarily removes all exact outputs; recall changing h to0 increases exact-copy total even on deduplicated centers.\n\n**Intervention / retained witness:** Generate distribution enumerates center/noise branches and merges identical outputs; Bandwidth and Deduplicate recompute exact/nontraining mass and per-value matches. Retain rawh.5/h0 and dedup witnesses; no arbitrary sampled dots as proof of frequency.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Original empirical source lead: [Carlini et al.2023 extraction from diffusion](https://arxiv.org/abs/2301.13188), not opened here; acquire protocol/body before real-model claims. No empirical rate is borrowed.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §7; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With deduplicated centers and h=0, what is exact-copy mass?",
+    "options": [
+      "1",
+      ".5"
+    ],
+    "answer": 0,
+    "why": "Zero noise always returns a chosen training center."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:generative-memorisation",
+    "also": [],
+    "prerequisites": [
+      "ai:diffusion-denoising",
+      "ai:training-data-dedup"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "ai-compute-thresholds",
+  "title": "Which one crosses the line?",
+  "hook": "Equal toy quality; different stipulated compute.",
+  "domain": "ai",
+  "concept": "compute-thresholds",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "scaling-laws"
+    ],
+    "doesNotKnow": [
+      "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute\u226580, which flags?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-compute-thresholds.c1",
+      "text": "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute\u226580, which flags? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: A only; B only; Both.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-compute-thresholds.c2",
+      "text": "Your threshold-80 run flagged A alone even though both had quality 10. Lowering the threshold to 30 flagged both. The rule compares compute, not quality. Equal measured quality therefore did not imply equal threshold membership in this fictional example. This is neither a dated law nor a jurisdictional compliance decision; its stipulated units have no regulatory status.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-thresholds.c3",
+      "text": "Both systems have quality 10. Does that alone establish that both cross a compute threshold? No. The flag uses compute values and the chosen threshold. Equal quality does not determine those values.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-thresholds.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-compute-thresholds.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Fictional screening \u00b7 units stipulated Quality Compute Flag A 10 100 \u2713 B 10 40 \u2014 compute \u2265 80 Toy rule \u00b7 no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [\u2713,\u2014] 2. 30: [\u2713,\u2713] | Fictional screening \u00b7 units stipulated Quality Compute Flag A 10 100 \u2713 B 10 40 \u2014 compute \u2265 80 Toy rule \u00b7 no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [\u2713,\u2014] 2. 30: [\u2713,\u2713]",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Both systems have quality 10. Does that alone establish that both cross a compute threshold?",
+    "options": [
+      "No; compute and threshold are needed",
+      "Yes; quality fixes compute",
+      "Yes; quality fixes the threshold"
+    ],
+    "answer": 0,
+    "why": "No. The flag uses compute values and the chosen threshold. Equal quality does not determine those values."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:compute-thresholds",
+    "also": [],
+    "prerequisites": [
+      "ai:scaling-laws"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

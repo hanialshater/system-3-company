@@ -1,0 +1,107 @@
+{
+  "slug": "ai-self-play",
+  "title": "Does beating yesterday mean getting stronger?",
+  "hook": "Compute a changing opponent’s best response.",
+  "domain": "ai",
+  "concept": "self-play",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:policy-gradient"
+    ],
+    "doesNotKnow": [
+      "Rock→Paper→Scissors→Rock beats the preceding move. Opponent is Paper. What is the best response?"
+    ]
+  },
+  "misconception": "Rock",
+  "objective": "Compute this finite self-play model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-self-play.c1",
+      "text": "Does beating yesterday mean getting stronger? Compute a changing opponent’s best response. Rock→Paper→Scissors→Rock beats the preceding move. Opponent is Paper. What is the best response? Options: Scissors; Rock",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §11; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-self-play.c2",
+      "text": "Pure best responses cycled while each beat the previous opponent. Every pure policy scored zero against the uniform population. Paper still lost to Scissors. This exact replacement game is not a policy-gradient loop or monotonically increasing general ability.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §11; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-self-play.c3",
+      "text": "{'question': 'Does Paper’s win over Rock imply a win over Scissors?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The same payoff row gives +1 against Rock and −1 against Scissors.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §11; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-self-play.c4",
+      "text": "Addressed visible stage operands and labels: payoff: tie0 · win+1 · loss−1 | R beats S · P beats R · S beats P. Controls: Replace, Population, Reset. Changed computed rows: updates R→P→S→R / uniform payoff=0/0/0 / Paper vs Rock=1 · vs Scissors=-1 / latest-opponent wins; policies cycle | updates R→R→R→R / uniform payoff=0/0/0 / Paper vs Rock=1 · vs Scissors=-1 / population ties → stable Rock. Retained computed witnesses: latest R→P→S→R | uniform R→R→R→R. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst M=[[0,-1,1],[1,0,-1],[-1,1,0]],names=['R','P','S'],cycle=[0];for(let i=0;i<3;i++){const op=cycle.at(-1)!,scores=M.map(r=>mode?sum(r)/3:r[op]),best=scores.reduce((a,v,j)=>v>scores[a]?j:a,0);cycle.push(best);}const uniform=M.map(r=>sum(r)/3);return{values:[...cycle,...uniform],rows:[`updates ${cycle.map(i=>names[i]).join('→')}`,`uniform payoff=${uniform.map(f).join('/')}`,`Paper vs Rock=${M[1][0]} · vs Scissors=${M[1][2]}`,`${mode?'population ties → stable Rock':'latest-opponent wins; policies cycle'}`],receipt:`${mode?'uniform':'latest'} ${cycle.map(i=>names[i]).join('→')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §11; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-self-play.c5",
+      "text": "self-play\n\n**Identity / target / source:** `ai:self-play` → `ai-self-play` → `src/demos/ai/ai-self-play`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/111`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#11-self-play`. **Packet:** R2. **Level / prerequisites:** core; `ai:policy-gradient`.\n\n**Nearest / distinct payoff:** policy-gradient reinforces sampled actions; this computes best-response policy replacement against a changing opponent and tests population strength.\n\n**Computed primary model:** Rock-paper-scissors payoff matrix row player: tie0, win+1, loss−1. Opponent starts Rock. Policy update selects a pure best response: Paper wins+1 against Rock. Replace opponent with latest policyPaper; next best responseScissors wins+1; thenRock wins+1 againstScissors. Relative success improves against each last opponent while the policies cycle.\n\n**Countercase / boundary:** Test each new pure policy against uniform opponent[1/3,1/3,1/3]: expected payoff0 throughout. TestPaper againstScissors and it loses−1 despite beating the oldRock. A uniform opponent population has tied best responses; use stable Rock tie rule rather than inventing increasing strength.\n\n**Prediction / transfer recall:** Predict next best response after opponentPaper; recall why winning against the last opponent alone does not imply monotonically greater general ability.\n\n**Intervention / retained witness:** Update opponent/Best respond computes the matrix row, current opponent payoff and uniform-population payoff; retain the fullR→P→S→R cycle. This is exact best-response replacement, not an implemented policy-gradient training loop.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Primary game-learning lead: [Lanctot et al.2017](https://arxiv.org/abs/1711.00832), not acquired here; do not claim empirical self-play convergence or attribute this simple cycle to its algorithm.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §11; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does Paper’s win over Rock imply a win over Scissors?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The same payoff row gives +1 against Rock and −1 against Scissors."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:self-play",
+    "also": [],
+    "prerequisites": [
+      "ai:policy-gradient"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

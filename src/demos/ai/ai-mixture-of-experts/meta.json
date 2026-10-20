@@ -1,0 +1,104 @@
+{
+  "slug": "ai-mixture-of-experts",
+  "title": "Stored is not switched on",
+  "hook": "Route tokens through selected experts and count a batch union.",
+  "domain": "ai",
+  "concept": "mixture-of-experts",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "A batch containing both top1 routes touches220 unique parameters, not120 per batch. Active per token and stored total differ; no speedup claim without hardware/work measurement."
+    ]
+  },
+  "misconception": "A batch containing both top1 routes touches220 unique parameters, not120 per batch. Active per token and stored total differ; no speedup claim without hardware/work measurement.",
+  "objective": "Compute and contrast the finite mixture of experts cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-mixture-of-experts.c1",
+      "text": "export function run(mode:number){const k=mode===1?2:1,scores=[[.8,.1,.07,.03],[.05,.1,.8,.05]],routes=scores.map(row=>row.map((score,i)=>({score,i})).sort((a,b)=>b.score-a.score||a.i-b.i).slice(0,k).map(r=>r.i)),union=new Set(routes.flat());return {k,scores,routes,stored:20+100*scores[0].length,active:20+100*routes[0].length,batch:20+100*union.size};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 118\" role=\"img\" aria-label=\"Stored is not switched on \\u2014 computed finite mechanism\"><text x=\"6\" y=\"15\">A: .8 .1 .07 .03</text><text x=\"6\" y=\"32\">B: .05 .1 .8 .05</text>{[0,1,2,3].map(i=><g key={i}><rect x={9+i*70} y=\"40\" width=\"58\" height=\"29\" className={r.routes[0].includes(i)?s.selected:s.box}/><text x={38+i*70} y=\"60\" textAnchor=\"middle\">E{i+1}</text></g>)}<text x=\"6\" y=\"91\">stored={r.stored} · A active={r.active}</text><text x=\"6\" y=\"111\">B→{r.routes[1].map(i=>'E'+(i+1)).join(',')} · batch={r.batch}</text></svg>;}\n\nLocked inputs: Four experts each hold 100 parameters; router holds 20. A ranks E1 first; B ranks E3 first.",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mixture-of-experts.c2",
+      "text": "Stored is not switched on; Route tokens through selected experts and count a batch union.; {\"question\": \"Top-2 routes one token through two experts. Including the router, how many parameters are active?\", \"options\": [\"120\", \"220\", \"420\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-mixture-of-experts.c3",
+      "text": "Your top-1 token activated 120 of 420 stored parameters; top-2 activated 220. Two top-1 tokens routed to E1 and E3 touched a union of 220, counting the router once. Active parameters per token differ from batch unions. No hardware speedup follows from these counts alone.\n(mode:number){const r=m.run(mode);return `Top${r.k}: token=${r.active} · batch=${r.batch}`;}\n",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-mixture-of-experts.c4",
+      "text": "{\"question\": \"A top-1 batch routes tokens to E1 and E3. What is its unique parameter count including one router?\", \"options\": [\"120\", \"220\", \"240\"], \"answer\": 1, \"why\": \"Two experts plus one shared router give 200+20.\"}",
+      "support": "derivation",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-mixture-of-experts.c5",
+      "text": "A batch containing both top1 routes touches220 unique parameters, not120 per batch. Active per token and stored total differ; no speedup claim without hardware/work measurement.; controls: Top1, Top2, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "A top-1 batch routes tokens to E1 and E3. What is its unique parameter count including one router?",
+    "options": [
+      "120",
+      "220",
+      "240"
+    ],
+    "answer": 1,
+    "why": "Two experts plus one shared router give 200+20."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:mixture-of-experts",
+    "also": [],
+    "prerequisites": [
+      "ai:softmax-scores"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

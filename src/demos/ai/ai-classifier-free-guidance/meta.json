@@ -1,0 +1,107 @@
+{
+  "slug": "ai-classifier-free-guidance",
+  "title": "Can stronger guidance overshoot?",
+  "hook": "Combine two declared Gaussian scores.",
+  "domain": "ai",
+  "concept": "classifier-free-guidance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:diffusion-denoising"
+    ],
+    "doesNotKnow": [
+      "su=−x; sc=2(1−x); sw=su+w(sc−su). Does w=3 preserve conditional mean 1?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite classifier-free-guidance model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-classifier-free-guidance.c1",
+      "text": "Can stronger guidance overshoot? Combine two declared Gaussian scores. su=−x; sc=2(1−x); sw=su+w(sc−su). Does w=3 preserve conditional mean 1? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §5; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-classifier-free-guidance.c2",
+      "text": "Increasing guidance narrowed this analytic distribution but moved its mean beyond the conditional target. The score arrows also changed the single Euler update. These supplied Gaussian scores are not learned image scores; narrowing is not a universal guidance guarantee.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §5; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-classifier-free-guidance.c3",
+      "text": "{'question': 'What are mean and variance at w=.5?', 'options': ['Both 2/3', 'Both .5'], 'answer': 0, 'why': 'Mean 2w/(1+w) and variance 1/(1+w) both equal 2/3.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §5; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-classifier-free-guidance.c4",
+      "text": "Addressed visible stage operands and labels: su=−x; sc=2(1−x) | sw=2w−(1+w)x · x=.2 · Δ=.1. Controls: w=1, w=3, w=0, Reset. Changed computed rows: w=1; su=-0.2; sc=1.6 / guided=1.6 → x=0.36 / mean=1 · variance=0.5 / |mean−conditional1|=0 | w=3; su=-0.2; sc=1.6 / guided=5.2 → x=0.72 / mean=1.5 · variance=0.25 / |mean−conditional1|=0.5 | w=0; su=-0.2; sc=1.6 / guided=-0.2 → x=0.18 / mean=0 · variance=1 / |mean−conditional1|=1. Retained computed witnesses: w1:μ1,v0.5 | w3:μ1.5,v0.25 | w0:μ0,v1. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst w=[1,3,0][mode],mean=2*w/(1+w),variance=1/(1+w),su=-.2,sc=2*(1-.2),guided=su+w*(sc-su),next=.2+.1*guided;return{values:[mean,variance,next],rows:[`w=${w}; su=${f(su)}; sc=${f(sc)}`,`guided=${f(guided)} → x=${f(next)}`,`mean=${f(mean)} · variance=${f(variance)}`,`|mean−conditional1|=${f(Math.abs(mean-1))}`],receipt:`w${w}:μ${f(mean)},v${f(variance)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §5; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-classifier-free-guidance.c5",
+      "text": "classifier-free-guidance\n\n**Identity / target / source:** `ai:classifier-free-guidance` → `ai-classifier-free-guidance` → `src/demos/ai/ai-classifier-free-guidance`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/82`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#5-classifier-free-guidance`. **Packet:** G2. **Level / prerequisites:** core; `ai:diffusion-denoising`.\n\n**Nearest / distinct payoff:** diffusion-denoising reverses a noisy process; this explicitly combines conditional/unconditional scores and derives its changed normalized distribution.\n\n**Computed primary model:** Unconditional Gaussian score s_u(x)=−x (mean0,variance1); conditional score s_c(x)=2(1−x) (mean1,variance.5). Guided score s_w=s_u+w(s_c−s_u)=2w−(1+w)x. Forw≥0 it corresponds to Gaussian mean2w/(1+w), variance1/(1+w). w0→(0,1),w1→(1,.5),w3→(1.5,.25). Strongerw narrows this distribution but overshoots the conditional mean1.\n\n**Countercase / boundary:** Increasing guidance from1 to3 reduces variance yet worsens mean-distance to conditional target0→.5. These fixed analytic scores are not learned text/image scores, and variance narrowing is not a universal property of guidance. No empirical quality/diversity slogan is admitted.\n\n**Prediction / transfer recall:** Predict whether w3 retains conditional mean1; recallw.5 gives mean2/3 and variance2/3 under this declared score pair.\n\n**Intervention / retained witness:** Change strength recomputes both source-score arrows, combined score, mean/variance and one Euler illustration x=.2,delta=.1: newx .18/.36/.72 atw0/1/3. Retain w1 target alignment and w3 overshoot separately; use labelled variance, no unsupported coverage interval.\n\n**Source obligation:** [Ho–Salimans original CFG PDF](https://arxiv.org/pdf/2207.12598), opened2026-10-19, combined conditional/unconditional score method. Exact Gaussian stationary parameters and Euler illustration here are local calculations, not trained image-model performance; confirm convention s_u+w(s_c−s_u), since papers/libraries may offset w.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §5; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What are mean and variance at w=.5?",
+    "options": [
+      "Both 2/3",
+      "Both .5"
+    ],
+    "answer": 0,
+    "why": "Mean 2w/(1+w) and variance 1/(1+w) both equal 2/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:classifier-free-guidance",
+    "also": [],
+    "prerequisites": [
+      "ai:diffusion-denoising"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

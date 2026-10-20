@@ -1,0 +1,86 @@
+{
+  "slug": "value-vs-reward",
+  "title": "Take three now—or wait?",
+  "hook": "The timing of a payoff can change your choice.",
+  "domain": "ai",
+  "concept": "value-vs-reward",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "state, action and transition reward",
+      "multiplication by one half"
+    ],
+    "doesNotKnow": [
+      "how a discount multiplies a later reward",
+      "why whole-path action return can differ from immediate reward"
+    ]
+  },
+  "misconception": "The action paying the largest immediate reward always has the largest return.",
+  "objective": "Compare immediate reward with discounted whole-path action return in a finite deterministic example.",
+  "claims": [
+    {
+      "id": "ai.value-vs-reward.c1",
+      "text": "At commitment the raw paths are Cash→3→end and Wait→0→Bridge→5→end. γ=1 is initially shown. Discount multiplies the later reward; computed returns remain hidden until Compare returns.",
+      "support": "convention",
+      "source": "src/demos/ai/value-vs-reward/model.ts; Demo.tsx declared finite fixture. Reproduce using model.repro.mjs; independent checking pending.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "Demo.tsx: trace, rule and initial equation"
+    },
+    {
+      "id": "ai.value-vs-reward.c2",
+      "text": "At γ=1 the returns are Cash3 and Wait0+1×5=5. At γ=.5 they are Cash3 and Wait0+.5×5=2.5, reversing the preferred action. Both earned comparison rows remain visible through further switches and Reset.",
+      "support": "derivation",
+      "source": "src/demos/ai/value-vs-reward/model.ts; Demo.tsx declared finite fixture. Reproduce using model.repro.mjs; independent checking pending.",
+      "status": "unverified",
+      "address": "Demo.tsx: live computed returns plus separate retained γ=1: Cash3/Wait5 and γ=.5: Cash3/Wait2.5 proof rows; reveal and Reset"
+    },
+    {
+      "id": "ai.value-vs-reward.c3",
+      "text": "The later 6 is multiplied by 0.5, giving a return of 3.",
+      "support": "derivation",
+      "source": "Recall changed finite instance; arithmetic or declared rule stated in the recall question. Independent checking pending.",
+      "status": "unverified",
+      "address": "meta.json: recall.question, recall.options and recall.why"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Cash gives 2 now; Wait gives 0 then 6. Discount multiplies the later reward by 0.5. Which return is larger?",
+    "options": [
+      "Wait: 3",
+      "Cash: 2",
+      "They tie"
+    ],
+    "answer": 0,
+    "why": "The later 6 is multiplied by 0.5, giving a return of 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "ai:value-vs-reward",
+    "also": [],
+    "prerequisites": [
+      "ai:mdp-basics"
+    ],
+    "level": "intro",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

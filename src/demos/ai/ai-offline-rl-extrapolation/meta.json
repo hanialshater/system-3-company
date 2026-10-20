@@ -1,0 +1,105 @@
+{
+  "slug": "ai-offline-rl-extrapolation",
+  "title": "What does the log cover?",
+  "hook": "Keep observed rewards separate from fitted estimates.",
+  "domain": "ai",
+  "concept": "offline-rl-extrapolation",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Two explicitly declared fits, not an actual training procedure. No logged B outcome; evaluation B=−5 is stipulated and concealed until prediction is committed."
+    ]
+  },
+  "misconception": "Two explicitly declared fits, not an actual training procedure. No logged B outcome; evaluation B=−5 is stipulated and concealed until prediction is committed.",
+  "objective": "Compute and contrast the finite offline rl extrapolation cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-offline-rl-extrapolation.c1",
+      "text": "export function fit(qb:number,restricted=false){const log=[{action:'A',reward:1}],q=[1,qb],covered=[true,false],chosen=restricted?0:q[0]>=q[1]?0:1;return {log,q,covered,chosen,restricted,truth:[1,-5],observedLoss:(q[0]-log[0].reward)**2};}\nexport function run(mode:number){return fit(mode===1?-99:99,mode===2);}\n\n<text x=\"7\" y=\"18\">Action</text><text x=\"77\" y=\"18\">Log</text><text x=\"149\" y=\"18\">Fit</text><text x=\"221\" y=\"18\">Actual</text>{r.q.map((q,i)=><g key={i}><text x=\"22\" y={48+i*31}>{i===0?'A':'B'}</text><text x=\"77\" y={48+i*31}>{r.covered[i]?r.truth[i]:'∅'}</text><text x=\"149\" y={48+i*31}>{q}</text><text x=\"221\" y={48+i*31}>{r.truth[i]}</text></g>)}<path d=\"M8 91 H282\" className={s.axis}/><text x=\"145\" y=\"113\" textAnchor=\"middle\">{r.restricted?'Logged-only':'Greedy'} → {r.chosen===0?'A':'B'} · log loss={r.observedLoss}</text>\nLog: A→1 only. Fit: Q(A)=1, Q(B)=99. Greedy tie→A. B evaluation concealed.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-offline-rl-extrapolation.c2",
+      "text": "What does the log cover?; Keep observed rewards separate from fitted estimates.; {\"question\": \"The only log entry is A→reward 1. A declared fit assigns Q(A)=1, Q(B)=99. Can this log alone justify the estimate 99 for B?\", \"options\": [\"Yes: greedy selection proves it\", \"No: B has no logged outcome\", \"Yes: matching A fixes B\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-offline-rl-extrapolation.c3",
+      "text": "Your +99 fit selected unlogged B despite zero observed loss; the −99 fit selected A with the same zero loss. Both fit A’s only recorded reward. B’s stipulated actual reward was −5. Off-support estimates are unconstrained here; not every offline estimator assigns these values.\n`Q(B)=${r.q[1]}: ${r.chosen===0?'A':'B'}, log loss=${r.observedLoss}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-offline-rl-extrapolation.c4",
+      "text": "{\"question\": \"Two fits both assign Q(A)=1, the only logged action, but assign Q(B)=99 and −99. What does their agreement on the log establish?\", \"options\": [\"B has reward 99\", \"B has reward −99\", \"Neither B estimate is established\"], \"answer\": 2, \"why\": \"The log contains no B outcome, so zero error on A cannot decide between the two B estimates.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-offline-rl-extrapolation.c5",
+      "text": "Two explicitly declared fits, not an actual training procedure. No logged B outcome; evaluation B=−5 is stipulated and concealed until prediction is committed. Controls: Fit +99, Fit −99, Logged only, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Two fits both assign Q(A)=1, the only logged action, but assign Q(B)=99 and −99. What does their agreement on the log establish?",
+    "options": [
+      "B has reward 99",
+      "B has reward −99",
+      "Neither B estimate is established"
+    ],
+    "answer": 2,
+    "why": "The log contains no B outcome, so zero error on A cannot decide between the two B estimates."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:offline-rl-extrapolation",
+    "also": [],
+    "prerequisites": [
+      "ai:q-learning",
+      "ai:distribution-shift"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

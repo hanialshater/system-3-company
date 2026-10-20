@@ -1,0 +1,95 @@
+{
+  "slug": "ai-temporal-split",
+  "title": "Was that feature available yet?",
+  "hook": "Check timestamps independently of the final score.",
+  "domain": "ai",
+  "concept": "temporal-split",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "data-leakage"
+    ],
+    "doesNotKnow": [
+      "Predict at t=1; labels are next-day demand. A feature available at t=2 gives 3/3 accuracy. Is it admissible for that prediction?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the temporal split finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-temporal-split.c1",
+      "text": "Was that feature available yet? Check timestamps independently of the final score. Predict at t=1; labels are next-day demand. A feature available at t=2 gives 3/3 accuracy. Is it admissible for that prediction? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §30; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-temporal-split.c2",
+      "text": "The future feature scored 3/3 but arrived after prediction and was inadmissible. One past feature scored 0/3; another scored 3/3. Accuracy alone did not diagnose leakage. Admission depends on availability at prediction time; shuffling cannot move future information into the past.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §30; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-temporal-split.c3",
+      "text": "Can an admissible past feature also achieve 3/3 here? Options: Yes; the declared accurate past signal does; No; perfect scores prove leakage; Only by shuffling time The exact past signal is available at t=0, before prediction at t=1, and matches all three labels.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §30; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-temporal-split.c4",
+      "text": "Original schematic labels, including neutral and every changed case: labels=next-day-demand · y=0/1/0 predict:t1 feature:t? · ? · hits=?/3 | labels=next-day-demand · y=0/1/0 predict:t1 feature:t2 · reject · hits=3/3 | labels=next-day-demand · y=0/1/0 predict:t1 feature:t0 · admit · hits=0/3 | labels=next-day-demand · y=0/1/0 predict:t1 feature:t0 · admit · hits=3/3. Retained locally computed witnesses: t2: reject,3/3 | t0: allow,0/3 | t0: allow,3/3. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §30; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-temporal-split.c5",
+      "text": " 30. temporal-split\n\nTarget / packet: ai-temporal-split · F2. Prerequisites: ai:data-leakage.\n\nNearest / distinct payoff: data-leakage → duplicates-in-the-test. Entity separation is held aside; this checks feature availability against prediction time, independently of whether a score happens to be high.\n\nFinite primary model: At day t label is next day demand. Three prediction rows labels [0,1,0]. Declared leaky feature future label=[0,1,0] gives rule accuracy 3/3; available prior-day feature=[1,0,1] gives rule 0/3. Temporal admission allows only information timestamp<=prediction time.\n\nCountercase and mathematical boundary: A legitimate past feature=[0,1,0] can also score 3/3: high score alone is not leakage evidence. Shuffling cannot make future facts available at the past prediction time.\n\nPredict and recall transfer: Predict which feature admission rule excludes future label; recall timestamp before prediction permits accurate past signal.\n\nRequired observable evidence: Show prediction timestamp and each feature availability timestamp before scores; no invented trained forecast benchmark.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §30; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can an admissible past feature also achieve 3/3 here?",
+    "options": [
+      "Yes; the declared accurate past signal does",
+      "No; perfect scores prove leakage",
+      "Only by shuffling time"
+    ],
+    "answer": 0,
+    "why": "The exact past signal is available at t=0, before prediction at t=1, and matches all three labels."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:temporal-split",
+    "also": [],
+    "prerequisites": [
+      "ai:data-leakage"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

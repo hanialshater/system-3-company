@@ -1,0 +1,107 @@
+{
+  "slug": "ai-task-decomposition",
+  "title": "When does splitting work save time?",
+  "hook": "Schedule dependencies and interface checks.",
+  "domain": "ai",
+  "concept": "task-decomposition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:agent-loop"
+    ],
+    "doesNotKnow": [
+      "A2 and B2 are independent; C1 needs both. Two serial checks cost .5 each. When can C begin?"
+    ]
+  },
+  "misconception": "Time 0",
+  "objective": "Compute this finite task-decomposition model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-task-decomposition.c1",
+      "text": "When does splitting work save time? Schedule dependencies and interface checks. A2 and B2 are independent; C1 needs both. Two serial checks cost .5 each. When can C begin? Options: Time 3; Time 0",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §19; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-task-decomposition.c2",
+      "text": "Parallel tasks saved time only after paying interface checks. Raising each check to 2 made the split slower than serial work. Starting C before its inputs was invalid. Completion time and the .81 joint handoff-validity probability measure different things.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §19; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-task-decomposition.c3",
+      "text": "{'question': 'Does increasing each check to 2 keep the split faster than serial5?', 'options': ['No; finish7', 'Yes; finish3'], 'answer': 0, 'why': 'The two serial checks consume time2–6, then C runs6–7.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §19; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-task-decomposition.c4",
+      "text": "Addressed visible stage operands and labels: A2 ∥ B2 → checkA → checkB → C1 | 2 workers; serial5 | each handoff valid .9 independently. Controls: Checks .5, Checks 2, Reset. Changed computed rows: A:0–2 ∥ B:0–2 / checkA:2–2.5 → checkB:2.5–3 / C:3–4 (requires A+B) / finish=4; serial5; P(valid)=0.81 | A:0–2 ∥ B:0–2 / checkA:2–4 → checkB:4–6 / C:6–7 (requires A+B) / finish=7; serial5; P(valid)=0.81. Retained computed witnesses: check0.5:C@3,finish4 | check2:C@6,finish7. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst h=mode?2:.5,A=[0,2],B=[0,2],check1=[2,2+h],check2=[check1[1],check1[1]+h],C=[check2[1],check2[1]+1],valid=.9**2;return{values:[C[0],C[1],valid],rows:[`A:${A.join('–')} ∥ B:${B.join('–')}`,`checkA:${check1.join('–')} → checkB:${check2.join('–')}`,`C:${C.join('–')} (requires A+B)`,`finish=${C[1]}; serial5; P(valid)=${f(valid)}`],receipt:`check${h}:C@${C[0]},finish${C[1]}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §19; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-task-decomposition.c5",
+      "text": "task-decomposition\n\n**Identity / target / source:** `ai:task-decomposition` → `ai-task-decomposition` → `src/demos/ai/ai-task-decomposition`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/125`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#19-task-decomposition`. **Packet:** A1. **Level / prerequisites:** core; `ai:agent-loop`.\n\n**Nearest / distinct payoff:** agent-loop sequences work; this schedules an actual dependency DAG and prices handoff costs rather than assuming every split can parallelize.\n\n**Computed primary model:** TasksA2time,B2time independent, C1time requires both outputs. Serial cost5. With2workers A/B run0–2, then two serial interface checks each.5 consume2–3, C runs3–4: total4. Two independent handoffs each validwithp=.9 imply both valid.81; task computation itself stipulated correct.\n\n**Countercase / boundary:** Raise each interface overhead to2: A/B0–2, checks2–6, C6–7, slower than serial5. StartingC at0 without completed dependencies is invalid, not a fast schedule. No real token, staffing or empirical productivity claim.\n\n**Prediction / transfer recall:** Predict when C may begin under.5/check; recall split work can lose its speed benefit when interface overhead grows.\n\n**Intervention / retained witness:** Parallelize and Increase overhead recompute Gantt intervals, critical dependency and completion time; Handoff failures exposes independent validity probability, not time alone. Retain serial5 and initialparallel4 alongside7 countercase.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §19; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does increasing each check to 2 keep the split faster than serial5?",
+    "options": [
+      "No; finish7",
+      "Yes; finish3"
+    ],
+    "answer": 0,
+    "why": "The two serial checks consume time2–6, then C runs6–7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:task-decomposition",
+    "also": [],
+    "prerequisites": [
+      "ai:agent-loop"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

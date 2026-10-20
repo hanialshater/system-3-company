@@ -1,0 +1,1 @@
+export function point(n:number,high=false){if(n<=0)throw new Error("Positive sample size");return {n,train:(high?.4:.1)+(high?.1:.2)/n,test:(high?.4:.1)+(high?.2:.8)/n};}export function run(mode:number){const high=mode===1,rows=[2,4,8].map(n=>point(n,high));return {high,rows,floor:high?.4:.1};}

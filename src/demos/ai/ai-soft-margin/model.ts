@@ -1,0 +1,1 @@
+export function candidate(w:number,C:number){const data=[[-1,-1],[1,1],[.2,-1]],hinges=data.map(([x,y])=>Math.max(0,1-y*w*x)),norm=.5*w*w,sum=hinges.reduce((a,b)=>a+b,0);return {w,hinges,norm,sum,total:norm+C*sum};}export function run(mode:number){const C=mode===1?1:mode===2?0:.1,rows=[1,.5].map(w=>candidate(w,C));return {C,rows,winner:rows[0].total<rows[1].total?1:.5};}

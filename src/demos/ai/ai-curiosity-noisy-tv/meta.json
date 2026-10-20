@@ -1,0 +1,101 @@
+{
+  "slug": "ai-curiosity-noisy-tv",
+  "title": "Is surprise still useful?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "curiosity-noisy-tv",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:sparse-reward-exploration"
+    ],
+    "doesNotKnow": [
+      "After Progress is learned, which action wins intrinsic-only expected prediction error?"
+    ]
+  },
+  "misconception": "Progress",
+  "objective": "Use the distinct declared curiosity-noisy-tv mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c1",
+      "text": "hook/predict: After Progress is learned, which action wins intrinsic-only expected prediction error? Options: Progress; TV",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c2",
+      "text": "stage input operands: \"Progress→0, reward1 · TV~Bernoulli(.5), reward0\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c3",
+      "text": "reveal: Progress’s error fell from 1 to 0; random TV retained expected error .25, winning intrinsic-only choice. Adding extrinsic reward preferred Progress, 1 versus .025. Learned deterministic TV had zero residual error. Prediction error need not mean learnable progress; these stipulated scores model no human feeling.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c4",
+      "text": "recall: Can an optimal mean predictor remove Bernoulli(.5) TV’s expected squared error? The irreducible expected squared error remains .25.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c5",
+      "text": "stage computation: Two repeatable actions Progress and TV. Progress outcome0 deterministic, initial predictor1, then predictor updates exactly to0 after observation; squared intrinsic error1 then0. TV outcome independent Bernoulli(.5), optimal predictor.5, expected squared error .5*(0−.5)²+.5*(1−.5)²=.25 each visit. Intrinsic-only expected-error chooser picks Progress initially1>.25, then TV.25>0. Separate extrinsic rewards Progress1/TV0 are not used by that chooser.\n\n**Countercase / boundary:** Use combined score extrinsic+.1*expected intrinsic: after learning Progress score1 versusTV.025, so chooses Progress. Change TV to deterministic1 with predictor learned after one observation: residual error0, so persistent .25 disappears. Prediction error does not necessarily mean learnable progress. These are declared expected scores, not motivations or measured behaviour of real agents.\n\n**Prediction / transfer recall:** Predict where intrinsic-only choice goes after Progress is learned; recall a perfectly learned deterministicTV has no residual surprise, whereas randomTV remains noisy even for an optimal mean predictor.\n\n**Intervention / reachable witness:** Observe Progress updates its predictor; Intrinsic/Combined and Deterministic TV recompute choice and expected error terms, retaining both initial and post-learning decisions. Mark expected TV error distinctly from one realized sample. No claim to simulate curiosity as human feeling.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-curiosity-noisy-tv.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: Progress→0, reward1 · TV~Bernoulli(.5), reward0 ? Observe Add reward Learn TV Reset 1: scores 0,0.25; choose TV 2: scores 1,0.025; choose Progress 3: scores 0,0; choose Tie | inspection 0: Progress→0, reward1 · TV~Bernoulli(.5), reward0 Progress 1 → 0 TV expected 0.25 Observe Add reward Learn TV Reset 1: scores 0,0.25; choose TV 2: scores 1,0.025; choose Progress 3: scores 0,0; choose Tie | inspection 1: Progress→0, reward1 · TV~Bernoulli(.5), reward0 Progress 1 → 0 TV expected 0.25 Observe Add reward Learn TV Reset 1: scores 0,0.25; choose TV 2: scores 1,0.025; choose Progress 3: scores 0,0; choose Tie | inspection 2: Progress→0, reward1 · TV~Bernoulli(.5), reward0 Progress 1 → 0 TV expected 0 Observe Add reward Learn TV Reset 1: scores 0,0.25; choose TV 2: scores 1,0.025; choose Progress 3: scores 0,0; choose Tie",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#30-curiosity-noisy-tv; local model.ts and model-check.mjs. [Burda et al. original PDF](https://arxiv.org/pdf/1808.04355), opened body2026-10-19. Original noisy-TV discussion acquired at PDFp10 (zero-index9), discussion and Figure6; inspect the full experimental protocol before any empirical attribution; the local independent Bernoulli error floor and stipulated decision policy here are derived. No quoted real-agent success rates. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can an optimal mean predictor remove Bernoulli(.5) TV’s expected squared error?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The irreducible expected squared error remains .25."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:curiosity-noisy-tv",
+    "also": [],
+    "prerequisites": [
+      "ai:sparse-reward-exploration"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

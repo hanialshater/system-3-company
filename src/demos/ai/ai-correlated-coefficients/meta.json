@@ -1,0 +1,95 @@
+{
+  "slug": "ai-correlated-coefficients",
+  "title": "Do nearby targets imply nearby weights?",
+  "hook": "Fit two almost coincident feature columns, then probe away from them.",
+  "domain": "ai",
+  "concept": "correlated-coefficients",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "linear-regression-fit"
+    ],
+    "doesNotKnow": [
+      "Changing only the second target2→2.01 makes the coefficients…"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the correlated coefficients construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-correlated-coefficients.c1",
+      "text": "Do nearby targets imply nearby weights? Fit two almost coincident feature columns, then probe away from them. Changing only the second target2→2.01 makes the coefficients… Options: Stay[2,0]; Move[1,1]; Move[0,2].",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-correlated-coefficients.c2",
+      "text": "A .01 target change moved the coefficients from [2,0] to [1,1]. The [2,2] probe stayed at 4; the [1,0] probe changed from 2 to 1. Identical columns admitted multiple coefficients. Stability along this observed relation did not ensure stability away from it.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-correlated-coefficients.c3",
+      "text": "Why probe away from the relation between observed features? The two fitted coefficient pairs agree at [2,2] but disagree at [1,0]; on-support agreement alone conceals that difference.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-correlated-coefficients.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-correlated-coefficients.c5",
+      "text": "Target / packet: `ai-correlated-coefficients` · `C2`. Prerequisites: `ai:linear-regression-fit`.\n\nNearest / distinct payoff: `linear-regression-fit` → `outlier-flattens-line` (existing registered artifact; evidence applicability pending). Unlike fitting one regression line, this isolates coefficient sensitivity while testing both in-support and off-support predictions.\n\nPrimary finite model: No-intercept X=[[1,1],[1,1.01]], y=[2,2]. Exact solution beta=[2,0]; change only second y to2.01 gives beta=[1,1]. Predictions on x=[1,1] remain2 and on[2,2] remain4.\n\nCountercase and boundary: At x=[1,0], predictions2 versus1 diverge. Exactly identical columns make individual coefficients nonidentifiable; do not invert a singular matrix.\n\nPredict and recall transfer: Predict coefficient stability under .01 perturbation; recall why predictions can remain stable along observed support but change off it.\n\nRequired evidence: Expose both fitted coefficients and on/off-support predictions; no claim of universally stable predictions under collinearity. Shipped local computations, all cases: Fit: X · no intercept [1,1] → 2 [1,1.01] → 2 β=[2,0]; y₂=2 β[2,0] | Perturb: X · no intercept [1,1] → 2 [1,1.01] → 2.01 β=[1,1]; y₂=2.01 β[1,1] | Probe: X · no intercept [1,1] → 2 [1,1.01] → 2 β=[2,0] [2,2]→4/4 [1,0]→2/1; [2,2]→4/4; [1,0]→2/1 | Identical: X · no intercept [1,1] → 2 [1,1] → 2 β=Not unique; x₂=x₁: [2,0] / [1,1]. Initial neutral frame: X · no intercept [1,1] → 2 [1,1.01] → 2 β=?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §22; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why probe away from the relation between observed features?",
+    "options": [
+      "The two fitted coefficient pairs agree at [2,2] but disagree at [1,0]; on-support agreement alone conceals that difference.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "The two fitted coefficient pairs agree at [2,2] but disagree at [1,0]; on-support agreement alone conceals that difference."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:correlated-coefficients",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

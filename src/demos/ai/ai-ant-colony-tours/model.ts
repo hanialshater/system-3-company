@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const lengths:Record<string,number>={AB:2,BC:2,CD:2,AD:2,AC:3,BD:3},tour=[...(mode===2?'ABCDA':'ACBDA')],rho=mode===1?.8:.2,L=tour.slice(1).reduce((s,n,i)=>s+lengths[[tour[i],n].sort().join('')],0),tau=Object.fromEntries(Object.keys(lengths).map(k=>[k,1-rho]));for(let i=1;i<tour.length;i++)tau[[tour[i-1],tour[i]].sort().join('')]+=8/L;const p=tau.AC/3/(tau.AB/2+tau.AC/3);return out([`ρ=${rho} L=${L} · initialP(C)=${f3((1/3)/(1/2+1/3))}`,`τ=${Object.entries(tau).map(([k,v])=>k+f3(v)).join('/')} · allowed=B/C`,`P(C)=${f3(p)} · P(B)=${f3(1-p)}`],`${mode}: P(C)${f3(p)}`);}

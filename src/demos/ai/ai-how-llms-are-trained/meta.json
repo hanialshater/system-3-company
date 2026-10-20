@@ -1,0 +1,97 @@
+{
+  "slug": "ai-how-llms-are-trained",
+  "title": "Which target wins?",
+  "hook": "Three responses face three different operations.",
+  "domain": "ai",
+  "concept": "how-llms-are-trained",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "next-token",
+      "preference-ranking"
+    ],
+    "doesNotKnow": [
+      "Corpus [6,3,1], instruction [1,3,6], preference [0,2,1]: which wins each?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-how-llms-are-trained.c1",
+      "text": "Corpus [6,3,1], instruction [1,3,6], preference [0,2,1]: which wins each? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: A, C, B; A, B, C; C, C, A.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 1; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-how-llms-are-trained/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-how-llms-are-trained.c2",
+      "text": "Your retained fits used the same A/B/C responses: corpus favored A, instruction favored C, while preference selected B. Uniform counts produced equal fitted frequencies. Frequency fitting and score ranking have different targets. These are count and selection operations, not gradient training or an implementation of RLHF; they do not establish a universal training recipe.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 1; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-how-llms-are-trained/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-how-llms-are-trained.c3",
+      "text": "If instruction counts become [6,3,1] but preference remains [0,2,1], which instruction and preference winners result? Instruction fitting favors A; preference still selects B because its score is 2. Ranking and count fitting optimize different declared targets.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 1; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-how-llms-are-trained/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-how-llms-are-trained.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 1; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-how-llms-are-trained/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-how-llms-are-trained.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 initial weights [1,1,1] Response A B C Corpus 6 3 1 Instruction 1 3 6 Preference 0 2 1 Frequency 0.60 0.30 0.10 Fit corpus Fit instruction Rank preference Fit uniform Reset 1. Frequency: 0.60/0.30/0.10 2. Frequency: 0.10/0.30/0.60 3. Preference: B 4. Uniform: 0.33/0.33/0.33 | Toy \u00b7 initial weights [1,1,1] Response A B C Corpus 6 3 1 Instruction 1 3 6 Preference 0 2 1 Frequency 0.60 0.30 0.10 Fit corpus Fit instruction Rank preference Fit uniform Reset 1. Frequency: 0.60/0.30/0.10 2. Frequency: 0.10/0.30/0.60 3. Preference: B 4. Uniform: 0.33/0.33/0.33 | Toy \u00b7 initial weights [1,1,1] Response A B C Corpus 6 3 1 Instruction 1 3 6 Preference 0 2 1 Frequency 0.60 0.30 0.10 Fit corpus Fit instruction Rank preference Fit uniform Reset 1. Frequency: 0.60/0.30/0.10 2. Frequency: 0.10/0.30/0.60 3. Preference: B 4. Uniform: 0.33/0.33/0.33 | Toy \u00b7 initial weights [1,1,1] Response A B C Corpus 6 3 1 Instruction 1 3 6 Preference 0 2 1 Frequency 0.60 0.30 0.10 Fit corpus Fit instruction Rank preference Fit uniform Reset 1. Frequency: 0.60/0.30/0.10 2. Frequency: 0.10/0.30/0.60 3. Preference: B 4. Uniform: 0.33/0.33/0.33",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 1; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-how-llms-are-trained/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If instruction counts become [6,3,1] but preference remains [0,2,1], which instruction and preference winners result?",
+    "options": [
+      "Instruction A; preference B",
+      "Instruction B; preference C",
+      "Instruction C; preference A"
+    ],
+    "answer": 0,
+    "why": "Instruction fitting favors A; preference still selects B because its score is 2. Ranking and count fitting optimize different declared targets."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:how-llms-are-trained",
+    "also": [],
+    "prerequisites": [
+      "ai:next-token",
+      "ai:preference-ranking"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

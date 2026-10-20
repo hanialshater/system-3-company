@@ -1,0 +1,104 @@
+{
+  "slug": "ai-exploding-gradients",
+  "title": "Where does clipping act?",
+  "hook": "Keep a raw chain derivative beside the applied gradient.",
+  "domain": "ai",
+  "concept": "exploding-gradients",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Scalar chain-rule product and final scalar magnitude clip. Raw derivative remains unchanged; no universal stability claim."
+    ]
+  },
+  "misconception": "Scalar chain-rule product and final scalar magnitude clip. Raw derivative remains unchanged; no universal stability claim.",
+  "objective": "Compute and contrast the finite exploding gradients cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-exploding-gradients.c1",
+      "text": "export function chain(factor:number,depth:number){const factors=Array.from({length:depth},()=>factor),trace=factors.map((_,i)=>factor**(i+1)),raw=factors.reduce((a,b)=>a*b,1),applied=Math.max(-5,Math.min(5,raw));return {factor,depth,factors,trace,raw,applied,rawUpdate:.1*raw,update:.1*applied};}\nexport function run(mode:number){return chain(mode===2?.5:2,mode===1?8:4);}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">{r.depth} factors ×{r.factor} · rate=.1</text>{r.factors.map((v,i)=><g key={i}><rect x={9+i*(272/r.depth)} y=\"34\" width={264/r.depth-2} height=\"26\" rx=\"3\" className={s.box}/><text x={9+i*(272/r.depth)+(264/r.depth-2)/2} y=\"52\" textAnchor=\"middle\">{v}</text></g>)}<text x=\"7\" y=\"87\">Raw: {show(r.raw,4)}</text><path d=\"M130 82 H177\" className={s.line}/><text x=\"180\" y=\"87\">Clip: {show(r.applied,4)}</text><text x=\"145\" y=\"117\" textAnchor=\"middle\">Δraw={show(r.rawUpdate,4)} · Δapplied={show(r.update,4)}</text>\n4 factors, each 2; raw derivative=product. Clip magnitude≤5. Rate=.1.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-exploding-gradients.c2",
+      "text": "Where does clipping act?; Keep a raw chain derivative beside the applied gradient.; {\"question\": \"Four scalar chain factors equal 2. Clip the final gradient to magnitude 5. At learning rate .1, what are raw and clipped update magnitudes?\", \"options\": [\"1.6 and .5\", \".5 and .5\", \"1.6 and 1.6\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-exploding-gradients.c3",
+      "text": "Your four factors of 2 produced raw derivative 16; clipping passed 5 to the optimizer, reducing update magnitude from 1.6000 to .5000. Eight factors produced 256. Clipping changes the applied gradient, not the chain derivative, and does not solve every training instability.\n`${r.factor}^${r.depth}: raw=${f(r.raw,4)}, applied=${f(r.applied,4)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-exploding-gradients.c4",
+      "text": "{\"question\": \"Eight factors equal 2, clip magnitude 5, rate .1. Which pair is raw derivative and applied update magnitude?\", \"options\": [\"256 and .5\", \"5 and .5\", \"256 and 25.6\"], \"answer\": 0, \"why\": \"The chain product is 2⁸=256; clipping changes the optimizer input to 5, then rate .1 gives update magnitude .5.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-exploding-gradients.c5",
+      "text": "Scalar chain-rule product and final scalar magnitude clip. Raw derivative remains unchanged; no universal stability claim. Controls: 2⁴, 2⁸, (.5)⁴, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Eight factors equal 2, clip magnitude 5, rate .1. Which pair is raw derivative and applied update magnitude?",
+    "options": [
+      "256 and .5",
+      "5 and .5",
+      "256 and 25.6"
+    ],
+    "answer": 0,
+    "why": "The chain product is 2⁸=256; clipping changes the optimizer input to 5, then rate .1 gives update magnitude .5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:exploding-gradients",
+    "also": [],
+    "prerequisites": [
+      "ai:learning-rate-overshoot"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "ai-missing-data-signal",
+  "title": "What information did filling remove?",
+  "hook": "Four training rows; preserve the difference between absent and observed.",
+  "domain": "ai",
+  "concept": "missing-data-signal",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "data-leakage"
+    ],
+    "doesNotKnow": [
+      "After filling both blanks with5, can numeric values distinguish the labels?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the missing data signal construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-missing-data-signal.c1",
+      "text": "What information did filling remove? Four training rows; preserve the difference between absent and observed. After filling both blanks with5, can numeric values distinguish the labels? Options: Yes; No.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-missing-data-signal.c2",
+      "text": "Filling made every numeric value 5, scoring 2/4 under the declared tie rule. The missingness indicator scored 4/4 on the original labels, then 2/4 after their association changed. That association supplied information here; missingness was not shown causing the labels or guaranteeing deployment benefit.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-missing-data-signal.c3",
+      "text": "Why could this indicator fail after deployment changes? Its advantage depends on the missingness-label association; the shifted labels remove it in this finite example.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-missing-data-signal.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-missing-data-signal.c5",
+      "text": "Target / packet: `ai-missing-data-signal` · `C1`. Prerequisites: `ai:data-leakage`.\n\nNearest / distinct payoff: `data-leakage` → `duplicates-in-the-test` (existing registered artifact; evidence applicability pending). Unlike leakage, this keeps observation-time evidence valid but distinguishes missingness information from imputed numeric values.\n\nPrimary finite model: Four x values[5,null,5,null], y=[0,1,0,1]. Mean imputation makes all x=5, majority tie rule0 gets2/4; indicator missing→1 gets4/4.\n\nCountercase and boundary: Change y to[0,0,1,1]: indicator gets2/4, showing no guaranteed benefit. Fit means using training values only; missingness can shift at deployment.\n\nPredict and recall transfer: Predict whether imputed values alone separate labels; recall what changes if missingness-label relation disappears.\n\nRequired evidence: Show observed, missing, filled and indicator fields on four rows. No causal assertion that missingness produces the outcome. Shipped local computations, all cases: Fill: observed / filled / missing / y / ŷ 5 / 5 / 0 / 0 / 0 – / 5 / 1 / 1 / 0 5 / 5 / 0 / 0 / 0 – / 5 / 1 / 1 / 0; Fill y[0,1,0,1] 2/4 | Indicator: observed / filled / missing / y / ŷ 5 / 5 / 0 / 0 / 0 – / 5 / 1 / 1 / 1 5 / 5 / 0 / 0 / 0 – / 5 / 1 / 1 / 1; Indicator y[0,1,0,1] 4/4 | Shift: observed / filled / missing / y / ŷ 5 / 5 / 0 / 0 / 0 – / 5 / 1 / 0 / 1 5 / 5 / 0 / 1 / 0 – / 5 / 1 / 1 / 1; Shift y[0,0,1,1] 2/4. Initial neutral frame: observed / filled / missing / y / ŷ 5 / ? / ? / 0 / ? – / ? / ? / 1 / ? 5 / ? / ? / 0 / ? – / ? / ? / 1 / ?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why could this indicator fail after deployment changes?",
+    "options": [
+      "Its advantage depends on the missingness-label association; the shifted labels remove it in this finite example.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "Its advantage depends on the missingness-label association; the shifted labels remove it in this finite example."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:missing-data-signal",
+    "also": [],
+    "prerequisites": [
+      "ai:data-leakage"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "ai-offline-online-gap",
+  "title": "Test offline online gap",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "offline-online-gap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "feedback-loops"
+    ],
+    "doesNotKnow": [
+      "Four users: A-only rewards [1,1,0,0], P(log B)=0. Both B=[1,1,1,1] and B=[0,0,0,0] fit that log. Does it uniquely rank B?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared offline online gap model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-offline-online-gap.c1",
+      "text": "Test offline online gap Compare a declared mechanism with its changed case. Four users: A-only rewards [1,1,0,0], P(log B)=0. Both B=[1,1,1,1] and B=[0,0,0,0] fit that log. Does it uniquely rank B? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §5; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-offline-online-gap.c2",
+      "text": "The same A-only log supported B outcomes 1 and 0 in different compatible worlds. Its zero B propensity made the target estimate unsupported. The additional balanced eight-record ledger yielded IPS 1 in the good world; added information, not imputation, resolved that case.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §5; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-offline-online-gap.c3",
+      "text": "{\"question\": \"Does filling unseen B rewards with zero add an assumption?\", \"options\": [\"Yes: it chooses one world\", \"No: unseen outcomes are known\"], \"answer\": 0, \"why\": \"The A-only log cannot distinguish all-one B from all-zero B; zero imputation selects a compatible world.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §5; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-offline-online-gap.c4",
+      "text": "offline-online-gap\n\n**Identity / target / source:** `ai:offline-online-gap` → `ai-offline-online-gap` → `src/demos/ai/ai-offline-online-gap`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/176`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#5-offline-online-gap`. **Packet:** D1. **Level / prerequisites:** core; `ai:feedback-loops`.\n\n**Nearest / distinct payoff:** feedback-loops alters exposure; this demonstrates missing logged-policy support and two indistinguishable offline worlds with opposite new-policy results.\n\n**Computed primary model:** Four users; logger always showsA, observed rewards[1,1,0,0], mean.5. Proposed policy alwaysB. WorldGood has unobservedB rewards[1,1,1,1], WorldBad[0,0,0,0]. Identical A-only logs fit both worlds; deployingB yields1 or0. Log propensityP(B)=0, so a targetB inverse-propensity estimate is unsupported, not0.\n\n**Countercase / boundary:** Balanced exploratory ledger includes both A/B exposures per user (8records), declared logging propensity.5 for each action; IPS estimate for targetB=sum I(actionB)*reward/.5 divided8 equals that world’s B mean. This constructed balanced ledger is additional information; it is not evidence that every finite randomized log accurately predicts future deployment or that feedback remains absent.\n\n**Prediction / transfer recall:** Predict whether A-only data ranksB versusA uniquely; recall filling missing B rewards with0 silently selects one compatible world.\n\n**Intervention / retained witness:** Switch hidden world holds the displayed original log fixed, then DeployB reveals distinct outcomes; Explore ledger computes actual supported estimate, retaining original Unknown/support-zero witness. No action on real users.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Good world/Bad world/Explore B; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §5; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does filling unseen B rewards with zero add an assumption?",
+    "options": [
+      "Yes: it chooses one world",
+      "No: unseen outcomes are known"
+    ],
+    "answer": 0,
+    "why": "The A-only log cannot distinguish all-one B from all-zero B; zero imputation selects a compatible world."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:offline-online-gap",
+    "also": [],
+    "prerequisites": [
+      "ai:feedback-loops"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

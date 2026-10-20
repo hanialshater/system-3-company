@@ -1,0 +1,105 @@
+{
+  "slug": "ai-knn-choosing-k",
+  "title": "How many neighbours vote?",
+  "hook": "Compare voting windows before and after one noisy label.",
+  "domain": "ai",
+  "concept": "knn-choosing-k",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "Flip the nearest label to0: k1flips0,k3 remains0,k5 flips0. A larger k smooths local votes butdoesnot universally improve validation accuracy; one query lacks a test set."
+    ]
+  },
+  "misconception": "Flip the nearest label to0: k1flips0,k3 remains0,k5 flips0. A larger k smooths local votes butdoesnot universally improve validation accuracy; one query lacks a test set.",
+  "objective": "Compute and contrast the finite knn choosing k cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-knn-choosing-k.c1",
+      "text": "export function run(mode:number){const labels=mode===1?[0,0,0,1,1]:[1,0,0,1,1],votes=[1,3,5].map(k=>{const ones=labels.slice(0,k).reduce((a,b)=>a+b,0);return {k,ones,zeros:k-ones,prediction:ones>k/2?1:0};});return {labels,votes};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"How many neighbours vote? \\u2014 computed finite mechanism\">{r.labels.map((v,i)=><g key={i}><circle cx={24+i*57} cy=\"28\" r=\"17\" className={s.box}/><text x={24+i*57} y=\"33\" textAnchor=\"middle\">{v}</text><text x={24+i*57} y=\"61\" textAnchor=\"middle\">d={i+1}</text></g>)}{r.votes.map((v,i)=><text key={i} x={3+i*94} y=\"85\">k{v.k}: {v.ones}/{v.k}</text>)}<text x=\"6\" y=\"107\">ones / neighbours → majority</text></svg>;}\n\nLocked inputs: Nearest→farthest labels [1,0,0,1,1]; distances [1,2,3,4,5]. Choose odd k=1,3,5; contrast flipping nearest label.",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/neighbors.html](https://scikit-learn.org/stable/modules/neighbors.html). Acquired maintainer body on nearest-neighbour classification and uniform voting. Exact odd-k cases are locally constructed; no validation optimum or universal larger-k benefit.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-knn-choosing-k.c2",
+      "text": "How many neighbours vote?; Compare voting windows before and after one noisy label.; {\"question\": \"Nearest labels are [1,0,0,1,1]. What does uniform voting at k=3 predict?\", \"options\": [\"0\", \"1\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/neighbors.html](https://scikit-learn.org/stable/modules/neighbors.html). Acquired maintainer body on nearest-neighbour classification and uniform voting. Exact odd-k cases are locally constructed; no validation optimum or universal larger-k benefit.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-knn-choosing-k.c3",
+      "text": "Your original votes predicted 1,0,1 at k=1,3,5. Flipping the nearest label changed those predictions to 0,0,0; only k=3 stayed stable here. A wider voting window changes sensitivity, but one query supplies no validation set and cannot establish the best k.\n(mode:number){const r=m.run(mode);return `Labels ${r.labels.join(\"\")}: votes ${r.votes.map(v=>v.prediction).join(\",\")}`;}\n",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/neighbors.html](https://scikit-learn.org/stable/modules/neighbors.html). Acquired maintainer body on nearest-neighbour classification and uniform voting. Exact odd-k cases are locally constructed; no validation optimum or universal larger-k benefit.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-knn-choosing-k.c4",
+      "text": "{\"question\": \"Flip the nearest label to 0. Which prediction stays unchanged from the original list?\", \"options\": [\"k=1\", \"k=3\", \"k=5\"], \"answer\": 1, \"why\": \"The first three labels change from [1,0,0] to [0,0,0]; both majorities are 0.\"}",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/neighbors.html](https://scikit-learn.org/stable/modules/neighbors.html). Acquired maintainer body on nearest-neighbour classification and uniform voting. Exact odd-k cases are locally constructed; no validation optimum or universal larger-k benefit.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-knn-choosing-k.c5",
+      "text": "Flip the nearest label to0: k1flips0,k3 remains0,k5 flips0. A larger k smooths local votes butdoesnot universally improve validation accuracy; one query lacks a test set.; controls: Original, Flip nearest, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "[https://scikit-learn.org/stable/modules/neighbors.html](https://scikit-learn.org/stable/modules/neighbors.html). Acquired maintainer body on nearest-neighbour classification and uniform voting. Exact odd-k cases are locally constructed; no validation optimum or universal larger-k benefit.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Flip the nearest label to 0. Which prediction stays unchanged from the original list?",
+    "options": [
+      "k=1",
+      "k=3",
+      "k=5"
+    ],
+    "answer": 1,
+    "why": "The first three labels change from [1,0,0] to [0,0,0]; both majorities are 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:knn-choosing-k",
+    "also": [],
+    "prerequisites": [
+      "ai:nearest-neighbours",
+      "ai:bias-variance"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

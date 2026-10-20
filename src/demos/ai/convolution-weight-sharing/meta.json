@@ -1,0 +1,88 @@
+{
+  "slug": "convolution-weight-sharing",
+  "title": "Which windows share the change?",
+  "hook": "Slide one pair of coefficients across four inputs.",
+  "domain": "ai",
+  "concept": "convolution-weight-sharing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a weighted sum multiplies inputs by coefficients",
+      "small signed-number arithmetic"
+    ],
+    "doesNotKnow": [
+      "how the same filter coefficients are reused across positions",
+      "why a zero input can preserve an output after a coefficient change"
+    ]
+  },
+  "misconception": "Every location requires its own independent coefficients, and changing a shared coefficient must change every output.",
+  "objective": "Recognize reuse of the same two coefficients across valid 1D cross-correlation windows.",
+  "claims": [
+    {
+      "id": "ai.convolution-weight-sharing.c1",
+      "text": "The input is [1,2,0,1], filter [1,−1], stride 1, valid windows only, no bias, cross-correlation convention; outputs are [−1,2,−1].",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/convolution-weight-sharing/2026-10-19-fact-all-ai-foundations.md; https://raw.githubusercontent.com/pytorch/pytorch/main/torch/nn/modules/conv.py (Conv1d docstring lines 212–235, valid padding lines 252–255); src/demos/ai/convolution-weight-sharing/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.convolution-weight-sharing.c2",
+      "text": "Changing the shared first coefficient to 2 gives [0,4,−1]. All windows reuse it, but the last first input is zero so that output stays −1. This 1D analogue does not train filters or demonstrate image recognition.",
+      "support": "convention",
+      "source": "Independent derivation and source audit: company/reviews/convolution-weight-sharing/2026-10-19-fact-all-ai-foundations.md; https://raw.githubusercontent.com/pytorch/pytorch/main/torch/nn/modules/conv.py (Conv1d docstring lines 212–235, valid padding lines 252–255); src/demos/ai/convolution-weight-sharing/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.convolution-weight-sharing.c3",
+      "text": "Every window uses it, but multiplication by zero can leave an output unchanged.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/convolution-weight-sharing/2026-10-19-fact-all-ai-foundations.md; https://raw.githubusercontent.com/pytorch/pytorch/main/torch/nn/modules/conv.py (Conv1d docstring lines 212–235, valid padding lines 252–255); src/demos/ai/convolution-weight-sharing/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "meta.json: recall.why",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shared first coefficient multiplies inputs 2,0,3 across three windows. Does changing it necessarily change every output?",
+    "options": [
+      "No: the zero contributes no change",
+      "Yes: every output must change",
+      "No: only the first window uses it"
+    ],
+    "answer": 0,
+    "why": "Every window uses it, but multiplication by zero can leave an output unchanged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "ai:convolution-weight-sharing",
+    "also": [],
+    "prerequisites": [
+      "ai:perceptron-learning"
+    ],
+    "level": "core",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal"
+  ]
+}

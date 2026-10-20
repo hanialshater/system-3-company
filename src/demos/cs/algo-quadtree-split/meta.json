@@ -1,0 +1,150 @@
+{
+  "slug": "algo-quadtree-split",
+  "title": "Where does the next split go?",
+  "hook": "Three points share a square. Which cells need more detail?",
+  "domain": "cs",
+  "concept": "algo-quadtree-split",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates",
+      "Divide and conquer",
+      "Four midpoint quadrants"
+    ],
+    "doesNotKnow": [
+      "A bucket point-region quadtree refines the overflowing cell, subject to max depth."
+    ]
+  },
+  "objective": "Explain why overflowing quadtree cells refine while other cells remain coarse.",
+  "misconception": "Every spatial cell must split equally deeply.",
+  "claims": [
+    {
+      "id": "cs.algo-quadtree-split.c1",
+      "text": "After the root splits, which child must split again? Lower-left / Upper-right / Neither; correct lower-left.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#predict; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c2",
+      "text": "Root [0,8)², capacity 1, maximum depth 3, A=(1,1), B=(2,2), C=(6,6). Contrast moves B to (6,1).",
+      "support": "convention",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#picture; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: compact original square, coordinate point labels, capacity/depth key, retained primary dashed refinement and original B outline on contrast"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c3",
+      "text": "Primary: 2 splits, 3 occupied leaves. Contrast: 1 split, 3 occupied leaves.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#summary; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: SVG footer labelled Splits / occupied leaves with current counts and retained primary counts"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c4",
+      "text": "A and B shared the lower-left cell. Refining it separated them; C stayed coarse: 2 splits, 3 occupied leaves.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#reveal-primary; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-primary"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c5",
+      "text": "Moving B needs 1 root split, with 3 occupied leaves.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#reveal-contrast; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: conditional p#reveal-contrast"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c6",
+      "text": "Refine only overflowing cells, subject to depth limit.",
+      "support": "source",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#reveal-principle; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-rule first sentence"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c7",
+      "text": "Midpoint boundaries go right/up. Capacity is 1; at depth 3 overflow stays in a bucket.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-quadtree-split/Demo.tsx#reveal-convention; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-rule final sentences"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c8",
+      "text": "All cell intervals are half-open; root maximum coordinates are rejected. Empty children are leaves. Coincident points terminate at maximum depth with overflow retained.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-quadtree-split/model.ts#construct; src/demos/cs/algo-quadtree-split/model.ts finite implementation/fixtures; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c9",
+      "text": "Where does the next split go?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-quadtree-split/meta.json#title; src/demos/cs/algo-quadtree-split/model.ts and model.test.mjs; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c10",
+      "text": "Three points share a square. Which cells need more detail?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-quadtree-split/meta.json#hook; src/demos/cs/algo-quadtree-split/model.ts and model.test.mjs; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-quadtree-split.c11",
+      "text": "Capacity is one; below the depth limit, one leaf has two points and its sibling is empty. Which needs refinement? Both / Overflowing leaf / Neither. Only the overflowing leaf needs refinement; its empty sibling stays coarse.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-quadtree-split/meta.json#recall; src/demos/cs/algo-quadtree-split/model.ts and model.test.mjs; https://opendsa.org/OpenDSA/Books/CS3/html/PRquadtree.html — §15.4.1, search-returned source body read 2026-10-19; direct full-page acquisition failed (403/502), independent source acquisition remains open; midpoint subdivisions and splitting based on occupancy. The depth-three overflow bucket and half-open boundary ownership are local termination conventions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Capacity is one; below the depth limit, one leaf has two points and its sibling is empty. Which needs refinement?",
+    "options": [
+      "Both",
+      "Overflowing leaf",
+      "Neither"
+    ],
+    "answer": 1,
+    "why": "Only the overflowing leaf needs refinement; its empty sibling stays coarse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-quadtree-split",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

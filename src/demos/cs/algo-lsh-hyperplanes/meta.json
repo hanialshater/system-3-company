@@ -1,0 +1,135 @@
+{
+  "slug": "algo-lsh-hyperplanes",
+  "title": "Which vectors share a sign?",
+  "hook": "One dividing line turns vectors into candidate bits.",
+  "domain": "cs",
+  "concept": "algo-lsh-hyperplanes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "Compute hyperplane sign hashes while distinguishing a finite collision from conditional angular collision probability."
+    ]
+  },
+  "objective": "Compute hyperplane sign hashes while distinguishing a finite collision from conditional angular collision probability.",
+  "misconception": "Sharing a hash bit guarantees the nearest or most similar vector.",
+  "claims": [
+    {
+      "id": "cs.algo-lsh-hyperplanes.c1",
+      "text": "Nonzero vectors a=(1,0),b=(1,1),c=(−1,1). Primary normal(1,0); contrast normal(0,1). Bit1 iff n·v≥0, including exact dot0.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#picture#inputs; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "Demo.tsx: SVG endpoints/normal/dividing line, SVG bit-rule footer and unchanged initial prediction"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c2",
+      "text": "Primary dot products1,1,−1 give bits1,1,0; a and b collide. Rotated normal dots0,1,1 give bits1,1,1 under the explicit zero-dot convention.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#picture#primary; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified",
+      "address": "Demo.tsx: SVG all three dots→bits with retained per-vector x/y-normal bit receipts; p#reveal-fixed"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c3",
+      "text": "A one-bit collision retains candidates but does not guarantee nearest or most similar. Fixed normals can collide vectors with different angles.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#reveal#candidate; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-fixed final sentence"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c4",
+      "text": "For nonzero vectors and rotationally symmetric Gaussian random normals, collision probability is1−θ/π; angles0,π/2,π imply1,.5,0. These two fixed normals show no sampled frequency or per-normal guarantee.",
+      "support": "source",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#picture#theory; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-theorem; conditional theory proof row expressly labelled theoretical probabilities"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c5",
+      "text": "Reject zero or nonfinite vectors/normals; dot0 maps to1 for valid nonzero inputs. Angle computation clamps roundoff to[−1,1].",
+      "support": "convention",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#model.ts#boundary; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-fixed zero-dot rule, SVG bit-rule footer and model input checks"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c6",
+      "text": "Which vectors share a sign?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/meta.json#title; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c7",
+      "text": "One dividing line turns vectors into candidate bits.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/meta.json#hook; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c8",
+      "text": "n=(1,0); bit1 if n·v≥0. a=(1,0), b=(1,1), c=(−1,1). Which shares a’s bit? Options b only / c only / Both; correct b only.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#predict; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lsh-hyperplanes.c9",
+      "text": "With normal(1,0), v=(−2,1). Under bit1 iff n·v≥0, what bit results? The dot product is−2, so the bit is0.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-lsh-hyperplanes/meta.json#recall; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With normal(1,0), v=(−2,1). Under bit1 iff n·v≥0, what bit results?",
+    "options": [
+      "0",
+      "1"
+    ],
+    "answer": 0,
+    "why": "The dot product is−2, so the bit is0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lsh-hyperplanes",
+    "also": [],
+    "prerequisites": [
+      "ai:cosine-similarity",
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming",
+      "streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

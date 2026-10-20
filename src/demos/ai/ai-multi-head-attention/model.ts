@@ -1,0 +1,1 @@
+export function evaluate(weights:number[][]){const values=[0,10],heads=weights.map(row=>row.reduce((sum,w,i)=>sum+w*values[i],0));return {weights,values,heads,output:heads[0]-heads[1]};} export function run(mode:number){return evaluate(mode===1?[[.5,.5],[.5,.5]]:[[.8,.2],[.1,.9]]);}

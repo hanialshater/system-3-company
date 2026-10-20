@@ -1,0 +1,107 @@
+{
+  "slug": "ai-least-privilege-agents",
+  "title": "Which harms remain permitted?",
+  "hook": "Execute identical requests against two capability sets.",
+  "domain": "ai",
+  "concept": "least-privilege-agents",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:tool-call-request"
+    ],
+    "doesNotKnow": [
+      "Restricted actions: ReadPublic,WriteDraft. Does this prevent every possible draft harm?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite least-privilege-agents model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-least-privilege-agents.c1",
+      "text": "Which harms remain permitted? Execute identical requests against two capability sets. Restricted actions: ReadPublic,WriteDraft. Does this prevent every possible draft harm? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §20; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-least-privilege-agents.c2",
+      "text": "Restricted capabilities blocked the secret-export and deletion script while preserving the legitimate public-to-draft task. They still allowed a harmful draft overwrite. This local mock demonstrates particular checked routes, not a comprehensive security proof or an external operation.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §20; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-least-privilege-agents.c3",
+      "text": "{'question': 'Can restricting actions remove a needed legitimate task?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'Capabilities must be chosen to preserve the required authorized work.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §20; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-least-privilege-agents.c4",
+      "text": "Addressed visible stage operands and labels: public7 · secret42 · draft keep | attack: ReadSecret→Export→DeleteDraft | restricted: ReadPublic,WriteDraft only. Controls: Broad, Restricted, Write misuse, Reset. Changed computed rows: ReadSecret:yes · Export:yes / DeleteDraft:yes · outbox=42 / attack-draft=deleted; legitimate-draft=7 / write-misuse=unrequested · mock | ReadSecret:deny · Export:deny / DeleteDraft:deny · outbox=empty / attack-draft=keep; legitimate-draft=7 / write-misuse=unrequested · mock | ReadSecret:deny · Export:deny / DeleteDraft:deny · outbox=empty / attack-draft=keep; legitimate-draft=7 / write-misuse=corrupt · mock. Retained computed witnesses: broad out=42 draft=∅ | restricted out=∅ draft=keep | misuse out=∅ draft=corrupt. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst caps=new Set(mode?['ReadPublic','WriteDraft']:['ReadPublic','WriteDraft','ReadSecret','Export','DeleteDraft']);let draft:string|null='keep',bound:number|null=null,out:number|null=null;const trace:string[]=[];for(const action of['ReadSecret','Export','DeleteDraft']){const ok=caps.has(action);trace.push(`${action}:${ok?'yes':'deny'}`);if(!ok)continue;if(action==='ReadSecret')bound=42;if(action==='Export')out=bound;if(action==='DeleteDraft')draft=null;}const attackDraft=draft,legit=caps.has('ReadPublic')&&caps.has('WriteDraft')?'7':draft;if(mode===2&&caps.has('WriteDraft'))draft='corrupt';return{values:[Number(out!==null),Number(attackDraft===null),Number(legit==='7'),Number(draft==='corrupt')],rows:[trace.slice(0,2).join(' · '),trace[2]+` · outbox=${out??'empty'}`,`attack-draft=${attackDraft??'deleted'}; legitimate-draft=${legit}`,`write-misuse=${mode===2?draft:'unrequested'} · mock`],receipt:`${['broad','restricted','misuse'][mode]} out=${out??'∅'} draft=${draft??'∅'}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §20; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-least-privilege-agents.c5",
+      "text": "least-privilege-agents\n\n**Identity / target / source:** `ai:least-privilege-agents` → `ai-least-privilege-agents` → `src/demos/ai/ai-least-privilege-agents`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/128`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#20-least-privilege-agents`. **Packet:** A1. **Level / prerequisites:** core; `ai:tool-call-request`.\n\n**Nearest / distinct payoff:** injection-lethal-trifecta traces one note-to-outbox cause; this compares permitted action surfaces and two bounded harms under the same requested actions.\n\n**Computed primary model:** Local mock state public=7, secret=42, draft=\"keep\", outboxempty. Broad capability setReadPublic,WriteDraft,ReadSecret,Export,DeleteDraft (5). RestrictedReadPublic,WriteDraft (2). Same scripted malicious action listReadSecret→Export→DeleteDraft. Broad trace binds42, places42 in mock outbox, deletes draft; restricted trace denies all3, outboxempty,draftkeep. Restricted legitimateReadPublic→WriteDraft still writespublic7.\n\n**Countercase / boundary:** The restricted set limits these routes, not every possible harm; it still permits corrupting the writable draft by WriteDraft. No requests execute externally, no actual file deletion/network send. Reducing capabilities is measured by available toy actions and concrete effects, not a comprehensive security proof.\n\n**Prediction / transfer recall:** Predict which state changes remain possible with the restricted set; recall least privilege must retain needed legitimate work and cannot prevent every allowed-action misuse.\n\n**Intervention / retained witness:** Choose capability set/Run same request executes checked local-state transitions with explicit allowed/denied steps; Legitimate task and Allowed write misuse expose both utility and remaining risk. Retain broad and restricted final states through Reset.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §20; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can restricting actions remove a needed legitimate task?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Capabilities must be chosen to preserve the required authorized work."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:least-privilege-agents",
+    "also": [],
+    "prerequisites": [
+      "ai:tool-call-request"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

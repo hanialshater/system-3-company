@@ -1,0 +1,5 @@
+// Declared finite construction; no empirical model API or external effect.
+export type Result={lines:string[];snapshot:string;graph?:{xy:Record<string,number[]>;edges:string[][];path:string[]};points?:number[][];density?:number[][]};
+export const f3=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';
+function out(lines:string[],snapshot:string,extra:Partial<Result>={}):Result{return {lines,snapshot,...extra};}
+export function compute(mode:number):Result{if(!Number.isInteger(mode)||mode<0||mode>2)throw new RangeError("case");const b=mode===1?2:1,n=mode===2?2:1,density=(c:number,z:number)=>Math.exp(-Math.abs(z-c)/b)/(2*b),samples=Array.from({length:41},(_,i)=>{const z=-3+i*.2;return [z,density(0,z),density(1,z)];}),logratio=Math.log(density(0,0)/density(1,0)),event0=.5,event1=1-.5*Math.exp(-1/b);return out([`density · b=${b} ε=${n/b} · releases=${n}`,`z0 log(m0/m1)=${f3(n*logratio)} · E|noise|=${b}`,`P(Z≥0): ${f3(event0)}/${f3(event1)} · b.5 logratio=${f3(1/.5)}`],`${mode}: ε${n/b}/error${b}`,{density:samples});}

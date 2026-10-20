@@ -1,0 +1,112 @@
+{
+  "slug": "ai-capability-elicitation",
+  "title": "What is the system?",
+  "hook": "Trace calls through an unchanged component.",
+  "domain": "ai",
+  "concept": "capability-elicitation",
+  "status": "draft",
+  "version": 4,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:eval-prompt-sensitivity"
+    ],
+    "doesNotKnow": [
+      "Can an unchanged two-integer addition component support a three-number sum?"
+    ]
+  },
+  "misconception": "Can an unchanged two-integer addition component support a three-number sum?",
+  "objective": "Explain the retained computed contrast and its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-capability-elicitation.c1",
+      "text": "Title: What is the system?. Hook: Trace calls through an unchanged component.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: Can an unchanged two-integer addition component support a three-number sum? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "support": "derivation",
+      "source": "Declared eval-add-v1 integer-pair component, fixed sum tasks and exact-call transcripts. Multiplication literal2*3 scored against target6 returns invalid; [2,3] would return5 and is not that call. No LLM inference, changed weights, inserted answer hints or unrestricted capability claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction/exploreHint",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-capability-elicitation.c2",
+      "text": "Fixed eval-add-v1 accepts exactly two integers and returns their sum, rejecting other input. Tasks(2,3,4),(1,4,2),(3,2,1),(4,1,3) target9,7,6,8. Weak textual calls are invalid and score0/4. Two valid pair calls per task compute all targets, scoring4/4; first transcript[2,3]→5 then[5,4]→9 remains displayed. Multiplication asks2×3 with target6 and sends literal2*3, which is invalid and scores0/1. Pair[2,3] would compute5, not the multiplication call. Component identity/weights do not change; the evaluated component-plus-scaffold system changes.",
+      "support": "derivation",
+      "source": "Declared eval-add-v1 integer-pair component, fixed sum tasks and exact-call transcripts. Multiplication literal2*3 scored against target6 returns invalid; [2,3] would return5 and is not that call. No LLM inference, changed weights, inserted answer hints or unrestricted capability claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture HTML numeric deck and retained witness",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-capability-elicitation.c3",
+      "text": "The unchanged addition component rejected text but supported all four sums through two valid calls each. The evaluated system changed because its scaffold changed. Multiplication still failed. This demonstrates component-plus-scaffold performance, not unrestricted hidden reasoning or changed model weights.",
+      "support": "derivation",
+      "source": "Declared eval-add-v1 integer-pair component, fixed sum tasks and exact-call transcripts. Multiplication literal2*3 scored against target6 returns invalid; [2,3] would return5 and is not that call. No LLM inference, changed weights, inserted answer hints or unrestricted capability claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-capability-elicitation.c4",
+      "text": "Recall: Which observation supports a component-plus-scaffold improvement? Choices: Same pair-only component; two valid calls solve each sum; The bare component understood textual arithmetic; The scaffold changed trained model weights. Answer rationale: The unchanged addition component rejected text but supported all four sums through two valid calls each. The evaluated system changed because its scaffold changed. Multiplication still failed. This demonstrates component-plus-scaffold performance, not unrestricted hidden reasoning or changed model weights.",
+      "support": "derivation",
+      "source": "Declared eval-add-v1 integer-pair component, fixed sum tasks and exact-call transcripts. Multiplication literal2*3 scored against target6 returns invalid; [2,3] would return5 and is not that call. No LLM inference, changed weights, inserted answer hints or unrestricted capability claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json recall",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-capability-elicitation.c5",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. Fixed eval-add-v1 accepts exactly two integers and returns their sum, rejecting other input.",
+      "support": "derivation",
+      "source": "Declared eval-add-v1 integer-pair component, fixed sum tasks and exact-call transcripts. Multiplication literal2*3 scored against target6 returns invalid; [2,3] would return5 and is not that call. No LLM inference, changed weights, inserted answer hints or unrestricted capability claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx initial inputs/actions; source/method provenance",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Which observation supports a component-plus-scaffold improvement?",
+    "options": [
+      "Same pair-only component; two valid calls solve each sum",
+      "The bare component understood textual arithmetic",
+      "The scaffold changed trained model weights"
+    ],
+    "answer": 0,
+    "why": "The unchanged addition component rejected text but supported all four sums through two valid calls each. The evaluated system changed because its scaffold changed. Multiplication still failed. This demonstrates component-plus-scaffold performance, not unrestricted hidden reasoning or changed model weights."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:capability-elicitation",
+    "also": [],
+    "prerequisites": [
+      "ai:eval-prompt-sensitivity"
+    ],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "finite-protocol"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "ai-lost-in-the-middle",
+  "title": "Where is the key?",
+  "hook": "Hold content fixed while moving its position.",
+  "domain": "ai",
+  "concept": "lost-in-the-middle",
+  "status": "draft",
+  "version": 3,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:context-window"
+    ],
+    "doesNotKnow": [
+      "Will the edge scan find the same key in the middle?"
+    ]
+  },
+  "misconception": "Will the edge scan find the same key in the middle?",
+  "objective": "Explain the retained computed contrast and its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-lost-in-the-middle.c1",
+      "text": "Title: Where is the key?. Hook: Hold content fixed while moving its position.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: Will the edge scan find the same key in the middle? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "support": "derivation",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction/exploreHint",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lost-in-the-middle.c2",
+      "text": "Five documents retain one key7/value42 pair and four distinct distractors while its position changes0→2→4. Edge scan visits only indices0/4, returning42/missing/42; full scan visits all five and returns42 at every position. The visible path marks actual visited positions; the returned value is computed by key lookup. These are local scripts, not trained language-model internals.",
+      "support": "derivation",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture HTML numeric deck and non-text geometry and retained witness",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lost-in-the-middle.c3",
+      "text": "The edge scan found the same value at both ends and missed it in the middle. Full scan found it everywhere. This script isolates position-sensitive retrieval; separately reported historical LLM aggregates do not turn this scan into an explanation of transformer internals.",
+      "support": "derivation",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lost-in-the-middle.c4",
+      "text": "Recall: A contained fact is missed by edge scan. Which control isolates the limitation? Choices: Full scan of the identical documents; Remove the fact from all documents; Change both the key and the scorer. Answer rationale: The edge scan found the same value at both ends and missed it in the middle. Full scan found it everywhere. This script isolates position-sensitive retrieval; separately reported historical LLM aggregates do not turn this scan into an explanation of transformer internals.",
+      "support": "derivation",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json recall",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lost-in-the-middle.c5",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. Five documents retain one key7/value42 pair and four distinct distractors while its position changes0→2→4.",
+      "support": "derivation",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx initial inputs/actions; source/method provenance",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lost-in-the-middle.c6",
+      "text": "Separately reported historical Liu et al.2023 AppendixG Table5 data use GPT-3.5-Turbo with ten retrieved documents: relevant-document indices0/4/9 have accuracies76.8/61.2/62.4%. These are reported aggregates, not local API calls or reconstructed per-question outcomes; they do not explain transformer internals.",
+      "address": "meta.json claims source descriptors; historical-source boundary in reveal",
+      "support": "source",
+      "source": "Declared edge-scan-v1/full-scan-v1 branch logic. Separately reported historical Liu et al. 2023 GPT-3.5-Turbo ten-document AppendixG Table5: indices0/4/9,76.8/61.2/62.4%. https://arxiv.org/html/2307.03172v3. No current API calls, per-question reconstruction or transformer explanation. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "A contained fact is missed by edge scan. Which control isolates the limitation?",
+    "options": [
+      "Full scan of the identical documents",
+      "Remove the fact from all documents",
+      "Change both the key and the scorer"
+    ],
+    "answer": 0,
+    "why": "The edge scan found the same value at both ends and missed it in the middle. Full scan found it everywhere. This script isolates position-sensitive retrieval; separately reported historical LLM aggregates do not turn this scan into an explanation of transformer internals."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:lost-in-the-middle",
+    "also": [],
+    "prerequisites": [
+      "ai:context-window"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-protocol"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

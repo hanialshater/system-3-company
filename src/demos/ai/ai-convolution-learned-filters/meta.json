@@ -1,0 +1,104 @@
+{
+  "slug": "ai-convolution-learned-filters",
+  "title": "Who chooses the filter?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "convolution-learned-filters",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:convolution-weight-sharing",
+      "cs:edge-filter"
+    ],
+    "doesNotKnow": [
+      "If both training labels reverse, does the learned filter stay the same?"
+    ]
+  },
+  "misconception": "It stays the same",
+  "objective": "Use the distinct declared convolution-learned-filters mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-convolution-learned-filters.c1",
+      "text": "hook/predict: If both training labels reverse, does the learned filter stay the same? Options: It stays the same; It changes sign",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-convolution-learned-filters.c2",
+      "text": "stage input operands: \"x₁=10,y₁=1 · x₂=01,y₂=−1 · η=.5\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-convolution-learned-filters.c3",
+      "text": "reveal: The first gradient update learned [.5,−.5], loss .25. Reversed labels learned [−.5,.5]. A second original-label update reduced loss to .0625; the shared heldout [1,1] output stayed zero. These tiny squared-loss examples establish label-driven coefficients, not learned image semantics.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-convolution-learned-filters.c4",
+      "text": "recall: What are the weights after a third original-label step? Each step halves the gap to [1,−1].",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-convolution-learned-filters.c5",
+      "text": "stage computation: Two valid1D cross-correlation training windows x1=[1,0], y1=1 and x2=[0,1], y2=−1; no bias. Loss=.5*sum_i(w dot x_i−y_i)², w0=[0,0]. Full-batch gradient=[w0−1,w1+1], eta=.5 gives [.5,−.5] and loss .25 from1. Second step [.75,−.75] gives .0625. Apply updated shared weights to heldout window[1,1], giving0.\n\n**Countercase / boundary:** Flip both labels and restart: learned coefficients become[−.5,.5] at first step, not the original differencer. Tiny supplied examples and squared loss do not demonstrate learned image semantics or a trained production CNN.\n\n**Prediction / transfer recall:** Predict whether the same inputs with reversed labels learn the same filter; recall one more original-label step produces [.875,−.875] and loss .015625.\n\n**Intervention / reachable witness:** Train step recomputes both gradients, coefficients, two outputs and loss. Reverse labels restarts the training state while retaining original trained-filter witness. Show label-driven change, not an author-selected “edge filter” toggle.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-convolution-learned-filters.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: x₁=10,y₁=1 · x₂=01,y₂=−1 · η=.5 ? Train once Reverse labels Train twice Reset 1: w=[0.5,-0.5]; L=0.25; [1,1]→0 2: w=[-0.5,0.5]; L=0.25; [1,1]→0 3: w=[0.75,-0.75]; L=0.0625; [1,1]→0 | inspection 0: x₁=10,y₁=1 · x₂=01,y₂=−1 · η=.5 w1=0.5 w2=-0.5 [1,1] → 0 Train once Reverse labels Train twice Reset 1: w=[0.5,-0.5]; L=0.25; [1,1]→0 2: w=[-0.5,0.5]; L=0.25; [1,1]→0 3: w=[0.75,-0.75]; L=0.0625; [1,1]→0 | inspection 1: x₁=10,y₁=1 · x₂=01,y₂=−1 · η=.5 w1=-0.5 w2=0.5 [1,1] → 0 Train once Reverse labels Train twice Reset 1: w=[0.5,-0.5]; L=0.25; [1,1]→0 2: w=[-0.5,0.5]; L=0.25; [1,1]→0 3: w=[0.75,-0.75]; L=0.0625; [1,1]→0 | inspection 2: x₁=10,y₁=1 · x₂=01,y₂=−1 · η=.5 w1=0.75 w2=-0.75 [1,1] → 0 Train once Reverse labels Train twice Reset 1: w=[0.5,-0.5]; L=0.25; [1,1]→0 2: w=[-0.5,0.5]; L=0.25; [1,1]→0 3: w=[0.75,-0.75]; L=0.0625; [1,1]→0",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#7-convolution-learned-filters; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What are the weights after a third original-label step?",
+    "options": [
+      "[.875,−.875]",
+      "[1.5,−1.5]",
+      "[.5,−.5]"
+    ],
+    "answer": 0,
+    "why": "Each step halves the gap to [1,−1]."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:convolution-learned-filters",
+    "also": [],
+    "prerequisites": [
+      "ai:convolution-weight-sharing",
+      "cs:edge-filter"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

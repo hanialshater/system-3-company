@@ -1,0 +1,97 @@
+{
+  "slug": "ai-deepfake-detector-arms-race",
+  "title": "Test deepfake detector arms race",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "deepfake-detector-arms-race",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "gan-forger-detective"
+    ],
+    "doesNotKnow": [
+      "Real(0,0),oldfake(1,0),five each. Hypotheses a,b,max(a,b),a×b; ERM ties prefer that order. Newfake(0,1). Does perfect old score guarantee new-family detection?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared deepfake detector arms race model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-deepfake-detector-arms-race.c1",
+      "text": "Test deepfake detector arms race Compare a declared mechanism with its changed case. Real(0,0),oldfake(1,0),five each. Hypotheses a,b,max(a,b),a×b; ERM ties prefer that order. Newfake(0,1). Does perfect old score guarantee new-family detection? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §24; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deepfake-detector-arms-race.c2",
+      "text": "ERM selected feature a and fit the old examples perfectly, yet missed all new-family fakes. Refitting selected OR, which also flagged real examples with the identical (0,1) features. This finite feature family cannot distinguish identical inputs carrying different labels; it predicts no inevitable winner.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §24; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deepfake-detector-arms-race.c3",
+      "text": "{\"question\": \"Can identical detector features carry different true labels?\", \"options\": [\"Yes: newfake and real both use (0,1)\", \"No: labels determine detector features\"], \"answer\": 0, \"why\": \"The same hypothesis output applies to identical features, regardless of their different true labels.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §24; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-deepfake-detector-arms-race.c4",
+      "text": "deepfake-detector-arms-race\n\n**Identity / target / source:** `ai:deepfake-detector-arms-race` → `ai-deepfake-detector-arms-race` → `src/demos/ai/ai-deepfake-detector-arms-race`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/208`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#24-deepfake-detector-arms-race`. **Packet:** P1. **Level / prerequisites:** core; `ai:gan-forger-detective`.\n\n**Nearest / distinct payoff:** gan-forger-detective alternates a generative game; this fits a finite artifact detector and evaluates it under a changed fake family plus a real-content false-positive countercase.\n\n**Computed primary model:** Training records: realfeatures(a,b)=(0,0), oldfake=(1,0), fivecopieseach. Hypothesisfamily hA=a,hB=b,hOR=max(a,b),hAND=a*b; ERM tie orderA,B,OR,AND selects hA with zero training errors. Heldoutoldfamily repeats samefeaturetypes: accuracy10/10. Newfakefamily removes oldartifact and addsb: (0,1); hA detects0/5.\n\n**Countercase / boundary:** Add labelled newfake examples and refit: only hOR fits all3types with zeroerror. Realcountercase(0,1) is now flagged5/5, showing the same feature can occur in real content. No model can distinguish identical features with different labels using this family. No prediction that an actual generator or detector inevitably wins.\n\n**Prediction / transfer recall:** Predict whether perfect old-family score proves new-family detection; recall refitting on newfake features can create real-content false alarms.\n\n**Intervention / retained witness:** Fit detector/Reveal new family/Refit computes hypothesis errors and changed outputs; Real same-feature case retainsold/new/different-label witnesses. Binary features are declared harmless artifacts, not media assets.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Original empirical fake-detection source/body is required before real-model or prevalence claims; the local finite ERM table carries no arms-race forecast.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Fit old/New family/Refit; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §24; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can identical detector features carry different true labels?",
+    "options": [
+      "Yes: newfake and real both use (0,1)",
+      "No: labels determine detector features"
+    ],
+    "answer": 0,
+    "why": "The same hypothesis output applies to identical features, regardless of their different true labels."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:deepfake-detector-arms-race",
+    "also": [],
+    "prerequisites": [
+      "ai:gan-forger-detective"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

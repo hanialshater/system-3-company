@@ -1,0 +1,112 @@
+{
+  "slug": "ai-vae-smooth-latent",
+  "title": "Between the codes",
+  "hook": "Compare two fitted Gaussian models.",
+  "domain": "ai",
+  "concept": "vae-smooth-latent",
+  "status": "draft",
+  "version": 4,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:autoencoder-bottleneck"
+    ],
+    "doesNotKnow": [
+      "With KL weight0, does this linear decoder jump between the two codes?"
+    ]
+  },
+  "misconception": "With KL weight0, does this linear decoder jump between the two codes?",
+  "objective": "Explain the retained computed contrast and its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-vae-smooth-latent.c1",
+      "text": "Title: Between the codes. Hook: Compare two fitted Gaussian models.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: With KL weight0, does this linear decoder jump between the two codes? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "support": "derivation",
+      "source": "Pinned trained linear Gaussian fixture; objective E[(x−wz)²]+β KL with q=N(ax,variance). Both decoders linear continuous. 50000 gradient steps .002 from .1/.1/0. https://arxiv.org/html/1312.6114v11 is objective motivation, not these fitted results. No image-manifold or KL-causes-continuity claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction/exploreHint",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-vae-smooth-latent.c2",
+      "text": "The fitted Gaussian fixture trains on−2,−1,1,2 under E[(x−wz)²]+βKL, q(z|x)=N(ax,variance), with50000 gradient steps at rate0.002 from w=a=0.1 and logvariance0. Both saved decoders are linear and continuous. For β0/1, posterior endpoint codes round to±3.26/±0.57, variance0.07/0.20, reconstruction0.01/0.50 and unweighted KL14.15/0.80. Five interpolation outputs round to−1.0,−0.5,0.0,0.5,1.0 forβ0 and−0.8,−0.4,0.0,0.4,0.8 forβ1. At prior z1, decoded outputs round to0.31/1.41. Terms/parameters display two decimals and interpolation one decimal; calculations use fullprecision parameters. KL changes fitted codes here but does not create linear-decoder continuity or establish an image manifold.",
+      "support": "derivation",
+      "source": "Pinned trained linear Gaussian fixture; objective E[(x−wz)²]+β KL with q=N(ax,variance). Both decoders linear continuous. 50000 gradient steps .002 from .1/.1/0. https://arxiv.org/html/1312.6114v11 is objective motivation, not these fitted results. No image-manifold or KL-causes-continuity claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture HTML numeric deck and retained witness",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-vae-smooth-latent.c3",
+      "text": "Both fitted linear decoders interpolate continuously, even with KL weight0. Their posterior codes, variances, reconstruction errors and KL terms differ. Decoding the same prior code also differs. This four-number Gaussian model separates regularization from continuity; it establishes no semantic image manifold.",
+      "support": "derivation",
+      "source": "Pinned trained linear Gaussian fixture; objective E[(x−wz)²]+β KL with q=N(ax,variance). Both decoders linear continuous. 50000 gradient steps .002 from .1/.1/0. https://arxiv.org/html/1312.6114v11 is objective motivation, not these fitted results. No image-manifold or KL-causes-continuity claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-vae-smooth-latent.c4",
+      "text": "Recall: Both fitted decoders are linear. Does continuous interpolation alone show KL caused smoothness? Choices: No; both are already continuous; Yes; continuity proves the KL cause; Yes; zero KL weight means a discontinuity. Answer rationale: Both fitted linear decoders interpolate continuously, even with KL weight0. Their posterior codes, variances, reconstruction errors and KL terms differ. Decoding the same prior code also differs. This four-number Gaussian model separates regularization from continuity; it establishes no semantic image manifold.",
+      "support": "derivation",
+      "source": "Pinned trained linear Gaussian fixture; objective E[(x−wz)²]+β KL with q=N(ax,variance). Both decoders linear continuous. 50000 gradient steps .002 from .1/.1/0. https://arxiv.org/html/1312.6114v11 is objective motivation, not these fitted results. No image-manifold or KL-causes-continuity claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "meta.json recall",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-vae-smooth-latent.c5",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. The fitted Gaussian fixture trains on−2,−1,1,2 under E[(x−wz)²]+βKL, q(z|x)=N(ax,variance), with50000 gradient steps at rate0.",
+      "support": "derivation",
+      "source": "Pinned trained linear Gaussian fixture; objective E[(x−wz)²]+β KL with q=N(ax,variance). Both decoders linear continuous. 50000 gradient steps .002 from .1/.1/0. https://arxiv.org/html/1312.6114v11 is objective motivation, not these fitted results. No image-manifold or KL-causes-continuity claim. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
+      "status": "unverified",
+      "address": "Demo.tsx initial inputs/actions; source/method provenance",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Both fitted decoders are linear. Does continuous interpolation alone show KL caused smoothness?",
+    "options": [
+      "No; both are already continuous",
+      "Yes; continuity proves the KL cause",
+      "Yes; zero KL weight means a discontinuity"
+    ],
+    "answer": 0,
+    "why": "Both fitted linear decoders interpolate continuously, even with KL weight0. Their posterior codes, variances, reconstruction errors and KL terms differ. Decoding the same prior code also differs. This four-number Gaussian model separates regularization from continuity; it establishes no semantic image manifold."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:vae-smooth-latent",
+    "also": [],
+    "prerequisites": [
+      "ai:autoencoder-bottleneck"
+    ],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "finite-protocol"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

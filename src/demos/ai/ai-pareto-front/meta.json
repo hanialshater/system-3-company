@@ -1,0 +1,95 @@
+{
+  "slug": "ai-pareto-front",
+  "title": "Test pareto front",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "pareto-front",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "comparing two numerical coordinates"
+    ],
+    "doesNotKnow": [
+      "Maximize x,y. A(0,4),B(2,1),C(4,0),D(1,.5). Weighted score wx+(1−w)y. Must every nondominated point win some w∈[0,1]?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared pareto front model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-pareto-front.c1",
+      "text": "Test pareto front Compare a declared mechanism with its changed case. Maximize x,y. A(0,4),B(2,1),C(4,0),D(1,.5). Weighted score wx+(1−w)y. Must every nondominated point win some w∈[0,1]? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §14; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-pareto-front.c2",
+      "text": "B was nondominated yet required w≥.6 to beat A and w≤⅓ to beat C: impossible together. Moving B to (2,3) made it win at w=.5. The exact inequalities, rather than a slider sample, establish the original discrete counterexample.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §14; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-pareto-front.c3",
+      "text": "{\"question\": \"Can a Pareto point be unsupported by every linear weighting?\", \"options\": [\"Yes: B needs w≥.6 and w≤⅓\", \"No: nondominance guarantees a weight\"], \"answer\": 0, \"why\": \"These two simultaneous requirements are incompatible; moving B changes the inequalities.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §14; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-pareto-front.c4",
+      "text": "pareto-front\n\n**Identity / target / source:** `ai:pareto-front` → `ai-pareto-front` → `src/demos/ai/ai-pareto-front`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/188`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#14-pareto-front`. **Packet:** O1. **Level / prerequisites:** core; .\n\n**Nearest / distinct payoff:** weighted objective choice is not yet separately registered; this distinguishes finite nondominance from what linear scalarization can recover.\n\n**Computed primary model:** Maximize both coordinates over A(0,4),B(2,1),C(4,0),D(1,.5). D is dominated byB; A/B/C nondominated. Weighted scorew*x+(1−w)*y, w∈[0,1]. ForB to beatA needsw≥.6; to beatC needsw≤1/3, impossible. B is Pareto but unsupported by any such weighting; do not approximate this universal-in-w result with only a slider sweep.\n\n**Countercase / boundary:** MoveB to(2,3): atw=.5 it scores2.5 and beats endpoints2, so a nonendpoint Pareto point can be supported. The feasible set is discrete/nonconvex, all objectives maximized; no claim that every Pareto point in every setting is missed.\n\n**Prediction / transfer recall:** Predict whether every nondominated point wins some linear weighting; recall a feasible point below the endpoints’ tradeoff chord can remain nondominated yet unsupported.\n\n**Intervention / retained witness:** Find front computes all dominance comparisons and weighted winners; moveB computes changed geometry/winner, retaining originalB inequalities. Sweep weights supplements exact interval proof, not replaces it.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Front/Weight.5/Move B; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §14; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a Pareto point be unsupported by every linear weighting?",
+    "options": [
+      "Yes: B needs w≥.6 and w≤⅓",
+      "No: nondominance guarantees a weight"
+    ],
+    "answer": 0,
+    "why": "These two simultaneous requirements are incompatible; moving B changes the inequalities."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:pareto-front",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

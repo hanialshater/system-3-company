@@ -1,0 +1,95 @@
+{
+  "slug": "ai-hybrid-keyword-vector-search",
+  "title": "Two signals, one ranking",
+  "hook": "Fuse declared scores and test their scale.",
+  "domain": "ai",
+  "concept": "hybrid-keyword-vector-search",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "retrieval-top-k"
+    ],
+    "doesNotKnow": [
+      "A/B/C keyword=1/0/.5; vector=.1/.9/.4, all on [0,1]. With keyword weight .5, which ranks first?"
+    ]
+  },
+  "misconception": "B",
+  "objective": "Compute the hybrid keyword vector search finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-hybrid-keyword-vector-search.c1",
+      "text": "Two signals, one ranking Fuse declared scores and test their scale. A/B/C keyword=1/0/.5; vector=.1/.9/.4, all on [0,1]. With keyword weight .5, which ranks first? Options: A; B",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §11; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hybrid-keyword-vector-search.c2",
+      "text": "At equal weights, A scored .55 and led. Reducing keyword weight to .2 made B lead at .72. Multiplying keyword scores by 10 made A score 5.05 at equal weights. Weight interpretation depends on declared score scales; hybrid fusion need not improve retrieval.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §11; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hybrid-keyword-vector-search.c3",
+      "text": "Why can the same nominal weight behave differently after rescaling keyword scores? Options: The two signals no longer share their original scale; The ranking ignores keyword scores; Vector scores automatically rescale Linear fusion directly multiplies the raw scores; multiplying one signal by 10 changes its numerical contribution.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §11; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hybrid-keyword-vector-search.c4",
+      "text": "Original schematic labels, including neutral and every changed case: K=1/0/.5 · V=.1/.9/.4 A ? B ? C ? | K=1/0/0.5 · V=.1/.9/.4 A 0.55 B 0.45 C 0.45 | K=1/0/0.5 · V=.1/.9/.4 A 0.28 B 0.72 C 0.42 | K=10/0/5 · V=.1/.9/.4 A 5.05 B 0.45 C 2.7. Retained locally computed witnesses: λ0.5×1: A=0.55 | λ0.2×1: B=0.72 | λ0.5×10: A=5.05. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §11; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hybrid-keyword-vector-search.c5",
+      "text": " 11. hybrid-keyword-vector-search\n\nTarget / packet: ai-hybrid-keyword-vector-search · R2. Prerequisites: ai:retrieval-top-k.\n\nNearest / distinct payoff: retrieval-top-k → meaning-without-the-word. Pure vector top-k uses one signal; this fuses a keyword score and vector score with explicit scale and weight assumptions.\n\nFinite primary model: Three docs A/B/C have keyword scores [1,0,.5] and vector scores [.1,.9,.4], each declared on the same [0,1] scale. Hybrid lambdakeyword+(1-lambda)vector:lambda=.5 gives[.55,.45,.45] with A first; lambda=.2 gives[.28,.72,.42] with B first.\n\nCountercase and mathematical boundary: Scores from incomparable unnormalized scales make this weight interpretation invalid; scaling keyword by 10 at lambda=.5 makes A win with score 5.05. Stable ties A then B then C. This is fixed linear fusion, not a theorem that hybrid always improves retrieval.\n\nPredict and recall transfer: Predict winner after reducing lambda; recall why normalizations matter before comparing weights.\n\nRequired observable evidence: Show both input signals and combined ranking; no real corpus relevance assessment claimed.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §11; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can the same nominal weight behave differently after rescaling keyword scores?",
+    "options": [
+      "The two signals no longer share their original scale",
+      "The ranking ignores keyword scores",
+      "Vector scores automatically rescale"
+    ],
+    "answer": 0,
+    "why": "Linear fusion directly multiplies the raw scores; multiplying one signal by 10 changes its numerical contribution."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:hybrid-keyword-vector-search",
+    "also": [],
+    "prerequisites": [
+      "ai:retrieval-top-k"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "ai-pca-ignores-labels",
+  "title": "Most spread, lost classes",
+  "hook": "Can a useful-looking projection erase the distinction?",
+  "domain": "ai",
+  "concept": "pca-ignores-labels",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "retaining most geometric variance need not retain the direction separating labels. Distinct from later PCA compression: the causal witness is loss of class information despite high retained variance."
+    ]
+  },
+  "misconception": "retaining most geometric variance need not retain the direction separating labels. Distinct from later PCA compression: the causal witness is loss of class information despite high retained variance.",
+  "objective": "retaining most geometric variance need not retain the direction separating labels. Distinct from later PCA compression: the causal witness is loss of class information despite high retained variance.",
+  "claims": [
+    {
+      "id": "ai.ai-pca-ignores-labels.c1",
+      "text": "Population covariance is computed from four symmetric points. Base covariance diag(9,1) gives x-axis retention90%, overlapping opposite y-sign labels after projection. Scaling y to±4 gives diag(9,16), y retention64% and separate classes. Relabelling base points by x changes no covariance but removes projected class overlap. Original hollow and projected filled circle/square shapes encode the two labels.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-pca-ignores-labels.c2",
+      "text": "Title: Most spread, lost classes Hook: Can a useful-looking projection erase the distinction? Four points are at (±3, ±1). Classes are the sign of y. Does keeping the widest axis preserve these classes? Options: No / Yes; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-pca-ignores-labels.c3",
+      "text": "The retained projection keeps the x direction and 90% of variance, yet opposite classes overlap. PCA uses the geometry, not the labels. Changing labels alone leaves its axis unchanged; changing coordinate scale can change that axis. These are four constructed points, not a test of real-model accuracy.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-pca-ignores-labels.c4",
+      "text": "Points are (±5, ±2), labelled by y sign. Keeping the widest axis does what? The variances are 25 along x and 4 along y. PCA selects x without consulting the y-sign labels.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-pca-ignores-labels.c5",
+      "text": "Four constructed points only; retained variance is geometric, not semantic information or held-out classification performance. Scale changes are explicit, and labels do not enter PCA.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-pca-ignores-labels.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1, 2 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html (author PCA definition: centered projection using singular-value directions; local diagonal covariance/eigenpairs), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Points are (±5, ±2), labelled by y sign. Keeping the widest axis does what?",
+    "options": [
+      "Keeps x but merges the classes",
+      "Keeps y and separates them",
+      "Uses labels to choose y"
+    ],
+    "answer": 0,
+    "why": "The variances are 25 along x and 4 along y. PCA selects x without consulting the y-sign labels."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:pca-ignores-labels",
+    "also": [],
+    "prerequisites": [
+      "ai:decision-boundary"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "classical-ml",
+      "dimensionality-reduction",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+    "locator": "PCA maintainer API description lines638–639, fit y ignored lines854–870; local covariance/eigenpairs.",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

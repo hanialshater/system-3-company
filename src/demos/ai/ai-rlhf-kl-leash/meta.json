@@ -1,0 +1,103 @@
+{
+  "slug": "ai-rlhf-kl-leash",
+  "title": "How far can proxy reward pull?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "rlhf-kl-leash",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:preference-ranking",
+      "ai:reward-hacking"
+    ],
+    "doesNotKnow": [
+      "At β=0, does maximizing this proxy retain the reference distribution?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared rlhf-kl-leash mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-rlhf-kl-leash.c1",
+      "text": "hook/predict: At β=0, does maximizing this proxy retain the reference distribution? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-rlhf-kl-leash.c2",
+      "text": "stage input operands: \"q=.5,.5 · r=1,3 · utility=1,0 · natural log\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-rlhf-kl-leash.c3",
+      "text": "reveal: β=1 gave B probability .881 and utility .119. Removing the KL cost concentrated on B and utility became 0. Swapping reward rankings improved utility instead. This finite proxy optimization separates reward from stipulated utility; KL proximity is no independent truth or safety guarantee.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-rlhf-kl-leash.c4",
+      "text": "recall: If rewards instead favour utility-aligned A, can drift improve utility? With r=[3,1], the β=1 solution gives A probability .881.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-rlhf-kl-leash.c5",
+      "text": "stage computation: Two responses A/B, reference q=[.5,.5], declared reward r=[1,3]. Maximize J(p)=sum p*r−beta*KL(p||q), natural logarithms. For beta1 solve p_i=q_i*exp(r_i)/Z: p=[.1192029,.8807971], reward2.7615942, KL.3278133, J2.4337808. At beta0 maximize reward by p=[0,1], reward3 and KL ln2. Separate stipulated task utility u=[1,0] gives expected utility.1192029 versus0.\n\n**Countercase / boundary:** Swap reward ranking r=[3,1] while utility unchanged: beta1 pA=.8807971, utility improves. KL proximity is not an independent truth/safety guarantee. This is exact finite distribution optimization, not training a reward model or measuring actual response quality.\n\n**Prediction / transfer recall:** Predict whether maximizing the proxy with beta0 keeps the reference distribution; recall when reward ranking aligns with u the drift can improve utility instead of hurting it.\n\n**Intervention / reachable witness:** Change beta and Swap reward ranking recompute probabilities, proxy, KL and separately labelled utility. Retain beta1/beta0 distributions and utility distinction. Raw reward/reference/utility inputs visible before commitment; computed optimum withheld.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-rlhf-kl-leash.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: q=.5,.5 · r=1,3 · utility=1,0 · natural log ? β=1 β=0 Swap reward Reset 1: p=0.119,0.881; R=2.762; KL=0.328; U=0.119 2: p=0.000,1.000; R=3.000; KL=0.693; U=0.000 3: p=0.881,0.119; R=2.762; KL=0.328; U=0.881 | inspection 0: q=.5,.5 · r=1,3 · utility=1,0 · natural log A=0.119 B=0.881 p∝q·exp(r/β) β=1 β=0 Swap reward Reset 1: p=0.119,0.881; R=2.762; KL=0.328; U=0.119 2: p=0.000,1.000; R=3.000; KL=0.693; U=0.000 3: p=0.881,0.119; R=2.762; KL=0.328; U=0.881 | inspection 1: q=.5,.5 · r=1,3 · utility=1,0 · natural log A=0.000 B=1.000 p∝q·exp(r/β) β=1 β=0 Swap reward Reset 1: p=0.119,0.881; R=2.762; KL=0.328; U=0.119 2: p=0.000,1.000; R=3.000; KL=0.693; U=0.000 3: p=0.881,0.119; R=2.762; KL=0.328; U=0.881 | inspection 2: q=.5,.5 · r=1,3 · utility=1,0 · natural log A=0.881 B=0.119 p∝q·exp(r/β) β=1 β=0 Swap reward Reset 1: p=0.119,0.881; R=2.762; KL=0.328; U=0.119 2: p=0.000,1.000; R=3.000; KL=0.693; U=0.000 3: p=0.881,0.119; R=2.762; KL=0.328; U=0.881",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#16-rlhf-kl-leash; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Method body lead: [Ouyang et al.2022](https://arxiv.org/abs/2203.02155), acquire KL-regularized reward objective before attributing the full RLHF method; not opened in this run. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If rewards instead favour utility-aligned A, can drift improve utility?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "With r=[3,1], the β=1 solution gives A probability .881."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:rlhf-kl-leash",
+    "also": [],
+    "prerequisites": [
+      "ai:preference-ranking",
+      "ai:reward-hacking"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

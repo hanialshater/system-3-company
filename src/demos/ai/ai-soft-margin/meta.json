@@ -1,0 +1,104 @@
+{
+  "slug": "ai-soft-margin",
+  "title": "Pay for the violation?",
+  "hook": "Compare two candidate hinge objectives, not global optima.",
+  "domain": "ai",
+  "concept": "soft-margin",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "Compare onlythe two declaredcandidates, not claim either is globaloptimizer. Atw0 J=3C. Outlierviolationmay be traded againstsmaller norm; do not equate C with marginwidth directly."
+    ]
+  },
+  "misconception": "Compare onlythe two declaredcandidates, not claim either is globaloptimizer. Atw0 J=3C. Outlierviolationmay be traded againstsmaller norm; do not equate C with marginwidth directly.",
+  "objective": "Compute and contrast the finite soft margin cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-soft-margin.c1",
+      "text": "export function candidate(w:number,C:number){const data=[[-1,-1],[1,1],[.2,-1]],hinges=data.map(([x,y])=>Math.max(0,1-y*w*x)),norm=.5*w*w,sum=hinges.reduce((a,b)=>a+b,0);return {w,hinges,norm,sum,total:norm+C*sum};}export function run(mode:number){const C=mode===1?1:mode===2?0:.1,rows=[1,.5].map(w=>candidate(w,C));return {C,rows,winner:rows[0].total<rows[1].total?1:.5};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Pay for the violation? \\u2014 computed finite mechanism\"><text x=\"6\" y=\"17\">C={r.C} · outlier(.2,−1): ywx&lt;0</text><text x=\"5\" y=\"40\">w</text><text x=\"47\" y=\"40\">norm</text><text x=\"113\" y=\"40\">Σhinge</text><text x=\"211\" y=\"40\">J</text>{r.rows.map((row,i)=><g key={i}><text x=\"5\" y={64+i*27}>{row.w}</text><text x=\"47\" y={64+i*27}>{f(row.norm,3)}</text><text x=\"119\" y={64+i*27}>{f(row.sum,1)}</text><text x=\"203\" y={64+i*27}>{f(row.total,3)}</text></g>)}</svg>;}\n\nLocked inputs: Data (x,y): (−1,−1),(1,1),(.2,−1). Compare w=1,.5; J=.5w²+CΣmax(0,1−ywx).",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-soft-margin.c2",
+      "text": "Pay for the violation?; Compare two candidate hinge objectives, not global optima.; {\"question\": \"Norm terms are .5,.125 and hinge sums 1.2,2.1 for w=1,.5. At C=1, which candidate wins?\", \"options\": [\"w=1\", \"w=.5\", \"Equal\"], \"answer\": 0}",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-soft-margin.c3",
+      "text": "Your C=0.1 preferred w=0.5 with objective 0.335 versus 0.620. C=1 preferred w=1 with 1.700 versus 2.225. Changing the violation penalty reversed these two candidates’ ranking. Neither is certified as a global optimum; violations can trade against the norm term.\n(mode:number){const r=m.run(mode);return `C=${r.C}: J₁=${f(r.rows[0].total,3)} · J½=${f(r.rows[1].total,3)}`;}\n",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-soft-margin.c4",
+      "text": "{\"question\": \"At w=0 the three hinge losses are all 1. What objective follows?\", \"options\": [\"0\", \"C\", \"3C\"], \"answer\": 2, \"why\": \"The norm term is zero and the hinge sum is three.\"}",
+      "support": "derivation",
+      "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-soft-margin.c5",
+      "text": "Compare onlythe two declaredcandidates, not claim either is globaloptimizer. Atw0 J=3C. Outlierviolationmay be traded againstsmaller norm; do not equate C with marginwidth directly.; controls: C=.1, C=1, C=0, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "[https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation](https://scikit-learn.org/stable/modules/svm.html#mathematical-formulation). Acquired maintainer body §1.4.7.1 primal norm/slack formulation. Local hinge objective fixes intercept0 and compares named candidates only; no global optimization or generalization verdict.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "At w=0 the three hinge losses are all 1. What objective follows?",
+    "options": [
+      "0",
+      "C",
+      "3C"
+    ],
+    "answer": 2,
+    "why": "The norm term is zero and the hinge sum is three."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:soft-margin",
+    "also": [],
+    "prerequisites": [
+      "ai:svm-widest-margin"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "slug": "ai-latent-diffusion",
+  "title": "What can latent denoising recover?",
+  "hook": "Inspect the code before and after noise.",
+  "domain": "ai",
+  "concept": "latent-diffusion",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:diffusion-denoising",
+      "ai:autoencoder-bottleneck"
+    ],
+    "doesNotKnow": [
+      "Pair averages encode four numbers into two. Can perfect latent recovery restore every original vector?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite latent-diffusion model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-latent-diffusion.c1",
+      "text": "What can latent denoising recover? Inspect the code before and after noise. Pair averages encode four numbers into two. Can perfect latent recovery restore every original vector? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §6; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-latent-diffusion.c2",
+      "text": "Latent shrinkage reduced the declared primary error from 1 to .25. The off-family alternating signal was lost during encoding, even without noise. Two evolving coordinates versus four excludes codec costs and is not measured end-to-end speedup.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §6; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-latent-diffusion.c3",
+      "text": "{'question': 'Can a noiseless latent code recover antisymmetric pair differences?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Pair averaging discards those differences before denoising begins.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §6; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-latent-diffusion.c4",
+      "text": "Addressed visible stage operands and labels: E=pair averages · D=repeat pairs | x=1,1,−1,−1 · noise=.5,−.5 | denoiser: z←.5z (supplied). Controls: Denoise, Off-family, Reset. Changed computed rows: x=1/1/-1/-1 → code=1/-1 / noise added → 1.5/-1.5 / decoded=0.75/0.75/-0.75/-0.75 / SSE 1→0.25 · state 4→2 (codec excluded) | x=1/-1/1/-1 → code=0/0 / noise added → 0/0 / decoded=0/0/0/0 / SSE 4→4 · state 4→2 (codec excluded). Retained computed witnesses: primary SSE=0.25 | off-family SSE=4. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst x=mode?[1,-1,1,-1]:[1,1,-1,-1],z=[(x[0]+x[1])/2,(x[2]+x[3])/2],noisy=z.map((v,i)=>v+(mode?0:[.5,-.5][i])),den=noisy.map(v=>mode?v:.5*v),decode=(a:number[])=>[a[0],a[0],a[1],a[1]],err=(a:number[])=>sum(a.map((v,i)=>(v-x[i])**2)),before=err(decode(noisy)),after=err(decode(den));return{values:[before,after],rows:[`x=${x.join('/')} → code=${z.map(f).join('/')}`,`noise added → ${noisy.map(f).join('/')}`,`decoded=${decode(den).map(f).join('/')}`,`SSE ${f(before)}→${f(after)} · state 4→2 (codec excluded)`],receipt:`${mode?'off-family':'primary'} SSE=${f(after)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §6; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-latent-diffusion.c5",
+      "text": "latent-diffusion\n\n**Identity / target / source:** `ai:latent-diffusion` → `ai-latent-diffusion` → `src/demos/ai/ai-latent-diffusion`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/83`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#6-latent-diffusion`. **Packet:** G2. **Level / prerequisites:** stretch; `ai:diffusion-denoising`, `ai:autoencoder-bottleneck`.\n\n**Nearest / distinct payoff:** autoencoder-bottleneck isolates compression loss; this actually corrupts and denoises a smaller code before decoding, with explicit state-count limits.\n\n**Computed primary model:** EncoderE averages adjacent pairs of a4-vector; decoderD repeats each code coordinate. Signalx=[1,1,−1,−1] encodesz=[1,−1]. Add declared latent noise[.5,−.5]→[1.5,−1.5]. Fixed denoiser shrinks latent by.5→[.75,−.75], decoding[.75,.75,−.75,−.75]. Squared error.25 versus1 for decoding the noisy code. Evolving state dimension2 versus4; encoder/decoder and other runtime costs excluded.\n\n**Countercase / boundary:** Off-family signal[1,−1,1,−1] encodes[0,0]; even noiseless perfect latent recovery decodeszero with error4. Compression can discard information before denoising. Shrinkage is supplied, not a trained image denoiser, and the dimension ratio is not measured speedup.\n\n**Prediction / transfer recall:** Predict whether halving latent error guarantees zero decoded error; recall irrecoverable antisymmetric pair differences remain absent even with no noise.\n\n**Intervention / retained witness:** Encode/Add noise/Denoise/Decode exposes all states and errors, then Off family shows compression loss with retained primary noisy/denoised outputs. Required distinction: code dimension versus end-to-end compute.\n\n**Source obligation:** [Rombach et al. original abstract](https://arxiv.org/abs/2112.10752), opened2026-10-19 as latent-space diffusion motivation. Full method-body acquisition remains before any architecture/empirical attribution; this fixed linear codec and shrinkage are not the paper model.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §6; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a noiseless latent code recover antisymmetric pair differences?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Pair averaging discards those differences before denoising begins."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:latent-diffusion",
+    "also": [],
+    "prerequisites": [
+      "ai:diffusion-denoising",
+      "ai:autoencoder-bottleneck"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

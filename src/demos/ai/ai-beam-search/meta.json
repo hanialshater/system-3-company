@@ -1,0 +1,102 @@
+{
+  "slug": "ai-beam-search",
+  "title": "What did the frontier discard?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "beam-search",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:greedy-decoding"
+    ],
+    "doesNotKnow": [
+      "On the original tree, which sequence wins at beam width 2?"
+    ]
+  },
+  "misconception": "A-END",
+  "objective": "Use the distinct declared beam-search mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-beam-search.c1",
+      "text": "hook/predict: On the original tree, which sequence wins at beam width 2? Options: A-END; B-END",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-beam-search.c2",
+      "text": "stage input operands: \"A:.6→END:.4,a:.3,b:.3 · B:.4→END:.9,c:.1 · continuations END:1\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-beam-search.c3",
+      "text": "reveal: Width 1 kept A and returned .24; width 2 retained B and found .36. In the third-prefix trap, width 2 pruned C before its .20 completion, returning .15. This finite frontier search remains approximate; sequence probability does not establish correctness or text quality.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-beam-search.c4",
+      "text": "recall: Why can width 2 miss the trap’s best sequence? The third prefix is discarded before its deterministic completion.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-beam-search.c5",
+      "text": "stage computation: PrefixA probability.6, prefixB.4. Next fromA: END.4,a.3,b.3; fromB: END.9,c.1. a,b,c each end deterministically next step. Score is raw probability product; standard beam keeps topB expansions at each depth, ended hypotheses carried unchanged. Width1 keepsA then A-END=.24; width2 keeps A/B, then B-END=.36 and A-END=.24, returning B-END.\n\n**Countercase / boundary:** New tree first-prefix masses A.5,B.3,C.2. FromA: END.3,a.3,b.2,c.2; fromB: END.4,d.3,e.3; fromC: END1. Continuations terminate deterministically next step. Width2 prunesC before knowing its final score: best kept A-END=.15 (stable ties lexicographic), global C-END=.2. Beam remains approximate; sequence probability is not correctness or text quality. Explicit deterministic termination and carried END rule prevent unintended infinite tree changes.\n\n**Prediction / transfer recall:** Predict width2 winner on original tree; recall why increasing width from1 to2 still need not retain an ultimately best third prefix.\n\n**Intervention / reachable witness:** Step frontier computes candidates, cumulative product and kept/pruned identities; Width1/2 and Third-prefix trap expose histories. Retain original greedy/beam winners and the pruned optimalC witness, with ≤3prefixes. Avoid merely changing a preselected answer badge.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-beam-search.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: A:.6→END:.4,a:.3,b:.3 · B:.4→END:.9,c:.1 · continuations END:1 ? Width 1 Width 2 Third prefix Reset 1: A→A/END 0.24 2: A/B→B/END 0.36 3: A/B→A/END 0.15; C/END=.20 pruned | inspection 0: A:.6→END:.4,a:.3,b:.3 · B:.4→END:.9,c:.1 · continuations END:1 A:0.6 A/END:0.24 Width 1 Width 2 Third prefix Reset 1: A→A/END 0.24 2: A/B→B/END 0.36 3: A/B→A/END 0.15; C/END=.20 pruned | inspection 1: A:.6→END:.4,a:.3,b:.3 · B:.4→END:.9,c:.1 · continuations END:1 A:0.6 B:0.4 B/END:0.36 A/END:0.24 Width 1 Width 2 Third prefix Reset 1: A→A/END 0.24 2: A/B→B/END 0.36 3: A/B→A/END 0.15; C/END=.20 pruned | inspection 2: A:.6→END:.4,a:.3,b:.3 · B:.4→END:.9,c:.1 · continuations END:1 A:0.5 B:0.3 A/END:0.15 A/a:0.15 A/END:0.15 A/a/END:0.15 Width 1 Width 2 Third prefix Reset 1: A→A/END 0.24 2: A/B→B/END 0.36 3: A/B→A/END 0.15; C/END=.20 pruned",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#23-beam-search; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original method lead: [Sutskever et al.2014](https://arxiv.org/abs/1409.3215); original body not opened here. Existing greedy-word-trap source does not substitute for this changed-frontier arithmetic. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can width 2 miss the trap’s best sequence?",
+    "options": [
+      "It prunes C early",
+      "It sums probabilities",
+      "It never terminates"
+    ],
+    "answer": 0,
+    "why": "The third prefix is discarded before its deterministic completion."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:beam-search",
+    "also": [],
+    "prerequisites": [
+      "ai:greedy-decoding"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

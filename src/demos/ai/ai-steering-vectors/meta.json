@@ -1,0 +1,95 @@
+{
+  "slug": "ai-steering-vectors",
+  "title": "Which readout moves?",
+  "hook": "Add a direction, then recompute two dot products.",
+  "domain": "ai",
+  "concept": "steering-vectors",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "embeddings"
+    ],
+    "doesNotKnow": [
+      "h=[1,1], target=[1,0], side=[1,1]. Add [1,0]. New target and side scores?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-steering-vectors.c1",
+      "text": "h=[1,1], target=[1,0], side=[1,1]. Add [1,0]. New target and side scores? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 1 and 2; 2 and 3; 2 and 2.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 11; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-steering-vectors/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-steering-vectors.c2",
+      "text": "Your saved interventions changed both target and side scores along [1,0]. Along [0,1], target stayed 1 while side rose to 3. The two readouts made a side effect visible. For these two independent readouts in two dimensions, only the zero direction is orthogonal to both. Linear score changes here do not establish semantic steering of any real model.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 11; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-steering-vectors/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-steering-vectors.c3",
+      "text": "For h=[1,1], adding [0,1] changes which scores: target [1,0], side [1,1]? Target stays 1; side becomes 3. The added direction is orthogonal to the target readout but not the side readout.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 11; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-steering-vectors/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-steering-vectors.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 11; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-steering-vectors/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-steering-vectors.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Linear toy \u00b7 h=[1,1] h\u2032=h+\u03b1d Target [1,0] \u00b7 Side [1,1] h\u2032=[1,1] \u03b1=0 d=[1,0] \u2192 1 / 2 \u03b1=0 \u03b1=1 \u03b1=\u22121 d=[0,1] Reset view 1. 0\u00d7[1,0] \u2192 1/2 2. 1\u00d7[1,0] \u2192 2/3 3. -1\u00d7[1,0] \u2192 0/1 4. 1\u00d7[0,1] \u2192 1/3 | Linear toy \u00b7 h=[1,1] h\u2032=h+\u03b1d Target [1,0] \u00b7 Side [1,1] h\u2032=[1,1] \u03b1=0 d=[1,0] \u2192 1 / 2 \u03b1=0 \u03b1=1 \u03b1=\u22121 d=[0,1] Reset view 1. 0\u00d7[1,0] \u2192 1/2 2. 1\u00d7[1,0] \u2192 2/3 3. -1\u00d7[1,0] \u2192 0/1 4. 1\u00d7[0,1] \u2192 1/3 | Linear toy \u00b7 h=[1,1] h\u2032=h+\u03b1d Target [1,0] \u00b7 Side [1,1] h\u2032=[1,1] \u03b1=0 d=[1,0] \u2192 1 / 2 \u03b1=0 \u03b1=1 \u03b1=\u22121 d=[0,1] Reset view 1. 0\u00d7[1,0] \u2192 1/2 2. 1\u00d7[1,0] \u2192 2/3 3. -1\u00d7[1,0] \u2192 0/1 4. 1\u00d7[0,1] \u2192 1/3 | Linear toy \u00b7 h=[1,1] h\u2032=h+\u03b1d Target [1,0] \u00b7 Side [1,1] h\u2032=[1,1] \u03b1=0 d=[1,0] \u2192 1 / 2 \u03b1=0 \u03b1=1 \u03b1=\u22121 d=[0,1] Reset view 1. 0\u00d7[1,0] \u2192 1/2 2. 1\u00d7[1,0] \u2192 2/3 3. -1\u00d7[1,0] \u2192 0/1 4. 1\u00d7[0,1] \u2192 1/3",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 11; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-steering-vectors/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For h=[1,1], adding [0,1] changes which scores: target [1,0], side [1,1]?",
+    "options": [
+      "Target 1; side 3",
+      "Target 2; side 3",
+      "Target 1; side 2"
+    ],
+    "answer": 0,
+    "why": "Target stays 1; side becomes 3. The added direction is orthogonal to the target readout but not the side readout."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:steering-vectors",
+    "also": [],
+    "prerequisites": [
+      "ai:embeddings"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "ai-texture-bias",
+  "title": "Which cue drove the answer?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "texture-bias",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:shortcut-learning",
+      "ai:feature-hierarchy"
+    ],
+    "doesNotKnow": [
+      "For shape +1 and texture −1, what does classifier T predict?"
+    ]
+  },
+  "misconception": "+1",
+  "objective": "Use the distinct declared texture-bias mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-texture-bias.c1",
+      "text": "hook/predict: For shape +1 and texture −1, what does classifier T predict? Options: +1; −1",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-texture-bias.c2",
+      "text": "stage input operands: \"target=s · T=.5s+2t · S=2s+.5t\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-texture-bias.c3",
+      "text": "reveal: Both cue rules scored 2/2 on aligned inputs. Under conflict, the texture-heavy rule scored 0/2; swapping weights restored 2/2. The target followed shape. These stipulated classifiers demonstrate an evaluation intervention, not trained ImageNet results or a claim about every CNN.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-texture-bias.c4",
+      "text": "recall: Can aligned-cue accuracy distinguish the two declared classifiers? Both agree when shape and texture have the same sign.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-texture-bias.c5",
+      "text": "stage computation: Two binary cues shape s∈{−1,+1}, texture t∈{−1,+1}, target label=s. Classifier T predicts sign(.5*s+2*t). Aligned inputs(+1,+1),(−1,−1) give2/2 correct. Cue-conflict(+1,−1),(−1,+1) gives0/2. Alternative classifier S predicts sign(2*s+.5*t), giving2/2 in both sets.\n\n**Countercase / boundary:** These declared classifiers are not outputs of trained ImageNet models. The toy demonstrates an evaluation intervention; do not extrapolate its accuracies or say every CNN prefers texture. Geirhos et al empirical attribution requires the original method/results body and exact architecture/stimulus controls.\n\n**Prediction / transfer recall:** Predict T on shape+1/texture−1; recall that cue-aligned accuracy alone cannot distinguish T and S.\n\n**Intervention / reachable witness:** Conflict cues recomputes both cue contributions and outputs on the same original code-native glyphs, then Swap cue weights exposes the alternative. Retain aligned and conflict accuracy separately. Show text cue identities so pattern rendering does not determine scoring accidentally.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-texture-bias.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: target=s · T=.5s+2t · S=2s+.5t ? Aligned Conflict Swap weights Reset 1: 1,-1; target 1,-1; correct 2/2 2: -1,1; target 1,-1; correct 0/2 3: 1,-1; target 1,-1; correct 2/2 | inspection 0: target=s · T=.5s+2t · S=2s+.5t s:1 t:1 ŷ:1 s:-1 t:-1 ŷ:-1 Aligned Conflict Swap weights Reset 1: 1,-1; target 1,-1; correct 2/2 2: -1,1; target 1,-1; correct 0/2 3: 1,-1; target 1,-1; correct 2/2 | inspection 1: target=s · T=.5s+2t · S=2s+.5t s:1 t:-1 ŷ:-1 s:-1 t:1 ŷ:1 Aligned Conflict Swap weights Reset 1: 1,-1; target 1,-1; correct 2/2 2: -1,1; target 1,-1; correct 0/2 3: 1,-1; target 1,-1; correct 2/2 | inspection 2: target=s · T=.5s+2t · S=2s+.5t s:1 t:-1 ŷ:1 s:-1 t:1 ŷ:-1 Aligned Conflict Swap weights Reset 1: 1,-1; target 1,-1; correct 2/2 2: -1,1; target 1,-1; correct 0/2 3: 1,-1; target 1,-1; correct 2/2",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#12-texture-bias; local model.ts and model-check.mjs. [Geirhos et al.](https://arxiv.org/abs/1811.12231), opened original abstract2026-10-19. Only empirical motivation acquired; full cue-conflict methods/results source remains before a real-model claim. The constructed weights above are declared and independently reproducible, not paper data. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can aligned-cue accuracy distinguish the two declared classifiers?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Both agree when shape and texture have the same sign."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:texture-bias",
+    "also": [],
+    "prerequisites": [
+      "ai:shortcut-learning",
+      "ai:feature-hierarchy"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

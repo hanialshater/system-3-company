@@ -1,0 +1,5 @@
+export type Item={id:string;count:number;bucket:number;sign:1|-1};
+export function sketch(items:Item[],target:string){const counters=new Map<number,number>();const trace=[];for(const item of items){const before=counters.get(item.bucket)??0,delta=item.sign*item.count;const after=before+delta;counters.set(item.bucket,after);trace.push({id:item.id,before,delta,after});}const item=items.find(i=>i.id===target);if(!item)throw new Error("Target not present");const counter=counters.get(item.bucket)??0;return {counters,trace,counter,estimate:item.sign*counter};}
+export function row(mode=0,count=2){return sketch([{id:"a",count:5,bucket:0,sign:1},{id:"b",count:2,bucket:mode===2?1:0,sign:mode===1?1:-1}].slice(0,count) as Item[],"a");}
+export function median(values:number[]){if(!values.length||values.length%2===0)throw new Error("Odd nonempty row count required");return [...values].sort((a,b)=>a-b)[Math.floor(values.length/2)];}
+export function threeRows(){const estimates=[row(0).estimate,row(1).estimate,row(2).estimate];return {estimates,estimate:median(estimates)};}

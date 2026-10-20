@@ -1,0 +1,104 @@
+{
+  "slug": "ai-dead-relu",
+  "title": "Can this gradient revive it?",
+  "hook": "Follow one gate’s derivative into its weight update.",
+  "domain": "ai",
+  "concept": "dead-relu",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Single unit and sole example; declared derivative 0 at z=0. Negative gate prevents this weight path from reviving on that example, not all possible inputs or other parameter paths."
+    ]
+  },
+  "misconception": "Single unit and sole example; declared derivative 0 at z=0. Negative gate prevents this weight path from reviving on that example, not all possible inputs or other parameter paths.",
+  "objective": "Compute and contrast the finite dead relu cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-dead-relu.c1",
+      "text": "export function gate(w:number,b:number,x:number,target:number){const rate=.1,z=w*x+b,a=Math.max(0,z),derivative=z>0?1:0,loss=.5*(a-target)**2,grad=(a-target)*derivative*x;return {w,b,x,target,rate,z,a,derivative,loss,grad,next:w-rate*grad};}\nexport function run(mode:number){return mode===1?gate(1,0,1,2):gate(1,-2,mode===2?3:1,1);}\n\n<text x=\"145\" y=\"18\" textAnchor=\"middle\">x={r.x} · w=1 · b={r.b} · target={r.target}</text><rect x=\"7\" y=\"33\" width=\"76\" height=\"45\" rx=\"6\" className={s.box}/><text x=\"45\" y=\"51\" textAnchor=\"middle\">z={show(r.z)}</text><text x=\"45\" y=\"70\" textAnchor=\"middle\">wx+b</text><path d=\"M83 55 H108\" className={s.line}/><rect x=\"109\" y=\"33\" width=\"88\" height=\"45\" rx=\"6\" className={s.box}/><text x=\"153\" y=\"51\" textAnchor=\"middle\">ReLU={r.a}</text><text x=\"153\" y=\"70\" textAnchor=\"middle\">deriv={r.derivative}</text><path d=\"M197 55 H222\" className={s.line}/><text x=\"228\" y=\"59\">L={r.loss}</text><text x=\"145\" y=\"100\" textAnchor=\"middle\">∂L/∂w=({r.a}−{r.target})×{r.derivative}×{r.x}={r.grad}</text><text x=\"145\" y=\"125\" textAnchor=\"middle\">w′=1−.1×{r.grad}={show(r.next)}</text>\nx=1; w=1; b=−2; y=1; α=.1; a=max(0,wx+b); L=.5(a−y)²; ReLU′(z≤0)=0.",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-dead-relu.c2",
+      "text": "Can this gradient revive it?; Follow one gate’s derivative into its weight update.; {\"question\": \"x=1,w=1,b=−2, target 1. ReLU=max(0,wx+b); its derivative is 0 at z≤0. Under squared half-loss, what does one gradient step do to w?\", \"options\": [\"Lowers w\", \"Leaves w=1\", \"Raises w\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-dead-relu.c3",
+      "text": "Your negative preactivation closed the ReLU derivative gate: weight gradient zero left w at 1. With bias 0 and target 2, derivative 1 allowed gradient −1 and w became 1.100. This blockage is local to that example; other inputs or parameter pathways can change it.\n`b=${r.b}, x=${r.x}: deriv=${r.derivative}, w′=${f(r.next)}`",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-dead-relu.c4",
+      "text": "{\"question\": \"Keep w=1,b=−2 but change input from 1 to 3. Is the gate locally active?\", \"options\": [\"No; ReLU can never revive\", \"Yes; z=1 and derivative=1\", \"Yes; z=−1 and derivative=0\"], \"answer\": 1, \"why\": \"The new preactivation is 1×3−2=1>0, so this input opens the derivative gate. This does not imply a nonzero loss gradient for every target.\"}",
+      "support": "derivation",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-dead-relu.c5",
+      "text": "Single unit and sole example; declared derivative 0 at z=0. Negative gate prevents this weight path from reviving on that example, not all possible inputs or other parameter paths. Controls: b=−2, b=0, x=3, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Keep w=1,b=−2 but change input from 1 to 3. Is the gate locally active?",
+    "options": [
+      "No; ReLU can never revive",
+      "Yes; z=1 and derivative=1",
+      "Yes; z=−1 and derivative=0"
+    ],
+    "answer": 1,
+    "why": "The new preactivation is 1×3−2=1>0, so this input opens the derivative gate. This does not imply a nonzero loss gradient for every target."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:dead-relu",
+    "also": [],
+    "prerequisites": [
+      "ai:backprop-chain"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

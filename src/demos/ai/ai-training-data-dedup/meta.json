@@ -1,0 +1,104 @@
+{
+  "slug": "ai-training-data-dedup",
+  "title": "How often did the record repeat?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "training-data-dedup",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:training-data-extraction",
+      "cs:algo-minhash-jaccard"
+    ],
+    "doesNotKnow": [
+      "If A is duplicated again, what happens to raw frequency-fit P(east)?"
+    ]
+  },
+  "misconception": "It stays fixed",
+  "objective": "Use the distinct declared training-data-dedup mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-training-data-dedup.c1",
+      "text": "hook/predict: If A is duplicated again, what happens to raw frequency-fit P(east)? Options: It increases; It stays fixed; It decreases",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-training-data-dedup.c2",
+      "text": "stage input operands: \"A=port→east · B=port→west · AAAB\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-training-data-dedup.c3",
+      "text": "reveal: Raw AAAB fitted P(east)=.75; exact deduplication gave .5. Adding three B copies changed raw probability to .429 while unique probability stayed .5. This record-count estimator is not a neural memorization law; deduplication neither removes unique content nor proves privacy.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-training-data-dedup.c4",
+      "text": "recall: For raw AAB, what are raw and deduplicated P(east)? Raw frequency counts occurrences; exact-content deduplication retains A and B once each.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-training-data-dedup.c5",
+      "text": "stage computation: Two unique complete corpus records with identical prefix “port”: recordA completes “east”; recordB completes “west”. Training multiset[A,A,A,B]. Frequency-fit P(east)=3/4. Exact-content deduplication gives[A,B], P(east)=1/2. Duplicating B to4 copies while A remains3 gives raw P(east)=3/7, deduplicated still1/2.\n\n**Countercase / boundary:** This estimator counts records; it is not a neural model or empirical memorization law. Distinct genuine records with same completion are not necessarily duplicates. Only exact identical full records are collapsed here. Removing a duplicate need not remove the unique content or prove privacy.\n\n**Prediction / transfer recall:** Predict effect of adding another copy of A; recall raw[A,A,B] gives2/3 while deduplicated remains1/2.\n\n**Intervention / reachable witness:** Add A / Add B / Deduplicate changes visible occurrence stacks and fitted probability. Keep raw and unique-record counts separately; retain primary3/4→1/2 witness through changed duplicate mix. No user corpus or external text is used.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-training-data-dedup.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: A=port→east · B=port→west · AAAB ? AAAB Deduplicate +BBB Reset 1: raw 0.750; unique 0.500; n=4/2 2: raw 0.750; unique 0.500; n=4/2 3: raw 0.429; unique 0.500; n=7/2 | inspection 0: A=port→east · B=port→west · AAAB A A A B AAAB Deduplicate +BBB Reset 1: raw 0.750; unique 0.500; n=4/2 2: raw 0.750; unique 0.500; n=4/2 3: raw 0.429; unique 0.500; n=7/2 | inspection 1: A=port→east · B=port→west · AAAB A B AAAB Deduplicate +BBB Reset 1: raw 0.750; unique 0.500; n=4/2 2: raw 0.750; unique 0.500; n=4/2 3: raw 0.429; unique 0.500; n=7/2 | inspection 2: A=port→east · B=port→west · AAAB A A A B B B B AAAB Deduplicate +BBB Reset 1: raw 0.750; unique 0.500; n=4/2 2: raw 0.750; unique 0.500; n=4/2 3: raw 0.429; unique 0.500; n=7/2",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#14-training-data-dedup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For raw AAB, what are raw and deduplicated P(east)?",
+    "options": [
+      "2/3 and 1/2",
+      "1/2 and 2/3",
+      "Both 1/2"
+    ],
+    "answer": 0,
+    "why": "Raw frequency counts occurrences; exact-content deduplication retains A and B once each."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:training-data-dedup",
+    "also": [],
+    "prerequisites": [
+      "ai:training-data-extraction",
+      "cs:algo-minhash-jaccard"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

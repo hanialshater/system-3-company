@@ -1,0 +1,122 @@
+{
+  "slug": "ai-loss-choice-mean-median",
+  "title": "Which constant wins?",
+  "hook": "The data stay fixed. The penalty changes.",
+  "domain": "ai",
+  "concept": "loss-choice-mean-median",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "the loss function changes the best constant prediction even on identical data. Compare squared versus absolute loss, rather than treating the mean as the one correct summary."
+    ]
+  },
+  "misconception": "the loss function changes the best constant prediction even on identical data. Compare squared versus absolute loss, rather than treating the mean as the one correct summary.",
+  "objective": "the loss function changes the best constant prediction even on identical data. Compare squared versus absolute loss, rather than treating the mean as the one correct summary.",
+  "claims": [
+    {
+      "id": "ai.ai-loss-choice-mean-median.c1",
+      "text": "Sum squared error and sum absolute error are computed separately over the same targets. [0,0,9] has mean3/median0, squared costs81/54/162 and absolute9/12/18 at constants0/3/9. Symmetric[0,3,6] minimizes both at3. Changed[1,1,10] yields4/1. Solid curve is squared loss, dashed absolute loss on the same numerical-cost scale; circle/diamond mark their respective minima.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-loss-choice-mean-median.c2",
+      "text": "Title: Which constant wins? Hook: The data stay fixed. The penalty changes. Targets are 0, 0 and 9. Must squared and absolute error choose the same constant? Options: No / Yes; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-loss-choice-mean-median.c3",
+      "text": "In the retained data, squared error is smallest at 3, but absolute error is smallest at 0. Squaring gives the distant target more influence. The symmetric countercase has the same mean and median, so changing the loss need not change its minimizer.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-loss-choice-mean-median.c4",
+      "text": "Targets are 1, 1 and 10. Which constants minimize squared and absolute error? The mean is 4 and the median is 1; they minimize these two constant-prediction losses.",
+      "support": "derivation",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-loss-choice-mean-median.c5",
+      "text": "Only constant predictions and these declared losses; even-size absolute-loss minimizers may be nonunique. Numerical cost curves are different objectives, not equal physical units.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-loss-choice-mean-median.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 1 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts and model.repro.mjs; https://scikit-learn.org/stable/modules/linear_model.html (least-squares definition; minimizing absolute sum and the exact local constants derived independently), opened2026-10-19 for method context, not verification of toy outputs.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Targets are 1, 1 and 10. Which constants minimize squared and absolute error?",
+    "options": [
+      "4 and 1",
+      "1 and 4",
+      "4 and 4"
+    ],
+    "answer": 0,
+    "why": "The mean is 4 and the median is 1; they minimize these two constant-prediction losses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:loss-choice-mean-median",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ml-basics",
+      "losses",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://scikit-learn.org/stable/modules/linear_model.html",
+    "locator": "least-squares definition; minimizing absolute sum and the exact local constants derived independently",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "ai-group-split-leakage",
+  "title": "Which entity is the test about?",
+  "hook": "Compare row reuse with a genuinely unseen entity.",
+  "domain": "ai",
+  "concept": "group-split-leakage",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "data-leakage"
+    ],
+    "doesNotKnow": [
+      "A rows have label 0; B rows label 1. An entity-lookup predictor trained only on A defaults unknown IDs to 0. How many of two held-out B rows are correct?"
+    ]
+  },
+  "misconception": "2/2",
+  "objective": "Compute the group split leakage finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-group-split-leakage.c1",
+      "text": "Which entity is the test about? Compare row reuse with a genuinely unseen entity. A rows have label 0; B rows label 1. An entity-lookup predictor trained only on A defaults unknown IDs to 0. How many of two held-out B rows are correct? Options: 0/2; 2/2",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §29; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-group-split-leakage.c2",
+      "text": "Row splitting exposed both identities, so lookup scored 2/2. Holding B out made its zero fallback score 0/2. A transferable feature instead scored 2/2 on B. Match the split to returning-entity or new-entity deployment; disjointness alone does not ensure success.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §29; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-group-split-leakage.c3",
+      "text": "Which test directly evaluates a new-entity deployment? Options: Hold all B rows out of training; Put one B row in each split; Evaluate training rows again Holding every B row out tests an entity absent from training; row splitting instead tests returning identities in this construction.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §29; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-group-split-leakage.c4",
+      "text": "Original schematic labels, including neutral and every changed case: A1/A2:y0 · B1/B2:y1 · fallback=0 train:? test:? lookup=? · hits=?/2 | A1/A2:y0 · B1/B2:y1 · fallback=0 train:A/B test:A/B lookup=0/1 · hits=2/2 | A1/A2:y0 · B1/B2:y1 · fallback=0 train:A test:B/B lookup=0/0 · hits=0/2 | A1/A2:y0 · B1/B2:y1 · fallback=0 train:A test:B/B feature=1/1 · hits=2/2. Retained locally computed witnesses: Row: 2/2 | Entity: 0/2 | Signal: 2/2. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §29; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-group-split-leakage.c5",
+      "text": " 29. group-split-leakage\n\nTarget / packet: ai-group-split-leakage · F2. Prerequisites: ai:data-leakage.\n\nNearest / distinct payoff: data-leakage → duplicates-in-the-test. General leakage has many causes; this isolates duplicate entity identity crossing splits and specifies which deployment target the split evaluates.\n\nFinite primary model: Two entities A/B each have 2 duplicate feature rows with labels A 0/B 1. Row-split train A 1, B 1 and test A 2, B 2 lets entity lookup score 2/2. Entity-split train only A, test only B makes unknown fallback 0 score 0/2.\n\nCountercase and mathematical boundary: A declared transferable feature equals target lets rule predictor score 2/2 even on heldout B. Group disjointness is needed for new entity evaluation, not proof all row-splits leak for every deployment target.\n\nPredict and recall transfer: Predict lookup score on unseen entity; recall which test matches returning-entity versus new-entity deployment.\n\nRequired observable evidence: Show explicit entity IDs and row membership; count real heldout outcomes, not just split colors.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §29; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which test directly evaluates a new-entity deployment?",
+    "options": [
+      "Hold all B rows out of training",
+      "Put one B row in each split",
+      "Evaluate training rows again"
+    ],
+    "answer": 0,
+    "why": "Holding every B row out tests an entity absent from training; row splitting instead tests returning identities in this construction."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:group-split-leakage",
+    "also": [],
+    "prerequisites": [
+      "ai:data-leakage"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

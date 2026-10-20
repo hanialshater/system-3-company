@@ -1,0 +1,88 @@
+{
+  "slug": "evolution-strategies",
+  "title": "Which probe becomes the center?",
+  "hook": "Two scored candidates compete to move a search.",
+  "domain": "ai",
+  "concept": "evolution-strategies",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a search can get stuck in a local valley",
+      "larger signed scores can be compared"
+    ],
+    "doesNotKnow": [
+      "how scored perturbations select a new center",
+      "why this finite ES-style toy is not CMA-ES or a general optimality guarantee"
+    ]
+  },
+  "misconception": "An optimizer must receive derivatives to make progress.",
+  "objective": "Trace a fixed-offset perturb/evaluate/select search move that consumes positions and scores without derivatives.",
+  "claims": [
+    {
+      "id": "ai.evolution-strategies.c1",
+      "text": "The fixed-offset toy evaluates score −(x−3)^2. At center 0 its score is −9, probes −1/+1 score −16/−4, and the higher-score winner is 1. At center 1 probes 0/2 score −9/−1, selecting 2. The first control runs and retains both rounds; Reset preserves both retained rows.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/evolution-strategies/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/1703.03864 (section 2, PDF p.2, lines 61–88); src/demos/ai/evolution-strategies/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.evolution-strategies.c2",
+      "text": "The winner update uses positions and scores without derivatives. This fixed-offset ES-style toy is not CMA-ES or an optimality guarantee.",
+      "support": "convention",
+      "source": "Independent derivation and source audit: company/reviews/evolution-strategies/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/1703.03864 (section 2, PDF p.2, lines 61–88); src/demos/ai/evolution-strategies/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.evolution-strategies.c3",
+      "text": "The higher-score rule compares the supplied scores; it needs no derivative.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/evolution-strategies/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/1703.03864 (section 2, PDF p.2, lines 61–88); src/demos/ai/evolution-strategies/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "meta.json: recall.why",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two probes return scores −8 and −2. Which does the higher-score rule select?",
+    "options": [
+      "The −2 probe",
+      "The −8 probe",
+      "Neither without a derivative"
+    ],
+    "answer": 0,
+    "why": "The higher-score rule compares the supplied scores; it needs no derivative."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "ai:evolution-strategies",
+    "also": [],
+    "prerequisites": [
+      "ai:local-minima"
+    ],
+    "level": "core",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal"
+  ]
+}

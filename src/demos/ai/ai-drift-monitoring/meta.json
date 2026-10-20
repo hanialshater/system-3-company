@@ -1,0 +1,97 @@
+{
+  "slug": "ai-drift-monitoring",
+  "title": "Test drift monitoring",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "drift-monitoring",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distribution-shift"
+    ],
+    "doesNotKnow": [
+      "Classifier predicts x. Baseline five0/five1; current nine0/one1. Alert iff feature TV>.2. Labels initially unknown. Does an input alert prove worse accuracy?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared drift monitoring model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-drift-monitoring.c1",
+      "text": "Test drift monitoring Compare a declared mechanism with its changed case. Classifier predicts x. Baseline five0/five1; current nine0/one1. Alert iff feature TV>.2. Labels initially unknown. Does an input alert prove worse accuracy? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §4; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-drift-monitoring.c2",
+      "text": "The changed mix triggered an alert but revealed error 0 under y=x. Flipping labels with the original mix gave error 1 and no alert. This finite input monitor neither establishes nor rules out errors; unavailable labels remain Unknown.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §4; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-drift-monitoring.c3",
+      "text": "{\"question\": \"Can the label rule change while the input mixture stays fixed?\", \"options\": [\"Yes: y can change to 1−x\", \"No: labels follow feature TV\"], \"answer\": 0, \"why\": \"The flipped label rule changes error without changing the feature mixture.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §4; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-drift-monitoring.c4",
+      "text": "drift-monitoring\n\n**Identity / target / source:** `ai:drift-monitoring` → `ai-drift-monitoring` → `src/demos/ai/ai-drift-monitoring`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/175`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#4-drift-monitoring`. **Packet:** D1. **Level / prerequisites:** core; `ai:distribution-shift`.\n\n**Nearest / distinct payoff:** distribution-shift shows changed inputs; this computes an alert before labels and contrasts its signal with delayed measured error.\n\n**Computed primary model:** Baseline10features[0,0,0,0,0,1,1,1,1,1], classifier predictsx. Current9zeros/1one gives empirical feature TVdistance.4; alert iffTV>.2. With unchanged label ruley=x, both periods have error0 despite the drift alert. Before current labels arrive, error isUnknown, not assumed0.\n\n**Countercase / boundary:** Keep baseline feature mixture but changelabel ruley=1−x: inputTV0/noalert, error1 after labels arrive. Input drift is neither necessary nor sufficient for this model’s error change; this finite monitor does not estimate deployment harm automatically.\n\n**Prediction / transfer recall:** Predict whether an input-drift alert establishes worse accuracy; recall label changes can cause errors without a feature-marginal alert.\n\n**Intervention / retained witness:** Shift mix exposes feature counts/alert while withholding error until Reveal labels; Flip labels case recomputes both. Retain alerted/no-error and unalerted/error cases with Unknown represented explicitly.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Shift mix/Labels/Flip rule; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §4; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can the label rule change while the input mixture stays fixed?",
+    "options": [
+      "Yes: y can change to 1−x",
+      "No: labels follow feature TV"
+    ],
+    "answer": 0,
+    "why": "The flipped label rule changes error without changing the feature mixture."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:drift-monitoring",
+    "also": [],
+    "prerequisites": [
+      "ai:distribution-shift"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

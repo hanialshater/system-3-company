@@ -1,0 +1,101 @@
+{
+  "slug": "ai-data-augmentation",
+  "title": "Can a transform change the answer?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "data-augmentation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:overfitting"
+    ],
+    "doesNotKnow": [
+      "Does a half-turn preserve the copied Up label in this orientation task?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared data-augmentation mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-data-augmentation.c1",
+      "text": "hook/predict: Does a half-turn preserve the copied Up label in this orientation task? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-data-augmentation.c2",
+      "text": "stage input operands: \"010/111/000 · target=orientation · copied label=Up\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-data-augmentation.c3",
+      "text": "reveal: Reflection preserved the Up glyph. Rotation produced Down, so copying Up introduced one contradictory label among two records. With the target changed to “three middle-row pixels,” both glyphs were Yes. Valid augmentation depends on the declared task, not the transform alone.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-data-augmentation.c4",
+      "text": "recall: For the middle-row property, is the half-turn label-preserving? Both glyphs contain three occupied pixels in their middle row.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-data-augmentation.c5",
+      "text": "stage computation: Declared3×3 up glyph rows010/111/000, labelled Up. Horizontal reflection gives the same glyph and remains Up;180° rotation gives000/111/010, labelled Down by the stipulated orientation task. Augment original with its transform while copying original label: reflection has0 contradictory labels out of2; rotation has1 out of2. Correct the rotated target to Down and contradiction count returns0.\n\n**Countercase / boundary:** The task is this explicitly defined glyph orientation, not real digit recognition. No transformation is universally valid across tasks. For a different target “has three pixels in middle row”, both glyphs label Yes and180° rotation is valid.\n\n**Prediction / transfer recall:** Predict whether copying Up onto the rotated glyph is label-preserving; recall switching the task to the stated middle-row property changes validity without changing pixels.\n\n**Intervention / reachable witness:** Flip/Rotate computes pixels, proposed copied label and task oracle separately. Correct label and Change target expose why validity depends on the target, retaining the invalid rotation witness. Use original code-native cells, no image asset.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-data-augmentation.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: 010/111/000 · target=orientation · copied label=Up ? Reflect Rotate Change task Fix label Reset 1: Up→Up; contradictions 0/2 2: Up→Down; contradictions 1/2 3: Yes→Yes; contradictions 0/2 4: Down→Down; contradictions 0/2 | inspection 0: 010/111/000 · target=orientation · copied label=Up pixels ≠ task Reflect Rotate Change task Fix label Reset 1: Up→Up; contradictions 0/2 2: Up→Down; contradictions 1/2 3: Yes→Yes; contradictions 0/2 4: Down→Down; contradictions 0/2 | inspection 1: 010/111/000 · target=orientation · copied label=Up pixels ≠ task Reflect Rotate Change task Fix label Reset 1: Up→Up; contradictions 0/2 2: Up→Down; contradictions 1/2 3: Yes→Yes; contradictions 0/2 4: Down→Down; contradictions 0/2 | inspection 2: 010/111/000 · target=orientation · copied label=Up pixels ≠ task Reflect Rotate Change task Fix label Reset 1: Up→Up; contradictions 0/2 2: Up→Down; contradictions 1/2 3: Yes→Yes; contradictions 0/2 4: Down→Down; contradictions 0/2 | inspection 3: 010/111/000 · target=orientation · copied label=Up pixels ≠ task Reflect Rotate Change task Fix label Reset 1: Up→Up; contradictions 0/2 2: Up→Down; contradictions 1/2 3: Yes→Yes; contradictions 0/2 4: Down→Down; contradictions 0/2",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#10-data-augmentation; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For the middle-row property, is the half-turn label-preserving?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Both glyphs contain three occupied pixels in their middle row."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:data-augmentation",
+    "also": [],
+    "prerequisites": [
+      "ai:overfitting"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

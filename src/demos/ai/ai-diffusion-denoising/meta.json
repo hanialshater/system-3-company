@@ -1,0 +1,107 @@
+{
+  "slug": "ai-diffusion-denoising",
+  "title": "Does a noisy one reveal the clean bit?",
+  "hook": "Reverse probability, without a clean-bit oracle.",
+  "domain": "ai",
+  "concept": "diffusion-denoising",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:gradient-descent"
+    ],
+    "doesNotKnow": [
+      "Balanced clean bit; two independent .25-flip steps; observed final bit=1. Is the original certainly 1?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite diffusion-denoising model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-diffusion-denoising.c1",
+      "text": "Does a noisy one reveal the clean bit? Reverse probability, without a clean-bit oracle. Balanced clean bit; two independent .25-flip steps; observed final bit=1. Is the original certainly 1? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §3; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-denoising.c2",
+      "text": "Reversing the noisy observation produced a distribution, not a recovered hidden bit. The balanced prior gave clean-one probability .625; changing that prior to .9 gave .9375. These are exact binary conditionals, not Gaussian diffusion or unique reconstruction.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §3; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-denoising.c3",
+      "text": "{'question': 'With balanced prior and just one .25-flip step, what is P(clean=1 | noisy=1)?', 'options': ['.75', '.625'], 'answer': 0, 'why': 'With one step the matching path has probability .75; two steps allow two different flip histories.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §3; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-denoising.c4",
+      "text": "Addressed visible stage operands and labels: X0 prior=.5 · flip=.25 twice | observe X2=1 · posterior ≠ hidden bit. Controls: Prior .5, Prior .9, Reset. Changed computed rows: prior P(X0=1)=0.5; X2=1 observed / P(X1=1|X2=1)=0.75 / P(X0=1|X2=1)=0.625 / Σobserved-mass=0.5 (8 paths) | prior P(X0=1)=0.9; X2=1 observed / P(X1=1|X2=1)=0.875 / P(X0=1|X2=1)=0.938 / Σobserved-mass=0.6 (8 paths). Retained computed witnesses: prior0.5:P(X0=1)=0.625 | prior0.9:P(X0=1)=0.938. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst prior=mode?.9:.5,paths=[];for(const x0 of[0,1])for(const x1 of[0,1])for(const x2 of[0,1])paths.push({x0,x1,x2,mass:(x0?prior:1-prior)*(x1===x0?.75:.25)*(x2===x1?.75:.25)});const seen=paths.filter(r=>r.x2===1),z=sum(seen.map(r=>r.mass)),p1=sum(seen.filter(r=>r.x1===1).map(r=>r.mass))/z,p0=sum(seen.filter(r=>r.x0===1).map(r=>r.mass))/z;return{values:[p0,p1,z],rows:[`prior P(X0=1)=${f(prior)}; X2=1 observed`,`P(X1=1|X2=1)=${f(p1)}`,`P(X0=1|X2=1)=${f(p0)}`,`Σobserved-mass=${f(z)} (8 paths)`],receipt:`prior${f(prior)}:P(X0=1)=${f(p0)}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §3; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-diffusion-denoising.c5",
+      "text": "diffusion-denoising\n\n**Identity / target / source:** `ai:diffusion-denoising` → `ai-diffusion-denoising` → `src/demos/ai/ai-diffusion-denoising`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/80`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#3-diffusion-denoising`. **Packet:** G2. **Level / prerequisites:** core; `ai:gradient-descent`.\n\n**Nearest / distinct payoff:** gradient-descent optimizes parameters; this computes forward corruption and an actual Bayes reverse process, with uncertainty rather than oracle recovery.\n\n**Computed primary model:** Binary clean bitX0 priorP(1)=.5, two independent flip transitions probability.25 each. Enumerate all eight(X0,X1,X2) paths. ObserveX2=1: posteriorP(X1=1|X2=1)=.75; applying the correctly conditioned reverse process yieldsP(X0=1|X2=1)=.625. Retain the observed bit1 separately from the uncertain clean-bit distribution. No hidden clean-bit oracle enters reversal.\n\n**Countercase / boundary:** Change priorP(X0=1) to.9, same noise and observation: posteriorP(X0=1|X2=1)=.9375, not.625. Reverse probabilities depend on prior and time. This is a binary diffusion analogue, not a Gaussian DDPM implementation or evidence that denoising reconstructs a unique original.\n\n**Prediction / transfer recall:** Predict whether observing noisy1 proves clean1; recall a single.25-flip step under balanced prior gives posterior.75, while two steps give.625.\n\n**Intervention / retained witness:** Corrupt then Reverse one/two layers computes path masses, normalization and posterior bars; Change prior restarts current computation while retaining balanced-prior witness. Display conditional labels and bit uncertainty explicitly.\n\n**Source obligation:** [Ho et al. original PDF](https://arxiv.org/pdf/2006.11239), opened2026-10-19, §2 forward/reverse Markov definitions Eq1–2 as motivation. The finite binary conditional model is independently derived, not those Gaussian parameterizations or image results.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §3; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With balanced prior and just one .25-flip step, what is P(clean=1 | noisy=1)?",
+    "options": [
+      ".75",
+      ".625"
+    ],
+    "answer": 0,
+    "why": "With one step the matching path has probability .75; two steps allow two different flip histories."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:diffusion-denoising",
+    "also": [],
+    "prerequisites": [
+      "ai:gradient-descent"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

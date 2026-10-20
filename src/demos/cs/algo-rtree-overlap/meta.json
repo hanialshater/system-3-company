@@ -1,0 +1,107 @@
+{
+  "slug": "algo-rtree-overlap",
+  "title": "How many branches need a visit?",
+  "hook": "Place a point among two overlapping boxes.",
+  "domain": "cs",
+  "concept": "algo-rtree-overlap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn.",
+      "Dot product and nonzero-vector angular similarity."
+    ],
+    "doesNotKnow": [
+      "Point query traverses every closed containing child bounding rectangle. Conservative sibling overlap can branch; one rectangle hit only generates candidates; exact enclosed geometry test follows."
+    ]
+  },
+  "objective": "Point query traverses every closed containing child bounding rectangle. Conservative sibling overlap can branch; one rectangle hit only generates candidates; exact enclosed geometry test follows.",
+  "misconception": "A=[0,3]\u00d7[0,3], B=[2,5]\u00d7[0,3]. For q=(2.5,1), how many branches must a point query visit?",
+  "claims": [
+    {
+      "id": "cs.algo-rtree-overlap.c1",
+      "text": "How many branches need a visit? Place a point among two overlapping boxes.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/meta.json#title-hook; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "cs.algo-rtree-overlap.c2",
+      "text": "A=[0,3]\u00d7[0,3], B=[2,5]\u00d7[0,3]. For q=(2.5,1), how many branches must a point query visit? Options: ['One', 'Two', 'Zero'] Correct: Two",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/Demo.tsx#predict; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-rtree-overlap.c3",
+      "text": "Point query traverses every closed containing child bounding rectangle. Conservative sibling overlap can branch; one rectangle hit only generates candidates; exact enclosed geometry test follows.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/Demo.tsx#stage; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-rtree-overlap.c4",
+      "text": "You visited both branches at (2.5,1), then only A at (.5,1). The marked descendants produced no exact point hit in either case. A containing rectangle creates candidates; it does not prove an enclosed object matches.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/Demo.tsx#reveal; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-rtree-overlap.c5",
+      "text": "A query lies outside every child box. How many child branches need visiting? Zero: containing boxes conservatively enclose all descendants.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/meta.json#recall; model.ts and model.test.mjs finite author arithmetic; owner admission company/domains/proposals/2026-10-19-algorithm-execution-manifest.json#algo-rtree-overlap; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-rtree-overlap.c6",
+      "text": "Original points (0,0),(3,3) in A and (2,0),(5,3) in B produce zero exact hits for both query witnesses; rectangle edges are inclusive.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-rtree-overlap/model.ts and model.test.mjs; https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Guttman84.pdf \u2014 Guttman1984 search algorithm; body acquisition timed out2026-10-19, independent precise locator and verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A query lies outside every child box. How many child branches need visiting?",
+    "options": [
+      "Zero",
+      "Every branch"
+    ],
+    "answer": 0,
+    "why": "Zero: containing boxes conservatively enclose all descendants."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-rtree-overlap",
+    "also": [],
+    "prerequisites": [
+      "tree-traversal"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

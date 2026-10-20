@@ -1,0 +1,95 @@
+{
+  "slug": "ai-backdoor-trigger",
+  "title": "Which condition did testing miss?",
+  "hook": "A planted boolean branch and a rule without that branch.",
+  "domain": "ai",
+  "concept": "backdoor-trigger",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "shortcut-learning"
+    ],
+    "doesNotKnow": [
+      "After adding the marker, which input class changes under the planted rule?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the backdoor trigger construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-backdoor-trigger.c1",
+      "text": "Which condition did testing miss? A planted boolean branch and a rule without that branch. After adding the marker, which input class changes under the planted rule? Options: 0 only; 1 only; Both; Neither.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §19; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-backdoor-trigger.c2",
+      "text": "The marker changed predictions only for x=0 under the planted branch: score4/4 became2/4. Clean testing never took that branch; the marked control retained4/4. This constructed conditional rule demonstrates a dormant condition, not a trained attack or its prevalence.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §19; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-backdoor-trigger.c3",
+      "text": "Which test change exposes this planted condition? Add the harmless marker to both input classes and compare the actual outputs with the trigger-free control.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §19; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-backdoor-trigger.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §19; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-backdoor-trigger.c5",
+      "text": "Target / packet: `ai-backdoor-trigger` · `C1`. Prerequisites: `ai:shortcut-learning`.\n\nNearest / distinct payoff: `shortcut-learning` → `background-shortcut` (existing registered artifact; evidence applicability pending). Unlike accidental shortcuts, this uses an explicitly planted dormant marker and a clean-test/control-rule comparison.\n\nPrimary finite model: Binary toy rule cleanPrediction=x for x∈{0,1}; planted trigger overrides to1. Clean test x=[0,1,0,1] gets4/4, triggered outputs[1,1,1,1] get2/4.\n\nCountercase and boundary: A trigger-free control rule remains4/4 under the added marker. This is a planted conditional branch, not training a real attack or evidence of prevalence.\n\nPredict and recall transfer: Predict which clean class flips under the marker; recall why clean accuracy misses a dormant condition.\n\nRequired evidence: Marker is harmless local boolean; show both clean inputs and overrides, no external payload or attack execution. Shipped local computations, all cases: Clean: toy: marker∧planted ? 1 : x 0 0 1 1 0 0 1 1 marker=0 · planted=1; Clean [0,1,0,1] 4/4 | Marker: toy: marker∧planted ? 1 : x 0 1 1 1 0 1 1 1 marker=1 · planted=1; Marker [1,1,1,1] 2/4 | Control: toy: marker∧planted ? 1 : x 0 0 1 1 0 0 1 1 marker=1 · planted=0; Control [0,1,0,1] 4/4. Initial neutral frame: toy: marker∧planted ? 1 : x 0 ? 1 ? 0 ? 1 ? marker=0 · planted=1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §19; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which test change exposes this planted condition?",
+    "options": [
+      "Add the harmless marker to both input classes and compare the actual outputs with the trigger-free control.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "Add the harmless marker to both input classes and compare the actual outputs with the trigger-free control."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:backdoor-trigger",
+    "also": [],
+    "prerequisites": [
+      "ai:shortcut-learning"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

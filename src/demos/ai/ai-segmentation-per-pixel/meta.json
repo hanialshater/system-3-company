@@ -1,0 +1,95 @@
+{
+  "slug": "ai-segmentation-per-pixel",
+  "title": "What does the outline include?",
+  "hook": "Compare two representations of the same tiny shape.",
+  "domain": "ai",
+  "concept": "segmentation-per-pixel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "convolution-weight-sharing"
+    ],
+    "doesNotKnow": [
+      "How many background cells does this enclosing box include?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the segmentation per pixel construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-segmentation-per-pixel.c1",
+      "text": "What does the outline include? Compare two representations of the same tiny shape. How many background cells does this enclosing box include? Options: 0; 2; 4; 9.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §17; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-segmentation-per-pixel.c2",
+      "text": "The cross’s box enclosed nine cells, including four background cells; its exact mask enclosed five with none. The solid rectangle made both representations include zero background cells. These are constructed output geometries, not measurements of a trained segmentation model’s accuracy.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §17; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-segmentation-per-pixel.c3",
+      "text": "Which declared shape makes box and exact mask agree? The solid rectangle: both cover its nine foreground cells and include no background.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §17; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-segmentation-per-pixel.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §17; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-segmentation-per-pixel.c5",
+      "text": "Target / packet: `ai-segmentation-per-pixel` · `B2`. Prerequisites: `ai:convolution-weight-sharing`.\n\nNearest / distinct payoff: `convolution-weight-sharing` → `convolution-weight-sharing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike convolution filters, this compares output label geometry: object mask versus enclosing box.\n\nPrimary finite model: 3×3 binary object has foreground cells(0,1),(1,0),(1,1),(1,2),(2,1):5 positives. Tight bounding rectangle covers9, including4 background; exact mask covers5 with0 background.\n\nCountercase and boundary: A solid3×3 object makes both cover9 with0 background. This is output representation comparison, not a trained segmentation performance result.\n\nPredict and recall transfer: Predict background enclosed by the box; transfer to a solid rectangle and explain equality.\n\nRequired evidence: Original schematic binary cells only; keep mask and bounding geometry distinct without external imagery. Shipped local computations, all cases: Box: Σ=9 BG=4 ■object · □background · BG; Box 9; background 4 | Mask: Σ=5 BG=0 ■object · □background · BG; Mask 5; background 0 | Solid: Σ=9 BG=0 ■object · □background · BG; Solid 0/0. Initial neutral frame: Σ=? BG=? ■object · □background · BG.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §17; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which declared shape makes box and exact mask agree?",
+    "options": [
+      "The solid rectangle: both cover its nine foreground cells and include no background.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "The solid rectangle: both cover its nine foreground cells and include no background."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:segmentation-per-pixel",
+    "also": [],
+    "prerequisites": [
+      "ai:convolution-weight-sharing"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

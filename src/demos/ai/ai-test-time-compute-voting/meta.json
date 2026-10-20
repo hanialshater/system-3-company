@@ -1,0 +1,104 @@
+{
+  "slug": "ai-test-time-compute-voting",
+  "title": "Must more votes help?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "test-time-compute-voting",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:temperature-sampling",
+      "ai:ensemble-wisdom"
+    ],
+    "doesNotKnow": [
+      "Must three votes always improve over one under the declared variants?"
+    ]
+  },
+  "misconception": "Always improves",
+  "objective": "Use the distinct declared test-time-compute-voting mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-test-time-compute-voting.c1",
+      "text": "hook/predict: Must three votes always improve over one under the declared variants? Options: Always improves; Depends on errors",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-test-time-compute-voting.c2",
+      "text": "stage input operands: \"3 binary votes · majority≥2 · p=.7\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-test-time-compute-voting.c3",
+      "text": "reveal: Independent .7-correct votes gave majority success .784. Perfectly shared errors kept it at .7; independent .4-correct votes fell to .352. These enumerated binary outcomes concern majority selection, not at-least-one success. Independence is stipulated, not established by repeated generation.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-test-time-compute-voting.c4",
+      "text": "recall: At independent p=.5, what is three-vote majority success? Symmetric binary voting preserves .5.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-test-time-compute-voting.c5",
+      "text": "stage computation: Three binary answer samples, each correct withp=.7 and independent; majority selects correct iff at least2 are correct. Enumerate8 joint outcomes and masses: success p³+3p²(1−p)=.784 versus one-sample.7. Odd sample count avoids ties.\n\n**Countercase / boundary:** Perfectly correlated outcomes are all-correct withmass.7/all-wrong withmass.3; three-sample majority stays.7. Independentp=.4 gives majority.352, worse than.4. Independence is declared, not inferred from repeated text generation; samples may share errors.\n\n**Prediction / transfer recall:** Predict whether three votes must improve over one; recall p=.5 gives.5 and no gain under the independent symmetric binary rule.\n\n**Intervention / reachable witness:** Enumerate ballots exposes every joint state/probability and selected answer; Switch dependence then Lower accuracy computes distinct results while retaining independent.784 witness. Do not equate majority success with at-least-one success.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-test-time-compute-voting.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: 3 binary votes · majority≥2 · p=.7 ? Independent Shared error p=.4 Reset 1: single=0.7; majority=0.784 2: single=0.7; majority=0.700 3: single=0.4; majority=0.352 | inspection 0: 3 binary votes · majority≥2 · p=.7 000 0.027 100 0.063 010 0.063 110 0.147 001 0.063 101 0.147 011 0.147 111 0.343 Independent Shared error p=.4 Reset 1: single=0.7; majority=0.784 2: single=0.7; majority=0.700 3: single=0.4; majority=0.352 | inspection 1: 3 binary votes · majority≥2 · p=.7 000 0.300 100 0.000 010 0.000 110 0.000 001 0.000 101 0.000 011 0.000 111 0.700 Independent Shared error p=.4 Reset 1: single=0.7; majority=0.784 2: single=0.7; majority=0.700 3: single=0.4; majority=0.352 | inspection 2: 3 binary votes · majority≥2 · p=.7 000 0.216 100 0.144 010 0.144 110 0.096 001 0.144 101 0.096 011 0.096 111 0.064 Independent Shared error p=.4 Reset 1: single=0.7; majority=0.784 2: single=0.7; majority=0.700 3: single=0.4; majority=0.352",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#22-test-time-compute-voting; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At independent p=.5, what is three-vote majority success?",
+    "options": [
+      ".5",
+      ".75",
+      ".875"
+    ],
+    "answer": 0,
+    "why": "Symmetric binary voting preserves .5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:test-time-compute-voting",
+    "also": [],
+    "prerequisites": [
+      "ai:temperature-sampling",
+      "ai:ensemble-wisdom"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

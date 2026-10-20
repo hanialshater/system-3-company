@@ -1,0 +1,107 @@
+{
+  "slug": "ai-counterfactual-explanations",
+  "title": "Is the nearest counterfactual feasible?",
+  "hook": "Search edits under explicit constraints.",
+  "domain": "ai",
+  "concept": "counterfactual-explanations",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:decision-boundary"
+    ],
+    "doesNotKnow": [
+      "Approval needs a+b≥2 from (0,0); edits lie on .5-grid. Is the closest unconstrained edit always actionable?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite counterfactual-explanations model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-counterfactual-explanations.c1",
+      "text": "Is the nearest counterfactual feasible? Search edits under explicit constraints. Approval needs a+b≥2 from (0,0); edits lie on .5-grid. Is the closest unconstrained edit always actionable? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §24; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-counterfactual-explanations.c2",
+      "text": "The nearest unconstrained edit changed both coordinates. Fixing b required a larger edit; capping a then made the target infeasible. These supplied constraints distinguish geometric proximity from actionability without claiming a causal real-world intervention.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §24; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-counterfactual-explanations.c3",
+      "text": "{'question': 'With b fixed at0 and a≤1, can this model reach approval?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Every permitted point has a+b≤1, below the threshold2.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §24; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-counterfactual-explanations.c4",
+      "text": "Addressed visible stage operands and labels: approval: a+b≥2 · start0/0 | grid0,.5,1,1.5,2 · minimize a²+b² | immutable b; cap a≤1. Controls: Free, b fixed, Cap a≤1, Reset. Changed computed rows: constraint=free / approving grid points=15 / nearest=1/1; distance=1.414 / observed rule: a+b≥2 | constraint=b=0 / approving grid points=1 / nearest=2/0; distance=2 / observed rule: a+b≥2 | constraint=b=0 and a≤1 / approving grid points=0 / nearest=none; distance=∞ / observed rule: a+b≥2. Retained computed witnesses: free edit=1/1 | fixed edit=2/0 | capped edit=infeasible. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst edits=Array.from({length:5},(_,i)=>Array.from({length:5},(_,j)=>[i/2,j/2])).flat(),eligible=edits.filter(([a,b])=>a+b>=2&&(mode===0||b===0)&&(mode!==2||a<=1)).sort((a,b)=>dot(a,a)-dot(b,b)),best=eligible[0]??null,dist=best?Math.sqrt(dot(best,best)):Infinity;return{values:[best?.[0]??-1,best?.[1]??-1,dist],rows:[`constraint=${['free','b=0','b=0 and a≤1'][mode]}`,`approving grid points=${eligible.length}`,`nearest=${best?best.join('/'):'none'}; distance=${f(dist)}`,`observed rule: a+b≥2`],receipt:`${['free','fixed','capped'][mode]} edit=${best?best.join('/'):'infeasible'}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §24; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-counterfactual-explanations.c5",
+      "text": "counterfactual-explanations\n\n**Identity / target / source:** `ai:counterfactual-explanations` → `ai-counterfactual-explanations` → `src/demos/ai/ai-counterfactual-explanations`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/152`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#24-counterfactual-explanations`. **Packet:** I1. **Level / prerequisites:** core; `ai:decision-boundary`.\n\n**Nearest / distinct payoff:** decision-boundary shows a classifier threshold; this optimizes a permitted feature edit and contrasts mathematical proximity with feasible action constraints.\n\n**Computed primary model:** Fictional eligibility rule score=x+y, accept iff≥5. Initial features(2,1), score3. Edits are nonnegative increments. Minimum Euclidean edit with both features mutable is(1,1), distance sqrt2, new(3,2) at boundary5. This follows minimizing a²+b² subjecta+b≥2; equality balanced gives2.\n\n**Countercase / boundary:** If y is immutable, minimum feasible edit becomes(2,0), distance2. If x increase also capped at1, no feasible accepted edit exists. A classifier-flipping numerical edit is not a causal promise or practical advice about a real person/system.\n\n**Prediction / transfer recall:** Predict whether the nearest unconstrained point stays permitted when y cannot change; recall forbidding both sufficient edits makes the constrained counterfactual absent, not a larger hidden answer.\n\n**Intervention / retained witness:** Find nearest enumerates candidate edit grid at.5 increments through2, shows feasible boundary and optimum; Lock y and Cap x recompute feasibility and minima. Retain unconstrained and constrained witnesses; distinguish hypothetical variables from real recourse.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §24; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With b fixed at0 and a≤1, can this model reach approval?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Every permitted point has a+b≤1, below the threshold2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:counterfactual-explanations",
+    "also": [],
+    "prerequisites": [
+      "ai:decision-boundary"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "ai-test-score-error-bars",
+  "title": "Does16 out of20 settle it?",
+  "hook": "Compare two stipulated accuracies on fresh test samples.",
+  "domain": "ai",
+  "concept": "test-score-error-bars",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Distinguish a conditional sampling distribution from an interval for unknown accuracy."
+    ]
+  },
+  "misconception": "Distinguish a conditional sampling distribution from an interval for unknown accuracy.",
+  "objective": "Distinguish a conditional sampling distribution from an interval for unknown accuracy.",
+  "claims": [
+    {
+      "id": "ai.ai-test-score-error-bars.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function distribution(n:number,p:number){if(!Number.isInteger(n)||n<1||p<0||p>1)throw Error('invalid binomial input');return Array.from({length:n+1},(_,k)=>{let choose=1;for(let j=1;j<=k;j++)choose*= (n-j+1)/j;return choose*p**k*(1-p)**(n-k);});}\nexport function stats(n:number,p:number){const pmf=distribution(n,p),cdf=pmf.map((_,k)=>pmf.slice(0,k+1).reduce((a,b)=>a+b,0)),q=(a:number)=>cdf.findIndex(v=>v>=a),lo=q(.025),hi=q(.975);return {n,p,pmf,sd:Math.sqrt(p*(1-p)/n),tail:pmf.slice(16).reduce((a,b)=>a+b,0),exact:pmf[16]??0,lo,hi,coverage:pmf.slice(lo,hi+1).reduce((a,b)=>a+b,0)};}\nexport function run(mode:number){return {...stats(mode===2?80:20,mode===1?.7:.8),duplicates:mode===3};}",
+      "support": "derivation",
+      "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-test-score-error-bars.c2",
+      "text": "Does16 out of20 settle it?; Compare two stipulated accuracies on fresh test samples.; For independent identically distributed binary outcomes, could either stipulated accuracy,70% or80%, produce16 correct out of20?; options ['Only70%', 'Only80%', 'Either', 'Neither']; correct index 2",
+      "support": "derivation",
+      "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-test-score-error-bars.c3",
+      "text": "Both stipulated accuracies gave positive probability to exactly 16 correct. For 16 or more, the chances were 62.96% at p=.8 and 23.75% at p=.7. That score did not identify its generator. At p=.8, increasing independent cases from 20 to 80 reduced score SD from 8.94% to 4.47%. Copying records adds no independent cases. For n20,p.8, the inclusive 12\u201319 sampling band covers 97.8489% of possible scores; it is not an interval for unknown accuracy.",
+      "support": "derivation",
+      "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-test-score-error-bars.c4",
+      "text": "{\"question\": \"At stipulated accuracy80%, change25 independent cases to100. What happens to score SD?\", \"options\": [\"Halves\", \"Stays\", \"Doubles\"], \"answer\": 0, \"why\": \"sqrt(.8\\u00d7.2/25)=8%; for100 cases it is4%. Copying records is different.\"}",
+      "support": "derivation",
+      "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-test-score-error-bars.c5",
+      "text": "Exact finite conditional probabilities, quantile smallest k whose CDF\u2265level, not posterior or confidence interval. Duplicates use20 independent outcomes repeated4times, not Binomial80. No fabricated new observed64/80. p is stipulated, not estimated from16/20. Vertical axis: probability mass. More independent cases differs from copying records. Controls: p=.8, p=.7, n=80, Duplicates, Reset. Milestones [0, 1, 2, 3]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm (NIST binomial PMF/standard deviation, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "At stipulated accuracy80%, change25 independent cases to100. What happens to score SD?",
+    "options": [
+      "Halves",
+      "Stays",
+      "Doubles"
+    ],
+    "answer": 0,
+    "why": "sqrt(.8\u00d7.2/25)=8%; for100 cases it is4%. Copying records is different."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:test-score-error-bars",
+    "also": [],
+    "prerequisites": [
+      "ai:train-test-split",
+      "probability:confidence-intervals"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

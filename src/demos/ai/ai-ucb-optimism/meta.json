@@ -1,0 +1,104 @@
+{
+  "slug": "ai-ucb-optimism",
+  "title": "Which arm gets the next pull?",
+  "hook": "Combine an observed mean with a count-dependent bonus.",
+  "domain": "ai",
+  "concept": "ucb-optimism",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Use a deterministic UCB index to select a less-sampled lower-mean arm."
+    ]
+  },
+  "misconception": "Use a deterministic UCB index to select a less-sampled lower-mean arm.",
+  "objective": "Use a deterministic UCB index to select a less-sampled lower-mean arm.",
+  "claims": [
+    {
+      "id": "ai.ai-ucb-optimism.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function index(mean:number,n:number,t:number){return n===0?null:mean+Math.sqrt(2*Math.log(t)/n);}\nexport function run(mode:number){const means=mode===1?[.6,.25]:[.6,.5],counts=mode===1?[10,2]:mode===2?[5,5]:mode===3?[10,0]:[10,1],t=counts[0]+counts[1],indices=means.map((v,i)=>index(v,counts[i],t)),chosen=counts.includes(0)?counts.indexOf(0):(indices[0]!>=indices[1]!?0:1);return {means,counts,t,indices,chosen};}",
+      "support": "derivation",
+      "source": "https://people.eecs.berkeley.edu/~russell/classes/cs294/s11/readings/Auer%2Bal%3A2002.pdf (Auer et al.2002 UCB1; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-ucb-optimism.c2",
+      "text": "Which arm gets the next pull?; Combine an observed mean with a count-dependent bonus.; A: mean .6 from10 pulls. B: mean .5 from1 pull. At t=11, select by mean+sqrt(2 ln(t)/count). Which wins?; options ['A', 'B', 'Tie']; correct index 1",
+      "support": "derivation",
+      "source": "https://people.eecs.berkeley.edu/~russell/classes/cs294/s11/readings/Auer%2Bal%3A2002.pdf (Auer et al.2002 UCB1; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-ucb-optimism.c3",
+      "text": "B\u2019s retained index was 2.690 despite its lower mean .5. Its single pull gave a larger bonus. After the disclosed reward zero, B\u2019s total stayed .5 over two pulls: mean .25 and index 1.826. B remained selected. This index can exceed one because it is a selection score, not a probability. Equal counts remove the bonus difference.",
+      "support": "derivation",
+      "source": "https://people.eecs.berkeley.edu/~russell/classes/cs294/s11/readings/Auer%2Bal%3A2002.pdf (Auer et al.2002 UCB1; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-ucb-optimism.c4",
+      "text": "{\"question\": \"At t10: A mean.2,count1; B mean.8,count9. UCB1 chooses which?\", \"options\": [\"A\", \"B\", \"Tie\"], \"answer\": 0, \"why\": \"A index\\u22482.346 exceeds B\\u22481.515 because A has the larger bonus.\"}",
+      "support": "derivation",
+      "source": "https://people.eecs.berkeley.edu/~russell/classes/cs294/s11/readings/Auer%2Bal%3A2002.pdf (Auer et al.2002 UCB1; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-ucb-optimism.c5",
+      "text": "Finite replay only, no regret demonstration or nonstationary guarantee. Untried arm uses explicit initialization rather than dividing by zero. Rewards are bounded real numbers in [0,1], not only zero or one. The index is not a probability. Controls: Indices, Reward0, Equal counts, Untried, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://people.eecs.berkeley.edu/~russell/classes/cs294/s11/readings/Auer%2Bal%3A2002.pdf (Auer et al.2002 UCB1; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "At t10: A mean.2,count1; B mean.8,count9. UCB1 chooses which?",
+    "options": [
+      "A",
+      "B",
+      "Tie"
+    ],
+    "answer": 0,
+    "why": "A index\u22482.346 exceeds B\u22481.515 because A has the larger bonus."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:ucb-optimism",
+    "also": [],
+    "prerequisites": [
+      "ai:exploration-exploitation"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

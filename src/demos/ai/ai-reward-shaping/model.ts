@@ -1,0 +1,2 @@
+export type Mode="raw"|"bonus"|"potential";
+export function routes(mode:Mode,gamma=.5,terminalPhi=0){const phi=[2,4,terminalPhi];const cash=3+(mode==="potential"?gamma*phi[2]-phi[0]:0);const detour=[mode==="bonus"?2:mode==="potential"?gamma*phi[1]-phi[0]:0,5+(mode==="potential"?gamma*phi[2]-phi[1]:0)];return {cash,detour:detour[0]+gamma*detour[1],rewards:detour,winner:cash>detour[0]+gamma*detour[1]?"cash":"detour"};}

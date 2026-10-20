@@ -1,0 +1,95 @@
+{
+  "slug": "ai-in-context-learning",
+  "title": "Which store changed?",
+  "hook": "Swap the examples while keeping the stored vector fixed.",
+  "domain": "ai",
+  "concept": "in-context-learning",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "context-window"
+    ],
+    "doesNotKnow": [
+      "Examples red\u21921, blue\u21922 become red\u21922, blue\u21921. This interpreter answers red with what?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-in-context-learning.c1",
+      "text": "Examples red\u21921, blue\u21922 become red\u21922, blue\u21921. This interpreter answers red with what? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 0; 1; 2.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 2; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-in-context-learning/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-in-context-learning.c2",
+      "text": "The saved runs show red changing from 1 to 2 when you swapped the prompt examples. Clearing them returned the declared default 0; the weights stayed [2,1]. In this lookup interpreter, changing conditioning did not change persistent weights. It is not a transformer model or evidence that real models use this lookup mechanism.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 2; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-in-context-learning/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-in-context-learning.c3",
+      "text": "Which store must change to demonstrate weight learning, rather than a changed example list? The persistent weights must change. A changed prompt with unchanged weights only demonstrates changed conditioning in this interpreter.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 2; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-in-context-learning/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-in-context-learning.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 2; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-in-context-learning/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-in-context-learning.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Lookup interpreter \u00b7 default 0 Weights [2, 1] Prompt red\u21921 blue\u21922 red \u2192 1 Read red Swap examples Clear prompt Reset view 1. red\u21921; weights [2,1] 2. red\u21922; weights [2,1] 3. red\u21920; weights [2,1] | Lookup interpreter \u00b7 default 0 Weights [2, 1] Prompt red\u21921 blue\u21922 red \u2192 1 Read red Swap examples Clear prompt Reset view 1. red\u21921; weights [2,1] 2. red\u21922; weights [2,1] 3. red\u21920; weights [2,1] | Lookup interpreter \u00b7 default 0 Weights [2, 1] Prompt red\u21921 blue\u21922 red \u2192 1 Read red Swap examples Clear prompt Reset view 1. red\u21921; weights [2,1] 2. red\u21922; weights [2,1] 3. red\u21920; weights [2,1]",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 2; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-in-context-learning/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which store must change to demonstrate weight learning, rather than a changed example list?",
+    "options": [
+      "Persistent weights",
+      "Only prompt examples",
+      "Only the displayed answer"
+    ],
+    "answer": 0,
+    "why": "The persistent weights must change. A changed prompt with unchanged weights only demonstrates changed conditioning in this interpreter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:in-context-learning",
+    "also": [],
+    "prerequisites": [
+      "ai:context-window"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,2 @@
+export function measure(b:number,points=[-3,-1,1,3],scale=1){const scores=points.map(x=>scale*(x-b)),distances=scores.map(v=>Math.abs(v)/Math.abs(scale)),margin=Math.min(...distances),correct=points.filter((x,i)=>(scores[i]>=0)===(x>0)).length;return {b,points,scores,distances,margin,correct};}
+export function run(mode:number){return measure([-.5,0,.5,0,0][mode],mode===4?[-4,-1,1,4]:[-3,-1,1,3],mode===3?10:1);}

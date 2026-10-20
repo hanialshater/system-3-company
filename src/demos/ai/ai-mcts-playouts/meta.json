@@ -1,0 +1,109 @@
+{
+  "slug": "ai-mcts-playouts",
+  "title": "What did four playouts actually see?",
+  "hook": "Back up sampled leaves without claiming exhaustive search.",
+  "domain": "ai",
+  "concept": "mcts-playouts",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:model-based-planning",
+      "cs:minimax"
+    ],
+    "doesNotKnow": [
+      "A leaves [1,0], B [.6,.6]. Visit A then B; choose Q+√(lnN/n). Which branch is third?"
+    ]
+  },
+  "misconception": "B",
+  "objective": "Compute this finite mcts-playouts model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-mcts-playouts.c1",
+      "text": "What did four playouts actually see? Back up sampled leaves without claiming exhaustive search. A leaves [1,0], B [.6,.6]. Visit A then B; choose Q+√(lnN/n). Which branch is third? Options: A; B",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §10; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mcts-playouts.c2",
+      "text": "Changing the first A leaf changed later sampling. The reversed tape left one A leaf unseen, despite four evaluations. Sample means and exhaustive leaf means remain separate. This fixed schedule is not random evidence or a finite-budget optimality guarantee.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §10; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mcts-playouts.c3",
+      "text": "{'question': 'With the reversed A tape, is its reward-one leaf sampled?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'Only one A visit occurs; the remaining visits go to B.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §10; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mcts-playouts.c4",
+      "text": "Addressed visible stage operands and labels: A leaves=1/0 · B=.6/.6 | visit A,B; then max Q+√(lnN/n) | ties A · cyclic leaf tape. Controls: A:1,0, A:0,1, Reset. Changed computed rows: sampled A0:1 → B0:0.6 / then A1:0 → B1:0.6 / n=2/2 · Q=0.5/0.6 / UCT3=1.833/1.433 · exhaustive=.5/.6 | sampled A0:0 → B0:0.6 / then B1:0.6 → B0:0.6 / n=1/3 · Q=0/0.6 / UCT3=0.833/1.433 · exhaustive=.5/.6. Retained computed witnesses: original n=2/2 Q=0.5/0.6 | reverse n=1/3 Q=0/0.6. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst tapes=[mode?[0,1]:[1,0],[.6,.6]],n=[0,0],tot=[0,0],history:string[]=[],scores:string[]=[];for(let N=0;N<4;N++){const u=n.map((v,i)=>v?tot[i]/v+Math.sqrt(Math.log(Math.max(1,N))/v):Infinity),arm=N<2?N:u[1]>u[0]?1:0,leaf=n[arm]%2,reward=tapes[arm][leaf];scores.push(`${N+1}:${u.map(f).join('/')}`);n[arm]++;tot[arm]+=reward;history.push(`${arm?'B':'A'}${leaf}:${f(reward)}`);}const means=tot.map((v,i)=>v/n[i]);return{values:[...n,...means],rows:[`sampled ${history.slice(0,2).join(' → ')}`,`then ${history.slice(2).join(' → ')}`,`n=${n.join('/')} · Q=${means.map(f).join('/')}`,`UCT3=${scores[2].slice(2)} · exhaustive=.5/.6`],receipt:`${mode?'reverse':'original'} n=${n.join('/')} Q=${means.map(f).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §10; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-mcts-playouts.c5",
+      "text": "mcts-playouts\n\n**Identity / target / source:** `ai:mcts-playouts` → `ai-mcts-playouts` → `src/demos/ai/ai-mcts-playouts`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/110`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#10-mcts-playouts`. **Packet:** R1. **Level / prerequisites:** core; `ai:model-based-planning`, `cs:minimax`.\n\n**Nearest / distinct payoff:** model-based-planning enumerates imagined branches; this updates visit counts/sample means and a specific UCT selection score on a tiny search tree.\n\n**Computed primary model:** RootA has two terminal leaves rewards[1,0], rootB leaves[.6,.6]. Rollout tape cycles each arm’s two leaves in order. First force one visitA thenB; thereafter choose maximumQ+sqrt(lnN/n), tiesA, whereN total completed visits. Primary tape firstA1/B.6 selectsA next (third reward0), thenB (fourth.6). After4 visits counts[2,2], means[.5,.6], root recommendationB. Exhaustive leaf means are alsoA.5/B.6.\n\n**Countercase / boundary:** Change A rollout order to[0,1]. InitialA0/B.6 focuses the next two visits onB: counts[1,3], means[0,.6]. Four evaluations now include repeatedB leaf, not exhaustive knowledge. This fixed rollout schedule is not random Monte Carlo evidence or a guarantee of optimal finite-budget search; no universal speed comparison.\n\n**Prediction / transfer recall:** Predict which branch UCT samples third after original first visits; recall with the changed firstA result the same rule allocates more visits toB while leaving one A leaf unobserved.\n\n**Intervention / retained witness:** One playout control computes selection scores, visited leaf, backup counts and recommendation; Reverse A tape restarts current visits retaining original4-playout trace. Leaf rewards are raw declared model inputs; sampled estimates and exhaustive reference stay distinctly labelled.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Original UCT source lead: Kocsis–Szepesvári2006, “Bandit based Monte-Carlo Planning”; acquire original body and locator before attributing a general UCT theorem. This exact unit-exploration schedule is declared, not a paper reproduction.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §10; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With the reversed A tape, is its reward-one leaf sampled?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Only one A visit occurs; the remaining visits go to B."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:mcts-playouts",
+    "also": [],
+    "prerequisites": [
+      "ai:model-based-planning",
+      "cs:minimax"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

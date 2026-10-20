@@ -1,0 +1,101 @@
+{
+  "slug": "ai-random-projection",
+  "title": "Can equal lengths still collapse?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "random-projection",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:pca-compression"
+    ],
+    "doesNotKnow": [
+      "Do unit-length projected basis vectors guarantee that every pairwise distance survives?"
+    ]
+  },
+  "misconception": "Every pair survives",
+  "objective": "Use the distinct declared random-projection mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-random-projection.c1",
+      "text": "hook/predict: Do unit-length projected basis vectors guarantee that every pairwise distance survives? Options: Every pair survives; Some pairs can collapse",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-random-projection.c2",
+      "text": "stage input operands: \"O,e₁,e₂,e₃ · R₀√2=[1,1,1;1,−1,1] · R₁√2=[1,1,−1;1,−1,1]\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-projection.c3",
+      "text": "reveal: Draw 0 collapsed AC from √2 to 0 despite unit column lengths. Draw 1 preserved AC but stretched BC to 2; OA stayed 1. These two explicit sign-matrix draws demonstrate distortion, not a high-probability dimensional guarantee.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-projection.c4",
+      "text": "recall: Does OA retain length 1 under both declared draws? Each matrix column has unit length; that says nothing about all inter-column distances.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-projection.c5",
+      "text": "stage computation: Points O=(0,0,0), A=e1,B=e2,C=e3. Project with the signed matrix R0=[[1,1,1],[1,−1,1]]/sqrt2. R1=[[1,1,−1],[1,−1,1]]/sqrt2 is a second declared draw. Compute all six original/projected Euclidean distances and their ratios. R0 collapses A/C from sqrt2 to0; R1 preserves their sqrt2 distance but stretches B/C from sqrt2 to2.\n\n**Countercase / boundary:** The matrices are explicit labelled draws0/1 from the finite sign-matrix family; no claim that these two outcomes establish a high-probability dimensional bound. Every projected column has unit length, yet some pairs collapse. Do not call2D a JL-guaranteed target dimension for these examples.\n\n**Prediction / transfer recall:** Predict whether equal column norms guarantee pairwise preservation; recall original O–A distance1 remains1 under either draw while A–C can fail.\n\n**Intervention / reachable witness:** Draw choice recomputes point positions and a selected pair’s original/projected lengths; retain the collapsed-pair witness when switching draw. Enumerate the matrix entries, not an unexplained “seed” button.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-projection.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: O,e₁,e₂,e₃ · R₀√2=[1,1,1;1,−1,1] · R₁√2=[1,1,−1;1,−1,1] ? Draw 0 Draw 1 Inspect OA Reset 1: AC 1.414→0.000 2: AC 1.414→1.414; BC 1.414→2.000 3: OA 1.000→1.000 | inspection 0: O,e₁,e₂,e₃ · R₀√2=[1,1,1;1,−1,1] · R₁√2=[1,1,−1;1,−1,1] O:0.00 A:0.71 B:0.71 C:0.71 projected x,y Draw 0 Draw 1 Inspect OA Reset 1: AC 1.414→0.000 2: AC 1.414→1.414; BC 1.414→2.000 3: OA 1.000→1.000 | inspection 1: O,e₁,e₂,e₃ · R₀√2=[1,1,1;1,−1,1] · R₁√2=[1,1,−1;1,−1,1] O:0.00 A:0.71 B:0.71 C:-0.71 projected x,y Draw 0 Draw 1 Inspect OA Reset 1: AC 1.414→0.000 2: AC 1.414→1.414; BC 1.414→2.000 3: OA 1.000→1.000 | inspection 2: O,e₁,e₂,e₃ · R₀√2=[1,1,1;1,−1,1] · R₁√2=[1,1,−1;1,−1,1] O:0.00 A:0.71 B:0.71 C:-0.71 projected x,y Draw 0 Draw 1 Inspect OA Reset 1: AC 1.414→0.000 2: AC 1.414→1.414; BC 1.414→2.000 3: OA 1.000→1.000",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#2-random-projection; local model.ts and model-check.mjs. [scikit-learn maintainer guide](https://scikit-learn.org/stable/modules/random_projection.html), opened body2026-10-19, §§8.6.1–8.6.3 distinguishes dimension/distribution conditions and random matrix families. This tiny sign family illustrates failure, not that documentation’s large-set bound. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does OA retain length 1 under both declared draws?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Each matrix column has unit length; that says nothing about all inter-column distances."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:random-projection",
+    "also": [],
+    "prerequisites": [
+      "ai:pca-compression"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

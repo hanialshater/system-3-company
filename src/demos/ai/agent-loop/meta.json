@@ -1,0 +1,88 @@
+{
+  "slug": "agent-loop",
+  "title": "What follows a jam?",
+  "hook": "A box can open—or resist. Choose the next request.",
+  "domain": "ai",
+  "concept": "agent-loop",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a tool request is distinct from execution",
+      "arrows show a sequence"
+    ],
+    "doesNotKnow": [
+      "how an observation changes the next requested action",
+      "how a finite scripted controller stops"
+    ]
+  },
+  "misconception": "An agent is only a more capable model or a single tool call.",
+  "objective": "Trace an observation-dependent observe/action loop, including its jam branch and terminal stop.",
+  "claims": [
+    {
+      "id": "ai.agent-loop.c1",
+      "text": "The jammed trace is closed → open, jammed → help, help requested → stop; no read action occurs.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/agent-loop/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/2210.03629 (section 2, PDF p.3, lines 286–303); src/demos/ai/agent-loop/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.agent-loop.c2",
+      "text": "The unjammed trace is closed → open, open → read, ticket 6 → stop. The finite scripted controller branches on observations and does not learn or call a live model.",
+      "support": "convention",
+      "source": "Independent derivation and source audit: company/reviews/agent-loop/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/2210.03629 (section 2, PDF p.3, lines 286–303); src/demos/ai/agent-loop/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "Demo.tsx: stage and reveal",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    },
+    {
+      "id": "ai.agent-loop.c3",
+      "text": "Follow the rule for the observation, rather than an earlier planned action.",
+      "support": "derivation",
+      "source": "Independent derivation and source audit: company/reviews/agent-loop/2026-10-19-fact-all-ai-foundations.md; https://arxiv.org/pdf/2210.03629 (section 2, PDF p.3, lines 286–303); src/demos/ai/agent-loop/model.ts and Demo.tsx. Registered recall verified separately; shared footer coverage gap remains.",
+      "status": "verified",
+      "address": "meta.json: recall.why",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-19"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A changed controller sees a locked door and has the rule locked → ask for key. What comes next?",
+    "options": [
+      "Ask for key",
+      "Read behind the door",
+      "Stop because all loops stop immediately"
+    ],
+    "answer": 0,
+    "why": "Follow the rule for the observation, rather than an earlier planned action."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:agent-loop",
+    "also": [],
+    "prerequisites": [
+      "ai:tool-call-request"
+    ],
+    "level": "intro",
+    "references": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal"
+  ]
+}

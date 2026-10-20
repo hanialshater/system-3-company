@@ -1,0 +1,122 @@
+{
+  "slug": "ai-q-learning",
+  "title": "Can zero reward raise an estimate?",
+  "hook": "A transition gives no reward. What can the next state change?",
+  "domain": "ai",
+  "concept": "q-learning",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A grid world: an agent moves, collects points, ends at a goal."
+    ],
+    "doesNotKnow": [
+      "Explain why a zero-reward experience tuple can increase an action-value estimate."
+    ]
+  },
+  "objective": "Explain why a zero-reward experience tuple can increase an action-value estimate.",
+  "misconception": "The immediate reward is the whole update.",
+  "claims": [
+    {
+      "id": "ai.ai-q-learning.c1",
+      "text": "Start/right reward0 leads to Bridge with Q(left)=2 and Q(right)=4. The separate terminal tuple uses old1 and reward4; a stored terminal99 is ignored.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-q-learning/Demo.tsx#picture#tuple; src/demos/ai/ai-q-learning/model.ts + model.test.mjs finite author implementation reproduction; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c2",
+      "text": "With \u03b1=.5 and \u03b3=.5, old0 gives target2/new1; replay old1 gives target2/new1.5. Terminal continuation0 gives target4/new2.5.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-q-learning/Demo.tsx#picture#trace; src/demos/ai/ai-q-learning/model.ts + model.test.mjs finite author implementation reproduction; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c3",
+      "text": "With \u03b3=0, zero-reward Start updates remain0. Primary values 0\u21922\u21921, 1\u21922\u21921.5 and terminal1\u21924\u21922.5 are retained.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-q-learning/Demo.tsx#summary#contrast; src/demos/ai/ai-q-learning/model.ts + model.test.mjs finite author implementation reproduction; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c4",
+      "text": "\u03b3 discounts the next estimate; \u03b1 sets the fraction moved toward the target. Fixed experience replay demonstrates the update, not convergence.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-q-learning/Demo.tsx#reveal#bridge; src/demos/ai/ai-q-learning/model.ts + model.test.mjs finite author implementation reproduction; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c5",
+      "text": "Can zero reward raise an estimate?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-q-learning/meta.json#title; model.ts finite rules; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c6",
+      "text": "A transition gives no reward. What can the next state change?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-q-learning/meta.json#hook; model.ts finite rules; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c7",
+      "text": "Zero reward, next estimates 2 and 4. With \u03b3=.5 and \u03b1=.5, what does old 0 become? Options: 0 / 1 / 2. Correct: 1.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-q-learning/Demo.tsx#predict; model.ts finite rules; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-q-learning.c8",
+      "text": "Old2, reward1, next values2/6, \u03b3=.5, \u03b1=.5. What is the new estimate? 2 / 3 / 4. The target is 1+.5\u00d76=4; halfway from 2 gives 3.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-q-learning/meta.json#recall; model.ts finite rules; https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf \u2014 Watkins and Dayan (1992), \u00a72, pp280\u2013281; experience update and maximum next estimate; body opened 2026-10-19.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Old2, reward1, next values2/6, \u03b3=.5, \u03b1=.5. What is the new estimate?",
+    "options": [
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": 1,
+    "why": "The target is 1+.5\u00d76=4; halfway from 2 gives 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:q-learning",
+    "also": [],
+    "prerequisites": [
+      "value-vs-reward",
+      "exploration-exploitation"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "reinforcement-learning",
+      "td-control"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

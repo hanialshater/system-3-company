@@ -1,0 +1,134 @@
+{
+  "slug": "algo-count-sketch-signs",
+  "title": "Can a sketch estimate too low?",
+  "hook": "A collision can subtract as well as add.",
+  "domain": "cs",
+  "concept": "algo-count-sketch-signs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cartesian coordinates and Euclidean distance where geometry is used; integer counts/sets as explicitly drawn."
+    ],
+    "doesNotKnow": [
+      "Explain signed sketch collision noise that can undercount or overcount, and use a median across illustrated rows."
+    ]
+  },
+  "objective": "Explain signed sketch collision noise that can undercount or overcount, and use a median across illustrated rows.",
+  "misconception": "Every sketch estimate overcounts like an insertion-only Count-Min sketch.",
+  "claims": [
+    {
+      "id": "cs.algo-count-sketch-signs.c1",
+      "text": "Items a count5 and b count2 initially share bucket0, with signs a+1,b−1; counters start0.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#picture#inputs; model.ts and model.test.mjs finite author reproductions; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "Demo.tsx: svg signed input rows and initial prediction"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c2",
+      "text": "Each item updates its bucket bys(i)Δ; querya multiplies that counter bys(a). Primary counter0→5→3 gives estimate3 below true5.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#model.ts#sketch; model.ts and model.test.mjs finite author reproductions; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified",
+      "address": "Demo.tsx: svg input→counter→s(a) query correction, proof update rule and p#reveal-compact first clause"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c3",
+      "text": "Changing b sign to+1 recomputes counter7 and a estimate7, above true5. These two fixed alternatives average5; that does not guarantee cancellation in one run.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#picture#contrast; model.ts and model.test.mjs finite author reproductions; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified",
+      "address": "Demo.tsx: proof retained alternatives and p#reveal-compact first two sentences"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c4",
+      "text": "Three illustrated row estimates3,7,5 have median5. Third row separates b into its own bucket−2 and a bucket5. Count Sketch takes a median across rows, not a minimum.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#picture#rows; model.ts and model.test.mjs finite author reproductions; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact median principle and conditional rowsSeen sentence; proof retained rows and svg separate b bucket"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c5",
+      "text": "The usual zero-mean collision-noise expectation relies on appropriate independent symmetric sign assumptions. These finite sign alternatives do not establish a universal error bound or observed cancellation guarantee.",
+      "support": "source",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#reveal#expectation; model.ts and model.test.mjs finite author reproductions; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified",
+      "address": "Demo.tsx: p#reveal-compact expectation qualification; model sign fixtures"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c6",
+      "text": "Can a sketch estimate too low?",
+      "support": "convention",
+      "source": "src/demos/cs/algo-count-sketch-signs/meta.json#title; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c7",
+      "text": "A collision can subtract as well as add.",
+      "support": "convention",
+      "source": "src/demos/cs/algo-count-sketch-signs/meta.json#hook; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c8",
+      "text": "a has count5, b count2; same bucket. Signs a=+1, b=−1. Can the signed estimate of a fall below5? Options Yes / No; correct Yes.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-count-sketch-signs/Demo.tsx#predict; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-count-sketch-signs.c9",
+      "text": "Target sign−1, counter−4. What is the corrected estimate? The target sign multiplies the bucket: (−1)×(−4)=4.",
+      "support": "derivation",
+      "source": "src/demos/cs/algo-count-sketch-signs/meta.json#recall; model.ts; https://www.cs.yale.edu/homes/el327/datamining2011aFiles/FindingFrequentItemsInDataStreams.pdf — Charikar, Chen and Farach-Colton, Finding Frequent Items in Data Streams, §3.1–3.2, PDF pages3–4; body opened2026-10-19. Signed updates, sign-corrected query and median rows. Fixed assignments are illustrative, not independent random draws.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Target sign−1, counter−4. What is the corrected estimate?",
+    "options": [
+      "−4",
+      "4",
+      "0"
+    ],
+    "answer": 1,
+    "why": "The target sign multiplies the bucket: (−1)×(−4)=4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-count-sketch-signs",
+    "also": [],
+    "prerequisites": [
+      "count-min-sketch"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming",
+      "streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

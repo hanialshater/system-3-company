@@ -1,0 +1,99 @@
+{
+  "slug": "ai-hnsw-navigable-graph",
+  "title": "Test hnsw navigable graph",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "hnsw-navigable-graph",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "retrieval-top-k",
+      "greedy-failure"
+    ],
+    "doesNotKnow": [
+      "A0,B3,C6,D9,E10; query7. Upper AD; base AB,BD,DE,EC. Entry A→D. Search keeps ef best and can stop at worse frontier. Does ef1 guarantee nearest C?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the declared hnsw navigable graph model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-hnsw-navigable-graph.c1",
+      "text": "Test hnsw navigable graph Compare a declared mechanism with its changed case. A0,B3,C6,D9,E10; query7. Upper AD; base AB,BD,DE,EC. Entry A→D. Search keeps ef best and can stop at worse frontier. Does ef1 guarantee nearest C? Options: No; Yes",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §17; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hnsw-navigable-graph.c2",
+      "text": "The bounded ef1 search returned D after four distinct distance checks. With ef2, E remained available, exposing C after five checks. Exact scanning confirmed C. The supplied graph demonstrates a search component, not random index construction or a logarithmic performance claim.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §17; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hnsw-navigable-graph.c3",
+      "text": "{\"question\": \"Why can retaining a worse intermediate candidate expose a better one?\", \"options\": [\"It can expose C through E\", \"It changes C’s coordinate\"], \"answer\": 0, \"why\": \"With ef2, E remains in the search and its neighbour C becomes available; coordinates stay fixed.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §17; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hnsw-navigable-graph.c4",
+      "text": "hnsw-navigable-graph\n\n**Identity / target / source:** `ai:hnsw-navigable-graph` → `ai-hnsw-navigable-graph` → `src/demos/ai/ai-hnsw-navigable-graph`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/194`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#17-hnsw-navigable-graph`. **Packet:** S1. **Level / prerequisites:** core; `ai:retrieval-top-k`, `cs:greedy-failure`.\n\n**Nearest / distinct payoff:** ann-recall-speed compares an approximate result budget; this executes actual hierarchical greedy entry and bounded best-first base search, including an ef1 local miss.\n\n**Computed primary model:** 1D stored pointsA0,B3,C6,D9,E10, query7, exactnearestC distance1. Upper layer edgeA–D; entryA greedy descends toD distance2. Base undirected edgesA–B,B–D,D–E,E–C. SEARCH-LAYER candidate/result rule: pop closest candidate, stop if itsdistance>worst retained result, enqueue unseen neighbour if closer than worst or result count<ef; trim toef. ef1 returnsD, missingC behind worseE; ef2 keepsE as second candidate, expands toC and returnsC.\n\n**Countercase / boundary:** Cache distance by node across layers: ef1 evaluates distinctA,D,B,E =4; ef2 additionallyC =5. This small supplied hierarchy was not built with random HNSW insertion; the actual base-search component is demonstrated without logarithmic complexity or universal recall claims. Exact exhaustive reference scans all5points.\n\n**Prediction / transfer recall:** Predict whether ef1 must find the exact nearest despite upper-layer progress; recall allowing a worse intermediate candidate can escape the local neighbour minimum.\n\n**Intervention / retained witness:** Upper hop/Base step computes frontier/result sets and node distances; changeef1/2 retains missedD and foundC traces plus exact evaluation counts. Distances are from coordinates, not assigned score labels.\n\n**Source obligation:** [Malkov–Yashunin original PDF](https://arxiv.org/pdf/1603.09320), opened2026-10-19, Algorithm2 SEARCH-LAYER PDFp4 and Algorithm5 query PDFp5. Exact graph/cache and stable distance ties are local fixtures; no index-construction or performance reproduction claim.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: ef1/ef2/Exact; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §17; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can retaining a worse intermediate candidate expose a better one?",
+    "options": [
+      "It can expose C through E",
+      "It changes C’s coordinate"
+    ],
+    "answer": 0,
+    "why": "With ef2, E remains in the search and its neighbour C becomes available; coordinates stay fixed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:hnsw-navigable-graph",
+    "also": [],
+    "prerequisites": [
+      "ai:retrieval-top-k",
+      "cs:greedy-failure"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

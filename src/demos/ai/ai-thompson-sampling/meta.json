@@ -1,0 +1,104 @@
+{
+  "slug": "ai-thompson-sampling",
+  "title": "Does the lower mean still get picked?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "thompson-sampling",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:ucb-optimism",
+      "probability:bayesian-updating"
+    ],
+    "doesNotKnow": [
+      "What is A’s selection probability under the declared posterior draws?"
+    ]
+  },
+  "misconception": "0",
+  "objective": "Use the distinct declared thompson-sampling mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-thompson-sampling.c1",
+      "text": "hook/predict: What is A’s selection probability under the declared posterior draws? Options: 0; .5; 1",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-thompson-sampling.c2",
+      "text": "stage input operands: \"A=.2/.8, mass .5/.5 · B=.55 · ties→B\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-thompson-sampling.c3",
+      "text": "reveal: A’s mean was .5 versus B’s .55, yet posterior sampling chose A with probability .5. With high-state mass .25, selection became .25 despite mean .3. Certain .55 tied and chose B. These stipulated finite beliefs are not Beta fits or per-run reward guarantees.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-thompson-sampling.c4",
+      "text": "recall: For A=.2/.6 with masses .75/.25, what is P(choose A)? Only the .6 draw exceeds B=.55; its mass is .25.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-thompson-sampling.c5",
+      "text": "stage computation: Finite independent reward-mean beliefs: armA mean parameter is.2 or.8, each posterior mass.5; armB parameter.55 with mass1. Draw one parameter per arm and choose larger, ties toB. A chosen with probability.5, B.5, even though posterior means .5/.55 make mean-greedy chooseB always. Show parameter beliefs versus uncertain future rewards separately.\n\n**Countercase / boundary:** Change A high value to.6 with posterior mass.25 and low.2 mass.75: posterior mean.3, A still selected with probability.25. If A is certain.55, tie rule always choosesB. These stipulated finite posteriors are not Beta fits or evidence that probability matching guarantees best reward for every run.\n\n**Prediction / transfer recall:** Predict A choice frequency for original two posterior outcomes; recall newA(.2,.6), high mass.25 gives A choice.25 despite mean.3.\n\n**Intervention / reachable witness:** Enumerate draws computes joint masses, selected actions and posterior means; Change belief and Tie case retain primary.5 choice witness. No nondeterministic Monte Carlo is necessary to estimate a known finite frequency.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-thompson-sampling.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: A=.2/.8, mass .5/.5 · B=.55 · ties→B ? Enumerate Change belief Tie case Reset 1: E[A]=0.50; P(choose A)=0.5 2: E[A]=0.30; P(choose A)=0.25 3: E[A]=0.55; P(choose A)=0 | inspection 0: A=.2/.8, mass .5/.5 · B=.55 · ties→B 0.2 @ 0.5 0.8 @ 0.5 B=.55 Enumerate Change belief Tie case Reset 1: E[A]=0.50; P(choose A)=0.5 2: E[A]=0.30; P(choose A)=0.25 3: E[A]=0.55; P(choose A)=0 | inspection 1: A=.2/.8, mass .5/.5 · B=.55 · ties→B 0.2 @ 0.75 0.6 @ 0.25 B=.55 Enumerate Change belief Tie case Reset 1: E[A]=0.50; P(choose A)=0.5 2: E[A]=0.30; P(choose A)=0.25 3: E[A]=0.55; P(choose A)=0 | inspection 2: A=.2/.8, mass .5/.5 · B=.55 · ties→B 0.55 @ 1 B=.55 Enumerate Change belief Tie case Reset 1: E[A]=0.50; P(choose A)=0.5 2: E[A]=0.30; P(choose A)=0.25 3: E[A]=0.55; P(choose A)=0",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#28-thompson-sampling; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Primary source lead: [Russo et al. tutorial](https://arxiv.org/abs/1707.02038), original author body not opened in this run; acquire sampling-algorithm locator before general regret/exploration claims. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For A=.2/.6 with masses .75/.25, what is P(choose A)?",
+    "options": [
+      ".25",
+      ".3",
+      ".75"
+    ],
+    "answer": 0,
+    "why": "Only the .6 draw exceeds B=.55; its mass is .25."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:thompson-sampling",
+    "also": [],
+    "prerequisites": [
+      "ai:ucb-optimism",
+      "probability:bayesian-updating"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "ai-jailbreak-surface-refusal",
+  "title": "Test jailbreak surface refusal",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "jailbreak-surface-refusal",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "shortcut-learning"
+    ],
+    "doesNotKnow": [
+      "Literal filter blocks “export secret”. Requests: “export secret” (CopyPrivate); “place the confidential number in the outbox” (CopyPrivate); “do not export secret” (Noop). Does the indirect request pass?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute the declared jailbreak surface refusal model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-jailbreak-surface-refusal.c1",
+      "text": "Test jailbreak surface refusal Compare a declared mechanism with its changed case. Literal filter blocks “export secret”. Requests: “export secret” (CopyPrivate); “place the confidential number in the outbox” (CopyPrivate); “do not export secret” (Noop). Does the indirect request pass? Options: Yes; No",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §19; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-jailbreak-surface-refusal.c2",
+      "text": "Literal matching blocked the direct request, passed the same-intent indirect request, and overblocked Noop. The intent-enum control blocked both copies and allowed Noop. This is a declared local filter counterexample, not an NLP classifier, real jailbreak evaluation or comprehensive protection.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §19; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-jailbreak-surface-refusal.c3",
+      "text": "{\"question\": \"Can a negated matching phrase trigger this literal block?\", \"options\": [\"Yes: the substring still matches\", \"No: negation changes the filter\"], \"answer\": 0, \"why\": \"The literal rule ignores intent and negation; supplied intent is used only by the control.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §19; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-jailbreak-surface-refusal.c4",
+      "text": "jailbreak-surface-refusal\n\n**Identity / target / source:** `ai:jailbreak-surface-refusal` → `ai-jailbreak-surface-refusal` → `src/demos/ai/ai-jailbreak-surface-refusal`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/202`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#19-jailbreak-surface-refusal`. **Packet:** S1. **Level / prerequisites:** core; `ai:shortcut-learning`.\n\n**Nearest / distinct payoff:** prompt-injection traces untrusted instruction promotion; this contrasts literal surface-pattern refusal with declared intent on equivalent harmless toy requests and an overblock.\n\n**Computed primary model:** Three local request records: text “export secret”, intentCopyPrivate; “place the confidential number in the outbox”, sameintent; “do not export secret”, intentNoop. Literal filter blocks text containing “export secret”. Thus directCopyPrivate blocked, equivalent indirectCopyPrivate passes, benignNoop also blocked. PassingCopyPrivate placesfixture42 only in a mock local outbox.\n\n**Countercase / boundary:** Intent-aware control blocks both CopyPrivate records and allowsNoop. Intent is a supplied finite enum, not an NLP semantic classifier. This is a pattern-filter counterexample, not a real jailbreak attack, safety-model evaluation or comprehensive protection claim; nothing is sent externally.\n\n**Prediction / transfer recall:** Predict whether paraphrased same-intent request passes the literal filter; recall a quoted/negated matching phrase can be rejected despite benign declared intent.\n\n**Intervention / retained witness:** Choose request computes exact substring match/intent/decision/effect; Change filter recomputes all3cases, retaining indirect bypass and benign overblock. Raw text stays visible before commitment, no external payload.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: Direct/Indirect/Intent; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §19; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can a negated matching phrase trigger this literal block?",
+    "options": [
+      "Yes: the substring still matches",
+      "No: negation changes the filter"
+    ],
+    "answer": 0,
+    "why": "The literal rule ignores intent and negation; supplied intent is used only by the control."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:jailbreak-surface-refusal",
+    "also": [],
+    "prerequisites": [
+      "ai:shortcut-learning"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

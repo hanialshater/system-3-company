@@ -1,0 +1,95 @@
+{
+  "slug": "ai-hidden-markov",
+  "title": "Two umbrellas, one hidden state",
+  "hook": "Predict a transition before updating from an observation.",
+  "domain": "ai",
+  "concept": "hidden-markov",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bayesian-updating"
+    ],
+    "doesNotKnow": [
+      "Dry/Wet prior=.5/.5; stay=.8. Umbrella likelihood=.1/.9. After two umbrellas, is Wet probability above .9?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute the hidden markov finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-hidden-markov.c1",
+      "text": "Two umbrellas, one hidden state Predict a transition before updating from an observation. Dry/Wet prior=.5/.5; stay=.8. Umbrella likelihood=.1/.9. After two umbrellas, is Wet probability above .9? Options: Yes; No",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §5; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hidden-markov.c2",
+      "text": "The first umbrella gave Wet .9. Transition prediction reduced it to .74; another umbrella raised it to 333/346. Omitting that observation left .74. Equal .5/.5 emission likelihoods also left .74. Hidden-state prediction and observation updates are separate operations.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §5; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hidden-markov.c3",
+      "text": "Does an uninformative second observation change the predicted .74 Wet probability? Options: No, equal likelihoods cancel on normalization; Yes, it becomes .5; Yes, it returns to .9 Multiplying both predicted masses by .5 and normalizing preserves their ratio, leaving Wet .74.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §5; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hidden-markov.c4",
+      "text": "Original schematic labels, including neutral and every changed case: stay=.8 · first-L=.1/.9 .1/.9 predict update ? → ? | stay=.8 · first-L=.1/.9 .1/.9 predict L=0.1/0.9 0.74 → 0.962 | stay=.8 · first-L=.1/.9 .1/.9 predict no-obs 0.74 → 0.74 | stay=.8 · first-L=.1/.9 .1/.9 predict L=0.5/0.5 0.74 → 0.74. Retained locally computed witnesses: Umbrella: Wet=0.962 | None: Wet=0.74 | Flat: Wet=0.74. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §5; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hidden-markov.c5",
+      "text": " 5. hidden-markov\n\nTarget / packet: ai-hidden-markov · P3. Prerequisites: probability:bayesian-updating.\n\nNearest / distinct payoff: bayesian-posterior-lines → ai-bayesian-posterior-lines. Posterior line inference lacks a changing hidden state; this alternates transition prediction and emission-based filtering.\n\nFinite primary model: Hidden states Dry/Wet initial[.5,.5], transitions stay.8/switch.2, observation umbrella likelihood Dry.1/Wet.9. First umbrella posterior [.1,.9]; next predictive Wet=.1.2+.9.8=.74; another umbrella posterior Wet=.666/(.666+.026)=333/346.\n\nCountercase and mathematical boundary: No second observation leaves predictive Wet.74. With uninformative emission likelihood.5 for both, observation does not change the prediction. Distinguish hidden-state filtering from observed-state transitions.\n\nPredict and recall transfer: Predict whether two umbrellas increase Wet belief beyond .9; recall no-observation versus uninformative-observation equality.\n\nRequired observable evidence: Show prediction then emission-update steps and normalize visible masses, with only 2 states.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §5; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does an uninformative second observation change the predicted .74 Wet probability?",
+    "options": [
+      "No, equal likelihoods cancel on normalization",
+      "Yes, it becomes .5",
+      "Yes, it returns to .9"
+    ],
+    "answer": 0,
+    "why": "Multiplying both predicted masses by .5 and normalizing preserves their ratio, leaving Wet .74."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:hidden-markov",
+    "also": [],
+    "prerequisites": [
+      "probability:bayesian-updating"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "ai-ppo-clipping",
+  "title": "Which branch survives?",
+  "hook": "Trace both signs through one clipped objective term.",
+  "domain": "ai",
+  "concept": "ppo-clipping",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and arithmetic with the declared inputs."
+    ],
+    "doesNotKnow": [
+      "Single sampled PPO surrogate, p(old)=.5 and ratios in [0,2]. Negative adverse tail remains uncapped; zero advantage contributes zero."
+    ]
+  },
+  "misconception": "Single sampled PPO surrogate, p(old)=.5 and ratios in [0,2]. Negative adverse tail remains uncapped; zero advantage contributes zero.",
+  "objective": "Compute and contrast the finite ppo clipping cases, retaining the stated model boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ppo-clipping.c1",
+      "text": "export function term(r:number,a:number){const clipped=Math.max(.8,Math.min(1.2,r)),raw=r*a,bounded=clipped*a;return {a,raw,bounded,value:Math.min(raw,bounded)};}\nexport function run(mode:number){const ratio=mode===1?.6:1.4;return {ratio,pnew:.5*ratio,rows:[term(ratio,mode===2?0:2),term(ratio,mode===2?0:-2)]};}\n\n<text x=\"145\" y=\"17\" textAnchor=\"middle\">r={r.ratio} · p(old)=.5 · p(new)={r.pnew}</text><text x=\"25\" y=\"41\">A</text><text x=\"90\" y=\"41\">rA</text><text x=\"153\" y=\"41\">clip·A</text><text x=\"236\" y=\"41\">min</text>{r.rows.map((v,i)=><g key={i}><text x=\"25\" y={73+i*36}>{v.a}</text><text x=\"90\" y={73+i*36}>{show(v.raw)}</text><text x=\"153\" y={73+i*36}>{show(v.bounded)}</text><path d={`M212 ${67+i*36} h17`} className={s.line}/><text x=\"236\" y={73+i*36}>{show(v.value)}</text></g>)}\nr=1.4; p(old)=.5; A=±2; clip=[.8,1.2]; objective=min(rA,clip(r)A).",
+      "support": "derivation",
+      "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
+      "status": "unverified",
+      "address": "model.ts; Demo.tsx Picture: all finite inputs, calculations, dynamic numeric outputs, encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ppo-clipping.c2",
+      "text": "Which branch survives?; Trace both signs through one clipped objective term.; {\"question\": \"For A=2, r=1.4, clip(r)=1.2, take min(rA, clip(r)A). What is the objective?\", \"options\": [\"2.0\", \"2.4\", \"2.8\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-ppo-clipping.c3",
+      "text": "Your ratio 1.4 gave 2.4 for positive advantage but −2.8 for negative advantage. At ratio .6 the negative case selected −1.6. The minimum selects different branches by sign; clipping this sampled surrogate term does not clamp probabilities or impose a hard KL bound.\n`r=${r.ratio}: min(+2)=${f(r.rows[0].value)}, min(−2)=${f(r.rows[1].value)}`",
+      "support": "derivation",
+      "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained case evidence"
+    },
+    {
+      "id": "ai.ai-ppo-clipping.c4",
+      "text": "{\"question\": \"At r=.6 and A=−2, raw term is −1.2 and clipped term −1.6. What is selected?\", \"options\": [\"−1.2\", \"−1.6\", \"0\"], \"answer\": 1, \"why\": \"The objective is the minimum: −1.6, because multiplying the lower clip boundary by negative advantage reverses the ordering.\"}",
+      "support": "derivation",
+      "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-ppo-clipping.c5",
+      "text": "Single sampled PPO surrogate, p(old)=.5 and ratios in [0,2]. Negative adverse tail remains uncapped; zero advantage contributes zero. Controls: r=1.4, r=.6, A=0, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "support": "convention",
+      "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, locked inputs, retained witness, exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "At r=.6 and A=−2, raw term is −1.2 and clipped term −1.6. What is selected?",
+    "options": [
+      "−1.2",
+      "−1.6",
+      "0"
+    ],
+    "answer": 1,
+    "why": "The objective is the minimum: −1.6, because multiplying the lower clip boundary by negative advantage reverses the ordering."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:ppo-clipping",
+    "also": [],
+    "prerequisites": [
+      "ai:policy-gradient"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

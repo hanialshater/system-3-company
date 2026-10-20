@@ -1,0 +1,95 @@
+{
+  "slug": "ai-aleatoric-vs-epistemic",
+  "title": "Does knowing the slope remove noise?",
+  "hook": "Separate parameter spread from noise of one new outcome.",
+  "domain": "ai",
+  "concept": "aleatoric-vs-epistemic",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bayesian-posterior-lines"
+    ],
+    "doesNotKnow": [
+      "At x=2, slope 0/1 has weights .2/.8; independent noise is ±1 equally. Does knowing the slope remove all outcome variance?"
+    ]
+  },
+  "misconception": "Yes, all variance disappears",
+  "objective": "Compute the aleatoric vs epistemic finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-aleatoric-vs-epistemic.c1",
+      "text": "Does knowing the slope remove noise? Separate parameter spread from noise of one new outcome. At x=2, slope 0/1 has weights .2/.8; independent noise is ±1 equally. Does knowing the slope remove all outcome variance? Options: No, noise remains; Yes, all variance disappears",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §2; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-aleatoric-vs-epistemic.c2",
+      "text": "At x=2, uncertain slopes contributed .64 variance and independent ±1 noise contributed 1: total 1.64. Fixing slope 1 removed parameter spread but left outcome variance 1. At x=0 parameter spread vanished too. Repeated-measurement averages are a different target.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §2; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-aleatoric-vs-epistemic.c3",
+      "text": "At x=3 with the original slope weights, what is new-outcome variance? Options: 2.44: parameter 1.44 plus noise 1; 1.44: omit noise; 0: slopes are known Slope variance scales to 1.44 at x=3; independent noise adds 1, giving 2.44.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §2; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-aleatoric-vs-epistemic.c4",
+      "text": "Original schematic labels, including neutral and every changed case: slopes=0/1 · p=.2/.8 · noise=±1 latent=? · noise=1 new-outcome v=? | slopes=0/1 · p=0.2/0.8 · noise=±1 latent=0.64 · noise=1 new-outcome v=1.64 | slopes=0/1 · p=0/1 · noise=±1 latent=0 · noise=1 new-outcome v=1 | slopes=0/1 · p=0.2/0.8 · noise=±1 latent=0 · noise=1 new-outcome v=1. Retained locally computed witnesses: x2: v0.64+1=1.64 | Known: v0+1=1 | x0: v0+1=1. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §2; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-aleatoric-vs-epistemic.c5",
+      "text": " 2. aleatoric-vs-epistemic\n\nTarget / packet: ai-aleatoric-vs-epistemic · P1. Prerequisites: ai:bayesian-posterior-lines.\n\nNearest / distinct payoff: bayesian-posterior-lines → ai-bayesian-posterior-lines. Posterior lines alone vary parameters; here independent outcome noise persists after parameter uncertainty is removed.\n\nFinite primary model: Use slopes 0/1 with posterior [.2,.8] and independent observation noise±1 equally. At x=2 slope uncertainty variance=.64 plus noise variance 1 gives observation variance 1.64. Fix slope 1 with certainty and variance becomes 1.\n\nCountercase and mathematical boundary: At x=0 slope contribution 0 but noise remains 1. This is a stipulated additive model: averaging repeated measurements can reduce noise of the mean, even though noise of each new outcome remains 1.\n\nPredict and recall transfer: Predict which variance survives knowing the slope; recall x=3 parameter contribution 1.44 and total 2.44.\n\nRequired observable evidence: Separate uncertainty of latent mean from spread of a new observation; never use one undifferentiated confidence badge.\n\nSource obligation: [Rasmussen–Williams author textbook, chapter2](https://gaussianprocess.org/gpml/chapters/RW2.pdf), acquired body, §2.1 and eq2.5 posterior normalization. This finite two-slope likelihood is locally declared, not the book Gaussian example; latent/observation uncertainty decomposition follows the explicit independent local construction.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §2; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At x=3 with the original slope weights, what is new-outcome variance?",
+    "options": [
+      "2.44: parameter 1.44 plus noise 1",
+      "1.44: omit noise",
+      "0: slopes are known"
+    ],
+    "answer": 0,
+    "why": "Slope variance scales to 1.44 at x=3; independent noise adds 1, giving 2.44."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:aleatoric-vs-epistemic",
+    "also": [],
+    "prerequisites": [
+      "ai:bayesian-posterior-lines"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

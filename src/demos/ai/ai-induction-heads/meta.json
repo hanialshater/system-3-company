@@ -1,0 +1,109 @@
+{
+  "slug": "ai-induction-heads",
+  "title": "Which token does the circuit copy?",
+  "hook": "Build shifted keys before matching.",
+  "domain": "ai",
+  "concept": "induction-heads",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:attention-weights",
+      "ai:in-context-learning"
+    ],
+    "doesNotKnow": [
+      "Sequence A B X A. At the final A, match keys equal to the previous token of each historical value. What is copied?"
+    ]
+  },
+  "misconception": "A",
+  "objective": "Compute this finite induction-heads model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-induction-heads.c1",
+      "text": "Which token does the circuit copy? Build shifted keys before matching. Sequence A B X A. At the final A, match keys equal to the previous token of each historical value. What is copied? Options: B; A",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §28; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-induction-heads.c2",
+      "text": "The circuit matched a shifted A key and copied its following B value, rather than copying A itself. Changing that successor changed the output; missing keys produced Unknown. Conflicting successors used the declared recency rule. This supplied causal circuit is not learned softmax attention.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §28; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-induction-heads.c3",
+      "text": "{'question': 'For A B A C A with latest-match ties, what is copied?', 'options': ['C', 'B'], 'answer': 0, 'why': 'The later historical A key is paired with C.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §28; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-induction-heads.c4",
+      "text": "Addressed visible stage operands and labels: shift keyj=token(j−1); valuej=token(j) | query=last token · historical j<last | match latest key; no match→Unknown. Controls: ABXA, ACXA, ABXY, ABACA, Reset. Changed computed rows: tokens=ABXA; query=A / shifted j:key/value 1:A/B 2:B/X / matches=1; latest=1 / copied=B; historical only | tokens=ACXA; query=A / shifted j:key/value 1:A/C 2:C/X / matches=1; latest=1 / copied=C; historical only | tokens=ABXY; query=Y / shifted j:key/value 1:A/B 2:B/X / matches=none; latest=none / copied=Unknown; historical only | tokens=ABACA; query=A / shifted j:key/value 1:A/B 2:B/A 3:A/C / matches=1/3; latest=3 / copied=C; historical only. Retained computed witnesses: ABXA→B | ACXA→C | ABXY→Unknown | ABACA→C. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst tokens=[['A','B','X','A'],['A','C','X','A'],['A','B','X','Y'],['A','B','A','C','A']][mode],query=tokens.at(-1)!,rows=[];for(let j=1;j<tokens.length-1;j++)rows.push({j,key:tokens[j-1],value:tokens[j]});const matches=rows.filter(r=>r.key===query),selected=matches.at(-1),out=selected?.value??'Unknown';return{values:[selected?.j??-1,matches.length],rows:[`tokens=${tokens.join('')}; query=${query}`,`shifted j:key/value ${rows.map(r=>`${r.j}:${r.key}/${r.value}`).join(' ')}`,`matches=${matches.map(r=>r.j).join('/')||'none'}; latest=${selected?.j??'none'}`,`copied=${out}; historical only`],receipt:`${tokens.join('')}→${out}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §28; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-induction-heads.c5",
+      "text": "induction-heads\n\n**Identity / target / source:** `ai:induction-heads` → `ai-induction-heads` → `src/demos/ai/ai-induction-heads`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/159`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#28-induction-heads`. **Packet:** I2. **Level / prerequisites:** stretch; `ai:attention-weights`, `ai:in-context-learning`.\n\n**Nearest / distinct payoff:** attention-weights combines values by weights; this computes an explicit shifted-key match-and-copy circuit on a repeated token pattern.\n\n**Computed primary model:** Sequence[A,B,X,A], final queryA. A previous-token stage creates at historical value positionj≥1 the keytoken[j−1] and valuetoken[j]. A hard one-hot match stage selects the latest historicalj<finalposition whose key equals current query. Atj1 keyA/valueB, so circuit predictsB. It is not direct copying of the earlierA token itself.\n\n**Countercase / boundary:** Change sequence[A,C,X,A]: matched value becomesC. Sequence[A,B,X,Y] has no matching historical keyY and yieldsUnknown. Conflicting successors[A,B,A,C,A] choose latestC under explicit tie rule. This supplied causal circuit is an induction-head analogue, not learned softmax attention or an explanation of every form of in-context learning.\n\n**Prediction / transfer recall:** Predict copied token from original shifted key/value table; recall why a broken match must not hallucinate a learned successor and why the fixed recency rule matters.\n\n**Intervention / retained witness:** Build shifted keys then Match/copy computes attention selection and copied token; Change successor/No match/Conflicting matches expose the exact boundaries with originalB retained. Show both causal stages and historical indices, not an answer string toggle.\n\n**Source obligation:** [Olsson et al. original PDF](https://arxiv.org/pdf/2209.11895), opened2026-10-19, induction pattern [A][B]…[A]→[B] and two-head mechanism discussion. The hard shifted-key circuit and tie rule are local declared simplifications; no pretrained-head or broad ICL causal claim.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §28; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For A B A C A with latest-match ties, what is copied?",
+    "options": [
+      "C",
+      "B"
+    ],
+    "answer": 0,
+    "why": "The later historical A key is paired with C."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:induction-heads",
+    "also": [],
+    "prerequisites": [
+      "ai:attention-weights",
+      "ai:in-context-learning"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,3 @@
+// Declared finite construction; pure operations, no training or external service.
+export function evaluate(p: number) { const labels = [1, 1, 0], factors = labels.map(y => y ? p : 1 - p), product = factors.reduce((a, b) => a * b, 1); return { p, factors, product, nll: product === 0 ? Infinity : -Math.log(product) }; }
+export function compute(mode: number) { const probabilities = mode === 1 ? [2 / 3] : mode === 2 ? [1] : [.8, .5], mean = mode === 3, rows = probabilities.map(p => { const r = evaluate(p); return { ...r, loss: r.nll / (mean ? 3 : 1) }; }); return { rows, mean, snapshot: rows.map(r => `${r.p === 2 / 3 ? '⅔' : r.p}: ${r.p === 2 / 3 ? '4/27' : r.product.toFixed(3)}/${Number.isFinite(r.loss) ? r.loss.toFixed(3) : '∞'}`).join(' · ') + (mean ? ' /3' : ' Σ') }; }

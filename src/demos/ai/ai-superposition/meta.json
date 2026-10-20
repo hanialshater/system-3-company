@@ -1,0 +1,109 @@
+{
+  "slug": "ai-superposition",
+  "title": "When do overlapping directions cancel?",
+  "hook": "Compute amplitudes, interference and reconstruction.",
+  "domain": "ai",
+  "concept": "superposition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:polysemantic-neurons",
+      "ai:cosine-similarity"
+    ],
+    "doesNotKnow": [
+      "v1=(1,0), v2=(−.5,√3/2), v3=(−.5,−√3/2). Can all three active features cancel in 2D?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute this finite superposition model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-superposition.c1",
+      "text": "When do overlapping directions cancel? Compute amplitudes, interference and reconstruction. v1=(1,0), v2=(−.5,√3/2), v3=(−.5,−√3/2). Can all three active features cancel in 2D? Options: Yes; No",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §26; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-superposition.c2",
+      "text": "Singletons decoded exactly under the supplied directions. Two active features interfered, reducing recovered amplitudes to .5 each. Three canceled to zero, indistinguishable from none. This fixed geometry demonstrates interference, not a learned phase transition or unique semantic decomposition.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §26; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-superposition.c3",
+      "text": "{'question': 'Does binary detection of two active features imply their amplitudes remain1?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'The dot readouts recover .5/.5/0, so support and amplitude accuracy differ.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §26; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-superposition.c4",
+      "text": "Addressed visible stage operands and labels: z=Σai·vi · readi=ReLU(vi·z) | three directions 120° apart | active amplitudes1 · inactive0. Controls: One, Two, Three, Reset. Changed computed rows: input amplitudes=1/0/0 / Σa·v=(1,0) / ReLU dot readout=1/0/0 / amplitude SSE=0 · 3 directions in2D | input amplitudes=1/1/0 / Σa·v=(0.5,0.866) / ReLU dot readout=0.5/0.5/0 / amplitude SSE=0.5 · 3 directions in2D | input amplitudes=1/1/1 / Σa·v=(0,0) / ReLU dot readout=0/0/0 / amplitude SSE=3 · 3 directions in2D. Retained computed witnesses: 1 active: read=1/0/0 | 2 active: read=0.5/0.5/0 | 3 active: read=0/0/0. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst V=[[1,0],[-.5,Math.sqrt(3)/2],[-.5,-Math.sqrt(3)/2]],a=[1,mode>=1?1:0,mode>=2?1:0],z=[0,1].map(j=>sum(a.map((v,i)=>v*V[i][j]))),read=V.map(v=>Math.max(0,dot(v,z))),error=sum(a.map((v,i)=>(v-read[i])**2));return{values:[...z,...read,error],rows:[`input amplitudes=${a.join('/')}`,`Σa·v=(${z.map(f).join(',')})`,`ReLU dot readout=${read.map(f).join('/')}`,`amplitude SSE=${f(error)} · 3 directions in2D`],receipt:`${mode+1} active: read=${read.map(f).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §26; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-superposition.c5",
+      "text": "superposition\n\n**Identity / target / source:** `ai:superposition` → `ai-superposition` → `src/demos/ai/ai-superposition`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/155`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#26-superposition`. **Packet:** I2. **Level / prerequisites:** stretch; `ai:polysemantic-neurons`, `ai:cosine-similarity`.\n\n**Nearest / distinct payoff:** polysemantic-neurons gives one ambiguous coordinate; this embeds three sparse feature directions in2D and computes recoverability/interference as co-occurrence changes.\n\n**Computed primary model:** Three unit vectorsvA=(1,0),vB=(−.5,sqrt3/2),vC=(−.5,−sqrt3/2). Encode nonnegative activationsa byz=sum a_i*v_i; readout_i=ReLU(v_i dotz). Single activeA amplitude1 decodes[1,0,0] exactly. CoactiveA+B givesz=(.5,sqrt3/2), raw dots[.5,.5,−1], decoded[.5,.5,0], attenuating both true amplitudes1.\n\n**Countercase / boundary:** All three active sum toz0 and decode[0,0,0], indistinguishable from no active features. Sparsity enables this particular singleton recovery but arbitrary dense patterns are not uniquely recoverable. This supplied geometry is not a learned phase transition, unique semantic decomposition or full reconstruction guarantee.\n\n**Prediction / transfer recall:** Predict whether three coactive directions remain distinct in2D; recall every singleton decodes exactly while a pair’s recovered amplitudes need not stay1.\n\n**Intervention / retained witness:** Activate one/two/three features computes actual vector sum, dot readouts and reconstruction error. Retain singleton recovery and dense cancellation together; no merely decorative direction diagram. Keep amplitude error distinct from binary support detection.\n\n**Source obligation:** [Elhage et al. original Toy Models PDF](https://arxiv.org/pdf/2209.10652), opened2026-10-19, “Definitions and Motivation” and toy ReLU embedding/unembedding setup. Only the local constructed activations/directions below are admitted; the paper’s trained phase transitions, real-model prevalence and semantic feature identities are not reproduced.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §26; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does binary detection of two active features imply their amplitudes remain1?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "The dot readouts recover .5/.5/0, so support and amplitude accuracy differ."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:superposition",
+    "also": [],
+    "prerequisites": [
+      "ai:polysemantic-neurons",
+      "ai:cosine-similarity"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

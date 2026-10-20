@@ -1,0 +1,8 @@
+.root{display:grid;gap:4px;width:100%;color:var(--fg)}.deck{display:grid;gap:0;font-size:14px;line-height:1.2;font-variant-numeric:tabular-nums}.column{display:grid;grid-auto-rows:min-content}.reported{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center}.tinyStrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));text-align:center}.comparisonActive{outline:1px solid var(--domain);outline-offset:0}.inspection{font-size:14px;line-height:1.2}.row{display:grid;grid-template-columns:70px 44px 44px 66px 56px;gap:4px;justify-content:space-between;width:100%}.tap{box-sizing:border-box;width:100%;min-width:44px;min-height:44px;padding:4px;font-size:14px;line-height:1.2;white-space:nowrap}.lesson{display:flex;flex-direction:column;flex:1;min-height:0;width:100%}.source{flex:0 1 220px;min-height:0;max-height:35dvh;overflow:auto;border-top:1px solid var(--line);padding:12px;line-height:1.45;overflow-wrap:anywhere}.source h2{font-size:17px;margin:0 0 8px}.source p,.source li{font-size:14px;margin:8px 0}.source a{color:inherit;text-decoration:underline}.close{min-width:44px;min-height:44px;font:inherit;color:var(--fg);background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+
+.lesson :global(.stage){padding:4px}.root,.row{margin:0}.dependency{display:flex;justify-content:space-between;gap:4px;white-space:nowrap}.deck>div,.reported>span,.tinyStrip>span{white-space:nowrap}
+
+/* Ordinary Sources sibling must follow the whole Lesson, including pointer Reveal. */
+.lesson:has(>.source){display:block}
+.lesson:has(>.source)>:global(.lesson){min-height:min-content}
+.lesson:has(>.source)>:global(.lesson)>:global(.stage){flex:none}

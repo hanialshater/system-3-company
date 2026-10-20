@@ -1,0 +1,103 @@
+{
+  "slug": "ai-cnn-data-efficiency",
+  "title": "When does sharing help?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "cnn-data-efficiency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:convolution-weight-sharing",
+      "ai:overfitting"
+    ],
+    "doesNotKnow": [
+      "After fitting only position 0, what does the tied predictor give for position-1 e₁?"
+    ]
+  },
+  "misconception": "0",
+  "objective": "Use the distinct declared cnn-data-efficiency mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-cnn-data-efficiency.c1",
+      "text": "hook/predict: After fitting only position 0, what does the tied predictor give for position-1 e₁? Options: 1; 0; −1",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-cnn-data-efficiency.c2",
+      "text": "stage input operands: \"p₀:e₁→1,e₂→−1 · heldout p₁:e₁→1 · minimum-norm fits\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cnn-data-efficiency.c3",
+      "text": "reveal: On the invariant heldout target, tied weights predicted 1; unseen untied weights predicted 0. Adding the position-dependent label reversed the fit advantage: training SSE became 2 versus 0. Target invariance matters; fewer parameters alone establish no real sample-complexity guarantee.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cnn-data-efficiency.c4",
+      "text": "recall: If the target changes sign by position, must tying remain better? The added position-dependent sample creates incompatible tied coefficients.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cnn-data-efficiency.c5",
+      "text": "stage computation: Two positions each accept a length2 window. Training only at position0: e1→1, e2→−1. Minimum-Euclidean-norm least squares gives tied w=[1,−1] (2parameters) and untied w0=[1,−1], w1=[0,0] (4parameters). Heldout position1 e1 with declared position-invariant target1 yields predictions1 versus0, squared errors0 versus1.\n\n**Countercase / boundary:** Add labelled example position1 e1→−1, a position-dependent rule. Refit all three samples: tied w=[0,−1] has SSE2; untied w0=[1,−1],w1=[−1,0] has SSE0. The target invariance matters; parameter count alone does not prove real sample complexity or universal superiority.\n\n**Prediction / transfer recall:** Predict the unseen-position output under the tied fit; recall a new task whose labels change by position can favour untied weights.\n\n**Intervention / reachable witness:** Fit both recomputes coefficient estimates and heldout outputs; Break invariance adds the exact third sample and refits both, retaining the initial comparison. Distinguish train SSE and heldout error explicitly.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-cnn-data-efficiency.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: p₀:e₁→1,e₂→−1 · heldout p₁:e₁→1 · minimum-norm fits ? Fit both Break rule Heldout Reset 1: heldout e1: 1/0; error 0/1 2: train SSE 2/0 3: heldout e2: -1/0; error 0/1 | inspection 0: p₀:e₁→1,e₂→−1 · heldout p₁:e₁→1 · minimum-norm fits tied [1,-1] p₀ [1,-1] p₁ [0,0] Fit both Break rule Heldout Reset 1: heldout e1: 1/0; error 0/1 2: train SSE 2/0 3: heldout e2: -1/0; error 0/1 | inspection 1: p₀:e₁→1,e₂→−1 · heldout p₁:e₁→1 · minimum-norm fits tied [0,-1] p₀ [1,-1] p₁ [-1,0] Fit both Break rule Heldout Reset 1: heldout e1: 1/0; error 0/1 2: train SSE 2/0 3: heldout e2: -1/0; error 0/1 | inspection 2: p₀:e₁→1,e₂→−1 · heldout p₁:e₁→1 · minimum-norm fits tied [1,-1] p₀ [1,-1] p₁ [0,0] Fit both Break rule Heldout Reset 1: heldout e1: 1/0; error 0/1 2: train SSE 2/0 3: heldout e2: -1/0; error 0/1",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#9-cnn-data-efficiency; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If the target changes sign by position, must tying remain better?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "The added position-dependent sample creates incompatible tied coefficients."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:cnn-data-efficiency",
+    "also": [],
+    "prerequisites": [
+      "ai:convolution-weight-sharing",
+      "ai:overfitting"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

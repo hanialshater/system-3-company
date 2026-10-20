@@ -1,0 +1,105 @@
+{
+  "slug": "ai-agent-cost-growth",
+  "title": "The history comes back",
+  "hook": "Sum a declared per-turn token ledger.",
+  "domain": "ai",
+  "concept": "agent-cost-growth",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The declared prerequisite concepts and finite arithmetic."
+    ],
+    "doesNotKnow": [
+      "With stateless10-input turns, T6 inputs60 instead. Ignore caching discounts and prices; tokenize by declared counts, not characters or dollars."
+    ]
+  },
+  "misconception": "With stateless10-input turns, T6 inputs60 instead. Ignore caching discounts and prices; tokenize by declared counts, not characters or dollars.",
+  "objective": "Compute and contrast the finite agent cost growth cases while preserving the declared boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-agent-cost-growth.c1",
+      "text": "export function ledger(turns:number,stateless=false){const rows=Array.from({length:turns},(_,i)=>stateless?10:10*(i+1)+2*i);return {rows,total:rows.reduce((a,b)=>a+b,0),outputs:2*turns};} export function run(mode:number){return {...ledger(6,mode===1),three:ledger(3,mode===1).total};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"The history comes back \\u2014 computed finite mechanism\"><text x=\"6\" y=\"18\">{mode===1?'Stateless':'Full history'} · input tokens</text>{r.rows.map((v,i)=><g key={i}><text x={22+i*46} y=\"44\" textAnchor=\"middle\">{i+1}</text><path d={`M${22+i*46} 49 V61`} className={s.line}/><text x={22+i*46} y=\"80\" textAnchor=\"middle\">{v}</text></g>)}<text x=\"140\" y=\"107\" textAnchor=\"middle\">Σ₃={r.three} · Σ₆={r.total}</text></svg>;}\n\nLocked inputs: Each turn adds 10 inputs and 2 outputs. Resend history; compare stateless turns.",
+      "support": "derivation",
+      "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture: exact input, arithmetic and computed encodings",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-cost-growth.c2",
+      "text": "The history comes back; Sum a declared per-turn token ledger.; {\"question\": \"Resent-history inputs are 10,22,34 over three turns. What are total inputs over six turns?\", \"options\": [\"132\", \"240\", \"60\"], \"answer\": 1}",
+      "support": "derivation",
+      "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
+      "status": "unverified",
+      "address": "meta.json title/hook/objective; Demo.tsx predict"
+    },
+    {
+      "id": "ai.ai-agent-cost-growth.c3",
+      "text": "Your six history-bearing turns used 240 input tokens, versus 66 across three turns. Stateless turns instead used 60 across six. Each resent turn included earlier inputs and outputs; summing that growing ledger creates the extra cost. This ignores prices, tokenizer details and cache discounts.\n(mode:number){const r=m.run(mode);return `Inputs: three=${r.three} · six=${r.total}; outputs=${r.outputs}`;}\n",
+      "support": "derivation",
+      "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal; snapshot and retained evidence"
+    },
+    {
+      "id": "ai.ai-agent-cost-growth.c4",
+      "text": "{\"question\": \"Six independent turns each use 10 input tokens. What total input count follows?\", \"options\": [\"60\", \"120\", \"240\"], \"answer\": 0, \"why\": \"No earlier history is resent, so add six tens.\"}",
+      "support": "derivation",
+      "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-agent-cost-growth.c5",
+      "text": "With stateless10-input turns, T6 inputs60 instead. Ignore caching discounts and prices; tokenize by declared counts, not characters or dollars.; controls: History, Stateless, Reset. Two earned cases persist across Reset; reveal restores primary; all contrasts remain reachable.",
+      "support": "convention",
+      "source": "Explicit per-turn equation and summation establish this construction only; source acquisition for any real provider tokenizer, pricing or cache discount remains required and no such claim is admitted.",
+      "status": "unverified",
+      "address": "Demo.tsx locked inputs, controls and exploreHint; meta.json learner boundary"
+    }
+  ],
+  "recall": {
+    "question": "Six independent turns each use 10 input tokens. What total input count follows?",
+    "options": [
+      "60",
+      "120",
+      "240"
+    ],
+    "answer": 0,
+    "why": "No earlier history is resent, so add six tens."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:agent-cost-growth",
+    "also": [],
+    "prerequisites": [
+      "ai:agent-loop",
+      "ai:kv-cache"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

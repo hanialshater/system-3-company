@@ -1,0 +1,1 @@
+export function ledger(turns:number,stateless=false){const rows=Array.from({length:turns},(_,i)=>stateless?10:10*(i+1)+2*i);return {rows,total:rows.reduce((a,b)=>a+b,0),outputs:2*turns};} export function run(mode:number){return {...ledger(6,mode===1),three:ledger(3,mode===1).total};}

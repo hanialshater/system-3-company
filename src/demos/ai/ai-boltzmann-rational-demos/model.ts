@@ -1,0 +1,2 @@
+export function infer(temperature:number,equal=false){const goals=equal?[[0,0],[0,0]]:[[2,0],[0,2]],likelihood=goals.map(q=>Math.exp(q[0]/temperature)/(Math.exp(q[0]/temperature)+Math.exp(q[1]/temperature))),unnormalised=likelihood.map(x=>.5*x),z=unnormalised.reduce((a,b)=>a+b,0);return {temperature,goals,likelihood,posterior:unnormalised.map(x=>x/z)};}
+export function run(mode:number){return infer(mode===1?2:1,mode===2);}

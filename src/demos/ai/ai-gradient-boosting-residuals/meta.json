@@ -1,0 +1,123 @@
+{
+  "slug": "ai-gradient-boosting-residuals",
+  "title": "Fit what is left",
+  "hook": "A second predictor can correct the first one.",
+  "domain": "ai",
+  "concept": "gradient-boosting-residuals",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Small arithmetic and the prerequisites listed below."
+    ],
+    "doesNotKnow": [
+      "a new squared-loss weak learner fits the current residual, then adds a correction; it is not another independent copy predicting the original target."
+    ]
+  },
+  "misconception": "a new squared-loss weak learner fits the current residual, then adds a correction; it is not another independent copy predicting the original target.",
+  "objective": "a new squared-loss weak learner fits the current residual, then adds a correction; it is not another independent copy predicting the original target.",
+  "claims": [
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c1",
+      "text": "Each correction fits residual means in a fixed stump split after row1, then adds eta=.5 times those leaves. Base targets[0,0,2,2] yield SSE4→1→.25 and predictions1→(.5,.5,1.5,1.5)→(.25,.25,1.75,1.75). Changed[1,1,5,5] gives16→4→1. Incorrectly fitting original targets each time gives4→2→4. Three line styles mark computed rounds and solid points mark targets.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts all finite cases; Demo.tsx Picture chart/array/grid labels and numeric outputs"
+    },
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c2",
+      "text": "Title: Fit what is left Hook: A second predictor can correct the first one. Targets are 0, 0, 2, 2. The first prediction is 1 everywhere. What should a squared-loss correction fit? Options: The remaining errors / The original targets again / Only the largest target; answer 0.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx predict question/options and locked fixture"
+    },
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c3",
+      "text": "The retained two corrections fit the remaining errors. With half-size updates, training squared error goes 4 to 1 to 0.25. Repeatedly adding a fit to the original targets instead gives 4 to 2 to 4. This fixed-split toy demonstrates residual correction, not guaranteed improvement on unseen data.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained original-case witness"
+    },
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c4",
+      "text": "Targets are 1, 1, 5, 5 and the initial prediction is 3. A half-size residual correction gives what? Residuals are -2,-2,2,2; adding half gives 2,2,4,4 and squared error 4 instead of 16.",
+      "support": "derivation",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "status": "unverified",
+      "address": "meta.json recall question/options/answer/why"
+    },
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c5",
+      "text": "Squared-loss, fixed stump split and two finite corrections only. Other boosting losses need their own gradient targets; declining training loss is not proof of better generalisation.",
+      "support": "convention",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "status": "unverified",
+      "address": "Model boundary; all learner-visible labels and input/control implications"
+    },
+    {
+      "id": "ai.ai-gradient-boosting-residuals.c6",
+      "text": "Original comparison earns the milestone once. Reset restores the uncomputed input view while preserving the earned original evidence row and reveal availability. Opening Reveal restores the original computed diagram if exploration was reset. Case controls can rerun every comparison; Reset never counts as new evidence. Quoted comparison cases 0, 2 each earn one milestone on first inspection. Their computed witness rows persist after Reset; repeated inspection earns nothing new.",
+      "support": "convention",
+      "source": "Local model.ts/model.repro.mjs; https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py (Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied). Explicit squared-loss derivative and finite toy values independently derivable; no independent verification claimed.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, evidence row and milestone ref",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "recall": {
+    "question": "Targets are 1, 1, 5, 5 and the initial prediction is 3. A half-size residual correction gives what?",
+    "options": [
+      "2, 2, 4, 4",
+      "1, 1, 5, 5",
+      "3, 3, 3, 3"
+    ],
+    "answer": 0,
+    "why": "Residuals are -2,-2,2,2; adding half gives 2,2,4,4 and squared error 4 instead of 16."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:gradient-boosting-residuals",
+    "also": [],
+    "prerequisites": [
+      "ai:decision-tree-splits",
+      "ai:ensemble-wisdom"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "classical-ml",
+      "trees-ensembles",
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ],
+  "sourceAcquisition": {
+    "date": "2026-10-19",
+    "url": "https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/ensemble/_gb.py",
+    "locator": "Maintainer source _update_terminal_regions lines118–132 and229–232: squared-error special case and shrinkage update; mutable main opened2026-10-19, no source code copied",
+    "scope": "Method context only; local derivations for computed outputs; no copied source asset or empirical result."
+  }
+}

@@ -1,0 +1,1 @@
+export function run(mode:number){const independent=mode===1,ratios=[3,3],naiveOdds=ratios.reduce((a,b)=>a*b,1),jointOdds=independent?naiveOdds:ratios[0];return {independent,ratios,naiveOdds,jointOdds,naive:naiveOdds/(1+naiveOdds),joint:jointOdds/(1+jointOdds)};}

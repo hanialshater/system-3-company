@@ -1,0 +1,1 @@
+export function score(x:number):number{return -((x-3)**2);} export function probe(center:number){const candidates=[-1,1].map(offset=>({x:center+offset,score:score(center+offset)})); const winner=candidates[0].score>=candidates[1].score?candidates[0].x:candidates[1].x;return {centerScore:score(center),candidates,winner};}

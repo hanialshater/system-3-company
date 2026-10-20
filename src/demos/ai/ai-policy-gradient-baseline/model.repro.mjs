@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import ts from 'typescript';
+const js=ts.transpileModule(fs.readFileSync(new URL('./model.ts',import.meta.url),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText;
+const m=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);const arr=(a,b)=>{assert.equal(a.length,b.length);a.forEach((x,i)=>near(x,b[i]));};
+near(m.sample(0,0).pLeft,.8175744761936437);near(m.sample(0,4).pLeft,.3775406687981454);arr(m.expected(0).rows,[1.5,-2.5]);arr(m.expected(4).rows,[-.5,-.5]);near(m.expected(0).mean,-.5);near(m.expected(4).mean,-.5);near(m.expected([3,5]).mean,0);near(1-m.sample(1,4).pLeft,.6224593312018546);
+const meta=JSON.parse(fs.readFileSync(new URL('./meta.json',import.meta.url),'utf8'));assert.equal(meta.status,'draft');assert.ok(meta.claims.every(c=>c.status==='unverified'&&c.id.startsWith('ai.'+meta.slug+'.c')));console.log(meta.slug+': direct finite model checks pass; not independent review.');

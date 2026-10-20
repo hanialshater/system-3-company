@@ -1,0 +1,97 @@
+{
+  "slug": "ai-ivf-probe-clusters",
+  "title": "Nearest centroid, wrong neighbor",
+  "hook": "Probe real coarse lists before scanning their points.",
+  "domain": "ai",
+  "concept": "ivf-probe-clusters",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ann-recall-speed",
+      "k-means-clustering"
+    ],
+    "doesNotKnow": [
+      "Lists A=[0,4] center 2; B=[6,7,8] center 7. At query 4.8, probing only nearest-center B finds exact nearest?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the ivf probe clusters finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-ivf-probe-clusters.c1",
+      "text": "Nearest centroid, wrong neighbor Probe real coarse lists before scanning their points. Lists A=[0,4] center 2; B=[6,7,8] center 7. At query 4.8, probing only nearest-center B finds exact nearest? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §14; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ivf-probe-clusters.c2",
+      "text": "Query 4.8 selected center 7, then scanned B’s three points and returned 6, distance 1.2. Probing both lists scanned five and found 4, distance .8. At query 7, one list sufficed. Point-check counts exclude the separately computed two centroid comparisons.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §14; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ivf-probe-clusters.c3",
+      "text": "Why does probing both lists repair the 4.8 miss? Options: It includes point 4, which the first selected list omitted; Its centroid becomes the answer; It changes stored coordinates Point 4 lies in list A and is closer to 4.8 than point 6; scanning both lists includes it.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §14; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ivf-probe-clusters.c4",
+      "text": "Original schematic labels, including neutral and every changed case: A[0,4]→2 · B[6,7,8]→7 center=2 center=7 q=4.8 · centroid-checks=2 best=? · point-checks=? | A[0,4]→2 · B[6,7,8]→7 center=2 center=7 q=4.8 · centroid-checks=2 best=6 · point-checks=3 | A[0,4]→2 · B[6,7,8]→7 center=2 center=7 q=4.8 · centroid-checks=2 best=4 · point-checks=5 | A[0,4]→2 · B[6,7,8]→7 center=2 center=7 q=7 · centroid-checks=2 best=7 · point-checks=3. Retained locally computed witnesses: q4.8/p1: 6,checks3 | q4.8/p2: 4,checks5 | q7/p1: 7,checks3. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §14; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ivf-probe-clusters.c5",
+      "text": " 14. ivf-probe-clusters\n\nTarget / packet: ai-ivf-probe-clusters · R3. Prerequisites: ai:ann-recall-speed, ai:k-means-clustering.\n\nNearest / distinct payoff: ann-recall-speed → ai-ann-recall-speed. An arbitrary inspection budget does not specify coarse partitioning; this probes centroid-selected lists and exhibits a real missed nearest point.\n\nFinite primary model: Fixed valid coarse clusters A=[0,4] centroid 2, B=[6,7,8] centroid 7. Query 4.8 chooses nearest centroid B; nprobe 1 scans 3 points and returns 6 distance 1.2, while exact nearest 4 distance.8 is outside. nprobe 2 scans 5 and returns 4.\n\nCountercase and mathematical boundary: Query 7 nprobe 1 returns exact 7. Coarse centroid choice is not itself nearest point selection; counts exclude the separately shown 2 centroid comparisons.\n\nPredict and recall transfer: Predict recall@1 for nprobe 1 at 4.8; recall why nprobe 2 repairs this miss without guaranteeing every index budget trade off.\n\nRequired observable evidence: Retain coarse partition and list membership; no arbitrary assignments conflicting with nearest centroid of stored points.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §14; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does probing both lists repair the 4.8 miss?",
+    "options": [
+      "It includes point 4, which the first selected list omitted",
+      "Its centroid becomes the answer",
+      "It changes stored coordinates"
+    ],
+    "answer": 0,
+    "why": "Point 4 lies in list A and is closer to 4.8 than point 6; scanning both lists includes it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ivf-probe-clusters",
+    "also": [],
+    "prerequisites": [
+      "ai:ann-recall-speed",
+      "ai:k-means-clustering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

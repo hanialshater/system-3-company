@@ -1,0 +1,1 @@
+export function run(mode:number){const n=mode===1?1:4,rows=Array.from({length:n},(_,i)=>({length:i+1,naive:2*(i+1),cached:2,comparisons:i+1}));return {n,rows,naive:rows.reduce((a,r)=>a+r.naive,0),cached:rows.reduce((a,r)=>a+r.cached,0),comparisons:rows.reduce((a,r)=>a+r.comparisons,0),stored:2*n};}

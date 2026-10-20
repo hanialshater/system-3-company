@@ -1,0 +1,95 @@
+{
+  "slug": "ai-polynomial-features",
+  "title": "Linear in which quantity?",
+  "hook": "Keep one coefficient; change the feature it multiplies.",
+  "domain": "ai",
+  "concept": "polynomial-features",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "linear-regression-fit"
+    ],
+    "doesNotKnow": [
+      "Can an intercept plus one coefficient fit these squared values exactly?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the polynomial features construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-polynomial-features.c1",
+      "text": "Linear in which quantity? Keep one coefficient; change the feature it multiplies. Can an intercept plus one coefficient fit these squared values exactly? Options: With raw x; With x²; With either; With neither.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-polynomial-features.c2",
+      "text": "The raw feature fitted a horizontal2 with squared error14. Squaring the feature fitted these points exactly: coefficient1, intercept0. At x=3 predictions were2 and9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-polynomial-features.c3",
+      "text": "Is this squared-feature predictor linear in its coefficient or its original input? It is linear in the coefficient multiplying x²; its input-space curve is quadratic.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-polynomial-features.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-polynomial-features.c5",
+      "text": "Target / packet: `ai-polynomial-features` · `C2`. Prerequisites: `ai:linear-regression-fit`.\n\nNearest / distinct payoff: `linear-regression-fit` → `outlier-flattens-line` (existing registered artifact; evidence applicability pending). Unlike raw-x line fitting, this transforms the feature and separates parameter linearity from input-space curvature.\n\nPrimary finite model: Data x=[-2,-1,0,1,2], y=x². Raw intercept+slope fit is yhat=2 with SSE14. Feature z=x² gives coefficient1 intercept0 and SSE0.\n\nCountercase and boundary: Transfer x=3 gives raw2 versus polynomial9; fitting perfectly here is not a generalization guarantee on unknown functions or noisy data.\n\nPredict and recall transfer: Predict whether a coefficient-linear model can draw a curved input-space relation; recall linearity in which variables.\n\nRequired evidence: Display x→z→prediction transformation and curved output, not just fit scores. Shipped local computations, all cases: Raw: ŷ=b+βz · x→z→ŷ · 2→2→2; x β=0,b=2,SSE=14 | Square: ŷ=b+βz · x→z→ŷ · 2→4→4; x² β=1,b=0,SSE=0 | Extend: ŷ=b+βz · x→z→ŷ · 3→9→9; x=3: raw2 / square9. Initial neutral frame: ŷ=b+βz · x→z→ŷ · ?→?→?.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §24; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Is this squared-feature predictor linear in its coefficient or its original input?",
+    "options": [
+      "It is linear in the coefficient multiplying x²; its input-space curve is quadratic.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "It is linear in the coefficient multiplying x²; its input-space curve is quadratic."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:polynomial-features",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "ai-ai-feedback-rlaif",
+  "title": "Who supplied the preference?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "ai-feedback-rlaif",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:preference-ranking"
+    ],
+    "doesNotKnow": [
+      "Can changing the evaluator alter the update while candidates stay fixed?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Use the distinct declared ai-feedback-rlaif mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c1",
+      "text": "hook/predict: Can changing the evaluator alter the update while candidates stay fixed? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c2",
+      "text": "stage input operands: \"A:2,1token · B:4,4tokens · fictional correct value=2\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c3",
+      "text": "reveal: The length evaluator chose incorrect B, giving P(A)=.378; correctness chose A, giving .622. When both answers were correct, the correctness evaluator abstained: P(A)=.5. Label generation changed the identical update rule’s result. These stipulated raters establish no real evaluator’s impartiality.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c4",
+      "text": "recall: What does an equal-score tie do under the declared protocol? The evaluator abstains on ties, so the log odds remain zero.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c5",
+      "text": "stage computation: Identical candidates for fictional fact A=2: responseA “2” (correct,1token); responseB “The answer is4” (incorrect,4tokens). Evaluator E_length selects longerB; evaluator E_correct selects exact-valueA. Pairwise log-odds update from theta0, eta1, beta1 increases chosen log odds by.5. Thus P(A)=.3775407 under length labels and .6224593 under correctness labels.\n\n**Countercase / boundary:** If both candidates contain the correct value2 and differ in length, E_correct ties; declared tie policy abstains and makes no update, P(A)=.5. Do not silently break ties or frame an AI evaluator as automatically unbiased. No real rater or human-study result is simulated.\n\n**Prediction / transfer recall:** Predict whether replacing evaluator changes learned preference despite unchanged candidates; recall a tie/abstention produces zero gradient in this declared update protocol.\n\n**Intervention / reachable witness:** Select evaluator displays candidate values/lengths, scores, chosen/rejected or abstain, then Apply label recomputes probability. Retain both evaluator-labelled updates and the tie witness. This separate label-generation stage is the distinct mechanism, not a renamed DPO quiz.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-ai-feedback-rlaif.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: A:2,1token · B:4,4tokens · fictional correct value=2 ? Length rule Correct rule Tie Reset 1: label B; θ=-0.5; P(A)=0.378 2: label A; θ=0.5; P(A)=0.622 3: label abstain; θ=0; P(A)=0.500 | inspection 0: A:2,1token · B:4,4tokens · fictional correct value=2 A:1 B:4 Length rule Correct rule Tie Reset 1: label B; θ=-0.5; P(A)=0.378 2: label A; θ=0.5; P(A)=0.622 3: label abstain; θ=0; P(A)=0.500 | inspection 1: A:2,1token · B:4,4tokens · fictional correct value=2 A:1 B:0 Length rule Correct rule Tie Reset 1: label B; θ=-0.5; P(A)=0.378 2: label A; θ=0.5; P(A)=0.622 3: label abstain; θ=0; P(A)=0.500 | inspection 2: A:2,1token · B:4,4tokens · fictional correct value=2 A:1 B:1 Length rule Correct rule Tie Reset 1: label B; θ=-0.5; P(A)=0.378 2: label A; θ=0.5; P(A)=0.622 3: label abstain; θ=0; P(A)=0.500",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#18-ai-feedback-rlaif; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Original RLAIF method/source lead: [Bai et al.2022](https://arxiv.org/abs/2212.08073); not opened here, acquire original AI-feedback protocol before real-system attribution. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does an equal-score tie do under the declared protocol?",
+    "options": [
+      "No update",
+      "Prefer A",
+      "Prefer B"
+    ],
+    "answer": 0,
+    "why": "The evaluator abstains on ties, so the log odds remain zero."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:ai-feedback-rlaif",
+    "also": [],
+    "prerequisites": [
+      "ai:preference-ranking"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

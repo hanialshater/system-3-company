@@ -1,0 +1,101 @@
+{
+  "slug": "ai-tsne-distances-mislead",
+  "title": "How far apart are the groups?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "tsne-distances-mislead",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:pca-compression"
+    ],
+    "doesNotKnow": [
+      "After re-spacing intact pairs, does the longer plotted A–B gap prove the original points moved?"
+    ]
+  },
+  "misconception": "Yes, they moved",
+  "objective": "Use the distinct declared tsne-distances-mislead mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-tsne-distances-mislead.c1",
+      "text": "hook/predict: After re-spacing intact pairs, does the longer plotted A–B gap prove the original points moved? Options: Yes, they moved; No, spacing is ambiguous",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-tsne-distances-mislead.c2",
+      "text": "stage input operands: \"X=(0,0,0),(.1,0,0),(0,10,0),(.1,10,0),(0,0,10),(.1,0,10)\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-tsne-distances-mislead.c3",
+      "text": "reveal: Re-spacing kept six nearest neighbours while plotted AB changed from 5 to 50; original AB stayed 10. Breaking one pair lost agreement. These prescribed embeddings were not fitted by t-SNE: preserving these neighbours alone cannot identify global distances.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-tsne-distances-mislead.c4",
+      "text": "recall: If intact B/C pairs exchange positions, must all six original nearest neighbours change? Each .1 pair remains intact; global spacing is not recovered.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-tsne-distances-mislead.c5",
+      "text": "stage computation: High-dimensional points A=(0,0,0), a=(.1,0,0), B=(0,10,0), b=(.1,10,0), C=(0,0,10), c=(.1,0,10). Compute each point’s unique nearest neighbour. Prescribed2D embedding E1 places the pairs at x=0/.1,5/5.1,10/10.1, all y=0. E2 moves B/b to50/50.1 and C/c to5/5.1. All six nearest-neighbour identities persist while A–B distance changes5→50; original A–B distance remains10.\n\n**Countercase / boundary:** These are deliberately prescribed embeddings, not outputs of a t-SNE/UMAP optimizer and not a proof that every local relation is preserved. Neighbour constraints alone do not identify global spacing. Moving b alone to x=1 breaks its original nearest-neighbour relationship; compute and display that failure too.\n\n**Prediction / transfer recall:** Predict whether the long new A–B gap proves the original points moved; recall that keeping each pair intact but swapping B/C group placement preserves all six1NN identities without recovering original global distances.\n\n**Intervention / reachable witness:** Controls Re-space groups and Break pair recompute a labelled point plot and six-neighbour agreement count. Retain original versus current A–B distance and primary6/6 agreement beside the altered witness; equal plot scales or explicitly labelled x axes are mandatory.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-tsne-distances-mislead.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: X=(0,0,0),(.1,0,0),(0,10,0),(.1,10,0),(0,0,10),(.1,0,10) ? Original Re-space Break pair Reset 1: AB 10→5; 1NN 6/6 2: AB 10→50; 1NN 6/6 3: AB 10→50; 1NN 4/6 | inspection 0: X=(0,0,0),(.1,0,0),(0,10,0),(.1,10,0),(0,0,10),(.1,0,10) original AB 10 projected AB 5 · 1NN 6/6 Original Re-space Break pair Reset 1: AB 10→5; 1NN 6/6 2: AB 10→50; 1NN 6/6 3: AB 10→50; 1NN 4/6 | inspection 1: X=(0,0,0),(.1,0,0),(0,10,0),(.1,10,0),(0,0,10),(.1,0,10) original AB 10 projected AB 50 · 1NN 6/6 Original Re-space Break pair Reset 1: AB 10→5; 1NN 6/6 2: AB 10→50; 1NN 6/6 3: AB 10→50; 1NN 4/6 | inspection 2: X=(0,0,0),(.1,0,0),(0,10,0),(.1,10,0),(0,0,10),(.1,0,10) original AB 10 projected AB 50 · 1NN 4/6 Original Re-space Break pair Reset 1: AB 10→5; 1NN 6/6 2: AB 10→50; 1NN 6/6 3: AB 10→50; 1NN 4/6",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#1-tsne-distances-mislead; local model.ts and model-check.mjs. [Wattenberg et al., original interactive study](https://distill.pub/2016/misread-tsne/), opened body2026-10-19, sections2–4 on cluster sizes, intercluster distances and random geometry. Supports interpretation limits, not that these hand-set embeddings were fitted. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If intact B/C pairs exchange positions, must all six original nearest neighbours change?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "Each .1 pair remains intact; global spacing is not recovered."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:tsne-distances-mislead",
+    "also": [],
+    "prerequisites": [
+      "ai:pca-compression"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

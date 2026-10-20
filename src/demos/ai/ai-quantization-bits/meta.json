@@ -1,0 +1,102 @@
+{
+  "slug": "ai-quantization-bits",
+  "title": "Do fewer bits fix the error?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "quantization-bits",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cs:floating-point"
+    ],
+    "doesNotKnow": [
+      "Must halving the nominal weight bits halve output error?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared quantization-bits mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-quantization-bits.c1",
+      "text": "hook/predict: Must halving the nominal weight bits halve output error? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-quantization-bits.c2",
+      "text": "stage input operands: \"w=.2,.7,−.4 · x=1,2,−1 · levels=−1+2k/(2ᵇ−1) · ties→lower\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-quantization-bits.c3",
+      "text": "reveal: Two-bit weights used 6 packed bits and output 2.667; four-bit weights used 12 and output 2.133, against 2. Endpoints produced zero error at either precision. Counts exclude overhead. Input-dependent error implies no proportional quality change or measured hardware speedup.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-quantization-bits.c4",
+      "text": "recall: For weights [1,−1] and input [1,1], what is the quantized output at either precision? The endpoints are exactly represented and cancel.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-quantization-bits.c5",
+      "text": "stage computation: Weights[.2,.7,−.4], input[1,2,−1], original output2. Uniform b-bit codebook levels −1+2k/(2^b−1), nearest-level rounding, smaller k on exact ties, no clipping needed here. b2 gives[1/3,1,−1/3], output8/3, absolute error2/3. b4 gives[.2,11/15,−7/15], output32/15, error2/15. Packed weight bits are6 versus12, excluding scale/codebook/packing overhead;32-bit baseline96.\n\n**Countercase / boundary:** Weights[1,−1] with input[1,1] yield0 exactly at both precisions: fewer bits do not imply proportional task error. Quantization error changes with inputs; no claims about measured hardware speed or real model quality are admitted.\n\n**Prediction / transfer recall:** Predict whether quartering nominal weight bits must quarter output quality; recall representable endpoints remain exact in this quantizer.\n\n**Intervention / reachable witness:** Select2/4bits recomputes code indices, reconstructed weights, products, output and error, with original output retained. Exact endpoints case demonstrates zero error while bit counts stay different.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-quantization-bits.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: w=.2,.7,−.4 · x=1,2,−1 · levels=−1+2k/(2ᵇ−1) · ties→lower ? 2 bits 4 bits Endpoints Reset 1: 2b×3=6; y=2→2.667; |Δ|=0.667 2: 4b×3=12; y=2→2.133; |Δ|=0.133 3: 2b/4b y=0/0; packed 4/8 | inspection 0: w=.2,.7,−.4 · x=1,2,−1 · levels=−1+2k/(2ᵇ−1) · ties→lower −1 1 2 bits 4 bits Endpoints Reset 1: 2b×3=6; y=2→2.667; |Δ|=0.667 2: 4b×3=12; y=2→2.133; |Δ|=0.133 3: 2b/4b y=0/0; packed 4/8 | inspection 1: w=.2,.7,−.4 · x=1,2,−1 · levels=−1+2k/(2ᵇ−1) · ties→lower −1 1 2 bits 4 bits Endpoints Reset 1: 2b×3=6; y=2→2.667; |Δ|=0.667 2: 4b×3=12; y=2→2.133; |Δ|=0.133 3: 2b/4b y=0/0; packed 4/8 | inspection 2: w=.2,.7,−.4 · x=1,2,−1 · levels=−1+2k/(2ᵇ−1) · ties→lower −1 1 2 bits 4 bits Endpoints Reset 1: 2b×3=6; y=2→2.667; |Δ|=0.667 2: 4b×3=12; y=2→2.133; |Δ|=0.133 3: 2b/4b y=0/0; packed 4/8",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#20-quantization-bits; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For weights [1,−1] and input [1,1], what is the quantized output at either precision?",
+    "options": [
+      "0",
+      "1",
+      "−1"
+    ],
+    "answer": 0,
+    "why": "The endpoints are exactly represented and cancel."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:quantization-bits",
+    "also": [],
+    "prerequisites": [
+      "cs:floating-point"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

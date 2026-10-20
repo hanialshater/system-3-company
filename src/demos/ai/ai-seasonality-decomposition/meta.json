@@ -1,0 +1,95 @@
+{
+  "slug": "ai-seasonality-decomposition",
+  "title": "Which pattern continues?",
+  "hook": "Subtract the declared alternating component, then challenge its phase.",
+  "domain": "ai",
+  "concept": "seasonality-decomposition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "linear-regression-fit"
+    ],
+    "doesNotKnow": [
+      "If the declared alternating pattern continues, what is observation at t6?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the seasonality decomposition construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-seasonality-decomposition.c1",
+      "text": "Which pattern continues? Subtract the declared alternating component, then challenge its phase. If the declared alternating pattern continues, what is observation at t6? Options: 14; 16; 18.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §28; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-seasonality-decomposition.c2",
+      "text": "Subtracting the declared alternating component exposed trend values 10 through 15. Continuing that phase predicted 18 at t6. The flipped phase instead produced 12 at t4, where the old model expected 16. Six observations alone do not establish real seasonality.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §28; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-seasonality-decomposition.c3",
+      "text": "Which new observation challenges the assumed phase? At t4, an observation12 instead of the old model’s16 contradicts its declared +2 offset at that tick.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §28; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-seasonality-decomposition.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §28; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-seasonality-decomposition.c5",
+      "text": "Target / packet: `ai-seasonality-decomposition` · `C3`. Prerequisites: `ai:linear-regression-fit`.\n\nNearest / distinct payoff: `linear-regression-fit` → `outlier-flattens-line` (existing registered artifact; evidence applicability pending). Unlike a single regression fit, this separates a declared repeating component from trend and tests a phase break.\n\nPrimary finite model: t=0..5 trend10+t, alternating seasonal[2,-2], zero noise: observations[12,9,14,11,16,13]. Subtract known seasonal gives[10,11,12,13,14,15].\n\nCountercase and boundary: If phase flips at t4, observation12 there is not explained by the old+2 seasonal assumption. Identifiability requires a declared period/model; a six-point trace does not establish real seasonality.\n\nPredict and recall transfer: Predict next observation t6 under continuing phase=18; recall what evidence would challenge the fixed-period model.\n\nRequired evidence: Show observed and component values with one shared time axis; no multi-panel dashboard needed. Shipped local computations, all cases: Separate: 12 10 9 11 14 12 11 13 16 14 13 15 t=0…5 · Δ=[+2,−2]; −[2,−2] → [10,11,12,13,14,15] | Continue: 12 10 9 11 14 12 11 13 16 14 13 15 18 16 t=0…6 · Δ=[+2,−2]; t₆=18 (same phase) | Flip: 12 10 9 11 14 12 11 13 12 14 17 15 t=0…5 · Δ=phase↔; t₄ old16 / observed12. Initial neutral frame: 12 9 14 11 16 13 t=0…5 · Δ=[+2,−2].",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §28; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which new observation challenges the assumed phase?",
+    "options": [
+      "At t4, an observation12 instead of the old model’s16 contradicts its declared +2 offset at that tick.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "At t4, an observation12 instead of the old model’s16 contradicts its declared +2 offset at that tick."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:seasonality-decomposition",
+    "also": [],
+    "prerequisites": [
+      "ai:linear-regression-fit"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

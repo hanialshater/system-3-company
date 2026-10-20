@@ -1,0 +1,93 @@
+{
+  "slug": "ai-random-vs-grid-search",
+  "title": "Where did the four trials go?",
+  "hook": "One relevant coordinate, one irrelevant coordinate, equal budgets.",
+  "domain": "ai",
+  "concept": "random-vs-grid-search",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading listed coordinate pairs; the complete local objective is supplied."
+    ],
+    "doesNotKnow": [
+      "With four trials each, which set gets the higher best score?"
+    ]
+  },
+  "misconception": "The primary and materially changed case must have the same consequence.",
+  "objective": "Compute the random vs grid search construction and explain its countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-random-vs-grid-search.c1",
+      "text": "Where did the four trials go? One relevant coordinate, one irrelevant coordinate, equal budgets. With four trials each, which set gets the higher best score? Options: Grid; DrawA; Equal.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §30; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending. Complete DrawB coordinates: company/domains/briefs/2026-10-19-ai-next15b-owner-addendum.md.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-random-vs-grid-search.c2",
+      "text": "The grid tested two unique x values and reached .6. Fixed draw A tested four and reached 1; fixed draw B reached .55 and lost. Changing irrelevant y spent grid trials without adding x values. These four-trial examples do not guarantee that random search wins.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §30; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending. Complete DrawB coordinates: company/domains/briefs/2026-10-19-ai-next15b-owner-addendum.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-vs-grid-search.c3",
+      "text": "When does this grid spend a trial without exploring a new relevant value? When y changes while x repeats: the declared objective ignores y, so no new relevant coordinate is tested.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §30; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending. Complete DrawB coordinates: company/domains/briefs/2026-10-19-ai-next15b-owner-addendum.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-vs-grid-search.c4",
+      "text": "This is a finite invented construction. The controls compute local component state; no real model training, attack, file operation, API call or provider measurement occurs.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §30; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending. Complete DrawB coordinates: company/domains/briefs/2026-10-19-ai-next15b-owner-addendum.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-random-vs-grid-search.c5",
+      "text": "Target / packet: `ai-random-vs-grid-search` · `D1`. Prerequisites: none; all arithmetic explained locally.\n\nNearest / distinct payoff: `compute-optimal-scaling` → `ai-compute-optimal-scaling` (earlier admitted draft or same-packet identity; not independent clearance). Unlike optimizing parameters/tokens under a product resource constraint, this allocates a finite trial budget across relevant and irrelevant hyperparameters and shows a losing random draw.\n\nPrimary finite model: Toy objective f(x,y)=1-abs(x-.6) ignores y. Budget4: 2×2 grid x∈{0,1},y∈{0,1} best.6 with2 unique x; fixed random trial x=[.1,.4,.6,.9] with y=[.8,.2,.5,.1] best1 with4 unique x.\n\nCountercase and boundary: Another random sequence x=[0,.05,.1,.15] best.55 loses to grid. No guarantee one realized random search wins; fixed draw is not a distributional proof.\n\nPredict and recall transfer: Predict which trial reaches the optimum; recall when varying irrelevant y consumes a grid budget without new x.\n\nRequired evidence: Show trial locations and objective values with equal4 budget, no adaptive optimizer or hidden extra samples. Shipped local computations, all cases: Grid: f=1−|x−.6| · y irrelevant · fixed 1 2 3 4 0 1 x y; Grid [0.4,0.4,0.6,0.6] max0.6; x#2 | DrawA: f=1−|x−.6| · y irrelevant · fixed 1 2 3 4 0 1 x y; DrawA [0.5,0.8,1,0.7] max1; x#4 | DrawB: f=1−|x−.6| · y irrelevant · fixed 1 2 3 4 0 1 x y; DrawB [0.4,0.45,0.5,0.55] max0.55; x#4. Initial neutral frame: f=1−|x−.6| · y irrelevant · fixed 1 2 3 4 1 2 3 4 □Grid · ●DrawA 0 1 x y.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §30; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending. Complete DrawB coordinates: company/domains/briefs/2026-10-19-ai-next15b-owner-addendum.md.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When does this grid spend a trial without exploring a new relevant value?",
+    "options": [
+      "When y changes while x repeats: the declared objective ignores y, so no new relevant coordinate is tested.",
+      "The output alone determines every omitted condition.",
+      "The construction guarantees the same result for all real systems."
+    ],
+    "answer": 0,
+    "why": "When y changes while x repeats: the declared objective ignores y, so no new relevant coordinate is tested."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:random-vs-grid-search",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

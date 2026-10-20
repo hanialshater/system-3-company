@@ -1,0 +1,4 @@
+export type Grid=number[][];
+export function correlate(input:Grid):Grid{const h=input.length,w=input[0].length;if(h<3||w<3)throw new Error("Need valid 3x3 window");return Array.from({length:h-2},(_,y)=>Array.from({length:w-2},(_,x)=>{let n=0;for(let dy=0;dy<3;dy++)for(let dx=0;dx<3;dx++)n+=input[y+dy][x+dx];return n;}));}
+export function footprint(layers:number){let cells=new Set(["0,0"]);for(let l=0;l<layers;l++){const next=new Set<string>();for(const c of cells){const [x,y]=c.split(",").map(Number);for(let dy=0;dy<3;dy++)for(let dx=0;dx<3;dx++)next.add(`${x+dx},${y+dy}`);}cells=next;}return cells;}
+export function impulse(corner=false,zero=false){const input=Array.from({length:5},()=>Array(5).fill(0) as number[]);if(!zero)input[corner?0:2][corner?0:2]=1;const hidden=correlate(input),output=correlate(hidden)[0][0];return {input,hidden,output,dependencies:footprint(2).size};}

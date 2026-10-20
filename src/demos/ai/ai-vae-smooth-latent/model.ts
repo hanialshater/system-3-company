@@ -1,0 +1,2 @@
+import data from './fixture.json';export const fixture=data;
+export function run(mode:number){return data.runs.map(r=>{const reconstruction=data.data.reduce((s,x)=>s+(x-r.w*r.a*x)**2+r.w*r.w*r.variance,0)/4;const kl=data.data.reduce((s,x)=>s+.5*(r.a*r.a*x*x+r.variance-Math.log(r.variance)-1),0)/4;return {beta:r.beta,a:r.a,w:r.w,variance:r.variance,reconstruction,kl,z:[0,.25,.5,.75,1].map(t=>r.a*(-1+2*t)),decoded:[0,.25,.5,.75,1].map(t=>r.w*r.a*(-1+2*t)),prior:r.w};});}

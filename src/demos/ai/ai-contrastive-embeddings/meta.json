@@ -1,0 +1,104 @@
+{
+  "slug": "ai-contrastive-embeddings",
+  "title": "Which distance needs a push?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "contrastive-embeddings",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:embeddings",
+      "ai:cosine-similarity"
+    ],
+    "doesNotKnow": [
+      "For this margin loss, does a negative already beyond distance 1 still get pushed?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Use the distinct declared contrastive-embeddings mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-contrastive-embeddings.c1",
+      "text": "hook/predict: For this margin loss, does a negative already beyond distance 1 still get pushed? Options: Yes; No",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-contrastive-embeddings.c2",
+      "text": "stage input operands: \"anchor=0,p=2,n=.5 · L=½p²+½max(0,1−|n|)² · η=.5\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-contrastive-embeddings.c3",
+      "text": "reveal: The positive moved 2→1; the near negative moved .5→.75, reducing loss 2.125→.531. A negative at 2 did not move because its margin penalty was zero. This supplied one-dimensional loss and gradient step are not a trained SimCLR representation or semantic guarantee.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-contrastive-embeddings.c4",
+      "text": "recall: With positive .5 and negative 2, what moves in the next step? The positive halves; the beyond-margin negative has zero gradient.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-contrastive-embeddings.c5",
+      "text": "stage computation: Scalar embeddings: fixed anchor a=0, positivep=2, negativen=.5. Declared margin contrastive loss L=.5*(p−a)²+.5*max(0,1−abs(n−a))². Update only p,n with eta.5 using simultaneous old-state gradients: gradp=2, gradn=−.5, so p1=1,n1=.75. Positive distance2→1, negative distance.5→.75; loss2.125→.53125. Anchor remains fixed.\n\n**Countercase / boundary:** Swap pair labels at restart: new positive.5 moves to.25; new negative2 already outside margin receives0gradient and stays2. Pair specification determines which similarity is learned. This is a margin-loss scalar construction, not InfoNCE/SimCLR or proof that unsupervised pair labels capture intended semantics.\n\n**Prediction / transfer recall:** Predict the sign of the two updates under original pair labels; recall negative at distance1.5 gets zero repulsion under this margin, not indefinite pushing.\n\n**Intervention / reachable witness:** Apply gradient visibly moves two labelled points and recomputes each loss term; Swap pair labels retains original movement and reveals the changed geometry. Keep attractive and margin terms separately legible.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-contrastive-embeddings.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: anchor=0,p=2,n=.5 · L=½p²+½max(0,1−|n|)² · η=.5 ? Near negative Far negative Closer positive Reset 1: p 2→1; n 0.5→0.75; L 2.125→0.531 2: p 2→1; n 2→2; L 2.000→0.500 3: p 0.5→0.25; n 0.5→0.75; L 0.250→0.063 | inspection 0: anchor=0,p=2,n=.5 · L=½p²+½max(0,1−|n|)² · η=.5 a p n a p n Near negative Far negative Closer positive Reset 1: p 2→1; n 0.5→0.75; L 2.125→0.531 2: p 2→1; n 2→2; L 2.000→0.500 3: p 0.5→0.25; n 0.5→0.75; L 0.250→0.063 | inspection 1: anchor=0,p=2,n=.5 · L=½p²+½max(0,1−|n|)² · η=.5 a p/n a p n Near negative Far negative Closer positive Reset 1: p 2→1; n 0.5→0.75; L 2.125→0.531 2: p 2→1; n 2→2; L 2.000→0.500 3: p 0.5→0.25; n 0.5→0.75; L 0.250→0.063 | inspection 2: anchor=0,p=2,n=.5 · L=½p²+½max(0,1−|n|)² · η=.5 a p/n a p n Near negative Far negative Closer positive Reset 1: p 2→1; n 0.5→0.75; L 2.125→0.531 2: p 2→1; n 2→2; L 2.000→0.500 3: p 0.5→0.25; n 0.5→0.75; L 0.250→0.063",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#24-contrastive-embeddings; local model.ts and model-check.mjs. [Chen et al. original SimCLR abstract](https://proceedings.mlr.press/v119/chen20j.html), opened2026-10-19 only as a contrastive-representation source lead, not this margin formula. No SimCLR attribution permitted. Acquire original margin contrastive method body before historical/theoretical extensions; this declared loss is independently derivable. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With positive .5 and negative 2, what moves in the next step?",
+    "options": [
+      "Only positive",
+      "Only negative",
+      "Both"
+    ],
+    "answer": 0,
+    "why": "The positive halves; the beyond-margin negative has zero gradient."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:contrastive-embeddings",
+    "also": [],
+    "prerequisites": [
+      "ai:embeddings",
+      "ai:cosine-similarity"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

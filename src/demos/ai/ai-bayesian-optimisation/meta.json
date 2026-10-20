@@ -1,0 +1,95 @@
+{
+  "slug": "ai-bayesian-optimisation",
+  "title": "Which trial buys information?",
+  "hook": "Choose a trial with a declared acquisition score.",
+  "domain": "ai",
+  "concept": "bayesian-optimisation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "gaussian-process-uncertainty"
+    ],
+    "doesNotKnow": [
+      "A has mean .8, sd .1; B mean .6, sd .4. With UCB=mean+sd, which trial wins?"
+    ]
+  },
+  "misconception": "A",
+  "objective": "Compute the bayesian optimisation finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-bayesian-optimisation.c1",
+      "text": "Which trial buys information? Choose a trial with a declared acquisition score. A has mean .8, sd .1; B mean .6, sd .4. With UCB=mean+sd, which trial wins? Options: B; A",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §4; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-bayesian-optimisation.c2",
+      "text": "With beta 0, A won by mean alone. With beta 1, B scored 1 versus A’s .9. Reducing B’s standard deviation to .05 restored A. Acquisition chooses the next trial from stipulated beliefs; it does not guarantee global discovery.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §4; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-bayesian-optimisation.c3",
+      "text": "Why can B be selected despite its lower posterior mean? Options: Its uncertainty bonus outweighs the mean gap; UCB ignores mean; Lower means always win At beta 1, B’s .4 bonus exceeds A’s .1 bonus by .3, outweighing the .2 mean gap.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §4; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-bayesian-optimisation.c4",
+      "text": "Original schematic labels, including neutral and every changed case: μ+βσ · A(.8,.1) B(.6,.4) A ? B ? mean + uncertainty-bonus | μ+βσ · A(.8,.1) B(.6,0.4) A 0.8 B 0.6 mean + uncertainty-bonus | μ+βσ · A(.8,.1) B(.6,0.4) A 0.9 B 1 mean + uncertainty-bonus | μ+βσ · A(.8,.1) B(.6,0.05) A 0.9 B 0.65 mean + uncertainty-bonus. Retained locally computed witnesses: β0/sd0.4: A=0.8 | β1/sd0.4: B=1 | β1/sd0.05: A=0.9. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §4; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-bayesian-optimisation.c5",
+      "text": " 4. bayesian-optimisation\n\nTarget / packet: ai-bayesian-optimisation · P2. Prerequisites: ai:gaussian-process-uncertainty.\n\nNearest / distinct payoff: gaussian-process-uncertainty → ai-gaussian-process-uncertainty. A GP posterior describes beliefs; a separate acquisition score chooses which not-yet-evaluated point to try.\n\nFinite primary model: Two stipulated posterior candidates A mean=.8, sd=.1; B mean=.6, sd=.4. Acquisition UCB=mean+betasd. beta=0 chooses A with scores.8,.6; beta=1 chooses B with scores.9,1; beta=2 scores 1,1.4.\n\nCountercase and mathematical boundary: Set B sd=.05 and beta=1 chooses A; uncertainty alone is not always selected. This is a declared acquisition step, not a complete optimizer or a guarantee of global discovery.\n\nPredict and recall transfer: Predict the next trial at beta=1; recall why the selected candidate need not have highest posterior mean.\n\nRequired observable evidence: Retain mean, uncertainty and acquisition as separate numbers; source GP posterior may be stipulated rather than pretending these values were fit.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §4; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can B be selected despite its lower posterior mean?",
+    "options": [
+      "Its uncertainty bonus outweighs the mean gap",
+      "UCB ignores mean",
+      "Lower means always win"
+    ],
+    "answer": 0,
+    "why": "At beta 1, B’s .4 bonus exceeds A’s .1 bonus by .3, outweighing the .2 mean gap."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:bayesian-optimisation",
+    "also": [],
+    "prerequisites": [
+      "ai:gaussian-process-uncertainty"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

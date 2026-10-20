@@ -1,0 +1,104 @@
+{
+  "slug": "ai-td-error-surprise",
+  "title": "Which outcome changes the estimate?",
+  "hook": "Compare an outcome with the prediction it replaces.",
+  "domain": "ai",
+  "concept": "td-error-surprise",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The listed prerequisite concepts and small arithmetic."
+    ],
+    "doesNotKnow": [
+      "Distinguish TD prediction error from reward size."
+    ]
+  },
+  "misconception": "Distinguish TD prediction error from reward size.",
+  "objective": "Distinguish TD prediction error from reward size.",
+  "claims": [
+    {
+      "id": "ai.ai-td-error-surprise.c1",
+      "text": "All finite inputs, equations, computed outputs and visual encodings: export function update(old:number,reward:number,next:number,terminal=false){const target=reward+(terminal?0:.5*next),delta=target-old;return {old,reward,next,terminal,target,delta,value:old+.5*delta};}\nexport function run(mode:number){return [()=>update(4,2,4),()=>update(4,4,4),()=>update(10,10,99,true),()=>update(4,0,99,true)][mode]();}",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified",
+      "address": "model.ts and Demo.tsx Picture, inputs, numeric labels"
+    },
+    {
+      "id": "ai.ai-td-error-surprise.c2",
+      "text": "Which outcome changes the estimate?; Compare an outcome with the prediction it replaces.; Gamma=.5. Which produces a larger upward correction: current4,reward4,next4; or current10,terminal reward10?; options ['Reward4 case', 'Reward10 case', 'Equal correction']; correct index 0",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json title/hook; Demo.tsx prediction"
+    },
+    {
+      "id": "ai.ai-td-error-surprise.c3",
+      "text": "The retained reward 4 produced target 6 against old value 4, so error 2 raised the estimate to 5. Terminal reward 10 matched its old prediction 10: error zero, no correction. Reward size alone did not determine the update. A negative target-minus-old gap decreases the estimate even when the reward is nonnegative.",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx reveal and retained evidence"
+    },
+    {
+      "id": "ai.ai-td-error-surprise.c4",
+      "text": "{\"question\": \"Current3, reward1, next2, gamma=.5: what is the TD error?\", \"options\": [\"\\u22121\", \"0\", \"1\"], \"answer\": 0, \"why\": \"Target1+.5\\u00d72=2; subtract current3 to obtain\\u22121.\"}",
+      "support": "derivation",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "meta.json recall"
+    },
+    {
+      "id": "ai.ai-td-error-surprise.c5",
+      "text": "Mathematical mismatch only; no claim about neuroscience, emotion, model uncertainty or curiosity. Terminal continuation is zero. Error means target minus old estimate here; it is not an emotion or brain measurement. Controls: Expected2, Unexpected4, Expected10, Missing reward, Reset. Milestones [1, 2, 3]; witness preserved after Reset.",
+      "support": "convention",
+      "source": "https://jmvidal.cse.sc.edu/library/sutton88a.pdf (TD update context; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
+      "status": "unverified",
+      "address": "Demo.tsx controls, hint, retained evidence and boundary"
+    }
+  ],
+  "recall": {
+    "question": "Current3, reward1, next2, gamma=.5: what is the TD error?",
+    "options": [
+      "\u22121",
+      "0",
+      "1"
+    ],
+    "answer": 0,
+    "why": "Target1+.5\u00d72=2; subtract current3 to obtain\u22121."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "ai:td-error-surprise",
+    "also": [],
+    "prerequisites": [
+      "ai:monte-carlo-vs-td"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "finite-toy"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

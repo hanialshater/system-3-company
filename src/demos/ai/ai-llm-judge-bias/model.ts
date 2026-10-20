@@ -1,0 +1,3 @@
+export type Candidate={id:string,text:string};const a={id:'A',text:'4'},b={id:'B',text:'4 4 4'};
+export function judge(items:Candidate[],rule:string){if(rule==='first')return items[0].id;if(rule==='length'){const lengths=items.map(x=>x.text.length);return lengths[0]===lengths[1]?'=':items[lengths[0]>lengths[1]?0:1].id;}return items.every(x=>x.text.split(' ').every(v=>v==='4'))?'=':'invalid';}
+export function run(mode:number){const B=mode===2?{...b,text:'4'}:b,rule=mode===0?'first':mode===3?'content':'length';return [[a,B],[B,a]].map(items=>({order:items.map(x=>x.id).join(''),winner:judge(items,rule)}));}

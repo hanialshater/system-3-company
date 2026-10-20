@@ -1,0 +1,142 @@
+{
+  "slug": "ai-reward-shaping",
+  "title": "Can a helpful bonus change the goal?",
+  "hook": "Two routes earn different rewards. Add a hint along one route.",
+  "domain": "ai",
+  "concept": "reward-shaping",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A grid world: an agent moves, collects points, ends at a goal."
+    ],
+    "doesNotKnow": [
+      "Distinguish an arbitrary reward bonus from a potential-difference shaping rule that preserves these route rankings."
+    ]
+  },
+  "objective": "Distinguish an arbitrary reward bonus from a potential-difference shaping rule that preserves these route rankings.",
+  "misconception": "Every helpful-looking bonus preserves the best route.",
+  "claims": [
+    {
+      "id": "ai.ai-reward-shaping.c1",
+      "text": "Cash terminates with reward3. Detour visits Bridge with reward0 then terminates with reward5; \u03b3=.5. Returns are3 and2.5.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture#routes; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c2",
+      "text": "Adding2 only when entering Bridge gives cash3/detour4.5, flipping the winner to detour.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture#bonus; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c3",
+      "text": "\u03a6(Start)=2, \u03a6(Bridge)=4, \u03a6(Terminal)=0; F=\u03b3\u03a6(next)\u2212\u03a6(now). Cash reward1; detour rewards0 then1, returns1 and.5.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture#potential; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c4",
+      "text": "Both raw returns shift by\u22122 and cash stays best. Bridge potential terms cancel in the two-step discounted return.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#reveal#cancellation; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c5",
+      "text": "At \u03b3=1, raw3/5, arbitrary bonus3/7, potential1/3. The potential preserves the raw detour winner.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture#gamma1; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c6",
+      "text": "With terminal\u03a610 and stopped accumulation, cash6/detour3 have unequal shifts; this violates the zero-terminal boundary.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture#terminal10; src/demos/ai/ai-reward-shaping/model.ts + model.test.mjs finite author implementation reproduction; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c7",
+      "text": "Can a helpful bonus change the goal?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-shaping/meta.json#title; model.ts finite rules; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c8",
+      "text": "Two routes earn different rewards. Add a hint along one route.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-reward-shaping/meta.json#hook; model.ts finite rules; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c9",
+      "text": "Cash returns 3. A detour returns 0 then 5, with \u03b3=.5. Add 2 on entering Bridge: which route wins? Options: Cash / Detour. Correct: Detour.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#predict; model.ts finite rules; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c10",
+      "text": "At \u03b3=1, raw cash3/detour5; zero-terminal potential shaping gives1/3. Is the winner preserved? Yes / No. Both returns shift by \u22122, keeping detour ahead.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/meta.json#recall; model.ts finite rules; https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf \u2014 Ng, Harada and Russell (1999); PDF fetched 2026-10-19 but text extraction garbled and screenshot unavailable. Exact method locator/full legible acquisition remains open; finite route arithmetic is local.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-reward-shaping.c11",
+      "text": "The discounted potential correction expands to +\u03b34\u22122\u2212\u03b34+\u03b3\u00b2\u03a6(Terminal); the equal Bridge terms cancel visibly, leaving \u22122 when terminal potential is zero.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-reward-shaping/Demo.tsx#picture-cancellation; model.ts#routes; model.test.mjs finite arithmetic, unverified author reproduction.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At \u03b3=1, raw cash3/detour5; zero-terminal potential shaping gives1/3. Is the winner preserved?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Both returns shift by \u22122, keeping detour ahead."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:reward-shaping",
+    "also": [],
+    "prerequisites": [
+      "value-vs-reward",
+      "reward-hacking"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "reinforcement-learning",
+      "reward-design"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

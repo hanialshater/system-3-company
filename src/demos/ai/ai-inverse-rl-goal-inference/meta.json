@@ -1,0 +1,128 @@
+{
+  "slug": "ai-inverse-rl-goal-inference",
+  "title": "Does one Blue rule out a Red goal?",
+  "hook": "A noisy demonstrator chooses Red, Red, then Blue.",
+  "domain": "ai",
+  "concept": "inverse-rl-goal-inference",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A grid world: an agent moves, collects points, ends at a goal."
+    ],
+    "doesNotKnow": [
+      "Use observed choices to update reward-hypothesis beliefs under an explicit noisy behaviour model."
+    ]
+  },
+  "objective": "Use observed choices to update reward-hypothesis beliefs under an explicit noisy behaviour model.",
+  "misconception": "One deviation proves the demonstrator has a different goal.",
+  "claims": [
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c1",
+      "text": "R rewards Red2/Blue0; B rewards Red0/Blue2. Both actions terminate in one state. Priors are.5/.5.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#picture#hypotheses; src/demos/ai/ai-inverse-rl-goal-inference/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "checkedBy": "",
+      "checkedOn": "",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c2",
+      "text": "Independent episodes conditional on hypothesis; specified demonstrator chooses the uniquely better action with probability.8 and worse with.2. This is not a measured human parameter.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#summary#assumptions; src/demos/ai/ai-inverse-rl-goal-inference/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c3",
+      "text": "One Red gives posterior.8/.2; two Reds16/17 and1/17; Red,Red,Blue gives likelihoods.128/.032 and posterior.8/.2.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#picture#posterior; src/demos/ai/ai-inverse-rl-goal-inference/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c4",
+      "text": "At noise.5 the same observations have equal likelihood and posterior.5/.5.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#picture#noise; src/demos/ai/ai-inverse-rl-goal-inference/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c5",
+      "text": "The Blue observation lowers belief in R without making R impossible. Goal inference here compares a finite reward family, rather than copying actions.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#reveal#uncertainty; src/demos/ai/ai-inverse-rl-goal-inference/model.ts + model.test.mjs finite author implementation reproduction; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c6",
+      "text": "Does one Blue rule out a Red goal?",
+      "support": "convention",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/meta.json#title; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c7",
+      "text": "A noisy demonstrator chooses Red, Red, then Blue.",
+      "support": "convention",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/meta.json#hook; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c8",
+      "text": "Red, Red, Blue came from a noisy demonstrator. Is the Red goal impossible, certain, or favoured? Options: Impossible / Certain / Favoured, uncertain. Correct: Favoured, uncertain.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/Demo.tsx#predict; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-inverse-rl-goal-inference.c9",
+      "text": "Under the same equal-prior .8-better rule, Blue,Blue,Red favours which goal and by how much? Blue .8 / Red .8 / Both .5. Likelihoods .128 and .032 favour Blue with posterior .8.",
+      "support": "derivation",
+      "source": "src/demos/ai/ai-inverse-rl-goal-inference/meta.json#recall; model.ts finite rules; https://ai.stanford.edu/~ang/papers/icml00-irl.pdf \u2014 Ng and Russell (2000), opening problem definition and ambiguity framing; body fetched 2026-10-19. The finite ordinal noise/Bayesian arithmetic is a local convention, not a result of the paper.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same equal-prior .8-better rule, Blue,Blue,Red favours which goal and by how much?",
+    "options": [
+      "Blue .8",
+      "Red .8",
+      "Both .5"
+    ],
+    "answer": 0,
+    "why": "Likelihoods .128 and .032 favour Blue with posterior .8."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "ai:inverse-rl-goal-inference",
+    "also": [],
+    "prerequisites": [
+      "value-vs-reward"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "ai",
+      "reinforcement-learning",
+      "inverse-rl-imitation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "compare-inputs"
+  ]
+}

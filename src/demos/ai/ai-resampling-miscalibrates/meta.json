@@ -1,0 +1,95 @@
+{
+  "slug": "ai-resampling-miscalibrates",
+  "title": "A new base rate changes the odds",
+  "hook": "Keep evidence fixed while changing prevalence.",
+  "domain": "ai",
+  "concept": "resampling-miscalibrates",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "calibration"
+    ],
+    "doesNotKnow": [
+      "Evidence likelihood ratio=4. Balanced training prior gives posterior .8. At deployment prevalence .1, can .8 be reused under label shift?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the resampling miscalibrates finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-resampling-miscalibrates.c1",
+      "text": "A new base rate changes the odds Keep evidence fixed while changing prevalence. Evidence likelihood ratio=4. Balanced training prior gives posterior .8. At deployment prevalence .1, can .8 be reused under label shift? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §25; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-resampling-miscalibrates.c2",
+      "text": "With likelihood ratio 4, balanced prior odds 1 yielded posterior .8. Deployment prevalence .1 changed prior odds to 1/9 and posterior to 4/13, about .308. At prevalence .2 it became .5. This correction assumes unchanged class-conditional evidence; arbitrary shifts require more.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §25; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-resampling-miscalibrates.c3",
+      "text": "At prevalence .2 with the same likelihood ratio 4, what is the posterior? Options: .5; .8; .2 Prior odds .2/.8=.25 multiply by 4 to give posterior odds 1, hence probability .5.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §25; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-resampling-miscalibrates.c4",
+      "text": "Original schematic labels, including neutral and every changed case: label-shift · fixed-LR=4 prior-odds=? ×4 posterior-odds=? p=odds/(1+odds)=? | label-shift · fixed-LR=4 prior-odds=1 ×4 posterior-odds=4 p=odds/(1+odds)=0.8 | label-shift · fixed-LR=4 prior-odds=0.111 ×4 posterior-odds=0.444 p=odds/(1+odds)=0.308 | label-shift · fixed-LR=4 prior-odds=0.25 ×4 posterior-odds=1 p=odds/(1+odds)=0.5. Retained locally computed witnesses: prior0.5: posterior=0.8 | prior0.1: posterior=0.308 | prior0.2: posterior=0.5. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §25; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-resampling-miscalibrates.c5",
+      "text": " 25. resampling-miscalibrates\n\nTarget / packet: ai-resampling-miscalibrates · D2. Prerequisites: ai:calibration.\n\nNearest / distinct payoff: calibration → say-seventy-mean-it. Calibrated training probabilities need not remain calibrated after a prior shift; this explicitly recomputes posterior odds with fixed class-conditional evidence.\n\nFinite primary model: Same class-conditional evidence has LR 4. Balanced training prior odds 1 yields posterior=.8. Deployment positive prevalence=.1 gives prior odds 1/9, posterior odds 4/9 and probability 4/13≈.307692.\n\nCountercase and mathematical boundary: If deployment prior .5, posterior stays .8. Assume label shift with unchanged likelihood ratio; arbitrary distribution changes need not be corrected by prior odds alone.\n\nPredict and recall transfer: Predict whether .8 can be reused as deployment probability; recall prevalence=.2 yields odds 1 and posterior=.5.\n\nRequired observable evidence: Show prior, evidence ratio and posterior separately; no real risk estimate or universal recalibration recipe.\n\nSource obligation: Declared local finite model. Exact results require independent arithmetic reproduction; this construction supports no real-model performance or universal improvement claim. Method-source obligations remain as listed in the acquisition record below.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §25; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At prevalence .2 with the same likelihood ratio 4, what is the posterior?",
+    "options": [
+      ".5",
+      ".8",
+      ".2"
+    ],
+    "answer": 0,
+    "why": "Prior odds .2/.8=.25 multiply by 4 to give posterior odds 1, hence probability .5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:resampling-miscalibrates",
+    "also": [],
+    "prerequisites": [
+      "ai:calibration"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

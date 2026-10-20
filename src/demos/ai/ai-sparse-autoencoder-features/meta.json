@@ -1,0 +1,109 @@
+{
+  "slug": "ai-sparse-autoencoder-features",
+  "title": "What does sparse coding select?",
+  "hook": "Enumerate reconstruction and penalty together.",
+  "domain": "ai",
+  "concept": "sparse-autoencoder-features",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:superposition",
+      "ai:autoencoder-bottleneck"
+    ],
+    "doesNotKnow": [
+      "Diagonal h=(1/√2,1/√2). Dictionary e1,e2,diagonal. At λ=.1, which exact reconstruction has lower L1 cost?"
+    ]
+  },
+  "misconception": "Two axis atoms",
+  "objective": "Compute this finite sparse-autoencoder-features model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-sparse-autoencoder-features.c1",
+      "text": "What does sparse coding select? Enumerate reconstruction and penalty together. Diagonal h=(1/√2,1/√2). Dictionary e1,e2,diagonal. At λ=.1, which exact reconstruction has lower L1 cost? Options: One diagonal atom; Two axis atoms",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §27; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sparse-autoencoder-features.c2",
+      "text": "Finite code search preferred one diagonal atom at low penalty. A high penalty preferred zero and lost reconstruction. Duplicating an atom created equally good distinct codes. This fixed-decoder code fit is one SAE component, not learned dictionary training or uniquely true features.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §27; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sparse-autoencoder-features.c3",
+      "text": "{'question': 'Can duplicated atoms have distinct codes with equal reconstruction and penalty?', 'options': ['Yes', 'No'], 'answer': 0, 'why': 'Assigning the same coefficient to either duplicate leaves the objective unchanged.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §27; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sparse-autoencoder-features.c4",
+      "text": "Addressed visible stage operands and labels: D=e1,e2,(1/√2,1/√2) | z∈{0,.5,1/√2,1} · z≥0 | J=.5||h−Dz||²+λΣz. Controls: λ=.1, λ=1, Duplicate, Reset. Changed computed rows: λ=0.1; 64 codes searched / z=0/0/1; Dz=0.707/0.707 / SSE=0 penalty=0.1 J=0.1 / ties=1; datasetJ=0.3 | λ=1; 64 codes searched / z=0/0/0; Dz=0/0 / SSE=1 penalty=0 J=0.5 / ties=1; datasetJ=1.5 | λ=0.1; 256 codes searched / z=0/0/0/1; Dz=0.707/0.707 / SSE=0 penalty=0.1 J=0.1 / ties=3; datasetJ=0.3. Retained computed witnesses: λ0.1 J0.1 ties1 | λ1 J0.5 ties1 | duplicate J0.1 ties3. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst k=Math.SQRT1_2,D=mode===2?[[1,0],[0,1],[k,k],[k,k]]:[[1,0],[0,1],[k,k]],h=[k,k],lambda=mode===1?1:.1,levels=[0,.5,k,1],codes=(n:number):number[][]=>n?codes(n-1).flatMap(a=>levels.map(v=>[...a,v])):[[]],candidates=codes(D.length).map(z=>{const r=[0,1].map(j=>sum(z.map((v,i)=>v*D[i][j]))),err=sum(r.map((v,i)=>(v-h[i])**2)),penalty=lambda*sum(z);return{z,r,err,penalty,J:.5*err+penalty};}).sort((a,b)=>a.J-b.J),best=candidates[0],dataset=[[1,0],[0,1],[k,k]].map(observation=>Math.min(...codes(D.length).map(z=>{const r=[0,1].map(j=>sum(z.map((v,i)=>v*D[i][j])));return .5*sum(r.map((v,i)=>(v-observation[i])**2))+lambda*sum(z);}))),datasetJ=sum(dataset),ties=candidates.filter(x=>Math.abs(x.J-best.J)<1e-9).length;return{values:[best.J,best.err,ties,datasetJ],rows:[`λ=${lambda}; ${candidates.length} codes searched`,`z=${best.z.map(f).join('/')}; Dz=${best.r.map(f).join('/')}`,`SSE=${f(best.err)} penalty=${f(best.penalty)} J=${f(best.J)}`,`ties=${ties}; datasetJ=${f(datasetJ)}`],receipt:`${mode===2?'duplicate':`λ${lambda}`} J${f(best.J)} ties${ties}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §27; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-sparse-autoencoder-features.c5",
+      "text": "sparse-autoencoder-features\n\n**Identity / target / source:** `ai:sparse-autoencoder-features` → `ai-sparse-autoencoder-features` → `src/demos/ai/ai-sparse-autoencoder-features`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/156`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#27-sparse-autoencoder-features`. **Packet:** I2. **Level / prerequisites:** stretch; `ai:superposition`, `ai:autoencoder-bottleneck`.\n\n**Nearest / distinct payoff:** superposition shows interference under a fixed dot decoder; this actually optimizes reconstruction plus sparsity over an overcomplete dictionary, with a nonunique-feature countercase.\n\n**Computed primary model:** Fixed decoder dictionary columnsD=[(1,0),(0,1),(1/sqrt2,1/sqrt2)], three atoms in2D. Activation dataset consists of these three columns. For each observationh enumerate codez∈{0,.5,1/sqrt2,1}³ and minimizeJ=.5*||h−Dz||²+lambda*sum z, nonnegative. Atlambda.1 each observation’s own single-atom code1 reconstructs exactly, J=.1 each, dataset sum.3. For diagonalh, using first two atoms at1/sqrt2 also reconstructs but hasL1=sqrt2, cost.141421>.1.\n\n**Countercase / boundary:** Atlambda1, zero code wins for each observation, error norm²1 each and totalJ1.5: sparsity can destroy reconstruction. Add a duplicate diagonal atom to the dictionary: distinct codes assigning1 to either duplicate attain equal objective for diagonalh. Fixed-decoder finite sparse coding is the code-fitting component of an SAE, not trained encoder/dictionary learning or proof of uniquely true features.\n\n**Prediction / transfer recall:** Predict which exact diagonal reconstruction lambda.1 favours; recall duplicated decoder directions prevent unique interpretation even with equal reconstruction and sparsity.\n\n**Intervention / retained witness:** Solve codes enumerates actual candidate scores, selected nonzero atoms, reconstruction and penalty; Increase lambda and Duplicate atom expose both countercases, retaining the original exact sparse code. Stage needs only selected/runner-up, complete enumeration may be in accessible model trace rather than tiny64-cell dashboard.\n\n**Source obligation:** [Bricken et al. original author article](https://transformer-circuits.pub/2023/monosemantic-features/index.html) returned tool errors on both bare/www opens in this run; no body acquired. Search-discovered primary title is a lead only. Acquire its loss/architecture locator before general SAE claims; the explicitly bounded fixed-decoder optimization above is independently reproducible.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §27; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can duplicated atoms have distinct codes with equal reconstruction and penalty?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Assigning the same coefficient to either duplicate leaves the objective unchanged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:sparse-autoencoder-features",
+    "also": [],
+    "prerequisites": [
+      "ai:superposition",
+      "ai:autoencoder-bottleneck"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

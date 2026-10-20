@@ -1,0 +1,2 @@
+// Invented finite construction. No real model or external service is simulated.
+export function compute(mode: number) { const clean = [2, 1], corrupt = mode === 2 ? [0, 0] : [0, 1]; const coordinate = mode === 1 ? 1 : 0; const patched = corrupt.map((x, i) => i === coordinate ? clean[i] : x); const read = (h: number[]) => 2 * h[0] + h[1]; return { clean, corrupt, coordinate, patched, before: read(corrupt), after: read(patched), cleanOutput: read(clean) }; }

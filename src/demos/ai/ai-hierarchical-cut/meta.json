@@ -1,0 +1,95 @@
+{
+  "slug": "ai-hierarchical-cut",
+  "title": "Same cut, different linkage",
+  "hook": "Compute merges from distances instead of naming a group count.",
+  "domain": "ai",
+  "concept": "hierarchical-cut",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "k-means-clustering"
+    ],
+    "doesNotKnow": [
+      "Points 0/1/4/8; single-link merges at 1/3/4. At cut 3, how many groups remain?"
+    ]
+  },
+  "misconception": "3",
+  "objective": "Compute the hierarchical cut finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-hierarchical-cut.c1",
+      "text": "Same cut, different linkage Compute merges from distances instead of naming a group count. Points 0/1/4/8; single-link merges at 1/3/4. At cut 3, how many groups remain? Options: 2; 3",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §17; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-hierarchical-cut.c2",
+      "text": "Single-link retained one merge at cut 2, leaving three groups. At cut 3 it retained two, leaving two. Complete-link measured the farthest pair: joining {0,1} with 4 cost 4, so cut 3 retained three groups. The linkage rule changes merge-height meaning.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §17; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hierarchical-cut.c3",
+      "text": "Why does complete-link keep three groups at cut 3? Options: The farthest cross-pair distance is 4; It ignores all distances; Every linkage must give the same cut After merging 0 and 1, their complete-link distance to 4 is max(4,3)=4, which exceeds cut 3.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §17; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hierarchical-cut.c4",
+      "text": "Original schematic labels, including neutral and every changed case: x=0/1/4/8 · single=min 0 1 4 8 groups=? | x=0/1/4/8 · single=min 1 3 4 0 1 4 8 groups=3 | x=0/1/4/8 · single=min 1 3 4 0 1 4 8 groups=2 | x=0/1/4/8 · complete=max 1 4 8 0 1 4 8 groups=3. Retained locally computed witnesses: Single@2: groups3 | Single@3: groups2 | Complete@3: groups3. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §17; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-hierarchical-cut.c5",
+      "text": " 17. hierarchical-cut\n\nTarget / packet: ai-hierarchical-cut · C1. Prerequisites: ai:k-means-clustering.\n\nNearest / distinct payoff: k-means-clustering → bad-start-kmeans. K-means has centroids; this computes merge heights under single versus complete linkage and changes the cut.\n\nFinite primary model: Single-link agglomeration on points [0,1,4,8] merges at heights 1,3,4. Cut retaining merges at height<=2 gives groups{0,1},{4},{8}; cutoff 3 gives{0,1,4},{8}.\n\nCountercase and mathematical boundary: Complete-link on same points merges 0/1 at 1, then{0,1}with 4 at 4, so cutoff 3 has three groups. Linkage rule changes meaning of height.\n\nPredict and recall transfer: Predict number of groups at cut 3; recall why same cut differs under complete versus single link.\n\nRequired observable evidence: Tiny 4 leaf dendrogram and explicitly declared linkage distance; not a new multi-card sequence.\n\nSource obligation: [scikit-learn clustering documentation](https://scikit-learn.org/stable/modules/clustering.html), acquired method body §§2.3.2 k-means,2.3.6 hierarchical methods,2.3.7 DBSCAN. Each local convention and actual result is independently derivable; do not infer true populations from requested groups.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §17; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does complete-link keep three groups at cut 3?",
+    "options": [
+      "The farthest cross-pair distance is 4",
+      "It ignores all distances",
+      "Every linkage must give the same cut"
+    ],
+    "answer": 0,
+    "why": "After merging 0 and 1, their complete-link distance to 4 is max(4,3)=4, which exceeds cut 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:hierarchical-cut",
+    "also": [],
+    "prerequisites": [
+      "ai:k-means-clustering"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

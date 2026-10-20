@@ -1,0 +1,101 @@
+{
+  "slug": "ai-lr-schedule-warmup",
+  "title": "Does a gentle start always help?",
+  "hook": "Change the declared inputs; compare the earned evidence.",
+  "domain": "ai",
+  "concept": "lr-schedule-warmup",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:learning-rate-overshoot"
+    ],
+    "doesNotKnow": [
+      "With a=[8,1,1], which three-step schedule has smaller final x²/2?"
+    ]
+  },
+  "misconception": "Constant .5",
+  "objective": "Use the distinct declared lr-schedule-warmup mechanism to explain the primary and changed case.",
+  "claims": [
+    {
+      "id": "ai.ai-lr-schedule-warmup.c1",
+      "text": "hook/predict: With a=[8,1,1], which three-step schedule has smaller final x²/2? Options: Constant .5; Warmup .1,.5,.5",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-lr-schedule-warmup.c2",
+      "text": "stage input operands: \"x₀=1 · ∇=aₜx · η=.5 versus .1,.5,.5\"",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lr-schedule-warmup.c3",
+      "text": "reveal: For changing curvature, warmup ended at loss .00125 versus .28125. With stable curvature, constant steps won: .00781 versus .02531. Both used three gradients and the same final evaluation. This prescribed sequence does not establish real-network curvature or universal warmup benefits.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lr-schedule-warmup.c4",
+      "text": "recall: For stable a=[1,1,1], which first step moves closer to zero? The first constant step gives .5; warmup gives .9.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lr-schedule-warmup.c5",
+      "text": "stage computation: Three updates on L_t(x)=a_t*x²/2 with declared a=[8,1,1], x0=1; gradient=a_t*x. Constant eta=.5 yields x=[−3,−1.5,−.75], final common evaluation L_eval=x²/2=.28125. Warmup eta=[.1,.5,.5] yields[.2,.1,.05], final .00125. Both use three gradients and same final evaluation loss.\n\n**Countercase / boundary:** Change curvature sequence to[1,1,1]. Constant trajectory[.5,.25,.125] final loss .0078125 beats warmup[.9,.45,.225] loss .0253125. This is prescribed nonstationary curvature, not evidence that real network curvature follows this sequence or warmup always helps.\n\n**Prediction / transfer recall:** Predict which schedule avoids the initial overshoot for a1=8; recall stable-curvature reversal and explain the different first update.\n\n**Intervention / reachable witness:** Step keeps both trajectories and current curvature/rate visible, with retained final loss from the original sequence after Stable curvature. Hidden future computed answers stay unlocked until commitment; future input a/rate values may be visible.",
+      "support": "derivation",
+      "source": "company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-lr-schedule-warmup.c6",
+      "text": "Addressed original stage labels, control meanings, drawn computed relations and all retained arithmetic snapshots (including Reset with evidence retained): inspection -1: x₀=1 · ∇=aₜx · η=.5 versus .1,.5,.5 ? Changing a Stable a First step Reset 1: x -0.750/0.050; L 0.28125/0.00125 2: x 0.125/0.225; L 0.00781/0.02531 3: x -3.000/0.200; L 4.50000/0.02000 | inspection 0: x₀=1 · ∇=aₜx · η=.5 versus .1,.5,.5 constant / warmup 0 → 1 → 2 → 3 Changing a Stable a First step Reset 1: x -0.750/0.050; L 0.28125/0.00125 2: x 0.125/0.225; L 0.00781/0.02531 3: x -3.000/0.200; L 4.50000/0.02000 | inspection 1: x₀=1 · ∇=aₜx · η=.5 versus .1,.5,.5 constant / warmup 0 → 1 → 2 → 3 Changing a Stable a First step Reset 1: x -0.750/0.050; L 0.28125/0.00125 2: x 0.125/0.225; L 0.00781/0.02531 3: x -3.000/0.200; L 4.50000/0.02000 | inspection 2: x₀=1 · ∇=aₜx · η=.5 versus .1,.5,.5 constant / warmup 0 → 1 → 2 → 3 Changing a Stable a First step Reset 1: x -0.750/0.050; L 0.28125/0.00125 2: x 0.125/0.225; L 0.00781/0.02531 3: x -3.000/0.200; L 4.50000/0.02000",
+      "support": "derivation",
+      "source": "Local Demo.tsx, model.ts, model-check.mjs; finite construction company/domains/briefs/2026-10-19-ai-next30d.md#5-lr-schedule-warmup; local model.ts and model-check.mjs. Declared local finite construction; independently reproduce these equations and register all visible claims. No empirical performance or universal training claim is admitted. Acquire an original method body and exact locator before extending the stated local boundary. Builder-only source render audit; independent verification and actual rendered QA remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For stable a=[1,1,1], which first step moves closer to zero?",
+    "options": [
+      "Constant .5",
+      "Warmup .1"
+    ],
+    "answer": 0,
+    "why": "The first constant step gives .5; warmup gives .9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:lr-schedule-warmup",
+    "also": [],
+    "prerequisites": [
+      "ai:learning-rate-overshoot"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

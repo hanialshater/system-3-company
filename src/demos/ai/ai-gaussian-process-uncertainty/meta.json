@@ -1,0 +1,95 @@
+{
+  "slug": "ai-gaussian-process-uncertainty",
+  "title": "Uncertain at an observed point?",
+  "hook": "Condition a fixed one-point Gaussian process.",
+  "domain": "ai",
+  "concept": "gaussian-process-uncertainty",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bayesian-posterior-lines"
+    ],
+    "doesNotKnow": [
+      "Zero-mean GP: k(x,z)=exp(−(x−z)²/2), observed (0,1). With noise variance 1, must latent variance at x=0 vanish?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute the gaussian process uncertainty finite model and explain its changed countercase and stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-gaussian-process-uncertainty.c1",
+      "text": "Uncertain at an observed point? Condition a fixed one-point Gaussian process. Zero-mean GP: k(x,z)=exp(−(x−z)²/2), observed (0,1). With noise variance 1, must latent variance at x=0 vanish? Options: No; Yes",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §3; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-gaussian-process-uncertainty.c2",
+      "text": "Noiseless conditioning gave mean 1 and latent variance 0 at the observation. With noise variance 1, both became .5. At the farther query, k=.5. New-observation variance additionally includes noise. Kernel and length scale stay fixed; these are not coverage bands.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §3; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-process-uncertainty.c3",
+      "text": "Far away, k approaches 0. What do the latent predictions approach? Options: Prior mean 0 and variance 1; Mean 1 and variance 0; Observation variance 0 With k approaching 0, m=k/(1+noise) approaches 0 and latent v=1−k²/(1+noise) approaches 1.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §3; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-process-uncertainty.c4",
+      "text": "Original schematic labels, including neutral and every changed case: m=k/(1+n) · v=1−k²/(1+n) query mean latent-v obs-v 0 ? ? ? √(2ln2) ? ? ? | m=k/(1+n) · v=1−k²/(1+n) query mean latent-v obs-v 0 1 0 0 √(2ln2) 0.5 0.75 0.75 | m=k/(1+n) · v=1−k²/(1+n) query mean latent-v obs-v 0 0.5 0.5 1.5 √(2ln2) 0.25 0.875 1.875. Retained locally computed witnesses: n0: m1,latent0,obs0 | n1: m0.5,latent0.5,obs1.5. No empirical measurements or fitted external model are claimed.",
+      "support": "convention",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §3; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-gaussian-process-uncertainty.c5",
+      "text": " 3. gaussian-process-uncertainty\n\nTarget / packet: ai-gaussian-process-uncertainty · P2. Prerequisites: ai:bayesian-posterior-lines.\n\nNearest / distinct payoff: bayesian-posterior-lines → ai-bayesian-posterior-lines. Finite candidate lines are not a kernel process; here the full one-observation Gaussian conditional is computed with a declared covariance kernel.\n\nFinite primary model: Zero-mean GP prior kernel k(x, z)=exp(-(x-z)^2/2), one observation x=0, y=1. With noise variance 0 posterior mean=k(x,0), latent variance 1-k(x,0)^2. At x=0:1,0; at x=sqrt(2 ln 2):.5,.75.\n\nCountercase and mathematical boundary: Noise variance 1 changes formula to mean=k/2, latent variance 1-k²/2; at observed x=0 mean=.5, variance=.5. New-observation variance additionally includes noise 1. Kernel/length scale fixed, no fitted hyperparameters.\n\nPredict and recall transfer: Predict whether uncertainty vanishes at a noisy observation; recall far-away k→0 yields prior mean 0, variance 1.\n\nRequired observable evidence: Show one observed point and two query locations with explicitly labeled latent variance; no arbitrary shaded bands implying coverage.\n\nSource obligation: [Rasmussen–Williams author textbook chapter2](https://gaussianprocess.org/gpml/chapters/RW2.pdf), acquired PDF index9–10, eq2.23–2.26 posterior mean/covariance; index11 distinguishes noisy predictions. [Maintainer GPR formulation](https://scikit-learn.org/stable/modules/gaussian_process.htmlregression) also acquired. Use exact one-point conditioning, no copied figure or claim about fitted real-world uncertainty.\n Shipped local model and displayed expression addresses: model.ts compute; Demo.tsx Figure; Stage retained computed witnesses.",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30c.md §3; model.ts and model-check.mjs. Local derivation only. Independent method-source, learner, fact and rendered review remain pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Far away, k approaches 0. What do the latent predictions approach?",
+    "options": [
+      "Prior mean 0 and variance 1",
+      "Mean 1 and variance 0",
+      "Observation variance 0"
+    ],
+    "answer": 0,
+    "why": "With k approaching 0, m=k/(1+noise) approaches 0 and latent v=1−k²/(1+noise) approaches 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:gaussian-process-uncertainty",
+    "also": [],
+    "prerequisites": [
+      "ai:bayesian-posterior-lines"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

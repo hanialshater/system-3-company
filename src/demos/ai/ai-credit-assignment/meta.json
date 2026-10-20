@@ -1,0 +1,107 @@
+{
+  "slug": "ai-credit-assignment",
+  "title": "Which action receives delayed credit?",
+  "hook": "Back up returns into separate action logits.",
+  "domain": "ai",
+  "concept": "credit-assignment",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:mdp-basics"
+    ],
+    "doesNotKnow": [
+      "Rewards [0,0,8], γ=.5; Gt=rt+γGnext. Is the first action’s return-weighted update zero?"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Compute this finite credit-assignment model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-credit-assignment.c1",
+      "text": "Which action receives delayed credit? Back up returns into separate action logits. Rewards [0,0,8], γ=.5; Gt=rt+γGnext. Is the first action’s return-weighted update zero? Options: No; Yes",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §9; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-credit-assignment.c2",
+      "text": "Backward returns reinforced all three sampled actions at γ=.5, despite two zero immediate rewards. At γ=0 only the last changed. Declaring the first action irrelevant did not change its sampled update: assigned credit is not proof of causal contribution.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §9; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-credit-assignment.c3",
+      "text": "{'question': 'At γ=.25, what is the first logit update?', 'options': ['.025', '.1'], 'answer': 0, 'why': 'The first return is .25²×8=.5, giving .1×.5×.5=.025.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §9; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-credit-assignment.c4",
+      "text": "Addressed visible stage operands and labels: rewards=0/0/8 · γ=.5 | Gt=rt+γGnext · terminal G=0 | η=.1 · Bernoulli log-gradient=.5. Controls: γ=.5, γ=0, Irrelevant, Reset. Changed computed rows: γ=0.5 · rewards=0/0/8 / backed returns=2/4/8 / separate logits=0.1/0.2/0.4 / P=0.525/0.55/0.599 | γ=0 · rewards=0/0/8 / backed returns=0/0/8 / separate logits=0/0/0.4 / P=0.5/0.5/0.599 | γ=0.5 · rewards=0/0/8 / backed returns=2/4/8 / separate logits=0.1/0.2/0.4 / P=0.525/0.55/0.599 · irrelevant first. Retained computed witnesses: γ0.5 Δθ=0.1/0.2/0.4 | γ0 Δθ=0/0/0.4 | irrelevant Δθ=0.1/0.2/0.4. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst gamma=mode===1?0:.5,rewards=[0,0,8],G=[0,0,0];for(let i=2;i>=0;i--)G[i]=rewards[i]+gamma*(G[i+1]??0);const logits=G.map(g=>.1*g*.5),p=logits.map(x=>1/(1+Math.exp(-x)));return{values:[...G,...logits],rows:[`γ=${gamma} · rewards=${rewards.join('/')}`,`backed returns=${G.map(f).join('/')}`,`separate logits=${logits.map(f).join('/')}`,`P=${p.map(f).join('/')}${mode===2?' · irrelevant first':''}`],receipt:`${mode===2?'irrelevant':`γ${gamma}`} Δθ=${logits.map(f).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §9; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-credit-assignment.c5",
+      "text": "credit-assignment\n\n**Identity / target / source:** `ai:credit-assignment` → `ai-credit-assignment` → `src/demos/ai/ai-credit-assignment`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/106`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#9-credit-assignment`. **Packet:** R1. **Level / prerequisites:** core; `ai:mdp-basics`.\n\n**Nearest / distinct payoff:** discount-factor compares actions by return; this propagates a terminal return into three distinct action-update signals without claiming causal identification.\n\n**Computed primary model:** Three-step episode rewards[0,0,8], gamma.5. Backward recurrenceG_t=r_t+gamma*G_(t+1), terminalG3=0 yields[2,4,8]. At each visited state a sampled Bernoulli action has p=.5 and log-probability gradient.5. Eta.1 return-weighted updates produce separate logits[.1,.2,.4] and probabilities sigmoid of each. Every sampled action receives signal despite zero immediate reward at first two.\n\n**Countercase / boundary:** Gamma0 gives returns[0,0,8] and logits[0,0,.4]. If the first action is declared irrelevant to the terminal outcome, this sampled-return update still reinforces it; receiving credit is not proof of causal contribution or a variance-free estimate.\n\n**Prediction / transfer recall:** Predict whether first sampled action receives zero update at gamma.5; recall gamma.25 gives first return.5 and first logit.025 under the same episode.\n\n**Intervention / retained witness:** Back up one step at a time then Apply updates shows reward, return and separate action probabilities on one timeline; Gamma0 and Irrelevant first action expose limits while retaining original signals. Show raw episode before prediction, not computed returns.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Author textbook lead: http://incompleteideas.net/book/bookdraft2018mar21.pdf, policy-gradient/return chapters; not newly acquired here. No convergence or causal theorem is inferred.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §9; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At γ=.25, what is the first logit update?",
+    "options": [
+      ".025",
+      ".1"
+    ],
+    "answer": 0,
+    "why": "The first return is .25²×8=.5, giving .1×.5×.5=.025."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:credit-assignment",
+    "also": [],
+    "prerequisites": [
+      "ai:mdp-basics"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

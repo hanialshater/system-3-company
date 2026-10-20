@@ -1,0 +1,95 @@
+{
+  "slug": "ai-agent-memory-files",
+  "title": "What survives a reset?",
+  "hook": "Context, a simulated note and ground truth are separate stores.",
+  "domain": "ai",
+  "concept": "agent-memory-files",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "context-window"
+    ],
+    "doesNotKnow": [
+      "Context=42, note empty. Persist copies context; reset clears context; read copies note. After all three?"
+    ]
+  },
+  "misconception": "The contrasting operations must produce the same result.",
+  "objective": "Compare the declared primary computation with its changed countercase and explain the boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-agent-memory-files.c1",
+      "text": "Context=42, note empty. Persist copies context; reset clears context; read copies note. After all three? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 42; 17; Missing.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 6; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-agent-memory-files/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-agent-memory-files.c2",
+      "text": "Your retained traces show recovery of 42 after persisting, clearing context and reading the note. The stale note restored 17 even though truth remained 42; deletion yielded missing. Storage preserves a value, not its correctness. All writes here are simulated in component state: no real file is written, and this is not human-like memory.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 6; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-agent-memory-files/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-agent-memory-files.c3",
+      "text": "Truth is now 42 but a persisted note still says 17. What does this read operation restore? 17. Reading copies the note; this operation has no truth-checking step. Persistence and validation are separate.",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 6; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-agent-memory-files/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-agent-memory-files.c4",
+      "text": "This is a finite invented construction; the display uses simulated component state and no real model, file, API or provider measurements.",
+      "support": "convention",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 6; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-agent-memory-files/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ai-agent-memory-files.c5",
+      "text": "Declared finite stage data, operations and retained results, by case: Simulated \u00b7 truth 42 Context 42 Note \u2205 note\u2190context \u00b7 context\u2190\u2205 context\u2190note persist:42/42 \u2192 reset:\u2205/42 \u2192 read:42/42 Save/reset/read Stale 17 Delete/read Persist Clear Read Reset 1. 42 / 42 2. 17 / 17 3. \u2205 / \u2205 | Simulated \u00b7 truth 42 Context 42 Note \u2205 note\u2190context \u00b7 context\u2190\u2205 context\u2190note persist:42/42 \u2192 reset:\u2205/42 \u2192 read:42/42 Save/reset/read Stale 17 Delete/read Persist Clear Read Reset 1. 42 / 42 2. 17 / 17 3. \u2205 / \u2205 | Simulated \u00b7 truth 42 Context 42 Note \u2205 note\u2190context \u00b7 context\u2190\u2205 context\u2190note persist:42/42 \u2192 reset:\u2205/42 \u2192 read:42/42 Save/reset/read Stale 17 Delete/read Persist Clear Read Reset 1. 42 / 42 2. 17 / 17 3. \u2205 / \u2205",
+      "support": "derivation",
+      "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 6; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-agent-memory-files/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Truth is now 42 but a persisted note still says 17. What does this read operation restore?",
+    "options": [
+      "17",
+      "42",
+      "Missing"
+    ],
+    "answer": 0,
+    "why": "17. Reading copies the note; this operation has no truth-checking step. Persistence and validation are separate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:agent-memory-files",
+    "also": [],
+    "prerequisites": [
+      "ai:context-window"
+    ],
+    "level": "intro",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

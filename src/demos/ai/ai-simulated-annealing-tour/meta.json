@@ -1,0 +1,99 @@
+{
+  "slug": "ai-simulated-annealing-tour",
+  "title": "Test simulated annealing tour",
+  "hook": "Compare a declared mechanism with its changed case.",
+  "domain": "ai",
+  "concept": "simulated-annealing-tour",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "local-minima",
+      "nearest-neighbour-tour"
+    ],
+    "doesNotKnow": [
+      "AB=BC=CD=DA=2,AC=BD=3. Compare ABCDA→ACBDA. Accept worse iff u=.2<exp(−Δ/T), improving always. At T2, accepted?"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Compute the declared simulated annealing tour model and distinguish its countercase.",
+  "claims": [
+    {
+      "id": "ai.ai-simulated-annealing-tour.c1",
+      "text": "Test simulated annealing tour Compare a declared mechanism with its changed case. AB=BC=CD=DA=2,AC=BD=3. Compare ABCDA→ACBDA. Accept worse iff u=.2<exp(−Δ/T), improving always. At T2, accepted? Options: Yes; No",
+      "location": "title, hook, prediction question and both options",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §15; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-simulated-annealing-tour.c2",
+      "text": "The proposal length rose 8→10. Its fixed draw .2 passed probability .368 at T2 but failed .018 at T.5. The reverse improvement was always accepted. These are weighted edges and one declared move, not evidence of convergence or a better final tour.",
+      "location": "reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §15; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-simulated-annealing-tour.c3",
+      "text": "{\"question\": \"Is a realized acceptance decision the same as its probability?\", \"options\": [\"No: probability .368, realized yes\", \"Yes: both quantities equal .2\"], \"answer\": 0, \"why\": \"The fixed draw .2 determines the realized decision by comparison with exp(−2/2), not by equality.\"}",
+      "location": "recall question/options/rationale",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §15; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-simulated-annealing-tour.c4",
+      "text": "simulated-annealing-tour\n\n**Identity / target / source:** `ai:simulated-annealing-tour` → `ai-simulated-annealing-tour` → `src/demos/ai/ai-simulated-annealing-tour`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/191`; brief `company/domains/briefs/2026-10-19-ai-next30f.md#15-simulated-annealing-tour`. **Packet:** O1. **Level / prerequisites:** core; `ai:local-minima`, `cs:nearest-neighbour-tour`.\n\n**Nearest / distinct payoff:** local-minima rejects worse moves; here actual tour lengths drive a temperature-dependent acceptance probability and a reproducible draw.\n\n**Computed primary model:** Weighted undirected4-node complete graph: AB=BC=CD=DA=2, AC=BD=3. TourA-B-C-D-A length8. Proposed2-opt reversal givesA-C-B-D-A length10, delta2. Metropolis rule accepts worse with exp(−delta/T): T2→exp(−1)=.3678794; T.5→exp(−4)=.0183156. Fixed uniform drawu=.2 accepts atT2 but rejects at.5.\n\n**Countercase / boundary:** Reverse proposal delta−2 is always accepted; atT0 a worse move has probability0, equal/improving1. These are graph edge weights, not Euclidean lengths inferred from a drawing. A single accepted worse tour is not a global convergence or better-final-tour guarantee; no cooling theorem is admitted.\n\n**Prediction / transfer recall:** Predict acceptance under the two given temperatures; recall the fixed draw affects a realized decision while exp(−delta/T) is its probability.\n\n**Intervention / retained witness:** Propose2-opt computes both edge sums/delta, then changeT compares probability/u; Reverse move shows improvement acceptance. Retain original8/10 tours and both temperature decisions on the same graph.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions. Primary Kirkpatrick et al.1983/Metropolis source acquisition and exact cooling assumptions remain before any historical or asymptotic claim; the finite rule is declared.\n\nLocal model.ts compute and Demo.tsx Figure encode the exact numerical cases; model-check.mjs retains every output. Stage labels: T2/T.5/Reverse; Reset; Declared cases outputs ?",
+      "location": "Stage: all model outputs, controls, original schematic geometry and retained witnesses",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §15; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Is a realized acceptance decision the same as its probability?",
+    "options": [
+      "No: probability .368, realized yes",
+      "Yes: both quantities equal .2"
+    ],
+    "answer": 0,
+    "why": "The fixed draw .2 determines the realized decision by comparison with exp(−2/2), not by equality."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:simulated-annealing-tour",
+    "also": [],
+    "prerequisites": [
+      "ai:local-minima",
+      "cs:nearest-neighbour-tour"
+    ],
+    "level": "core",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}

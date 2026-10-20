@@ -1,0 +1,107 @@
+{
+  "slug": "ai-generative-eval-tradeoff",
+  "title": "Which generator wins the score?",
+  "hook": "Separate valid mass from support coverage.",
+  "domain": "ai",
+  "concept": "generative-eval-tradeoff",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ai:gan-mode-collapse"
+    ],
+    "doesNotKnow": [
+      "Score=λ·valid mass+(1−λ)·coverage. At λ=.8, compare collapsed [1,0,0] with broad [.4,.4,.2]."
+    ]
+  },
+  "misconception": "Broad wins",
+  "objective": "Compute this finite generative-eval-tradeoff model, compare earned countercases, and explain its stated boundary.",
+  "claims": [
+    {
+      "id": "ai.ai-generative-eval-tradeoff.c1",
+      "text": "Which generator wins the score? Separate valid mass from support coverage. Score=λ·valid mass+(1−λ)·coverage. At λ=.8, compare collapsed [1,0,0] with broad [.4,.4,.2]. Options: Collapsed wins; Broad wins",
+      "location": "Demo.tsx predict; meta title/hook",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §8; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-eval-tradeoff.c2",
+      "text": "Changing the scalar weight reversed the preferred generator. A tiny positive B mass then achieved full binary coverage despite severe imbalance. These declared validity and support metrics are not human realism, FID, or an empirical generation benchmark.",
+      "location": "Demo.tsx reveal",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §8; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-eval-tradeoff.c3",
+      "text": "{'question': 'Does positive-support coverage measure balanced mode probabilities?', 'options': ['No', 'Yes'], 'answer': 0, 'why': 'A .999/.001 distribution covers both modes while remaining far from .5/.5.'}",
+      "location": "meta.json recall",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §8; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-eval-tradeoff.c4",
+      "text": "Addressed visible stage operands and labels: A/B valid · C invalid | collapsed=1/0/0 · broad=.4/.4/.2 | coverage=fraction of positive real modes. Controls: λ=.8, λ=.2, Tiny B, Reset. Changed computed rows: λ=0.8 · q1=1/0/0 / valid=1 cover=0.5 S=0.9 / q2=0.4/0.4/0.2 · S=0.84 / TV(q1,real)=0.5 · real=.5/.5/0 | λ=0.2 · q1=1/0/0 / valid=1 cover=0.5 S=0.6 / q2=0.4/0.4/0.2 · S=0.96 / TV(q1,real)=0.5 · real=.5/.5/0 | λ=0.8 · q1=0.999/0.001/0 / valid=1 cover=1 S=1 / q2=0.5/0.5/0 · S=1 / TV(q1,real)=0.499 · real=.5/.5/0. Retained computed witnesses: λ0.8 S=0.9/0.84 | λ0.2 S=0.6/0.96 | tinyB S=1/1. Numeric display is rounded to three decimals unless explicitly shown otherwise; source computations retain full precision. Exact expressions: // Bounded owner construction; no external model or shared runtime engine.\nexport const sum=(a:number[])=>a.reduce((s,x)=>s+x,0);\nexport const dot=(a:number[],b:number[])=>sum(a.map((x,i)=>x*b[i]));\nexport const f=(x:number)=>Number.isFinite(x)?String(Number(x.toFixed(3))):'∞';\nexport function compute(mode:number){\nconst lambda=mode===1?.2:.8,qs=mode===2?[[.999,.001,0],[.5,.5,0]]:[[1,0,0],[.4,.4,.2]],r=qs.map(q=>{const realism=q[0]+q[1],coverage=(Number(q[0]>0)+Number(q[1]>0))/2,score=lambda*realism+(1-lambda)*coverage,tv=sum(q.map((v,i)=>Math.abs(v-[.5,.5,0][i])))/2;return{realism,coverage,score,tv};});return{values:r.flatMap(x=>[x.score,x.tv]),rows:[`λ=${lambda} · q1=${qs[0].map(f).join('/')}`,`valid=${f(r[0].realism)} cover=${f(r[0].coverage)} S=${f(r[0].score)}`,`q2=${qs[1].map(f).join('/')} · S=${f(r[1].score)}`,`TV(q1,real)=${f(r[0].tv)} · real=.5/.5/0`],receipt:`${mode===2?'tinyB':`λ${lambda}`} S=${r.map(x=>f(x.score)).join('/')}`};\n}\n",
+      "location": "Demo.tsx Figure/Stage; model.ts compute",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §8; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    },
+    {
+      "id": "ai.ai-generative-eval-tradeoff.c5",
+      "text": "generative-eval-tradeoff\n\n**Identity / target / source:** `ai:generative-eval-tradeoff` → `ai-generative-eval-tradeoff` → `src/demos/ai/ai-generative-eval-tradeoff`; source `company/domains/proposals/2026-10-18-ai-map-expansion.json#concepts/86`; brief `company/domains/briefs/2026-10-19-ai-next30e.md#8-generative-eval-tradeoff`. **Packet:** G3. **Level / prerequisites:** stretch; `ai:gan-mode-collapse`.\n\n**Nearest / distinct payoff:** gan-mode-collapse compares limited discriminator loss; this computes two explicitly different evaluation metrics and shows a scalar weighting/coverage loophole.\n\n**Computed primary model:** Real modesA/B, invalidC. Collapsed generator[1,0,0] has realism(valid mass)1 and coverage(fraction of real modes with positive mass).5. Broad generator[.4,.4,.2] has realism.8 and coverage1. ScalarS=lambda*realism+(1−lambda)*coverage: lambda.8 gives.9 versus.84; lambda.2 gives.6 versus.96. Preference reverses with weights.\n\n**Countercase / boundary:** Generator[.999,.001,0] scores realism1 and coverage1 despite TVdistance.499 from real[.5,.5,0]. Positive-support coverage hides imbalance. These metrics are declared and not FID, human realism or an empirical precision/recall benchmark.\n\n**Prediction / transfer recall:** Predict which generator the.8-weighted scalar picks; recall a tiny nonzero mass can satisfy this binary coverage definition without balancing modes.\n\n**Intervention / retained witness:** Change generator/weight recomputes mass distribution, both metrics and score; Tiny second mode exposes metric loophole. Retain both weighting decisions and distribution shapes rather than only the final scalar.\n\n**Source obligation:** Declared finite construction and reproduced arithmetic support only this toy. Independently derive every visible claim; acquire an original method body with exact locator before adding generalized performance, history or empirical assertions.\n",
+      "location": "model.ts compute; owner brief",
+      "support": "derivation",
+      "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30e.md §8; source locators and acquisition limits in that exact section. model.ts compute and model-check.mjs are local derivations, not independent verification.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": ""
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does positive-support coverage measure balanced mode probabilities?",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "answer": 0,
+    "why": "A .999/.001 distribution covers both modes while remaining far from .5/.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:generative-eval-tradeoff",
+    "also": [],
+    "prerequisites": [
+      "ai:gan-mode-collapse"
+    ],
+    "level": "stretch",
+    "references": [],
+    "work": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "step",
+    "compare"
+  ]
+}
