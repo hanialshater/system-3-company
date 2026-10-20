@@ -69,7 +69,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One degree of longitude is about 111 km wide at the equator. How wide is it at 60°N, the latitude of Oslo and Helsinki?",
+          "One degree of longitude is about 111 km wide at the equator. Planning a trip to Oslo or Helsinki, at 60° north, you wonder: how wide is one degree there?",
         options: ["111 km", "56 km", "28 km"],
         answer: 1,
       }}
@@ -87,8 +87,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
             The thin lines of longitude all meet at the poles, so the gap
             between them shrinks
             {seen[80] ? `: you saw ${seen[80]} km at 80°N` : ""}. A degree of
-            latitude stays {PER_DEG.toFixed(0)} km. So &ldquo;one degree&rdquo;
-            east&ndash;west is not a fixed distance.
+            latitude stays {PER_DEG.toFixed(0)} km.
           </p>
         </>
       )}

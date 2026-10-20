@@ -41,7 +41,7 @@ export default function ThreePizzasFourPeople({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${PIZZAS} pizzas are shared equally among ${PEOPLE} people. Each person gets...`,
+        question: `On movie night, ${PIZZAS} pizzas are shared equally among ${PEOPLE} people, you included. Each person gets...`,
         options: [`${PIZZAS}/${PEOPLE} of a pizza`, `${PEOPLE}/${PIZZAS} of a pizza`, `1/${PEOPLE} of a pizza`],
         answer: 0,
       }}

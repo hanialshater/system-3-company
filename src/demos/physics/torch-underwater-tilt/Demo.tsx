@@ -60,7 +60,7 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Under water, a torch beam hits the flat surface tilted 60° from straight up. The light…",
+        question: "Diving at night, you shine a torch from under water at the flat surface, tilted 60° from straight up. What happens to its light?",
         options: ["Mostly leaves into the air, at a wide angle", "Is all reflected back down", "Stops, absorbed by the surface"],
         answer: 1,
       }}

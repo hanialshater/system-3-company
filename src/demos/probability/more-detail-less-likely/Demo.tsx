@@ -73,7 +73,7 @@ function Stage({ locked, reach, lib, setLib, club, setClub, seen, setSeen }: {
       </svg>
       <Row>
         <Slider
-          label="Run a club, of librarians"
+          label="Librarians who run a club"
           value={club}
           min={CLUB.min}
           max={CLUB.max}
@@ -120,7 +120,7 @@ export default function MoreDetailLessLikely({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Sam is quiet and loves books. In this town some librarians run book clubs, some don't. Which is more likely?",
+        question: "You meet Sam at a party: quiet, and loves books. In Sam's town some librarians run book clubs and some don't. Which is more likely?",
         options: ["Sam is a librarian", "Sam is a librarian who runs a book club", "Equally likely"],
         answer: 0,
       }}

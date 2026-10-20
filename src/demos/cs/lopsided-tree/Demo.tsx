@@ -64,7 +64,7 @@ export default function LopsidedTree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Insert 1, 2, 3, 4, 5, 6, 7 into an empty binary search tree in that order. How many levels deep is it?",
+        question: "Seven library cards numbered 1 to 7 arrive already sorted, and you insert them into an empty binary search tree in that order. How many levels deep does the tree grow?",
         options: ["3", "4", "7"],
         answer: 2,
       }}

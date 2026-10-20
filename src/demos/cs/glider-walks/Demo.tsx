@@ -49,7 +49,7 @@ export default function GliderWalks({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Five live cells in a glider shape. Each step: a live cell with 2 or 3 live neighbours lives; an empty cell with exactly 3 comes alive; everything else dies. After 4 steps the shape is:",
+          "On a grid you draw five live cells in a glider shape. Each step: a live cell with 2 or 3 live neighbours lives; an empty cell with exactly 3 comes alive; everything else dies. After 4 steps you see:",
         options: ["Gone", "The same shape, moved one cell diagonally", "Grown to 10 cells"],
         answer: 1,
       }}

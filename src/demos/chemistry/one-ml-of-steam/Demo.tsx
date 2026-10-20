@@ -50,7 +50,7 @@ export default function OneMlOfSteam({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "1 mL of liquid water boils to steam at 100 °C and normal air pressure (1 atm). The steam fills about…",
+        question: "You boil 1 mL of liquid water in a kettle, turning it to steam at 100 °C and normal air pressure (1 atm). About how much room does the steam fill?",
         options: ["2 mL", "20 mL", `${STEAM_10.toLocaleString("en-US")} mL`],
         answer: 2,
       }}

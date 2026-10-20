@@ -48,7 +48,7 @@ export default function CircleSlicesToRectangle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A circle of radius 10 sits snugly in a 20 × 20 square (area 400). About how much of the square does it fill?",
+        question: "From a 20 × 20 square of card (area 400), you cut a circle of radius 10 that sits snugly inside. About how much of the square does the circle fill?",
         options: ["25%", "78%", "95%"],
         answer: 1,
       }}

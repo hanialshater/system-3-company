@@ -92,7 +92,7 @@ export default function ChildrenNewMutations({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each person carries two copies of a genome, ${LETTERS / 1e9} billion letters each. A copying error hits about ${REAL} letters in every 100 million per generation. About how many brand-new changes does a child carry?`,
+        question: `A baby is born with two copies of a genome, ${LETTERS / 1e9} billion letters each. A copying error hits about ${REAL} letters in every 100 million per generation. About how many brand-new changes does the baby carry?`,
         options: ["About 7", "About 70", "About 7,000"],
         answer: 1,
       }}
@@ -107,7 +107,7 @@ export default function ChildrenNewMutations({ slug }: { slug: string }) {
             {other ? ` At ${other.rate} per 100 million, child ${other.c} had ${other.n}: the count follows the rate.` : ""}
           </p>
           <p>
-            Rare per letter, common per person: every child is a few dozen letters new. Studies that read parents' and children's genomes find
+            Studies that read parents' and children's genomes find
             about 60 to 70 new changes per child.
           </p>
         </>

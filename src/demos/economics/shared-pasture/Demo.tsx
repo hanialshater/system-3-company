@@ -76,7 +76,7 @@ export default function SharedPasture({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "10 herders share a pasture, one cow each. Each cow earns 20 minus the total number of cows, so each herder earns 10. You alone add a second cow. What do you earn?",
+          "You are one of 10 herders sharing a pasture, one cow each. Each cow earns 20 minus the total number of cows, so everyone earns 10. You alone add a second cow. What do you earn?",
         options: ["9", "18", "10"],
         answer: 1,
       }}
@@ -91,8 +91,7 @@ export default function SharedPasture({ slug }: { slug: string }) {
           <p>
             Every herder faces the same sum, so the others added cows. With 18 cows each earns 2, and the group's
             income fell from <strong>100</strong> to <strong>36</strong>.{" "}
-            {firstMove === "keep" ? "You held back, and it did not save the pasture." : "Holding back would not have saved it."}{" "}
-            Each choice made sense; together they wrecked the pasture.
+            {firstMove === "keep" ? "You held back, and it did not save the pasture." : "Holding back would not have saved the pasture."}
           </p>
           <p className="muted">
             A model with made-up numbers and no rules. Real communities often manage shared resources well (Elinor

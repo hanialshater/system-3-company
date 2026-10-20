@@ -50,7 +50,7 @@ export default function TwoBulges({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "On most ocean coasts, how many high tides happen in one day?",
+        question: "You spend a whole day on the beach at an ordinary ocean coast, like most coasts. How many high tides roll in before the day is over?",
         options: ["2", "1", "4"],
         answer: 0,
       }}

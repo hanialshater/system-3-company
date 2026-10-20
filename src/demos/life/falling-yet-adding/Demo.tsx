@@ -97,7 +97,7 @@ export default function FallingYetAdding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy outbreak: ${fmt(TODAY)} new cases today; each day ${FALL_Q}% fewer than the day before. If that continues, how many more cases from tomorrow on?`,
+        question: `The evening news reports ${fmt(TODAY)} new cases today in a made-up outbreak, and each day brings ${FALL_Q}% fewer than the day before. If that keeps up, how many more cases come from tomorrow on?`,
         options: [`About ${fmt(TODAY)}`, "About 4,000", `About ${fmt(ANSWER)}`],
         answer: 2,
       }}
@@ -111,7 +111,7 @@ export default function FallingYetAdding({ slug }: { slug: string }) {
             {fmt(newOn(1, FALL_Q))} / {FALL_Q / 100} = <strong>{fmt(ANSWER)}</strong>, nine times today&rsquo;s count.
           </p>
           <p>
-            Falling is not the same as finished. The slower the fall, the heavier the tail: at 5% a day it sums to{" "}
+            The slower the fall, the heavier the tail: at 5% a day it sums to{" "}
             {fmt(forever(5))}; at 30% a day, {fmt(forever(30))}.
           </p>
           <p className="muted">Toy model: a made-up outbreak whose daily fall never changes. Real curves do not fall this steadily.</p>

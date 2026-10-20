@@ -37,7 +37,7 @@ export default function QuartersAddToAThird({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "1/4 + 1/16 + 1/64 + … forever. What does the total get closer and closer to?",
+        question: "You eat a quarter of a cake, then a quarter of that much, then a quarter of that, forever: 1/4 + 1/16 + 1/64 + …. What does your total get closer and closer to?",
         options: ["1/2", "3/8", "1/3"],
         answer: 2,
       }}

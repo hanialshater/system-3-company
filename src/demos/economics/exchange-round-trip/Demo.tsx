@@ -37,7 +37,7 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A booth gives you ${OUT_RATE.toFixed(2)} euro for each $1 you hand over, and gives you ${price2(Q_PRICE)} for each euro you hand back. You change ${usd(START)} into euros, then straight back, with no market move. How much do you hold?`,
+        question: `At the airport, a booth gives you ${OUT_RATE.toFixed(2)} euro for each $1 you hand over, and ${price2(Q_PRICE)} for each euro you hand back. You change ${usd(START)} into euros, then straight back, with no market move. How much do you hold now?`,
         options: [usd(START), usd(back(Q_PRICE)), usd(START * OUT_RATE)],
         answer: 1,
       }}

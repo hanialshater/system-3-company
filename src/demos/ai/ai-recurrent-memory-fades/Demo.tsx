@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With multiplier .5 every tick, what remains of initial value 1 at tick 4?", "options": [".0625", ".25", ".5", "1"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Repeated halving left .0625 of the initial signal after four ticks. Multiplier 1 preserved it; multiplier 1.2 grew it to 2.0736. The same products gave initial-signal sensitivity in this scalar recurrence. These calculations do not describe every recurrent architecture, including those with gates.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Each tick, the memory in your recurrent network shrinks by the same factor. With multiplier .5 every tick, what remains of initial value 1 at tick 4?", "options": [".0625", ".25", ".5", "1"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Repeated halving left .0625 of the initial signal after four ticks. Multiplier 1 preserved it; multiplier 1.2 grew it to 2.0736. The same products gave initial-signal sensitivity in this scalar recurrence. These calculations do not describe every recurrent architecture, including those with gates.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

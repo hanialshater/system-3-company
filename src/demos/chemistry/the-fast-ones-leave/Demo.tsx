@@ -69,7 +69,7 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "The fastest molecules escape a liquid's surface. The molecules left behind have an average speed that is…",
+        question: "You step out of a pool, and the fastest water molecules escape from the surface of the water on your arm. The molecules left behind have an average speed that is…",
         options: ["Higher", "Lower", "Unchanged"],
         answer: 1,
       }}

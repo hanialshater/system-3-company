@@ -157,8 +157,8 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "2,000 people on a ring, each with one long link. Messages go to whoever is closest to the target. Which long links route fastest?",
-        options: ["Uniformly random", "Chance falls with distance", "Chance falls with distance squared"],
+          "Your note must cross a ring of 2,000 people. Each knows two neighbours plus one long link elsewhere, and hands the note to whichever contact is nearest its target. Which long links get it there fastest?",
+        options: ["Any length equally likely", "Chance falls with distance", "Chance falls with distance squared"],
         answer: 1,
       }}
       exploreHint="Run all three rules, then step through single messages to see how each one travels."

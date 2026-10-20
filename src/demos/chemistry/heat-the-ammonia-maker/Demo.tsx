@@ -95,7 +95,7 @@ export default function HeatTheAmmoniaMaker({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "N₂ + 3H₂ ⇌ 2NH₃ releases heat. Heat it from 25 °C to 450 °C and let it settle. The ammonia at equilibrium…",
+          "A sealed reactor holds N₂ + 3H₂ ⇌ 2NH₃, a reaction that releases heat. You heat it from 25 °C to 450 °C and let it settle. What happens to the ammonia at equilibrium?",
         options: ["rises a lot", "stays about the same", "falls a lot"],
         answer: 2,
       }}

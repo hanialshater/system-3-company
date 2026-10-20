@@ -34,7 +34,7 @@ export default function ScoopsInThreeCups({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `How many ${frac(ASKED)}-cup scoops of rice fit in ${CUPS} cups?`,
+        question: `Cooking dinner, you measure out ${CUPS} cups of rice with a ${frac(ASKED)}-cup scoop. How many scoops fit in those ${CUPS} cups?`,
         options: [String(CUPS * ASKED), `${CUPS}/${ASKED}`, String(CUPS + ASKED)],
         answer: 0,
       }}

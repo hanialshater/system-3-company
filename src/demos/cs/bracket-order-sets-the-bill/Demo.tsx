@@ -109,7 +109,7 @@ export default function BracketOrderSetsTheBill({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Three matrices: A is ${A.r}x${A.c}, B is ${B.r}x${B.c}, C is ${C.r}x${C.c}. Multiplying a p x q by a q x r costs p*q*r single multiplications. (AB)C versus A(BC): how do the costs compare?`,
+        question: `Your code must multiply three matrices: A is ${A.r}x${A.c}, B is ${B.r}x${B.c}, C is ${C.r}x${C.c}. Multiplying a p x q by a q x r costs p*q*r single multiplications. (AB)C versus A(BC): how do the costs compare?`,
         options: ["Equal", "A(BC) is about 2x dearer", "A(BC) is 6x dearer"],
         answer: 2,
       }}

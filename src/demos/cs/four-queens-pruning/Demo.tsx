@@ -87,7 +87,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "4 queens, one per row, none attacking. A blind check tries 256 boards. Placing only on safe squares and backing up at dead ends, how many tries find every solution?",
+          "You must place 4 queens, one per row, none attacking. A blind check tries 256 boards. If you place only on safe squares and back up at dead ends, how many tries find every solution?",
         options: ["Under 30", "30 to 150", "Over 150"],
         answer: 0,
       }}
@@ -104,7 +104,6 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
             starts that way is skipped at once. The saving grows fast: 8 queens have 16,777,216 one-per-row boards, but
             backtracking makes 2,056 placements to find all 92 solutions.
           </p>
-          <p className="muted">Pruning early is what makes search possible.</p>
         </>
       )}
     >

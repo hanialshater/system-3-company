@@ -120,7 +120,7 @@ function Stage({ locked, reach, tally, setTally, taps, setTaps }: {
         <Control disabled={locked || taps.length === 0} onClick={() => setTaps([])}>Clear taps</Control>
       </Row>
       <Row>
-        <Readout label="Real sequences" value={fmt(tally.n)} />
+        <Readout label="Sequences" value={fmt(tally.n)} />
         <Readout label={`Run of ${TARGET} or more`} value={tally.n > 0 ? `${fmt(hot)} (${pct1(hot / tally.n)})` : "-"} />
       </Row>
     </div>
@@ -143,11 +143,11 @@ export default function TwentyFlipsRunOfFive({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${FLIPS} fair coin flips. How likely is a run of ${TARGET} or more of the same face somewhere in them?`,
+        question: `A friend flips a fair coin ${FLIPS} times and bets you there will be a run of ${TARGET} or more of the same face somewhere. How likely is that?`,
         options: ["About 5%", "About 20%", "About 45%"],
         answer: 2,
       }}
-      exploreHint="Make up 20 flips if you like, then simulate 1,000 sequences and inspect one."
+      exploreHint="Make up 20 flips if you like, then press Simulate 1,000 and Simulate one."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

@@ -94,7 +94,7 @@ export default function FourRollsOneSix({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Roll a die ${ROLLS} times. How likely is at least one six?`,
+        question: `You bet a friend you will roll at least one six in ${ROLLS} rolls of a fair die. How likely are you to win?`,
         options: [`about ${pct(ROLLS / 6)}`, `about ${pct(EXACT_ANY)}`, `about ${pct(2 / 6)}`],
         answer: 1,
       }}
@@ -110,7 +110,7 @@ export default function FourRollsOneSix({ slug }: { slug: string }) {
           <p>
             Each roll removes about 1/6 of the players still left, not 1/6 of everyone: {LEFT.map(n).join(" → ")}. Adding 1/6 per
             roll predicted only {n(Math.round(addingNone(ROLLS)))} left ({pct(ROLLS / 6)} with a six) and would pass 100% by the
-            seventh roll. Count the ways to miss every time, then subtract.
+            seventh roll.
           </p>
         </>
       )}

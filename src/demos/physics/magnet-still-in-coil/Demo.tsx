@@ -103,7 +103,7 @@ export default function MagnetStillInCoil({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A strong magnet is held still inside a coil wired to a sensitive meter. The meter reads…",
+        question: "In the lab, you hold a strong magnet still inside a coil wired to a sensitive meter. What does the meter read?",
         options: ["A steady current", "Zero", "A current the opposite way to when it moved"],
         answer: 1,
       }}

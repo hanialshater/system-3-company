@@ -87,7 +87,7 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two bidders, values random $0–100, each bidding optimally. Which rule earns the seller most on average?",
+        question: "You are auctioning an item to two bidders whose values are random from $0 to $100, and each bids as well as they can. Which rule earns you the most on average?",
         options: ["First-price", "Second-price", "About the same"],
         answer: 2,
       }}

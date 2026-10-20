@@ -65,12 +65,12 @@ export default function DriftOfAStraightThrow({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>About {Math.round(drift(1000, KEY_LAT).east / 10) * 10} km</strong> on this toy. Over
+            <strong>About {Math.round(drift(1000, KEY_LAT).east / 10) * 10} km</strong> on this model. Over
             10 km the same push gave only {fmtKm(drift(10, KEY_LAT).east)}
             {seen45.includes(100) ? `, and over 100 km ${fmtKm(drift(100, KEY_LAT).east)}` : ""}. While the puck slides, the ground under it turns. 1,000 km is 100 times farther than 10 km, yet it drifted {(Math.round(drift(1000, KEY_LAT).east / drift(10, KEY_LAT).east / 1000) * 1000).toLocaleString("en-US")} times as much: the drift grows with the square of the time, a bit under 100² because the long path starts to curl.
           </p>
           <p>
-            That sideways drift from the turning ground is the <strong>Coriolis effect</strong>. At the equator you saw none, and it grows toward the poles. Over hundreds of kilometres it shapes winds and ocean currents. This toy cannot show whether it steers a draining sink.
+            That sideways drift from the turning ground is the <strong>Coriolis effect</strong>. At the equator you saw none, and it grows toward the poles. Over hundreds of kilometres it shapes winds and ocean currents. This model cannot show whether it steers a draining sink.
           </p>
         </>
       )}

@@ -65,7 +65,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const hit = p ? p[pick] === 1 : false;
   const t = tally[k];
   const msg = locked
-    ? "Toy: 10 candidates in random order, no going back."
+    ? "10 candidates in random order, no going back."
     : !cur
       ? "Choose how many to reject first. 20 rounds are played."
       : `Reject ${k}: won ${cur.w} of ${ROUNDS} rounds. Last round: you took #${p![pick]}${hit ? ", the best." : "."}`;
@@ -110,7 +110,7 @@ export default function RejectTheFirstThree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ten candidates arrive in random order. You see each once, with no going back. You reject the first ${K_Q}, then take the first one better than all before. Chance you get the very best?`,
+        question: `Hiring an assistant, you interview ten candidates in random order, one look each, no call-backs. You turn down the first ${K_Q}, then hire the first one better than all before. Chance you get the very best?`,
         options: [`About ${pct(1 / N)}`, `About ${pct(exact(K_Q))}`, "About 70%"],
         answer: 1,
       }}
@@ -123,7 +123,7 @@ export default function RejectTheFirstThree({ slug }: { slug: string }) {
             {FACT10.toLocaleString("en-US")} possible orders, Reject {K_Q} wins <strong>{pct1(exact(K_Q))}</strong>; Reject 0 wins {pct1(exact(0))}.
           </p>
           <p>
-            The rejected few set a yardstick: you never pick blind. Rejecting 4 does about as well, {pct1(exact(4))}; for long lists the best
+            The rejected few set a yardstick for the rest. Rejecting 4 does about as well, {pct1(exact(4))}; for long lists the best
             start is about 37% of the way through. Assumes arrivals are in random order and refusals are final.
           </p>
         </>

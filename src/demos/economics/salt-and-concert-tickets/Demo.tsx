@@ -48,7 +48,7 @@ export default function SaltAndConcertTickets({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two sellers both raise prices ${Q_RISE}%. Salt buyers cut purchases by ${cut("salt", Q_RISE)}%; concert-ticket buyers cut by ${cut("tickets", Q_RISE)}%. Whose revenue (price × sales) rises?`,
+        question: `A grocer selling salt and a promoter selling concert tickets both raise prices ${Q_RISE}%. Salt buyers cut purchases by ${cut("salt", Q_RISE)}%; ticket buyers cut by ${cut("tickets", Q_RISE)}%. Whose revenue (price times sales) rises?`,
         options: ["both", "only salt", "only tickets"],
         answer: 1,
       }}

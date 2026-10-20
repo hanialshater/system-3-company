@@ -10,7 +10,7 @@ export default function Demo({slug}:{slug:string}) {
  const [d,setData]=useState<Result|null>(null);
  const [saved,setSaved]=useState<(Result|null)[]>([null,null,null]);
  const run=(m:number,reach:(name:string)=>void)=>{const result=compute(m);setMode(m);setData(result);setSaved(old=>old.map((v,i)=>i===m?result:v));reach(String(m));};
- return <Lesson slug={slug} predict={{"question": "After learning only terminal A→1, does the unseen B estimate change?", "options": ["Yes", "No"], "answer": 0}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>Updating A set w=.5 and Q(B)=1, Q(C)=−.5. Updating C next set w=−.25 and worsened A’s error from .5 to 1.25. A table changed only A. This shared linear terminal component is not a deep network, full DQN, or convergence guarantee.</p>}>
+ return <Lesson slug={slug} predict={{"question": "Your game agent learns the value of state A but never visits state B. After learning only terminal A→1, does the unseen B estimate change?", "options": ["Yes", "No"], "answer": 0}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>Updating A set w=.5 and Q(B)=1, Q(C)=−.5. Updating C next set w=−.25 and worsened A’s error from .5 to 1.25. A table changed only A. This shared linear terminal component is not a deep network, full DQN, or convergence guarantee.</p>}>
  {({locked,interact})=><Milestones interact={interact} names={["0","1","2"]}>{reach=><div className={s.wrap}>
  <p className={s.input}>{"Q=wφ · φ(A,B,C)=1,2,−1 · η=.5"}</p>
  <svg className={s.diagram} viewBox="0 0 280 64" role="img" aria-label="sharedq · worked example">

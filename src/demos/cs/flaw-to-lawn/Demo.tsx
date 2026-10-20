@@ -222,7 +222,7 @@ export default function FlawToLawn({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "FLAW and LAWN differ at all 4 positions. Using insert, delete or replace one letter at a time, how few edits turn FLAW into LAWN?",
+          "Your spell checker compares two words. FLAW and LAWN differ at all 4 positions. Using insert, delete or replace one letter at a time, how few edits turn FLAW into LAWN?",
         options: ["4", "2", "1"],
         answer: 1,
       }}

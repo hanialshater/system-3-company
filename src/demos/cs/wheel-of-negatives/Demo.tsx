@@ -45,7 +45,7 @@ export default function WheelOfNegatives({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Eight on/off switches (bits) store a whole number, negatives included. They show ${bitsOf(START)}, which is ${START}. Add 1. What number do they show?`,
+        question: `A score counter in your game uses eight on/off switches (bits) to store a whole number, negatives included. They show ${bitsOf(START)}, which is ${START}. Add 1. What number do they show?`,
         options: [String(START + 1), String(answer), "0"],
         answer: 1,
       }}

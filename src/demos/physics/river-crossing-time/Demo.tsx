@@ -36,7 +36,7 @@ export default function RiverCrossingTime({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A boat heads straight across a ${WIDTH_M} m river at ${BOAT} m/s (relative to the water). The current is 4 m/s. How long to reach the far bank?`,
+        question: `You point your boat straight across a ${WIDTH_M} m river and paddle at ${BOAT} m/s (relative to the water). The current runs at 4 m/s. How long until you reach the far bank?`,
         options: ["18 s", "30 s", "Never: the current is faster"],
         answer: 1,
       }}

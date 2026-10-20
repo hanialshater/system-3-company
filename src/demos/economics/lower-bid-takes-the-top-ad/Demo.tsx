@@ -59,7 +59,7 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A bids ${usd(A.bid)} per click, quality ${A.quality}. B bids ${usd(B_START)}, quality ${num(B_QUALITY)}. Ranked by bid × quality, who gets the top slot?`,
+        question: `Two ads compete for the top spot on a search page, ranked by bid times quality. Ad A bids ${usd(A.bid)} a click with quality ${A.quality}; ad B bids ${usd(B_START)} with quality ${num(B_QUALITY)}. Which gets the top slot?`,
         options: ["Ad A", "Ad B", "A tie"],
         answer: 1,
       }}

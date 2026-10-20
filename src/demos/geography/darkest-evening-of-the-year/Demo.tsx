@@ -53,7 +53,7 @@ export default function DarkestEvening({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In London the shortest day is about 21 December. When is London's earliest sunset?",
+        question: "Walking home in a London December, you watch the evenings close in. The shortest day is about 21 December. When is London's earliest sunset?",
         options: ["About 21 December", "About 13 December", "About 30 December"],
         answer: 1,
       }}
@@ -67,8 +67,7 @@ export default function DarkestEvening({ slug }: { slug: string }) {
           </p>
           <p>
             The day is shortest on the 21st, but the whole day is sliding later: solar noon moves from {Q.noon13} on the 13th
-            to {Q.noon30} on the 30th, mostly because of Earth&rsquo;s tilt, and partly because Earth moves fastest in early January. A
-            shrinking day on a sliding noon puts the darkest evening early.
+            to {Q.noon30} on the 30th, mostly because of Earth&rsquo;s tilt, and partly because Earth moves fastest in early January.
           </p>
         </>
       )}

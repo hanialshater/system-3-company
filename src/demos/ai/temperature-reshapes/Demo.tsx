@@ -78,7 +78,7 @@ export default function TemperatureReshapes({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three candidate words have scores 2, 1, 0. At temperature 1 the top word has a 66.5% chance. Lower the temperature to 0.5 and its chance becomes:",
+          "Your chatbot is picking its next word from three candidates scored 2, 1 and 0. At temperature 1, the top word has a 66.5% chance. You lower the temperature to 0.5. What is its chance now?",
         options: ["About 87%", "Still 67%", "About 50%"],
         answer: 0,
       }}

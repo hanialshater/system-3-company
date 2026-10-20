@@ -38,7 +38,7 @@ export default function SteeperIsNotTaller({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ramp A rises ${A.rise} over a run of ${A.run}. Ramp B rises ${B.rise} over a run of ${B.run}. Which is steeper?`,
+        question: `At the skate park, ramp A rises ${A.rise} over a run of ${A.run}. Ramp B rises ${B.rise} over a run of ${B.run}. Which ramp is steeper?`,
         options: ["A", "B", "Same"],
         answer: 1,
       }}

@@ -101,7 +101,7 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Four dots: (0,0) and (1,1) are blue, (0,1) and (1,0) are orange. Can one straight line put blue on one side and orange on the other?",
+        question: "You get one straight cut to sort four dots: (0,0) and (1,1) are blue, (0,1) and (1,0) are orange. Can one straight line put blue on one side and orange on the other?",
         options: ["Yes, if placed cleverly", "No, never", "Yes, if the blue dots are moved slightly"],
         answer: 1,
       }}

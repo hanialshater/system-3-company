@@ -79,7 +79,7 @@ export default function IsolateByDayThree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up infection, R0 = ${R0}. A case is infectious for ${DAYS} days, spreading evenly across them. If each case is isolated at the end of day ${DAY_Q}, what is R?`,
+        question: `At your clinic, a made-up infection has R0 = ${R0}: each case is infectious for ${DAYS} days, spreading evenly across them. If you isolate every case at the end of day ${DAY_Q}, what is R?`,
         options: [String(R0), fmtR(rAt(DAY_Q)), fmtR(rAt(1))],
         answer: 1,
       }}

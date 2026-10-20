@@ -70,9 +70,9 @@ export default function LruEvictionOrder({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A cache holds ${SLOTS} items. Requests arrive ${STREAM.join(", ")}. Which item is evicted when ${
+        question: `Your phone's cache holds ${SLOTS} items, and you request ${STREAM.join(", ")} in that order. It drops the least recently used item. Which one goes when ${
           STREAM[STREAM.length - 1]
-        } arrives (least recently used rule)?`,
+        } arrives?`,
         options: ["A", "B", "C"],
         answer: 1,
       }}
@@ -93,7 +93,6 @@ export default function LruEvictionOrder({ slug }: { slug: string }) {
             recently tend to be used again soon, so operating systems and web caches use this rule or cheap
             approximations of it.
           </p>
-          <p className="muted">Recency, not arrival, decides who stays.</p>
         </>
       )}
     >

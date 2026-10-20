@@ -82,7 +82,7 @@ export default function PentagonGap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A regular pentagon's corner is ${p}°. Can regular pentagons cover a floor with no gaps or overlaps?`,
+        question: `Tiling your kitchen floor, you pick regular pentagons, each with corners of ${p}°. Can they cover the floor with no gaps or overlaps?`,
         options: ["Yes", "No", "Only if some are rotated"],
         answer: 1,
       }}

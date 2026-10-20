@@ -41,7 +41,7 @@ export default function LongerLoanCost({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A $20,000 loan at 6% a year. Stretching it from 5 years to 7 cuts the payment by about $95 a month. How much more interest do you pay overall?",
+          "You borrow $20,000 for a car at 6% a year. Stretching the loan from 5 years to 7 cuts the payment by about $95 a month. How much more interest do you pay overall?",
         options: ["About $200", "About $1,300", "About $5,000"],
         answer: 1,
       }}
@@ -53,8 +53,8 @@ export default function LongerLoanCost({ slug }: { slug: string }) {
             $292.17, but interest grows to <strong>$4,542</strong>: about <strong>$1,343 more</strong>.
           </p>
           <p>
-            Interest is the price of time. A longer loan pays the $20,000 back more slowly, so more of it stays owed
-            each month and keeps being charged 0.5%. A smaller payment mostly buys you more months of interest.
+            A longer loan pays the $20,000 back more slowly, so more of it stays owed
+            each month and keeps being charged 0.5%.
           </p>
           <p className="muted">A model: a fixed, illustrative 6% rate, level payments, no fees. Not a current market rate.</p>
         </>

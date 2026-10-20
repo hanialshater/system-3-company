@@ -68,7 +68,7 @@ export default function SelectedAndNowOpposed({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Talent and looks are unrelated in a crowd. A show admits only people whose talent plus looks is high (the top ${pct(TOP.share)}). Among those admitted, talent and looks are`,
+        question: `In your town, talent and looks are unrelated. A TV show casts only people whose talent plus looks scores in the top ${pct(TOP.share)}. Among the cast, talent and looks are`,
         options: ["positively related", "not related", "negatively related"],
         answer: 2,
       }}

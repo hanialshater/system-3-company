@@ -161,7 +161,7 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A house has a 1-in-100 chance a year of a $10,000 loss. An insurer charges $${PREMIUM} a year to cover it. On average, how much does it pay out per customer a year?`,
+        question: `Your house has a 1-in-100 chance a year of a $10,000 loss. An insurer charges you $${PREMIUM} a year to cover it. On average, how much does it pay out per customer a year?`,
         options: [`$${PREMIUM}`, `$${EXPECTED}`, "$50"],
         answer: 1,
       }}
@@ -181,7 +181,7 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
             In the pool, {never} houses were never hit, but {twicePlus} were hit twice or more. No house knows which it will
             be: each swaps a small sure cost for cover against a rare large loss, which the pool of 100 carries.
           </p>
-          <p className="muted">A model: independent risks, no fraud, one seeded run. Not advice about buying cover.</p>
+          <p className="muted">A model: independent risks, no fraud, one random draw. Not advice about buying cover.</p>
         </>
       )}
     >

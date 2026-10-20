@@ -52,7 +52,7 @@ export default function WaveFromTheCorner({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "On an open 5 × 5 grid, how many steps from one corner to the opposite corner, moving only up, down, left or right?",
+          "Your robot sits in one corner of an open 5 × 5 grid and moves only up, down, left or right, one square per step. How many steps does it take to reach the opposite corner?",
         options: ["5", "8", "10"],
         answer: 1,
       }}

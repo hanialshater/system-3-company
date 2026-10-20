@@ -89,7 +89,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
           <p>
             With modern numbers you saw {SEEN_MODERN}, within {Math.round((modernCirc / TRUE_MERIDIAN_KM - 1) * 100)}% of
             the true {fmt(TRUE_MERIDIAN_KM)} km. Nobody knows a stadion&rsquo;s exact length, so we cannot say how close
-            Eratosthenes was in km. The method needed only a shadow and a distance.
+            Eratosthenes was in km.
           </p>
         </>
       )}

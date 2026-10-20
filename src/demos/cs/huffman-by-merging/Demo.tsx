@@ -108,7 +108,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
               : "The best tree gives A 1, B 01, C 000, D 001. "}
             No code starts another (nothing else begins with A's 1), so the message decodes with no gaps. Joining the two rarest first gives a minimum-length binary prefix code for these symbol counts.
           </p>
-          <p className="muted">Short codes for common letters, long codes for rare ones.</p>
+          <p className="muted">Common letters get short codes, rare ones long codes.</p>
         </>
       )}
     >

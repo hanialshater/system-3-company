@@ -57,7 +57,7 @@ export default function EarliestFinishWins({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Talks: A 0-10, B 1-4, C 3-5, D 4-7 (hours). One room, no overlaps. A talk may start the minute another ends, so B (ends at 4) and D (starts at 4) fit together. Which rule fits the most talks?",
+          "You run one room for a day of talks: A 0-10, B 1-4, C 3-5, D 4-7 (hours). No overlaps. A talk may start the minute another ends, so B (ends at 4) and D (starts at 4) fit together. Which rule fits the most talks?",
         options: ["Earliest start first", "Shortest first", "Earliest finish first"],
         answer: 2,
       }}

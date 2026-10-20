@@ -81,7 +81,7 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "On a ring of 1,024, links land at distance d with chance ∝ 1/d. How many times as many links land 2–3 away as 256–512 away?",
+          "1,024 houses ring a lake. Links from each house go to other houses, and a house twice as far away is half as likely (1/d links). How many times as many links land 2–3 doors away as 256–512 doors away?",
         options: ["About 100×", "About 10×", "About 1×"],
         answer: 2,
       }}

@@ -39,7 +39,7 @@ export default function EightPercentShowing({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ice has a density of about ${RHO_ICE.toFixed(3)} g/cm³, fresh water about ${RHO_W.toFixed(3)} g/cm³ (density: grams per cm³). A floating ice block shows about what share above the water?`,
+        question: `You drop a block of ice into a bowl of fresh water. Ice has a density of about ${RHO_ICE.toFixed(3)} g/cm³, the water about ${RHO_W.toFixed(3)} g/cm³ (density: grams per cm³). About what share of the floating block shows above the water?`,
         options: [`about ${pct(ICE_ABOVE)}`, "about 50%", `about ${pct(1 - ICE_ABOVE)}`],
         answer: 0,
       }}

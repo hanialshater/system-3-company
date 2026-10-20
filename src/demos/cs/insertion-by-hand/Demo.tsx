@@ -97,7 +97,6 @@ export default function InsertionByHand({ slug }: { slug: string }) {
             every slide. So the work is the number of out-of-order pairs: a reversed hand has all 10. A nearly sorted
             hand like 12354 has just 1. Scaled up, 100 reversed cards cost 4,950 slides and sorted cost none.
           </p>
-          <p className="muted">Same cards, same method: the work depends on how scrambled they are.</p>
         </>
       )}
     >

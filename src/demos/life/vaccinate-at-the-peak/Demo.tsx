@@ -136,7 +136,7 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy epidemic: each sick person infects ${R0} others (R0 = ${R0}), nobody immune. 20% of the town, all not yet infected, is vaccinated at once: on day 0, or at the peak (day ${PEAK_DAY}). At the peak, how much of the day-0 benefit is left?`,
+        question: `In a made-up town where nobody is immune, each sick person infects ${R0} others (R0 = ${R0}). You can vaccinate 20% of the town, all not yet infected, at once: on day 0 or at the peak (day ${PEAK_DAY}). How much of the day-0 benefit is left at the peak?`,
         options: ["Almost none of it", "About half of it", "About three quarters of it"],
         answer: 2,
       }}

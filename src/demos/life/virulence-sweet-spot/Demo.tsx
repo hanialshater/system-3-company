@@ -93,7 +93,7 @@ export default function VirulenceSweetSpot({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Toy germ. A more harmful strain infects faster, but its carriers stay sick for fewer days. Example, harm 0.25: 2.0 new cases a day for 0.8 days, so R0 = 1.6 new cases per carrier in all. Which harm gives the highest R0?",
+          "You are tracking a made-up germ. A more harmful strain infects faster, but its carriers stay sick for fewer days. Example, harm 0.25: 2.0 new cases a day for 0.8 days, so R0 = 1.6 new cases per carrier in all. Which harm level gives the highest R0?",
         options: ["v = 0.25", "v = 1", "v = 4"],
         answer: 1,
       }}
@@ -107,7 +107,7 @@ export default function VirulenceSweetSpot({ slug }: { slug: string }) {
               You plotted {pts.map((p) => `harm ${fv(p)}: R0 ${f1(r0(p))}`).join("; ")}. R0 rose, then fell, peaking at harm 1.
             </p>
             <p>
-              More harm means faster spread (4 × √v) but a shorter infection (1 ÷ (1 + v) days). R0 is their product, so R0 peaks in the middle. In this toy the square-root link is chosen; real germs vary and the theory is debated.
+              More harm means faster spread (4 × √v) but a shorter infection (1 ÷ (1 + v) days). R0 is their product, so R0 peaks in the middle. Here the square-root link is chosen; real germs vary and the theory is debated.
             </p>
           </>
         );

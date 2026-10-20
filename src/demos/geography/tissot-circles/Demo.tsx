@@ -70,7 +70,7 @@ export default function TissotCircles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical circles, each with a 1,000 km radius on the ground, sit at the equator and at 60°N. On this Mercator map (the classic wall map, which keeps shapes true), how big does the 60°N circle look?",
+          "On a classic Mercator wall map, which keeps shapes true, you draw two circles that are identical on the ground, each 1,000 km in radius: one at the equator, one at 60° north. How big does the northern one look?",
         options: ["About the same as the other", "About twice as big", "About four times as big"],
         answer: 2,
       }}
@@ -86,7 +86,7 @@ export default function TissotCircles({ slug }: { slug: string }) {
           <p>
             On Equal Earth the two areas matched ({ee.toFixed(2)}×), but the northern circle was squashed. A flat map can
             keep shapes round or keep areas equal, not both everywhere: that is a proven result about spheres, not a flaw
-            of one map. Every projection chooses which distortion to accept.
+            of one map.
           </p>
         </>
       )}

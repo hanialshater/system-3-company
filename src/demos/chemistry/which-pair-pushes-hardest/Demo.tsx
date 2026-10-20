@@ -37,7 +37,7 @@ export default function Ladder({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Standard electrode potentials: Zn ${E.Zn.toFixed(2)} V, Cu +${E.Cu.toFixed(2)} V, Ag +${E.Ag.toFixed(2)} V. Which pair of metals makes the biggest cell voltage?`,
+        question: `You can build a battery from any two of zinc, copper and silver. Their standard electrode potentials: Zn ${E.Zn.toFixed(2)} V, Cu +${E.Cu.toFixed(2)} V, Ag +${E.Ag.toFixed(2)} V. Which pair of metals makes the biggest cell voltage?`,
         options: ["Zn and Cu", "Zn and Ag", "Cu and Ag"],
         answer: PAIRS.findIndex((x) => x.id === BEST.id),
       }}
@@ -50,8 +50,8 @@ export default function Ladder({ slug }: { slug: string }) {
             {volts("Cu", "Ag").toFixed(2)} V.
           </p>
           <p>
-            A cell&apos;s voltage is the gap between its two metals on the ladder: {E.Ag.toFixed(2)} − ({E.Zn.toFixed(2)}) = {volts("Zn", "Ag").toFixed(2)} V. The
-            farthest-apart pair wins. Bigger plates change how much current a cell can supply, not this gap.
+            A cell&apos;s voltage is the gap between its two metals on the ladder: {E.Ag.toFixed(2)} − ({E.Zn.toFixed(2)}) = {volts("Zn", "Ag").toFixed(2)} V.
+            Bigger plates change how much current a cell can supply, not this gap.
           </p>
         </>
       )}

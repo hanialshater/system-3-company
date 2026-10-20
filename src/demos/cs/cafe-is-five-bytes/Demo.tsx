@@ -34,7 +34,7 @@ export default function CafeIsFiveBytes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The word ${WORD} has ${WORD_CHARS.length} characters. Stored as UTF-8, a common way to save text, how many bytes does it take?`,
+        question: `You save the word ${WORD}, which has ${WORD_CHARS.length} characters, as UTF-8, a common way to store text. How many bytes does it take?`,
         options: [String(WORD_CHARS.length), String(WORD_BYTES), String(WORD_CHARS.length * 2)],
         answer: 1,
       }}

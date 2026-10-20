@@ -62,7 +62,7 @@ export default function CentreMovesTheGap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On a world map centred on Greenwich, Tokyo and Los Angeles are ${greenwichGap}° of map width apart. Re-centre the map on the Pacific (180°). How far apart are they now?`,
+        question: `On your wall map, centred on Greenwich, Tokyo and Los Angeles are ${greenwichGap}° of map width apart. You swap it for one centred on the Pacific (180°). How far apart are they now?`,
         options: [`The same, ${greenwichGap}°`, `About ${Math.round(pacificGap / 10) * 10}°`, "About 180°"],
         answer: 1,
       }}

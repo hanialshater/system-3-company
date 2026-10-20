@@ -41,7 +41,7 @@ export default function TwentyDollarBasket({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You have $${BUDGET}; apples cost $${APPLE}, loaves $${LOAF}. Your cart is full: ${Q_LOAVES} loaves and ${ANSWER} apples, $0 left. You add one more loaf. What happens to the apples?`,
+        question: `At the market with $${BUDGET}, you fill your cart to the last cent: ${Q_LOAVES} loaves at $${LOAF} and ${ANSWER} apples at $${APPLE}, $0 left. You grab one more loaf. What happens to the apples?`,
         options: ["None leave: it still fits", "1 apple leaves", `${PER_LOAF} apples leave`],
         answer: 2,
       }}

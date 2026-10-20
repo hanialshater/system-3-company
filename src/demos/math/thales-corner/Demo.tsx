@@ -51,7 +51,7 @@ export default function ThalesCorner({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "P is any point on a circle. Join it to both ends of a line across the circle through its centre. The angle at P is...",
+        question: "You pick any point P on a circle and join it to both ends of a line across the circle through its centre. The angle at P is...",
         options: ["60°", "90°", "It depends where P is"],
         answer: 1,
       }}

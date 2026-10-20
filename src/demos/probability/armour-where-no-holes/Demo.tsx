@@ -32,7 +32,7 @@ export default function ArmourWhereNoHoles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Bombers come back covered in bullet holes on the wings and body, but almost none on the engines. Where should extra armour go?",
+          "Bombers return with bullet holes all over the wings and body, but almost none on the engines. Where should extra armour go?",
         options: ["Where the holes are", "Where returning planes have few holes", "Spread it evenly"],
         answer: 1,
       }}
@@ -98,7 +98,7 @@ export default function ArmourWhereNoHoles({ slug }: { slug: string }) {
           <Row>
             <Readout label="Came back" value={back.length} />
             <Readout label="Never came back" value={flown ? lost : "—"} />
-            <Readout label="Their engine holes" value={flown ? backHoles.filter((h) => h.engine).length : "—"} />
+            <Readout label="Returned engine holes" value={flown ? backHoles.filter((h) => h.engine).length : "—"} />
           </Row>
         </div>
       )}

@@ -45,7 +45,7 @@ export default function TwoSuspectsPayoff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Payoffs (you, other): both Cooperate ${PAY[0][0].join(", ")}. You Defect, they Cooperate ${PAY[1][0].join(", ")}. You Cooperate, they Defect ${PAY[0][1].join(", ")}. Both Defect ${PAY[1][1].join(", ")}. Whatever the other does, what is better for you?`,
+        question: `Questioned in separate rooms, you and your partner each choose. Payoffs (you, other): both Cooperate ${PAY[0][0].join(", ")}. You Defect, they Cooperate ${PAY[1][0].join(", ")}. You Cooperate, they Defect ${PAY[0][1].join(", ")}. Both Defect ${PAY[1][1].join(", ")}. Whatever the other does, what is better for you?`,
         options: ["Cooperate", "Defect", "It depends on what they do"],
         answer: DOMINANT === null ? 2 : DOMINANT,
       }}
@@ -59,7 +59,7 @@ export default function TwoSuspectsPayoff({ slug }: { slug: string }) {
           </p>
           <p>
             The other player reads the same table and reaches the same answer. So both defect and each gets {PAY[1][1][0]}, though
-            both cooperating would give each {PAY[0][0][0]}. A move can be best for each player and still leave both worse off.
+            both cooperating would give each {PAY[0][0][0]}.
           </p>
           <p className="muted">
             A model: invented payoffs, one round, no talking. When the same two players meet again and again, cooperation can last.

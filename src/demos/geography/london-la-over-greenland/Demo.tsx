@@ -95,7 +95,7 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Fly the shortest route from London to Los Angeles. Between Ireland and Canada, what land is under the plane?",
+        question: "Flying the shortest route from London to Los Angeles, you look out of the window somewhere between Ireland and Canada. What land is under the plane?",
         options: ["Iceland", "Only open ocean", "Greenland"],
         answer: 2,
       }}

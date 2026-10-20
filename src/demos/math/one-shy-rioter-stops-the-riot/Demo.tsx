@@ -55,7 +55,7 @@ export default function OneShyRioterStopsTheRiot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "100 people: one joins if 0 others have, one if 1, ... one if 99. Change the '1' person to '2'. How many join?",
+        question: "100 people fill a tense square. One will join a riot if 0 others have, one if 1 has, and so on up to 99. Make the '1' person need 2 instead. How many join?",
         options: ["100", "About 50", "1"],
         answer: 2,
       }}

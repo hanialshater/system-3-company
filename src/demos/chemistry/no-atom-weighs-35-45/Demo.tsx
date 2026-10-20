@@ -66,7 +66,7 @@ export default function NoAtomWeighs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The periodic table gives chlorine's mass as ${TABLE.toFixed(2)} u (u is about one proton's mass). Is there a chlorine atom with that mass?`,
+        question: `The periodic table on your classroom wall gives chlorine's mass as ${TABLE.toFixed(2)} u (u is about one proton's mass). Is there a single chlorine atom with that mass?`,
         options: ["Yes, every chlorine atom", "No, none does", "Yes, but only a few atoms"],
         answer: 1,
       }}

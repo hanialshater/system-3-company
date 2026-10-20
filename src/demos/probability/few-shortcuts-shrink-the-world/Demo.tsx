@@ -98,7 +98,7 @@ function Stage({ locked, interact, count, setCount }: { locked: boolean; interac
       </Row>
       <Row>
         <Readout label="Route A to B" value={`${hops} steps`} />
-        <Readout label="Average, any two people" value={f1(m.steps)} />
+        <Readout label="Average steps, any two" value={f1(m.steps)} />
       </Row>
     </div>
   );
@@ -115,7 +115,7 @@ export default function FewShortcutsShrinkTheWorld({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "100 people stand in a ring; each knows the 2 people on each side (200 links). Getting from one person to another takes 12.9 steps on average. Add just 5 random long-distance links. The average becomes about:",
+          "In a village of 100 people living in a ring, each knows the 2 people on each side (200 links). A note passed hand to hand takes 12.9 steps on average. Add 5 random long-distance links. Now about:",
         options: ["12 steps", "3 steps", "7 steps"],
         answer: 2,
       }}

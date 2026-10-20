@@ -107,7 +107,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A swing takes 2 s to go out and back. You give it 8 equal shoves. Which rhythm builds the biggest swing?",
+        question: "At the playground, the swing you are pushing takes 2 s to go out and back. You have 8 equal shoves to give. Which rhythm builds the biggest swing?",
         options: ["A shove every 2 s", "A shove every 1 s", "A shove every 3 s"],
         answer: 0,
       }}
@@ -127,7 +127,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
             </p>
             <p>
               A swing has its own rhythm, set by its length. Shoves in step with it pile up; shoves out of step undo each
-              other. More shoves is not more swing.
+              other.
             </p>
             <p className="muted">Model: small swings, light friction, equal shoves. This is resonance.</p>
           </>

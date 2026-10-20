@@ -73,7 +73,7 @@ export default function Dilution({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `1.0 mL of 1.0 mol/L dye goes into 9 mL of water (a 1:10 step), then 1 mL of that into the next 9 mL, and so on. After how many steps does a 10 mL tube hold, on average, fewer than 1 molecule?`,
+        question: `At the lab bench, you put 1.0 mL of 1.0 mol/L dye into 9 mL of water (a 1:10 step), then 1 mL of that into the next 9 mL, and so on. After how many steps does a 10 mL tube hold, on average, fewer than 1 molecule?`,
         options: ["10 steps", `${NONE} steps`, "60 steps"],
         answer: 1,
       }}

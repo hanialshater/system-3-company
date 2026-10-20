@@ -59,7 +59,7 @@ export default function GoodListsMakeGoodPages({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Page X has 3 in-links, mostly from pages that list only X. Page Y has 2, from pages that list several good pages. After updating, which scores higher?",
+          "Ranking pages for a search engine, you find: Page X has 3 in-links, mostly from pages that list only X. Page Y has 2, from pages that list several good pages. After updating, which scores higher?",
         options: ["X", "Y", "Tie"],
         answer: 1,
       }}

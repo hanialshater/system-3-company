@@ -40,7 +40,7 @@ export default function NetHourlyAfterCosts({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A delivery job pays ${usd(PAY).replace(".00", "")} an hour. You drive ${Q_MILES} miles an hour, and driving costs ${usd(Q_RATE)} a mile. What is left per hour?`,
+        question: `A delivery app pays you ${usd(PAY).replace(".00", "")} an hour. In that hour you drive ${Q_MILES} miles, and your car costs ${usd(Q_RATE)} a mile to run. What do you actually keep per hour?`,
         options: [usd(PAY), usd(ANSWER), usd(cost(Q_MILES, Q_RATE))],
         answer: 1,
       }}
@@ -57,7 +57,7 @@ export default function NetHourlyAfterCosts({ slug }: { slug: string }) {
                 ` At ${Q_MILES} miles, ${others.map((r) => `${usd(r)} a mile would leave ${usd(kept(Q_MILES, r))}`).join(" and ")}.`}
             </p>
             <p>
-              The ${(PAY / 100).toFixed(0)} is what the job pays, not what it pays you. The car's fuel and wear come out of every hour,
+              The car's fuel and wear come out of every hour,
               and they grow with every mile. What you earn is the pay left after the costs of earning it.
             </p>
             <p className="muted">A model: no tax or tips, and the per-mile costs are examples, not an official rate.</p>

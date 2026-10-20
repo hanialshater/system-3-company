@@ -105,7 +105,7 @@ export default function NearestTownFirstDetours({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Towns on one road at km −15, −3, 2 and 8. Start at 0, always drive to the nearest unvisited town, then return. Shortest?",
+        question: "Your delivery van starts at km 0 on a road with towns at km −15, −3, 2 and 8. You always drive to the nearest unvisited town, then return. Is that the shortest trip?",
         options: ["Yes", "No, a tour about 5 km shorter exists", "No, a tour about 10 km shorter exists"],
         answer: 2,
       }}

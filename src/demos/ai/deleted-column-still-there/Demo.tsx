@@ -85,7 +85,7 @@ export default function DeletedColumnStillThere({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Lenders approved 80% of group A, 40% of B. A model sees only neighbourhood, and approves a whole one if most past applicants there were approved. 4 in 5 of each group live together. Its approvals:",
+          "Lenders approved 80% of group A and 40% of B. A new model sees only neighbourhood, and approves a whole one if most past applicants there were approved. 4 in 5 of each group live together. How do its approvals compare?",
         options: ["Equal for A and B", "Unequal, but less than before", "As unequal as before, or more"],
         answer: 2,
       }}

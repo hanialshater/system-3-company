@@ -36,7 +36,7 @@ export default function ShadowHeight({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${STICK_H} m stick casts a ${STICK_S} m shadow. At the same moment a tree casts a ${TREE_S} m shadow. How tall is the tree?`,
+        question: `In your garden, a ${STICK_H} m stick casts a ${STICK_S} m shadow. At the same moment, the tree beside it casts a ${TREE_S} m shadow. How tall is the tree?`,
         options: [`${TREE_H} m`, `${TREE_S - STICK_S + STICK_H} m`, `${(STICK_S / STICK_H) * TREE_S} m`],
         answer: 0,
       }}

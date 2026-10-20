@@ -70,7 +70,7 @@ export default function TwoColoursEnough({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Draw straight lines across a page. How many colours do you need so touching pieces always differ?",
+        question: "With a ruler, you draw straight lines right across a sheet of paper, then colour the pieces so touching pieces always differ. How few colours do you need?",
         options: ["2", "3", "4"],
         answer: 0,
       }}

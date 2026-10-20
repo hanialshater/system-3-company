@@ -80,7 +80,7 @@ export default function ClockCountsBothBranches({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two species differ at ${pct(OBS)} of their DNA letters. In this toy, each line changes at 0.1% per million years. When did they split?`,
+        question: `You compare the DNA of two species and find they differ at ${pct(OBS)} of their letters. In this toy, each line changes at 0.1% per million years. When did they split?`,
         options: ["3 million years ago", "6 million years ago", "12 million years ago"],
         answer: 1,
       }}

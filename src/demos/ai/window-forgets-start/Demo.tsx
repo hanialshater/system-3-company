@@ -47,7 +47,7 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A document has ${LEN} tokens and the model sees only the last ${Q_W} when it answers. A fact sits at a random position in the document. Chance the model can still use it:`,
+        question: `You paste a ${LEN}-token document into a chatbot that sees only the last ${Q_W} tokens when it answers. Your key fact sits at a random position in it. What is the chance the model can still use it?`,
         options: ["100%", `${Math.round(share(Q_W) * 100)}%`, `${Q_W}%`],
         answer: 1,
       }}

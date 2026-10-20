@@ -37,7 +37,7 @@ export default function ShadeYourSealedBid({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "It's worth $80 to you; winners pay their bid. Your rival's value is anywhere $0–100, and they bid half of it. Best bid?",
+        question: "In a sealed-bid auction, the item is worth $80 to you and the winner pays their own bid. Your rival values it anywhere from $0 to $100 and bids half of that. What is your best bid?",
         options: ["$80", "$60", "$40"],
         answer: 2,
       }}
@@ -52,7 +52,6 @@ export default function ShadeYourSealedBid({ slug }: { slug: string }) {
           <p>
             Below ${RIVAL_MAX_BID}, each dollar shaved costs 2 points of win chance. The best trade is at <strong>${BEST}</strong>:
             you win {Math.round(winChance(BEST) * 100)}% of the time and keep ${VALUE - BEST}, an expected {money(expected(BEST))}.
-            When you pay your own bid, the best bid is well below your value.
           </p>
           <p className="muted">
             A model: one rival, values spread evenly. With two such bidders, bidding half your value is the equilibrium.

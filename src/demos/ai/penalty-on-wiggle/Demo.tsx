@@ -176,8 +176,7 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             At 10 the curve goes much flatter
             {big
               ? `, and on set ${big.seed} held-out was ${big.held.toFixed(2)} vs ${big.none.toFixed(2)}: too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
-              : " and usually loses again."}{" "}
-            A worse fit to training can be a better model.
+              : " and usually loses again."}
           </p>
         </>
       )}

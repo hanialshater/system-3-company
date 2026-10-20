@@ -31,7 +31,7 @@ export default function Chromatography({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two dyes ride water up a paper strip. Dye A clings a little to the paper (stickiness ${K_A}). Dye B clings more (stickiness ${K_B}). After the water rises ${RISE} cm, dye B sits…`,
+        question: `You dip a paper strip in water, and two dyes ride the water up it. Dye A clings a little to the paper (stickiness ${K_A}). Dye B clings more (stickiness ${K_B}). After the water rises ${RISE} cm, where does dye B sit?`,
         options: ["higher than dye A", "lower than dye A", "at the same height as dye A"],
         answer: 1,
       }}
@@ -45,8 +45,7 @@ export default function Chromatography({ slug }: { slug: string }) {
           </p>
           <p>
             Each dye is carried by the water but held back by the paper. The stickier one is held longer, so it travels a smaller fraction of the
-            water&apos;s distance: {rf(K_B).toFixed(2)} for B against {rf(K_A).toFixed(2)} for A. Separation is a race between being carried and
-            holding on.
+            water&apos;s distance: {rf(K_B).toFixed(2)} for B against {rf(K_A).toFixed(2)} for A.
           </p>
         </>
       )}

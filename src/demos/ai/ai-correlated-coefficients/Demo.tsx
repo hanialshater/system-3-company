@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Changing only the second target from 2 to 2.01 makes the coefficients…", "options": ["Stay at [2,0]", "Move to [1,1]", "Move to [0,2]"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>A .01 target change moved the coefficients from [2,0] to [1,1]. The [2,2] probe stayed at 4; the [1,0] probe changed from 2 to 1. Identical columns admitted multiple coefficients. Stability along this observed relation did not ensure stability away from it.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You fit a regression where two feature columns are almost identical. Changing only the second target from 2 to 2.01 makes the coefficients…", "options": ["Stay at [2,0]", "Move to [1,1]", "Move to [0,2]"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>A .01 target change moved the coefficients from [2,0] to [1,1]. The [2,2] probe stayed at 4; the [1,0] probe changed from 2 to 1. Identical columns admitted multiple coefficients. Stability along this observed relation did not ensure stability away from it.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

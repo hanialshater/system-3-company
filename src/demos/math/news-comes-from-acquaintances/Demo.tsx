@@ -51,7 +51,7 @@ export default function NewsComesFromAcquaintances({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Every tie is close or an acquaintance. A and B each have close ties in their group. Under the rule, their tie A–B must be…",
+          "At a party, A and B each have close friends in their own circles, and every tie is either close or an acquaintance. Under the rule, the tie between A and B must be…",
         options: ["an acquaintance", "close", "either could be"],
         answer: 0,
       }}

@@ -70,7 +70,7 @@ export default function TwoWritersOneCounter({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A counter is 0. Two threads (jobs running at once in one program), A and B, each read it, add 1 and write it back. A reads, B reads, then A adds and writes, then B adds and writes. What is the counter?`,
+        question: `Your visit counter reads 0. Two threads (jobs running at once in one program), A and B, each read it, add 1 and write it back. A reads, B reads, then A adds and writes, then B adds and writes. What does it show?`,
         options: [String(TWO), String(ONE), "0"],
         answer: 1,
       }}

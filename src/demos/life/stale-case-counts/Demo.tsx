@@ -103,7 +103,7 @@ export default function StaleCaseCounts({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy outbreak: cases double every ${DOUBLING} days. People are counted ${LAG_Q} days after they were infected. Today's report says ${REPORTED}. About how many were infected today?`,
+        question: `Your town's health office tracks a made-up outbreak. Cases double every ${DOUBLING} days, and people are counted ${LAG_Q} days after they were infected. Today's report says ${REPORTED}. About how many were infected today?`,
         options: [`About ${REPORTED}`, `About ${fmt(LINEAR)}`, `About ${fmt(ANSWER)}`],
         answer: 2,
       }}
@@ -114,7 +114,7 @@ export default function StaleCaseCounts({ slug }: { slug: string }) {
           <p>
             The {REPORTED} people reported today were infected {LAG_Q} days ago. {LAG_Q} days is {LAG_Q / DOUBLING} doublings, so the
             infections have kept multiplying since: {REPORTED} &times; 2 &times; 2 &times; 2 = <strong>{fmt(ANSWER)}</strong> infected
-            today. The report is a photo of the past.
+            today.
           </p>
           <p>
             {others.length

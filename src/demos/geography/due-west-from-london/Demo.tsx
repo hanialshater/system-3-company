@@ -136,7 +136,7 @@ export default function DueWestFromLondon({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Fly due west from London (${london.lat.toFixed(1)}°N), straight along its latitude, across the whole Atlantic. Which country's coast do you reach on the far side?`,
+        question: `On a flight from London (${london.lat.toFixed(1)}°N), the pilot holds due west along its latitude across the whole Atlantic. Which country's coast do you reach on the far side?`,
         options: ["The United States", "Canada", "Greenland"],
         answer: 1,
       }}

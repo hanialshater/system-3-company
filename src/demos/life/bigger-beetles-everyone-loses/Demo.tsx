@@ -182,7 +182,7 @@ export default function BiggerBeetlesEveryoneLoses({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Offspring per meeting: small vs small 6, small vs large 2, large vs small 8, large vs large 4. All small now: average 6. A few large appear. After they take over, the average score is…",
+          "In your beetle colony, offspring per meeting are: small vs small 6, small vs large 2, large vs small 8, large vs large 4. All are small now, averaging 6. A few large beetles appear and take over. What is the average then?",
         options: ["Higher than 6", "The same, 6", "Lower than 6"],
         answer: 2,
       }}
@@ -198,9 +198,9 @@ export default function BiggerBeetlesEveryoneLoses({ slug }: { slug: string }) {
             Large beats small against either opponent (8 vs 6 against small, 4 vs 2 against large), so it spreads
             whatever the mix. Once nearly everyone is large, a small mutant scores about 2 where the large score about 4, so
             your 5% of mutants shrank back within {STEP} generations. A strategy that, once common, no small group of mutants can invade is
-            evolutionarily stable, even when it leaves everyone with less: an arms race.
+            evolutionarily stable, even when it leaves everyone with less.
           </p>
-          <p className="muted">Toy model with chosen payoffs and no baseline offspring; it is not a claim about real beetles.</p>
+          <p className="muted">A model with chosen payoffs and no baseline offspring; it is not a claim about real beetles.</p>
         </>
       )}
     >

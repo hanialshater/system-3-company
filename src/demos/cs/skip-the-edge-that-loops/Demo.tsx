@@ -81,7 +81,7 @@ export default function SkipTheEdgeThatLoops({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Five towns, eight possible roads costing ${ROADS.map((r) => r.cost).join(", ")}. Go through them cheapest first and build a road unless its two towns are already connected. How many roads get built?`,
+        question: `Your council can link five towns with eight possible roads costing ${ROADS.map((r) => r.cost).join(", ")}. You go cheapest first, building each road unless its two towns are already connected. How many roads get built?`,
         options: ["8, every road", "5", String(BUILT)],
         answer: 2,
       }}

@@ -42,7 +42,7 @@ export default function SaySeventyMeanIt({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A model was right on ${HITS} of ${N} questions (${Math.round(BEST * 100)}%). It states one confidence r every time, scored by the squared gap: (r − 1)² if right, r² if wrong. Which r gives the lowest average?`,
+        question: `Your quiz bot was right on ${HITS} of ${N} questions (${Math.round(BEST * 100)}%). It must state one confidence, r, every time, scored by the squared gap: (r − 1)² if right, r² if wrong. Which r gives the lowest average?`,
         options: ["90%", "70%", "50%"],
         answer: 1,
       }}
@@ -59,7 +59,6 @@ export default function SaySeventyMeanIt({ slug }: { slug: string }) {
             The average is 0.7(1 − r)² + 0.3r², which is lowest exactly at r = {BEST}, the model&apos;s real hit rate. This score
             (the Brier score) cannot be gamed by sounding surer or by hedging.
           </p>
-          <p>The best confidence to state is the true hit rate: overconfidence and underconfidence both cost.</p>
         </>
       )}
     >

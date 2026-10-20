@@ -55,7 +55,7 @@ export default function MinimumPaymentTrap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A $3,000 card balance charges 20% a year (1.667% a month). You pay $90 every month and buy nothing new. How long until it is paid off?",
+          "You owe $3,000 on a credit card charging 20% a year (1.667% a month). You pay $90 every month and buy nothing new on it. How long until the debt is paid off?",
         options: ["About 33 months", "About 50 months", "Never"],
         answer: 1,
       }}

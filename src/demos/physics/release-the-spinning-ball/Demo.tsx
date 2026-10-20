@@ -61,7 +61,7 @@ export default function ReleaseTheSpinningBall({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A ball whirls anticlockwise on a string on a frictionless table. The string is cut at the east point, moving north. Its path?",
+          "On a frictionless table, you whirl a ball anticlockwise on a string. You cut the string at the east point, while the ball moves north. Which path does it take?",
         options: ["Straight east, away from the centre", "Straight north", "Keeps curving round"],
         answer: 1,
       }}

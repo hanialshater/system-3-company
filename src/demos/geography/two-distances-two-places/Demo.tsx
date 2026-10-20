@@ -79,7 +79,7 @@ export default function TwoDistancesTwoPlaces({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A signal says you are 1,000 km from Paris and 800 km from Rome. How many places fit?",
+        question: "Your phone gets a signal saying you are 1,000 km from Paris and 800 km from Rome, and nothing more. How many places on the map could you be standing?",
         options: ["Exactly one", "Two", "A whole line of them"],
         answer: 1,
       }}

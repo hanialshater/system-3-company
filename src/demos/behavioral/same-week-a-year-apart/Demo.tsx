@@ -73,7 +73,7 @@ export default function SameWeekAYearApart({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Under steady discounting, someone prefers $110 at week 53 to $100 at week 52. Offered $100 today or $110 in a week, they must:",
+          "Planning a year ahead, a steady discounter picks $110 at week 53 over $100 at week 52. Today the same person is offered $100 now or $110 in a week. What must they choose?",
         options: ["Wait a week again for the $110", "Take the $100, since today weighs more", "Either, depending on their discount rate"],
         answer: 0,
       }}

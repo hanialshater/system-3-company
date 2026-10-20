@@ -64,7 +64,7 @@ function Stage({ locked, interact, st, set }: { locked: boolean; interact: () =>
   return (
     <div className={s.wrap}>
       <p className={s.chip}>
-        Fair coin each round: ×{UP} or ×{DOWN}. Log scale: each gridline is 100× the one below, so $100 to $1 is a 99% loss.
+        Fair coin each round: ×{UP} or ×{DOWN}. Each gridline is 100× the one below, so $100 to $1 is a 99% loss.
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${PLAYERS} players after ${st.t} rounds; typical ${dollars(now.median)}`}>
         {TICKS.map(([v, lab]) => (
@@ -152,7 +152,7 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each round a fair coin: heads multiplies your money by ${UP}, tails by ${DOWN}. The average round gains ${GAIN_PCT}%. After ${ROUNDS} rounds, what happens to a typical player?`,
+        question: `A friend offers a fair-coin game. Heads multiplies your money by ${UP}, tails by ${DOWN}, so a round gains ${GAIN_PCT}% on average. After ${ROUNDS} rounds, how does a typical player do?`,
         options: [`Grows about ${GAIN_PCT}% per round`, "Shrinks", "Roughly breaks even"],
         answer: 1,
       }}
@@ -168,10 +168,6 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
             A head then a tail is ×{UP} × {DOWN} = ×{(UP * DOWN).toFixed(1)}: a loss. A typical player gets about {ROUNDS / 2} heads
             and {ROUNDS / 2} tails, so about {ROUNDS / 2} such pairs: ×0.9 fifty times leaves about half a percent of the start.
             You need {K_GAIN}+ heads in {ROUNDS} to end up ahead; only {Math.round(P_GAIN * 100)}% of players get them.
-          </p>
-          <p className="muted">
-            Averaged over every possible player, the result would be far above the average of any {PLAYERS} you drew: it rests on
-            rare, huge winners. Almost nobody lives on that average.
           </p>
         </>
       )}

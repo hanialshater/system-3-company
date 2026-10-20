@@ -51,7 +51,7 @@ export default function PowerLineVoltageLoss({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A village draws the same 10 kW through the same cable. Send it at 10 times the voltage. The cable's heat loss becomes...",
+        question: "You run the power line for a small grid. A village draws the same 10 kW through the same cable. You send it at 10 times the voltage. What happens to the cable's heat loss?",
         options: ["10 times more", "About the same", "one hundredth as much"],
         answer: 2,
       }}

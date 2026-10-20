@@ -64,7 +64,7 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two people alternate offers on $1; each rejected round shrinks it ${whole(START_SHRINK)}. With no end date, what does the first proposer get?`,
+        question: `You and a rival take turns making offers on how to split $1. Each rejected offer shrinks the pot by ${whole(START_SHRINK)}, and there is no deadline. You offer first. How much can you keep?`,
         options: ["About 90%", `About ${whole(limit(START_SHRINK))}`, `About ${whole(1 - limit(START_SHRINK))}`, "Exactly 50%"],
         answer: 1,
       }}

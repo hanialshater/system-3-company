@@ -74,7 +74,7 @@ export default function BorderFollowsPoint({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One-nearest-neighbour: every spot takes the class of the closest training point. Class A sits at x = 0 and class B at x = 4, so the border is at x = 2. Move A to x = -2. The border moves to:",
+          "Your one-nearest-neighbour model gives every spot the class of its closest training point. Class A sits at x = 0 and class B at x = 4, so the border is at x = 2. You move A to x = -2. Where does the border go?",
         options: ["It stays at 2", "x = 1", "x = -2"],
         answer: 1,
       }}
@@ -84,8 +84,7 @@ export default function BorderFollowsPoint({ slug }: { slug: string }) {
         <>
           <p>
             With A at -2 the border sits at <strong>x = {fmt(axisCrossing([-2, 0]))}</strong>, halfway between -2 and 4. A moved 2;
-            the border moved 1. No one drew that border: it is wherever the two points are equally far away, so it goes where the
-            data goes.
+            the border moved 1. No one drew that border: it is wherever the two points are equally far away.
           </p>
           <p>
             Lift A off the axis and the border tilts, staying at right angles to the line joining the two points, through their

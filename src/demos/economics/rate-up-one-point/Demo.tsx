@@ -41,7 +41,7 @@ export default function RateUpOnePoint({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A loan rate rises from ${Q_OLD}% to ${Q_NEW}%. By what percent did the rate itself rise?`,
+        question: `The interest rate on your loan rises from ${Q_OLD}% to ${Q_NEW}%. By what percent did the rate itself go up?`,
         options: [`${points(Q_OLD, Q_NEW)}%`, `${num(ANSWER)}%`, `${Q_NEW}%`],
         answer: 1,
       }}

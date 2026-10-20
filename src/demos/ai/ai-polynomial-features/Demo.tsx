@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Can an intercept plus one coefficient fit these squared values exactly?", "options": ["With raw x", "With x²", "With either", "With neither"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The raw feature fitted a horizontal line at 2 with squared error 14. Squaring the feature fitted these points exactly: coefficient 1, intercept 0. At x=3 predictions were 2 and 9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Your data points dip in the middle and curve up on both sides. Can an intercept plus one coefficient fit these squared values exactly?", "options": ["With raw x", "With x²", "With either", "With neither"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The raw feature fitted a horizontal line at 2 with squared error 14. Squaring the feature fitted these points exactly: coefficient 1, intercept 0. At x=3 predictions were 2 and 9. Linearity in coefficients need not mean linearity in inputs; this exact fit does not guarantee generalization.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

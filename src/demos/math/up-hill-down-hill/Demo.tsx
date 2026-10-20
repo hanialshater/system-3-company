@@ -49,7 +49,7 @@ export default function UpHillDownHill({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You drive ${DIST} km uphill at ${UP} km/h and ${DIST} km back down at ${DOWN} km/h. Your average speed for the round trip?`,
+        question: `On a trip to a hilltop, you crawl ${DIST} km uphill at ${UP} km/h, then drive ${DIST} km back down at ${DOWN} km/h. What was your average speed for the round trip?`,
         options: [`${NAIVE} km/h`, `${ANSWER} km/h`, "50 km/h"],
         answer: 1,
       }}

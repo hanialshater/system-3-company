@@ -58,7 +58,7 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Lifeguard 40 m up the beach; swimmer 20 m out, 60 m along. She runs 7 m/s, swims 1.5 m/s. Where should she enter the water?",
+          "On lifeguard duty, you sit 40 m up the beach. A swimmer is 20 m out and 60 m along. You run 7 m/s and swim 1.5 m/s. Where should you enter the water?",
         options: ["40 m, on the straight line", "about 56 m", "24 m"],
         answer: 1,
       }}

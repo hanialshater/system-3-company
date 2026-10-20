@@ -67,7 +67,7 @@ export default function NoFractionFits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "The diagonal of a 1-by-1 square is √2. Can it be written exactly as a fraction of two whole numbers?",
+        question: "A square floor tile measures 1 by 1, so its diagonal is √2. Can you write that length exactly as a fraction of two whole numbers?",
         options: ["Yes, with big enough numbers", "No, never", "Yes: 99,999 / 70,710"],
         answer: 1,
       }}

@@ -193,7 +193,7 @@ export default function CountTheOutOfOrderPairs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In ${LIST.join(" ")}, how many pairs (earlier, later) are out of order, meaning the earlier one is bigger?`,
+        question: `Your shuffled playlist plays tracks ${LIST.join(" ")}. How many pairs (earlier, later) are out of order, meaning the earlier one is bigger?`,
         options: ["2", "3", "5"],
         answer: 1,
       }}

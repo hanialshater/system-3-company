@@ -108,7 +108,7 @@ export default function UndoMultiplicationModN({ slug }: { slug: string }) {
                 : ""}
           </p>
           <p>
-            With ×{B}, Euclid stopped at {GCD_B}, not 1, and the ring lit only 0 and {B}: no x reaches 1, so ×{B} has no
+            With ×{B}, Euclid stopped at {GCD_B}, not 1, and the ring showed only 0 and {B}: no x reaches 1, so ×{B} has no
             undo. An undo exists exactly when the gcd is 1: {INVERTIBLE} of the {N - 1} non-zero hours here have one.
           </p>
         </>

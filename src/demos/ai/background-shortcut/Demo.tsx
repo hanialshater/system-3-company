@@ -112,7 +112,7 @@ export default function BackgroundShortcut({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Photos are labelled cow or camel. In training, the background (grass or sand) matches the label 95% of the time; the shape clue is right 80%. A model picks the more reliable clue, then is tested on photos with backgrounds shuffled. Its accuracy is about:",
+          "You train a model to sort photos into cow or camel. In training, the background (grass or sand) matches the label 95% of the time; the shape clue is right 80%. It picks the more reliable clue, then meets photos with backgrounds shuffled. About what accuracy does it get?",
         options: ["95%", "80%", "50%"],
         answer: 2,
       }}

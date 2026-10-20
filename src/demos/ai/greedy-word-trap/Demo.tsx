@@ -75,7 +75,7 @@ export default function GreedyWordTrap({ slug }: { slug: string }) {
             the less likely first word led to a near-certain one.
           </p>
           <p>
-            The most likely word at each step need not make the most likely sentence. Some real systems use beam search, keeping
+            Some real systems use beam search, keeping
             several partial sentences, to get closer to the best whole one.
           </p>
         </>

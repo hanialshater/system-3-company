@@ -40,7 +40,7 @@ export default function ShortestJobFirstWait({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Four print jobs take 8, 4, 2 and 1 minutes. Run in that order, the jobs wait a total of 34 minutes before starting. Shortest first, the total wait is:",
+          "At the office printer, four jobs take 8, 4, 2 and 1 minutes. Run in that order, they wait a total of 34 minutes before starting. If you print shortest first, what is the total wait?",
         options: ["the same 34", "about a third of it", "a little less"],
         answer: 1,
       }}
@@ -55,10 +55,9 @@ export default function ShortestJobFirstWait({ slug }: { slug: string }) {
           </p>
           <p>
             A job at the front makes every job behind it wait, so its length is counted once for each of them. Put the
-            short ones first and the 8-minute job delays nobody. The catch: if short jobs keep arriving, a long one can
+            short ones first and the 8-minute job delays nobody. If short jobs keep arriving, a long one can
             wait forever.
           </p>
-          <p className="muted">The order of the work changes how long everyone waits.</p>
         </>
       )}
     >

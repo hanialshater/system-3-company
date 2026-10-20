@@ -37,7 +37,7 @@ export default function OneInAMillion({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A forensic trace matches 1 in 1,000,000 innocent people by chance. Police search a database of 5,000,000 people. About how many innocent people match?",
+          "A crime-scene trace matches only 1 in 1,000,000 innocent people by chance. Police searched a database of 5,000,000 people. About how many innocent people match?",
         options: ["Almost surely none", "About 5", "About 5,000"],
         answer: 1,
       }}
@@ -56,7 +56,7 @@ export default function OneInAMillion({ slug }: { slug: string }) {
           </p>
           <p className="muted">
             This assumes the culprit is in the database and always matches. Search a small database and the 1-in-6
-            becomes much higher: the size of the search matters.
+            becomes much higher.
           </p>
         </>
       )}

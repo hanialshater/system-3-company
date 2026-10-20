@@ -154,7 +154,7 @@ export default function MoreTrapsMoreSpecies({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "How many species does Team B find?",
+        question: "On Team A, you trap 50 insects in a forest and find 20 species. Team B traps 500, ten times as many, in the same forest. How many species does Team B find?",
         options: ["About 200", "About 35", "About 20"],
         answer: 1,
       }}

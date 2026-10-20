@@ -84,7 +84,7 @@ export default function RedAppleGreenLight({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In a dark room, a ripe red apple is lit only by a pure green lamp. It looks…",
+        question: "In a dark kitchen, you light a ripe red apple with nothing but a pure green lamp. What colour does the apple look?",
         options: ["Bright red", "Almost black", "Green"],
         answer: 1,
       }}
@@ -100,7 +100,7 @@ export default function RedAppleGreenLight({ slug }: { slug: string }) {
             An apple has no light of its own. Its colour is the part of the arriving light it sends back; it absorbs the rest.
             A red apple returns red, and a green lamp brings no red to return.
           </p>
-          <p className="muted">Toy values for three colour bands; real light and real apples have smooth spectra.</p>
+          <p className="muted">Made-up values for three colour bands; real light and real apples have smooth spectra.</p>
         </>
       )}
     >

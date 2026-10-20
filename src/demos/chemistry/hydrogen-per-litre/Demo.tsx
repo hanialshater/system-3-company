@@ -74,7 +74,7 @@ export default function HydrogenPerLitre({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Per kilogram, burning hydrogen gives about 3 times the energy of petrol. Per litre, as gas at room pressure, hydrogen gives…",
+          "Per kilogram, burning hydrogen gives about 3 times the energy of petrol. Per litre, as gas at room pressure, how does hydrogen compare?",
         options: ["about 3 times more", "about the same", "about 30 times less", "about 3,000 times less"],
         answer: 3,
       }}

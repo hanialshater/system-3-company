@@ -76,7 +76,7 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Find the person most like a 30-year-old earning $50,000. A is 31 and earns $58,000. B is 60 and earns $51,000. Straight-line distance, with income in dollars, picks:",
+          "A matching app looks for the person most like you: 30 years old, earning $50,000. A is 31 and earns $58,000. B is 60 and earns $51,000. Using straight-line distance with income in dollars, who comes out nearest?",
         options: ["A", "B", "A tie"],
         answer: 1,
       }}

@@ -56,7 +56,7 @@ export default function RatersRewardAgreement({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Users are wrong half the time. When wrong, they pick the answer agreeing with them 7 in 10 times. Their votes favour:",
+          "People vote between two models: one always correct, one that always agrees with them. Voters are wrong half the time; when wrong, they pick the agreeing answer 7 in 10 times. Whose answer do their votes favour?",
         options: ["The always-correct model", "The always-agreeing model", "Neither; they tie"],
         answer: 1,
       }}

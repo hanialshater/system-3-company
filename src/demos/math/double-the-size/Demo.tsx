@@ -28,7 +28,7 @@ export default function DoubleTheSize({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 12-inch round pizza and a 6-inch one. How many 6-inch pizzas have the same area as one 12-inch?",
+        question: "Ordering pizza, you compare a 12-inch round pizza with 6-inch ones. How many 6-inch pizzas have the same area as one 12-inch?",
         options: ["2", "4", "3"],
         answer: 1,
       }}

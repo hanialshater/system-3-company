@@ -107,7 +107,7 @@ export default function WidgetMarginalCost({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A workshop pays $${FIXED} in fixed costs plus $${PER} per widget. The average cost of ${Q_N} widgets is $${avg(Q_N)}. How much extra does widget #${Q_N + 1} add?`,
+        question: `Your workshop pays $${FIXED} in fixed costs plus $${PER} per widget. So far you have made ${Q_N} widgets at an average cost of $${avg(Q_N)}. How much extra does widget #${Q_N + 1} add?`,
         options: [`About $${avg(Q_N)}`, `$${PER}`, `$${FIXED + PER}`],
         answer: 1,
       }}

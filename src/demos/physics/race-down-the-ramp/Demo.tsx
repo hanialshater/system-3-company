@@ -87,7 +87,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A solid disc and a thin hoop, same mass and same radius, roll from rest down the same 30° ramp. Which reaches the bottom first?",
+          "You hold a solid disc and a thin hoop, same mass and same radius, at the top of the same 30° ramp, then let both roll from rest. Which reaches the bottom first?",
         options: ["The solid disc", "The thin hoop", "They tie"],
         answer: 0,
       }}
@@ -102,7 +102,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
           </p>
           <p>
             Rolling shares the energy between moving along and spinning. The hoop has all its mass at the rim, so half its
-            energy goes into spin; the disc, with mass near the middle, needs only a third. Shape decides, not mass: a heavier
+            energy goes into spin; the disc, with mass near the middle, needs only a third. A heavier
             hoop is pulled harder but is just as hard to spin up.
           </p>
           <p className="muted">No slipping, no air drag.</p>

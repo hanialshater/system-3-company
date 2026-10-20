@@ -65,7 +65,7 @@ export default function QuietDecadesThenEverywhere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy region: ${START} invasive plants grow ${Math.round(100 * GROWTH)}% a year until the region holds ${fmt(CAP)}, which takes about ${Math.round(FULL_AT)} years. At year ${HALF}, what share of that final number is there?`,
+        question: `${START} invasive plants take root in your valley (a toy region) and grow ${Math.round(100 * GROWTH)}% a year until it holds ${fmt(CAP)}, about ${Math.round(FULL_AT)} years later. At year ${HALF}, what share of that final number is there?`,
         options: ["About 1%", "About 25%", "About 50%"],
         answer: 0,
       }}
@@ -82,8 +82,7 @@ export default function QuietDecadesThenEverywhere({ slug }: { slug: string }) {
             </p>
             <p>
               Growing {Math.round(100 * GROWTH)}% a year doubles the count about every {(Math.log(2) / Math.log(1 + GROWTH)).toFixed(1)} years,
-              so each doubling adds as many plants as all the years before it together. Almost all of the filling happens in the last few doublings,
-              which is why exponential spread looks harmless until it is late.
+              so each doubling adds as many plants as all the years before it together. Almost all of the filling happens in the last few doublings.
             </p>
           </>
         );

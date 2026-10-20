@@ -36,7 +36,7 @@ export default function PiIsThreeAndABit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A wheel ${BIG} metre across rolls one full turn. How far does it go?`,
+        question: `Your bike wheel is ${BIG} metre across. You roll it along the pavement for one full turn. How far does it travel?`,
         options: ["2 m", `about ${m2(dist(BIG, 1))} m`, "4 m"],
         answer: 1,
       }}

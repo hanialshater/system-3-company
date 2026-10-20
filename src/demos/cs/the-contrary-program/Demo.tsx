@@ -39,7 +39,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A checker H reads any program and answers 'halts' (it stops) or 'loops forever'. Program D asks H about D, then does the opposite. Can H be right about D?",
+          "You build a checker, H, that reads any program and answers 'halts' (it stops) or 'loops forever'. A rival writes program D, which asks H about D, then does the opposite. Can H be right about D?",
         options: ["Yes, if H is clever enough", "No: whatever H says is wrong", "Only if D is short"],
         answer: 1,
       }}
@@ -55,7 +55,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
                 ? `On D you said ${d.map((t) => `"${t.v}" and D ${t.v === "halts" ? "looped" : "stopped"}`).join("; you said ")}. `
                 : ""}
               D is built to do the opposite of whatever H says about D, so both of H&apos;s answers are wrong. No cleverness
-              inside H helps: the trap is in D, not in H.
+              inside H helps.
             </p>
             <p>
               {others.length ? `On ${others.join(" and ")} a verdict can be right (see the ticks): ` : "On simple programs like A and B a verdict can be right: "}

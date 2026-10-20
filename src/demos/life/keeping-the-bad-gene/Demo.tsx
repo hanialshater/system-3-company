@@ -171,7 +171,7 @@ export default function KeepingTheBadGene({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Made-up species. A gene version (allele) called w is fatal if an animal gets two copies. One copy: all survive. No copies: 85% survive (say, a disease that one copy of w protects against). In the long run, w, as a share of all gene copies…",
+          "In a made-up species, two copies of a gene version called w kill an animal. One copy: all survive. No copies: 85% survive (say, a disease that one copy of w protects against). In the long run, what happens to w's share of gene copies?",
         options: ["disappears", "settles at a steady share in between", "takes over"],
         answer: 1,
       }}

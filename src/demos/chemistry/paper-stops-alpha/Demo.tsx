@@ -35,7 +35,7 @@ export default function ShieldRays({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Alpha, beta and gamma are three kinds of radiation from radioactive atoms. A single sheet of paper stops which one almost entirely?",
+        question: "In a lab demo, a single sheet of paper sits between a radioactive source and a detector. Alpha, beta and gamma are three kinds of radiation from radioactive atoms. Which one does the sheet stop almost entirely?",
         options: ["alpha", "beta", "gamma"],
         answer: 0,
       }}

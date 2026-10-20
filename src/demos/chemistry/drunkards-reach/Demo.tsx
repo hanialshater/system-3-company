@@ -63,7 +63,7 @@ export default function DrunkardsReach({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A particle takes random steps. With 4 times as many steps, it typically ends up about how many times farther from its start?",
+        question: "Under a microscope, you watch a particle jitter in random steps. If it takes 4 times as many steps, about how many times farther from its start does it typically end up?",
         options: ["4 times", "2 times", "The same"],
         answer: 1,
       }}
@@ -81,7 +81,7 @@ export default function DrunkardsReach({ slug }: { slug: string }) {
             √{B} ÷ √{A} = 10 ÷ 5 = 2. So spreading by random motion is quick at first and then slows down: to go twice as
             far takes four times as long. That is how molecules diffuse.
           </p>
-          <p className="muted">One seeded cloud of {WALKERS}; other clouds land a little above or below 2.</p>
+          <p className="muted">One cloud of {WALKERS}; other clouds land a little above or below 2.</p>
         </>
       )}
     >

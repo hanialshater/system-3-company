@@ -74,7 +74,7 @@ export default function OneIn75LetsGo({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two acids at the same ${C.toFixed(2)} mol/L (the same number of acid molecules per litre). Hydrochloric acid has pH ${PH_HCL.toFixed(1)}. Acetic acid, vinegar's acid, has a pH of about…`,
+        question: `Two bottles on your shelf hold acids at the same ${C.toFixed(2)} mol/L (the same number of acid molecules per litre). The hydrochloric acid reads pH ${PH_HCL.toFixed(1)}. About what pH does the acetic acid, vinegar's acid, read?`,
         options: [PH_HCL.toFixed(1), PH_ACETIC.toFixed(1), "4.8"],
         answer: 1,
       }}

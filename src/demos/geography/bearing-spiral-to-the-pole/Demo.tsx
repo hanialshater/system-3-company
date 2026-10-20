@@ -63,7 +63,7 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Start on the equator and hold one compass heading, 80° (just north of due east), all the way. How far do you travel to reach the North Pole?",
+          "You leave the equator and hold one compass heading, 80° (just north of due east), all the way. How far do you travel to reach the North Pole?",
         options: ["About 10,000 km, the equator-to-pole distance", "About 58,000 km", "You never get there: the path is endless"],
         answer: 1,
       }}

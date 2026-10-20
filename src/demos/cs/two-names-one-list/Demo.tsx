@@ -34,7 +34,7 @@ export default function TwoNamesOneList({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "a = [1, 2]. Then b = a. Then b.append(3). What is a?",
+        question: "In your code, a = [1, 2]. Then b = a. Then b.append(3), adding 3 to the end of b. What is a now?",
         options: [show(START), show([...START, 3]), "An error"],
         answer: 1,
       }}

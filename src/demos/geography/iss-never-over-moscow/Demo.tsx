@@ -65,7 +65,7 @@ export default function IssNeverOverMoscow({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "The ISS orbit is tilted 51.6° to the equator. Which of these cities can it never pass directly over?",
+          "You hope to see the space station pass straight over your city. The ISS orbit is tilted 51.6° to the equator. Which of these cities can it never pass directly over?",
         options: ["Rome", "London", "Moscow"],
         answer: 2,
       }}

@@ -90,7 +90,7 @@ export default function OvershootFromDelay({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A population grows at ${R_HIGH} a year, but responds to food that was counted ${TAU_Q} years ago. In the long run it:`,
+        question: `Deer on a toy island grow at ${R_HIGH} a year, but they respond to food that was counted ${TAU_Q} years ago. In the long run, what does the herd do?`,
         options: ["Settles at the food limit", "Swings far above and below the limit, again and again", "Dies out"],
         answer: 1,
       }}

@@ -76,7 +76,7 @@ export default function NeverFlag99({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "1,000 card payments, 10 of them fraud. A model approves every payment without looking. What is its accuracy?",
+          "Your bank's new fraud model gets 1,000 card payments, 10 of them fraud. It approves every payment without looking. What is its accuracy?",
         options: ["About 1%", "About 50%", "About 99%"],
         answer: 2,
       }}

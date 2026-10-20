@@ -41,7 +41,7 @@ export default function BuyersWhoWouldPayMore({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Five buyers would pay up to ${VALUES.map((v) => `$${v}`).join(", ")} for a cup. The price is $${Q_PRICE}. Among those who buy, what is the total of their gains (worth minus price)?`,
+        question: `At your stall, a cup costs $${Q_PRICE}. Five passers-by would pay up to ${VALUES.map((v) => `$${v}`).join(", ")} for one. Counting only those who buy, what do their gains (worth minus price) add up to?`,
         options: [`$${PAID_Q}`, `$${GAIN_Q}`, `$${WORTH_Q}`],
         answer: 1,
       }}

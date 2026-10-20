@@ -109,7 +109,7 @@ export default function TwoGenesOneInSixteen({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Made-up plant. White flowers and wrinkled seeds each show only with two hidden copies. Both parents carry one hidden copy of each. What share of their seeds is white AND wrinkled?",
+          "You cross two plants of a made-up species. White flowers and wrinkled seeds each show only with two hidden copies, and both parents carry one hidden copy of each. What share of their seeds is white AND wrinkled?",
         options: ["1 in 4", "1 in 8", `1 in ${N / COUNT.both}`],
         answer: 2,
       }}

@@ -47,7 +47,7 @@ export default function BisectTheBadCommit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Version 1 works and version ${fmt(N)} is broken. Each test says 'works' or 'broken' for one version. What is the most tests you could ever need to find the first broken one?`,
+        question: `Your app worked in version 1 and is broken in version ${fmt(N)}. Each test tells you 'works' or 'broken' for one version. What is the most tests you could ever need to find the first broken one?`,
         options: [String(WORST), fmt(N / 2), fmt(N)],
         answer: 0,
       }}

@@ -21,6 +21,7 @@ only the container.
 
 - `**` **One representation on a phone.** If the learner must watch two places at once, cut one.
 - `**` **Predict before reveal.** Enforced by the kit and by QA.
+- `*` **Write the copy to `copy-style.md`.** The predict question is a concrete second-person scene with every condition stated, the title never answers it, the hook teases the same question, and the reveal points at the stage instead of ending on a maxim. It also holds the lessons from the 2026-10-20 copy passes (claims lock text, where shared text lives, re-walk cost) and `node tools/copy-tells.mjs` for measuring.
 - `*` **Teach the payoff, not the procedure.** The early Merge Sort demos made splitting visible and treated merging as cleanup. Find the step that makes the idea worth having.
 - `*` **Remove the easy path.** If every version is "bars moving around", ban bars and see what appears.
 - `*` **Numbers the learner can feel.** 8 cards, 23 people, 10 folds. Big numbers go in the reveal.

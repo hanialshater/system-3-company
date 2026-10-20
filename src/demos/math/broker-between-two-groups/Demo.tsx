@@ -122,7 +122,7 @@ export default function BrokerBetweenTwoGroups({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Hana has 5 friends who all know each other. Bo has 4, from two separate groups. Who sits on more shortest paths between others?",
+          "At your office, Hana has 5 friends who all know each other. Bo has 4, from two separate groups. Who sits on more shortest paths between other people?",
         options: ["Hana", "Bo", "Same"],
         answer: 1,
       }}

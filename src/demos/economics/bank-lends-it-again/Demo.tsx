@@ -43,7 +43,7 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A bank keeps ${Q_RATIO}% of each deposit and lends the rest; the borrower spends it and the seller deposits it. Starting from one ${usd(FIRST)} deposit and repeating without end, what do total deposits reach?`,
+        question: `You deposit ${usd(FIRST)} at a bank that keeps ${Q_RATIO}% of each deposit and lends the rest; the borrower spends it and the seller deposits it. If this repeats without end, what do total deposits reach?`,
         options: [usd(FIRST * 1.1), usd(limit(50)), usd(LIMIT_Q)],
         answer: 2,
       }}

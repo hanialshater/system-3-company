@@ -36,7 +36,7 @@ export default function QuadraticWall({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Checking every pair among ${START} files takes ${pairs(START)} comparisons. About how many for ${fmt(BIG)} files?`,
+        question: `Your duplicate-photo finder checks every pair among ${START} files, which takes ${pairs(START)} comparisons. About how many does it need for ${fmt(BIG)} files?`,
         options: [fmt(pairs(START) * (BIG / START)), fmt(pairs(BIG)), fmt(pairs(START) * BIG * BIG)],
         answer: 1,
       }}

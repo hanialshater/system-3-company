@@ -35,7 +35,7 @@ export default function SieveStopsAtFive({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On a grid of 2 to ${MAX}, tapping a number crosses out its multiples (twice it, three times it, …). What survives are the primes. What is the largest number you ever need to tap?`,
+        question: `Hunting primes on a grid of 2 to ${MAX}, you tap a number to cross out its multiples (twice it, three times it, …). Whatever survives is prime. What is the largest number you ever need to tap?`,
         options: [String(PRIMES[PRIMES.length - 1]), String(MAX / 2), String(LAST_NEEDED)],
         answer: 2,
       }}

@@ -118,7 +118,7 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A hidden urn is mostly blue or mostly red. 100 people in turn each get a private clue, right 2 times in 3, and see all earlier picks. If one colour leads by 2 or more they copy it; otherwise they follow their own clue. How often does the crowd end on the wrong colour?",
+        question: "100 students guess if a hidden urn is mostly blue or mostly red, each seeing earlier picks and holding a clue right 2 times in 3. They copy any lead of 2, else follow their clue. How often is the crowd wrong?",
         options: ["About 1 time in 5", "Almost never (under 1 time in 100)", "About half the time"],
         answer: 0,
       }}

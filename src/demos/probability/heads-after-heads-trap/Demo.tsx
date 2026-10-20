@@ -58,7 +58,7 @@ export default function HeadsAfterHeadsTrap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Flip a fair coin 4 times. In each sequence, find the share of heads among the flips right after a head (HHHT: those flips are H, H, T, so 2 of 3). Then average those shares over all ${QUALIFYING.length} sequences that have such a flip. The average is`,
+        question: `You write out every way 4 fair coin flips can land and score each by its share of heads among flips right after a head (HHHT scores 2 of 3). What do the ${QUALIFYING.length} scores average?`,
         options: ["50%", `about ${Math.round(A * 100)}%`, "about 60%"],
         answer: 1,
       }}

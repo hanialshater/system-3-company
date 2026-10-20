@@ -76,7 +76,7 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `PCR copies DNA in cycles. Toy PCR: 1 DNA molecule, ${CYCLES} cycles. A perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), the final count compared with perfect is about:`,
+        question: `In your lab, a toy PCR run copies 1 DNA molecule through ${CYCLES} cycles; a perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), how does the final count compare with perfect?`,
         options: ["90%", "50%", "20%"],
         answer: 2,
       }}
@@ -88,7 +88,7 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
             At {Q_EFF}% you saw {big(count(Q_EFF, CYCLES))} copies after {CYCLES} cycles against {big(count(100, CYCLES))} for perfect: <strong>{pctOf(Q_EFF)}%</strong> of the perfect result.
           </p>
           <p>
-            Each cycle gives ×{(1 + Q_EFF / 100).toFixed(1)} instead of ×2, which is {(1 + Q_EFF / 100) / 2} of a perfect cycle. That shortfall multiplies itself every cycle: {(1 + Q_EFF / 100) / 2} thirty times is {ratio(Q_EFF).toFixed(2)}. Small losses compound just as growth does. Toy model: fixed efficiency, no plateau.
+            Each cycle gives ×{(1 + Q_EFF / 100).toFixed(1)} instead of ×2, which is {(1 + Q_EFF / 100) / 2} of a perfect cycle. That shortfall multiplies itself every cycle: {(1 + Q_EFF / 100) / 2} thirty times is {ratio(Q_EFF).toFixed(2)}. Toy model: fixed efficiency, no plateau.
           </p>
         </>
       )}

@@ -84,7 +84,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
                 <rect key={`${i}-${j}`} className={a > b ? s.barA : s.barB} opacity={a > b ? 1 : 0.35} x={270 + j * 11} y={8 + i * 11} width={10} height={10} rx={2} />
               )),
             )}
-            <text className={s.tally} x={270} y={86}>{exactWins(cx, cy)}/36 lit</text>
+            <text className={s.tally} x={270} y={86}>{exactWins(cx, cy)}/36 won</text>
           </g>
         )}
         {w !== null && (
@@ -117,7 +117,7 @@ export default function DiceThatChaseEachOther({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Four dice. A beats B two times in three. B beats C two times in three. C beats D two times in three. How often does D beat A?",
+        question: "At game night a friend lays out four odd dice. A beats B two times in three. B beats C two times in three. C beats D two times in three. How often does D beat A?",
         options: ["Under half the time", "Half the time", "Two times in three"],
         answer: 2,
       }}
@@ -130,7 +130,7 @@ export default function DiceThatChaseEachOther({ slug }: { slug: string }) {
             all 36 face pairs, each of the four wins {AVG_OF_EXACT}, two in three, round the loop.
           </p>
           <p>
-            Winning belongs to a pair, not to a die. A has a lower average ({mean("A").toFixed(2)}) than B ({mean("B").toFixed(2)}) yet beats it, and B beats C (average {mean("C").toFixed(2)}). The grid showed why: each match is 36 face pairs, and the lit squares are the ones the first die wins. Rolls of {ROLLS} usually land within about ten of two in three, so a roll like 57 is ordinary scatter.
+            Winning belongs to a pair, not to a die. A has a lower average ({mean("A").toFixed(2)}) than B ({mean("B").toFixed(2)}) yet beats it, and B beats C (average {mean("C").toFixed(2)}). The grid showed why: each match is 36 face pairs, and the bright squares are the ones the first die wins. Rolls of {ROLLS} usually land within about ten of two in three, so a roll like 57 is ordinary scatter.
           </p>
         </>
       )}

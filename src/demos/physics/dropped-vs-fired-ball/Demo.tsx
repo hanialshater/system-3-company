@@ -88,7 +88,7 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "From a 20 m cliff, one ball is dropped. At the same instant another is fired sideways at 15 m/s. Which hits the ground first?",
+          "On a 20 m cliff top, you drop one ball while a launcher beside you fires another sideways at 15 m/s at the same instant. Which hits the ground first?",
         options: ["The dropped ball", "The fired ball", "Both together"],
         answer: 2,
       }}

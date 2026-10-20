@@ -38,7 +38,7 @@ export default function KettleVsBulb({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 2000 W kettle runs for 3 minutes. A 60 W bulb stays on for 2 hours. Which uses more energy?",
+        question: "This morning your 2000 W kettle runs for 3 minutes, and a 60 W bulb in the hall stays on for 2 hours. Which uses more energy?",
         options: ["The kettle", "The bulb", "Equal"],
         answer: 1,
       }}
@@ -54,7 +54,7 @@ export default function KettleVsBulb({ slug }: { slug: string }) {
             </p>
             <p>
               Watts say how fast energy flows: each kettle minute was a thick slice, each bulb minute a thin one. The bill
-              counts the whole bar, power × time, in kilowatt-hours. Enough thin slices beat a few thick ones.
+              counts the whole bar, power × time, in kilowatt-hours.
             </p>
             <p className="muted">Assumes each appliance draws its label power steadily. 1 kWh = 3.6 million joules.</p>
           </>

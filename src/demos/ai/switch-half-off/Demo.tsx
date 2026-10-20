@@ -42,7 +42,7 @@ export default function SwitchHalfOff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Four units each output 1 (all-on total ${UNITS}). In training each is switched off with chance 50% and the survivors are doubled. The average total over many passes:`,
+        question: `A layer in your network has four units that each output 1 (all-on total ${UNITS}). In training, each is switched off with chance 50% and the survivors are doubled. What is the average total over many passes?`,
         options: ["2", "4", "8"],
         answer: 1,
       }}

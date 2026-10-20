@@ -57,7 +57,7 @@ export default function ParallelVsArcShortHop({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two places 1,000 km apart, east-west along the 40°N parallel. How much shorter is the shortest route on the globe (the great circle) than following the parallel?",
+          "Your trip links two places 1,000 km apart, east-west along the 40°N parallel. How much shorter is the shortest route on the globe (the great circle) than following the parallel?",
         options: ["About 0.7 km", "About 7 km", "About 70 km"],
         answer: 0,
       }}

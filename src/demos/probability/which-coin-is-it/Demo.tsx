@@ -141,7 +141,7 @@ export default function WhichCoin({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A bag holds one fair coin and one two-headed coin. You pull one at random and flip it ${K} times: ${K} heads. Chance it is the two-headed coin?`,
+        question: `A street magician's bag holds one fair coin and one two-headed coin. You pull one at random and flip it ${K} times: ${K} heads. How likely is it the two-headed coin?`,
         options: ["50%", "75%", ANSWER],
         answer: 2,
       }}

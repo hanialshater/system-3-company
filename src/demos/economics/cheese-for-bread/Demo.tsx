@@ -162,7 +162,7 @@ export default function CheeseForBread({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ana makes ${ANA.bread} loaves or ${ANA.cheese} cheeses an hour; Ben makes ${BEN.bread} loaf or ${BEN.cheese} cheese. Each works ${HOURS} hours, splitting evenly: ${EVEN.loaves} loaves, ${EVEN.cheeses} cheeses. Can they make ${EVEN.cheeses} cheeses and more loaves?`,
+        question: `Ana bakes ${ANA.bread} loaves or makes ${ANA.cheese} cheeses an hour; Ben manages ${BEN.bread} loaf or ${BEN.cheese} cheese. Each works ${HOURS} hours, and splitting time evenly they get ${EVEN.loaves} loaves and ${EVEN.cheeses} cheeses. Can they still make ${EVEN.cheeses} cheeses and more loaves?`,
         options: ["No: Ana is better at both, so 20 loaves is the most", `Yes: ${BEST.loaves} loaves, if Ben makes the cheese`, `Yes: ${BEST.loaves} loaves, but only Ben gains`],
         answer: 1,
       }}
@@ -172,7 +172,7 @@ export default function CheeseForBread({ slug }: { slug: string }) {
         <>
           <p>
             Ben on cheese all {HOURS} hours ({HOURS} cheeses) plus Ana's 2 cheese hours ({2 * ANA.cheese}) still make {BEST.cheeses} cheeses, and Ana's other 6 hours bake{" "}
-            <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more than before. Same hours, more food.
+            <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more than before.
           </p>
           <p>
             Each cheese costs Ana {ANA.bread / ANA.cheese} loaves but Ben only {BEN.bread / BEN.cheese}, so Ben should make it. When each does the job where they give up least, the total grows, and the extra loaves can be shared so both gain.

@@ -103,7 +103,7 @@ export default function PurgingSlowsDown({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy population, large, random mating. A gene copy kills in two copies, does nothing in one. It is ${Math.round(100 * Q0)}% of copies. About how many generations until it falls to 1%?`,
+        question: `In a large toy population that mates at random, a gene variant kills anyone with two copies and does nothing with one. It is ${Math.round(100 * Q0)}% of copies. About how many generations until it falls to 1%?`,
         options: ["About 10", `About ${TO_TARGET}`, "About 900"],
         answer: 1,
       }}

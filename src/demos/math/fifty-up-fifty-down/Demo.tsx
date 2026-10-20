@@ -26,7 +26,7 @@ export default function FiftyUpFiftyDown({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A price of 100 rises 50%, then falls 50%. Where does it end?",
+        question: "A jacket you want costs 100. Its price rises 50%, then a week later falls 50%. What does it cost now?",
         options: ["100", "75", "125"],
         answer: 1,
       }}
@@ -42,7 +42,6 @@ export default function FiftyUpFiftyDown({ slug }: { slug: string }) {
             of 150 is more than 50% of 100. The extra 25 is the corner you never get back, and some corner is always
             lost: even 10% up then 10% down ends at 99.
           </p>
-          <p className="muted">Percent changes multiply. They do not cancel.</p>
         </>
       )}
     >

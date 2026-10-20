@@ -44,7 +44,7 @@ export default function CaesarFallsToFrequency({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a long English message encrypted with a Caesar shift (every letter moved the same number of places along the alphabet), the most common letter is X. What is the shift most likely to be?",
+          "You intercept a long English message encrypted with a Caesar shift (every letter moved the same number of places along the alphabet). Its most common letter is X. What is the shift most likely to be?",
         options: ["3", "19", "23"],
         answer: 1,
       }}
@@ -61,7 +61,7 @@ export default function CaesarFallsToFrequency({ slug }: { slug: string }) {
             most common cipher letter is probably E in disguise. X is 19 places after E. There are only 25 shifts to try
             anyway, and the bars point at the right one first.
           </p>
-          <p className="muted">Al-Kindi described this attack in the 9th century: a cipher that keeps patterns leaks its key.</p>
+          <p className="muted">Al-Kindi described this attack in the 9th century.</p>
         </>
       )}
     >

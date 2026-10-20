@@ -40,7 +40,7 @@ export default function SameLettersSameKey({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Words: ${list(WORDS)}. Use each word's letters in alphabetical order as a key. How many groups?`,
+        question: `Sorting word tiles for a puzzle: ${list(WORDS)}. You use each word's letters in alphabetical order as its key. How many groups do you get?`,
         options: ["3", String(GROUPS), "5"],
         answer: 1,
       }}

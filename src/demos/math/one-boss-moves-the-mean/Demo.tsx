@@ -27,7 +27,7 @@ export default function OneBossMovesTheMean({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Five salaries, in thousands: 30, 35, 40, 45, 50. The mean is the total ÷ 5; the median is the middle one in order. The top salary jumps to 500. What changes?",
+        question: "Your team's five salaries, in thousands, are 30, 35, 40, 45, 50. The mean is the total ÷ 5; the median is the middle one in order. The boss's top salary jumps to 500. What changes?",
         options: ["Both the mean and the median", "Only the mean", "Only the median"],
         answer: 1,
       }}

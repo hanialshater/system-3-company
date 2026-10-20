@@ -35,7 +35,7 @@ export default function AliasWaveWagonWheel({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${QUESTION_F} Hz wave (${QUESTION_F} full ups and downs a second) is sampled ${FS} times a second, once per dot. Which slower wave passes through exactly the same dots?`,
+        question: `Your sensor samples a ${QUESTION_F} Hz wave (${QUESTION_F} full ups and downs a second) ${FS} times a second, one dot per sample. Which slower wave passes through exactly the same dots?`,
         options: ["2 Hz", `${ALIAS_OF_Q} Hz`, "0.5 Hz"],
         answer: 1,
       }}

@@ -40,7 +40,7 @@ export default function WhichQuestionSplits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Labels at x = 1 to ${n}: ${LABELS.join(", ")}. One cut splits the dots into two groups. Which cut leaves the least mixed groups (lowest weighted Gini)?`,
+        question: `Dots in a row at x = 1 to ${n} carry the labels ${LABELS.join(", ")}. You get one cut, splitting them into two groups. Which cut leaves the least mixed groups (lowest weighted Gini, a mix score)?`,
         options: OPTION_CUTS.map((c) => `Between ${c} and ${c + 1}`),
         answer: OPTION_CUTS.indexOf(BEST),
       }}

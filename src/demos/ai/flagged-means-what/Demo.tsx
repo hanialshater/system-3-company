@@ -77,7 +77,7 @@ export default function FlaggedMeansWhat({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N.toLocaleString("en")} scans, ${BASE.ill} truly ill. The test catches ${BASE.tp} of the ${BASE.ill} and wrongly flags ${BASE.fp} of the ${N - BASE.ill} healthy. Someone is flagged. The chance they are actually ill:`,
+        question: `A clinic runs ${N.toLocaleString("en")} scans; ${BASE.ill} people are truly ill. The test catches ${BASE.tp} of the ${BASE.ill} and wrongly flags ${BASE.fp} of the ${N - BASE.ill} healthy. Your scan is flagged. What is the chance you are actually ill?`,
         options: [`About ${pct(BASE.recall, 0)}`, `About ${pct(BASE.precision, 0)}`, `About ${pct(BASE.accuracy, 0)}`],
         answer: 1,
       }}
@@ -98,8 +98,7 @@ export default function FlaggedMeansWhat({ slug }: { slug: string }) {
           <p>
             {sawAll
               ? "Flagging everyone, as you tried, catches all the ill and makes a flag worth 1%."
-              : "Flag everyone and recall hits 100% while a flag is worth 1%."}{" "}
-            Always ask which question a number answers.
+              : "Flag everyone and recall hits 100% while a flag is worth 1%."}
           </p>
         </>
       )}

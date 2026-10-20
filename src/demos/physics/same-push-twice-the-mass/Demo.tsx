@@ -51,7 +51,7 @@ export default function SamePushTwiceTheMass({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A steady 10 N push moves a 2 kg cart from rest on a frictionless track. After 2 s it moves at 10 m/s. The same 10 N pushes a 4 kg cart. Its speed after 2 s?",
+          "In the school lab, a steady 10 N push moves a 2 kg cart from rest on a frictionless track. After 2 s it moves at 10 m/s. You give a 4 kg cart the same 10 N push. Its speed after 2 s?",
         options: ["10 m/s", "5 m/s", "2.5 m/s"],
         answer: 1,
       }}

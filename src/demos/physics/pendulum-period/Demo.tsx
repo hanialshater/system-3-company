@@ -164,7 +164,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An ideal 1 m pendulum with a 100 g weight takes about 2 seconds per back-and-forth. Hang a 2 kg weight on the same string instead. Each back-and-forth now takes…",
+          "For a science fair, you build an ideal 1 m pendulum with a 100 g weight. Each back-and-forth takes about 2 seconds. You hang a 2 kg weight on the same string instead. How long does each back-and-forth take now?",
         options: ["longer", "the same time", "less time"],
         answer: 1,
       }}

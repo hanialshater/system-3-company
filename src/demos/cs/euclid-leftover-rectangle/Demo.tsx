@@ -47,7 +47,7 @@ export default function EuclidLeftoverRectangle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${W0} by ${H0} floor is tiled with the largest identical squares that fit exactly, no cutting. How big is each square?`,
+        question: `Your ${W0} by ${H0} kitchen floor needs the largest identical square tiles that fit exactly, with none cut. How big is each square?`,
         options: ["3 by 3", `${TILE} by ${TILE}`, "9 by 9"],
         answer: 1,
       }}

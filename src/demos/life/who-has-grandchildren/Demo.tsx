@@ -89,7 +89,7 @@ export default function WhoHasGrandchildren({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A population is 80% female. Every child has one mother and one father. On average, a son will have how many times as many children as a daughter?",
+          "In a made-up village that is 80% female, every child has one mother and one father. On average, a son will have how many times as many children as a daughter?",
         options: ["The same", `${RATIO8} times as many`, "A quarter as many"],
         answer: 1,
       }}

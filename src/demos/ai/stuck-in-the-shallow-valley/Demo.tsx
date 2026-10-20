@@ -51,7 +51,7 @@ export default function StuckInTheShallowValley({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `f(x) = x⁴ − 3x² + x has a shallow valley near x = ${f2(SHALLOW)} (height ${f2(f(SHALLOW))}) and a deeper one near x = ${f2(DEEP)} (height ${f2(f(DEEP))}). A ball released at x = ${STARTS[0]} takes small downhill steps. It stops at:`,
+        question: `You release a ball at x = ${STARTS[0]} on the curve f(x) = x⁴ − 3x² + x. It has a shallow valley near x = ${f2(SHALLOW)} (height ${f2(f(SHALLOW))}) and a deeper one near x = ${f2(DEEP)} (height ${f2(f(DEEP))}). Taking small downhill steps, where does the ball stop?`,
         options: [`x = ${f2(DEEP)}, the deeper valley`, `x = ${f2(SHALLOW)}, the shallow valley`, "x = 0"],
         answer: 1,
       }}

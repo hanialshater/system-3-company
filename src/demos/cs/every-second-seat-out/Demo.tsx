@@ -102,7 +102,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${QUESTION_N} people stand in a circle numbered 1 to ${QUESTION_N}. Starting at 1, every second person is removed (2, 4, ... then round again) until one is left. Which number survives?`,
+        question: `At a party game, ${QUESTION_N} people stand in a circle numbered 1 to ${QUESTION_N}. Starting at 1, every second person is removed (2, 4, ... then round again) until one is left. Which number should you stand at to be last?`,
         options: ["1", "19", "41"],
         answer: 1,
       }}

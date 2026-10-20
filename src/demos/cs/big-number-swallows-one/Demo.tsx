@@ -37,7 +37,7 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `JavaScript’s ordinary Number type stores each value in a fixed amount of space. It holds ${big(P)}, which is 2^53 (53 twos multiplied together), and adds 1. What comes out?`,
+        question: `Your JavaScript program keeps a counter in an ordinary Number, which stores each value in a fixed amount of space. It holds ${big(P)}, which is 2^53 (53 twos multiplied together). You add 1. What comes out?`,
         options: [String(BigInt(P) + 1n), big(P + 1), "An error"],
         answer: 1,
       }}

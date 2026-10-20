@@ -71,11 +71,11 @@ export default function TheGiantAppears({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N} people, with 100 random friendships (one friend each, on average). The biggest connected group is ${one} people (${pct(one)}). Add 100 more random friendships. The biggest group is now about:`,
-        options: ["about 36% of people", "about 55% of people", "about 75% of people"],
+        question: `At a ${N}-person summer camp, 100 random friendships form, one friend each on average. The biggest connected group has ${one} campers (${pct(one)}). After 100 more random friendships, how big is it?`,
+        options: ["about 36% of campers", "about 55% of campers", "about 75% of campers"],
         answer: 2,
       }}
-      exploreHint="Press the friend counts in order, from 0.5 up. Watch the green group."
+      exploreHint="Press 0.5 and up, and watch the green group join the gold one."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

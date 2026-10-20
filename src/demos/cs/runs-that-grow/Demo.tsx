@@ -38,7 +38,7 @@ export default function RunsThatGrow({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Write a row as count-then-letter: WWWW becomes 4W. For the row ${QUESTION_ROW} (${QUESTION_ROW.length} pixels), is the coded version shorter, the same, or longer?`,
+        question: `Your drawing app saves each row as count-then-letter: WWWW becomes 4W. For the row ${QUESTION_ROW} (${QUESTION_ROW.length} pixels), is the saved version shorter, the same, or longer?`,
         options: ["Shorter", "The same", "Longer"],
         answer: 2,
       }}

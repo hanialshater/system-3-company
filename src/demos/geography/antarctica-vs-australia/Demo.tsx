@@ -104,7 +104,7 @@ export default function AntarcticaVsAustralia({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On this Mercator map Antarctica (green) is drawn about ${drawn} times the area of Australia (blue). On the real Earth, how many Australias fit in Antarctica?`,
+        question: `On this Mercator wall map, Antarctica (green) is drawn about ${drawn} times the area of Australia (blue). On the real Earth, how many Australias fit in Antarctica?`,
         options: [`About ${drawn}, as drawn`, "Under 2", "About 4"],
         answer: 1,
       }}

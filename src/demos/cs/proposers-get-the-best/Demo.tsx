@@ -320,7 +320,7 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three students and three hospitals rank each other (lists on the cards). Run it with the students making offers, then with the hospitals. What happens?",
+          "You run a match for three students and three hospitals who rank each other (lists on the cards). Run it with the students making offers, then with the hospitals. What happens?",
         options: [
           "The same pairs both times",
           "Different pairs; the side making offers does better",
@@ -333,10 +333,10 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Students proposing gave {found.S ? pairText(found.S) : "(not run)"}:
+            Students proposing gave {found.S ? pairText(found.S) : "(not tried)"}:
             first choices for students {fs ? fs.st : "?"}, hospitals{" "}
             {fs ? fs.ho : "?"}. Hospitals proposing gave{" "}
-            {found.H ? pairText(found.H) : "(not run)"}: students{" "}
+            {found.H ? pairText(found.H) : "(not tried)"}: students{" "}
             {fh ? fh.st : "?"}, hospitals {fh ? fh.ho : "?"}.
             {same
               ? " Same pairs."

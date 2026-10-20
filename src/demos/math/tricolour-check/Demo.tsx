@@ -496,7 +496,7 @@ export default function TricolourCheck({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Rule: at each crossing, the three arcs (rope between gaps) are all one colour or all different. Can the trefoil use all three colours?",
+          "You are colouring a drawing of the trefoil. Rule: at each crossing, the three arcs (rope between gaps) are all one colour or all different. Can you use all three colours?",
         options: ["Yes", "No", "Only with two colours"],
         answer: 0,
       }}

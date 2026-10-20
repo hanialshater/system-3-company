@@ -81,7 +81,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1 kg ball of clay (0.56 L) sinks in water. Reshaped into a bowl, how much water must it push aside to float?",
+          "In the bath, your 1 kg ball of modelling clay (0.56 L) sinks. You reshape it into a bowl. How much water must it push aside to float?",
         options: ["0.56 L, same as the ball", "1 L", "2 L"],
         answer: 1,
       }}

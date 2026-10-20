@@ -39,7 +39,7 @@ export default function WinnerWordEvidence({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${SHARE_Q}% of emails are spam. The word 'winner' appears in ${IN_SPAM * 100}% of spam and ${IN_REAL * 100}% of real mail. An email contains 'winner'. Chance it is spam:`,
+        question: `In your inbox, ${SHARE_Q}% of emails are spam. The word 'winner' appears in ${IN_SPAM * 100}% of spam and ${IN_REAL * 100}% of real mail. A new email contains 'winner'. What is the chance it is spam?`,
         options: [pc(AT_Q.post), `${IN_SPAM * 100}%`, "About 90%"],
         answer: 0,
       }}

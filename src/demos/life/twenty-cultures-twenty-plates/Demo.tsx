@@ -167,7 +167,7 @@ export default function TwentyCulturesTwentyPlates({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Each culture is spread on a drug plate. How do the 20 counts of resistant colonies compare?",
+        question: "In your lab, 20 identical cultures each grow from one cell to about a million, with resistance mutations striking at random about once per million divisions. Each goes on a drug plate. How do the 20 counts of resistant colonies compare?",
         options: [
           "About the same on every plate",
           "Most plates have few or none, one or two have many",
@@ -181,8 +181,8 @@ export default function TwentyCulturesTwentyPlates({ slug }: { slug: string }) {
         <>
           <p>
             {jackpot
-              ? `In your run, ${g.none} plates had none and one had ${g.max}. A mutation early in growth was copied into every descendant: a jackpot.`
-              : `In your run, ${g.none} plates had none and the largest had ${g.max}: uneven, but no big jackpot this time. An early mutation, copied into every descendant, makes one.`}{" "}
+              ? `Here, ${g.none} plates had none and one had ${g.max}. A mutation early in growth was copied into every descendant: a jackpot.`
+              : `Here, ${g.none} plates had none and the largest had ${g.max}: uneven, but no big jackpot this time. An early mutation, copied into every descendant, makes one.`}{" "}
             When the drug made the mutations, every plate got a similar count ({d.min} to {d.max}).
           </p>
           <p>

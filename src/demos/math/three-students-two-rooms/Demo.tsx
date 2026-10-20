@@ -67,7 +67,7 @@ export default function ThreeStudentsTwoRooms({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Four students, four rooms; each accepts two. A: rooms 1,2. B: 1,3. C: 2,3. D: 1,3. Can everyone get a room they accept?",
+        question: "You are assigning four students to four dorm rooms; each accepts two. A: rooms 1,2. B: 1,3. C: 2,3. D: 1,3. Can everyone get a room they accept?",
         options: ["Yes", "No", "Only if D takes room 1"],
         answer: 1,
       }}

@@ -42,7 +42,7 @@ export default function FreezerBalloon({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1.00 L balloon at 27 °C goes into a freezer at −18 °C, at the same pressure. Add about 273 to a Celsius temperature to get kelvin (K): 27 °C is 300 K and −18 °C is 255 K. The balloon's volume becomes about…",
+          "You move a 1.00 L balloon from a 27 °C room into a −18 °C freezer, at the same pressure. Add about 273 to a Celsius temperature to get kelvin (K): 27 °C is 300 K and −18 °C is 255 K. About what does its volume become?",
         options: ["0.85 L", "0.50 L", "1.00 L"],
         answer: 0,
       }}

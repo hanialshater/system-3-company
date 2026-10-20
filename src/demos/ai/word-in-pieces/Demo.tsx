@@ -49,7 +49,7 @@ export default function WordInPieces({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A token is one piece of text that a model reads as a unit. A tokenizer has the pieces un, happi, ness and every single letter. It always takes the longest piece that fits. How many tokens is '${WORDS[0]}'?`,
+        question: `Before a chatbot reads your message, a tokenizer cuts it into tokens: pieces it reads as units. Its list has un, happi, ness and every single letter, and it always takes the longest piece that fits. How many tokens is '${WORDS[0]}'?`,
         options: [String(Q_NONE), String(Q_ALL), "1"],
         answer: 1,
       }}
@@ -68,7 +68,6 @@ export default function WordInPieces({ slug }: { slug: string }) {
             single letters. A model built on a tokenizer like this does not receive the word, only the row of piece numbers. Real tokenizers learn
             their piece lists from large amounts of text, so frequent chunks get pieces.
           </p>
-          <p>What a model &ldquo;reads&rdquo; depends on its piece list, not on the word you see.</p>
         </>
       )}
     >

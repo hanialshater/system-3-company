@@ -31,7 +31,7 @@ export default function SquareAPlusB({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Someone says (${KEY_A} + ${KEY_B})² = ${KEY_A}² + ${KEY_B}² = ${wrong}. The true value of ${N} × ${N} is bigger. By how much?`,
+        question: `Your classmate insists (${KEY_A} + ${KEY_B})² = ${KEY_A}² + ${KEY_B}² = ${wrong}. The true value of ${N} × ${N} is bigger. By how much?`,
         options: ["By 30", `By ${N * N - wrong}`, "By 100"],
         answer: 1,
       }}

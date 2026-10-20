@@ -49,7 +49,7 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A and B split $1 by bargaining (the Nash model). A could get $0.40 elsewhere; B gets nothing elsewhere. How much does A get?",
+          "A and B haggle over how to split $1, settled by the Nash bargaining model. If talks fail, A can get $0.40 elsewhere and B gets nothing. How much does A get?",
         options: ["$0.50", "$0.70", "$0.40"],
         answer: 1,
       }}
@@ -66,7 +66,7 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
             {hi > lo
               ? `Your Tried row: raising A's option from ${usd(lo)} to ${usd(hi)} (${hi - lo} cents) moved A's deal from ${usd(split(lo).A)} to ${usd(split(hi).A)} (${split(hi).A - split(lo).A} cents). `
               : ""}
-            The option works as a threat, not as a move: it matters even though A never uses it.
+            The option matters even though A never uses it.
           </p>
         </>
       )}

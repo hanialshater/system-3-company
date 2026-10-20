@@ -65,7 +65,7 @@ function Stage({
           ? "Make a prediction to start."
           : n === 0
             ? `Each batch: ${FLIPS} flips of a fair coin. Run some.`
-            : "Shaded: batches at or past the marker. Their share is the p-value."}
+            : "Shaded: batches at or past the marker."}
       </p>
       <svg viewBox="0 0 360 186" className={`stage-svg ${s.svg}`} role="img" aria-label={`${n} batches; ${k} with ${mark} or more heads`}>
         <line x1={X0} y1={BASE} x2={X0 + W} y2={BASE} className={s.axisLine} />
@@ -130,7 +130,7 @@ export default function HowSurprisingIsSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A fair coin is flipped ${FLIPS} times. How often do you see ${MARK} or more heads?`,
+        question: `Your friend says her coin is fair. If it is, and she flips it ${FLIPS} times, how often will she get ${MARK} or more heads?`,
         options: ["about 0.3%", `about ${Math.round(EXACT * 100)}%`, "about 30%"],
         answer: 1,
       }}

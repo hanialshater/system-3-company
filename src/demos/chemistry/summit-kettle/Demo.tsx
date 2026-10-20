@@ -53,7 +53,7 @@ export default function SummitKettle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Air pressure on the summit of Mount Everest is about ${P_SUM.toFixed(1)} atm (sea level: 1 atm). Water there boils at about…`,
+        question: `Air pressure on the summit of Mount Everest is about ${P_SUM.toFixed(1)} atm (sea level: 1 atm). You put a kettle on for tea up there. The water boils at about…`,
         options: ["100 °C", `${B_SAY} °C`, "40 °C"],
         answer: 1,
       }}

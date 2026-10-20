@@ -127,7 +127,7 @@ export default function ImmunityEatsR({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up disease: R0 = ${R0} in a fully susceptible, well-mixed town. ${IM_Q}% are immune. How many people does an average new case infect at first?`,
+        question: `A made-up disease with R0 = ${R0} (counted in a town with no immunity) reaches your well-mixed town, where ${IM_Q}% are immune. At first, how many people does an average new case infect?`,
         options: [`About ${R0}`, `About ${rEff(IM_Q).toFixed(1)}`, "Fewer than 1"],
         answer: 1,
       }}

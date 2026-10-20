@@ -37,7 +37,7 @@ export default function SeventyTwoDoubling({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Money grows 8% a year, compounded (each year's growth also grows). About how long until it doubles?",
+        question: "Your savings grow 8% a year, compounded (each year's growth also grows). About how long until your money doubles?",
         options: ["12.5 years", "9 years", "6 years"],
         answer: 1,
       }}

@@ -113,7 +113,7 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "On the Moon there is no air. A hammer and a feather are released together from 1.5 m. Which lands first?",
+        question: "Standing on the Moon, where there is no air, you let go of a hammer and a feather together from 1.5 m up. Which lands first?",
         options: ["The hammer", "The feather", "They land together"],
         answer: 2,
       }}

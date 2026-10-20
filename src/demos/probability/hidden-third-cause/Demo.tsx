@@ -163,7 +163,7 @@ export default function HiddenThirdCause({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a simulated town, days with more ice-cream sales also have more sunburns. Hotter days are drawn redder. Compare only days with the same temperature. What happens to the link?",
+          "In a made-up beach town you keep the daily records: days with more ice-cream sales also have more sunburns. You compare only days at the same temperature. What happens to the link?",
         options: ["Stays strong", "Mostly disappears", "Reverses"],
         answer: 1,
       }}
@@ -182,8 +182,7 @@ export default function HiddenThirdCause({ slug }: { slug: string }) {
             nothing is left to connect them.
           </p>
           <p className="muted">
-            This town is built so temperature is the only link. Real data rarely announces its hidden causes; you
-            have to think of them.
+            This town is built so temperature is the only link.
           </p>
         </>
       )}

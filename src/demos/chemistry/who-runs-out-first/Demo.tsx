@@ -92,8 +92,7 @@ export default function WhoRunsOutFirst({ slug }: { slug: string }) {
           </p>
           <p>
             The recipe takes H₂ and O₂ in a 2 to 1 ratio. {H0} H₂ need only {H0 / 2} O₂, and {O0} are on hand, so the H₂
-            limits. What decides is which pile runs out when they are matched at the recipe&apos;s ratio, not which pile
-            is smaller.
+            limits.
           </p>
         </>
       )}

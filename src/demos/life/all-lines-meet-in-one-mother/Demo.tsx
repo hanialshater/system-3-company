@@ -139,7 +139,7 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "50 women; each woman's mother is a random woman of the previous generation. Trace all 50 lines back. What happens?",
+          "Building a family tree for 50 women, you follow each one's mother, then her mother, and on back. Each mother is a random woman of the generation before. What happens to the 50 lines?",
         options: ["They never all meet", "All meet in one woman", "They shrink to about half, then stop"],
         answer: 1,
       }}

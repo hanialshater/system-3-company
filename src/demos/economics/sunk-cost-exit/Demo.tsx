@@ -41,7 +41,7 @@ export default function SunkCostExit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You have spent $80,000 on a project. Finishing costs $30,000 more and will bring in $20,000. Should you finish?",
+          "Your firm has already spent $80,000 on a half-built project. Finishing it costs $30,000 more and will bring in $20,000. Sitting in the budget meeting, should you finish it?",
         options: ["Yes, or the $80,000 is wasted", "No", "It depends on how much was spent"],
         answer: 1,
       }}

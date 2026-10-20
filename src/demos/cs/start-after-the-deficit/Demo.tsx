@@ -46,7 +46,7 @@ export default function StartAfterTheDeficit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Five fuel stops round a loop. Fuel gained minus fuel used on the next leg: A +1, B −3, C +4, D −2, E +1. Where can you start with an empty tank and get all the way round?",
+          "Your delivery van circles a loop with five fuel stops. Fuel gained at each, minus fuel used on the next leg: A +1, B −3, C +4, D −2, E +1. Starting with an empty tank, where can you begin and get all the way round?",
         options: ["A", "C", "E"],
         answer: 1,
       }}
@@ -63,7 +63,6 @@ export default function StartAfterTheDeficit({ slug }: { slug: string }) {
             The whole loop adds up to +1, so some start must work. Begin just after the deepest dip and every later total
             is measured from the bottom, so it cannot go below zero. One pass from A finds it; no need to try all five.
           </p>
-          <p className="muted">Start right after the worst stretch.</p>
         </>
       )}
     >

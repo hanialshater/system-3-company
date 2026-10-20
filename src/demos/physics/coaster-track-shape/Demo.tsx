@@ -122,7 +122,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A cart with nothing slowing it (no friction) starts from rest 5 m up and rolls to the floor down either a steep ramp or a gentle one. Which gives the higher speed at the bottom?",
+          "Testing a model coaster, you let a cart roll from rest 5 m up to the floor, down either a steep ramp or a gentle one. With no friction slowing it, which gives the higher speed at the bottom?",
         options: ["The steep ramp", "The gentle ramp", "Both end at the same speed"],
         answer: 2,
       }}
@@ -133,7 +133,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
           <p>
             Every track you tried ended at <strong>{vBottom.toFixed(2)} m/s</strong>, the same as the steep ramp.
             {slowest !== null && slowest > REF.t[N]
-              ? ` Your slowest took ${slowest.toFixed(2)} s to get there, against ${REF.t[N].toFixed(2)} s: arriving sooner is not arriving faster.`
+              ? ` Your slowest took ${slowest.toFixed(2)} s to get there, against ${REF.t[N].toFixed(2)} s.`
               : " The shape changed the time, not the final speed."}
           </p>
           <p>

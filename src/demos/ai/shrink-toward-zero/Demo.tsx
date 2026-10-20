@@ -51,7 +51,7 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The true value is ${MU}. Each estimate averages ${N_READ} noisy readings (noise sd ${SIGMA}). A reports the average. B reports half the average (deliberately biased). Which has the lower average squared error (the miss, squared, averaged over many tries)?`,
+        question: `Two analysts estimate a true value of ${MU}, each from ${N_READ} noisy readings (noise sd ${SIGMA}). A reports the average. B deliberately reports half the average. Whose average squared error (the miss, squared, averaged over many tries) is lower?`,
         options: ["A, the honest average", "B, the shrunk one", "They are equal"],
         answer: 1,
       }}
@@ -68,7 +68,6 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
             Average squared error is bias² plus spread². Shrinking trades a little bias for a lot less spread, until the bias
             costs more than the spread saves. Here the best factor is exactly {BEST}.
           </p>
-          <p>Unbiased is not the same as best: a deliberately biased estimate can miss by less, on average.</p>
         </>
       )}
     >

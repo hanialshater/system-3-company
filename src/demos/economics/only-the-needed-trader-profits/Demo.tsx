@@ -61,7 +61,7 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Items: sellers value ${usd(SELLER_VALUE)}, buyers ${usd(BUYER_VALUE)}. T1, T2 both link seller 1 to buyer 1; T3 alone links seller 2 to buyer 2. Who profits?`,
+        question: `Each item is worth ${usd(SELLER_VALUE)} to its seller and ${usd(BUYER_VALUE)} to its buyer. Traders T1 and T2 both link seller 1 to buyer 1; only T3 links seller 2 to buyer 2. Which trader makes a profit?`,
         options: ["T1 and T2", "T3", "All three"],
         answer: 1,
       }}

@@ -38,7 +38,7 @@ export default function WireEightTimes({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A wire 1 m long and 1 mm across has a resistance of 1.0 Ω. A wire of the same metal, twice as long and half as wide (0.5 mm), has…",
+          "Wiring a project, you use a wire 1 m long and 1 mm across with a resistance of 1.0 Ω. What resistance does a wire of the same metal, twice as long and half as wide (0.5 mm), have?",
         options: ["8 Ω", "4 Ω", "2 Ω"],
         answer: 0,
       }}

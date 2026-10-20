@@ -110,7 +110,7 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A degree-7 curve (a flexible, wiggly line) is trained by gradient descent on 8 noisy dots and checked on 200 held-out dots it never trains on. In this run, held-out error is lowest:`,
+        question: `You fit a degree-7 curve (a flexible, wiggly line) to 8 noisy dots by gradient descent, checking it on 200 held-out dots it never trains on. In this run, when is held-out error lowest?`,
         options: [`At the end (step ${fmtStep(N_STEPS)})`, "Early, within the first 100 steps", "At step 0, before any training"],
         answer,
       }}
@@ -128,10 +128,10 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
             </p>
             <p>
               Early on, the curve learns the broad shape of the data. Later it bends to pass through the noise in its 8 training
-              dots. Training error cannot tell those apart; held-out error can. This run was picked to show a clear dip. Where the dip
+              dots. Training error cannot tell those apart; held-out error can. This curve was picked to show a clear dip. Where the dip
               falls changes from run to run, but in 483 of 500 seeded runs of this toy the lowest held-out error came before the end.
             </p>
-            <p>Training longer is not always better: stop where held-out error is lowest.</p>
+            <p>Stop where held-out error is lowest.</p>
           </>
         );
       }}

@@ -87,7 +87,7 @@ export default function OnePercentEdge({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy population, very large, asexual reproduction. A new type starts at 1% and leaves 5% more offspring than the old type each generation. About how many generations until it is half?`,
+        question: `In a huge toy population with asexual reproduction, a new type starts at 1% and leaves 5% more offspring than the old type each generation. About how many generations until it makes up half?`,
         options: ["About 20", `About ${HALF[5]}`, "About 500"],
         answer: 1,
       }}

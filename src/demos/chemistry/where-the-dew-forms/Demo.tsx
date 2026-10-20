@@ -59,7 +59,7 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Air at ${T0} °C is ${Math.round(RH0 * 100)}% full of water vapour (relative humidity ${Math.round(RH0 * 100)}%). You cool it, keeping its water. Dew first forms at about…`,
+        question: `On a summer evening the air over your lawn is ${T0} °C and ${Math.round(RH0 * 100)}% full of water vapour (relative humidity ${Math.round(RH0 * 100)}%). Night cools it, and it keeps its water. Dew first forms at about…`,
         options: ["Between 25 and 20 °C", "Between 20 and 15 °C", "Only below 15 °C"],
         answer: 1,
       }}

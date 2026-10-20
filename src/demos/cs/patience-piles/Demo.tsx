@@ -251,7 +251,7 @@ export default function PatiencePiles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Cards 3 1 4 1 5 9 2 6. Pick cards left to right, skipping any, so each is bigger than the last. What is the longest possible?",
+          "You are dealt 3 1 4 1 5 9 2 6 in a row. Picking cards left to right, skipping any, each must be bigger than the last. What is the longest run you can pick?",
         options: ["3", "4", "5"],
         answer: 1,
       }}
@@ -269,7 +269,6 @@ export default function PatiencePiles({ slug }: { slug: string }) {
             has an arrow back to a smaller, earlier card on pile k − 1, as your trace drew, so a run as long as the number of
             piles always exists.
           </p>
-          <p className="muted">One pass of a card game measures the longest rising run.</p>
         </>
       )}
     >

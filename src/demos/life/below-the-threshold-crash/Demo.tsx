@@ -96,7 +96,7 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `These animals need mates nearby to breed. Two groups start with 40 and 60, with room for ${fmt(CAP)}. After many years:`,
+        question: `You are watching two groups of an animal that breeds only when mates are nearby. One starts with 40, the other with 60, and there is room for ${fmt(CAP)}. What happens after many years?`,
         options: ["Both grow to 1,000", "The group of 40 dies out; 60 grows", "Both die out"],
         answer: 1,
       }}
@@ -110,7 +110,7 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
               You released {list.join(", ")}: {list.map((n) => `${n} ${outcome(n)}`).join("; ")}.
             </p>
             <p>
-              The same species has two fates, split by the line at {THRESH}. The line is the group size, {THRESH}, below which animals struggle to find mates. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. Small does not always mean slow recovery: below the threshold it means none. Toy model: the threshold and rate are invented.
+              The same species has two fates, split by the line at {THRESH}. The line is the group size, {THRESH}, below which animals struggle to find mates. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. The threshold and rate are invented.
             </p>
           </>
         );

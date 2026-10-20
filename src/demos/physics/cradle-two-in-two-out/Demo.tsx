@@ -54,7 +54,7 @@ export default function CradleTwoInTwoOut({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In a cradle you lift two balls and release them. After the hit, the far end swings...",
+        question: "On a desk Newton's cradle, you lift two balls at one end and let them go. After the click, what swings out at the far end?",
         options: OUTCOMES.map((o) => o.label),
         answer: 0,
       }}

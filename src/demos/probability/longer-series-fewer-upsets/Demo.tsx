@@ -74,7 +74,7 @@ export default function LongerSeries({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `An underdog wins each game ${pct(P)} of the time, independently. What is its chance of winning a best-of-seven series (first to 4 wins)?`,
+        question: `It's playoff time and your team is the underdog: it wins each game ${pct(P)} of the time, whatever happened the game before. What's its chance of taking a best-of-seven series (first to 4 wins)?`,
         options: [pct(P), `about ${pct(exact(SEVEN))}`, "about 10%"],
         answer: 1,
       }}

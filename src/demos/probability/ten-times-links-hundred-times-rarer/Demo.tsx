@@ -53,7 +53,7 @@ export default function TenTimesLinksHundredTimesRarer({ slug }: { slug: string 
       slug={slug}
       predict={{
         question:
-          "The share of pages with k links falls like 1/k². How much rarer are pages with 1,000 links than pages with 100?",
+          "Cataloguing the web, you find pages with 2 links are 4 times rarer than pages with 1, and pages with 3 links 9 times rarer. How much rarer are pages with 1,000 links than with 100?",
         options: ["10 times", "100 times", "Millions of times"],
         answer: 1,
       }}

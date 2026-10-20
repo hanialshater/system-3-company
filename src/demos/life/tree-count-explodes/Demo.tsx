@@ -126,7 +126,7 @@ export default function TreeCountExplodes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `How many different rooted, branching family trees can connect ${MAXK} named species?`,
+        question: `You're sketching how ${MAXK} named species are related. How many different branching family trees, each starting from one common ancestor, could connect them?`,
         options: ["About 1,000", "About 100,000", "About 34 million"],
         answer: 2,
       }}

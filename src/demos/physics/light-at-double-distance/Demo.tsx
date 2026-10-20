@@ -53,7 +53,7 @@ export default function LightAtDoubleDistance({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A small lamp lights a page at 100 lux from 1 m away. Move the page to 2 m. How bright is it now?",
+        question: "Reading by a small lamp 1 m away, your page gets 100 lux of light. You move the page to 2 m away. How bright is it now?",
         options: ["50 lux", "25 lux", "12.5 lux"],
         answer: 1,
       }}

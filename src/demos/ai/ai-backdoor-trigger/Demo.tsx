@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "After adding the marker, which input class changes under the planted rule?", "options": ["0 only", "1 only", "Both", "Neither"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The marker changed predictions only for x=0 under the planted branch: score4/4 became2/4. Clean testing never took that branch; the marked control retained4/4. This constructed conditional rule demonstrates a dormant condition, not a trained attack or its prevalence.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Someone secretly planted a rule in your classifier that reacts to a hidden marker. After adding the marker, which input class changes under the planted rule?", "options": ["0 only", "1 only", "Both", "Neither"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The marker changed predictions only for x=0 under the planted branch: score4/4 became2/4. Clean testing never took that branch; the marked control retained4/4. This constructed conditional rule demonstrates a dormant condition, not a trained attack or its prevalence.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

@@ -91,7 +91,7 @@ export default function DoublingFindsTheEdge({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A sorted list has no known length. The target sits at position ${POS}. Probe positions 1, 2, 4, 8, … until you pass the target, then halve the last gap. Roughly how many comparisons? (A scan from the start needs ${SCAN.toLocaleString("en-US")}.)`,
+        question: `Your sorted list runs on with no end you can see, and the target sits at position ${POS}. You probe positions 1, 2, 4, 8, … until you pass it, then halve the last gap. Roughly how many comparisons? (A scan from the start needs ${SCAN.toLocaleString("en-US")}.)`,
         options: ["About 500", "About 100", "About 20"],
         answer: 2,
       }}

@@ -67,7 +67,7 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two friends pull the ends of a rope, each with 100 N. A spring scale in the middle reads...",
+        question: "At a picnic, two friends pull the ends of a rope, each with 100 N. You have hooked a spring scale into the middle. What does it read?",
         options: ["0 N", "100 N", "200 N"],
         answer: 1,
       }}

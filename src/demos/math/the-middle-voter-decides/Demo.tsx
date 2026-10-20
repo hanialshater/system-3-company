@@ -68,7 +68,7 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Five voters' favourites sit at 1, 2, 3, 8 and 10 on a 0-10 line. Each prefers nearer. Which position beats every other one-on-one?",
+          "Five voters' favourite spots on a 0-10 line are 1, 2, 3, 8 and 10, and each prefers whatever is nearer. Which position beats every other in a one-on-one vote?",
         options: ["3 (the third voter)", "4.8 (the average)", "5 (the centre)"],
         answer: 0,
       }}

@@ -120,7 +120,7 @@ export default function HalveTheMarginCost({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A poll of ${n(BASE)} people has a margin of error of about ${m1(BASE)} points. How many people must be polled to cut it to about ${m1(QUAD)} points?`,
+        question: `Your poll of ${n(BASE)} people comes back at plus or minus ${m1(BASE)} points. Your editor wants about ${m1(QUAD)}. How many people must you poll?`,
         options: [n(DOUBLE), n(QUAD), n(BASE * 8)],
         answer: 1,
       }}

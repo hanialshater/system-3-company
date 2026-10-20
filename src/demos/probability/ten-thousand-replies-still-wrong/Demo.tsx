@@ -117,11 +117,11 @@ export default function TenThousandRepliesStillWrong({ slug }: { slug: string })
     <Lesson
       slug={slug}
       predict={{
-        question: "A town is split 50/50 on a plan. Opponents are twice as likely to answer an open web poll. With 10,000 replies, what share back it?",
+        question: "Your town is split 50/50 on a plan for a new skate park. Opponents are twice as likely to answer the council's open web poll. Of its 10,000 replies, what share back the plan?",
         options: ["About 50%", "About 40%", "About 33%"],
         answer: 2,
       }}
-      exploreHint="Run each poll; watch the bar and its whisker."
+      exploreHint="Try each poll; watch each bar and its margin."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -131,7 +131,7 @@ export default function TenThousandRepliesStillWrong({ slug }: { slug: string })
             backer, however many arrive.
           </p>
           <p>
-            More replies only shrink the whisker around the wrong answer. The 1,000 random calls said{" "}
+            More replies only shrink the margin around the wrong answer. The 1,000 random calls said{" "}
             {pct(RESULTS.calls.share)}, near the truth, because everyone had the same chance of being asked.
           </p>
         </>

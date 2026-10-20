@@ -48,7 +48,7 @@ export default function PriceFloorGlut({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bread model: buyers want 100 − 10p loaves, bakers bake 10p − 20; the lines cross at $${P0} and ${Q0} loaves. A rule says bread cannot sell below $${Q_FLOOR}. How many loaves go unsold?`,
+        question: `In the town bread market, buyers want 100 − 10p loaves at price p and bakers bake 10p − 20, meeting at $${P0} and ${Q0} loaves. A new rule bans selling bread below $${Q_FLOOR}. How many loaves go unsold?`,
         options: ["0", String(QM.bought), String(QM.unsold)],
         answer: 2,
       }}
@@ -62,8 +62,8 @@ export default function PriceFloorGlut({ slug }: { slug: string }) {
             sold fell from {Q0} to {QM.bought}.
           </p>
           <p>
-            The rule changes the price, not what buyers want: at ${Q_FLOOR} they want fewer loaves, while bakers, promised {`$${Q_FLOOR}`}, bake more. The gap between the two is a surplus.
-            {seen.some((f) => f < P0) && ` Below $${P0} the rule changed nothing: the price was already higher.`}
+            At ${Q_FLOOR} buyers want fewer loaves, while bakers, promised {`$${Q_FLOOR}`}, bake more. The gap between the two is a surplus.
+            {seen.some((f) => f < P0) && ` Below $${P0} the floor changed nothing: the price was already higher.`}
           </p>
           <p className="muted">A model: straight lines, one market, bakers bake for the floor price. Not a claim about any real rule.</p>
         </>

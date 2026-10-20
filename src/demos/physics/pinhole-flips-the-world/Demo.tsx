@@ -75,7 +75,7 @@ export default function PinholeFlips({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A candle burns in front of a card with a tiny hole, no lens. On a screen behind the hole the flame appears…",
+        question: "In a dark room you light a candle in front of a card with a tiny hole, no lens. On a screen behind the hole, which way up does the flame appear?",
         options: ["Upright", "Upside-down", "Blurred but upright"],
         answer: 1,
       }}

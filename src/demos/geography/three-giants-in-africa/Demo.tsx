@@ -78,7 +78,7 @@ export default function ThreeGiantsInAfrica({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Move the United States, China and India onto Africa, keeping their true sizes. What happens?",
+        question: "On a world map, you drag the United States, China and India onto Africa, keeping each at its true size. What happens when you try to fit all three?",
         options: ["They fit, with room to spare", "They fill it exactly", "Africa is too small for them"],
         answer: 0,
       }}

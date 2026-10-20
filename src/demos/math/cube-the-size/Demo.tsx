@@ -44,7 +44,7 @@ export default function CubeTheSize({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${SMALL_IN}-inch solid cube weighs ${SMALL_KG} kg. A ${big}-inch cube of the same material weighs...`,
+        question: `Your ${SMALL_IN}-inch solid cube paperweight weighs ${SMALL_KG} kg. How much would a ${big}-inch solid cube of the same material weigh?`,
         options: [`${TARGET_K} kg`, `${TARGET_K ** 2} kg`, `${kg(TARGET_K)} kg`],
         answer: 2,
       }}

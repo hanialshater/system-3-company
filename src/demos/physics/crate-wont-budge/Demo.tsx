@@ -38,7 +38,7 @@ export default function CrateWontBudge({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${M} kg crate can grip the floor with up to ${LIMIT.toFixed(1)} N of friction before it slips. You push with 50 N and it does not move. The friction on it is…`,
+        question: `In the garage, you push a ${M} kg crate with 50 N and it does not move. The floor can grip it with up to ${LIMIT.toFixed(1)} N of friction before it slips. How much friction acts on it now?`,
         options: [`${LIMIT.toFixed(1)} N`, "50 N", "0 N"],
         answer: 1,
       }}

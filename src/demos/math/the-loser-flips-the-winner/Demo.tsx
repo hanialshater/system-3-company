@@ -96,7 +96,7 @@ export default function TheLoserFlipsTheWinner({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Borda vote: 2 points for 1st, 1 for 2nd, 0 for 3rd. B wins; C is last. Remove C and recount. Who wins?",
+        question: "Your club votes by points: 2 for 1st, 1 for 2nd, 0 for 3rd. B wins; C comes last. You remove C and recount the same ballots. Who wins?",
         options: ["B again", "A", "A tie"],
         answer: 1,
       }}

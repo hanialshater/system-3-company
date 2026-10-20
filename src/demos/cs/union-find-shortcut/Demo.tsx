@@ -88,7 +88,7 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "8 people merge into groups, always hanging the smaller group under the bigger group's leader. In the worst case, how many hops from anyone up to their leader?",
+          "At a meetup, 8 people merge into groups, always hanging the smaller group under the bigger group's leader. In the worst case, how many hops from anyone up to their leader?",
         options: ["7", "3", "1"],
         answer: 1,
       }}
@@ -108,10 +108,8 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
           </p>
           <p>
             A person moves one hop further from their leader only when their group joins one at least as big, so their
-            group at least doubles. From 1 to 8 that can happen only 3 times. Finding a leader stays short however the
-            groups grow.
+            group at least doubles. From 1 to 8 that can happen only 3 times.
           </p>
-          <p className="muted">Small trees by rule make &quot;are we connected?&quot; a few hops, not a search.</p>
         </>
       )}
     >

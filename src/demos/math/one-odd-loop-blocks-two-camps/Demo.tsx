@@ -114,7 +114,7 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Friends share a camp; enemies sit in opposite camps. Six people in a ring plus one cross link A-D; the red dashed links are enemies. Can they split into two camps?",
+          "Six classmates sit in a ring, plus one cross link A-D; the red dashed links are enemies. Friends share a camp; enemies sit in opposite camps. Can the class split into two camps?",
         options: ["Yes", "No", "Can't tell from the loops"],
         answer: tryAll(ENEMIES_AS_GIVEN).working > 0 ? 0 : 1,
       }}

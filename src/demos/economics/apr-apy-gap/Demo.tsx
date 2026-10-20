@@ -120,7 +120,7 @@ export default function AprApyGap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `An account quotes 12% a year, adding 1% each month. After one year, how much has $100 grown?`,
+        question: `You put $100 in a savings account quoting 12% a year, paid as 1% added each month. After one year, how much has your $100 grown?`,
         options: ["Exactly $12", `About ${money(MONTHLY - START)}`, "About $14"],
         answer: 1,
       }}

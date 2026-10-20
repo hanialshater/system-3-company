@@ -164,7 +164,7 @@ export default function PriceTagOrAuction({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Values are random, $0 to $100. What is the fewest bidders for which a second-price auction beats the best price tag on average?",
+          "You are selling one item, and each bidder values it at random between $0 and $100. What is the fewest bidders for which a second-price auction beats your best price tag on average?",
         options: ["2", "3", "5"],
         answer: 1,
       }}

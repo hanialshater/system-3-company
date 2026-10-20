@@ -99,7 +99,7 @@ export default function WhereTheAxisStarts({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "School A: 52% pass. School B: 56%. On a bar chart whose axis starts at 50%, how many times taller is B's bar?",
+        question: "Your local paper compares two schools: A passes 52%, B passes 56%. Its bar chart's axis starts at 50%. How many times as tall as A's bar is B's?",
         options: ["About 1.1 times", "About 2 times", "About 3 times"],
         answer: 2,
       }}

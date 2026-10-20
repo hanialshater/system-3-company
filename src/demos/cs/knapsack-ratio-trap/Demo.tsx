@@ -63,7 +63,7 @@ export default function KnapsackRatioTrap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A bag holds 50 kg. Items: 10 kg worth $60, 20 kg worth $100, 30 kg worth $120. Whole items only. Best value per kilo first gives $160. What is the best possible?",
+          "Your bag holds 50 kg. Items: 10 kg worth $60, 20 kg worth $100, 30 kg worth $120. Whole items only. Packing best value per kilo first gives $160. What is the best possible?",
         options: ["$160", "$220", "$240"],
         answer: 1,
       }}

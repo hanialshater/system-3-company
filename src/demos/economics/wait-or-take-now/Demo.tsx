@@ -97,7 +97,7 @@ export default function WaitOrTakeNow({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Offer: ${whole(NOW)} today or ${whole(LATER)} in ${YEARS} years. If you could earn ${Q_RATE}% a year elsewhere, which is worth more today?`,
+        question: `You win a prize: take ${whole(NOW)} today or ${whole(LATER)} in ${YEARS} years. If you could earn ${Q_RATE}% a year elsewhere, which is worth more to you today?`,
         options: [`${whole(NOW)} today`, `${whole(LATER)} in ${YEARS} years`, "They are equal"],
         answer: pv(Q_RATE) > NOW ? 1 : 0,
       }}
@@ -111,8 +111,7 @@ export default function WaitOrTakeNow({ slug }: { slug: string }) {
           </p>
           <p>
             Above about {BREAK_EVEN.toFixed(2)}% the answer flips: at {FLIP_SHOW}% the later offer is worth only{" "}
-            {money(pv(FLIP_SHOW))} today. Future money is worth less today because money now could be earning. Whether later is
-            better depends on the rate, not just the bigger number.
+            {money(pv(FLIP_SHOW))} today. Future money is worth less today because money now could be earning.
           </p>
           <p className="muted">A model: a sure payment, a steady rate, no tax. Not advice.</p>
         </>

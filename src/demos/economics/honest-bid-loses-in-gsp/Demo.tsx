@@ -49,7 +49,7 @@ export default function HonestBidLosesInGsp({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Slots get 10 and 4 clicks; values per click $7, $6, $1. Each pays the next bid. X bids honestly ($7). Can X do better?",
+        question: "Two ad slots get 10 and 4 clicks. Clicks are worth $7, $6 and $1 to the three bidders, and each winner pays the next bid down. X bids honestly ($7). Can X do better?",
         options: ["No", "Yes, by bidding $5", "Yes, by bidding $8"],
         answer: 1,
       }}

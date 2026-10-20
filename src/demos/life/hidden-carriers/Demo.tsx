@@ -117,7 +117,7 @@ export default function HiddenCarriers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a town with random mating, 1 in 10,000 people shows a made-up recessive trait: it appears only with two copies of a gene variant, one from each parent. About how many people carry just one copy without showing the trait?",
+          "In your town, people pair up at random, and 1 in 10,000 shows a made-up recessive trait (it needs two copies of a gene variant, one from each parent). About how many quietly carry just one copy?",
         options: ["About 1 in 100", `About 1 in ${RARE_ONE_IN}`, "About 1 in 10,000"],
         answer: 1,
       }}

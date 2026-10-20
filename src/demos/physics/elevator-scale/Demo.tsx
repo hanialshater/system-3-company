@@ -46,7 +46,7 @@ export default function ElevatorScale({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${M} kg person stands on a force scale in a lift accelerating upward at 2 m/s². At rest the scale reads ${n0(reading(0))}. Now it reads…`,
+        question: `Riding a lift, you (${M} kg) stand on a force scale. At rest it reads ${n0(reading(0))}. The lift starts accelerating upward at 2 m/s². What does the scale read now?`,
         options: [n0(reading(-2)), n0(reading(2)), n0(reading(0))],
         answer: 1,
       }}

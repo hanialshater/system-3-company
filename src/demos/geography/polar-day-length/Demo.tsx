@@ -131,7 +131,7 @@ export default function PolarDayLength({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "At the North Pole the Sun rises once a year and sets once a year. Is it above the horizon for exactly half the year?",
+          "Your expedition camps at the top of the world for a whole year. At the North Pole the Sun rises once a year and sets once a year. Is it above the horizon for exactly half the year?",
         options: ["A few days less than half", "Exactly half the year", "A few days more than half"],
         answer: 2,
       }}

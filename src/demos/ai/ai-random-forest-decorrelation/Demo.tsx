@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Four members each have MSE 1. Must their averages have equal error?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Every member had mean squared error 1. Aligned errors averaged to error 1; the mixed signed errors canceled to zero. Duplicating one member retained error 1. These constructed errors show why alignment matters; they do not establish that random feature selection always helps real forests.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You average four regression models, and each one alone has the same error. Four members each have MSE 1. Must their averages have equal error?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Every member had mean squared error 1. Aligned errors averaged to error 1; the mixed signed errors canceled to zero. Duplicating one member retained error 1. These constructed errors show why alignment matters; they do not establish that random feature selection always helps real forests.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

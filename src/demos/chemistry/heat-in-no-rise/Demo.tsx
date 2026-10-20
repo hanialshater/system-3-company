@@ -47,7 +47,7 @@ export default function HeatInNoRise({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${MASS.toFixed(1)} kg of ice at 0 °C receives ${Q_ASK} kJ of heat. Melting it all needs about ${LF} kJ. The mixture is then…`,
+        question: `You heat a bowl holding ${MASS.toFixed(1)} kg of ice at 0 °C, giving it ${Q_ASK} kJ of heat. Melting it all needs about ${LF} kJ. What is in the bowl then?`,
         options: [`about ${Math.round(NAIVE)} °C water`, "ice and water at 0 °C", "about 100 °C steam"],
         answer: 1,
       }}

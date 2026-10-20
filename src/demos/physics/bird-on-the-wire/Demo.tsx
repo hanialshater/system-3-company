@@ -61,7 +61,7 @@ export default function BirdOnTheWire({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A bird stands on one bare power line at 11,000 V. What voltage is across its two feet?",
+        question: "Walking under a power line, you spot a bird standing on one bare wire at 11,000 V. What voltage is across its two feet?",
         options: ["About 11,000 V", "About 5,500 V", "Less than 1 V"],
         answer: 2,
       }}

@@ -83,7 +83,7 @@ export default function SnapTheMagnet({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You snap a bar magnet in half. The half that held the north end now has...",
+        question: "You drop a bar magnet off the fridge and it snaps in half. What does the half that held the north end now have?",
         options: ["Only a north pole", "A north and a south pole", "No poles at all"],
         answer: 1,
       }}

@@ -121,7 +121,7 @@ export default function AtLeastOneBoy({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A family has two children. You learn only that at least one is a boy. How likely is it that both are boys?",
+        question: "You ask a new neighbour with two children, \"Is at least one a boy?\" She says yes. That is all you know. How likely is it that both are boys?",
         options: ["1/2", frac("atLeastOne"), "1/4"],
         answer: 1,
       }}
@@ -135,8 +135,7 @@ export default function AtLeastOneBoy({ slug }: { slug: string }) {
           </p>
           <p>
             &ldquo;The older is a boy&rdquo; is a different clue. It removes a whole row, leaving two kinds of family, so
-            the answer is {frac("olderBoy")} ({o.both} of {o.left} on the stage). The clue removes cases, not a particular
-            child.
+            the answer is {frac("olderBoy")} ({o.both} of {o.left} on the stage). A clue greys out whole boxes of families.
           </p>
           <p className="muted">The answer depends on how you learned it; here you learn only the clue itself.</p>
         </>

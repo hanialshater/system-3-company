@@ -61,7 +61,7 @@ export default function FiveWeakVoters({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${Q_N} independent models are each right ${pct(P)} of the time on a yes/no question. Their majority vote is right:`,
+        question: `You put the same yes/no question to ${Q_N} independent models, each right ${pct(P)} of the time, and go with their majority vote. How often is the vote right?`,
         options: [pct(P), `About ${pct(Q_EXACT)}`, "About 90%"],
         answer: 1,
       }}

@@ -111,7 +111,7 @@ export default function AtlanticToPacificHeading({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A ship enters the Panama Canal from the Atlantic and leaves into the Pacific. Which way is it heading overall?",
+        question: "Standing on deck, you enter the Panama Canal from the Atlantic and leave it into the Pacific. Which way is your ship heading overall?",
         options: ["South-east", "West", "South-west"],
         answer: 0,
       }}

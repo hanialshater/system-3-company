@@ -44,7 +44,7 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In a model, the "felt value" of wealth W is its square root. A 50-50 coin gives $0 or $${HIGH}. What sure amount feels exactly as good as the coin?`,
+        question: `You are offered a 50-50 coin flip that pays $0 or $${HIGH}. In this model, the "felt value" of money is its square root. What sure cash feels exactly as good as the flip?`,
         options: [usd(HIGH / 2), usd(SURE), usd(HIGH * 0.75)],
         answer: 1,
       }}

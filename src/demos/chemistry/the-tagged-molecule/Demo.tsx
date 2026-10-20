@@ -133,7 +133,7 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
           </p>
           <p>
             That is <strong>equilibrium</strong>: not a reaction that has stopped, but two reactions running at the same
-            rate in opposite directions. The totals are steady because the traffic balances, not because it ends.
+            rate in opposite directions.
           </p>
           <p className="muted">
             A model: real mixtures balance on average, so their counts jitter slightly from moment to moment.

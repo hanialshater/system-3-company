@@ -10,7 +10,7 @@ export default function Demo({slug}:{slug:string}) {
  const [d,setData]=useState<Result|null>(null);
  const [saved,setSaved]=useState<(Result|null)[]>([null,null,null,null]);
  const run=(m:number,reach:(name:string)=>void)=>{const result=compute(m);setMode(m);setData(result);setSaved(old=>old.map((v,i)=>i===m?result:v));reach(String(m));};
- return <Lesson slug={slug} predict={{"question": "In this factorized toy, can JSON-format training change the frozen fact A=2?", "options": ["Yes", "No"], "answer": 1}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>JSON training moved θ to 1 and P(JSON) to .731; plain labels moved them to −1 and .269. A stayed 2, even against a supplied update to 4. This deliberately frozen factual channel does not show that real fine-tuning cannot teach facts.</p>}>
+ return <Lesson slug={slug} predict={{"question": "You fine-tune a model so it always answers in JSON. In this factorized toy, can JSON-format training change the frozen fact A=2?", "options": ["Yes", "No"], "answer": 1}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>JSON training moved θ to 1 and P(JSON) to .731; plain labels moved them to −1 and .269. A stayed 2, even against a supplied update to 4. This deliberately frozen factual channel does not show that real fine-tuning cannot teach facts.</p>}>
  {({locked,interact})=><Milestones interact={interact} names={["0","1","2"]}>{reach=><div className={s.wrap}>
  <p className={s.input}>{"frozen A=2,B=3 · P(JSON)=σ(θ) · θ₀=0,η=2"}</p>
  <svg className={s.diagram} viewBox="0 0 280 64" role="img" aria-label="channels · worked example">

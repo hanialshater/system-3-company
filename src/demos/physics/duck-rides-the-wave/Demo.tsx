@@ -114,7 +114,7 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Ocean waves roll past a floating duck for 40 seconds. No wind, no current. Where does the duck end up?",
+        question: "From the pier, you watch ocean waves roll past a floating duck for 40 seconds. No wind, no current. Where does the duck end up?",
         options: ["Carried along with the crests", "Close to where it started", "Pulled back against the waves"],
         answer: 1,
       }}

@@ -67,7 +67,7 @@ export default function FlourOnTheMoon({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1 kg bag of flour goes to the Moon, where gravity is weaker. Which reading changes?",
+          "You take a 1 kg bag of flour, a pan balance and a hanging spring scale to the Moon, where gravity is weaker. Weighing the flour there, which reading changes?",
         options: [
           "The balance (flour vs a 1 kg block) tips",
           "The hanging spring scale reads less",

@@ -54,7 +54,7 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two purple plants each carry a hidden white-flower copy, so each seed has a 1 in 4 chance of white. They make 4 seeds. Chance at least one is white?",
+          "You plant 4 seeds from two purple plants that each carry a hidden white-flower copy, so each seed has a 1 in 4 chance of white. What is the chance at least one blooms white?",
         options: ["About 25%", "About 68%", "100%"],
         answer: 1,
       }}

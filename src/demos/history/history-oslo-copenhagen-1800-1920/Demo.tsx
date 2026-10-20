@@ -3,6 +3,7 @@ import {useEffect,useReducer,useRef,useState,type Dispatch} from 'react';
 import {Lesson,type StageContext} from '@/kit/Lesson';
 import {Control} from '@/kit/controls';
 import {initialState,transition,visibleColumns,type State,type Action,type DateId} from './model';
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from './styles.module.css';
 const nov='https://www.stortinget.no/globalassets/pdf/stortingsarkivet/overordentlig-storting-1814/01_protokoll_stortinget.pdf';
 const june='https://stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortinget-og-unionen-med-sverige/ut-av-unionen/ordenes-makt--revolusjon-med-blyant/';
@@ -12,6 +13,7 @@ function Stage({ctx,state,dispatch,open,onSources,setSourcesOpen}:{ctx:StageCont
  const cols=visibleColumns(state,ctx.locked);
  const select=(date:DateId)=>{const next=transition(state,{type:'select',date});dispatch({type:'select',date});for(const m of next.earned)if(!seen.current.has(m)){seen.current.add(m);ctx.interact();}};
  return <div className={s.frame}>
+ <HistoryLocator slug="history-oslo-copenhagen-1800-1920" places={["Oslo", "Copenhagen"]} />
  <div className={s.dates}><span/>{(['nov1814','jun1905'] as DateId[]).map((date,i)=><Control key={date} disabled={ctx.locked||state.focus===date} aria-pressed={!ctx.locked&&state.focus===date} onClick={()=>select(date)}>{i===0?'Nov1814':'Jun1905'}</Control>)}</div>
  <svg viewBox="0 0 340 170" width="340" height="170" className={s.diagram} role="group" aria-label={ctx.locked?'Document frame, not opened':'Selected official document fields'}>
  <text x="2" y="44" className={s.label}>King</text><text x="2" y="108" className={s.label}>Constitution</text>
@@ -25,7 +27,7 @@ export default function Demo({slug}:{slug:string}){
  const [state,dispatch]=useReducer(transition,undefined,initialState);const [open,setOpen]=useState(false);const heading=useRef<HTMLHeadingElement>(null);const opener=useRef<HTMLElement|null>(null);
  useEffect(()=>{if(open)heading.current?.focus();},[open]);
  const close=()=>{setOpen(false);requestAnimationFrame(()=>opener.current?.isConnected&&opener.current.focus());};
- return <div className={s.root}><p className={s.orientation}>Norwegian institutions; modern city names orient the case.</p><Lesson slug={slug} minInteractions={2} predict={{question:"In November 1814, could Norway share Sweden's king and retain a constitution?",options:['Both could be present','Only the shared king could be present'],answer:0}} exploreHint="Open both documents; compare what each establishes." reveal={()=><><p>The November 1814 constitution describes Norway sharing a king with Sweden. A constitution and a shared monarchy could therefore coexist. The 7 June 1905 resolution declares that union dissolved; this is a declaration record, not Swedish recognition. It invokes Norway&apos;s constitution and laws, with necessary changes.</p><p>These selected official documents describe institutions, not universal voting rights, everyone&apos;s consent or the whole history of 1814.</p></>}>
+ return <div className={s.root}><p className={s.orientation}>Norwegian institutions; modern city names orient the case.</p><Lesson slug={slug} minInteractions={2} predict={{question:"In November 1814, could Norway share Sweden's king and still keep its own constitution?",options:['Both could be present','Only the shared king could be present'],answer:0}} exploreHint="Open both documents; compare what each establishes." reveal={()=><><p>The November 1814 constitution describes Norway sharing a king with Sweden. A constitution and a shared monarchy could therefore coexist. The 7 June 1905 resolution declares that union dissolved; this is a declaration record, not Swedish recognition. It invokes Norway&apos;s constitution and laws, with necessary changes.</p><p>These selected official documents describe institutions, not universal voting rights, everyone&apos;s consent or the whole history of 1814.</p></>}>
  {ctx=><Stage ctx={ctx} state={state} dispatch={dispatch} open={open} setSourcesOpen={setOpen} onSources={()=>{if(open){close();return;}opener.current=document.activeElement instanceof HTMLElement?document.activeElement:null;setOpen(true);}}/>}</Lesson>
  <div className={s.sr} role="status" aria-live="polite">{state.focus?`${state.focus}: ${state.columns[state.focus]?.king}; ${state.columns[state.focus]?.constitution}. ${state.columns[state.focus]?.qualifier}`:state.earned.length?'Selection cleared; documentary evidence retained.':''}</div>
  {open&&<section id="oslo-sources-pane" className={s.sources} aria-labelledby="oslo-sources" onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();close();}}}><h2 id="oslo-sources" tabIndex={-1} ref={heading}>Sources and scope</h2><button type="button" onClick={close}>Close sources</button>

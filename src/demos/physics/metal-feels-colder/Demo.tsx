@@ -60,7 +60,7 @@ export default function MetalFeelsColder({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A metal block and a wooden block have sat in the same 20 °C room all day. Which one is colder?",
+        question: "You walk into a room kept at 20 °C, where a metal block and a wooden block have sat all day. You touch both. Which one is actually colder?",
         // v2 (learner r9, W-575): three bare options, so the right one no longer carries the only number and reason.
         options: ["The metal", "The wood", "Neither"],
         answer: 2,

@@ -224,7 +224,7 @@ export default function ContactOrderMatters({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A is infected. Four contacts happen one at a time: A-B, B-C, C-D, D-E. If they happen in the order D-E, C-D, B-C, A-B (meetings run E to A), how many people other than A can get infected?",
+          "Tracing an outbreak, you find A is infected and four meetings link A to E: A-B, B-C, C-D, D-E. They happen one at a time, in the order D-E, C-D, B-C, A-B. How many people other than A can get infected?",
         options: ["1", "0", "4"],
         answer: 0,
       }}

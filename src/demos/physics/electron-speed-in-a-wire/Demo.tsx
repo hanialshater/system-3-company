@@ -110,7 +110,7 @@ export default function ElectronSpeedInAWire({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A lamp's wire runs 2 m from switch to bulb. How long does one electron at the switch take to reach the bulb?",
+        question: "You flip on a lamp whose wire runs 2 m from switch to bulb. How long does one electron at the switch take to reach the bulb?",
         options: ["Under a millionth of a second", "About one second", "Several hours"],
         answer: 2,
       }}

@@ -42,7 +42,7 @@ export default function FastestAtTheBend({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A pond holds at most 1,000 fish, and the population grows logistically (an S-curve). At what population is it adding fish fastest?",
+          "You stock a pond that can hold at most 1,000 fish. Their numbers rise in an S-curve: slowly, then fast, then levelling off near 1,000. At what population is the pond adding fish fastest?",
         options: ["100 fish", "500 fish", "900 fish"],
         answer: 1,
       }}

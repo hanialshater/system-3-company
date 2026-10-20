@@ -10,7 +10,7 @@ export default function Demo({slug}:{slug:string}) {
  const [d,setData]=useState<Result|null>(null);
  const [saved,setSaved]=useState<(Result|null)[]>([null,null,null]);
  const run=(m:number,reach:(name:string)=>void)=>{const result=compute(m);setMode(m);setData(result);setSaved(old=>old.map((v,i)=>i===m?result:v));reach(String(m));};
- return <Lesson slug={slug} predict={{"question": "Can two rank-1 delta output vectors be linearly independent?", "options": ["Yes", "No"], "answer": 1}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>Rank-1 updates mapped e₁ to B and e₃ to −B, using 8 factor entries versus 16 full entries. The rank-2 target’s minor was 1, impossible for rank 1. Rank-2 factors here need 16 entries; counts exclude optimizer and metadata storage.</p>}>
+ return <Lesson slug={slug} predict={{"question": "You fine-tune with the smallest LoRA update possible, a single rank-one change. Can two rank-1 delta output vectors be linearly independent?", "options": ["Yes", "No"], "answer": 1}} minInteractions={3} exploreHint="Try all three cases. Reset clears the view and keeps your saved results." reveal={()=> <p>Rank-1 updates mapped e₁ to B and e₃ to −B, using 8 factor entries versus 16 full entries. The rank-2 target’s minor was 1, impossible for rank 1. Rank-2 factors here need 16 entries; counts exclude optimizer and metadata storage.</p>}>
  {({locked,interact})=><Milestones interact={interact} names={["0","1","2"]}>{reach=><div className={s.wrap}>
  <p className={s.input}>{"W=I₄ · B=[1,2,0,−1]ᵀ · A=[1,0,−1,2]"}</p>
  <svg className={s.diagram} viewBox="0 0 280 64" role="img" aria-label="outer · worked example">

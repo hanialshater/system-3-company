@@ -118,7 +118,7 @@ export default function PocketsBelowThreshold({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up disease, R0 = ${R0} (threshold ${THR_TXT}), perfect vaccine. Two equal towns, ${A_Q}% and ${B_Q}% vaccinated: ${comb(A_Q, B_Q)}% overall. Can an outbreak grow in the ${B_Q}% town?`,
+        question: `A made-up disease, R0 = ${R0} (threshold ${THR_TXT}), reaches two equal towns that never mix. A perfect vaccine covers ${A_Q}% of one and ${B_Q}% of the other, ${comb(A_Q, B_Q)}% overall. Can an outbreak grow in the ${B_Q}% town?`,
         options: [`No: ${comb(A_Q, B_Q)}% is above ${THR_TXT}`, `Yes: R there is about ${rIn(B_Q).toFixed(1)}`, `Only if the ${A_Q}% town is hit too`],
         answer: 1,
       }}

@@ -94,7 +94,7 @@ export default function ExponentialGrowth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Algae doubles its area every day. On day ${FULL_DAY} it covers the whole pond. How much of the pond did it cover on day ${ASKED_DAY}?`,
+        question: `Algae on your garden pond doubles its area every day. On day ${FULL_DAY} it covers the whole pond. How much of the pond did it cover on day ${ASKED_DAY}?`,
         options: ["About 83%", "About half", "About 3%"],
         answer: 2,
       }}

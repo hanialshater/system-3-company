@@ -303,7 +303,7 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          'Find EXAMPLE in "HERE IS A SIMPLE EXAMPLE" (24 characters). Compare from the pattern\'s end; on a miss, slide by the table entry for the text letter under the pattern\'s end. How many comparisons?',
+          'You search "HERE IS A SIMPLE EXAMPLE" (24 characters) for the word EXAMPLE. Compare from the pattern\'s end; on a miss, slide by the table entry for the text letter under the pattern\'s end. How many comparisons?',
         options: ["27, like the plain method", "24, one per text letter", "15, fewer than the text has"],
         answer: 2,
       }}
@@ -324,9 +324,6 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
             Your search made <strong>{HORS.length}</strong> comparisons in {laneState(HORS, MAXK).placements} placements
             and never read <strong>{T.length - laneState(HORS, MAXK).read.size}</strong> of the {T.length} letters. The
             plain method read every letter: {PLAIN.length} comparisons, {laneState(PLAIN, MAXK).placements} placements.
-          </p>
-          <p className="muted">
-            A search can skip text, as long as each skip is justified by a letter it did read.
           </p>
         </>
       )}

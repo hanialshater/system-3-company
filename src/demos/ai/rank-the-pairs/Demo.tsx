@@ -36,7 +36,7 @@ export default function RankThePairs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Spam scores ${SPAM.join(", ")}; real mail scores ${REAL.join(", ")}. Pick one spam and one real email at random. The chance the spam scores higher (a tie counts half):`,
+        question: `Your spam filter scores this week's mail. Spam scores ${SPAM.join(", ")}; real mail scores ${REAL.join(", ")}. Pick one spam and one real email at random. What is the chance the spam scored higher (a tie counts half)?`,
         options: ["64%", "75%", "86%", "94%"],
         answer: 2,
       }}

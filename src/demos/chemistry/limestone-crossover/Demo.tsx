@@ -50,7 +50,7 @@ export default function LimestoneCrossover({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Limestone (CaCO₃) breaks into lime and CO₂ gas, absorbing heat. Above about what temperature does it go by itself (1 bar CO₂)?",
+          "You heat limestone (CaCO₃) in a kiln. It breaks into lime and CO₂ gas, absorbing heat. Above about what temperature does the breakdown go by itself (1 bar CO₂)?",
         options: ["about 100 °C", "about 400 °C", "about 850 °C", "about 2,000 °C"],
         answer: 2,
       }}

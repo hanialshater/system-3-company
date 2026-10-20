@@ -42,7 +42,7 @@ export default function TriangleIsHalf({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A triangle has base ${B} and height ${HT}, with the top corner far off to one side. Its area?`,
+        question: `On grid paper you draw a triangle with base ${B} and height ${HT}, then drag its top corner far off to one side. What is its area?`,
         options: [`${B * HT}`, `${shoelace(corners(12))}`, "10"],
         answer: 1,
       }}

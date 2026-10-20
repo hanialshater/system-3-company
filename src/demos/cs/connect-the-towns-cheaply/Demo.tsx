@@ -68,7 +68,7 @@ export default function ConnectTheTownsCheaply({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Possible cables between four towns, with costs: ${LIST}. What is the lowest total cost that connects all four towns?`,
+        question: `You must wire four towns together. Possible cables, with costs: ${LIST}. What is the lowest total cost that connects all four towns?`,
         options: [String(MIN), String(TRAP), "7"],
         answer: 0,
       }}

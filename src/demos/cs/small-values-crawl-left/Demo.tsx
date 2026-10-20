@@ -76,7 +76,7 @@ export default function SmallValuesCrawlLeft({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bubble sort sweeps left to right, swapping neighbours that are out of order, and repeats until a sweep makes no swap. List X is ${show(X.start)}; list Y is ${show(Y.start)}. Which needs more sweeps that make at least one swap?`,
+        question: `You bubble-sort two lists of six cards. Bubble sort sweeps left to right, swapping neighbours that are out of order, and repeats until a sweep makes no swap. List X is ${show(X.start)}; list Y is ${show(Y.start)}. Which needs more sweeps that make at least one swap?`,
         options: ["X (the 1 at the end)", "Y (the 6 at the start)", "The same"],
         answer: 0,
       }}

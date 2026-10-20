@@ -62,7 +62,7 @@ export default function DebtGrowsRatioFalls({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Debt equals a year’s GDP (100%). Each year the government borrows 3% of GDP more; GDP grows 5% a year. After 10 years, debt-to-GDP is…",
+        question: "Your country’s debt equals a year’s GDP (100%). Each year the government borrows another 3% of GDP, and GDP grows 5% a year. After 10 years, where is debt-to-GDP?",
         options: ["Above 100%", "Still 100%", "Below 100%"],
         answer: 2,
       }}

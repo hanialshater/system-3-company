@@ -113,7 +113,7 @@ export default function SixteenOfTwentyGotBetter({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "20 people with a cold take a new pill; 16 feel better within a week. To judge the pill, what do you most need?",
+        question: "Your pharmacy starts selling a new cold pill. Of 20 customers with a cold who take it, 16 feel better within a week. To judge the pill, what do you most need?",
         options: ["More people taking the pill", "How fast each of the 16 recovered", "How many get better with no pill"],
         answer: 2,
       }}
@@ -126,7 +126,7 @@ export default function SixteenOfTwentyGotBetter({ slug }: { slug: string }) {
             model colds clear up by themselves, so getting better after the pill was going to happen anyway.
           </p>
           <p>
-            More reports from pill-takers would still leave that comparison missing. Only the comparison row shows what the pill added, and
+            More pill-takers would still leave the no-pill row missing. Only the comparison row shows what the pill added, and
             here it added nothing.
           </p>
         </>

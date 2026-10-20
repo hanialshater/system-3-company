@@ -31,7 +31,7 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A lender charges $${FEE} to lend $100 for two weeks. Suppose you borrow $100 again each time, all year, paying the fee each time. As a share of the $100, what is that per year?`,
+        question: `Short on cash, you pay a lender $${FEE} to borrow $100 for two weeks. Suppose you borrow $100 again each time, all year, paying the fee each time. As a share of the $100, what is that per year?`,
         options: [`${FEE}%`, pct(yearly(Q_DAYS)), "100%"],
         answer: 1,
       }}
@@ -44,7 +44,7 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
             <strong>${yearly(Q_DAYS)}</strong> on every $100, a simple yearly rate of <strong>{pct(yearly(Q_DAYS))}</strong>. The{" "}
             {FEE}% is the rate for two weeks only.
           </p>
-          <p>The fee did not change as you moved the length; the number of times it repeats did. Compare rates over the same time.</p>
+          <p>The fee did not change as you moved the length; the number of times it repeats did.</p>
           <p className="muted">A model: you borrow $100 again each time and pay only the fee; simple annualising, no view on any lender.</p>
         </>
       )}

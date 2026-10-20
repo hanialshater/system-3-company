@@ -86,7 +86,7 @@ export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A belly-down skydiver (80 kg, drag area about 0.7 m²) jumps from a plane. After a long fall, her speed…",
+          "On your first skydive, you jump from the plane and fall belly-down (80 kg, drag area about 0.7 m²). After a long fall, what does your speed do?",
         options: ["keeps climbing without limit", "levels off near 43 m/s (155 km/h)", "levels off near 150 m/s (540 km/h)"],
         answer: 1,
       }}

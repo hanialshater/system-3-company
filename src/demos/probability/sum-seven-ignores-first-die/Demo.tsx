@@ -144,7 +144,7 @@ export default function SumSevenIgnoresFirstDie({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You roll two dice. You see that the first die is a 3. How does that change the chance that the total is 7?",
+        question: "At a board game you roll two dice, and the first one settles on a 3 while the other is still spinning. How does that change the chance that the total is 7?",
         options: ["It raises it", "It does not change it", "It lowers it"],
         answer: 1,
       }}

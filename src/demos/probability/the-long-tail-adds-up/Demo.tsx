@@ -51,7 +51,7 @@ export default function TheLongTailAddsUp({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "100,000 items, sales falling as 1/rank (Zipf). The top 1,000 take what share of all sales?",
+        question: "You run an online store with 100,000 items. Your #2 item sells half as much as #1, #3 a third, and so on. What share of sales do your top 1,000 take?",
         options: ["About 99%", "About 62%", "About 10%"],
         answer: 1,
       }}

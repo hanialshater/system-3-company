@@ -47,7 +47,7 @@ export default function BlockedCellRoutes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A robot crosses a ${N} x ${N} grid from top-left to bottom-right, moving only right or down. The cell in row ${BLOCK.r + 1}, column ${BLOCK.c + 1} is blocked. How many routes?`,
+        question: `Your warehouse robot crosses a ${N} x ${N} grid from top-left to bottom-right, moving only right or down. The cell in row ${BLOCK.r + 1}, column ${BLOCK.c + 1} is blocked. How many routes?`,
         options: [String(ANSWER), String(THROUGH), String(OPEN_TOTAL)],
         answer: 0,
       }}

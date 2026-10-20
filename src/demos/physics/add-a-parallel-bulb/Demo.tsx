@@ -38,7 +38,7 @@ export default function AddAParallelBulb({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 6 V battery lights one 6 Ω bulb: 1.0 A flows. You add an identical bulb in parallel. The battery now supplies…",
+          "On your workbench, a 6 V battery lights one 6-ohm bulb and 1.0 A flows. You wire an identical bulb beside it, in parallel. How much current does the battery supply now?",
         options: ["0.5 A", "1.0 A", "2.0 A"],
         answer: 2,
       }}

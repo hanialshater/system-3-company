@@ -126,7 +126,7 @@ export default function SmallGapBigExtremes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two seed batches, same spread (10 cm). Batch B averages 5 cm taller. Of plants over 130 cm, what share are from B?",
+        question: "On your farm, two seed batches grow plants with the same spread (10 cm), but batch B averages 5 cm taller. Of your plants over 130 cm, what share came from B?",
         options: ["About 50%", "About 65%", "About 80%"],
         answer: 2,
       }}
@@ -144,7 +144,6 @@ export default function SmallGapBigExtremes({ slug }: { slug: string }) {
             growing: {pct(shareB(140))}, about {r1(ratio(140))} to 1.
             {cut < 130 && ` At your cutoff of ${cut} cm it is ${pct(shareB(cut))}.`}
           </p>
-          <p>A small gap between averages says little about the middle and a lot about the extremes.</p>
         </>
       )}
     >

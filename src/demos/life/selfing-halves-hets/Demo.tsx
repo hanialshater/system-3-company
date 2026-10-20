@@ -86,7 +86,7 @@ export default function SelfingHalvesHets({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up plant. All ${N} start as hybrids (Aa: one copy of each form). Each pollinates itself, for ${Q_GEN} generations. What share is still hybrid?`,
+        question: `You sow ${N} made-up plants, all hybrids (Aa: one copy of each form). Each pollinates itself, and so do their offspring, for ${Q_GEN} generations. What share is still hybrid?`,
         options: ["50%", `${share(Q_GEN)}%`, "0%"],
         answer: 1,
       }}
@@ -102,7 +102,7 @@ export default function SelfingHalvesHets({ slug }: { slug: string }) {
             </p>
             <p>
               A hybrid passes on either copy, so its seed is AA, Aa or aa in a 1 : 2 : 1 split: only half its seeds stay hybrid. A pure plant
-              only makes pure seeds, so hybrids never come back. Selfing halves them every generation and turns a mixed field into pure lines.
+              only makes pure seeds, so hybrids never come back.
             </p>
           </>
         );

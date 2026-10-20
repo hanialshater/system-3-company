@@ -42,7 +42,7 @@ export default function LoafWithSmoke({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Buyers pay less for each extra loaf; bakers' cost per loaf rises. They meet at ${MARKET} loaves. But each loaf also causes $${Q_HARM} of smoke damage to neighbours. At how many loaves does the buyers' price equal the true cost (bakers' cost plus smoke)?`,
+        question: `In your town, buyers pay less for each extra loaf while bakers' cost per loaf rises, and they meet at ${MARKET} loaves. But each loaf also causes $${Q_HARM} of smoke damage to neighbours. At how many loaves does the buyers' price equal the true cost (bakers' cost plus smoke)?`,
         options: [String(MARKET), String(TRUE_Q), "0"],
         answer: 1,
       }}

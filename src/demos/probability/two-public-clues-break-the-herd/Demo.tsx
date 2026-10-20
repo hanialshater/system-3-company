@@ -38,7 +38,7 @@ export default function TwoPublicCluesBreakTheHerd({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two chose blue, then 98 followed. Now two new private clues are published: both red. Your own clue is red. Choose?",
+          "A hidden urn is blue or red, and each person gets a private clue to its colour. The first two people picked blue and 98 more copied them. Then two more clues are read out, both red. Your own clue says red. Which colour is the urn?",
         options: ["Blue, with the crowd", "Red", "Toss-up"],
         answer: 1,
       }}
@@ -91,7 +91,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>Person 3 on: a lead of 2 wins</p>
+      <p className={s.rule}>Person 3 on copies any lead of 2</p>
       <svg viewBox="0 0 340 236" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
         <g>
           {Array.from({ length: CROWD }, (_, i) => {
@@ -160,7 +160,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
               v.published &&
               [0, 1].map((j) => (
                 <span key={j} className={`${s.chip} ${s.redChip} ${s.moved}`}>
-                  pub
+                  public
                 </span>
               ))}
           </div>

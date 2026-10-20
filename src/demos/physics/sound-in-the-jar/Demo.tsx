@@ -42,7 +42,7 @@ export default function SoundInTheJar({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A ringing bell sits in a sealed jar. A pump removes the air. You watch the clapper still swinging and listen. The sound...",
+          "In the science lab, a ringing bell sits in a sealed jar while a pump removes the air. You watch the clapper still swinging and listen. What happens to the sound?",
         options: ["Stays equally loud", "Gets louder", "Fades to near silence"],
         answer: 2,
       }}

@@ -85,7 +85,7 @@ export default function CountTheMarkedFish({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy lake. ${M} fish are caught, marked and let go. Later ${C} fish are caught and ${MARKED[0]} are marked. About how many fish are in the lake?`,
+        question: `At a toy lake, you catch ${M} fish, mark them and let them go. Later you catch ${C} fish, and ${MARKED[0]} of them are marked. About how many fish are in the lake?`,
         options: ["About 500", "About 1,000", "About 2,000"],
         answer: 1,
       }}
@@ -96,7 +96,7 @@ export default function CountTheMarkedFish({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              Your nets held {m.join(", ")} marked fish of {C}, giving estimates of {e.map(fmt).join(", ")}. The {C} fish you net are a probe, not the lake.
+              Your nets held {m.join(", ")} marked fish of {C}, giving estimates of {e.map(fmt).join(", ")}.
             </p>
             <p>
               If {M} marked fish are mixed into the lake and {MARKED[0]} of {C} netted fish are marked, the marked share is 1 in {C / MARKED[0]}. So the lake holds about {M} × {C / MARKED[0]} = <strong>{fmt((M * C) / MARKED[0])}</strong>. Nets wobble, so one estimate is a guess; several scatter around the true {fmt(N)}.

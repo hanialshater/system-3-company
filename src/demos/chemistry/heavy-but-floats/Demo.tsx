@@ -126,7 +126,7 @@ export default function HeavyButFloats({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 500 g ball has a volume of 800 cm³. Water is about 1.0 g/cm³. Put in water, the ball…",
+        question: "At the pool, you toss in a 500 g ball with a volume of 800 cm³. Water is about 1.0 g/cm³. What does the ball do?",
         options: ["Sinks", "Floats", "Hovers in the middle"],
         answer: 1,
       }}

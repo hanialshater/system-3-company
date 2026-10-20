@@ -71,7 +71,7 @@ export default function GeneticDrift({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "20 beetles, half red and half green; neither colour is better. Each generation, 20 young copy parents picked at random. After many generations, the population is most likely…",
+          "Your jar holds 20 beetles, half red and half green; neither colour is better. Each generation, 20 young copy parents picked at random. After many generations, what will the jar most likely hold?",
         options: ["still about half and half", "all one colour (either)", "always all red"],
         answer: 1,
       }}
@@ -85,8 +85,7 @@ export default function GeneticDrift({ slug }: { slug: string }) {
             and a lost colour never comes back.
           </p>
           <p>
-            With 200 beetles the mix wandered far more slowly; after 100 generations most were still mixed. Chance
-            matters most in small populations. Each colour takes over with chance equal to its starting share, here 1 in
+            With 200 beetles the mix wandered far more slowly; after 100 generations most were still mixed. Each colour takes over with chance equal to its starting share, here 1 in
             2.
           </p>
           <p className="muted">Model: no mutation, no selection, no beetles arriving from elsewhere.</p>

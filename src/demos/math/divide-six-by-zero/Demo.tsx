@@ -44,7 +44,7 @@ export default function DivideSixByZero({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Division asks how many scoops fill the jug. What is 6 ÷ 0?",
+        question: "Your jug holds 6. Dividing 6 by a scoop size asks how many scoops fill the jug. Now your scoop holds nothing at all. What is 6 ÷ 0?",
         options: ["It is 0", "It is infinity", "No number works"],
         answer: 2,
       }}

@@ -68,7 +68,7 @@ export default function WhichDebtFirst({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two card debts: $1,000 at 6% a year and $4,000 at 24% a year. You pay $${PAY} a month, all on one debt until it is gone, then the other. How much less interest if the 24% debt goes first?`,
+        question: `You owe $1,000 on one card at 6% a year and $4,000 on another at 24% a year. You pay $${PAY} a month, all on one debt until it is gone, then the other. How much less interest if you clear the 24% debt first?`,
         options: ["about $30", "about $300", "nothing"],
         answer: 1,
       }}

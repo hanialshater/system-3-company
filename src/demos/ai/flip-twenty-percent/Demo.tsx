@@ -42,7 +42,7 @@ export default function FlipTwentyPercent({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N} test questions. In the answer key, ${NOISE_Q} of them (${NOISE_Q}%) were recorded wrong at random. A model that always knows the true answer is graded against this key. Its score:`,
+        question: `You grade a model that always knows the true answer on ${N} test questions. In your answer key, ${NOISE_Q} of them (${NOISE_Q}%) were recorded wrong at random. What score does the key give it?`,
         options: ["100%", `${SCORE_Q}%`, `${scoreAt(40)}%`],
         answer: 1,
       }}

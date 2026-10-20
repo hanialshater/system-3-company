@@ -34,7 +34,7 @@ export default function SquaringShortcut({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You start with 3 and may multiply any two numbers you already have. What is the fewest multiplications that reach 3^${GOAL} (${GOAL} threes multiplied together)?`,
+        question: `Your calculator starts with just 3, and you may multiply any two numbers you already have. What is the fewest multiplications that reach 3^${GOAL} (${GOAL} threes multiplied together)?`,
         options: [String(SQ_STEPS), String(GOAL / 2), String(ONE_STEPS)],
         answer: 0,
       }}

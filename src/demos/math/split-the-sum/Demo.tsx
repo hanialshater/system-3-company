@@ -37,7 +37,7 @@ export default function SplitTheSum({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Cut a ${LEN} × ${ROWS} rectangle into two pieces and add the two areas. Which cuts give the true ${LEN} × ${ROWS}?`,
+        question: `You cut a ${LEN} × ${ROWS} rectangle of grid paper into two pieces and add the two areas. Which cuts give the true ${LEN} × ${ROWS}?`,
         options: [`Only a cut at ${TEN}`, "Any cut", "Only a cut near the middle"],
         answer: 1,
       }}

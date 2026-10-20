@@ -33,7 +33,7 @@ export default function ClockAfterAHundred({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `It is ${START} o'clock. What time will it be ${TOTAL} hours later?`,
+        question: `It is ${START} o'clock when you set off on a ${TOTAL}-hour journey. What time will the clock show when you arrive?`,
         options: [`${END} o'clock`, `${LEFT} o'clock`, `${START} o'clock`],
         answer: 0,
       }}

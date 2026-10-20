@@ -34,7 +34,7 @@ export default function ColdPack({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${FULL_G} g (${FULL_MOL} mol) of ammonium nitrate salt dissolves in ${WATER_G} g of water at ${T0} °C and absorbs ${KJ_PER_MOL} kJ of heat. The water ends about…`,
+        question: `You stir ${FULL_G} g (${FULL_MOL} mol) of ammonium nitrate salt into ${WATER_G} g of water at ${T0} °C in a beaker. It dissolves and absorbs ${KJ_PER_MOL} kJ of heat. Compared with the start, how does the water end up?`,
         options: [`${Math.round(FULL_DROP)} °C colder`, "the same temperature", `${Math.round(FULL_DROP)} °C warmer`],
         answer: 0,
       }}

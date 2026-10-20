@@ -91,7 +91,7 @@ export default function InterpolationGuessesThePage({ slug }: { slug: string }) 
       slug={slug}
       predict={{
         question:
-          "100 sorted values: 10, 20, 30 … 1000. You find 730 by guessing its position from its value. How many looks does it take?",
+          "You need 730 from 100 sorted values: 10, 20, 30 … 1000. Instead of opening the middle, you guess its position from its value. How many looks does it take?",
         options: ["1", "7", "10"],
         answer: 0,
       }}
@@ -120,7 +120,6 @@ export default function InterpolationGuessesThePage({ slug }: { slug: string }) 
             Aiming by value is like opening a dictionary near the back for “W”. It is brilliant when values are spread evenly and
             can be worse than halving when they are not.
           </p>
-          <p className="muted">Sorted order lets you aim, but only the spread of the values says whether aiming pays.</p>
         </>
       )}
     >

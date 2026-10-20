@@ -57,7 +57,7 @@ export default function TurnstileRemembersState({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A turnstile starts locked. Events: ${EVENTS.join(", ")}. How many people get through?`,
+        question: `At the station, a turnstile starts locked. Then, in order: ${EVENTS.join(", ")}. How many people get through?`,
         options: [String(FINAL.passed), String(FINAL.passed + 1), String(FINAL.passed + 2)],
         answer: 0,
       }}

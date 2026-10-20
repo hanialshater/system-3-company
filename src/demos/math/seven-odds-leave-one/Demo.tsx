@@ -27,7 +27,7 @@ export default function SevenOdds({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Add ${K} odd numbers, any odd numbers you like. Is the total even or odd?`,
+        question: `At a shop where every price is an odd number, you buy ${K} items, any odd prices you like. Is the bill even or odd?`,
         options: ["Even", "Odd", "Depends on which numbers"],
         answer: 1,
       }}

@@ -68,7 +68,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Start at home and visit ${ANSWER_K} other cities once each, in any order. How many different orders are there?`,
+        question: `Planning a road trip, you start at home and visit ${ANSWER_K} other cities once each, in any order. How many different orders are there?`,
         options: ["81", fmt(fact(ANSWER_K)), fmt(fact(ANSWER_K + 1))],
         answer: 1,
       }}

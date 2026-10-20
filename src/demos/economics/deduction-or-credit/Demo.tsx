@@ -37,7 +37,7 @@ export default function DeductionCredit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In a made-up system with a ${Q_RATE}% tax rate, a ${usd(RELIEF)} deduction cuts your tax bill by how much?`,
+        question: `Filing your taxes in a made-up system with a ${Q_RATE}% tax rate, you claim a ${usd(RELIEF)} deduction. How much does it cut your tax bill?`,
         options: [usd(RELIEF), usd((RELIEF * Q_RATE) / 100), "$0"],
         answer: 1,
       }}

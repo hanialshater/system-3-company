@@ -87,7 +87,7 @@ export default function LandHemisphere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Pick the half of the globe with the most land. What share of that half is land?",
+        question: "Turn a globe until the half facing you holds as much land as possible. What share of that half is land?",
         options: ["About 90%", "Just under half", "About 29%, same as the whole planet"],
         answer: 1,
       }}
@@ -101,8 +101,7 @@ export default function LandHemisphere({ slug }: { slug: string }) {
             was {pct(best)}; the thinnest, {pct(low)}.
           </p>
           <p>
-            The whole planet is {pct(facts.planet)} land, as the stage showed. However you cut it, every half of the Earth is mostly
-            water.
+            The whole planet is {pct(facts.planet)} land, as the stage showed.
           </p>
         </>
       )}

@@ -117,7 +117,6 @@ export default function OneNudgePerMistake({ slug }: { slug: string }) {
             A perceptron changes only when it is wrong. Each nudge adds the missed point (or subtracts it), which turns the
             line toward putting that point on its own side: watch a red ring turn green. Points already right changed nothing.
           </p>
-          <p>Learning here is not one calculation: it is a few small corrections, one per mistake.</p>
         </>
       )}
     >

@@ -120,7 +120,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Seven roads join six towns, as drawn. Close one road at a time and test whether every town can still reach every other. For how many of the 7 roads does closing it split the map?`,
+        question: `Seven roads join six towns, as drawn. Storms close one road at a time, and you check whether every town can still reach every other. For how many of the 7 roads does closing it split the map?`,
         options: ["0 of 7", "1 of 7", "3 of 7", "7 of 7"],
         answer: 1,
       }}

@@ -64,7 +64,7 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A–B–C–D in a line; pairs A–B and C–D each split $1. Each pair splits fairly given outside options. What does B get?",
+        question: "Four people stand in a line, A–B–C–D, and only neighbours can deal. A pairs with B and C with D; each pair splits $1 fairly given outside options. What does B get?",
         options: ["About $0.50", "About $0.67", "About $0.90"],
         answer: 1,
       }}

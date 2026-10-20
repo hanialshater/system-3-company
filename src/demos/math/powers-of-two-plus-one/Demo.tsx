@@ -53,7 +53,7 @@ export default function PowersOfTwo({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Add ${SIZES.join(" + ")}. What is the total?`,
+        question: `You save coins each week, doubling the amount every time. Add up the weeks: ${SIZES.join(" + ")}. How many coins do you have in total?`,
         options: [String(TOTAL), String(TOTAL + 1), String(TOTAL - 1)],
         answer: 0,
       }}

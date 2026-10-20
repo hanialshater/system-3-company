@@ -55,7 +55,7 @@ export default function FenceForBiggestPen({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${FENCE} m of fence makes a rectangular pen. Which shape holds the most area?`,
+        question: `You have ${FENCE} m of fence to make a rectangular pen for your chickens. Which shape gives them the most area?`,
         options: [`${shape(1)} m`, `${shape(5)} m`, `${shape(4)} m`],
         answer: 1,
       }}

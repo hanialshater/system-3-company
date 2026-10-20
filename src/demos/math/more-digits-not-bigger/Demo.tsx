@@ -44,7 +44,7 @@ export default function MoreDigitsNotBigger({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Which of these is largest: 0.3, 0.25 or 0.125?",
+        question: "At the deli counter, three tubs weigh 0.3 kg, 0.25 kg and 0.125 kg. Which tub is the heaviest?",
         options: ["0.125", "0.25", "0.3"],
         answer: 2,
       }}

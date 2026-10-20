@@ -62,7 +62,7 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "North of the equator, a steady wind blows toward the north over open sea. Averaged over the wind-driven top layer, which way does the water move?",
+        question: "Sailing north of the equator, you feel a steady wind blowing toward the north over open sea. Averaged over the wind-driven top layer, which way does the water under your boat move?",
         options: ["East", "North", "West"],
         answer: 0,
       }}

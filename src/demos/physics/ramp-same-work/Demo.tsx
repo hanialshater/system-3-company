@@ -70,7 +70,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 50 kg crate weighs about 490 N. You raise it 1.0 m by pushing it up a frictionless 4 m ramp at steady speed. Compared with lifting it straight up, the work you do is…",
+        question: "Moving house, you raise a 50 kg crate (about 490 N) 1.0 m into a van by pushing it up a frictionless 4 m ramp at steady speed. Compared with lifting it straight up, is your work less, the same or more?",
         options: ["Less", "The same", "More"],
         answer: 1,
       }}
@@ -87,7 +87,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
             </p>
             <p>
               A ramp only has to hold back the part of the weight that points down the slope: weight × height ÷ length.
-              The price is distance. Work is force × distance, so a smaller push over a longer path gives the same work,
+              Work is force × distance, so a smaller push over a longer path gives the same work,
               m × g × h.
             </p>
             <p className="muted">Real ramps add friction, so they cost a little more work, not less.</p>

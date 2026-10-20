@@ -100,7 +100,7 @@ export default function PhLogScale({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "pH is a number for how acidic a liquid is: the lower the pH, the more hydrogen ions in it. Say black coffee is pH 5 and lemon juice pH 2 (round values). In same-sized cups, how many times more hydrogen ions does the lemon juice have?",
+          "At breakfast you pour black coffee and lemon juice. pH says how acidic a liquid is: the lower the pH, the more hydrogen ions. Say the coffee is pH 5 and the juice pH 2 (round values). In same-sized cups, how many times more hydrogen ions does the lemon juice have?",
         options: ["About 2.5 times", "3 times", "About 30 times", "About 1,000 times"],
         answer: 3,
       }}

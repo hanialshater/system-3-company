@@ -225,7 +225,7 @@ export default function NegativeEdgeFoolsDijkstra({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Roads: S to A costs 2, S to B costs 3, B to A is a refund of 2 (cost −2), A to C costs 2. Settling the cheapest town first locks A at 2. What is the true cheapest cost to A?",
+          "Leaving S, the road to A costs you 2 and to B costs 3; the road from B to A refunds 2 (cost −2); A to C costs 2. Settling the cheapest town first locks A at 2. What is the true cheapest cost to A?",
         options: ["2", "1", "3"],
         answer: 1,
       }}

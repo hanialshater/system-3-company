@@ -201,7 +201,7 @@ export default function TwoEggsHundredFloors({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Find the highest safe floor of a 100-floor building with 2 eggs. A broken egg is gone. What is the fewest drops that always works?",
+          "You have 2 eggs and a 100-floor building, and must find the highest floor an egg survives a drop from. A broken egg is gone. What is the fewest drops that always works?",
         options: ["7", "14", "50"],
         answer: 1,
       }}

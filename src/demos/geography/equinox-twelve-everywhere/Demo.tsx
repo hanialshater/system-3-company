@@ -76,7 +76,7 @@ export default function EquinoxTwelveEverywhere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On the March equinox, how many hours is the Sun above the horizon at ${KEY_LAT}°N (Oslo, Helsinki)?`,
+        question: `Spending the March equinox in Oslo or Helsinki (${KEY_LAT}°N), you watch the sky from sunrise to sunset. How many hours is the Sun above the horizon that day?`,
         options: ["About 8 h", "About 10 h", `About ${Math.round(dayHours(KEY_LAT, 0))} h`],
         answer: 2,
       }}

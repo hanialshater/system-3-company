@@ -32,7 +32,7 @@ export default function ByteInTwoDigits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The byte ${START} is split into ${hi(START)} and ${lo(START)}. Each group of four becomes one hex symbol (0 to 9, then A to F for 10 to 15). What is the byte in hex?`,
+        question: `You split the byte ${START} into ${hi(START)} and ${lo(START)}. Each group of four becomes one hex symbol (0 to 9, then A to F for 10 to 15). What do you write for the byte in hex?`,
         options: [START_HEX, `${HEX[val(hi(START)) - 1]}${sym(lo(START))}`, `${sym(lo(START))}${sym(hi(START))}`],
         answer: 0,
       }}
@@ -49,7 +49,7 @@ export default function ByteInTwoDigits({ slug }: { slug: string }) {
             {sym(lo(bits))} in hex.
           </p>
           <p>
-            No detour through ordinary numbers: four switches have exactly 16 settings, one per hex symbol, so hex is
+            Four switches have exactly 16 settings, one per hex symbol, so hex is
             binary written four switches at a time and every byte is exactly two symbols.
           </p>
         </>

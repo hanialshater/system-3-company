@@ -58,7 +58,7 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In London (${f1(LAT)}°N), how high above the horizon is the Sun at noon on 21 December?`,
+        question: `You step outside in London (${f1(LAT)}°N) at noon on 21 December and look for the Sun. How high above the horizon is it?`,
         options: [
           `About ${Math.round(noonAltitude(0))}°`,
           `About ${Math.round(noonAltitude(-TILT))}°`,
@@ -76,8 +76,8 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
             it to {f1(noonAltitude(TILT))}° in June or drops it to {f1(noonAltitude(-TILT))}° in December.
           </p>
           <p>
-            So London&rsquo;s winter noon Sun is {f1(noonAltitude(TILT) - noonAltitude(-TILT))}° lower than its summer noon Sun: twice the tilt,
-            not a little lower. Low is why it is weak: the same sunbeam covers {f1(spread(noonAltitude(-TILT)))} times the ground in December,
+            So London&rsquo;s winter noon Sun is {f1(noonAltitude(TILT) - noonAltitude(-TILT))}° lower than its summer noon Sun: twice the tilt.
+            Low is why it is weak: the same sunbeam covers {f1(spread(noonAltitude(-TILT)))} times the ground in December,
             against {f1(spread(noonAltitude(TILT)))} times in June.
           </p>
         </>

@@ -140,7 +140,7 @@ export default function SimpsonsStones({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Kidney stones: treatment A beats B for small stones (93% vs 87% cured) and for large stones (73% vs 69%). Overall, which cures a higher share?",
+          "You have kidney stones and two treatments to pick from. In real data, A beat B for small stones (93% vs 87% cured) and for large stones (73% vs 69%). Overall, which cured a higher share?",
         options: ["A", "B", "They tie"],
         answer: 1,
       }}

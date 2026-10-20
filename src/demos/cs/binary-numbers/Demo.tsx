@@ -36,7 +36,7 @@ export default function BinaryNumbers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Eight on/off switches, each worth double the one to its right: 1, 2, 4, 8 … Add up the ones that are on. How many different numbers can they show, counting 0?",
+          "A panel in front of you has eight on/off switches, each worth double the one to its right: 1, 2, 4, 8 … Add up the ones that are on. How many different numbers can they show, counting 0?",
         options: ["8", "16", "128", "256"],
         answer: 3,
       }}

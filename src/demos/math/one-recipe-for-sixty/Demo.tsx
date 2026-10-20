@@ -83,7 +83,7 @@ export default function OneRecipeForSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Break 60 into primes (whole numbers above 1 that cannot be split into smaller whole factors, like 2, 3, 5, 7) by splitting it into factors, then splitting those. How many different prime recipes can you get (order ignored)?",
+        question: "You split 60 into factors, then split those, until only primes are left (whole numbers above 1 that cannot be split into smaller whole factors, like 2, 3, 5, 7). How many different prime recipes can you end with, order ignored?",
         options: ["1", "2", "3"],
         answer: 0,
       }}
@@ -97,7 +97,7 @@ export default function OneRecipeForSixty({ slug }: { slug: string }) {
           </p>
           <p>
             That is no accident{tried84.length > 0 ? " with 60 or 84" : ""}. Every whole number above 1 breaks into primes in exactly one way, apart from
-            order. Primes are the atoms of multiplication, and each number has one recipe.
+            order.
           </p>
         </>
       )}

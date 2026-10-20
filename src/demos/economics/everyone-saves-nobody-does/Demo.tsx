@@ -61,7 +61,7 @@ export default function EveryoneSaves({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Toy economy: income $1,000, households spend $900, businesses invest $100. Every household cuts spending $20 to save more. Once incomes settle, total saving is…",
+        question: "In a toy economy, income is $1,000: households spend $900 and businesses invest $100. Every household, yours included, cuts spending by $20 to save more. Once incomes settle, what is total saving?",
         options: ["$120", "$100", "$80"],
         answer: 1,
       }}

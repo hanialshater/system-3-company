@@ -58,7 +58,7 @@ export default function SupplyDemand({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a toy town, bread sells for $6 and 40 loaves sell a day. The town caps the price at $4. How many loaves sell a day now?",
+          "In your toy town, bread sells for $6 and 40 loaves sell a day. The council caps the price at $4 so more people can afford it. How many loaves sell a day now?",
         options: ["More than 40", "Still 40", "Fewer than 40"],
         answer: 2,
       }}
@@ -76,7 +76,7 @@ export default function SupplyDemand({ slug }: { slug: string }) {
             that point.
           </p>
           <p className="muted">
-            A toy model: straight lines, made-up numbers, nothing else changing. Real caps can also bring queues, black
+            A model: straight lines, made-up numbers, nothing else changing. Real caps can also bring queues, black
             markets and lower quality. It shows one cost of a cap, not whether a cap is worth it.
           </p>
         </>

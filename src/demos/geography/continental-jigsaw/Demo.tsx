@@ -115,7 +115,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Turn South America across the Atlantic towards Africa. Where does Brazil's eastern bulge tuck in?",
+        question: "Like testing a jigsaw piece, turn South America across the Atlantic towards Africa. Where does Brazil's eastern bulge tuck in?",
         options: ["Southern Africa", "The Horn of Africa", "The Gulf of Guinea"],
         answer: 2,
       }}

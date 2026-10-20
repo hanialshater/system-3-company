@@ -80,7 +80,7 @@ export default function WhyThePolesGetLessSun({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Over a whole year, how much sunlight reaches a square metre at the North Pole (top of the atmosphere), compared with a square metre at the equator?",
+        question: "You lay one square-metre sheet flat just above the atmosphere over the North Pole and another over the equator. Over a whole year, how much sunlight does the polar sheet catch, compared with the equator one?",
         options: ["About 99%", "About 10%", "About 40%"],
         answer: 2,
       }}

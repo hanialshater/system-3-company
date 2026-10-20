@@ -135,7 +135,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
               </>
             ) : null}
             At <strong>0.45</strong> it ended {runs["0.45"] !== undefined ? fmtDist(runs["0.45"]) : "right at"} from the bottom,
-            and <strong>0.50</strong> landed on it in one hop. Bigger is not faster.
+            and <strong>0.50</strong> landed on it in one hop.
           </p>
           <p>
             On this valley each hop multiplies the distance by (1 − 2 × step size): 0.9 at 0.05, 0.1 at 0.45, 0 at 0.50

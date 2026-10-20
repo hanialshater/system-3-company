@@ -83,7 +83,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical speakers play the same note. A wavelength is the length of one full wave. Where A's sound travels half a wavelength farther than B's, what do you hear?",
+          "At an outdoor concert, two identical speakers play the same note. A wavelength is the length of one full wave. You stand where A's sound travels half a wavelength farther than B's. What do you hear?",
         options: ["louder than one speaker", "the same as one speaker", "almost nothing"],
         answer: 2,
       }}
@@ -100,8 +100,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
               : " Further out, with a whole wave extra, they come back in step."}
           </p>
           <p>
-            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel. Two
-            sounds can make less than one.
+            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel.
           </p>
           <p className="muted">Idealised: equal loudness from each speaker, no echoes. A real room leaves a quiet spot, not silence.</p>
         </>

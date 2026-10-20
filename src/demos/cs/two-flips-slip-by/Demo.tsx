@@ -31,7 +31,7 @@ export default function TwoFlipsSlipBy({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A message carries one extra check bit, set so the number of 1s is even; the receiver checks the count is still even. Two bits flip in transit. Does the receiver notice?",
+        question: "You send a message with one extra check bit, set so the number of 1s is even; the receiver checks the count is still even. Two bits flip on the way. Does the receiver notice?",
         options: ["Always", "Only if the flipped bits are next to each other", "No, it can miss it"],
         answer: 2,
       }}

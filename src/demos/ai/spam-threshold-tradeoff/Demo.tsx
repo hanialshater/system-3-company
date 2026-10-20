@@ -64,7 +64,7 @@ export default function SpamThresholdTradeoff({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Ten emails with spam scores: spam 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Flagging 0.5 or more catches 4 of 5 spam and flags 1 real email. Lower the threshold to 0.25. How many real emails are flagged then?",
+          "Your inbox filter scores ten emails: spam 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Flagging 0.5 or more catches 4 of 5 spam and flags 1 real email. You lower the threshold to 0.25. How many real emails get flagged?",
         options: ["Still 1", "2", "3"],
         answer: 2,
       }}

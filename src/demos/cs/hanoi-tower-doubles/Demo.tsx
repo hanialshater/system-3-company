@@ -39,7 +39,7 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Move a tower of disks to another peg, one disk at a time, never a bigger disk on a smaller one. 3 disks need 7 moves. How many moves do 6 disks need?",
+          "With the tower puzzle on your desk, you move the disks to another peg, one disk at a time, never a bigger disk on a smaller one. 3 disks need 7 moves. How many moves do 6 disks need?",
         options: ["12", "36", "63"],
         answer: 2,
       }}
@@ -61,7 +61,6 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
             {Array.from({ length: n - MIN_N + 1 }, (_, i) => `${MIN_N + i} disks take ${cost(MIN_N + i)}`).join(", ")}
             {n < MAX_N ? `, and carrying on the same way, ${MAX_N} disks take ${cost(MAX_N)}` : ""}.
           </p>
-          <p className="muted">One more disk means solving the old puzzle twice. That is doubling.</p>
         </>
       )}
     >

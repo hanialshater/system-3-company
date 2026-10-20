@@ -42,7 +42,7 @@ export default function NinesWithoutEnd({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "0.999… means nines forever, never stopping. How far is it from 1?",
+        question: "You write 0.999… on a whiteboard, with the nines going on forever, never stopping. How far is that number from 1?",
         options: ["A tiny positive gap", "Exactly zero", "Zero only at the end, which never comes"],
         answer: 1,
       }}

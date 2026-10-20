@@ -98,7 +98,7 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A horse truly wins ${TRUE_P * 100}% of races. One bettor believes ${BELIEF_A * 100}%, another ${BELIEF_B * 100}%; equal money. After ${RACES} races, who holds most of it?`,
+        question: `At the track, a horse truly wins ${TRUE_P * 100}% of races. Two bettors with equal money bet against each other: one believes ${BELIEF_A * 100}%, the other ${BELIEF_B * 100}%. After ${RACES} races, who holds most of the money?`,
         options: ["About equal", `The ${BELIEF_A * 100}% bettor`, `The ${BELIEF_B * 100}% bettor`],
         answer: 1,
       }}

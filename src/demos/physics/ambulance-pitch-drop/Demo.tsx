@@ -59,7 +59,7 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An ambulance siren sounds 700 Hz to its driver. As it drives past you at 25 m/s, the pitch you hear…",
+          "Waiting at a crossing, you hear an ambulance whose siren sounds 700 Hz to its driver. As it drives past you at 25 m/s, what does the pitch you hear do?",
         options: [
           "stays 700 Hz the whole way",
           "starts above 700 Hz, ends below it",

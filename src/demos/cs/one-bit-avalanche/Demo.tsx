@@ -35,7 +35,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A hash is a fixed-size fingerprint of a message, used to check it was not altered. SHA-256 makes ${OUT_BITS} bits. You flip one bit of the message. About how many of the ${OUT_BITS} output bits change?`,
+        question: `You check a download against its SHA-256 hash, a ${OUT_BITS}-bit fingerprint that shows whether a message was altered. One bit of the message flips. About how many of the ${OUT_BITS} output bits change?`,
         options: ["About 1", `About ${OUT_BITS / 2}`, "About 10"],
         answer: 1,
       }}

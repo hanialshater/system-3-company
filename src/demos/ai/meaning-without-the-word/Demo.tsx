@@ -66,7 +66,7 @@ export default function MeaningWithoutTheWord({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Five chunks are searched for '${QUERY}' by shared keywords (little words ignored; ties keep list order), and the top ${Q_K} go to the model. Is '${CHUNKS[ANSWER].text.replace(/\.$/, "")}' among them?`,
+        question: `You ask a help bot '${QUERY}'. It searches five chunks by shared keywords (little words ignored; ties keep list order), and the top ${Q_K} go to the model. Is '${CHUNKS[ANSWER].text.replace(/\.$/, "")}' among them?`,
         options: ["Yes, it is the best match", "No, it shares no keyword", "Only if just 1 chunk is sent"],
         answer: 1,
       }}

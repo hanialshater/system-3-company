@@ -38,7 +38,7 @@ export default function SteelWoolGainsWeight({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${START_G.toFixed(1)} g of iron wool burns completely in air, all to iron(III) oxide, Fe₂O₃. The ash weighs about…`,
+        question: `You set ${START_G.toFixed(1)} g of iron wool alight in a dish and it burns completely in air, all to iron(III) oxide, Fe₂O₃. Back on the scale, the ash weighs about…`,
         options: [`less than ${START_G.toFixed(0)} g`, `${START_G.toFixed(1)} g`, `${FINAL_G.toFixed(0)} g`],
         answer: 2,
       }}

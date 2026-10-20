@@ -80,7 +80,7 @@ export default function SomeoneHasToSwerve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two drivers: both straight crash (−10 each); swerve vs straight gives 0 and 3; both swerve give 1 each. Which outcomes are stable?",
+        question: "Two drivers head straight at each other. Both stay straight: they crash (−10 each). One swerves: the swerver gets 0, the other 3. Both swerve: 1 each. Which outcomes are stable?",
         options: ["Both swerve", "Both straight", "One of each"],
         answer: ANSWER,
       }}
@@ -94,8 +94,7 @@ export default function SomeoneHasToSwerve({ slug }: { slug: string }) {
           </p>
           <p>
             Only the two &ldquo;one of each&rdquo; cells had no arrow out. There, the one going straight gets {PAY[1][0][0]} and would not swap
-            for {PAY[0][0][0]}; the one swerving gets {PAY[0][1][0]} and would not swap for {PAY[1][1][0]}. Identical players, an identical game,
-            and the stable outcomes are the ones where they act differently.
+            for {PAY[0][0][0]}; the one swerving gets {PAY[0][1][0]} and would not swap for {PAY[1][1][0]}.
           </p>
           <p className="muted">Invented payoffs, one round, chosen at the same moment.</p>
         </>

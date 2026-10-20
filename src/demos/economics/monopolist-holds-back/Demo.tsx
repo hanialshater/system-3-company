@@ -40,7 +40,7 @@ export default function MonopolistHoldsBack({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Buyers pay 100 − q for the q-th unit; each unit costs $${COST} to make. One seller with no rival picks one price for every unit. Which price earns the most profit?`,
+        question: `As the only seller in town, you make each unit for $${COST}. Buyers will pay $99 for the first unit, $98 for the second, and so on down. Charging one price for every unit, which price earns the most profit?`,
         options: [`$${COST}`, `$${BEST}`, `$${TOPP}`],
         answer: 1,
       }}

@@ -40,7 +40,7 @@ export default function StraightAcrossSaves({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You walk ${TARGET_E} m east then ${TARGET_N} m north. Walking straight across instead, how much shorter?`,
+        question: `Crossing a field, you could walk ${TARGET_E} m east then ${TARGET_N} m north, or straight across. How much shorter is the straight path?`,
         options: ["100 m", `${saved(TARGET_E, TARGET_N)} m`, "350 m"],
         answer: 1,
       }}

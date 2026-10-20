@@ -75,7 +75,7 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${P} players play knockout rounds and the stronger always wins. The champion is found in ${TOTAL} matches. Which players could be the second best?`,
+        question: `You run a knockout tournament for ${P} players, and the stronger always wins. The champion is crowned after ${TOTAL} matches. Which players could truly be the second best?`,
         options: [`All ${P - 1} others`, `Only the ${VICTIMS.length} the champion beat`, "Only the final's loser"],
         answer: 1,
       }}
@@ -96,7 +96,7 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
           <p>
             So the knockout gives a free shortlist. {EXTRA} more matches among the {VICTIMS.length} find the runner-up:{" "}
             {TOTAL + EXTRA} matches in all, instead of {TOTAL} + {NAIVE_EXTRA} = {TOTAL + NAIVE_EXTRA} if you searched the other{" "}
-            {P - 1} again. Splitting into pairs does the work once and keeps the record.
+            {P - 1} again.
           </p>
         </>
       )}

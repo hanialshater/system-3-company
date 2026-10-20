@@ -117,7 +117,7 @@ export default function ScreeningSurvivalClock({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A new test finds it ${QLEAD} years earlier. Treatment changes nothing: every death stays on the same day. What share is alive 5 years after diagnosis?`,
+        question: `Your clinic follows 14 people with a made-up illness. A new test finds it ${QLEAD} years earlier, but treatment changes nothing: every death stays on the same day. What share is alive 5 years after diagnosis?`,
         options: ["43%", "64%", "86%"],
         answer: 2,
       }}

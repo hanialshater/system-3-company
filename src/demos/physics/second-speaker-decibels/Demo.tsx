@@ -81,7 +81,7 @@ export default function SecondSpeakerDecibels({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "One speaker plays at 60 dB where you sit. An identical second speaker, same distance, joins in. The level becomes...",
+        question: "At your desk, one speaker plays at 60 dB where you sit. You switch on an identical second speaker at the same distance. What does the level become?",
         options: ["63 dB", "90 dB", "120 dB"],
         answer: 0,
       }}

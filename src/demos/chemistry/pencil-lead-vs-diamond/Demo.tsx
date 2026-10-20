@@ -49,7 +49,7 @@ export default function Allotropes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Diamond (${D_DIAMOND} g/cm³) and graphite (${D_GRAPHITE} g/cm³) are both pure carbon. Which holds more carbon atoms in 1 cm³?`,
+        question: `On your desk sit a diamond (${D_DIAMOND} g/cm³) and a lump of graphite (${D_GRAPHITE} g/cm³), both pure carbon. Which holds more carbon atoms in 1 cm³?`,
         options: ["Diamond", "Graphite", "The same"],
         answer: 0,
       }}

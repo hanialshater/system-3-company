@@ -50,7 +50,7 @@ export default function SlowestStationSetsPace({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A four-station line can do 12, 9, 5 and 10 parts an hour. You double the fastest station to 24. How many finished parts an hour now?",
+          "In your workshop, a four-station line can do 12, 9, 5 and 10 parts an hour. You double the fastest station to 24. How many finished parts an hour now?",
         options: ["5", "7", "10", "12"],
         answer: 0,
       }}

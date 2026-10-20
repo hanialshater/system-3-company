@@ -70,7 +70,7 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A hash table is a row of 10 slots; each key you store goes to a random slot. How many keys until a collision (two keys in one slot) is more likely than not?",
+          "Your hash table is a row of 10 slots, and each key you store goes to a random slot. How many keys until a collision (two keys in one slot) is more likely than not?",
         options: ["2", "5", "9"],
         answer: 1,
       }}
@@ -89,7 +89,6 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
           <p>
             Each new key has more occupied slots to hit, and those chances multiply. That is why hash tables need a way to handle collisions, such as keeping a list of keys in each slot.
           </p>
-          <p className="muted">Collisions come early. Plan for them.</p>
         </>
       )}
     >

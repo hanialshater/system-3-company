@@ -66,7 +66,7 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
           </p>
           <p>
             {FLIPS} wrong labels cannot split evenly over {K} folds, so two folds always differ by at least one dot, which is{" "}
-            {100 / (N / K)} percentage points. One held-out slice is one draw.
+            {100 / (N / K)} percentage points.
           </p>
         </>
       )}

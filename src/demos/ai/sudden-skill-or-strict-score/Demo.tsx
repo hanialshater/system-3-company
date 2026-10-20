@@ -48,7 +48,7 @@ export default function SuddenSkillOrStrictScore({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Six model sizes get 50, 60, 70, 80, 90 and 95% of answer tokens right. Answers are 10 tokens; only fully right answers count. Scores:",
+          "Your benchmark grades six model sizes that get 50, 60, 70, 80, 90 and 95% of answer tokens right. Answers are 10 tokens; only fully right answers count. How do the scores move?",
         options: ["Climb steadily", "Stay near zero, then shoot up", "Shoot up, then level off"],
         answer: 1,
       }}

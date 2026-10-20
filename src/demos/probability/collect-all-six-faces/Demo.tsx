@@ -144,7 +144,7 @@ export default function CollectAllSix({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "How many rolls of a fair die does it take, on average, to have seen every face at least once?",
+        question: "Your board game lets you start only once you have rolled every face of a fair die at least once. On average, how many rolls until you are in?",
         options: ["About 6", "About 9", `About ${ANSWER}`],
         answer: 2,
       }}

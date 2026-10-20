@@ -72,7 +72,7 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
       slug={slug}
       predict={{
         question:
-          "Road A always takes 60 min. Road B takes 60 min × its share of drivers. Selfish drivers average 60. Can a planner beat that?",
+          "Your commute has two roads. Road A always takes 60 min. Road B takes 60 min × its share of drivers. Selfish drivers average 60. Can a planner beat that?",
         options: ["No, 60 is best", "Yes, to 45", "Yes, to 30"],
         answer: 1,
       }}

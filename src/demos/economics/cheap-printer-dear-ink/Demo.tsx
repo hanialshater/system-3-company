@@ -35,7 +35,7 @@ export default function CheapPrinterDearInk({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Printer A costs $${P[0].price} and $${P[0].per.toFixed(2)} a page. Printer B costs $${P[1].price} and $${P[1].per.toFixed(2)} a page. You will print ${n(Q_PAGES)} pages. Which costs less in total?`,
+        question: `You are picking a printer and expect to print ${n(Q_PAGES)} pages. Printer A costs $${P[0].price} plus $${P[0].per.toFixed(2)} a page; Printer B costs $${P[1].price} plus $${P[1].per.toFixed(2)} a page. Which costs you less in total?`,
         options: ["Printer A", "Printer B", "The same"],
         answer: 1,
       }}

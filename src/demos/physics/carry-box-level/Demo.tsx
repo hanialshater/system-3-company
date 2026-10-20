@@ -49,7 +49,7 @@ export default function CarryBoxLevel({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You carry a 10 kg box 20 m along a level floor at a steady speed. The work your arms do on the box is…",
+          "Moving house, you carry a 10 kg box 20 m along a level hallway at a steady speed. How much work do your arms do on the box?",
         options: ["0 J", "98 J", "1962 J"],
         answer: 0,
       }}

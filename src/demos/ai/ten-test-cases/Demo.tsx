@@ -97,7 +97,7 @@ export default function TenTestCases({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A model is truly right 80% of the time. You test it on 10 fresh cases. How often will you see 6 or fewer right?",
+        question: "Your new model is truly right 80% of the time. Before launch, you test it on 10 fresh cases. How often will that test show 6 or fewer right?",
         options: ["Almost never", "About 1 time in 8", "About half the time"],
         answer: 1,
       }}

@@ -51,7 +51,7 @@ export default function Sieve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `To find every prime up to ${N} by crossing out multiples, which primes must you cross out multiples of?`,
+        question: `Hunting for every prime up to ${N} on a number chart, you cross out multiples. Which primes must you cross out the multiples of?`,
         options: [SMALL.join(", "), "All primes up to 50", [...SMALL, 11, 13].join(", ")],
         answer: 0,
       }}
@@ -68,8 +68,7 @@ export default function Sieve({ slug }: { slug: string }) {
             most 10, so every non-prime has a factor of {SMALL.join(", ")} and is already gone.
           </p>
           <p>
-            {EXTRA}&apos;s first new multiple would be {EXTRA} × {EXTRA} = {EXTRA * EXTRA}, past {N}. Four sweeps clear a hundred
-            numbers.
+            {EXTRA}&apos;s first new multiple would be {EXTRA} × {EXTRA} = {EXTRA * EXTRA}, past {N}.
           </p>
         </>
       )}

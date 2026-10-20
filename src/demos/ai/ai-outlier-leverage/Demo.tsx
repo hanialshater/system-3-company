@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Adding (10,10) to the three aligned points changes their fitted line?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The far mismatched point changed the slope to about −.076. Moving that far point onto the original line restored slope 1 and intercept 0. Distance gave potential leverage; mismatch mattered to actual influence. These four-point fits used fixed axes, not a universal influence rule.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You fit a line to three points sitting exactly on it, then one far-off point arrives. Adding (10,10) to the three aligned points changes their fitted line?", "options": ["Yes", "No"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The far mismatched point changed the slope to about −.076. Moving that far point onto the original line restored slope 1 and intercept 0. Distance gave potential leverage; mismatch mattered to actual influence. These four-point fits used fixed axes, not a universal influence rule.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

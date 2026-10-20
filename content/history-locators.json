@@ -1,0 +1,2310 @@
+{
+  "description": "Approximate modern reference positions for location guides, never historical borders, routes or territorial extents. Display names follow the lesson; source names retained below. Coordinates use longitude, latitude (WGS84).",
+  "sources": {
+    "natural-earth-places": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_populated_places_simple.geojson",
+      "sha256": "fd3fa867a320cbd5c5b6bb5bc550afeec2939fb2cef688e508007282a55ac42f",
+      "license": "Public domain",
+      "locator": "features[].properties.ne_id; features[].geometry.coordinates"
+    },
+    "natural-earth-land": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_land.geojson",
+      "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b",
+      "license": "Public domain",
+      "locator": "50m land geometry, coastlines only"
+    },
+    "natural-earth-inset": {
+      "path": "src/kit/geo/land-110m.json",
+      "origin": "world-atlas@2, Natural Earth 110m land",
+      "license": "Public domain shapes; ISC packaging"
+    }
+  },
+  "places": {
+    "accra": {
+      "name": "Accra",
+      "coordinates": [
+        -0.218662,
+        5.55198
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151403,
+      "sourceName": "Accra",
+      "sourceCountry": "Ghana"
+    },
+    "aceh": {
+      "name": "Banda Aceh",
+      "coordinates": [
+        95.320011,
+        5.549983
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149763,
+      "sourceName": "Banda Aceh",
+      "sourceCountry": "Indonesia"
+    },
+    "addisababa": {
+      "name": "Addis Ababa",
+      "coordinates": [
+        38.698059,
+        9.035256
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151549,
+      "sourceName": "Addis Ababa",
+      "sourceCountry": "Ethiopia"
+    },
+    "aden": {
+      "name": "Aden",
+      "coordinates": [
+        45.00949,
+        12.779723
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150595,
+      "sourceName": "Aden",
+      "sourceCountry": "Yemen"
+    },
+    "agra": {
+      "name": "Agra",
+      "coordinates": [
+        78.013075,
+        27.172366
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149175,
+      "sourceName": "Agra",
+      "sourceCountry": "India"
+    },
+    "algiers": {
+      "name": "Algiers",
+      "coordinates": [
+        3.048607,
+        36.765011
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151471,
+      "sourceName": "Algiers",
+      "sourceCountry": "Algeria"
+    },
+    "almaty": {
+      "name": "Almaty",
+      "coordinates": [
+        76.91309,
+        43.326936
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150969,
+      "sourceName": "Almaty",
+      "sourceCountry": "Kazakhstan"
+    },
+    "angkor": {
+      "name": "Angkor",
+      "coordinates": [
+        103.86777777777777,
+        13.43888888888889
+      ],
+      "source": "https://whc.unesco.org/en/list/0668/maps/",
+      "locator": "Property 668-001"
+    },
+    "ankara": {
+      "name": "Ankara",
+      "coordinates": [
+        32.862446,
+        39.929184
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151255,
+      "sourceName": "Ankara",
+      "sourceCountry": "Turkey"
+    },
+    "antananarivo": {
+      "name": "Antananarivo",
+      "coordinates": [
+        47.514678,
+        -18.914691
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150835,
+      "sourceName": "Antananarivo",
+      "sourceCountry": "Madagascar"
+    },
+    "ashgabat": {
+      "name": "Ashgabat",
+      "coordinates": [
+        58.383299,
+        37.949995
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150567,
+      "sourceName": "Ashgabat",
+      "sourceCountry": "Turkmenistan"
+    },
+    "asuncion": {
+      "name": "Asunción",
+      "coordinates": [
+        -57.625834,
+        -25.290671
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150621,
+      "sourceName": "Asunción",
+      "sourceCountry": "Paraguay"
+    },
+    "athens": {
+      "name": "Athens",
+      "coordinates": [
+        23.731375,
+        37.985272
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151545,
+      "sourceName": "Athens",
+      "sourceCountry": "Greece"
+    },
+    "baghdad": {
+      "name": "Baghdad",
+      "coordinates": [
+        44.391923,
+        33.340594
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151547,
+      "sourceName": "Baghdad",
+      "sourceCountry": "Iraq"
+    },
+    "baku": {
+      "name": "Baku",
+      "coordinates": [
+        49.860271,
+        40.397218
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151123,
+      "sourceName": "Baku",
+      "sourceCountry": "Azerbaijan"
+    },
+    "balkh": {
+      "name": "Balkh",
+      "coordinates": [
+        66.89973,
+        36.75012
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159144599,
+      "sourceName": "Balkh",
+      "sourceCountry": "Afghanistan"
+    },
+    "bamako": {
+      "name": "Bamako",
+      "coordinates": [
+        -8.001985,
+        12.65196
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150945,
+      "sourceName": "Bamako",
+      "sourceCountry": "Mali"
+    },
+    "bangkok": {
+      "name": "Bangkok",
+      "coordinates": [
+        100.514699,
+        13.751945
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151509,
+      "sourceName": "Bangkok",
+      "sourceCountry": "Thailand"
+    },
+    "banyuwangi": {
+      "name": "Banyuwangi",
+      "coordinates": [
+        114.369597,
+        -8.195018
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159139841,
+      "sourceName": "Banyuwangi",
+      "sourceCountry": "Indonesia"
+    },
+    "barcelona": {
+      "name": "Barcelona",
+      "coordinates": [
+        2.181424,
+        41.385245
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151261,
+      "sourceName": "Barcelona",
+      "sourceCountry": "Spain"
+    },
+    "batumi": {
+      "name": "Batumi",
+      "coordinates": [
+        41.630007,
+        41.600005
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159147265,
+      "sourceName": "Batumi",
+      "sourceCountry": "Georgia"
+    },
+    "beijing": {
+      "name": "Beijing",
+      "coordinates": [
+        116.394201,
+        39.90172
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151595,
+      "sourceName": "Beijing",
+      "sourceCountry": "China"
+    },
+    "beirut": {
+      "name": "Beirut",
+      "coordinates": [
+        35.507762,
+        33.873921
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150957,
+      "sourceName": "Beirut",
+      "sourceCountry": "Lebanon"
+    },
+    "belgrade": {
+      "name": "Belgrade",
+      "coordinates": [
+        20.466045,
+        44.820591
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151079,
+      "sourceName": "Belgrade",
+      "sourceCountry": "Serbia"
+    },
+    "bengaluru": {
+      "name": "Bengaluru",
+      "coordinates": [
+        77.558064,
+        12.971941
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151543,
+      "sourceName": "Bengaluru",
+      "sourceCountry": "India"
+    },
+    "berbera": {
+      "name": "Berbera",
+      "coordinates": [
+        45.016415,
+        10.43555
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150441,
+      "sourceName": "Berbera",
+      "sourceCountry": "Somaliland"
+    },
+    "berlin": {
+      "name": "Berlin",
+      "coordinates": [
+        13.399603,
+        52.523764
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151529,
+      "sourceName": "Berlin",
+      "sourceCountry": "Germany"
+    },
+    "boston": {
+      "name": "Boston",
+      "coordinates": [
+        -71.07196,
+        42.331906
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151239,
+      "sourceName": "Boston",
+      "sourceCountry": "United States of America"
+    },
+    "buenosaires": {
+      "name": "Buenos Aires",
+      "coordinates": [
+        -58.432513,
+        -34.610715
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151559,
+      "sourceName": "Buenos Aires",
+      "sourceCountry": "Argentina"
+    },
+    "bukhara": {
+      "name": "Bukhara",
+      "coordinates": [
+        64.43001,
+        39.780012
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149337,
+      "sourceName": "Bukhara",
+      "sourceCountry": "Uzbekistan"
+    },
+    "busan": {
+      "name": "Busan",
+      "coordinates": [
+        129.008102,
+        35.096999
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149599,
+      "sourceName": "Busan",
+      "sourceCountry": "South Korea"
+    },
+    "cabinda": {
+      "name": "Cabinda",
+      "coordinates": [
+        12.189995,
+        -5.559623
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159144723,
+      "sourceName": "Cabinda",
+      "sourceCountry": "Angola"
+    },
+    "cairo": {
+      "name": "Cairo",
+      "coordinates": [
+        31.248022,
+        30.051906
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151603,
+      "sourceName": "Cairo",
+      "sourceCountry": "Egypt"
+    },
+    "capetown": {
+      "name": "Cape Town",
+      "coordinates": [
+        18.433042,
+        -33.918065
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151583,
+      "sourceName": "Cape Town",
+      "sourceCountry": "South Africa"
+    },
+    "carthage": {
+      "name": "Carthage",
+      "coordinates": [
+        10.323305555555555,
+        36.85277777777778
+      ],
+      "source": "https://whc.unesco.org/en/list/37/maps/",
+      "locator": "Property 37-001; area of the hills"
+    },
+    "cebu": {
+      "name": "Cebu",
+      "coordinates": [
+        123.898129,
+        10.321922
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150721,
+      "sourceName": "Cebu",
+      "sourceCountry": "Philippines"
+    },
+    "chengdu": {
+      "name": "Chengdu",
+      "coordinates": [
+        104.068074,
+        30.671946
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151533,
+      "sourceName": "Chengdu",
+      "sourceCountry": "China"
+    },
+    "chennai": {
+      "name": "Chennai",
+      "coordinates": [
+        80.278053,
+        13.091934
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151431,
+      "sourceName": "Chennai",
+      "sourceCountry": "India"
+    },
+    "chiangmai": {
+      "name": "Chiang Mai",
+      "coordinates": [
+        98.980046,
+        18.799975
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149407,
+      "sourceName": "Chiang Mai",
+      "sourceCountry": "Thailand"
+    },
+    "colombo": {
+      "name": "Colombo",
+      "coordinates": [
+        79.857751,
+        6.931966
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150719,
+      "sourceName": "Colombo",
+      "sourceCountry": "Sri Lanka"
+    },
+    "copenhagen": {
+      "name": "Copenhagen",
+      "coordinates": [
+        12.56154,
+        55.68051
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151437,
+      "sourceName": "København",
+      "sourceCountry": "Denmark"
+    },
+    "cordoba": {
+      "name": "Córdoba",
+      "coordinates": [
+        -4.770004,
+        37.879999
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149389,
+      "sourceName": "Córdoba",
+      "sourceCountry": "Spain"
+    },
+    "cusco": {
+      "name": "Cusco",
+      "coordinates": [
+        -71.972155,
+        -13.525028
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150611,
+      "sourceName": "Cusco",
+      "sourceCountry": "Peru"
+    },
+    "dakar": {
+      "name": "Dakar",
+      "coordinates": [
+        -17.475076,
+        14.717778
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151513,
+      "sourceName": "Dakar",
+      "sourceCountry": "Senegal"
+    },
+    "dali": {
+      "name": "Dali",
+      "coordinates": [
+        100.250319,
+        25.593731
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159147037,
+      "sourceName": "Dali",
+      "sourceCountry": "China"
+    },
+    "damascus": {
+      "name": "Damascus",
+      "coordinates": [
+        36.29805,
+        33.50198
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151269,
+      "sourceName": "Damascus",
+      "sourceCountry": "Syria"
+    },
+    "darwin": {
+      "name": "Darwin",
+      "coordinates": [
+        130.850039,
+        -12.425354
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151155,
+      "sourceName": "Darwin",
+      "sourceCountry": "Australia"
+    },
+    "delhi": {
+      "name": "Delhi",
+      "coordinates": [
+        77.228058,
+        28.671939
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151405,
+      "sourceName": "Delhi",
+      "sourceCountry": "India"
+    },
+    "dhaka": {
+      "name": "Dhaka",
+      "coordinates": [
+        90.406634,
+        23.725006
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151467,
+      "sourceName": "Dhaka",
+      "sourceCountry": "Bangladesh"
+    },
+    "dublin": {
+      "name": "Dublin",
+      "coordinates": [
+        -6.25698,
+        53.346731
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151309,
+      "sourceName": "Dublin",
+      "sourceCountry": "Ireland"
+    },
+    "edinburgh": {
+      "name": "Edinburgh",
+      "coordinates": [
+        -3.219091,
+        55.948328
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159146365,
+      "sourceName": "Edinburgh",
+      "sourceCountry": "United Kingdom"
+    },
+    "fez": {
+      "name": "Fez",
+      "coordinates": [
+        -5.002323,
+        34.056545
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150669,
+      "sourceName": "Fez",
+      "sourceCountry": "Morocco"
+    },
+    "gao": {
+      "name": "Gao",
+      "coordinates": [
+        -0.050008,
+        16.26659
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150043,
+      "sourceName": "Gao",
+      "sourceCountry": "Mali"
+    },
+    "guangzhou": {
+      "name": "Guangzhou",
+      "coordinates": [
+        113.261785,
+        23.124723
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151331,
+      "sourceName": "Guangzhou",
+      "sourceCountry": "China"
+    },
+    "haifa": {
+      "name": "Haifa",
+      "coordinates": [
+        34.978079,
+        32.822357
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159142281,
+      "sourceName": "Haifa",
+      "sourceCountry": "Israel"
+    },
+    "hangzhou": {
+      "name": "Hangzhou",
+      "coordinates": [
+        120.168073,
+        30.25192
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151387,
+      "sourceName": "Hangzhou",
+      "sourceCountry": "China"
+    },
+    "hanoi": {
+      "name": "Hanoi",
+      "coordinates": [
+        105.848068,
+        21.035273
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151251,
+      "sourceName": "Hanoi",
+      "sourceCountry": "Vietnam"
+    },
+    "harare": {
+      "name": "Harare",
+      "coordinates": [
+        31.042764,
+        -17.815844
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150573,
+      "sourceName": "Harare",
+      "sourceCountry": "Zimbabwe"
+    },
+    "havana": {
+      "name": "Havana",
+      "coordinates": [
+        -82.366128,
+        23.133905
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151347,
+      "sourceName": "Havana",
+      "sourceCountry": "Cuba"
+    },
+    "helsinki": {
+      "name": "Helsinki",
+      "coordinates": [
+        24.932457,
+        60.163804
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151419,
+      "sourceName": "Helsinki",
+      "sourceCountry": "Finland"
+    },
+    "herat": {
+      "name": "Herat",
+      "coordinates": [
+        62.169993,
+        34.330009
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150319,
+      "sourceName": "Herat",
+      "sourceCountry": "Afghanistan"
+    },
+    "hue": {
+      "name": "Hue",
+      "coordinates": [
+        107.580038,
+        16.469988
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159147549,
+      "sourceName": "Hue",
+      "sourceCountry": "Vietnam"
+    },
+    "hyderabad": {
+      "name": "Hyderabad",
+      "coordinates": [
+        78.478008,
+        17.401929
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151407,
+      "sourceName": "Hyderabad",
+      "sourceCountry": "India"
+    },
+    "ibadan": {
+      "name": "Ibadan",
+      "coordinates": [
+        3.928036,
+        7.381972
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149697,
+      "sourceName": "Ibadan",
+      "sourceCountry": "Nigeria"
+    },
+    "isfahan": {
+      "name": "Isfahan",
+      "coordinates": [
+        51.698092,
+        32.701951
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150971,
+      "sourceName": "Isfahan",
+      "sourceCountry": "Iran"
+    },
+    "istanbul": {
+      "name": "Istanbul",
+      "coordinates": [
+        28.974277,
+        41.017602
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151579,
+      "sourceName": "Istanbul",
+      "sourceCountry": "Turkey"
+    },
+    "jakarta": {
+      "name": "Jakarta",
+      "coordinates": [
+        106.827492,
+        -6.172472
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151599,
+      "sourceName": "Jakarta",
+      "sourceCountry": "Indonesia"
+    },
+    "kabul": {
+      "name": "Kabul",
+      "coordinates": [
+        69.181314,
+        34.518636
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151561,
+      "sourceName": "Kabul",
+      "sourceCountry": "Afghanistan"
+    },
+    "kagoshima": {
+      "name": "Kagoshima",
+      "coordinates": [
+        130.561064,
+        31.585965
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159147123,
+      "sourceName": "Kagoshima",
+      "sourceCountry": "Japan"
+    },
+    "kandy": {
+      "name": "Kandy",
+      "coordinates": [
+        80.670001,
+        7.279981
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149589,
+      "sourceName": "Kandy",
+      "sourceCountry": "Sri Lanka"
+    },
+    "kano": {
+      "name": "Kano",
+      "coordinates": [
+        8.518092,
+        12.001923
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151297,
+      "sourceName": "Kano",
+      "sourceCountry": "Nigeria"
+    },
+    "karachi": {
+      "name": "Karachi",
+      "coordinates": [
+        66.988063,
+        24.871938
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151287,
+      "sourceName": "Karachi",
+      "sourceCountry": "Pakistan"
+    },
+    "kashgar": {
+      "name": "Kashgar",
+      "coordinates": [
+        75.969926,
+        39.476336
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150885,
+      "sourceName": "Kashgar",
+      "sourceCountry": "China"
+    },
+    "kathmandu": {
+      "name": "Kathmandu",
+      "coordinates": [
+        85.314696,
+        27.718638
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150655,
+      "sourceName": "Kathmandu",
+      "sourceCountry": "Nepal"
+    },
+    "khartoum": {
+      "name": "Khartoum",
+      "coordinates": [
+        32.532233,
+        15.590024
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151275,
+      "sourceName": "Khartoum",
+      "sourceCountry": "Sudan"
+    },
+    "kilwa": {
+      "name": "Kilwa Kisiwani",
+      "coordinates": [
+        39.522777777777776,
+        -8.957777777777777
+      ],
+      "source": "https://whc.unesco.org/en/list/144/maps/",
+      "locator": "Property 144-001"
+    },
+    "kinshasa": {
+      "name": "Kinshasa",
+      "coordinates": [
+        15.313026,
+        -4.327778
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151539,
+      "sourceName": "Kinshasa",
+      "sourceCountry": "Congo (Kinshasa)"
+    },
+    "kolkata": {
+      "name": "Kolkata",
+      "coordinates": [
+        88.369126,
+        22.569579
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151617,
+      "sourceName": "Kolkata",
+      "sourceCountry": "India"
+    },
+    "krakow": {
+      "name": "Kraków",
+      "coordinates": [
+        19.958066,
+        50.061925
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149709,
+      "sourceName": "Kraków",
+      "sourceCountry": "Poland"
+    },
+    "kumasi": {
+      "name": "Kumasi",
+      "coordinates": [
+        -1.63196,
+        6.691937
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159148507,
+      "sourceName": "Kumasi",
+      "sourceCountry": "Ghana"
+    },
+    "kyoto": {
+      "name": "Kyoto",
+      "coordinates": [
+        135.748052,
+        35.031938
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149967,
+      "sourceName": "Kyoto",
+      "sourceCountry": "Japan"
+    },
+    "lagos": {
+      "name": "Lagos",
+      "coordinates": [
+        3.389585,
+        6.445208
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151591,
+      "sourceName": "Lagos",
+      "sourceCountry": "Nigeria"
+    },
+    "lahore": {
+      "name": "Lahore",
+      "coordinates": [
+        74.348079,
+        31.561917
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151285,
+      "sourceName": "Lahore",
+      "sourceCountry": "Pakistan"
+    },
+    "lima": {
+      "name": "Lima",
+      "coordinates": [
+        -77.052008,
+        -12.046067
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151511,
+      "sourceName": "Lima",
+      "sourceCountry": "Peru"
+    },
+    "lisbon": {
+      "name": "Lisbon",
+      "coordinates": [
+        -9.146812,
+        38.724669
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151273,
+      "sourceName": "Lisbon",
+      "sourceCountry": "Portugal"
+    },
+    "london": {
+      "name": "London",
+      "coordinates": [
+        -0.118668,
+        51.501941
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151577,
+      "sourceName": "London",
+      "sourceCountry": "United Kingdom"
+    },
+    "luanda": {
+      "name": "Luanda",
+      "coordinates": [
+        13.232481,
+        -8.83634
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151469,
+      "sourceName": "Luanda",
+      "sourceCountry": "Angola"
+    },
+    "luangprabang": {
+      "name": "Luang Prabang",
+      "coordinates": [
+        102.14161,
+        19.884534
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159139147,
+      "sourceName": "Louangphrabang",
+      "sourceCountry": "Laos"
+    },
+    "luoyang": {
+      "name": "Luoyang",
+      "coordinates": [
+        112.444471,
+        34.64377
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159147063,
+      "sourceName": "Luoyang",
+      "sourceCountry": "China"
+    },
+    "lyon": {
+      "name": "Lyon",
+      "coordinates": [
+        4.828085,
+        45.771954
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150845,
+      "sourceName": "Lyon",
+      "sourceCountry": "France"
+    },
+    "makassar": {
+      "name": "Makassar",
+      "coordinates": [
+        119.430082,
+        -5.138013
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150843,
+      "sourceName": "Makassar",
+      "sourceCountry": "Indonesia"
+    },
+    "malacca": {
+      "name": "Malacca",
+      "coordinates": [
+        102.246461,
+        2.206414
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159148319,
+      "sourceName": "Malacca",
+      "sourceCountry": "Malaysia"
+    },
+    "mandalay": {
+      "name": "Mandalay",
+      "coordinates": [
+        96.083083,
+        21.971934
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150423,
+      "sourceName": "Mandalay",
+      "sourceCountry": "Myanmar"
+    },
+    "manila": {
+      "name": "Manila",
+      "coordinates": [
+        120.980271,
+        14.606105
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151525,
+      "sourceName": "Manila",
+      "sourceCountry": "Philippines"
+    },
+    "maputo": {
+      "name": "Maputo",
+      "coordinates": [
+        32.587217,
+        -25.953332
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150683,
+      "sourceName": "Maputo",
+      "sourceCountry": "Mozambique"
+    },
+    "marrakesh": {
+      "name": "Marrakesh",
+      "coordinates": [
+        -8.001933,
+        31.631939
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150675,
+      "sourceName": "Marrakesh",
+      "sourceCountry": "Morocco"
+    },
+    "marseille": {
+      "name": "Marseille",
+      "coordinates": [
+        5.373064,
+        43.291925
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150037,
+      "sourceName": "Marseille",
+      "sourceCountry": "France"
+    },
+    "mashhad": {
+      "name": "Mashhad",
+      "coordinates": [
+        59.568051,
+        36.271966
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151421,
+      "sourceName": "Mashhad",
+      "sourceCountry": "Iran"
+    },
+    "massawa": {
+      "name": "Massawa",
+      "coordinates": [
+        39.450036,
+        15.610118
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159140529,
+      "sourceName": "Massawa",
+      "sourceCountry": "Eritrea"
+    },
+    "mbanzakongo": {
+      "name": "Mbanza Kongo",
+      "coordinates": [
+        14.239999,
+        -6.269606
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159144711,
+      "sourceName": "Mbanza-Congo",
+      "sourceCountry": "Angola"
+    },
+    "mecca": {
+      "name": "Mecca",
+      "coordinates": [
+        39.818094,
+        21.431967
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151279,
+      "sourceName": "Makkah",
+      "sourceCountry": "Saudi Arabia"
+    },
+    "mexicocity": {
+      "name": "Mexico City",
+      "coordinates": [
+        -99.132934,
+        19.444388
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151587,
+      "sourceName": "Mexico City",
+      "sourceCountry": "Mexico"
+    },
+    "mogadishu": {
+      "name": "Mogadishu",
+      "coordinates": [
+        45.364732,
+        2.068627
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150715,
+      "sourceName": "Mogadishu",
+      "sourceCountry": "Somalia"
+    },
+    "mombasa": {
+      "name": "Mombasa",
+      "coordinates": [
+        39.687972,
+        -4.03808
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150829,
+      "sourceName": "Mombasa",
+      "sourceCountry": "Kenya"
+    },
+    "montreal": {
+      "name": "Montréal",
+      "coordinates": [
+        -73.585243,
+        45.501945
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151457,
+      "sourceName": "Montréal",
+      "sourceCountry": "Canada"
+    },
+    "mosul": {
+      "name": "Mosul",
+      "coordinates": [
+        43.143059,
+        36.346948
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150087,
+      "sourceName": "Mosul",
+      "sourceCountry": "Iraq"
+    },
+    "mumbai": {
+      "name": "Mumbai",
+      "coordinates": [
+        72.875839,
+        19.068408
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151611,
+      "sourceName": "Mumbai",
+      "sourceCountry": "India"
+    },
+    "munich": {
+      "name": "Munich",
+      "coordinates": [
+        11.573048,
+        48.131888
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151357,
+      "sourceName": "Munich",
+      "sourceCountry": "Germany"
+    },
+    "muscat": {
+      "name": "Muscat",
+      "coordinates": [
+        58.378311,
+        23.585179
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150717,
+      "sourceName": "Muscat",
+      "sourceCountry": "Oman"
+    },
+    "naha": {
+      "name": "Naha",
+      "coordinates": [
+        127.672972,
+        26.207172
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149931,
+      "sourceName": "Naha",
+      "sourceCountry": "Japan"
+    },
+    "nanjing": {
+      "name": "Nanjing",
+      "coordinates": [
+        118.778029,
+        32.051965
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151385,
+      "sourceName": "Nanjing",
+      "sourceCountry": "China"
+    },
+    "naples": {
+      "name": "Naples",
+      "coordinates": [
+        14.243066,
+        40.841971
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151313,
+      "sourceName": "Naples",
+      "sourceCountry": "Italy"
+    },
+    "ndjamena": {
+      "name": "N’Djamena",
+      "coordinates": [
+        15.047202,
+        12.115042
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150863,
+      "sourceName": "N'Djamena",
+      "sourceCountry": "Chad"
+    },
+    "newyork": {
+      "name": "New York",
+      "coordinates": [
+        -73.995718,
+        40.721562
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151575,
+      "sourceName": "New York",
+      "sourceCountry": "United States of America"
+    },
+    "nouakchott": {
+      "name": "Nouakchott",
+      "coordinates": [
+        -15.97534,
+        18.086427
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150943,
+      "sourceName": "Nouakchott",
+      "sourceCountry": "Mauritania"
+    },
+    "oaxaca": {
+      "name": "Oaxaca",
+      "coordinates": [
+        -96.66995,
+        17.08269
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149687,
+      "sourceName": "Oaxaca",
+      "sourceCountry": "Mexico"
+    },
+    "oslo": {
+      "name": "Oslo",
+      "coordinates": [
+        10.748033,
+        59.918636
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151281,
+      "sourceName": "Oslo",
+      "sourceCountry": "Norway"
+    },
+    "palermo": {
+      "name": "Palermo",
+      "coordinates": [
+        13.348081,
+        38.126969
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150805,
+      "sourceName": "Palermo",
+      "sourceCountry": "Italy"
+    },
+    "paris": {
+      "name": "Paris",
+      "coordinates": [
+        2.352992,
+        48.858092
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151613,
+      "sourceName": "Paris",
+      "sourceCountry": "France"
+    },
+    "patna": {
+      "name": "Patna",
+      "coordinates": [
+        85.128093,
+        25.626905
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151429,
+      "sourceName": "Patna",
+      "sourceCountry": "India"
+    },
+    "peshawar": {
+      "name": "Peshawar",
+      "coordinates": [
+        71.533057,
+        34.006962
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150651,
+      "sourceName": "Peshawar",
+      "sourceCountry": "Pakistan"
+    },
+    "phnompenh": {
+      "name": "Phnom Penh",
+      "coordinates": [
+        104.914689,
+        11.551976
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151127,
+      "sourceName": "Phnom Penh",
+      "sourceCountry": "Cambodia"
+    },
+    "potosi": {
+      "name": "Potosí",
+      "coordinates": [
+        -65.750028,
+        -19.569569
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159144841,
+      "sourceName": "Potosí",
+      "sourceCountry": "Bolivia"
+    },
+    "prague": {
+      "name": "Prague",
+      "coordinates": [
+        14.422939,
+        50.086967
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151359,
+      "sourceName": "Prague",
+      "sourceCountry": "Czechia"
+    },
+    "pretoria": {
+      "name": "Pretoria",
+      "coordinates": [
+        28.227483,
+        -25.704975
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150661,
+      "sourceName": "Pretoria",
+      "sourceCountry": "South Africa"
+    },
+    "pune": {
+      "name": "Pune",
+      "coordinates": [
+        73.851892,
+        18.516394
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151411,
+      "sourceName": "Pune",
+      "sourceCountry": "India"
+    },
+    "quebec": {
+      "name": "Québec",
+      "coordinates": [
+        -71.24561,
+        46.839969
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151065,
+      "sourceName": "Québec",
+      "sourceCountry": "Canada"
+    },
+    "quito": {
+      "name": "Quito",
+      "coordinates": [
+        -78.501997,
+        -0.213042
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150847,
+      "sourceName": "Quito",
+      "sourceCountry": "Ecuador"
+    },
+    "ravenna": {
+      "name": "Ravenna",
+      "coordinates": [
+        12.220019,
+        44.420375
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159139451,
+      "sourceName": "Ravenna",
+      "sourceCountry": "Italy"
+    },
+    "riga": {
+      "name": "Riga",
+      "coordinates": [
+        24.099965,
+        56.950024
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150811,
+      "sourceName": "Riga",
+      "sourceCountry": "Latvia"
+    },
+    "rio": {
+      "name": "Rio de Janeiro",
+      "coordinates": [
+        -43.212117,
+        -22.907308
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151619,
+      "sourceName": "Rio de Janeiro",
+      "sourceCountry": "Brazil"
+    },
+    "rome": {
+      "name": "Rome",
+      "coordinates": [
+        12.481313,
+        41.897902
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151593,
+      "sourceName": "Rome",
+      "sourceCountry": "Italy"
+    },
+    "saintlouis": {
+      "name": "Saint-Louis",
+      "coordinates": [
+        -16.510011,
+        16.01999
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159148209,
+      "sourceName": "Saint-Louis",
+      "sourceCountry": "Mauritania"
+    },
+    "salvador": {
+      "name": "Salvador",
+      "coordinates": [
+        -38.481933,
+        -12.968026
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151453,
+      "sourceName": "Salvador",
+      "sourceCountry": "Brazil"
+    },
+    "samarkand": {
+      "name": "Samarkand",
+      "coordinates": [
+        66.944999,
+        39.670019
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150569,
+      "sourceName": "Samarkand",
+      "sourceCountry": "Uzbekistan"
+    },
+    "sanaa": {
+      "name": "Sanaa",
+      "coordinates": [
+        44.204648,
+        15.356679
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151259,
+      "sourceName": "Sanaa",
+      "sourceCountry": "Yemen"
+    },
+    "sanjuan": {
+      "name": "San Juan",
+      "coordinates": [
+        -66.129979,
+        18.440023
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151181,
+      "sourceName": "San Juan",
+      "sourceCountry": "Puerto Rico"
+    },
+    "santiago": {
+      "name": "Santiago",
+      "coordinates": [
+        -70.650504,
+        -33.440205
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151615,
+      "sourceName": "Santiago",
+      "sourceCountry": "Chile"
+    },
+    "sarajevo": {
+      "name": "Sarajevo",
+      "coordinates": [
+        18.383002,
+        43.850022
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151177,
+      "sourceName": "Sarajevo",
+      "sourceCountry": "Bosnia and Herzegovina"
+    },
+    "seoul": {
+      "name": "Seoul",
+      "coordinates": [
+        126.997785,
+        37.568295
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151523,
+      "sourceName": "Seoul",
+      "sourceCountry": "South Korea"
+    },
+    "seville": {
+      "name": "Seville",
+      "coordinates": [
+        -5.980007,
+        37.405015
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150601,
+      "sourceName": "Seville",
+      "sourceCountry": "Spain"
+    },
+    "shiraz": {
+      "name": "Shiraz",
+      "coordinates": [
+        52.568065,
+        29.631906
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150973,
+      "sourceName": "Shiraz",
+      "sourceCountry": "Iran"
+    },
+    "sofala": {
+      "name": "Sofala",
+      "coordinates": [
+        34.71666666666667,
+        -20.15
+      ],
+      "source": "https://www.wikidata.org/w/index.php?title=Q1361151&oldid=2377276147",
+      "locator": "P625; approximate archaeological site reference, 20°9′S 34°43′E"
+    },
+    "soyo": {
+      "name": "Soyo",
+      "coordinates": [
+        12.369984,
+        -6.129614
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159144719,
+      "sourceName": "Soyo",
+      "sourceCountry": "Angola"
+    },
+    "split": {
+      "name": "Split",
+      "coordinates": [
+        16.469992,
+        43.520404
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159140363,
+      "sourceName": "Split",
+      "sourceCountry": "Croatia"
+    },
+    "stockholm": {
+      "name": "Stockholm",
+      "coordinates": [
+        18.0663,
+        59.324127
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151507,
+      "sourceName": "Stockholm",
+      "sourceCountry": "Sweden"
+    },
+    "surabaya": {
+      "name": "Surabaya",
+      "coordinates": [
+        112.748887,
+        -7.24729
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151339,
+      "sourceName": "Surabaya",
+      "sourceCountry": "Indonesia"
+    },
+    "surat": {
+      "name": "Surat",
+      "coordinates": [
+        72.838094,
+        21.20193
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151435,
+      "sourceName": "Surat",
+      "sourceCountry": "India"
+    },
+    "sydney": {
+      "name": "Sydney",
+      "coordinates": [
+        151.212548,
+        -33.871373
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151623,
+      "sourceName": "Sydney",
+      "sourceCountry": "Australia"
+    },
+    "tabriz": {
+      "name": "Tabriz",
+      "coordinates": [
+        46.2993,
+        38.088237
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150135,
+      "sourceName": "Tabriz",
+      "sourceCountry": "Iran"
+    },
+    "tainan": {
+      "name": "Tainan",
+      "coordinates": [
+        120.200043,
+        23.000003
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149109,
+      "sourceName": "Tainan",
+      "sourceCountry": "Taiwan"
+    },
+    "taipei": {
+      "name": "Taipei",
+      "coordinates": [
+        121.568333,
+        25.035833
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151567,
+      "sourceName": "Taipei",
+      "sourceCountry": "Taiwan"
+    },
+    "tallinn": {
+      "name": "Tallinn",
+      "coordinates": [
+        24.728041,
+        59.433877
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150877,
+      "sourceName": "Tallinn",
+      "sourceCountry": "Estonia"
+    },
+    "tashkent": {
+      "name": "Tashkent",
+      "coordinates": [
+        69.268823,
+        41.303828
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151501,
+      "sourceName": "Tashkent",
+      "sourceCountry": "Uzbekistan"
+    },
+    "tehran": {
+      "name": "Tehran",
+      "coordinates": [
+        51.422398,
+        35.673889
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151551,
+      "sourceName": "Tehran",
+      "sourceCountry": "Iran"
+    },
+    "ternate": {
+      "name": "Ternate",
+      "coordinates": [
+        127.363016,
+        0.792961
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159149743,
+      "sourceName": "Ternate",
+      "sourceCountry": "Indonesia"
+    },
+    "thessaloniki": {
+      "name": "Thessaloniki",
+      "coordinates": [
+        22.883055,
+        40.698052
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150955,
+      "sourceName": "Thessaloniki",
+      "sourceCountry": "Greece"
+    },
+    "timbuktu": {
+      "name": "Timbuktu",
+      "coordinates": [
+        -3.016596,
+        16.766585
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150921,
+      "sourceName": "Timbuktu",
+      "sourceCountry": "Mali"
+    },
+    "toamasina": {
+      "name": "Toamasina",
+      "coordinates": [
+        49.404984,
+        -18.181798
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159148359,
+      "sourceName": "Toamasina",
+      "sourceCountry": "Madagascar"
+    },
+    "tokyo": {
+      "name": "Tokyo",
+      "coordinates": [
+        139.749462,
+        35.686963
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151609,
+      "sourceName": "Tokyo",
+      "sourceCountry": "Japan"
+    },
+    "toledo": {
+      "name": "Toledo",
+      "coordinates": [
+        -4.016716,
+        39.867036
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159133795,
+      "sourceName": "Toledo",
+      "sourceCountry": "Spain"
+    },
+    "tripoli": {
+      "name": "Tripoli",
+      "coordinates": [
+        13.180012,
+        32.8925
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151415,
+      "sourceName": "Tripoli",
+      "sourceCountry": "Libya"
+    },
+    "tunis": {
+      "name": "Tunis",
+      "coordinates": [
+        10.179678,
+        36.802778
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150537,
+      "sourceName": "Tunis",
+      "sourceCountry": "Tunisia"
+    },
+    "ulaanbaatar": {
+      "name": "Ulaanbaatar",
+      "coordinates": [
+        106.91467,
+        47.918619
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150781,
+      "sourceName": "Ulaanbaatar",
+      "sourceCountry": "Mongolia"
+    },
+    "venice": {
+      "name": "Venice",
+      "coordinates": [
+        12.334999,
+        45.438659
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150277,
+      "sourceName": "Venice",
+      "sourceCountry": "Italy"
+    },
+    "vienna": {
+      "name": "Vienna",
+      "coordinates": [
+        16.364693,
+        48.201961
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151563,
+      "sourceName": "Vienna",
+      "sourceCountry": "Austria"
+    },
+    "vientiane": {
+      "name": "Vientiane",
+      "coordinates": [
+        102.59998,
+        17.966693
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150991,
+      "sourceName": "Vientiane",
+      "sourceCountry": "Laos"
+    },
+    "warsaw": {
+      "name": "Warsaw",
+      "coordinates": [
+        21.005347,
+        52.230872
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151299,
+      "sourceName": "Warsaw",
+      "sourceCountry": "Poland"
+    },
+    "wellington": {
+      "name": "Wellington",
+      "coordinates": [
+        174.777201,
+        -41.292068
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151699,
+      "sourceName": "Wellington",
+      "sourceCountry": "New Zealand"
+    },
+    "xian": {
+      "name": "Xi’an",
+      "coordinates": [
+        108.89305,
+        34.276971
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151363,
+      "sourceName": "Xian",
+      "sourceCountry": "China"
+    },
+    "yangon": {
+      "name": "Yangon",
+      "coordinates": [
+        96.164732,
+        16.7853
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159151477,
+      "sourceName": "Yangon",
+      "sourceCountry": "Myanmar"
+    },
+    "zanzibar": {
+      "name": "Zanzibar",
+      "coordinates": [
+        39.200026,
+        -6.16
+      ],
+      "source": "natural-earth-places",
+      "sourceFeatureId": 1159150789,
+      "sourceName": "Zanzibar",
+      "sourceCountry": "Tanzania"
+    }
+  },
+  "lessons": {
+    "history-accra-kumasi-1880-1960": [
+      "accra",
+      "kumasi"
+    ],
+    "history-addis-ababa-massawa-1880-1960": [
+      "addisababa",
+      "massawa"
+    ],
+    "history-ankara-istanbul-1300-1530": [
+      "ankara",
+      "istanbul"
+    ],
+    "history-antananarivo-toamasina-1880-1960": [
+      "antananarivo",
+      "toamasina"
+    ],
+    "history-ashgabat-mashhad-1800-1900": [
+      "ashgabat",
+      "mashhad"
+    ],
+    "history-athens-thessaloniki-1815-1900": [
+      "athens",
+      "thessaloniki"
+    ],
+    "history-baghdad-tabriz-1200-1279": [
+      "baghdad",
+      "tabriz"
+    ],
+    "history-baku-batumi-oil-rail-connection": [
+      "baku",
+      "batumi"
+    ],
+    "history-balkh-samarkand-1500-1700": [
+      "balkh",
+      "samarkand"
+    ],
+    "history-bangkok-chiang-mai-1600-1900": [
+      "bangkok",
+      "chiangmai"
+    ],
+    "history-barcelona-marseille-1492-1700": [
+      "barcelona",
+      "marseille"
+    ],
+    "history-beijing-nanjing-1200-1279": [
+      "beijing",
+      "nanjing"
+    ],
+    "history-beirut-haifa-rail-construction-operation-evidence": [
+      "beirut",
+      "haifa"
+    ],
+    "history-belgrade-sarajevo-1800-1920": [
+      "belgrade",
+      "sarajevo"
+    ],
+    "history-berlin-munich-1700-1900": [
+      "berlin",
+      "munich"
+    ],
+    "history-buenos-aires-asuncion-1700-1880": [
+      "buenosaires",
+      "asuncion"
+    ],
+    "history-cairo-damascus-1000-1200": [
+      "cairo",
+      "damascus"
+    ],
+    "history-cape-town-pretoria-1800-1900": [
+      "capetown",
+      "pretoria"
+    ],
+    "history-chennai-bengaluru-1700-1900": [
+      "chennai",
+      "bengaluru"
+    ],
+    "history-colombo-kandy-1700-1900": [
+      "colombo",
+      "kandy"
+    ],
+    "history-cusco-quito-1492-1530": [
+      "cusco",
+      "quito"
+    ],
+    "history-dakar-bamako-1880-1960": [
+      "dakar",
+      "bamako"
+    ],
+    "history-dali-chengdu-route-synthesis-evidence": [
+      "dali",
+      "chengdu"
+    ],
+    "history-damascus-baghdad-600-800": [
+      "damascus",
+      "baghdad"
+    ],
+    "history-damascus-cairo-1500-1530": [
+      "damascus",
+      "cairo"
+    ],
+    "history-darwin-java-cable-service-evidence": [
+      "darwin",
+      "banyuwangi"
+    ],
+    "history-delhi-agra-1530-1700": [
+      "delhi",
+      "agra"
+    ],
+    "history-delhi-lahore-1200-1530": [
+      "delhi",
+      "lahore"
+    ],
+    "history-dhaka-kolkata-1900-1994": [
+      "dhaka",
+      "kolkata"
+    ],
+    "history-dhaka-patna-1700-1900": [
+      "dhaka",
+      "patna"
+    ],
+    "history-dublin-london-1700-1960": [
+      "dublin",
+      "london"
+    ],
+    "history-fez-algiers-1200-1700": [
+      "fez",
+      "algiers"
+    ],
+    "history-guangzhou-hanoi-1400-1700": [
+      "guangzhou",
+      "hanoi"
+    ],
+    "history-hangzhou-beijing-1279-1400": [
+      "hangzhou",
+      "beijing"
+    ],
+    "history-hanoi-hue-1400-1700": [
+      "hanoi",
+      "hue"
+    ],
+    "history-harare-maputo-1900-1960": [
+      "harare",
+      "maputo"
+    ],
+    "history-havana-san-juan-1800-1960": [
+      "havana",
+      "sanjuan"
+    ],
+    "history-helsinki-stockholm-1700-1920": [
+      "helsinki",
+      "stockholm"
+    ],
+    "history-herat-kabul-1400-1700": [
+      "herat",
+      "kabul"
+    ],
+    "history-jakarta-surabaya-1600-1800": [
+      "jakarta",
+      "surabaya"
+    ],
+    "history-kabul-peshawar-1700-1900": [
+      "kabul",
+      "peshawar"
+    ],
+    "history-karachi-delhi-1900-1960": [
+      "karachi",
+      "delhi"
+    ],
+    "history-kathmandu-patna-1700-1900": [
+      "kathmandu",
+      "patna"
+    ],
+    "history-khartoum-cairo-1800-1900": [
+      "khartoum",
+      "cairo"
+    ],
+    "history-lagos-ibadan-1880-1960": [
+      "lagos",
+      "ibadan"
+    ],
+    "history-lima-potosi-1530-1800": [
+      "lima",
+      "potosi"
+    ],
+    "history-lisbon-seville-1200-1530": [
+      "lisbon",
+      "seville"
+    ],
+    "history-london-edinburgh-1500-1700": [
+      "london",
+      "edinburgh"
+    ],
+    "history-luanda-kinshasa-1880-1960": [
+      "luanda",
+      "kinshasa"
+    ],
+    "history-makassar-ternate-1600-1900": [
+      "makassar",
+      "ternate"
+    ],
+    "history-malacca-aceh-1500-1700": [
+      "malacca",
+      "aceh"
+    ],
+    "history-manila-cebu-1500-1700": [
+      "manila",
+      "cebu"
+    ],
+    "history-marrakesh-fez-1200-1500": [
+      "marrakesh",
+      "fez"
+    ],
+    "history-mbanza-kongo-luanda-1500-1700": [
+      "mbanzakongo",
+      "luanda"
+    ],
+    "history-mecca-cairo-1700-1920": [
+      "mecca",
+      "cairo"
+    ],
+    "history-mexico-city-oaxaca-1492-1530": [
+      "mexicocity",
+      "oaxaca"
+    ],
+    "history-mogadishu-berbera-1800-1900": [
+      "mogadishu",
+      "berbera"
+    ],
+    "history-mombasa-zanzibar-1700-1880": [
+      "mombasa",
+      "zanzibar"
+    ],
+    "history-mosul-baghdad-1700-1920": [
+      "mosul",
+      "baghdad"
+    ],
+    "history-mumbai-surat-1700-1900": [
+      "mumbai",
+      "surat"
+    ],
+    "history-muscat-zanzibar-1800-1880": [
+      "muscat",
+      "zanzibar"
+    ],
+    "history-n-djamena-kano-1900-1960": [
+      "ndjamena",
+      "kano"
+    ],
+    "history-naha-kagoshima-1700-1900": [
+      "naha",
+      "kagoshima"
+    ],
+    "history-naples-tunis-1200-1500": [
+      "naples",
+      "tunis"
+    ],
+    "history-new-york-boston-1700-1900": [
+      "newyork",
+      "boston"
+    ],
+    "history-nouakchott-saint-louis-1900-1960": [
+      "nouakchott",
+      "saintlouis"
+    ],
+    "history-oslo-copenhagen-1800-1920": [
+      "oslo",
+      "copenhagen"
+    ],
+    "history-palermo-cairo-1000-1200": [
+      "palermo",
+      "cairo"
+    ],
+    "history-paris-lyon-1000-1500": [
+      "paris",
+      "lyon"
+    ],
+    "history-phnom-penh-angkor-1400-1700": [
+      "phnompenh",
+      "angkor"
+    ],
+    "history-prague-vienna-1492-1880": [
+      "prague",
+      "vienna"
+    ],
+    "history-pune-hyderabad-1700-1900": [
+      "pune",
+      "hyderabad"
+    ],
+    "history-quebec-montreal-1700-1800": [
+      "quebec",
+      "montreal"
+    ],
+    "history-ravenna-istanbul-500-600": [
+      "ravenna",
+      "istanbul"
+    ],
+    "history-riga-tallinn-1700-1920": [
+      "riga",
+      "tallinn"
+    ],
+    "history-rio-salvador-1700-1900": [
+      "rio",
+      "salvador"
+    ],
+    "history-rome-athens-100-400": [
+      "rome",
+      "athens"
+    ],
+    "history-rome-carthage-100-500": [
+      "rome",
+      "carthage"
+    ],
+    "history-samarkand-bukhara-1000-1200": [
+      "samarkand",
+      "bukhara"
+    ],
+    "history-samarkand-kashgar-1200-1279": [
+      "samarkand",
+      "kashgar"
+    ],
+    "history-sanaa-aden-1878-1920": [
+      "sanaa",
+      "aden"
+    ],
+    "history-santiago-buenos-aires-1800-1900": [
+      "santiago",
+      "buenosaires"
+    ],
+    "history-seoul-busan-1400-1900": [
+      "seoul",
+      "busan"
+    ],
+    "history-sofala-kilwa-1500-1700": [
+      "sofala",
+      "kilwa"
+    ],
+    "history-soyo-cabinda-1700-1900": [
+      "soyo",
+      "cabinda"
+    ],
+    "history-sydney-wellington-1800-1900": [
+      "sydney",
+      "wellington"
+    ],
+    "history-tabriz-isfahan-1500-1700": [
+      "tabriz",
+      "isfahan"
+    ],
+    "history-taipei-tainan-rail-opening-evidence": [
+      "taipei",
+      "tainan"
+    ],
+    "history-tashkent-almaty-1800-1900": [
+      "tashkent",
+      "almaty"
+    ],
+    "history-tehran-shiraz-1500-1700": [
+      "tehran",
+      "shiraz"
+    ],
+    "history-timbuktu-gao-1300-1600": [
+      "timbuktu",
+      "gao"
+    ],
+    "history-tokyo-kyoto-1600-1880": [
+      "tokyo",
+      "kyoto"
+    ],
+    "history-toledo-cordoba-600-800": [
+      "toledo",
+      "cordoba"
+    ],
+    "history-tunis-tripoli-1500-1700": [
+      "tunis",
+      "tripoli"
+    ],
+    "history-ulaanbaatar-beijing-1700-1994": [
+      "ulaanbaatar",
+      "beijing"
+    ],
+    "history-venice-split-1700-1815": [
+      "venice",
+      "split"
+    ],
+    "history-vientiane-luang-prabang-1800-1900": [
+      "vientiane",
+      "luangprabang"
+    ],
+    "history-warsaw-krakow-1700-1920": [
+      "warsaw",
+      "krakow"
+    ],
+    "history-xian-luoyang-200-700": [
+      "xian",
+      "luoyang"
+    ],
+    "history-yangon-mandalay-1700-1900": [
+      "yangon",
+      "mandalay"
+    ]
+  }
+}

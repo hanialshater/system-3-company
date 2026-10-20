@@ -57,7 +57,7 @@ export default function DishRunsOut({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One bacterium splits in two every 20 minutes, with plenty of food. About how many bacteria are there after 10 hours?",
+          "You put one bacterium in a dish with plenty of food. It splits in two every 20 minutes. When you check 10 hours later, about how many bacteria are there?",
         options: ["About 30,000", "About a million", "About a billion"],
         answer: 2,
       }}

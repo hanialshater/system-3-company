@@ -40,7 +40,7 @@ export default function TwoSquaresBecomeOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A right triangle has short sides 3 and 4. How long is its long side?",
+        question: "At your desk you draw a right triangle with short sides 3 and 4 long, the square corner between them. How long is its long side?",
         options: ["5", "7", "3.5"],
         answer: 0,
       }}

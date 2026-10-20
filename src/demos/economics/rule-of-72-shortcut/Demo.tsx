@@ -39,7 +39,7 @@ export default function RuleOf72({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Money grows 9% a year, compounding. About how long until it doubles?",
+        question: "Your savings grow 9% a year, compounding, and you leave them alone. About how long until they double?",
         options: ["About 8 years", "About 11 years", "About 16 years"],
         answer: 0,
       }}

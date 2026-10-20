@@ -109,7 +109,7 @@ export default function CardsDoRemember({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A deck has ${RED} red and ${BLACK} black cards. The first ${FORCED} cards dealt are all red, and none go back. How likely is the next card red?`,
+        question: `Dealing from a shuffled deck of ${RED} red and ${BLACK} black cards, you turn up ${FORCED} reds in a row and set them aside. How likely is the next card red?`,
         options: ["50%", `about ${pct(AFTER.pRed)}`, `about ${pct(1 - AFTER.pRed)}`],
         answer: 1,
       }}

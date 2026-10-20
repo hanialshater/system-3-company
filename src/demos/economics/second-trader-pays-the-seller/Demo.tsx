@@ -58,7 +58,7 @@ export default function SecondTrader({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A trader links a seller ($0) to a buyer ($1), keeping $1. A second trader with her own $1 buyer reaches the seller. Who gets it?",
+        question: "A trader links a seller (item worth $0 to them) to a buyer (worth $1), keeping the $1. A second trader, with her own $1 buyer, can also reach the seller. Who ends up with the dollar?",
         options: ["The two traders split it", "The seller", "The buyer"],
         answer: 1,
       }}

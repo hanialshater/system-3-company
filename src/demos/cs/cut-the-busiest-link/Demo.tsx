@@ -125,7 +125,7 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two friend groups are joined by two links, each carrying 12 shortest paths. Cut one link. What does the other carry now?",
+        question: "Your two friend groups are joined by just two links, each carrying 12 shortest paths. One link goes down. How many shortest paths does the other carry now?",
         options: ["12, the same", "24", "6"],
         answer: 1,
       }}

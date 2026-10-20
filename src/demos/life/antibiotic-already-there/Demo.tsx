@@ -142,7 +142,7 @@ export default function AntibioticAlreadyThere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A dish holds ${name(BIG)} bacteria that have never met a drug. A resistance mutation is a random change that lets a cell survive it, and 1 in 100 million cells has one. About how many resistant cells are already in the dish?`,
+        question: `Your lab dish holds ${name(BIG)} bacteria that have never met a drug. A random change called a resistance mutation lets a cell survive it, and 1 in 100 million cells has one. About how many resistant cells are already there?`,
         options: ["None", `About ${BIG_RES}`, "About 10 million"],
         answer: 1,
       }}

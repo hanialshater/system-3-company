@@ -119,7 +119,7 @@ export default function AverageWaitSixRolls({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Rolling a die until the first six takes ${MEAN} rolls on average. What is the chance you need more than ${MEAN} rolls?`,
+        question: `To start a board game you must roll a six. On average that takes ${MEAN} rolls. What is the chance you still have no six after ${MEAN} rolls?`,
         options: ["about 10%", `about ${pct(exactMoreThan(MEAN))}`, "about 50%"],
         answer: 1,
       }}

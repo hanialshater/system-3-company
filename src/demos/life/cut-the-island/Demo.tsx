@@ -93,7 +93,7 @@ export default function CutTheIsland({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A forest keeps only 10% of its area. With a typical species-area exponent of 0.25, about what share of its species does it eventually keep?",
+          "Clearing leaves a forest with only 10% of its area. Using the species-area rule with its typical exponent of 0.25, about what share of its species does the forest eventually keep?",
         options: ["About 10%", `About ${AT10}%`, "About 90%"],
         answer: 1,
       }}

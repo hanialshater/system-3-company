@@ -41,7 +41,7 @@ export default function CellTooBig({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A cube-shaped cell grows from 1 unit wide to 10 units wide. Its surface per unit of volume (skin per bit of inside) becomes…",
+          "Under your microscope, a cube-shaped cell grows from 1 unit wide to 10 units wide. What happens to its surface per unit of volume, the skin it has for each bit of inside?",
         options: ["10 times larger", "the same", "10 times smaller"],
         answer: 2,
       }}

@@ -36,7 +36,7 @@ export default function Faraday({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A current of ${I_Q.toFixed(1)} A (${I_Q.toFixed(1)} coulombs of charge every second) flows for 1.0 h through copper(II) sulfate solution. Each copper atom deposited takes 2 electrons, and 1 mole of electrons carries ${fmt(F)} C. The copper deposited is about…`,
+        question: `Plating copper at your bench, you run ${I_Q.toFixed(1)} A (${I_Q.toFixed(1)} coulombs of charge every second) for 1.0 h through copper(II) sulfate solution. Each copper atom deposited takes 2 electrons, and 1 mole of electrons carries ${fmt(F)} C. About how much copper do you get?`,
         options: [`${(grams(I_Q, HOUR) / 2).toFixed(1)} g`, `${grams(I_Q, HOUR).toFixed(1)} g`, `${(grams(I_Q, HOUR) * 2).toFixed(1)} g`],
         answer: 1,
       }}

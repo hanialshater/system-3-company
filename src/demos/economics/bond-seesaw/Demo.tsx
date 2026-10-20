@@ -52,7 +52,7 @@ export default function BondSeesaw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Your $${FACE.toLocaleString("en-US")} bond pays $${COUPON} a year (5%) for ${YEARS} years, then $${FACE.toLocaleString("en-US")} back. New $${FACE.toLocaleString("en-US")} bonds now pay ${Q_RATE}%, $${Q_RATE * 10} a year. What is yours worth today?`,
+        question: `You hold a $${FACE.toLocaleString("en-US")} bond that pays $${COUPON} a year (5%) for ${YEARS} years, then $${FACE.toLocaleString("en-US")} back. New $${FACE.toLocaleString("en-US")} bonds now pay ${Q_RATE}%, $${Q_RATE * 10} a year. If you sell yours today, what is it worth?`,
         options: [`$${FACE.toLocaleString("en-US")}`, `about ${usd(price(Q_RATE))}`, "about $1,060"],
         answer: 1,
       }}

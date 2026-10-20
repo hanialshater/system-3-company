@@ -52,7 +52,7 @@ export default function ThreeDayDoubling({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A made-up outbreak has 100 cases, and the count doubles every 3 days. If nothing changes, about how many cases are there after 30 days?",
+          "Your town has 100 cases of a made-up disease, and the count doubles every 3 days. If nothing changes, about how many cases will there be after 30 days?",
         options: ["About 1,000", "About 10,000", "About 100,000"],
         answer: 2,
       }}
@@ -67,7 +67,7 @@ export default function ThreeDayDoubling({ slug }: { slug: string }) {
           </p>
           <p>
             Stepping back from day 30 to day 24 cut the count to a quarter, 25,600. Six days is two doublings, so in this
-            model a 6-day delay means four times as many cases. When growth compounds, a few days is a lot.
+            model a 6-day delay means four times as many cases.
           </p>
           <p className="muted">
             The disease is made up and its doubling time never changes. Real outbreaks slow as people become immune or

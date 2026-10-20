@@ -108,7 +108,7 @@ export default function LastSurvivorIsNotTheMostCommon({ slug }: { slug: string 
     <Lesson
       slug={slug}
       predict={{
-        question: "Candidate plus counter: same item +1, different −1; at 0 the next item becomes candidate. Stream: A A A B B C C. Final candidate?",
+        question: "Items stream past you: A A A B B C C. You keep a candidate and a counter: same item adds 1, a different item takes 1 away, and at 0 the next item becomes candidate. Final candidate?",
         options: ["A", "B", "C"],
         answer: 2,
       }}

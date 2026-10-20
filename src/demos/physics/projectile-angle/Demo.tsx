@@ -94,7 +94,7 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Same throwing speed, ${V} m/s, no air resistance. Ball A leaves the ground at ${ASK_A}°, ball B at ${ASK_B}°. Which lands farther away?`,
+        question: `At the park you throw two balls at the same speed, ${V} m/s, with no air resistance. Ball A leaves the ground at ${ASK_A}°, ball B at ${ASK_B}°. Which lands farther away?`,
         options: [`A, the flatter ${ASK_A}° throw`, `B, the steeper ${ASK_B}° throw`, "They land at the same spot"],
         answer: 2,
       }}

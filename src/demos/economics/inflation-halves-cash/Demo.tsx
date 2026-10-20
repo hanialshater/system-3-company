@@ -34,7 +34,7 @@ export default function InflationHalvesCash({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Prices rise 3% every year. About how much will $100 of cash buy, in today's money, after 24 years?",
+        question: "You tuck $100 of cash in a drawer, and prices rise 3% every year. After 24 years, about how much will it buy, in today's money?",
         options: ["About $28", "About $49", "About $72"],
         answer: 1,
       }}

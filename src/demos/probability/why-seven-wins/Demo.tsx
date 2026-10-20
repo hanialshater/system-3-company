@@ -119,7 +119,7 @@ export default function WhySevenWins({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Roll two fair dice. A total of 7 is how many times as likely as a total of 3?",
+        question: "At a casino table, you roll two fair dice. How many times as likely is a total of 7 as a total of 3?",
         options: ["Equally likely", `${RATIO} times`, `${2 * RATIO} times`],
         answer: 1,
       }}
@@ -134,7 +134,7 @@ export default function WhySevenWins({ slug }: { slug: string }) {
           <p>
             Every total is possible, but totals are not equally likely: the middle can be made in the most ways. Your{" "}
             {N_ROLLS.toLocaleString("en-US")} rolls gave {ROLLS[7]} sevens and {ROLLS[3]} threes, close to {RATIO} to 1 but
-            not exact; rolls wobble, the 36 ways do not.
+            not exact.
           </p>
         </>
       )}

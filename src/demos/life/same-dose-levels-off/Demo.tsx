@@ -126,7 +126,7 @@ export default function SameDoseLevelsOff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "After 10 days (40 additions), how much is there just after an addition?",
+        question: "Every 6 hours, 100 units of a made-up substance are added, and the body clears half of whatever is there every 6 hours. After 10 days (40 additions), how much is there just after an addition?",
         options: ["About 200", "About 2,000", "About 4,000"],
         answer: 0,
       }}

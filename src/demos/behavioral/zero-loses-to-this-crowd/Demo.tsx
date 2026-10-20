@@ -94,7 +94,7 @@ export default function ZeroLosesToThisCrowd({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "0 is this game's equilibrium guess. Against this simulated crowd, which guess lands closest to the target?",
+          "Everyone guesses 0 to 100, and the guess closest to two thirds of the average wins. 0 is the equilibrium guess. Against this simulated crowd, which guess lands closest to the target?",
         options: ["0", "About 35", "About 23"],
         answer: 2,
       }}

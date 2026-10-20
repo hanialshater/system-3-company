@@ -61,7 +61,7 @@ export default function CompoundInterest({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "$1,000 earns 7% a year, and the interest stays in. After 10 years the balance is $1,967. After 40 years, about how big is the balance?",
+          "You put $1,000 in an account paying 7% a year and leave the interest in. After 10 years it holds $1,967. After 40 years, about how much does it hold?",
         options: ["About $3,800", "About $4,900", "About $15,000"],
         answer: 2,
       }}
@@ -76,7 +76,7 @@ export default function CompoundInterest({ slug }: { slug: string }) {
           </p>
           <p>
             Plain 7% of $1,000 a year gives {money(simple(40))} (the plain-7% readout); keeping the first decade&apos;s pace (dashed line) ends near {hundreds(straight(40))}. The other{" "}
-            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. The balance roughly doubles every ten years, and doubling is not a straight line.
+            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. The balance roughly doubles every ten years.
           </p>
           <p className="muted">A model: a steady 7% with no fees, taxes or inflation. Real returns wobble.</p>
         </>

@@ -33,7 +33,7 @@ function Stage({ locked, reach, m, setM }: { locked: boolean; reach: (n: string)
       <p className={s.msg}>
         {locked
           ? "Make a prediction to start."
-          : `${DOTS} random dots, 100 squares. Ringed = ${CROWD} or more dots. Tally: batches with a ringed square.`}
+          : `${DOTS} random dots. A ring marks a square with ${CROWD}+ dots. Tally: batches with a ring.`}
       </p>
       <svg viewBox={`0 0 ${SZ} ${SZ}`} className={`stage-svg ${s.svg}`} role="img" aria-label={cur ? `Batch ${m}: ${ringed.length} crowded squares` : "Empty grid"}>
         {Array.from({ length: SIDE * SIDE }, (_, i) => (
@@ -59,7 +59,7 @@ function Stage({ locked, reach, m, setM }: { locked: boolean; reach: (n: string)
       </svg>
       <Row>
         <Control disabled={locked} onClick={() => add(1)}>Drop {DOTS} dots</Control>
-        <Control disabled={locked} onClick={() => add(10)}>Drop 10 more batches</Control>
+        <Control disabled={locked} onClick={() => add(10)}>Drop 10 more</Control>
         <Control disabled={locked} onClick={() => add(100)}>Drop 100 more</Control>
       </Row>
       <Row>
@@ -76,7 +76,7 @@ export default function RandomDotsCluster({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${DOTS} dots land at random on a 10 x 10 grid of squares. How likely is it that some square holds ${CROWD} or more dots?`,
+        question: `The first ${DOTS} raindrops land at random on a patio of 10 x 10 square tiles. How likely is it that some tile catches ${CROWD} or more?`,
         options: ["about 15%", `about ${pct(EXACT)}`, "about 95%"],
         answer: 1,
       }}

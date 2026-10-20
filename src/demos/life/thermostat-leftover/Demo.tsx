@@ -72,7 +72,7 @@ export default function ThermostatLeftover({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy egg incubator, set to ${TARGET}. The room is ${TARGET - ROOM} colder (${ROOM}). The heater adds heat in proportion to how far below ${TARGET} it is, with gain ${Q_GAIN}. The steady temperature is:`,
+        question: `You set a made-up egg incubator to ${TARGET}. The room is ${TARGET - ROOM} colder (${ROOM}). Its heater adds heat in proportion to how far below ${TARGET} it is, with gain ${Q_GAIN}. Where does the temperature settle?`,
         options: [`${TARGET}`, String(steady(Q_GAIN)), `${ROOM}`],
         answer: 1,
       }}
