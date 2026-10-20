@@ -146,7 +146,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "TDV identifies a specific army appointment at Delhi and a separate Lahore governor–sultan conflict involving Babur’s repeated Punjab interventions. Delhi and Agra followed his 1526 battlefield victory rather than one simultaneous change of identical offices. Army command, provincial conflict and campaign are different relations; the original Baburnama remains uncollated and conquest is not consent.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

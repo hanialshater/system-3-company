@@ -15,7 +15,7 @@
       "scaling-laws"
     ],
     "doesNotKnow": [
-      "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute\u226580, which flags?"
+      "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute≥80, which flags?"
     ]
   },
   "misconception": "The contrasting operations must produce the same result.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-compute-thresholds.c1",
-      "text": "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute\u226580, which flags? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: A only; B only; Both.",
+      "text": "A: quality 10, compute 100. B: quality 10, compute 40. With flag compute≥80, which flags? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: A only; B only; Both.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified",
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-compute-thresholds.c5",
-      "text": "Declared finite stage data, operations and retained results, by case: Fictional screening \u00b7 units stipulated Quality Compute Flag A 10 100 \u2713 B 10 40 \u2014 compute \u2265 80 Toy rule \u00b7 no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [\u2713,\u2014] 2. 30: [\u2713,\u2713] | Fictional screening \u00b7 units stipulated Quality Compute Flag A 10 100 \u2713 B 10 40 \u2014 compute \u2265 80 Toy rule \u00b7 no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [\u2713,\u2014] 2. 30: [\u2713,\u2713]",
+      "text": "Declared finite stage data, operations and retained results, by case: Fictional screening · units stipulated Quality Compute Flag A 10 100 ✓ B 10 40 — compute ≥ 80 Toy rule · no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [✓,—] 2. 30: [✓,✓] | Fictional screening · units stipulated Quality Compute Flag A 10 100 ✓ B 10 40 — compute ≥ 80 Toy rule · no legal classification Threshold 80 Threshold 30 Reset view 1. 80: [✓,—] 2. 30: [✓,✓]",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 10; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-compute-thresholds/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
       "status": "unverified"
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:compute-thresholds",
     "also": [],

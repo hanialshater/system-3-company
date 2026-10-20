@@ -18,7 +18,7 @@ export const DOCUMENTS = [
   },
   {
     "id": "queenBill",
-    "text": "1896 introduced bill refers Antananarivo troops and retaining Queen Ranavalo functions",
+    "text": "A bill introduced in 1896 refers to troops in Antananarivo and proposes retaining Queen Ranavalo’s functions",
     "requiredContext": "Bill introduced 30 May 1896, not enacted statute or actual fulfilled retained powers. Troops entering Antananarivo is not Ambohimanga location; minimal facts only.",
     "sourceUrl": "https://history.state.gov/historicaldocuments/frus1896/d102",
     "locator": "indexed169–177 and244–254; Times enclosure in FRUSd102",

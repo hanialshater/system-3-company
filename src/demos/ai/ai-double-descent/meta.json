@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "double-descent",
   "status": "draft",
-  "version": 3,
+  "version": 5,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -26,7 +26,7 @@
   "claims": [
     {
       "id": "ai.ai-double-descent.c1",
-      "text": "Title: Which width travels better?. Hook: Compare fits on a held-out sample.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: Which width has lower held-out error here? Choices: 12; 16; Equal. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "text": "Title: Which width travels better?. Hook: Compare fits on a held-out sample.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: Which width has lower held-out error here? Choices: 12; 16; Equal. Explore instruction: Compare each case and its saved results.",
       "support": "derivation",
       "source": "Pinned seed7 raw matrices and fitted least-squares weights, trained-fixtures.json#doubleDescent; https://arxiv.org/abs/1812.11118. Browser evaluates fitted weights, not fresh fitting. One finite seed; wider is not guaranteed better. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -36,7 +36,7 @@
     },
     {
       "id": "ai.ai-double-descent.c2",
-      "text": "The declared fitted fixture uses seed7,12 noisy training rows,256 held-out rows and widths1,2,3,6,9,11,12,13,16,24,48. Fullprecision saved least-squares weights are evaluated against the pinned raw matrices; this is fixture evaluation, not fresh training. At noisy widths3,12,16,48, held-out MSE rounds to0.07,5.32,0.68,1.06; the12/16 training residuals round to0.00. Clean evaluates noiseless fitted weights on the same matrices; held-out12/16 errors round to0.00/0.47. All displayed MSE rounds to two decimals; plotted residuals use unrounded values on one width/log-width coordinate axis. One seed does not establish a monotonic benefit from width.",
+      "text": "The declared fitted example uses seed7,12 noisy training rows,256 held-out rows and widths1,2,3,6,9,11,12,13,16,24,48. Fullprecision saved least-squares weights are evaluated against the pinned raw matrices; this is fixture evaluation, not fresh training. At noisy widths3,12,16,48, held-out MSE rounds to0.07,5.32,0.68,1.06; the12/16 training residuals round to0.00. Clean evaluates noiseless fitted weights on the same matrices; held-out12/16 errors round to0.00/0.47. All displayed MSE rounds to two decimals; plotted residuals use unrounded values on one width/log-width coordinate axis. One seed does not establish a monotonic benefit from width.",
       "support": "derivation",
       "source": "Pinned seed7 raw matrices and fitted least-squares weights, trained-fixtures.json#doubleDescent; https://arxiv.org/abs/1812.11118. Browser evaluates fitted weights, not fresh fitting. One finite seed; wider is not guaranteed better. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md. Support implementation: model.ts and the lesson-local fixture.json when present; original owner final9 data and adopted design.",
       "status": "unverified",
@@ -46,7 +46,7 @@
     },
     {
       "id": "ai.ai-double-descent.c3",
-      "text": "At width12, training error vanishes while held-out error peaks. Width16 lowers that peak but still loses to width3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction.",
+      "text": "At width 12, training error vanishes while held-out error peaks. Width 16 lowers that peak but still loses to width 3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction.",
       "support": "derivation",
       "source": "Pinned seed7 raw matrices and fitted least-squares weights, trained-fixtures.json#doubleDescent; https://arxiv.org/abs/1812.11118. Browser evaluates fitted weights, not fresh fitting. One finite seed; wider is not guaranteed better. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -56,7 +56,7 @@
     },
     {
       "id": "ai.ai-double-descent.c4",
-      "text": "Recall: Two fits have zero training residual. What distinguishes predictive error? Choices: Held-out error on the fixed test set; Their equally perfect training scores; Width alone guarantees the better fit. Answer rationale: At width12, training error vanishes while held-out error peaks. Width16 lowers that peak but still loses to width3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction.",
+      "text": "Recall: Two fits have zero training residual. What distinguishes predictive error? Choices: Held-out error on the fixed test set; Their equally perfect training scores; Width alone guarantees the better fit. Answer rationale: At width 12, training error vanishes while held-out error peaks. Width 16 lowers that peak but still loses to width 3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction.",
       "support": "derivation",
       "source": "Pinned seed7 raw matrices and fitted least-squares weights, trained-fixtures.json#doubleDescent; https://arxiv.org/abs/1812.11118. Browser evaluates fitted weights, not fresh fitting. One finite seed; wider is not guaranteed better. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -66,7 +66,7 @@
     },
     {
       "id": "ai.ai-double-descent.c5",
-      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. The declared fitted fixture uses seed7,12 noisy training rows,256 held-out rows and widths1,2,3,6,9,11,12,13,16,24,48.",
+      "text": "Raw inputs, prediction and controls use this declared finite protocol. Primary and countercase actions compute and retain actual result snapshots; Reset clears the live probe selection without erasing earned comparisons. Fresh initialization clears snapshots and relocks controls. The declared fitted example uses seed7,12 noisy training rows,256 held-out rows and widths1,2,3,6,9,11,12,13,16,24,48.",
       "support": "derivation",
       "source": "Pinned seed7 raw matrices and fitted least-squares weights, trained-fixtures.json#doubleDescent; https://arxiv.org/abs/1812.11118. Browser evaluates fitted weights, not fresh fitting. One finite seed; wider is not guaranteed better. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -83,7 +83,7 @@
       "Width alone guarantees the better fit"
     ],
     "answer": 0,
-    "why": "At width12, training error vanishes while held-out error peaks. Width16 lowers that peak but still loses to width3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction."
+    "why": "At width 12, training error vanishes while held-out error peaks. Width 16 lowers that peak but still loses to width 3. Removing training noise changes this comparison. These are fitted results from one seed, not a promise that adding width improves prediction."
   },
   "evidence": {
     "qa": [],

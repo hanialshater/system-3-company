@@ -48,7 +48,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   return (
     <div className={s.wrap}>
       <p className={s.msg} aria-live="polite">{msg}</p>
-      <svg viewBox="0 0 340 168" className={`stage-svg ${s.svg}`} role="img" aria-label={`Saturation at ${p} mmHg: real carrier ${f1(real)} percent, one-site carrier ${f1(one)} percent`}>
+      <svg viewBox="0 0 340 168" className={`stage-svg ${s.svg}`} role="img" aria-label={`Saturation at ${p} mmHg: four-site carrier ${f1(real)} percent, one-site carrier ${f1(one)} percent`}>
         <line className={s.axis} x1={X0} x2={X1} y1={Y0} y2={Y0} />
         <line className={s.axis} x1={X0} x2={X0} y1={Y1} y2={Y0} />
         {[0, 50, 100].map((v) => (
@@ -69,7 +69,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
         <text className={s.tick} x={(X0 + X1) / 2} y={Y0 + 24}>oxygen pressure (mmHg)</text>
       </svg>
       <div className={s.legend} aria-hidden>
-        <span><i className={s.lReal} />Real (4 sites, cooperative)</span>
+        <span><i className={s.lReal} />4 sites, cooperative</span>
         <span><i className={s.lOne} />One site</span>
       </div>
       <Row>
@@ -79,7 +79,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       </Row>
       <Slider label="Oxygen pressure" value={p} min={PMIN} max={100} step={5} disabled={locked} onChange={go} format={(v) => `${v} mmHg`} />
       <Row>
-        <Readout label="Real full" value={locked ? "?" : `${f1(real)}%`} />
+        <Readout label="4-site full" value={locked ? "?" : `${f1(real)}%`} />
         <Readout label="One-site full" value={locked ? "?" : `${f1(one)}%`} />
         {!locked && fell && (
           <Readout label={`Lost since ${REST}`} value={`${f1(sat(REST, N_REAL) - real)} vs ${f1(sat(REST, N_ONE) - one)} pts`} />
@@ -94,7 +94,7 @@ export default function HemoglobinSCurve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A carrier with one oxygen site and half-point ${P50} mmHg loses about ${Math.round(ONE_DROP)} points of saturation when local oxygen falls from ${REST} to ${WORK} mmHg. The real four-site carrier loses about:`,
+        question: `A carrier with one oxygen site and half-point ${P50} mmHg loses about ${Math.round(ONE_DROP)} points of saturation when local oxygen falls from ${REST} to ${WORK} mmHg. The four-site carrier loses about:`,
         options: ["The same", `${f1(RATIO).replace(/\.0$/, "")} times as much`, "10 times as much"],
         answer: 1,
       }}
@@ -103,7 +103,7 @@ export default function HemoglobinSCurve({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            From {REST} to {WORK} mmHg you saw the real carrier fall from {f1(sat(REST, N_REAL))}% to {f1(sat(WORK, N_REAL))}%: {f1(REAL_DROP)} points. The one-site
+            From {REST} to {WORK} mmHg you saw the four-site carrier fall from {f1(sat(REST, N_REAL))}% to {f1(sat(WORK, N_REAL))}%: {f1(REAL_DROP)} points. The one-site
             carrier fell {f1(ONE_DROP)}. That is <strong>{f1(RATIO)} times</strong> as much.
           </p>
           <p>

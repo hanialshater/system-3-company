@@ -21,7 +21,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "representation": "raw downloaded bytes",
         "makerCustodianEditor": "Thiago Clemencio Sapede; Universidade de São Paulo2012 corrected masters dissertation",
         "publicationOrDocumentDate": "2012",
-        "languageMediationAndLimits": "Portuguese; quoted1785letter located by author, original not collated; agent paraphrase unreviewed",
+        "languageMediationAndLimits": "Portuguese; quoted1785letter located by author, original not collated; paraphrase; not independently reviewed",
         "sourceLevel": "Inherited scholarly/institutional account; source level not upgraded by reuse",
         "locator": "PDF168–169/printed167–168,1785bishop letter discussion/AHU Angola cx70doc28",
         "transport": "certificate verification disabled after local chain failure; identity not cryptographically authenticated",
@@ -191,7 +191,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Sapede and Araujo describe distinct Soyo and Ngoyo institutions and intermediaries. Mavungo’s reprint separately names Capelo and contracting local roles in the 1885 protection, customs and land terms; its individual signature roster is cropped. The thesis’s later governor-landing account is an attributed operation, not identical to treaty prescription. Neither the terms nor that landing erase local institutions, establish universal consent or settle present territorial title. Originals remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

@@ -7,7 +7,7 @@
   },
   "family": "feedback",
   "predict": {
-    "question": "B starts empty, receives seven and serves six each round for six rounds. What is B’s toy result?",
+    "question": "B starts empty, receives seven and serves six each round for six rounds. How many waiting jobs remain in B?",
     "options": [
       "0",
       "42",
@@ -45,5 +45,5 @@
   "unit": "waiting jobs",
   "bookIdea": "The Principles of Product Development Flow emphasizes queues and the economic consequences of managing development flow.",
   "modelBoundary": "A leaves {A} waiting jobs; B leaves {B}. The same six-job service can absorb five arrivals but accumulates one per round when seven arrive. Fixed arrivals and service only; no stochastic near-capacity queueing law or utilization nonlinearity is shown.",
-  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+  "doesItHoldUp": "Does it hold up? Real-world applicability and the connection to the book remain unverified."
 }

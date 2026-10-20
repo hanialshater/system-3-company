@@ -66,14 +66,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A 20-layer network uses sigmoid activations everywhere. After training, which layers' weights have changed the least?",
+    "question": "In the lesson’s weight-1 chain, a signal passes backward through 20 sigmoid layers. Which layers receive the smallest signal?",
     "options": [
       "The first layers, nearest the input",
       "The last layers, nearest the output",
       "All layers changed about equally"
     ],
     "answer": 0,
-    "why": "Going backwards, each sigmoid layer multiplies the error signal by its slope, at most 0.25, so the layers furthest from the output receive almost none of it and barely learn."
+    "why": "With the chain weights fixed at 1, each sigmoid derivative multiplies the signal by at most 0.25. The layers furthest from the output receive the smallest signal. Other weights and paths can change this comparison."
   },
   "evidence": {
     "qa": [
@@ -86,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:vanishing-gradients",
     "also": [],

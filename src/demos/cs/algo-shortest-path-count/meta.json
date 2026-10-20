@@ -1,7 +1,7 @@
 {
   "slug": "algo-shortest-path-count",
   "title": "How many shortest routes tie?",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "A tied distance may still bring new routes worth counting.",
   "domain": "cs",
   "concept": "algo-shortest-path-count",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-shortest-path-count.c4",
-      "text": "Complete the question path calculation, then inspect a changed input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-shortest-path-count.c6",
-      "text": "Shortest paths 2; distance 2. This is the retained computed witness for the question case.",
+      "text": "For the original input: Shortest paths 2; distance 2.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-shortest-path-count.c7",
-      "text": "A strictly better distance replaces its path count. An equal-distance arrival adds the predecessor count; keeping distance and count separately preserves tied optimal routes.",
+      "text": "For the original input: A strictly better distance replaces its path count. An equal-distance arrival adds the predecessor count; keeping distance and count separately preserves tied optimal routes.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -149,7 +149,7 @@
     },
     {
       "id": "cs.algo-shortest-path-count.c19",
-      "text": "Shortest paths 3; distance 2. This is the retained computed witness for the question case.",
+      "text": "For the original input: Shortest paths 3; distance 2.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#shortest_path_count.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -188,7 +188,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-shortest-path-count",

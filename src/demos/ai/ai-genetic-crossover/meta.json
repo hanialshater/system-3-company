@@ -1,7 +1,7 @@
 {
   "slug": "ai-genetic-crossover",
-  "title": "Test genetic crossover",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "Where should the crossover cut?",
+  "hook": "Does the cut preserve the pairs that work together?",
   "domain": "ai",
   "concept": "genetic-crossover",
   "status": "draft",
@@ -15,7 +15,7 @@
       "evolution-strategies"
     ],
     "doesNotKnow": [
-      "Parents1100/0011; cut after2, exchange suffixes. Separable fitness=sum bits. What is the 0000 child’s fitness? Linked fitness separately adds2 per equal adjacent pair."
+      "Parents are 1100 and 0011. Cut after bit 2 and exchange suffixes. With fitness equal to the sum of bits, what is the 0000 child’s fitness? The separate linked score adds 2 for each equal adjacent pair."
     ]
   },
   "misconception": "2",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-genetic-crossover.c1",
-      "text": "Test genetic crossover Compare a declared mechanism with its changed case. Parents1100/0011; cut after2, exchange suffixes. Separable fitness=sum bits. What is the 0000 child’s fitness? Linked fitness separately adds2 per equal adjacent pair. Options: 0; 2",
+      "text": "Test genetic crossover Compare a declared mechanism with its changed case. Parents are 1100 and 0011. Cut after bit 2 and exchange suffixes. With fitness equal to the sum of bits, what is the 0000 child’s fitness? The separate linked score adds 2 for each equal adjacent pair. Options: 0; 2",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §8; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -78,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 6,
   "curriculum": {
     "primary": "ai:genetic-crossover",
     "also": [],

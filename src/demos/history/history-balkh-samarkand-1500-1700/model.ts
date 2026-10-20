@@ -38,7 +38,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "makerCustodianEditor": "Vincent Fourniau; Encyclopaedia Iranica",
         "publicationOrDocumentDate": "1988-12-15",
         "sourceLevel": "Authored scholarly encyclopedia retrospective",
-        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Own minimal English proposed facts only.",
+        "languageMediationAndLimits": "Qualified retrospective; cited originals uninspected and uncollated. Brief English summary proposed for review.",
         "locator": "web L43–44",
         "rawToolResponsePath": "/tmp/history-next15e-source-bodies/balkhHistory.web.json",
         "rawToolResponseSha256": "061ea9bc5dc8d7965673af64608eb5d9bc6e2c3ca661e2fcf5651e68fb8e7d6e",
@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Iranica describes Samarkand’s joint allocation and later succession separately from Balkh’s conquest into a different appanage and later role as an heir’s seat. Royal male kin, seniority and substantial appanage power define the governing mechanism. A shared dynasty does not make these allocations identical, establish unchanged autonomy across 1500–1700 or represent all inhabitants’ consent.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

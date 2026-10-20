@@ -373,7 +373,7 @@ export const study_rebuild_the_procedure = {
     "Recognise each word"
   ],
   "answer": 0,
-  "principle": "This procedure has an explicit order: collect, sort, file. The check compares positions, so owning the right words is insufficient.",
+  "principle": "This procedure has an explicit order: collect, sort, file. The check compares positions, so remembering the words alone is insufficient.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Recognise each word",
@@ -841,7 +841,7 @@ export const study_calendar_needs_travel = {
     "Early by 5 min"
   ],
   "answer": 0,
-  "principle": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
+  "principle": "Travel time occupies a block just as the meeting does. In this exercise, an overlap means the same person is booked twice.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "A free calendar slot means the meeting fits, travel aside.",
@@ -1238,7 +1238,7 @@ export const study_handoff_after_finish = {
     "When drafting starts"
   ],
   "answer": 0,
-  "principle": "Draft completion releases the input for review. Overlap may be possible in other workflows, but this fixture explicitly forbids partial handoffs.",
+  "principle": "Draft completion releases the input for review. Overlap may be possible in other workflows, but this exercise explicitly forbids partial handoffs.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "When drafting starts",
@@ -1344,7 +1344,7 @@ export const study_arrival_is_not_departure = {
   "family": "schedule",
   "slug": "arrival-is-not-departure",
   "title": "Arrival time works backwards",
-  "hook": "A twenty-minute trip for a minute-forty arrival has a latest departure.",
+  "hook": "A 20-minute trip must end at minute 40. When do you need to leave?",
   "objective": "Compute a departure block ending at the required arrival.",
   "question": "Latest departure for this 20-minute trip?",
   "options": [
@@ -1395,7 +1395,7 @@ export const study_reserve_an_unassigned_slot = {
     "Minute 60: it's only 10 minutes"
   ],
   "answer": 0,
-  "principle": "The final layout reserves capacity by moving optional work. Slack is unused time in this fixture, not evidence that the day will stay predictable.",
+  "principle": "The final layout reserves capacity by moving optional work. Slack is unused time in this exercise, not evidence that the day will stay predictable.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "A fully booked hour",
@@ -1432,7 +1432,7 @@ export const study_short_jobs_clear_a_queue = {
   "title": "Clear the short jobs",
   "hook": "Same total work, different waiting time for the people in this queue.",
   "objective": "Compare total waiting under two orders.",
-  "question": "With all jobs ready, which reduces total waiting in this fixture?",
+  "question": "With all jobs ready, which reduces total waiting in this exercise?",
   "options": [
     "Short jobs first",
     "Long jobs first"
@@ -1695,7 +1695,7 @@ export const study_do_not_starve_the_long_job = {
     "No: it finishes late"
   ],
   "answer": 1,
-  "principle": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",
+  "principle": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this exercise.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Small jobs first",
@@ -1954,7 +1954,7 @@ export const study_file_type_then_owner = {
     "Either condition"
   ],
   "answer": 0,
-  "principle": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
+  "principle": "Combining these two filters requires both fields to match. The exercise counts the intersection, rather than adding the two result sets.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "Either condition",
@@ -1995,7 +1995,7 @@ export const study_mail_exact_phrase = {
   "title": "Keep the phrase together",
   "hook": "“Blue folder” and “folder is blue” do not contain the same exact phrase.",
   "objective": "Distinguish an exact phrase from two unordered words.",
-  "question": "What does a quoted phrase require in this fixture?",
+  "question": "What does a quoted phrase require in this exercise?",
   "options": [
     "Same adjacent words",
     "Words anywhere"
@@ -2082,7 +2082,7 @@ export const study_file_modified_not_created = {
     "Created date"
   ],
   "answer": 0,
-  "principle": "The fixture stores both dates. A recently modified file may have been created long before; the field must match the question.",
+  "principle": "The exercise stores both dates. A recently modified file may have been created long before; the field must match the question.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "Created date",
@@ -2161,7 +2161,7 @@ export const study_version_nine_and_ten = {
     "v9 and v10"
   ],
   "answer": 0,
-  "principle": "The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting.",
+  "principle": "The padded versions have the same width. This exercise demonstrates text sorting; many real file browsers already use natural numeric sorting.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "v9 and v10",
@@ -2266,7 +2266,7 @@ export const study_tags_are_not_copies = {
     "Two"
   ],
   "answer": 0,
-  "principle": "Both labels point to the same fixture identifier. Multiple category links need not create separate copies with diverging contents.",
+  "principle": "Both labels point to the same document identifier. Multiple category links need not create separate copies with diverging contents.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "Two",
@@ -2301,7 +2301,7 @@ export const study_equal_names_not_equal_files = {
     "Filename alone"
   ],
   "answer": 0,
-  "principle": "The two report files have different content identifiers. Names can collide; this fixture compares declared content, not a real cryptographic hash.",
+  "principle": "The two report files have different content identifiers. Names can collide; this exercise compares declared content, not a real cryptographic hash.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "Filename alone",
@@ -2365,7 +2365,7 @@ export const study_size_is_not_recency = {
   "title": "Large is not recent",
   "hook": "Sorting by size answers a different question from sorting by date.",
   "objective": "Choose sorting metadata that matches the retrieval goal.",
-  "question": "To find the latest fixture file, which sort fits?",
+  "question": "To find the most recently modified file, which sort fits?",
   "options": [
     "Modified day",
     "Size"
@@ -2457,7 +2457,7 @@ export const study_search_the_document_body = {
   "title": "Search beyond the title",
   "hook": "“Untitled” can contain the exact detail you remember.",
   "objective": "Distinguish title-only search from content search.",
-  "question": "Which finds the fixture containing “telescope”?",
+  "question": "Which finds the document containing “telescope”?",
   "options": [
     "Body search",
     "Title search"
@@ -2583,7 +2583,7 @@ export const study_make_a_question_answerable = {
     "What do you think?"
   ],
   "answer": 0,
-  "principle": "The fixture asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections.",
+  "principle": "The exercise asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections.",
   "boundary": "Exercise checklist; no promised communication outcome.",
   "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "What do you think?",
@@ -2913,7 +2913,7 @@ export const study_copy_keeps_the_original = {
     "Only destination"
   ],
   "answer": 0,
-  "principle": "Copy leaves the source in place and creates destination content. This fixture models that command; operating-system clipboard rules are outside it.",
+  "principle": "Copy leaves the source in place and creates destination content. This exercise models that command; operating-system clipboard rules are outside it.",
   "boundary": "Local command model; app and locale can differ.",
   "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
   "misconception": "Only destination",
@@ -2951,7 +2951,7 @@ export const study_cut_moves_the_selection = {
     "The selected letters"
   ],
   "answer": 0,
-  "principle": "Cut removes the selection in this fixture and places it at the destination. The visible order lets you inspect relocation instead of just counting copies.",
+  "principle": "Cut removes the selection in this exercise and places it at the destination. The visible order lets you inspect relocation instead of just counting copies.",
   "boundary": "Local command model; app and locale can differ.",
   "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
   "misconception": "The selected letters",
@@ -3055,7 +3055,7 @@ export const study_find_next_is_navigation = {
     "Stored text"
   ],
   "answer": 0,
-  "principle": "Find changes the highlighted match while the tokens stay unchanged. Searching and editing are different operations in this local document fixture.",
+  "principle": "Find changes the highlighted match while the tokens stay unchanged. Searching and editing are different operations in this local document.",
   "boundary": "Local command model; app and locale can differ.",
   "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
   "misconception": "Stored text",
@@ -3156,7 +3156,7 @@ export const study_duplicate_before_experiment = {
     "Overwrite only original"
   ],
   "answer": 0,
-  "principle": "The copy has its own visible identifier. The second operation edits it while preserving the original fixture; a duplicate in one location is not a resilient backup.",
+  "principle": "The copy has its own visible identifier. The second operation edits it while preserving the original file; a duplicate in one location is not a resilient backup.",
   "boundary": "Local command model; app and locale can differ.",
   "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
   "misconception": "Overwrite only original",
@@ -3219,7 +3219,7 @@ export const study_selection_not_focus = {
     "Panel focus alone"
   ],
   "answer": 0,
-  "principle": "The fixture records focus and selection separately. A command target requires inspecting the selected item; shortcuts and focus behaviour vary between applications.",
+  "principle": "The exercise records focus and selection separately. A command target requires inspecting the selected item; shortcuts and focus behaviour vary between applications.",
   "boundary": "Local command model; app and locale can differ.",
   "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
   "misconception": "Panel focus alone",

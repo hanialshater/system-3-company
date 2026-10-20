@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "adam-per-weight-steps",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-adam-per-weight-steps.c5",
-      "text": "First Adam step only, zero initial moments, explicit bias corrections and epsilon outside square root. No empirical convergence or universal equal-step assertion. Controls: g=[1,10], g=[0,10], Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "text": "First Adam step only, zero initial moments, explicit bias corrections and epsilon outside square root. No empirical convergence or universal equal-step assertion. Controls: g=[1,10], g=[0,10], Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the two cases and their saved results.",
       "support": "convention",
       "source": "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Adam.html — acquired maintainer algorithm body, first/second moments and bias correction; local first-step arithmetic in model.ts.",
       "status": "unverified",

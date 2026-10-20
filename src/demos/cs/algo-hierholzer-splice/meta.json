@@ -1,7 +1,7 @@
 {
   "slug": "algo-hierholzer-splice",
   "title": "A closed walk can absorb another",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Can a finished loop absorb another loop without repeating an edge?",
   "domain": "cs",
   "concept": "algo-hierholzer-splice",
   "status": "draft",
@@ -65,7 +65,7 @@
     },
     {
       "id": "cs.algo-hierholzer-splice.c7",
-      "text": "Complete this graph, then inspect steps and compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-hierholzer-splice.c9",
-      "text": "Euler circuit ABCADEA; edges 6. This remains the computed question-case witness.",
+      "text": "For the original input: Euler circuit ABCADEA; edges 6.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-hierholzer-splice.c10",
-      "text": "Unused edges extend the current stack. When a vertex has no unused edge, backtracking inserts that completed piece into the circuit; the joined cycles keep every edge exactly once.",
+      "text": "For the original input: Unused edges extend the current stack. When a vertex has no unused edge, backtracking inserts that completed piece into the circuit; the joined cycles keep every edge exactly once.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -205,7 +205,7 @@
     },
     {
       "id": "cs.algo-hierholzer-splice.c27",
-      "text": "Euler circuit ABCDECA; edges 6. This remains the computed question-case witness.",
+      "text": "For the original input: Euler circuit ABCDECA; edges 6.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#hierholzer_splice.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -286,7 +286,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-hierholzer-splice",

@@ -72,24 +72,24 @@
     },
     {
       "id": "cs.sketch-the-counts.c6",
-      "text": "A count-min sketch is a small fixed table that counts a huge stream, never too low and usually close.",
+      "text": "A count-min sketch is a fixed table of shared counters. With nonnegative updates, its estimate cannot fall below the true count.",
       "support": "source",
       "source": "Cormode and Muthukrishnan (2005), J. Algorithms 55(1): 58-75: the estimate is never below the true count and exceeds it by at most eps x N with probability at least 1 - delta. Seen in the reveal's closing line ('never too low and usually close'). Fact-checker simulation: 300 random hash sets, width 100, 4 rows, 2,000-item stream over 50 keys: 0 of 15,000 readings under the truth, 97.8% exact. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A count-min sketch says a word appeared 40 times in a stream. What can you be sure of?",
+    "question": "An insertion-only count-min sketch estimates a word’s count as 40. With nonnegative updates, what can you be sure of?",
     "options": [
       "It appeared exactly 40 times",
       "It appeared at most 40 times",
       "It appeared at least 40 times"
     ],
     "answer": 1,
-    "why": "Shared counters only add other items' counts, so every reading is an over-estimate: the true count is 40 or fewer."
+    "why": "Shared counters only add other items' counts, so every reading is an upper bound: the true count is 40 or fewer."
   },
   "evidence": {
     "qa": [
@@ -101,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:count-min-sketch",
     "prerequisites": [

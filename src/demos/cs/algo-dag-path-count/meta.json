@@ -1,7 +1,7 @@
 {
   "slug": "algo-dag-path-count",
   "title": "One count per incoming route",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Branches meet again. What should happen to their path counts?",
   "domain": "cs",
   "concept": "algo-dag-path-count",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-dag-path-count.c4",
-      "text": "Complete this graph, then inspect steps and compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-dag-path-count.c6",
-      "text": "A→D paths 3; counts 1,1,2,3. This remains the computed question-case witness.",
+      "text": "For the original input: A→D paths 3; counts 1,1,2,3.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-dag-path-count.c7",
-      "text": "Topological processing finalizes each predecessor before its successors. Each incoming edge contributes the paths reaching its source, so branches add rather than overwrite one another.",
+      "text": "For the original input: Topological processing finalizes each predecessor before its successors. Each incoming edge contributes the paths reaching its source, so branches add rather than overwrite one another.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -128,7 +128,7 @@
     },
     {
       "id": "cs.algo-dag-path-count.c16",
-      "text": "A→D paths 2; counts 1,1,1,2. This remains the computed question-case witness.",
+      "text": "For the original input: A→D paths 2; counts 1,1,1,2.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -167,7 +167,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-dag-path-count",

@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-bipartite-augmenting.c4",
-      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-bipartite-augmenting.c6",
-      "text": "Matching size 3; BX,AY,CZ. This is the retained computed question-case certificate.",
+      "text": "For the original input: Matching size 3; BX,AY,CZ.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-bipartite-augmenting.c7",
-      "text": "An occupied neighbour can still be used when its current partner can move along an alternating path. Flipping the whole path changes assignments and increases the matching size by one.",
+      "text": "For the original input: An occupied neighbour can still be used when its current partner can move along an alternating path. Flipping the whole path changes assignments and increases the matching size by one.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -177,7 +177,7 @@
     },
     {
       "id": "cs.algo-bipartite-augmenting.c23",
-      "text": "Matching size 2; AX,CY,·. This is the retained computed question-case certificate.",
+      "text": "For the original input: Matching size 2; AX,CY,·.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#bipartite_augmenting.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -244,7 +244,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-bipartite-augmenting",

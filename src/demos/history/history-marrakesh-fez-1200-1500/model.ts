@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "TDV describes Marrakesh governors and rebellious princes after the Marinid centre moved to Fez. Its Fez account dates a palace, guards and mint order to 1275, distinct from 1276 foundation. The same retrospective dates Ahmed al-Araj’s Saadi capture and renewed Marrakesh capital status to 1524. A court’s location and a later dynastic transition do not prove uniform obedience, empty land or general consent. The selected period extends beyond the original 1500 endpoint; underlying originals remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "Original proposal: 1200–1500. Selected comparison extends to 1524.";
 export const PERIOD_SCOPE = "Original research limits and pin languageMediationAndLimits are immutable acquisition history: 1524 is outside original 1200–1500, now within explicitly selected 1200–1524. They must not be displayed as current selected-period exclusions. Other source/date/mediation limits still apply.";
 export const PERIOD_CLAIM = "history.history-marrakesh-fez-1200-1500.c18";

@@ -24,7 +24,7 @@
   "claims": [
     {
       "id": "cs.algo-lsh-hyperplanes.c1",
-      "text": "Nonzero vectors a=(1,0),b=(1,1),c=(−1,1). Primary normal(1,0); contrast normal(0,1). Bit1 iff n·v≥0, including exact dot0.",
+      "text": "Nonzero vectors a=(1,0),b=(1,1),c=(−1,1). Primary normal (1,0); contrast normal(0,1). Bit1 iff n·v≥0, including exact dot0.",
       "support": "convention",
       "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#picture#inputs; model.ts and model.test.mjs finite author reproductions; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
       "checkedBy": "",
@@ -80,14 +80,14 @@
     },
     {
       "id": "cs.algo-lsh-hyperplanes.c8",
-      "text": "n=(1,0); bit1 if n·v≥0. a=(1,0), b=(1,1), c=(−1,1). Which shares a’s bit? Options b only / c only / Both; correct b only.",
+      "text": "n=(1,0); bit 1 if n·v≥0. a=(1,0), b=(1,1), c=(−1,1). Which shares a’s bit? Options b only / c only / Both; correct b only.",
       "support": "derivation",
       "source": "src/demos/cs/algo-lsh-hyperplanes/Demo.tsx#predict; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-lsh-hyperplanes.c9",
-      "text": "With normal(1,0), v=(−2,1). Under bit1 iff n·v≥0, what bit results? The dot product is−2, so the bit is0.",
+      "text": "With normal (1,0), v=(−2,1). Under bit 1 iff n·v≥0, what bit results? The dot product is −2, so the bit is 0.",
       "support": "derivation",
       "source": "src/demos/cs/algo-lsh-hyperplanes/meta.json#recall; model.ts; https://www2.compute.dtu.dk/courses/02289/2023/approxds/charikar.pdf — Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms (STOC2002), §3, PDF pages3–4; body opened2026-10-19. Gaussian random normal, dot-zero convention and Pr(collision)=1−θ/π. Fixed normals here are chosen illustrations, not random samples.",
       "status": "unverified"
@@ -95,13 +95,13 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "With normal(1,0), v=(−2,1). Under bit1 iff n·v≥0, what bit results?",
+    "question": "With normal (1,0), v=(−2,1). Under bit 1 iff n·v≥0, what bit results?",
     "options": [
       "0",
       "1"
     ],
     "answer": 0,
-    "why": "The dot product is−2, so the bit is0."
+    "why": "The dot product is −2, so the bit is 0."
   },
   "evidence": {
     "qa": [],
@@ -109,7 +109,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-lsh-hyperplanes",

@@ -61,14 +61,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A photo generator is retrained each year mostly on photos made by last year's version. What should you expect to happen to unusual subjects?",
+    "question": "In this closed resampling model, each generation learns only from the previous generation’s output. What can happen to rare subjects?",
     "options": [
-      "They become rarer and some disappear for good",
+      "Some can disappear and cannot return without new data",
       "They stay as common as they were, on average",
       "They become more common, because models like variety"
     ],
     "answer": 0,
-    "why": "Each round samples from the last round's output, so a rare subject can miss a round by chance, and once missing it cannot come back. The losses pile up."
+    "why": "In this model, a rare subject can miss a round by chance. Once its count reaches zero, no later sample can restore it; fresh data would change that assumption."
   },
   "evidence": {
     "qa": [
@@ -81,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:model-collapse",
     "prerequisites": [

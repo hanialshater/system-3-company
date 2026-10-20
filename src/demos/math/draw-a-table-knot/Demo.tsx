@@ -182,7 +182,7 @@ function Reveal({ seen }: { seen: Seen | null }) {
       <p>
         The first number in a name is the fewest crossings any drawing of that knot can have:{" "}
         {loop ? "a plain loop can be drawn with none." : `${pretty(r.name)} can be drawn with ${k} and never with fewer.`} The
-        table draws each knot with that fewest, so {pretty(r.chip)} had exactly {r.drawn}. The second number is only its place in
+        table draws each knot with as few crossings as possible, so {pretty(r.chip)} had exactly {r.drawn}. The second number is only its place in
         the table.
       </p>
     </>

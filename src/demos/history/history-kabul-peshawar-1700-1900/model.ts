@@ -2,7 +2,7 @@ export const DOCUMENTS = [
   {
     "id": "kabulCourt",
     "text": "Late eighteenth century Kabul Durrani capital under Timur Shah/Shah Zaman",
-    "requiredContext": "Use late18thcentury not disputed1773–76exacttransfer; court relation not continuous city control.",
+    "requiredContext": "Use the late eighteenth century, not a disputed exact transfer date in 1773–76. Court location does not establish continuous city control.",
     "citation": "May Schinasi; Iranica2009/update2016. Language/edition: English; no manuscript collation. Representation: web-tool normalized body including line numbers; NOT raw HTML. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
     "sourceUrl": "https://www.iranicaonline.org/articles/kabul-iii-history/",
     "locator": "Schinasi Iranica normalizedL34–36",
@@ -42,7 +42,7 @@ export const DOCUMENTS = [
   {
     "id": "durand",
     "text": "1893 Amir/Government of India non-interference and later joint demarcation prescriptions",
-    "requiredContext": "Appendix reprints a2009brochure; original signedtext/map/Dari uncollated. Truncated clause5 excluded. No current boundary/title or community-consent adjudication.",
+    "requiredContext": "Appendix reprints a 2009 brochure; original signed text, map and Dari version uncollated. Truncated clause5 excluded. No current boundary/title or community-consent adjudication.",
     "citation": "Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://www.files.ethz.ch/isn/126743/020111_ACUS_Nawaz_PakistanCounterinsurgency.pdf",
     "locator": "Appendix1 PDF33–34/printed27–28 clauses2/4; visually inspected; cited2009FrontierCorpsreprint",

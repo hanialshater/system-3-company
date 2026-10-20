@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "learning-curves",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-learning-curves.c1",
-      "text": "export function point(n:number,high=false){if(n<=0)throw new Error(\"Positive sample size\");return {n,train:(high?.4:.1)+(high?.1:.2)/n,test:(high?.4:.1)+(high?.2:.8)/n};}export function run(mode:number){const high=mode===1,rows=[2,4,8].map(n=>point(n,high));return {high,rows,floor:high?.4:.1};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Can more samples fix the floor? \\u2014 computed finite mechanism\"><path d=\"M28 12 V87 H266\" className={s.axis}/><text x=\"3\" y=\"14\">.6</text><text x=\"9\" y=\"89\">0</text>{['train','test'].map((key,j)=><polyline key={key} points={r.rows.map((p,i)=>`${48+i*94},${87-p[key as 'train'|'test']*120}`).join(' ')} className={j===0?s.other:s.line}/>)}{r.rows.map((p,i)=><text key={i} x={48+i*94} y=\"105\" textAnchor=\"middle\">n={p.n}</text>)}<text x=\"55\" y=\"15\">━test ┄train</text></svg>;}\n\nLocked inputs: Synthetic family A: train=.1+.2/n, test=.1+.8/n. Family B: train=.4+.1/n, test=.4+.2/n.",
+      "text": "export function point(n:number,high=false){if(n<=0)throw new Error(\"Positive sample size\");return {n,train:(high?.4:.1)+(high?.1:.2)/n,test:(high?.4:.1)+(high?.2:.8)/n};}export function run(mode:number){const high=mode===1,rows=[2,4,8].map(n=>point(n,high));return {high,rows,floor:high?.4:.1};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Can more samples fix the floor? — worked example\"><path d=\"M28 12 V87 H266\" className={s.axis}/><text x=\"3\" y=\"14\">.6</text><text x=\"9\" y=\"89\">0</text>{['train','test'].map((key,j)=><polyline key={key} points={r.rows.map((p,i)=>`${48+i*94},${87-p[key as 'train'|'test']*120}`).join(' ')} className={j===0?s.other:s.line}/>)}{r.rows.map((p,i)=><text key={i} x={48+i*94} y=\"105\" textAnchor=\"middle\">n={p.n}</text>)}<text x=\"55\" y=\"15\">━test ┄train</text></svg>;}\n\nLocked inputs: Synthetic family A: train=.1+.2/n, test=.1+.8/n. Family B: train=.4+.1/n, test=.4+.2/n.",
       "support": "derivation",
       "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
       "status": "unverified",

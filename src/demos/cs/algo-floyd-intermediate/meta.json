@@ -1,7 +1,7 @@
 {
   "slug": "algo-floyd-intermediate",
   "title": "Which detour is allowed this round?",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "A new intermediate vertex can change more than one journey.",
   "domain": "cs",
   "concept": "algo-floyd-intermediate",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-floyd-intermediate.c4",
-      "text": "Complete the question path calculation, then inspect a changed input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-floyd-intermediate.c6",
-      "text": "A→C 5; row A 0,3,5. This is the retained computed witness for the question case.",
+      "text": "For the original input: A→C 5; row A 0,3,5.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-floyd-intermediate.c7",
-      "text": "Each Floyd phase allows one more intermediate vertex. The matrix compares the old route with the route through that vertex, keeping the shorter value for each ordered pair.",
+      "text": "For the original input: Each Floyd phase allows one more intermediate vertex. The matrix compares the old route with the route through that vertex, keeping the shorter value for each ordered pair.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -128,7 +128,7 @@
     },
     {
       "id": "cs.algo-floyd-intermediate.c16",
-      "text": "A→C 4; row A 0,3,4. This is the retained computed witness for the question case.",
+      "text": "For the original input: A→C 4; row A 0,3,4.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -188,7 +188,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-floyd-intermediate",

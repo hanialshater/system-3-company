@@ -27,7 +27,7 @@
       "text": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. Scaled model; quantity-only model; no installation advice.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: matches the rendered question and the assumptions line (\"Full scale:132tiles; quantity-only model; no installation advice.\"; \"Scaled model\" there is the full-scale prefix).",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -54,7 +54,7 @@
       "text": "From what required count is 10% extra (rounded up) at least as large as ten extra? Correct: 91. 10% grows with the requirement; the two orders are equal for requirements from 91 to 100 (95 and 100 on the slider), and below that ten extra is larger.",
       "support": "derivation",
       "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: ceil(1.1x) ≥ x+10 iff 1.1x > x+9 iff x > 90, so the least integer is 91 (keyed option 2); equal for 91..100, ten-extra larger below. Wording came verbatim from an FC LH-1 example; this is the fresh instance under the W-280 ruling (see the fact-check record for the reading-order disclosure).",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -63,7 +63,7 @@
       "text": "Ten extra or 10% extra: which order is bigger depends on the job size.",
       "support": "derivation",
       "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), reworded under W-384 on 2026-10-14 by demo-builder after FC LH-2 disputed the old hook \"A fixed spare count and a percentage spare count diverge as a job grows.\" (the spare counts converge, then cross, on the stage). Derivation: A=ceil(1.1x) (10% extra, rounded up) and B=x+10 (ten extra); on the slider (20 to 120, step 5) B>A below 95, A=B at 95 and 100, and A>B from 105 (src/lib/lifehacks/resource-model.ts with snapToInteger; same values as c3). So which order is bigger depends on the required count. The hook names no crossover value. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own run of the transpiled resource-model.ts on the spec (A = ceil(1.1x) with snapToInteger, B = x + 10), slider 20 to 120 step 5: B > A from 20 to 90, A = B at 95 (105/105) and 100 (110/110), A > B from 105 (116/115) to 120 (132/130). So which order is bigger depends on the job size, as the hook says. The hook names no crossover, so no off-by-one risk.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -89,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:fixed-vs-percentage",

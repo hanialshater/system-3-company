@@ -3,7 +3,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "darwinJavaOpening",
     "text": "The Northern Territory Heritage Register describes Darwin–Banjoewangi, now Banyuwangi in Java, submarine cable service operating by 1871.",
-    "requiredContext": "ActualphysicalDarwin–Java cable, notunprovedDiliurbanstation. Heritage attribution and historical/modern naming retained; no coordinates/sourcegeometry or universalcommunications-history assertion.",
+    "requiredContext": "A documented physical Darwin–Java cable, not an established Dili urban station. Heritage attribution and historical/modern naming retained; no coordinates/sourcegeometry or universalcommunications-history assertion.",
     "fieldAddresses": [],
     "claims": [
       "history.history-darwin-java-cable-service-evidence.c1",
@@ -20,7 +20,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "217009f8f74dfbe42436aa729bb3c3e70ec38698723ad8b2ef8e3fced87f65c6",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Northern Territory Heritage Register, Subsea Telegraph Cables Landing Site Darwin",
-        "publicationOrDocumentDate": "Permanent declaration18June2020; institutional heritage description",
+        "publicationOrDocumentDate": "Permanent declaration 18 June 2020; institutional heritage description",
         "languageMediationAndLimits": "English heritage account; no Dili cable asserted",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "Description/HeritageValue,operating1871 Darwin–Banjoewangi/Banyuwangi",
@@ -34,7 +34,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "backupAndReplacement",
     "text": "The register distinguishes the initial 1871 cable from a second backup in 1880 and a replacement for the initial cable in 1884.",
-    "requiredContext": "Separate backup/replacement statements do not prove exact daily availability or all broader communications. No relation toDili/Kupang fabricated.",
+    "requiredContext": "Separate backup/replacement statements do not prove exact daily availability or all broader communications. No relation to Dili/Kupang fabricated.",
     "fieldAddresses": [],
     "claims": [
       "history.history-darwin-java-cable-service-evidence.c5",
@@ -51,7 +51,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "217009f8f74dfbe42436aa729bb3c3e70ec38698723ad8b2ef8e3fced87f65c6",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Northern Territory Heritage Register, Subsea Telegraph Cables Landing Site Darwin",
-        "publicationOrDocumentDate": "Permanent declaration18June2020; institutional heritage description",
+        "publicationOrDocumentDate": "Permanent declaration 18 June 2020; institutional heritage description",
         "languageMediationAndLimits": "English heritage account; no Dili cable asserted",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "three-cable paragraph1871/1880backup/1884replacement",
@@ -65,7 +65,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   {
     "id": "wartimeDisruption",
     "text": "The register describes service disruption in 1942 when Japanese forces bombed the cable station and Java was invaded.",
-    "requiredContext": "Sourceattributeswarinterruption; no inference everywireless/cable connectionceased oroneciviliancommunityperspective. Militarylossnotneutralizedasmeretechnologychange.",
+    "requiredContext": "The source attributes the interruption to war; it does not show that every wireless or cable connection ceased, or represent every civilian community’s experience. Wartime loss is not merely a technology change.",
     "fieldAddresses": [],
     "claims": [
       "history.history-darwin-java-cable-service-evidence.c9",
@@ -82,7 +82,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "bodySha256": "217009f8f74dfbe42436aa729bb3c3e70ec38698723ad8b2ef8e3fced87f65c6",
         "representation": "Actual system-curl verified response bytes; PDF/HTML as recorded in acquisition",
         "makerCustodianEditor": "Northern Territory Heritage Register, Subsea Telegraph Cables Landing Site Darwin",
-        "publicationOrDocumentDate": "Permanent declaration18June2020; institutional heritage description",
+        "publicationOrDocumentDate": "Permanent declaration 18 June 2020; institutional heritage description",
         "languageMediationAndLimits": "English heritage account; no Dili cable asserted",
         "sourceLevel": "institutional/scholarly account or expressly identified reprint",
         "locator": "HeritageValue,serviceoperationaluntil1942bombing/Java invasion",
@@ -149,7 +149,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The heritage register attributes an operating Darwin–Java cable to 1871, a later backup and replacement, and wartime disruption in 1942. Opening, redundancy, replacement and interruption are different service facts. None establishes uninterrupted availability, sovereign legitimacy or a physical Dili cable. This proposed alternative concerns the actual named cable; it does not prove that other connections never existed or erase the people affected by war. Original service logs remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

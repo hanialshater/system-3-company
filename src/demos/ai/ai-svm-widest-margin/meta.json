@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "svm-widest-margin",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "ai.ai-svm-widest-margin.c2",
-      "text": "All correct. Which boundary?; Compare separating thresholds by their closest points.; Negative points \u22123,\u22121; positive points1,3. Which threshold has the largest distance to its closest point?; options ['\u2212.5', '0', '.5']; correct index 1",
+      "text": "All correct. Which boundary?; Compare separating thresholds by their closest points.; Negative points −3,−1; positive points 1,3. Which threshold has the largest distance to its closest point?; options ['−.5', '0', '.5']; correct index 1",
       "support": "derivation",
       "source": "https://scikit-learn.org/stable/modules/svm.html (maintainer SVM formulation; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-svm-widest-margin.c3",
-      "text": "Both retained thresholds classified all four points correctly. Moving the threshold from \u2212.5 to zero increased the closest distance from .5 to 1. The nearest points, \u22121 and 1, bound this half-margin. Moving only outer points did not change it. Multiplying scores by ten enlarged raw numbers while normalization kept the same geometric distance.",
+      "text": "Both retained thresholds classified all four points correctly. Moving the threshold from −.5 to zero increased the closest distance from .5 to 1. The nearest points, −1 and 1, bound this half-margin. Moving only outer points did not change it. Multiplying scores by ten enlarged raw numbers while normalization kept the same geometric distance.",
       "support": "derivation",
       "source": "https://scikit-learn.org/stable/modules/svm.html (maintainer SVM formulation; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-svm-widest-margin.c5",
-      "text": "One-dimensional hard separating thresholds, no soft-margin or kernel fit, no real-world generalization guarantee. Margin means the closest geometric distance, half the full separating slab width. Controls: b=\u2212.5, b=0, b=.5, Score \u00d710, Outer \u00b14, Reset. Milestones [0, 1, 3, 4]; witness preserved after Reset.",
+      "text": "One-dimensional hard separating thresholds, no soft-margin or kernel fit, no real-world generalization guarantee. Margin means the closest geometric distance, half the full separating slab width. Controls: b=−.5, b=0, b=.5, Score ×10, Outer ±4, Reset. Milestones [0, 1, 3, 4]; witness preserved after Reset.",
       "support": "convention",
       "source": "https://scikit-learn.org/stable/modules/svm.html (maintainer SVM formulation; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,14 +67,14 @@
     }
   ],
   "recall": {
-    "question": "Negative points\u22125,\u22121; positive points3,7. Which threshold maximizes the half-margin?",
+    "question": "Negative points −5,−1; positive points 3,7. Which threshold maximizes the half-margin?",
     "options": [
       "0",
       "1",
       "3"
     ],
     "answer": 1,
-    "why": "The closest opposite-class points\u22121 and3 have midpoint1 and distance2."
+    "why": "The closest opposite-class points −1 and 3 have midpoint 1 and distance 2."
   },
   "evidence": {
     "qa": [],

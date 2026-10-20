@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Iranica distinguishes Samarkand’s western khagan and clan appanages from Bukhara’s Borhan governors and tribute collectors. Its later accounts separately describe Bukhara’s negotiated entry and citadel work in 1207, the western ruler’s surrender in 1209–10 and the khanate’s end in 1212–13. The explicitly extended selection preserves those distinct acts; neither one dynasty label nor these dates establishes identical offices, common government in 1200 or popular assent. Originals remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "Original proposal: 1000–1200. Selected comparison extends to 1213.";
 export const PERIOD_SCOPE = "Research/pin original1200 exclusions are acquisition history; newly selected1207/1209–10/1212–13 are within explicit1213 selection.1217–18 remains excluded.";
 export const PERIOD_CLAIM = "history.history-samarkand-bukhara-1000-1200.c18";

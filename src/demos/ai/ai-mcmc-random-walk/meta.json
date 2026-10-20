@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "mcmc-random-walk",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-mcmc-random-walk.c1",
-      "text": "export function run(mode:number){const weights=mode===1?[3,1]:[1,3],sum=weights[0]+weights[1],stationary=weights.map(x=>x/sum),accept=[Math.min(1,weights[1]/weights[0]),Math.min(1,weights[0]/weights[1])],flow=stationary.map((p,i)=>p*accept[i]);return {weights,stationary,accept,flow,transition:[[1-accept[0],accept[0]],[accept[1],1-accept[1]]]};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"A proposal is not a sample \\u2014 computed finite mechanism\">{r.weights.map((v,i)=><g key={i}><circle cx={48+i*184} cy=\"43\" r=\"25\" className={s.box}/><text x={48+i*184} y=\"48\" textAnchor=\"middle\">w={v}</text><text x={48+i*184} y=\"91\" textAnchor=\"middle\">π={f(r.stationary[i],2)}</text></g>)}<path d=\"M80 31 H201 M201 55 H80\" className={s.line}/><text x=\"140\" y=\"24\" textAnchor=\"middle\">{f(r.accept[0],3)} →</text><text x=\"140\" y=\"76\" textAnchor=\"middle\">← {f(r.accept[1],3)}</text></svg>;}\n\nLocked inputs: Target weights [1,3]; always propose the other state. Accept min(1,new/old). Reverse weights for contrast.",
+      "text": "export function run(mode:number){const weights=mode===1?[3,1]:[1,3],sum=weights[0]+weights[1],stationary=weights.map(x=>x/sum),accept=[Math.min(1,weights[1]/weights[0]),Math.min(1,weights[0]/weights[1])],flow=stationary.map((p,i)=>p*accept[i]);return {weights,stationary,accept,flow,transition:[[1-accept[0],accept[0]],[accept[1],1-accept[1]]]};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"A proposal is not a sample — worked example\">{r.weights.map((v,i)=><g key={i}><circle cx={48+i*184} cy=\"43\" r=\"25\" className={s.box}/><text x={48+i*184} y=\"48\" textAnchor=\"middle\">w={v}</text><text x={48+i*184} y=\"91\" textAnchor=\"middle\">π={f(r.stationary[i],2)}</text></g>)}<path d=\"M80 31 H201 M201 55 H80\" className={s.line}/><text x=\"140\" y=\"24\" textAnchor=\"middle\">{f(r.accept[0],3)} →</text><text x=\"140\" y=\"76\" textAnchor=\"middle\">← {f(r.accept[1],3)}</text></svg>;}\n\nLocked inputs: Target weights [1,3]; always propose the other state. Accept min(1,new/old). Reverse weights for contrast.",
       "support": "derivation",
       "source": "Only the declared finite model and independently reproducible algebra support this example. No real-model performance, training convergence, empirical prevalence or universal guarantee is admitted. Acquire a primary method source with exact locator before adding generalized framing; source leads below are not clearance.",
       "status": "unverified",

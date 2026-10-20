@@ -1,7 +1,7 @@
 {
   "slug": "algo-dag-negative-path",
   "title": "Acyclic roads permit negative costs",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Can an ordering replace the nonnegative-edge assumption?",
   "domain": "cs",
   "concept": "algo-dag-negative-path",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-dag-negative-path.c4",
-      "text": "Complete the question path calculation, then inspect a changed input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-dag-negative-path.c6",
-      "text": "S→T 3; topological distances 0,4,1,3. This is the retained computed witness for the question case.",
+      "text": "For the original input: S→T 3; topological distances 0,4,1,3.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-dag-negative-path.c7",
-      "text": "A DAG supplies a topological order even with negative weights. Once all predecessors are processed, its outgoing relaxations use the final distance without needing a greedy nonnegative-edge assumption.",
+      "text": "For the original input: A DAG supplies a topological order even with negative weights. Once all predecessors are processed, its outgoing relaxations use the final distance without needing a greedy nonnegative-edge assumption.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -149,7 +149,7 @@
     },
     {
       "id": "cs.algo-dag-negative-path.c19",
-      "text": "S→T 4; topological distances 0,4,2,4. This is the retained computed witness for the question case.",
+      "text": "For the original input: S→T 4; topological distances 0,4,2,4.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -209,7 +209,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-dag-negative-path",

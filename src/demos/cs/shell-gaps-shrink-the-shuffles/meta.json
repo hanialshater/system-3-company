@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "shell-sort",
   "status": "published",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -91,12 +91,12 @@
   "recall": {
     "question": "Shell sort runs insertion sort on cards far apart before the final ordinary insertion-sort pass. Why is that last pass cheap?",
     "options": [
-      "Every card is already near its place",
+      "Earlier passes have reduced the remaining shifts",
       "The last pass only looks at half the cards",
       "The far passes already sorted the list completely"
     ],
     "answer": 0,
-    "why": "Far passes carry cards most of the way in big jumps, so ordinary insertion sort only has short, one-step moves left."
+    "why": "In this example, the gap passes move cards close to their final positions, leaving fewer shifts for the last pass. The saving depends on the input and gap sequence."
   },
   "evidence": {
     "qa": [

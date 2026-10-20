@@ -58,7 +58,7 @@
     },
     {
       "id": "cs.algo-interleaving-dp.c6",
-      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -72,14 +72,14 @@
     },
     {
       "id": "cs.algo-interleaving-dp.c8",
-      "text": "Order-preserving interleaving yes. This remains the computed witness for the question case.",
+      "text": "For the original input: Order-preserving interleaving yes.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-interleaving-dp.c9",
-      "text": "A state records how many characters were consumed from each source. Its target position is their sum, and only the next source character can extend a reachable state.",
+      "text": "For the original input: A state records how many characters were consumed from each source. Its target position is their sum, and only the next source character can extend a reachable state.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -205,7 +205,7 @@
     },
     {
       "id": "cs.algo-interleaving-dp.c27",
-      "text": "Order-preserving interleaving no. This remains the computed witness for the question case.",
+      "text": "For the original input: Order-preserving interleaving no.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#interleaving_dp.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -265,7 +265,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-interleaving-dp",

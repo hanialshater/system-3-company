@@ -68,7 +68,7 @@
       "Let every training photo vote"
     ],
     "answer": 0,
-    "why": "A handful of neighbours outvotes one bad label. Letting every photo vote gives every new photo the most common label, which erases the real differences."
+    "why": "Several correctly labelled neighbours can outvote one bad label. Letting every photo vote gives every new photo the most common label, which erases the real differences."
   },
   "evidence": {
     "qa": [
@@ -81,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:nearest-neighbours",
     "prerequisites": [],

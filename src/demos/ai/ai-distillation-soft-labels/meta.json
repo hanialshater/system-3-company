@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "distillation-soft-labels",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-distillation-soft-labels.c1",
-      "text": "export function loss(teacher:number[],student:number[]){if(student.some(p=>p<=0))throw new Error(\"Positive student probabilities\");const terms=teacher.map((p,i)=>-p*Math.log(student[i]));return {terms,total:terms.reduce((a,b)=>a+b,0)};}export function run(mode:number){const teacher=mode===1?[1,0,0]:[.6,.3,.1],students=[[.6,.2,.2],[.6,.35,.05]],soft=students.map(v=>loss(teacher,v)),hard=students.map(v=>loss([1,0,0],v));return {teacher,students,soft,hard};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Same top class, different loss \\u2014 computed finite mechanism\"><text x=\"5\" y=\"17\">teacher [{r.teacher.join(',')}]</text>{r.students.map((row,i)=><g key={i}><text x=\"5\" y={39+i*42}>{i===0?'A':'B'} [{row.join(',')}]</text><text x=\"187\" y={39+i*42}>L={f(r.soft[i].total,3)}</text><text x=\"22\" y={57+i*42}>{r.soft[i].terms.map(v=>f(v,3)).join(' + ')}</text></g>)}</svg>;}\n\nLocked inputs: Teacher [.6,.3,.1]; students A [.6,.2,.2], B [.6,.35,.05]. Natural-log cross-entropy; temperature 1.",
+      "text": "export function loss(teacher:number[],student:number[]){if(student.some(p=>p<=0))throw new Error(\"Positive student probabilities\");const terms=teacher.map((p,i)=>-p*Math.log(student[i]));return {terms,total:terms.reduce((a,b)=>a+b,0)};}export function run(mode:number){const teacher=mode===1?[1,0,0]:[.6,.3,.1],students=[[.6,.2,.2],[.6,.35,.05]],soft=students.map(v=>loss(teacher,v)),hard=students.map(v=>loss([1,0,0],v));return {teacher,students,soft,hard};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"Same top class, different loss — worked example\"><text x=\"5\" y=\"17\">teacher [{r.teacher.join(',')}]</text>{r.students.map((row,i)=><g key={i}><text x=\"5\" y={39+i*42}>{i===0?'A':'B'} [{row.join(',')}]</text><text x=\"187\" y={39+i*42}>L={f(r.soft[i].total,3)}</text><text x=\"22\" y={57+i*42}>{r.soft[i].terms.map(v=>f(v,3)).join(' + ')}</text></g>)}</svg>;}\n\nLocked inputs: Teacher [.6,.3,.1]; students A [.6,.2,.2], B [.6,.35,.05]. Natural-log cross-entropy; temperature 1.",
       "support": "derivation",
       "source": "[https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html). Acquired maintainer tutorial soft-target code at teacher softmax/student log-softmax and soft_targets_loss: it uses KL divergence. The local cross-entropy differs by the fixed teacher entropy, so candidate ranking is identical at temperature1; local numeric values are cross-entropy, not copied tutorial KL values. No model download or measured student improvement.",
       "status": "unverified",

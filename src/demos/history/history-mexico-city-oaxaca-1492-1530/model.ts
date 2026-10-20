@@ -180,7 +180,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "INAH describes Tenochtitlan’s palaces and reconstruction after Spanish and Indigenous conquest. At the actual Oaxaca city site, it names an alcalde mayor with villa and cabildo-lot duties; Cortés’s attempted annexation failed. Capital reconstruction and a specified settlement office are different relations. These retrospectives do not establish empty land, universal Indigenous consent or later city titles.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

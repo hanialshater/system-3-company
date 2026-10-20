@@ -1,9 +1,9 @@
 "use client";
 
-// Runs in 20 flips. The learner fakes 20 flips with H and T; real sequences (seeds 1, 2, 3, ... in
+// Runs in 20 flips. The learner fakes 20 flips with H and T; simulated sequences (seeds 1, 2, 3, ... in
 // order, see model.ts) are run 1,000 at a time or stepped one at a time. The latest real sequence is
 // drawn above the learner's taps, each with its longest run bracketed, and a histogram of longest runs
-// builds below with the 5+ bars shaded. Key state: 1,000+ real sequences tallied and one stepped.
+// builds below with the 5+ bars shaded. Key state: 1,000+ simulated sequences tallied and one stepped.
 // Clearing taps never touches the real tally, so the reveal's numbers survive it.
 
 import { useState } from "react";
@@ -78,10 +78,10 @@ function Stage({ locked, reach, tally, setTally, taps, setTaps }: {
 
   return (
     <div className={s.wrap}>
-      <p className={s.msg}>{locked ? "Make a prediction to start." : "Fake 20 flips with H and T. Then run real ones."}</p>
-      <svg viewBox="0 0 340 192" className={`stage-svg ${s.svg}`} role="img" aria-label={`${tally.n} real sequences; ${hot} with a run of ${TARGET} or more`}>
+      <p className={s.msg}>{locked ? "Make a prediction to start." : "Make up 20 flips with H and T. Then simulate a fair coin."}</p>
+      <svg viewBox="0 0 340 192" className={`stage-svg ${s.svg}`} role="img" aria-label={`${tally.n} simulated sequences; ${hot} with a run of ${TARGET} or more`}>
         <text x={X0} y={11} className={s.label}>
-          {tally.n > 0 ? `Real #${fmt(tally.n)}: longest run ${realRun}` : "Real sequence: none yet"}
+          {tally.n > 0 ? `Simulation #${fmt(tally.n)}: longest run ${realRun}` : "No simulated sequence yet"}
         </text>
         <Cells seq={real} y={22} />
         <text x={X0} y={53} className={s.label}>
@@ -107,12 +107,12 @@ function Stage({ locked, reach, tally, setTally, taps, setTaps }: {
           );
         })}
         <text x={170} y={190} textAnchor="middle" className={s.tick}>
-          longest run in 20 flips (real sequences)
+          longest run in 20 flips (simulated sequences)
         </text>
       </svg>
       <Row>
-        <Control disabled={locked} onClick={() => run(BATCH)}>Run {fmt(BATCH)} real</Control>
-        <Control disabled={locked} onClick={() => run(1)}>Step one real</Control>
+        <Control disabled={locked} onClick={() => run(BATCH)}>Simulate {fmt(BATCH)}</Control>
+        <Control disabled={locked} onClick={() => run(1)}>Simulate one</Control>
       </Row>
       <Row>
         <Control disabled={locked || taps.length >= FLIPS} onClick={() => tap(true)}>H</Control>
@@ -147,19 +147,19 @@ export default function TwentyFlipsRunOfFive({ slug }: { slug: string }) {
         options: ["About 5%", "About 20%", "About 45%"],
         answer: 2,
       }}
-      exploreHint="Fake 20 flips if you like, then run 1,000 real sequences and step one."
+      exploreHint="Make up 20 flips if you like, then simulate 1,000 sequences and inspect one."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            In your {fmt(tally.n)} real sequences, {pct1(hot / Math.max(1, tally.n))} had a run of {TARGET} or more of the same
+            In your {fmt(tally.n)} simulated sequences, {pct1(hot / Math.max(1, tally.n))} had a run of {TARGET} or more of the same
             face; the exact chance is <strong>{pct1(EXACT)}</strong>. The tallest bar is a longest run of {BIN_LABELS[mode]}, and
-            real #{fmt(tally.n)} has a run of {realRun}.
+            simulation #{fmt(tally.n)} has a run of {realRun}.
           </p>
           <p>
             Each flip repeats the last face half the time, because the coin has no memory, so long runs pile up.
             {myRun > 0 &&
-              ` Your 20 taps ran at most ${myRun} in a row; ${pct1(tame / Math.max(1, tally.n))} of real sequences stayed that short.`}
+              ` Your 20 taps ran at most ${myRun} in a row; ${pct1(tame / Math.max(1, tally.n))} of simulated sequences stayed that short.`}
           </p>
         </>
       )}

@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With multiplier.5 every tick, what remains of initial1 at tick4?", "options": [".0625", ".25", ".5", "1"], "answer": 0 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>Repeated halving left .0625 of the initial signal after four ticks. Multiplier 1 preserved it; multiplier 1.2 grew it to 2.0736. The same products gave initial-signal sensitivity in this scalar recurrence. These calculations do not describe every recurrent architecture, including those with gates.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "With multiplier .5 every tick, what remains of initial value 1 at tick 4?", "options": [".0625", ".25", ".5", "1"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Repeated halving left .0625 of the initial signal after four ticks. Multiplier 1 preserved it; multiplier 1.2 grew it to 2.0736. The same products gave initial-signal sensitivity in this scalar recurrence. These calculations do not describe every recurrent architecture, including those with gates.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

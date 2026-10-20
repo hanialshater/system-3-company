@@ -22,11 +22,11 @@
   "objective": "Choose sorting metadata that matches the retrieval goal.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the latest fixture file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data. The stage caption reads: d = day modified; higher = more recent.",
+      "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the most recently modified file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data. The stage caption reads: d = day modified; higher = more recent.",
       "support": "convention",
       "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): FileStage caption for this slug (StudyLesson.tsx) now states the day-number direction (fixture: movie d1, slides d5, notes d9). Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: FileStage caption for this slug reads \"d = day modified; higher = more recent\"; fixture movie 90MB d1, slides 8MB d5, notes 2MB d9; sort by day (descending) puts notes first, so Modified day is the correct option. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.size-is-not-recency.c1",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -79,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:sort-by-the-right-date",
     "prerequisites": [],

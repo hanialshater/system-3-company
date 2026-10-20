@@ -134,7 +134,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       <Readout label={readLabel} value={readValue} />
       {!locked && showFall && (
         <p className={`muted ${s.note}`}>
-          1900 to 2020: {TIMES} times fewer; {AFTER50}% of that fall came after 1950.
+          1900 to 2020: a fall by a factor of {TIMES}; {AFTER50}% of that fall came after 1950.
         </p>
       )}
     </div>
@@ -155,8 +155,7 @@ export default function ChildrenDyingBeforeFive({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In 1900 about {at(1900)} of every 1,000 children died before age 5; in 2020, {at(2020)}: about {TIMES} times
-            fewer. In the century before 1900 the figure barely moved, from {at(1800)}. More than half of the fall since
+            In 1900 about {at(1900)} of every 1,000 children died before age 5; in 2020, {at(2020)}: a fall by a factor of about {TIMES}. In the century before 1900 the figure barely moved, from {at(1800)}. More than half of the fall since
             1900, {AFTER50}%, came after 1950.
           </p>
           <p>

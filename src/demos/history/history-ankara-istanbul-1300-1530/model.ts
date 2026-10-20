@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "TDV describes Yakub Bey’s disputed fortress duty and imprisonment at Ankara. Its Istanbul account names post-capture policing and judicial appointments before Mehmed returned to Edirne. Military obligation, local offices and court residence are different relations. Enslavement and confiscation remain part of conquest; neither appointment nor capture establishes universal consent or continuous control.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

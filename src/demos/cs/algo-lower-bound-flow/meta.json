@@ -58,7 +58,7 @@
     },
     {
       "id": "cs.algo-lower-bound-flow.c6",
-      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -72,14 +72,14 @@
     },
     {
       "id": "cs.algo-lower-bound-flow.c8",
-      "text": "Feasible yes; demand 1/1. This is the retained computed question-case certificate.",
+      "text": "For the original input: Feasible yes; demand 1/1.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-lower-bound-flow.c9",
-      "text": "Subtracting lower bounds leaves residual capacity and vertex imbalances. A super-source flow must satisfy every resulting demand; saturation certifies that the original lower-bounded circulation can be completed.",
+      "text": "For the original input: Subtracting lower bounds leaves residual capacity and vertex imbalances. A super-source flow must satisfy every resulting demand; saturation certifies that the original lower-bounded circulation can be completed.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -163,7 +163,7 @@
     },
     {
       "id": "cs.algo-lower-bound-flow.c21",
-      "text": "Feasible no; demand 0/1. This is the retained computed question-case certificate.",
+      "text": "For the original input: Feasible no; demand 0/1.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -230,7 +230,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-lower-bound-flow",

@@ -167,7 +167,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "The Luoyang report places Empress Hu’s temple commission beside Northern Wei’s imperial road and palace in 516. The later Chang’an account identifies a Tang palace court that conferred titles and announced policies, with distinct construction and naming dates. These intervening institutions prevent a Han-to-Tang label gap from meaning no government. They do not prove continuous Han–Tang rule, city abandonment or identical powers at both sites. Originals remain uncollated.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

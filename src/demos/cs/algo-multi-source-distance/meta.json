@@ -1,7 +1,7 @@
 {
   "slug": "algo-multi-source-distance",
   "title": "Which source reaches this cell first?",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Several starting points launch waves. Which wave reaches a cell first?",
   "domain": "cs",
   "concept": "algo-multi-source-distance",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-multi-source-distance.c4",
-      "text": "Complete the question path calculation, then inspect a changed input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-multi-source-distance.c6",
-      "text": "Centre nearest-source distance 4. This is the retained computed witness for the question case.",
+      "text": "For the original input: Centre nearest-source distance 4.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-multi-source-distance.c7",
-      "text": "All sources enter the same queue at distance zero. The first wave reaching each cell supplies its nearest-source distance; the centre is reached without choosing one source in advance.",
+      "text": "For the original input: All sources enter the same queue at distance zero. The first wave reaching each cell supplies its nearest-source distance; the centre is reached without choosing one source in advance.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -268,7 +268,7 @@
     },
     {
       "id": "cs.algo-multi-source-distance.c36",
-      "text": "Centre nearest-source distance 0. This is the retained computed witness for the question case.",
+      "text": "For the original input: Centre nearest-source distance 0.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#multi_source_distance.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -328,7 +328,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-multi-source-distance",

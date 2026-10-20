@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "softmax-scores",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "ai.ai-softmax-scores.c4",
-      "text": "{\"question\": \"Scores 0, 0, ln2 give what third-token probability?\", \"options\": [\"1/3\", \"1/2\", \"2/3\"], \"answer\": 1, \"why\": \"The weights 1,1,2 sum to4, so the last receives2/4.\"}",
+      "text": "{\"question\": \"Scores 0, 0, ln2 give what third-token probability?\", \"options\": [\"1/3\", \"1/2\", \"2/3\"], \"answer\": 1, \"why\": \"The weights 1,1,2 sum to 4, so the last receives 2/4.\"}",
       "support": "derivation",
       "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html (definition and stable shifting, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-softmax-scores.c5",
-      "text": "Finite normalizer, no measured language-model behavior. Compare the same tokens; normalization divides exponential weights by their sum. Controls: Base, Shift +ln3, Gaps \u00d72, Tied, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
+      "text": "Finite normalizer, no measured language-model behavior. Compare the same tokens; normalization divides exponential weights by their sum. Controls: Base, Shift +ln3, Gaps ×2, Tied, Reset. Milestones [0, 1, 2]; witness preserved after Reset.",
       "support": "convention",
       "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html (definition and stable shifting, opened2026-10-19). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -74,7 +74,7 @@
       "2/3"
     ],
     "answer": 1,
-    "why": "The weights 1,1,2 sum to4, so the last receives2/4."
+    "why": "The weights 1,1,2 sum to 4, so the last receives 2/4."
   },
   "evidence": {
     "qa": [],

@@ -126,7 +126,7 @@ export default function SixteenOfTwentyGotBetter({ slug }: { slug: string }) {
             model colds clear up by themselves, so getting better after the pill was going to happen anyway.
           </p>
           <p>
-            More pill-takers or faster stories would not change that. Only the comparison row shows what the pill added, and
+            More reports from pill-takers would still leave that comparison missing. Only the comparison row shows what the pill added, and
             here it added nothing.
           </p>
         </>

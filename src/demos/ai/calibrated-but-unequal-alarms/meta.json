@@ -41,10 +41,10 @@
     },
     {
       "id": "ai.calibrated-but-unequal-alarms.c2",
-      "text": "Group A (stage header 'A: 50 ringed', 50 reoffend): false alarms 10/50 non-reoffenders (20%), misses 10/50 reoffenders (20%). Group B with 20 ringed (32 reoffend): false alarms 4/68 (5.9%, shown 6%), misses 16/32 (50%). Readouts read 'false alarms 10/50 = 20%' and 'misses 10/50 = 20%' (row labels on A's side only). Reveal: 'with 32 reoffenders in B, A's innocent people were flagged 20% of the time, B's 6%; B's misses were 50%, A's 20%'.",
+      "text": "Group A (stage header 'A: 50 ringed', 50 reoffend): false alarms 10/50 non-reoffenders (20%), misses 10/50 reoffenders (20%). Group B with 20 ringed (32 reoffend): false alarms 4/68 (5.9%, shown 6%), misses 16/32 (50%). Readouts read 'false alarms 10/50 = 20%' and 'misses 10/50 = 20%' (row labels on A's side only). Reveal: 'with 32 reoffenders in B, A's non-reoffenders were flagged 20% of the time, B's 6%; B's misses were 50%, A's 20%'.",
       "support": "derivation",
       "source": "v2 2026-10-16 (r14 revise): readout format changed from '10 of 50' to '10/50 = 20%', headers now state the ringed count in words; reset to unverified. rates() in Demo.tsx unchanged; builder's node 2026-10-16: A 10/50, 10/50; B at 20: 4/68, 16/32; at 5: 1/77, 19/23; at 35: 7/59, 13/41; at 50: 10/50, 10/50. | v1 record: rates() in Demo.tsx; node 2026-10-14 matches brief 56 (company/domains/briefs/ai.ai-society.md). Other slider values: B at 5 ringed 1 of 77 (1%) and 19 of 23 (83%); at 35 ringed 7 of 59 (12%) and 13 of 41 (32%). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: A false alarms 10/50 = 20%, misses 10/50 = 20%; B at 20: 4/68 = 5.9% (shown 6%), misses 16/32 = 50%; B at 5: 1/77, 19/23; at 35: 7/59, 13/41.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-16",
       "note": "FC pass 62 (fact-checker, 2026-10-16, SO-10-2 trigger d, shared server 3bf1d341, R3a pass; main checkout identical to server for this lesson): VERIFIED. Own rates() port: A false alarms 10/50 = 20%, misses 10/50 = 20%; B at h = 20: 32 reoffend, 4/68 = 5.88% (shown 6%), misses 16/32 = 50%. Readout format '10/50 = 20%' with 'false alarms'/'misses' labels on A only, header 'A: 50 ringed' and '50 reoffend' match Demo.tsx Grid() and the walkthrough. Reveal string matches at h = 20, and at h = 50 it quotes the h = 20 case; at h = 5/35 it quotes that h (23: 1%/83%; 41: 12%/32%), also correct."
@@ -121,7 +121,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "ai:fairness-impossibility",
     "also": [

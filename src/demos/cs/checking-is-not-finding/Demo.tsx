@@ -115,7 +115,7 @@ export default function CheckingIsNotFinding({ slug }: { slug: string }) {
             Checking 4 + 5 took one addition. Finding a group meant trying them: the <strong>{FIND9.tried}st</strong> group made 9, and proving that nothing makes 13 took all <strong>{NONE13.tried}</strong>. One more number doubled the squares to 128.
           </p>
           <p>
-            A shortcut can help on one list, but for problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that finds one quickly in every case. Whether such a method exists is the P versus NP question.
+            For this family of subset-sum problems, a proposed subset is quick to check. No polynomial-time algorithm is known for every input. Whether one exists is part of the P versus NP question.
           </p>
         </>
       )}

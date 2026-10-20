@@ -18,7 +18,7 @@
       0.9
     ],
     "variable": {
-      "label": "Large-price",
+      "label": "Large pack price",
       "start": 6,
       "min": 3,
       "max": 12,
@@ -55,8 +55,8 @@
     "hook": "€0.80 per 100g or €7 per kg: which label is lower?",
     "concept": "lh-align-price-units",
     "family": "receipt",
-    "aLabel": "100g-label",
-    "bLabel": "kg-label",
+    "aLabel": "Per 100g",
+    "bLabel": "Per kg",
     "formulaA": [
       "*",
       0.8,
@@ -64,7 +64,7 @@
     ],
     "formulaB": "x",
     "variable": {
-      "label": "Kg-price",
+      "label": "Price per kg",
       "start": 7,
       "min": 3,
       "max": 12,
@@ -101,8 +101,8 @@
     "hook": "Six rolls or four rolls? The count inside each roll changes the arithmetic.",
     "concept": "lh-count-sheets-not-rolls",
     "family": "receipt",
-    "aLabel": "Six-rolls",
-    "bLabel": "Four-rolls",
+    "aLabel": "Six rolls",
+    "bLabel": "Four rolls",
     "formulaA": [
       "/",
       6,
@@ -269,8 +269,8 @@
     "hook": "Adding an item can remove shipping while raising the total you pay.",
     "concept": "lh-free-shipping-gap",
     "family": "receipt",
-    "aLabel": "Pay-shipping",
-    "bLabel": "Reach-threshold",
+    "aLabel": "Pay shipping",
+    "bLabel": "Reach threshold",
     "formulaA": [
       "+",
       "x",
@@ -397,7 +397,7 @@
     "hook": "€28 basket, €5 off from €30. Add a €2 item: does your bill go down?",
     "concept": "lh-voucher-minimum",
     "family": "receipt",
-    "aLabel": "No-voucher",
+    "aLabel": "No voucher",
     "bLabel": "Voucher",
     "formulaA": "x",
     "formulaB": [
@@ -512,7 +512,7 @@
     "concept": "lh-discount-round-trip",
     "family": "receipt",
     "aLabel": "Original",
-    "bLabel": "Down-up",
+    "bLabel": "Down then up",
     "formulaA": "x",
     "formulaB": [
       "*",
@@ -611,7 +611,7 @@
     "hook": "You pay a deposit at checkout. Does it cost you anything?",
     "concept": "lh-deposit-checkout-net",
     "family": "receipt",
-    "aLabel": "After-return",
+    "aLabel": "After return",
     "bLabel": "Checkout",
     "formulaA": [
       "*",
@@ -772,7 +772,7 @@
     "concept": "lh-weighted-bill-share",
     "family": "allocation",
     "aLabel": "Weighted",
-    "bLabel": "Equal-people",
+    "bLabel": "Equal per person",
     "formulaA": [
       "/",
       "x",
@@ -924,8 +924,8 @@
     "hook": "The wall needs 2.3 tins of paint. How many tins do you buy?",
     "concept": "lh-coverage-whole-cans",
     "family": "allocation",
-    "aLabel": "Whole-litres",
-    "bLabel": "Exact-need",
+    "aLabel": "Whole litres",
+    "bLabel": "Exact need",
     "formulaA": [
       "ceil",
       [
@@ -979,8 +979,8 @@
     "hook": "Ten extra or 10% extra: which order is bigger depends on the job size.",
     "concept": "lh-percentage-overage",
     "family": "allocation",
-    "aLabel": "10%-extra",
-    "bLabel": "Ten-extra",
+    "aLabel": "10% extra",
+    "bLabel": "Ten extra",
     "formulaA": [
       "ceil",
       [
@@ -1032,7 +1032,7 @@
     "hook": "Six panels each need a 5cm allowance. Is one 5cm allowance enough?",
     "concept": "lh-each-cut-allowance",
     "family": "allocation",
-    "aLabel": "Each-panel",
+    "aLabel": "Each panel",
     "bLabel": "Once",
     "formulaA": [
       "*",
@@ -1086,8 +1086,8 @@
     "hook": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
     "concept": "lh-lead-time-stock",
     "family": "inventory",
-    "aLabel": "With-buffer",
-    "bLabel": "No-buffer",
+    "aLabel": "With buffer",
+    "bLabel": "No buffer",
     "formulaA": [
       "+",
       [
@@ -1118,7 +1118,7 @@
       "8 units"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; constant toy demand; buffer=8; no policy advice.",
+    "assumptions": "Scaled model; Constant demand in this example, with an eight-unit buffer. This is not stocking advice.",
     "details": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve.",
     "principle": "Multiply daily use by waiting days, then add the reserve. This is the stock left when ordering under the toy rule, not the quantity to buy. Real demand and delays can vary; the rule is illustrative.",
     "objective": "Calculate the stock on hand when ordering to cover a stated delivery delay and retain a stated reserve.",
@@ -1141,7 +1141,7 @@
     "concept": "lh-buy-only-stock-gap",
     "family": "inventory",
     "aLabel": "Gap",
-    "bLabel": "Ignore-stock",
+    "bLabel": "Ignore stock",
     "formulaA": [
       "max",
       0,
@@ -1168,7 +1168,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; usable stock=7; no hidden commitments.",
+    "assumptions": "Scaled model; Seven usable units are in stock, with no unrecorded commitments.",
     "details": "Seven usable units are already available. A orders only the gap; B orders the whole requirement.",
     "principle": "Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation.",
     "objective": "Calculate nonnegative replenishment after counting available stock.",
@@ -1203,7 +1203,7 @@
     ],
     "formulaB": "x",
     "variable": {
-      "label": "On-shelf",
+      "label": "On shelf",
       "start": 10,
       "min": 6,
       "max": 20,
@@ -1218,7 +1218,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; six committed; no incoming stock.",
+    "assumptions": "Scaled model; Six units are already committed, and no new stock is arriving.",
     "details": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts.",
     "principle": "Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
     "objective": "Separate physical inventory from uncommitted availability.",
@@ -1240,8 +1240,8 @@
     "hook": "Boxes hold six. Does twelve required mean ordering two boxes?",
     "concept": "lh-round-replenishment",
     "family": "inventory",
-    "aLabel": "Box-order",
-    "bLabel": "Exact-gap",
+    "aLabel": "Box order",
+    "bLabel": "Exact gap",
     "formulaA": [
       "*",
       6,
@@ -1287,7 +1287,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; stock=3; indivisible six-unit boxes.",
+    "assumptions": "Scaled model; Three units are in stock. New stock comes only in whole boxes of six.",
     "details": "Three usable units are in stock. New orders come only in six-unit boxes.",
     "principle": "Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count.",
     "objective": "Apply package rounding to the shortage rather than total demand.",
@@ -1309,7 +1309,7 @@
     "hook": "Two here, five freely available there: how many new units are missing?",
     "concept": "lh-pool-spare-stock",
     "family": "inventory",
-    "aLabel": "Local-only",
+    "aLabel": "Local only",
     "bLabel": "Pooled",
     "formulaA": [
       "max",
@@ -1421,8 +1421,8 @@
     "hook": "Six tickets expire after this event. Which choice leaves fewer of them unused?",
     "concept": "lh-use-deadline-tickets",
     "family": "inventory",
-    "aLabel": "Deadline-first",
-    "bLabel": "Other-first",
+    "aLabel": "Deadline first",
+    "bLabel": "Other first",
     "formulaA": [
       "max",
       0,
@@ -1499,7 +1499,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; count difference=2; dispatch=3; no receipts.",
+    "assumptions": "Scaled model; The physical count is two units below the record. Three units are dispatched, with no incoming deliveries.",
     "details": "The physical count is two below the record. Three units are then dispatched.",
     "principle": "Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation.",
     "objective": "Propagate a counted inventory discrepancy through a later transaction.",
@@ -1543,7 +1543,7 @@
       1000
     ],
     "variable": {
-      "label": "A-hours",
+      "label": "A hours",
       "start": 1,
       "min": 1,
       "max": 8,
@@ -1558,7 +1558,7 @@
       "Equal"
     ],
     "answer": 2,
-    "assumptions": "Scaled model; illustrative:100W×h;20W×5h;tariff=€0.30/kWh.",
+    "assumptions": "Scaled model; Illustrative loads: 100 W for h hours, or 20 W for 5h hours; electricity costs €0.30/kWh.",
     "details": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s.",
     "principle": "Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total.",
     "objective": "Compare energy use while accounting for both constant power and duration.",
@@ -1619,7 +1619,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; illustrative:60W×2h/day;3W×22h/day;€0.30/kWh.",
+    "assumptions": "Scaled model; Illustrative loads: 60 W for 2 hours a day, or 3 W for 22 hours a day; electricity costs €0.30/kWh.",
     "details": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed.",
     "principle": "Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied.",
     "objective": "Compare separate operating-state energy contributions.",
@@ -1678,7 +1678,7 @@
       "17.5 kWh"
     ],
     "answer": 1,
-    "assumptions": "Scaled model; illustrative:2W;24h/day-or-1h/day.",
+    "assumptions": "Scaled model; Illustrative constant 2 W load, running for either 24 hours or 1 hour a day.",
     "details": "A constant illustrative 2W load runs for either 24h/day or 1h/day.",
     "principle": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
     "objective": "Convert a small stated constant load into a multiday energy quantity.",
@@ -1704,8 +1704,8 @@
     "hook": "A 100 W fridge compressor runs a quarter of the time. Energy per day?",
     "concept": "lh-duty-cycle-energy",
     "family": "energy",
-    "aLabel": "Quarter-on",
-    "bLabel": "Always-on",
+    "aLabel": "On 25% of time",
+    "bLabel": "Always on",
     "formulaA": [
       "/",
       [
@@ -1740,7 +1740,7 @@
       "2.4 kWh: 100 W all day"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; illustrative:100W-on;0W-off;25%-or-100%;€0.30/kWh.",
+    "assumptions": "Scaled model; Illustrative load: 100 W when on, 0 W when off, on for either 25% or 100% of the time; electricity costs €0.30/kWh.",
     "details": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously.",
     "principle": "Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
     "objective": "Use a stated duty fraction rather than treating rated power as continuous.",
@@ -1766,8 +1766,8 @@
     "hook": "Your bill has a €10 fixed charge. Halve your usage: does the bill halve?",
     "concept": "lh-fixed-energy-charge",
     "family": "energy",
-    "aLabel": "Low-rate+fee",
-    "bLabel": "No-fee",
+    "aLabel": "Low rate + fee",
+    "bLabel": "No fee",
     "formulaA": [
       "+",
       [
@@ -1798,7 +1798,7 @@
       "€14"
     ],
     "answer": 2,
-    "assumptions": "Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
+    "assumptions": "Scaled model; Fictional tariffs: €0.20/kWh plus €10, or €0.30/kWh with no fixed fee. Taxes excluded.",
     "details": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
     "principle": "A fixed charge does not shrink when you use less. Halve usage from 40 to 20 kWh and A's bill goes from €18 to €14, not €9: only the €8 energy part halves. A lower per-kWh rate does not erase the fee either: B costs €12 at 40 kWh, and the two match at 100 kWh under these exact assumptions; real tariffs can include other terms.",
     "objective": "Compare fixed and usage-dependent charges in a stated bill model.",
@@ -1851,7 +1851,7 @@
       "No: same kWh, lower price"
     ],
     "answer": 1,
-    "assumptions": "Scaled model; fictional:€0.40/kWh-or-€0.20/kWh;same kWh.",
+    "assumptions": "Scaled model; Fictional rates of €0.40/kWh or €0.20/kWh, applied to the same energy use.",
     "details": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges.",
     "principle": "The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time.",
     "objective": "Distinguish a cost change from an energy-use change.",
@@ -1906,7 +1906,7 @@
       "€360"
     ],
     "answer": 1,
-    "assumptions": "Scaled model; illustrative:200-or-350kWh/year;€0.30/kWh;constant years.",
+    "assumptions": "Scaled model; Illustrative annual use of 200 or 350 kWh at €0.30/kWh, unchanged across years.",
     "details": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year.",
     "principle": "Multiply annual energy by years and the stated unit price. The two labels differ by €45 a year (150kWh × €0.30), so the gap grows every year: €360 over 8 years. This assumes unchanged use and tariff; it is not a measured forecast for a named product.",
     "objective": "Translate a stated annual energy figure into a multiyear running-cost model.",
@@ -1931,8 +1931,8 @@
     "hook": "A higher upfront price can cross a lower one after repeated running costs.",
     "concept": "lh-purchase-plus-running",
     "family": "energy",
-    "aLabel": "Lower-tag",
-    "bLabel": "Lower-running",
+    "aLabel": "Lower price",
+    "bLabel": "Lower running",
     "formulaA": [
       "+",
       80,
@@ -1969,7 +1969,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; illustrative:€80+120kWh/y;€140+60kWh/y;€0.30/kWh.",
+    "assumptions": "Scaled model; Illustrative costs: €80 plus 120 kWh/year, or €140 plus 60 kWh/year, at €0.30/kWh.",
     "details": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh.",
     "principle": "Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
     "objective": "Combine an upfront amount and repeated operating charges without assuming the same winner at every horizon.",
@@ -2020,7 +2020,7 @@
       "Equal"
     ],
     "answer": 1,
-    "assumptions": "Scaled model; illustrative constant flows; no fixture instructions.",
+    "assumptions": "Scaled model; Illustrative constant flows; no plumbing instructions.",
     "details": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes.",
     "principle": "A volume per minute multiplied by minutes gives volume. Keeping duration equal isolates the flow-rate difference. Actual flow can vary, so the picture demonstrates the stated arithmetic only.",
     "objective": "Convert a constant flow rate and duration into volume.",
@@ -2071,7 +2071,7 @@
       "Equal"
     ],
     "answer": 2,
-    "assumptions": "Scaled model; illustrative:12L/min×t;6L/min×2t;constant flow.",
+    "assumptions": "Scaled model; Illustrative constant flows: 12 L/min for t minutes, or 6 L/min for 2t minutes.",
     "details": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration.",
     "principle": "The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes.",
     "objective": "Explain the offset between rate and duration under a fixed proportional change.",
@@ -2145,8 +2145,8 @@
     "hook": "A tap drips 5 mL a minute. Per day, about how much?",
     "concept": "lh-small-leak-large-duration",
     "family": "water",
-    "aLabel": "One-day",
-    "bLabel": "One-hour",
+    "aLabel": "One day",
+    "bLabel": "One hour",
     "formulaA": [
       "/",
       [
@@ -2207,7 +2207,7 @@
     "concept": "lh-jug-rounding-extra",
     "family": "water",
     "aLabel": "Exact",
-    "bLabel": "Whole-litres",
+    "bLabel": "Whole litres",
     "formulaA": [
       "/",
       [
@@ -2268,7 +2268,7 @@
     "concept": "lh-water-meter-units",
     "family": "water",
     "aLabel": "Converted",
-    "bLabel": "Same-digits",
+    "bLabel": "Same digits",
     "formulaA": [
       "/",
       "x",
@@ -2339,7 +2339,7 @@
       1000
     ],
     "variable": {
-      "label": "Third-side",
+      "label": "Third side",
       "start": 15,
       "min": 1,
       "max": 30,
@@ -2376,8 +2376,8 @@
     "hook": "Two ideal cylinders have equal height and radii of 3cm and 6cm.",
     "concept": "lh-double-container-radius",
     "family": "geometry",
-    "aLabel": "3cm-radius",
-    "bLabel": "6cm-radius",
+    "aLabel": "3cm radius",
+    "bLabel": "6cm radius",
     "formulaA": [
       "/",
       [
@@ -2436,8 +2436,8 @@
     "hook": "Two square surfaces have side lengths 2m and 4m. Is the second only twice as large?",
     "concept": "lh-area-scales-square",
     "family": "geometry",
-    "aLabel": "Side-x",
-    "bLabel": "Side-2x",
+    "aLabel": "Side x",
+    "bLabel": "Side 2x",
     "formulaA": [
       "*",
       "x",
@@ -2488,7 +2488,7 @@
     "hook": "A rectangular panel includes a 2m² opening. Counting the outline counts too much surface.",
     "concept": "lh-subtract-openings-area",
     "family": "geometry",
-    "aLabel": "Net-surface",
+    "aLabel": "Net surface",
     "bLabel": "Outline",
     "formulaA": [
       "-",
@@ -2542,8 +2542,8 @@
     "hook": "A 2cm overlap repeats along a 20cm edge. Where does its area go?",
     "concept": "lh-overlap-material-area",
     "family": "geometry",
-    "aLabel": "With-overlap",
-    "bLabel": "No-overlap",
+    "aLabel": "With overlap",
+    "bLabel": "No overlap",
     "formulaA": [
       "*",
       [
@@ -2755,7 +2755,7 @@
     "concept": "lh-offcuts-not-one-piece",
     "family": "reuse",
     "aLabel": "Separate",
-    "bLabel": "Pooled-length",
+    "bLabel": "Pooled length",
     "formulaA": [
       "+",
       [
@@ -2887,8 +2887,8 @@
     "hook": "A fixed access fee and a smaller visit charge cross a pay-per-visit total.",
     "concept": "lh-visit-fee-crossover",
     "family": "receipt",
-    "aLabel": "Per-visit",
-    "bLabel": "Fee+visits",
+    "aLabel": "Per visit",
+    "bLabel": "Fee + visits",
     "formulaA": [
       "*",
       10,
@@ -3112,8 +3112,8 @@
     "hook": "Mixing different quantities makes a simple average of unit prices misleading.",
     "concept": "lh-weighted-unit-average",
     "family": "allocation",
-    "aLabel": "Equal-weights",
-    "bLabel": "Chosen-weights",
+    "aLabel": "Equal weights",
+    "bLabel": "Chosen weights",
     "formulaA": 4.5,
     "formulaB": [
       "/",
@@ -3133,7 +3133,7 @@
       ]
     ],
     "variable": {
-      "label": "Cheap-mass",
+      "label": "Cheaper mass",
       "start": 2,
       "min": 1,
       "max": 5,
@@ -3170,8 +3170,8 @@
     "hook": "Twenty objects and a six-object carrier: a remainder still needs another trip.",
     "concept": "lh-capacity-batch-count",
     "family": "allocation",
-    "aLabel": "Six-capacity",
-    "bLabel": "Eight-capacity",
+    "aLabel": "Holds six",
+    "bLabel": "Holds eight",
     "formulaA": [
       "ceil",
       [
@@ -3276,8 +3276,8 @@
     "hook": "Rounding three tiny lines separately can differ from rounding their sum once.",
     "concept": "lh-round-lines-versus-total",
     "family": "receipt",
-    "aLabel": "Each-line",
-    "bLabel": "Total-once",
+    "aLabel": "Each line",
+    "bLabel": "Total once",
     "formulaA": [
       "*",
       "x",
@@ -3310,7 +3310,7 @@
       "Equal"
     ],
     "answer": 0,
-    "assumptions": "Scaled model; toy rule: nearest cent, half upward; no billing-law claim.",
+    "assumptions": "Scaled model; This example rounds to the nearest cent, rounding half a cent upward. Actual billing rules may differ.",
     "details": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once.",
     "principle": "Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
     "objective": "Compare line-level rounding with aggregate rounding under a stated convention.",

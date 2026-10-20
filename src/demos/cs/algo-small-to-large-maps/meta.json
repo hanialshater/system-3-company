@@ -1,7 +1,7 @@
 {
   "slug": "algo-small-to-large-maps",
   "title": "Move the smaller bag",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "Which bag should move when two colour collections join?",
   "domain": "cs",
   "concept": "algo-small-to-large-maps",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-small-to-large-maps.c4",
-      "text": "Run the question case, then inspect its steps and compare another case.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-small-to-large-maps.c6",
-      "text": "Item moves 5; final size 7. This is the retained result of the question case.",
+      "text": "For the original input: Item moves 5; final size 7.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-small-to-large-maps.c7",
-      "text": "The smaller bag supplies the moved items. Each merged colour-frequency map is updated by those counts, and its size determines the next merge direction.",
+      "text": "For the original input: The smaller bag supplies the moved items. Each merged colour-frequency map is updated by those counts, and its size determines the next merge direction.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -149,7 +149,7 @@
     },
     {
       "id": "cs.algo-small-to-large-maps.c19",
-      "text": "Item moves 4; final size 7. This is the retained result of the question case.",
+      "text": "For the original input: Item moves 4; final size 7.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#small_to_large_maps.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -216,7 +216,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-small-to-large-maps",

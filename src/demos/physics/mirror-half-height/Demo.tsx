@@ -79,7 +79,7 @@ export default function MirrorHalfHeight({ slug }: { slug: string }) {
           </p>
           <p>
             Your reflection stands as far behind the glass as you stand in front. The line from your eye to its toes crosses the
-            glass halfway between eye and floor; the line to its head, halfway between eye and head top. So the mirror needs
+            glass halfway between eye and floor; the line to its head, halfway between eye and the top of the head. So the mirror needs
             half your height, and stepping back moves nothing.
           </p>
           <p className="muted">Flat mirror; the eye treated as a single point.</p>

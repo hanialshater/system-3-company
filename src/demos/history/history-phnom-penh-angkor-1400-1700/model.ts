@@ -196,7 +196,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Polkinghorne distinguishes a court branch moving through Basan to Phnom Penh from rival centres and uncertain dates. At Angkor, later patronage and monastic life continued while political authority lay at Longvek. Court location, inhabited communities and religious institutions are different relations. Continued life does not erase wartime displacement; the uncollated chronicles do not establish one uncontested capital or relocation date.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

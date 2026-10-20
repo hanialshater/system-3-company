@@ -58,7 +58,7 @@
     },
     {
       "id": "cs.algo-wildcard-dp.c6",
-      "text": "Run the question case, inspect the recurrence states, then compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -72,14 +72,14 @@
     },
     {
       "id": "cs.algo-wildcard-dp.c8",
-      "text": "Full glob match yes. This remains the computed witness for the question case.",
+      "text": "For the original input: Full glob match yes.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-wildcard-dp.c9",
-      "text": "A glob star consumes zero characters from the left state or one more character from the state above. A question mark consumes exactly one, so the two transitions differ.",
+      "text": "For the original input: A glob star consumes zero characters from the left state or one more character from the state above. A question mark consumes exactly one, so the two transitions differ.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -177,7 +177,7 @@
     },
     {
       "id": "cs.algo-wildcard-dp.c23",
-      "text": "Full glob match no. This remains the computed witness for the question case.",
+      "text": "For the original input: Full glob match no.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.reveal(src/lib/algorithms/topics/sequence-dynamic-programming.ts#wildcard_dp.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -223,7 +223,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-wildcard-dp",

@@ -15,7 +15,7 @@
       "cross-entropy-loss"
     ],
     "doesNotKnow": [
-      "Which probability gives the larger product for labels[1,1,0]?"
+      "Which probability gives the larger product for labels [1,1,0]?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-maximum-likelihood.c1",
-      "text": "Which probability fits these labels? Multiply the probabilities assigned to the three observations. Which probability gives the larger product for labels[1,1,0]? Options: p=.8; p=.5; Equal.",
+      "text": "Which probability fits these labels? Multiply the probabilities assigned to the three observations. Which probability gives the larger product for labels [1,1,0]? Options: p=.8; p=.5; Equal.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -32,7 +32,7 @@
     },
     {
       "id": "ai.ai-maximum-likelihood.c2",
-      "text": "Likelihoods .128 and .125 favoured the first model; p=2/3 improved to4/27. Negative natural log reverses the ordering; dividing by3 gives mean loss. At p=1 the observed zero was impossible. These results concern this declared Bernoulli construction.",
+      "text": "Likelihoods .128 and .125 favoured the first model; p=2/3 improved to 4/27. Negative natural log reverses the ordering; dividing by 3 gives mean loss. At p=1 the observed zero was impossible. These results concern this declared Bernoulli construction.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §21; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -64,8 +64,8 @@
     "question": "Why does one zero probability matter in the product?",
     "options": [
       "Multiplying by zero makes the entire observed-label likelihood zero; its negative natural logarithm is infinite.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "Only the zero-probability observation drops out of the product.",
+      "The other two probabilities cancel the zero."
     ],
     "answer": 0,
     "why": "Multiplying by zero makes the entire observed-label likelihood zero; its negative natural logarithm is infinite."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:maximum-likelihood",
     "also": [],

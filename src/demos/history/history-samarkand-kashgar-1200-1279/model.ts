@@ -185,7 +185,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Samarkand’s conquest and a prince’s allotment did not put every office under the same authority. The accounts distinguish civil and fiscal reporting to the Great Khan from Kashgar’s later named administrators and madrasa. Under Alghu, civil administration shifted toward the ulus head. Conquest, allotment and reporting relationships therefore differ across time; the coercion of 1220 cannot become consent or a timeless uniform empire.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

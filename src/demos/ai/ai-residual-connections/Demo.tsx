@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "At depth3, which declared transformation has larger sensitivity?", "options": ["h←.1h", "h←h+.1h", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>The plain path multiplied sensitivity by .1 three times, giving .001. Adding the identity path changed each multiplier to 1.1, giving 1.331. A branch weight of −1 canceled that identity and gave zero. This construction guarantees neither nonzero gradients everywhere nor successful training.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "At depth 3, which declared transformation has larger sensitivity?", "options": ["h←.1h", "h←h+.1h", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The plain path multiplied sensitivity by .1 three times, giving .001. Adding the identity path changed each multiplier to 1.1, giving 1.331. A branch weight of −1 canceled that identity and gave zero. This construction guarantees neither nonzero gradients everywhere nor successful training.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

@@ -7,7 +7,7 @@ import s from './styles.module.css';
 export default function Demo({slug}:{slug:string}) {
  const [gamma,setGamma]=useState<1|0.5>(1),[compared,setCompared]=useState(false),[halfSeen,setHalfSeen]=useState(false);
  const totals=returns(gamma),full=returns(1),half=returns(.5);
- return <Lesson slug={slug} predict={{question:"At discount 1, which start action has the greater return?",options:["Cash","Wait","They tie"],answer:1}} minInteractions={2} exploreHint="Compare both paths, then switch discount to witness both choices." reveal={()=> <p>At γ=1, Cash returned {full.cash} while Wait returned 0+1×5={full.wait}. Zero now led to more over the whole path. At γ=0.5, the later 5 became {half.wait}, below Cash’s {half.cash}. Discount multiplies the later reward, so timing reversed the choice.</p>}>
+ return <Lesson slug={slug} predict={{question:"At discount 1, which start action has the greater return?",options:["Cash","Wait","They tie"],answer:1}} minInteractions={2} exploreHint="Compare both paths, then switch the discount to see which choice wins." reveal={()=> <p>At γ=1, Cash returned {full.cash} while Wait returned 0+1×5={full.wait}. Zero now led to more over the whole path. At γ=0.5, the later 5 became {half.wait}, below Cash’s {half.cash}. Discount multiplies the later reward, so timing reversed the choice.</p>}>
  {({locked,interact})=><div className={s.root}>
   <div className={s.trace}><div>Cash → 3 → end</div><div>Wait → 0 → Bridge → 5 → end</div></div>
   <div className={s.rule}>Discount multiplies the later reward.</div>

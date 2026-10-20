@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "ppo-clipping",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-ppo-clipping.c5",
-      "text": "Single sampled PPO surrogate, p(old)=.5 and ratios in [0,2]. Negative adverse tail remains uncapped; zero advantage contributes zero. Controls: r=1.4, r=.6, A=0, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "text": "Single sampled PPO surrogate, p(old)=.5 and ratios in [0,2]. Negative adverse tail remains uncapped; zero advantage contributes zero. Controls: r=1.4, r=.6, A=0, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the two cases and their saved results.",
       "support": "convention",
       "source": "https://spinningup.openai.com/en/latest/algorithms/ppo.html — acquired original implementer body, Key Equations: signed minimum surrogate. Local arithmetic in model.ts; no benchmark or hard KL guarantee.",
       "status": "unverified",

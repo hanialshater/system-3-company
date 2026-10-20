@@ -1,7 +1,7 @@
 {
   "slug": "algo-bidirectional-bound",
   "title": "When can two searches stop?",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "The searches meet. Is their first complete route already safe to keep?",
   "domain": "cs",
   "concept": "algo-bidirectional-bound",
   "status": "draft",
@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-bidirectional-bound.c4",
-      "text": "Complete the question path calculation, then inspect a changed input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-bidirectional-bound.c6",
-      "text": "Shortest route 6; frontier bound reached. This is the retained computed witness for the question case.",
+      "text": "Shortest route 6; frontier bound reached. This is the retained computed witness for the original input.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-bidirectional-bound.c7",
-      "text": "A meeting route is an upper bound, not an immediate stopping certificate. Search continues until the two unsettled-frontier lower bounds sum to at least the best complete route.",
+      "text": "For the original input: A meeting route is an upper bound, not an immediate stopping certificate. Search continues until the two unsettled-frontier lower bounds sum to at least the best complete route.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -205,7 +205,7 @@
     },
     {
       "id": "cs.algo-bidirectional-bound.c27",
-      "text": "Shortest route 3; frontier bound reached. This is the retained computed witness for the question case.",
+      "text": "Shortest route 3; frontier bound reached. This is the retained computed witness for the original input.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#bidirectional_bound.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -272,7 +272,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-bidirectional-bound",

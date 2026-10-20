@@ -19,7 +19,7 @@ export const DOCUMENTS = [
   {
     "id": "imperial",
     "text": "Gojong’s 1897 Gyeongungung-based imperial transition",
-    "requiredContext": "Korean institutional synthesis agent paraphrase, not original proclamation or proof all foreign interference ended.",
+    "requiredContext": "Korean institutional synthesis, paraphrased in English, not original proclamation or proof all foreign interference ended.",
     "sourceUrl": "https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_r400100",
     "locator": "indexed47 NIKH Gojong account",
     "sourceLevel": "institutional retrospective account",

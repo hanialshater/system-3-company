@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "dead-relu",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-dead-relu.c5",
-      "text": "Single unit and sole example; declared derivative 0 at z=0. Negative gate prevents this weight path from reviving on that example, not all possible inputs or other parameter paths. Controls: b=−2, b=0, x=3, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the first two cases; retain their evidence.",
+      "text": "Single unit and sole example; declared derivative 0 at z=0. Negative gate prevents this weight path from reviving on that example, not all possible inputs or other parameter paths. Controls: b=−2, b=0, x=3, Reset. Required primary and countercase; meaningful Reset restores locked input presentation while preserving earned snapshots. Opening reveal restores primary diagram; countercase remains reachable. Hint: Compare the two cases and their saved results.",
       "support": "convention",
       "source": "Declared finite construction and reproducible algebra in model.ts; company/domains/briefs/2026-10-19-ai-next30b.md. No acquired general-method body or performance guarantee is claimed.",
       "status": "unverified",

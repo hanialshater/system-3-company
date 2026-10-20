@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "eval-prompt-sensitivity",
   "status": "draft",
-  "version": 3,
+  "version": 5,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-eval-prompt-sensitivity.c1",
-      "text": "Title: Which template enters?. Hook: Trace a fixed parser on the same tasks.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: With the parser fixed, must equivalent question formats score equally? Choices: Yes; No. Explore instruction: Compare each case, then inspect the retained evidence.",
+      "text": "Title: Which template enters?. Hook: Trace a fixed parser on the same tasks.. Objective: Explain the retained computed contrast and its stated boundary.. The prediction asks learners to compare the declared cases before computed outcomes are shown. Prediction: With the parser fixed, must equivalent question formats score equally? Choices: Yes; No. Explore instruction: Compare each case and its saved results.",
       "support": "derivation",
       "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -45,7 +45,7 @@
     },
     {
       "id": "ai.ai-eval-prompt-sensitivity.c3",
-      "text": "The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
+      "text": "The same four sums scored 4/4 or 0/4 when only the template changed. The normalized parser scored 4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
       "support": "derivation",
       "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -55,7 +55,7 @@
     },
     {
       "id": "ai.ai-eval-prompt-sensitivity.c4",
-      "text": "Recall: Which change prevents isolating prompt format as the cause of a score difference? Choices: Change the scorer as well as format; Keep tasks and scorer fixed; Normalize prefixes in a separate control. Answer rationale: The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
+      "text": "Recall: Which change prevents isolating prompt format as the cause of a score difference? Choices: Change the scorer as well as format; Keep tasks and scorer fixed; Normalize prefixes in a separate control. Answer rationale: The same four sums scored 4/4 or 0/4 when only the template changed. The normalized parser scored 4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol.",
       "support": "derivation",
       "source": "Declared parser-v1 2026-10-19 accepts only /^Q:(\\d+)\\+(\\d+)$/; prefix-normalized countercase supports both templates. Four fixed sums/scorer; literal templates owner-declared manipulated stimuli. https://arxiv.org/html/2310.11324v2 motivates protocol only; no measured LLM effect. Owner: company/domains/briefs/2026-10-19-ai-final9.md and ai-final9-learning-disposition.md; LD final9-compositions.md.",
       "status": "unverified",
@@ -82,7 +82,7 @@
       "Normalize prefixes in a separate control"
     ],
     "answer": 0,
-    "why": "The same four sums scored4/4 or0/4 when only the template changed. The normalized parser scored4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol."
+    "why": "The same four sums scored 4/4 or 0/4 when only the template changed. The normalized parser scored 4/4 under both. These are executable parser results, not measured LLM effects. A score describes a component together with its input and scoring protocol."
   },
   "evidence": {
     "qa": [],

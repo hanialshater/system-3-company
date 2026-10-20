@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "naive-bayes-double-counting",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -25,7 +25,7 @@
   "claims": [
     {
       "id": "ai.ai-naive-bayes-double-counting.c1",
-      "text": "export function run(mode:number){const independent=mode===1,ratios=[3,3],naiveOdds=ratios.reduce((a,b)=>a*b,1),jointOdds=independent?naiveOdds:ratios[0];return {independent,ratios,naiveOdds,jointOdds,naive:naiveOdds/(1+naiveOdds),joint:jointOdds/(1+jointOdds)};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"One clue, counted twice? \\u2014 computed finite mechanism\"><text x=\"6\" y=\"18\">{r.independent?'X,Y independent':'X,X duplicate'}</text>{r.ratios.map((v,i)=><g key={i}><rect x={12+i*90} y=\"29\" width=\"70\" height=\"29\" className={s.box}/><text x={47+i*90} y=\"49\" textAnchor=\"middle\">{i===0?'X':r.independent?'Y':'X'} ×{v}</text></g>)}<path d=\"M82 44 H101 M172 44 H195\" className={s.line}/><text x=\"200\" y=\"49\">{r.naiveOdds}:1</text><text x=\"6\" y=\"80\">Product={f(r.naive,2)} · joint={f(r.joint,2)}</text></svg>;}\n\nLocked inputs: Prior odds=1; clue X has likelihood ratio 3. Compare X,X with independent X,Y.",
+      "text": "export function run(mode:number){const independent=mode===1,ratios=[3,3],naiveOdds=ratios.reduce((a,b)=>a*b,1),jointOdds=independent?naiveOdds:ratios[0];return {independent,ratios,naiveOdds,jointOdds,naive:naiveOdds/(1+naiveOdds),joint:jointOdds/(1+jointOdds)};}\n\nfunction Picture({mode}:{mode:number}){const r=m.run(mode);return <svg className={s.plot} viewBox=\"0 0 280 112\" role=\"img\" aria-label=\"One clue, counted twice? — worked example\"><text x=\"6\" y=\"18\">{r.independent?'X,Y independent':'X,X duplicate'}</text>{r.ratios.map((v,i)=><g key={i}><rect x={12+i*90} y=\"29\" width=\"70\" height=\"29\" className={s.box}/><text x={47+i*90} y=\"49\" textAnchor=\"middle\">{i===0?'X':r.independent?'Y':'X'} ×{v}</text></g>)}<path d=\"M82 44 H101 M172 44 H195\" className={s.line}/><text x=\"200\" y=\"49\">{r.naiveOdds}:1</text><text x=\"6\" y=\"80\">Product={f(r.naive,2)} · joint={f(r.joint,2)}</text></svg>;}\n\nLocked inputs: Prior odds=1; clue X has likelihood ratio 3. Compare X,X with independent X,Y.",
       "support": "derivation",
       "source": "[https://scikit-learn.org/stable/modules/naive_bayes.html](https://scikit-learn.org/stable/modules/naive_bayes.html). Acquired maintainer body §§1.9: conditional independence given class and likelihood product. Local duplicated-clue posterior is exact arithmetic, not an empirical calibration result.",
       "status": "unverified",

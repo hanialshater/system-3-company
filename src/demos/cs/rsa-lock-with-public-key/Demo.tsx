@@ -35,8 +35,8 @@ export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Public key: n = 55, e = 3. You lock 7 as 7³ mod 55 = 13. If n had hundreds of digits, who could unlock 13?",
-        options: ["Anyone with the public key", "Only someone who can find the factors 5 × 11", "Nobody"],
+        question: "Public key: n = 55, e = 3. You lock 7 as 7³ mod 55 = 13. Which information lets you calculate the private unlocking number d in this example?",
+        options: ["The public exponent e alone", "The factors 5 and 11", "Nobody"],
         answer: 1,
       }}
       exploreHint="Lock a number. Try to unlock it with the public key, then with the factors."
@@ -44,8 +44,7 @@ export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Using the public e = 3 again turned the locked number into something new, not back into your message. Only
-            after splitting 55 into 5 × 11 could you get d = 27, and that unlocked it.
+            Using the public e = 3 again turned the locked number into something new, not back into your message. Splitting 55 into 5 × 11 let you calculate d = 27, which unlocked it.
           </p>
           <p>
             Locking needs only n and e, which everyone may know. Unlocking needs d, and d comes from the factors of n.

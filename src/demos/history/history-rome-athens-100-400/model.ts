@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Gaius’s translated law distinguishes specified Rome actions from those dependent on magistrate imperium. Athens’s translated oil law assigns cases to civic bodies and allows imperial or proconsular appeal. These are different operative jurisdictions, not one uniform imperial procedure. The fragmentary inscription and uncollated editions establish prescriptions, not universal enforcement or complete endpoint office rosters.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

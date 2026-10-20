@@ -3,7 +3,7 @@ export const DOCUMENTS = [
     "id": "satsuma",
     "text": "Ryukyu formally retained kingdom under Shimazu dominance; reciprocal establishments",
     "mediation": "Kagoshima prefectural Japanese institutional account; working English paraphrase",
-    "requiredContext": "1609 invasion is antecedent context outside1700–1900, not a new selected-period endpoint. Account does not independently date every subsequent institutional condition.",
+    "requiredContext": "1609 invasion is antecedent context outside 1700–1900, not a new selected-period endpoint. Account does not independently date every subsequent institutional condition.",
     "sourceUrl": "https://www.pref.kagoshima.jp/ab23/pr/gaiyou/rekishi/tyuusei/ryukyu.html",
     "locator": "indexed text42",
     "fieldAddresses": [],
@@ -29,7 +29,7 @@ export const DOCUMENTS = [
     "id": "replacement",
     "text": "1879 armed arrival and replacement with Okinawa prefecture",
     "mediation": "Okinawa Archives Japanese institutional account; working English paraphrase",
-    "requiredContext": "1872 Ryukyu-han designation must load before this witness earns;27March1879 order and4April proclamation are distinct. Working English paraphrase of modern Okinawa archival account; original instruments uncollated. No uninterrupted category or continuous control inferred.",
+    "requiredContext": "1872 Ryukyu-han designation must load before this witness earns; the 27 March 1879 order and 4 April proclamation are distinct. Working English paraphrase of modern Okinawa archival account; original instruments uncollated. No uninterrupted category or continuous control inferred.",
     "sourceUrl": "https://www.archives.pref.okinawa.jp/news/that_day/4631",
     "locator": "indexed text68–70",
     "fieldAddresses": [
@@ -91,15 +91,15 @@ export const ATTACHMENTS = {
   ]
 };
 export const PREDICTION = {
-  "question": "Does a kingdom retained under Shimazu domination describe the same institutional relation as the1879 replacement?",
+  "question": "Does a kingdom retained under Shimazu domination describe the same institutional relation as the 1879 replacement?",
   "options": [
     "Same relation",
     "Distinct relations"
   ],
   "answer": 1
 };
-export const REVEAL = "Kagoshima describes the 1609 invasion as antecedent to retained kingship under Shimazu dominance. Okinawa Archives identifies Sanshikan Ikegusuku Anki’s preservation efforts,1872 Ryukyu-han designation and 1879 armed replacement with a prefecture. These categories differ; no uninterrupted status follows. English is a working paraphrase; Shuri is not modern-orientation Naha.";
-export const PERIOD_PROVENANCE = "Selected institutional witnesses within1700–1900;1609 is antecedent context only. Naha is modern orientation; Shuri government is not located in Naha.";
+export const REVEAL = "Kagoshima describes the 1609 invasion as antecedent to retained kingship under Shimazu dominance. Okinawa Archives identifies Sanshikan Ikegusuku Anki’s preservation efforts, 1872 Ryukyu-han designation and 1879 armed replacement with a prefecture. These categories differ; no uninterrupted status follows. English is a working paraphrase; Shuri is not modern-orientation Naha.";
+export const PERIOD_PROVENANCE = "Selected institutional witnesses within 1700–1900; 1609 is antecedent context only. Naha is modern orientation; Shuri government is not located in Naha.";
 
 export interface Proof {generation:number; witness:string|null; frame:string; text:string; contexts:string[]; ordinaryVisible:boolean}
 export interface Snapshot {generation:number;frame:string;text:string;contexts:string[]}

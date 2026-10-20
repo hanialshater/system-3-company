@@ -15,7 +15,7 @@
       "at-least-once"
     ],
     "doesNotKnow": [
-      "Four independent attempts each succeed with probability.25. Is at-least-one success above.5?"
+      "Four independent attempts each succeed with probability .25. Is at-least-one success above .5?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-pass-at-k.c1",
-      "text": "Are four attempts four chances? Compare independent attempts with four copies of one shared outcome. Four independent attempts each succeed with probability.25. Is at-least-one success above.5? Options: Yes; No.",
+      "text": "Are four attempts four chances? Compare independent attempts with four copies of one shared outcome. Four independent attempts each succeed with probability .25. Is at-least-one success above .5? Options: Yes; No.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §29; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -39,7 +39,7 @@
     },
     {
       "id": "ai.ai-pass-at-k.c3",
-      "text": "Does repeating one shared success outcome improve at-least-one probability? No. All four successes or failures repeat the same draw, so the success probability remains.25.",
+      "text": "Does repeating one shared success outcome improve at-least-one probability? No. All four successes or failures repeat the same draw, so the success probability remains .25.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §29; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-pass-at-k.c5",
-      "text": "Target / packet: `ai-pass-at-k` · `D1`. Prerequisites: `probability:at-least-once`.\n\nNearest / distinct payoff: `zero-failure-testing` → `ai-zero-failure-testing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike zero-failure bounds, this computes oracle success across attempts and contrasts dependence/selection limits.\n\nPrimary finite model: Independent per-attempt success p=.25: pass@1=.25, pass@2=.4375, pass@4=.68359375 by1-(1-p)^k.\n\nCountercase and boundary: Perfectly correlated attempts share one success draw, so pass@4 remains.25. This is oracle at-least-one success, not a reliable selection strategy without a checker.\n\nPredict and recall transfer: Predict whether repeating the same outcome improves pass@4; recall why oracle pass and choosing a correct answer differ.\n\nRequired evidence: Enumerate four-attempt patterns or grouped exact masses; show dependence assumption explicitly before prediction. Shipped local computations, all cases: Independent: p=.25 · 4 attempts · oracle all fail: 0.31640625 ≥1: 0.68359375 independent draws; 4 independent: fail0.31640625; ≥1=0.68359375 | Shared: p=.25 · 4 attempts · oracle all fail: 0.75 ≥1: 0.25 one shared draw; Shared: fail0.75; ≥1=0.25 | Two: p=.25 · 2 attempts · oracle all fail: 0.5625 ≥1: 0.4375 independent draws; 2 independent: fail0.5625; ≥1=0.4375. Initial neutral frame: p=.25 · 4 attempts · oracle all fail: ? ≥1: ? independent draws.",
+      "text": "Target / packet: `ai-pass-at-k` · `D1`. Prerequisites: `probability:at-least-once`.\n\nNearest / distinct payoff: `zero-failure-testing` → `ai-zero-failure-testing` (earlier admitted draft or same-packet identity; not independent clearance). Unlike zero-failure bounds, this computes oracle success across attempts and contrasts dependence/selection limits.\n\nPrimary finite model: Independent per-attempt success p=.25: pass@1=.25, pass@2=.4375, pass@4=.68359375 by1-(1-p)^k.\n\nCountercase and boundary: Perfectly correlated attempts share one success draw, so pass@4 remains .25. This is oracle at-least-one success, not a reliable selection strategy without a checker.\n\nPredict and recall transfer: Predict whether repeating the same outcome improves pass@4; recall why oracle pass and choosing a correct answer differ.\n\nRequired evidence: Enumerate four-attempt patterns or grouped exact masses; show dependence assumption explicitly before prediction. Shipped local computations, all cases: Independent: p=.25 · 4 attempts · oracle all fail: 0.31640625 ≥1: 0.68359375 independent draws; 4 independent: fail0.31640625; ≥1=0.68359375 | Shared: p=.25 · 4 attempts · oracle all fail: 0.75 ≥1: 0.25 one shared draw; Shared: fail0.75; ≥1=0.25 | Two: p=.25 · 2 attempts · oracle all fail: 0.5625 ≥1: 0.4375 independent draws; 2 independent: fail0.5625; ≥1=0.4375. Initial neutral frame: p=.25 · 4 attempts · oracle all fail: ? ≥1: ? independent draws.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §29; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -63,12 +63,12 @@
   "recall": {
     "question": "Does repeating one shared success outcome improve at-least-one probability?",
     "options": [
-      "No. All four successes or failures repeat the same draw, so the success probability remains.25.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "No. All four successes or failures repeat the same draw, so the success probability remains .25.",
+      "Yes. Four copies of one draw give four independent chances.",
+      "Yes. Repeating the same outcome makes success certain."
     ],
     "answer": 0,
-    "why": "No. All four successes or failures repeat the same draw, so the success probability remains.25."
+    "why": "No. All four successes or failures repeat the same draw, so the success probability remains .25."
   },
   "evidence": {
     "qa": [],
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:pass-at-k",
     "also": [],

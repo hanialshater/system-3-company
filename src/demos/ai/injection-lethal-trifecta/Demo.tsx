@@ -14,7 +14,7 @@ export default function Demo({slug}:{slug:string}) {
   const change=(next:boolean[])=>{const nextResult=route(next);setPermissions(next);if(nextResult.outbox===42&&!success){setSuccess(true);interact();}if(success&&nextResult.blocked&&!blockedWitness){setBlockedWitness(nextResult.blocked);interact();}};
   return <div className={s.root}>
    <div className={s.note}><span>Untrusted note</span><blockquote>{instruction}</blockquote></div>
-   <svg className={s.picture} viewBox="0 0 290 40" role="img" aria-label={result.request?`Note accepted as copy request; ${result.blocked?`blocked by ${result.blocked}`:"private value placed in local outbox"}`:`Private fixture access ${result.privateAccess?"open":"closed"}; empty mock outbox; note not read`}>
+   <svg className={s.picture} viewBox="0 0 290 40" role="img" aria-label={result.request?`Note accepted as copy request; ${result.blocked?`blocked by ${result.blocked}`:"private value placed in local outbox"}`:`Private example access ${result.privateAccess?"open":"closed"}; empty mock outbox; note not read`}>
     <rect x="1" y="1" width="76" height="21" rx="4" fill="none" stroke={result.privateAccess?"var(--domain)":"var(--muted)"} strokeWidth="2" strokeDasharray={result.privateAccess?undefined:"4 3"}/>
     <text x="5" y="16">Private 42</text><text x="204" y="16">Outbox {result.outbox??"∅"}</text>
     <path d={result.privateAccess?"M79 11 H94 M95 5 L101 1":"M79 11 H94 M98 4 V21"} fill="none" stroke="var(--domain)" strokeWidth="2"/>

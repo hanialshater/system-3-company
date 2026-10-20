@@ -5,7 +5,7 @@
   "domain": "ai",
   "concept": "policy-from-values",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "ai.ai-policy-from-values.c3",
-      "text": "The retained Q values stayed 4 and 2, while Right\u2019s choice probability changed from .000 to .100. With epsilon .2, uniform exploration gives each action .100; Left also receives the .800 greedy share. The resulting expected reward is 3.8. Values estimate outcomes; a policy specifies choices. This exploration rule lowers immediate expected reward in this fixture.",
+      "text": "The retained Q values stayed 4 and 2, while Right’s choice probability changed from .000 to .100. With epsilon .2, uniform exploration gives each action .100; Left also receives the .800 greedy share. The resulting expected reward is 3.8. Values estimate outcomes; a policy specifies choices. This exploration rule lowers immediate expected reward in this example.",
       "support": "derivation",
       "source": "https://www.incompleteideas.net/book/bookdraft2018mar21.pdf (author RL textbook, policy/action values; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ai.ai-policy-from-values.c5",
-      "text": "Terminating declared expected rewards, fixed estimates, stable Left tie break; not learned action frequencies. A policy supplies action probabilities. Exploration includes the greedy action too. Controls: Greedy, \u03b5=.2, \u03b5=.6, Tie, Reset. Milestones [0, 1]; witness preserved after Reset.",
+      "text": "Terminating declared expected rewards, fixed estimates, stable Left tie break; not learned action frequencies. A policy supplies action probabilities. Exploration includes the greedy action too. Controls: Greedy, ε=.2, ε=.6, Tie, Reset. Milestones [0, 1]; witness preserved after Reset.",
       "support": "convention",
       "source": "https://www.incompleteideas.net/book/bookdraft2018mar21.pdf (author RL textbook, policy/action values; acquisition separately recorded). Exact fixture derived locally in model.ts and exercised by model.repro.mjs; source context does not verify local numbers.",
       "status": "unverified",
@@ -67,7 +67,7 @@
     }
   ],
   "recall": {
-    "question": "Q=(1,5), epsilon=.2 explores uniformly among both actions. What is Right\u2019s probability?",
+    "question": "Q=(1,5), epsilon=.2 explores uniformly among both actions. What is Right’s probability?",
     "options": [
       ".1",
       ".8",

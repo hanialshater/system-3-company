@@ -15,7 +15,7 @@
       "vanishing-gradients"
     ],
     "doesNotKnow": [
-      "At depth3, which declared transformation has larger sensitivity?"
+      "At depth 3, which declared transformation has larger sensitivity?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-residual-connections.c1",
-      "text": "Which route carries sensitivity? Compare three scalar layers with and without an identity path. At depth3, which declared transformation has larger sensitivity? Options: h←.1h; h←h+.1h; Equal.",
+      "text": "Which route carries sensitivity? Compare three scalar layers with and without an identity path. At depth 3, which declared transformation has larger sensitivity? Options: h←.1h; h←h+.1h; Equal.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -39,7 +39,7 @@
     },
     {
       "id": "ai.ai-residual-connections.c3",
-      "text": "Which branch weight exactly cancels the identity in this scalar example? −1: the identity contribution1 plus branch contribution−1 gives total multiplier0.",
+      "text": "Which branch weight exactly cancels the identity in this scalar example? −1: the identity contribution 1 plus branch contribution −1 gives total multiplier 0.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §27; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified"
@@ -63,12 +63,12 @@
   "recall": {
     "question": "Which branch weight exactly cancels the identity in this scalar example?",
     "options": [
-      "−1: the identity contribution1 plus branch contribution−1 gives total multiplier0.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "−1: the identity contribution 1 plus branch contribution −1 gives total multiplier 0.",
+      "0: removing the branch also removes the identity path.",
+      "1: matching the branch and identity makes their sum zero."
     ],
     "answer": 0,
-    "why": "−1: the identity contribution1 plus branch contribution−1 gives total multiplier0."
+    "why": "−1: the identity contribution 1 plus branch contribution −1 gives total multiplier 0."
   },
   "evidence": {
     "qa": [],
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:residual-connections",
     "also": [],

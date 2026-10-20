@@ -3,11 +3,11 @@ export const DOCUMENTS = [
     "id": "mosulGovernor",
     "text": "Jalili family Mosul governors 1726–1834",
     "requiredContext": "Named family office, not complete roster or uninterrupted uniform authority.",
-    "citation": "Mehmet İpşirli; TDV İslâm Ansiklopedisi1993. Language/edition: Turkish; agent paraphrase unreviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
+    "citation": "Mehmet İpşirli; TDV İslâm Ansiklopedisi 1993. Language/edition: Turkish; paraphrase; not independently reviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
     "sourceUrl": "https://islamansiklopedisi.org.tr/celili",
     "locator": "normalizedL71/96–98 TDV Celililer",
-    "sourceLevel": "Mehmet İpşirli; TDV İslâm Ansiklopedisi1993",
-    "languageMediation": "Turkish; agent paraphrase unreviewed",
+    "sourceLevel": "Mehmet İpşirli; TDV İslâm Ansiklopedisi 1993",
+    "languageMediation": "Turkish; paraphrase; not independently reviewed",
     "representation": "web-tool normalized body with line/page locators; not raw HTML/PDF",
     "fieldAddresses": [
       "witnesses.mosulGovernor.ordinaryFrame"
@@ -23,11 +23,11 @@ export const DOCUMENTS = [
     "id": "baghdadGovernor",
     "text": "Suleyman Pasha appointed Baghdad provincial governor 1779",
     "requiredContext": "Office distinct from later British entry; no generic uniform Ottoman control.",
-    "citation": "TDV İslâm Ansiklopedisi institutional scholarly article. Language/edition: Turkish; agent paraphrase unreviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
+    "citation": "TDV İslâm Ansiklopedisi institutional scholarly article. Language/edition: Turkish; paraphrase; not independently reviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
     "sourceUrl": "https://islamansiklopedisi.org.tr/bagdat",
     "locator": "normalizedL408 TDV Bagdat",
     "sourceLevel": "TDV İslâm Ansiklopedisi institutional scholarly article",
-    "languageMediation": "Turkish; agent paraphrase unreviewed",
+    "languageMediation": "Turkish; paraphrase; not independently reviewed",
     "representation": "web-tool normalized body with line/page locators; not raw HTML/PDF",
     "fieldAddresses": [
       "witnesses.baghdadGovernor.ordinaryFrame"
@@ -61,8 +61,8 @@ export const DOCUMENTS = [
   },
   {
     "id": "mandate",
-    "text": "SanRemo1920 provisionally recognizes Mesopotamia independence subject to administrative advice/assistance, selects Britain and leaves mandate terms for later formulation/League approval",
-    "requiredContext": "UN custodian not author/UNdecision. Prescription not later entry into force or1926boundaryaward; provisional independence/administrative advice and future terms retained. Provisional recognition is subject to mandatory administrative advice and assistance until ability to stand alone; not unconditional independence.",
+    "text": "San Remo 1920 provisionally recognizes Mesopotamia independence subject to administrative advice/assistance, selects Britain and leaves mandate terms for later formulation/League approval",
+    "requiredContext": "UN custodian not author/UN decision. Prescription not later entry into force or the 1926 boundary award; provisional independence/administrative advice and future terms retained. Provisional recognition is subject to mandatory administrative advice and assistance until ability to stand alone; not unconditional independence.",
     "citation": "Allied Supreme Council resolution; UN UNISPAL custodian labels Non-UN document. Language/edition: English diplomatic text; mandate terms future, not later ratified instrument. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://www.un.org/unispal/document/auto-insert-207297/",
     "locator": "text42/45/47 SupremeCouncil25April1920 English/French nonUN document",

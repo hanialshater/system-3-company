@@ -24,10 +24,10 @@
   "claims": [
     {
       "id": "lifehacks.lh-round-lines-versus-total.c1",
-      "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Scaled model; toy rule: nearest cent, half upward; no billing-law claim.",
+      "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Scaled model; This example rounds to the nearest cent, rounding half a cent upward. Actual billing rules may differ.",
       "support": "convention",
       "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -54,7 +54,7 @@
       "text": "Four fictional lines are each exactly €0.125, rounded half-up to cents. What do you get rounding each line first, and rounding the total once? Correct: €0.52 and €0.50. Each line rounds to €0.13, so four make €0.52; the exact total €0.50 needs no rounding. Rounding loses information each time.",
       "support": "derivation",
       "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; half-up €0.125 → €0.13, ×4 = €0.52; total 4×0.125 = €0.50 exact; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -81,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:round-lines-vs-total",

@@ -1,7 +1,7 @@
 {
   "slug": "ai-ant-colony-tours",
-  "title": "Test ant colony tours",
-  "hook": "Compare a declared mechanism with its changed case.",
+  "title": "When a route gets reinforced",
+  "hook": "Does reinforcing a route make it the best route?",
   "domain": "ai",
   "concept": "ant-colony-tours",
   "status": "draft",
@@ -15,7 +15,7 @@
       "simulated-annealing-tour"
     ],
     "doesNotKnow": [
-      "Edges AB,BC,CD,DA=2; AC,BD=3. All τ1. After prefix D→A, choices B/C weighted τ/d. Evaporate ρ=.2, deposit8/L on first tour ACBDA. Can longer tour increase P(C)?"
+      "Edges AB, BC, CD and DA cost 2; AC and BD cost 3. All pheromone values start at 1. After D→A, B and C have weights τ/d. Evaporate 20%, then deposit 8/L on tour ACBDA. Can reinforcing this longer tour raise P(C)?"
     ]
   },
   "misconception": "No",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-ant-colony-tours.c1",
-      "text": "Test ant colony tours Compare a declared mechanism with its changed case. Edges AB,BC,CD,DA=2; AC,BD=3. All τ1. After prefix D→A, choices B/C weighted τ/d. Evaporate ρ=.2, deposit8/L on first tour ACBDA. Can longer tour increase P(C)? Options: Yes; No",
+      "text": "Test ant colony tours Compare a declared mechanism with its changed case. Edges AB, BC, CD and DA cost 2; AC and BD cost 3. All pheromone values start at 1. After D→A, B and C have weights τ/d. Evaporate 20%, then deposit 8/L on tour ACBDA. Can reinforcing this longer tour raise P(C)? Options: Yes; No",
       "location": "title, hook, prediction question and both options",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30f.md §16; local model.ts compute and model-check.mjs. Acquired-source limitations remain exactly as stated in this owner section. No empirical reproduction or independent review claimed.",
@@ -78,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "ai:ant-colony-tours",
     "also": [],

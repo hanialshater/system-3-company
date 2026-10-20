@@ -62,12 +62,11 @@ export default function SketchTheCounts({ slug }: { slug: string }) {
             counter can only add other items&apos; counts, so a reading is never too low.
           </p>
           <p>
-            A second row uses a different hash, so cat shares with different items there, or with none. Each row is an
-            over-estimate, so the smallest one is the best guess: min(8, 5) = 5. With {rows} row{rows === 1 ? "" : "s"},
+            A second row uses a different hash, so cat shares with different items there, or with none. Each row is an upper bound, so the smallest one is the best guess: min(8, 5) = 5. With {rows} row{rows === 1 ? "" : "s"},
             your cat estimate was {catEstimate}.
           </p>
           <p className="muted">
-            This is a count-min sketch: a small fixed table that counts a huge stream, never too low and usually close.
+            This is a count-min sketch: a fixed table of shared counters. With nonnegative updates, its estimate cannot fall below the true count.
           </p>
         </>
       )}

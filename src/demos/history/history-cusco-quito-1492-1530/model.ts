@@ -180,7 +180,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Cieza’s translated accession account separates Huascar’s royal ceremony from Cusco’s delegated city government. The Met and Cieza place Huayna Capac’s household at Quito and describe retrieval after his death, dated approximately. These are different royal and local relations before 1530. The accessible excerpt and uncollated originals do not establish universal allegiance, a precise civil-war chronology or later Spanish captivity.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

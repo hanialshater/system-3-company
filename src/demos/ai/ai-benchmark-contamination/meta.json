@@ -15,7 +15,7 @@
       "data-leakage"
     ],
     "doesNotKnow": [
-      "Table {a:2,b:3,c:4,d:5}; unknown\u2192wrong. New IDs e\u2013h ask x+1 for x=1\u20134. Lookup score?"
+      "Table {a:2,b:3,c:4,d:5}; unknown→wrong. New IDs e–h ask x+1 for x=1–4. Lookup score?"
     ]
   },
   "misconception": "The contrasting operations must produce the same result.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-benchmark-contamination.c1",
-      "text": "Table {a:2,b:3,c:4,d:5}; unknown\u2192wrong. New IDs e\u2013h ask x+1 for x=1\u20134. Lookup score? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 0/4; 2/4; 4/4.",
+      "text": "Table {a:2,b:3,c:4,d:5}; unknown→wrong. New IDs e–h ask x+1 for x=1–4. Lookup score? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 0/4; 2/4; 4/4.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 4; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-benchmark-contamination/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified",
@@ -32,14 +32,14 @@
     },
     {
       "id": "ai.ai-benchmark-contamination.c2",
-      "text": "On stored a\u2013d, both machines scored 4/4. On new e\u2013h, lookup scored 0/4 while the x+1 rule still scored 4/4. The retained table shows why: the new IDs are absent. A perfect stored-item score could not distinguish these machines. This constructed lookup example does not diagnose contamination in a real language model; renaming items alone would not establish that.",
+      "text": "On stored a–d, both machines scored 4/4. On new e–h, lookup scored 0/4 while the x+1 rule still scored 4/4. The retained table shows why: the new IDs are absent. A perfect stored-item score could not distinguish these machines. This constructed lookup example does not diagnose contamination in a real language model; renaming items alone would not establish that.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 4; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-benchmark-contamination/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-benchmark-contamination.c3",
-      "text": "Both machines score perfectly on IDs a\u2013d. Does that establish that both compute x+1? No. Exact lookup and arithmetic agree on these four stored cases. A task-preserving new case distinguishes them in this toy.",
+      "text": "Both machines score perfectly on IDs a–d. Does that establish that both compute x+1? No. Exact lookup and arithmetic agree on these four stored cases. A task-preserving new case distinguishes them in this toy.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 4; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-benchmark-contamination/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified"
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-benchmark-contamination.c5",
-      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 table a:2 b:3 c:4 d:5 x+1 \u00b7 unknown\u2192wrong ID x Expected Lookup Rule a 1 2 2 2 b 2 3 3 3 c 3 4 4 4 d 4 5 5 5 Test a\u2013d Test e\u2013h Reset view 1. 4/4 / 4/4 2. 0/4 / 4/4 | Toy \u00b7 table a:2 b:3 c:4 d:5 x+1 \u00b7 unknown\u2192wrong ID x Expected Lookup Rule a 1 2 2 2 b 2 3 3 3 c 3 4 4 4 d 4 5 5 5 Test a\u2013d Test e\u2013h Reset view 1. 4/4 / 4/4 2. 0/4 / 4/4",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy · table a:2 b:3 c:4 d:5 x+1 · unknown→wrong ID x Expected Lookup Rule a 1 2 2 2 b 2 3 3 3 c 3 4 4 4 d 4 5 5 5 Test a–d Test e–h Reset view 1. 4/4 / 4/4 2. 0/4 / 4/4 | Toy · table a:2 b:3 c:4 d:5 x+1 · unknown→wrong ID x Expected Lookup Rule a 1 2 2 2 b 2 3 3 3 c 3 4 4 4 d 4 5 5 5 Test a–d Test e–h Reset view 1. 4/4 / 4/4 2. 0/4 / 4/4",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 4; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-benchmark-contamination/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
       "status": "unverified"
@@ -61,7 +61,7 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Both machines score perfectly on IDs a\u2013d. Does that establish that both compute x+1?",
+    "question": "Both machines score perfectly on IDs a–d. Does that establish that both compute x+1?",
     "options": [
       "No, lookup also fits stored cases",
       "Yes, perfect score proves the rule",
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:benchmark-contamination",
     "also": [],

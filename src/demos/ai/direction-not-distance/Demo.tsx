@@ -54,7 +54,7 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
             Cosine compares directions only: stretching an arrow never changes its angle. So by distance C wins; by cosine B wins.
           </p>
           <p>
-            Some real systems compare text embeddings this way, so a longer document about the same topic can still match.
+            Some systems compare text embeddings by cosine. Vector length alone does not change the score, though a real document’s topic is not guaranteed to follow its vector’s direction.
           </p>
         </>
       )}

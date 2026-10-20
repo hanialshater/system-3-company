@@ -31,11 +31,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting.",
+      "text": "The padded versions have the same width. This exercise demonstrates text sorting; many real file browsers already use natural numeric sorting.",
       "support": "derivation",
       "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Fixture half holds: padded names v02, v09, v10 have equal width and text-sort into 2, 9, 10, while plain names text-sort as v10, v2, v9 (own node; GNU sort gives the same). The clause 'many real file browsers already use natural numeric sorting' is a claim about real file browsers. The only openable evidence on this host is GNU ls -v, which offers natural sort as an option, not by default; Drive Help 2375114 (the cited source) could not be opened. Left unverified. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Fixture half: padded v02, v09, v10 are all 3 characters and text-sort 2, 9, 10 (plain names sort v10, v2, v9). Real-world half, on opened sources (the cited Drive Help page could not be opened). GNOME Files (raw GitHub GNOME/nautilus src/nautilus-file.c) sorts names by g_utf8_collate_key_for_filename, which GLib documents (glib/gunicollate.c) as sorting 'file1 file5 file10'. KDE Dolphin (raw GitHub KDE/dolphin, dolphin_generalsettings.kcfg) has NaturalSorting as the default sort choice. Windows' shell API StrCmpLogicalW (MicrosoftDocs/sdk-api) compares digits 'as numerical content'. Builder: replace the Drive Help citation with these.",
       "id": "lifehacks.version-nine-and-ten.c2",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -79,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:text-sort-vs-number-sort",
     "prerequisites": [],

@@ -1,11 +1,11 @@
 {
   "slug": "history-taipei-tainan-rail-opening-evidence",
   "title": "Local service or through link?",
-  "hook": "Compare the acquired evidence.",
+  "hook": "Was the railway a local segment or a through service?",
   "domain": "history",
   "concept": "taipei-tainan-rail-opening-evidence",
   "status": "draft",
-  "version": 1,
+  "version": 4,
   "confidence": "",
   "durationSec": 60,
   "owner": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "history.history-taipei-tainan-rail-opening-evidence.c2",
-      "text": "Officialretrospectivetable 3; originalconstruction/operatingdocuments notcollated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
+      "text": "Official retrospective table 3; original construction and operating documents not collated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
       "support": "source",
       "source": "https://www.railway.gov.tw/tra-tip-web/adr/about-1-5; table3rows1–2,constructionversusopening1891/1893; selected representation SHA256 f5c177287debb98e4462897ed9b9bcedeb06a6a3b1d2306726ab8b22c868e4a2",
       "status": "unverified",
@@ -90,7 +90,7 @@
     },
     {
       "id": "history.history-taipei-tainan-rail-opening-evidence.c6",
-      "text": "Actualcataloguerecord, notinspectedoriginalgazettepage/glyphs; precisetimesnotselected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
+      "text": "Catalogue record; original gazette page not inspected, and precise departure times not selected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
       "support": "source",
       "source": "https://catalog.digitalarchives.tw/item/00/48/9a/a1.html; itemtitle臺南打狗間鐵道二等郵便線路郵便發著時刻; description/startdate; selected representation SHA256 da8e6b639e67fd490c474d54b190cb3bdca51a52c97667cda07a7fbe44ed35b4",
       "status": "unverified",
@@ -245,8 +245,8 @@
   "recall": {
     "question": "Does an early railway segment or postal timetable establish a direct Taipei–Tainan service or cross-strait sovereignty?",
     "options": [
-      "Separately dated northern segments, a southern postal timetable catalogue and later network evidence are not one early through-service. They cannot establish precise unseen departures or cross-strait sovereignty.",
-      "Same relation"
+      "Local segments and postal orders differ from the later network connection.",
+      "An early local timetable proves direct through-service and sovereignty."
     ],
     "answer": 0,
     "why": "Separately dated northern segments, a southern postal timetable catalogue and later network evidence are not one early through-service. They cannot establish precise unseen departures or cross-strait sovereignty."
@@ -413,7 +413,7 @@
           "countedWords": 19,
           "whitespaceTokens": 21
         },
-        "requiredContext": "Officialretrospectivetable 3; originalconstruction/operatingdocuments notcollated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
+        "requiredContext": "Official retrospective table 3; original construction and operating documents not collated. Source-specificQing/Japanesecolonialperiodactor wording mustremain attributed, notmodernsovereigntyanswer.",
         "claimAddress": "witnesses.northernOpenings.text/ordinaryFrame/context; retainedComparison; Reveal; recall; Sources"
       },
       {
@@ -446,7 +446,7 @@
           "countedWords": 22,
           "whitespaceTokens": 24
         },
-        "requiredContext": "Actualcataloguerecord, notinspectedoriginalgazettepage/glyphs; precisetimesnotselected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
+        "requiredContext": "Catalogue record; original gazette page not inspected, and precise departure times not selected. Localpostalroute≠directTaipei–Tainan before 1908; historicDagou orientationneedsactualsourceifexpanded.",
         "claimAddress": "witnesses.southernPostalService.text/ordinaryFrame/context; retainedComparison; Reveal; recall; Sources"
       },
       {

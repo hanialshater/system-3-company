@@ -44,7 +44,7 @@
     },
     {
       "id": "cs.algo-boruvka-components.c4",
-      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -58,14 +58,14 @@
     },
     {
       "id": "cs.algo-boruvka-components.c6",
-      "text": "MST cost 7; chosen 1,2,4. This is the retained computed question-case certificate.",
+      "text": "For the original input: MST cost 7; chosen 1,2,4.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-boruvka-components.c7",
-      "text": "Each component chooses a cheapest outgoing edge. Shared choices are deduplicated, then unions contract the components; later rounds choose across the new component boundary.",
+      "text": "For the original input: Each component chooses a cheapest outgoing edge. Shared choices are deduplicated, then unions contract the components; later rounds choose across the new component boundary.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -156,7 +156,7 @@
     },
     {
       "id": "cs.algo-boruvka-components.c20",
-      "text": "MST cost 6; chosen 1,2,3. This is the retained computed question-case certificate.",
+      "text": "For the original input: MST cost 6; chosen 1,2,3.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#boruvka_components.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -216,7 +216,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-boruvka-components",

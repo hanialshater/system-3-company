@@ -1,7 +1,7 @@
 {
   "slug": "algo-directed-euler-balance",
   "title": "Arrows change the endpoint rule",
-  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "hook": "The arrows matter. Where could the walk begin and end?",
   "domain": "cs",
   "concept": "algo-directed-euler-balance",
   "status": "draft",
@@ -65,7 +65,7 @@
     },
     {
       "id": "cs.algo-directed-euler-balance.c7",
-      "text": "Complete this graph, then inspect steps and compare another input.",
+      "text": "Press Run for the result, or Step to follow each update. Try another changes the input.",
       "support": "convention",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -79,14 +79,14 @@
     },
     {
       "id": "cs.algo-directed-euler-balance.c9",
-      "text": "Euler endpoints A→D. This remains the computed question-case witness.",
+      "text": "For the original input: Euler endpoints A→D.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
     },
     {
       "id": "cs.algo-directed-euler-balance.c10",
-      "text": "The start needs one extra outgoing arc and the end one extra incoming arc. Internal vertices balance; adding the return arc changes this example into a balanced circuit.",
+      "text": "For the original input: The start needs one extra outgoing arc and the end one extra incoming arc. Internal vertices balance; adding the return arc changes this example into a balanced circuit.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -163,7 +163,7 @@
     },
     {
       "id": "cs.algo-directed-euler-balance.c21",
-      "text": "Euler endpoints circuit. This remains the computed question-case witness.",
+      "text": "For the original input: Euler endpoints circuit.",
       "support": "derivation",
       "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
       "status": "unverified"
@@ -223,7 +223,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "format": "single-card",
   "curriculum": {
     "primary": "cs:algo-directed-euler-balance",

@@ -30,13 +30,13 @@ function Stage({ locked, phase, interact }: {
     return <div className={s.wrap}>
   <Figure v={v}/>
   <div className={s.controls}>{cases.map((label, i) => <Control key={label} disabled={locked || mode === i} aria-pressed={mode === i} onClick={() => run(i)}>{label}</Control>)}<Control disabled={locked || mode === -1} onClick={() => { setMode(-1); setValue(null); }}>Reset</Control></div>
-  <div className={s.evidence} aria-label="Retained computed evidence" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
+  <div className={s.evidence} aria-label="Saved results" aria-live="polite">{saved.map((value, i) => value !== null ? <p key={i}>{value}</p> : null)}</div>
  </div>;
 }
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Changing only the second target2→2.01 makes the coefficients…", "options": ["Stay[2,0]", "Move[1,1]", "Move[0,2]"], "answer": 1 }} minInteractions={4} exploreHint="Compute each case; compare the retained evidence." reveal={() => <p>A .01 target change moved the coefficients from [2,0] to [1,1]. The [2,2] probe stayed at 4; the [1,0] probe changed from 2 to 1. Identical columns admitted multiple coefficients. Stability along this observed relation did not ensure stability away from it.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Changing only the second target from 2 to 2.01 makes the coefficients…", "options": ["Stay at [2,0]", "Move to [1,1]", "Move to [0,2]"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>A .01 target change moved the coefficients from [2,0] to [1,1]. The [2,2] probe stayed at 4; the [1,0] probe changed from 2 to 1. Identical columns admitted multiple coefficients. Stability along this observed relation did not ensure stability away from it.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

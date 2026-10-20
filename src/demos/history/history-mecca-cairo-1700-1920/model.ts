@@ -2,12 +2,12 @@ export const DOCUMENTS = [
   {
     "id": "meccaOffice",
     "text": "Ottoman Ali Haydar appointment 1916 did not secure entry to Mecca",
-    "requiredContext": "Turkish scholarly account; do not import later1924episode or exact day. No unanimous local assent.",
-    "citation": "TDV İslâm Ansiklopedisi institutional scholarly article. Language/edition: Turkish; agent paraphrase unreviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
+    "requiredContext": "Turkish scholarly account; do not import later 1924 episode or exact day. No unanimous local assent.",
+    "citation": "TDV İslâm Ansiklopedisi institutional scholarly article. Language/edition: Turkish; paraphrase; not independently reviewed. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented.",
     "sourceUrl": "https://islamansiklopedisi.org.tr/mekke",
     "locator": "normalizedL490–491",
     "sourceLevel": "TDV İslâm Ansiklopedisi institutional scholarly article",
-    "languageMediation": "Turkish; agent paraphrase unreviewed",
+    "languageMediation": "Turkish; paraphrase; not independently reviewed",
     "representation": "web-tool normalized body with line/page locators; not raw HTML/PDF",
     "fieldAddresses": [
       "witnesses.meccaOffice.ordinaryFrame"
@@ -41,7 +41,7 @@ export const DOCUMENTS = [
   },
   {
     "id": "protectorate",
-    "text": "Blake 20December 1914 reports British protectorate notice",
+    "text": "Blake’s 20 December 1914 report reports British protectorate notice",
     "requiredContext": "Contemporary diplomatic report from Tangier, not original British instrument.",
     "citation": "US diplomatic telegram from Tangier; Office of Historian edition. Language/edition: English contemporary report, not British proclamation original. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated.",
     "sourceUrl": "https://history.state.gov/historicaldocuments/frus1914/d1639",

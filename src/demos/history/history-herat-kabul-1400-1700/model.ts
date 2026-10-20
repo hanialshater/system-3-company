@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Iranica distinguishes Herat’s nominal princely governor from effective military commanders and challenges to central power, including an Uzbek interruption. TDV describes Kabul’s governors after Babur’s court moved to Agra. Residence, nominal title and working administration are different relations. Uncollated originals and qualified retrospectives establish neither continuous homogeneous control nor identical powers at both cities.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

@@ -70,24 +70,24 @@
     },
     {
       "id": "cs.zebra-sorts-before-apple.c6",
-      "text": "A computer stores each letter as a number, and every capital (65 to 90) comes before every small letter (97 to 122).",
+      "text": "A computer stores each letter as a number, and each Latin capital A–Z (65 to 90) comes before each lowercase letter a–z (97 to 122).",
       "support": "derivation",
       "source": "Follows from c1: the capital range 65-90 ends below the small-letter range 97-122. Character encodings (ASCII, Unicode) assign each character a number; RFC 20; Unicode Standard ch. 2. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Follows from c1 (verified): every capital 65-90 is below every small letter 97-122. Reveal prints the ranges from charCodeAt. 'Stores each letter as a number' is true of these encodings (node and Python encode each letter as one byte/code unit).",
-      "status": "verified",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A program sorts the words cat and Dog by their stored letter codes. Which comes first?",
+    "question": "A program sorts the words cat and Dog by ASCII letter codes. Which comes first?",
     "options": [
       "Dog",
       "cat",
       "They tie"
     ],
     "answer": 0,
-    "why": "Capitals have smaller codes than small letters (D is 68, c is 99), so Dog sorts before cat by code, even though c comes before d in the alphabet."
+    "why": "ASCII capitals A–Z have smaller codes than lowercase a–z (D is 68, c is 99), so Dog sorts before cat by code, even though c comes before d in the alphabet."
   },
   "evidence": {
     "qa": [
@@ -100,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:text-encoding",
     "also": [],

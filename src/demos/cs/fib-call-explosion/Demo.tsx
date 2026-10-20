@@ -91,7 +91,7 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
             Remembering each answer the first time removes the repeats. fib(5) then computes just 6 values, fib(0) to
             fib(5), and the other 3 calls are instant lookups.
           </p>
-          <p className="muted">Recursion repeats itself. Memoization means never solving the same piece twice.</p>
+          <p className="muted">This recursive recipe repeats work. Memoization saves each answer so it can be reused.</p>
         </>
       )}
     >

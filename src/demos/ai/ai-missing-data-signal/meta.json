@@ -15,7 +15,7 @@
       "data-leakage"
     ],
     "doesNotKnow": [
-      "After filling both blanks with5, can numeric values distinguish the labels?"
+      "After filling both blanks with 5, can numeric values distinguish the labels?"
     ]
   },
   "misconception": "The primary and materially changed case must have the same consequence.",
@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-missing-data-signal.c1",
-      "text": "What information did filling remove? Four training rows; preserve the difference between absent and observed. After filling both blanks with5, can numeric values distinguish the labels? Options: Yes; No.",
+      "text": "What information did filling remove? Four training rows; preserve the difference between absent and observed. After filling both blanks with 5, can numeric values distinguish the labels? Options: Yes; No.",
       "support": "derivation",
       "source": "Finite owner construction: company/domains/briefs/2026-10-19-ai-next30.md §20; model.ts and model-check.mjs. Mathematical derivation supports only these declared operands and boundaries; source acquisition and independent checks remain pending.",
       "status": "unverified",
@@ -64,8 +64,8 @@
     "question": "Why could this indicator fail after deployment changes?",
     "options": [
       "Its advantage depends on the missingness-label association; the shifted labels remove it in this finite example.",
-      "The output alone determines every omitted condition.",
-      "The construction guarantees the same result for all real systems."
+      "The indicator keeps the same benefit whatever the new labels are.",
+      "Filling a blank guarantees that its label will be correct."
     ],
     "answer": 0,
     "why": "Its advantage depends on the missingness-label association; the shifted labels remove it in this finite example."
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "ai:missing-data-signal",
     "also": [],

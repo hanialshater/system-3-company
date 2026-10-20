@@ -69,8 +69,7 @@ export default function LongAnswersLoseTheProduct({ slug }: { slug: string }) {
             </p>
             <p>
               {cross ? `At ${cross.n} tokens L won with ${pc(cross.p)}, but past ${CROSS} it always loses. ` : `Past ${CROSS} tokens L always loses. `}So
-              the single most probable answer tends to be a short one. Scoring per token, which you switched on, put L ahead: {pc(L.p)} against {pc(S.p)}. Real decoders add
-              such a length correction.
+              the single most probable answer tends to be a short one. Scoring per token, which you switched on, put L ahead: {pc(L.p)} against {pc(S.p)}. Some decoders use such a length correction.
             </p>
           </>
         );

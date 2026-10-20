@@ -19,77 +19,77 @@
     ]
   },
   "objective": "Explain how composed local layers create a larger structural input dependency footprint.",
-  "misconception": "A3\u00d73 kernel can only ever depend on3\u00d73 input cells.",
+  "misconception": "A3×3 kernel can only ever depend on3×3 input cells.",
   "claims": [
     {
       "id": "ai.ai-receptive-field-growth.c1",
-      "text": "Input5\u00d75; two3\u00d73 all-one cross-correlation kernels, stride1, valid windows, no bias or nonlinearity. Intermediate3\u00d73 and final1\u00d71.",
+      "text": "Input5×5; two3×3 all-one cross-correlation kernels, stride1, valid windows, no bias or nonlinearity. Intermediate3×3 and final1×1.",
       "support": "convention",
-      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#convention; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#convention; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "checkedBy": "",
       "checkedOn": "",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c2",
-      "text": "Each first-layer cell structurally reads9 inputs. The final union contains25 input cells, width5. Three such layers give49 cells, width7.",
+      "text": "Each first-layer cell structurally reads9 inputs. The final union contains25 input cells, width5. Three such layers give49 cells, width 7.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#dependency; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#dependency; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c3",
       "text": "Center unit impulse gives nine first-layer ones and final9. Corner unit impulse gives one first-layer one and final1. Zero input gives final0.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#impulses; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#picture#impulses; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c4",
       "text": "Structural dependency count is not output value; zero learned weights or cancellation can remove effective influence in other models. Positive all-one weights avoid cancellation here.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#reveal#limits; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#reveal#limits; src/demos/ai/ai-receptive-field-growth/model.ts + model.test.mjs finite author implementation reproduction; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c5",
       "text": "Can two small windows see farther?",
       "support": "convention",
-      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#title; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#title; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c6",
       "text": "Trace a signal through two local layers.",
       "support": "convention",
-      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#hook; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#hook; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c7",
-      "text": "Two stride-one 3\u00d73 valid layers: how wide is the final input footprint? Options: 3 / 5 / 9. Correct: 5.",
+      "text": "Two stride-one 3×3 valid layers: how wide is the final input footprint? Options: 3 / 5 / 9. Correct: 5.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#predict; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/Demo.tsx#predict; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     },
     {
       "id": "ai.ai-receptive-field-growth.c8",
-      "text": "Three stride-one3\u00d73 valid layers on7\u00d77 input: final footprint width? 3 / 7 / 9. Indexed window unions expand by two per layer, reaching width7.",
+      "text": "Three stride-one3×3 valid layers on7×7 input: final footprint width? 3 / 7 / 9. Indexed window unions expand by two per layer, reaching width 7.",
       "support": "derivation",
-      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#recall; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html \u2014 Dive into Deep Learning \u00a77.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
+      "source": "src/demos/ai/ai-receptive-field-growth/meta.json#recall; model.ts finite rules; https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html — Dive into Deep Learning §7.1 locality/composition background, body opened 2026-10-19. Exact dependency union and impulse arithmetic are local indexed derivations.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Three stride-one3\u00d73 valid layers on7\u00d77 input: final footprint width?",
+    "question": "Three stride-one3×3 valid layers on7×7 input: final footprint width?",
     "options": [
       "3",
       "7",
       "9"
     ],
     "answer": 1,
-    "why": "Indexed window unions expand by two per layer, reaching width7."
+    "why": "Indexed window unions expand by two per layer, reaching width 7."
   },
   "evidence": {
     "qa": [],
@@ -97,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "single-card",
   "curriculum": {
     "primary": "ai:receptive-field-growth",

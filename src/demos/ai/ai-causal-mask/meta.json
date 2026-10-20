@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "ai.ai-causal-mask.c1",
-      "text": "Values [2,4,100], equal logits. Position 2 includes self but excludes future positions. Output? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 3; 35\u2153; 53.",
+      "text": "Values [2,4,100], equal logits. Position 2 includes self but excludes future positions. Output? The locked stage supplies the declared finite operands and rules; computed outputs are hidden until commitment. Options: 3; 35⅓; 53.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 14; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-causal-mask/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified",
@@ -32,7 +32,7 @@
     },
     {
       "id": "ai.ai-causal-mask.c2",
-      "text": "Your masked position-2 row assigned zero weight to 100 and averaged 2 and 4 to get 3. Unmasked, it averaged all three to 35.33. At position 3, the mask allowed all three, matching the unmasked result. The mask acted on logits before normalization. Removing a label after averaging would leave the future value\u2019s contribution inside the result. This is one declared toy attention row.",
+      "text": "Your masked position-2 row assigned zero weight to 100 and averaged 2 and 4 to get 3. Unmasked, it averaged all three to 35.33. At position 3, the mask allowed all three, matching the unmasked result. The mask acted on logits before normalization. Removing a label after averaging would leave the future value’s contribution inside the result. This is one declared toy attention row.",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 14; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-causal-mask/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending.",
       "status": "unverified"
@@ -53,7 +53,7 @@
     },
     {
       "id": "ai.ai-causal-mask.c5",
-      "text": "Declared finite stage data, operations and retained results, by case: Toy \u00b7 1-based \u00b7 self included Equal logits \u00b7 mask\u2192\u2212\u221e \u2192 normalize Position 1 2 3 Value 2 4 100 Logit 0 0 \u2212\u221e Weight 0.50 0.50 0.00 Query 2 \u2192 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 \u2298: [0.50,0.50,0.00] \u2192 3.00 2. 2 \u25cb: [0.33,0.33,0.33] \u2192 35.33 3. 3 \u2298: [0.33,0.33,0.33] \u2192 35.33 | Toy \u00b7 1-based \u00b7 self included Equal logits \u00b7 mask\u2192\u2212\u221e \u2192 normalize Position 1 2 3 Value 2 4 100 Logit 0 0 \u2212\u221e Weight 0.50 0.50 0.00 Query 2 \u2192 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 \u2298: [0.50,0.50,0.00] \u2192 3.00 2. 2 \u25cb: [0.33,0.33,0.33] \u2192 35.33 3. 3 \u2298: [0.33,0.33,0.33] \u2192 35.33 | Toy \u00b7 1-based \u00b7 self included Equal logits \u00b7 mask\u2192\u2212\u221e \u2192 normalize Position 1 2 3 Value 2 4 100 Logit 0 0 \u2212\u221e Weight 0.50 0.50 0.00 Query 2 \u2192 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 \u2298: [0.50,0.50,0.00] \u2192 3.00 2. 2 \u25cb: [0.33,0.33,0.33] \u2192 35.33 3. 3 \u2298: [0.33,0.33,0.33] \u2192 35.33",
+      "text": "Declared finite stage data, operations and retained results, by case: Toy · 1-based · self included Equal logits · mask→−∞ → normalize Position 1 2 3 Value 2 4 100 Logit 0 0 −∞ Weight 0.50 0.50 0.00 Query 2 → 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 ⊘: [0.50,0.50,0.00] → 3.00 2. 2 ○: [0.33,0.33,0.33] → 35.33 3. 3 ⊘: [0.33,0.33,0.33] → 35.33 | Toy · 1-based · self included Equal logits · mask→−∞ → normalize Position 1 2 3 Value 2 4 100 Logit 0 0 −∞ Weight 0.50 0.50 0.00 Query 2 → 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 ⊘: [0.50,0.50,0.00] → 3.00 2. 2 ○: [0.33,0.33,0.33] → 35.33 3. 3 ⊘: [0.33,0.33,0.33] → 35.33 | Toy · 1-based · self included Equal logits · mask→−∞ → normalize Position 1 2 3 Value 2 4 100 Logit 0 0 −∞ Weight 0.50 0.50 0.00 Query 2 → 3.00 Mask 2 Unmask 2 Mask 3 Reset view 1. 2 ⊘: [0.50,0.50,0.00] → 3.00 2. 2 ○: [0.33,0.33,0.33] → 35.33 3. 3 ⊘: [0.33,0.33,0.33] → 35.33",
       "support": "derivation",
       "source": "Finite construction in company/domains/briefs/2026-10-19-ai-next30.md section 14; executable model.ts and model-check.mjs; builder provenance company/reviews/ai-causal-mask/build.md. This supports the declared toy only; real-system literature acquisition and independent review remain pending. Static render audit source captures all numerical outputs and boundaries; no independent verification asserted.",
       "status": "unverified"
@@ -76,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:causal-mask",
     "also": [],

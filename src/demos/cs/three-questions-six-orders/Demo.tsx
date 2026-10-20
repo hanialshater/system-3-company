@@ -56,7 +56,7 @@ export default function ThreeQuestionsSixOrders({ slug }: { slug: string }) {
             could not name the order yet; the third question left {alive.length}.
           </p>
           <p>
-            Each answer can at most halve the orders. Two questions tell apart at most {2 ** 2}, but {N} are possible;
+            Each yes-or-no question has two possible answers. Two questions tell apart at most {2 ** 2}, but {N} are possible;
             three tell apart {2 ** 3}. So {MIN_Q} is the fewest that always works. For n cards you need about log2(n!)
             questions, which grows like n log n.
           </p>

@@ -163,7 +163,7 @@ export const PREDICTION = {
   "answer": 1
 };
 export const REVEAL = "Hangzhou’s account describes surrendered Song offices and a Liangzhe governorate in 1276, an antecedent to the selected interval. The Palace Museum instead records contested Ming commands at Beiping in 1399–1400, while the imperial capital remained Nanjing. Surrender, provincial command and capital status are different relations; these retrospectives establish neither peaceful conquest nor a later 1421 capital move.";
-export const EXPLORE_HINT = "Read, then choose next.";
+export const EXPLORE_HINT = "Read each record, then compare them.";
 export const PERIOD_DISCLOSURE = "";
 export const PERIOD_SCOPE = "";
 export const PERIOD_CLAIM = "";

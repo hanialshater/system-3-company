@@ -50,7 +50,7 @@ export default function DominoChain({ slug }: { slug: string }) {
           <p>
             So two facts are enough: domino 1 falls, and whenever one falls the next does. Then 2 falls, so 3 falls, and so on
             past any number you name, a million included. This is proof by induction: prove it for 1, prove &quot;true for n means
-            true for n + 1&quot;, and it holds for every whole number. Dominoes picture it; they do not prove it.
+            true for n + 1&quot;, and it holds for every positive whole number. Dominoes picture it; they do not prove it.
           </p>
         </>
       )}

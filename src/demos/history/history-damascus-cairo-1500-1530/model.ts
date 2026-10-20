@@ -2,7 +2,7 @@ export interface SourcePin {url:string;makerCustodianEditor:string;locator:strin
 export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddresses:string[];claims:string[];sourcePins:SourcePin[]}[] = [
   {
     "id": "damascusElites",
-    "text": "Damascus judges/notables submitted to Selim before 1516 entry; judgeWali Farfur proclaimed his title",
+    "text": "Damascus judges/notables submitted to Selim before 1516 entry; judge Wali Farfur proclaimed his title",
     "requiredContext": "Specified judges/notables and Wali Farfur do not represent all residents. No peaceful conquest or universal consent; originals uncollated.",
     "fieldAddresses": [],
     "claims": [
@@ -16,11 +16,11 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "url": "https://islamansiklopedisi.org.tr/sam--suriye",
         "bodyPath": "/tmp/history-next15d-source-bodies/damascus1516.web.txt",
         "bodySha256": "583b3b730ba5e63ab3d10322e2cfd862c1283cf8f6940231103246313a76bd91",
-        "representation": "official web-tool normalized response text; not rawHTML/PDF",
+        "representation": "official web-tool normalized response text; not raw HTML/PDF",
         "transport": "web-tool origin retrieval; local response SHA256 is representation pin, not independent origin authentication",
         "makerCustodianEditor": "Ş.Tufan Buzpınar,TDV İslâm Ansiklopedisi",
         "publicationOrDocumentDate": "2010",
-        "languageMediation": "Turkish scholarship; minimal English agent paraphrase unreviewed",
+        "languageMediation": "Turkish scholarship; brief English paraphrase; not independently reviewed",
         "locator": "L 303–306",
         "extractedTextPath": null,
         "extractedTextSha256": null
@@ -29,7 +29,7 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
   },
   {
     "id": "cairoCourt",
-    "text": "Hayir Bey governed Egypt from Cairo citadel September 1517; Saturdaycourt used chiefjudges/subashi and retained selectedMamluk aides",
+    "text": "Hayir Bey governed Egypt from Cairo citadel September 1517; Saturday court used chief judges/subashi and retained selected Mamluk aides",
     "requiredContext": "Hayir’s court and selected retained Mamluk aides do not establish all local institutions replaced or universal operation. Turkish working English; originals uncollated.",
     "fieldAddresses": [],
     "claims": [
@@ -43,12 +43,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "url": "https://islamansiklopedisi.org.tr/hayir-bey",
         "bodyPath": "/tmp/history-next15d-source-bodies/hayir.web.txt",
         "bodySha256": "795a739da5132107fb49fc71c5c837c525bde225f3c72d63a820ba63d0a45c61",
-        "representation": "official web-tool normalized response text; not rawHTML/PDF",
+        "representation": "official web-tool normalized response text; not raw HTML/PDF",
         "transport": "web-tool origin retrieval; local response SHA256 is representation pin, not independent origin authentication",
         "makerCustodianEditor": "Seyyid Muhammed es-Seyyid,TDV İslâm Ansiklopedisi",
         "publicationOrDocumentDate": "1998",
-        "languageMediation": "Turkish scholarship; minimal English agent paraphrase unreviewed",
-        "locator": "governorshipparagraphs;13 September 1517 citadel and Saturdaydivan",
+        "languageMediation": "Turkish scholarship; brief English paraphrase; not independently reviewed",
+        "locator": "governorshipparagraphs;13 September 1517 citadel and Saturday divan",
         "extractedTextPath": null,
         "extractedTextSha256": null
       }
@@ -70,12 +70,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "url": "https://islamansiklopedisi.org.tr/canbirdi-gazali",
         "bodyPath": "/tmp/history-next15d-source-bodies/canbirdi.web.txt",
         "bodySha256": "5ef2ca38a9fe30a3336c62e200b59427a81f6b590488dde3b64a4a6d754e1772",
-        "representation": "official web-tool normalized response text; not rawHTML/PDF",
+        "representation": "official web-tool normalized response text; not raw HTML/PDF",
         "transport": "web-tool origin retrieval; local response SHA256 is representation pin, not independent origin authentication",
         "makerCustodianEditor": "Feridun Emecen,TDV İslâm Ansiklopedisi",
         "publicationOrDocumentDate": "1993",
-        "languageMediation": "Turkish scholarship; minimal English agent paraphrase unreviewed",
-        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamlukofficers",
+        "languageMediation": "Turkish scholarship; brief English paraphrase; not independently reviewed",
+        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamluk officers",
         "extractedTextPath": null,
         "extractedTextSha256": null
       },
@@ -84,12 +84,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "url": "https://islamansiklopedisi.org.tr/hayir-bey",
         "bodyPath": "/tmp/history-next15d-source-bodies/hayir.web.txt",
         "bodySha256": "795a739da5132107fb49fc71c5c837c525bde225f3c72d63a820ba63d0a45c61",
-        "representation": "official web-tool normalized response text; not rawHTML/PDF",
+        "representation": "official web-tool normalized response text; not raw HTML/PDF",
         "transport": "web-tool origin retrieval; local response SHA256 is representation pin, not independent origin authentication",
         "makerCustodianEditor": "Seyyid Muhammed es-Seyyid,TDV İslâm Ansiklopedisi",
         "publicationOrDocumentDate": "1998",
-        "languageMediation": "Turkish scholarship; minimal English agent paraphrase unreviewed",
-        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamlukofficers",
+        "languageMediation": "Turkish scholarship; brief English paraphrase; not independently reviewed",
+        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamluk officers",
         "extractedTextPath": null,
         "extractedTextSha256": null
       },
@@ -98,12 +98,12 @@ export const DOCUMENTS: {id:string;text:string;requiredContext:string;fieldAddre
         "url": "https://islamansiklopedisi.org.tr/sam--suriye",
         "bodyPath": "/tmp/history-next15d-source-bodies/damascus1516.web.txt",
         "bodySha256": "583b3b730ba5e63ab3d10322e2cfd862c1283cf8f6940231103246313a76bd91",
-        "representation": "official web-tool normalized response text; not rawHTML/PDF",
+        "representation": "official web-tool normalized response text; not raw HTML/PDF",
         "transport": "web-tool origin retrieval; local response SHA256 is representation pin, not independent origin authentication",
         "makerCustodianEditor": "Ş.Tufan Buzpınar,TDV İslâm Ansiklopedisi",
         "publicationOrDocumentDate": "2010",
-        "languageMediation": "Turkish scholarship; minimal English agent paraphrase unreviewed",
-        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamlukofficers",
+        "languageMediation": "Turkish scholarship; brief English paraphrase; not independently reviewed",
+        "locator": "Canbirdi 15 February 1518 appointment/1520 revolt;Hayır retained Mamluk officers",
         "extractedTextPath": null,
         "extractedTextSha256": null
       }

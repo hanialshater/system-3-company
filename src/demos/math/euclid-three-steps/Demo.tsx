@@ -62,7 +62,7 @@ export default function EuclidThreeSteps({ slug }: { slug: string }) {
             on your list.
           </p>
           <p>
-            Any finite list gets the same three steps, so no list holds every prime. This is Euclid&apos;s proof in the
+            Any finite list gets the same three steps, so no finite list holds every prime. This is Euclid&apos;s proof in the
             Elements, Book IX, Proposition 20.
           </p>
         </>

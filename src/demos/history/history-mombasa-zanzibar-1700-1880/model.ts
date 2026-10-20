@@ -2,7 +2,7 @@ export const DOCUMENTS = [
   {
     "id": "wali",
     "text": "1837 Miles account distinguishes Said’s fort garrison and town wali",
-    "requiredContext": "Retrospective1884 colonial biography; normalized OCR not inspected original convention. Wali belongs town, fort commander distinct.",
+    "requiredContext": "Retrospective 1884 colonial biography; normalized OCR not inspected original convention. Wali belongs town, fort commander distinct.",
     "citation": "British colonial retrospective author; BL/QDL custodian. Language/edition: English; automatic OCR; manuscript conventions/orthography retained. Representation: web-tool normalized body with line/page locators; not raw HTML/PDF. Transport limitation: Actual representation/transport in immutable baseline; no origin HTTP200 invented. Miles colonial retrospective, 1883–1884 administration report; BL/QDL IOR/V/23/45 No. 198. QDL is custodian, not author.",
     "sourceUrl": "https://www.qdl.qa/en/archive/81055/vdc_100023580328.0x000024",
     "locator": "normalizedL77–80 f47v printed32",
@@ -43,11 +43,11 @@ export const DOCUMENTS = [
     "id": "zanzibarCourt",
     "text": "Composite account places Said’s court at Zanzibar 1840 alongside enslaved plantation labour",
     "requiredContext": "Host is not established author. Court presence only, not single relocation or abandonment of Muscat; no plantation development praise.",
-    "citation": "Zanzibar ministry hosted culture page; body authorship/mediation not established. Language/edition: English composite historical prose; some UTF8 mojibake; use attributed government-hosted account only. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Government-hosted composite; authorship unestablished. Footer reserves Zanzibar Daily rights; no open licence asserted.",
+    "citation": "Zanzibar ministry hosted culture page; body authorship/mediation not established. Language/edition: English composite historical prose; some damaged UTF-8 text; use attributed government-hosted account only. Representation: raw downloaded bytes. Transport limitation: certificate verification disabled after local chain failure; identity not cryptographically authenticated. Government-hosted composite; authorship unestablished. Footer reserves Zanzibar Daily rights; no open licence asserted.",
     "sourceUrl": "https://ftp.maafaznz.go.tz/culture_link_right.php?id=4",
     "locator": "text17–18",
     "sourceLevel": "Zanzibar ministry hosted culture page; body authorship/mediation not established",
-    "languageMediation": "English composite historical prose; some UTF8 mojibake; use attributed government-hosted account only",
+    "languageMediation": "English composite historical prose; some damaged UTF-8 text; use attributed government-hosted account only",
     "representation": "raw downloaded bytes",
     "fieldAddresses": [
       "witnesses.zanzibarCourt.ordinaryFrame"
