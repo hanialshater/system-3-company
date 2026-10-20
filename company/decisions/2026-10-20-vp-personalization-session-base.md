@@ -100,3 +100,24 @@ Objections (travel with this ruling):
 - **O9 Necessity on the score comparison only (mine).** The test asks whether the default card would have won against this departure. It does not ask whether, with the reason removed, a different departure would have won, or whether the departure would still pass the attention budget (`gain > attentionCost`). **Answer:** unchanged. A different departure winning does not make the named reason less the cause of *this* card's move. The budget path can only turn a `false` into a carried move, so ignoring it errs towards `false`, the safe side for K5. Not worth a new spec this cycle.
 
 Board: W-2007 done; the build item goes to learner-model-engineer.
+
+## 8. Addendum (W-2010, 2026-10-20, run vp-w2010-1020): β = .033 stands; "about .1" in §1 and §2.3 is corrected
+
+This is a read-back of applied-scientist-personalization's W-2004 result (company/personalization/policies/gam-session-params.md, W-2004 section; model.ts `COMPOSER_SESSION.edpBaseEdits`; change-line row `model-v0.4.3`). I read no recall, score, `simulated` or `groundTruth` field, and no `compare` or layout-probe output. §1 and §2.3 stay as written above. This section corrects them.
+
+**Ruling: β = .033 stands under §2.3.** The rule binds and my expectation does not. §2.3 says β is EDP's ratio of need-widget base spread to a typical primary pull, times our typical primary pull, read off EDP (`makeModulesV1`) and our need medians, not off a probe or recall, with β > 0. The scientist did that, using the same statistic on both sides:
+
+- EDP spread: the 18 widgets with non-empty `on_rem` have base .05 to .20, so the spread is .15. I checked this against orchestrator-inline.js lines 117 to 151. The four widgets with empty `on_rem` (base .30 to .45) are not need widgets, so they are rightly left out.
+- Typical primary pull: the median over (learner, need) pairs with a nonzero need, on both sides. EDP's is .529 (56 pairs) and ours is .115 (1,046 session-start pairs, composition traces only). The ratio is .284, so β = .284 × .115 = .0326, which rounds to .033.
+- Robustness: two other matched definitions give .034 and .035. Only mixed definitions leave that band (.019 or .054), and a ratio taken across two different statistics is not unit-free, so it does not meet the rule.
+
+**Correction.** In §1, "EDP's need widgets carry a base spread of about .1 of a primary pull" should read **about .28 of a median primary pull** (.15 / .529). The .1 figure came from W-2000 "Routed" 1, which compared the spread with EDP's *strongest* pull per profile (about 1.2 to 1.5). In §2.3 the "about .1" and my expectation "near .02" both rest on that figure. The .02 also paired it with our repair/build-only pull (.18 to .21), which is not the statistic EDP's side used. The parenthetical "(onRem × median need, about .18 to .21)" in §2.3 describes repair and build only. The rule's word "typical" is satisfied by the matched median over all four needs, because EDP's side counts every problem. So the parenthetical figure is descriptive and does not bind. Nothing else in §2 to §7 changes.
+
+**What changes in my reading, and what does not.** At .033, the default gradient is about a third of a median pull and an eighth of a session's strongest pull. Needs still decide the order and the default order breaks near-ties, which is the "EDP-shaped flat prior" §2.3 asked for. So the variant is a little *less* flat than my .02 expectation, not more. O1 to O3 stand unchanged: the move bar is still about attentionCost + slotDecay × slot, and K4 and K5 still gate. K1 to K5, the tie rule in K3c and the one-variant limit (§2.6, O4) are unchanged. β is not revisited in this readout cycle.
+
+Objections (travel with this ruling):
+
+- **O10 Forking paths (mine, as O4).** I am accepting a number that differs from my stated expectation, after seeing it. **Answer:** I accept it because it follows the rule written before any result, and I would have rejected a value chosen to match .02. No recall or layout information exists for the variant, so the acceptance cannot have been steered by an outcome. The record keeps .02 as written, so the miss is visible.
+- **O11 The coarse EDP spread (scientist's sensitivity).** EDP's base takes five values. Leaving out the one .20 widget gives β ≈ .011, and v3's spread gives .037. **Answer:** §2.3 names `makeModulesV1` and the spread over its need widgets, and that spread is .15. Dropping a widget would be a choice made after seeing the number. The .011 to .037 range is reported as context only.
+
+Board: W-2010 done. The stale hq-cli comment is W-2009 (learner-model-engineer), not mine.
