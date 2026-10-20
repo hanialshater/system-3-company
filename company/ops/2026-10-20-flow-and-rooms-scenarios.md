@@ -199,9 +199,37 @@ node tools/room.mjs leave --run=R-… --meeting=launch-review-r20 --position="la
 #   or its deadline passes; the record lists who never came
 ```
 
+## S9. Approvals are asynchronous: queues and callbacks
+
+Nobody waits in a session for an approval. Asking for one puts an item in the approver's queue and ends the run (`leave --waiting`). The decision fires callbacks that start the next step. An idle requester makes no model calls and does no polling.
+
+```bash
+# a stage or an order that needs someone's approval goes into that person's queue
+node tools/flow.mjs request O-0412 --stage=release --approver=founder \
+  --due=24h --on-approve="advance O-0412 ship" --on-deny="reopen O-0412 uat --findings" \
+  --on-timeout="remind founder; after 48h escalate to chief-of-staff digest" --key=O-0412:release:v3
+# → A-0088 queued for founder (position 2) · requester may leave the room · key O-0412:release:v3
+
+node tools/flow.mjs queue founder
+# A-0087 E-031 budget 300k (cm-physics)   waiting 1 h  due 23 h
+# A-0088 O-0412 release (r20)             waiting 0 h  due 24 h   evidence: launch review, deploy record draft
+
+node tools/flow.mjs decide A-0088 --by=founder --decision=approve --words="Approve deploy" --channel=chat
+# → A-0088 approved · callback: advance O-0412 ship → order O-0414 for release-manager · release-manager woken
+```
+
+**Rules:**
+- **Queues:** one queue per approver: a role, or the founder. The founder's queue replaces hand-kept `company/ops/founder-inbox.json` items for flow approvals, and HQ's Lobby reads it.
+- **Callbacks:** `on-approve`, `on-deny` and `on-timeout` are flow commands, checked when the request is made, not when they fire. A callback can do only what the approver's decision authorises. For example, an approved release starts the ship order, and nothing else.
+- **Exactly once:** each request has an idempotency key. A second request with the same key returns the existing item, and a callback that fires twice does nothing the second time. This is the duplicate-notification check from the first pilot.
+- **Wake-up, not polling:** a callback that needs an agent creates an order and puts it on the mailbox drain with a lease (S2). The harness wakes a session for it. Nothing loops waiting.
+- **Deadlines:** a missed `due` fires `on-timeout`, which is a reminder or an escalation as the flow defines. A timeout never approves anything, and silence is never consent.
+- **Founder decisions:** `decide --by=founder` needs the founder's own words and the channel they came through. Code checks the words against the founder-reserved actions: "Approve deploy" covers a release and nothing more. An agent can file the founder's words, but it cannot be the source of them.
+- **Batching:** the founder's queue can be answered in one sitting, with `decide A-0087 A-0088 …`, each item carrying its own words. The founder digest is generated from the queue.
+
 ## What every command writes
 
-Every accepted command writes one event (`order`, `approve`, `escalate`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.
+Every accepted command writes one event (`order`, `approve`, `escalate`, `request`, `decide`, `callback`, `timeout`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.
 
 ## Open for the founder
 
